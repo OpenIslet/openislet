@@ -1,0 +1,193 @@
+{
+  "query_metadata": {
+    "disease_efo_id": "MONDO_0005147",
+    "page_index": 0,
+    "page_size_requested": 25,
+    "rows_returned": 25,
+    "note": "Top-25 OpenTargets MONDO_0005147 genetic association rows (containing INS, PTPN2, and TYK2 among the 33 Islet-1 candidate targets); remaining 17 non-null candidate priors in target_prior_table.json are explicitly labeled Curated_Literature_Prior_Fallback_Not_In_Top25_GraphQL (AUDIT-REF-V80-016)."
+  },
+  "disease": {
+    "id": "MONDO_0005147",
+    "name": "type 1 diabetes mellitus",
+    "associatedTargets": {
+      "count": 6069,
+      "rows": [
+        {
+          "target": {
+            "id": "ENSG00000254647",
+            "approvedSymbol": "INS"
+          },
+          "score": 0.7333114921341869
+        },
+        {
+          "target": {
+            "id": "ENSG00000135100",
+            "approvedSymbol": "HNF1A"
+          },
+          "score": 0.6930619041161056
+        },
+        {
+          "target": {
+            "id": "ENSG00000134460",
+            "approvedSymbol": "IL2RA"
+          },
+          "score": 0.6342285280256282
+        },
+        {
+          "target": {
+            "id": "ENSG00000134242",
+            "approvedSymbol": "PTPN22"
+          },
+          "score": 0.6322476313769904
+        },
+        {
+          "target": {
+            "id": "ENSG00000171105",
+            "approvedSymbol": "INSR"
+          },
+          "score": 0.6303316024677904
+        },
+        {
+          "target": {
+            "id": "ENSG00000111252",
+            "approvedSymbol": "SH2B3"
+          },
+          "score": 0.6290311903116664
+        },
+        {
+          "target": {
+            "id": "ENSG00000140675",
+            "approvedSymbol": "SLC5A2"
+          },
+          "score": 0.6060192771159886
+        },
+        {
+          "target": {
+            "id": "ENSG00000163599",
+            "approvedSymbol": "CTLA4"
+          },
+          "score": 0.5972078816816926
+        },
+        {
+          "target": {
+            "id": "ENSG00000105397",
+            "approvedSymbol": "TYK2"
+          },
+          "score": 0.583522184815907
+        },
+        {
+          "target": {
+            "id": "ENSG00000198851",
+            "approvedSymbol": "CD3E"
+          },
+          "score": 0.5643229127251665
+        },
+        {
+          "target": {
+            "id": "ENSG00000168925",
+            "approvedSymbol": "CTRB1"
+          },
+          "score": 0.5598973478175985
+        },
+        {
+          "target": {
+            "id": "ENSG00000103811",
+            "approvedSymbol": "CTSH"
+          },
+          "score": 0.558121127149422
+        },
+        {
+          "target": {
+            "id": "ENSG00000136634",
+            "approvedSymbol": "IL10"
+          },
+          "score": 0.5566599365424073
+        },
+        {
+          "target": {
+            "id": "ENSG00000148737",
+            "approvedSymbol": "TCF7L2"
+          },
+          "score": 0.5540787944946526
+        },
+        {
+          "target": {
+            "id": "ENSG00000215644",
+            "approvedSymbol": "GCGR"
+          },
+          "score": 0.5530552548744697
+        },
+        {
+          "target": {
+            "id": "ENSG00000112182",
+            "approvedSymbol": "BACH2"
+          },
+          "score": 0.5516480606662513
+        },
+        {
+          "target": {
+            "id": "ENSG00000150637",
+            "approvedSymbol": "CD226"
+          },
+          "score": 0.549365359221423
+        },
+        {
+          "target": {
+            "id": "ENSG00000168928",
+            "approvedSymbol": "CTRB2"
+          },
+          "score": 0.547549915863787
+        },
+        {
+          "target": {
+            "id": "ENSG00000049768",
+            "approvedSymbol": "FOXP3"
+          },
+          "score": 0.5473141713550741
+        },
+        {
+          "target": {
+            "id": "ENSG00000089012",
+            "approvedSymbol": "SIRPG"
+          },
+          "score": 0.5464257335539859
+        },
+        {
+          "target": {
+            "id": "ENSG00000176920",
+            "approvedSymbol": "FUT2"
+          },
+          "score": 0.523060099028143
+        },
+        {
+          "target": {
+            "id": "ENSG00000112164",
+            "approvedSymbol": "GLP1R"
+          },
+          "score": 0.5208040001604708
+        },
+        {
+          "target": {
+            "id": "ENSG00000139531",
+            "approvedSymbol": "SUOX"
+          },
+          "score": 0.5147203662721433
+        },
+        {
+          "target": {
+            "id": "ENSG00000175354",
+            "approvedSymbol": "PTPN2"
+          },
+          "score": 0.5104798651518475
+        },
+        {
+          "target": {
+            "id": "ENSG00000100170",
+            "approvedSymbol": "SLC5A1"
+          },
+          "score": 0.5093843293050184
+        }
+      ]
+    }
+  }
+}

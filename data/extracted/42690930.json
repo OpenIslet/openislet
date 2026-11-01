@@ -1,0 +1,340 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "42690930",
+    "pmcid": null,
+    "doi": "10.1016/j.celrep.2026.117941",
+    "nct_id": null,
+    "geo_accessions": [
+      "GSE324575"
+    ],
+    "title": "Engineering the insulin signal peptide to protect human pancreatic beta cells from autoimmune destruction.",
+    "first_author": "Kobaisi F",
+    "senior_author": "Scharfmann R",
+    "pub_year": 2026,
+    "journal": "Cell reports",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar3_Intrinsic_BetaCell_Genetic_Resilience_Amyloid_Viral"
+    ],
+    "max_biological_fidelity_tier": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid42690930_arm1",
+      "arm_label": "Human Beta Cells Expressing Wild-Type Preproinsulin Signal Peptide",
+      "is_reference_control": true,
+      "sample_size_n": null,
+      "sample_size_unit": "organoid_wells",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "EndoC_betaH1_or_H2_H3",
+        "cell_line_id": "Human pancreatic beta-cell line (EndoC-betaH1 / INS-complemented)",
+        "donor_hla_profile": "HLA-A2+ (HLA Class I intact)",
+        "protocol_backbone": "Human beta-cell line",
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "T1D_Autoreactive_CD8_or_CD4_TCR_Clone",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": 21.0,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": "Preproinsulin signal peptide-specific autoreactive CD8+ T cells"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid42690930_arm2",
+      "arm_label": "Human Beta Cells with Endogenous INS Knockout and Chromogranin-A (CHGA) Signal Peptide-Insulin Swap",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": "organoid_wells",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "EndoC_betaH1_or_H2_H3",
+        "cell_line_id": "INS-KO human beta-cell line complemented with CHGA-signal-peptide-INS",
+        "donor_hla_profile": "HLA-A2+ (HLA Class I intact)",
+        "protocol_backbone": "Human beta-cell line",
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "INS",
+          "ensembl_gene_id": "ENSG00000254647",
+          "sub_molecular_coordinate": {
+            "region_class": "Signal_Peptide_Leader",
+            "exact_variant_or_swap_description": "Endogenous INS knockout complemented with preproinsulin carrying the Chromogranin-A (CHGA) signal peptide in place of the native INS signal peptide"
+          },
+          "functional_gate": "Gate2_Autoantigen_or_Neoantigen_Stealth",
+          "target_autoantibody_or_tcr_evaded": [
+            "IAA_Insulin_Preproinsulin_Leader"
+          ],
+          "edit_modality": "Signal_Peptide_or_Domain_Swap",
+          "promoter_or_locus_context": "Lineage_Locked_INS_G6PC2_PDX1",
+          "zygosity_or_allelic_state": "Homozygous_Biallelic",
+          "protein_or_surface_expression_fold_vs_wt": 1.0,
+          "perturbation_class": "Precision_Epitope_or_Isoform_Edit"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "T1D_Autoreactive_CD8_or_CD4_TCR_Clone",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": 21.0,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": "Preproinsulin signal peptide-specific autoreactive CD8+ T cells"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": false
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "kobaisi2026_eff1_chga_signal_peptide_evasion",
+      "source_figure_or_table": "Abstract & GSE324575",
+      "focal_factor_X": "Substitution of native INS signal peptide with Chromogranin-A (CHGA) signal peptide in INS-KO human beta cells",
+      "comparator_X0": "Human beta cells expressing wild-type INS signal peptide",
+      "outcome_variable_Y": "[Endpoint: Autoimmune_TCR_or_AutoAb_Evasion | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=T-cell recognition and beta-cell killing]",
+      "outcome_domain": "Autoimmune_TCR_or_AutoAb_Evasion",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "T-cell recognition and beta-cell killing",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Mature human pancreatic beta-cell line",
+        "Z2_genetic_background_and_allelic_dose": "Endogenous INS knockout + CHGA signal peptide-insulin complementation (HLA Class I intact)",
+        "Z3_immune_effector_and_stressor_pathway": "Autoreactive CD8+ T cells targeting insulin signal peptide fragments",
+        "Z4_metabolic_and_glucose_load_state": "Physiological insulin synthesis, processing, and secretion",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Human beta-cell culture",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "In vitro co-culture",
+        "Z7_promoter_and_epigenetic_context": "Insulin expression construct",
+        "Z8_species_age_and_sex_context": "Human"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:42690930 field=verbatim_evidence_quote genes=CHGA,INS pert=NONE quote_sha256=264cfd7cabd17c7bfcbf2cfab0f05af12cf1b260f31aa41cc1348dfaa365e1a4]",
+      "focal_arm_id": "pmid42690930_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "9800fbefa353dc4bba96d2432b9aee3fc1908360b89b905aa46e6c690f9447b2",
+      "source_span": "abstract[678:1015]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Substitution of native INS signal peptide with Chromogranin-A (CHGA) signal peptide in INS-KO human beta cells",
+        "comparator_label": null,
+        "endpoint_name": "Autoimmune_TCR_or_AutoAb_Evasion",
+        "timepoint": null,
+        "population_or_model": "Endogenous INS knockout + CHGA signal peptide-insulin complementation (HLA Class I intact) (Human)",
+        "units": "T-cell recognition and beta-cell killing",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "42690930"
+    },
+    {
+      "effect_id": "kobaisi2026_eff2_proinsulin_insulin_ratio_and_er_stress",
+      "source_figure_or_table": "Abstract & GSE324575",
+      "focal_factor_X": "INS functional evaluation — CHGA signal peptide substitution on preproinsulin",
+      "comparator_X0": "Wild-type preproinsulin or alternative hormone signal peptides",
+      "outcome_variable_Y": "[Endpoint: Metabolic_and_Biphasic_GSIS_Maturation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=Proinsulin/insulin ratio and ER stress transcriptomic signature (GSE324575)]",
+      "outcome_domain": "Metabolic_and_Biphasic_GSIS_Maturation",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "Proinsulin/insulin ratio and ER stress transcriptomic signature (GSE324575)",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Neutral_or_NonInferior",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Human pancreatic beta cells",
+        "Z2_genetic_background_and_allelic_dose": "INS-KO + CHGA-SP-INS",
+        "Z3_immune_effector_and_stressor_pathway": "Unstressed and T-cell challenged",
+        "Z4_metabolic_and_glucose_load_state": "Basal and glucose-stimulated insulin secretion",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Human beta cells",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "In vitro",
+        "Z7_promoter_and_epigenetic_context": "Insulin expression",
+        "Z8_species_age_and_sex_context": "Human"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:42690930 field=verbatim_evidence_quote genes=CHGA,INS pert=NONE quote_sha256=264cfd7cabd17c7bfcbf2cfab0f05af12cf1b260f31aa41cc1348dfaa365e1a4]",
+      "focal_arm_id": "pmid42690930_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "9800fbefa353dc4bba96d2432b9aee3fc1908360b89b905aa46e6c690f9447b2",
+      "source_span": "abstract[678:1015]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "INS functional evaluation — CHGA signal peptide substitution on preproinsulin",
+        "comparator_label": null,
+        "endpoint_name": "Metabolic_and_Biphasic_GSIS_Maturation",
+        "timepoint": null,
+        "population_or_model": "INS-KO + CHGA-SP-INS (Human)",
+        "units": "Proinsulin/insulin ratio and ER stress transcriptomic signature (GSE324575)",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "42690930"
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "kobaisi2026_int1_donor_signal_peptide_identity_modifies_processing",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Replacement of endogenous INS signal peptide in INS-KO human beta cells",
+      "outcome_Y": "Proper ER translocation, proinsulin-to-insulin maturation, lack of ER stress, and autoimmune T-cell evasion",
+      "modifier_variable_Z": "Identity of the Donor Hormone Signal Peptide (Chromogranin-A [CHGA] vs other hormone signal peptides)",
+      "modifier_class": "Z2_Genetic_Background_Zygosity_or_Surface_MFI_Dose",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:42690930 field=level_1_condition_and_effect quote_sha256=0e4c305f689a71a8c1b7f8b11d98750cf3ccc52c5f2624f9bac2ce7ffd2f32a3]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:42690930 field=level_2_condition_and_effect quote_sha256=0419a6f3888504854e251a745d41bb5ddbf982b034df0a0af964ff7e01383bab]",
+      "modification_type": "Rescue_of_Toxicity_or_Defect",
+      "critical_threshold_value_and_unit": "Exact N-terminal signal peptide swap with CHGA leader sequence",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:42690930 field=mechanistic_explanation quote_sha256=c15e24ca1f7812ad59275cb76988760f68bd9c4384711d4c3fcc7f824b937aad]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "CHGA Signal Peptide Swap onto INS Coding Sequence",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "Presentation of Preproinsulin Signal Peptide (PPI Leader) Epitopes on MHC Class I to Autoreactive T1D CD8+ T Cells",
+      "downstream_node_type": "Surface_Ligand_or_Antigen_Presentation",
+      "evidence_source": "Abstract (PMID 42690930)"
+    },
+    {
+      "upstream_node": "CHGA Signal Peptide Swap onto INS Coding Sequence",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Stabilizes_or_Rescues",
+      "downstream_node": "Physiological Proinsulin/Insulin Ratio and ER Homeostasis Without Unfolded Protein Stress",
+      "downstream_node_type": "Organelle_or_Metabolic_State",
+      "evidence_source": "Abstract & GSE324575 (PMID 42690930)"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [
+      {
+        "primary_gate_perturbed": "Gate 2 (Autoantigen Epitope Stealth via CHGA Signal Peptide Swap on INS)",
+        "secondary_gate_affected": "Gate 1 (Insulin Biosynthesis/Processing) & Gate 4 (ER Stress / Tumorigenicity Safety)",
+        "observation": "[REDACTED_NON_OA_EXCERPT: see PMID:42690930 field=observation quote_sha256=a3e5894e7d55c4b1a27d342a95819f4831dd24d89c8fc637676fbea2be300b07]",
+        "is_beneficial_synergy_or_deleterious_tradeoff": "Beneficial_CrossGate_Bonus"
+      }
+    ],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "CHGA Signal Peptide Swap on INS Alone",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:42690930 field=omitted_text quote_sha256=b5b328923a932736da62c5cd2d309a4d851e74e33a7ef0ef2f5e04ca75b8a580]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:42690930 field=omitted_text quote_sha256=0ad42b560f6afe21f7825059301e9a496fa47ff2494644f99a325c08e5f039d0]",
+        "complementary_lever_needed": "Combine CHGA-SP-INS swap with HLA-C-retained or selective HLA/TYK2i cloaking (Chandra 2022 PMID 36289205) and RNLS KO (Cai 2020 PMID 32719542) to suppress polyclonal CD8+ T-cell stimulation."
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

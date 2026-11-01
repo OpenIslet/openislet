@@ -1,0 +1,9 @@
+Resource: NCBI dbSNP (U.S. National Library of Medicine)
+Classification: Factual human SNP coordinates and rsIDs redistributed in public bundle
+Audit Timestamp (UTC): 2026-10-23T14:53:15Z
+Upstream Source & Terms: https://www.ncbi.nlm.nih.gov/snp/ and https://www.ncbi.nlm.nih.gov/home/about/policies/ (U.S. Government public-domain work)
+Release / Build: dbSNP Build 156 (GRCh38.p14)
+Shipped Public Artifacts:
+  - data/raw/layer2_genomic_and_jaspar_reference.json and data/raw/layer5_dbsnp_clinvar_reference.json
+  - data/extracted/layer5_personalized_patient_and_crispr_atlas.json (gRNA protospacer/PAM common SNP audit and patient polymorphism compiler)
+Attribution & Modifications: Reference SNP identifiers (rsIDs) and GRCh38 coordinates mapped onto candidate CRISPR gRNA windows and host T1D risk loci.

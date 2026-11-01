@@ -1,0 +1,27 @@
+name: A problem with the files or the instructions
+description: A file is wrong, a command fails, or the README doesn't work from a clean checkout.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for telling us. This form is for problems with the **files in this repository**. For an idea about the blueprint itself (a weak spot, a better design choice, a missing paper), [send an IIP](https://openislet.org/start) instead.
+
+        Everything here is public, so please leave personal details out.
+  - type: input
+    id: where
+    attributes:
+      label: Which file or command?
+      description: For example README.md, or the exact command you ran.
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: input
+    id: setup
+    attributes:
+      label: Your computer and Python version (optional)
+      description: For example, macOS with Python 3.12, or Ubuntu with Python 3.11.

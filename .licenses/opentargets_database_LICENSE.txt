@@ -1,0 +1,8 @@
+Resource: Open Targets Platform GraphQL API (EMBL-EBI / Wellcome Sanger Institute)
+Classification: Factual target tractability, genetic association, and safety liability annotations redistributed in public bundle
+Audit Timestamp (UTC): 2026-10-19T10:35:30Z
+Upstream Source & Terms: https://platform-docs.opentargets.org/licence (Creative Commons Zero / CC0 1.0 Public Domain Dedication; attribution provided)
+Release: Open Targets Platform 24.09
+Shipped Public Artifacts:
+  - data/omics/t1d_associated_targets_top100.json, data/omics/target_prior_table.json, and data/extracted/omics_baseline_summary.json (target safety liabilities and T1D genetic association scores)
+Attribution & Modifications: Target-level safety flags and T1D association scores extracted via Open Targets GraphQL API and integrated into Layer-1 target profiles.

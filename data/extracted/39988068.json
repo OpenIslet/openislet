@@ -1,0 +1,556 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "39988068",
+    "pmcid": "PMC11981795",
+    "doi": "10.1016/j.molmet.2025.102115",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Renalase inhibition defends against acute and chronic β cell stress by regulating cell metabolism.",
+    "first_author": "MacDonald TL",
+    "senior_author": "Yi P",
+    "pub_year": 2025,
+    "journal": "Molecular metabolism",
+    "source_text_type": "FullText_XML_or_PDF",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar3_Intrinsic_BetaCell_Genetic_Resilience_Amyloid_Viral"
+    ],
+    "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid39988068_arm1",
+      "arm_label": "Wild-Type T1D-Patient-Derived iPSC SC-Beta Cells and 3D SC-Islet Aggregates",
+      "is_reference_control": true,
+      "sample_size_n": 6,
+      "sample_size_unit": "independent_differentiations",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "iPSC_T1D_or_LADA_patient",
+        "cell_line_id": "T1D patient iPSC line (Melton lab)",
+        "donor_hla_profile": "Autologous T1D patient HLA background",
+        "protocol_backbone": "Hogrebe/Millman 6-stage planar differentiation followed by S6d7-S6d14 orbital shaker 3D SC-islet aggregation",
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": 25.0,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "ER_Stress_Thapsigargin_or_Tunicamycin",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": 25.0,
+          "duration_hours_or_days": 48.0,
+          "specific_autoantigen_or_hla_restriction": "48h challenge with 25 mM high glucose, 10 uM DTT (disulfide misfolding ER stress), or 100 uM H2O2 (oxidative stress)"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": 1.0,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid39988068_arm2",
+      "arm_label": "Clonal RNLS-/- Knockout T1D-Patient-Derived iPSC SC-Beta Cells and 3D SC-Islet Aggregates",
+      "is_reference_control": false,
+      "sample_size_n": 6,
+      "sample_size_unit": "independent_differentiations",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "iPSC_T1D_or_LADA_patient",
+        "cell_line_id": "T1D patient iPSC clonal RNLS exon 2 deletion (RNLS KO)",
+        "donor_hla_profile": "Autologous T1D patient HLA background",
+        "protocol_backbone": "Hogrebe/Millman 6-stage planar differentiation followed by S6d7-S6d14 orbital shaker 3D SC-islet aggregation",
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": 25.0,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "RNLS",
+          "ensembl_gene_id": "ENSG00000184719",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:39988068 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=RNLS quote_sha256=1a008d05b26e56d5d5e34dd008bf680c3aa7bbeed46d23c5302b6fc0ca9ba013]"
+          },
+          "functional_gate": "Gate4_Intrinsic_ER_Stress_UPR_Shield",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": "Homozygous_Biallelic",
+          "protein_or_surface_expression_fold_vs_wt": 0.0,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "ER_Stress_Thapsigargin_or_Tunicamycin",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": 20.0,
+          "duration_hours_or_days": 24.0,
+          "specific_autoantigen_or_hla_restriction": "Seahorse bioenergetics (ECAR/OCR) in planar SC-beta vs 3D SC-islet aggregates; plus 1h-24h 5 mM DTT protein-misfolding ER stress +/- 1-10 mM 2-DG or 5-10 mM mannoheptulose in Rnlsmut NIT-1 beta cells"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": 1.0,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid39988068_arm3",
+      "arm_label": "Pharmacological Renalase Inhibitor Pargyline (PG, 25-50 ug/mL Oral in Ins2-Akita Mice and 5 uM in Human SC-Beta)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Rodent_Primary_Islet",
+        "cell_line_id": "C57BL/6-Ins2Akita/J endogenous islets and T1D iPSC SC-beta cells",
+        "donor_hla_profile": "Syngeneic C57BL/6-Ins2Akita/J (male and female cohorts)",
+        "protocol_backbone": "Oral Pargyline (25-50 ug/mL in drinking water from postnatal day 20 for 28 days) or 5 uM PG in vitro",
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "RNLS",
+          "ensembl_gene_id": "ENSG00000184719",
+          "sub_molecular_coordinate": {
+            "region_class": "Catalytic_or_Kinase_Domain",
+            "exact_variant_or_swap_description": "Oral Pargyline (PG, 25-50 ug/mL) dual RNLS and MAO-B pharmacological inhibitor"
+          },
+          "functional_gate": "Gate4_Intrinsic_ER_Stress_UPR_Shield",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "SmallMolecule_Pharmacological_Modulator",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Pharmacological_or_Small_Molecule_Modulator"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "ER_Stress_Thapsigargin_or_Tunicamycin",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 28.0,
+          "specific_autoantigen_or_hla_restriction": "Chronic Ins2-Akita disulfide-misfolding insulin ER stress in vivo (28 days); or 10 uM DTT in human SC-beta cells"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": 28.0,
+        "pct_graft_surviving_at_end_of_followup": 100.0,
+        "followup_duration_days": 28.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "macdonald2025_eff1_rnls_ko_human_sc_islet_ecar_ocr_boost",
+      "source_figure_or_table": "Figure 6B, Figure 6C, Figure 6D, Figure 6E, Figure 6F",
+      "focal_factor_X": "RNLS-/- CRISPR exon 2 knockout in 3D aggregated human T1D-iPSC SC-islets",
+      "comparator_X0": "Wild-type (WT) T1D-iPSC SC-islets",
+      "outcome_variable_Y": "[Endpoint: Metabolic_and_Biphasic_GSIS_Maturation | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
+      "outcome_domain": "Metabolic_and_Biphasic_GSIS_Maturation",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet (3D orbital shaker aggregated S6d7-S6d14)",
+        "Z2_genetic_background_and_allelic_dose": "Homozygous RNLS exon 2 deletion in T1D iPSCs",
+        "Z3_immune_effector_and_stressor_pathway": "Baseline and 20 mM glucose + oligomycin/FCCP Seahorse bioenergetic challenge",
+        "Z4_metabolic_and_glucose_load_state": "2 mM to 20 mM glucose transition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D aggregated SC-islet clusters vs 2D planar SC-beta",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Not_Applicable_KO",
+        "Z8_species_age_and_sex_context": "Human T1D-patient-derived iPSC line"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:39988068 field=verbatim_evidence_quote genes=RNLS pert=KO_LOF quote_sha256=c1b0e9cb1ec32530566c966432af3df5b37bbdfd5fccab074e185cb9ffa82aae]",
+      "focal_arm_id": "pmid39988068_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "c-peptide"
+      },
+      "dossier_sha256": "238f0a52767775ddb5b4e9b547bb21c93988422658b8cff72315d6af52b1a541",
+      "source_span": "fulltext_data_sections.results_paragraphs[29][181:515]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "RNLS-/- CRISPR exon 2 knockout in 3D aggregated human T1D-iPSC SC-islets",
+        "comparator_label": null,
+        "endpoint_name": "Metabolic_and_Biphasic_GSIS_Maturation",
+        "timepoint": null,
+        "population_or_model": "Homozygous RNLS exon 2 deletion in T1D iPSCs (Human T1D-patient-derived iPSC line)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "39988068"
+    },
+    {
+      "effect_id": "macdonald2025_eff2_rnlsmut_glycolytic_nadph_gsh_stress_shield",
+      "source_figure_or_table": "Figure 2D-G, Figure 3A-C, Figure 4B-D, Figure 5D-F",
+      "focal_factor_X": "Genetic Rnls loss-of-function (Rnlsmut) in beta cells",
+      "comparator_X0": "Wild-type (WT) beta cells",
+      "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
+      "outcome_domain": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Beta cell line and Stage 6 SC-beta",
+        "Z2_genetic_background_and_allelic_dose": "CRISPR Rnlsmut frameshift knockout",
+        "Z3_immune_effector_and_stressor_pathway": "5 mM DTT disulfide protein-misfolding ER stress, thapsigargin, and H2O2 oxidative stress",
+        "Z4_metabolic_and_glucose_load_state": "Uninhibited glycolysis vs 1-10 mM 2-DG or 5-10 mM mannoheptulose",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Monolayer and 3D aggregates",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Not_Applicable_KO",
+        "Z8_species_age_and_sex_context": "NOD-derived NIT-1 beta cells and human T1D iPSC SC-beta"
+      },
+      "verbatim_evidence_quote": "Most importantly: 2-DG was sufficient to abrogate the protective effects of Rnlsmut on cell viability when glycolysis was inhibited by 50–75% (Figure 5E)",
+      "focal_arm_id": "pmid39988068_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "survival"
+      },
+      "dossier_sha256": "238f0a52767775ddb5b4e9b547bb21c93988422658b8cff72315d6af52b1a541",
+      "source_span": "fulltext_data_sections.results_paragraphs[25][895:1048]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Genetic Rnls loss-of-function (Rnlsmut) in beta cells",
+        "comparator_label": null,
+        "endpoint_name": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+        "timepoint": null,
+        "population_or_model": "CRISPR Rnlsmut frameshift knockout (NOD-derived NIT-1 beta cells and human T1D iPSC SC-beta)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "39988068"
+    },
+    {
+      "effect_id": "macdonald2025_eff3_pargyline_akita_glycemic_reversal_sex_dimorphic",
+      "source_figure_or_table": "Figure 1D, Figure 1E, Figure 1F, Figure 1G",
+      "focal_factor_X": "50 ug/mL oral Pargyline (PG, pharmacological RNLS inhibitor) for 28 days",
+      "comparator_X0": "Vehicle-treated Ins2-Akita mice",
+      "outcome_variable_Y": "[Endpoint: InVivo_Glycemic_Cure_and_Graft_Longevity | polarity=Lower_Is_Better_Hazard_Endpoint | orientation_sign=-1 | unit=ug/mL]",
+      "outcome_domain": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "ug/mL",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Postnatal day 20 to day 48 endogenous islets",
+        "Z2_genetic_background_and_allelic_dose": "Heterozygous C57BL/6-Ins2Akita/J",
+        "Z3_immune_effector_and_stressor_pathway": "Chronic endogenous Ins2-Akita disulfide misfolding ER and oxidative stress",
+        "Z4_metabolic_and_glucose_load_state": "Female moderate hyperglycemia (200-250 mg/dL) vs male severe hyperglycemia (400-600 mg/dL)",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Endogenous pancreatic islets",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Intrapancreatic endogenous vasculature",
+        "Z7_promoter_and_epigenetic_context": "Pharmacological treatment",
+        "Z8_species_age_and_sex_context": "Female vs Male C57BL/6-Ins2Akita/J mice"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:39988068 field=verbatim_evidence_quote genes=RNLS pert=KO_LOF quote_sha256=0b7278d50b3eaa1fa0eabed44ad4aa72c5ee51d9cbea8bc25130712c4d0f415d]",
+      "focal_arm_id": "pmid39988068_arm3",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
+        "orientation_sign": -1,
+        "matched_lexicon_term": "blood glucose"
+      },
+      "dossier_sha256": "238f0a52767775ddb5b4e9b547bb21c93988422658b8cff72315d6af52b1a541",
+      "source_span": "fulltext_data_sections.results_paragraphs[1][1933:2200]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "50 ug/mL oral Pargyline (PG, pharmacological RNLS inhibitor) for 28 days",
+        "comparator_label": null,
+        "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+        "timepoint": null,
+        "population_or_model": "Heterozygous C57BL/6-Ins2Akita/J (Female vs Male C57BL/6-Ins2Akita/J mice)",
+        "units": "ug/mL",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "39988068"
+    },
+    {
+      "effect_id": "macdonald2025_eff3_rnls_ko_human_gsis_immaturity_tradeoff",
+      "source_figure_or_table": "Figure 6 / Discussion",
+      "focal_factor_X": "RNLS-/- knockout in human iPSC-beta aggregates",
+      "comparator_X0": "Wild-type iPSC-beta aggregates",
+      "outcome_variable_Y": "[Endpoint: Metabolic_and_Biphasic_GSIS_Maturation | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
+      "outcome_domain": "Metabolic_and_Biphasic_GSIS_Maturation",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Neutral_or_NonInferior",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Homozygous RNLS-/- human iPSC-beta aggregates",
+        "Z3_immune_effector_and_stressor_pathway": "Unstressed_Metabolic_Assay",
+        "Z4_metabolic_and_glucose_load_state": "Static GSIS and Seahorse OCR/ECAR",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D iPSC-beta aggregates",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Biallelic RNLS deletion",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:39988068 field=verbatim_evidence_quote genes=RNLS pert=KO_LOF quote_sha256=da5e9b2bb7b1628a77ef8345fe599c5e1979a60b62c4171ebe863bafce801ada]",
+      "focal_arm_id": "pmid39988068_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "gsis"
+      },
+      "dossier_sha256": "238f0a52767775ddb5b4e9b547bb21c93988422658b8cff72315d6af52b1a541",
+      "source_span": "fulltext_data_sections.results_paragraphs[29][1032:1207]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "RNLS-/- knockout in human iPSC-beta aggregates",
+        "comparator_label": null,
+        "endpoint_name": "Metabolic_and_Biphasic_GSIS_Maturation",
+        "timepoint": null,
+        "population_or_model": "Homozygous RNLS-/- human iPSC-beta aggregates (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "39988068"
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "macdonald2025_mod1_2dg_hexokinase_vs_mannoheptulose_gck_blockade",
+      "source_figure_or_table": "Figure 5C, Figure 5D, Figure 5E, Figure 5F",
+      "focal_factor_X": "Genetic Rnls loss-of-function (Rnlsmut)",
+      "outcome_Y": "Beta-cell survival protection against ER and oxidative stress",
+      "modifier_variable_Z": "Proximal Glycolysis Inhibition by 2-Deoxyglucose (2-DG, Hexokinase/PFK Blockade) vs Mannoheptulose (MH, Selective Glucokinase Blockade)",
+      "modifier_class": "Z4_Metabolic_Glucose_or_ER_Secretory_Load",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:39988068 field=level_1_condition_and_effect quote_sha256=ca22144a57a528a846c88078fe62addf4c97cdf5950ff89e09696202e06238fb]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:39988068 field=level_2_condition_and_effect quote_sha256=68dd62a7fee9f63076645bd231325ebed1472e4910e4240f0786aa2f5ed9169e]",
+      "modification_type": "Complete_Bypass_or_Abrogation",
+      "critical_threshold_value_and_unit": "50-75% inhibition of glycolytic ECAR by 10 mM 2-DG",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:39988068 field=mechanistic_explanation quote_sha256=bde9012e18456e14bdca945615dae76ea66cdaa6774eca54494ec3f882e352c6]"
+    },
+    {
+      "interaction_id": "macdonald2025_mod2_3d_aggregate_vs_2d_planar_sc_beta_ocr",
+      "source_figure_or_table": "Figure 6C, Figure 6D, Figure 6E, Figure 6F",
+      "focal_factor_X": "RNLS-/- knockout in human T1D-iPSC SC-beta cells",
+      "outcome_Y": "Mitochondrial cellular respiration (OCR) and glycolytic flux (ECAR)",
+      "modifier_variable_Z": "3D SC-Islet Cluster Aggregation vs 2D Planar Culture Architecture",
+      "modifier_class": "Z5_Cytoarchitecture_Paracrine_or_Cluster_Diameter",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:39988068 field=level_1_condition_and_effect quote_sha256=8d8b5732aa53a18b9b8b74a207e260ea7e4bc59f7ac566f0e3ec2a674efe8da8]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:39988068 field=level_2_condition_and_effect quote_sha256=d2568ef90d347eb8502296050ac7d43065fb8881a86a90b8301578320510f189]",
+      "modification_type": "Synergistic_Amplification",
+      "critical_threshold_value_and_unit": "7-day 3D orbital shaker aggregation (S6d7-S6d14)",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:39988068 field=mechanistic_explanation quote_sha256=224b919f14f09fe9050aaddb1c0751204cad147cd5585e5cce2d38fb0492763c]"
+    },
+    {
+      "interaction_id": "macdonald2025_mod3_sex_dimorphism_and_genetic_vs_pargyline",
+      "source_figure_or_table": "Figure 1B-G, Extended Data Fig. 1B-C, Figure 4B-D, Figure 6C-F",
+      "focal_factor_X": "Pharmacological Pargyline (PG) vs Genetic RNLS Knockout",
+      "outcome_Y": "Distal glycolytic flux (F-1,6-BP), ECAR, and in vivo beta-cell mass preservation in Ins2-Akita mice",
+      "modifier_variable_Z": "Biological Sex / Hyperglycemic Severity in Ins2-Akita Mice and Genetic RNLS KO vs Pharmacological Pargyline (MAO-B Off-Target)",
+      "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:39988068 field=level_1_condition_and_effect quote_sha256=4b97fca393a966870e65cf1d921fafc48e6e41f48b5b1a96e8ec7352a3591986]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:39988068 field=level_2_condition_and_effect quote_sha256=8e8e0ba6b2d0ea2ea07c2f33d0e280425304085f36d00b0a2187c512aa31ba4c]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": "50 ug/mL oral PG in females vs males",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:39988068 field=mechanistic_explanation quote_sha256=420d22e5bbcc0521dae9fe367b15491e064035d7464164884e95a4e1944fc234]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "Genetic RNLS knockout / mutation (inhibiting oxidation of 2- and 6-dihydroNAD(P) isomers)",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "Transcriptional and metabolic upregulation (>2x) of glycolytic enzymes (GCK, HK2, PFKM, GAPDH, PKM), intracellular NADPH, and reduced-to-oxidized glutathione (GSH:GSSG) ratio",
+      "downstream_node_type": "Organelle_or_Metabolic_State",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:39988068 field=evidence_source quote_sha256=464803388bed3b5a09c6532c58cc972dba340270467e094aa5944c949e18a644]"
+    },
+    {
+      "upstream_node": "Hexokinase-driven glycolytic flux and elevated NADPH / GSH:GSSG reductive capacity in RNLS-deficient beta cells",
+      "upstream_node_type": "Organelle_or_Metabolic_State",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "Beta-cell death under disulfide protein-misfolding ER stress (DTT/Akita), thapsigargin Ca2+ ER stress, and H2O2 oxidative stress",
+      "downstream_node_type": "Cell_Survival_or_Death_Pathway",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:39988068 field=evidence_source quote_sha256=6b54690fc1b5db3fa0a6417a8644004272eb0ce0ae6a775f2ba540416e5365a1]"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [
+      {
+        "primary_gate_perturbed": "Gate4_ER_UPR_Proteostasis",
+        "secondary_gate_affected": "Gate1_Differentiation_Maturation_Cytoarchitecture",
+        "observation": "[REDACTED_NON_OA_EXCERPT: see PMID:39988068 field=observation quote_sha256=5c48342eac53f8dea2a611c7787bc38e85f1d9455ecdcc16b7806120e0d6ea1a]",
+        "is_beneficial_synergy_or_deleterious_tradeoff": "Deleterious_CrossGate_Tradeoff"
+      }
+    ],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "Stage 6 planar/clustered T1D-iPSC SC-beta cells with RNLS KO (Figure 6B)",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:39988068 field=omitted_text quote_sha256=c86333f834682264387c174096684147c17262e400b2028c9d1016a15cea0cb7]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:39988068 field=omitted_text quote_sha256=a717afa1b7c828540e9a355a8fd5b028921292c2e6cb6d97249ad2259260aaf7]",
+        "complementary_lever_needed": "Pair genetic RNLS KO with Stage 7 3D suspension maturation (Balboa 2022) and WNT4/ERR-gamma mitochondrial maturation (Yoshihara 2020) to repress disallowed HK2/LDHA while preserving NADPH/GSH redox buffering"
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

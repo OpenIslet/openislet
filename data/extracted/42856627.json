@@ -1,0 +1,196 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "42856627",
+    "pmcid": "PMC13648715",
+    "doi": "10.64898/2026.09.29.755533",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "MAFA drives pancreatic islet maturation through coordination of cell growth, metabolic maturation, and resilience to stress.",
+    "first_author": "Cochrane VA",
+    "senior_author": "Hebrok M",
+    "pub_year": 2026,
+    "journal": "bioRxiv : the preprint server for biology",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid42856627_arm1",
+      "arm_label": "Primary experimental arm in Cochrane VA (2026)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": "independent_differentiations",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Rodent_Primary_Islet",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid42856627_eff1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity [INS]",
+      "comparator_X0": "Control condition",
+      "outcome_variable_Y": "[Endpoint: InVivo_Glycemic_Cure_and_Graft_Longevity | polarity=Lower_Is_Better_Hazard_Endpoint | orientation_sign=-1 | unit=qualitative_statement]",
+      "outcome_domain": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Neutral_or_NonInferior",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Rodent_Primary_Islet",
+        "Z3_immune_effector_and_stressor_pathway": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+        "Z4_metabolic_and_glucose_load_state": "Reported in study",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Islet / beta-cell preparation",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Reported in study",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:42856627 field=verbatim_evidence_quote genes=INS pert=NONE quote_sha256=7817e032330f73aa7f5e67e35c963f1d5a3556dec8e39e710091a750646144d7]",
+      "focal_arm_id": "pmid42856627_arm1",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
+        "orientation_sign": -1,
+        "matched_lexicon_term": "blood glucose"
+      },
+      "dossier_sha256": "3b0ef34a9e1894783f5c3e3a18f50fa2cdf788955e8ce106635ea7be33319ecd",
+      "source_span": "abstract[0:339]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "MAFA_NKX6_1_PDX1_BetaCell_Identity [INS]",
+        "comparator_label": null,
+        "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+        "timepoint": null,
+        "population_or_model": "Rodent_Primary_Islet (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "42856627"
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "pmid42856627_int1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "outcome_Y": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+      "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "modifier_class": "Z4_Metabolic_Glucose_or_ER_Secretory_Load",
+      "level_1_condition_and_effect": "Stem cell-derived islets (SC-islets) are a promising source for replacing the loss of insulin-secreting β cells in insulin-dependent diabetes patients, but",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:42856627 field=level_2_condition_and_effect quote_sha256=a935defebf6932dd662e0d3cc9b89a08a5dceb6434bbfdc89f31dd630305c460]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:42856627 field=mechanistic_explanation quote_sha256=c0d30ccd1f22a10abb622029907bc6029b56728cb60b83957446ddcc227d7188]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "upstream_node_type": "Lineage_Identity_or_Maturation_State",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "downstream_node_type": "Lineage_Identity_or_Maturation_State",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:42856627 field=evidence_source quote_sha256=e96af4d938ded2bb3d606855fef8a97f360937394fd7c58c6cbefc5fcab890cc]"
+    },
+    {
+      "upstream_node": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "upstream_node_type": "Lineage_Identity_or_Maturation_State",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "downstream_node_type": "Lineage_Identity_or_Maturation_State",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:42856627 field=evidence_source quote_sha256=dbe42a23ba056b8ab2809054e045284d54a817ee411007d33092294f0b9bd7fb]"
+    },
+    {
+      "upstream_node": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "upstream_node_type": "Lineage_Identity_or_Maturation_State",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "downstream_node_type": "Lineage_Identity_or_Maturation_State",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:42856627 field=evidence_source quote_sha256=c2c8522002caed8688f05157a2c9f960762cc47775d52aaeff7ecad1f049df95]"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

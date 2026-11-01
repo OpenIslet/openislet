@@ -1,0 +1,409 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "30345348",
+    "pmcid": "PMC6191190",
+    "doi": "10.1021/acsbiomaterials.7b00912",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Microporous Polymer Scaffolds for the Transplantation of Embryonic Stem Cell Derived Pancreatic Progenitors to a Clinically Translatable Site for the Treatment of Type I Diabetes.",
+    "first_author": "Kasputis T",
+    "senior_author": "Shea LD",
+    "pub_year": 2018,
+    "journal": "ACS biomaterials science & engineering",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_4_Rodent_or_Xenogeneic_Only"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid30345348_arm1",
+      "arm_label": "Primary experimental arm in Kasputis T (2018)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "iPSC_healthy_donor",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Portal_Vein_Intrahepatic",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "InVivo_Allogeneic_or_Autoimmune_Graft",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid30345348_eff1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Neutral_or_NonInferior",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
+        "Z2_genetic_background_and_allelic_dose": "iPSC_healthy_donor",
+        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Portal_Vein_Intrahepatic",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "Type I diabetes mellitus, which affects an estimated 1.5 million Americans, is caused by autoimmune destruction of the pancreatic beta cells that results in the need for life-long insulin therapy.",
+      "focal_arm_id": "pmid30345348_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "4f9633a68b88e8b1c21baea29160a7a2db05715b41c1ce586bd8cc24a1e87b11",
+      "source_span": "abstract[0:196]|norm=exact",
+      "quote_source_dossier_pmid": "30345348",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "iPSC_healthy_donor (Tier_4_Rodent_or_Xenogeneic_Only)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid30345348_eff2",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Allo_T_Cell_or_DSA_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Allo_T_Cell_or_DSA_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
+        "Z2_genetic_background_and_allelic_dose": "iPSC_healthy_donor",
+        "Z3_immune_effector_and_stressor_pathway": "Allo_T_Cell_or_DSA_Survival",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Portal_Vein_Intrahepatic",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=b565efecb081ce048a767df0032167463a19e38046fd4ae3768c4ec69cfbb23b]",
+      "focal_arm_id": "pmid30345348_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "4f9633a68b88e8b1c21baea29160a7a2db05715b41c1ce586bd8cc24a1e87b11",
+      "source_span": "abstract[385:680]|norm=exact",
+      "quote_source_dossier_pmid": "30345348",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+        "comparator_label": null,
+        "endpoint_name": "Allo_T_Cell_or_DSA_Survival",
+        "timepoint": null,
+        "population_or_model": "iPSC_healthy_donor (Tier_4_Rodent_or_Xenogeneic_Only)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid30345348_eff3",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: InVivo_Glycemic_Cure_and_Graft_Longevity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Neutral_or_NonInferior",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
+        "Z2_genetic_background_and_allelic_dose": "iPSC_healthy_donor",
+        "Z3_immune_effector_and_stressor_pathway": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Portal_Vein_Intrahepatic",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=0b52935ac957310bf9766b66c56d76579ca1c8e0d4c8d140dbe953b2e88ae294]",
+      "focal_arm_id": "pmid30345348_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "4f9633a68b88e8b1c21baea29160a7a2db05715b41c1ce586bd8cc24a1e87b11",
+      "source_span": "abstract[1539:1821]|norm=exact",
+      "quote_source_dossier_pmid": "30345348",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Biphasic_GSIS_and_Calcium_Coupling",
+        "comparator_label": null,
+        "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+        "timepoint": null,
+        "population_or_model": "iPSC_healthy_donor (Tier_4_Rodent_or_Xenogeneic_Only)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid30345348_eff4",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Alpha_GCG_Delta_SST_Paracrine_CounterRegulation",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Alpha_Delta_Paracrine_CounterRegulation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Alpha_Delta_Paracrine_CounterRegulation",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
+        "Z2_genetic_background_and_allelic_dose": "iPSC_healthy_donor",
+        "Z3_immune_effector_and_stressor_pathway": "Alpha_Delta_Paracrine_CounterRegulation",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Portal_Vein_Intrahepatic",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=dfaa4d5e3105ed8405cfede399de306d5130fd28bc9ce918ef1dd2b0d2010f7d]",
+      "focal_arm_id": "pmid30345348_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "4f9633a68b88e8b1c21baea29160a7a2db05715b41c1ce586bd8cc24a1e87b11",
+      "source_span": "abstract[1822:2161]|norm=exact",
+      "quote_source_dossier_pmid": "30345348",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Alpha_GCG_Delta_SST_Paracrine_CounterRegulation",
+        "comparator_label": null,
+        "endpoint_name": "Alpha_Delta_Paracrine_CounterRegulation",
+        "timepoint": null,
+        "population_or_model": "iPSC_healthy_donor (Tier_4_Rodent_or_Xenogeneic_Only)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "pmid30345348_int1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "outcome_Y": "Allo_T_Cell_or_DSA_Survival",
+      "modifier_variable_Z": "Hypoxia_72h_Ischemia_and_O2_Scaffolds vs. Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=level_1_condition_and_effect quote_sha256=87c07aa26e73fee20958026a5ce1d0085cbc618ba6307143359e0cbe35e8e7a6]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=level_2_condition_and_effect quote_sha256=b565efecb081ce048a767df0032167463a19e38046fd4ae3768c4ec69cfbb23b]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=mechanistic_explanation quote_sha256=b565efecb081ce048a767df0032167463a19e38046fd4ae3768c4ec69cfbb23b]"
+    },
+    {
+      "interaction_id": "pmid30345348_int2",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
+      "modifier_variable_Z": "Hypoxia_72h_Ischemia_and_O2_Scaffolds vs. Biphasic_GSIS_and_Calcium_Coupling",
+      "modifier_class": "Z1_Developmental_Timing_or_Stage",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=level_1_condition_and_effect quote_sha256=b20c6a6022c59a4075e4cedde1bb36959bae27624226f0e8f68c8db61b44aeac]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=level_2_condition_and_effect quote_sha256=0eb5e78b1294e49bad1f9f9ed0bbd74a9fd433f73ca47d5eff7c83ed786b1725]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=mechanistic_explanation quote_sha256=0538716ec93e1b585d1f65d1d4b4b1d52e897f63ad606dc63aa6ab1428d14ed4]"
+    },
+    {
+      "interaction_id": "pmid30345348_int3",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
+      "outcome_Y": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+      "modifier_variable_Z": "Condition contrast (Biphasic_GSIS_and_Calcium_Coupling)",
+      "modifier_class": "Z1_Developmental_Timing_or_Stage",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=level_1_condition_and_effect quote_sha256=62607da0b927b6aec0ce2e8915320471c7547273f355eb2ed3f1c3619243a8aa]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=level_2_condition_and_effect quote_sha256=9854f5ff4f720292533515aa25da9e1d5aa9d34eba9163c574e3d35b929d799b]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=mechanistic_explanation quote_sha256=0b52935ac957310bf9766b66c56d76579ca1c8e0d4c8d140dbe953b2e88ae294]"
+    },
+    {
+      "interaction_id": "pmid30345348_int4",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Alpha_GCG_Delta_SST_Paracrine_CounterRegulation",
+      "outcome_Y": "Alpha_Delta_Paracrine_CounterRegulation",
+      "modifier_variable_Z": "Alpha_GCG_Delta_SST_Paracrine_CounterRegulation vs. Biphasic_GSIS_and_Calcium_Coupling",
+      "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=level_1_condition_and_effect quote_sha256=f557ca629f6f19635f946f730ee350598e45277f960152342dd93aeb76026ae4]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=level_2_condition_and_effect quote_sha256=a42620bb9d502a28bb6149063af901a47d01523bfd1234f721dc9d4625048ff5]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=mechanistic_explanation quote_sha256=dfaa4d5e3105ed8405cfede399de306d5130fd28bc9ce918ef1dd2b0d2010f7d]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "upstream_node_type": "Biophysical_or_Vascular_Cue",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "downstream_node_type": "Lineage_Identity_or_Maturation_State",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=evidence_source quote_sha256=64d23c1ac23c0a2241d8ec36a1d6e547837f581479dc407cf8b7167c46c7bf7e]"
+    },
+    {
+      "upstream_node": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "upstream_node_type": "Biophysical_or_Vascular_Cue",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "Biphasic_GSIS_and_Calcium_Coupling",
+      "downstream_node_type": "Secreted_Hormone_or_Chemokine_DAMP",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=evidence_source quote_sha256=6c22fe83486e9dcdbc79246d60c5ae2e8843249bf07e10cc03dc0bc3dc489888]"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=omitted_text quote_sha256=b7fa312147b3d423415a202ba2526ba39b52a0c6d2fbb5952c9e2e82a117c041]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=omitted_text quote_sha256=81f4d2e275cf8c688fce38ba94eeb9bdb7bb71d6813b2533bc057f56a4417725]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      },
+      {
+        "arm_or_intervention": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=omitted_text quote_sha256=82a1f518b0f59ceb3e7c9a77dfa1b003160a7f0fb2ea65de1503c82cfcdcbfdd]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:30345348 field=omitted_text quote_sha256=6682022cedab3dbf07dd1866577bf13368e4a660dff89f58f33ab0b82584d5f5]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

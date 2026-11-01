@@ -1,0 +1,415 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "35559682",
+    "pmcid": "PMC9106299",
+    "doi": "10.1126/sciadv.abm9881",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "FasL microgels induce immune acceptance of islet allografts in nonhuman primates.",
+    "first_author": "Lei J",
+    "senior_author": "García AJ",
+    "pub_year": 2022,
+    "journal": "Science advances",
+    "source_text_type": "FullText_XML_or_PDF",
+    "pillars_covered": [
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid35559682_arm1",
+      "arm_label": "Allogeneic NHP Islets + Unmodified Control PEG Microgels in Omental Pouch with 3-Month Rapamycin",
+      "is_reference_control": true,
+      "sample_size_n": 3,
+      "sample_size_unit": "nhp_recipients",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "NHP_Primary_Islet",
+        "cell_line_id": "Primary MHC-mismatched cynomolgus monkey (Macaca fascicularis) islets (19,300-20,000 IEQ/kg)",
+        "donor_hla_profile": "ABO-compatible, MHC Class I and II mismatched cynomolgus donor",
+        "protocol_backbone": "Primary NHP islet isolation (>50% dithizone purity)",
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": 150.0,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Omental_Pouch",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "Single cotransplantation of 19,300-20,000 IEQ/kg with control PEG microgels (1 IEQ : 2 microgels) immobilized on omentum via autologous plasma + recombinant thrombin fibrin matrix",
+        "encapsulation_or_biomaterial": "Unmodified 150-um biotin-PEG-4MAL microgels + autologous plasma/thrombin fibrin matrix (unencapsulated cotransplantation)",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "Transient rapamycin monotherapy for 3 months (trough 40 ng/ml for 2 weeks, then 20 ng/ml until day 90)"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "InVivo_Allogeneic_or_Autoimmune_Graft",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 180.0,
+          "specific_autoantigen_or_hla_restriction": "MHC-mismatched STZ-diabetic cynomolgus macaques"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": 100.0,
+        "specific_lysis_or_death_pct_sd": 0.0,
+        "cell_viability_pct_mean": 0.0,
+        "early_72h_graft_survival_pct": 100.0,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": 27.0,
+        "pct_graft_surviving_at_end_of_followup": 0.0,
+        "followup_duration_days": 180.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": true
+      }
+    },
+    {
+      "arm_id": "pmid35559682_arm2",
+      "arm_label": "Allogeneic NHP Islets + SA-FasL-Presenting PEG Microgels (0.2 mg SA-FasL) in Omental Pouch with Transient 3-Month Rapamycin",
+      "is_reference_control": false,
+      "sample_size_n": 4,
+      "sample_size_unit": "nhp_recipients",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "NHP_Primary_Islet",
+        "cell_line_id": "Primary MHC-mismatched cynomolgus monkey islets (14,800-18,700 IEQ/kg)",
+        "donor_hla_profile": "ABO-compatible, MHC Class I and II mismatched cynomolgus donor (unmodified islets)",
+        "protocol_backbone": "Primary NHP islet isolation",
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": 150.0,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "FASLG",
+          "ensembl_gene_id": "ENSG00000117560",
+          "sub_molecular_coordinate": {
+            "region_class": "Transgene_cDNA_Cassette",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:35559682 field=exact_variant_or_swap_description mod=Transient_mRNA_or_Surface_Tethering genes=FASLG quote_sha256=ca840b0011232e98282ed211adb38ae38a5a55c3681d7b4c8b7383ec11a0ad4d]"
+          },
+          "functional_gate": "Gate2_Checkpoint_T_Cell_Inhibition",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "Transient_mRNA_or_Surface_Tethering",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Gain_of_Function_or_Transgenic_Armoring"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Omental_Pouch",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "Single cotransplantation of 14,800-18,700 IEQ/kg + 150,000-200,000 SA-FasL microgels (1 IEQ : 2 microgels) in autologous plasma/thrombin fibrin glue on omentum",
+        "encapsulation_or_biomaterial": "150-um biotin-PEG-4MAL microgels presenting SA-FasL + degradable autologous plasma/thrombin fibrin glue",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "Transient rapamycin monotherapy for 3 months (40 ng/ml for 2 weeks, 20 ng/ml until day 90, then discontinued completely with zero maintenance immunosuppression)"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "InVivo_Allogeneic_or_Autoimmune_Graft",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 188.0,
+          "specific_autoantigen_or_hla_restriction": "Full MHC-mismatched STZ-diabetic cynomolgus macaques (>3 months completely off immunosuppression)"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": 0.0,
+        "specific_lysis_or_death_pct_sd": 0.0,
+        "cell_viability_pct_mean": 100.0,
+        "early_72h_graft_survival_pct": 100.0,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": 180.0,
+        "pct_graft_surviving_at_end_of_followup": 100.0,
+        "followup_duration_days": 188.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": false
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "lei2022_eff1_safasl_nhp_graft_survival_180days",
+      "source_figure_or_table": "Fig. 2A-G",
+      "focal_factor_X": "FASLG functional evaluation — SA-FasL-presenting PEG microgels (0.2 mg SA-FasL, 1 IEQ : 2 microgels) cotransplanted with unmodified allogeneic islets in omental pouch",
+      "comparator_X0": "Control PEG microgels without SA-FasL under identical 3-month transient rapamycin regimen",
+      "outcome_variable_Y": "[Endpoint: InVivo_Glycemic_Cure_and_Graft_Longevity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=days]",
+      "outcome_domain": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": 4,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "days",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary adult allogeneic NHP islets",
+        "Z2_genetic_background_and_allelic_dose": "Unmodified MHC-mismatched islets + 1 ug SA-FasL per 1,000 biotin-PEG microgels",
+        "Z3_immune_effector_and_stressor_pathway": "Immunocompetent MHC-mismatched cynomolgus monkeys (transient rapamycin stopped at day 90)",
+        "Z4_metabolic_and_glucose_load_state": "STZ-diabetic NHPs (fasting glucose >300 mg/dL, C-peptide <0.5 ng/ml pre-transplant)",
+        "Z5_cytoarchitecture_and_cluster_diameter": "14,800-18,700 IEQ/kg mixed 1:2 with 150-um PEG microgels",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Omental pouch with degradable autologous plasma + recombinant thrombin fibrin matrix",
+        "Z7_promoter_and_epigenetic_context": "Extracellular biomaterial tethering (no genetic modification of islets required)",
+        "Z8_species_age_and_sex_context": "Cynomolgus macaques (Macaca fascicularis)"
+      },
+      "verbatim_evidence_quote": "After islet transplantation, prompt glycemic control was achieved and maintained by all animals receiving SA-FasL–presenting microgels for observation periods >134, >170, >177, and >188 days (Fig.",
+      "focal_arm_id": "pmid35559682_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "nhp_recipients",
+      "censoring_note": "Right-censored at last reported follow-up timepoint if graft remained functional",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "survival"
+      },
+      "dossier_sha256": "53163b6736628700f7e1c0026f001fa61aab110b844cce6b8ba45a937c796f4a",
+      "source_span": "fulltext_data_sections.results_paragraphs[3][0:196]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "FASLG functional evaluation — SA-FasL-presenting PEG microgels (0.2 mg SA-FasL, 1 IEQ : 2 microgels) cotransplanted with unmodified allogeneic islets in omental",
+        "comparator_label": null,
+        "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+        "timepoint": "188 days",
+        "population_or_model": "Unmodified MHC-mismatched islets + 1 ug SA-FasL per 1,000 biotin-PEG microgels (Cynomolgus macaques (Macaca fascicularis))",
+        "units": "days",
+        "contrast_type": "right_censored_followup_observation"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "35559682"
+    },
+    {
+      "effect_id": "lei2022_eff2_local_foxp3_treg_enrichment",
+      "source_figure_or_table": "Fig. 3A-D",
+      "focal_factor_X": "FASLG functional evaluation — SA-FasL-presenting microgels in omental graft site",
+      "comparator_X0": "Control microgels without SA-FasL",
+      "outcome_variable_Y": "[Endpoint: Allo_T_Cell_or_DSA_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=FoxP3+ cells / total cells and mean intensity at omental graft site]",
+      "outcome_domain": "Allo_T_Cell_or_DSA_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "FoxP3+ cells / total cells and mean intensity at omental graft site",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Explanted omental grafts at >177 days vs day 21 rejection",
+        "Z2_genetic_background_and_allelic_dose": "0.2 mg SA-FasL on biotin-PEG microgels",
+        "Z3_immune_effector_and_stressor_pathway": "Allogeneic NHP immune system",
+        "Z4_metabolic_and_glucose_load_state": "Normoglycemic graft",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Well-granulated insulin+ islet clusters adjacent to 150-um microgels",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Omental pouch",
+        "Z7_promoter_and_epigenetic_context": "Biomaterial presentation",
+        "Z8_species_age_and_sex_context": "Cynomolgus macaques"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:35559682 field=verbatim_evidence_quote genes=FASLG pert=NONE quote_sha256=7b4d9e8ba7b2ab4a44afb807a99c999ae16b6cb0e056b117800eb7ad5caff2f1]",
+      "focal_arm_id": "pmid35559682_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "53163b6736628700f7e1c0026f001fa61aab110b844cce6b8ba45a937c796f4a",
+      "source_span": "fulltext_data_sections.results_paragraphs[8][1146:1429]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "FASLG functional evaluation — SA-FasL-presenting microgels in omental graft site",
+        "comparator_label": null,
+        "endpoint_name": "Allo_T_Cell_or_DSA_Survival",
+        "timepoint": null,
+        "population_or_model": "0.2 mg SA-FasL on biotin-PEG microgels (Cynomolgus macaques)",
+        "units": "FoxP3+ cells / total cells and mean intensity at omental graft site",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "35559682"
+    },
+    {
+      "effect_id": "lei2022_eff3_prevention_of_mhc_ii_dsa_and_cd8_mlr",
+      "source_figure_or_table": "Fig. 5A-H",
+      "focal_factor_X": "FASLG functional evaluation — SA-FasL microgels",
+      "comparator_X0": "Control microgels (which developed significant anti-donor MHC Class II IgG antibodies [P = 0.0326] and elevated CD8+ MLR proliferation [P = 0.0057])",
+      "outcome_variable_Y": "[Endpoint: Allo_T_Cell_or_DSA_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=Anti-donor MHC Class I/II IgG MFI shift and CFSE MLR proliferation]",
+      "outcome_domain": "Allo_T_Cell_or_DSA_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "Anti-donor MHC Class I/II IgG MFI shift and CFSE MLR proliferation",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Longitudinal post-transplant NHP follow-up (>6 months)",
+        "Z2_genetic_background_and_allelic_dose": "[REDACTED_NON_OA_EXCERPT: see PMID:35559682 field=omitted_text quote_sha256=07b24b0c83ffc6205c72ba4c50dbd352969c5976d61295c436d0abca1c74dc46]",
+        "Z3_immune_effector_and_stressor_pathway": "Allogeneic NHP B-cell DSA and CD4+/CD8+ T-cell compartments",
+        "Z4_metabolic_and_glucose_load_state": "In vivo",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Omental graft",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "[REDACTED_NON_OA_EXCERPT: see PMID:35559682 field=omitted_text quote_sha256=fa23b8a551c5b4e0f8a01550ac468330146a7831f7df834f935e8da7373046d3]",
+        "Z7_promoter_and_epigenetic_context": "Biomaterial presentation",
+        "Z8_species_age_and_sex_context": "Cynomolgus macaques"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:35559682 field=verbatim_evidence_quote genes=FASLG pert=NONE quote_sha256=0f7bfdf72c8414507bcf66d00ddbcf80e8ce12fbffa5fc9a5f3e1e8cdc79256c]",
+      "focal_arm_id": "pmid35559682_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Right-censored at last reported follow-up timepoint if graft remained functional",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "53163b6736628700f7e1c0026f001fa61aab110b844cce6b8ba45a937c796f4a",
+      "source_span": "fulltext_data_sections.results_paragraphs[12][312:531]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "FASLG functional evaluation — SA-FasL microgels",
+        "comparator_label": null,
+        "endpoint_name": "Allo_T_Cell_or_DSA_Survival",
+        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:35559682 field=omitted_text quote_sha256=cd8c117e6dd5be925df3f0e87dcef2500da7b731d0289b35b8fc3ef642d07e26]",
+        "population_or_model": "SA-FasL microgels (Cynomolgus macaques)",
+        "units": "Anti-donor MHC Class I/II IgG MFI shift and CFSE MLR proliferation",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "35559682"
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "lei2022_int1_safasl_plus_transient_rapamycin_synergy",
+      "source_figure_or_table": "Fig. 1B & Fig. 2A,E",
+      "focal_factor_X": "3-Month Transient Rapamycin Monotherapy (discontinued at day 90)",
+      "outcome_Y": "Long-term (>6 month) immunosuppression-free allogeneic islet survival in NHPs",
+      "modifier_variable_Z": "Co-localized Presentation of SA-FasL on Omental PEG Microgels (Present vs Absent)",
+      "modifier_class": "Epistatic_Second_Genetic_or_Pharmacological_Perturbation",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:35559682 field=level_1_condition_and_effect quote_sha256=6b17f298ead628bfbe31eed1a1c39b182110d540009ebb3629c7a0b794c9ea7c]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:35559682 field=level_2_condition_and_effect quote_sha256=d3ce85ff2219289270ba5ed5dded41633273a3cfec6e598eb40205cb91164e37]",
+      "modification_type": "Synergistic_Amplification",
+      "critical_threshold_value_and_unit": "1 IEQ : 2 PEG microgels (1 ug SA-FasL per 1,000 microgels; total 0.2 mg SA-FasL)",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:35559682 field=mechanistic_explanation quote_sha256=02f3138c15de136785ceca3990706bede239d214333fc602f6ee5fdaae56a106]"
+    },
+    {
+      "interaction_id": "lei2022_int2_omental_pouch_vs_portal_vein_site",
+      "source_figure_or_table": "Results paragraph 1 & Fig. 1A",
+      "focal_factor_X": "Co-transplantation of 150-um immunomodulatory SA-FasL PEG microgels with islets",
+      "outcome_Y": "Anatomic feasibility, avoidance of IBMIR, and portal insulin drainage",
+      "modifier_variable_Z": "Transplant Site (Omental Pouch with Autologous Plasma/Thrombin Fibrin Glue vs Intrahepatic Portal Vein Infusion)",
+      "modifier_class": "Z6_Oxygen_Tension_Vascular_Site_or_ECM_Niche",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:35559682 field=level_1_condition_and_effect quote_sha256=907fba2f4b27e8b431d7704199bf6c00c4e3f15071324b015f6a2f9cb25029fd]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:35559682 field=level_2_condition_and_effect quote_sha256=9485c97eb15ed8ac3630f50a4b36fe31a5da78d7ac40486ca76bc44f94cc17b9]",
+      "modification_type": "Threshold_Gate_Only_Works_Above_or_Below_Z",
+      "critical_threshold_value_and_unit": "Omental pouch with degradable fibrin matrix",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:35559682 field=mechanistic_explanation quote_sha256=b2473a13a9493c69987a62c0c5a14c5ad7aa27ce6f07ee1aca05553a1d704663]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "Biotin-PEG Microgel-Presented SA-FasL (at Omental Graft Site)",
+      "upstream_node_type": "Surface_Ligand_or_Antigen_Presentation",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "Local Apoptosis of Alloreactive Teff Cells and Local Enrichment of FoxP3+ Regulatory T Cells (Tregs) Without Systemic Lymphopenia",
+      "downstream_node_type": "Cell_Survival_or_Death_Pathway",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:35559682 field=evidence_source quote_sha256=8958f9e9a51c69362bca8a367566135eecf4570d6cabdb93e0e69f186ce8181b]"
+    },
+    {
+      "upstream_node": "Local FoxP3+ Treg Niche Induced by SA-FasL Microgels",
+      "upstream_node_type": "Cell_Survival_or_Death_Pathway",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "Anti-Donor MHC Class II IgG DSA Generation and CD8+ T-Cell Alloreactivity",
+      "downstream_node_type": "Surface_Ligand_or_Antigen_Presentation",
+      "evidence_source": "Fig. 5A-F (PMID 35559682)"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [
+      {
+        "primary_gate_perturbed": "Gate 2 (Local Biomaterial SA-FasL Presentation)",
+        "secondary_gate_affected": "Gate 1 (Zero Genetic Modification Burden on Islets) & Systemic Immune Competence",
+        "observation": "[REDACTED_NON_OA_EXCERPT: see PMID:35559682 field=observation quote_sha256=7db575447c44230c1e3a24ff177e4f9396dde72931e55248450f6dda51588d23]",
+        "is_beneficial_synergy_or_deleterious_tradeoff": "Beneficial_CrossGate_Bonus"
+      }
+    ],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "SA-FasL Microgels + 3-Month Rapamycin in STZ-Diabetic NHPs (Fig. 2B & Methods)",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:35559682 field=omitted_text quote_sha256=74bc379a104efe887a2d20936ca88cfbdeedeec37d8e62e565057471efad14c6]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:35559682 field=omitted_text quote_sha256=1208a96dd78f82ef59334f5f1d2f9c57d7008226c5a28785e051fc5b840ffd42]",
+        "complementary_lever_needed": "Combine local FasL/Treg niche with intrinsic beta-cell stealth (e.g., B2M/CIITA/CD47 from Hu 2024 PMID 37156915 or INS-CHGA swap from Kobaisi 2026 PMID 42690930 + RNLS KO from Cai 2020 PMID 32719542) and ready-made microvessels (Aghazadeh 2021 PMID 34480863) to eliminate the 3-month rapamycin requirement and achieve 100% insulin independence."
+      }
+    ],
+    "regime_thresholds": [
+      {
+        "parameter_name": "SA-FasL Microgel Stoichiometry and Local Residence Window",
+        "critical_threshold_value": 2.0,
+        "unit": "PEG microgels per 1 IEQ (delivering 1 ug SA-FasL per 1,000 microgels; 3.0-day local half-life, cleared from serum by days 7-14)",
+        "below_threshold_behavior": "Without SA-FasL on the microgels, 100% of grafts reject at a mean of 27.7 days despite identical rapamycin trough levels.",
+        "above_threshold_behavior": "A 7-14 day local presentation of SA-FasL at 2 microgels:1 IEQ establishes a self-sustaining FoxP3+ Treg niche that persists >6 months."
+      }
+    ],
+    "high_throughput_screen_hits": []
+  }
+}

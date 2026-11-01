@@ -1,0 +1,377 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "34407395",
+    "pmcid": "PMC12416289",
+    "doi": "10.1016/j.celrep.2021.109538",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Selective deletion of human leukocyte antigens protects stem cell-derived islets from immune rejection.",
+    "first_author": "Parent AV",
+    "senior_author": "Hebrok M",
+    "pub_year": 2021,
+    "journal": "Cell reports",
+    "source_text_type": "FullText_XML_or_PDF",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid34407395_arm1",
+      "arm_label": "Wild-Type MEL1 INS-GFP/W Enriched Beta Clusters (eBCs, HLA-A2/A24/B/C+ CIITA+)",
+      "is_reference_control": true,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "hESC",
+        "cell_line_id": "MEL-1 INSGFP/W (AAVS1-Luciferase)",
+        "donor_hla_profile": "HLA-A2+, HLA-A24+, HLA-B+, HLA-C+, CIITA+ wild-type MEL-1",
+        "protocol_backbone": "Hebrok Lab 3D suspension differentiation + INS-GFP FACS sorting and AggreWell-400 reaggregation into enriched beta clusters (eBCs, 1,000 cells/cluster; Nair et al. 2019)",
+        "canonical_differentiation_stage_evaluated": "Stage7_MetabolicallyMature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": 70.0,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Portal_Vein_Intrahepatic",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "2-3 x 10^6 beta-like cells (pretreated 24h with 50 ng/mL IFN-gamma) transplanted into spleen of NSG-MHCnull mice reconstituted with 40-60 x 10^6 HLA-A2+ human PBMCs",
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "InVivo_Allogeneic_or_Autoimmune_Graft",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 112.0,
+          "specific_autoantigen_or_hla_restriction": "40-60 x 10^6 HLA-A2+ human PBMCs (allogeneic to MEL-1 HLA-A24/B/C) with 24h 50 ng/mL IFN-gamma graft pretreatment"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": 28.0,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": 112.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid34407395_arm2",
+      "arm_label": "HLA-A2R Selective HLA-Deleted MEL-1 eBCs (HLA-A24-/- HLA-B-/- HLA-C-/- CIITA-/- Retaining Endogenous HLA-A2 and Leader-Peptide-Stabilized HLA-E)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "hESC",
+        "cell_line_id": "MEL-1 INSGFP/W HLA-A2R (AAVS1-Luciferase)",
+        "donor_hla_profile": "[REDACTED_NON_OA_EXCERPT: see PMID:34407395 field=omitted_text quote_sha256=024df6dd27986685d366c92fb9bb0509fe8695f9fe9f9d94cde21e004043c509]",
+        "protocol_backbone": "Hebrok Lab 3D suspension differentiation + INS-GFP FACS sorting and AggreWell-400 reaggregation into eBCs",
+        "canonical_differentiation_stage_evaluated": "Stage7_MetabolicallyMature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": 70.0,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "HLA-B_HLA-C_HLA-A24",
+          "ensembl_gene_id": "ENSG00000234745",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:34407395 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=HLA-A,HLA-B,HLA-C quote_sha256=9b82ff8470ca5c11077a86ef8c020cd24a66d74324ea8be9451666086d13e9ad]"
+          },
+          "functional_gate": "Gate2_Allo_HLA_ClassI_or_II",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": "Homozygous_Biallelic",
+          "protein_or_surface_expression_fold_vs_wt": 0.0,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        },
+        {
+          "gene_symbol_hgnc": "CIITA",
+          "ensembl_gene_id": "ENSG00000179583",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:34407395 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=CIITA quote_sha256=119d8082718106ae61e32b57d32ed5dae7ed22fafd31495af9a47bbabc84e9b5]"
+          },
+          "functional_gate": "Gate2_Allo_HLA_ClassI_or_II",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": "Homozygous_Biallelic",
+          "protein_or_surface_expression_fold_vs_wt": 0.0,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Portal_Vein_Intrahepatic",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "2-3 x 10^6 IFN-gamma-pretreated HLA-A2R beta-like cells transplanted into spleen of NSG-MHCnull mice reconstituted with 40-60 x 10^6 HLA-A2+ human PBMCs",
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "InVivo_Allogeneic_or_Autoimmune_Graft",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 112.0,
+          "specific_autoantigen_or_hla_restriction": "40-60 x 10^6 HLA-A2+ donor PBMCs in vivo for 16 weeks"
+        },
+        {
+          "challenge_type": "Primary_NK_Cell_MissingSelf_Assay",
+          "effector_to_target_ratio": 4.0,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 2.0,
+          "specific_autoantigen_or_hla_restriction": "IL-12 (5 ng/mL) pre-activated primary human CD56+CD3- NK cell CD107a degranulation assay"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": 112.0,
+        "pct_graft_surviving_at_end_of_followup": 100.0,
+        "followup_duration_days": 112.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "parent2021_eff1_hla_a2r_16wk_allogeneic_survival",
+      "source_figure_or_table": "Figure 4D, Figure 4E, Figure 4F",
+      "focal_factor_X": "[REDACTED_NON_OA_EXCERPT: see PMID:34407395 field=focal_factor_X genes=CIITA,HLA-A,HLA-B,HLA-C pert=KO_LOF quote_sha256=e1d9ad4c0c08ee68d16246aff1460093bd554216fe5326e12f647338085b5b2c]",
+      "comparator_X0": "Wild-type (WT) MEL-1 beta-like cells",
+      "outcome_variable_Y": "[Endpoint: Allo_T_Cell_or_DSA_Survival | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=weeks]",
+      "outcome_domain": "Allo_T_Cell_or_DSA_Survival",
+      "treatment_mean": 16.0,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "weeks",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage7_MetabolicallyMature_SC_Islet pretreated 24h with 50 ng/mL IFN-gamma",
+        "Z2_genetic_background_and_allelic_dose": "MEL-1 HLA-A2R (retaining HLA-A2)",
+        "Z3_immune_effector_and_stressor_pathway": "40-60 x 10^6 HLA-A2+ non-diabetic donor PBMCs (3 donors)",
+        "Z4_metabolic_and_glucose_load_state": "Normoglycemic humanized NSG-MHCnull mice",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Reaggregated beta-like clusters (1,000 cells/cluster)",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Intrasplenic graft site",
+        "Z7_promoter_and_epigenetic_context": "Endogenous HLA-A2 and HLA-E promoters",
+        "Z8_species_age_and_sex_context": "NSG and NSG-MHCnull mice (n=9-16/group)"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:34407395 field=verbatim_evidence_quote genes=CIITA,HLA-A,HLA-B,HLA-C pert=KO_LOF quote_sha256=fd47d507f7a6f7b123aca006966244035f255724ff0b6c1bb3f1da2a8ab04c81]",
+      "focal_arm_id": "pmid34407395_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Right-censored at last reported follow-up timepoint if graft remained functional",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "survival"
+      },
+      "dossier_sha256": "1baba141f887d591bbaf0c798627b5456d93c4fa0c53c62a9bb8791c37b5d663",
+      "source_span": "fulltext_data_sections.results_paragraphs[6][836:1022]|norm=exact",
+      "statistic_type": "single_arm_descriptive_only",
+      "contrast_metadata": {
+        "intervention_label": "[REDACTED_NON_OA_EXCERPT: see PMID:34407395 field=omitted_text quote_sha256=e1d9ad4c0c08ee68d16246aff1460093bd554216fe5326e12f647338085b5b2c]",
+        "comparator_label": null,
+        "endpoint_name": "Allo_T_Cell_or_DSA_Survival",
+        "timepoint": "16 weeks",
+        "population_or_model": "MEL-1 HLA-A2R (retaining HLA-A2) (NSG and NSG-MHCnull mice (n=9-16/group))",
+        "units": "weeks",
+        "contrast_type": "right_censored_followup_observation"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "34407395"
+    },
+    {
+      "effect_id": "parent2021_eff2_hla_a2r_restores_hla_e_reduces_nk_cd107a",
+      "source_figure_or_table": "Figure 2H, Figure 2I, Figure 3B, Figure 3C",
+      "focal_factor_X": "Retention of HLA-A2 (providing leader peptide VMAPRTLVL) and endogenous HLA-E in HLA-A2R beta-like cells",
+      "comparator_X0": "Control / comparator condition (see structured arm definitions)",
+      "outcome_variable_Y": "[Endpoint: NK_or_Macrophage_Innate_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "NK_or_Macrophage_Innate_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage7_MetabolicallyMature_SC_Islet pretreated 24h with 50 ng/mL IFN-gamma",
+        "Z2_genetic_background_and_allelic_dose": "HLA-A2R vs HLA-ABCnull MEL-1",
+        "Z3_immune_effector_and_stressor_pathway": "IL-12 (5 ng/mL) pre-activated primary human CD56+CD3- NK cells (4 donors, 7 batches)",
+        "Z4_metabolic_and_glucose_load_state": "Standard culture",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Dissociated beta-like cells in 2h degranulation assay",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Endogenous IFN-gamma-inducible HLA-E stabilized by HLA-A2 leader peptide",
+        "Z8_species_age_and_sex_context": "Primary human PBMC donors"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:34407395 field=verbatim_evidence_quote genes=HLA-A,HLA-E pert=KO_LOF quote_sha256=d09250fd743f46dda6c3a9ead569260222bdb2ed58f80d6556b4fcbafc99b00e]",
+      "focal_arm_id": "pmid34407395_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "1baba141f887d591bbaf0c798627b5456d93c4fa0c53c62a9bb8791c37b5d663",
+      "source_span": "fulltext_data_sections.results_paragraphs[3][918:1075]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Retention of HLA-A2 (providing leader peptide VMAPRTLVL) and endogenous HLA-E in HLA-A2R beta-like cells",
+        "comparator_label": null,
+        "endpoint_name": "NK_or_Macrophage_Innate_Survival",
+        "timepoint": null,
+        "population_or_model": "HLA-A2R vs HLA-ABCnull MEL-1 (Primary human PBMC donors)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "34407395"
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "parent2021_mod1_hla_a2_leader_peptide_vmaprtlvl_hlae_export",
+      "source_figure_or_table": "Figure 2H, Figure 2I",
+      "focal_factor_X": "Endogenous HLA-E gene expression under 50 ng/mL IFN-gamma stimulation",
+      "outcome_Y": "Plasma membrane surface expression of HLA-E on SC-beta cells",
+      "modifier_variable_Z": "Presence of classical HLA-A2 leader sequence nonamer peptide (VMAPRTLVL, residues 3-11)",
+      "modifier_class": "Epistatic_Second_Genetic_or_Pharmacological_Perturbation",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:34407395 field=level_1_condition_and_effect quote_sha256=0082c0b745afabd927f298b277d354fbb01ad342fe9fd282eb007669c10c1e2b]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:34407395 field=level_2_condition_and_effect quote_sha256=93ce68fde476543835ef53bfd655d579a08c4e4485cb38770f718cae6be0b241]",
+      "modification_type": "Rescue_of_Toxicity_or_Defect",
+      "critical_threshold_value_and_unit": "100 uM VMAPRTLVL leader peptide",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:34407395 field=mechanistic_explanation quote_sha256=d97db23a1453d2aaf0fd0cb075921097124f2f2592416a494ba6439a7c71f2d9]"
+    },
+    {
+      "interaction_id": "parent2021_mod2_ifng_pretreatment_and_nkg2a_subset_ceiling",
+      "source_figure_or_table": "Figure 3B, Figure 3C, Figure S3B, Figure 4C",
+      "focal_factor_X": "HLA-A2R + endogenous HLA-E retention",
+      "outcome_Y": "Inhibition of primary human CD56+CD3- NK cell CD107a degranulation",
+      "modifier_variable_Z": "24h IFN-gamma pretreatment and CD94/NKG2A receptor expression subset on primary NK cells",
+      "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:34407395 field=level_1_condition_and_effect quote_sha256=64fcca70e5df79b45998e56fd651168d8c1e2b5aa8b01094f1fb9859eba12313]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:34407395 field=level_2_condition_and_effect quote_sha256=0f9c065b930fc9c7862331dd5cdab33cc1144e1473be2d7f596968ee2c75bfec]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": "50 ng/mL IFN-gamma for 24h",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:34407395 field=mechanistic_explanation quote_sha256=436e2343d23c6ff66c1c6d9f29ae2e6bc93919bab930982dff941e326a463865]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "Endogenous HLA-A2 leader sequence peptide (VMAPRTLVL, residues 3-11)",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Stabilizes_or_Rescues",
+      "downstream_node": "Cell-surface trafficking and IFN-gamma-inducible expression of endogenous HLA-E on SC-beta cells",
+      "downstream_node_type": "Surface_Ligand_or_Antigen_Presentation",
+      "evidence_source": "Figure 2H, Figure 2I"
+    },
+    {
+      "upstream_node": "HLA-E surface expression on HLA-A2R SC-beta cells",
+      "upstream_node_type": "Surface_Ligand_or_Antigen_Presentation",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "CD107a degranulation in the CD94/NKG2A+ subset of primary human CD56+CD3- NK cells",
+      "downstream_node_type": "Immune_or_Abiotic_Stressor",
+      "evidence_source": "Figure 3B, Figure 3C, Figure S3B"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [
+      {
+        "primary_gate_perturbed": "Gate2_Allo_HLA_ClassI_or_II",
+        "secondary_gate_affected": "Gate3_NK_MissingSelf_Inhibition",
+        "observation": "[REDACTED_NON_OA_EXCERPT: see PMID:34407395 field=observation quote_sha256=5bd98e6a6e4295c9dc4efdb2e33de97ac4eb91516296a8a67bbd1ed4976bd9e4]",
+        "is_beneficial_synergy_or_deleterious_tradeoff": "Deleterious_CrossGate_Tradeoff"
+      }
+    ],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "HLA-A2R SC-beta cells against primary human NK cells (Figure 3B-C) and in HLA-A2+ T1D recipients",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:34407395 field=omitted_text quote_sha256=d1f4e195a55d7051983f452160e3db283e80ad6db6feede514af58de29fe998c]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:34407395 field=omitted_text quote_sha256=51ae1bff7fa5e180fc97c4f04ff9b78611917dca4208aabe2bef48fbe067c39e]",
+        "complementary_lever_needed": "High-threshold CD47 overexpression (to inhibit NKG2A-negative NK cells via SIRPa) and INS-CHGA signal-peptide swap (if HLA-A2 is retained in an HLA-A2+ T1D recipient)"
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

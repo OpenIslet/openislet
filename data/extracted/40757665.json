@@ -1,0 +1,209 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "40757665",
+    "pmcid": null,
+    "doi": "10.1056/NEJMoa2503822",
+    "nct_id": "NCT06239636",
+    "geo_accessions": [],
+    "title": "Survival of Transplanted Allogeneic Beta Cells with No Immunosuppression.",
+    "first_author": "Carlsson PO",
+    "senior_author": "Schrepfer S",
+    "pub_year": 2025,
+    "journal": "The New England journal of medicine",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_1_Human_InVivo"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid40757665_arm1",
+      "arm_label": "First-in-Human UP421 (NCT06239636): CRISPR-Cas12b B2M-/- CIITA-/- + Lentiviral CD47 Allogeneic Human Islets in Forearm Muscle With Zero Immunosuppression",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": "independent_differentiations",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Primary_Human_Islet",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "B2M",
+          "ensembl_gene_id": "ENSG00000166710",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:40757665 field=exact_variant_or_swap_description mod=CRISPR_Cas12a_Multiplex_KO genes=B2M quote_sha256=540c69cde6f08d10df92dff77c8938d953bc87a757ecc478f1e1945072ef0d44]"
+          },
+          "functional_gate": "Gate2_Allo_HLA_ClassI_or_II",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "CRISPR_Cas12a_Multiplex_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": "Homozygous_Biallelic",
+          "protein_or_surface_expression_fold_vs_wt": 0.0,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        },
+        {
+          "gene_symbol_hgnc": "CIITA",
+          "ensembl_gene_id": "ENSG00000179583",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:40757665 field=exact_variant_or_swap_description mod=CRISPR_Cas12a_Multiplex_KO genes=CIITA quote_sha256=bd17931d0a92a04196f760a4848b0278ffc45b54b1d4bff500045df0690f5f8b]"
+          },
+          "functional_gate": "Gate2_Allo_HLA_ClassI_or_II",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "CRISPR_Cas12a_Multiplex_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": "Homozygous_Biallelic",
+          "protein_or_surface_expression_fold_vs_wt": 0.0,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        },
+        {
+          "gene_symbol_hgnc": "CD47",
+          "ensembl_gene_id": "ENSG00000196776",
+          "sub_molecular_coordinate": {
+            "region_class": "Transgene_cDNA_Cassette",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:40757665 field=exact_variant_or_swap_description mod=Lentiviral_or_Transposon_OE genes=CD47 quote_sha256=7feb5443f1faf2d72ce91ba424ab56df37963b7d8b4d66c42ba92769b00c84a6]"
+          },
+          "functional_gate": "Gate3_NK_MissingSelf_Inhibition",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "Lentiviral_or_Transposon_OE",
+          "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
+          "zygosity_or_allelic_state": "Polyclonal_Pool",
+          "protein_or_surface_expression_fold_vs_wt": 15.0,
+          "perturbation_class": "Gain_of_Function_or_Transgenic_Armoring"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Intramuscular_Forearm_or_Rectus",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Allogeneic_PBMC_or_T_Cell_CoCulture",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "carlsson2025_eff1_12wk_human_survival_no_immunosuppression",
+      "source_figure_or_table": "Abstract & Clinical Report (NEJM 2025, NCT06239636)",
+      "focal_factor_X": "B2M-/- + CIITA-/- (Cas12b) + CD47 overexpression in human allogeneic islet cells transplanted intramuscularly",
+      "comparator_X0": "Single-arm observational clinical study (un-edited cells evoked immune responses in vitro)",
+      "outcome_variable_Y": "[Endpoint: InVivo_Glycemic_Cure_and_Graft_Longevity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=weeks]",
+      "outcome_domain": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+      "treatment_mean": 12.0,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "weeks",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary adult human islet cells followed for 12 weeks (84 days)",
+        "Z2_genetic_background_and_allelic_dose": "Cas12b B2M-/- + CIITA-/- + lentiviral CD47 (UP421)",
+        "Z3_immune_effector_and_stressor_pathway": "Competent human T1D adaptive & innate immune system (0 immunosuppression)",
+        "Z4_metabolic_and_glucose_load_state": "Long-standing human Type 1 Diabetes recipient",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Reaggregated human islet clusters",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Intramuscular (forearm brachioradialis muscle)",
+        "Z7_promoter_and_epigenetic_context": "Constitutive lentiviral CD47",
+        "Z8_species_age_and_sex_context": "Human clinical trial (NCT06239636, Tier_1_Human_InVivo)"
+      },
+      "verbatim_evidence_quote": "He did not receive any immunosuppressive drugs and, at 12 weeks after transplantation, showed no immune response against the gene-edited cells. C-peptide measurements showed stable and glucose-responsive insulin secretion.",
+      "focal_arm_id": "pmid40757665_arm1",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Right-censored at last reported follow-up timepoint if graft remained functional",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:40757665 field=omitted_text quote_sha256=c21cf7a2d7e7584a07afc703a9b021cbace07f8dae43f3309bdd1fc4f855a2fb]"
+      },
+      "dossier_sha256": "e04374a010f5e2cdb6fc3862d56af5b0b59680dd2ccca792b9b74b336369500e",
+      "source_span": "abstract[553:775]|norm=exact",
+      "statistic_type": "single_arm_descriptive_only",
+      "contrast_metadata": {
+        "intervention_label": "B2M-/- + CIITA-/- (Cas12b) + CD47 overexpression in human allogeneic islet cells transplanted intramuscularly",
+        "comparator_label": null,
+        "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:40757665 field=omitted_text quote_sha256=5d1d13e5a51e59173447c467c272ff8bcc4479fc969ef4bcd3c820ddd354a273]",
+        "population_or_model": "Cas12b B2M-/- + CIITA-/- + lentiviral CD47 (UP421) (Human clinical trial (NCT06239636, Tier_1_Human_InVivo))",
+        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:40757665 field=omitted_text quote_sha256=eb0d2375b51859a3212007c5a52de4b476022b3e9d45df6242497c4378631cba]",
+        "contrast_type": "right_censored_followup_observation"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "40757665"
+    }
+  ],
+  "effect_modifier_interactions": [],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

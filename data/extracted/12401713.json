@@ -1,0 +1,184 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "12401713",
+    "pmcid": null,
+    "doi": "10.2337/diabetes.51.11.3220",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Vascularized islet cell transplantation in miniature Swine: islet-kidney allografts correct the diabetic hyperglycemia induced by total pancreatectomy.",
+    "first_author": "Kumagai N",
+    "senior_author": "Yamada K",
+    "pub_year": 2002,
+    "journal": "Diabetes",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_4_Rodent_or_Xenogeneic_Only"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid12401713_arm1",
+      "arm_label": "Primary experimental arm in Kumagai N (2002)",
+      "is_reference_control": false,
+      "sample_size_n": 4,
+      "sample_size_unit": "mouse_recipients",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Unspecified_In_Source_Abstract",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Subcutaneous_Prevascularized_or_Device",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "InVivo_Allogeneic_or_Autoimmune_Graft",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid12401713_eff1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Hypoxia_72h_or_Vascular_Inosculation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Hypoxia_72h_or_Vascular_Inosculation",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": 4,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Neutral_or_NonInferior",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Unspecified_In_Source_Abstract",
+        "Z3_immune_effector_and_stressor_pathway": "Hypoxia_72h_or_Vascular_Inosculation",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Prevascularized_or_Device",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:12401713 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=d19ce374f695810f6a4efd2085aeb3812d1492f8c85beb2cc3b4438a9c0b1aff]",
+      "focal_arm_id": "pmid12401713_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "mouse_recipients",
+      "censoring_note": "Right-censored at last reported follow-up timepoint if graft remained functional",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "1f740afe89afa84d63c4dbc8cab06a3ef1de32ce7f81f1c7cad9859cec3a91fa",
+      "source_span": "abstract[279:523]|norm=exact",
+      "quote_source_dossier_pmid": "12401713",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+        "comparator_label": null,
+        "endpoint_name": "Hypoxia_72h_or_Vascular_Inosculation",
+        "timepoint": null,
+        "population_or_model": "Unspecified_In_Source_Abstract (Tier_4_Rodent_or_Xenogeneic_Only)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "pmid12401713_int1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "outcome_Y": "Hypoxia_72h_or_Vascular_Inosculation",
+      "modifier_variable_Z": "Prior_Condition vs. MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "modifier_class": "Z6_Oxygen_Tension_Vascular_Site_or_ECM_Niche",
+      "level_1_condition_and_effect": "Major histocompatibility complex-mismatched recipients demonstrated in vitro donor-specific unresponsiveness.",
+      "level_2_condition_and_effect": "In contrast, recipients of nonvascularized islets remained hyperglycemic.",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:12401713 field=mechanistic_explanation quote_sha256=8fc5af64d84deefbdb0e15fc4662590587c2ebd30cf5427af52521e23f129da1]"
+    },
+    {
+      "interaction_id": "pmid12401713_int2",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "outcome_Y": "Allo_T_Cell_or_DSA_Survival",
+      "modifier_variable_Z": "Condition contrast (Hypoxia_72h_Ischemia_and_O2_Scaffolds)",
+      "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:12401713 field=level_1_condition_and_effect quote_sha256=17525f1103673d84a5bf3d1a2122a27231b6ebdb672236bec75d8936b370912a]",
+      "level_2_condition_and_effect": "nonvascularized islet transplants did not.",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:12401713 field=mechanistic_explanation quote_sha256=1c4852540a562b2e0197d1036b4d66f11c2936b7485175cc368960d79fba3241]"
+    }
+  ],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

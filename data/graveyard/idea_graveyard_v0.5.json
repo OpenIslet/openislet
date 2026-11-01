@@ -1,0 +1,273 @@
+{
+  "schema_version": "0.6.0",
+  "project": "OpenIslet.org (Project Islet-1) — Executable Public Idea Graveyard & Negative-Evidence Rule Engine",
+  "license": "CC-BY-4.0",
+  "purpose": "Prevent duplicate wet-lab failures and computational confirmation bias by permanently indexing falsified hypotheses, epistatic promoter-pathway deadlocks, safety-switch escape traps, and physiological trade-offs with machine-executable trigger rules.",
+  "severity_level_semantics": {
+    "BLOCK": "Hard feasibility veto: sets is_feasible_candidate = false and composite_series_system_utility = 0.0 (while retaining unblocked_diagnostic_utility for sensitivity auditing).",
+    "WARN": "Quantitative logit penalty and/or mandatory pre-specified wet-lab falsification gate (does NOT set is_feasible_candidate = false). For example, GRAVEYARD_009 and GRAVEYARD_010 trigger on ALLO_B2M_HLAE_CD47_SWAP_CIITA_KO (Chassis A) to require the lineage-specific Hour-0 density and indirect-APC decision experiments. Gate 2B uses the declared -0.25 engineering-prior logit discount; the former 0.84 ceiling description is not an implemented hard probability ceiling."
+  },
+  "graveyard_entries": [
+    {
+      "graveyard_id": "GRAVEYARD_001_STAT1_JAK1_KO_WITH_GAS_IND_PROMOTER",
+      "category": "Epistatic_Promoter_Pathway_Deadlock",
+      "severity": "Fatal_Gate2_and_Gate4_Failure",
+      "severity_level": "BLOCK",
+      "curation_status": "corroborated",
+      "evidence_basis_class": "mechanistic_pathway_synthesis_from_islet_components",
+      "trigger_pattern": {
+        "requires_any_module": [
+          "CYTO_STAT1_OR_TYK2_CLONAL_KO_WITH_GAS_IND_PDL1"
+        ],
+        "condition": "(STAT1_KO_or_JAK1_KO AND GAS_ISRE_promoter AND NOT NFkB_enhancer_bypass) OR (TYK2_KO AND strict_TypeI_IFN_ISRE_without_IFNg_or_NFkB_bypass)"
+      },
+      "proposed_idea": "Combine clonal STAT1-/- or JAK1-/- knockout with an IFN-gamma/STAT1-inducible (GAS/ISRE) promoter driving PD-L1 and SERPINB9 (or combine TYK2-/- with a strict Type-I-IFN ISRE-only promoter).",
+      "why_it_fails": "Mechanistic epistatic pathway synthesis across component SC-islet studies (not a single combined wet-lab construct test): deleting STAT1 or JAK1 blocks canonical IFN-gamma -> JAK1/JAK2 -> STAT1 phosphorylation and nuclear translocation (Sintov et al. 2022 PMID:36055241 demonstrated that clonal STAT1-/- ST1L SC-islets lose IFN-gamma-inducible PD-L1, HLA-E, and SOCS1 upregulation and suffer increased NK cell apoptosis, whereas Chandra et al. 2022 PMID:36289205 demonstrated that TYK2-/- blocks Type I IFN-alpha/beta -> TYK2/JAK1 -> STAT1/STAT2/ISGF3 signaling). Consequently, pairing STAT1/JAK1 KO with a pure STAT1-dependent GAS/ISRE synthetic promoter creates an epistatic deadlock unless driven by an endogenous locus such as CXCL10 (Sintov et al. 2022 PMID:36055241; Tanaka et al. 2009 PMID:19641142) that retains an independent TNF-alpha/IL-1beta -> NF-kB enhancer bypass.",
+      "supporting_pmids": [
+        "36055241",
+        "36289205",
+        "19641142"
+      ],
+      "cheapest_falsification_assay": "24h IFN-gamma + TNF-alpha + IL-1beta stimulation of STAT1-/- vs WT SC-islets measuring surface PD-L1 molecules/cell by calibrated flow cytometry.",
+      "evaluator_logit_delta": null,
+      "evaluator_target_gate": "Gate2B_and_Gate4_hard_BLOCK",
+      "Evaluator_Penalty_Rule": "Hard BLOCK (composite_series_system_utility = 0.0, is_feasible_candidate = false) + unblocked diagnostic logit penalties (-0.85 on Gate 2B, -1.35 on Gate 4) when STAT1/JAK1 KO is paired with GAS/ISRE inducible promoter without NF-kB bypass."
+    },
+    {
+      "graveyard_id": "GRAVEYARD_002_LINEAGE_RESTRICTED_G6PC2_OR_INS_ICASP9_SUICIDE_SWITCH",
+      "category": "Teratoma_and_Dedifferentiation_Safety_Escape",
+      "severity": "Fatal_Gate5_80yr_Pediatric_Safety_Failure",
+      "severity_level": "BLOCK",
+      "curation_status": "corroborated",
+      "evidence_basis_class": "mechanistic_precaution_or_non_islet_extrapolation",
+      "trigger_pattern": {
+        "requires_any_module": [
+          "SAF_G6PC2_ENDOGENOUS_ICASP9"
+        ],
+        "condition": "iCasp9 driven by mature beta-cell restricted promoter (G6PC2 or INS) rather than pan-lineage safe-harbor promoter"
+      },
+      "proposed_idea": "Place the inducible Caspase-9 (iCasp9) prodrug suicide switch under the endogenous G6PC2 or INS promoter so that a single edit simultaneously deletes an autoantigen and installs a safety switch.",
+      "why_it_fails": "G6PC2 and INS promoters are active only in mature differentiated beta-cells. Any residual undifferentiated iPSC, proliferating neural/mesodermal teratoma cell, off-target SLC18A1+ enterochromaffin cell, or cytokine-dedifferentiated beta-cell shuts off G6PC2/INS transcription and becomes 100% resistant to AP1903/rimiducid ablation. Furthermore, monoallelic safe-harbor iCasp9 insertion suffers epigenetic silencing or LOH at 10^-6 to 10^-5 frequency.",
+      "supporting_pmids": [
+        "27626039",
+        "35795779"
+      ],
+      "cheapest_falsification_assay": "Clonogenic escape assay spiking 10% undifferentiated iPSCs + Stage 7 SC-islets under 10 nM AP1903 dimerizer for 72h (target upper confidence bound <10^-8 surviving proliferating cells).",
+      "evaluator_logit_delta": null,
+      "evaluator_target_gate": "Gate5_hard_BLOCK",
+      "replacement_solution": "Use biallelic housekeeping/safe-harbor knock-in (biallelic AAVS1-CAG-iCasp9 or GAPDH-P2A-iCasp9; Wunderlich et al. 2022 PMID:35795779; Gerace et al. 2023 PMID:36599351) and verify <10^-8 escape frequency across undifferentiated and endocrine lineages."
+    },
+    {
+      "graveyard_id": "GRAVEYARD_003_G6PC2_NULL_FASTING_HYPOGLYCEMIA_RISK",
+      "category": "Physiological_Counter_Regulation_Hazard",
+      "severity": "Precautionary_Fasting_Glucose_SetPoint_Downshift_Hazard",
+      "severity_level": "WARN",
+      "curation_status": "precautionary_mechanistic_hazard",
+      "evidence_basis_class": "mechanistic_precaution_or_non_islet_extrapolation",
+      "trigger_pattern": {
+        "requires_any_module": [
+          "AUTO_FULL_KO_G6PC2_SLC30A8_PLUS_BASE_INS_GAD2_IAPP_CXADR",
+          "SAF_G6PC2_ENDOGENOUS_ICASP9"
+        ],
+        "condition": "Biallelic G6PC2-/- knockout included without dynamic perifusion 2.8 mM shutoff validation"
+      },
+      "proposed_idea": "Include biallelic G6PC2 (IGRP) knockout in every universal allogeneic beta-cell chassis to eliminate the IGRP 265-273 CD8+ T-cell autoantigen and boost glycolytic flux.",
+      "why_it_fails": "G6PC2 catalyzes glucose-6-phosphate hydrolysis in the beta-cell glucokinase/G6PC2 futile substrate cycle, which sets the threshold for shutting off insulin secretion when blood glucose falls below 4.0 mM. Bosma et al. 2020 (PMID:32569842) report a modest (~12%) reduction in fasting blood glucose in G6pc2-/- mice and Overway et al. 2022 (PMID:34954144) identify human G6PC2 coding variants that reduce G6PC2 protein expression and lower fasting glucose; although neither paper demonstrates severe clinical hypoglycemia in human SC-islet grafts, shifting the glucose set-point downward creates a precautionary counter-regulatory hazard if unvalidated in dynamic perifusion.",
+      "supporting_pmids": [
+        "32569842",
+        "34954144"
+      ],
+      "cheapest_falsification_assay": "Dynamic perifusion step-down (16.7 mM -> 2.8 mM glucose) measuring time-to-50%-and-90% insulin shutoff (<3 min required) and basal insulin leak at 2.8 mM.",
+      "evaluator_logit_delta": 0.0,
+      "evaluator_target_gate": "Gate1_precautionary_WARN",
+      "replacement_solution": "Remove G6PC2-/- from the default Universal Chassis A core; require dynamic perifusion 11 mM -> 2.8 mM glucose shut-off validation before using G6PC2 edits."
+    },
+    {
+      "graveyard_id": "GRAVEYARD_004_RNLS_KO_HUMAN_IPSC_BETA_GSIS_AND_OCR_TRADEOFF",
+      "category": "Species_Translation_and_Metabolic_Tradeoff",
+      "severity": "Moderate_Gate1_Maturation_and_Gate5_Oxygen_Penalty",
+      "severity_level": "WARN",
+      "curation_status": "contested_single_study",
+      "evidence_basis_class": "direct_islet_empirical",
+      "trigger_pattern": {
+        "requires_any_module": [
+          "ER_RNLS_KO",
+          "ER_RNLS_KO_PLUS_IAPP_PRAMLINTIDE"
+        ],
+        "condition": "RNLS-/- included without Stage 7 metabolic maturation and <=120 um cluster diameter control"
+      },
+      "proposed_idea": "Assume biallelic RNLS (Renalase) knockout is a zero-cost survival boost across all human SC-islet protocols based on mouse NIT-1 CRISPR screen results (Cai et al. 2020 PMID:32719542).",
+      "why_it_fails": "While RNLS-/- protects mouse NIT-1 beta-cells (Cai et al. 2020 PMID:32719542) and increases glycolytic flux (ECAR) and mitochondrial respiration (OCR) in 3D aggregated human iPSC-derived SC-islets, MacDonald et al. 2025 (PMID:39988068, Fig. 6) report that poor glucose responsiveness and absent acute GSIS persisted in both WT and RNLS KO Stage 6 human SC-beta cells and that elevated basal OCR + ECAR increases metabolic oxygen demand unless paired with Stage 7 maturation and <=120 um cluster diameter control.",
+      "supporting_pmids": [
+        "39988068",
+        "32719542"
+      ],
+      "cheapest_falsification_assay": "Isogenic WT vs RNLS-/- Stage 7 SC-islet dynamic perifusion GSIS + Seahorse basal/stimulated OCR at 120 um vs 200 um cluster diameter.",
+      "evaluator_logit_delta": 0.0,
+      "evaluator_target_gate": "Gate1_and_Gate5_precautionary_WARN",
+      "replacement_solution": "Exclude RNLS-/- from the lean 4-locus Universal Chassis A core; evaluate head-to-head in Stage 7 Balboa-matured <=120 um clusters."
+    },
+    {
+      "graveyard_id": "GRAVEYARD_005_HLA_C_MINUS21T_LEADER_PEPTIDE_NKG2A_BLINDSPOT",
+      "category": "Innate_NK_Missing_Self_Trap",
+      "severity": "High_Gate3_NK_Lysis_Risk",
+      "severity_level": "WARN",
+      "curation_status": "corroborated",
+      "evidence_basis_class": "mechanistic_synthesis_across_hla_immunogenetics_and_islet_studies",
+      "trigger_pattern": {
+        "requires_any_module": [
+          "ALLO_HLA_C_RETAINED_SUPERDONOR_PLUS_TYK2_KO"
+        ],
+        "condition": "HLA-A-/-, HLA-B-/-, CIITA-/- retaining a single HLA-C allele without verifying whether endogenous HLA-C expression alone stabilizes sufficient surface HLA-E after HLA-A/HLA-B deletion"
+      },
+      "proposed_idea": "Assume any HLA-A-/-, HLA-B-/-, CIITA-/- iPSC line retaining a single matched HLA-C allele automatically satisfies both KIR+ and NKG2A+ human NK cells without needing empirical HLA-E stabilization checks.",
+      "why_it_fails": "Mechanistic synthesis combining human HLA/NK immunogenetics with HLA-edited hPSC/SC-islet studies: in classical human HLA class I genetics, the leader-peptide position -21 methionine (-21M) vs threonine (-21T) dimorphism is an HLA-B polymorphism (Ramsuran et al. 2018 Science PMID:29302013), and HLA-C is expressed at ~10-fold lower basal surface density than HLA-A/HLA-B on resting parenchymal cells (Xu et al. 2019 PMID:30853558; Parent et al. 2021 PMID:34407395). Crucially, Lin et al. 2023 Nature Immunology (PMID:37264229, PMC10690437, DOI:10.1038/s41590-023-01523-z, Table 1 & Supplementary Table 1) demonstrate that among 16 common classical HLA class I signal peptide (SP) variants only 6 are functional VL9 donors for CD94/NKG2A recognition, stratifying HLA-C signal peptides into functional HLA-E binders SP-1C (MRVMAPRTLILLLSGALALTETWA, nonamer VMAPRTLIL, P6=Thr, P8=Ile: HLA-C*01:02, C*03:04, C*04:01, C*05:01, C*06:02, C*08:01, C*12:02, C*14:02, C*16:01; 65.17% of 1000G alleles; Lin et al. 2023 PMID:37264229 Supplementary Table 1 soluble HLA-E*01:03 SPR K_D = 1.33 uM [95% CI 1.15-1.53] for CD94/NKG2A and 4.35 uM [4.24-4.46] for CD94/NKG2C; Vales-Gomez et al. 1999 PMID:10428963 Table I CD94/NKG2A K_D = 7.35 uM for VMAPRTLIL [indexed there under HLA-Cw*0302, whereas rare allele HLA-Cw*0402 / C*04:02 carries the P3-Glu substitution VMEPRTLIL with K_D >= 75.30 uM, distinct from common HLA-C*04:01 SP-1C VMAPRTLIL]) and SP-2C (MRVMAPRTLLLLLSGALALTETWA, nonamer VMAPRTLLL, P6=Thr, P8=Leu: C*02:02, C*15:02, C*15:05; 8.58% 1000G C*02:02+C*15:02 aggregate; Lin et al. 2023 PMID:37264229 Supplementary Table 1 direct soluble HLA-E*01:03 SPR K_D = 1.70 uM [95% CI 1.50-1.93] for CD94/NKG2A and 4.97 uM [4.80-5.14] for CD94/NKG2C; unmeasured in Vales-Gomez 1999; note VMAPRTLVL is the HLA-A*02:01 SP-2A nonamer), versus non-functional SP-3C (MRVMAPRALLLLLSGGLALTETWA, nonamer VMAPRALLL, carrying the position -16 / P6=Ala [T6A, with P5=Arg] substitution in HLA-C*07:01, C*07:02, and C*07:04; 24.49% of 1000G alleles; UniProt P10321) and SP-4C (VMAPQALLL in C*17:01; 1.76%), for which exogenous synthetic peptide pulsing can stabilize surface HLA-E (Lin et al. 2023 Fig. 1a), whereas natural signal-peptide processing yields substantially weaker surface HLA-E expression (Lin et al. 2023 Fig. 1c) and the P6-Ala substitution fails to functionally engage CD94/NKG2A to inhibit NKG2A+ NK cell lysis (Lin et al. 2023 Fig. 1-2). Therefore, deleting HLA-A and HLA-B while retaining an SP-3C allele such as HLA-C*07:02 without an exogenous HLA-E SCT cloak leaves NKG2A+ KIR2DL- NK cells uninhibited (whereas pairing with AAVS1 HLA-E SCT in Design B-prime or selecting SP-1C C*03:04/C*04:01 restores HLA-E; evaluator_logit_delta = 0.0 for the cloaked/SP-1C-gated slot, with counterfactual GRAVEYARD_010 Gate-2B indirect-APC delta = -0.25 and counterfactual uncloaked SP-3C Gate-3 delta = -0.15 reducing Chassis B composite index from 0.0673 -> 0.0623 -> 0.0589 and pediatric index from 0.0664 -> 0.0612 -> 0.0579 [or to 0.0577 composite and 0.0567 pediatric under a harsher -0.20 Gate-3 logit shift]; Q2-P2). Furthermore, co-targeting HLA-A (chr6:29.94 Mb) and HLA-B (chr6:31.35 Mb) in cis on chromosome 6p21.3 carries a ~1.41 Mb megabase interstitial deletion / LOH risk spanning the intervening MHC class I interval along physical order HLA-A (chr6:29.94 Mb) -> HLA-E (chr6:30.49 Mb) -> HLA-C (chr6:31.27 Mb) -> HLA-B (chr6:31.35 Mb) if cut simultaneously, requiring sequential editing or long-read/ddPCR copy-number verification that both HLA-E and the retained HLA-C allele remain intact.",
+      "supporting_pmids": [
+        "29302013",
+        "30853558",
+        "37264229",
+        "34407395",
+        "10428963"
+      ],
+      "cheapest_falsification_assay": "Primary human NK killing assay across CMV-seropositive (NKG2C-high) and CMV-seronegative (NKG2A-high, KIR-typed) donors against resting Stage 7 SC-islets.",
+      "evaluator_logit_delta": 0.0,
+      "evaluator_target_gate": "Gate3_precautionary_WARN",
+      "replacement_solution": "Use B2M::HLA-E*01:03-VMAPRTLVL-P2A-CD47 in Universal Chassis A (using HLA-A2 leader VMAPRTLVL), or in Plan B / Design B-prime select functional SP-1C leader HLA-C superdonor alleles (C1: HLA-C*01:02 or C*03:04; C2: HLA-C*04:01 or C*06:02 rather than non-functional SP-3C HLA-C*07:02) and/or co-express exogenous HLA-E SCT + CD47-IgV-GPI at AAVS1 Locus 4 (Design B-prime; Q2-P1..P3)."
+    },
+    {
+      "graveyard_id": "GRAVEYARD_006_MULTIPLEX_BASE_PRIME_EDIT_NICKASE_TRANSLOCATIONS",
+      "category": "Genomic_Instability_and_Manufacturing_Attrition",
+      "severity": "High_Clonal_QC_Attrition_Risk",
+      "severity_level": "WARN",
+      "curation_status": "corroborated",
+      "evidence_basis_class": "mechanistic_precaution_or_non_islet_extrapolation",
+      "trigger_pattern": {
+        "requires_any_module": [
+          "AUTO_FULL_KO_G6PC2_SLC30A8_PLUS_BASE_INS_GAD2_IAPP_CXADR",
+          "ER_RNLS_KO_PLUS_IAPP_PRAMLINTIDE",
+          "AUTO_DUAL_INS_LEADER_AND_DRIP_EDIT",
+          "ER_IAPP_PRAMLINTIDE_RNLS_WT"
+        ],
+        "condition": "Simultaneous base/prime edits B >= 2 multiplexed with Cas9/Cas12a DSBs"
+      },
+      "proposed_idea": "Treat multiplex Adenine/Cytosine Base Editing (ABE/CBE) and Prime Editing across 4-6 loci simultaneously as 'zero-risk, zero-DSB' modifications on top of 5 Cas9/Cas12a knockouts.",
+      "why_it_fails": "Wu et al. 2024 (Genome Biology, PMID:39529170, PMC11552398) experimentally evaluated single-locus editing across Cas9, adenine base editing (ABE), and cytosine base editing (CBE) in mouse embryos and primary T cells and attributed elevated structural variants under ABE to deaminase activity (while finding lower structural variation for CBE than Cas9; prime editing [PE] was not an experimental comparator in Wu et al. 2024 and represents an engineering nickase/reverse-transcriptase extrapolation); extrapolating Cas9n D10A single-strand nicks and deaminase bystander edits across multiplex loci alongside Cas9/Cas12a nucleases in SC-islets is an engineering precaution against compounded clonal QC attrition and translocation/deletion risk (whereas Universal Chassis A's K=4, B=0 design uses a 2-pass orthogonal nuclease workflow—Pass 1 AsCas12a Ultra at B2M + CIITA, Pass 2 HiFi-SpCas9 R691A at CXCL10 + AAVS1—with mandatory CAST-seq and Bionano optical genome mapping release gates).",
+      "supporting_pmids": [
+        "39529170"
+      ],
+      "cheapest_falsification_assay": "Optical genome mapping (Bionano) + 30x whole-genome sequencing + CAST-seq translocation quantification in post-edited iPSC master bank clones.",
+      "evaluator_logit_delta": 0.0,
+      "evaluator_target_gate": "manufacturing_base_edit_gamma_B_WARN",
+      "replacement_solution": "Keep Universal Chassis A at B=0 base edits (K=4 chromosomal loci total); penalize each simultaneous base edit by 0.965^B in the evaluator."
+    },
+    {
+      "graveyard_id": "GRAVEYARD_007_HIGH_PLI_KNOCKOUTS_PTPN2_TNFAIP3_GAD2",
+      "category": "Human_Genetic_Constraint_Violation",
+      "severity": "Fatal_Gate1_and_Gate4_Failure",
+      "severity_level": "BLOCK",
+      "curation_status": "corroborated",
+      "evidence_basis_class": "human_genetic_constraint_and_islet_physiology_synthesis",
+      "trigger_pattern": {
+        "requires_any_module": [
+          "AUTO_FULL_KO_G6PC2_SLC30A8_PLUS_BASE_INS_GAD2_IAPP_CXADR"
+        ],
+        "condition": "Aggressive pan-autoantigen/GWAS editing stack combining biallelic G6PC2/SLC30A8 knockouts with multiplex coding edits at high-pLI GAD2 (pLI=1.000) or knockout of high-pLI beta-cell survival brakes (PTPN2 pLI=0.990, TNFAIP3 pLI=1.000)"
+      },
+      "proposed_idea": "Knock out T1D GWAS candidate genes PTPN2 or TNFAIP3 (A20) to prevent autoimmune recognition, or apply aggressive multiplex knockouts/coding disruptions across GAD2 (GAD65, pLI=1.000) alongside biallelic G6PC2-/- and SLC30A8-/- in a 6-gene pan-autoantigen stack.",
+      "why_it_fails": "gnomAD v4 human constraint demonstrates strong population-level loss-of-function constraint for PTPN2 (pLI=0.990), TNFAIP3 (pLI=1.000), and GAD2 (pLI=1.000). PTPN2 and TNFAIP3 (A20) are essential anti-apoptotic brakes whose loss sensitizes beta-cells to cytokine death and graft hyperinflammation (Moore et al. 2009 PMID:19336676 for PTPN2; Grey et al. 1999 PMID:10523611 and Zammit et al. 2019 PMID:31581152 for TNFAIP3/A20), while GAD2 synthesizes intra-islet GABA required for paracrine regulation of islet hormone secretion and alpha-cell glucagon suppression (Rorsman et al. 1989 Nature PMID:2550826; Menegaz et al. 2019 Nature Metabolism PMID:32432213), so unvalidated coding disruption or bystander indels at GAD2 in a 6-locus multiplex edit stack risks paracrine dysregulation.",
+      "supporting_pmids": [
+        "19336676",
+        "10523611",
+        "31581152",
+        "2550826",
+        "32432213"
+      ],
+      "cheapest_falsification_assay": "Cytokine cocktail (IFN-gamma + IL-1beta + TNF-alpha) apoptosis assay and alpha-cell glucagon suppression perifusion assay.",
+      "evaluator_logit_delta": null,
+      "evaluator_target_gate": "Gate1_and_Gate4_hard_BLOCK",
+      "replacement_solution": "Never knock out PTPN2, TNFAIP3, or GAD2; use TYK2-/- (pLI=2.8e-7) or inducible TNFAIP3/SERPINB9 gain-of-function instead."
+    },
+    {
+      "graveyard_id": "GRAVEYARD_008_CONSTITUTIVE_IL10_VIRAL_OVEREXPRESSION",
+      "category": "Paradoxical_Cytokine_Pleiotropy",
+      "severity": "High_Gate2B_and_Gate4_Failure",
+      "severity_level": "BLOCK",
+      "curation_status": "conservative_project_exclusion_policy_under_mechanistic_uncertainty",
+      "evidence_basis_class": "project_policy_exclusion",
+      "trigger_pattern": {
+        "requires_any_module": [
+          "CYTO_CONSTITUTIVE_IL10_VIRAL_OE"
+        ],
+        "condition": "Constitutive viral overexpression of secreted IL-10 in allogeneic islets without physiological multi-cytokine co-regulation"
+      },
+      "proposed_idea": "Constitutively overexpress viral or recombinant IL-10 alone in allogeneic islets to locally suppress host T-cells.",
+      "why_it_fails": "Conservative project exclusion policy under mechanistic uncertainty: unbuffered constitutive viral IL-10 overexpression alone is excluded from candidate stacks in favor of contact-dependent checkpoints (PD-L1) and intracellular granzyme B inhibition (SERPINB9), whereas physiological or multi-cytokine tolerogenic combinations (such as Gerace et al. 2023 PMID:36599351 combining IL-10 + TGF-beta + IL-2 mutein) are evaluated separately. Note on citation provenance: Polukort et al. 2016 (PMID:27183617) is a mucosal food-allergy mast-cell expansion study (not an islet transplantation experiment) and is retained strictly as a non-islet mechanistic caution on pleiotropic IL-10 mast-cell signaling rather than direct islet-graft counter-evidence.",
+      "supporting_pmids": [
+        "27183617"
+      ],
+      "cheapest_falsification_assay": "In vivo allogeneic graft histology quantifying mast-cell/granulocyte infiltrate.",
+      "evaluator_logit_delta": null,
+      "evaluator_target_gate": "Gate2B_and_Gate4_hard_BLOCK",
+      "replacement_solution": "Use cell-surface contact checkpoints (PD-L1) + intracellular granzyme blockade (SERPINB9) driven by endogenous inflammation-inducible promoters (CXCL10 locus)."
+    },
+    {
+      "graveyard_id": "GRAVEYARD_009_RESTING_B2M_PROMOTER_HOUR0_INNATE_DENSITY_DEFICIT",
+      "category": "Quantitative_Promoter_Stoichiometry_and_Hour0_Innate_Clearance",
+      "severity": "High_Gate3_Hour0_NK_and_Macrophage_Clearance_Risk",
+      "severity_level": "WARN",
+      "curation_status": "precautionary_promoter_stoichiometry_hazard",
+      "evidence_basis_class": "mechanistic_precaution_or_non_islet_extrapolation",
+      "trigger_pattern": {
+        "requires_any_module": [
+          "ALLO_B2M_HLAE_CD47_SWAP_CIITA_KO"
+        ],
+        "condition": "Single-copy endogenous B2M promoter driving bicistronic HLA-E-trimer-P2A-CD47 without verified Hour-0 resting surface molecule/cell threshold across beta, alpha, delta, and iEC lineages"
+      },
+      "proposed_idea": "Assume that knocking HLA-E-trimer-P2A-CD47 into endogenous B2M exon 1 automatically achieves the ~180,000-220,000 CD47 molecules/cell threshold achieved by lentiviral CAG/EF1a overexpression in Hu et al. 2024 (PMID:37156915).",
+      "why_it_fails": "Mature resting human Stage 7 beta-cells have low basal B2M/MHC-I transcription in the absence of IFN-alpha/gamma, and P2A ribosomal skipping between a type-I single-chain HLA-E trimer and CD47 yields <1:1 downstream surface trafficking and leaves a C-terminal P2A peptide scar on the upstream protein (note: Deuse et al. 2019 PMID:30778232 and Han et al. 2019 PMID:31040209 used strong constitutive CAG/EF1a promoters (while Colli et al. 2020 PMID:32444635 documented low basal beta-cell MHC-I prior to IFN-alpha) rather than endogenous B2M transcription, so resting B2M-driven surface density is an unvalidated precautionary stoichiometry risk). Furthermore, selecting the HLA-A*02:01 leader peptide VMAPRTLVL to avoid activating CD94/NKG2C+ adaptive NK cells replaces the high-affinity HLA-G leader VMAPRTLFL (Kaiser et al. 2008 PMID:18448674 Table 1: WT CD94/NKG2A + VMAPRTLFL K_D = 0.8 +/- 0.055 uM, WT CD94/NKG2C + VMAPRTLFL K_D = 5.2 +/- 0.2 uM, selectivity ratio 6.50x, engineered mutant NKG2C[165-168SIIS] + VMAPRTLFL K_D = 0.9 +/- 0.1 uM; Vales-Gomez et al. 1999 PMID:10428963 Table I: CD94/NKG2A K_D = 2.33 uM for VMAPRTLFL vs CD94/NKG2C K_D = 10.77 uM [selectivity ratio 10.77 / 2.33 = 4.622-fold], CD94/NKG2A K_D = 7.35 uM for HLA-Cw*0302 VMAPRTLIL [whereas HLA-Cw*0402 VMEPRTLIL has K_D >= 75.30 uM], and 11.23 uM for HLA-B*0702 VMAPRTVLL; Lin et al. 2023 Nature Immunology PMID:37264229 Supp. Table 1 soluble HLA-E*01:03 refolded monomer 3D SPR: VMAPRTLVL CD94/NKG2A K_D = 2.10 uM vs CD94/NKG2C K_D = 6.52 uM [ratio 3.1048x < 4.0], VMAPRTLIL 1.33 vs 4.35 uM [ratio 3.2707x < 4.0], and VMAPRTLLL 1.70 vs 4.97 uM [ratio 2.9235x < 4.0]; whereas exact covalently tethered single-chain trimer affinity and selectivity are unmeasured parameters requiring Stage-0 Gate 0A SPR verification), increasing the surface HLA-E molecule/cell threshold required to saturate NKG2A. If resting Hour-0 CD47 and HLA-E surface density on beta-cells or co-transplanted iEC endothelium sits below the host SIRPa/NKG2A inhibitory threshold, innate NK cells and macrophages clear the graft during the first 0-72h before T-cell IFN-gamma ever arrives to upregulate the B2M promoter.",
+      "supporting_pmids": [
+        "37156915",
+        "30778232",
+        "31040209",
+        "32444635",
+        "18448674",
+        "10428963",
+        "37264229"
+      ],
+      "cheapest_falsification_assay": "QuantiBRITE calibrated flow cytometry measuring absolute surface HLA-E and CD47 molecules/cell on resting (unstimulated) vs +IFN-gamma Stage 7 beta, alpha, delta, and iEC cells, paired with Hour-0 primary human NK and macrophage killing assays across SIRPa V1/V2 and CMV+/NKG2C+ donors.",
+      "replacement_solution": "Pre-specify Decision Experiment #1: if resting endogenous B2M-driven CD47/HLA-E density is below the inhibitory threshold in any lineage (especially iEC endothelium), supplement with a basal housekeeping enhancer floor (e.g., native human EEF1A1-core [230 bp, 19 CpGs, 60.0% GC] + intron or GAPDH/AAVS1 bicistronic co-expression) before in vivo translation.",
+      "evaluator_logit_delta": -0.20,
+      "evaluator_target_gate": "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield",
+      "evaluator_disposition_rule": "Applies -0.20 logit discount in Gate 3 + requires Decision Experiment #1 QuantiBRITE gate",
+      "Evaluator_Disposition_Rule": "WARN (non-blocking precautionary gate): does NOT set is_feasible_candidate = false; instead triggers Decision Experiment #1 (Hour-0 QuantiBRITE surface stoichiometry gate across beta, alpha, delta, and iEC lineages) and applies a -0.20 logit stoichiometry penalty on Gate 3 unless paired with a housekeeping promoter or verified enhancer floor."
+    },
+    {
+      "graveyard_id": "GRAVEYARD_010_MHC_NULL_INDIRECT_APC_BYSTANDER_BLINDSPOT",
+      "category": "Indirect_Allorecognition_and_Host_APC_Bystander_Attrition",
+      "severity": "High_Gate2B_LongTerm_Indirect_CD4_and_Macrophage_Bystander_Risk",
+      "severity_level": "WARN",
+      "curation_status": "precautionary_indirect_pathway_hazard",
+      "evidence_basis_class": "mechanistic_precaution_or_non_islet_extrapolation",
+      "trigger_pattern": {
+        "requires_any_module": [
+          "ALLO_B2M_HLAE_CD47_SWAP_CIITA_KO",
+          "ALLO_B2M_CIITA_KO_CD47_LENTI"
+        ],
+        "condition": "Applies to the listed donor MHC-null modules regardless of INS leader/DRiP edits; those edits do not eliminate other host-APC-presented autoantigens or alloantigens."
+      },
+      "proposed_idea": "Assume that because B2M-/- + CIITA-/- eliminates donor surface MHC-I and MHC-II, pre-existing T1D memory CD4+ T-cells, B-cells, and autoantibodies (IAA, GADA, ZnT8A, IA-2A) are completely neutralized.",
+      "why_it_fails": "Donor MHC deletion eliminates only direct T-cell presentation on donor classical HLA-A/B/C and HLA-II. A curative ~0.8B cell graft continuously secretes insulin/C-peptide/IAPP and sheds necrotic cellular debris (GAD65, ZnT8, IA-2, minor histocompatibility antigens, plus synthetic HLA-E linker, P2A scar, and iCasp9-FKBP fusion peptides) during the 0-72h post-implantation window. Recipient conventional dendritic cells (APCs) phagocytose these shed antigens and present them via the canonical indirect pathway on host HLA-DQ2/DQ8 (MHC-II) and cross-present them on host MHC-I to reactivate memory CD4+ and CD8+ T-cells and B-cells; in addition, where residual donor pMHC is present (such as engineered HLA-E single-chain trimers or retained HLA-C in Chassis B), donor extracellular vesicles can cross-dress recipient APC membranes via the semi-direct pathway (Marino et al. 2016 PMID:27942611), driving opsonizing antibodies, complement, and TCR-independent macrophage TNF-alpha/IL-1beta/NO/ROS and FasL/perforin bystander destruction of adjacent MHC-null beta-cells (Demine et al. 2020 PMID:31900242 characterizes beta-cell cytokine/chemokine stress responses, and Hu et al. 2024 PMID:37156915 establishes direct B2M-/- CIITA-/- + CD47 survival, while indirect host-APC presentation and residual donor-vesicle semi-direct cross-dressing remain unmeasured long-term residual hazards).",
+      "supporting_pmids": [
+        "31900242",
+        "37156915",
+        "27942611"
+      ],
+      "cheapest_falsification_assay": "Indirect-pathway co-culture assay: HLA-DQ2/DQ8+ T1D patient monocyte-derived dendritic cells pulsed with necrotic/secretome supernatant from B2M-/- CIITA-/- SC-islets + autologous CD4+ T-cells + autologous macrophages co-cultured with live MHC-null SC-islets.",
+      "replacement_solution": "Explicitly cap Gate 2B scores for MHC-null designs with an unmeasured indirect-presentation residual hazard term, minimize Hour-0 necrotic debris (<120 um clusters + pre-vascularized niche), and evaluate whether epitope-level stealth or transient peri-transplant innate/APC blockade is required.",
+      "evaluator_logit_delta": -0.25,
+      "evaluator_target_gate": "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth",
+      "evaluator_disposition_rule": "Applies -0.25 logit discount in Gate 2B + requires Decision Experiment #2 indirect APC / SA-FasL gate",
+      "Evaluator_Disposition_Rule": "WARN (non-blocking mechanistic precaution): retains the existing -0.25 Gate 2B logit discount for listed MHC-null modules, including INS-edited variants. No hard calibrated probability ceiling is implemented or claimed."
+    }
+  ]
+}

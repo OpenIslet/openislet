@@ -1,0 +1,381 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "30936149",
+    "pmcid": null,
+    "doi": "10.2337/db18-1321",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Deficiency of ZnT8 Promotes Adiposity and Metabolic Dysfunction by Increasing Peripheral Serotonin Production.",
+    "first_author": "Mao Z",
+    "senior_author": "Zhang W",
+    "pub_year": 2019,
+    "journal": "Diabetes",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar3_Intrinsic_BetaCell_Genetic_Resilience_Amyloid_Viral"
+    ],
+    "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid30936149_arm1",
+      "arm_label": "Primary experimental arm in Mao Z (2019)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Unspecified_In_Source_Abstract",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "SLC30A8",
+          "ensembl_gene_id": "ENSG00000164756",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:30936149 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=SLC30A8 quote_sha256=ffde3c5621a307a7023f708f72debd0a813a62ac5ef4a55c54c2856d352b40f7]"
+          },
+          "functional_gate": "Gate2_Autoantigen_or_Neoantigen_Stealth",
+          "target_autoantibody_or_tcr_evaded": [
+            "ZnT8A_SLC30A8"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid30936149_eff1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Autoimmune_TCR_or_AutoAb_Evasion | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Autoimmune_TCR_or_AutoAb_Evasion",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Unspecified_In_Source_Abstract",
+        "Z3_immune_effector_and_stressor_pathway": "Autoimmune_TCR_or_AutoAb_Evasion",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "ZnT8 is a zinc transporter enriched in pancreatic β-cells, and its polymorphism is associated with increased susceptibility to type 2 diabetes.",
+      "focal_arm_id": "pmid30936149_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "5c37900e4c275ef413668e14fb11d4e7762782afd1b4bec8177c5e76dafccf16",
+      "source_span": "abstract[0:143]|norm=exact",
+      "quote_source_dossier_pmid": "30936149",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+        "comparator_label": null,
+        "endpoint_name": "Autoimmune_TCR_or_AutoAb_Evasion",
+        "timepoint": null,
+        "population_or_model": "Unspecified_In_Source_Abstract (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid30936149_eff2",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Autoimmune_TCR_or_AutoAb_Evasion | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Autoimmune_TCR_or_AutoAb_Evasion",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Unspecified_In_Source_Abstract",
+        "Z3_immune_effector_and_stressor_pathway": "Autoimmune_TCR_or_AutoAb_Evasion",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:30936149 field=verbatim_evidence_quote genes=SLC30A8 pert=KO_LOF quote_sha256=64df673f396045bdae92404d1ddf504046d27510c7305fe6b19c5c856ce73c48]",
+      "focal_arm_id": "pmid30936149_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "5c37900e4c275ef413668e14fb11d4e7762782afd1b4bec8177c5e76dafccf16",
+      "source_span": "abstract[223:329]|norm=exact",
+      "quote_source_dossier_pmid": "30936149",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+        "comparator_label": null,
+        "endpoint_name": "Autoimmune_TCR_or_AutoAb_Evasion",
+        "timepoint": null,
+        "population_or_model": "Unspecified_In_Source_Abstract (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid30936149_eff3",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Autoimmune_TCR_or_AutoAb_Evasion | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Autoimmune_TCR_or_AutoAb_Evasion",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Unspecified_In_Source_Abstract",
+        "Z3_immune_effector_and_stressor_pathway": "Autoimmune_TCR_or_AutoAb_Evasion",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:30936149 field=verbatim_evidence_quote genes=SLC30A8 pert=GOF_OE quote_sha256=52b570827abadf6a898c7017990229aa94ae504232050c469d19ef29e5701361]",
+      "focal_arm_id": "pmid30936149_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "5c37900e4c275ef413668e14fb11d4e7762782afd1b4bec8177c5e76dafccf16",
+      "source_span": "abstract[842:983]|norm=exact",
+      "quote_source_dossier_pmid": "30936149",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+        "comparator_label": null,
+        "endpoint_name": "Autoimmune_TCR_or_AutoAb_Evasion",
+        "timepoint": null,
+        "population_or_model": "Unspecified_In_Source_Abstract (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid30936149_eff4",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Autoimmune_TCR_or_AutoAb_Evasion | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Autoimmune_TCR_or_AutoAb_Evasion",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Unspecified_In_Source_Abstract",
+        "Z3_immune_effector_and_stressor_pathway": "Autoimmune_TCR_or_AutoAb_Evasion",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:30936149 field=verbatim_evidence_quote genes=SLC30A8 pert=NONE quote_sha256=2a1d7d613c4a52ef695699a5e87d5c99abcebba4aae10d5a2d7c628cf92b7e9b]",
+      "focal_arm_id": "pmid30936149_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "5c37900e4c275ef413668e14fb11d4e7762782afd1b4bec8177c5e76dafccf16",
+      "source_span": "abstract[984:1180]|norm=exact",
+      "quote_source_dossier_pmid": "30936149",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+        "comparator_label": null,
+        "endpoint_name": "Autoimmune_TCR_or_AutoAb_Evasion",
+        "timepoint": null,
+        "population_or_model": "Unspecified_In_Source_Abstract (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "pmid30936149_int1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+      "outcome_Y": "Autoimmune_TCR_or_AutoAb_Evasion",
+      "modifier_variable_Z": "SLC30A8_ZnT8_Granule_Zinc_Autoantigen vs. SLC30A8_ZnT8_Granule_Zinc_Autoantigen",
+      "modifier_class": "Z4_Metabolic_Glucose_or_ER_Secretory_Load",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:30936149 field=level_1_condition_and_effect quote_sha256=91c007167284c45972ab181b29b8a1ede9ccebba44c570af0353e1ece6578c2c]",
+      "level_2_condition_and_effect": "However, the exact role of ZnT8 in systemic energy metabolism remains elusive.",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:30936149 field=mechanistic_explanation quote_sha256=3998c83cddc20ab95073939f7573ff1f1ef7004d0cf04d24ab04700548b85d66]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "SLC30A8_ZnT8_Granule_Zinc_Autoantigen",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "Biphasic_GSIS_and_Calcium_Coupling",
+      "downstream_node_type": "Secreted_Hormone_or_Chemokine_DAMP",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:30936149 field=evidence_source quote_sha256=5883f72e6efe1dfd11d80f8dc9f9e0322adea432d9d7256860233029de266ef4]"
+    },
+    {
+      "upstream_node": "SLC30A8_ZnT8_Granule_Zinc_Autoantigen",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "Biphasic_GSIS_and_Calcium_Coupling",
+      "downstream_node_type": "Secreted_Hormone_or_Chemokine_DAMP",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:30936149 field=evidence_source quote_sha256=5e371e7ac4fd2db8e8043926e404cc26b554936a251d61cd8d8561896b3837c0]"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:30936149 field=omitted_text quote_sha256=d7db50634af37cb429255301a5e3d33125d6fe5febcc7ddee2a5a4045a343267]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:30936149 field=omitted_text quote_sha256=9a4ef0f7ef293ca3ce9fc16e9f6ae7ffa8c96c69b9c049a6206dc9320c981979]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

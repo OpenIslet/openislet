@@ -1,0 +1,10 @@
+Resource: UniProt Knowledgebase (UniProtKB / Swiss-Prot, UniProt Consortium)
+Classification: Canonical human protein sequences and domain annotations redistributed in public bundle (CC-BY-4.0)
+Audit Timestamp (UTC): 2026-10-23T09:34:31Z
+Upstream Source & Terms: https://www.uniprot.org/help/license (Creative Commons Attribution 4.0 International, CC-BY-4.0)
+Release & Accessions: UniProt Release 2024_05 (verified 2026-10-26); accessions P61769 (B2M), P13747 (HLA-E), Q08722 (CD47), P08174 (CD55), P50453 (SERPINB9), Q9NZQ7 (CD274/PD-L1), P55211 (CASP9), Q16881 (TXNRD1), P10321 (HLA-C)
+Shipped Public Artifacts:
+  - data/raw/layer2_genomic_and_jaspar_reference.json (canonical amino-acid sequences and feature coordinates pinned by SHA-256)
+  - data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta (reverse-translated human-optimized coding cassettes)
+  - data/extracted/layer2_regulatory_and_perturbation_atlas.json
+Attribution & Modifications: Canonical UniProtKB/Swiss-Prot polypeptide sequences redistributed with accession numbers and SHA-256 integrity pins; engineered fusion constructs and signal/GPI domain splices are documented in Layer 2.

@@ -1,0 +1,213 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "37820008",
+    "pmcid": null,
+    "doi": "10.1126/scitranslmed.add2387",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "A metabolic role for CD47 in pancreatic β cell insulin secretion and islet transplant outcomes.",
+    "first_author": "Ghimire Kedar",
+    "senior_author": "Rogers Natasha M",
+    "pub_year": 2023,
+    "journal": "Science translational medicine",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar3_Intrinsic_BetaCell_Genetic_Resilience_Amyloid_Viral"
+    ],
+    "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid37820008_arm1",
+      "arm_label": "Full-length CD47 receptor signaling vs CD47 blockade/depletion in human and mouse pancreatic beta cells (Ghimire et al. 2023)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Primary_Human_Islet",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "CD47",
+          "ensembl_gene_id": "ENSG00000196776",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:37820008 field=exact_variant_or_swap_description mod=Lentiviral_or_Transposon_OE genes=CD47 quote_sha256=430eafdb5a3bb569aef08db13734482be0c05e6743c39e9fc0e6d34db734ff4d]"
+          },
+          "functional_gate": "Gate3_Macrophage_DonotEatMe",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "Lentiviral_or_Transposon_OE",
+          "promoter_or_locus_context": "Endogenous_Native_Promoter",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Gain_of_Function_or_Transgenic_Armoring"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "ghimire2023_eff1_cd47_signaling_inhibits_beta_cell_gsis",
+      "source_figure_or_table": "Abstract & Figs. 1-4 (Sci Transl Med 2023)",
+      "focal_factor_X": "CD47 (Full-length wild-type CD47 receptor intracellular signaling in pancreatic beta cells)",
+      "comparator_X0": "CD47 receptor blockade (MIAP410 / Hu5F9-G4) or genetic CD47 depletion",
+      "outcome_variable_Y": "[Endpoint: Metabolic_and_Biphasic_GSIS_Maturation | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
+      "outcome_domain": "Metabolic_and_Biphasic_GSIS_Maturation",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Deleterious_or_Impaired",
+      "secretome_or_differentiation_penalty_observed": true,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Full-length signaling-competent CD47 vs CD47 receptor blockade/knockout",
+        "Z3_immune_effector_and_stressor_pathway": "Unstressed and STZ/NOD diabetic models",
+        "Z4_metabolic_and_glucose_load_state": "Basal and postprandial glucose stimulation",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Primary human and mouse pancreatic islets",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "In vitro GSIS and syngeneic islet graft niche",
+        "Z7_promoter_and_epigenetic_context": "Endogenous full-length CD47 locus",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "Here, we demonstrate that CD47 receptor signaling inhibits insulin release from human as well as mouse pancreatic β cells and that it can be pharmacologically exploited to boost insulin secretion in both models.",
+      "focal_arm_id": "pmid37820008_arm1",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "gsis"
+      },
+      "dossier_sha256": "38fba34f85cd4571969b273428cc6b49d8dfe8da399e7bf85a22431b9f6e1f6b",
+      "source_span": "abstract[468:679]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "CD47 (Full-length wild-type CD47 receptor intracellular signaling in pancreatic beta cells)",
+        "comparator_label": null,
+        "endpoint_name": "Metabolic_and_Biphasic_GSIS_Maturation",
+        "timepoint": null,
+        "population_or_model": "Full-length signaling-competent CD47 vs CD47 receptor blockade/knockout (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "37820008"
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "ghimire2023_int1_full_length_cd47_tail_vs_cdc42_exocytosis",
+      "source_figure_or_table": "Abstract & Figs. 2-4",
+      "focal_factor_X": "CD47 surface expression on pancreatic beta cells",
+      "outcome_Y": "Metabolic_and_Biphasic_GSIS_Maturation",
+      "modifier_variable_Z": "Presence of CD47 transmembrane and intracellular signaling domains vs extracellular SIRPa-binding IgV domain only",
+      "modifier_class": "Z2_Genetic_Background_Zygosity_or_Surface_MFI_Dose",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:37820008 field=level_1_condition_and_effect quote_sha256=a63c57eb5ab68fcf941cf168f823e10a2afa8cd8b3995f518c7ea2be87353851]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:37820008 field=level_2_condition_and_effect quote_sha256=e1e881783587f1e831e0118c605ef350d1e36b289f19a64ed198578d69f7f2bf]",
+      "modification_type": "Qualitative_Sign_Reversal_Flips_Direction",
+      "critical_threshold_value_and_unit": "Intracellular signaling domain deletion (CD47-IgV) or receptor blockade",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:37820008 field=mechanistic_explanation quote_sha256=4da23aa04868d5b36776ec6a36c2f17c0a7e31428a9dabe191807a21ac0cef35]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "CD47",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "Biphasic_GSIS_and_Calcium_Coupling",
+      "downstream_node_type": "Cell_Survival_or_Death_Pathway",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:37820008 field=evidence_source quote_sha256=1f028f665d342e36b1c3e93960f066bdef4a43ead2dfb7e0acb0a1884cd072a1]"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [
+      {
+        "primary_gate_perturbed": "Gate3_Macrophage_DonotEatMe (Full-length wild-type CD47 cDNA)",
+        "secondary_gate_affected": "Gate1_Maturation_GSIS_and_Paracrine (Cdc42-mediated insulin granule exocytosis)",
+        "is_beneficial_synergy_or_deleterious_tradeoff": "Deleterious_CrossGate_Tradeoff",
+        "observation": "[REDACTED_NON_OA_EXCERPT: see PMID:37820008 field=observation quote_sha256=ee724449127c1110faa9d8c60aa1d0ade258bd32f78c14c3057050ec35672aa9]"
+      }
+    ],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "CD47 (BaseEdit_ABE_or_CBE_Epitope_or_Splice — Gate3_NK_MissingSelf_Inhibition)",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:37820008 field=omitted_text quote_sha256=c29729a5a340a72951d85007ed8739c7906620f0cd963d78446a317d9c65c88b]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:37820008 field=omitted_text quote_sha256=092d5e2687264d5fc7f4f183224e0c152fe67bcbd7fff2b08197db2f49599d08]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

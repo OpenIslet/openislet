@@ -1,0 +1,503 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "32814902",
+    "pmcid": "PMC7872080",
+    "doi": "10.1038/s41586-020-2631-z",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Immune-evasive human islet-like organoids ameliorate diabetes.",
+    "first_author": "Yoshihara E",
+    "senior_author": "Evans RM",
+    "pub_year": 2020,
+    "journal": "Nature",
+    "source_text_type": "FullText_XML_or_PDF",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar3_Intrinsic_BetaCell_Genetic_Resilience_Amyloid_Viral",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid32814902_arm1",
+      "arm_label": "Immature PBS-Treated Human Islet-Like Organoids (HILOs Without WNT4 or PD-L1)",
+      "is_reference_control": true,
+      "sample_size_n": 9,
+      "sample_size_unit": "mouse_recipients",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "iPSC_healthy_donor",
+        "cell_line_id": "HUVEC-derived hiPSC (plus HUES8 and H1 hESC validation)",
+        "donor_hla_profile": "Wild-type allogeneic/xenogeneic HLA+ hiPSC",
+        "protocol_backbone": "3D Kelcogel (0.015% low-acyl gellan gum + 0.3% methylcellulose) suspension HILO differentiation through Stage 5 without rhWNT4",
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": 200.0,
+        "pct_nkx6_1_cpeptide_double_pos": 55.0,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Kidney_Capsule",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "500 HILOs transplanted under kidney capsule",
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "InVivo_Allogeneic_or_Autoimmune_Graft",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 50.0,
+          "specific_autoantigen_or_hla_restriction": "STZ-diabetic immunocompetent C57BL/6J mice (n=9) and MLD-STZ diabetic Hu-PBMC-NSG-SGM3 humanized mice (n=6)"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": 14.0,
+        "pct_graft_surviving_at_end_of_followup": 0.0,
+        "followup_duration_days": 50.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid32814902_arm2",
+      "arm_label": "PD-L1 Overexpressing WNT4-Matured Organoids (wHILO PD-L1 OE)",
+      "is_reference_control": false,
+      "sample_size_n": 11,
+      "sample_size_unit": "mouse_recipients",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "iPSC_healthy_donor",
+        "cell_line_id": "HUVEC-hiPSC lentiviral CD274 (PD-L1) OE",
+        "donor_hla_profile": "HLA+ with constitutive PD-L1 overexpression",
+        "protocol_backbone": "3D Kelcogel suspension HILO protocol + 100 ng/mL rhWNT4 maturation (days 26-33)",
+        "canonical_differentiation_stage_evaluated": "Stage7_MetabolicallyMature_SC_Islet",
+        "stage_small_molecules_and_factors": [
+          {
+            "stage_number": 6,
+            "factor_name": "rhWNT4",
+            "dose_value": 100.0,
+            "dose_unit": "ng/mL",
+            "duration_days": 7.0
+          }
+        ],
+        "cluster_mean_diameter_um": 200.0,
+        "pct_nkx6_1_cpeptide_double_pos": 55.0,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "CD274",
+          "ensembl_gene_id": "ENSG00000120217",
+          "sub_molecular_coordinate": {
+            "region_class": "Transgene_cDNA_Cassette",
+            "exact_variant_or_swap_description": "Lentiviral human CD274 (PD-L1) overexpression (abm LV113090)"
+          },
+          "functional_gate": "Gate2_Checkpoint_T_Cell_Inhibition",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "Lentiviral_or_Transposon_OE",
+          "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
+          "zygosity_or_allelic_state": "Hemizygous_or_KnockIn",
+          "protein_or_surface_expression_fold_vs_wt": 20.0,
+          "perturbation_class": "Gain_of_Function_or_Transgenic_Armoring"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Kidney_Capsule",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "500 (or 1,000) PD-L1+ wHILOs under kidney capsule of STZ-diabetic C57BL/6J mice (n=11) or MLD-STZ diabetic Hu-PBMC-NSG-SGM3 humanized mice (n=6)",
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "InVivo_Allogeneic_or_Autoimmune_Graft",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 50.0,
+          "specific_autoantigen_or_hla_restriction": "HD-STZ immunocompetent C57BL/6J mice (>50 days, n=11) and MLD-STZ diabetic Hu-PBMC-NSG-SGM3 humanized mice (n=6)"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": 50.0,
+        "pct_graft_surviving_at_end_of_followup": 100.0,
+        "followup_duration_days": 50.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid32814902_arm3",
+      "arm_label": "Multi-Pulse IFN-gamma Stimulated Epigenetically Tolerized Organoids (wHILOie, 3x 2h 10 ng/mL IFN-gamma Pulses)",
+      "is_reference_control": false,
+      "sample_size_n": 6,
+      "sample_size_unit": "mouse_recipients",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "iPSC_healthy_donor",
+        "cell_line_id": "HUVEC-hiPSC wHILOie (non-transgenic MPS-IFN-gamma memory)",
+        "donor_hla_profile": "Wild-type HLA+ with sustained epigenetic chromatin accessibility at endogenous CD274 (PD-L1)",
+        "protocol_backbone": "3D Kelcogel suspension wHILO protocol + 3 sequential 2-hour pulses of 10 ng/mL rhIFN-gamma separated by 24h rest periods (MPS)",
+        "canonical_differentiation_stage_evaluated": "Stage7_MetabolicallyMature_SC_Islet",
+        "stage_small_molecules_and_factors": [
+          {
+            "stage_number": 6,
+            "factor_name": "rhWNT4",
+            "dose_value": 100.0,
+            "dose_unit": "ng/mL",
+            "duration_days": 7.0
+          },
+          {
+            "stage_number": 7,
+            "factor_name": "rhIFN-gamma Multi-Pulse Stimulation (MPS: 3x 2h pulses)",
+            "dose_value": 10.0,
+            "dose_unit": "ng/mL",
+            "duration_days": 3.0
+          }
+        ],
+        "cluster_mean_diameter_um": 200.0,
+        "pct_nkx6_1_cpeptide_double_pos": 55.0,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Kidney_Capsule",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "500 wHILOie clusters transplanted 7 days after final IFN-gamma pulse under kidney capsule of diabetic C57BL/6J (n=6) or Hu-PBMC-NSG-SGM3 mice (n=6)",
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "InVivo_Allogeneic_or_Autoimmune_Graft",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 40.0,
+          "specific_autoantigen_or_hla_restriction": "HD-STZ C57BL/6J (>40 days, n=6) and MLD-STZ Hu-PBMC-NSG-SGM3 humanized mice (n=6)"
+        },
+        {
+          "challenge_type": "Cytokine_Cocktail_IFNg_IL1b_TNFa_or_IFNa",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 24.0,
+          "specific_autoantigen_or_hla_restriction": "10 ng/mL IL-1beta challenge for 24h to test beta-cell dedifferentiation (INS/UCN3)"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": 40.0,
+        "pct_graft_surviving_at_end_of_followup": 100.0,
+        "followup_duration_days": 40.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "yoshihara2020_eff1_wnt4_esrrg_oxphos_gsis_maturation",
+      "source_figure_or_table": "Fig. 1e-i, Extended Data Fig. 3e-k, Extended Data Fig. 8h-i",
+      "focal_factor_X": "CD274 functional evaluation — 100 ng/mL recombinant human WNT4 treatment (days 26-33) driving non-canonical WNT4 -> ERRgamma (ESRRG) signaling",
+      "comparator_X0": "PBS-treated control HILOs",
+      "outcome_variable_Y": "[Endpoint: Metabolic_and_Biphasic_GSIS_Maturation | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
+      "outcome_domain": "Metabolic_and_Biphasic_GSIS_Maturation",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage 6/7 transition (days 26-33, 5-10 days of 100 ng/mL rhWNT4)",
+        "Z2_genetic_background_and_allelic_dose": "HUVEC-hiPSC, HUES8, and H1 hESC lines",
+        "Z3_immune_effector_and_stressor_pathway": "Unstressed_Baseline",
+        "Z4_metabolic_and_glucose_load_state": "3 mM vs 20 mM glucose GSIS and Seahorse OCR",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D Kelcogel organoids (100-300 um diameter)",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only and Kidney_Capsule in NOD-SCID",
+        "Z7_promoter_and_epigenetic_context": "ATAC-seq chromatin opening at ERRgamma target OXPHOS loci",
+        "Z8_species_age_and_sex_context": "Human organoids"
+      },
+      "verbatim_evidence_quote": "expression of ERRγ and its target mitochondrial gene NDUFV3 were increased, and the glycolytic gene LDHA decreased by WNT4 treatment in INS+ERRγ+ cells (Extended Data Fig. 8h, i).",
+      "focal_arm_id": "pmid32814902_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "gsis"
+      },
+      "dossier_sha256": "1491ca07bd3896d297fb6a425f88b705d22407648128e860b83a0a404eec74b5",
+      "source_span": "fulltext_data_sections.results_paragraphs[0][1381:1560]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "CD274 functional evaluation — 100 ng/mL recombinant human WNT4 treatment (days 26-33) driving non-canonical WNT4 -> ERRgamma (ESRRG) signaling",
+        "comparator_label": null,
+        "endpoint_name": "Metabolic_and_Biphasic_GSIS_Maturation",
+        "timepoint": null,
+        "population_or_model": "HUVEC-hiPSC, HUES8, and H1 hESC lines (Human organoids)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "32814902"
+    },
+    {
+      "effect_id": "yoshihara2020_eff2_pdl1_oe_50day_glycemic_control",
+      "source_figure_or_table": "Fig. 2d-f, Fig. 3c-f",
+      "focal_factor_X": "Lentiviral PD-L1 (CD274) overexpression in wHILOs",
+      "comparator_X0": "PD-L1-negative wHILOs",
+      "outcome_variable_Y": "[Endpoint: InVivo_Glycemic_Cure_and_Graft_Longevity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage7_MetabolicallyMature_SC_Islet (wHILOs)",
+        "Z2_genetic_background_and_allelic_dose": "Lentiviral CD274 (PD-L1) overexpression",
+        "Z3_immune_effector_and_stressor_pathway": "Immunocompetent C57BL/6J T/NK/B cells and Hu-PBMC-NSG-SGM3 human CD4+/CD8+ T cells",
+        "Z4_metabolic_and_glucose_load_state": "STZ-diabetic recipients (>300 mg/dL)",
+        "Z5_cytoarchitecture_and_cluster_diameter": "500 (or 1,000) wHILO clusters",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Kidney_Capsule",
+        "Z7_promoter_and_epigenetic_context": "Constitutive lentiviral promoter",
+        "Z8_species_age_and_sex_context": "Male C57BL/6J (n=11 vs 9) and female Hu-PBMC-NSG-SGM3 (n=6/group)"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:32814902 field=verbatim_evidence_quote genes=CD274 pert=GOF_OE quote_sha256=9b024c42ed32940a4c5de78b121722f53e1097fd851eae21889e362d296cb13f]",
+      "focal_arm_id": "pmid32814902_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "1491ca07bd3896d297fb6a425f88b705d22407648128e860b83a0a404eec74b5",
+      "source_span": "fulltext_data_sections.results_paragraphs[2][341:535]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Lentiviral PD-L1 (CD274) overexpression in wHILOs",
+        "comparator_label": null,
+        "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+        "timepoint": null,
+        "population_or_model": "Lentiviral CD274 (PD-L1) overexpression (Male C57BL/6J (n=11 vs 9) and female Hu-PBMC-NSG-SGM3 (n=6/group))",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "32814902"
+    },
+    {
+      "effect_id": "yoshihara2020_eff3_mps_ifng_epigenetic_pdl1_40day_survival",
+      "source_figure_or_table": "Fig. 4c-k, Extended Data Fig. 11a-d, Extended Data Fig. 12a-c",
+      "focal_factor_X": "CD274 functional evaluation — Multi-Pulse IFN-gamma Stimulation (MPS: 3x 2h at 10 ng/mL with 24h rest) generating epigenetically tolerized wHILOie",
+      "comparator_X0": "Naive untreated wHILOs (or single 12h acute IFN-gamma exposure)",
+      "outcome_variable_Y": "[Endpoint: InVivo_Glycemic_Cure_and_Graft_Longevity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=days]",
+      "outcome_domain": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "days",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage7_MetabolicallyMature_SC_Islet pulsed 3x 2h with 10 ng/mL IFN-gamma and rested 7 days before transplant",
+        "Z2_genetic_background_and_allelic_dose": "Non-transgenic wild-type hiPSC",
+        "Z3_immune_effector_and_stressor_pathway": "C57BL/6J and Hu-PBMC-NSG-SGM3 T-cell rejection; 10 ng/mL IL-1beta challenge in vitro",
+        "Z4_metabolic_and_glucose_load_state": "STZ-diabetic recipients",
+        "Z5_cytoarchitecture_and_cluster_diameter": "500 wHILOie clusters",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Kidney_Capsule",
+        "Z7_promoter_and_epigenetic_context": "Persistent ATAC-seq chromatin accessibility at CD274, IRF9, JUNB, and JUND without sustained STAT1/IRF1 opening",
+        "Z8_species_age_and_sex_context": "Male C57BL/6J (n=6) and female Hu-PBMC-NSG-SGM3 (n=6)"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:32814902 field=verbatim_evidence_quote genes=CD274 pert=NONE quote_sha256=9ea92252303d215e6a17104615bc8aebc1bedfc86f0b70290eeb102ff64b11f9]",
+      "focal_arm_id": "pmid32814902_arm3",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Right-censored at last reported follow-up timepoint if graft remained functional",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "c-peptide"
+      },
+      "dossier_sha256": "1491ca07bd3896d297fb6a425f88b705d22407648128e860b83a0a404eec74b5",
+      "source_span": "fulltext_data_sections.results_paragraphs[5][147:445]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "CD274 functional evaluation — Multi-Pulse IFN-gamma Stimulation (MPS: 3x 2h at 10 ng/mL with 24h rest) generating epigenetically tolerized wHILOie",
+        "comparator_label": null,
+        "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+        "timepoint": "40 days",
+        "population_or_model": "Non-transgenic wild-type hiPSC (Male C57BL/6J (n=6) and female Hu-PBMC-NSG-SGM3 (n=6))",
+        "units": "days",
+        "contrast_type": "right_censored_followup_observation"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "32814902"
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "yoshihara2020_mod1_mps_pulsed_vs_acute_continuous_ifng",
+      "source_figure_or_table": "Fig. 4b-h, Extended Data Fig. 11a-d",
+      "focal_factor_X": "Ex vivo 10 ng/mL IFN-gamma preconditioning of wHILOs",
+      "outcome_Y": "Sustained PD-L1 expression, NF-kB/apoptosis pathway activation, and resistance to IL-1beta-induced beta-cell dedifferentiation (INS/UCN3)",
+      "modifier_variable_Z": "Pulsed temporal schedule (MPS: 3x 2h exposures with 24h washout rest) vs single 2h or continuous 12h acute exposure",
+      "modifier_class": "Z1_Developmental_Timing_or_Stage",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:32814902 field=level_1_condition_and_effect quote_sha256=b05feeba9fbd5fc78843c08b1a5e42d930b8f766b8147be319b61b3215ee22b4]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:32814902 field=level_2_condition_and_effect quote_sha256=7bdd93bd2a93ae09c4b18e78179ee5119de3f86a3e36a5ad1c910b667fce8209]",
+      "modification_type": "Qualitative_Sign_Reversal_Flips_Direction",
+      "critical_threshold_value_and_unit": "3 x 2h pulses of 10 ng/mL IFN-gamma with 24h washout",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:32814902 field=mechanistic_explanation quote_sha256=9e169671fa8186ea192765687a12e9003b279c30621de91f54d409d0c07e615b]"
+    },
+    {
+      "interaction_id": "yoshihara2020_mod2_esrrg_requirement_for_wnt4",
+      "source_figure_or_table": "Extended Data Fig. 3f, Extended Data Fig. 4c-e, Extended Data Fig. 5a-b",
+      "focal_factor_X": "100 ng/mL rhWNT4 metabolic maturation cue",
+      "outcome_Y": "Mitochondrial OXPHOS gene induction and glucose-stimulated insulin secretion (GSIS)",
+      "modifier_variable_Z": "Endogenous Estrogen-Related Receptor Gamma (ERRgamma / ESRRG) expression (vs beta-catenin inhibition by XAV939)",
+      "modifier_class": "Epistatic_Second_Genetic_or_Pharmacological_Perturbation",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:32814902 field=level_1_condition_and_effect quote_sha256=2479826e55efc603557f106ea87c96324c21828eda826ee3321d85a33f2ae3f4]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:32814902 field=level_2_condition_and_effect quote_sha256=1b6aeb9e62341ae6549925fe4e91fdeac13821930501662527cb1bea6da4ea86]",
+      "modification_type": "Complete_Bypass_or_Abrogation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:32814902 field=mechanistic_explanation quote_sha256=ede4acc12e44bb98a4d0654f97477f80ec15fc2b6fb39b26be3e2c25ef240569]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "Stage 6/7 non-canonical WNT4 stimulation (100 ng/mL rhWNT4)",
+      "upstream_node_type": "Small_Molecule_or_Growth_Factor",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "ERRgamma (ESRRG) expression and ATAC chromatin accessibility at mitochondrial OXPHOS complex genes (NDUFV3, NDUFA7, COX7A2) with LDHA suppression",
+      "downstream_node_type": "Organelle_or_Metabolic_State",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:32814902 field=evidence_source quote_sha256=083afa13437cae92eaab4fe52a78dab713bea29da81cdd17f5b32bf3feef88e5]"
+    },
+    {
+      "upstream_node": "Multi-Pulse Stimulation with IFN-gamma (MPS: 3x 2h at 10 ng/mL separated by 24h rest)",
+      "upstream_node_type": "Small_Molecule_or_Growth_Factor",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "[REDACTED_NON_OA_EXCERPT: see PMID:32814902 field=omitted_text quote_sha256=3dc8c9e5d067bd0625583c1bbfe22a333c91c9e9c7ef72054a71802b5aac0734]",
+      "downstream_node_type": "Surface_Ligand_or_Antigen_Presentation",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:32814902 field=evidence_source quote_sha256=182a804991a889258e2d11f7b1b1587962b5d5a7f17b46c13d7271f85dc2d831]"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [
+      {
+        "primary_gate_perturbed": "Gate4_Intrinsic_IFN_JAK_STAT_NFkB_Block",
+        "secondary_gate_affected": "Gate2_Checkpoint_T_Cell_Inhibition",
+        "observation": "[REDACTED_NON_OA_EXCERPT: see PMID:32814902 field=observation quote_sha256=96917f7ff4c2c17d224ddc2676a8532a5a7e8f99905f81a577bd07d95bb1b730]",
+        "is_beneficial_synergy_or_deleterious_tradeoff": "Beneficial_CrossGate_Bonus"
+      }
+    ],
+    "residual_failure_and_escape_vectors": [],
+    "regime_thresholds": [
+      {
+        "parameter_name": "IFN-gamma pulse duration and frequency (MPS)",
+        "critical_threshold_value": 3.0,
+        "unit": "2-hour pulses of 10 ng/mL IFN-gamma separated by 24h rest",
+        "below_threshold_behavior": "Single 2h pulse produces only transient PD-L1 expression that decays within days",
+        "above_threshold_behavior": "3x 2h pulses establish persistent ATAC-seq chromatin accessibility at CD274/IRF9/JUNB/JUND for >7 days while avoiding chronic 12h+ STAT1/IRF1 toxicity"
+      }
+    ],
+    "high_throughput_screen_hits": []
+  }
+}

@@ -1,0 +1,9 @@
+Resource: ClinicalTrials.gov API v2 (U.S. National Library of Medicine)
+Classification: Factual clinical trial registry metadata redistributed in public bundle
+Audit Timestamp (UTC): 2026-10-19T10:35:30Z
+Upstream Source & Terms: https://clinicaltrials.gov/about-site/terms-conditions (U.S. Government public-domain registry metadata; source attribution required)
+API Version: ClinicalTrials.gov REST API v2 (queried October 2026)
+Shipped Public Artifacts:
+  - data/raw/corpus_manifest_all_sources.jsonl (NCT registry identifiers and trial status metadata)
+  - data/extracted/ring1_study_dossiers_v0.5.jsonl (linked NCT identifiers for clinical islet/SC-islet trials including NCT04786262, NCT05210530, NCT05565248)
+Attribution & Modifications: Trial registry identifiers (NCT IDs) and factual study design parameters extracted and normalized into the OpenIslet Ring-1 schema.

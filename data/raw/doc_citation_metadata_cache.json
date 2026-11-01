@@ -1,0 +1,1527 @@
+{
+ "_meta": {
+  "purpose": "offline snapshot for tests/test_citations_resolve.py; bibliographic facts only (first author, year, journal, title)",
+  "retrieved": "2026-10-31",
+  "source": "NCBI E-utilities esummary (db=pubmed)"
+ },
+ "pmids": {
+  "10428963": {
+   "first_author": "Valés-Gómez M",
+   "journal": "EMBO J",
+   "pubdate_year": "1999",
+   "title": "Kinetics and peptide dependency of the binding of the inhibitory NK receptor CD94/NKG2-A and the activating receptor CD94/NKG2-C to HLA-E."
+  },
+  "10429675": {
+   "first_author": "Fan QR",
+   "journal": "J Exp Med",
+   "pubdate_year": "1999",
+   "title": "Structure of human histocompatibility leukocyte antigen (HLA)-Cw4, a ligand for the KIR2D natural killer cell inhibitory receptor."
+  },
+  "10458613": {
+   "first_author": "Bell AC",
+   "journal": "Cell",
+   "pubdate_year": "1999",
+   "title": "The protein CTCF is required for the enhancer blocking activity of vertebrate insulators."
+  },
+  "10523611": {
+   "first_author": "Grey ST",
+   "journal": "J Exp Med",
+   "pubdate_year": "1999",
+   "title": "A20 inhibits cytokine-induced apoptosis and nuclear factor kappaB-dependent gene activation in islets."
+  },
+  "10850706": {
+   "first_author": "Boyington JC",
+   "journal": "Nature",
+   "pubdate_year": "2000",
+   "title": "Crystal structure of an NK cell immunoglobulin-like receptor in complex with its class I MHC ligand."
+  },
+  "11106749": {
+   "first_author": "Harding HP",
+   "journal": "Mol Cell",
+   "pubdate_year": "2000",
+   "title": "Regulated translation initiation controls stress-induced gene expression in mammalian cells."
+  },
+  "11242052": {
+   "first_author": "Srinivasula SM",
+   "journal": "Nature",
+   "pubdate_year": "2001",
+   "title": "A conserved XIAP-interaction motif in caspase-9 and Smac/DIABLO regulates caspase activity and apoptosis."
+  },
+  "11289049": {
+   "first_author": "Carlsson PO",
+   "journal": "Diabetes",
+   "pubdate_year": "2001",
+   "title": "Markedly decreased oxygen tension in transplanted rat pancreatic islets irrespective of the implantation site."
+  },
+  "11323700": {
+   "first_author": "Fan QR",
+   "journal": "Nat Immunol",
+   "pubdate_year": "2001",
+   "title": "Crystal structure of the human natural killer cell inhibitory receptor KIR2DL1-HLA-Cw4 complex."
+  },
+  "11325591": {
+   "first_author": "Rotonda J",
+   "journal": "Chem Biol",
+   "pubdate_year": "2001",
+   "title": "The three-dimensional structure of human granzyme B compared to caspase-3, key mediators of cell death with cleavage specificity for aspartic acid in P1."
+  },
+  "11504275": {
+   "first_author": "Iuliucci JD",
+   "journal": "J Clin Pharmacol",
+   "pubdate_year": "2001",
+   "title": "Intravenous safety and pharmacokinetics of a novel dimerizer drug, AP1903, in healthy volunteers."
+  },
+  "11509594": {
+   "first_author": "Latour S",
+   "journal": "J Immunol",
+   "pubdate_year": "2001",
+   "title": "Bidirectional negative regulation of human T and dendritic cells by CD47 and its cognate receptor signal-regulator protein-alpha: down-regulation of IL-12 responsiveness and inhibition of dendritic cell activation."
+  },
+  "11907065": {
+   "first_author": "Yu YY",
+   "journal": "J Immunol",
+   "pubdate_year": "2002",
+   "title": "Cutting edge: single-chain trimers of MHC class I molecules form stable structures that potently stimulate antigen-specific T cells and B cells."
+  },
+  "12006653": {
+   "first_author": "Spiliotis ET",
+   "journal": "Mol Biol Cell",
+   "pubdate_year": "2002",
+   "title": "Probing for membrane domains in the endoplasmic reticulum: retention and degradation of unassembled MHC class I molecules."
+  },
+  "12176911": {
+   "first_author": "Mollnes TE",
+   "journal": "Blood",
+   "pubdate_year": "2002",
+   "title": "Essential role of the C5a receptor in E coli-induced oxidative burst and phagocytosis revealed by a novel lepirudin-based human whole blood model of inflammation."
+  },
+  "12345678": {
+   "first_author": "Ministerial Meeting on Population of the Non-Aligned Movement (1993: Bali)",
+   "journal": "Integration",
+   "pubdate_year": "1994",
+   "title": "Denpasar Declaration on Population and Development."
+  },
+  "12360192": {
+   "first_author": "Thomas G",
+   "journal": "Nat Rev Mol Cell Biol",
+   "pubdate_year": "2002",
+   "title": "Furin at the cutting edge: from protein traffic to embryogenesis and disease."
+  },
+  "12370285": {
+   "first_author": "Han B",
+   "journal": "Mol Cell Biol",
+   "pubdate_year": "2002",
+   "title": "Regulation of gene expression by internal ribosome entry sites or cryptic promoters: the eIF4G story."
+  },
+  "12411439": {
+   "first_author": "Strong RK",
+   "journal": "J Biol Chem",
+   "pubdate_year": "2003",
+   "title": "HLA-E allelic variants. Correlating differential expression, peptide affinities, crystal structures, and thermal stabilities."
+  },
+  "12853576": {
+   "first_author": "Shiroishi M",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "2003",
+   "title": "Human inhibitory receptors Ig-like transcript 2 (ILT2) and ILT4 compete with CD8 for MHC class I binding and bind preferentially to HLA-G."
+  },
+  "14566337": {
+   "first_author": "Lizée G",
+   "journal": "Nat Immunol",
+   "pubdate_year": "2003",
+   "title": "Control of dendritic cell cross-presentation by the major histocompatibility complex class I cytoplasmic domain."
+  },
+  "1512546": {
+   "first_author": "Bix M",
+   "journal": "J Exp Med",
+   "pubdate_year": "1992",
+   "title": "Functionally conformed free class I heavy chains exist on the surface of beta 2 microglobulin negative cells."
+  },
+  "15494398": {
+   "first_author": "Mahrus S",
+   "journal": "J Biol Chem",
+   "pubdate_year": "2004",
+   "title": "Granzyme M is a regulatory protease that inactivates proteinase inhibitor 9, an endogenous inhibitor of granzyme B."
+  },
+  "15728125": {
+   "first_author": "Straathof KC",
+   "journal": "Blood",
+   "pubdate_year": "2005",
+   "title": "An inducible caspase 9 safety switch for T-cell therapy."
+  },
+  "15837791": {
+   "first_author": "Wooldridge L",
+   "journal": "J Biol Chem",
+   "pubdate_year": "2005",
+   "title": "Interaction between the CD8 coreceptor and major histocompatibility complex class I stabilizes T cell receptor-antigen complexes at the cell surface."
+  },
+  "16034111": {
+   "first_author": "Whitelegg AM",
+   "journal": "J Immunol",
+   "pubdate_year": "2005",
+   "title": "Investigation of peptide involvement in T cell allorecognition using recombinant HLA class I multimers."
+  },
+  "16141329": {
+   "first_author": "Stewart CA",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "2005",
+   "title": "Recognition of peptide-MHC class I complexes by activating killer immunoglobulin-like receptors."
+  },
+  "16305801": {
+   "first_author": "Shiroishi M",
+   "journal": "J Mol Biol",
+   "pubdate_year": "2006",
+   "title": "Entropically driven MHC class I recognition by human inhibitory receptor leukocyte Ig-like receptor B1 (LILRB1/ILT2/CD85j)."
+  },
+  "16455647": {
+   "first_author": "Shiroishi M",
+   "journal": "J Biol Chem",
+   "pubdate_year": "2006",
+   "title": "Efficient leukocyte Ig-like receptor signaling and crystal structure of disulfide-linked HLA-G dimer."
+  },
+  "16461897": {
+   "first_author": "Cabrera O",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "2006",
+   "title": "The unique cytoarchitecture of human pancreatic islets has implications for islet cell function."
+  },
+  "16467844": {
+   "first_author": "Koritzinsky M",
+   "journal": "EMBO J",
+   "pubdate_year": "2006",
+   "title": "Gene expression during acute and prolonged hypoxia is regulated by distinct mechanisms of translational control."
+  },
+  "17475856": {
+   "first_author": "Truscott SM",
+   "journal": "J Immunol",
+   "pubdate_year": "2007",
+   "title": "Disulfide bond engineering to trap peptides in the MHC class I binding groove."
+  },
+  "17497731": {
+   "first_author": "Papas KK",
+   "journal": "Biotechnol Bioeng",
+   "pubdate_year": "2007",
+   "title": "A stirred microchamber for oxygen consumption rate measurements with pancreatic islets."
+  },
+  "17926672": {
+   "first_author": "Dalla Man C",
+   "journal": "IEEE Trans Biomed Eng",
+   "pubdate_year": "2007",
+   "title": "Meal simulation model of the glucose-insulin system."
+  },
+  "17982459": {
+   "first_author": "Takenaka K",
+   "journal": "Nat Immunol",
+   "pubdate_year": "2007",
+   "title": "Polymorphism in Sirpa modulates engraftment of human hematopoietic stem cells."
+  },
+  "18052927": {
+   "first_author": "Gomez E",
+   "journal": "Biochem J",
+   "pubdate_year": "2008",
+   "title": "A decrease in cellular energy status stimulates PERK-dependent eIF2alpha phosphorylation and regulates protein synthesis in pancreatic beta-cells."
+  },
+  "1824699": {
+   "first_author": "Moran P",
+   "journal": "J Biol Chem",
+   "pubdate_year": "1991",
+   "title": "Glycophospholipid membrane anchor attachment. Molecular analysis of the cleavage/attachment site."
+  },
+  "18332182": {
+   "first_author": "Petrie EJ",
+   "journal": "J Exp Med",
+   "pubdate_year": "2008",
+   "title": "CD94-NKG2A recognition of human leukocyte antigen (HLA)-E bound to an HLA class I leader sequence."
+  },
+  "18339401": {
+   "first_author": "Hoare HL",
+   "journal": "J Mol Biol",
+   "pubdate_year": "2008",
+   "title": "Subtle changes in peptide conformation profoundly affect recognition of the non-classical MHC class I molecule HLA-E by the CD94-NKG2 natural killer cell receptors."
+  },
+  "18448674": {
+   "first_author": "Kaiser BK",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "2008",
+   "title": "Structural basis for NKG2A/CD94 recognition of HLA-E."
+  },
+  "18552236": {
+   "first_author": "Chen J",
+   "journal": "FASEB J",
+   "pubdate_year": "2008",
+   "title": "Thioredoxin-interacting protein deficiency induces Akt/Bcl-xL signaling and pancreatic beta-cell mass and protects against diabetes."
+  },
+  "18585785": {
+   "first_author": "Butte MJ",
+   "journal": "Mol Immunol",
+   "pubdate_year": "2008",
+   "title": "Interaction of human PD-L1 and B7-1."
+  },
+  "18657508": {
+   "first_author": "Hatherley D",
+   "journal": "Mol Cell",
+   "pubdate_year": "2008",
+   "title": "Paired receptor specificity explained by structures of signal regulatory proteins alone and complexed with CD47."
+  },
+  "18753660": {
+   "first_author": "Westermark GT",
+   "journal": "N Engl J Med",
+   "pubdate_year": "2008",
+   "title": "Widespread amyloid deposition in transplanted human pancreatic islets."
+  },
+  "19262615": {
+   "first_author": "Zanta-Boussif MA",
+   "journal": "Gene Ther",
+   "pubdate_year": "2009",
+   "title": "Validation of a mutated PRE sequence allowing high and sustained transgene expression while abrogating WHV-X protein synthesis: application to the gene therapy of WAS."
+  },
+  "19265189": {
+   "first_author": "Section of Pharmacy Informatics and Technology, American Society of Health-System Pharmacists",
+   "journal": "Am J Health Syst Pharm",
+   "pubdate_year": "2009",
+   "title": "ASHP Statement on bar-code-enabled medication administration technology."
+  },
+  "19266182": {
+   "first_author": "Richardson SJ",
+   "journal": "Diabetologia",
+   "pubdate_year": "2009",
+   "title": "The prevalence of enteroviral capsid protein vp1 immunostaining in pancreatic islets in human type 1 diabetes."
+  },
+  "19336676": {
+   "first_author": "Moore F",
+   "journal": "Diabetes",
+   "pubdate_year": "2009",
+   "title": "PTPN2, a candidate gene for type 1 diabetes, modulates interferon-gamma-induced pancreatic beta-cell apoptosis."
+  },
+  "19641142": {
+   "first_author": "Tanaka S",
+   "journal": "Diabetes",
+   "pubdate_year": "2009",
+   "title": "Enterovirus infection, CXC chemokine ligand 10 (CXCL10), and CXCR3 circuit: a mechanism of accelerated beta-cell failure in fulminant type 1 diabetes."
+  },
+  "19858389": {
+   "first_author": "Hansen T",
+   "journal": "Trends Immunol",
+   "pubdate_year": "2009",
+   "title": "MHC class I single-chain trimers as potent antigen-presenting molecules and inhibitors of natural killer cells."
+  },
+  "1986378": {
+   "first_author": "Rock KL",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "1991",
+   "title": "Reassociation with beta 2-microglobulin is necessary for Db class I major histocompatibility complex binding of an exogenous influenza peptide."
+  },
+  "19904234": {
+   "first_author": "Wu Z",
+   "journal": "Mol Ther",
+   "pubdate_year": "2010",
+   "title": "Effect of genome size on AAV vector packaging."
+  },
+  "20160085": {
+   "first_author": "Potter KJ",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "2010",
+   "title": "Islet amyloid deposition limits the viability of human islet grafts but not porcine islet grafts."
+  },
+  "20699420": {
+   "first_author": "Keenan HA",
+   "journal": "Diabetes",
+   "pubdate_year": "2010",
+   "title": "Residual insulin production and pancreatic ß-cell turnover after 50 years of diabetes: Joslin Medalist Study."
+  },
+  "20835230": {
+   "first_author": "Masters SL",
+   "journal": "Nat Immunol",
+   "pubdate_year": "2010",
+   "title": "Activation of the NLRP3 inflammasome by islet amyloid polypeptide provides a mechanism for enhanced IL-1β in type 2 diabetes."
+  },
+  "20844204": {
+   "first_author": "Wooldridge L",
+   "journal": "J Immunol",
+   "pubdate_year": "2010",
+   "title": "CD8 controls T cell cross-reactivity."
+  },
+  "2124002": {
+   "first_author": "Vitiello A",
+   "journal": "Science",
+   "pubdate_year": "1990",
+   "title": "The role of beta 2-microglobulin in peptide binding by class I molecules."
+  },
+  "21602908": {
+   "first_author": "Kim JH",
+   "journal": "PLoS One",
+   "pubdate_year": "2011",
+   "title": "High cleavage efficiency of a 2A peptide derived from porcine teschovirus-1 in human cell lines, zebrafish and mice."
+  },
+  "21743387": {
+   "first_author": "Tran TH",
+   "journal": "Transplantation",
+   "pubdate_year": "2011",
+   "title": "Deleterious impact of mismatching for human leukocyte antigen-C in presensitized recipients of kidney transplants."
+  },
+  "21841799": {
+   "first_author": "Tang C",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2011",
+   "title": "An antibody against SSEA-5 glycan on human pluripotent stem cells enables removal of teratoma-forming cells."
+  },
+  "21857942": {
+   "first_author": "de Koning PJ",
+   "journal": "PLoS One",
+   "pubdate_year": "2011",
+   "title": "Intracellular serine protease inhibitor SERPINB4 inhibits granzyme M-induced cell death."
+  },
+  "22047558": {
+   "first_author": "Di Stasi A",
+   "journal": "N Engl J Med",
+   "pubdate_year": "2011",
+   "title": "Inducible apoptosis as a safety switch for adoptive cell therapy."
+  },
+  "22371083": {
+   "first_author": "Blum B",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2012",
+   "title": "Functional beta-cell maturation is marked by an increased glucose threshold and by expression of urocortin 3."
+  },
+  "22371586": {
+   "first_author": "Pedraza E",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "2012",
+   "title": "Preventing hypoxia-induced cell death in beta cells and islets via hydrolytically activated, oxygen-generating biomaterials."
+  },
+  "22442301": {
+   "first_author": "Xu G",
+   "journal": "Diabetes",
+   "pubdate_year": "2012",
+   "title": "Preventing β-cell loss and diabetes with calcium channel blockers."
+  },
+  "22934097": {
+   "first_author": "Rajagopalan S",
+   "journal": "Front Immunol",
+   "pubdate_year": "2012",
+   "title": "KIR2DL4 (CD158d): An activation receptor for HLA-G."
+  },
+  "23086037": {
+   "first_author": "Lee HM",
+   "journal": "Diabetes",
+   "pubdate_year": "2013",
+   "title": "Upregulated NLRP3 inflammasome activation in patients with type 2 diabetes."
+  },
+  "23307570": {
+   "first_author": "Pfaff N",
+   "journal": "Stem Cells",
+   "pubdate_year": "2013",
+   "title": "A ubiquitous chromatin opening element prevents transgene silencing in pluripotent stem cells and their differentiated progeny."
+  },
+  "23377437": {
+   "first_author": "Lopez JA",
+   "journal": "Blood",
+   "pubdate_year": "2013",
+   "title": "Perforin forms transient pores on the target cell plasma membrane to facilitate rapid access of granzymes during killer cell attack."
+  },
+  "23417675": {
+   "first_author": "Cheng X",
+   "journal": "J Biol Chem",
+   "pubdate_year": "2013",
+   "title": "Structure and interactions of the human programmed cell death 1 receptor."
+  },
+  "23539542": {
+   "first_author": "Guerrero AD",
+   "journal": "J Clin Cell Immunol",
+   "pubdate_year": "2012",
+   "title": "Promotion of Caspase Activation by Caspase-9-mediated Feedback Amplification of Mitochondrial Damage."
+  },
+  "23554313": {
+   "first_author": "Pittari G",
+   "journal": "J Immunol",
+   "pubdate_year": "2013",
+   "title": "NK cell tolerance of self-specific activating receptor KIR2DS1 in individuals with cognate HLA-C2 ligand."
+  },
+  "23722425": {
+   "first_author": "Weiskopf K",
+   "journal": "Science",
+   "pubdate_year": "2013",
+   "title": "Engineered SIRPα variants as immunotherapeutic adjuvants to anticancer antibodies."
+  },
+  "23737756": {
+   "first_author": "Nogueira TC",
+   "journal": "PLoS Genet",
+   "pubdate_year": "2013",
+   "title": "GLIS3, a susceptibility gene for type 1 and type 2 diabetes, modulates pancreatic beta cell apoptosis via regulation of a splice variant of the BH3-only protein Bim."
+  },
+  "23974921": {
+   "first_author": "Laitinen OH",
+   "journal": "Diabetes",
+   "pubdate_year": "2014",
+   "title": "Coxsackievirus B1 is associated with induction of β-cell autoimmunity that portends type 1 diabetes."
+  },
+  "24286026": {
+   "first_author": "Avery S",
+   "journal": "Stem Cell Reports",
+   "pubdate_year": "2013",
+   "title": "BCL-XL mediates the strong selective advantage of a 20q11.21 amplification commonly found in human embryonic stem cell cultures."
+  },
+  "24550402": {
+   "first_author": "Hatherley D",
+   "journal": "J Biol Chem",
+   "pubdate_year": "2014",
+   "title": "Polymorphisms in the human inhibitory signal-regulatory protein α do not affect binding to its ligand CD47."
+  },
+  "24584071": {
+   "first_author": "Flannick J",
+   "journal": "Nat Genet",
+   "pubdate_year": "2014",
+   "title": "Loss-of-function mutations in SLC30A8 protect against type 2 diabetes."
+  },
+  "24598265": {
+   "first_author": "Pham DD",
+   "journal": "Diabetes Res Clin Pract",
+   "pubdate_year": "2014",
+   "title": "Thoracic-to-hip circumference ratio as a novel marker of type 2 diabetes, independent of body mass index and waist-to-hip ratio, in Korean adults."
+  },
+  "24618276": {
+   "first_author": "Choi JH",
+   "journal": "Mol Brain",
+   "pubdate_year": "2014",
+   "title": "Optimization of AAV expression cassettes to improve packaging capacity and transgene expression in neurons."
+  },
+  "24658304": {
+   "first_author": "Molina J",
+   "journal": "Diabetes",
+   "pubdate_year": "2014",
+   "title": "Control of insulin secretion by cholinergic signaling in the human pancreatic islet."
+  },
+  "24804568": {
+   "first_author": "Aubert O",
+   "journal": "Am J Transplant",
+   "pubdate_year": "2014",
+   "title": "Risk of antibody-mediated rejection in kidney transplant recipients with anti-HLA-C donor-specific antibodies."
+  },
+  "24911120": {
+   "first_author": "Shalev A",
+   "journal": "Mol Endocrinol",
+   "pubdate_year": "2014",
+   "title": "Minireview: Thioredoxin-interacting protein: regulation and function in the pancreatic β-cell."
+  },
+  "25140605": {
+   "first_author": "Wang H",
+   "journal": "Biochemistry",
+   "pubdate_year": "2014",
+   "title": "Rationally designed, nontoxic, nonamyloidogenic analogues of human islet amyloid polypeptide with improved solubility."
+  },
+  "25153886": {
+   "first_author": "Ahlgren KM",
+   "journal": "PLoS One",
+   "pubdate_year": "2014",
+   "title": "Lack of evidence for a role of islet autoimmunity in the aetiology of canine diabetes mellitus."
+  },
+  "25303535": {
+   "first_author": "Pagliuca FW",
+   "journal": "Cell",
+   "pubdate_year": "2014",
+   "title": "Generation of functional human pancreatic β cells in vitro."
+  },
+  "25605798": {
+   "first_author": "Müller-Kuller U",
+   "journal": "Nucleic Acids Res",
+   "pubdate_year": "2015",
+   "title": "A minimal ubiquitous chromatin opening element (UCOE) effectively prevents silencing of juxtaposed heterologous promoters by epigenetic remodeling in multipotent and pluripotent stem cells."
+  },
+  "2570734": {
+   "first_author": "Levitt N",
+   "journal": "Genes Dev",
+   "pubdate_year": "1989",
+   "title": "Definition of an efficient synthetic poly(A) site."
+  },
+  "2550826": {
+   "first_author": "Rorsman P",
+   "journal": "Nature",
+   "pubdate_year": "1989",
+   "title": "Glucose-inhibition of glucagon secretion involves activation of GABAA-receptor chloride channels."
+  },
+  "25985456": {
+   "first_author": "Veiseh O",
+   "journal": "Nat Mater",
+   "pubdate_year": "2015",
+   "title": "Size- and shape-dependent foreign body immune response to materials implanted in rodents and non-human primates."
+  },
+  "26022733": {
+   "first_author": "Yagyu S",
+   "journal": "Mol Ther",
+   "pubdate_year": "2015",
+   "title": "An Inducible Caspase-9 Suicide Gene to Improve the Safety of Therapy Using Human Induced Pluripotent Stem Cells."
+  },
+  "26052521": {
+   "first_author": "Wu C",
+   "journal": "Mol Ther Methods Clin Dev",
+   "pubdate_year": "2014",
+   "title": "Development of an inducible caspase-9 safety switch for pluripotent stem cell-based therapies."
+  },
+  "26076035": {
+   "first_author": "van der Meulen T",
+   "journal": "Nat Med",
+   "pubdate_year": "2015",
+   "title": "Urocortin3 mediates somatostatin-dependent negative feedback control of insulin secretion."
+  },
+  "26239055": {
+   "first_author": "Marroqui L",
+   "journal": "Diabetes",
+   "pubdate_year": "2015",
+   "title": "TYK2, a Candidate Gene for Type 1 Diabetes, Modulates Apoptosis and the Innate Immune Response in Human Pancreatic β-Cells."
+  },
+  "26275108": {
+   "first_author": "Liddicoat BJ",
+   "journal": "Science",
+   "pubdate_year": "2015",
+   "title": "RNA editing by ADAR1 prevents MDA5 sensing of endogenous dsRNA as nonself."
+  },
+  "26276263": {
+   "first_author": "Martino L",
+   "journal": "Diabetologia",
+   "pubdate_year": "2015",
+   "title": "Mast cells infiltrate pancreatic islets in human type 1 diabetes."
+  },
+  "26455413": {
+   "first_author": "Ordovás L",
+   "journal": "Stem Cell Reports",
+   "pubdate_year": "2015",
+   "title": "Efficient Recombinase-Mediated Cassette Exchange in hPSCs to Study the Hepatocyte Lineage Reveals AAVS1 Locus-Mediated Transgene Inhibition."
+  },
+  "26602187": {
+   "first_author": "Zak KM",
+   "journal": "Structure",
+   "pubdate_year": "2015",
+   "title": "Structure of the Complex of Human Programmed Death 1, PD-1, and Its Ligand PD-L1."
+  },
+  "26649319": {
+   "first_author": "Akter R",
+   "journal": "J Diabetes Res",
+   "pubdate_year": "2016",
+   "title": "Islet Amyloid Polypeptide: Structure, Function, and Pathophysiology."
+  },
+  "26670609": {
+   "first_author": "Mangan MS",
+   "journal": "J Biol Chem",
+   "pubdate_year": "2016",
+   "title": "A Novel Serpin Regulatory Mechanism: SerpinB9 IS REVERSIBLY INHIBITED BY VICINAL DISULFIDE BOND FORMATION IN THE REACTIVE CENTER LOOP."
+  },
+  "26823435": {
+   "first_author": "Starck SR",
+   "journal": "Science",
+   "pubdate_year": "2016",
+   "title": "Translation from the 5' untranslated region shapes the integrated stress response."
+  },
+  "26912858": {
+   "first_author": "Delong T",
+   "journal": "Science",
+   "pubdate_year": "2016",
+   "title": "Pathogenic CD4 T cells in type 1 diabetes recognize epitopes formed by peptide fusion."
+  },
+  "26970510": {
+   "first_author": "Montazeri L",
+   "journal": "Biomaterials",
+   "pubdate_year": "2016",
+   "title": "Improvement of islet engrafts by enhanced angiogenesis and microparticle-mediated oxygenation."
+  },
+  "27183617": {
+   "first_author": "Polukort SH",
+   "journal": "J Immunol",
+   "pubdate_year": "2016",
+   "title": "IL-10 Enhances IgE-Mediated Mast Cell Responses and Is Essential for the Development of Experimental Food Allergy in IL-10-Deficient Mice."
+  },
+  "27626039": {
+   "first_author": "Yagyu S",
+   "journal": "Mol Ther Methods Clin Dev",
+   "pubdate_year": "2016",
+   "title": "Multiple mechanisms determine the sensitivity of human-induced pluripotent stem cells to the inducible caspase-9 safety switch."
+  },
+  "27667365": {
+   "first_author": "Baron M",
+   "journal": "Cell Syst",
+   "pubdate_year": "2016",
+   "title": "A Single-Cell Transcriptomic Map of the Human and Mouse Pancreas Reveals Inter- and Intra-cell Population Structure."
+  },
+  "27807284": {
+   "first_author": "Dendrou CA",
+   "journal": "Sci Transl Med",
+   "pubdate_year": "2016",
+   "title": "Resolving TYK2 locus genotype-to-phenotype differences in autoimmunity."
+  },
+  "27872147": {
+   "first_author": "Cianciaruso C",
+   "journal": "Diabetes",
+   "pubdate_year": "2017",
+   "title": "Primary Human and Rat β-Cells Release the Intracellular Autoantigens GAD65, IA-2, and Proinsulin in Exosomes Together With Cytokine-Induced Enhancers of Immunity."
+  },
+  "27942611": {
+   "first_author": "Marino J",
+   "journal": "Sci Immunol",
+   "pubdate_year": "2016",
+   "title": "Donor exosomes rather than passenger leukocytes initiate alloreactive T cell responses after transplantation."
+  },
+  "28263308": {
+   "first_author": "Kracht MJ",
+   "journal": "Nat Med",
+   "pubdate_year": "2017",
+   "title": "Autoimmunity against a defective ribosomal insulin gene product in type 1 diabetes."
+  },
+  "28325479": {
+   "first_author": "Chambers AP",
+   "journal": "Cell Metab",
+   "pubdate_year": "2017",
+   "title": "The Role of Pancreatic Preproglucagon in Glucose Homeostasis in Mice."
+  },
+  "28445466": {
+   "first_author": "Merkle FT",
+   "journal": "Nature",
+   "pubdate_year": "2017",
+   "title": "Human pluripotent stem cells recurrently acquire and expand dominant negative P53 mutations."
+  },
+  "28489987": {
+   "first_author": "Baidal DA",
+   "journal": "N Engl J Med",
+   "pubdate_year": "2017",
+   "title": "Bioengineering of an Intraabdominal Endocrine Pancreas."
+  },
+  "28504668": {
+   "first_author": "Gornalusse GG",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2017",
+   "title": "HLA-E-expressing pluripotent stem cells escape allogeneic responses and lysis by NK cells."
+  },
+  "28526819": {
+   "first_author": "Liu Z",
+   "journal": "Sci Rep",
+   "pubdate_year": "2017",
+   "title": "Systematic comparison of 2A peptides for cloning multi-genes in a polycistronic vector."
+  },
+  "28723575": {
+   "first_author": "Bak RO",
+   "journal": "Cell Rep",
+   "pubdate_year": "2017",
+   "title": "CRISPR-Mediated Integration of Large Gene Cassettes Using AAV Donor Vectors."
+  },
+  "28813417": {
+   "first_author": "Burr ML",
+   "journal": "Nature",
+   "pubdate_year": "2017",
+   "title": "CMTM6 maintains the expression of PD-L1 and regulates anti-tumour immunity."
+  },
+  "28860464": {
+   "first_author": "Zhang F",
+   "journal": "Sci Rep",
+   "pubdate_year": "2017",
+   "title": "Characterization of a core region in the A2UCOE that confers effective anti-silencing activity."
+  },
+  "29302013": {
+   "first_author": "Ramsuran V",
+   "journal": "Science",
+   "pubdate_year": "2018",
+   "title": "Elevated HLA-A expression impairs HIV control through inhibition of NKG2A-expressing cells."
+  },
+  "29345283": {
+   "first_author": "Hira-Miyazawa M",
+   "journal": "Int J Oncol",
+   "pubdate_year": "2018",
+   "title": "Regulation of programmed-death ligand in the human head and neck squamous cell carcinoma microenvironment is mediated through matrix metalloproteinase-mediated proteolytic cleavage."
+  },
+  "29451021": {
+   "first_author": "Visentin R",
+   "journal": "J Diabetes Sci Technol",
+   "pubdate_year": "2018",
+   "title": "The UVA/Padova Type 1 Diabetes Simulator Goes From Single Meal to Single Day."
+  },
+  "29632329": {
+   "first_author": "Hammer Q",
+   "journal": "Nat Immunol",
+   "pubdate_year": "2018",
+   "title": "Peptide-specific recognition of human cytomegalovirus strains controls adaptive natural killer cells."
+  },
+  "29695723": {
+   "first_author": "Evron Y",
+   "journal": "Sci Rep",
+   "pubdate_year": "2018",
+   "title": "Long-term viability and function of transplanted islets macroencapsulated at high density are achieved by enhanced oxygen supply."
+  },
+  "29779948": {
+   "first_author": "Koren I",
+   "journal": "Cell",
+   "pubdate_year": "2018",
+   "title": "The Eukaryotic Proteome Is Shaped by E3 Ubiquitin Ligases Targeting C-Terminal Degrons."
+  },
+  "29844327": {
+   "first_author": "Osum KC",
+   "journal": "Sci Rep",
+   "pubdate_year": "2018",
+   "title": "Interferon-gamma drives programmed death-ligand 1 expression on islet β cells to limit T cell function during autoimmune diabetes."
+  },
+  "29867165": {
+   "first_author": "Headen DM",
+   "journal": "Nat Mater",
+   "pubdate_year": "2018",
+   "title": "Local immunomodulation with Fas ligand-engineered biomaterials achieves allogeneic islet graft acceptance."
+  },
+  "29892062": {
+   "first_author": "Ihry RJ",
+   "journal": "Nat Med",
+   "pubdate_year": "2018",
+   "title": "p53 inhibits CRISPR-Cas9 engineering in human pluripotent stem cells."
+  },
+  "29892067": {
+   "first_author": "Haapaniemi E",
+   "journal": "Nat Med",
+   "pubdate_year": "2018",
+   "title": "CRISPR-Cas9 genome editing induces a p53-mediated DNA damage response."
+  },
+  "30010673": {
+   "first_author": "Kosicki M",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2018",
+   "title": "Repair of double-strand breaks induced by CRISPR-Cas9 leads to large deletions and complex rearrangements."
+  },
+  "30074059": {
+   "first_author": "Ifie E",
+   "journal": "Diabetologia",
+   "pubdate_year": "2018",
+   "title": "Unexpected subcellular distribution of a specific isoform of the Coxsackie and adenovirus receptor, CAR-SIV, in human pancreatic beta cells."
+  },
+  "30269996": {
+   "first_author": "Colli ML",
+   "journal": "EBioMedicine",
+   "pubdate_year": "2018",
+   "title": "PDL1 is expressed in the islets of people with type 1 diabetes and is up-regulated by interferons-α and-γ via IRF1 induction."
+  },
+  "30378751": {
+   "first_author": "Weaver JD",
+   "journal": "Am J Transplant",
+   "pubdate_year": "2019",
+   "title": "Synthetic poly(ethylene glycol)-based microfluidic islet encapsulation reduces graft volume for delivery to highly vascularized and retrievable transplant site."
+  },
+  "30412052": {
+   "first_author": "Balboa D",
+   "journal": "Elife",
+   "pubdate_year": "2018",
+   "title": "Insulin mutations impair beta-cell development in a patient-derived iPSC model of neonatal diabetes."
+  },
+  "30429614": {
+   "first_author": "Liang Q",
+   "journal": "Nature",
+   "pubdate_year": "2018",
+   "title": "Linking a cell-division gene and a suicide gene to define and improve cell therapy safety."
+  },
+  "30449685": {
+   "first_author": "Saunders DC",
+   "journal": "Cell Metab",
+   "pubdate_year": "2019",
+   "title": "Ectonucleoside Triphosphate Diphosphohydrolase-3 Antibody Targets Adult Human Pancreatic β Cells for In Vitro and In Vivo Analysis."
+  },
+  "30578352": {
+   "first_author": "Boisson-Dupuis S",
+   "journal": "Sci Immunol",
+   "pubdate_year": "2018",
+   "title": "Tuberculosis and impaired IL-23-dependent IFN-γ immunity in humans homozygous for a common TYK2 missense variant."
+  },
+  "30651639": {
+   "first_author": "Wimmer RA",
+   "journal": "Nature",
+   "pubdate_year": "2019",
+   "title": "Human blood vessel organoids as a model of diabetic vasculopathy."
+  },
+  "30778232": {
+   "first_author": "Deuse T",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2019",
+   "title": "Hypoimmunogenic derivatives of induced pluripotent stem cells evade immune rejection in fully immunocompetent allogeneic recipients."
+  },
+  "30830873": {
+   "first_author": "Edgerton DS",
+   "journal": "JCI Insight",
+   "pubdate_year": "2019",
+   "title": "Targeting insulin to the liver corrects defects in glucose metabolism caused by peripheral insulin delivery."
+  },
+  "30833751": {
+   "first_author": "Logtenberg MEW",
+   "journal": "Nat Med",
+   "pubdate_year": "2019",
+   "title": "Glutaminyl cyclase is an enzymatic modifier of the CD47-SIRPalpha axis and a target for cancer immunotherapy."
+  },
+  "30833792": {
+   "first_author": "Hubel P",
+   "journal": "Nat Immunol",
+   "pubdate_year": "2019",
+   "title": "A protein-interaction network of interferon-stimulated genes extends the innate immune system landscape."
+  },
+  "30846565": {
+   "first_author": "Nishi C",
+   "journal": "J Biol Chem",
+   "pubdate_year": "2019",
+   "title": "MERTK tyrosine kinase receptor together with TIM4 phosphatidylserine receptor mediates distinct signal transduction pathways for efferocytosis and cell proliferation."
+  },
+  "30853558": {
+   "first_author": "Xu H",
+   "journal": "Cell Stem Cell",
+   "pubdate_year": "2019",
+   "title": "Targeted Disruption of HLA Genes via CRISPR-Cas9 Generates iPSCs with Enhanced Immune Compatibility."
+  },
+  "30905619": {
+   "first_author": "Schiroli G",
+   "journal": "Cell Stem Cell",
+   "pubdate_year": "2019",
+   "title": "Precise Gene Editing Preserves Hematopoietic Stem Cell Function following Transient p53-Mediated DNA Damage Response."
+  },
+  "30952982": {
+   "first_author": "Yao H",
+   "journal": "Nat Biomed Eng",
+   "pubdate_year": "2019",
+   "title": "Inhibiting PD-L1 palmitoylation enhances T-cell immune responses against tumours."
+  },
+  "31040209": {
+   "first_author": "Han X",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "2019",
+   "title": "Generation of hypoimmunogenic human pluripotent stem cells."
+  },
+  "31068696": {
+   "first_author": "Veres A",
+   "journal": "Nature",
+   "pubdate_year": "2019",
+   "title": "Charting cellular identity during human in vitro β-cell differentiation."
+  },
+  "31570731": {
+   "first_author": "Hanlon KS",
+   "journal": "Nat Commun",
+   "pubdate_year": "2019",
+   "title": "High levels of AAV vector integration into CRISPR-induced DNA breaks."
+  },
+  "31581152": {
+   "first_author": "Zammit NW",
+   "journal": "JCI Insight",
+   "pubdate_year": "2019",
+   "title": "A20 as an immune tolerance factor can determine islet transplant outcomes."
+  },
+  "31676859": {
+   "first_author": "Dwivedi OP",
+   "journal": "Nat Genet",
+   "pubdate_year": "2019",
+   "title": "Loss of ZnT8 function protects against diabetes by enhanced insulin secretion."
+  },
+  "31757674": {
+   "first_author": "Zhao Y",
+   "journal": "Immunity",
+   "pubdate_year": "2019",
+   "title": "PD-L1:CD80 Cis-Heterodimer Triggers the Co-stimulatory Receptor CD28 While Repressing the Inhibitory PD-1 and CTLA-4 Pathways."
+  },
+  "31900242": {
+   "first_author": "Demine S",
+   "journal": "Stem Cell Res Ther",
+   "pubdate_year": "2020",
+   "title": "Pro-inflammatory cytokines induce cell death, inflammatory responses, and endoplasmic reticulum stress in human iPSC-derived beta cells."
+  },
+  "32094658": {
+   "first_author": "Hogrebe NJ",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2020",
+   "title": "Targeting the cytoskeleton to direct pancreatic differentiation of human pluripotent stem cells."
+  },
+  "32134744": {
+   "first_author": "Judge SJ",
+   "journal": "J Clin Invest",
+   "pubdate_year": "2020",
+   "title": "Minimal PD-1 expression in mouse and human NK cells under diverse conditions."
+  },
+  "32432213": {
+   "first_author": "Menegaz D",
+   "journal": "Nat Metab",
+   "pubdate_year": "2019",
+   "title": "Mechanism and effects of pulsatile GABA secretion from cytosolic pools in the human beta cell."
+  },
+  "32444635": {
+   "first_author": "Colli ML",
+   "journal": "Nat Commun",
+   "pubdate_year": "2020",
+   "title": "An integrated multi-omics approach identifies the landscape of interferon-α-mediated responses of human pancreatic beta cells."
+  },
+  "32569842": {
+   "first_author": "Bosma KJ",
+   "journal": "Mol Metab",
+   "pubdate_year": "2020",
+   "title": "G6PC2 confers protection against hypoglycemia upon ketogenic diet feeding and prolonged fasting."
+  },
+  "32719542": {
+   "first_author": "Cai EP",
+   "journal": "Nat Metab",
+   "pubdate_year": "2020",
+   "title": "Genome-scale in vivo CRISPR screen identifies RNLS as a target for beta cell protection in type 1 diabetes."
+  },
+  "32768386": {
+   "first_author": "Morrissey MA",
+   "journal": "Immunity",
+   "pubdate_year": "2020",
+   "title": "CD47 Ligation Repositions the Inhibitory Receptor SIRPA to Suppress Integrin Activation and Phagocytosis."
+  },
+  "32814902": {
+   "first_author": "Yoshihara E",
+   "journal": "Nature",
+   "pubdate_year": "2020",
+   "title": "Immune-evasive human islet-like organoids ameliorate diabetes."
+  },
+  "32846125": {
+   "first_author": "Augsornworawat P",
+   "journal": "Cell Rep",
+   "pubdate_year": "2020",
+   "title": "Single-Cell Transcriptome Profiling Reveals β Cell Maturation in Stem Cell-Derived Islets after Transplantation."
+  },
+  "32923626": {
+   "first_author": "Coronel MM",
+   "journal": "Sci Adv",
+   "pubdate_year": "2020",
+   "title": "Immunotherapy via PD-L1-presenting biomaterials leads to long-term islet graft survival."
+  },
+  "33096048": {
+   "first_author": "Li X",
+   "journal": "Stem Cell Reports",
+   "pubdate_year": "2020",
+   "title": "Single-Cell RNA-Seq Reveals that CD9 Is a Negative Marker of Glucose-Responsive Pancreatic β-like Cells Derived from Human Pluripotent Stem Cells."
+  },
+  "33135383": {
+   "first_author": "Nalbach L",
+   "journal": "EMBO Mol Med",
+   "pubdate_year": "2021",
+   "title": "Improvement of islet transplantation by the fusion of islet cells with functional blood vessels."
+  },
+  "33416832": {
+   "first_author": "Deuse T",
+   "journal": "J Exp Med",
+   "pubdate_year": "2021",
+   "title": "The SIRPα-CD47 immune checkpoint in NK cells."
+  },
+  "33599743": {
+   "first_author": "Davis Z",
+   "journal": "Blood Adv",
+   "pubdate_year": "2021",
+   "title": "Low-density PD-1 expression on resting human natural killer cells is functional and upregulated after transplantation."
+  },
+  "33626327": {
+   "first_author": "Turchiano G",
+   "journal": "Cell Stem Cell",
+   "pubdate_year": "2021",
+   "title": "Quantitative evaluation of chromosomal rearrangements in gene-edited human stem cells by CAST-Seq."
+  },
+  "33846289": {
+   "first_author": "Moradi S",
+   "journal": "Nat Commun",
+   "pubdate_year": "2021",
+   "title": "Structural plasticity of KIR2DL2 and KIR2DL3 enables altered docking geometries atop HLA-C."
+  },
+  "34035238": {
+   "first_author": "Low BSJ",
+   "journal": "Nat Commun",
+   "pubdate_year": "2021",
+   "title": "Decreased GLUT2 and glucose uptake contribute to insulin secretion defects in MODY3/HNF1A hiPSC-derived mutant β cells."
+  },
+  "34380648": {
+   "first_author": "Nilsson PH",
+   "journal": "J Immunol",
+   "pubdate_year": "2021",
+   "title": "A Conformational Change of Complement C5 Is Required for Thrombin-Mediated Cleavage, Revealed by a Novel Ex Vivo Human Whole Blood Model Preserving Full Thrombin Activity."
+  },
+  "34380694": {
+   "first_author": "Docherty FM",
+   "journal": "Diabetes",
+   "pubdate_year": "2021",
+   "title": "ENTPD3 Marks Mature Stem Cell-Derived β-Cells Formed by Self-Aggregation In Vitro."
+  },
+  "34407395": {
+   "first_author": "Parent AV",
+   "journal": "Cell Rep",
+   "pubdate_year": "2021",
+   "title": "Selective deletion of human leukocyte antigens protects stem cell-derived islets from immune rejection."
+  },
+  "34480863": {
+   "first_author": "Aghazadeh Y",
+   "journal": "Cell Stem Cell",
+   "pubdate_year": "2021",
+   "title": "Microvessels support engraftment and functionality of human islets and hESC-derived pancreatic progenitors in diabetes models."
+  },
+  "34954144": {
+   "first_author": "Overway EM",
+   "journal": "J Biol Chem",
+   "pubdate_year": "2022",
+   "title": "Nonsynonymous single-nucleotide polymorphisms in the G6PC2 gene affect protein expression, enzyme activity, and fasting blood glucose."
+  },
+  "35013114": {
+   "first_author": "Yuan Y",
+   "journal": "Cell Death Dis",
+   "pubdate_year": "2022",
+   "title": "Cell-to-cell variability in inducible Caspase9-mediated cell death."
+  },
+  "35241836": {
+   "first_author": "Balboa D",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2022",
+   "title": "Functional, metabolic and transcriptional maturation of human pancreatic islets derived from stem cells."
+  },
+  "35323192": {
+   "first_author": "Ravindranath MH",
+   "journal": "Antibodies (Basel)",
+   "pubdate_year": "2022",
+   "title": "Ramifications of the HLA-I Allelic Reactivity of Anti-HLA-E*01:01 and Anti-HLA-E*01:03 Heavy Chain Monoclonal Antibodies in Comparison with Anti-HLA-I IgG Reactivity in Non-Alloimmunized Males, Melanoma-Vaccine Recipients, and End-Stage Renal Disease Patients."
+  },
+  "35559682": {
+   "first_author": "Lei J",
+   "journal": "Sci Adv",
+   "pubdate_year": "2022",
+   "title": "FasL microgels induce immune acceptance of islet allografts in nonhuman primates."
+  },
+  "35570131": {
+   "first_author": "Mollnes TE",
+   "journal": "Semin Immunol",
+   "pubdate_year": "2022",
+   "title": "Application of the C3 inhibitor compstatin in a human whole blood model designed for complement research - 20 years of experience and future perspectives."
+  },
+  "35650334": {
+   "first_author": "Nekoua MP",
+   "journal": "Nat Rev Endocrinol",
+   "pubdate_year": "2022",
+   "title": "Persistent coxsackievirus B infection and pathogenesis of type 1 diabetes mellitus."
+  },
+  "35666870": {
+   "first_author": "Golec E",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "2022",
+   "title": "Alternative splicing encodes functional intracellular CD59 isoforms that mediate insulin secretion and are down-regulated in diabetic islets."
+  },
+  "35795779": {
+   "first_author": "Wunderlich S",
+   "journal": "Mol Ther Methods Clin Dev",
+   "pubdate_year": "2022",
+   "title": "Targeted biallelic integration of an inducible Caspase 9 suicide gene in iPSCs for safer therapies."
+  },
+  "35918471": {
+   "first_author": "González BJ",
+   "journal": "Commun Biol",
+   "pubdate_year": "2022",
+   "title": "Reduced calcium levels and accumulation of abnormal insulin granules in stem cell models of HNF1A deficiency."
+  },
+  "36008610": {
+   "first_author": "Shy BR",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2023",
+   "title": "High-yield genome engineering in primary cells using a hybrid ssDNA repair template and small-molecule cocktails."
+  },
+  "36055241": {
+   "first_author": "Sintov E",
+   "journal": "Stem Cell Reports",
+   "pubdate_year": "2022",
+   "title": "Whole-genome CRISPR screening identifies genetic manipulations to reduce immune rejection of stem cell-derived islets."
+  },
+  "36170817": {
+   "first_author": "Chimienti R",
+   "journal": "Cell Rep",
+   "pubdate_year": "2022",
+   "title": "Engineering of immune checkpoints B7-H3 and CD155 enhances immune compatibility of MHC-I(-/-) iPSCs for β cell replacement."
+  },
+  "36289205": {
+   "first_author": "Chandra V",
+   "journal": "Nat Commun",
+   "pubdate_year": "2022",
+   "title": "The type 1 diabetes gene TYK2 regulates β-cell development and its responses to interferon-α."
+  },
+  "36593395": {
+   "first_author": "Gravina A",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2023",
+   "title": "Protection of cell therapeutics from antibody-mediated killing by CD64 overexpression."
+  },
+  "36599351": {
+   "first_author": "Gerace D",
+   "journal": "Cell Rep Med",
+   "pubdate_year": "2023",
+   "title": "Engineering human stem cell-derived islets to evade immune rejection and promote localized immune tolerance."
+  },
+  "37156915": {
+   "first_author": "Hu X",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2024",
+   "title": "Hypoimmune induced pluripotent stem cells survive long term in fully immunocompetent, allogeneic rhesus macaques."
+  },
+  "37188763": {
+   "first_author": "Augsornworawat P",
+   "journal": "Nat Cell Biol",
+   "pubdate_year": "2023",
+   "title": "Single-nucleus multi-omics of human stem cell-derived islets identifies deficiencies in lineage specification."
+  },
+  "37207206": {
+   "first_author": "Finton KAK",
+   "journal": "Front Immunol",
+   "pubdate_year": "2023",
+   "title": "Effects of HLA single chain trimer design on peptide presentation and stability."
+  },
+  "37264229": {
+   "first_author": "Lin Z",
+   "journal": "Nat Immunol",
+   "pubdate_year": "2023",
+   "title": "HLA class I signal peptide polymorphism determines the level of CD94/NKG2-HLA-E-mediated regulation of effector cell responses."
+  },
+  "37703830": {
+   "first_author": "Morrissey MA",
+   "journal": "Immunity",
+   "pubdate_year": "2023",
+   "title": "CD47 Ligation Repositions the Inhibitory Receptor SIRPA to Suppress Integrin Activation and Phagocytosis."
+  },
+  "37738292": {
+   "first_author": "Krishnan SR",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "2023",
+   "title": "A wireless, battery-free device enables oxygen generation and immune protection of therapeutic xenotransplants in vivo."
+  },
+  "37820008": {
+   "first_author": "Ghimire K",
+   "journal": "Sci Transl Med",
+   "pubdate_year": "2023",
+   "title": "A metabolic role for CD47 in pancreatic β cell insulin secretion and islet transplant outcomes."
+  },
+  "38246194": {
+   "first_author": "Weber JS",
+   "journal": "Lancet",
+   "pubdate_year": "2024",
+   "title": "Individualised neoantigen therapy mRNA-4157 (V940) plus pembrolizumab versus pembrolizumab monotherapy in resected melanoma (KEYNOTE-942): a randomised, phase 2b study."
+  },
+  "38343991": {
+   "first_author": "Tomioka D",
+   "journal": "ACS Omega",
+   "pubdate_year": "2024",
+   "title": "Controlled Release of Oxygen from Calcium Peroxide in a Weak Acidic Condition by Stabilized Amorphous Calcium Carbonate Nanocoating for Biomedical Applications."
+  },
+  "38508139": {
+   "first_author": "Xu L",
+   "journal": "Cell Rep Med",
+   "pubdate_year": "2024",
+   "title": "Expression of a mutant CD47 protects against phagocytosis without inducing cell death or inhibiting angiogenesis."
+  },
+  "38603470": {
+   "first_author": "Thorngren J",
+   "journal": "Diabetes",
+   "pubdate_year": "2024",
+   "title": "Efficient Vascular and Neural Engraftment of Stem Cell-Derived Islets."
+  },
+  "38684699": {
+   "first_author": "Wu J",
+   "journal": "Cell Discov",
+   "pubdate_year": "2024",
+   "title": "Treating a type 2 diabetic patient with impaired pancreatic islet function by personalized endoderm stem cell-derived islet tissue."
+  },
+  "38709159": {
+   "first_author": "Turan A",
+   "journal": "J Immunol",
+   "pubdate_year": "2024",
+   "title": "Engineering Pancreatic Islets to Transiently Codisplay on Their Surface Thrombomodulin and CD47 Immunomodulatory Proteins as a Means of Mitigating Instant Blood-Mediated Inflammatory Reaction following Intraportal Transplantation."
+  },
+  "38907368": {
+   "first_author": "Zebrauskaite A",
+   "journal": "Perfusion",
+   "pubdate_year": "2025",
+   "title": "Investigations of injection strategies to use heparinized normal saline instead of contrast media for intracoronary optical coherence tomography imaging."
+  },
+  "3891471": {
+   "first_author": "Ferrannini E",
+   "journal": "Diabetes",
+   "pubdate_year": "1985",
+   "title": "The disposal of an oral glucose load in healthy subjects. A quantitative study."
+  },
+  "38926615": {
+   "first_author": "Durrant MG",
+   "journal": "Nature",
+   "pubdate_year": "2024",
+   "title": "Bridge RNAs direct programmable recombination of target and donor DNA."
+  },
+  "38975343": {
+   "first_author": "Bode K",
+   "journal": "Front Immunol",
+   "pubdate_year": "2024",
+   "title": "Beta cells deficient for Renalase counteract autoimmunity by shaping natural killer cell activity."
+  },
+  "38981470": {
+   "first_author": "Hammer Q",
+   "journal": "Cell Stem Cell",
+   "pubdate_year": "2024",
+   "title": "Genetic ablation of adhesion ligands mitigates rejection of allogeneic cellular immunotherapies."
+  },
+  "39169271": {
+   "first_author": "Perez-Frances M",
+   "journal": "Nat Metab",
+   "pubdate_year": "2024",
+   "title": "Regulated and adaptive in vivo insulin secretion from islets only containing β-cells."
+  },
+  "39326417": {
+   "first_author": "Wang S",
+   "journal": "Cell",
+   "pubdate_year": "2024",
+   "title": "Transplantation of chemically induced pluripotent stem-cell-derived islets under abdominal anterior rectus sheath in a type 1 diabetes patient."
+  },
+  "39382088": {
+   "first_author": "Yan T",
+   "journal": "Acta Crystallogr F Struct Biol Commun",
+   "pubdate_year": "2024",
+   "title": "Crystallization and crystallographic studies of human serine protease inhibitor (serpin) B9."
+  },
+  "39529170": {
+   "first_author": "Wu L",
+   "journal": "Genome Biol",
+   "pubdate_year": "2024",
+   "title": "Adenine base editors induce off-target structure variations in mouse embryos and primary human T cells."
+  },
+  "39554513": {
+   "first_author": "Bhattacharjee P",
+   "journal": "PNAS Nexus",
+   "pubdate_year": "2024",
+   "title": "Proinsulin C-peptide is a major source of HLA-DQ8 restricted hybrid insulin peptides recognized by human islet-infiltrating CD4(+) T cells."
+  },
+  "39621955": {
+   "first_author": "Maldini CR",
+   "journal": "J Immunol",
+   "pubdate_year": "2024",
+   "title": "Hypoimmunogenic HLA-E Single Chain Inhibits Alloreactive Immune Responses."
+  },
+  "39824805": {
+   "first_author": "Carré A",
+   "journal": "Nat Commun",
+   "pubdate_year": "2025",
+   "title": "Interferon-α promotes HLA-B-restricted presentation of conventional and alternative antigens in human pancreatic β-cells."
+  },
+  "39988068": {
+   "first_author": "MacDonald TL",
+   "journal": "Mol Metab",
+   "pubdate_year": "2025",
+   "title": "Renalase inhibition defends against acute and chronic β cell stress by regulating cell metabolism."
+  },
+  "40112799": {
+   "first_author": "van Tienhoven R",
+   "journal": "Cell",
+   "pubdate_year": "2025",
+   "title": "Genetic protection from type 1 diabetes resulting from accelerated insulin mRNA decay."
+  },
+  "40133488": {
+   "first_author": "Kale A",
+   "journal": "Diabetologia",
+   "pubdate_year": "2025",
+   "title": "Regulating islet stress responses through CD47 activation."
+  },
+  "40320524": {
+   "first_author": "Traini L",
+   "journal": "Stem Cell Res Ther",
+   "pubdate_year": "2025",
+   "title": "Genome editing of TXNIP in human pluripotent stem cells for the generation of hepatocyte-like cells and insulin-producing islet-like aggregates."
+  },
+  "40514008": {
+   "first_author": "Hang Y",
+   "journal": "Mol Metab",
+   "pubdate_year": "2025",
+   "title": "Isolation of live human δ cells for genetic and functional analysis."
+  },
+  "40668892": {
+   "first_author": "Zhao D",
+   "journal": "Sci Transl Med",
+   "pubdate_year": "2025",
+   "title": "Donor-recipient mismatch at the SIRPA locus adversely affects kidney allograft outcomes."
+  },
+  "40757665": {
+   "first_author": "Carlsson PO",
+   "journal": "N Engl J Med",
+   "pubdate_year": "2025",
+   "title": "Survival of Transplanted Allogeneic Beta Cells with No Immunosuppression."
+  },
+  "40782792": {
+   "first_author": "Meng G",
+   "journal": "Cell Stem Cell",
+   "pubdate_year": "2025",
+   "title": "Reconstruction of endocrine subtype-complete human pluripotent stem cell-derived islets with capacity for hypoglycemia protection in vivo."
+  },
+  "40812299": {
+   "first_author": "Hu X",
+   "journal": "Cell Stem Cell",
+   "pubdate_year": "2025",
+   "title": "Hypoimmune CD19 CAR T cells evade allorejection in patients with cancer and autoimmune disease."
+  },
+  "40832357": {
+   "first_author": "Brown ME",
+   "journal": "bioRxiv",
+   "pubdate_year": "2025",
+   "title": "Human Stem Cell-Derived β-cells Expressing An Optimized CD155 Reduce Cytotoxic Immune Cell Function for Application in Type 1 Diabetes."
+  },
+  "40544428": {
+   "first_author": "Reichman TW",
+   "journal": "N Engl J Med",
+   "pubdate_year": "2025",
+   "title": "Stem Cell-Derived, Fully Differentiated Islets for Type 1 Diabetes."
+  },
+  "40896833": {
+   "first_author": "Walters K",
+   "journal": "Diabetes",
+   "pubdate_year": "2025",
+   "title": "Proteogenomic Discovery of Novel Open Reading Frames With HLA Immune Presentation on Human β-Cells."
+  },
+  "41202120": {
+   "first_author": "Brown ME",
+   "journal": "Sci Adv",
+   "pubdate_year": "2025",
+   "title": "Human stem cell-derived β cells expressing an optimized CD155 reduce cytotoxic immune cell function for application in type 1 diabetes."
+  },
+  "41385368": {
+   "first_author": "Preza S",
+   "journal": "Cell Rep",
+   "pubdate_year": "2025",
+   "title": "DEC1 regulates human β cell functional maturation and circadian rhythm."
+  },
+  "41642947": {
+   "first_author": "Pelea O",
+   "journal": "Science",
+   "pubdate_year": "2026",
+   "title": "Programmable genome editing in human cells using RNA-guided bridge recombinases."
+  },
+  "41842939": {
+   "first_author": "Kazmi S",
+   "journal": "JCI Insight",
+   "pubdate_year": "2026",
+   "title": "Islets co-engineered with thrombomodulin and CD47 achieve sustained survival in allogeneic recipients without chronic immunosuppression."
+  },
+  "41886504": {
+   "first_author": "Maestas MM",
+   "journal": "Stem Cells Transl Med",
+   "pubdate_year": "2026",
+   "title": "Whole-genome CRISPR screening identifies genetic modifiers of stem cell-derived islet transplantation."
+  },
+  "41887653": {
+   "first_author": "Korol R",
+   "journal": "Horm Metab Res",
+   "pubdate_year": "2026",
+   "title": "Correction: Extracellular Matrix-Guided Islet Cell Transplantation Results in Improved Glycemic Control in a NOD-SCID Mouse Model."
+  },
+  "42078397": {
+   "first_author": "Gasser M",
+   "journal": "medRxiv",
+   "pubdate_year": "2026",
+   "title": "A loss of function variant in SLC30A8/ZnT8 drives proteomic changes associated with lowered apoptosis in human stem cell-derived islets."
+  },
+  "42268925": {
+   "first_author": "Howard CJ",
+   "journal": "Elife",
+   "pubdate_year": "2026",
+   "title": "Deep mutational scanning reveals pharmacologically relevant insights into TYK2 signaling and disease."
+  },
+  "42430558": {
+   "first_author": "Carlsson PO",
+   "journal": "N Engl J Med",
+   "pubdate_year": "2026",
+   "title": "Long-Term Survival of Hypoimmune Allogeneic Islets without Immunosuppression."
+  },
+  "42523425": {
+   "first_author": "Dattoli AA",
+   "journal": "bioRxiv",
+   "pubdate_year": "2026",
+   "title": "Generation of hypoimmunogenic gastric insulin-secreting organoids."
+  },
+  "42671571": {
+   "first_author": "Luckett AM",
+   "journal": "Diabetologia",
+   "pubdate_year": "2026",
+   "title": "Genetic association stratified by HLA-DR3 and HLA-DR4 status reveals heterogeneity in pathways of progression to type 1 diabetes."
+  },
+  "42690930": {
+   "first_author": "Kobaisi F",
+   "journal": "Cell Rep",
+   "pubdate_year": "2026",
+   "title": "Engineering the insulin signal peptide to protect human pancreatic beta cells from autoimmune destruction."
+  },
+  "42787837": {
+   "first_author": "Veronese-Paniagua DA",
+   "journal": "iScience",
+   "pubdate_year": "2026",
+   "title": "Protective IFIH1 variant reduces islet stress and dysfunction in a type 1 diabetes genetic background."
+  },
+  "42808960": {
+   "first_author": "Dogan F",
+   "journal": "Diabetes",
+   "pubdate_year": "2026",
+   "title": "Microgels Containing Protease Resistant CXCL12 and FasL Enable Long-term Allo-Islet Function Without Systemic Immunosuppression."
+  },
+  "443421": {
+   "first_author": "Bergman RN",
+   "journal": "Am J Physiol",
+   "pubdate_year": "1979",
+   "title": "Quantitative estimation of insulin sensitivity."
+  },
+  "6862113": {
+   "first_author": "Katz LD",
+   "journal": "Diabetes",
+   "pubdate_year": "1983",
+   "title": "Splanchnic and peripheral disposal of oral glucose in man."
+  },
+  "7545436": {
+   "first_author": "Sugimoto N",
+   "journal": "Biochemistry",
+   "pubdate_year": "1995",
+   "title": "Thermodynamic parameters to predict stability of RNA/DNA hybrid duplexes."
+  },
+  "7594586": {
+   "first_author": "Burnett RC",
+   "journal": "J Immunol",
+   "pubdate_year": "1995",
+   "title": "Structure and expression of a divergent canine class I gene."
+  },
+  "7988563": {
+   "first_author": "Ashfield R",
+   "journal": "EMBO J",
+   "pubdate_year": "1994",
+   "title": "MAZ-dependent termination between closely spaced human complement genes."
+  },
+  "8120026": {
+   "first_author": "Demaria S",
+   "journal": "J Biol Chem",
+   "pubdate_year": "1994",
+   "title": "Soluble beta 2-microglobulin-free class I heavy chains are released from the surface of activated and leukemia cells by a metalloprotease."
+  },
+  "8663147": {
+   "first_author": "Bajzar L",
+   "journal": "J Biol Chem",
+   "pubdate_year": "1996",
+   "title": "TAFI, or plasma procarboxypeptidase B, couples the coagulation and fibrinolytic cascades through the thrombin-thrombomodulin complex."
+  },
+  "8720919": {
+   "first_author": "Lenzen S",
+   "journal": "Free Radic Biol Med",
+   "pubdate_year": "1996",
+   "title": "Low antioxidant enzyme gene expression in pancreatic islets compared with various other mouse tissues."
+  },
+  "8910377": {
+   "first_author": "Sun J",
+   "journal": "J Biol Chem",
+   "pubdate_year": "1996",
+   "title": "A cytosolic granzyme B inhibitor related to the viral apoptotic regulator cytokine response modifier A is present in cytotoxic lymphocytes."
+  },
+  "8971076": {
+   "first_author": "Kendall DM",
+   "journal": "Diabetes",
+   "pubdate_year": "1997",
+   "title": "Defective glucagon secretion during sustained hypoglycemia following successful islet allo- and autotransplantation in humans."
+  },
+  "9012826": {
+   "first_author": "Chung JH",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "1997",
+   "title": "Characterization of the chicken beta-globin insulator."
+  },
+  "9588443": {
+   "first_author": "Loweth AC",
+   "journal": "Diabetes",
+   "pubdate_year": "1998",
+   "title": "Human islets of Langerhans express Fas ligand and undergo apoptosis in response to interleukin-1beta and Fas ligation."
+  },
+  "9660937": {
+   "first_author": "O'Callaghan CA",
+   "journal": "Mol Cell",
+   "pubdate_year": "1998",
+   "title": "Structural features impose tight peptide binding specificity in the nonclassical MHC molecule HLA-E."
+  }
+ }
+}

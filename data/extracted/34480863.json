@@ -1,0 +1,256 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "34480863",
+    "pmcid": null,
+    "doi": "10.1016/j.stem.2021.08.001",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Microvessels support engraftment and functionality of human islets and hESC-derived pancreatic progenitors in diabetes models.",
+    "first_author": "Aghazadeh Y",
+    "senior_author": "Nostro MC",
+    "pub_year": 2021,
+    "journal": "Cell stem cell",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid34480863_arm1",
+      "arm_label": "Subcutaneous Transplantation of Human Islets or hESC Pancreatic Progenitors Without Microvessels",
+      "is_reference_control": true,
+      "sample_size_n": null,
+      "sample_size_unit": "mouse_recipients",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "hESC",
+        "cell_line_id": "Human embryonic stem cell (hESC)-derived pancreatic progenitors and primary human islets",
+        "donor_hla_profile": null,
+        "protocol_backbone": "Nostro hESC pancreatic progenitor protocol and primary human islets",
+        "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Subcutaneous_Unmodified",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "Single subcutaneous implantation without microvessels",
+        "encapsulation_or_biomaterial": "Collagen hydrogel",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None (immunodeficient mouse models of T1D)"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Hypoxia_Ischemia_Challenge",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": "Avascular subcutaneous space in preexisting STZ/diabetic mouse models"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid34480863_arm2",
+      "arm_label": "Subcutaneous Co-Transplantation of Human Islets or hESC Pancreatic Progenitors with Ready-Made Adipose Microvessels (MVs)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": "mouse_recipients",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "hESC",
+        "cell_line_id": "hESC-derived pancreatic progenitors and primary human islets",
+        "donor_hla_profile": null,
+        "protocol_backbone": "Nostro hESC pancreatic progenitor protocol and primary human islets",
+        "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Subcutaneous_Prevascularized_or_Device",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "Microvascular_Fragment_CoAssembly",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "Single-step subcutaneous co-transplantation with ready-made adipose-derived microvessels",
+        "encapsulation_or_biomaterial": "3D hydrogel with intact adipose-derived microvessels",
+        "co_transplanted_cells_or_oxygen_source": "Ready-made microvessels (MVs) isolated from adipose tissue",
+        "systemic_immunosuppression_regimen": "None (immunodeficient diabetic mice)"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Hypoxia_Ischemia_Challenge",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": "Subcutaneous engraftment in three mouse models of preexisting T1D"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "aghazadeh2021_eff1_microvessels_subq_survival_and_diabetes_reversal",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Co-transplantation with ready-made adipose-derived microvessels (MVs) in the subcutaneous space",
+      "comparator_X0": "Subcutaneous transplantation of human islets or hESC pancreatic progenitors without microvessels (or single endothelial cells)",
+      "outcome_variable_Y": "[Endpoint: Hypoxia_72h_or_Vascular_Inosculation | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=Subcutaneous graft survival and reversal of preexisting diabetes]",
+      "outcome_domain": "Hypoxia_72h_or_Vascular_Inosculation",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "Subcutaneous graft survival and reversal of preexisting diabetes",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Both Stage 4 hESC-derived pancreatic progenitors and mature primary human islets",
+        "Z2_genetic_background_and_allelic_dose": "Unedited human islets and hESC progenitors",
+        "Z3_immune_effector_and_stressor_pathway": "Acute subcutaneous ischemia/hypoxia in preexisting diabetic mice",
+        "Z4_metabolic_and_glucose_load_state": "[REDACTED_NON_OA_EXCERPT: see PMID:34480863 field=omitted_text quote_sha256=b8b7ebe96068ad0c5ba5d3270dff44b6d02d770edaff20f898c4306a3b714a2d]",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Islets/progenitors co-embedded with intact microvessel fragments",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous site converted from inhospitable avascular bed to rapidly perfused microvascular niche",
+        "Z7_promoter_and_epigenetic_context": "Endogenous",
+        "Z8_species_age_and_sex_context": "Human grafts in three diabetic mouse models"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:34480863 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=b2c9d00e3c4b85218eff8ac5f4f2678a3d695f4fa2180d3038a928b2ebc010aa]",
+      "focal_arm_id": "pmid34480863_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Right-censored at last reported follow-up timepoint if graft remained functional",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "survival"
+      },
+      "dossier_sha256": "db7a40ad6b0fbf02c9018b3be5ce975bb3432a200e19187f7cab67f98a1c7ec7",
+      "source_span": "abstract[348:685]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Co-transplantation with ready-made adipose-derived microvessels (MVs) in the subcutaneous space",
+        "comparator_label": null,
+        "endpoint_name": "Hypoxia_72h_or_Vascular_Inosculation",
+        "timepoint": null,
+        "population_or_model": "Unedited human islets and hESC progenitors (Human grafts in three diabetic mouse models)",
+        "units": "Subcutaneous graft survival and reversal of preexisting diabetes",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "34480863"
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "aghazadeh2021_int1_microvessels_rescue_subcutaneous_site",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Subcutaneous transplantation of human islets or hESC-derived pancreatic cells",
+      "outcome_Y": "Graft survival and reversal of preexisting T1D",
+      "modifier_variable_Z": "Vascular Niche Architecture (Ready-Made Intact Adipose Microvessels [MVs] vs Unmodified Subcutaneous Space)",
+      "modifier_class": "Z6_Oxygen_Tension_Vascular_Site_or_ECM_Niche",
+      "level_1_condition_and_effect": "In unmodified subcutaneous tissue: poor engraftment and graft loss prevent reversal of preexisting diabetes.",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:34480863 field=level_2_condition_and_effect quote_sha256=ce1fa43b275643e7ee0f5d1f6f46b028a7f4ddd2dbd967de389704f37544aee0]",
+      "modification_type": "Rescue_of_Toxicity_or_Defect",
+      "critical_threshold_value_and_unit": "Intact ready-made microvascular fragments (retaining endothelial + perivascular mural architecture) rather than avascular implantation",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:34480863 field=mechanistic_explanation quote_sha256=9f42fce5d1d578ec39dccb4a0b4a61c8a79269732d92b6ff48c89896e4a4860f]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "Co-Assembly with Ready-Made Adipose-Derived Microvessels (MVs)",
+      "upstream_node_type": "Biophysical_or_Vascular_Cue",
+      "causal_relation": "Stabilizes_or_Rescues",
+      "downstream_node": "Rapid Subcutaneous Vascular Inosculation, Early Graft Survival, and In Vivo Glucose-Stimulated Insulin Secretion",
+      "downstream_node_type": "Cell_Survival_or_Death_Pathway",
+      "evidence_source": "Abstract (PMID 34480863)"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [
+      {
+        "primary_gate_perturbed": "Gate 5 (Ready-Made Adipose Microvessel Co-Transplantation)",
+        "secondary_gate_affected": "Gate 1 (In Vivo Functional Maturation of both Stage 4 Progenitors and Mature Islets)",
+        "observation": "[REDACTED_NON_OA_EXCERPT: see PMID:34480863 field=observation quote_sha256=b096f34b0fab22aac0184d6bd4fea45fd6fbe0ba4e12a376cc066851e73a4f19]",
+        "is_beneficial_synergy_or_deleterious_tradeoff": "Beneficial_CrossGate_Bonus"
+      }
+    ],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "Adipose Microvessels + Unedited Human Islets/hESC Progenitors",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:34480863 field=omitted_text quote_sha256=303364c348a6c073066f98a3f9443aedbcc01d736764d91154b2552c2d5f172f]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:34480863 field=omitted_text quote_sha256=049bbf5f20f0c0566d689dcccea828fd66554ef7e2b3af62a84910c3129f6efe]",
+        "complementary_lever_needed": "Use either autologous patient subcutaneous adipose microvessels (minimally invasive lipoaspirate) or hypoimmune (B2M-/-CIITA-/-CD47+) iPSC-derived microvascular fragments co-assembled with hypoimmune SC-islets."
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

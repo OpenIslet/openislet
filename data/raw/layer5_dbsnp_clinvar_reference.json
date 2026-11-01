@@ -1,0 +1,2162 @@
+{
+  "source": "Live NCBI dbSNP API v2 & NCBI ClinVar E-Utilities (GRCh38.p14 / GCF_000001405.40)",
+  "fetched_at_utc": "2026-10-23T14:54:15Z",
+  "dbsnp_records": {
+    "rs34536443_TYK2_P1104A": {
+      "refsnp_id": "34536443",
+      "variant_type": "snv",
+      "genes": [
+        "TYK2"
+      ],
+      "clinical_significances": [
+        "benign",
+        "benign-likely-benign",
+        "likely-benign"
+      ],
+      "minor_allele_frequencies": [
+        {
+          "study": "1000Genomes",
+          "allele_count": 4957,
+          "total_count": 5008
+        },
+        {
+          "study": "1000Genomes_30X",
+          "allele_count": 6334,
+          "total_count": 6404
+        },
+        {
+          "study": "ALSPAC",
+          "allele_count": 3651,
+          "total_count": 3854
+        },
+        {
+          "study": "Estonian",
+          "allele_count": 4335,
+          "total_count": 4480
+        },
+        {
+          "study": "ExAC",
+          "allele_count": 115628,
+          "total_count": 118878
+        },
+        {
+          "study": "FINRISK",
+          "allele_count": 297,
+          "total_count": 304
+        },
+        {
+          "study": "GENOME_DK",
+          "allele_count": 38,
+          "total_count": 40
+        },
+        {
+          "study": "GnomAD_genomes",
+          "allele_count": 145072,
+          "total_count": 149254
+        },
+        {
+          "study": "GoESP",
+          "allele_count": 12629,
+          "total_count": 13006
+        },
+        {
+          "study": "MGP",
+          "allele_count": 518,
+          "total_count": 534
+        },
+        {
+          "study": "NorthernSweden",
+          "allele_count": 585,
+          "total_count": 600
+        },
+        {
+          "study": "PAGE_STUDY",
+          "allele_count": 77456,
+          "total_count": 78384
+        },
+        {
+          "study": "PRJEB36033",
+          "allele_count": 80,
+          "total_count": 82
+        },
+        {
+          "study": "PRJEB37584",
+          "allele_count": 791,
+          "total_count": 792
+        },
+        {
+          "study": "Qatari",
+          "allele_count": 215,
+          "total_count": 216
+        },
+        {
+          "study": "SGDP_PRJ",
+          "allele_count": 9,
+          "total_count": 18
+        },
+        {
+          "study": "Siberian",
+          "allele_count": 3,
+          "total_count": 6
+        },
+        {
+          "study": "TOMMO",
+          "allele_count": 77443,
+          "total_count": 77444
+        },
+        {
+          "study": "TOPMED",
+          "allele_count": 257767,
+          "total_count": 264690
+        },
+        {
+          "study": "TWINSUK",
+          "allele_count": 3532,
+          "total_count": 3708
+        },
+        {
+          "study": "dbGaP_PopFreq",
+          "allele_count": 111359,
+          "total_count": 115786
+        },
+        {
+          "study": "1000Genomes",
+          "allele_count": 51,
+          "total_count": 5008
+        },
+        {
+          "study": "1000Genomes_30X",
+          "allele_count": 70,
+          "total_count": 6404
+        },
+        {
+          "study": "ALSPAC",
+          "allele_count": 203,
+          "total_count": 3854
+        },
+        {
+          "study": "Estonian",
+          "allele_count": 145,
+          "total_count": 4480
+        },
+        {
+          "study": "ExAC",
+          "allele_count": 3250,
+          "total_count": 118878
+        },
+        {
+          "study": "FINRISK",
+          "allele_count": 7,
+          "total_count": 304
+        },
+        {
+          "study": "GENOME_DK",
+          "allele_count": 2,
+          "total_count": 40
+        },
+        {
+          "study": "GnomAD_genomes",
+          "allele_count": 4182,
+          "total_count": 149254
+        },
+        {
+          "study": "GoESP",
+          "allele_count": 377,
+          "total_count": 13006
+        },
+        {
+          "study": "MGP",
+          "allele_count": 16,
+          "total_count": 534
+        },
+        {
+          "study": "NorthernSweden",
+          "allele_count": 15,
+          "total_count": 600
+        },
+        {
+          "study": "PAGE_STUDY",
+          "allele_count": 928,
+          "total_count": 78384
+        },
+        {
+          "study": "PRJEB36033",
+          "allele_count": 2,
+          "total_count": 82
+        },
+        {
+          "study": "PRJEB37584",
+          "allele_count": 1,
+          "total_count": 792
+        },
+        {
+          "study": "Qatari",
+          "allele_count": 1,
+          "total_count": 216
+        },
+        {
+          "study": "SGDP_PRJ",
+          "allele_count": 9,
+          "total_count": 18
+        },
+        {
+          "study": "Siberian",
+          "allele_count": 3,
+          "total_count": 6
+        },
+        {
+          "study": "TOMMO",
+          "allele_count": 1,
+          "total_count": 77444
+        },
+        {
+          "study": "TOPMED",
+          "allele_count": 6923,
+          "total_count": 264690
+        },
+        {
+          "study": "TWINSUK",
+          "allele_count": 176,
+          "total_count": 3708
+        },
+        {
+          "study": "dbGaP_PopFreq",
+          "allele_count": 4427,
+          "total_count": 115786
+        }
+      ],
+      "placements": [
+        {
+          "seq_id": "NC_000019.10",
+          "alleles": [
+            {
+              "deleted_sequence": "G",
+              "inserted_sequence": "G",
+              "position": 10352441,
+              "is_variant": false
+            },
+            {
+              "deleted_sequence": "G",
+              "inserted_sequence": "C",
+              "position": 10352441,
+              "is_variant": true
+            },
+            {
+              "deleted_sequence": "G",
+              "inserted_sequence": "T",
+              "position": 10352441,
+              "is_variant": true
+            }
+          ]
+        }
+      ]
+    },
+    "rs689_INS_23HphI": {
+      "refsnp_id": "689",
+      "variant_type": "snv",
+      "genes": [
+        "INS",
+        "INS-IGF2"
+      ],
+      "clinical_significances": [
+        "benign",
+        "benign",
+        "benign",
+        "benign",
+        "benign"
+      ],
+      "minor_allele_frequencies": [
+        {
+          "study": "1000Genomes",
+          "allele_count": 1755,
+          "total_count": 5008
+        },
+        {
+          "study": "1000Genomes_30X",
+          "allele_count": 2316,
+          "total_count": 6404
+        },
+        {
+          "study": "ALSPAC",
+          "allele_count": 1167,
+          "total_count": 3854
+        },
+        {
+          "study": "Estonian",
+          "allele_count": 1121,
+          "total_count": 4480
+        },
+        {
+          "study": "ExAC",
+          "allele_count": 31587,
+          "total_count": 115618
+        },
+        {
+          "study": "FINRISK",
+          "allele_count": 54,
+          "total_count": 282
+        },
+        {
+          "study": "GENOME_DK",
+          "allele_count": 13,
+          "total_count": 40
+        },
+        {
+          "study": "GnomAD_exomes",
+          "allele_count": 390730,
+          "total_count": 1397574
+        },
+        {
+          "study": "GnomAD_genomes",
+          "allele_count": 58303,
+          "total_count": 149132
+        },
+        {
+          "study": "GoESP",
+          "allele_count": 5609,
+          "total_count": 12958
+        },
+        {
+          "study": "KOREAN",
+          "allele_count": 166,
+          "total_count": 2928
+        },
+        {
+          "study": "Korea1K",
+          "allele_count": 91,
+          "total_count": 1826
+        },
+        {
+          "study": "Korea4K",
+          "allele_count": 391,
+          "total_count": 7228
+        },
+        {
+          "study": "MGP",
+          "allele_count": 328,
+          "total_count": 534
+        },
+        {
+          "study": "NorthernSweden",
+          "allele_count": 161,
+          "total_count": 600
+        },
+        {
+          "study": "PAGE_STUDY",
+          "allele_count": 35613,
+          "total_count": 78638
+        },
+        {
+          "study": "PRJEB36033",
+          "allele_count": 10,
+          "total_count": 34
+        },
+        {
+          "study": "PRJEB37584",
+          "allele_count": 40,
+          "total_count": 782
+        },
+        {
+          "study": "Qatari",
+          "allele_count": 65,
+          "total_count": 216
+        },
+        {
+          "study": "SGDP_PRJ",
+          "allele_count": 74,
+          "total_count": 488
+        },
+        {
+          "study": "Siberian",
+          "allele_count": 7,
+          "total_count": 54
+        },
+        {
+          "study": "TOMMO",
+          "allele_count": 2485,
+          "total_count": 77444
+        },
+        {
+          "study": "TOPMED",
+          "allele_count": 108948,
+          "total_count": 264690
+        },
+        {
+          "study": "TWINSUK",
+          "allele_count": 1060,
+          "total_count": 3708
+        },
+        {
+          "study": "Vietnamese",
+          "allele_count": 29,
+          "total_count": 611
+        },
+        {
+          "study": "dbGaP_PopFreq",
+          "allele_count": 9040,
+          "total_count": 27878
+        },
+        {
+          "study": "KOREAN",
+          "allele_count": 0,
+          "total_count": 2928
+        },
+        {
+          "study": "1000Genomes",
+          "allele_count": 3253,
+          "total_count": 5008
+        },
+        {
+          "study": "1000Genomes_30X",
+          "allele_count": 4088,
+          "total_count": 6404
+        },
+        {
+          "study": "ALSPAC",
+          "allele_count": 2687,
+          "total_count": 3854
+        },
+        {
+          "study": "Estonian",
+          "allele_count": 3359,
+          "total_count": 4480
+        },
+        {
+          "study": "ExAC",
+          "allele_count": 84031,
+          "total_count": 115618
+        },
+        {
+          "study": "FINRISK",
+          "allele_count": 228,
+          "total_count": 282
+        },
+        {
+          "study": "GENOME_DK",
+          "allele_count": 27,
+          "total_count": 40
+        },
+        {
+          "study": "GnomAD_exomes",
+          "allele_count": 1006844,
+          "total_count": 1397574
+        },
+        {
+          "study": "GnomAD_genomes",
+          "allele_count": 90829,
+          "total_count": 149132
+        },
+        {
+          "study": "GoESP",
+          "allele_count": 7349,
+          "total_count": 12958
+        },
+        {
+          "study": "KOREAN",
+          "allele_count": 2762,
+          "total_count": 2928
+        },
+        {
+          "study": "Korea1K",
+          "allele_count": 1735,
+          "total_count": 1826
+        },
+        {
+          "study": "Korea4K",
+          "allele_count": 6837,
+          "total_count": 7228
+        },
+        {
+          "study": "MGP",
+          "allele_count": 206,
+          "total_count": 534
+        },
+        {
+          "study": "NorthernSweden",
+          "allele_count": 439,
+          "total_count": 600
+        },
+        {
+          "study": "PAGE_STUDY",
+          "allele_count": 43025,
+          "total_count": 78638
+        },
+        {
+          "study": "PRJEB36033",
+          "allele_count": 24,
+          "total_count": 34
+        },
+        {
+          "study": "PRJEB37584",
+          "allele_count": 742,
+          "total_count": 782
+        },
+        {
+          "study": "Qatari",
+          "allele_count": 151,
+          "total_count": 216
+        },
+        {
+          "study": "SGDP_PRJ",
+          "allele_count": 414,
+          "total_count": 488
+        },
+        {
+          "study": "Siberian",
+          "allele_count": 47,
+          "total_count": 54
+        },
+        {
+          "study": "TOMMO",
+          "allele_count": 74959,
+          "total_count": 77444
+        },
+        {
+          "study": "TOPMED",
+          "allele_count": 155742,
+          "total_count": 264690
+        },
+        {
+          "study": "TWINSUK",
+          "allele_count": 2648,
+          "total_count": 3708
+        },
+        {
+          "study": "Vietnamese",
+          "allele_count": 582,
+          "total_count": 611
+        },
+        {
+          "study": "dbGaP_PopFreq",
+          "allele_count": 18838,
+          "total_count": 27878
+        }
+      ],
+      "placements": [
+        {
+          "seq_id": "NC_000011.10",
+          "alleles": [
+            {
+              "deleted_sequence": "A",
+              "inserted_sequence": "A",
+              "position": 2160993,
+              "is_variant": false
+            },
+            {
+              "deleted_sequence": "A",
+              "inserted_sequence": "G",
+              "position": 2160993,
+              "is_variant": true
+            },
+            {
+              "deleted_sequence": "A",
+              "inserted_sequence": "T",
+              "position": 2160993,
+              "is_variant": true
+            }
+          ]
+        }
+      ]
+    },
+    "rs560887_G6PC2_intronic_splicing": {
+      "refsnp_id": "560887",
+      "variant_type": "snv",
+      "genes": [
+        "G6PC2"
+      ],
+      "clinical_significances": [],
+      "minor_allele_frequencies": [
+        {
+          "study": "1000Genomes",
+          "allele_count": 566,
+          "total_count": 5008
+        },
+        {
+          "study": "1000Genomes_30X",
+          "allele_count": 735,
+          "total_count": 6404
+        },
+        {
+          "study": "ALSPAC",
+          "allele_count": 1136,
+          "total_count": 3854
+        },
+        {
+          "study": "Daghestan",
+          "allele_count": 278,
+          "total_count": 1136
+        },
+        {
+          "study": "Estonian",
+          "allele_count": 1393,
+          "total_count": 4480
+        },
+        {
+          "study": "ExAC",
+          "allele_count": 25527,
+          "total_count": 121228
+        },
+        {
+          "study": "FINRISK",
+          "allele_count": 97,
+          "total_count": 304
+        },
+        {
+          "study": "GENOME_DK",
+          "allele_count": 16,
+          "total_count": 40
+        },
+        {
+          "study": "GnomAD_exomes",
+          "allele_count": 235676,
+          "total_count": 930044
+        },
+        {
+          "study": "GnomAD_genomes",
+          "allele_count": 29682,
+          "total_count": 149124
+        },
+        {
+          "study": "GoESP",
+          "allele_count": 2703,
+          "total_count": 13006
+        },
+        {
+          "study": "GoNL",
+          "allele_count": 320,
+          "total_count": 998
+        },
+        {
+          "study": "HGDP_Stanford",
+          "allele_count": 271,
+          "total_count": 2084
+        },
+        {
+          "study": "HapMap",
+          "allele_count": 194,
+          "total_count": 1608
+        },
+        {
+          "study": "KOREAN",
+          "allele_count": 93,
+          "total_count": 2930
+        },
+        {
+          "study": "Korea4K",
+          "allele_count": 194,
+          "total_count": 7232
+        },
+        {
+          "study": "MGP",
+          "allele_count": 156,
+          "total_count": 534
+        },
+        {
+          "study": "NorthernSweden",
+          "allele_count": 188,
+          "total_count": 600
+        },
+        {
+          "study": "PRJEB36033",
+          "allele_count": 22,
+          "total_count": 60
+        },
+        {
+          "study": "PRJEB37584",
+          "allele_count": 31,
+          "total_count": 792
+        },
+        {
+          "study": "Qatari",
+          "allele_count": 39,
+          "total_count": 216
+        },
+        {
+          "study": "SGDP_PRJ",
+          "allele_count": 51,
+          "total_count": 542
+        },
+        {
+          "study": "Siberian",
+          "allele_count": 9,
+          "total_count": 54
+        },
+        {
+          "study": "TOMMO",
+          "allele_count": 1582,
+          "total_count": 77440
+        },
+        {
+          "study": "TOPMED",
+          "allele_count": 48793,
+          "total_count": 264690
+        },
+        {
+          "study": "TWINSUK",
+          "allele_count": 1132,
+          "total_count": 3708
+        },
+        {
+          "study": "Vietnamese",
+          "allele_count": 7,
+          "total_count": 208
+        },
+        {
+          "study": "dbGaP_PopFreq",
+          "allele_count": 84160,
+          "total_count": 313786
+        },
+        {
+          "study": "1000Genomes",
+          "allele_count": 4442,
+          "total_count": 5008
+        },
+        {
+          "study": "1000Genomes_30X",
+          "allele_count": 5669,
+          "total_count": 6404
+        },
+        {
+          "study": "ALSPAC",
+          "allele_count": 2718,
+          "total_count": 3854
+        },
+        {
+          "study": "Daghestan",
+          "allele_count": 858,
+          "total_count": 1136
+        },
+        {
+          "study": "Estonian",
+          "allele_count": 3087,
+          "total_count": 4480
+        },
+        {
+          "study": "ExAC",
+          "allele_count": 95701,
+          "total_count": 121228
+        },
+        {
+          "study": "FINRISK",
+          "allele_count": 207,
+          "total_count": 304
+        },
+        {
+          "study": "GENOME_DK",
+          "allele_count": 24,
+          "total_count": 40
+        },
+        {
+          "study": "GnomAD_exomes",
+          "allele_count": 694368,
+          "total_count": 930044
+        },
+        {
+          "study": "GnomAD_genomes",
+          "allele_count": 119442,
+          "total_count": 149124
+        },
+        {
+          "study": "GoESP",
+          "allele_count": 10303,
+          "total_count": 13006
+        },
+        {
+          "study": "GoNL",
+          "allele_count": 678,
+          "total_count": 998
+        },
+        {
+          "study": "HGDP_Stanford",
+          "allele_count": 1813,
+          "total_count": 2084
+        },
+        {
+          "study": "HapMap",
+          "allele_count": 1414,
+          "total_count": 1608
+        },
+        {
+          "study": "KOREAN",
+          "allele_count": 2837,
+          "total_count": 2930
+        },
+        {
+          "study": "Korea4K",
+          "allele_count": 7038,
+          "total_count": 7232
+        },
+        {
+          "study": "MGP",
+          "allele_count": 378,
+          "total_count": 534
+        },
+        {
+          "study": "NorthernSweden",
+          "allele_count": 412,
+          "total_count": 600
+        },
+        {
+          "study": "PRJEB36033",
+          "allele_count": 38,
+          "total_count": 60
+        },
+        {
+          "study": "PRJEB37584",
+          "allele_count": 761,
+          "total_count": 792
+        },
+        {
+          "study": "Qatari",
+          "allele_count": 177,
+          "total_count": 216
+        },
+        {
+          "study": "SGDP_PRJ",
+          "allele_count": 491,
+          "total_count": 542
+        },
+        {
+          "study": "Siberian",
+          "allele_count": 45,
+          "total_count": 54
+        },
+        {
+          "study": "TOMMO",
+          "allele_count": 75858,
+          "total_count": 77440
+        },
+        {
+          "study": "TOPMED",
+          "allele_count": 215897,
+          "total_count": 264690
+        },
+        {
+          "study": "TWINSUK",
+          "allele_count": 2576,
+          "total_count": 3708
+        },
+        {
+          "study": "Vietnamese",
+          "allele_count": 201,
+          "total_count": 208
+        },
+        {
+          "study": "dbGaP_PopFreq",
+          "allele_count": 229626,
+          "total_count": 313786
+        }
+      ],
+      "placements": [
+        {
+          "seq_id": "NC_000002.12",
+          "alleles": [
+            {
+              "deleted_sequence": "T",
+              "inserted_sequence": "T",
+              "position": 168906637,
+              "is_variant": false
+            },
+            {
+              "deleted_sequence": "T",
+              "inserted_sequence": "A",
+              "position": 168906637,
+              "is_variant": true
+            },
+            {
+              "deleted_sequence": "T",
+              "inserted_sequence": "C",
+              "position": 168906637,
+              "is_variant": true
+            },
+            {
+              "deleted_sequence": "T",
+              "inserted_sequence": "G",
+              "position": 168906637,
+              "is_variant": true
+            }
+          ]
+        }
+      ]
+    },
+    "rs2476601_PTPN22_R620W": {
+      "refsnp_id": "2476601",
+      "variant_type": "snv",
+      "genes": [
+        "AP4B1-AS1",
+        "PTPN22"
+      ],
+      "clinical_significances": [
+        "risk-factor",
+        "risk-factor",
+        "risk-factor",
+        "risk-factor",
+        "risk-factor",
+        "benign",
+        "risk-factor"
+      ],
+      "minor_allele_frequencies": [
+        {
+          "study": "1000Genomes",
+          "allele_count": 137,
+          "total_count": 5008
+        },
+        {
+          "study": "1000Genomes_30X",
+          "allele_count": 188,
+          "total_count": 6404
+        },
+        {
+          "study": "ALSPAC",
+          "allele_count": 389,
+          "total_count": 3854
+        },
+        {
+          "study": "Daghestan",
+          "allele_count": 40,
+          "total_count": 1134
+        },
+        {
+          "study": "Estonian",
+          "allele_count": 642,
+          "total_count": 4480
+        },
+        {
+          "study": "ExAC",
+          "allele_count": 8115,
+          "total_count": 121404
+        },
+        {
+          "study": "FINRISK",
+          "allele_count": 42,
+          "total_count": 304
+        },
+        {
+          "study": "GENOME_DK",
+          "allele_count": 4,
+          "total_count": 40
+        },
+        {
+          "study": "GnomAD_exomes",
+          "allele_count": 122154,
+          "total_count": 1364034
+        },
+        {
+          "study": "GnomAD_genomes",
+          "allele_count": 9867,
+          "total_count": 149174
+        },
+        {
+          "study": "GoNL",
+          "allele_count": 98,
+          "total_count": 998
+        },
+        {
+          "study": "HGDP_Stanford",
+          "allele_count": 33,
+          "total_count": 2084
+        },
+        {
+          "study": "HapMap",
+          "allele_count": 56,
+          "total_count": 1860
+        },
+        {
+          "study": "KOREAN",
+          "allele_count": 2,
+          "total_count": 2930
+        },
+        {
+          "study": "Korea1K",
+          "allele_count": 0,
+          "total_count": 1832
+        },
+        {
+          "study": "Korea4K",
+          "allele_count": 2,
+          "total_count": 7230
+        },
+        {
+          "study": "MGP",
+          "allele_count": 47,
+          "total_count": 534
+        },
+        {
+          "study": "NorthernSweden",
+          "allele_count": 69,
+          "total_count": 600
+        },
+        {
+          "study": "PAGE_STUDY",
+          "allele_count": 1993,
+          "total_count": 78702
+        },
+        {
+          "study": "PRJEB36033",
+          "allele_count": 6,
+          "total_count": 86
+        },
+        {
+          "study": "Qatari",
+          "allele_count": 5,
+          "total_count": 216
+        },
+        {
+          "study": "SGDP_PRJ",
+          "allele_count": 9,
+          "total_count": 558
+        },
+        {
+          "study": "Siberian",
+          "allele_count": 3,
+          "total_count": 56
+        },
+        {
+          "study": "TOMMO",
+          "allele_count": 0,
+          "total_count": 77442
+        },
+        {
+          "study": "TOPMED",
+          "allele_count": 14761,
+          "total_count": 264690
+        },
+        {
+          "study": "TWINSUK",
+          "allele_count": 381,
+          "total_count": 3708
+        },
+        {
+          "study": "Vietnamese",
+          "allele_count": 0,
+          "total_count": 612
+        },
+        {
+          "study": "dbGaP_PopFreq",
+          "allele_count": 28466,
+          "total_count": 334666
+        },
+        {
+          "study": "1000Genomes",
+          "allele_count": 4871,
+          "total_count": 5008
+        },
+        {
+          "study": "1000Genomes_30X",
+          "allele_count": 6216,
+          "total_count": 6404
+        },
+        {
+          "study": "ALSPAC",
+          "allele_count": 3465,
+          "total_count": 3854
+        },
+        {
+          "study": "Daghestan",
+          "allele_count": 1094,
+          "total_count": 1134
+        },
+        {
+          "study": "Estonian",
+          "allele_count": 3838,
+          "total_count": 4480
+        },
+        {
+          "study": "ExAC",
+          "allele_count": 113289,
+          "total_count": 121404
+        },
+        {
+          "study": "FINRISK",
+          "allele_count": 262,
+          "total_count": 304
+        },
+        {
+          "study": "GENOME_DK",
+          "allele_count": 36,
+          "total_count": 40
+        },
+        {
+          "study": "GnomAD_exomes",
+          "allele_count": 1241880,
+          "total_count": 1364034
+        },
+        {
+          "study": "GnomAD_genomes",
+          "allele_count": 139307,
+          "total_count": 149174
+        },
+        {
+          "study": "GoNL",
+          "allele_count": 900,
+          "total_count": 998
+        },
+        {
+          "study": "HGDP_Stanford",
+          "allele_count": 2051,
+          "total_count": 2084
+        },
+        {
+          "study": "HapMap",
+          "allele_count": 1804,
+          "total_count": 1860
+        },
+        {
+          "study": "KOREAN",
+          "allele_count": 2928,
+          "total_count": 2930
+        },
+        {
+          "study": "Korea1K",
+          "allele_count": 1832,
+          "total_count": 1832
+        },
+        {
+          "study": "Korea4K",
+          "allele_count": 7228,
+          "total_count": 7230
+        },
+        {
+          "study": "MGP",
+          "allele_count": 487,
+          "total_count": 534
+        },
+        {
+          "study": "NorthernSweden",
+          "allele_count": 531,
+          "total_count": 600
+        },
+        {
+          "study": "PAGE_STUDY",
+          "allele_count": 76709,
+          "total_count": 78702
+        },
+        {
+          "study": "PRJEB36033",
+          "allele_count": 80,
+          "total_count": 86
+        },
+        {
+          "study": "Qatari",
+          "allele_count": 211,
+          "total_count": 216
+        },
+        {
+          "study": "SGDP_PRJ",
+          "allele_count": 548,
+          "total_count": 558
+        },
+        {
+          "study": "Siberian",
+          "allele_count": 53,
+          "total_count": 56
+        },
+        {
+          "study": "TOMMO",
+          "allele_count": 77442,
+          "total_count": 77442
+        },
+        {
+          "study": "TOPMED",
+          "allele_count": 249929,
+          "total_count": 264690
+        },
+        {
+          "study": "TWINSUK",
+          "allele_count": 3327,
+          "total_count": 3708
+        },
+        {
+          "study": "Vietnamese",
+          "allele_count": 612,
+          "total_count": 612
+        },
+        {
+          "study": "dbGaP_PopFreq",
+          "allele_count": 306200,
+          "total_count": 334666
+        },
+        {
+          "study": "SGDP_PRJ",
+          "allele_count": 1,
+          "total_count": 558
+        }
+      ],
+      "placements": [
+        {
+          "seq_id": "NC_000001.11",
+          "alleles": [
+            {
+              "deleted_sequence": "A",
+              "inserted_sequence": "A",
+              "position": 113834945,
+              "is_variant": false
+            },
+            {
+              "deleted_sequence": "A",
+              "inserted_sequence": "G",
+              "position": 113834945,
+              "is_variant": true
+            },
+            {
+              "deleted_sequence": "A",
+              "inserted_sequence": "T",
+              "position": 113834945,
+              "is_variant": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "clinvar_records": {
+    "rs34536443_TYK2_P1104A": [
+      {
+        "variant_id": "137869",
+        "clinical_significance": "Benign/Likely benign",
+        "review_status": "criteria provided, multiple submitters, no conflicts",
+        "last_evaluated": "2026/02/04 00:00",
+        "phenotypes": [
+          "not provided",
+          "not specified",
+          "Immunodeficiency 35"
+        ],
+        "title": "NM_003331.5(TYK2):c.3310C>G (p.Pro1104Ala)",
+        "genes": [
+          {
+            "gene_id": "7297",
+            "symbol": "TYK2",
+            "strand": "-"
+          }
+        ],
+        "variation_type": "single nucleotide variant",
+        "molecular_consequences": [
+          "missense variant"
+        ]
+      }
+    ]
+  },
+  "ucsc_dbsnp155_primary_interval_responses": {
+    "OI-GRNA-01_B2M_EXON1_ASCAS12A": {
+      "genome": "hg38",
+      "track": "dbSnp155",
+      "query_url": "https://api.genome.ucsc.edu/getData/track?genome=hg38;track=dbSnp155;chrom=chr15;start=44711589;end=44711616",
+      "data_time_stamp": "2026:10:24T13:32:33Z",
+      "chrom": "chr15",
+      "start": 44711589,
+      "end": 44711616,
+      "count": 8,
+      "rsids": [
+        "rs1435611656",
+        "rs1196771735",
+        "rs757230673",
+        "rs572886094",
+        "rs1213728428",
+        "rs745772508",
+        "rs863225287",
+        "rs2086867337"
+      ],
+      "items": [
+        {
+          "rsid": "rs1435611656",
+          "chrom": "chr15",
+          "chromStart": 44711592,
+          "chromEnd": 44711593,
+          "ref": "C",
+          "alts": [
+            "G"
+          ],
+          "func": 1583,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,7.11744e-05,1.5112e-05,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,2.13892e-05,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,3.97918e-06,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs1196771735",
+          "chrom": "chr15",
+          "chromStart": 44711595,
+          "chromEnd": 44711596,
+          "ref": "G",
+          "alts": [
+            "A"
+          ],
+          "func": 1583,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,5.65675e-05,1.1334e-05,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,7.13297e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,1.19395e-05,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs757230673",
+          "chrom": "chr15",
+          "chromStart": 44711606,
+          "chromEnd": 44711607,
+          "ref": "A",
+          "alts": [
+            "C",
+            "G"
+          ],
+          "func": 1583,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,7.11744e-05,3.18552e-05,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,4.28101e-05,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,2.4717e-05,1.19417e-05,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs572886094",
+          "chrom": "chr15",
+          "chromStart": 44711608,
+          "chromEnd": 44711609,
+          "ref": "C",
+          "alts": [
+            "A"
+          ],
+          "func": 1819,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "0.000199681,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,8.23913e-06,3.98089e-06,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs1213728428",
+          "chrom": "chr15",
+          "chromStart": 44711610,
+          "chromEnd": 44711611,
+          "ref": "A",
+          "alts": [
+            "G"
+          ],
+          "func": 1583,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,3.98067e-06,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs745772508",
+          "chrom": "chr15",
+          "chromStart": 44711611,
+          "chromEnd": 44711612,
+          "ref": "G",
+          "alts": [
+            "A"
+          ],
+          "func": 1819,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,2.4719e-05,1.99054e-05,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs863225287",
+          "chrom": "chr15",
+          "chromStart": 44711613,
+          "chromEnd": 44711614,
+          "ref": "G",
+          "alts": [
+            "C",
+            "T"
+          ],
+          "func": 1575,
+          "varType": "snv",
+          "ucscNotes": "clinvar,clinvarPathogenic,rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,3.778e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs2086867337",
+          "chrom": "chr15",
+          "chromStart": 44711615,
+          "chromEnd": 44711616,
+          "ref": "G",
+          "alts": [
+            "C"
+          ],
+          "func": 1986,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,3.778e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        }
+      ]
+    },
+    "OI-GRNA-02_CIITA_EXON1_ASCAS12A": {
+      "genome": "hg38",
+      "track": "dbSnp155",
+      "query_url": "https://api.genome.ucsc.edu/getData/track?genome=hg38;track=dbSnp155;chrom=chr16;start=10898962;end=10898989",
+      "data_time_stamp": "2026:10:24T13:32:34Z",
+      "chrom": "chr16",
+      "start": 10898962,
+      "end": 10898989,
+      "count": 13,
+      "rsids": [
+        "rs1398227497",
+        "rs2038426868",
+        "rs1217280230",
+        "rs749136255",
+        "rs757017931",
+        "rs2038427463",
+        "rs142469968",
+        "rs745772598",
+        "rs1310154158",
+        "rs771500655",
+        "rs898193118",
+        "rs2038428751",
+        "rs774999334"
+      ],
+      "items": [
+        {
+          "rsid": "rs1398227497",
+          "chrom": "chr16",
+          "chromStart": 10898962,
+          "chromEnd": 10898963,
+          "ref": "G",
+          "alts": [
+            "A",
+            "C"
+          ],
+          "func": 1583,
+          "varType": "snv",
+          "ucscNotes": "clinvar,rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0.000111259,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,3.97636e-06,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs2038426868",
+          "chrom": "chr16",
+          "chromStart": 10898966,
+          "chromEnd": 10898967,
+          "ref": "T",
+          "alts": [
+            "C"
+          ],
+          "func": 1583,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,3.778e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs1217280230",
+          "chrom": "chr16",
+          "chromStart": 10898967,
+          "chromEnd": 10898968,
+          "ref": "G",
+          "alts": [
+            "A"
+          ],
+          "func": 1583,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,7.11744e-05,7.55601e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs749136255",
+          "chrom": "chr16",
+          "chromStart": 10898968,
+          "chromEnd": 10898969,
+          "ref": "C",
+          "alts": [
+            "A"
+          ],
+          "func": 1583,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,8.23683e-06,7.95292e-06,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs757017931",
+          "chrom": "chr16",
+          "chromStart": 10898969,
+          "chromEnd": 10898970,
+          "ref": "C",
+          "alts": [
+            "T"
+          ],
+          "func": 1583,
+          "varType": "snv",
+          "ucscNotes": "clinvar,rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,7.11744e-05,7.55601e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,7.13949e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,8.23683e-06,7.95286e-06,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs2038427463",
+          "chrom": "chr16",
+          "chromStart": 10898977,
+          "chromEnd": 10898978,
+          "ref": "G",
+          "alts": [
+            "T"
+          ],
+          "func": 1583,
+          "varType": "snv",
+          "ucscNotes": "clinvar,rareSome,rareAll,",
+          "minorAlleleFreq": ""
+        },
+        {
+          "rsid": "rs142469968",
+          "chrom": "chr16",
+          "chromStart": 10898978,
+          "chromEnd": 10898979,
+          "ref": "T",
+          "alts": [
+            "A",
+            "C"
+          ],
+          "func": 1583,
+          "varType": "snv",
+          "ucscNotes": "clinvar,rareSome,rareAll,",
+          "minorAlleleFreq": "0.000199681,6.84499e-05,0.000774491,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,0.000720965,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,0.00128332,-inf,-inf,-inf,0.000769586,0.000123558,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs745772598",
+          "chrom": "chr16",
+          "chromStart": 10898979,
+          "chromEnd": 10898980,
+          "ref": "T",
+          "alts": [
+            "C",
+            "G"
+          ],
+          "func": 1819,
+          "varType": "snv",
+          "ucscNotes": "clinvar,clinvarBenign,rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,3.778e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,8.23723e-06,3.97665e-06,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs1310154158",
+          "chrom": "chr16",
+          "chromStart": 10898982,
+          "chromEnd": 10898983,
+          "ref": "G",
+          "alts": [
+            "A"
+          ],
+          "func": 1819,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,1.1334e-05,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,7.13409e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,3.97687e-06,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs771500655",
+          "chrom": "chr16",
+          "chromStart": 10898983,
+          "chromEnd": 10898984,
+          "ref": "C",
+          "alts": [
+            "A"
+          ],
+          "func": 1583,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,8.23791e-06,3.97687e-06,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs898193118",
+          "chrom": "chr16",
+          "chromStart": 10898984,
+          "chromEnd": 10898985,
+          "ref": "A",
+          "alts": [
+            "G"
+          ],
+          "func": 1583,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": ""
+        },
+        {
+          "rsid": "rs2038428751",
+          "chrom": "chr16",
+          "chromStart": 10898986,
+          "chromEnd": 10898987,
+          "ref": "A",
+          "alts": [
+            "G"
+          ],
+          "func": 1583,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,7.13185e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs774999334",
+          "chrom": "chr16",
+          "chromStart": 10898987,
+          "chromEnd": 10898988,
+          "ref": "A",
+          "alts": [
+            "C",
+            "G"
+          ],
+          "func": 1583,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,7.55601e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,2.47137e-05,1.59074e-05,-inf,-inf,-inf,"
+        }
+      ]
+    },
+    "OI-GRNA-03_CXCL10_EXON1_HIFI_SPCAS9": {
+      "genome": "hg38",
+      "track": "dbSnp155",
+      "query_url": "https://api.genome.ucsc.edu/getData/track?genome=hg38;track=dbSnp155;chrom=chr4;start=76023450;end=76023473",
+      "data_time_stamp": "2026:10:24T13:32:35Z",
+      "chrom": "chr4",
+      "start": 76023450,
+      "end": 76023473,
+      "count": 9,
+      "rsids": [
+        "rs377480085",
+        "rs1733076691",
+        "rs1733076954",
+        "rs761786572",
+        "rs767339215",
+        "rs554892214",
+        "rs1733078194",
+        "rs1172405793",
+        "rs1733078807"
+      ],
+      "items": [
+        {
+          "rsid": "rs377480085",
+          "chrom": "chr4",
+          "chromStart": 76023450,
+          "chromEnd": 76023451,
+          "ref": "C",
+          "alts": [
+            "A",
+            "T"
+          ],
+          "func": 1623,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,7.96381e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,1.42664e-05,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,8.23316e-05,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs1733076691",
+          "chrom": "chr4",
+          "chromStart": 76023453,
+          "chromEnd": 76023454,
+          "ref": "C",
+          "alts": [
+            "T"
+          ],
+          "func": 1623,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,7.55601e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs1733076954",
+          "chrom": "chr4",
+          "chromStart": 76023459,
+          "chromEnd": 76023460,
+          "ref": "T",
+          "alts": [
+            "C"
+          ],
+          "func": 1623,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs761786572",
+          "chrom": "chr4",
+          "chromStart": 76023461,
+          "chromEnd": 76023462,
+          "ref": "G",
+          "alts": [
+            "A"
+          ],
+          "func": 1623,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,8.28899e-06,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs767339215",
+          "chrom": "chr4",
+          "chromStart": 76023462,
+          "chromEnd": 76023463,
+          "ref": "G",
+          "alts": [
+            "A"
+          ],
+          "func": 1623,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,7.13257e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,8.28954e-06,4.01303e-06,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs554892214",
+          "chrom": "chr4",
+          "chromStart": 76023465,
+          "chromEnd": 76023466,
+          "ref": "C",
+          "alts": [
+            "T"
+          ],
+          "func": 1623,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "0.000199681,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,8.29009e-06,4.01394e-06,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs1733078194",
+          "chrom": "chr4",
+          "chromStart": 76023468,
+          "chromEnd": 76023469,
+          "ref": "A",
+          "alts": [
+            "T"
+          ],
+          "func": 1623,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,3.778e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs1172405793",
+          "chrom": "chr4",
+          "chromStart": 76023469,
+          "chromEnd": 76023470,
+          "ref": "A",
+          "alts": [
+            "G"
+          ],
+          "func": 1623,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,3.778e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs1733078807",
+          "chrom": "chr4",
+          "chromStart": 76023471,
+          "chromEnd": 76023472,
+          "ref": "A",
+          "alts": [
+            "G"
+          ],
+          "func": 1623,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,3.778e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        }
+      ]
+    },
+    "OI-GRNA-04_AAVS1_PPP1R12C_HIFI_SPCAS9": {
+      "genome": "hg38",
+      "track": "dbSnp155",
+      "query_url": "https://api.genome.ucsc.edu/getData/track?genome=hg38;track=dbSnp155;chrom=chr19;start=55115753;end=55115776",
+      "data_time_stamp": "2026:10:24T13:32:36Z",
+      "chrom": "chr19",
+      "start": 55115753,
+      "end": 55115776,
+      "count": 9,
+      "rsids": [
+        "rs2085146843",
+        "rs910927189",
+        "rs946359931",
+        "rs1603012578",
+        "rs1603012581",
+        "rs554522312",
+        "rs1037294362",
+        "rs920266081",
+        "rs2085147064"
+      ],
+      "items": [
+        {
+          "rsid": "rs2085146843",
+          "chrom": "chr19",
+          "chromStart": 55115754,
+          "chromEnd": 55115755,
+          "ref": "C",
+          "alts": [
+            "T"
+          ],
+          "func": 1627,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs910927189",
+          "chrom": "chr19",
+          "chromStart": 55115756,
+          "chromEnd": 55115757,
+          "ref": "G",
+          "alts": [
+            "A"
+          ],
+          "func": 1627,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,3.778e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs946359931",
+          "chrom": "chr19",
+          "chromStart": 55115757,
+          "chromEnd": 55115758,
+          "ref": "T",
+          "alts": [
+            "C"
+          ],
+          "func": 1627,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,7.11744e-05,1.889e-05,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,1.42666e-05,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs1603012578",
+          "chrom": "chr19",
+          "chromStart": 55115758,
+          "chromEnd": 55115759,
+          "ref": "C",
+          "alts": [
+            "G"
+          ],
+          "func": 1627,
+          "varType": "snv",
+          "ucscNotes": "commonSome,commonAll,",
+          "minorAlleleFreq": "-inf,-inf,-inf,-inf,0.5,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs1603012581",
+          "chrom": "chr19",
+          "chromStart": 55115759,
+          "chromEnd": 55115760,
+          "ref": "C",
+          "alts": [
+            "A"
+          ],
+          "func": 1627,
+          "varType": "snv",
+          "ucscNotes": "commonSome,commonAll,",
+          "minorAlleleFreq": "-inf,-inf,-inf,-inf,0.5,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs554522312",
+          "chrom": "chr19",
+          "chromStart": 55115761,
+          "chromEnd": 55115762,
+          "ref": "T",
+          "alts": [],
+          "func": 1627,
+          "varType": "del",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": ""
+        },
+        {
+          "rsid": "rs1037294362",
+          "chrom": "chr19",
+          "chromStart": 55115767,
+          "chromEnd": 55115768,
+          "ref": "C",
+          "alts": [
+            "T"
+          ],
+          "func": 1627,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,1.889e-05,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs920266081",
+          "chrom": "chr19",
+          "chromStart": 55115768,
+          "chromEnd": 55115769,
+          "ref": "C",
+          "alts": [
+            "G"
+          ],
+          "func": 1627,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,1.1334e-05,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs2085147064",
+          "chrom": "chr19",
+          "chromStart": 55115772,
+          "chromEnd": 55115773,
+          "ref": "C",
+          "alts": [
+            "G"
+          ],
+          "func": 1627,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,3.778e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        }
+      ]
+    },
+    "OI-GRNA-05_TYK2_P1104A_PEMAX_EPEGRNA_OPTIONAL": {
+      "genome": "hg38",
+      "track": "dbSnp155",
+      "query_url": "https://api.genome.ucsc.edu/getData/track?genome=hg38;track=dbSnp155;chrom=chr19;start=10352420;end=10352443",
+      "data_time_stamp": "2026:10:24T13:32:38Z",
+      "chrom": "chr19",
+      "start": 10352420,
+      "end": 10352443,
+      "count": 17,
+      "rsids": [
+        "rs2040856964",
+        "rs751482411",
+        "rs2040857265",
+        "rs1241130648",
+        "rs772835445",
+        "rs2040857696",
+        "rs762508451",
+        "rs906295346",
+        "rs140324156",
+        "rs368830574",
+        "rs373614901",
+        "rs757101286",
+        "rs2040858677",
+        "rs764595468",
+        "rs1273045901",
+        "rs34536443",
+        "rs894692852"
+      ],
+      "items": [
+        {
+          "rsid": "rs2040856964",
+          "chrom": "chr19",
+          "chromStart": 10352421,
+          "chromEnd": 10352422,
+          "ref": "C",
+          "alts": [
+            "G"
+          ],
+          "func": 2152,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs751482411",
+          "chrom": "chr19",
+          "chromStart": 10352423,
+          "chromEnd": 10352424,
+          "ref": "T",
+          "alts": [
+            "TT"
+          ],
+          "func": 2152,
+          "varType": "delins",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0.000447427,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,2.85197e-05,-inf,0.000446429,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,0.00010083,5.21586e-05,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs2040857265",
+          "chrom": "chr19",
+          "chromStart": 10352424,
+          "chromEnd": 10352426,
+          "ref": "GG",
+          "alts": [
+            "GGG"
+          ],
+          "func": 2152,
+          "varType": "delins",
+          "ucscNotes": "rareSome,rareAll,overlapDiffClass,",
+          "minorAlleleFreq": "-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,5.96659e-05,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs1241130648",
+          "chrom": "chr19",
+          "chromStart": 10352425,
+          "chromEnd": 10352426,
+          "ref": "G",
+          "alts": [
+            "C"
+          ],
+          "func": 2152,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,overlapDiffClass,",
+          "minorAlleleFreq": "-inf,7.11744e-05,3.778e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,7.13053e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs772835445",
+          "chrom": "chr19",
+          "chromStart": 10352426,
+          "chromEnd": 10352427,
+          "ref": "C",
+          "alts": [
+            "A",
+            "T"
+          ],
+          "func": 2152,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,7.96381e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,2.13888e-05,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,8.40562e-06,4.01568e-06,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs2040857696",
+          "chrom": "chr19",
+          "chromStart": 10352427,
+          "chromEnd": 10352428,
+          "ref": "T",
+          "alts": [
+            "A"
+          ],
+          "func": 2152,
+          "varType": "snv",
+          "ucscNotes": "clinvar,rareSome,rareAll,",
+          "minorAlleleFreq": ""
+        },
+        {
+          "rsid": "rs762508451",
+          "chrom": "chr19",
+          "chromStart": 10352428,
+          "chromEnd": 10352429,
+          "ref": "C",
+          "alts": [
+            "T"
+          ],
+          "func": 2152,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,4.6856e-05,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,7.13124e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,4.20267e-05,2.00715e-05,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs906295346",
+          "chrom": "chr19",
+          "chromStart": 10352432,
+          "chromEnd": 10352433,
+          "ref": "C",
+          "alts": [
+            "A"
+          ],
+          "func": 1575,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": ""
+        },
+        {
+          "rsid": "rs140324156",
+          "chrom": "chr19",
+          "chromStart": 10352433,
+          "chromEnd": 10352434,
+          "ref": "C",
+          "alts": [
+            "A"
+          ],
+          "func": 1819,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,7.55601e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,7.13063e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,7.68876e-05,-inf,4.0235e-06,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs368830574",
+          "chrom": "chr19",
+          "chromStart": 10352434,
+          "chromEnd": 10352435,
+          "ref": "G",
+          "alts": [
+            "T"
+          ],
+          "func": 1583,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,",
+          "minorAlleleFreq": "-inf,0,3.778e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,7.13094e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,7.68876e-05,8.4151e-06,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs373614901",
+          "chrom": "chr19",
+          "chromStart": 10352436,
+          "chromEnd": 10352437,
+          "ref": "G",
+          "alts": [
+            "A",
+            "C",
+            "T"
+          ],
+          "func": 1819,
+          "varType": "snv",
+          "ucscNotes": "clinvar,clinvarBenign,rareSome,rareAll,overlapDiffClass,",
+          "minorAlleleFreq": "-inf,0.000217108,8.76019e-05,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,0.00030755,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs757101286",
+          "chrom": "chr19",
+          "chromStart": 10352436,
+          "chromEnd": 10352443,
+          "ref": "GGGGGGG",
+          "alts": [
+            "GGGGGGGG"
+          ],
+          "func": 1589,
+          "varType": "delins",
+          "ucscNotes": "rareSome,rareAll,overlapDiffClass,",
+          "minorAlleleFreq": "-inf,0,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,0.000422133,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs2040858677",
+          "chrom": "chr19",
+          "chromStart": 10352437,
+          "chromEnd": 10352438,
+          "ref": "G",
+          "alts": [
+            "C",
+            "T"
+          ],
+          "func": 1583,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,overlapDiffClass,",
+          "minorAlleleFreq": "-inf,0,-inf,-inf,-inf,-inf,-inf,-inf,-inf,5.96659e-05,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs764595468",
+          "chrom": "chr19",
+          "chromStart": 10352438,
+          "chromEnd": 10352439,
+          "ref": "G",
+          "alts": [
+            "A",
+            "C",
+            "T"
+          ],
+          "func": 1583,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,overlapDiffClass,",
+          "minorAlleleFreq": "-inf,0,1.59276e-05,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,8.41283e-06,1.20918e-05,-inf,-inf,-inf,"
+        },
+        {
+          "rsid": "rs1273045901",
+          "chrom": "chr19",
+          "chromStart": 10352440,
+          "chromEnd": 10352441,
+          "ref": "G",
+          "alts": [
+            "A"
+          ],
+          "func": 1583,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,overlapDiffClass,",
+          "minorAlleleFreq": ""
+        },
+        {
+          "rsid": "rs34536443",
+          "chrom": "chr19",
+          "chromStart": 10352441,
+          "chromEnd": 10352442,
+          "ref": "G",
+          "alts": [
+            "C"
+          ],
+          "func": 1583,
+          "varType": "snv",
+          "ucscNotes": "clinvar,clinvarBenign,commonSome,rareSome,overlapDiffClass,",
+          "minorAlleleFreq": "0.0101837,0.0382343,0.0261551,-inf,0.5,0.00462963,0.025,0.5,0.0474649,-inf,0.0526725,0.05,0.0284969,-inf,0.0323661,-inf,-inf,-inf,0.0243902,-inf,-inf,0.0118392,-inf,0.0299625,0.00126263,0.0289866,0.027339,0.0268027,0.0230263,-inf,-inf,"
+        },
+        {
+          "rsid": "rs894692852",
+          "chrom": "chr19",
+          "chromStart": 10352442,
+          "chromEnd": 10352443,
+          "ref": "G",
+          "alts": [
+            "A"
+          ],
+          "func": 1819,
+          "varType": "snv",
+          "ucscNotes": "rareSome,rareAll,overlapDiffClass,",
+          "minorAlleleFreq": "-inf,0,7.96381e-06,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,-inf,"
+        }
+      ]
+    }
+  }
+}

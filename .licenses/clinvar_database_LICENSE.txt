@@ -1,0 +1,10 @@
+Resource: NCBI ClinVar (U.S. National Library of Medicine)
+Classification: Factual genomic variant clinical-significance metadata referenced in Layer 2 and Layer 5
+Audit Timestamp (UTC): 2026-10-23T14:53:15Z
+Upstream Source & Terms: https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/ (U.S. Government public-domain work under NCBI data usage policies)
+Release / Query Scope: GRCh38 variant assertions for TYK2 rs34536443 (P1104A), IFIH1 rs1990760, and PTPN22 rs2476601
+Shipped Public Artifacts:
+  - data/raw/layer5_dbsnp_clinvar_reference.json
+  - data/extracted/layer2_regulatory_and_perturbation_atlas.json
+  - data/extracted/layer5_personalized_patient_and_crispr_atlas.json
+Attribution & Modifications: Factual ClinVar variant accessions and clinical significance classifications cross-referenced with gnomAD v4 allele frequencies.

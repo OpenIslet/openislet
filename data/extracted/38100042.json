@@ -1,0 +1,197 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "38100042",
+    "pmcid": "PMC10724103",
+    "doi": "10.1186/s13550-023-01057-3",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Preclinical evaluation of Affibody molecule for PET imaging of human pancreatic islets derived from stem cells.",
+    "first_author": "Cheung P",
+    "senior_author": "Eriksson O",
+    "pub_year": 2023,
+    "journal": "EJNMMI research",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_4_Rodent_or_Xenogeneic_Only"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid38100042_arm1",
+      "arm_label": "Primary experimental arm in Cheung P (2023)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "hESC",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Unspecified_InVivo_or_Source_Site",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid38100042_eff1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
+        "Z2_genetic_background_and_allelic_dose": "hESC",
+        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Unspecified_InVivo_or_Source_Site",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:38100042 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=0d644a02fa73b71445d70f2b7c0db72605f68411573dffc62f8a3afffb286578]",
+      "focal_arm_id": "pmid38100042_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Right-censored at last reported follow-up timepoint if graft remained functional",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "survival"
+      },
+      "dossier_sha256": "5f71291878fc7bacc4a1d0b67674b30b916eaf97c36a854be6d4eda5a99765cb",
+      "source_span": "abstract[275:556]|norm=exact",
+      "quote_source_dossier_pmid": "38100042",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "hESC (Tier_4_Rodent_or_Xenogeneic_Only)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "pmid38100042_int1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
+      "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
+      "level_1_condition_and_effect": "[18F]ZDGCR2:AM106 retained binding to recombinant human DCGR2 as well as to cryosectioned stem-cell-derived islets, but in vivo binding to native pancreatic tissue in both rat and pig was low.",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38100042 field=level_2_condition_and_effect quote_sha256=d158738f167dff66369d4492d7a01723449cba4b3a5da1cddba02d46a41148c5]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:38100042 field=mechanistic_explanation quote_sha256=d158738f167dff66369d4492d7a01723449cba4b3a5da1cddba02d46a41148c5]"
+    },
+    {
+      "interaction_id": "pmid38100042_int2",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
+      "modifier_variable_Z": "Hypoxia_72h_Ischemia_and_O2_Scaffolds vs. Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38100042 field=level_1_condition_and_effect quote_sha256=48e5b49fd3f54c94931a421421bda4de83e16bcc20888ff940f8aa054ab855c3]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38100042 field=level_2_condition_and_effect quote_sha256=9837bbe7d0a6e256eed4498eaf4ea6583563fc2d2cd37c5f105a3e95b78af542]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:38100042 field=mechanistic_explanation quote_sha256=9837bbe7d0a6e256eed4498eaf4ea6583563fc2d2cd37c5f105a3e95b78af542]"
+    }
+  ],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:38100042 field=omitted_text quote_sha256=054ca98bc1126a44f5c9f5705c6052013a4fad5633ba4c5f1d74c2f379d448d2]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:38100042 field=omitted_text quote_sha256=de74c4346ab333f4e4b628c99e9bcee6ec661507a32894d83a61036c379916c3]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      },
+      {
+        "arm_or_intervention": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:38100042 field=omitted_text quote_sha256=c4b8fc1f3f10e38849fec075b9978e547682c0bade801b7568e1fae5a8661d1f]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:38100042 field=omitted_text quote_sha256=b64d94e4cc91ec19f592b90de72986727fd4f85420d118116cd74bc2e034ecbe]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

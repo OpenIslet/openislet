@@ -1,0 +1,365 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "40782792",
+    "pmcid": null,
+    "doi": "10.1016/j.stem.2025.07.006",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Reconstruction of endocrine subtype-complete human pluripotent stem cell-derived islets with capacity for hypoglycemia protection in vivo.",
+    "first_author": "Meng G",
+    "senior_author": "Deng H",
+    "pub_year": 2025,
+    "journal": "Cell stem cell",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid40782792_arm1",
+      "arm_label": "Primary experimental arm in Meng G (2025)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": "independent_differentiations",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "EndoC_betaH1_or_H2_H3",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid40782792_arm2",
+      "arm_label": "Non-reconstructed PSC-islet control cohort in Meng et al. (2025)",
+      "is_reference_control": true,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "EndoC_betaH1_or_H2_H3",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": "Reference comparator condition",
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "meng2025_eff1_hypoglycemia_protection_3pct_vs_59pct",
+      "source_figure_or_table": "Abstract & In Vivo Hypoglycemic Clamp (Cell Stem Cell 2025)",
+      "focal_factor_X": "Alpha_GCG_Delta_SST_Paracrine_CounterRegulation (Reconstructed human PSC-islets comprising all 5 endocrine subtypes: alpha, beta, delta, epsilon, gamma) [INS]",
+      "comparator_X0": "Non-reconstructed beta-dominant PSC-islet controls",
+      "outcome_variable_Y": "[Endpoint: blood glucose / hypoglycemia (<54 mg/dL)] Measurement-level proportion of repeated blood glucose readings (<54 mg/dL) clustered within diabetic recipient mice",
+      "outcome_domain": "Alpha_Delta_Paracrine_CounterRegulation",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "quarantined_unbound_numeric_operand",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Mature reconstructed human PSC-islets post-transplantation",
+        "Z2_genetic_background_and_allelic_dose": "Human pluripotent stem cell-derived endocrine subtypes",
+        "Z3_immune_effector_and_stressor_pathway": "In vivo insulin-induced hypoglycemic clamp challenge",
+        "Z4_metabolic_and_glucose_load_state": "Hypoglycemic threshold (<54 mg/dL)",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D reconstructed PSC-islets containing alpha, beta, delta, epsilon, and gamma cells",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "In vivo engrafted PSC-islets",
+        "Z7_promoter_and_epigenetic_context": "Endogenous lineage hormones",
+        "Z8_species_age_and_sex_context": "Human PSC-islets in diabetic mouse recipients (Tier_3)"
+      },
+      "verbatim_evidence_quote": "After reversal of hyperglycemia in diabetic mouse models, these islets exhibited robust protection against hypoglycemia, with only 3% of measurements falling below 54 mg/dL compared with 59% in non-reconstructed controls.",
+      "focal_arm_id": "pmid40782792_arm1",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
+        "orientation_sign": -1,
+        "matched_lexicon_term": "blood glucose"
+      },
+      "dossier_sha256": "2e3292131b1275cf6f76a5f318880404966f1d23ac15d226bc7067eba581278d",
+      "source_span": "abstract[624:845]|norm=exact",
+      "statistic_type": "quarantined_ambiguous_numeric",
+      "contrast_metadata": {
+        "intervention_label": "Alpha_GCG_Delta_SST_Paracrine_CounterRegulation (Reconstructed human PSC-islets comprising all 5 endocrine subtypes: alpha, beta, delta, epsilon, gamma) [INS]",
+        "comparator_label": null,
+        "endpoint_name": "Alpha_Delta_Paracrine_CounterRegulation",
+        "timepoint": null,
+        "population_or_model": "Human pluripotent stem cell-derived endocrine subtypes (Human PSC-islets in diabetic mouse recipients (Tier_3))",
+        "units": "quarantined_unbound_numeric_operand",
+        "contrast_type": "quarantined_ambiguous_multi_clause_or_multi_ratio"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "40782792"
+    },
+    {
+      "effect_id": "pmid40782792_eff1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity [INS]",
+      "comparator_X0": "Isogenic wild-type / untreated baseline control in study",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Lower_Is_Better_Hazard_Endpoint | orientation_sign=-1 | unit=quarantined_mismatched_units]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "quarantined_mismatched_units",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z2_genetic_background_and_allelic_dose": "EndoC_betaH1_or_H2_H3",
+        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:40782792 field=verbatim_evidence_quote genes=INS pert=NONE quote_sha256=deb31a4b4789b279a12212b81d6dbeae95f8c6576c3923749b57ac6410d01979]",
+      "focal_arm_id": "pmid40782792_arm1",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
+        "orientation_sign": -1,
+        "matched_lexicon_term": "hyperglycemia"
+      },
+      "dossier_sha256": "2e3292131b1275cf6f76a5f318880404966f1d23ac15d226bc7067eba581278d",
+      "source_span": "abstract[624:845]|norm=exact",
+      "statistic_type": "quarantined_ambiguous_numeric",
+      "contrast_metadata": {
+        "intervention_label": "MAFA_NKX6_1_PDX1_BetaCell_Identity [INS]",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "EndoC_betaH1_or_H2_H3 (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "units": "quarantined_mismatched_units",
+        "contrast_type": "quarantined_ambiguous_multi_clause_or_multi_ratio"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "40782792"
+    },
+    {
+      "effect_id": "pmid40782792_eff2",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "comparator_X0": "Isogenic wild-type / untreated baseline control in study",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Deleterious_or_Impaired",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z2_genetic_background_and_allelic_dose": "EndoC_betaH1_or_H2_H3",
+        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:40782792 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=6a0428a84f68d46c3cf7e14640fa4fdab825a6539e7f9a6e75601f22ec2c7d09]",
+      "focal_arm_id": "pmid40782792_arm1",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "2e3292131b1275cf6f76a5f318880404966f1d23ac15d226bc7067eba581278d",
+      "source_span": "abstract[996:1196]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "EndoC_betaH1_or_H2_H3 (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "40782792"
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "pmid40782792_int1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "outcome_Y": "Metabolic_and_Biphasic_GSIS_Maturation",
+      "modifier_variable_Z": "Hypoxia_72h_Ischemia_and_O2_Scaffolds vs. MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "modifier_class": "Z4_Metabolic_Glucose_or_ER_Secretory_Load",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:40782792 field=level_1_condition_and_effect quote_sha256=75ca329bb762f5a0129d9bc678ca2498dc465eb7cf08f3749f7359aa8712baad]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:40782792 field=level_2_condition_and_effect quote_sha256=e921572dc88896ec1891bf05504293300955a16422264e4cabc20597f7326c20]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:40782792 field=mechanistic_explanation quote_sha256=e921572dc88896ec1891bf05504293300955a16422264e4cabc20597f7326c20]"
+    },
+    {
+      "interaction_id": "pmid40782792_int2",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
+      "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
+      "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:40782792 field=level_1_condition_and_effect quote_sha256=9cbede31d9cd6180fca1386ca336fe14a2fe50bcb22dac38c3cf6ea04098a1fb]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:40782792 field=level_2_condition_and_effect quote_sha256=98ee22ef472ab292caf4b21d10265aadc4e0f30fb388b01bea51cc4f60a29392]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:40782792 field=mechanistic_explanation quote_sha256=deb31a4b4789b279a12212b81d6dbeae95f8c6576c3923749b57ac6410d01979]"
+    }
+  ],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:40782792 field=omitted_text quote_sha256=e3e8f06ea587087af53a0654af48d98adee7524871295c86396fbf391147508c]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:40782792 field=omitted_text quote_sha256=b8739a0b1d3489778aa0b4d13db8e5c81577d3105767e09cfe6723cb0a762014]",
+        "complementary_lever_needed": "Multi-gate combinatorial pairing across Gates 1-5"
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

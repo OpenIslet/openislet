@@ -1,0 +1,717 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "37156915",
+    "pmcid": "PMC10940156",
+    "doi": "10.1038/s41587-023-01784-x",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Hypoimmune induced pluripotent stem cells survive long term in fully immunocompetent, allogeneic rhesus macaques.",
+    "first_author": "Hu X",
+    "senior_author": "Schrepfer S",
+    "pub_year": 2024,
+    "journal": "Nature biotechnology",
+    "source_text_type": "FullText_XML_or_PDF",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid37156915_arm1",
+      "arm_label": "Unedited Wild-Type Human iPSC-Islets in Diabetic Allogeneic Humanized NSG-SGM3 Mice",
+      "is_reference_control": true,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "iPSC_healthy_donor",
+        "cell_line_id": "Thermo Fisher Human Episomal iPSC Line",
+        "donor_hla_profile": "HLA Class I+ / Class II+ allogeneic to humanized NSG-SGM3 CD34+ donor",
+        "protocol_backbone": "22-day 3D aggregate pancreatic islet differentiation protocol (adapted from Pagliuca/Millman)",
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Intramuscular_Forearm_or_Rectus",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "1,000 FLuc+ islet clusters injected intramuscularly into hindlimb thigh muscle with 23G needle",
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "InVivo_Allogeneic_or_Autoimmune_Graft",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 30.0,
+          "specific_autoantigen_or_hla_restriction": "Allogeneic human immune system (>45% hCD45+ with T, B, and CD3-CD7+CD56+ NK cells)"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": 100.0,
+        "specific_lysis_or_death_pct_sd": 0.0,
+        "cell_viability_pct_mean": 0.0,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": 6.0,
+        "pct_graft_surviving_at_end_of_followup": 0.0,
+        "followup_duration_days": 30.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": true
+      }
+    },
+    {
+      "arm_id": "pmid37156915_arm2",
+      "arm_label": "B2M-/- CIITA-/- Double-Knockout (DKO) Human iPSC-Islets Without CD47 Overexpression",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "iPSC_healthy_donor",
+        "cell_line_id": "Thermo Fisher Human Episomal iPSC Line (DKO)",
+        "donor_hla_profile": "B2M-/- CIITA-/- (HLA Class I and II negative)",
+        "protocol_backbone": "22-day 3D aggregate pancreatic islet differentiation protocol",
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "B2M",
+          "ensembl_gene_id": "ENSG00000166710",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "CRISPR-Cas9 biallelic knockout of B2M"
+          },
+          "functional_gate": "Gate2_Allo_HLA_ClassI_or_II",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": "Homozygous_Biallelic",
+          "protein_or_surface_expression_fold_vs_wt": 0.0,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        },
+        {
+          "gene_symbol_hgnc": "CIITA",
+          "ensembl_gene_id": "ENSG00000179583",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "CRISPR-Cas9 biallelic knockout of CIITA"
+          },
+          "functional_gate": "Gate2_Allo_HLA_ClassI_or_II",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": "Homozygous_Biallelic",
+          "protein_or_surface_expression_fold_vs_wt": 0.0,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Intramuscular_Forearm_or_Rectus",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "1,000 FLuc+ islet clusters injected intramuscularly into hindlimb thigh muscle",
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "InVivo_Allogeneic_or_Autoimmune_Graft",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 30.0,
+          "specific_autoantigen_or_hla_restriction": "Humanized NSG-SGM3 mice with functional human NK cells and macrophages"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": 100.0,
+        "specific_lysis_or_death_pct_sd": 0.0,
+        "cell_viability_pct_mean": 0.0,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": 6.0,
+        "pct_graft_surviving_at_end_of_followup": 0.0,
+        "followup_duration_days": 30.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": false
+      }
+    },
+    {
+      "arm_id": "pmid37156915_arm3",
+      "arm_label": "Human HIP (B2M-/- CIITA-/- CD47+) iPSC-Islets in Diabetic Allogeneic Humanized NSG-SGM3 Mice",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "iPSC_healthy_donor",
+        "cell_line_id": "Thermo Fisher Human Episomal iPSC Line (HIP: B2M-/- CIITA-/- CD47+)",
+        "donor_hla_profile": "B2M-/- CIITA-/- with >600,000 CD47 molecules/cell (VCN >= 2)",
+        "protocol_backbone": "22-day 3D aggregate pancreatic islet differentiation protocol",
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "B2M",
+          "ensembl_gene_id": "ENSG00000166710",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=B2M quote_sha256=06a22bab569167b4dd458c114802e791e334edd00730e259bb5a3d8bae4b3039]"
+          },
+          "functional_gate": "Gate2_Allo_HLA_ClassI_or_II",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": "Homozygous_Biallelic",
+          "protein_or_surface_expression_fold_vs_wt": 0.0,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        },
+        {
+          "gene_symbol_hgnc": "CIITA",
+          "ensembl_gene_id": "ENSG00000179583",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=CIITA quote_sha256=5581ab80b288e386d2cc276bcc00665069d5572c3a2c49407981ff2c9d7e88a3]"
+          },
+          "functional_gate": "Gate2_Allo_HLA_ClassI_or_II",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": "Homozygous_Biallelic",
+          "protein_or_surface_expression_fold_vs_wt": 0.0,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        },
+        {
+          "gene_symbol_hgnc": "CD47",
+          "ensembl_gene_id": "ENSG00000196776",
+          "sub_molecular_coordinate": {
+            "region_class": "Transgene_cDNA_Cassette",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=exact_variant_or_swap_description mod=Lentiviral_or_Transposon_OE genes=CD47 quote_sha256=2b9d621488eecab0dd023c13f1ec725ffc486c72f6e3094ee8396005f64f4e5d]"
+          },
+          "functional_gate": "Gate3_NK_MissingSelf_Inhibition",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "Lentiviral_or_Transposon_OE",
+          "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
+          "zygosity_or_allelic_state": "Hemizygous_or_KnockIn",
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Gain_of_Function_or_Transgenic_Armoring"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Intramuscular_Forearm_or_Rectus",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "1,000 FLuc+ islet clusters injected intramuscularly into hindlimb thigh muscle",
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "InVivo_Allogeneic_or_Autoimmune_Graft",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 30.0,
+          "specific_autoantigen_or_hla_restriction": "Allogeneic humanized NSG-SGM3 mice (T cells, B/DSA, NK cells, macrophages)"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": 0.0,
+        "specific_lysis_or_death_pct_sd": 0.0,
+        "cell_viability_pct_mean": 100.0,
+        "early_72h_graft_survival_pct": 100.0,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": 30.0,
+        "pct_graft_surviving_at_end_of_followup": 100.0,
+        "followup_duration_days": 30.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": false
+      }
+    },
+    {
+      "arm_id": "pmid37156915_arm4",
+      "arm_label": "HIP-Edited (B2M-/- CIITA-/- rhesus CD47+) Primary Rhesus Macaque Islets in Allogeneic Rhesus Macaque",
+      "is_reference_control": false,
+      "sample_size_n": 1,
+      "sample_size_unit": "nhp_recipients",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "NHP_Primary_Islet",
+        "cell_line_id": "Primary rhesus macaque cadaveric islets (dissociated, edited, sorted, and re-aggregated)",
+        "donor_hla_profile": "Allogeneic rhesus macaque (Mamu Class I/II negative + rhesus CD47+)",
+        "protocol_backbone": "Primary islet Accumax dissociation, 4D-Nucleofector CRISPR-Cas9 + CAG-CD47 LVV MOI 5, Belly Dancer re-clustering",
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "B2M",
+          "ensembl_gene_id": "ENSG00000166710",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=B2M quote_sha256=393725b2bc67f48f576af74163a1c86ae3816f5d90478960c8dd27f37770c1f4]"
+          },
+          "functional_gate": "Gate2_Allo_HLA_ClassI_or_II",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": "Homozygous_Biallelic",
+          "protein_or_surface_expression_fold_vs_wt": 0.0,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        },
+        {
+          "gene_symbol_hgnc": "CIITA",
+          "ensembl_gene_id": "ENSG00000179583",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=CIITA quote_sha256=d600298540b6f6ac159e26b7ad7cdce4cfcfa9e60d9ad0bc15efc6f6055913ee]"
+          },
+          "functional_gate": "Gate2_Allo_HLA_ClassI_or_II",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": "Homozygous_Biallelic",
+          "protein_or_surface_expression_fold_vs_wt": 0.0,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        },
+        {
+          "gene_symbol_hgnc": "CD47",
+          "ensembl_gene_id": "ENSG00000196776",
+          "sub_molecular_coordinate": {
+            "region_class": "Transgene_cDNA_Cassette",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=exact_variant_or_swap_description mod=Lentiviral_or_Transposon_OE genes=CD47 quote_sha256=3be0ec165bf660933dcee800af73c3566a1ff3f1632af26949034d4cba73f440]"
+          },
+          "functional_gate": "Gate3_NK_MissingSelf_Inhibition",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "Lentiviral_or_Transposon_OE",
+          "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
+          "zygosity_or_allelic_state": "Hemizygous_or_KnockIn",
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Gain_of_Function_or_Transgenic_Armoring"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Intramuscular_Forearm_or_Rectus",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=omitted_text quote_sha256=08b54296de50a846712dd17eb7c6a22011b54bf7c28335c5489af03f11af8867]",
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "Pro-survival cocktail in media at injection",
+        "systemic_immunosuppression_regimen": "None (no chronic immunosuppression)"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "InVivo_Allogeneic_or_Autoimmune_Graft",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 280.0,
+          "specific_autoantigen_or_hla_restriction": "Fully immunocompetent allogeneic rhesus macaque"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": 280.0,
+        "pct_graft_surviving_at_end_of_followup": 100.0,
+        "followup_duration_days": 280.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": false
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "hu2024_eff1_k562_cd47_vs_hlae_hlag_pdl1_nk_killing",
+      "source_figure_or_table": "Supplementary Fig. 1g,h & Supplementary Fig. 2a-v",
+      "focal_factor_X": "CD47 overexpression vs HLA-E, HLA-G, or PD-L1 overexpression on HLA-I/II-deficient cells",
+      "comparator_X0": "HLA-E, HLA-G, or PD-L1 single-checkpoint overexpression",
+      "outcome_variable_Y": "[Endpoint: NK_or_Macrophage_Innate_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "NK_or_Macrophage_Innate_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "HLA-deficient target cells",
+        "Z2_genetic_background_and_allelic_dose": "MOI 10 lentiviral cDNA overexpression",
+        "Z3_immune_effector_and_stressor_pathway": "IL-2-stimulated (1 ug/ml) unsorted primary human peripheral blood NK cells (31.4% CD94+, 62.0% ILT2+, 1.3% PD-1+, ~100% SIRPa+) at E:T 1:1",
+        "Z4_metabolic_and_glucose_load_state": "Standard culture / NSG peritoneal adoptive transfer",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Monolayer impedance and in vivo cell suspension",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "In vitro xCELLigence and in vivo NSG peritoneum",
+        "Z7_promoter_and_epigenetic_context": "Constitutive lentiviral transgene",
+        "Z8_species_age_and_sex_context": "Human primary NK and T cells"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=verbatim_evidence_quote genes=CD274,CD47,HLA-E pert=BOTH quote_sha256=92608857ca35890bc5fe8704b5e1d7b01c653e6d03fe6754950828f9e6a120f3]",
+      "focal_arm_id": "pmid37156915_arm3",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "37ecf56e5d09d2c677c0d836ff17c52e693b5e756d0641a12571f81d6a483289",
+      "source_span": "fulltext_data_sections.results_paragraphs[4][1698:1855]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "CD47 overexpression vs HLA-E, HLA-G, or PD-L1 overexpression on HLA-I/II-deficient cells",
+        "comparator_label": null,
+        "endpoint_name": "NK_or_Macrophage_Innate_Survival",
+        "timepoint": null,
+        "population_or_model": "MOI 10 lentiviral cDNA overexpression (Human primary NK and T cells)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "37156915"
+    },
+    {
+      "effect_id": "hu2024_eff2_cd47_threshold_human_islets",
+      "source_figure_or_table": "Supplementary Fig. 13a-d",
+      "focal_factor_X": "Surface CD47 receptor density >180,000-220,000 molecules/cell (>600,000 in HIP SC-islets; VCN >= 2)",
+      "comparator_X0": "B2M-/- CIITA-/- DKO human islet cells with <180,000 CD47 molecules/cell",
+      "outcome_variable_Y": "[Endpoint: NK_or_Macrophage_Innate_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=molecules_per_cell]",
+      "outcome_domain": "NK_or_Macrophage_Innate_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "molecules_per_cell",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary human islet cells and human iPSC-derived islet cells",
+        "Z2_genetic_background_and_allelic_dose": "B2M-/- CIITA-/- with Quantibrite-quantified CD47 molecules/cell",
+        "Z3_immune_effector_and_stressor_pathway": "IL-2-activated human NK cells (E:T 1:1)",
+        "Z4_metabolic_and_glucose_load_state": "Standard islet media",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Islet cells",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "In vitro xCELLigence",
+        "Z7_promoter_and_epigenetic_context": "CAG-CD47 lentiviral vector at VCN >= 2",
+        "Z8_species_age_and_sex_context": "Human"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=verbatim_evidence_quote genes=CD47 pert=NONE quote_sha256=bfa8baeff87fb5feda91a6046b4dbde1495100924fe8738302b19d167b6c2452]",
+      "focal_arm_id": "pmid37156915_arm3",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "37ecf56e5d09d2c677c0d836ff17c52e693b5e756d0641a12571f81d6a483289",
+      "source_span": "fulltext_data_sections.results_paragraphs[17][1136:1480]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Surface CD47 receptor density >180,000-220,000 molecules/cell (>600,000 in HIP SC-islets; VCN >= 2)",
+        "comparator_label": null,
+        "endpoint_name": "NK_or_Macrophage_Innate_Survival",
+        "timepoint": null,
+        "population_or_model": "B2M-/- CIITA-/- with Quantibrite-quantified CD47 molecules/cell (Human)",
+        "units": "molecules_per_cell",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "37156915"
+    },
+    {
+      "effect_id": "hu2024_eff3_human_hip_islets_humanized_mice_diabetes",
+      "source_figure_or_table": "Fig. 5a-o",
+      "focal_factor_X": "Human HIP (B2M-/- CIITA-/- CD47+) iPSC-islet clusters (1,000 clusters IM)",
+      "comparator_X0": "Wild-type (WT) or B2M-/- CIITA-/- (DKO) human iPSC-islet clusters",
+      "outcome_variable_Y": "[Endpoint: InVivo_Glycemic_Cure_and_Graft_Longevity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Day 22 human iPSC-islet clusters",
+        "Z2_genetic_background_and_allelic_dose": "B2M-/- CIITA-/- CD47+ (>600,000 CD47/cell)",
+        "Z3_immune_effector_and_stressor_pathway": "Allogeneic humanized NSG-SGM3 mice (>45% hCD45+ with T, B/DSA, and CD3-CD7+CD56+ NK cells)",
+        "Z4_metabolic_and_glucose_load_state": "STZ-induced diabetes (>450 mg/dL baseline)",
+        "Z5_cytoarchitecture_and_cluster_diameter": "1,000 re-aggregated islet clusters",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Intramuscular hindlimb thigh injection",
+        "Z7_promoter_and_epigenetic_context": "CAG-CD47",
+        "Z8_species_age_and_sex_context": "Human cells in humanized female NSG-SGM3 mice"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=verbatim_evidence_quote genes=B2M,CD47,CIITA pert=KO_LOF quote_sha256=71c4f79783bbba9a686754aa8eed6a4585b39e5704bdcd48f07779e94c857289]",
+      "focal_arm_id": "pmid37156915_arm3",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "37ecf56e5d09d2c677c0d836ff17c52e693b5e756d0641a12571f81d6a483289",
+      "source_span": "fulltext_data_sections.results_paragraphs[18][809:1144]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Human HIP (B2M-/- CIITA-/- CD47+) iPSC-islet clusters (1,000 clusters IM)",
+        "comparator_label": null,
+        "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+        "timepoint": null,
+        "population_or_model": "B2M-/- CIITA-/- CD47+ (>600,000 CD47/cell) (Human cells in humanized female NSG-SGM3 mice)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "37156915"
+    },
+    {
+      "effect_id": "hu2024_eff4_rhesus_hip_islets_40week_survival",
+      "source_figure_or_table": "Fig. 6a-h & Supplementary Figs. 16-17",
+      "focal_factor_X": "HIP-edited (B2M-/- CIITA-/- rhesus CD47+) primary rhesus macaque islets (15M cells IM)",
+      "comparator_X0": "Unedited WT allogeneic rhesus macaque islets",
+      "outcome_variable_Y": "[Endpoint: InVivo_Glycemic_Cure_and_Graft_Longevity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=weeks]",
+      "outcome_domain": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "weeks",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary adult cadaveric rhesus islets dissociated, edited, and re-aggregated",
+        "Z2_genetic_background_and_allelic_dose": "B2M-/- CIITA-/- + CAG-rhesus CD47 (MOI 5)",
+        "Z3_immune_effector_and_stressor_pathway": "Fully immunocompetent allogeneic rhesus macaque without chronic immunosuppression",
+        "Z4_metabolic_and_glucose_load_state": "Non-diabetic recipient",
+        "Z5_cytoarchitecture_and_cluster_diameter": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=omitted_text quote_sha256=7d834c2b2c2d805ec421edcc70614a807c5e3318bcc1d3e70e2b68464b0cb1ef]",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Intramuscular quadriceps injection in string pattern parallel to muscle fibers with pro-survival cocktail",
+        "Z7_promoter_and_epigenetic_context": "CAG promoter",
+        "Z8_species_age_and_sex_context": "Rhesus macaque (Macaca mulatta)"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=verbatim_evidence_quote genes=B2M,CD47,CIITA pert=KO_LOF quote_sha256=a29936ec1164bee6dfeaaeff553f94c557129849faad046f018347355b2c4505]",
+      "focal_arm_id": "pmid37156915_arm4",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Right-censored at last reported follow-up timepoint if graft remained functional",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "survival"
+      },
+      "dossier_sha256": "37ecf56e5d09d2c677c0d836ff17c52e693b5e756d0641a12571f81d6a483289",
+      "source_span": "fulltext_data_sections.results_paragraphs[20][622:766]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "HIP-edited (B2M-/- CIITA-/- rhesus CD47+) primary rhesus macaque islets (15M cells IM)",
+        "comparator_label": null,
+        "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+        "timepoint": "1 week",
+        "population_or_model": "B2M-/- CIITA-/- + CAG-rhesus CD47 (MOI 5) (Rhesus macaque (Macaca mulatta))",
+        "units": "weeks",
+        "contrast_type": "right_censored_followup_observation"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "37156915"
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "hu2024_int1_nk_receptor_heterogeneity_modifies_single_checkpoint",
+      "source_figure_or_table": "Supplementary Fig. 2c-v",
+      "focal_factor_X": "HLA-E, HLA-G, or PD-L1 overexpression vs CD47 overexpression on HLA-deficient target cells",
+      "outcome_Y": "Protection from primary human NK cell missing-self cytotoxicity",
+      "modifier_variable_Z": "NK cell inhibitory receptor subpopulation composition (CD94+ [31.4%], ILT2+ [62.0%], PD-1+ [1.3%] vs SIRPa+ [~100% of IL-2-activated NK cells])",
+      "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=level_1_condition_and_effect quote_sha256=d4a7e75fe13e22851a17a239d661d3218988761becd19403f5662bc51c5bb701]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=level_2_condition_and_effect quote_sha256=ee05433131a94cce560268191d169b6625379c2f2297641e3d9c572976b7a004]",
+      "modification_type": "Complete_Bypass_or_Abrogation",
+      "critical_threshold_value_and_unit": ">180,000 to 220,000 CD47 molecules/cell (achieved at VCN >= 2) and species-matched CD47-SIRPa",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=mechanistic_explanation quote_sha256=395a431a085db80dd9c0b152a188a6fe8b4d975c3fabb96779127bb75f423538]"
+    },
+    {
+      "interaction_id": "hu2024_int2_subcutaneous_vs_intramuscular_site",
+      "source_figure_or_table": "Results paragraphs 8-10 & Fig. 3",
+      "focal_factor_X": "HIP (B2M-/- CIITA-/- CD47+) engineered cells",
+      "outcome_Y": "Long-term in vivo graft survival in non-human primates",
+      "modifier_variable_Z": "Transplant anatomic site (Unmodified Subcutaneous Back vs Intramuscular Quadriceps)",
+      "modifier_class": "Z6_Oxygen_Tension_Vascular_Site_or_ECM_Niche",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=level_1_condition_and_effect quote_sha256=ca9dffa8c5235ac3f389186d5329bf04e5ba57c5d6d75d46a319c0a4603360f0]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=level_2_condition_and_effect quote_sha256=ce7f091bad4f438ac227456dc9f67aba6493eb4dbe7cee9c0b3e8c376d0a2636]",
+      "modification_type": "Threshold_Gate_Only_Works_Above_or_Below_Z",
+      "critical_threshold_value_and_unit": "Well-vascularized intramuscular bed (or pre-vascularized niche) + acute pro-survival cocktail",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=mechanistic_explanation quote_sha256=5929533e665bf0dc8fbd05409d956fd0e8c0a430452ae8c1cc5cf6759c848905]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "B2M and CIITA CRISPR-Cas9 Knockout",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "Surface MHC Class I and Class II Presentation, T-Cell IFN-g Activation, Donor-Specific Antibodies (IgM/IgG DSA), CDC, and ADCC",
+      "downstream_node_type": "Surface_Ligand_or_Antigen_Presentation",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=evidence_source quote_sha256=e17aa035cd288bbcb6e4c76d5a11cff8ed3c8c1716a151f6df4f2075dc48abbf]"
+    },
+    {
+      "upstream_node": "CD47 Overexpression (>180,000-220,000 molecules/cell)",
+      "upstream_node_type": "Surface_Ligand_or_Antigen_Presentation",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "SIRPa Inhibitory Signaling on IL-2-Activated NK Cells and Macrophages, Blocking Granzyme B/Perforin Release and Missing-Self Killing",
+      "downstream_node_type": "Cell_Survival_or_Death_Pathway",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=evidence_source quote_sha256=e21fa66b1f06d6c52645c40c61bb837a782b4c38c4d5adf68f17cafabb64f121]"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [
+      {
+        "primary_gate_perturbed": "Gate 2 & 3 (B2M-/- CIITA-/- CD47+ HIP Editing in Undifferentiated iPSCs)",
+        "secondary_gate_affected": "Gate 5 (Unchecked Teratoma Growth of Undifferentiated iPSCs)",
+        "observation": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=observation quote_sha256=184d8804dc7cfd51509567e68d1b21dd2a49fe6777c04c32e16624e99ec64d77]",
+        "is_beneficial_synergy_or_deleterious_tradeoff": "Deleterious_CrossGate_Tradeoff"
+      }
+    ],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "22-day Human HIP iPSC-Islets in Diabetic Humanized Mice (Fig. 5l,o & Supplementary Fig. 12f)",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=omitted_text quote_sha256=e1b5834a757c9688943acb1c3fcb26a09b0b47d0f8df4dc37925a0f38730942d]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=omitted_text quote_sha256=5a0efa12828cc0e6cdb2a4db74fb61adcef22682a858f78a58687ead7e052ab3]",
+        "complementary_lever_needed": "Combine HIP editing with Stage 7 ZM447439+NAC+T3 metabolic maturation (Balboa 2022 PMID 35241836) and microvascular fragment co-assembly (Aghazadeh 2021 PMID 34480863) + RNLS KO (Cai 2020 PMID 32719542)."
+      }
+    ],
+    "regime_thresholds": [
+      {
+        "parameter_name": "Surface CD47 Receptor Density on B2M-/- CIITA-/- Human Islet Cells",
+        "critical_threshold_value": 200000.0,
+        "unit": "CD47 molecules per cell (range 180,000-220,000; achieved at lentiviral VCN >= 2)",
+        "below_threshold_behavior": "Rapid missing-self lysis and granzyme B/perforin degranulation by IL-2-activated primary human NK cells and macrophages.",
+        "above_threshold_behavior": "Complete protection from primary human NK cells and macrophages in vitro and in vivo (>600,000 molecules/cell achieved in HIP iPSC-islets)."
+      }
+    ],
+    "high_throughput_screen_hits": []
+  }
+}

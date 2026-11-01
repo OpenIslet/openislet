@@ -1,0 +1,17 @@
+Resource: Protein Data Bank (RCSB PDB / wwPDB)
+Classification: Experimental 3D macromolecular coordinate files (.cif and .pdb) redistributed in public bundle
+Audit Timestamp (UTC): 2026-10-23T09:34:31Z
+Upstream Source & Terms: https://www.rcsb.org/pages/usage-policy and http://www.wwpdb.org/about/privacy (Creative Commons Zero / CC0 1.0 Public Domain Dedication)
+PDB Accessions Shipped:
+  - data/structures/pdb_00001mhe.cif (1MHE: HLA-E*01:01 bound to VMAPRTLFL, O'Callaghan et al. 1998 PMID:9660937)
+  - data/structures/pdb_00003bze.cif (3BZE: HLA-E*01:03 bound to VMAPRTLVL, Hoare et al. 2008 PMID:18339401)
+  - data/structures/pdb_00003cdg.cif (3CDG: HLA-E*01:01 / CD94-NKG2A complex, Petrie et al. 2008 PMID:18332182)
+  - data/structures/pdb_00002jjs.cif (2JJS: CD47-IgV / SIRPalpha V2 complex, Hatherley et al. 2008 PMID:18657508)
+  - data/structures/pdb_00004cmm.cif (4CMM: CD47-IgV / SIRPalpha V1 complex, Hatherley et al. 2014 PMID:24659784)
+  - data/structures/pdb_00004kjy.cif (4KJY: CD47-IgV / high-affinity SIRPalpha FD6 complex, Weiskopf et al. 2013 PMID:23722425)
+  - data/structures/pdb_00004zqk.cif (4ZQK: Human PD-L1 / PD-1 complex, Zak et al. 2015 PMID:26602187)
+  - data/structures/pdb_00001iau.cif (1IAU: Human Granzyme B crystal structure, Rotonda et al. 2001 PMID:11325591)
+  - data/structures/1EFX.pdb (1EFX: HLA-Cw3 / KIR2DL2 complex, Boyington et al. 2000 PMID:10830175)
+  - data/structures/1IM9.pdb (1IM9: HLA-Cw4 / KIR2DL1 complex, Fan et al. 2001 PMID:11290328)
+  - data/structures/pdb_metadata.json (experimental structure metadata index)
+Attribution & Modifications: Unmodified wwPDB mmCIF and legacy PDB coordinate files redistributed in data/structures/ with derived atomic distance and interface metrics in data/extracted/layer3_structural_verification_atlas.json.

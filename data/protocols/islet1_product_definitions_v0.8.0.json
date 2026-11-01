@@ -1,0 +1,1124 @@
+{
+  "schema_version": "0.8.0",
+  "status": "COMPUTATIONAL_VARIANT_CONTRACT_PHYSICAL_GATES_PENDING",
+  "products": [
+    {
+      "product_variant_id": "ISLET1_A4_ARM1A",
+      "family": "A",
+      "aliases": [
+        "SCENARIO_A_ARM_1A_BICISTRONIC_P2A_COMPARATOR",
+        "ARM_1A"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 4,
+      "B": 0,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with locus1 reference cassette",
+        "CIITA": "biallelic LOF intended",
+        "CXCL10": "biallelic endogenous checkpoint swap intended",
+        "AAVS1": "biallelic inducible-caspase9 intended",
+        "TYK2": "unedited starting donor genotype; actual genotype separately declared"
+      },
+      "cassette_topology": {
+        "B2M": "HLA-E-SCT-GSG-P2A-CD47-IgV-GPI",
+        "CXCL10": "SERPINB9-GSG-P2A-PD-L1",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": true,
+      "execution_scope": "reference DNA compiler only; no claim of manufactured cell product or assay pass",
+      "stage0_construct_selection_status": "PREREGISTERED_PENDING",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption intended",
+        "classical_MHC_II": "CIITA LOF intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "pending_assay_gates": [
+        "edited-allele and genome integrity QC",
+        "lineage-specific surface density and immune challenge",
+        "dynamic insulin secretion and differentiation yield",
+        "safety-switch depletion",
+        "exact-product molecular and delivery qualification"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_A4_ARM1A_TYK2_PE",
+      "family": "A",
+      "aliases": [],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [
+        "TYK2"
+      ],
+      "K": 4,
+      "B": 1,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with locus1 reference cassette",
+        "CIITA": "biallelic LOF intended",
+        "CXCL10": "biallelic endogenous checkpoint swap intended",
+        "AAVS1": "biallelic inducible-caspase9 intended",
+        "TYK2": "P1104A intended via prime editing"
+      },
+      "cassette_topology": {
+        "B2M": "HLA-E-SCT-GSG-P2A-CD47-IgV-GPI",
+        "CXCL10": "SERPINB9-GSG-P2A-PD-L1",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": true,
+      "execution_scope": "reference DNA compiler only; no claim of manufactured cell product or assay pass",
+      "stage0_construct_selection_status": "PREREGISTERED_PENDING",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption intended",
+        "classical_MHC_II": "CIITA LOF intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "s8b_epistasis_gate_required": true,
+      "pending_assay_gates": [
+        "edited-allele and genome integrity QC",
+        "lineage-specific surface density and immune challenge",
+        "dynamic insulin secretion and differentiation yield",
+        "safety-switch depletion",
+        "exact-product molecular and delivery qualification",
+        "Stage-0 Rule S8b co-primary X1:X4 / X3:X4 epistasis and 3x2 TYK2 x L3-BF-B satellite check"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_A4_ARM1B",
+      "family": "A",
+      "aliases": [
+        "SCENARIO_A_ARM_1B_UNIVERSAL_LEAN_4LOCUS",
+        "ARM_1B",
+        "ISLET1_A_STAR_4LOCUS",
+        "ISLET1_A4_ARM1B_EMB_A_STAR_4143"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 4,
+      "B": 0,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with locus1 reference cassette",
+        "CIITA": "biallelic LOF intended",
+        "CXCL10": "biallelic endogenous checkpoint swap intended",
+        "AAVS1": "biallelic inducible-caspase9 intended",
+        "TYK2": "unedited starting donor genotype; actual genotype separately declared"
+      },
+      "cassette_topology": {
+        "B2M": "antisense EEF1A1-CD47-IgV-GPI / sense inducible5xISRE-HLA-E-SCT (2A-free)",
+        "CXCL10": "SERPINB9-GSG-P2A-PD-L1",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9"
+      },
+      "locus1_donor_variants_metadata": {
+        "canonical_arm1b_3974bp": {
+          "donor_length_bp": 3974,
+          "packaged_aav6_length_bp": 4264,
+          "donor_sha256": "f74728767987c18bdcb8c9d49773ee8dbe10e6006e57aa622638e4fb07062b0b",
+          "l1_linker_aa": 15,
+          "sense_readthrough_terminator_154bp": false,
+          "b2m_s3_pam_shield": false
+        },
+        "embodiment_a_star_4143bp": {
+          "alias_id": "ISLET1_A_STAR_4LOCUS",
+          "donor_length_bp": 4143,
+          "packaged_aav6_length_bp": 4433,
+          "donor_sha256": "0995f8e35791d219dcc905df4bd50145c9b2a43ddb84efdb502b41dc1f2ae6a8",
+          "l1_linker_aa": 20,
+          "sense_readthrough_terminator_154bp": true,
+          "b2m_s3_pam_shield": true
+        }
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": true,
+      "execution_scope": "reference DNA compiler only; no claim of manufactured cell product or assay pass",
+      "stage0_construct_selection_status": "PREREGISTERED_PENDING",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption intended",
+        "classical_MHC_II": "CIITA LOF intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "pending_assay_gates": [
+        "edited-allele and genome integrity QC",
+        "lineage-specific surface density and immune challenge",
+        "dynamic insulin secretion and differentiation yield",
+        "safety-switch depletion",
+        "exact-product molecular and delivery qualification"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_A4_ARM1B_TYK2_PE",
+      "family": "A",
+      "aliases": [
+        "ISLET1_A_PLUS_TYK2_PE"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [
+        "TYK2"
+      ],
+      "K": 4,
+      "B": 1,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with locus1 reference cassette",
+        "CIITA": "biallelic LOF intended",
+        "CXCL10": "biallelic endogenous checkpoint swap intended",
+        "AAVS1": "biallelic inducible-caspase9 intended",
+        "TYK2": "P1104A intended via prime editing"
+      },
+      "cassette_topology": {
+        "B2M": "antisense EEF1A1-CD47-IgV-GPI / sense inducible5xISRE-HLA-E-SCT (2A-free)",
+        "CXCL10": "SERPINB9-GSG-P2A-PD-L1",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9"
+      },
+      "locus1_donor_variants_metadata": {
+        "canonical_arm1b_3974bp": {
+          "donor_length_bp": 3974,
+          "packaged_aav6_length_bp": 4264,
+          "donor_sha256": "f74728767987c18bdcb8c9d49773ee8dbe10e6006e57aa622638e4fb07062b0b",
+          "l1_linker_aa": 15,
+          "sense_readthrough_terminator_154bp": false,
+          "b2m_s3_pam_shield": false
+        },
+        "embodiment_a_star_4143bp": {
+          "alias_id": "ISLET1_A_STAR_4LOCUS",
+          "donor_length_bp": 4143,
+          "packaged_aav6_length_bp": 4433,
+          "donor_sha256": "0995f8e35791d219dcc905df4bd50145c9b2a43ddb84efdb502b41dc1f2ae6a8",
+          "l1_linker_aa": 20,
+          "sense_readthrough_terminator_154bp": true,
+          "b2m_s3_pam_shield": true
+        }
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": true,
+      "execution_scope": "reference DNA compiler only; no claim of manufactured cell product or assay pass",
+      "stage0_construct_selection_status": "PREREGISTERED_PENDING",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption intended",
+        "classical_MHC_II": "CIITA LOF intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "s8b_epistasis_gate_required": true,
+      "pending_assay_gates": [
+        "edited-allele and genome integrity QC",
+        "lineage-specific surface density and immune challenge",
+        "dynamic insulin secretion and differentiation yield",
+        "safety-switch depletion",
+        "exact-product molecular and delivery qualification",
+        "Stage-0 Rule S8b co-primary X1:X4 / X3:X4 epistasis and 3x2 TYK2 x L3-BF-B satellite check"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_B1_6LOCUS_TYK2_KO_INS",
+      "family": "B",
+      "aliases": [
+        "SCENARIO_B1_HLAC_RETAINED_TYK2_KO_6LOCUS",
+        "ISLET1_CHASSIS_B_HLA_C_RETAINED_6LOCUS_HYPOTHESIS"
+      ],
+      "dsb_or_indel_loci": [
+        "HLA-A",
+        "HLA-B",
+        "CIITA",
+        "CXCL10",
+        "AAVS1",
+        "TYK2"
+      ],
+      "base_or_prime_edit_loci": [
+        "INS"
+      ],
+      "K": 6,
+      "B": 1,
+      "alleles": {
+        "HLA-A": "biallelic LOF proposed",
+        "HLA-B": "biallelic LOF proposed",
+        "HLA-C": "retained KIR-matched donor allele(s), separately parameterized",
+        "B2M": "retained WT",
+        "CIITA": "biallelic LOF proposed",
+        "CXCL10": "2A-free checkpoint cassette proposed; exact donor unresolved",
+        "AAVS1": "biallelic iCasp9 proposed",
+        "TYK2": "biallelic KO proposed",
+        "INS": "epitope-edit locus proposed; exact allele unresolved"
+      },
+      "cassette_topology": {
+        "CXCL10": "2A-free dual-promoter SERPINB9 / PD-L1 proposed; sequence unresolved",
+        "CD47_HLAE": "separate HLA-C-compatible donor design unresolved",
+        "AAVS1": "candidate HNRNPA2B1-proximal455bp/EEF1A1-iCasp9 proposed"
+      },
+      "sequence_materialization_status": "NOT_MATERIALIZED_SEPARATE_DONOR_LEDGER_REQUIRED",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "explicit unmaterialized research comparator; assigned-rule scenario scores are not complete-product benefits",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+      },
+      "hla_retention": {
+        "classical_MHC_I": "HLA-A/HLA-B disruption; HLA-C donor allele(s) retained and separately matched",
+        "classical_MHC_II": "CIITA LOF intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "pending_assay_gates": [
+        "edited-allele and genome integrity QC",
+        "lineage-specific surface density and immune challenge",
+        "dynamic insulin secretion and differentiation yield",
+        "safety-switch depletion",
+        "exact-product molecular and delivery qualification"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_B2_5LOCUS_BASE",
+      "family": "B",
+      "aliases": [],
+      "dsb_or_indel_loci": [
+        "HLA-A",
+        "HLA-B",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 5,
+      "B": 0,
+      "alleles": {
+        "HLA-A": "biallelic LOF proposed",
+        "HLA-B": "biallelic LOF proposed",
+        "HLA-C": "retained KIR-matched donor allele(s), separately parameterized",
+        "B2M": "retained WT",
+        "CIITA": "biallelic LOF proposed",
+        "CXCL10": "2A-free checkpoint cassette proposed; exact donor unresolved",
+        "AAVS1": "biallelic iCasp9 proposed",
+        "TYK2": "unedited starting donor genotype; natural P1104A separately declared",
+        "INS": "WT"
+      },
+      "cassette_topology": {
+        "CXCL10": "2A-free dual-promoter SERPINB9 / PD-L1 proposed; sequence unresolved",
+        "CD47_HLAE": "separate HLA-C-compatible donor design unresolved",
+        "AAVS1": "candidate HNRNPA2B1-proximal455bp/EEF1A1-iCasp9 proposed"
+      },
+      "sequence_materialization_status": "NOT_MATERIALIZED_SEPARATE_DONOR_LEDGER_REQUIRED",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "explicit unmaterialized research comparator; assigned-rule scenario scores are not complete-product benefits",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+      },
+      "hla_retention": {
+        "classical_MHC_I": "HLA-A/HLA-B disruption; HLA-C donor allele(s) retained and separately matched",
+        "classical_MHC_II": "CIITA LOF intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "pending_assay_gates": [
+        "edited-allele and genome integrity QC",
+        "lineage-specific surface density and immune challenge",
+        "dynamic insulin secretion and differentiation yield",
+        "safety-switch depletion",
+        "exact-product molecular and delivery qualification"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_B2_5LOCUS_TYK2_PE",
+      "family": "B",
+      "aliases": [
+        "SCENARIO_B_HLAC_RETAINED_TYK2_P1104A_SUPERDONOR",
+        "SCENARIO_B2_HLAC_RETAINED_TYK2_P1104A_5LOCUS"
+      ],
+      "dsb_or_indel_loci": [
+        "HLA-A",
+        "HLA-B",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [
+        "TYK2"
+      ],
+      "K": 5,
+      "B": 1,
+      "alleles": {
+        "HLA-A": "biallelic LOF proposed",
+        "HLA-B": "biallelic LOF proposed",
+        "HLA-C": "retained KIR-matched donor allele(s), separately parameterized",
+        "B2M": "retained WT",
+        "CIITA": "biallelic LOF proposed",
+        "CXCL10": "2A-free checkpoint cassette proposed; exact donor unresolved",
+        "AAVS1": "biallelic iCasp9 proposed",
+        "TYK2": "P1104A intended via prime editing",
+        "INS": "WT"
+      },
+      "cassette_topology": {
+        "CXCL10": "2A-free dual-promoter SERPINB9 / PD-L1 proposed; sequence unresolved",
+        "CD47_HLAE": "separate HLA-C-compatible donor design unresolved",
+        "AAVS1": "candidate HNRNPA2B1-proximal455bp/EEF1A1-iCasp9 proposed"
+      },
+      "sequence_materialization_status": "NOT_MATERIALIZED_SEPARATE_DONOR_LEDGER_REQUIRED",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "explicit unmaterialized research comparator; assigned-rule scenario scores are not complete-product benefits",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+      },
+      "hla_retention": {
+        "classical_MHC_I": "HLA-A/HLA-B disruption; HLA-C donor allele(s) retained and separately matched",
+        "classical_MHC_II": "CIITA LOF intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "pending_assay_gates": [
+        "edited-allele and genome integrity QC",
+        "lineage-specific surface density and immune challenge",
+        "dynamic insulin secretion and differentiation yield",
+        "safety-switch depletion",
+        "exact-product molecular and delivery qualification"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_A4_X_MOL_RNLS_WT",
+      "family": "A",
+      "aliases": [
+        "ISLET1_X_MOL_RNLS_WT",
+        "DESIGN_X_MOL_RNLS_SUBTRACTED"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 4,
+      "B": 0,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with Embodiment A* 4143bp cassette (materialized W_P=-1 baseline for Stage-0 RNLS+/+ lock; unmaterialized W_P=+1 Arm 1X challenger uses Syn_3xISRE_CpGminP_230bp_sense at 4,225 bp)",
+        "CIITA": "biallelic LOF intended",
+        "CXCL10": "biallelic endogenous checkpoint swap intended",
+        "AAVS1": "biallelic inducible-caspase9 intended",
+        "TYK2": "unedited starting donor genotype; actual genotype separately declared",
+        "RNLS": "unedited WT retained (RNLS+/+ subtracted per MacDonald 2025 PMID:39988068)"
+      },
+      "cassette_topology": {
+        "B2M": "antisense EEF1A1-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible5xISRE-HLA-E-SCT 20aa L1 (4,143 bp materialized baseline; or W_P=+1 Syn_3xISRE_CpGminP_230bp_sense 4,225 bp in Arm 1X)",
+        "CD47_HLAE": "antisense EEF1A1(native CTTTTT 5'TOP in canonical pinned 0995f8e3...; optional 5'TOP-CAGAGA in challenger 28b6882c...)-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible5xISRE-HLA-E-SCT 20aa L1 (4,143 bp)",
+        "CXCL10": "SERPINB9-GSG-P2A-PD-L1 (or scar-free / L3-BF-B basal-floor challenger per Gate 0C-kinetic)",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": true,
+      "execution_scope": "reference DNA compiler only (materialized 4,143-bp Embodiment A* baseline under RNLS+/+ lock; serves as the Stage-0 registry anchor for the unmaterialized 4,225-bp W_P=+1 Syn_3xISRE_CpGminP_230bp_sense Arm 1X challenger); no claim of manufactured cell product or assay pass",
+      "stage0_construct_selection_status": "PREREGISTERED_PENDING",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption intended",
+        "classical_MHC_II": "CIITA LOF intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "pending_assay_gates": [
+        "edited-allele and genome integrity QC",
+        "lineage-specific surface density and immune challenge",
+        "dynamic insulin secretion and differentiation yield",
+        "safety-switch depletion",
+        "exact-product molecular and delivery qualification"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_A4_DXS_ARM1C_L4CD47",
+      "family": "A",
+      "aliases": [
+        "ISLET1_DXS_ARM1C_L4CD47",
+        "DESIGN_X_SPLIT_CASSETTE_DXS"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 4,
+      "B": 0,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with monocistronic Arm 1C HLA-E-SCT cassette",
+        "CIITA": "biallelic LOF intended",
+        "CXCL10": "biallelic endogenous checkpoint swap intended",
+        "AAVS1": "biallelic bicistronic iCasp9-GSG-tPT2A-CD47-IgV-GPI intended (single-locus shield+switch correlation priced per AUDIT-REF)"
+      },
+      "cassette_topology": {
+        "B2M": "Arm 1C monocistronic B2M::HLA-E-SCT (3,459 bp promoter-trapped [3,749 bp packaged with 2x145-bp ITRs] / 3,300 bp constitutive EEF1A1-5'TOP-CAGAGA PAM/uORF-shielded including 225-bp bGHpA [3,590 bp packaged with 2x145-bp ITRs; 600 HA-L + 230 EEF1A1 + 133 intron + 9 Kozak + 1503 SCT-stop + 225 bGHpA + 600 HA-R])",
+        "CD47_HLAE": "B2M Arm 1C HLA-E-SCT + AAVS1 EEF1A1(5'TOP-CAGAGA)-iCasp9-GSG-tPT2A-CD47-IgV-GPI",
+        "CXCL10": "SERPINB9-GSG-P2A-PD-L1 (or L3-BF-B basal-floor challenger)",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1(5'TOP-CAGAGA)-iCasp9-GSG-tPT2A-CD47-IgV-GPI (U1-600G splice-rescued, 4,048 bp PAM-shielded donor)"
+      },
+      "single_locus_shield_switch_correlation_qualification_muse_r3": {
+        "co_located_safeguards_at_aavs1": [
+          "CD47-IgV-GPI myeloid shield",
+          "iCasp9 AP1903 suicide switch"
+        ],
+        "common_mode_silencing_or_loh_couples_shield_and_switch": true,
+        "required_stage0_gate": "Clone-level joint-retention assay (flow CD47 density x AP1903 log10 kill correlated at single-clone level after 30-day stress-ageing; AAVS1 silencing rate priced as joint failure probability in stage0_decision_tree_v1.json S1)"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": true,
+      "execution_scope": "reference DNA compiler only; no claim of manufactured cell product or assay pass",
+      "stage0_construct_selection_status": "PREREGISTERED_PENDING",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption intended",
+        "classical_MHC_II": "CIITA LOF intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "pending_assay_gates": [
+        "edited-allele and genome integrity QC",
+        "lineage-specific surface density and immune challenge",
+        "dynamic insulin secretion and differentiation yield",
+        "safety-switch depletion",
+        "exact-product molecular and delivery qualification",
+        "clone-level AAVS1 CD47 x iCasp9 joint-retention stress-ageing gate"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_A4_L3_SCARFREE_3799",
+      "family": "A",
+      "aliases": [
+        "ISLET1_L3_SCARFREE_3799",
+        "LOCUS3_SCARFREE_DUAL_PROMOTER_3799BP"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 4,
+      "B": 0,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with Embodiment A* 4143bp cassette",
+        "CIITA": "biallelic LOF intended",
+        "CXCL10": "biallelic scar-free dual-promoter SERPINB9 + PD-L1 knock-in (3,799 bp donor)",
+        "AAVS1": "biallelic inducible-caspase9 intended"
+      },
+      "cassette_topology": {
+        "B2M": "antisense EEF1A1-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible5xISRE-HLA-E-SCT 20aa L1 (4,143 bp)",
+        "CD47_HLAE": "antisense EEF1A1(native CTTTTT 5'TOP in canonical pinned 0995f8e3...; optional 5'TOP-CAGAGA in challenger 28b6882c...)-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible5xISRE-HLA-E-SCT 20aa L1 (4,143 bp)",
+        "CXCL10": "Scar-free native-C-terminus SERPINB9-STOP (1,131 bp, Pro376-COOH) + SV40pA (122 bp) + 82 bp spacer + Syn_5xISRE_minP (148 bp) + PD-L1 (873 bp) + bGHpA (225 bp) (3,799 bp donor / 4,089 bp packaged)",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9"
+      },
+      "scar_free_serpinb9_376aa_at_stop": true,
+      "pdl1_p2a_plus1_proline_cleaved_by_er_spase_at_ala18": false,
+      "pdl1_2a_free_native_met1_signal_peptide": true,
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": true,
+      "execution_scope": "reference DNA compiler only; no claim of manufactured cell product or assay pass",
+      "stage0_construct_selection_status": "PREREGISTERED_PENDING",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption intended",
+        "classical_MHC_II": "CIITA LOF intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "pending_assay_gates": [
+        "edited-allele and genome integrity QC",
+        "lineage-specific surface density and immune challenge",
+        "dynamic insulin secretion and differentiation yield",
+        "safety-switch depletion",
+        "exact-product molecular and delivery qualification"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_A4_L3_BFB_BASALFLOOR",
+      "family": "A",
+      "aliases": [
+        "ISLET1_L3_BFB_BASALFLOOR",
+        "LOCUS3_L3_BF_B_BASALFLOOR_4078BP"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 4,
+      "B": 0,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with Embodiment A* 4143bp cassette",
+        "CIITA": "biallelic LOF intended",
+        "CXCL10": "biallelic L3-BF-B basal-floor scar-free dual-promoter SERPINB9 + PD-L1 knock-in (4,078 bp donor)",
+        "AAVS1": "biallelic inducible-caspase9 intended"
+      },
+      "cassette_topology": {
+        "B2M": "antisense EEF1A1-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible5xISRE-HLA-E-SCT 20aa L1 (4,143 bp)",
+        "CD47_HLAE": "antisense EEF1A1(native CTTTTT 5'TOP in canonical pinned 0995f8e3...; optional 5'TOP-CAGAGA in challenger 28b6882c...)-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible5xISRE-HLA-E-SCT 20aa L1 (4,143 bp)",
+        "CXCL10": "SPA(49) + Syn_3xISRE_2xNFkB_hPGK1_Sp1_basalfloor_230(zero 5'TOP tract; 15-34% Sp1 basal floor -> 0.30 uM Hour-0 SERPINB9 + 0.89 uM 24h IFN-gamma surge [33.7% ratio]) + Kozak(9) + scar-free SERPINB9-STOP(1131, Pro376-COOH) + SV40pA(122) + spacer(82) + Syn_5xISRE_minP(148) + Kozak(9) + PD-L1(873) + bGHpA(225) (4,078 bp donor / 4,368 bp packaged, +332 bp AAV6 headroom; AUDIT-REF / AUDIT-REF / AUDIT-REF)",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9"
+      },
+      "scar_free_serpinb9_376aa_at_stop": true,
+      "pdl1_p2a_plus1_proline_cleaved_by_er_spase_at_ala18": false,
+      "pdl1_2a_free_native_met1_signal_peptide": true,
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": true,
+      "execution_scope": "reference DNA compiler only; no claim of manufactured cell product or assay pass",
+      "stage0_construct_selection_status": "PREREGISTERED_PENDING",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption intended",
+        "classical_MHC_II": "CIITA LOF intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "pending_assay_gates": [
+        "edited-allele and genome integrity QC",
+        "lineage-specific surface density and immune challenge",
+        "dynamic insulin secretion and differentiation yield",
+        "safety-switch depletion",
+        "exact-product molecular and delivery qualification",
+        "Gate 0C-kinetic Hour-0 SERPINB9 >= 0.30 uM and 2h Regime-II lysis <= 8%"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_B_SCT_C1_CIITA",
+      "family": "B",
+      "aliases": [
+        "ISLET1_BPRIME_SCT_C1",
+        "DESIGN_B_PRIME_SCT_C1_HLA_C0304"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 4,
+      "B": 0,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with Embodiment A* 4143bp cassette",
+        "CIITA": "biallelic LOF with chr6-free B2M-(G4S)4-HLA-C*03:04(GAVDPLLAL, Y84A) single-chain trimer knock-in",
+        "HLA-C": "retained C1 KIR2DL2/3 ligand function via chr6-free CIITA::B2M-(G4S)4-HLA-C*03:04(GAVDPLLAL) fixed-self-peptide single-chain trimer (endogenous chr6 HLA-C unassembled in B2M-/-; avoids 1.41 Mb 6p21.3 deletion and TAP-dependent allopeptidome; AUDIT-REF / AUDIT-REF)",
+        "CXCL10": "biallelic L3-BF-B or scar-free dual-promoter SERPINB9 / PD-L1 proposed",
+        "AAVS1": "biallelic iCasp9 proposed"
+      },
+      "cassette_topology": {
+        "B2M": "antisense EEF1A1-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible5xISRE-HLA-E-SCT 20aa L1 (4,143 bp)",
+        "CD47_HLAE": "antisense EEF1A1(native CTTTTT 5'TOP in canonical pinned 0995f8e3...; optional 5'TOP-CAGAGA in challenger 28b6882c...)-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible5xISRE-HLA-E-SCT 20aa L1 (4,143 bp)",
+        "CIITA": "EEF1A1_core_230(5'TOP-CAGAGA) + Chimeric_Intron(133) + Kozak + B2M_SP(20aa)-GAVDPLLAL(9aa, human KPNA1/2 self-peptide PDB:1EFX)-L1[(G4S)4_20aa]-B2M(99aa)-L2[(G4S)4_20aa]-HLA-C*03:04(C1 Asn80, Y84A F-pocket exit channel for KIR2DL2/3 clearance) + bGHpA(225) + SPA+MAZ4(154, DEXI insulator) at CIITA exon 5 (3,465 bp donor / 3,755 bp packaged)",
+        "CXCL10": "L3-BF-B basal-floor or scar-free dual-promoter SERPINB9 / PD-L1",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9"
+      },
+      "hlac_sct_biophysical_spec_argon_r4": {
+        "tethered_self_peptide": "GAVDPLLAL",
+        "self_peptide_origin": "Human importin-alpha-1 (KPNA2, UniProt P52292 residues 204-212), crystallized with HLA-C*03:04:KIR2DL2 in PDB:1EFX (Boyington et al. 2000 PMID:10850706; replaces Influenza A M1 viral peptide GILGFVFTL)",
+        "l1_linker": "20-aa (G4S)4 (or 25-aa (G4S)5 on WT-Y84 challenger)",
+        "l2_linker": "20-aa (G4S)4",
+        "f_pocket_exit_engineering": "HLA-C*03:04 Tyr84Ala lateral F-pocket exit channel (or WT-Y84 with 25-aa L1 / Y84C-A139C disulfide trap; because native Tyr84:OH lies 3.5584 A from KIR2DL2 Asp183:OD2 with 4 atom pairs <4.5 A in PDB:1EFX [Moradi et al. 2021 PMID:33846289; AUDIT-REF], Y84A cannot inherit native K_D and requires monomeric SPR + primary KIR2DL2/3+ NK functional comparison)",
+        "ciita_exon5_constitutive_promoter": "EEF1A1_core_230 (5'TOP CAGAGA) + 154-bp SPA+MAZ4 pause terminator (transcriptional termination control at CIITA exon 5; isogenic DEXI/CLEC16A/SOCS1 expression verification required)",
+        "mandatory_stage0_gate": "Gate 0B-SCT monomeric KIR2DL2/3 SPR (K_D <= 10.29 uM), primary KIR2DL2/3+ NKG2A- NK inhibition, recipient-serum anti-HLA-C CDC/ADCC negative crossmatch (Aubert et al. 2014 PMID:24804568), and recipient CD8+ MLC non-reactivity (Whitelegg et al. 2005 PMID:16034111)"
+      },
+      "sequence_materialization_status": "NOT_MATERIALIZED_SEPARATE_DONOR_LEDGER_REQUIRED",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "B-prime SCT pivot candidate (K=4, B=0, P_passes=2); requires CIITA::HLA-C-SCT donor sequence materialization and Gate 0B-SCT KIR2DL2/3-Fc & peptide/CD8 verification before execution_supported=true",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption; C1 KIR2DL2/3 ligand provided by fixed-peptide CIITA::HLA-C*03:04(GAVDPLLAL) SCT without endogenous peptidome presentation",
+        "classical_MHC_II": "CIITA LOF intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "pending_assay_gates": [
+        "edited-allele and genome integrity QC",
+        "Gate 0B-SCT monomeric KIR2DL2/3 SPR & tetramer binding, primary KIR2DL2/3+ NK lysis inhibition, recipient-serum anti-HLA-C CDC/ADCC crossmatch, and foreign-donor CD8 MLC non-reactivity",
+        "LC-MS/MS immunopeptidomics confirming single covalent GAVDPLLAL self-peptide without endogenous peptide exchange",
+        "dynamic insulin secretion and differentiation yield",
+        "safety-switch depletion"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_B_SCT_C2_CIITA",
+      "family": "B",
+      "aliases": [
+        "ISLET1_BPRIME_SCT_C2",
+        "DESIGN_B_PRIME_SCT_C2_HLA_C0401"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 4,
+      "B": 0,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with Embodiment A* 4143bp cassette",
+        "CIITA": "biallelic LOF with chr6-free B2M-(G4S)4-HLA-C*04:01(QYDDAVYKL, Y84A) single-chain trimer knock-in",
+        "HLA-C": "retained C2 KIR2DL1 ligand function via chr6-free CIITA::B2M-(G4S)4-HLA-C*04:01(QYDDAVYKL) fixed-peptide single-chain trimer (endogenous chr6 HLA-C unassembled in B2M-/-; avoids 1.41 Mb 6p21.3 deletion and TAP-dependent allopeptidome; AUDIT-REF / AUDIT-REF / AUDIT-REF)",
+        "CXCL10": "biallelic L3-BF-B or scar-free dual-promoter SERPINB9 / PD-L1 proposed",
+        "AAVS1": "biallelic iCasp9 proposed"
+      },
+      "cassette_topology": {
+        "B2M": "antisense EEF1A1-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible5xISRE-HLA-E-SCT 20aa L1 (4,143 bp)",
+        "CD47_HLAE": "antisense EEF1A1(native CTTTTT 5'TOP in canonical pinned 0995f8e3...; optional 5'TOP-CAGAGA in challenger 28b6882c...)-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible5xISRE-HLA-E-SCT 20aa L1 (4,143 bp)",
+        "CIITA": "EEF1A1_core_230(5'TOP-CAGAGA) + Chimeric_Intron(133) + Kozak + B2M_SP(20aa)-QYDDAVYKL(9aa, HLA-Cw4 crystallographic consensus peptide PDB:1IM9; Fan & Wiley 1999 PMID:10429675)-L1[(G4S)4_20aa]-B2M(99aa)-L2[(G4S)4_20aa]-HLA-C*04:01(C2 Lys80, Y84A F-pocket exit channel for KIR2DL1 clearance) + bGHpA(225) + SPA+MAZ4(154, transcriptional terminator) at CIITA exon 5 (3,465 bp donor / 3,755 bp packaged)",
+        "CXCL10": "L3-BF-B basal-floor or scar-free dual-promoter SERPINB9 / PD-L1",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9"
+      },
+      "hlac_sct_biophysical_spec_argon_r4": {
+        "tethered_consensus_peptide": "QYDDAVYKL",
+        "tethered_self_peptide": "QYDDAVYKL",
+        "self_peptide_origin": "Crystallographic HLA-Cw4 consensus nonamer in PDB:1IM9 (Fan & Wiley 1999 PMID:10429675; Fan et al. 2001 PMID:11323700; not an established endogenous TUBB fragment, requiring all-recipient CD8+ MLC self-tolerance + activating KIR2DS1 [K_D=30 uM vs KIR2DL1 K_D=7.2 uM; Stewart et al. 2005 PMID:16141329] non-activation qualification alongside a verified endogenous HLA-C*04:01 self-peptide challenger; AUDIT-REF & AUDIT-REF)",
+        "l1_linker": "20-aa (G4S)4 (or 25-aa (G4S)5 on WT-Y84 challenger)",
+        "l2_linker": "20-aa (G4S)4",
+        "f_pocket_exit_engineering": "HLA-C*04:01 Tyr84Ala lateral F-pocket exit channel (or WT-Y84 with 25-aa L1 / Y84C-A139C alpha1-alpha2 staple / Y84C-L1[Cys2] peptide-linker disulfide trap; native Tyr84:OH and Tyr84:CE1 lie 3.3037 A and 3.2425 A from KIR2DL1 Asp183:OD2 with 8 atom pairs <4.5 A in PDB:1IM9; AUDIT-REF & AUDIT-REF)",
+        "ciita_exon5_constitutive_promoter": "EEF1A1_core_230 (5'TOP CAGAGA) + 154-bp SPA+MAZ4 pause terminator (transcriptional termination control at CIITA exon 5; isogenic DEXI/CLEC16A/SOCS1 expression verification required)",
+        "mandatory_stage0_gate": "Gate 0B-SCT monomeric KIR2DL1 SPR (K_D <= 10.29 uM), KIR2DS1+/KIR2DL1- primary NK non-activation (Stewart et al. 2005 PMID:16141329; Pittari et al. 2013 PMID:23554313), recipient-serum anti-HLA-C CDC/ADCC negative crossmatch (Aubert et al. 2014 PMID:24804568), and all-recipient (including 4-digit heavy-chain-matched) CD8+ MLC non-reactivity"
+      },
+      "sequence_materialization_status": "NOT_MATERIALIZED_SEPARATE_DONOR_LEDGER_REQUIRED",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "B-prime SCT pivot candidate (K=4, B=0, P_passes=2); requires CIITA::HLA-C-SCT donor sequence materialization and Gate 0B-SCT KIR2DL1-Fc & peptide/CD8 verification before execution_supported=true",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption; C2 KIR2DL1 ligand provided by fixed-peptide CIITA::HLA-C*04:01(QYDDAVYKL) SCT without endogenous peptidome presentation",
+        "classical_MHC_II": "CIITA LOF intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "pending_assay_gates": [
+        "edited-allele and genome integrity QC",
+        "Gate 0B-SCT monomeric KIR2DL1 SPR & tetramer binding, KIR2DS1+/KIR2DL1- primary NK non-activation, recipient-serum anti-HLA-C CDC/ADCC crossmatch, and foreign-donor CD8 MLC non-reactivity",
+        "LC-MS/MS immunopeptidomics confirming single covalent QYDDAVYKL consensus peptide without endogenous peptide exchange",
+        "dynamic insulin secretion and differentiation yield",
+        "safety-switch depletion"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_B_SCT_C1_CIITA_TYK2_PE",
+      "family": "B",
+      "aliases": [
+        "ISLET1_BPRIME_SCT_C1_TYK2_PE"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [
+        "TYK2"
+      ],
+      "K": 4,
+      "B": 1,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with Embodiment A* 4143bp cassette",
+        "CIITA": "biallelic LOF with chr6-free B2M-(G4S)4-HLA-C*03:04(GAVDPLLAL, Y84A) single-chain trimer knock-in",
+        "HLA-C": "retained C1 KIR2DL2/3 ligand function via chr6-free CIITA::B2M-(G4S)4-HLA-C*03:04(GAVDPLLAL) fixed-self-peptide single-chain trimer",
+        "CXCL10": "biallelic L3-BF-B basal-floor or scar-free dual-promoter SERPINB9 / PD-L1 proposed",
+        "AAVS1": "biallelic iCasp9 proposed",
+        "TYK2": "homozygous P1104A (rs34536443) hypomorph prime edit proposed"
+      },
+      "cassette_topology": {
+        "B2M": "antisense EEF1A1(native CTTTTT 5'TOP in canonical pinned 0995f8e3...; optional 5'TOP-CAGAGA in challenger 28b6882c...)-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible5xISRE-HLA-E-SCT 20aa L1 (4,143 bp)",
+        "CD47_HLAE": "antisense EEF1A1(native CTTTTT 5'TOP in canonical pinned 0995f8e3...; optional 5'TOP-CAGAGA in challenger 28b6882c...)-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible5xISRE-HLA-E-SCT 20aa L1 (4,143 bp)",
+        "CIITA": "EEF1A1_core_230(5'TOP-CAGAGA) + B2M_SP-GAVDPLLAL-(G4S)4-B2M-(G4S)4-HLA-C*03:04(Y84A) + bGHpA + SPA+MAZ4 at CIITA exon 5 (3,465 bp donor)",
+        "CXCL10": "L3-BF-B basal-floor SERPINB9 + inducible PD-L1 (4,078 bp)",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9"
+      },
+      "sequence_materialization_status": "NOT_MATERIALIZED_SEPARATE_DONOR_LEDGER_REQUIRED",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "B-prime SCT + TYK2 P1104A candidate (K=4, B=1, P_passes=3)",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": ["beta", "alpha", "delta", "isogenic_iEC", "isogenic_iPericytes"],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption; C1 KIR2DL2/3 ligand provided by fixed-peptide CIITA::HLA-C*03:04(GAVDPLLAL) SCT",
+        "classical_MHC_II": "CIITA LOF intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "pending_assay_gates": [
+        "edited-allele and genome integrity QC",
+        "Gate 0B-SCT monomeric KIR2DL2/3 SPR (K_D <= 10.29 uM), primary KIR2DL2/3+ NK lysis inhibition, recipient-serum anti-HLA-C CDC/ADCC crossmatch, and recipient CD8 MLC non-reactivity",
+        "LC-MS/MS immunopeptidomics confirming single covalent GAVDPLLAL self-peptide without endogenous peptide exchange",
+        "TYK2 P1104A homozygosity and ISRE interaction check",
+        "safety-switch depletion"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_B_SCT_C2_CIITA_TYK2_PE",
+      "family": "B",
+      "aliases": [
+        "ISLET1_BPRIME_SCT_C2_TYK2_PE"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [
+        "TYK2"
+      ],
+      "K": 4,
+      "B": 1,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with Embodiment A* 4143bp cassette",
+        "CIITA": "biallelic LOF with chr6-free B2M-(G4S)4-HLA-C*04:01(QYDDAVYKL, Y84A) single-chain trimer knock-in",
+        "HLA-C": "retained C2 KIR2DL1 ligand function via chr6-free CIITA::B2M-(G4S)4-HLA-C*04:01(QYDDAVYKL) fixed-consensus-peptide single-chain trimer",
+        "CXCL10": "biallelic L3-BF-B basal-floor or scar-free dual-promoter SERPINB9 / PD-L1 proposed",
+        "AAVS1": "biallelic iCasp9 proposed",
+        "TYK2": "homozygous P1104A (rs34536443) hypomorph prime edit proposed"
+      },
+      "cassette_topology": {
+        "B2M": "antisense EEF1A1(native CTTTTT 5'TOP in canonical pinned 0995f8e3...; optional 5'TOP-CAGAGA in challenger 28b6882c...)-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible5xISRE-HLA-E-SCT 20aa L1 (4,143 bp)",
+        "CD47_HLAE": "antisense EEF1A1(native CTTTTT 5'TOP in canonical pinned 0995f8e3...; optional 5'TOP-CAGAGA in challenger 28b6882c...)-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible5xISRE-HLA-E-SCT 20aa L1 (4,143 bp)",
+        "CIITA": "EEF1A1_core_230(5'TOP-CAGAGA) + B2M_SP-QYDDAVYKL-(G4S)4-B2M-(G4S)4-HLA-C*04:01(Y84A) + bGHpA + SPA+MAZ4 at CIITA exon 5 (3,465 bp donor)",
+        "CXCL10": "L3-BF-B basal-floor SERPINB9 + inducible PD-L1 (4,078 bp)",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9"
+      },
+      "sequence_materialization_status": "NOT_MATERIALIZED_SEPARATE_DONOR_LEDGER_REQUIRED",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "B-prime SCT + TYK2 P1104A candidate (K=4, B=1, P_passes=3)",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": ["beta", "alpha", "delta", "isogenic_iEC", "isogenic_iPericytes"],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption; C2 KIR2DL1 ligand provided by fixed-consensus-peptide CIITA::HLA-C*04:01(QYDDAVYKL) SCT",
+        "classical_MHC_II": "CIITA LOF intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "pending_assay_gates": [
+        "edited-allele and genome integrity QC",
+        "Gate 0B-SCT monomeric KIR2DL1 SPR (K_D <= 10.29 uM), KIR2DS1+/KIR2DL1- primary NK non-activation, recipient-serum anti-HLA-C CDC/ADCC crossmatch, and all-recipient CD8 MLC non-reactivity",
+        "LC-MS/MS immunopeptidomics confirming single covalent QYDDAVYKL consensus peptide without endogenous peptide exchange",
+        "TYK2 P1104A homozygosity and ISRE interaction check",
+        "safety-switch depletion"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_B_SCT_C1C2_CIITA",
+      "family": "B",
+      "aliases": [
+        "ISLET1_B_SCT_C1_CIITA_PLUS_C2_SUBBANK",
+        "ISLET1_BPRIME_SCT_C1C2"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 4,
+      "B": 0,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with Embodiment A* 4143bp cassette",
+        "CIITA": "biallelic LOF with heteroallelic C1/C2 CIITA::HLA-C*03:04(GAVDPLLAL, Y84A) / CIITA::HLA-C*04:01(QYDDAVYKL, Y84A) single-chain trimer knock-in",
+        "HLA-C": "retained dual C1+C2 KIR2DL1/2/3 ligand function via heteroallelic CIITA::HLA-C*03:04(GAVDPLLAL) + CIITA::HLA-C*04:01(QYDDAVYKL) fixed-peptide SCTs",
+        "CXCL10": "biallelic L3-BF-B basal-floor or scar-free dual-promoter SERPINB9 / PD-L1 proposed",
+        "AAVS1": "biallelic iCasp9 proposed"
+      },
+      "cassette_topology": {
+        "B2M": "antisense EEF1A1(native CTTTTT 5'TOP in canonical pinned 0995f8e3...; optional 5'TOP-CAGAGA in challenger 28b6882c...)-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible5xISRE-HLA-E-SCT 20aa L1 (4,143 bp)",
+        "CD47_HLAE": "antisense EEF1A1(native CTTTTT 5'TOP in canonical pinned 0995f8e3...; optional 5'TOP-CAGAGA in challenger 28b6882c...)-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible5xISRE-HLA-E-SCT 20aa L1 (4,143 bp)",
+        "CIITA": "heteroallelic EEF1A1_core_230(5'TOP-CAGAGA) -> HLA-C*03:04(GAVDPLLAL, Y84A) SCT (allele 1) / HLA-C*04:01(QYDDAVYKL, Y84A) SCT (allele 2) + bGHpA + SPA+MAZ4 at CIITA exon 5",
+        "CXCL10": "L3-BF-B basal-floor SERPINB9 + inducible PD-L1 (4,078 bp)",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9"
+      },
+      "sequence_materialization_status": "NOT_MATERIALIZED_SEPARATE_DONOR_LEDGER_REQUIRED",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "B-prime SCT C1/C2 heteroallelic sub-bank candidate (K=4, B=0, P_passes=2)",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": ["beta", "alpha", "delta", "isogenic_iEC", "isogenic_iPericytes"],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption; dual C1+C2 KIR2DL1/2/3 ligands provided by fixed-peptide CIITA::HLA-C*03:04(GAVDPLLAL) + HLA-C*04:01(QYDDAVYKL) SCTs",
+        "classical_MHC_II": "CIITA LOF intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "pending_assay_gates": [
+        "edited-allele and genome integrity QC",
+        "Gate 0B-SCT monomeric KIR2DL1 and KIR2DL2/3 SPR (K_D <= 10.29 uM), KIR2DS1+/KIR2DL1- primary NK non-activation, recipient-serum anti-HLA-C CDC/ADCC crossmatch, and all-recipient CD8 MLC non-reactivity",
+        "LC-MS/MS immunopeptidomics confirming single covalent GAVDPLLAL and QYDDAVYKL peptides without endogenous peptide exchange",
+        "safety-switch depletion"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_B_SCT_C1C2_CIITA_TYK2_PE",
+      "family": "B",
+      "aliases": [
+        "ISLET1_B_SCT_C1_CIITA_PLUS_C2_SUBBANK_TYK2_PE",
+        "ISLET1_BPRIME_SCT_C1C2_TYK2_PE"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [
+        "TYK2"
+      ],
+      "K": 4,
+      "B": 1,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with Embodiment A* 4143bp cassette",
+        "CIITA": "biallelic LOF with heteroallelic C1/C2 CIITA::HLA-C*03:04(GAVDPLLAL, Y84A) / CIITA::HLA-C*04:01(QYDDAVYKL, Y84A) single-chain trimer knock-in",
+        "HLA-C": "retained dual C1+C2 KIR2DL1/2/3 ligand function via heteroallelic CIITA::HLA-C*03:04(GAVDPLLAL) + CIITA::HLA-C*04:01(QYDDAVYKL) fixed-peptide SCTs",
+        "CXCL10": "biallelic L3-BF-B basal-floor or scar-free dual-promoter SERPINB9 / PD-L1 proposed",
+        "AAVS1": "biallelic iCasp9 proposed",
+        "TYK2": "homozygous P1104A (rs34536443) hypomorph prime edit proposed"
+      },
+      "cassette_topology": {
+        "B2M": "antisense EEF1A1(native CTTTTT 5'TOP in canonical pinned 0995f8e3...; optional 5'TOP-CAGAGA in challenger 28b6882c...)-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible5xISRE-HLA-E-SCT 20aa L1 (4,143 bp)",
+        "CD47_HLAE": "antisense EEF1A1(native CTTTTT 5'TOP in canonical pinned 0995f8e3...; optional 5'TOP-CAGAGA in challenger 28b6882c...)-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible5xISRE-HLA-E-SCT 20aa L1 (4,143 bp)",
+        "CIITA": "heteroallelic EEF1A1_core_230(5'TOP-CAGAGA) -> HLA-C*03:04(GAVDPLLAL, Y84A) SCT (allele 1) / HLA-C*04:01(QYDDAVYKL, Y84A) SCT (allele 2) + bGHpA + SPA+MAZ4 at CIITA exon 5",
+        "CXCL10": "L3-BF-B basal-floor SERPINB9 + inducible PD-L1 (4,078 bp)",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9"
+      },
+      "sequence_materialization_status": "NOT_MATERIALIZED_SEPARATE_DONOR_LEDGER_REQUIRED",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "B-prime SCT C1/C2 heteroallelic + TYK2 P1104A candidate (K=4, B=1, P_passes=3)",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": ["beta", "alpha", "delta", "isogenic_iEC", "isogenic_iPericytes"],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption; dual C1+C2 KIR2DL1/2/3 ligands provided by fixed-peptide CIITA::HLA-C*03:04(GAVDPLLAL) + HLA-C*04:01(QYDDAVYKL) SCTs",
+        "classical_MHC_II": "CIITA LOF intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "pending_assay_gates": [
+        "edited-allele and genome integrity QC",
+        "Gate 0B-SCT monomeric KIR2DL1 and KIR2DL2/3 SPR (K_D <= 10.29 uM), KIR2DS1+/KIR2DL1- primary NK non-activation, recipient-serum anti-HLA-C CDC/ADCC crossmatch, and all-recipient CD8 MLC non-reactivity",
+        "LC-MS/MS immunopeptidomics confirming single covalent GAVDPLLAL and QYDDAVYKL peptides without endogenous peptide exchange",
+        "TYK2 P1104A homozygosity and ISRE interaction check",
+        "safety-switch depletion"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_COMP_R4_X_BFB_DXB_LOWLOAD1500",
+      "family": "A",
+      "aliases": [
+        "ISLET1_COMP_R4_COMPOSITE_RESEARCH_LEAD"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 4,
+      "B": 0,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with Arm 1X constitutive EEF1A1_core_230 -> HLA-E(WT D227/T228 conditional default; D227K/T228A activated only if Gate 0A CD8/CD94-NKG2A SPR and CD8+ Treg retention clear) + CD47(C15G)-IgV-GPI + 154-bp SPA+spacer+MAZ4 sense terminator + 4-nt S3 PAM+seed shield",
+        "CIITA": "biallelic LOF via Pass-1 AsCas12a Ultra (OI-GRNA-02) in Plan A/X (or CIITA::HLA-C*03:04[C1]/HLA-C*04:01[C2] 3,465-bp SCT in Plan B'-SCT)",
+        "CXCL10": "biallelic L3-BF-B 4,078-bp scar-free hybrid basal-floor SERPINB9 + inducible PD-L1 (ISLET1_A4_L3_BFB_BASALFLOOR)",
+        "AAVS1": "biallelic independent cHS4-A2UCOE-EEF1A1-iCasp9 (3,457 bp)"
+      },
+      "cassette_topology": {
+        "B2M": "antisense EEF1A1_core_230(5'TOP-CAGAGA)-CD47(C15G)-IgV-GPI / sense EEF1A1_core_230(5'TOP-CAGAGA)-HLA-E(WT D227/T228 conditional default vs D227K/T228A) 20-aa L1 + 154-bp SPA+spacer+MAZ4",
+        "CXCL10": "L3-BF-B Syn_3xISRE_2xNFkB_hPGK1_Sp1_basalfloor_230 -> SERPINB9(Pro376*) + 82-bp pause + Syn_5xISRE_minP -> PD-L1 (4,078 bp)",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9 (3,457 bp)"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Pre-registered Stage-0 4-way composite research lead (Arm 1X + L3-BF-B + DX-B-LowLoad-1500 at 1,500 IEQ/cm^2 across 333.33 cm^2); promoted only if STAGE0_COMBINED_STRESS_KILL_CHAIN_COUPON_MUSE_R4 clears",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": ["beta", "alpha", "delta", "isogenic_iEC", "isogenic_iPericytes"],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption intended",
+        "classical_MHC_II": "CIITA LOF intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "pending_assay_gates": [
+        "edited-allele and genome integrity QC",
+        "STAGE0_COMBINED_STRESS_KILL_CHAIN_COUPON_MUSE_R4 head-to-head vs Embodiment A* (4,143 bp)",
+        "Gate 0A Arm 1X constitutive HLA-E/CD47(C15G) and VMAPRTLFL NKG2C selectivity coupon",
+        "Gate 0C L3-BF-B Hour-0 SERPINB9 >= 0.30 uM and 12-pulse serial GzmB survival",
+        "safety-switch depletion"
+      ]
+    }
+  ]
+}

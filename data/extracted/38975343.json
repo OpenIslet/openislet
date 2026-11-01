@@ -1,0 +1,752 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "38975343",
+    "pmcid": "PMC11225407",
+    "doi": "10.3389/fimmu.2024.1403752",
+    "nct_id": null,
+    "geo_accessions": [
+      "GSE226361"
+    ],
+    "title": "Beta cells deficient for Renalase counteract autoimmunity by shaping natural killer cell activity.",
+    "first_author": "Bode K",
+    "senior_author": "Yi P",
+    "pub_year": 2024,
+    "journal": "Frontiers in immunology",
+    "source_text_type": "FullText_Plus_Supplement_or_GEO",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar3_Intrinsic_BetaCell_Genetic_Resilience_Amyloid_Viral",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture",
+    "reconciled_from_superseded_preprint_pmid": "38496417"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid38975343_arm1",
+      "arm_label": "Primary experimental arm in Bode K (2024)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "iPSC_healthy_donor",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "CD47",
+          "ensembl_gene_id": "ENSG00000196776",
+          "sub_molecular_coordinate": {
+            "region_class": "Transgene_cDNA_Cassette",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=CD47 quote_sha256=22ab90a5b62c9f6aea82776f1c981e2873a5c15713b01919ebe4f7144d00c92f]"
+          },
+          "functional_gate": "Gate3_NK_MissingSelf_Inhibition",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        },
+        {
+          "gene_symbol_hgnc": "CD274",
+          "ensembl_gene_id": "ENSG00000120217",
+          "sub_molecular_coordinate": {
+            "region_class": "Transgene_cDNA_Cassette",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=CD274 quote_sha256=4692dd17354fcc7717bcc52d697d8ce9b86b14ccf7598f7816e2f59b0399946e]"
+          },
+          "functional_gate": "Gate2_Checkpoint_T_Cell_Inhibition",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        },
+        {
+          "gene_symbol_hgnc": "RNLS",
+          "ensembl_gene_id": "ENSG00000184719",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=RNLS quote_sha256=8559f3e973d96edc38b5df422fe436d98aab41d7521f1da0af2f5c2bf1db1519]"
+          },
+          "functional_gate": "Gate4_Intrinsic_ER_Stress_UPR_Shield",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        },
+        {
+          "gene_symbol_hgnc": "CD200",
+          "ensembl_gene_id": "ENSG00000091972",
+          "sub_molecular_coordinate": {
+            "region_class": "Transgene_cDNA_Cassette",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=exact_variant_or_swap_description mod=SmallMolecule_Pharmacological_Modulator genes=CD200 quote_sha256=5b6a96e5648057ee05d57df476c70bf0a81d7c0cec450b3b4ed7b6660bca90f2]"
+          },
+          "functional_gate": "Gate3_Macrophage_DonotEatMe",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "SmallMolecule_Pharmacological_Modulator",
+          "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Pharmacological_or_Small_Molecule_Modulator"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Subcutaneous_Unmodified",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "collagen",
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Cytokine_Cocktail_IFNg_IL1b_TNFa_or_IFNa",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        },
+        {
+          "challenge_type": "Primary_NK_Cell_MissingSelf_Assay",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        },
+        {
+          "challenge_type": "InVivo_Allogeneic_or_Autoimmune_Graft",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid38975343_eff1",
+      "source_figure_or_table": "Figure 1",
+      "focal_factor_X": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z2_genetic_background_and_allelic_dose": "iPSC_healthy_donor",
+        "Z3_immune_effector_and_stressor_pathway": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Unmodified",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+      },
+      "verbatim_evidence_quote": "NKp46+ innate lymphoid cells are crucial for protective immune-regulation by Renalase mutant (Rnlsmut) NIT-1 beta cells in vivo.",
+      "focal_arm_id": "pmid38975343_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "64c9a9087c108490f81348af704cce680a5218d924303cebec193cda25c8863f",
+      "source_span": "fulltext_data_sections.figure_legends[0].caption[0:128]|norm=exact",
+      "quote_source_dossier_pmid": "38975343",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
+        "comparator_label": null,
+        "endpoint_name": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+        "timepoint": null,
+        "population_or_model": "iPSC_healthy_donor (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid38975343_eff2",
+      "source_figure_or_table": "Figure 1",
+      "focal_factor_X": "Primary_NK_or_Macrophage_Innate_Cytotoxicity",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z2_genetic_background_and_allelic_dose": "iPSC_healthy_donor",
+        "Z3_immune_effector_and_stressor_pathway": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Unmodified",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=ffa88f022f7d0a1c71b40a71f8732048f82e1c2944a04ec4379f8ef868cccb92]",
+      "focal_arm_id": "pmid38975343_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": "<=",
+      "p_value_bound": 0.05,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "64c9a9087c108490f81348af704cce680a5218d924303cebec193cda25c8863f",
+      "source_span": "fulltext_data_sections.figure_legends[0].caption[129:382]|norm=exact",
+      "quote_source_dossier_pmid": "38975343",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Primary_NK_or_Macrophage_Innate_Cytotoxicity",
+        "comparator_label": null,
+        "endpoint_name": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+        "timepoint": null,
+        "population_or_model": "iPSC_healthy_donor (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid38975343_eff3",
+      "source_figure_or_table": "Figure 3",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z2_genetic_background_and_allelic_dose": "iPSC_healthy_donor",
+        "Z3_immune_effector_and_stressor_pathway": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Unmodified",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=verbatim_evidence_quote genes=NONE pert=KO_LOF quote_sha256=46ffeadfaf1eca73b6f0cb6b4fdebc05118bf9b3474722ce81886a8722e84833]",
+      "focal_arm_id": "pmid38975343_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "64c9a9087c108490f81348af704cce680a5218d924303cebec193cda25c8863f",
+      "source_span": "fulltext_data_sections.figure_legends[2].caption[0:278]|norm=exact",
+      "quote_source_dossier_pmid": "38975343",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+        "comparator_label": null,
+        "endpoint_name": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+        "timepoint": null,
+        "population_or_model": "iPSC_healthy_donor (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid38975343_eff4",
+      "source_figure_or_table": "Figure 3",
+      "focal_factor_X": "Primary_NK_or_Macrophage_Innate_Cytotoxicity",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: NK_or_Macrophage_Innate_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "NK_or_Macrophage_Innate_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z2_genetic_background_and_allelic_dose": "iPSC_healthy_donor",
+        "Z3_immune_effector_and_stressor_pathway": "NK_or_Macrophage_Innate_Survival",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Unmodified",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=5f3ae2f565ee68d7df00a18018cd36677daaa57c171ec19d2ee1fc470cc27067]",
+      "focal_arm_id": "pmid38975343_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "64c9a9087c108490f81348af704cce680a5218d924303cebec193cda25c8863f",
+      "source_span": "fulltext_data_sections.figure_legends[2].caption[279:364]|norm=exact",
+      "quote_source_dossier_pmid": "38975343",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Primary_NK_or_Macrophage_Innate_Cytotoxicity",
+        "comparator_label": null,
+        "endpoint_name": "NK_or_Macrophage_Innate_Survival",
+        "timepoint": null,
+        "population_or_model": "iPSC_healthy_donor (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid38975343_eff5",
+      "source_figure_or_table": "Figure 3",
+      "focal_factor_X": "Study_Intervention",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Neutral_or_NonInferior",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z2_genetic_background_and_allelic_dose": "iPSC_healthy_donor",
+        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Unmodified",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=ad149e419529d1ef91794828357b4573fde81264cc977b9374816af248941fc0]",
+      "focal_arm_id": "pmid38975343_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "64c9a9087c108490f81348af704cce680a5218d924303cebec193cda25c8863f",
+      "source_span": "fulltext_data_sections.figure_legends[2].caption[365:463]|norm=exact",
+      "quote_source_dossier_pmid": "38975343",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Study_Intervention",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "iPSC_healthy_donor (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid38975343_eff6",
+      "source_figure_or_table": "Figure 3",
+      "focal_factor_X": "Primary_NK_or_Macrophage_Innate_Cytotoxicity",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: NK_or_Macrophage_Innate_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "NK_or_Macrophage_Innate_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z2_genetic_background_and_allelic_dose": "iPSC_healthy_donor",
+        "Z3_immune_effector_and_stressor_pathway": "NK_or_Macrophage_Innate_Survival",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Unmodified",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=verbatim_evidence_quote genes=NONE pert=KO_LOF quote_sha256=3a818d51c17a61ddad53f3d8c73efabab1a9ccfbe8b5875987b3b7cf3df64e9d]",
+      "focal_arm_id": "pmid38975343_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "64c9a9087c108490f81348af704cce680a5218d924303cebec193cda25c8863f",
+      "source_span": "fulltext_data_sections.figure_legends[2].caption[673:866]|norm=exact",
+      "quote_source_dossier_pmid": "38975343",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Primary_NK_or_Macrophage_Innate_Cytotoxicity",
+        "comparator_label": null,
+        "endpoint_name": "NK_or_Macrophage_Innate_Survival",
+        "timepoint": null,
+        "population_or_model": "iPSC_healthy_donor (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid38975343_eff7",
+      "source_figure_or_table": "Figure 4",
+      "focal_factor_X": "Study_Intervention",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
+      "outcome_domain": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z2_genetic_background_and_allelic_dose": "iPSC_healthy_donor",
+        "Z3_immune_effector_and_stressor_pathway": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Unmodified",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=verbatim_evidence_quote genes=NONE pert=KO_LOF quote_sha256=db74b1907aa0aa5e23a0ce03ba2673d04e2fd5ed5a26e32ac3f58b6139654708]",
+      "focal_arm_id": "pmid38975343_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "c-peptide"
+      },
+      "dossier_sha256": "64c9a9087c108490f81348af704cce680a5218d924303cebec193cda25c8863f",
+      "source_span": "fulltext_data_sections.figure_legends[3].caption[321:492]|norm=exact",
+      "quote_source_dossier_pmid": "38975343",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Study_Intervention",
+        "comparator_label": null,
+        "endpoint_name": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+        "timepoint": null,
+        "population_or_model": "iPSC_healthy_donor (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid38975343_eff8",
+      "source_figure_or_table": "Results para 1",
+      "focal_factor_X": "RNLS (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: NK_or_Macrophage_Innate_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "NK_or_Macrophage_Innate_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z2_genetic_background_and_allelic_dose": "iPSC_healthy_donor",
+        "Z3_immune_effector_and_stressor_pathway": "NK_or_Macrophage_Innate_Survival",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Unmodified",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=verbatim_evidence_quote genes=CD274,RNLS pert=KO_LOF quote_sha256=4692dd17354fcc7717bcc52d697d8ce9b86b14ccf7598f7816e2f59b0399946e]",
+      "focal_arm_id": "pmid38975343_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "64c9a9087c108490f81348af704cce680a5218d924303cebec193cda25c8863f",
+      "source_span": "fulltext_data_sections.results_paragraphs[0][525:684]|norm=exact",
+      "quote_source_dossier_pmid": "38975343",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "RNLS (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+        "comparator_label": null,
+        "endpoint_name": "NK_or_Macrophage_Innate_Survival",
+        "timepoint": null,
+        "population_or_model": "iPSC_healthy_donor (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "pmid38975343_int1",
+      "source_figure_or_table": "Results para 1",
+      "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "outcome_Y": "NK_or_Macrophage_Innate_Survival",
+      "modifier_variable_Z": "Regime dependency on Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
+      "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=level_1_condition_and_effect quote_sha256=03f5399ce11f972f7ee40cf80b0fc3143437cb1f5389a15d31c8ee6473287e00]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=level_2_condition_and_effect quote_sha256=10ba44481685fa6649acd37b06bf81bfa5f79e9e383d39fb3647cad824522feb]",
+      "modification_type": "Synergistic_Amplification",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=mechanistic_explanation quote_sha256=0bf7d2dc477596eb99d69f2969e290a9ac9911ba51d3a4a45507089ed4dfb060]"
+    },
+    {
+      "interaction_id": "pmid38975343_int2",
+      "source_figure_or_table": "Results para 1",
+      "focal_factor_X": "Study_Intervention",
+      "outcome_Y": "NK_or_Macrophage_Innate_Survival",
+      "modifier_variable_Z": "Regime dependency on Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=level_1_condition_and_effect quote_sha256=68628e11095d3d12aab8404269da5405bff23cee01470a94f75647993fd91515]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=level_2_condition_and_effect quote_sha256=ab39b302f261422fff0a3896134f7361a674109efd300b585fa1b2bc261cf98d]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=mechanistic_explanation quote_sha256=8751233d8cf8d3fa0cefb023eb947904ab3ffd68e378af7d50546a68665c6a68]"
+    },
+    {
+      "interaction_id": "pmid38975343_int3",
+      "source_figure_or_table": "Results para 1",
+      "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "outcome_Y": "NK_or_Macrophage_Innate_Survival",
+      "modifier_variable_Z": "Regime dependency on Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "modifier_class": "Z1_Developmental_Timing_or_Stage",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=level_1_condition_and_effect quote_sha256=e524d38d17e882e168a1fafb234a9cae696b3b13732bc11f26bbaf7418433716]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=level_2_condition_and_effect quote_sha256=65fb2bfd33437b047ff7479cd139dec4bbbf9c4a1e7fee38718adc1cb6ae1de9]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=mechanistic_explanation quote_sha256=92bffc1d196c83b5cdb2a6c5a896573d2ed0a32aeafbb7da4bce8f7a53a2b2b2]"
+    },
+    {
+      "interaction_id": "pmid38975343_int4",
+      "source_figure_or_table": "Results para 1",
+      "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "outcome_Y": "NK_or_Macrophage_Innate_Survival",
+      "modifier_variable_Z": "Hypoxia_72h_Ischemia_and_O2_Scaffolds vs. Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
+      "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=level_1_condition_and_effect quote_sha256=9ff054908c44cf9773c161228523cfd3dcec8ea70880ddea695d3813aaeeeb68]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=level_2_condition_and_effect quote_sha256=bc9a99521f15b3d2cf1594060498dd46ff965f1278f80d8c8433052a3c475eee]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=mechanistic_explanation quote_sha256=83fa4aff5f517b9aeb7c4a1400969eea9936c198d13335f2e21481aba7eaa27e]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "upstream_node_type": "Lineage_Identity_or_Maturation_State",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
+      "downstream_node_type": "Immune_or_Abiotic_Stressor",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=evidence_source quote_sha256=3cf37adc907608366cbe6d94edae99f4765017faf1c289e468c99c6252cd0235]"
+    },
+    {
+      "upstream_node": "RNLS_Glycolytic_NADPH_GSH_Redox_Shield",
+      "upstream_node_type": "Organelle_or_Metabolic_State",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "downstream_node_type": "Biophysical_or_Vascular_Cue",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=evidence_source quote_sha256=74dfc7042f493ec8e8697fc7336c2d4886dc59923dc4df8039b167613e473762]"
+    },
+    {
+      "upstream_node": "PD_L1_CD274_Checkpoint",
+      "upstream_node_type": "Surface_Ligand_or_Antigen_Presentation",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
+      "downstream_node_type": "Immune_or_Abiotic_Stressor",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=evidence_source quote_sha256=b3c56dabc4a2ed827f16fdfe5bab9b2f434f74de6bf6dfcd7a48c1a629063dd6]"
+    },
+    {
+      "upstream_node": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "upstream_node_type": "Biophysical_or_Vascular_Cue",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
+      "downstream_node_type": "Immune_or_Abiotic_Stressor",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=evidence_source quote_sha256=32a9061324bae80763eeb8f25bafe1be8a4961f4e77fed0541591ef20f3e64af]"
+    },
+    {
+      "upstream_node": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
+      "upstream_node_type": "Immune_or_Abiotic_Stressor",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "downstream_node_type": "Biophysical_or_Vascular_Cue",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=evidence_source quote_sha256=759ad5207e7fb82f04cfc9a004093af7b675d8d2c9b4c8c03979ba01502e02e2]"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "Study_Intervention",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=omitted_text quote_sha256=09011186a388a6eaa5891e38240c7bb3d81d3f4318598ddb986a416475aae3e3]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=omitted_text quote_sha256=26782cb4dfc4f70034562f93af222ea71e82484a8e4e4bbc35b554345a56d010]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      },
+      {
+        "arm_or_intervention": "Study_Intervention",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=omitted_text quote_sha256=09011186a388a6eaa5891e38240c7bb3d81d3f4318598ddb986a416475aae3e3]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=omitted_text quote_sha256=26782cb4dfc4f70034562f93af222ea71e82484a8e4e4bbc35b554345a56d010]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      },
+      {
+        "arm_or_intervention": "Study_Intervention",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=omitted_text quote_sha256=f0afbe7793183b2474efee1cdcedb9eb50ac34310becd55443825c02de0dd0b8]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=omitted_text quote_sha256=bd315db125fc80dee541c7eef3c055dad8fe70a71f4e01bfe5138274d3bf2455]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

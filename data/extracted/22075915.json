@@ -1,0 +1,274 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "22075915",
+    "pmcid": null,
+    "doi": "10.1007/s00125-011-2335-x",
+    "nct_id": null,
+    "geo_accessions": [
+      "GSE40709"
+    ],
+    "title": "The functional and molecular characterisation of human embryonic stem cell-derived insulin-positive cells compared with adult pancreatic beta cells.",
+    "first_author": "Basford CL",
+    "senior_author": "Wheeler MB",
+    "pub_year": 2012,
+    "journal": "Diabetologia",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid22075915_arm1",
+      "arm_label": "Primary experimental arm in Basford CL (2012)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "hESC",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Unspecified_InVivo_or_Source_Site",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid22075915_eff1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Neutral_or_NonInferior",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "hESC",
+        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Unspecified_InVivo_or_Source_Site",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "Using a novel directed differentiation protocol, we recently generated up to 25% insulin-producing cells from human embryonic stem cells (hESCs) (insulin(+) cells).",
+      "focal_arm_id": "pmid22075915_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "115c7a296a3453eede071aa0df347865fa2b03a211e7af8d41b01577176ff948",
+      "source_span": "abstract[0:164]|norm=exact",
+      "quote_source_dossier_pmid": "22075915",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "hESC (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid22075915_eff2",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "hESC",
+        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Unspecified_InVivo_or_Source_Site",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:22075915 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=54fa5d168a71841f6b3589174ee1eb088add43bbb26d4599b70dcf69bab3db48]",
+      "focal_arm_id": "pmid22075915_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "115c7a296a3453eede071aa0df347865fa2b03a211e7af8d41b01577176ff948",
+      "source_span": "abstract[968:1120]|norm=exact",
+      "quote_source_dossier_pmid": "22075915",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "hESC (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "pmid22075915_int1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
+      "outcome_Y": "Alpha_Delta_Paracrine_CounterRegulation",
+      "modifier_variable_Z": "Biphasic_GSIS_and_Calcium_Coupling vs. Alpha_GCG_Delta_SST_Paracrine_CounterRegulation",
+      "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:22075915 field=level_1_condition_and_effect quote_sha256=36773ce10a636364e9a0a1feccb0ba76434459f216ae6e11764d66c86d0f8414]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:22075915 field=level_2_condition_and_effect quote_sha256=ecd3c78d8254a7869700245f8e5c2247a963f191302215e2477a610ccabfca52]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:22075915 field=mechanistic_explanation quote_sha256=4cea43e3d9dadaf5f8ab0e5ce0cff9f784cc0e1af1fe977636644fbf2f0399f2]"
+    },
+    {
+      "interaction_id": "pmid22075915_int2",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "outcome_Y": "Metabolic_and_Biphasic_GSIS_Maturation",
+      "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. Biphasic_GSIS_and_Calcium_Coupling",
+      "modifier_class": "Z4_Metabolic_Glucose_or_ER_Secretory_Load",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:22075915 field=level_1_condition_and_effect quote_sha256=0c12663675dc31ead8d650509f89a03318f24e1b1d9d09d9992d03c9ace4105b]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:22075915 field=level_2_condition_and_effect quote_sha256=70a018cb5ac9cedaffb2419135a68fe66986a956e91e4bd53524246d4d65490a]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:22075915 field=mechanistic_explanation quote_sha256=9bc53fa121cbc60932c15c3513651d5a911fcc4e7d04db862b57ff4180e92ea3]"
+    },
+    {
+      "interaction_id": "pmid22075915_int3",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
+      "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
+      "modifier_variable_Z": "Prior_Condition vs. Biphasic_GSIS_and_Calcium_Coupling",
+      "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:22075915 field=level_1_condition_and_effect quote_sha256=d3a118439af378c641a8abfb33089ce3a9b45c00d8a24ff27511add1288bd5d4]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:22075915 field=level_2_condition_and_effect quote_sha256=e7509ce93bf220e292f54728fcf950b2e613fb69b86889ea46ff201fd1d12e56]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:22075915 field=mechanistic_explanation quote_sha256=e7509ce93bf220e292f54728fcf950b2e613fb69b86889ea46ff201fd1d12e56]"
+    }
+  ],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "Biphasic_GSIS_and_Calcium_Coupling",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:22075915 field=omitted_text quote_sha256=20906ff70d2a2a1d4d457eda030aee05b1e30fb9d9ef26529a06842c6410c982]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:22075915 field=omitted_text quote_sha256=636392d826bf4dca3abc31d3d233f816ce4b646cc293fba30c5030b93e0999e3]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      },
+      {
+        "arm_or_intervention": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:22075915 field=omitted_text quote_sha256=c1b58ebacea4b0173cbe76f53f2a0865c2e5af40d9a9420034ec45ad940fe26d]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:22075915 field=omitted_text quote_sha256=13a4ba5eef09037592f1201f77f6a0318cb50f721d72c86f7d800a780f33b5ed]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      },
+      {
+        "arm_or_intervention": "Biphasic_GSIS_and_Calcium_Coupling",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:22075915 field=omitted_text quote_sha256=16fb7b68094b5e15bd5af8ce56580113b938a6a8a4255ad090ed26312683aa2b]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:22075915 field=omitted_text quote_sha256=aa0c3801d624ac74327489a2c3cc3ec61726bcd6a23dc293ca22fa0081a92d15]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

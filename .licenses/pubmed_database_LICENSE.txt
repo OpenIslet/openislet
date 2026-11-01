@@ -1,0 +1,11 @@
+Resource: NCBI PubMed / MEDLINE / Entrez E-Utilities (U.S. National Library of Medicine)
+Classification: Factual bibliographic metadata redistributed in public bundle (non-OA verbatim excerpts redacted)
+Audit Timestamp (UTC): 2026-10-19T10:35:30Z
+Upstream Source & Terms: https://www.ncbi.nlm.nih.gov/home/about/policies/ and https://www.nlm.nih.gov/databases/download/terms_and_conditions.html
+Shipped Public Artifacts:
+  - data/raw/doc_citation_metadata_cache.json (bibliographic metadata: PMID, first author, journal, year, title)
+  - data/raw/corpus_manifest_all_sources.jsonl (bibliographic index; raw abstract text stripped in public bundle)
+  - data/extracted/*.json, data/extracted/ring1_study_dossiers_v0.5.jsonl, data/extracted/ring1_atomic_effects_v0.5.jsonl
+Redistribution & Copyright Safeguards:
+  1. Bibliographic metadata (PMID, PMCID, DOI, publication year, journal title, author names, and article titles) are factual records maintained by NLM.
+  2. Because individual article abstracts may be subject to publisher copyright, OpenIslet excludes full raw dossiers (data/dossiers/*.json), strips raw abstract text from corpus_manifest_all_sources.jsonl, and redacts non-OA verbatim quotes to [REDACTED_NON_OA_EXCERPT] in public exports while retaining verified open-access quotes (VERIFIED_OPEN_LICENSE_PMIDS) with full citation attribution.

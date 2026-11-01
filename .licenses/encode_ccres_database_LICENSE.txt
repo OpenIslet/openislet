@@ -1,0 +1,9 @@
+Resource: ENCODE Project Portal & Registry of cis-Regulatory Elements (cCREs)
+Classification: Factual genomic regulatory annotations redistributed in public bundle
+Audit Timestamp (UTC): 2026-10-23T09:34:31Z
+Upstream Source & Terms: https://www.encodeproject.org/help/citing-encode/ (Unrestricted redistribution with attribution under ENCODE Data Use Policy)
+Release / Assembly: ENCODE4 / SCREEN Registry v3 (GRCh38 human pancreatic islet DNase-seq and ATAC-seq accessions)
+Shipped Public Artifacts:
+  - data/raw/layer2_genomic_and_jaspar_reference.json (pancreatic islet chromatin accessibility accessions)
+  - data/extracted/layer2_regulatory_and_perturbation_atlas.json (locus chromatin-state annotations at B2M, CIITA, CXCL10, and AAVS1/PPP1R12C)
+Attribution & Modifications: ENCODE experiment accessions and GRCh38 cCRE coordinate annotations integrated into Layer-2 locus verification records.

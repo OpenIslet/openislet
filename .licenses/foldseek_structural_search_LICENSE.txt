@@ -1,0 +1,8 @@
+Resource: Foldseek Structural Similarity Search API (Steinegger Lab)
+Classification: External structural verification tool used during Layer-3 audit (summary hits recorded in Layer-3 JSON)
+Audit Timestamp (UTC): 2026-10-23T09:34:31Z
+Upstream Source & Terms: https://search.foldseek.com/search and https://github.com/steineggerlab/foldseek (GPL-3.0 upstream software; public web API used for structural neighbor verification)
+Database Searched: PDB100 and AlphaFold/UniProt50
+Shipped Public Artifacts:
+  - data/extracted/layer3_structural_verification_atlas.json (structural alignment TM-score and RMSD verification metadata)
+Attribution & Modifications: Used to cross-check structural homology of engineered single-chain HLA-E trimer, CD47-IgV, SERPINB9, PD-L1, and iCasp9 domains against experimental PDB templates.

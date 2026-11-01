@@ -1,0 +1,7 @@
+# OpenIslet (Project Islet-1) — Python Environment & Verification Dependencies
+# Requires Python >= 3.10 on macOS or Linux.
+# numpy is used by the Layer 2–5 numerical evaluators and verification suites;
+# pytest and jsonschema are used by the automated test and schema suites.
+numpy>=1.24
+pytest>=7.4
+jsonschema>=4.18

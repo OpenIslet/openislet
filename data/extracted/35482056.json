@@ -1,0 +1,40 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "35482056",
+    "pmcid": "PMC9283180",
+    "doi": "10.1007/s00125-022-05699-1",
+    "nct_id": null,
+    "geo_accessions": [
+      "GSE153855"
+    ],
+    "title": "Lessons from single-cell RNA sequencing of human islets.",
+    "first_author": "Ngara M",
+    "senior_author": "Wierup N",
+    "pub_year": 2022,
+    "journal": "Diabetologia",
+    "source_text_type": "Review_or_Commentary",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar3_Intrinsic_BetaCell_Genetic_Resilience_Amyloid_Viral",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+  },
+  "screening_decision": {
+    "included": false,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": "Review_Editorial_or_Commentary"
+  },
+  "arms": [],
+  "atomic_effects": [],
+  "effect_modifier_interactions": [],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

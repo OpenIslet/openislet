@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Have an idea for the blueprint? Send an IIP
+    url: https://openislet.org/start
+    about: Ideas, weak spots and missing papers go in as Islet Improvement Proposals. Your own AI helps you write one, and software checks it at once.
+  - name: Report a security problem
+    url: https://github.com/openislet/openislet/blob/main/SECURITY.md
+    about: Please email us instead of opening a public issue.

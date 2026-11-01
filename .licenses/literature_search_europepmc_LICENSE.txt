@@ -1,0 +1,9 @@
+Resource: Europe PMC RESTful Web Service (EMBL-EBI)
+Classification: Open-access full-text metadata, PMCIDs, license tags, and verified OA excerpts redistributed in public bundle
+Audit Timestamp (UTC): 2026-10-19T10:35:30Z
+Upstream Source & Terms: https://europepmc.org/Copyright (Metadata CC0; full-text excerpts governed by per-article Creative Commons open-access licenses)
+Release / Query Scope: 563-study islet/SC-islet transplantation corpus (queried October 2026)
+Shipped Public Artifacts:
+  - data/raw/corpus_manifest_all_sources.jsonl (bibliographic metadata and PMCID mappings; raw abstracts stripped)
+  - data/extracted/ring1_study_dossiers_v0.5.jsonl and data/extracted/ring1_atomic_effects_v0.5.jsonl (short <=350-char verbatim quotes retained only for verified CC-BY/CC0 open-access articles in VERIFIED_OPEN_LICENSE_PMIDS; non-OA quotes redacted to [REDACTED_NON_OA_EXCERPT] in public exports)
+Attribution & Modifications: Per-article PMID, PMCID, DOI, first author, and publication year preserved on every extracted study record.

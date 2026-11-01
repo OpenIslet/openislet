@@ -1,0 +1,420 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "21131428",
+    "pmcid": "PMC3404615",
+    "doi": "10.4049/jimmunol.1000799",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Targeting the CXCR4-CXCL12 axis mobilizes autologous hematopoietic stem cells and prolongs islet allograft survival via programmed death ligand 1.",
+    "first_author": "Fiorina P",
+    "senior_author": "Abdi R",
+    "pub_year": 2011,
+    "journal": "Journal of immunology (Baltimore, Md. : 1950)",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_4_Rodent_or_Xenogeneic_Only"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid21131428_arm1",
+      "arm_label": "Primary experimental arm in Fiorina P (2011)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Rodent_Primary_Islet",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "CD274",
+          "ensembl_gene_id": "ENSG00000120217",
+          "sub_molecular_coordinate": {
+            "region_class": "Transgene_cDNA_Cassette",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:21131428 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=CD274 quote_sha256=4259541881b742f4feff41d149289d3e1dc346672f47b0f85beeb96a0bbe6291]"
+          },
+          "functional_gate": "Gate2_Checkpoint_T_Cell_Inhibition",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Kidney_Capsule",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "InVivo_Allogeneic_or_Autoimmune_Graft",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid21131428_eff1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: InVivo_Glycemic_Cure_and_Graft_Longevity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
+      "outcome_domain": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Rodent_Primary_Islet",
+        "Z3_immune_effector_and_stressor_pathway": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Kidney_Capsule",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "Islets from BALB/c mice were transplanted beneath the kidney capsule of hyperglycemic C57BL/6 mice, and treatment of recipients with CXCR4 antagonist resulted in mobilization of HSCs and in prolongation of islet graft survival.",
+      "focal_arm_id": "pmid21131428_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Right-censored at last reported follow-up timepoint if graft remained functional",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "survival"
+      },
+      "dossier_sha256": "63c988236692891b9a30065579d5949679a136c5b71dbbcf056a7e3b0bb96e5b",
+      "source_span": "abstract[541:768]|norm=exact",
+      "quote_source_dossier_pmid": "21131428",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+        "comparator_label": null,
+        "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+        "timepoint": null,
+        "population_or_model": "Rodent_Primary_Islet (Tier_4_Rodent_or_Xenogeneic_Only)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid21131428_eff2",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Allo_T_Cell_or_DSA_Survival | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
+      "outcome_domain": "Allo_T_Cell_or_DSA_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Rodent_Primary_Islet",
+        "Z3_immune_effector_and_stressor_pathway": "Allo_T_Cell_or_DSA_Survival",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Kidney_Capsule",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:21131428 field=verbatim_evidence_quote genes=CD274 pert=NONE quote_sha256=e8ccd48bf8f446ce858734342b627ac0ffffa1372b09b07ebd5648c7c3a243aa]",
+      "focal_arm_id": "pmid21131428_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Right-censored at last reported follow-up timepoint if graft remained functional",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:21131428 field=omitted_text quote_sha256=4032ee4038775060258f8e68061309aed9bfdea5b574f24324ab7f065202d052]"
+      },
+      "dossier_sha256": "63c988236692891b9a30065579d5949679a136c5b71dbbcf056a7e3b0bb96e5b",
+      "source_span": "abstract[769:1064]|norm=exact",
+      "quote_source_dossier_pmid": "21131428",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+        "comparator_label": null,
+        "endpoint_name": "Allo_T_Cell_or_DSA_Survival",
+        "timepoint": null,
+        "population_or_model": "Rodent_Primary_Islet (Tier_4_Rodent_or_Xenogeneic_Only)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid21131428_eff3",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "CD274 (CRISPR_Cas9_KO — Gate2_Checkpoint_T_Cell_Inhibition)",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Rodent_Primary_Islet",
+        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Kidney_Capsule",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:21131428 field=verbatim_evidence_quote genes=CD274 pert=KO_LOF quote_sha256=ea3311cfe37beb6f197d5813b024409b29c74cf30556d6b406ef26c5a9767b22]",
+      "focal_arm_id": "pmid21131428_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "63c988236692891b9a30065579d5949679a136c5b71dbbcf056a7e3b0bb96e5b",
+      "source_span": "abstract[1065:1306]|norm=exact",
+      "quote_source_dossier_pmid": "21131428",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "CD274 (CRISPR_Cas9_KO — Gate2_Checkpoint_T_Cell_Inhibition)",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "Rodent_Primary_Islet (Tier_4_Rodent_or_Xenogeneic_Only)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid21131428_eff4",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "CD274 (CRISPR_Cas9_KO — Gate2_Checkpoint_T_Cell_Inhibition)",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Allo_T_Cell_or_DSA_Survival | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
+      "outcome_domain": "Allo_T_Cell_or_DSA_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Neutral_or_NonInferior",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Rodent_Primary_Islet",
+        "Z3_immune_effector_and_stressor_pathway": "Allo_T_Cell_or_DSA_Survival",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Kidney_Capsule",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:21131428 field=verbatim_evidence_quote genes=CD274 pert=KO_LOF quote_sha256=4b9edd83dad6f48ae46f6d4f08d0db2e98ca205ceee68bb174d8b27f9be76025]",
+      "focal_arm_id": "pmid21131428_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Right-censored at last reported follow-up timepoint if graft remained functional",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:21131428 field=omitted_text quote_sha256=4032ee4038775060258f8e68061309aed9bfdea5b574f24324ab7f065202d052]"
+      },
+      "dossier_sha256": "63c988236692891b9a30065579d5949679a136c5b71dbbcf056a7e3b0bb96e5b",
+      "source_span": "abstract[1307:1400]|norm=exact",
+      "quote_source_dossier_pmid": "21131428",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "CD274 (CRISPR_Cas9_KO — Gate2_Checkpoint_T_Cell_Inhibition)",
+        "comparator_label": null,
+        "endpoint_name": "Allo_T_Cell_or_DSA_Survival",
+        "timepoint": null,
+        "population_or_model": "Rodent_Primary_Islet (Tier_4_Rodent_or_Xenogeneic_Only)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid21131428_eff5",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "CD274 (CRISPR_Cas9_KO — Gate2_Checkpoint_T_Cell_Inhibition)",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Allo_T_Cell_or_DSA_Survival | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
+      "outcome_domain": "Allo_T_Cell_or_DSA_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Rodent_Primary_Islet",
+        "Z3_immune_effector_and_stressor_pathway": "Allo_T_Cell_or_DSA_Survival",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Kidney_Capsule",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:21131428 field=verbatim_evidence_quote genes=CD274 pert=KO_LOF quote_sha256=3aaaab8d146ad535d38bb274bcc72fc12a023a52f578880984ea93da98cb87e7]",
+      "focal_arm_id": "pmid21131428_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Right-censored at last reported follow-up timepoint if graft remained functional",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:21131428 field=omitted_text quote_sha256=4032ee4038775060258f8e68061309aed9bfdea5b574f24324ab7f065202d052]"
+      },
+      "dossier_sha256": "63c988236692891b9a30065579d5949679a136c5b71dbbcf056a7e3b0bb96e5b",
+      "source_span": "abstract[1401:1547]|norm=exact",
+      "quote_source_dossier_pmid": "21131428",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "CD274 (CRISPR_Cas9_KO — Gate2_Checkpoint_T_Cell_Inhibition)",
+        "comparator_label": null,
+        "endpoint_name": "Allo_T_Cell_or_DSA_Survival",
+        "timepoint": null,
+        "population_or_model": "Rodent_Primary_Islet (Tier_4_Rodent_or_Xenogeneic_Only)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "pmid21131428_int1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "CD274 (CRISPR_Cas9_KO — Gate2_Checkpoint_T_Cell_Inhibition)",
+      "outcome_Y": "Allo_T_Cell_or_DSA_Survival",
+      "modifier_variable_Z": "Regime dependency on PD_L1_CD274_Checkpoint",
+      "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:21131428 field=level_1_condition_and_effect quote_sha256=4b9edd83dad6f48ae46f6d4f08d0db2e98ca205ceee68bb174d8b27f9be76025]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:21131428 field=level_2_condition_and_effect quote_sha256=ef996bf4eb61d0f73dd02d4c547778291ee87f084eada2329dadf2fd9cbc8e1b]",
+      "modification_type": "Complete_Bypass_or_Abrogation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:21131428 field=mechanistic_explanation quote_sha256=4b9edd83dad6f48ae46f6d4f08d0db2e98ca205ceee68bb174d8b27f9be76025]"
+    }
+  ],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "CD274 (CRISPR_Cas9_KO — Gate2_Checkpoint_T_Cell_Inhibition)",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:21131428 field=omitted_text quote_sha256=e08cdeb2c23063df75d5a8040dd6261a14e1d360a6d0eb1ff26154336156e3cd]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:21131428 field=omitted_text quote_sha256=1e692873dd4e9d1f808df13804496e622df2690b8ddaa8bd9c0fbcb9e8e05a15]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

@@ -1,0 +1,457 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "32719542",
+    "pmcid": "PMC7502486",
+    "doi": "10.1038/s42255-020-0254-1",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Genome-scale in vivo CRISPR screen identifies RNLS as a target for beta cell protection in type 1 diabetes.",
+    "first_author": "Cai EP",
+    "senior_author": "Yi P",
+    "pub_year": 2020,
+    "journal": "Nature metabolism",
+    "source_text_type": "FullText_XML_or_PDF",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar3_Intrinsic_BetaCell_Genetic_Resilience_Amyloid_Viral"
+    ],
+    "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": true,
+    "screen_library_size_genes": 19050,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid32719542_arm1",
+      "arm_label": "Isogenic Wild-Type T1D-iPSC-Derived Human SC-Beta Cells (CD49a+)",
+      "is_reference_control": true,
+      "sample_size_n": 6,
+      "sample_size_unit": "independent_differentiations",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "iPSC_T1D_or_LADA_patient",
+        "cell_line_id": "Melton Lab T1D patient iPSC line (and HUES8 hESC for pargyline validation)",
+        "donor_hla_profile": null,
+        "protocol_backbone": "Melton 3D spinner-flask SC-beta differentiation protocol (Pagliuca/Veres CD49a+ gating)",
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "ER_Stress_Thapsigargin_or_Tunicamycin",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": 21.0,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 24.0,
+          "specific_autoantigen_or_hla_restriction": "5 uM Thapsigargin for 24 h"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid32719542_arm2",
+      "arm_label": "Isogenic Clonal RNLS-/- (Exon 2 112-bp Biallelic Deletion) Human SC-Beta Cells",
+      "is_reference_control": false,
+      "sample_size_n": 4,
+      "sample_size_unit": "independent_differentiations",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "iPSC_T1D_or_LADA_patient",
+        "cell_line_id": "Melton Lab T1D iPSC RNLS KO Clone 1 (112 bp biallelic deletion in Exon 2)",
+        "donor_hla_profile": null,
+        "protocol_backbone": "Melton 3D spinner-flask SC-beta differentiation protocol",
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "RNLS",
+          "ensembl_gene_id": "ENSG00000184719",
+          "sub_molecular_coordinate": {
+            "region_class": "Specific_Exon_or_Splice_Isoform",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:32719542 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=RNLS quote_sha256=89cc41d76370f2c2f24113472cd962fb9838e94ed664086c95d2c37110b1d133]"
+          },
+          "functional_gate": "Gate4_Intrinsic_ER_Stress_UPR_Shield",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": "Homozygous_Biallelic",
+          "protein_or_surface_expression_fold_vs_wt": 0.0,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "ER_Stress_Thapsigargin_or_Tunicamycin",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": 21.0,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 24.0,
+          "specific_autoantigen_or_hla_restriction": "5 uM Thapsigargin for 24 h"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid32719542_arm3",
+      "arm_label": "Rnls-Mutant NIT-1 and Primary NOD.scid Islet Beta Cells in Diabetic Autoimmune NOD Mice",
+      "is_reference_control": false,
+      "sample_size_n": 5,
+      "sample_size_unit": "mouse_recipients",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Rodent_Beta_Cell_Line_NIT1_MIN6_INS1",
+        "cell_line_id": "NIT-1 and primary NOD.scid islets (RIP-Cas9 + Rnls gRNA)",
+        "donor_hla_profile": "NOD H-2Kd / I-Ag7 syngeneic autoimmune",
+        "protocol_backbone": "Primary islet & NIT-1 beta cell graft",
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "RNLS",
+          "ensembl_gene_id": "ENSG00000184719",
+          "sub_molecular_coordinate": {
+            "region_class": "Catalytic_or_Kinase_Domain",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:32719542 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=RNLS quote_sha256=35dbd2f7415eb7f57e9ceca839fe93366365f2d9ed25f30ee61c39f6f152d76e]"
+          },
+          "functional_gate": "Gate4_Intrinsic_ER_Stress_UPR_Shield",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": "Polyclonal_Pool",
+          "protein_or_surface_expression_fold_vs_wt": 0.25,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Kidney_Capsule",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "Paired opposite-flank SubQ (10^7 NIT-1 cells) or left/right kidney capsule (~300 primary NOD.scid islets)",
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "InVivo_Allogeneic_or_Autoimmune_Graft",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 57.0,
+          "specific_autoantigen_or_hla_restriction": "10^7 diabetogenic NOD splenocytes or overtly diabetic NOD recipients"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": 100.0,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": 57.0,
+        "pct_graft_surviving_at_end_of_followup": 100.0,
+        "followup_duration_days": 57.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "cai2020_eff1_rnls_ko_human_sc_beta_er_stress",
+      "source_figure_or_table": "Fig. 6a-g & Extended Data Fig. 10a-c",
+      "focal_factor_X": "RNLS knockout (112-bp exon 2 deletion) or pargyline (5 uM) in human iPSC- and HUES8 hESC-derived CD49a+ SC-beta cells",
+      "comparator_X0": "Isogenic wild-type human SC-beta cells",
+      "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Differentiated CD49a+ human SC-beta cells",
+        "Z2_genetic_background_and_allelic_dose": "Clonal homozygous 112-bp exon 2 deletion in T1D-iPSC or 5 uM pargyline in T1D-iPSC and HUES8 hESC",
+        "Z3_immune_effector_and_stressor_pathway": "5 uM Thapsigargin for 24 h",
+        "Z4_metabolic_and_glucose_load_state": "Tested at 2.8 mM glucose, 20 mM glucose, and 30 mM KCl for GSIS",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D spinner-flask SC-islet clusters",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "In vitro suspension culture",
+        "Z7_promoter_and_epigenetic_context": "Endogenous RNLS locus",
+        "Z8_species_age_and_sex_context": "Human T1D iPSC and HUES8 hESC"
+      },
+      "verbatim_evidence_quote": "We found that pargyline decreased ER stress-induced cell death in both induced pluripotent and embryonic SC-beta cells (Fig.",
+      "focal_arm_id": "pmid32719542_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "65aee733c42cce3c2ea7441cd8a741cb4c741d916f9e70f3c9f23361a96f3494",
+      "source_span": "fulltext_data_sections.results_paragraphs[10][292:416]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "RNLS knockout (112-bp exon 2 deletion) or pargyline (5 uM) in human iPSC- and HUES8 hESC-derived CD49a+ SC-beta cells",
+        "comparator_label": null,
+        "endpoint_name": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+        "timepoint": null,
+        "population_or_model": "Clonal homozygous 112-bp exon 2 deletion in T1D-iPSC or 5 uM pargyline in T1D-iPSC and HUES8 hESC (Human T1D iPSC and HUES8 hESC)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "32719542"
+    },
+    {
+      "effect_id": "cai2020_eff2_rnlsmut_autoimmune_survival_and_upr_block",
+      "source_figure_or_table": "Fig. 2a-l, Fig. 3g,h & Fig. 4a-f",
+      "focal_factor_X": "Rnls mutation (~75% mutant alleles) or exons 2-4 / exon 5 deletion",
+      "comparator_X0": "Non-targeting (NT) gRNA control beta cells",
+      "outcome_variable_Y": "[Endpoint: Autoimmune_TCR_or_AutoAb_Evasion | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
+      "outcome_domain": "Autoimmune_TCR_or_AutoAb_Evasion",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Mature NIT-1 and primary NOD.scid islet beta cells",
+        "Z2_genetic_background_and_allelic_dose": "75% mutant alleles sufficient for protection; Rnls overexpression (RnlsOE) accelerates autoimmune killing (P < 0.0022)",
+        "Z3_immune_effector_and_stressor_pathway": "Diabetogenic NOD splenocytes, polyclonal autoreactive CD8+ T cells, TG, TC, IL-1b + IFN-g, H2O2",
+        "Z4_metabolic_and_glucose_load_state": "Overtly diabetic NOD mice (>450 mg/dL)",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Primary islets (~300 islets under kidney capsule) and NIT-1 grafts",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous and kidney capsule",
+        "Z7_promoter_and_epigenetic_context": "RIP-Cas9 in primary islets",
+        "Z8_species_age_and_sex_context": "Female NOD and NOD.scid mice"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:32719542 field=verbatim_evidence_quote genes=RNLS pert=KO_LOF quote_sha256=7ce91b4f52c7196887a587ba462bb9ee97fd5d78b0bfe3f56e7b0d58f8efee43]",
+      "focal_arm_id": "pmid32719542_arm3",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "survival"
+      },
+      "dossier_sha256": "65aee733c42cce3c2ea7441cd8a741cb4c741d916f9e70f3c9f23361a96f3494",
+      "source_span": "fulltext_data_sections.results_paragraphs[3][430:576]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Rnls mutation (~75% mutant alleles) or exons 2-4 / exon 5 deletion",
+        "comparator_label": null,
+        "endpoint_name": "Autoimmune_TCR_or_AutoAb_Evasion",
+        "timepoint": null,
+        "population_or_model": "75% mutant alleles sufficient for protection; Rnls overexpression (RnlsOE) accelerates autoimmune killing (P < 0.0022) (Female NOD and NOD.scid mice)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "32719542"
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "cai2020_int1_autoimmunity_vs_allorejection_modifier",
+      "source_figure_or_table": "Fig. 2b-h, Fig. 3a-h & Extended Data Figs. 3 and 8",
+      "focal_factor_X": "RNLS CRISPR Knockout or Oral Pargyline Inhibition",
+      "outcome_Y": "In vivo beta-cell graft survival",
+      "modifier_variable_Z": "Immune Rejection Modality (Syngeneic/Autologous Autoimmune T1D Attack vs MHC-Mismatched Allogeneic Rejection in C57BL/6)",
+      "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:32719542 field=level_1_condition_and_effect quote_sha256=a892b3e142f2df77d23511fa6c698e146b5646a931cbbe6728d424a5b3f6d60d]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:32719542 field=level_2_condition_and_effect quote_sha256=9c785661b1bf36515bfb7204846f5faa79c4c45cc4683b57352ec018045bb49b]",
+      "modification_type": "Complete_Bypass_or_Abrogation",
+      "critical_threshold_value_and_unit": "Requires MHC-matching or Gate 2/3 allo-cloaking (e.g., B2M/CIITA/CD47 or SA-FasL) when transplanting across allogeneic barriers",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:32719542 field=mechanistic_explanation quote_sha256=070ca7f23b4f0bccdc92ce14734df2b29149b21d6d072ee5ba0e6b56fbac34c3]"
+    },
+    {
+      "interaction_id": "cai2020_int2_er_oxidative_stress_vs_dna_damage_stz",
+      "source_figure_or_table": "Fig. 4a-c & Extended Data Fig. 4a,b & 6b",
+      "focal_factor_X": "Rnls Deficiency",
+      "outcome_Y": "Beta-cell survival",
+      "modifier_variable_Z": "Stressor Pathway (ER Stress [Thapsigargin/Tunicamycin], Cytokines [IL-1b+IFNg], and Oxidative Stress [H2O2] vs Non-ER-Stress Apoptosis [Mitomycin C or High-Dose STZ 40 mM])",
+      "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:32719542 field=level_1_condition_and_effect quote_sha256=1dd405816865ee8b47f81395b93b56a53e26df8c187755782c9b91b9607f17d0]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:32719542 field=level_2_condition_and_effect quote_sha256=14ce45c71ab4b1d5758d866a41afc28a7515f64459bd05075f4b32792c019a73]",
+      "modification_type": "Complete_Bypass_or_Abrogation",
+      "critical_threshold_value_and_unit": "Specific to ER-stress, UPR, cytokine, and ROS-mediated death pathways",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:32719542 field=mechanistic_explanation quote_sha256=6b781d9895ced6aa57d42028412c7afd0d4d2255cd696613cdb93e39e3c3f25e]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "RNLS Knockout or Pargyline FAD-Binding Inhibition",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "ER Stress Sensor Activation (Phospho-PERK, Phospho-IRE1a, Cleaved ATF6), Phospho-eIF2a, XBP1 Splicing, ATF4, CHOP (DDIT3), TXNIP, and Cleaved Caspase-3",
+      "downstream_node_type": "Organelle_or_Metabolic_State",
+      "evidence_source": "Fig. 4d-f, Fig. 5d,e & Extended Data Fig. 6a (PMID 32719542)"
+    },
+    {
+      "upstream_node": "RNLS Knockout",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "NRF2 Oxidative Stress Response Regulator",
+      "downstream_node_type": "Signaling_Kinase_or_TF",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:32719542 field=evidence_source quote_sha256=76e63a902b307660df870f99dd589d4fb1dff4fc3eaff022661265f879e31902]"
+    },
+    {
+      "upstream_node": "Attenuation of ER Stress and UPR by RNLS Deficiency",
+      "upstream_node_type": "Organelle_or_Metabolic_State",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "Polyclonal Autoreactive CD8+ T-Cell IFN-g Activation Against Beta Cells",
+      "downstream_node_type": "Surface_Ligand_or_Antigen_Presentation",
+      "evidence_source": "Fig. 3g,h (PMID 32719542)"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [
+      {
+        "primary_gate_perturbed": "Gate 4 (Intrinsic ER Stress / UPR Shield via RNLS Knockout)",
+        "secondary_gate_affected": "Gate 2 (Polyclonal Autoreactive CD8+ T-Cell Recognition) & Gate 1 (SC-Beta Differentiation)",
+        "observation": "[REDACTED_NON_OA_EXCERPT: see PMID:32719542 field=observation quote_sha256=89757860fc6548bcd2b165d7fe388c413e80785fb9980ebbc79e5284270d3324]",
+        "is_beneficial_synergy_or_deleterious_tradeoff": "Beneficial_CrossGate_Bonus"
+      }
+    ],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "Rnls Knockout or Oral Pargyline Alone in Allogeneic C57BL/6 Recipients (Extended Data Figs. 3 & 8)",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:32719542 field=omitted_text quote_sha256=cb6115640eaaca4d456c704ff77bf06b129a4e7d1ff4f090f46a52b081ad1f80]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:32719542 field=omitted_text quote_sha256=a467c7495cbba2657421ba5f9524fe7d39b26745ad1f47cf1e54599f5099dbe5]",
+        "complementary_lever_needed": "Must combine Gate 4 RNLS knockout with Gate 2/3 allogeneic cloaking (e.g., B2M-/-CIITA-/-CD47+ from Hu 2024 PMID 37156915 or SA-FasL microgels from Lei 2022 PMID 35559682)."
+      }
+    ],
+    "regime_thresholds": [
+      {
+        "parameter_name": "Thapsigargin ER Stress Concentration Threshold",
+        "critical_threshold_value": 50.0,
+        "unit": "nM thapsigargin (up to 1000 nM / 1 uM tolerated by Rnlsmut)",
+        "below_threshold_behavior": "Wild-type beta cells survive only below 50 nM thapsigargin.",
+        "above_threshold_behavior": "Wild-type beta cells undergo massive PERK/IRE1a/CHOP/TXNIP/Caspase-3 apoptosis above 50 nM TG, whereas Rnlsmut beta cells withstand 20-fold higher TG concentrations (1,000 nM in NIT-1 and 5,000 nM in human SC-beta cells)."
+      }
+    ],
+    "high_throughput_screen_hits": [
+      {
+        "gene_symbol_hgnc": "RNLS",
+        "ensembl_gene_id": "ENSG00000184719",
+        "selection_challenge": "In vivo 8-week autoimmune diabetogenic NOD splenocyte attack against GeCKO-v2 library (19,050 genes) in beta cells",
+        "effect_size_lfc_or_zscore": null,
+        "fdr_or_pvalue": 0.012,
+        "protective_perturbation_direction": "Knockout_or_Depletion_is_Protective"
+      }
+    ]
+  }
+}

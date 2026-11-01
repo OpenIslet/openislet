@@ -1,0 +1,17 @@
+{
+  "data": {
+    "gene": {
+      "gene_id": "ENSG00000178726",
+      "symbol": "THBD",
+      "gnomad_constraint": {
+        "pli": null,
+        "oe_lof": null,
+        "oe_lof_lower": null,
+        "oe_lof_upper": null,
+        "oe_mis": 1.040582111173397,
+        "oe_mis_lower": 0.9837683985235953,
+        "oe_mis_upper": 1.1012361309026186
+      }
+    }
+  }
+}

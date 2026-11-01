@@ -1,0 +1,812 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "36506044",
+    "pmcid": "PMC9732725",
+    "doi": "10.3389/fendo.2022.989815",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Human stem cell derived beta-like cells engineered to present PD-L1 improve transplant survival in NOD mice carrying human HLA class I.",
+    "first_author": "Santini-González J",
+    "senior_author": "Phelps EA",
+    "pub_year": 2022,
+    "journal": "Frontiers in endocrinology",
+    "source_text_type": "FullText_XML_or_PDF",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar3_Intrinsic_BetaCell_Genetic_Resilience_Amyloid_Viral",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid36506044_arm1",
+      "arm_label": "Doxycycline-induced PD-L1-expressing iP-BKO (B2M-/- + Tet-On CD274, +DOX) sBC grafts in Santini-González J (2022)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "hESC",
+        "cell_line_id": "MEL1",
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "B2M",
+          "ensembl_gene_id": "ENSG00000166710",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=B2M quote_sha256=0372681251e47c3b73a83c8a4fa33259be1fc690e4b8b8d3ea608a4c1978a23b]"
+          },
+          "functional_gate": "Gate2_Allo_HLA_ClassI_or_II",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        },
+        {
+          "gene_symbol_hgnc": "CD274",
+          "ensembl_gene_id": "ENSG00000120217",
+          "sub_molecular_coordinate": {
+            "region_class": "Transgene_cDNA_Cassette",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=exact_variant_or_swap_description mod=Lentiviral_or_Transposon_OE genes=CD274 quote_sha256=cfebcd56cefa2e95018f111015bfbca68529767e52d244c9eb44cb347c39f25c]"
+          },
+          "functional_gate": "Gate2_Checkpoint_T_Cell_Inhibition",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "Lentiviral_or_Transposon_OE",
+          "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Gain_of_Function_or_Transgenic_Armoring"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Subcutaneous_Unmodified",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "Matrigel",
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Cytokine_Cocktail_IFNg_IL1b_TNFa_or_IFNa",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        },
+        {
+          "challenge_type": "T1D_Autoreactive_CD8_or_CD4_TCR_Clone",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid36506044_arm2",
+      "arm_label": "Reference comparator condition (uninduced iP-BKO [-DOX] sBC grafts sharing B2M-/- + Tet-On CD274 background) in Santini-González J (2022)",
+      "is_reference_control": true,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "hESC",
+        "cell_line_id": "MEL1",
+        "donor_hla_profile": null,
+        "protocol_backbone": "Isogenic reference control matched to hESC (Primary_Mature_Islet)",
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "B2M",
+          "ensembl_gene_id": "ENSG00000166710",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=B2M quote_sha256=0372681251e47c3b73a83c8a4fa33259be1fc690e4b8b8d3ea608a4c1978a23b]"
+          },
+          "functional_gate": "Gate2_Allo_HLA_ClassI_or_II",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        },
+        {
+          "gene_symbol_hgnc": "CD274",
+          "ensembl_gene_id": "ENSG00000120217",
+          "sub_molecular_coordinate": {
+            "region_class": "Transgene_cDNA_Cassette",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=exact_variant_or_swap_description mod=Lentiviral_or_Transposon_OE genes=CD274 quote_sha256=cfebcd56cefa2e95018f111015bfbca68529767e52d244c9eb44cb347c39f25c]"
+          },
+          "functional_gate": "Gate2_Checkpoint_T_Cell_Inhibition",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "Lentiviral_or_Transposon_OE",
+          "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Gain_of_Function_or_Transgenic_Armoring"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Subcutaneous_Unmodified",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "Matrigel",
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Cytokine_Cocktail_IFNg_IL1b_TNFa_or_IFNa",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        },
+        {
+          "challenge_type": "T1D_Autoreactive_CD8_or_CD4_TCR_Clone",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid36506044_eff1",
+      "source_figure_or_table": "Results para 13",
+      "focal_factor_X": "CD274 (Doxycycline-induced PD-L1 expression in iP-BKO [B2M-/- + Tet-On CD274] sBC grafts, iP-BKO + DOX)",
+      "comparator_X0": "Transgene-induction manipulation check (uninduced iP-BKO [-DOX] vs +DOX sBC grafts in Santini-González J (2022); excluded from functional survival LRR pooling)",
+      "outcome_variable_Y": "[Endpoint: Graft PD-L1+ cell density per mm2 (transgene-induction manipulation check)] DOX-induced PD-L1 expression from 46 ± 25 (iP-BKO -DOX) to 915 ± 57 (iP-BKO +DOX) PD-L1+ cells/mm2",
+      "outcome_domain": "Surface_HLA_or_Transgene_Expression_Level",
+      "treatment_mean": 915.0,
+      "treatment_sd_or_sem": 57.0,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "PD-L1+ cells/mm2",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "hESC",
+        "Z3_immune_effector_and_stressor_pathway": "Surface_HLA_or_Transgene_Expression_Level",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Unmodified",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=verbatim_evidence_quote genes=B2M,CD274 pert=KO_LOF quote_sha256=ebea845d3ff97ce699e78148af302a42f32f5334daef5c64c507bf308d5c5abd]",
+      "focal_arm_id": "pmid36506044_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "SEM",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Right-censored at last reported follow-up timepoint if graft remained functional",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "9c4972ac9264b14a2fac8e3e7a8fdbcb279aa24cdd9924499611f48db5be14d7",
+      "source_span": "fulltext_data_sections.results_paragraphs[12][414:605]|norm=exact",
+      "quote_source_dossier_pmid": "36506044",
+      "statistic_type": "single_arm_descriptive_only",
+      "contrast_metadata": {
+        "intervention_label": "CD274 (Doxycycline-induced PD-L1 expression in iP-BKO [B2M-/- + Tet-On CD274] sBC grafts, iP-BKO + DOX)",
+        "comparator_label": null,
+        "endpoint_name": "Surface_HLA_or_Transgene_Expression_Level",
+        "timepoint": null,
+        "population_or_model": "hESC (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
+        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=omitted_text quote_sha256=a6f5dfd72255f77d2a6290956a91ae6e62c99c094a66feb7e1e0b3e4a3d3055f]",
+        "contrast_type": "right_censored_followup_observation"
+      }
+    },
+    {
+      "effect_id": "pmid36506044_eff2",
+      "source_figure_or_table": "Figure 1",
+      "focal_factor_X": "Study_Intervention",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Surface_HLA_or_Transgene_Expression_Level | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Surface_HLA_or_Transgene_Expression_Level",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": 3,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Neutral_or_NonInferior",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "hESC",
+        "Z3_immune_effector_and_stressor_pathway": "Surface_HLA_or_Transgene_Expression_Level",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Unmodified",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=4010209296814983ca4306f772e3b9f322425b64d06222c15af195f1304d1b99]",
+      "focal_arm_id": "pmid36506044_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "individual_cells_imaged",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "9c4972ac9264b14a2fac8e3e7a8fdbcb279aa24cdd9924499611f48db5be14d7",
+      "source_span": "fulltext_data_sections.figure_legends[0].caption[1865:1981]|norm=exact",
+      "quote_source_dossier_pmid": "36506044",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Study_Intervention",
+        "comparator_label": null,
+        "endpoint_name": "Surface_HLA_or_Transgene_Expression_Level",
+        "timepoint": null,
+        "population_or_model": "hESC (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid36506044_eff3",
+      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=omitted_text quote_sha256=0565fceba715022c0e85824b201086ecd54eb9eb38df8778c3686ed57b2148e0]",
+      "focal_factor_X": "Study_Intervention",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": 3,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Neutral_or_NonInferior",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "hESC",
+        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Unmodified",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=0a5f4d1ac95562b7b4bf6fed0e7d0823f6d6b77c2e42d7a09bbb412d66e4d651]",
+      "focal_arm_id": "pmid36506044_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "9c4972ac9264b14a2fac8e3e7a8fdbcb279aa24cdd9924499611f48db5be14d7",
+      "source_span": "fulltext_data_sections.figure_legends[0].caption[1982:2102]|norm=exact",
+      "quote_source_dossier_pmid": "36506044",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Study_Intervention",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "hESC (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid36506044_eff4",
+      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=omitted_text quote_sha256=0565fceba715022c0e85824b201086ecd54eb9eb38df8778c3686ed57b2148e0]",
+      "focal_factor_X": "Study_Intervention",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Surface_HLA_or_Transgene_Expression_Level | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Surface_HLA_or_Transgene_Expression_Level",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": 3,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Neutral_or_NonInferior",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "hESC",
+        "Z3_immune_effector_and_stressor_pathway": "Surface_HLA_or_Transgene_Expression_Level",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Unmodified",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=verbatim_evidence_quote genes=CD274 pert=NONE quote_sha256=3dd637c27ba120e88362502c593fc974736a9fe4816024c5b8f09999e377e61a]",
+      "focal_arm_id": "pmid36506044_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "independent_differentiations",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "9c4972ac9264b14a2fac8e3e7a8fdbcb279aa24cdd9924499611f48db5be14d7",
+      "source_span": "fulltext_data_sections.figure_legends[0].caption[2345:2457]|norm=exact",
+      "quote_source_dossier_pmid": "36506044",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Study_Intervention",
+        "comparator_label": null,
+        "endpoint_name": "Surface_HLA_or_Transgene_Expression_Level",
+        "timepoint": null,
+        "population_or_model": "hESC (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid36506044_eff5",
+      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=omitted_text quote_sha256=0565fceba715022c0e85824b201086ecd54eb9eb38df8778c3686ed57b2148e0]",
+      "focal_factor_X": "Study_Intervention",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": 3,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Neutral_or_NonInferior",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "hESC",
+        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Unmodified",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=0d669f2a23069a3508c572343d15f401d073c98a438bb5f17d05e546fd2327ee]",
+      "focal_arm_id": "pmid36506044_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "9c4972ac9264b14a2fac8e3e7a8fdbcb279aa24cdd9924499611f48db5be14d7",
+      "source_span": "fulltext_data_sections.figure_legends[0].caption[2458:2576]|norm=exact",
+      "quote_source_dossier_pmid": "36506044",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Study_Intervention",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "hESC (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid36506044_eff6",
+      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "focal_factor_X": "Study_Intervention",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": 7,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Neutral_or_NonInferior",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "hESC",
+        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Unmodified",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=10ecf5317567f8eb67e9f8dfe21414ea2129c3dbe82b3f5e9d6571b0e225fa05]",
+      "focal_arm_id": "pmid36506044_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "9c4972ac9264b14a2fac8e3e7a8fdbcb279aa24cdd9924499611f48db5be14d7",
+      "source_span": "fulltext_data_sections.figure_legends[2].caption[356:480]|norm=exact",
+      "quote_source_dossier_pmid": "36506044",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Study_Intervention",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "hESC (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid36506044_eff7",
+      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=omitted_text quote_sha256=0fb418bc6b224cad46820d15c23eadb4ce2fc19a718992213ef4bc57591ed9cf]",
+      "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": 8,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Neutral_or_NonInferior",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "hESC",
+        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Unmodified",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=e977aaebba4971f4616a4fab389db658cd9bb4f208c69743f5ce7419ff5999ac]",
+      "focal_arm_id": "pmid36506044_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "mouse_recipients",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "9c4972ac9264b14a2fac8e3e7a8fdbcb279aa24cdd9924499611f48db5be14d7",
+      "source_span": "fulltext_data_sections.figure_legends[3].caption[946:1091]|norm=exact",
+      "quote_source_dossier_pmid": "36506044",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "hESC (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid36506044_eff8",
+      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=omitted_text quote_sha256=0565fceba715022c0e85824b201086ecd54eb9eb38df8778c3686ed57b2148e0]",
+      "focal_factor_X": "B2M (CRISPR_Cas9_KO — Gate2_Allo_HLA_ClassI_or_II)",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Surface_HLA_or_Transgene_Expression_Level | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Surface_HLA_or_Transgene_Expression_Level",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "hESC",
+        "Z3_immune_effector_and_stressor_pathway": "Surface_HLA_or_Transgene_Expression_Level",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Unmodified",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=verbatim_evidence_quote genes=B2M pert=KO_LOF quote_sha256=ffbf0d5bd598ec3140f2a8d1da26d255595752edd3fbe4599bea7d74b01983f9]",
+      "focal_arm_id": "pmid36506044_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "9c4972ac9264b14a2fac8e3e7a8fdbcb279aa24cdd9924499611f48db5be14d7",
+      "source_span": "fulltext_data_sections.figure_legends[0].caption[840:985]|norm=exact",
+      "quote_source_dossier_pmid": "36506044",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "B2M (CRISPR_Cas9_KO — Gate2_Allo_HLA_ClassI_or_II)",
+        "comparator_label": null,
+        "endpoint_name": "Surface_HLA_or_Transgene_Expression_Level",
+        "timepoint": null,
+        "population_or_model": "hESC (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "pmid36506044_int1",
+      "source_figure_or_table": "Results para 5",
+      "focal_factor_X": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
+      "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
+      "modifier_variable_Z": "Prior_Condition vs. Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=level_1_condition_and_effect quote_sha256=aac997ac9b4c9fd8b692223cae6131931ed7f19e5f4de1cde1d9f41b6b473909]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=level_2_condition_and_effect quote_sha256=894d44c6ae134f528019ebac6ea29a0ea141c9d83b9d84d9e066c018c8554d75]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=mechanistic_explanation quote_sha256=894d44c6ae134f528019ebac6ea29a0ea141c9d83b9d84d9e066c018c8554d75]"
+    },
+    {
+      "interaction_id": "pmid36506044_int2",
+      "source_figure_or_table": "Results para 10",
+      "focal_factor_X": "Study_Intervention",
+      "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
+      "modifier_variable_Z": "Prior_Condition vs. Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=level_1_condition_and_effect quote_sha256=e89c3752fab5acea582261e724eb06818725843e0a8cf9d534e8caced6da6b18]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=level_2_condition_and_effect quote_sha256=1f9684901511a633f46f372b277d2db2c54444b0f8f53ad9c9d9c317c0447a63]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=mechanistic_explanation quote_sha256=1f9684901511a633f46f372b277d2db2c54444b0f8f53ad9c9d9c317c0447a63]"
+    },
+    {
+      "interaction_id": "pmid36506044_int3",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Study_Intervention",
+      "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
+      "modifier_variable_Z": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack vs. Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
+      "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=level_1_condition_and_effect quote_sha256=4349c2abacba90913d872b3932e1094279eca5ff6fec9bbb9b1c8fbc6d0e9bd4]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=level_2_condition_and_effect quote_sha256=2004f79e339268163a397aa53030dc0003b064c225e274c272b766a1ccd8bba9]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=mechanistic_explanation quote_sha256=2004f79e339268163a397aa53030dc0003b064c225e274c272b766a1ccd8bba9]"
+    },
+    {
+      "interaction_id": "pmid36506044_int4",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "BetaCell_Survival_and_Glycemic_Cure",
+      "outcome_Y": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+      "modifier_variable_Z": "Regime dependency on PD_L1_CD274_Checkpoint",
+      "modifier_class": "Z1_Developmental_Timing_or_Stage",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=level_1_condition_and_effect quote_sha256=2c8a323915dd3dc67fe8d751d22f138f56bba6061979ec5ef19362bfe06022d6]",
+      "level_2_condition_and_effect": "Reference regime (PD_L1_CD274_Checkpoint)",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=mechanistic_explanation quote_sha256=2c8a323915dd3dc67fe8d751d22f138f56bba6061979ec5ef19362bfe06022d6]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "PD_L1_CD274_Checkpoint",
+      "upstream_node_type": "Surface_Ligand_or_Antigen_Presentation",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "B2M_HLA_Class_I_Complex",
+      "downstream_node_type": "Surface_Ligand_or_Antigen_Presentation",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=evidence_source quote_sha256=dd5873a414fdc4f1a836501516ab7f615ba6f392dbb8c10e373ab45c3fd52c08]"
+    },
+    {
+      "upstream_node": "PD_L1_CD274_Checkpoint",
+      "upstream_node_type": "Surface_Ligand_or_Antigen_Presentation",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "downstream_node_type": "Lineage_Identity_or_Maturation_State",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=evidence_source quote_sha256=64e5f1937794bc39e042cfdfe21daee1b61294c65d6c75bb640117f2cb7fbc36]"
+    },
+    {
+      "upstream_node": "PD_L1_CD274_Checkpoint",
+      "upstream_node_type": "Surface_Ligand_or_Antigen_Presentation",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
+      "downstream_node_type": "Immune_or_Abiotic_Stressor",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=evidence_source quote_sha256=124fab12075fea41daa5a70a7c9f00d1db27c61d8a0dd32f47b9c899d19b706f]"
+    },
+    {
+      "upstream_node": "PD_L1_CD274_Checkpoint",
+      "upstream_node_type": "Surface_Ligand_or_Antigen_Presentation",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
+      "downstream_node_type": "Immune_or_Abiotic_Stressor",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=evidence_source quote_sha256=0c3bad4c3d6a7f8eeb8e79158a72b5ef2765d5d53386d4b2ad96d2c51420b967]"
+    },
+    {
+      "upstream_node": "PD_L1_CD274_Checkpoint",
+      "upstream_node_type": "Surface_Ligand_or_Antigen_Presentation",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
+      "downstream_node_type": "Immune_or_Abiotic_Stressor",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=evidence_source quote_sha256=cc8728a3d7d1b8db0557664d73435ffa049accb8602d704a84887ae279d88af4]"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "Study_Intervention",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=omitted_text quote_sha256=bc1917e9a8fe10904ea6d5b640887acd341a930d2a2ab3bdc9623e7a2ab15e20]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=omitted_text quote_sha256=cc3dc735a0d48cb0e3d4b764242897d422e8ad7436b6418997d4862f100d6531]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      },
+      {
+        "arm_or_intervention": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=omitted_text quote_sha256=de8d8650642c5378178109c71c85a812bb89a1e95b5cacafda63693309b3b342]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=omitted_text quote_sha256=71c6b75c19f9feeb7286a2ddc34fd8ee5ffe140133a06200f69483d47a8abf7c]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      },
+      {
+        "arm_or_intervention": "Study_Intervention",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=omitted_text quote_sha256=4f6e4ea6730977e57b62096891d787e3b67f48e94d27c7f62d244957e8c9ddf6]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=omitted_text quote_sha256=d33d3c4e4109437b76f40f7486fb448a1e479539a83ceceb50a893d46fc74ccd]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

@@ -1,0 +1,9 @@
+Resource: Human Protein Atlas (HPA)
+Classification: Factual protein localization, secretome class, and endocrine expression annotations redistributed in public bundle
+Audit Timestamp (UTC): 2026-10-23T10:34:00Z
+Upstream Source & Terms: https://www.proteinatlas.org/about/licence (Creative Commons Attribution-ShareAlike 3.0 / CC-BY 4.0 for HPA v23+ programmatic annotations)
+Release: Human Protein Atlas v23.0
+Shipped Public Artifacts:
+  - data/omics/target_prior_table.json and data/omics/hpa_*.json (subcellular localization and pancreatic islet protein expression annotations)
+  - data/extracted/omics_baseline_summary.json
+Attribution & Modifications: Factual HPA gene/protein annotations (subcellular location and endocrine pancreas expression presence) incorporated with source attribution.

@@ -1,0 +1,523 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "36289205",
+    "pmcid": "PMC9606380",
+    "doi": "10.1038/s41467-022-34069-z",
+    "nct_id": null,
+    "geo_accessions": [
+      "GSE190728",
+      "GSE190727",
+      "GSE190726",
+      "GSE190725"
+    ],
+    "title": "The type 1 diabetes gene TYK2 regulates β-cell development and its responses to interferon-α.",
+    "first_author": "Chandra V",
+    "senior_author": "Otonkoski T",
+    "pub_year": 2022,
+    "journal": "Nature communications",
+    "source_text_type": "FullText_XML_or_PDF",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar3_Intrinsic_BetaCell_Genetic_Resilience_Amyloid_Viral"
+    ],
+    "max_biological_fidelity_tier": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid36289205_arm1",
+      "arm_label": "Wild-Type (HEL46.11 hiPSC and H1 hESC) Stage 6-7 SC-Islets",
+      "is_reference_control": true,
+      "sample_size_n": 5,
+      "sample_size_unit": "independent_differentiations",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "iPSC_healthy_donor",
+        "cell_line_id": "HEL46.11 hiPSC and H1 (WA01) hESC",
+        "donor_hla_profile": "HLA-A2+",
+        "protocol_backbone": "Balboa-Otonkoski 7-stage protocol (S1-4 monolayer, S5 AggreWell, S6-7 suspension)",
+        "canonical_differentiation_stage_evaluated": "Stage7_MetabolicallyMature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": 41.8,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Kidney_Capsule",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "2 million S7 SC-islet cells in PE-50 tubing under NSG kidney capsule",
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Cytokine_Cocktail_IFNg_IL1b_TNFa_or_IFNa",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": 21.0,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 24.0,
+          "specific_autoantigen_or_hla_restriction": "IFN-alpha (100 ng/ml for 24 h)"
+        },
+        {
+          "challenge_type": "T1D_Autoreactive_CD8_or_CD4_TCR_Clone",
+          "effector_to_target_ratio": 10.0,
+          "oxygen_pct": 21.0,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 6.0,
+          "specific_autoantigen_or_hla_restriction": "HLA-A2-restricted MP58-66 peptide-specific CD8+ T cells (E:T 1:5, 1:1, 5:1, 10:1)"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": 60.0,
+        "pct_graft_surviving_at_end_of_followup": 100.0,
+        "followup_duration_days": 60.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid36289205_arm2",
+      "arm_label": "Constitutive TYK2-/- (Exon 3 277-bp Deletion at iPSC Stage 0) SC-Islets",
+      "is_reference_control": false,
+      "sample_size_n": 5,
+      "sample_size_unit": "independent_differentiations",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "iPSC_healthy_donor",
+        "cell_line_id": "HEL46.11 TYK2 KO Clones C10 and C12",
+        "donor_hla_profile": "HLA-A2+",
+        "protocol_backbone": "Balboa-Otonkoski 7-stage protocol",
+        "canonical_differentiation_stage_evaluated": "Stage7_MetabolicallyMature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": 26.9,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "TYK2",
+          "ensembl_gene_id": "ENSG00000105397",
+          "sub_molecular_coordinate": {
+            "region_class": "Specific_Exon_or_Splice_Isoform",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:36289205 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=TYK2 quote_sha256=c3e42f25076c97fe59cb7f18b7f09b499b8ff76261f00ca7cc9be9b7fafbde85]"
+          },
+          "functional_gate": "Gate4_Intrinsic_IFN_JAK_STAT_NFkB_Block",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": "Homozygous_Biallelic",
+          "protein_or_surface_expression_fold_vs_wt": 0.0,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Kidney_Capsule",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "2 million S7 SC-islet cells under NSG kidney capsule",
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Cytokine_Cocktail_IFNg_IL1b_TNFa_or_IFNa",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": 21.0,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 24.0,
+          "specific_autoantigen_or_hla_restriction": "IFN-alpha (100 ng/ml for 24 h)"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": 60.0,
+        "pct_graft_surviving_at_end_of_followup": 100.0,
+        "followup_duration_days": 60.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid36289205_arm3",
+      "arm_label": "Post-Differentiation Stage 7 Mature SC-Islets Treated with Allosteric TYK2 Inhibitor BMS-986165 (Deucravacitinib)",
+      "is_reference_control": false,
+      "sample_size_n": 4,
+      "sample_size_unit": "independent_differentiations",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "iPSC_healthy_donor",
+        "cell_line_id": "HEL46.11 WT differentiated to S7 prior to TYK2i",
+        "donor_hla_profile": "HLA-A2+",
+        "protocol_backbone": "Balboa-Otonkoski 7-stage protocol",
+        "canonical_differentiation_stage_evaluated": "Stage7_MetabolicallyMature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": 41.8,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "TYK2",
+          "ensembl_gene_id": "ENSG00000105397",
+          "sub_molecular_coordinate": {
+            "region_class": "Catalytic_or_Kinase_Domain",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:36289205 field=exact_variant_or_swap_description mod=SmallMolecule_Pharmacological_Modulator genes=TYK2 quote_sha256=6e4a699c8c7b1c588de314f96fa4bebb22e85fab669fabfe2a5eef0f8f2d6381]"
+          },
+          "functional_gate": "Gate4_Intrinsic_IFN_JAK_STAT_NFkB_Block",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "SmallMolecule_Pharmacological_Modulator",
+          "promoter_or_locus_context": "Endogenous_Native_Promoter",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": 1.0,
+          "perturbation_class": "Pharmacological_or_Small_Molecule_Modulator"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Cytokine_Cocktail_IFNg_IL1b_TNFa_or_IFNa",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": 21.0,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 24.0,
+          "specific_autoantigen_or_hla_restriction": "IFN-alpha (100 ng/ml for 24 h)"
+        },
+        {
+          "challenge_type": "T1D_Autoreactive_CD8_or_CD4_TCR_Clone",
+          "effector_to_target_ratio": 10.0,
+          "oxygen_pct": 21.0,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 6.0,
+          "specific_autoantigen_or_hla_restriction": "HLA-A2-restricted CD8+ T cells (E:T 1:5 to 10:1)"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "chandra2022_eff1_constitutive_tyk2_ko_neurog3_and_beta_yield_loss",
+      "source_figure_or_table": "Fig. 2b-k, Fig. 4c-f & Fig. 6c-e",
+      "focal_factor_X": "Constitutive TYK2 knockout (or TYK2i BMS-986165 applied during Stage 3-5 differentiation)",
+      "comparator_X0": "Wild-type hiPSC/hESC differentiation",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Deleterious_or_Impaired",
+      "secretome_or_differentiation_penalty_observed": true,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "TYK2 loss present during Stage 3-5 pancreatic progenitor to endocrine precursor transition",
+        "Z2_genetic_background_and_allelic_dose": "Homozygous exon 3 deletion in HEL46.11 hiPSC (replicated with BMS-986165 in HEL46.11 and H1 hESC)",
+        "Z3_immune_effector_and_stressor_pathway": "Unstressed differentiation",
+        "Z4_metabolic_and_glucose_load_state": "Standard differentiation media",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Stage 5 AggreWell and Stage 6-7 suspension",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "In vitro",
+        "Z7_promoter_and_epigenetic_context": "Constitutive KO",
+        "Z8_species_age_and_sex_context": "Human hiPSC and hESC"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:36289205 field=verbatim_evidence_quote genes=TYK2 pert=KO_LOF quote_sha256=48fa43faceb975b9230b18251d1fbd35bc4eddfd410cabf344d8542b3f26cfc7]",
+      "focal_arm_id": "pmid36289205_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "891bf7c4e8e5f9bcdc739b05772607dddb2ed5711d3f7a9787b0cb0dfcaa663f",
+      "source_span": "fulltext_data_sections.results_paragraphs[6][73:252]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Constitutive TYK2 knockout (or TYK2i BMS-986165 applied during Stage 3-5 differentiation)",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "Homozygous exon 3 deletion in HEL46.11 hiPSC (replicated with BMS-986165 in HEL46.11 and H1 hESC) (Human hiPSC and hESC)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "36289205"
+    },
+    {
+      "effect_id": "chandra2022_eff2_tyk2_ko_or_tyk2i_abrogates_ifna_mhc_class_i_and_ii",
+      "source_figure_or_table": "Fig. 5a-f, Fig. 6a-e & Supplementary Fig. 8-9",
+      "focal_factor_X": "TYK2 knockout or TYK2i (BMS-986165) in Stage 6-7 SC-islets under IFN-alpha (100 ng/ml, 24h)",
+      "comparator_X0": "Wild-type Stage 6-7 SC-islets treated with IFN-alpha",
+      "outcome_variable_Y": "[Endpoint: Surface_HLA_or_Transgene_Expression_Level | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Surface_HLA_or_Transgene_Expression_Level",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage 6 and Stage 7 differentiated SC-islets",
+        "Z2_genetic_background_and_allelic_dose": "TYK2 KO or allosteric TYK2i BMS-986165",
+        "Z3_immune_effector_and_stressor_pathway": "24 h IFN-alpha (100 ng/ml)",
+        "Z4_metabolic_and_glucose_load_state": "Standard S6/S7 media",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D SC-islet aggregates",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "In vitro suspension",
+        "Z7_promoter_and_epigenetic_context": "Endogenous HLA, TAP, and PSMB loci",
+        "Z8_species_age_and_sex_context": "Human SC-islets"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:36289205 field=verbatim_evidence_quote genes=HLA-A,HLA-B,HLA-C,TYK2 pert=KO_LOF quote_sha256=443f6c43c0c6641fdc575be58e6511a8cceb3d11e759a8c6758a02437c5771b5]",
+      "focal_arm_id": "pmid36289205_arm3",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "891bf7c4e8e5f9bcdc739b05772607dddb2ed5711d3f7a9787b0cb0dfcaa663f",
+      "source_span": "fulltext_data_sections.results_paragraphs[22][541:758]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "TYK2 knockout or TYK2i (BMS-986165) in Stage 6-7 SC-islets under IFN-alpha (100 ng/ml, 24h)",
+        "comparator_label": null,
+        "endpoint_name": "Surface_HLA_or_Transgene_Expression_Level",
+        "timepoint": null,
+        "population_or_model": "TYK2 KO or allosteric TYK2i BMS-986165 (Human SC-islets)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "36289205"
+    },
+    {
+      "effect_id": "chandra2022_eff3_tyk2i_reduces_cd8_tcell_cytotoxicity",
+      "source_figure_or_table": "Fig. 7a-f",
+      "focal_factor_X": "Allosteric TYK2 inhibitor (TYK2i BMS-986165) co-treatment during 24h IFN-alpha priming of WT Stage 7 SC-islets",
+      "comparator_X0": "IFN-alpha-primed WT Stage 7 SC-islets without TYK2i",
+      "outcome_variable_Y": "[Endpoint: Autoimmune_TCR_or_AutoAb_Evasion | polarity=Lower_Is_Better_Hazard_Endpoint | orientation_sign=-1 | unit=qualitative_statement]",
+      "outcome_domain": "Autoimmune_TCR_or_AutoAb_Evasion",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Mature WT Stage 7 SC-islets (post-differentiation intervention)",
+        "Z2_genetic_background_and_allelic_dose": "Pharmacological TYK2i on WT HLA-A2+ SC-islets",
+        "Z3_immune_effector_and_stressor_pathway": "[REDACTED_NON_OA_EXCERPT: see PMID:36289205 field=omitted_text quote_sha256=fd49c374060c74655a1b41fc8d52a620568701ea7079e0fc23e9303c79eaafef]",
+        "Z4_metabolic_and_glucose_load_state": "Standard culture",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Dissociated and peptide-pulsed SC-islet target cells",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "In vitro 96-well co-culture",
+        "Z7_promoter_and_epigenetic_context": "Endogenous HLA-I and PD-L1 promoters",
+        "Z8_species_age_and_sex_context": "Human"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:36289205 field=verbatim_evidence_quote genes=CD274,TYK2 pert=KO_LOF quote_sha256=d01dc12f36e3a603de68828097d72b417bd49c026c6d511b6a3c721009215239]",
+      "focal_arm_id": "pmid36289205_arm3",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
+        "orientation_sign": -1,
+        "matched_lexicon_term": "cytotoxicity"
+      },
+      "dossier_sha256": "891bf7c4e8e5f9bcdc739b05772607dddb2ed5711d3f7a9787b0cb0dfcaa663f",
+      "source_span": "fulltext_data_sections.results_paragraphs[26][1130:1426]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Allosteric TYK2 inhibitor (TYK2i BMS-986165) co-treatment during 24h IFN-alpha priming of WT Stage 7 SC-islets",
+        "comparator_label": null,
+        "endpoint_name": "Autoimmune_TCR_or_AutoAb_Evasion",
+        "timepoint": null,
+        "population_or_model": "Pharmacological TYK2i on WT HLA-A2+ SC-islets (Human)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "36289205"
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "chandra2022_int1_developmental_stage_modifies_tyk2_effect",
+      "source_figure_or_table": "Fig. 2b-q, Fig. 3g-s, Fig. 4c-p & Fig. 6-7",
+      "focal_factor_X": "TYK2 Knockout or Allosteric TYK2 Inhibition (BMS-986165)",
+      "outcome_Y": "Beta-cell lineage commitment vs mature beta-cell function and immune protection",
+      "modifier_variable_Z": "Developmental Stage of TYK2 Perturbation (Stage 3-5 Endocrine Precursor Induction vs Post-Commitment Stage 6-7 Mature SC-Islets)",
+      "modifier_class": "Z1_Developmental_Timing_or_Stage",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36289205 field=level_1_condition_and_effect quote_sha256=e0498443a5a5583c8dda96368241e0da7665338d0980f02fe3933aca1d6d7d57]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36289205 field=level_2_condition_and_effect quote_sha256=920baa76277c9e5855c469a295f989be4e7af4239008787d5efcb57cc6447389]",
+      "modification_type": "Qualitative_Sign_Reversal_Flips_Direction",
+      "critical_threshold_value_and_unit": "Must restrict TYK2 ablation/inhibition to post-NEUROG3 endocrine commitment (Stage 6-7 or INS/G6PC2-Cre lineage-locked editing)",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:36289205 field=mechanistic_explanation quote_sha256=5913528c771a7325f366161c8efc6c16fac95ca944362a562975ebb1d4a9b79c]"
+    },
+    {
+      "interaction_id": "chandra2022_int2_ifn_alpha_vs_ifn_gamma_pathway_selectivity",
+      "source_figure_or_table": "Fig. 2a & Fig. 5a",
+      "focal_factor_X": "TYK2 Knockout",
+      "outcome_Y": "Phosphorylation of STAT1 and STAT2",
+      "modifier_variable_Z": "Interferon Class (Type I IFN-alpha vs Type II IFN-gamma)",
+      "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36289205 field=level_1_condition_and_effect quote_sha256=5b54f9db0d0ec90f9782002d28a08c4e7da7740415090115cf4bd2d3c13a84c1]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36289205 field=level_2_condition_and_effect quote_sha256=68b6e48ceaf3ef4773e8f057d38498d5b95d0f4bc45e7e83b73d52914698bbdc]",
+      "modification_type": "Complete_Bypass_or_Abrogation",
+      "critical_threshold_value_and_unit": "TYK2 signals specifically via IFNAR1 (Type I IFN), whereas IFNGR1/2 uses JAK1/JAK2",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:36289205 field=mechanistic_explanation quote_sha256=fb6644f9e5c62aa8e2c97d60753ebca172b49cd2944218f876a5871ac7632f45]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "TYK2 Loss or Inhibition During Stage 3-5",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "KRAS, CDK2, and CDK4 Expression, Accelerating G1/S Transition and Shortening G1 Phase",
+      "downstream_node_type": "Signaling_Kinase_or_TF",
+      "evidence_source": "Fig. 3g-s & Fig. 4i-p (PMID 36289205)"
+    },
+    {
+      "upstream_node": "KRAS-Driven G1 Phase Shortening at Stage 5",
+      "upstream_node_type": "Signaling_Kinase_or_TF",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "NEUROG3 and NKX2-2 Induction and Beta-Cell Lineage Yield",
+      "downstream_node_type": "Lineage_Identity_or_Maturation_State",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:36289205 field=evidence_source quote_sha256=8ebb0d74d9a9123a48959b6057aae5ea1dd3c410dfe4035d5c3db2f4077a6fb8]"
+    },
+    {
+      "upstream_node": "TYK2 Knockout or BMS-986165 (TYK2i) in Stage 6-7 SC-Islets",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "IFN-alpha-Induced STAT1/STAT2 Phosphorylation, Immunoproteasome (PSMB8/9/10), TAP1/TAP2/TAPBP, Surface MHC Class I/II, and Endogenous PD-L1",
+      "downstream_node_type": "Surface_Ligand_or_Antigen_Presentation",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:36289205 field=evidence_source quote_sha256=390231973af72bd0195c0b6da57787ec95567488b5465dc69e17ffe352645b37]"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [
+      {
+        "primary_gate_perturbed": "Gate 4 (TYK2 Knockout at Pluripotent Stage 0)",
+        "secondary_gate_affected": "Gate 1 (Stage 5 NEUROG3 Endocrine Precursor Specification and Stage 7 Beta-Cell Yield)",
+        "observation": "[REDACTED_NON_OA_EXCERPT: see PMID:36289205 field=observation quote_sha256=d9debadeb223bf46fa5619b7853aae721eb1777c56b6a6915d43394fb11f9dd2]",
+        "is_beneficial_synergy_or_deleterious_tradeoff": "Deleterious_CrossGate_Tradeoff"
+      },
+      {
+        "primary_gate_perturbed": "Gate 4 (TYK2 Inhibition Under IFN-alpha Challenge)",
+        "secondary_gate_affected": "Gate 2 (Endogenous IFN-Inducible PD-L1 Checkpoint Expression)",
+        "observation": "[REDACTED_NON_OA_EXCERPT: see PMID:36289205 field=observation quote_sha256=4a50cf31855fe052c801e684106285ce7ff45d70b7788d6a47e1d54091daa4f3]",
+        "is_beneficial_synergy_or_deleterious_tradeoff": "Deleterious_CrossGate_Tradeoff"
+      }
+    ],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "TYK2 Inhibition (BMS-986165) or TYK2 KO Alone in SC-Islets",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:36289205 field=omitted_text quote_sha256=b6d2a1781955123738e88ca0438b573ea64e740f3d0f4fe79c7857cb8ca1f6c7]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:36289205 field=omitted_text quote_sha256=0189c71cafbaf1cf3b8ecbb0395a157087aa389510907cc358e6b816736e5095]",
+        "complementary_lever_needed": "1) Restrict TYK2 editing to mature beta cells (INS/G6PC2-Cre or P1104A base edit after S5, or pair with KRAS/CDK4/Aurora inhibition in S5-S7 as in Balboa 2022 PMID 35241836); 2) Express PD-L1 or CD47 (Hu 2024 PMID 37156915) or tether SA-FasL (Lei 2022 PMID 35559682) independently of the endogenous IFN-inducible promoter."
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

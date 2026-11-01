@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openislet"
+version = "0.8.0"
+description = "OpenIslet (Project Islet-1) — 5-Layer Computational & Preclinical Blueprint for Stem-Cell Islet Replacement in Type 1 Diabetes"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+dependencies = [
+    "numpy>=1.24",
+    "pytest>=7.4",
+    "jsonschema>=4.18",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-q -p no:cacheprovider"

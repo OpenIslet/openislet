@@ -1,0 +1,289 @@
+{
+  "schema_version": "1.0.0",
+  "decision_tree_id": "OPENISLET_STAGE0_GO_NOGO_DECISION_TREE_V1",
+  "provenance": "Audit Full (Meta AUDIT-REF) Convergence Round 3 Step 6 (AUDIT-REF & Spotlight 7.4; DEC-036), Audit Round 4 (DEC-038), Audit Round 4 (AUDIT-REF; DEC-039), Audit Round 4 (WET-R4-01..04 & Extension C; DEC-040), Audit Round 4 (R4S5-02/04/05 & S2-01..03; DEC-041), Audit Full Round 4 (R-01..R-07 & B-01..B-15; DEC-042), Audit Round 5 (P-01..P-13 & S03-F1..F5; DEC-047), Audit Full Round 5 (MW-R5-S2-F01..F06 & MW-R5-S1-01..26; DEC-048), & Audit Full Round 6 (MW-R6-S1-01..12 & S2-R1..R4; DEC-053)",
+  "switch_id_to_contract_decision_key_map": {
+    "S1": "S3_Locus1_Constitutive_Split_Fallback_DX_S",
+    "S2": "S2_Locus1_Arm1B_vs_Arm1X_Gate_0A",
+    "S3": "S1_Locus3_Kinetic_and_Topology_Gate_0C",
+    "S4": "S1_Locus3_Kinetic_and_Topology_Gate_0C",
+    "S5": "S7_Design_B_Prime_4Digit_Allo_vs_B_SCT_Gate_0B",
+    "S6": "S9_Chronic_Fibrotic_Capsule_and_Mineralization_Gate_0F",
+    "S7": "S4_Metabolic_Demand_and_Autoreactive_Shield_Gate_0D",
+    "S8": "S8_SC_Islet_Paracrine_Maturity_Gate_0M",
+    "S8b": "S8b_TYK2_Inducible_Promoter_Epistasis_Gate_0E",
+    "S9": "safety_kill_s9_status",
+    "S10": "S10_CMV_NKG2C_Adaptive_NK_Peptide_Selectivity_Gate_0A"
+  },
+  "trigger_key_aliases_accepted_in_contract": {
+    "obs_regimeII_nkg2a_lysis_pct": "obs_nkg2a_lysis_pct",
+    "obs_regimeII_nkg2a_lysis_se": "obs_nkg2a_lysis_se",
+    "obs_astar_control_cd8_lysis_pct": "obs_plan_a_star_cd8_lysis_pct",
+    "obs_astar_control_cd8_lysis_se": "obs_plan_a_star_cd8_lysis_se",
+    "obs_immaturity_corner_min_g_mM": "obs_immaturity_corner_min_glucose_mM",
+    "obs_immaturity_corner_min_g_se": "obs_immaturity_corner_min_glucose_se",
+    "X1:X4": "obs_beta_x1_x4_epistasis",
+    "X1:X4_se": "obs_beta_x1_x4_epistasis_se",
+    "X3:X4": "obs_beta_x3_x4_epistasis",
+    "X3:X4_se": "obs_beta_x3_x4_epistasis_se"
+  },
+  "strict_precedence_order": [
+    "1_SAFETY_KILL_S9",
+    "2_HOUR0_IMMUNITY_S1_S2_S3_S4_S5",
+    "3_ENDOCRINE_FUNCTION_AND_MATURITY_S8",
+    "4_BIOTRANSPORT_AND_CHRONIC_CAPSULE_S6_S7",
+    "5_MANUFACTURING_YIELD"
+  ],
+  "default_architecture_assignments": {
+    "locus1_construct": "ISLET1_A4_ARM1B",
+    "locus1_embodiment_alias": "ISLET1_A_STAR_4LOCUS",
+    "locus3_construct": "ISLET1_A4_ARM1B",
+    "plan_b_subbank_architecture": "ISLET1_B_SCT_C1_CIITA",
+    "pouch_cluster_diameter_cap_um": 120.0,
+    "lot_payload_derating_factor": 1.0,
+    "lot_maturation_status": "READY_FOR_ENCAPSULATION",
+    "variant_safety_status": "CLEARED"
+  },
+  "stage0_gate_endpoints": [
+    {
+      "endpoint_id": "locus3_serpinb9_hour0_cytosolic_uM",
+      "meanKey": "obs_serpinb9_hour0_uM",
+      "seKey": "obs_serpinb9_hour0_se",
+      "min": 0.0,
+      "max": 20.0,
+      "default_se": 0.02,
+      "unit": "hour0_unstimulated_cytosolic_serpinb9_uM_closed_interval_[0.0, 20.0]",
+      "gate_id": "Gate_0C_kinetic"
+    },
+    {
+      "endpoint_id": "locus3_pdl1_hour0_surface_molecules_per_cell",
+      "meanKey": "obs_pdl1_hour0_mols",
+      "seKey": "obs_pdl1_hour0_se",
+      "min": 0.0,
+      "max": 500000.0,
+      "default_se": 150.0,
+      "unit": "hour0_unstimulated_surface_pdl1_molecules_per_cell_closed_interval_[0.0, 500000.0]",
+      "gate_id": "Gate_0C_kinetic"
+    },
+    {
+      "endpoint_id": "regime_ii_uninduced_2h_specific_lysis_pct",
+      "meanKey": "obs_regimeII_lysis_2h_pct",
+      "seKey": "obs_regimeII_lysis_2h_se",
+      "min": 0.0,
+      "max": 100.0,
+      "default_se": 0.5,
+      "unit": "regime_ii_2h_specific_lysis_percentage_closed_interval_[0.0, 100.0]",
+      "gate_id": "Gate_0C_kinetic"
+    },
+    {
+      "endpoint_id": "b2m_null_orphan_hc10_surface_fold_over_wt",
+      "meanKey": "obs_hc10_surface_fold_wt",
+      "seKey": "obs_hc10_surface_fold_se",
+      "min": 0.0,
+      "max": 50.0,
+      "default_se": 0.05,
+      "unit": "hc10_free_heavy_chain_surface_mfi_fold_over_wt_closed_interval_[0.0, 50.0]",
+      "gate_id": "Gate_0E_ER"
+    },
+    {
+      "endpoint_id": "b2m_null_chop_ddit3_coincidence_fold_over_basal",
+      "meanKey": "obs_chop_coincidence_fold",
+      "seKey": "obs_chop_coincidence_se",
+      "min": 0.0,
+      "max": 50.0,
+      "default_se": 0.05,
+      "unit": "ddit3_chop_coincidence_arm_fold_over_basal_closed_interval_[0.0, 50.0]",
+      "gate_id": "Gate_0E_ER"
+    },
+    {
+      "endpoint_id": "chronic_day28_90_capsule_thickness_um",
+      "meanKey": "obs_capsule_dz_um",
+      "seKey": "obs_capsule_dz_se",
+      "min": 0.0,
+      "max": 500.0,
+      "default_se": 0.5,
+      "unit": "physical_fibrotic_capsule_thickness_um_closed_interval_[0.0, 500.0]",
+      "gate_id": "Gate_0F_chronic"
+    },
+    {
+      "endpoint_id": "chronic_day28_90_capsule_o2_diffusivity_cm2_s",
+      "meanKey": "obs_capsule_d_o2_cm2_s",
+      "seKey": "obs_capsule_d_o2_se",
+      "min": 1e-7,
+      "max": 5e-5,
+      "default_se": 1e-7,
+      "unit": "capsule_oxygen_diffusivity_cm2_s_closed_interval_[1e-7, 5e-5]",
+      "gate_id": "Gate_0F_chronic"
+    },
+    {
+      "endpoint_id": "stage7_basal_2p8mM_insulin_secretion_fraction_of_peak",
+      "meanKey": "obs_basal_insulin_frac_peak",
+      "seKey": "obs_basal_insulin_frac_se",
+      "min": 0.0,
+      "max": 1.0,
+      "default_se": 0.01,
+      "unit": "basal_2p8mM_secretion_fraction_of_16p7mM_peak_closed_interval_[0.0, 1.0]",
+      "gate_id": "Gate_0M_maturity"
+    },
+    {
+      "endpoint_id": "stage7_step_ramp_glucose_secretion_threshold_mM",
+      "meanKey": "obs_glucose_threshold_mM",
+      "seKey": "obs_glucose_threshold_se",
+      "min": 1.0,
+      "max": 15.0,
+      "default_se": 0.1,
+      "unit": "step_ramp_first_sustained_secretion_threshold_mM_closed_interval_[1.0, 15.0]",
+      "gate_id": "Gate_0M_maturity"
+    },
+    {
+      "endpoint_id": "b_prime_foreign_group_matched_cd8_specific_lysis_pct",
+      "meanKey": "obs_foreign_hlac_cd8_lysis_pct",
+      "seKey": "obs_foreign_hlac_cd8_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "default_se": 0.5,
+      "unit": "foreign_4digit_group_matched_cd8_specific_lysis_pct_closed_interval_[0.0, 100.0]",
+      "gate_id": "Gate_0B_allele"
+    },
+    {
+      "endpoint_id": "cao2_hydrolysis_kinetic_law_code",
+      "meanKey": "obs_cao2_kinetic_law",
+      "seKey": "obs_cao2_kinetic_law_se",
+      "min": 0.0,
+      "max": 2.0,
+      "default_se": 0.05,
+      "unit": "kinetic_law_code_0_first_order_1_shrinking_core_2_ginstling_brounshtein_closed_interval_[0.0, 2.0]",
+      "gate_id": "Gate_P05_kinetics"
+    },
+    {
+      "endpoint_id": "stage7_lot_ocr_ratio_over_nominal_34_nmol_cm3_s",
+      "meanKey": "obs_lot_ocr_ratio",
+      "seKey": "obs_lot_ocr_ratio_se",
+      "min": 0.2,
+      "max": 3.0,
+      "default_se": 0.015,
+      "unit": "lot_ocr_vmax_ratio_over_nominal_34_nmol_cm3_s_closed_interval_[0.2, 3.0]",
+      "gate_id": "Gate_OCR_release"
+    }
+  ],
+  "switches": [
+    {
+      "switch_id": "S1",
+      "contract_decision_key": "S3_Locus1_Constitutive_Split_Fallback_DX_S",
+      "precedence_tier": "2_HOUR0_IMMUNITY_S1_S2_S3_S4_S5",
+      "trigger": "(obs_cd47_hour0_molecules < 50000 or obs_phagocytosis_index_pct > 10.0 or obs_cd47_p10_single_cell_molecules < 180000 or obs_hypoxic_72h_cd47_retention_molecules < 180000) and obs_dxs_locus4_joint_retention_fraction_lower95 >= 0.9999 and obs_dxs_cd47low_icasp9low_fraction_upper95 <= 1e-6 and obs_dxs_ap1903_cd47high_escape_fraction_upper95 <= 1e-8 (with Playbook cliff hold on 50k <= obs_cd47_hour0_molecules < 200k or 5% < obs_phagocytosis_index_pct <= 10% unless DX-S qualified; evaluated independently of S2 so Arm 1X never masks a CD47 deficiency; AUDIT-REF)",
+      "action": "Switch Locus 1 from ISLET1_A4_ARM1B (Embodiment A*) to ISLET1_A4_DXS_ARM1C_L4CD47 (DX-S split cassette: Arm 1C + Locus-4 iCasp9-P2A-CD47), subject to one-sided 95% confidence clone-level AAVS1 joint shield+switch retention verification (AUDIT-REF, AUDIT-REF & AUDIT-REF).",
+      "promoted_product_variant_id": "ISLET1_A4_DXS_ARM1C_L4CD47",
+      "demoted_product_variant_id": "ISLET1_A4_ARM1B"
+    },
+    {
+      "switch_id": "S2",
+      "contract_decision_key": "S2_Locus1_Arm1B_vs_Arm1X_Gate_0A",
+      "precedence_tier": "2_HOUR0_IMMUNITY_S1_S2_S3_S4_S5",
+      "trigger": "(obs_hlae_hour0_molecules < 15000 or 8.0 < obs_nkg2a_lysis_pct <= 15.0) and obs_kir_nkg2a_neg_nk_lysis_pct <= 8.0 and obs_il12_il18_sirpa_low_nk_lysis_pct <= 10.0 (catastrophic obs_nkg2a_lysis_pct > 15.0 or sorted KIR+ NKG2A- / IL-12+IL-18 SIRPa-low NK failure holds rather than auto-promoting Arm 1X; AUDIT-REF & L01-F1)",
+      "action": "Promote constitutive-floor sense HLA-E promoter arm (Arm 1X W_P=+1 Syn_3xISRE_CpGminP_230bp_sense [or optional EEF1A1_core_230 sense comparator] or DX-S 3,300-bp constitutive EEF1A1_core_230 + 133-bp chimeric intron) and retire inducible-only 5xISRE sense promoter (isolated NKG2C adaptive NK failure is routed to S10 and sorted KIR+ NKG2A- NK failure is routed to Track 2 / DX-S+L3-BF-B rather than constitutive HLA-E overexpression; AUDIT-REF, AUDIT-REF & DEC-078).",
+      "promoted_sense_promoter_mode": "SYN_3XISRE_CPGMINP_230BP_OR_EEF1A1_CORE_230_CONSTITUTIVE_FLOOR"
+    },
+    {
+      "switch_id": "S3",
+      "contract_decision_key": "S1_Locus3_Kinetic_and_Topology_Gate_0C",
+      "precedence_tier": "2_HOUR0_IMMUNITY_S1_S2_S3_S4_S5",
+      "trigger": "obs_serpinb9_hour0_uM < 0.30 or obs_regimeII_lysis_2h_pct > 8.0",
+      "action": "Switch Locus 3 default for D2 confirmatory cohort from inducible-only 4,090-bp/3,799-bp to ISLET1_A4_L3_BFB_BASALFLOOR (4,078-bp L3-BF-B basal-floor scar-free dual-promoter cassette providing 0.25-0.40 uM Hour-0 SERPINB9; AUDIT-REF).",
+      "promoted_product_variant_id": "ISLET1_A4_L3_BFB_BASALFLOOR"
+    },
+    {
+      "switch_id": "S4",
+      "contract_decision_key": "S1_Locus3_Kinetic_and_Topology_Gate_0C",
+      "precedence_tier": "2_HOUR0_IMMUNITY_S1_S2_S3_S4_S5",
+      "trigger": "obs_serpinb9_si > 1.5 or obs_serpinb9_log10_kass < 6.0 or obs_serpinb9_kass_M_s < 1e6 or obs_serpinb9_half_life_h < 4.0",
+      "action": "Retire P2A-tailed Locus 3 (4,090 bp) program-wide and promote scar-free native-Pro376-COOH dual-promoter lineage (ISLET1_A4_L3_SCARFREE_3799 or ISLET1_A4_L3_BFB_BASALFLOOR).",
+      "promoted_product_variant_id": "ISLET1_A4_L3_SCARFREE_3799"
+    },
+    {
+      "switch_id": "S5",
+      "contract_decision_key": "S7_Design_B_Prime_4Digit_Allo_vs_B_SCT_Gate_0B",
+      "precedence_tier": "2_HOUR0_IMMUNITY_S1_S2_S3_S4_S5",
+      "trigger": "obs_foreign_hlac_cd8_lysis_pct > (obs_plan_a_star_cd8_lysis_pct or obs_astar_control_cd8_lysis_pct) + 5.0 or obs_b_prime_sct_cd8_lysis_pct > (obs_plan_a_star_cd8_lysis_pct or obs_astar_control_cd8_lysis_pct) + 5.0 or obs_b_prime_sct_21d_primed_cd8_elispot_sfu_per_1e6 > 50.0",
+      "action": "Permanently demote endogenous chr6 HLA-C retention B-prime (ISLET1_B1/B2) to exploratory status (or halt B'-SCT on recipient CD8+ alloreactivity > A* + 5% or 21-day DC-primed IFN-gamma ELISpot > 50 SFU/10^6); restrict Plan B routing exclusively to cleared fixed-peptide B'-SCT at CIITA (ISLET1_B_SCT_C1_CIITA, ISLET1_B_SCT_C2_CIITA, ISLET1_B_SCT_C1C2_CIITA, ISLET1_B_SCT_C1_CIITA_TYK2_PE, ISLET1_B_SCT_C2_CIITA_TYK2_PE, ISLET1_B_SCT_C1C2_CIITA_TYK2_PE; AUDIT-REF, R4S5-04 & AUDIT-REF).",
+      "promoted_product_variant_id": "ISLET1_B_SCT_C1_CIITA",
+      "promoted_product_variant_roster": [
+        "ISLET1_B_SCT_C1_CIITA",
+        "ISLET1_B_SCT_C2_CIITA",
+        "ISLET1_B_SCT_C1C2_CIITA",
+        "ISLET1_B_SCT_C1_CIITA_TYK2_PE",
+        "ISLET1_B_SCT_C2_CIITA_TYK2_PE",
+        "ISLET1_B_SCT_C1C2_CIITA_TYK2_PE"
+      ],
+      "demoted_product_variant_id": "ISLET1_B2_5LOCUS_TYK2_PE"
+    },
+    {
+      "switch_id": "S6",
+      "contract_decision_key": "S9_Chronic_Fibrotic_Capsule_and_Mineralization_Gate_0F",
+      "precedence_tier": "4_BIOTRANSPORT_AND_CHRONIC_CAPSULE_S6_S7",
+      "trigger": "obs_cao2_kinetic_law >= 1.5 or obs_masked_perfusion_confirmed is True or obs_capsule_dz_um > 10.4 or obs_d_o2_gel_aged_cm2_s < 1.50e-5 or obs_outer_band_kperf_s_inv < 0.10 or obs_periimplant_fluid_film_um > 50.0 or obs_explant_en_bloc_recovery_fraction < 0.99",
+      "action": "Enforce DX-b <= 100 um cluster diameter cap (and tighten to <= 80 um if chronic zero-source capsule thickness obs_capsule_dz_um exceeds 18.7 um; hold for 80-um viability-only derating or pre-vascularized omental scaffold if obs_capsule_dz_um > 30.0 um where surface pO2 drops below 15.0 mmHg even for 80-um clusters; hold if obs_outer_band_kperf_s_inv < 0.10 s^-1, obs_periimplant_fluid_film_um > 50.0 um without periimplant_closed_suction_drain_verified=True [hard seroma/hypoxia ceiling > 80.0 um], or obs_explant_en_bloc_recovery_fraction < 0.99 without obs_vascularized_explant_en_bloc_recovery_verified=True; hard stop if obs_capsule_dz_um > 100.0 um; AUDIT-REF, AUDIT-REF, AUDIT-REF & MW-R5-S1-18).",
+      "enforced_cluster_cap_um_at_gb_or_masked": 100.0,
+      "enforced_cluster_cap_um_at_chronic_capsule_gt_18p7um": 80.0,
+      "surface_gsis_15mmhg_capsule_ceiling_um_100um_cluster": 20.0,
+      "surface_gsis_15mmhg_capsule_ceiling_um_80um_cluster": 30.0,
+      "core_viability_5mmhg_capsule_ceiling_um_80um_cluster": 100.0
+    },
+    {
+      "switch_id": "S7",
+      "contract_decision_key": "S4_Metabolic_Demand_and_Autoreactive_Shield_Gate_0D",
+      "precedence_tier": "4_BIOTRANSPORT_AND_CHRONIC_CAPSULE_S6_S7",
+      "trigger": "obs_lot_ocr_ratio > 1.097",
+      "action": "Hold lot from nominal-density encapsulation; apply payload de-rating factor f_load = 1.0 / obs_lot_ocr_ratio and promote ISLET1_A4_X_MOL_RNLS_WT (RNLS+/+ wild-type retention).",
+      "promoted_product_variant_id": "ISLET1_A4_X_MOL_RNLS_WT"
+    },
+    {
+      "switch_id": "S8",
+      "contract_decision_key": "S8_SC_Islet_Paracrine_Maturity_Gate_0M",
+      "precedence_tier": "3_ENDOCRINE_FUNCTION_AND_MATURITY_S8",
+      "trigger": "obs_gate0m_shutoff_t90_min > 3.0 or obs_basal_insulin_frac_peak > 0.15 or obs_glucose_threshold_mM < 4.5 or (obs_immaturity_corner_min_glucose_mM or obs_immaturity_corner_min_g_mM) < 3.50 or obs_alpha_glucagon_low_glc_fold < 2.0 or obs_alpha_counterregulatory_gain_ratio < 0.80 or obs_ucn3_maturity_ratio < 0.70",
+      "action": "Hold lot for +3-week extended Stage-7 maturation (Balboa et al. 2022 PMID:35241836) and re-run Gate 0M-maturity (including challenged v=0.60 / 300k beta-eq IEQ exercise counter-regulatory validation); suspend G6PC2/GLIS3 set-point edits for that lot lineage (AUDIT-REF & AUDIT-REF)."
+    },
+    {
+      "switch_id": "S8b",
+      "contract_decision_key": "S8b_TYK2_Inducible_Promoter_Epistasis_Gate_0E",
+      "precedence_tier": "2_HOUR0_IMMUNITY_S1_S2_S3_S4_S5",
+      "trigger": "FRACTION_HALF_EFFECT: obs_beta_x1_x4_epistasis < -0.05 or obs_beta_x1_x4_epistasis_lower95 < -0.10 or obs_beta_x3_x4_epistasis < -0.05 or obs_beta_x3_x4_epistasis_lower95 < -0.10 (PP_HALF_EFFECT: point < -5.0 pp or lower95 < -10.0 pp; PP_FULL_CONTRAST: point < -10.0 pp or lower95 < -20.0 pp; DID_PP: point < -20.0 pp or lower95 < -40.0 pp; per-endpoint scale retained across sequential batches) or obs_tyk2_p1104a_3x2_satellite_shield_induction_pct < 70.0",
+      "action": "Couple TYK2 P1104A strictly with constitutive-floor sense promoter Arm 1X (W_P=+1 Syn_3xISRE_CpGminP_230bp_sense / EEF1A1_core_230, anchored by registry ID ISLET1_A4_X_MOL_RNLS_WT) and constitutive basal-floor Locus 3 (ISLET1_A4_L3_BFB_BASALFLOOR); hold lot maturation pending coupled Arm1X+L3-BF-B qualification (AUDIT-REF, AUDIT-REF & AUDIT-REF; DEC-040/042/044/078)."
+    },
+    {
+      "switch_id": "S9",
+      "contract_decision_key": "safety_kill_s9_status",
+      "precedence_tier": "1_SAFETY_KILL_S9",
+      "trigger": "obs_icasp9_log10_kill_lower95 < 4.0 or obs_ap1903_pulsed_pk_log10_kill < 4.0 or obs_ap1903_step1_sublethal_survivor_count_k > 0 or obs_tp53_ppm1d_bcor_vaf_upper95 >= 1e-4 (exact 1-sided 95% Poisson bound enforced for all k >= 0 including k = 0 across N >= 62,958 duplex molecules) or obs_castseq_translocation_freq_upper95 >= 1e-4 (across N >= 62,958 duplex/amplicon molecules) or obs_chop_coincidence_fold_upper95 >= 2.0 or obs_hc10_surface_fold_wt_upper95 > 2.0 or obs_capsule_dz_um > 100.0 or obs_residual_psc_effective_fraction_upper95 > 1e-8 or obs_20q11_bcl2l1_cnv_ratio < 1.85 or obs_20q11_bcl2l1_cnv_ratio > 2.15 or obs_hazard_state_prolif_survivor_count_k > 0",
+      "action": "HARD SAFETY STOP on product variant / lot; overrides all lower-tier immune, functional, transport, or yield wins; sticky reset requires reset_prior_safety_stop_after_investigation=True and >=2 distinct post-stop passing S9 batch IDs verified in ordered_batch_observation_ledger (AUDIT-REF & F6; AUDIT-REF; AUDIT-REF; AUDIT-REF; AUDIT-REF; MW-R5-S1-05/06 & MW-R5-S2-F01..F06)."
+    },
+    {
+      "switch_id": "S10",
+      "contract_decision_key": "S10_CMV_NKG2C_Adaptive_NK_Peptide_Selectivity_Gate_0A",
+      "precedence_tier": "2_HOUR0_IMMUNITY_S1_S2_S3_S4_S5",
+      "trigger": "obs_nkg2c_adaptive_nk_lysis_pct > 8.0 or obs_hlae_nkg2c_over_nkg2a_kd_ratio < 4.0",
+      "action": "Do NOT promote constitutive Arm 1X VMAPRTLVL overexpression for isolated NKG2C adaptive NK failure (which is density-invariant at K_C/K_A = 3.10 < 4.0 and increases NKG2C engagement); hold universal claim for CMV+ NKG2C-high recipients and evaluate Gate 0A-NK covalent-SCT peptide selectivity coupon (testing VMAPRTLFL [Kaiser 2008 PMID:18448674 K_C/K_A = 6.50x, Vales-Gomez 1999 PMID:10428963 K_C/K_A = 4.62x] and HLA-E*01:03(D227K/T228A) subject to CMV HLA-E-restricted CD8+ CTL non-escape; note pure NKG2A-NKG2C+ adaptive NK subsets receive zero NKG2A inhibition regardless of K_C/K_A and require KIR2DL/HLA-C SCT or PD-L1/L3-BF-B; AUDIT-REF & AUDIT-REF)."
+    }
+  ],
+  "pivotal_combined_stress_stage0_coupon_gate_muse_r4": {
+    "coupon_id": "STAGE0_COMBINED_STRESS_KILL_CHAIN_COUPON_MUSE_R4",
+    "simultaneous_stressors": [
+      "Hypoxia: pO2 = 10 mmHg continuous incubator headspace (15 mM high-glucose metabolic load)",
+      "Cytokine storm: IFN-gamma (100 ng/mL) + TNF-alpha (10 ng/mL) + IL-1beta (5 ng/mL)",
+      "Serial immune challenge: 12-pulse q2h primary human NK (NKG2A+, NKG2C+CD57+, KIR+) + autoreactive/alloreactive CD8+ CTL challenge at E:T = 5:1 over 24 h (where L3-BF-B 0.30-0.89 uM SERPINB9 provides a 6-pulse hypoxic kinetic buffer at f_ISR = 0.45 and pulses 7-12 require upstream synaptic degranulation suppression p_degran <= 0.15 via HLA-E/HLA-C SCT/PD-L1; AUDIT-REF)",
+      "Transport-limited exchange: encapsulated <= 80-100 um composite micro-islets at 1,500 IEQ/cm^2 under limited buffer exchange"
+    ],
+    "mandatory_pass_criteria": {
+      "post_24h_viable_beta_cell_mass_fraction_min": 0.85,
+      "post_24h_viable_beta_cell_mass_pct_min": 85.0,
+      "dynamic_perifusion_gsis_stimulation_index_min": 2.5,
+      "post_stepdown_2p8mM_secretion_fraction_of_peak_at_15min_max": 0.20,
+      "shutoff_t90_min_max": 3.0,
+      "interstitial_h2o2_uM_max": 5.0,
+      "interstitial_ph_max": 7.50,
+      "specific_lysis_pct_max": 8.0
+    },
+    "trigger_rule": "Requires explicit observation of all three head-to-head comparator endpoints (obs_combined_stress_embodiment_a_star_lysis_pct > 8.0, obs_combined_stress_comp_r4_lysis_pct <= 8.0, obs_combined_stress_comp_r4_gsis_si >= 2.5) plus no secondary viability (<85%), shutoff (>3.0 min), H2O2 (>5.0 uM), or pH (>7.50) failure (and all 4 secondary endpoints observed when require_full_7metric_combined_stress_panel=True) -> PROMOTE_ISLET1_COMP_R4_X_BFB_DXB_LOWLOAD1500; partial comparator observations hold on HOLD_COMBINED_STRESS_INCOMPLETE_COMPARATOR_EVIDENCE (AUDIT-REF, AUDIT-REF & AUDIT-REF; DEC-043/044/045)"
+  }
+}

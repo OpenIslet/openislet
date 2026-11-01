@@ -1,0 +1,266 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "27136258",
+    "pmcid": null,
+    "doi": "10.1097/TP.0000000000001162",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Harnessing the Foreign Body Reaction in Marginal Mass Device-less Subcutaneous Islet Transplantation in Mice.",
+    "first_author": "Pepper AR",
+    "senior_author": "Shapiro AM",
+    "pub_year": 2016,
+    "journal": "Transplantation",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_4_Rodent_or_Xenogeneic_Only"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid27136258_arm1",
+      "arm_label": "Primary experimental arm in Pepper AR (2016)",
+      "is_reference_control": false,
+      "sample_size_n": 13,
+      "sample_size_unit": "mouse_recipients",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Rodent_Primary_Islet",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Portal_Vein_Intrahepatic",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "Microvascular_Fragment_CoAssembly",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "collagen",
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid27136258_eff1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": 13,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Deleterious_or_Impaired",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Rodent_Primary_Islet",
+        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Portal_Vein_Intrahepatic",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "A marginal islet mass transplanted into the DL site routinely reversed diabetes (n = 13 of 18) whereas all SC islet recipients failed to restore glycemic control (n = 0 of 10, P < 0.01, log-rank).",
+      "focal_arm_id": "pmid27136258_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": "<",
+      "p_value_bound": 0.01,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "mouse_recipients",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "484a753d78ff8a555f3903fad62bf3cea5515b6491900a1a60b62298d04a9916",
+      "source_span": "abstract[1023:1219]|norm=exact",
+      "quote_source_dossier_pmid": "27136258",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "Rodent_Primary_Islet (Tier_4_Rodent_or_Xenogeneic_Only)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid27136258_eff2",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": 15,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Neutral_or_NonInferior",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Rodent_Primary_Islet",
+        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Portal_Vein_Intrahepatic",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:27136258 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=a4dc26ff9b31335c001e4c58ab2ee68bd2eeba912e5d5c192ac0b023415c7614]",
+      "focal_arm_id": "pmid27136258_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "mouse_recipients",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "484a753d78ff8a555f3903fad62bf3cea5515b6491900a1a60b62298d04a9916",
+      "source_span": "abstract[1220:1309]|norm=exact",
+      "quote_source_dossier_pmid": "27136258",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "Rodent_Primary_Islet (Tier_4_Rodent_or_Xenogeneic_Only)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "pmid27136258_int1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
+      "modifier_variable_Z": "Hypoxia_72h_Ischemia_and_O2_Scaffolds vs. Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:27136258 field=level_1_condition_and_effect quote_sha256=ee39370e391ed118484bdadee5b2e7700744bfa241393c2f3424ab309b7ec2df]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:27136258 field=level_2_condition_and_effect quote_sha256=be27242bc4c111ce6548413addc7a7ccb73e1043c5f7fe7e6517c015156102f4]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:27136258 field=mechanistic_explanation quote_sha256=be27242bc4c111ce6548413addc7a7ccb73e1043c5f7fe7e6517c015156102f4]"
+    },
+    {
+      "interaction_id": "pmid27136258_int2",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
+      "modifier_variable_Z": "Hypoxia_72h_Ischemia_and_O2_Scaffolds vs. MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:27136258 field=level_1_condition_and_effect quote_sha256=3e7f7c8f26ed5904599980030d11f7ffc4b3220aee1d66fad8e1ee2ef28baa41]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:27136258 field=level_2_condition_and_effect quote_sha256=c134e27bf070434b212af28bb2b67daa1ccfe532f13822ceb7e68c5d8fe863dd]",
+      "modification_type": "Complete_Bypass_or_Abrogation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:27136258 field=mechanistic_explanation quote_sha256=108c75f896bff20ab80e12522ba1f586ed0ca4fbdeeea16191e51841c1ca7e33]"
+    },
+    {
+      "interaction_id": "pmid27136258_int3",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
+      "modifier_variable_Z": "Hypoxia_72h_Ischemia_and_O2_Scaffolds vs. Biphasic_GSIS_and_Calcium_Coupling",
+      "modifier_class": "Z4_Metabolic_Glucose_or_ER_Secretory_Load",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:27136258 field=level_1_condition_and_effect quote_sha256=73a6a42fa9f0625e89657b6cdb7ece7f9cdd4d3931b4f1ecfc5f771fa213941a]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:27136258 field=level_2_condition_and_effect quote_sha256=bdab4e2af179b059f12ce27340d660bb7b614bae715e9e007d67ef1dde6e5a71]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:27136258 field=mechanistic_explanation quote_sha256=4becdb232f3b7a015e6858811367de67719331c32f22fdc91b200b525f47afe2]"
+    }
+  ],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:27136258 field=omitted_text quote_sha256=aae39eaa640de3129cbc23deefe26928a4a48ef01e618da6d8656ae3d883d178]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:27136258 field=omitted_text quote_sha256=e3715d127d092ec8e864ec1fc8fa5a95321044c1952e35f9b076201243f6b4e9]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      },
+      {
+        "arm_or_intervention": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:27136258 field=omitted_text quote_sha256=90178096348f9375ad944a112ddba25538a12201937674d1ca07546f628fe85f]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:27136258 field=omitted_text quote_sha256=7150b5b3f3c119ff93aa8af55d3cc86bbb85c239c7dd7aa7d084c874069f9664]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

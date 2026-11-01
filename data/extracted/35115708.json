@@ -1,0 +1,264 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "35115708",
+    "pmcid": null,
+    "doi": "10.1038/s41591-021-01645-7",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Human pluripotent stem-cell-derived islets ameliorate diabetes in non-human primates.",
+    "first_author": "Du Y",
+    "senior_author": "Deng H",
+    "pub_year": 2022,
+    "journal": "Nature medicine",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid35115708_arm1",
+      "arm_label": "Primary experimental arm in Du Y (2022)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "CiPSC_chemically_induced",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Unspecified_InVivo_or_Source_Site",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "Hemoglobin_or_Myoglobin_Hydrogel",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid35115708_eff1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: InVivo_Glycemic_Cure_and_Graft_Longevity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z2_genetic_background_and_allelic_dose": "CiPSC_chemically_induced",
+        "Z3_immune_effector_and_stressor_pathway": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Unspecified_InVivo_or_Source_Site",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse"
+      },
+      "verbatim_evidence_quote": "Fasting and average pre-prandial blood glucose levels significantly decreased in all recipients, accompanied by meal or glucose-responsive C-peptide release and overall increase in body weight.",
+      "focal_arm_id": "pmid35115708_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "526ca0e3b50c3fda856d0b61bbf975dd0290a4bf1d42efea4ee524122ed089dc",
+      "source_span": "abstract[554:747]|norm=exact",
+      "quote_source_dossier_pmid": "35115708",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Biphasic_GSIS_and_Calcium_Coupling",
+        "comparator_label": null,
+        "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+        "timepoint": null,
+        "population_or_model": "CiPSC_chemically_induced (Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid35115708_eff2",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=%]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": 2.0,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "%",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z2_genetic_background_and_allelic_dose": "CiPSC_chemically_induced",
+        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Unspecified_InVivo_or_Source_Site",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:35115708 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=8246dc455570130184e2919955cc9fd86be210c5ebd6728b9d2f92c6047ea680]",
+      "focal_arm_id": "pmid35115708_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Right-censored at last reported follow-up timepoint if graft remained functional",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "526ca0e3b50c3fda856d0b61bbf975dd0290a4bf1d42efea4ee524122ed089dc",
+      "source_span": "abstract[748:964]|norm=exact",
+      "quote_source_dossier_pmid": "35115708",
+      "statistic_type": "single_arm_descriptive_only",
+      "contrast_metadata": {
+        "intervention_label": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": "15 weeks",
+        "population_or_model": "CiPSC_chemically_induced (Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse)",
+        "units": "%",
+        "contrast_type": "right_censored_followup_observation"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "pmid35115708_int1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
+      "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. Contrast_Condition",
+      "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:35115708 field=level_1_condition_and_effect quote_sha256=eb99f370ef1615dcfe5059f9a202ca2545fc824d01ba78b15262cc8dc1ae5e2b]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:35115708 field=level_2_condition_and_effect quote_sha256=e9a95295b418fd8860fd25a04c2542c35a1d487741a5387bf2821e6ded9a0937]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:35115708 field=mechanistic_explanation quote_sha256=e9a95295b418fd8860fd25a04c2542c35a1d487741a5387bf2821e6ded9a0937]"
+    },
+    {
+      "interaction_id": "pmid35115708_int2",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
+      "modifier_variable_Z": "Condition_1 vs. Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "modifier_class": "Z1_Developmental_Timing_or_Stage",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:35115708 field=level_1_condition_and_effect quote_sha256=68b2cb8beb8550f8255b8fefe4f521d427b9d57c69477783466ae71c35fff4a4]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:35115708 field=level_2_condition_and_effect quote_sha256=30a9a5294f8ce465479b6dd622bd679e6c8d89c672e927bdcad07866d5ff0714]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:35115708 field=mechanistic_explanation quote_sha256=8246dc455570130184e2919955cc9fd86be210c5ebd6728b9d2f92c6047ea680]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "upstream_node_type": "Lineage_Identity_or_Maturation_State",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "downstream_node_type": "Biophysical_or_Vascular_Cue",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:35115708 field=evidence_source quote_sha256=ab41cda3e542ee9e3ea7f04af520319c692f154575a5f320c55c5826005d1d99]"
+    },
+    {
+      "upstream_node": "Biphasic_GSIS_and_Calcium_Coupling",
+      "upstream_node_type": "Secreted_Hormone_or_Chemokine_DAMP",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "downstream_node_type": "Biophysical_or_Vascular_Cue",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:35115708 field=evidence_source quote_sha256=e5c2d9210f003d0a62745b352ca80eaa7923dbee6c78a21a5b9764162ebf4884]"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:35115708 field=omitted_text quote_sha256=b142dc10e602a1cea9228561447cf1a23024e76b8162cae0186d036616287574]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:35115708 field=omitted_text quote_sha256=7a029710348745bfb13c48a3a9614af5cc12738f9b77bad31d03a5f0d8501b89]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

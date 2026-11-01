@@ -1,0 +1,406 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "31900242",
+    "pmcid": "PMC6942385",
+    "doi": "10.1186/s13287-019-1523-3",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Pro-inflammatory cytokines induce cell death, inflammatory responses, and endoplasmic reticulum stress in human iPSC-derived beta cells.",
+    "first_author": "Demine S",
+    "senior_author": "Eizirik DL",
+    "pub_year": 2020,
+    "journal": "Stem cell research & therapy",
+    "source_text_type": "FullText_XML_or_PDF",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar3_Intrinsic_BetaCell_Genetic_Resilience_Amyloid_Viral"
+    ],
+    "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid31900242_arm1",
+      "arm_label": "Untreated Control Stage 7 Human iPSC-Derived Islet Aggregates (HEL115.6 and HEL46.11)",
+      "is_reference_control": true,
+      "sample_size_n": 12,
+      "sample_size_unit": "independent_differentiations",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "iPSC_healthy_donor",
+        "cell_line_id": "HEL115.6 and HEL46.11 human iPSCs",
+        "donor_hla_profile": "Wild-type HLA-ABC+ healthy donor iPSC",
+        "protocol_backbone": "7-stage differentiation protocol (monolayer through Stage 4 pancreatic endoderm, then AggreWell-400 3D microwell aggregates at 9x10^5 cells/well through Stage 7)",
+        "canonical_differentiation_stage_evaluated": "Stage7_MetabolicallyMature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": 43.0,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": 8.0,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 48.0,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": 2.3,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid31900242_arm2",
+      "arm_label": "Stage 7 Human iPSC-Derived Islet Aggregates Exposed to IFN-gamma (1000 U/mL) + IL-1beta (50 U/mL)",
+      "is_reference_control": false,
+      "sample_size_n": 12,
+      "sample_size_unit": "independent_differentiations",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "iPSC_healthy_donor",
+        "cell_line_id": "HEL115.6 and HEL46.11 human iPSCs",
+        "donor_hla_profile": "Wild-type HLA-ABC+ healthy donor iPSC",
+        "protocol_backbone": "7-stage AggreWell-400 3D microwell differentiation",
+        "canonical_differentiation_stage_evaluated": "Stage7_MetabolicallyMature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": 43.0,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": 8.0,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Cytokine_Cocktail_IFNg_IL1b_TNFa_or_IFNa",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 48.0,
+          "specific_autoantigen_or_hla_restriction": "1000 U/mL IFN-gamma + 50 U/mL IL-1beta for 24-48h (compared with 2000 U/mL IFN-alpha alone)"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid31900242_arm3",
+      "arm_label": "Ruxolitinib (JAK1/JAK2 Inhibitor) Pre-Treated Stage 7 Human iPSC-Derived Islet Aggregates Under Cytokine Challenge",
+      "is_reference_control": false,
+      "sample_size_n": 6,
+      "sample_size_unit": "independent_differentiations",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "iPSC_healthy_donor",
+        "cell_line_id": "HEL115.6 human iPSCs",
+        "donor_hla_profile": "Wild-type HLA-ABC+ healthy donor iPSC",
+        "protocol_backbone": "7-stage AggreWell-400 3D microwell differentiation + 2h pre-incubation with Ruxolitinib",
+        "canonical_differentiation_stage_evaluated": "Stage7_MetabolicallyMature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": 43.0,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": 8.0,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "JAK1_JAK2",
+          "ensembl_gene_id": "ENSG00000162434",
+          "sub_molecular_coordinate": {
+            "region_class": "Catalytic_or_Kinase_Domain",
+            "exact_variant_or_swap_description": "2-hour pre-incubation with JAK1/JAK2 pharmacological inhibitor Ruxolitinib prior to 24-48h IFN-gamma + IL-1beta or IFN-alpha exposure"
+          },
+          "functional_gate": "Gate4_Intrinsic_IFN_JAK_STAT_NFkB_Block",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "SmallMolecule_Pharmacological_Modulator",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Pharmacological_or_Small_Molecule_Modulator"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Cytokine_Cocktail_IFNg_IL1b_TNFa_or_IFNa",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 48.0,
+          "specific_autoantigen_or_hla_restriction": "1000 U/mL IFN-gamma + 50 U/mL IL-1beta or 2000 U/mL IFN-alpha for 24-48h"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "demine2020_eff1_ifng_il1b_2fold_apoptosis_irf1_er_stress",
+      "source_figure_or_table": "Fig. 2a-g, Fig. 3a-b, Fig. 4a-i, Fig. 6a-c, Fig. 7a-c, Fig. 8a-e",
+      "focal_factor_X": "JAK1_JAK2 functional evaluation — 48h exposure to IFN-gamma (1000 U/mL) + IL-1beta (50 U/mL)",
+      "comparator_X0": "Untreated Stage 7 human iPSC-derived islet aggregates",
+      "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Lower_Is_Better_Hazard_Endpoint | orientation_sign=-1 | unit=fold_change_ratio]",
+      "outcome_domain": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+      "treatment_mean": 6.7,
+      "treatment_sd_or_sem": 2.0,
+      "treatment_n": 4,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "fold_change_ratio",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Deleterious_or_Impaired",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage7_Extended_InVitro_Maturation",
+        "Z2_genetic_background_and_allelic_dose": "Wild-type HEL115.6 and HEL46.11 human iPSC-islets",
+        "Z3_immune_effector_and_stressor_pathway": "1000 U/mL IFN-gamma + 50 U/mL IL-1beta for 24-48h",
+        "Z4_metabolic_and_glucose_load_state": "Standard Stage 7 culture medium",
+        "Z5_cytoarchitecture_and_cluster_diameter": "AggreWell-400 3D microwell aggregates",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Endogenous",
+        "Z8_species_age_and_sex_context": "Human healthy donor iPSCs"
+      },
+      "verbatim_evidence_quote": "IRF-1 mRNA expression was increased by IFNγ + IL-1β after 24 h of exposure (6.7 ± 2-fold, P < 0.05, n = 4)",
+      "focal_arm_id": "pmid31900242_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "unspecified_in_quote",
+      "n_unit": "human_islet_donors",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
+        "orientation_sign": -1,
+        "matched_lexicon_term": "apoptosis"
+      },
+      "dossier_sha256": "48d7539af7b1152bd111657438a96da5bd1b139cc55383b96d5a24b0fa7fdd7a",
+      "source_span": "fulltext_data_sections.results_paragraphs[14][834:940]|norm=exact",
+      "statistic_type": "single_arm_descriptive_only",
+      "contrast_metadata": {
+        "intervention_label": "JAK1_JAK2 functional evaluation — 48h exposure to IFN-gamma (1000 U/mL) + IL-1beta (50 U/mL)",
+        "comparator_label": null,
+        "endpoint_name": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+        "timepoint": "24 h",
+        "population_or_model": "Wild-type HEL115.6 and HEL46.11 human iPSC-islets (Human healthy donor iPSCs)",
+        "units": "fold_change_ratio",
+        "contrast_type": "single_arm_descriptive_only"
+      },
+      "p_value_relation": "<",
+      "p_value_bound": 0.05,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "31900242"
+    },
+    {
+      "effect_id": "demine2020_eff2_ruxolitinib_prevents_cytokine_apoptosis_er_stress_chemokines",
+      "source_figure_or_table": "Additional file 1: Figure S6A-J",
+      "focal_factor_X": "JAK1_JAK2 functional evaluation — 2h pre-incubation with JAK1/JAK2 inhibitor Ruxolitinib prior to IFN-gamma + IL-1beta or IFN-alpha exposure",
+      "comparator_X0": "Uninhibited IFN-gamma + IL-1beta or IFN-alpha challenged iPSC-islet aggregates",
+      "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Lower_Is_Better_Hazard_Endpoint | orientation_sign=-1 | unit=qualitative_statement]",
+      "outcome_domain": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage7_Extended_InVitro_Maturation",
+        "Z2_genetic_background_and_allelic_dose": "HEL115.6 iPSC-islets + Ruxolitinib",
+        "Z3_immune_effector_and_stressor_pathway": "1000 U/mL IFN-gamma + 50 U/mL IL-1beta or 2000 U/mL IFN-alpha",
+        "Z4_metabolic_and_glucose_load_state": "Standard culture",
+        "Z5_cytoarchitecture_and_cluster_diameter": "AggreWell-400 3D microwell aggregates",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Pharmacological JAK1/JAK2 inhibition",
+        "Z8_species_age_and_sex_context": "Human iPSC-derived islets"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:31900242 field=verbatim_evidence_quote genes=CXCL10,JAK1,JAK2 pert=KO_LOF quote_sha256=b6df29818a2eb96f4eb58f29b310fa71e41b325eaaeeabd86374f90d445edd1c]",
+      "focal_arm_id": "pmid31900242_arm3",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
+        "orientation_sign": -1,
+        "matched_lexicon_term": "apoptosis"
+      },
+      "dossier_sha256": "48d7539af7b1152bd111657438a96da5bd1b139cc55383b96d5a24b0fa7fdd7a",
+      "source_span": "fulltext_data_sections.results_paragraphs[17][318:647]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "JAK1_JAK2 functional evaluation — 2h pre-incubation with JAK1/JAK2 inhibitor Ruxolitinib prior to IFN-gamma + IL-1beta or IFN-alpha exposure",
+        "comparator_label": null,
+        "endpoint_name": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+        "timepoint": null,
+        "population_or_model": "HEL115.6 iPSC-islets + Ruxolitinib (Human iPSC-derived islets)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "31900242"
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "demine2020_mod1_ifng_il1b_vs_ifna_dedifferentiation_and_sxbp1",
+      "source_figure_or_table": "Fig. 4a-i, Fig. 7a-g, Fig. 8a-e",
+      "focal_factor_X": "Pro-inflammatory cytokine exposure in Stage 7 iPSC-beta cells",
+      "outcome_Y": "Beta-cell transcriptional dedifferentiation (MAFA, NKX2.2, INS loss), sXBP1 splicing, IRF-1 induction, and apoptosis",
+      "modifier_variable_Z": "Type II IFN + IL-1beta (IFN-gamma + IL-1beta) vs Type I IFN (IFN-alpha Alone) Signaling Specificity",
+      "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:31900242 field=level_1_condition_and_effect quote_sha256=2321456448b0ea93c8cb50f101cf8529b342b341b4d093ac8e6b59be077aef9c]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:31900242 field=level_2_condition_and_effect quote_sha256=b553b5c4ca74b12d18fd7284f81d291e174ee361eb49eb61d78bfdecc83c0392]",
+      "modification_type": "Synergistic_Amplification",
+      "critical_threshold_value_and_unit": "1000 U/mL IFN-gamma + 50 U/mL IL-1beta vs 2000 U/mL IFN-alpha",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:31900242 field=mechanistic_explanation quote_sha256=ddc792770052db410d872778bd4e55e22dd2662fc2c36ca57deefc7163671ef8]"
+    },
+    {
+      "interaction_id": "demine2020_mod2_endocrine_vs_non_endocrine_hla_abc_vulnerability",
+      "source_figure_or_table": "Fig. 3a-b, Fig. 6a-c",
+      "focal_factor_X": "IFN-gamma + IL-1beta or IFN-alpha exposure",
+      "outcome_Y": "Plasma membrane HLA-ABC hyperexpression and cleaved caspase-3 activation",
+      "modifier_variable_Z": "Endocrine (INS+ Beta / GCG+ Alpha) vs Non-Endocrine Cell Lineage Within Stage 7 Aggregates",
+      "modifier_class": "Z1_Developmental_Timing_or_Stage",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:31900242 field=level_1_condition_and_effect quote_sha256=eb04894588b00b419adc069630981efad03c58d4251e0ea9f6021948a6e27663]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:31900242 field=level_2_condition_and_effect quote_sha256=a735a0909d3f401692ca1569088636bc1407b8cf641887ade3d0cf9dec88ff13]",
+      "modification_type": "Synergistic_Amplification",
+      "critical_threshold_value_and_unit": "INS+ and GCG+ endocrine subpopulation vs INS-GCG- non-endocrine cells",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:31900242 field=mechanistic_explanation quote_sha256=4b35088a79b1c9d59d9edb43ba901fa90631f4bbc5caca8e8a9353d373d1375e]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "IFN-gamma + IL-1beta stimulation of IFNGR1 and IL1R1 on Stage 7 human iPSC-beta cells",
+      "upstream_node_type": "Immune_or_Abiotic_Stressor",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "JAK1/2-STAT1-IRF1 activation (6.7x), CXCL10/CXCL9/CCL5 secretion, HLA-ABC hyperexpression, BiP/CHOP/sXBP1/ATF3 ER stress, MAFA/NKX2.2/INS dedifferentiation, and cleaved caspase-3 apoptosis",
+      "downstream_node_type": "Cell_Survival_or_Death_Pathway",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:31900242 field=evidence_source quote_sha256=26d5d07e915c1fd23c75356812f5c86bebb7329c9623fc2c20342df113ddf657]"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [
+      {
+        "primary_gate_perturbed": "Gate4_Cytokine_Receptor_or_JAK_STAT_Shield",
+        "secondary_gate_affected": "Gate1_Differentiation_Maturation_Cytoarchitecture",
+        "observation": "[REDACTED_NON_OA_EXCERPT: see PMID:31900242 field=observation quote_sha256=819e24d0f9551207f3386df12f0b2b0f173f9d74380edb384d84639813c55cd7]",
+        "is_beneficial_synergy_or_deleterious_tradeoff": "Deleterious_CrossGate_Tradeoff"
+      }
+    ],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "Ruxolitinib (JAK1/JAK2 inhibitor) pre-incubation (Figure S6)",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:31900242 field=omitted_text quote_sha256=6e42944cbd776e8e26f2d1ecab9337331d06e6438450840512f36c49a0edab15]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:31900242 field=omitted_text quote_sha256=ef66266346d2e52ab2df3d5ac76d695858f990f874ad86bf20ecf212052fe372]",
+        "complementary_lever_needed": "Selective downstream editing (CXCL10-/- + B2M-/- + constitutive CD47/PD-L1 + ER stress shield)"
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

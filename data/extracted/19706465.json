@@ -1,0 +1,205 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "19706465",
+    "pmcid": "PMC2736467",
+    "doi": "10.1073/pnas.0906587106",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Insulin crystallization depends on zinc transporter ZnT8 expression, but is not required for normal glucose homeostasis in mice.",
+    "first_author": "Lemaire K",
+    "senior_author": "Schuit FC",
+    "pub_year": 2009,
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar3_Intrinsic_BetaCell_Genetic_Resilience_Amyloid_Viral"
+    ],
+    "max_biological_fidelity_tier": "Tier_4_Rodent_or_Xenogeneic_Only"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid19706465_arm1",
+      "arm_label": "Primary experimental arm in Lemaire K (2009)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Unspecified_In_Source_Abstract",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "SLC30A8",
+          "ensembl_gene_id": "ENSG00000164756",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:19706465 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=SLC30A8 quote_sha256=875d052dee790465871dc8c1d2d748dd9a30ee1ac0156eb1ee613f7ccaf92286]"
+          },
+          "functional_gate": "Gate2_Autoantigen_or_Neoantigen_Stealth",
+          "target_autoantibody_or_tcr_evaded": [
+            "ZnT8A_SLC30A8"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid19706465_eff1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Autoimmune_TCR_or_AutoAb_Evasion | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Autoimmune_TCR_or_AutoAb_Evasion",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Unspecified_In_Source_Abstract",
+        "Z3_immune_effector_and_stressor_pathway": "Autoimmune_TCR_or_AutoAb_Evasion",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "Absence of ZnT8 expression caused loss of zinc release upon stimulation of exocytosis, but normal rates of insulin biosynthesis, normal insulin content and preserved glucose-induced insulin release.",
+      "focal_arm_id": "pmid19706465_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "76e666390e30b320aa4a6d412548419e40b6923b3787d88b28e837c7b3fb41e0",
+      "source_span": "abstract[242:440]|norm=exact",
+      "quote_source_dossier_pmid": "19706465",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+        "comparator_label": null,
+        "endpoint_name": "Autoimmune_TCR_or_AutoAb_Evasion",
+        "timepoint": null,
+        "population_or_model": "Unspecified_In_Source_Abstract (Tier_4_Rodent_or_Xenogeneic_Only)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "pmid19706465_int1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+      "outcome_Y": "Autoimmune_TCR_or_AutoAb_Evasion",
+      "modifier_variable_Z": "Biphasic_GSIS_and_Calcium_Coupling vs. SLC30A8_ZnT8_Granule_Zinc_Autoantigen",
+      "modifier_class": "Z4_Metabolic_Glucose_or_ER_Secretory_Load",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:19706465 field=level_1_condition_and_effect quote_sha256=c5c316e2fb751a581783837a3c3fcf5c8afc111135515f36902de0c69ad0c1c0]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:19706465 field=level_2_condition_and_effect quote_sha256=5c6b73e1cec09d06ee90456a2099f6a2b65db19de2b023103a75964e61c83530]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:19706465 field=mechanistic_explanation quote_sha256=5c6b73e1cec09d06ee90456a2099f6a2b65db19de2b023103a75964e61c83530]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "SLC30A8_ZnT8_Granule_Zinc_Autoantigen",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "Biphasic_GSIS_and_Calcium_Coupling",
+      "downstream_node_type": "Secreted_Hormone_or_Chemokine_DAMP",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:19706465 field=evidence_source quote_sha256=abcdfb9f0ba397eb9396682e0aa028a577e9b03b39c082fdf73fe61660ad0ba6]"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:19706465 field=omitted_text quote_sha256=48470d02ad2819ae6ec9b6909dc9080091c365fb95dce7ffc301b5e2ccfe07b5]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:19706465 field=omitted_text quote_sha256=92eb1618f282e489261032f6484511d6c795bc35901e02bb7483b1649905b8b3]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

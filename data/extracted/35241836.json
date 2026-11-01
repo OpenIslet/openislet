@@ -1,0 +1,597 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "35241836",
+    "pmcid": "PMC9287162",
+    "doi": "10.1038/s41587-022-01219-z",
+    "nct_id": null,
+    "geo_accessions": [
+      "GSE167880"
+    ],
+    "title": "Functional, metabolic and transcriptional maturation of human pancreatic islets derived from stem cells.",
+    "first_author": "Balboa D",
+    "senior_author": "Otonkoski T",
+    "pub_year": 2022,
+    "journal": "Nature biotechnology",
+    "source_text_type": "FullText_XML_or_PDF",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid35241836_arm1",
+      "arm_label": "Stage 7 Week 0 (S7w0) Immature SC-Islets",
+      "is_reference_control": true,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "hESC",
+        "cell_line_id": "H1 (WA01), replicated in hiPSC HEL24.3 and HEL113.5",
+        "donor_hla_profile": null,
+        "protocol_backbone": "Balboa-Otonkoski 7-stage protocol (S1-S4 monolayer, S5 AggreWell 400 microwells at 800-1000 cells/well, S6-S7 suspension at 95 rpm)",
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "stage_small_molecules_and_factors": [
+          {
+            "stage_number": 4,
+            "factor_name": "Nicotinamide + EGF + Activin A + ROCKi Y-27632",
+            "dose_value": 10.0,
+            "dose_unit": "uM",
+            "duration_days": 3.0
+          }
+        ],
+        "cluster_mean_diameter_um": 150.0,
+        "pct_nkx6_1_cpeptide_double_pos": 40.0,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": 5.0,
+        "pct_delta_sst_pos": 4.0,
+        "pct_off_target_enterochromaffin_slc18a1": 13.0
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Kidney_Capsule",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "Single bolus of 250-750 SC-islets compacted in PE-50 tubing",
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None (NSG immunodeficient mice)"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": 21.0,
+          "glucose_concentration_mM": 16.8,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": 90.0,
+        "pct_graft_surviving_at_end_of_followup": 100.0,
+        "followup_duration_days": 90.0,
+        "static_gsis_stimulation_index_mean": 1.0,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": 1.0,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid35241836_arm2",
+      "arm_label": "Stage 7 Week 3-6 (S7w3-S7w6) Mature SC-Islets in Full Medium (ZM447439 + NAC + T3, omitting ALK5i)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "hESC",
+        "cell_line_id": "H1 (WA01), replicated in hiPSC HEL24.3 and HEL113.5",
+        "donor_hla_profile": null,
+        "protocol_backbone": "Balboa-Otonkoski 7-stage protocol with extended S7 suspension culture in ZM447439 + NAC + T3 (omitting ALK5i)",
+        "canonical_differentiation_stage_evaluated": "Stage7_MetabolicallyMature_SC_Islet",
+        "stage_small_molecules_and_factors": [
+          {
+            "stage_number": 7,
+            "factor_name": "ZM447439 (Aurora kinase inhibitor) + N-acetyl cysteine (NAC) + Triiodothyronine (T3) (ALK5i omitted)",
+            "dose_value": null,
+            "dose_unit": null,
+            "duration_days": 42.0
+          }
+        ],
+        "cluster_mean_diameter_um": 150.0,
+        "pct_nkx6_1_cpeptide_double_pos": 40.0,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": 45.0,
+        "pct_delta_sst_pos": 4.0,
+        "pct_off_target_enterochromaffin_slc18a1": 6.5
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Kidney_Capsule",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "Single bolus of 250-750 SC-islets compacted in PE-50 tubing",
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None (NSG immunodeficient mice)"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": 21.0,
+          "glucose_concentration_mM": 16.8,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": 180.0,
+        "pct_graft_surviving_at_end_of_followup": 100.0,
+        "followup_duration_days": 180.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "balboa2022_eff1_ki67_proliferation_drop",
+      "source_figure_or_table": "Fig. 1b,d,e",
+      "focal_factor_X": "Stage 7 extended maturation with ZM447439 + NAC + T3 (S7w6 vs S7w0)",
+      "comparator_X0": "Stage 7 Week 0 (S7w0) or Empty S7 medium lacking ZM+NAC+T3",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=%]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": 0.46,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "%",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage 7 suspension maturation from week 0 to week 6",
+        "Z2_genetic_background_and_allelic_dose": "Wild-type H1 hESC",
+        "Z3_immune_effector_and_stressor_pathway": "Unstressed in vitro suspension culture",
+        "Z4_metabolic_and_glucose_load_state": "Basal S7 medium",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D suspension SC-islet clusters (100-200 um diameter)",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Normoxic 95 rpm orbital suspension culture",
+        "Z7_promoter_and_epigenetic_context": "Endogenous genome",
+        "Z8_species_age_and_sex_context": "Human hESC H1"
+      },
+      "verbatim_evidence_quote": "As functional maturation of beta cells is linked to reduced proliferation21,22, we examined markers of cell proliferation during the S7 and observed an 80% reduction (from 2.1% to 0.46%) in Ki-67+ INS+ cells (Fig. 1b,d).",
+      "focal_arm_id": "pmid35241836_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "e2f41199caace0c095b7deedd98514113b99fe4e73d6504b9368ae24e44107b3",
+      "source_span": "fulltext_data_sections.results_paragraphs[5][0:220]|norm=exact",
+      "statistic_type": "single_arm_descriptive_only",
+      "contrast_metadata": {
+        "intervention_label": "Stage 7 extended maturation with ZM447439 + NAC + T3 (S7w6 vs S7w0)",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "Wild-type H1 hESC (Human hESC H1)",
+        "units": "%",
+        "contrast_type": "single_arm_descriptive_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "35241836"
+    },
+    {
+      "effect_id": "balboa2022_eff2_slc18a1_enterochromaffin_depletion",
+      "source_figure_or_table": "Fig. 1g,h",
+      "focal_factor_X": "Aurora kinase inhibitor ZM447439 in Stage 7 medium (S7w6 vs S7w0 and Full vs -ZM)",
+      "comparator_X0": "S7w0 SC-islets or S7w3 medium lacking ZM447439",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=%]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "%",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage 7 week 0 to week 6",
+        "Z2_genetic_background_and_allelic_dose": "Wild-type H1 hESC",
+        "Z3_immune_effector_and_stressor_pathway": "Unstressed in vitro culture",
+        "Z4_metabolic_and_glucose_load_state": "Standard S7 culture",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D suspension clusters",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "In vitro suspension",
+        "Z7_promoter_and_epigenetic_context": "Endogenous SLC18A1 locus",
+        "Z8_species_age_and_sex_context": "Human hESC"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=verbatim_evidence_quote genes=NONE pert=KO_LOF quote_sha256=6a49d51cd1183d02b97c0d93ff1b518ba093c79ff329fd19d92aaaea15f4744e]",
+      "focal_arm_id": "pmid35241836_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "e2f41199caace0c095b7deedd98514113b99fe4e73d6504b9368ae24e44107b3",
+      "source_span": "fulltext_data_sections.results_paragraphs[5][545:740]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Aurora kinase inhibitor ZM447439 in Stage 7 medium (S7w6 vs S7w0 and Full vs -ZM)",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "Wild-type H1 hESC (Human hESC)",
+        "units": "%",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "35241836"
+    },
+    {
+      "effect_id": "balboa2022_eff3_alpha_cell_and_heterotypic_contacts",
+      "source_figure_or_table": "Fig. 1b,c & Supplementary Fig. 1b,e",
+      "focal_factor_X": "Stage 7 maturation (S7w0 to S7w3-w6)",
+      "comparator_X0": "S7w0 immature SC-islets (15-20% polyhormonal INS+GCG+)",
+      "outcome_variable_Y": "[Endpoint: Alpha_Delta_Paracrine_CounterRegulation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Alpha_Delta_Paracrine_CounterRegulation",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "S7w0 to S7w6",
+        "Z2_genetic_background_and_allelic_dose": "Wild-type H1 hESC",
+        "Z3_immune_effector_and_stressor_pathway": "Unstressed",
+        "Z4_metabolic_and_glucose_load_state": "Basal S7 medium",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Reorganization from polarized core-mantle at S7w3 to intermingled GCG+ and INS+ architecture at S7w6",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=omitted_text quote_sha256=0eba2f8e73f2fac3aa1f3b72419118334e4f3ee7854c856a31f6ab59bcb03b76]",
+        "Z7_promoter_and_epigenetic_context": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=omitted_text quote_sha256=dd48f3e0678608dde59e8dca9770231b26761fae34721b81829dbf7c9e2e0110]",
+        "Z8_species_age_and_sex_context": "Human hESC"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=0ef32bb54ba9a03c5b24bebb3919effae749739a99bf3b216ed16731875feb6a]",
+      "focal_arm_id": "pmid35241836_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "e2f41199caace0c095b7deedd98514113b99fe4e73d6504b9368ae24e44107b3",
+      "source_span": "fulltext_data_sections.results_paragraphs[6][403:558]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Stage 7 maturation (S7w0 to S7w3-w6)",
+        "comparator_label": null,
+        "endpoint_name": "Alpha_Delta_Paracrine_CounterRegulation",
+        "timepoint": null,
+        "population_or_model": "Wild-type H1 hESC (Human hESC)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "35241836"
+    },
+    {
+      "effect_id": "balboa2022_eff4_glucose_threshold_shift",
+      "source_figure_or_table": "Fig. 1l & Supplementary Fig. 1l",
+      "focal_factor_X": "Stage 7 maturation duration (S7w6 vs S7w2) [INS]",
+      "comparator_X0": "S7w2 early Stage 7 SC-islets",
+      "outcome_variable_Y": "[Endpoint: Metabolic_and_Biphasic_GSIS_Maturation | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=mM]",
+      "outcome_domain": "Metabolic_and_Biphasic_GSIS_Maturation",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "mM",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "S7w2 vs S7w3 vs S7w6",
+        "Z2_genetic_background_and_allelic_dose": "Wild-type H1 hESC",
+        "Z3_immune_effector_and_stressor_pathway": "Unstressed",
+        "Z4_metabolic_and_glucose_load_state": "Dynamic perifusion ramp from 2 mM to 16 mM glucose",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Intact 3D SC-islets (50 handpicked islets per perifusion chamber)",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Perifusion at 0.25 ml/min",
+        "Z7_promoter_and_epigenetic_context": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=omitted_text quote_sha256=dd48f3e0678608dde59e8dca9770231b26761fae34721b81829dbf7c9e2e0110]",
+        "Z8_species_age_and_sex_context": "Human hESC"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=verbatim_evidence_quote genes=INS pert=NONE quote_sha256=7e1a993a288697329319272c98ca3f4442b39f80ed3e28ffe0086945a00b2df2]",
+      "focal_arm_id": "pmid35241836_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=omitted_text quote_sha256=66e5550833f46fb41648825b19e92c907b18b102166906f317b4b66c9cc7002a]"
+      },
+      "dossier_sha256": "e2f41199caace0c095b7deedd98514113b99fe4e73d6504b9368ae24e44107b3",
+      "source_span": "fulltext_data_sections.results_paragraphs[9][622:954]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Stage 7 maturation duration (S7w6 vs S7w2) [INS]",
+        "comparator_label": null,
+        "endpoint_name": "Metabolic_and_Biphasic_GSIS_Maturation",
+        "timepoint": null,
+        "population_or_model": "Wild-type H1 hESC (Human hESC)",
+        "units": "mM",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "35241836"
+    },
+    {
+      "effect_id": "balboa2022_eff5_calcium_signaling_maturation",
+      "source_figure_or_table": "Fig. 2f-h & Supplementary Fig. 2a-c",
+      "focal_factor_X": "Stage 7 maturation (S7w7 vs S7w0)",
+      "comparator_X0": "S7w0 glucose-responsive SC-islet cells",
+      "outcome_variable_Y": "[Endpoint: Metabolic_and_Biphasic_GSIS_Maturation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=%]",
+      "outcome_domain": "Metabolic_and_Biphasic_GSIS_Maturation",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": 1659,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": 1091,
+      "measurement_unit": "%",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "S7w7 vs S7w0",
+        "Z2_genetic_background_and_allelic_dose": "Wild-type H1 hESC",
+        "Z3_immune_effector_and_stressor_pathway": "Unstressed",
+        "Z4_metabolic_and_glucose_load_state": "Step from 3 mM to 16.7 mM glucose",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Intact SC-islet clusters",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Superfused chamber at 37C",
+        "Z7_promoter_and_epigenetic_context": "RIP2-R-GECO1 and Fura-2 LR",
+        "Z8_species_age_and_sex_context": "Human hESC"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=864f85dd8691cb08d323bc8989daa468914049b9e68e3c1970b16b07158630c0]",
+      "focal_arm_id": "pmid35241836_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "individual_cells_imaged",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "e2f41199caace0c095b7deedd98514113b99fe4e73d6504b9368ae24e44107b3",
+      "source_span": "fulltext_data_sections.results_paragraphs[13][1027:1360]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Stage 7 maturation (S7w7 vs S7w0)",
+        "comparator_label": null,
+        "endpoint_name": "Metabolic_and_Biphasic_GSIS_Maturation",
+        "timepoint": null,
+        "population_or_model": "Wild-type H1 hESC (Human hESC)",
+        "units": "%",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "35241836"
+    },
+    {
+      "effect_id": "balboa2022_eff6_invivo_s7w3_vs_s7w0_cpeptide",
+      "source_figure_or_table": "Supplementary Fig. 4a-f",
+      "focal_factor_X": "Pre-transplant Stage 7 maturation for 3 weeks (S7w3 vs S7w0)",
+      "comparator_X0": "Implantation of immature S7w0 SC-islets",
+      "outcome_variable_Y": "[Endpoint: InVivo_Glycemic_Cure_and_Graft_Longevity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=quarantined_unbound_numeric_operand]",
+      "outcome_domain": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "quarantined_unbound_numeric_operand",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "S7w3 vs S7w0 prior to kidney capsule transplantation",
+        "Z2_genetic_background_and_allelic_dose": "Wild-type H1 hESC",
+        "Z3_immune_effector_and_stressor_pathway": "Immunodeficient NSG mice (followed by 130 mg/kg STZ ablation of endogenous mouse beta cells at 4 months)",
+        "Z4_metabolic_and_glucose_load_state": "In vivo IPGTT (3 g/kg glucose)",
+        "Z5_cytoarchitecture_and_cluster_diameter": "250-750 SC-islets (100-200 um diameter)",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=omitted_text quote_sha256=db79321c679577b056053a3aa21a35d9c9911119932d987ff69be54c99185320]",
+        "Z7_promoter_and_epigenetic_context": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=omitted_text quote_sha256=dd48f3e0678608dde59e8dca9770231b26761fae34721b81829dbf7c9e2e0110]",
+        "Z8_species_age_and_sex_context": "Human cells in NSG mice"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=3eb92b69aae294aa4c67e42a4fc9ddcb2cbbf08190fdde4ec9ba624c5e9a62dd]",
+      "focal_arm_id": "pmid35241836_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Right-censored at last reported follow-up timepoint if graft remained functional",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=omitted_text quote_sha256=c21cf7a2d7e7584a07afc703a9b021cbace07f8dae43f3309bdd1fc4f855a2fb]"
+      },
+      "dossier_sha256": "e2f41199caace0c095b7deedd98514113b99fe4e73d6504b9368ae24e44107b3",
+      "source_span": "fulltext_data_sections.results_paragraphs[34][294:451]|norm=exact",
+      "statistic_type": "quarantined_ambiguous_numeric",
+      "contrast_metadata": {
+        "intervention_label": "Pre-transplant Stage 7 maturation for 3 weeks (S7w3 vs S7w0)",
+        "comparator_label": null,
+        "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=omitted_text quote_sha256=f1c0477006f833a96522c426876d211d961f66b97517e099a501fe67ed71b44c]",
+        "population_or_model": "Wild-type H1 hESC (Human cells in NSG mice)",
+        "units": "quarantined_unbound_numeric_operand",
+        "contrast_type": "quarantined_ambiguous_multi_clause_or_multi_ratio"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "35241836"
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "balboa2022_int1_stage_modifies_glucose_exocytosis",
+      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=omitted_text quote_sha256=431f3592e303a39efc4fd3d7aa4ecc541602de3ecf465936575a0488366cdb2d]",
+      "focal_factor_X": "High Glucose stimulation (10 mM vs 3 mM glucose)",
+      "outcome_Y": "Spontaneous insulin granule exocytosis events (granules/um2 over 3 min by TIRF)",
+      "modifier_variable_Z": "Stage 7 in vitro maturation duration (S7w0 vs S7w6)",
+      "modifier_class": "Z1_Developmental_Timing_or_Stage",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=level_1_condition_and_effect quote_sha256=eb3ced2ea5babba7e37b63923b5e6829b51c88868cef0d8ad821f953e425c730]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=level_2_condition_and_effect quote_sha256=543ff33a69009550b5a07b8e290f39326828dab46fe8552493a037cf940b1720]",
+      "modification_type": "Threshold_Gate_Only_Works_Above_or_Below_Z",
+      "critical_threshold_value_and_unit": "3 to 6 weeks of Stage 7 culture in ZM447439 + NAC + T3",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=mechanistic_explanation quote_sha256=2202226d6de2060a89ca6cc1efee5a0a25ed6b032f574286bca793a002507ad7]"
+    },
+    {
+      "interaction_id": "balboa2022_int2_fuel_type_by_cell_maturity_ocr",
+      "source_figure_or_table": "Fig. 3a-f & Fig. 4c",
+      "focal_factor_X": "Metabolic fuel stimulation (16.8 mM Glucose vs 10 mM Pyruvate)",
+      "outcome_Y": "Mitochondrial oxygen consumption rate (OCR) and dynamic insulin secretion",
+      "modifier_variable_Z": "Islet Developmental Origin (In Vitro S7w3 SC-Islets vs Primary Adult Human Islets)",
+      "modifier_class": "Z4_Metabolic_Glucose_or_ER_Secretory_Load",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=level_1_condition_and_effect quote_sha256=fc0aab86646dc46dc2893a403f35b64dce6f13902b4ba79f1addbc130e253efe]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=level_2_condition_and_effect quote_sha256=4ef502a09987a4b6ec7d3084bf70f479d2374105c144f34b8d44065e0cc94a93]",
+      "modification_type": "Qualitative_Sign_Reversal_Flips_Direction",
+      "critical_threshold_value_and_unit": "In vivo engraftment (M1-M6) required to fully resolve glycolytic flux and OXPHOS coupling",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=mechanistic_explanation quote_sha256=8c4eb3dc73a393e7c900476e970f3bae85e208bae573f4024c4a529865482c11]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "ZM447439 (Aurora Kinase Inhibitor) + NAC + T3 in Stage 7",
+      "upstream_node_type": "Small_Molecule_or_Growth_Factor",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "Ki-67+ Beta-Cell Mitosis and Off-Target SLC18A1+ Enterochromaffin (SC-EC) Lineage",
+      "downstream_node_type": "Lineage_Identity_or_Maturation_State",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=evidence_source quote_sha256=201321ceedcbe326da12ea58afe1a106346211eeaf008d1acd1b2662d369a9ab]"
+    },
+    {
+      "upstream_node": "Extended Stage 7 Maturation (S7w0 -> S7w6)",
+      "upstream_node_type": "Biophysical_or_Vascular_Cue",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "Disallowed Genes (LDHA, SLC16A1/MCT1, HK1) and mTORC1/MYC Proliferative Signaling",
+      "downstream_node_type": "Organelle_or_Metabolic_State",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=evidence_source quote_sha256=ce487f985f34ff8a302c8bef6495c9e987f0e7b3dc3d71ae15ffb5adfdcefeb4]"
+    },
+    {
+      "upstream_node": "Extended Stage 7 and In Vivo Engraftment Maturation",
+      "upstream_node_type": "Biophysical_or_Vascular_Cue",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "Mature Beta-Cell Markers (MAFA, G6PC2, IAPP, UCN3, HOPX, CHGB), HLA Class I/II, and UPR/ER-Stress Genes (TRIB3, DDIT3/CHOP, HSPA5)",
+      "downstream_node_type": "Surface_Ligand_or_Antigen_Presentation",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=evidence_source quote_sha256=0110a8fb118a0c059079680dfbfc92f6ce6aff41c51faae9ae8a72259827b033]"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [
+      {
+        "primary_gate_perturbed": "Gate 1 (Functional & Metabolic Stage 7 SC-Beta Maturation)",
+        "secondary_gate_affected": "Gate 2 (HLA & Autoantigen Presentation) and Gate 4 (Intrinsic ER Stress / Amyloid Load)",
+        "observation": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=observation quote_sha256=6578016cb81e6974cbad8fc999bf1e7c30be7ece173b598117a9e36a0bbe7f65]",
+        "is_beneficial_synergy_or_deleterious_tradeoff": "Deleterious_CrossGate_Tradeoff"
+      },
+      {
+        "primary_gate_perturbed": "Gate 1 (Aurora Kinase Inhibition via ZM447439 in S7)",
+        "secondary_gate_affected": "Gate 1 Off-Target Purity & Gate 5 Teratoma/Hyperplasia Safety",
+        "observation": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=observation quote_sha256=e918e97a3e6804a8dfee5380a703b165eab35fb20777ceaf730b65dfdce98841]",
+        "is_beneficial_synergy_or_deleterious_tradeoff": "Beneficial_CrossGate_Bonus"
+      }
+    ],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "S7w3-S7w6 In Vitro Matured SC-Islets",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=omitted_text quote_sha256=9536640c7229ac0a94d44ba1eb4d43688a0d03f77b02c5863e6cf4460a21df21]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=omitted_text quote_sha256=2a2dde19438b35ebec316b51d478ce7bbe17b819738f127d85f60a15aa69c916]",
+        "complementary_lever_needed": "Combine Stage 7 ZM+NAC+T3 maturation with metabolic GAPDH/pyruvate-cycling maturation cues and pre-vascularized microvessel/endothelial co-assembly (e.g., Aghazadeh 2021 PMID 34480863)."
+      }
+    ],
+    "regime_thresholds": [
+      {
+        "parameter_name": "Stage 7 Culture Duration for Physiological Glucose Threshold",
+        "critical_threshold_value": 3.0,
+        "unit": "weeks in Stage 7 Full medium (ZM447439 + NAC + T3)",
+        "below_threshold_behavior": "At S7w0, SC-islets fail to respond to 16.7 mM glucose; at S7w2, SC-islets secrete insulin at an unphysiologically low glucose threshold of ~3 mM (EC50 = 5.6 mM), risking hypoglycemia.",
+        "above_threshold_behavior": "At S7w3 to S7w6, SC-islets acquire the adult human glucose threshold of ~5 mM glucose (EC50 = 6.7 mM at S7w3 and 8.1 mM at S7w6) and yield 2-fold higher in vivo C-peptide achieving the 4.5 mM human glycemic set point."
+      }
+    ],
+    "high_throughput_screen_hits": []
+  }
+}

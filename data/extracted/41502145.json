@@ -1,0 +1,293 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "41502145",
+    "pmcid": null,
+    "doi": "10.1210/endocr/bqaf189",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Generation and Validation of an Aryl Hydrocarbon Receptor Knockout Human Embryonic Stem Cell Line.",
+    "first_author": "Gang N",
+    "senior_author": "Bruin JE",
+    "pub_year": 2026,
+    "journal": "Endocrinology",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar3_Intrinsic_BetaCell_Genetic_Resilience_Amyloid_Viral"
+    ],
+    "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid41502145_arm1",
+      "arm_label": "Primary experimental arm in Gang N (2026)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "hESC",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "G6PC2",
+          "ensembl_gene_id": "ENSG00000152254",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:41502145 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=G6PC2 quote_sha256=04f8525bd5c55690e87934acd575228b0cf11d6bdd9a1ecf3e7f75548bc9056d]"
+          },
+          "functional_gate": "Gate2_Autoantigen_or_Neoantigen_Stealth",
+          "target_autoantibody_or_tcr_evaded": [
+            "IGRP_G6PC2"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid41502145_eff1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z2_genetic_background_and_allelic_dose": "hESC",
+        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "Additionally, fetal exposure to low-dose dioxin reduced β-cell area in female mice at birth; however, the role of AHR in β-cell development has not been explored.",
+      "focal_arm_id": "pmid41502145_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "155fdb7e36b58ed10a409d66a451aa4b8c30c13aa8ada5e2b3f8554e65931b55",
+      "source_span": "abstract[372:534]|norm=exact",
+      "quote_source_dossier_pmid": "41502145",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "hESC (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid41502145_eff2",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Metabolic_and_Biphasic_GSIS_Maturation | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
+      "outcome_domain": "Metabolic_and_Biphasic_GSIS_Maturation",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z2_genetic_background_and_allelic_dose": "hESC",
+        "Z3_immune_effector_and_stressor_pathway": "Metabolic_and_Biphasic_GSIS_Maturation",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:41502145 field=verbatim_evidence_quote genes=G6PC2 pert=NONE quote_sha256=8b37899261ede4fa1691e3dfcaab813b5426b52b9935be4a0ba8efe1f6a2f55e]",
+      "focal_arm_id": "pmid41502145_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "insulin secretion"
+      },
+      "dossier_sha256": "155fdb7e36b58ed10a409d66a451aa4b8c30c13aa8ada5e2b3f8554e65931b55",
+      "source_span": "abstract[1358:1517]|norm=exact",
+      "quote_source_dossier_pmid": "41502145",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+        "comparator_label": null,
+        "endpoint_name": "Metabolic_and_Biphasic_GSIS_Maturation",
+        "timepoint": null,
+        "population_or_model": "hESC (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "pmid41502145_int1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
+      "modifier_variable_Z": "Condition contrast (MAFA_NKX6_1_PDX1_BetaCell_Identity)",
+      "modifier_class": "Z2_Genetic_Background_Zygosity_or_Surface_MFI_Dose",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:41502145 field=level_1_condition_and_effect quote_sha256=1ad742b9b3ac41301d6830e40efe193e987c89ab1edb4d40c6b9b0bf73cfcd52]",
+      "level_2_condition_and_effect": "the role of AHR in β-cell development has not been explored.",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:41502145 field=mechanistic_explanation quote_sha256=2c67ef3a5905d289697966427359545901fabcd40523685665e66080ce886943]"
+    },
+    {
+      "interaction_id": "pmid41502145_int2",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
+      "modifier_variable_Z": "Condition contrast (MAFA_NKX6_1_PDX1_BetaCell_Identity)",
+      "modifier_class": "Z1_Developmental_Timing_or_Stage",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:41502145 field=level_1_condition_and_effect quote_sha256=d3b5ec6fad0e10ada2ed9f3ffd6b9932b98dee5fea40917b5ce8a92a658f4ed9]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:41502145 field=level_2_condition_and_effect quote_sha256=4667e3baa562dc163e483c77334e805b70a55075728f50ff1740050501660d3f]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:41502145 field=mechanistic_explanation quote_sha256=467896a85ba5b63a7252ddcf25272e963b629012ee3c5300a65480ed397a37b6]"
+    },
+    {
+      "interaction_id": "pmid41502145_int3",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "G6PC2 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+      "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
+      "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. G6PC2_IGRP_Glycolytic_Autoantigen",
+      "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:41502145 field=level_1_condition_and_effect quote_sha256=1b596a278adbcdfb417cfe0c01fcd28dd30a762f7ee9b6b0093d11331e1ad3b2]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:41502145 field=level_2_condition_and_effect quote_sha256=8f89148960a2be3ec445c3b3228a6e163d288dc0c396f0409926c0958a0ad00f]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:41502145 field=mechanistic_explanation quote_sha256=274ff308206222a5c28f06fb5fa4aeae8ea4d069ec768d049abd15b313ab12e8]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "G6PC2_IGRP_Glycolytic_Autoantigen",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "downstream_node_type": "Lineage_Identity_or_Maturation_State",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:41502145 field=evidence_source quote_sha256=d2992f8ef8f078c97a96fe0e972aedd8ba991e37498eaaf39d924d63f55f701c]"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:41502145 field=omitted_text quote_sha256=ba435c9a0fb3b1d67fa39a18c5d6376a36fda913dc06ce5f481f6777cb83dd74]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:41502145 field=omitted_text quote_sha256=0821df319a68e1aa8f7aad446a77835464644ad41eca6989921f482b02e7a82b]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      },
+      {
+        "arm_or_intervention": "G6PC2 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:41502145 field=omitted_text quote_sha256=9c38ac95cb83d42e3d6697ede0404e2d1bb6087bb5b08c59ce61b37ea41dba20]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:41502145 field=omitted_text quote_sha256=5ad917f6616cd25a92c8ff9b75418b34a3cbd4f23555dbdc9f523425c3873fc4]",
+        "complementary_lever_needed": "Empirical head-to-head comparison required"
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

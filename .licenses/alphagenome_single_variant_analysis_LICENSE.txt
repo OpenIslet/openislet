@@ -1,0 +1,11 @@
+Resource: AlphaGenome Atlas API & Variant Impact (AVI) Model (Google DeepMind)
+Classification: External verification tool only — NO numeric model outputs redistributed in public bundle
+Audit Timestamp (UTC): 2026-10-28T08:54:44Z
+Upstream Source & Terms: https://deepmind.google.com/science/alphagenome (Non-commercial research output terms)
+Tool Version: alphagenome Python package v0.10.0
+Shipped Public Artifacts:
+  - data/extracted/layer2_regulatory_and_perturbation_atlas.json (null/quarantined window fields + deep-link URLs only)
+Provenance & Redistribution Boundary:
+  1. Full 3,118-row window-scan archive has incomplete batch provenance (source_origin = UNRESOLVED_ARCHIVAL_TABLE) and its window-level prediction_status is UNAVAILABLE_NO_AUTHENTICATED_MODEL_OUTPUT.
+  2. A limited 2026-10-28T08:54:44Z live API audit independently verified the 9 scoped Blueprint A/B/X single-nucleotide edits and a 50-row random archive sample (59/59 exact 6-decimal matches on avi_phred, avi_raw, and avi_quantile) recorded in an offline private audit receipt.
+  3. Because AlphaGenome output terms permit non-commercial research use only (conflicting with OpenIslet CC-BY-4.0 public redistribution), all numeric AVI tables and receipts remain excluded from the public bundle, and no AVI score is used as an active ranking weight or as certification of multi-kilobase HDR insertion safety.

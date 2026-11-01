@@ -1,0 +1,575 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "36055241",
+    "pmcid": "PMC9481918",
+    "doi": "10.1016/j.stemcr.2022.08.002",
+    "nct_id": null,
+    "geo_accessions": [
+      "GSE200104",
+      "GSE200085",
+      "GSE200084",
+      "GSE200083"
+    ],
+    "title": "Whole-genome CRISPR screening identifies genetic manipulations to reduce immune rejection of stem cell-derived islets.",
+    "first_author": "Sintov E",
+    "senior_author": "Melton DA",
+    "pub_year": 2022,
+    "journal": "Stem cell reports",
+    "source_text_type": "FullText_XML_or_PDF",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar3_Intrinsic_BetaCell_Genetic_Resilience_Amyloid_Viral",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": true,
+    "screen_library_size_genes": 19114,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid36055241_arm1",
+      "arm_label": "Wild-Type (WT) and GAPDH-Luciferase (GL) HUES8 SC-Islets in Hu-PBL-NSG-MHCnull Mice (hPi)",
+      "is_reference_control": true,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "hESC",
+        "cell_line_id": "HUES8 WT and GAPDH-Luciferase (GL)",
+        "donor_hla_profile": "HLA-A2+ wild-type HUES8",
+        "protocol_backbone": "Melton Lab 6-stage 3D suspension SC-islet protocol (Pagliuca 2014 / Veres 2019) with CD49a magnetic sorting for in vitro co-culture",
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Kidney_Capsule",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "5 x 10^6 SC-islets under kidney capsule of NSG-MHCnull mice followed by 50 x 10^6 HLA-A2- human PBMCs i.p.",
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "InVivo_Allogeneic_or_Autoimmune_Graft",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 126.0,
+          "specific_autoantigen_or_hla_restriction": "50 x 10^6 unmatched HLA-A2- human PBMCs in Hu-PBL-NSG-MHCnull mice (18 weeks)"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": 77.0,
+        "pct_graft_surviving_at_end_of_followup": 0.0,
+        "followup_duration_days": 126.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid36055241_arm2",
+      "arm_label": "Clonal CXCL10-/- Knock-In GFP (C10G) HUES8 SC-Islets",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "hESC",
+        "cell_line_id": "HUES8 C10G (CXCL10-/-::GFP null HDR line)",
+        "donor_hla_profile": "HLA-A2+ wild-type HLA background with biallelic CXCL10 null mutation",
+        "protocol_backbone": "Melton Lab 6-stage 3D suspension SC-islet protocol",
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "CXCL10",
+          "ensembl_gene_id": "ENSG00000169245",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=exact_variant_or_swap_description mod=Endogenous_SwapIn_KO_plus_KI genes=CXCL10 quote_sha256=515a238d62be5ec8df95d3640e58516c72d446ab6e033b7fc01e7e37603e65a4]"
+          },
+          "functional_gate": "Gate4_Intrinsic_IFN_JAK_STAT_NFkB_Block",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "Endogenous_SwapIn_KO_plus_KI",
+          "promoter_or_locus_context": "Endogenous_Native_Promoter",
+          "zygosity_or_allelic_state": "Homozygous_Biallelic",
+          "protein_or_surface_expression_fold_vs_wt": 0.0,
+          "perturbation_class": "Bicistronic_Endogenous_Promoter_SwapIn_KO_plus_KI"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Kidney_Capsule",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "5 x 10^6 C10G SC-islets under kidney capsule of NSG-MHCnull mice (n=6-7 hPi + n=3 control)",
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "InVivo_Allogeneic_or_Autoimmune_Graft",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 126.0,
+          "specific_autoantigen_or_hla_restriction": "50 x 10^6 HLA-A2- human PBMCs in vivo for 17-18 weeks"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": 126.0,
+        "pct_graft_surviving_at_end_of_followup": 100.0,
+        "followup_duration_days": 126.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid36055241_arm3",
+      "arm_label": "Clonal STAT1-/- Knock-In Luciferase (ST1L) HUES8 SC-Islets",
+      "is_reference_control": false,
+      "sample_size_n": 4,
+      "sample_size_unit": "independent_differentiations",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "hESC",
+        "cell_line_id": "HUES8 ST1L (STAT1-/-::Luciferase null HDR line)",
+        "donor_hla_profile": "HLA-A2+ HUES8 with biallelic STAT1 null mutation (desensitized to IFN-gamma, losing HLA-I, HLA-E, PD-L1, and SOCS1 induction)",
+        "protocol_backbone": "Melton Lab 6-stage 3D suspension SC-islet protocol",
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "STAT1",
+          "ensembl_gene_id": "ENSG00000115415",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=exact_variant_or_swap_description mod=Endogenous_SwapIn_KO_plus_KI genes=STAT1 quote_sha256=b402f94006e828611df551da34f90e800c62b5d319d2f1fedd96eaea14e8712e]"
+          },
+          "functional_gate": "Gate4_Intrinsic_IFN_JAK_STAT_NFkB_Block",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "Endogenous_SwapIn_KO_plus_KI",
+          "promoter_or_locus_context": "Endogenous_Native_Promoter",
+          "zygosity_or_allelic_state": "Homozygous_Biallelic",
+          "protein_or_surface_expression_fold_vs_wt": 0.0,
+          "perturbation_class": "Bicistronic_Endogenous_Promoter_SwapIn_KO_plus_KI"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Allogeneic_PBMC_or_T_Cell_CoCulture",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 48.0,
+          "specific_autoantigen_or_hla_restriction": "48h co-culture with allogeneic human PBMCs or purified human NK cells"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "sintov2022_eff1_c10g_humanized_in_vivo_graft_survival_18wk",
+      "source_figure_or_table": "Figure 5B, Figure 5C, Figure 5D",
+      "focal_factor_X": "Clonal CXCL10-/- knockout (C10G) HUES8 SC-islets",
+      "comparator_X0": "Wild-type (WT) HUES8 SC-islets",
+      "outcome_variable_Y": "[Endpoint: InVivo_Glycemic_Cure_and_Graft_Longevity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=weeks]",
+      "outcome_domain": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "weeks",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Clonal biallelic CXCL10-/- (C10G) retaining endogenous HLA-I, HLA-E, PD-L1, and SOCS1",
+        "Z3_immune_effector_and_stressor_pathway": "50 x 10^6 unmatched HLA-A2- human PBMCs i.p.",
+        "Z4_metabolic_and_glucose_load_state": "In vivo glucose-stimulated insulin secretion (30 min post-glucose)",
+        "Z5_cytoarchitecture_and_cluster_diameter": "5 x 10^6 SC-islets",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Kidney_Capsule",
+        "Z7_promoter_and_epigenetic_context": "Endogenous_Native_Promoter",
+        "Z8_species_age_and_sex_context": "Hu-PBL-NSG-MHCnull mice (n=6-7 hPi, n=3 uninjected controls)"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=verbatim_evidence_quote genes=CXCL10 pert=KO_LOF quote_sha256=a7938100a62beff420e230d8705931d0a727ca2a035304a58753d3b4309fc3a7]",
+      "focal_arm_id": "pmid36055241_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Right-censored follow-up; stable C10G graft insulin through termination, not an uncensored graft-survival mean.",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "survival"
+      },
+      "dossier_sha256": "5f02d51e2f0e68919185497c580199f7b2fe029cc4c79415436d9655684fd764",
+      "source_span": "fulltext_data_sections.results_paragraphs[59][411:588]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Clonal CXCL10-/- knockout (C10G) HUES8 SC-islets",
+        "comparator_label": null,
+        "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+        "timepoint": "17-week insulin follow-up; 18-week histology",
+        "population_or_model": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=omitted_text quote_sha256=43214c184ea61c69af60e2d7b160d7ffd1af561b9fe2120d5add059e11340982]",
+        "units": "weeks",
+        "contrast_type": "right_censored_followup_observation"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "36055241"
+    },
+    {
+      "effect_id": "sintov2022_eff2_cxcl10_ko_in_vitro_viability_2fold",
+      "source_figure_or_table": "Figure 3B, Figure 4G, Figure 4I",
+      "focal_factor_X": "CXCL10 knockout (lentiviral gRNA or clonal C10G) vs CXCL10 overexpression",
+      "comparator_X0": "Non-targeting (NT) gRNA or WT SC-islets",
+      "outcome_variable_Y": "[Endpoint: Allo_T_Cell_or_DSA_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Allo_T_Cell_or_DSA_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Clonal C10G or lentiviral Cas9 CXCL10 KO",
+        "Z3_immune_effector_and_stressor_pathway": "Allogeneic human PBMCs (6 donors), purified T cells (2 donors), or NK cells (4 donors) for 48h",
+        "Z4_metabolic_and_glucose_load_state": "Standard culture",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D SC-islet clusters",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Endogenous_Native_Promoter",
+        "Z8_species_age_and_sex_context": "Human allogeneic co-culture"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=verbatim_evidence_quote genes=CXCL10 pert=BOTH quote_sha256=2a8018e1d9699c59182e1ab245e3ecccb45bbf6106ca24b9a19c23fb6e2e1c74]",
+      "focal_arm_id": "pmid36055241_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "5f02d51e2f0e68919185497c580199f7b2fe029cc4c79415436d9655684fd764",
+      "source_span": "fulltext_data_sections.results_paragraphs[57][261:454]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "CXCL10 knockout (lentiviral gRNA or clonal C10G) vs CXCL10 overexpression",
+        "comparator_label": null,
+        "endpoint_name": "Allo_T_Cell_or_DSA_Survival",
+        "timepoint": null,
+        "population_or_model": "Clonal C10G or lentiviral Cas9 CXCL10 KO (Human allogeneic co-culture)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "36055241"
+    },
+    {
+      "effect_id": "sintov2022_eff3_clonal_stat1_ko_fails_pbmc_increases_nk_apoptosis",
+      "source_figure_or_table": "Figure 4E, Figure 4H, Figure 4J",
+      "focal_factor_X": "Clonal STAT1-/- knockout (ST1L) HUES8 SC-islets",
+      "comparator_X0": "GAPDH-Luciferase (GL) control HUES8 SC-islets",
+      "outcome_variable_Y": "[Endpoint: NK_or_Macrophage_Innate_Survival | polarity=Lower_Is_Better_Hazard_Endpoint | orientation_sign=-1 | unit=qualitative_statement]",
+      "outcome_domain": "NK_or_Macrophage_Innate_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Deleterious_or_Impaired",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Clonal homozygous STAT1-/- (ST1L) without transgenic PD-L1/HLA-E replacement",
+        "Z3_immune_effector_and_stressor_pathway": "Allogeneic human PBMCs or purified human NK cells (48h)",
+        "Z4_metabolic_and_glucose_load_state": "Standard culture",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D SC-islet clusters",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Endogenous IFN-inducible promoters silenced by STAT1 loss",
+        "Z8_species_age_and_sex_context": "Human allogeneic co-culture"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=verbatim_evidence_quote genes=CD274,STAT1 pert=KO_LOF quote_sha256=e34fe088fb2e31496dbf5c515c2f921632f4d9dc7f41f480d5df957461273754]",
+      "focal_arm_id": "pmid36055241_arm3",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
+        "orientation_sign": -1,
+        "matched_lexicon_term": "apoptosis"
+      },
+      "dossier_sha256": "5f02d51e2f0e68919185497c580199f7b2fe029cc4c79415436d9655684fd764",
+      "source_span": "fulltext_data_sections.results_paragraphs[57][550:886]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Clonal STAT1-/- knockout (ST1L) HUES8 SC-islets",
+        "comparator_label": null,
+        "endpoint_name": "NK_or_Macrophage_Innate_Survival",
+        "timepoint": null,
+        "population_or_model": "Clonal homozygous STAT1-/- (ST1L) without transgenic PD-L1/HLA-E replacement (Human allogeneic co-culture)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "36055241"
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "sintov2022_mod1_pooled_screen_vs_clonal_stat1_pleiotropy",
+      "source_figure_or_table": "Figure 1G-H, Figure 4D-J",
+      "focal_factor_X": "IFN-gamma / JAK / STAT1 pathway blockade (STAT1 KO vs downstream CXCL10 KO)",
+      "outcome_Y": "Allogeneic PBMC T-cell activation and NK cell cytotoxicity against SC-beta cells",
+      "modifier_variable_Z": "Upstream master regulator ablation (STAT1 KO, which strips endogenous PD-L1, HLA-E, SOCS1, and HLA-I) vs selective downstream chemokine ablation (CXCL10 KO, which preserves PD-L1, HLA-E, and SOCS1)",
+      "modifier_class": "Epistatic_Second_Genetic_or_Pharmacological_Perturbation",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=level_1_condition_and_effect quote_sha256=87bdb1effe1b97786ac009d329cc2cfc278c08f8d08b8336f59f79af61d35a56]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=level_2_condition_and_effect quote_sha256=3aa9e819ea5895f132d18b83c9c620c9830b771e6bb54485bf2053345f7a108e]",
+      "modification_type": "Qualitative_Sign_Reversal_Flips_Direction",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=mechanistic_explanation quote_sha256=0e1da55ab1097567c1b3384605eb263999b2fa902ba33e0eecc3eb93e4839d26]"
+    },
+    {
+      "interaction_id": "sintov2022_mod2_cxcr3_vs_tlr4_receptor_dependency",
+      "source_figure_or_table": "Figure 3C, Figure 3D, Figure 3E",
+      "focal_factor_X": "Secreted CXCL10 during allogeneic PBMC-SC-islet interaction",
+      "outcome_Y": "SC-beta cell apoptosis (%TUNEL+) and CD3+ T-cell proliferation",
+      "modifier_variable_Z": "Paracrine immune effector CXCR3 blockade vs autocrine beta-cell TLR4 blockade",
+      "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=level_1_condition_and_effect quote_sha256=3e5d6fef00587eb4ec7e74ff2f16dff19e280c709402b3c2517ce94751c8e70e]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=level_2_condition_and_effect quote_sha256=02e1e2be77c7352ddf025084d3402f75c3d85287f0e07f4aa62a59f58e57e5c3]",
+      "modification_type": "Complete_Bypass_or_Abrogation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=mechanistic_explanation quote_sha256=649f16129348c8ce27a50bebd5d21cda693def9f67a4ea92b01b43aa0e33e8b7]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "PBMC-derived IFN-gamma activating STAT1 nuclear translocation and CXCL10 secretion from alarmed SC-beta and SC-alpha cells",
+      "upstream_node_type": "Secreted_Hormone_or_Chemokine_DAMP",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "CXCR3-dependent CD8+ and CD4+ T-cell activation (CD25/CD69), proliferation, graft infiltration, and SC-beta apoptosis",
+      "downstream_node_type": "Cell_Survival_or_Death_Pathway",
+      "evidence_source": "Figure 2D-I, Figure 3C-E, Figure 5D"
+    },
+    {
+      "upstream_node": "Clonal STAT1 knockout (ST1L) in SC-islets",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "IFN-gamma-inducible upregulation of protective checkpoints PD-L1 (CD274), HLA-E, and SOCS1, sensitizing SC-islets to NK apoptosis",
+      "downstream_node_type": "Surface_Ligand_or_Antigen_Presentation",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=evidence_source quote_sha256=e0acf9a59453545f59f88b976c064fad69492e875a49436a7bdc6b48ffa8771e]"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [
+      {
+        "primary_gate_perturbed": "Gate4_Intrinsic_IFN_JAK_STAT_NFkB_Block",
+        "secondary_gate_affected": "Gate2_Checkpoint_T_Cell_Inhibition",
+        "observation": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=observation quote_sha256=203da9e78028e275f1d6b5deba8ec923be320224e73e67171ba481848b29f989]",
+        "is_beneficial_synergy_or_deleterious_tradeoff": "Deleterious_CrossGate_Tradeoff"
+      }
+    ],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "Clonal STAT1-/- (ST1L) SC-islets in PBMC and NK co-culture (Figure 4H, 4J)",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=omitted_text quote_sha256=68cd4c4b672ce7f31e7a7fd25c9344d5664a8a91a31d6f594f16a0da2b475d9e]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=omitted_text quote_sha256=b8783f2be40ec6b9ae8064f17211e84be83f8847640e986068a3db319ea0da55]",
+        "complementary_lever_needed": "Selective downstream CXCL10 knockout (C10G) or pairing JAK/STAT/TYK2 blockade with constitutive promoter-driven PD-L1/CD47/HLA-E"
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": [
+      {
+        "gene_symbol_hgnc": "CXCL10",
+        "ensembl_gene_id": "ENSG00000169245",
+        "selection_challenge": "In vivo 10-week allogeneic PBMC rejection screen in Hu-PBL-NSG-MHCnull mice (Brunello library, 19,114 genes)",
+        "effect_size_lfc_or_zscore": 1.5,
+        "fdr_or_pvalue": 0.001,
+        "protective_perturbation_direction": "Knockout_or_Depletion_is_Protective"
+      },
+      {
+        "gene_symbol_hgnc": "B2M",
+        "ensembl_gene_id": "ENSG00000166710",
+        "selection_challenge": "In vivo 10-week allogeneic PBMC rejection screen in Hu-PBL-NSG-MHCnull mice",
+        "effect_size_lfc_or_zscore": 2.0,
+        "fdr_or_pvalue": 0.0001,
+        "protective_perturbation_direction": "Knockout_or_Depletion_is_Protective"
+      },
+      {
+        "gene_symbol_hgnc": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=omitted_text quote_sha256=48db5fdef4f31964bb4baa264740dfb1fe1a15869c51d7e7f2a4518566fbed00]",
+        "ensembl_gene_id": "ENSG00000168394",
+        "selection_challenge": "In vivo 10-week allogeneic PBMC rejection screen in Hu-PBL-NSG-MHCnull mice",
+        "effect_size_lfc_or_zscore": 1.5,
+        "fdr_or_pvalue": 0.001,
+        "protective_perturbation_direction": "Knockout_or_Depletion_is_Protective"
+      },
+      {
+        "gene_symbol_hgnc": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=omitted_text quote_sha256=d0123005e2ea3693eea978415bea8a696f5e399d24ecb2233683c2dadd03373b]",
+        "ensembl_gene_id": "ENSG00000204267",
+        "selection_challenge": "In vivo 10-week allogeneic PBMC rejection screen in Hu-PBL-NSG-MHCnull mice",
+        "effect_size_lfc_or_zscore": 1.4,
+        "fdr_or_pvalue": 0.001,
+        "protective_perturbation_direction": "Knockout_or_Depletion_is_Protective"
+      },
+      {
+        "gene_symbol_hgnc": "STAT1",
+        "ensembl_gene_id": "ENSG00000115415",
+        "selection_challenge": "In vivo 10-week allogeneic PBMC rejection screen in Hu-PBL-NSG-MHCnull mice (enriched in pooled screen, failed in clonal validation due to PD-L1/HLA-E loss)",
+        "effect_size_lfc_or_zscore": 1.6,
+        "fdr_or_pvalue": 0.001,
+        "protective_perturbation_direction": "Knockout_or_Depletion_is_Protective"
+      },
+      {
+        "gene_symbol_hgnc": "JAK1",
+        "ensembl_gene_id": "ENSG00000162434",
+        "selection_challenge": "In vivo 10-week allogeneic PBMC rejection screen in Hu-PBL-NSG-MHCnull mice",
+        "effect_size_lfc_or_zscore": 1.4,
+        "fdr_or_pvalue": 0.01,
+        "protective_perturbation_direction": "Knockout_or_Depletion_is_Protective"
+      },
+      {
+        "gene_symbol_hgnc": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=omitted_text quote_sha256=0989a44da10ca9a4f3a1c73288df2cf9f4833b6e4219dd5c2cc70b860ec3dec7]",
+        "ensembl_gene_id": "ENSG00000171206",
+        "selection_challenge": "In vivo 10-week allogeneic PBMC rejection screen in Hu-PBL-NSG-MHCnull mice (RING finger inhibitor of SOCS1)",
+        "effect_size_lfc_or_zscore": 1.3,
+        "fdr_or_pvalue": 0.01,
+        "protective_perturbation_direction": "Knockout_or_Depletion_is_Protective"
+      },
+      {
+        "gene_symbol_hgnc": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=omitted_text quote_sha256=089854fbc95fdbcdbed757ead9fa554f555ca82038baa035e77eb86d0f660e03]",
+        "ensembl_gene_id": "ENSG00000132670",
+        "selection_challenge": "In vivo 10-week allogeneic PBMC rejection screen in Hu-PBL-NSG-MHCnull mice (gRNAs depleted -> negative regulator of JAK/STAT essential for survival)",
+        "effect_size_lfc_or_zscore": -1.8,
+        "fdr_or_pvalue": 0.001,
+        "protective_perturbation_direction": "Overexpression_or_Activation_is_Protective"
+      },
+      {
+        "gene_symbol_hgnc": "SOCS1",
+        "ensembl_gene_id": "ENSG00000185338",
+        "selection_challenge": "In vivo 10-week allogeneic PBMC rejection screen in Hu-PBL-NSG-MHCnull mice (gRNAs depleted -> JAK/STAT negative regulator essential for survival)",
+        "effect_size_lfc_or_zscore": -1.5,
+        "fdr_or_pvalue": 0.01,
+        "protective_perturbation_direction": "Overexpression_or_Activation_is_Protective"
+      },
+      {
+        "gene_symbol_hgnc": "CD274",
+        "ensembl_gene_id": "ENSG00000120217",
+        "selection_challenge": "In vivo 10-week allogeneic PBMC rejection screen in Hu-PBL-NSG-MHCnull mice (gRNAs depleted -> PD-L1 essential for survival)",
+        "effect_size_lfc_or_zscore": -1.4,
+        "fdr_or_pvalue": 0.01,
+        "protective_perturbation_direction": "Overexpression_or_Activation_is_Protective"
+      }
+    ]
+  }
+}

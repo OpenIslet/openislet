@@ -1,0 +1,9 @@
+Resource: Genotype-Tissue Expression (GTEx) Portal API (Broad Institute)
+Classification: Factual human tissue RNA expression medians (TPM) redistributed in public bundle
+Audit Timestamp (UTC): 2026-10-23T10:34:00Z
+Upstream Source & Terms: https://gtexportal.org/home/license (Open-access summary expression data; attribution required)
+Release: GTEx Analysis Release V8 / V10 (dbGaP Accession phs000424, pancreas tissue median TPM)
+Shipped Public Artifacts:
+  - data/omics/target_prior_table.json and data/omics/gtex_pancreas_*.json (baseline human pancreas transcript expression profiles)
+  - data/extracted/omics_baseline_summary.json and data/raw/layer2_genomic_and_jaspar_reference.json
+Attribution & Modifications: Summary median TPM values for candidate target genes in human pancreas extracted via GTEx Portal API v2.

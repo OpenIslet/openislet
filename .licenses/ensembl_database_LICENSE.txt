@@ -1,0 +1,10 @@
+Resource: Ensembl Genome Browser & REST API (EMBL-EBI)
+Classification: Reference genomic coordinates, transcript structures, and GRCh38 DNA sequences redistributed in public bundle
+Audit Timestamp (UTC): 2026-10-23T09:34:31Z
+Upstream Source & Terms: https://www.ensembl.org/info/about/legal/disclaimer.html (Unrestricted use and redistribution with attribution; Apache-2.0 REST API)
+Release: Ensembl Release 112 / GENCODE v46 (GRCh38.p14; verified 2026-10-26)
+Shipped Public Artifacts:
+  - data/raw/layer2_genomic_and_jaspar_reference.json (verified GRCh38 gene coordinates, canonical transcripts, and 8 non-overlapping homology arm sequences)
+  - data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta (assembled HDR donor sequences incorporating GRCh38 homology arms)
+  - data/extracted/layer2_regulatory_and_perturbation_atlas.json
+Attribution & Modifications: Exact GRCh38 genomic slices and Ensembl 112 / GENCODE v46 transcript coordinates extracted via Ensembl REST API and pinned by SHA-256 digest.

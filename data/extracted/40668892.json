@@ -1,0 +1,180 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "40668892",
+    "pmcid": "PMC12331381",
+    "doi": "10.1126/scitranslmed.ady1135",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Donor-recipient mismatch at the SIRPA locus adversely affects kidney allograft outcomes.",
+    "first_author": "Zhao Daqiang",
+    "senior_author": "Cherukuri Aravind",
+    "pub_year": 2025,
+    "journal": "Science translational medicine",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_1_Human_InVivo"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid40668892_arm1",
+      "arm_label": "Donor-recipient SIRPA haplotype matching (A vs B) and CD47-SIRPa innate myeloid recognition in human and mouse allografts (Zhao et al. 2025)",
+      "is_reference_control": false,
+      "sample_size_n": 455,
+      "sample_size_unit": "human_participants",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Primary_Human_Islet",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Allogeneic_PBMC_or_T_Cell_CoCulture",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "zhao2025_eff1_eliminating_sirpa_mismatch_prevents_allograft_monocyte_pathology",
+      "source_figure_or_table": "Abstract & Figs. 1-6 (Sci Transl Med 2025)",
+      "focal_factor_X": "Donor-recipient SIRPA polymorphic matching (eliminating SIRPA haplotype A/B mismatch in recipient monocyte innate allorecognition; non-edited donor graft)",
+      "comparator_X0": "Directional donor-recipient SIRPA mismatch (e.g. SIRPA haplotype A recipients of haplotype B donor grafts, N=455 discovery + N=258 validation)",
+      "outcome_variable_Y": "[Endpoint: NK_or_Macrophage_Innate_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "NK_or_Macrophage_Innate_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Human polymorphic SIRPA haplotype categories A and B (v1/v2 CD47-binding interface)",
+        "Z3_immune_effector_and_stressor_pathway": "Recipient innate monocyte and dendritic cell allorecognition",
+        "Z4_metabolic_and_glucose_load_state": "In vivo clinical and experimental allograft follow-up",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Vascularized allograft parenchymal and endothelial interface",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "In vivo vascularized allograft",
+        "Z7_promoter_and_epigenetic_context": "Endogenous CD47-SIRPA locus",
+        "Z8_species_age_and_sex_context": "Tier_1_Clinical_or_NHP_or_HumanInSitu"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:40668892 field=verbatim_evidence_quote genes=CD47 pert=NONE quote_sha256=2bd871cfa5d5a457b43a0d640258545546bcb04569c09cf202f41ee234929d68]",
+      "focal_arm_id": "pmid40668892_arm1",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "e942d2bf2b626d1a76e8c2b3aec592513e23cdc90dfc9ed813a218f20463b4d7",
+      "source_span": "abstract[432:695]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Donor-recipient SIRPA polymorphic matching (eliminating SIRPA haplotype A/B mismatch in recipient monocyte innate allorecognition; non-edited donor graft)",
+        "comparator_label": null,
+        "endpoint_name": "NK_or_Macrophage_Innate_Survival",
+        "timepoint": null,
+        "population_or_model": "Human polymorphic SIRPA haplotype categories A and B (v1/v2 CD47-binding interface) (Tier_1_Clinical_or_NHP_or_HumanInSitu)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "40668892"
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "zhao2025_int1_recipient_sirpa_haplotype_a_vs_b_directional_mismatch",
+      "source_figure_or_table": "Abstract & Clinical Cohorts (N=455 and N=258)",
+      "focal_factor_X": "CD47-SIRPa innate myeloid allorecognition",
+      "outcome_Y": "NK_or_Macrophage_Innate_Survival",
+      "modifier_variable_Z": "Directional donor-recipient SIRPA haplotype mismatch (A recipient of B donor vs matched)",
+      "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
+      "level_1_condition_and_effect": "SIRPA-matched grafts: resting monocyte phenotype and preserved long-term allograft survival.",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:40668892 field=level_2_condition_and_effect quote_sha256=8eae738724c1b6ec73ec663688a0b36011190bb316749b849d1a0190d8ce8656]",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": "Recipient SIRPA haplotype A vs B genotyping and binding-affinity panel",
+      "mechanistic_explanation": "Human genomic analysis identified two haplotype categories, A and B, encoding SIRPα variants with distinct CD47 binding interfaces."
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "CD47",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "Macrophage_Phagocytosis_or_Efferocytosis",
+      "downstream_node_type": "Cell_Survival_or_Death_Pathway",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:40668892 field=evidence_source quote_sha256=dde879214bca08f790d475f06c73b7c66187c1c0210372c65c7294b6bc320831]"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

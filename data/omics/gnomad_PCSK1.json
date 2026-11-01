@@ -1,0 +1,11 @@
+{
+  "openislet_audit_note": "Upstream gnomAD GraphQL query returned 'Service overloaded' during harvest (AUDIT-REF-V80-016); PCSK1 is an auxiliary prohormone convertase reference (not a mutated locus in the 1,620-stack grid) and is explicitly logged in target_prior_table.json skipped_gnomad_files_audit.",
+  "errors": [
+    {
+      "message": "Service overloaded"
+    }
+  ],
+  "data": {
+    "gene": null
+  }
+}

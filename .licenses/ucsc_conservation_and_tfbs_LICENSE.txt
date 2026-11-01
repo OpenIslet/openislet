@@ -1,0 +1,9 @@
+Resource: UCSC Genome Browser REST API (UC Santa Cruz Genomics Institute)
+Classification: Factual vertebrate evolutionary conservation scores (phyloP100way, phastCons100way) redistributed in public bundle
+Audit Timestamp (UTC): 2026-10-23T09:34:31Z
+Upstream Source & Terms: https://genome.ucsc.edu/conditions.html (Open data for academic, nonprofit, and personal use; UCSC track data for phyloP/phastCons is public domain / unrestricted with attribution)
+Assembly & Tracks: GRCh38 / hg38 phyloP100way and phastCons100way
+Shipped Public Artifacts:
+  - data/raw/layer2_genomic_and_jaspar_reference.json (window conservation summaries at B2M, CIITA, CXCL10, AAVS1, and CBX3/HNRNPA2B1)
+  - data/extracted/layer2_regulatory_and_perturbation_atlas.json
+Attribution & Modifications: Summary phyloP100way and phastCons100way statistics extracted via UCSC REST API for target HDR windows.

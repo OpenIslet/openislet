@@ -1,0 +1,261 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "40112799",
+    "pmcid": null,
+    "doi": "10.1016/j.cell.2025.02.018",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Genetic protection from type 1 diabetes resulting from accelerated insulin mRNA decay.",
+    "first_author": "van Tienhoven R",
+    "senior_author": "Roep BO",
+    "pub_year": 2025,
+    "journal": "Cell",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar3_Intrinsic_BetaCell_Genetic_Resilience_Amyloid_Viral",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid40112799_arm1",
+      "arm_label": "Primary experimental arm in van Tienhoven R (2025)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": "independent_differentiations",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Primary_Human_Islet",
+        "cell_line_id": null,
+        "donor_hla_profile": "Natural protective INS 3'UTR SNP rs3842752 (G>A, INSP vs INSS) creating an IRE1alpha mRNA decay motif (endogenous human donor allelic polymorphism, not a synthetic genome edit)",
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "ER_Stress_Thapsigargin_or_Tunicamycin",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        },
+        {
+          "challenge_type": "T1D_Autoreactive_CD8_or_CD4_TCR_Clone",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid40112799_eff1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "INS 3'UTR SNP rs3842752 (G>A, INSP protective allele vs INSS susceptible allele — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+      "comparator_X0": "Isogenic wild-type / untreated baseline control in study",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Primary_Human_Islet",
+        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "This SNP in the 3' untranslated region of INS associates with protection from T1D (INSP).",
+      "focal_arm_id": "pmid40112799_arm1",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "bd3e4bd4100ab64619008f1be9a639cf8c5a8789a6cdca1e28c980c42fc3532e",
+      "source_span": "abstract[429:518]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "INS 3'UTR SNP rs3842752 (G>A, INSP protective allele vs INSS susceptible allele — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "Primary_Human_Islet (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "40112799"
+    },
+    {
+      "effect_id": "pmid40112799_eff2",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "INS 3'UTR SNP rs3842752 (G>A, INSP protective allele vs INSS susceptible allele — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+      "comparator_X0": "Isogenic wild-type / untreated baseline control in study",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Primary_Human_Islet",
+        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:40112799 field=verbatim_evidence_quote genes=INS pert=NONE quote_sha256=36f9bf96cf0dbc8451c6f3dea6b6edc90baccad01754c5af64475f6ccb1b49c0]",
+      "focal_arm_id": "pmid40112799_arm1",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "bd3e4bd4100ab64619008f1be9a639cf8c5a8789a6cdca1e28c980c42fc3532e",
+      "source_span": "abstract[887:1048]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "INS 3'UTR SNP rs3842752 (G>A, INSP protective allele vs INSS susceptible allele — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "Primary_Human_Islet (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "40112799"
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "pmid40112799_int1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "INS 3'UTR SNP rs3842752 (G>A, INSP protective allele vs INSS susceptible allele — Gate2_Autoantigen_or_Neoantigen_Stealth)",
+      "outcome_Y": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+      "modifier_variable_Z": "Condition contrast (ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP)",
+      "modifier_class": "Z4_Metabolic_Glucose_or_ER_Secretory_Load",
+      "level_1_condition_and_effect": "ER stress in beta cells with INSP led to accelerated insulin mRNA decay",
+      "level_2_condition_and_effect": "the susceptible INS variant (INSS).",
+      "modification_type": "Quantitative_Attenuation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:40112799 field=mechanistic_explanation quote_sha256=786cfb104743bf5ecba5d0ca0ccb36e67463f91af631d4a1758d3f9741a2a1b2]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "INS_Preproinsulin_Signal_Peptide_DRiP",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Inhibits_or_Downregulates",
+      "downstream_node": "ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
+      "downstream_node_type": "Organelle_or_Metabolic_State",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:40112799 field=evidence_source quote_sha256=b535d90cfe4e8c1838c4002a43f43e2c06c59778fbb843a2ca0452a61170dda8]"
+    },
+    {
+      "upstream_node": "ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
+      "upstream_node_type": "Organelle_or_Metabolic_State",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
+      "downstream_node_type": "Cell_Survival_or_Death_Pathway",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:40112799 field=evidence_source quote_sha256=38a9d1a21d8ea5797a4f2b22bfcd0a85f869a02fe4d2b4b3343dd72d14843c43]"
+    },
+    {
+      "upstream_node": "ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP (polymorphism.)",
+      "downstream_node_type": "Cell_Survival_or_Death_Pathway",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:40112799 field=evidence_source quote_sha256=c4ac2081e852e32a1000b6be4521c9f7300fbd59f7336e18e65f556ee26969a0]"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

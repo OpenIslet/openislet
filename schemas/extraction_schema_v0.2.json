@@ -1,0 +1,1429 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openislet.org/schemas/allogeneic_beta_cell_extraction_v0.2.json",
+  "title": "OpenIslet.org (Project Islet-1) Relational 5-Gate, Atomic-Effect & Effect-Modifier Extraction Schema v0.2",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "study_metadata",
+    "screening_decision",
+    "arms",
+    "atomic_effects",
+    "effect_modifier_interactions",
+    "causal_mechanism_edges",
+    "cross_study_discovery_bridges"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.2.0"
+    },
+    "study_metadata": {
+      "type": "object",
+      "required": [
+        "pmid",
+        "title",
+        "pub_year",
+        "pillars_covered",
+        "max_biological_fidelity_tier"
+      ],
+      "properties": {
+        "pmid": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pmcid": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "doi": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "nct_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "geo_accessions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "title": {
+          "type": "string"
+        },
+        "first_author": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "senior_author": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pub_year": {
+          "type": "integer"
+        },
+        "journal": {
+          "type": "string"
+        },
+        "source_text_type": {
+          "type": "string",
+          "enum": [
+            "FullText_XML_or_PDF",
+            "FullText_Plus_Supplement_or_GEO",
+            "Abstract_Only",
+            "Project_Summary",
+            "Preprint_Superseded_By_Peer_Reviewed",
+            "Review_or_Commentary"
+          ]
+        },
+        "superseded_by_pmid": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reconciled_from_superseded_preprint_pmid": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "linked_correction_notice_pmid": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pillars_covered": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+              "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+              "Pillar3_Intrinsic_BetaCell_Genetic_Resilience_Amyloid_Viral",
+              "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+            ]
+          }
+        },
+        "max_biological_fidelity_tier": {
+          "type": "string",
+          "enum": [
+            "Tier_1_Human_InVivo",
+            "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse",
+            "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture",
+            "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse",
+            "Tier_4_Rodent_or_Xenogeneic_Only"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "screening_decision": {
+      "type": "object",
+      "required": [
+        "included",
+        "exclusion_reason"
+      ],
+      "properties": {
+        "included": {
+          "type": "boolean"
+        },
+        "is_crispr_or_high_throughput_screen": {
+          "type": "boolean"
+        },
+        "screen_library_size_genes": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "exclusion_reason": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            null,
+            "Review_Editorial_or_Commentary",
+            "Not_Beta_Cell_or_Islet",
+            "No_Experimental_Perturbation_or_Protocol_Comparison",
+            "Pure_Epidemiology_or_Diagnostics_Only"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "arms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "arm_id",
+          "arm_label",
+          "is_reference_control",
+          "gate1_substrate_and_differentiation",
+          "gate2_3_4_genetic_and_epitope_edits",
+          "gate5_engraftment_niche",
+          "challenge_conditions",
+          "quantitative_readouts"
+        ],
+        "properties": {
+          "arm_id": {
+            "type": "string"
+          },
+          "arm_label": {
+            "type": "string"
+          },
+          "is_reference_control": {
+            "type": "boolean"
+          },
+          "sample_size_n": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "sample_size_unit": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              null,
+              "human_participants",
+              "nhp_recipients",
+              "mouse_recipients",
+              "independent_differentiations",
+              "organoid_wells",
+              "human_immune_donors",
+              "human_islet_donors",
+              "individual_cells_imaged",
+              "islet_or_cluster_replicates",
+              "in_vitro_coculture_replicates",
+              "unspecified_in_source"
+            ]
+          },
+          "gate1_substrate_and_differentiation": {
+            "type": "object",
+            "properties": {
+              "cell_source_class": {
+                "type": "string",
+                "enum": [
+                  "hESC",
+                  "iPSC_healthy_donor",
+                  "iPSC_T1D_or_LADA_patient",
+                  "CiPSC_chemically_induced",
+                  "Primary_Human_Islet",
+                  "NHP_Primary_Islet",
+                  "EndoC_betaH1_or_H2_H3",
+                  "Rodent_Primary_Islet",
+                  "Rodent_Beta_Cell_Line_NIT1_MIN6_INS1",
+                  "Unspecified_In_Source_Abstract"
+                ]
+              },
+              "cell_line_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "donor_hla_profile": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "protocol_backbone": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "canonical_differentiation_stage_evaluated": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  null,
+                  "Stage0_PSC",
+                  "Stage1_DefinitiveEndoderm",
+                  "Stage2_3_GutTube_Foregut",
+                  "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
+                  "Stage5_EndocrineProgenitor_NEUROG3",
+                  "Stage6_Immature_SC_Islet",
+                  "Stage7_MetabolicallyMature_SC_Islet",
+                  "InVivo_Engrafted_Maturation",
+                  "Primary_Mature_Islet"
+                ]
+              },
+              "stage_small_molecules_and_factors": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "stage_number": {
+                      "type": "integer"
+                    },
+                    "factor_name": {
+                      "type": "string"
+                    },
+                    "dose_value": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "dose_unit": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "duration_days": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "cluster_mean_diameter_um": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "pct_nkx6_1_cpeptide_double_pos": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "pct_mafa_pos": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "pct_alpha_gcg_pos": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "pct_delta_sst_pos": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "pct_off_target_enterochromaffin_slc18a1": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "gate2_3_4_genetic_and_epitope_edits": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "gene_symbol_hgnc",
+                "sub_molecular_coordinate",
+                "edit_modality",
+                "functional_gate"
+              ],
+              "properties": {
+                "gene_symbol_hgnc": {
+                  "type": "string"
+                },
+                "ensembl_gene_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "sub_molecular_coordinate": {
+                  "type": "object",
+                  "required": [
+                    "region_class"
+                  ],
+                  "properties": {
+                    "region_class": {
+                      "type": "string",
+                      "enum": [
+                        "Whole_Gene_Coding_CDS",
+                        "Signal_Peptide_Leader",
+                        "Specific_Exon_or_Splice_Isoform",
+                        "Catalytic_or_Kinase_Domain",
+                        "HLA_Anchor_or_TCR_Contact_Residue",
+                        "Amyloidogenic_Core_Motif",
+                        "3UTR_or_Promoter_Enhancer",
+                        "Transgene_cDNA_Cassette"
+                      ]
+                    },
+                    "exact_variant_or_swap_description": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "functional_gate": {
+                  "type": "string",
+                  "enum": [
+                    "Gate2_Allo_HLA_ClassI_or_II",
+                    "Gate2_Autoantigen_or_Neoantigen_Stealth",
+                    "Gate2_Checkpoint_T_Cell_Inhibition",
+                    "Gate3_NK_MissingSelf_Inhibition",
+                    "Gate3_Macrophage_DonotEatMe",
+                    "Gate3_Complement_ADCC_IBMIR_Shield",
+                    "Gate4_Intrinsic_IFN_JAK_STAT_NFkB_Block",
+                    "Gate4_Intrinsic_ER_Stress_UPR_Shield",
+                    "Gate4_Intrinsic_Granzyme_Fas_Apoptosis_Shield",
+                    "Gate4_Intrinsic_Amyloid_or_Viral_Receptor_Shield",
+                    "Gate4_Intrinsic_Hypoxia_Metabolic_Shield",
+                    "Gate5_Suicide_Safety_Switch"
+                  ]
+                },
+                "target_autoantibody_or_tcr_evaded": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "IAA_Insulin_Preproinsulin_Leader",
+                      "GADA_GAD65",
+                      "IA2A_PTPRN_Phogrin",
+                      "ZnT8A_SLC30A8",
+                      "IGRP_G6PC2",
+                      "TSPAN7A_Tetraspanin7",
+                      "ChromograninA_CHGA_WE14",
+                      "Hybrid_Insulin_Peptide_HIP",
+                      "INS_DRiP_Cryptic_ORF",
+                      "Allogeneic_HLA_DSA_or_TCR",
+                      "None_Not_Antigen_Specific"
+                    ]
+                  }
+                },
+                "edit_modality": {
+                  "type": "string",
+                  "enum": [
+                    "CRISPR_Cas9_KO",
+                    "CRISPR_Cas12a_Multiplex_KO",
+                    "BaseEdit_ABE_or_CBE_Epitope_or_Splice",
+                    "PrimeEdit",
+                    "Signal_Peptide_or_Domain_Swap",
+                    "Endogenous_SwapIn_KO_plus_KI",
+                    "SafeHarbor_KI_AAVS1_GAPDH_CLYBL",
+                    "Lentiviral_or_Transposon_OE",
+                    "Transient_mRNA_or_Surface_Tethering",
+                    "CRISPRi_or_shRNA_Knockdown",
+                    "CRISPRa_Activation",
+                    "SmallMolecule_Pharmacological_Modulator"
+                  ]
+                },
+                "promoter_or_locus_context": {
+                  "type": "string",
+                  "enum": [
+                    "Endogenous_Native_Promoter",
+                    "Inflammation_Inducible_CXCL10_ISRE_IFNG_NFkB",
+                    "Lineage_Locked_INS_G6PC2_PDX1",
+                    "Hypoxia_Inducible_HRE",
+                    "Housekeeping_GAPDH_ACTB_B2M",
+                    "Viral_or_Synthetic_CAG_EF1a_CMV",
+                    "Not_Applicable_KO"
+                  ]
+                },
+                "zygosity_or_allelic_state": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "enum": [
+                    null,
+                    "Homozygous_Biallelic",
+                    "Heterozygous_Monoallelic",
+                    "Hemizygous_or_KnockIn",
+                    "Polyclonal_Pool"
+                  ]
+                },
+                "protein_or_surface_expression_fold_vs_wt": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "perturbation_class": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "gate5_engraftment_niche": {
+            "type": "object",
+            "properties": {
+              "transplant_site": {
+                "type": "string",
+                "enum": [
+                  "InVitro_Only",
+                  "Portal_Vein_Intrahepatic",
+                  "Omental_Pouch",
+                  "Subcutaneous_Unmodified",
+                  "Subcutaneous_Prevascularized_or_Device",
+                  "Intramuscular_Forearm_or_Rectus",
+                  "Kidney_Capsule",
+                  "Anterior_Chamber_Eye",
+                  "Epididymal_or_Perigonadal_Fat_Pad",
+                  "Unspecified_InVivo_or_Source_Site"
+                ]
+              },
+              "prevascularization_lead_time_days": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "in_dish_vascular_assembly": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  null,
+                  "None_Avascular_Islet",
+                  "Endothelial_CoCulture_iEC_HUVEC",
+                  "Microvascular_Fragment_CoAssembly",
+                  "Endothelial_plus_Pericyte_Vascularized_Organoid"
+                ]
+              },
+              "oxygen_bridge_72h_carrier": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  null,
+                  "None",
+                  "CaO2_PDMS_Oxygen_Microbeads",
+                  "Perfluorocarbon_O2_Carrier",
+                  "Exogenous_O2_Chamber_or_Bioelectronic",
+                  "Hemoglobin_or_Myoglobin_Hydrogel"
+                ]
+              },
+              "packing_density_ieq_per_cm2_or_ml": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "number_of_distributed_micro_pockets": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "staged_insertion_schedule": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "encapsulation_or_biomaterial": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "co_transplanted_cells_or_oxygen_source": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "systemic_immunosuppression_regimen": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "challenge_conditions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "challenge_type"
+              ],
+              "properties": {
+                "challenge_type": {
+                  "type": "string",
+                  "enum": [
+                    "Unstressed_Baseline",
+                    "Allogeneic_PBMC_or_T_Cell_CoCulture",
+                    "T1D_Autoreactive_CD8_or_CD4_TCR_Clone",
+                    "Patient_Autoantibody_ADCC_ADCP_or_Complement",
+                    "Primary_NK_Cell_MissingSelf_Assay",
+                    "Macrophage_Phagocytosis_Assay",
+                    "Whole_Blood_IBMIR_Assay",
+                    "Cytokine_Cocktail_IFNg_IL1b_TNFa_or_IFNa",
+                    "ER_Stress_Thapsigargin_or_Tunicamycin",
+                    "Glucolipotoxicity_HighGlucose_Palmitate",
+                    "Enterovirus_CVB_Infection_Challenge",
+                    "Amyloid_hIAPP_Aggregation_Stress",
+                    "Hypoxia_Ischemia_Challenge",
+                    "InVivo_Allogeneic_or_Autoimmune_Graft"
+                  ]
+                },
+                "effector_to_target_ratio": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "oxygen_pct": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "glucose_concentration_mM": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "duration_hours_or_days": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "specific_autoantigen_or_hla_restriction": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "quantitative_readouts": {
+            "type": "object",
+            "properties": {
+              "specific_lysis_or_death_pct_mean": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "specific_lysis_or_death_pct_sd": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "cell_viability_pct_mean": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "early_72h_graft_survival_pct": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "time_to_vascular_inosculation_hours": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "necrotic_core_or_damp_release_pct": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "fibrotic_capsule_thickness_um": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "in_vivo_graft_survival_days_median": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "pct_graft_surviving_at_end_of_followup": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "followup_duration_days": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "static_gsis_stimulation_index_mean": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "static_gsis_stimulation_index_sd": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "dynamic_perifusion_first_phase_fold": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "proinsulin_to_insulin_ratio": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "in_vivo_stimulated_c_peptide_ng_ml": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "de_novo_dsa_or_autoantibody_spreading_observed": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "atomic_effects": {
+      "description": "Every distinct within-study experimental relationship (Focal Factor X -> Outcome Y | Conditioning Context Z) across all figures, tables, and panels.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "effect_id",
+          "source_figure_or_table",
+          "focal_factor_X",
+          "comparator_X0",
+          "outcome_variable_Y",
+          "outcome_domain",
+          "effect_direction",
+          "conditioning_context_Z",
+          "verbatim_evidence_quote",
+          "focal_arm_id",
+          "comparator_arm_id",
+          "dispersion_type",
+          "n_unit",
+          "censoring_note",
+          "endpoint_polarity_registry",
+          "dossier_sha256",
+          "source_span",
+          "statistic_type",
+          "p_value_relation",
+          "p_value_bound",
+          "direction_adjudication_method"
+        ],
+        "properties": {
+          "effect_id": {
+            "type": "string"
+          },
+          "source_figure_or_table": {
+            "type": "string"
+          },
+          "focal_factor_X": {
+            "type": "string"
+          },
+          "comparator_X0": {
+            "type": "string"
+          },
+          "outcome_variable_Y": {
+            "type": "string"
+          },
+          "outcome_domain": {
+            "type": "string",
+            "enum": [
+              "Differentiation_Yield_and_Lineage_Purity",
+              "Metabolic_and_Biphasic_GSIS_Maturation",
+              "Alpha_Delta_Paracrine_CounterRegulation",
+              "Allo_T_Cell_or_DSA_Survival",
+              "Autoimmune_TCR_or_AutoAb_Evasion",
+              "NK_or_Macrophage_Innate_Survival",
+              "Complement_or_IBMIR_Coagulation_Block",
+              "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
+              "Granzyme_or_Fas_Apoptosis_Resistance",
+              "Amyloid_hIAPP_or_Enterovirus_Protection",
+              "Hypoxia_72h_or_Vascular_Inosculation",
+              "InVivo_Glycemic_Cure_and_Graft_Longevity",
+              "Surface_HLA_or_Transgene_Expression_Level"
+            ]
+          },
+          "treatment_mean": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "treatment_sd_or_sem": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "treatment_n": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "control_mean": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "control_sd_or_sem": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "control_n": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "measurement_unit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "log_response_ratio_or_smd": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "p_value": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "effect_direction": {
+            "type": "string",
+            "enum": [
+              "Protective_or_Improved",
+              "Neutral_or_NonInferior",
+              "Deleterious_or_Impaired"
+            ]
+          },
+          "secretome_or_differentiation_penalty_observed": {
+            "type": "boolean"
+          },
+          "conditioning_context_Z": {
+            "description": "The 8 Canonical Effect-Modifier Dimensions held fixed for this atomic effect observation.",
+            "type": "object",
+            "properties": {
+              "Z1_developmental_stage_and_timing": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Z2_genetic_background_and_allelic_dose": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Z3_immune_effector_and_stressor_pathway": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Z4_metabolic_and_glucose_load_state": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Z5_cytoarchitecture_and_cluster_diameter": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Z6_microenvironment_oxygen_and_vascular_niche": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Z7_promoter_and_epigenetic_context": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Z8_species_age_and_sex_context": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "verbatim_evidence_quote": {
+            "type": "string"
+          },
+          "focal_arm_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{5,80}$"
+          },
+          "comparator_arm_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-z][a-z0-9_]{5,80}$"
+          },
+          "dispersion_type": {
+            "type": "string",
+            "enum": [
+              "SD",
+              "SEM",
+              "95_CI",
+              "IQR",
+              "unspecified_in_quote",
+              "Not_Reported_in_Source_Sentence"
+            ]
+          },
+          "censoring_note": {
+            "type": "string",
+            "minLength": 5
+          },
+          "endpoint_polarity_registry": {
+            "oneOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "Higher_Is_Better_Protective_Endpoint",
+                  "Lower_Is_Better_Hazard_Endpoint",
+                  "Qualitative_or_Unoriented_Endpoint"
+                ]
+              },
+              {
+                "type": "object",
+                "required": [
+                  "polarity_class",
+                  "orientation_sign",
+                  "matched_lexicon_term"
+                ],
+                "properties": {
+                  "polarity_class": {
+                    "type": "string",
+                    "enum": [
+                      "Higher_Is_Better_Protective_Endpoint",
+                      "Lower_Is_Better_Hazard_Endpoint",
+                      "Qualitative_or_Unoriented_Endpoint"
+                    ]
+                  },
+                  "orientation_sign": {
+                    "type": "number",
+                    "enum": [
+                      -1.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  "matched_lexicon_term": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              }
+            ]
+          },
+          "n_unit": {
+            "type": "string",
+            "enum": [
+              "human_participants",
+              "nhp_recipients",
+              "mouse_recipients",
+              "independent_differentiations",
+              "organoid_wells",
+              "human_immune_donors",
+              "human_islet_donors",
+              "individual_cells_imaged",
+              "islet_or_cluster_replicates",
+              "in_vitro_coculture_replicates",
+              "unspecified_in_source"
+            ]
+          },
+          "dossier_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "quote_source_dossier_pmid": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_span": {
+            "type": "string",
+            "pattern": "^(abstract|title|fulltext_data_sections\\.(results_paragraphs|figure_legends|methods_paragraphs)\\[\\d+\\](\\.caption)?)\\[\\d+:\\d+\\](\\|norm=(exact|whitespace_normalized))?$"
+          },
+          "statistic_type": {
+            "type": "string",
+            "enum": [
+              "log_response_ratio_paired_means",
+              "log_response_ratio_fold_change",
+              "standardized_mean_difference",
+              "single_arm_descriptive_only",
+              "qualitative_statement_only",
+              "quarantined_ambiguous_numeric"
+            ]
+          },
+          "contrast_metadata": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "required": [
+              "intervention_label",
+              "comparator_label",
+              "endpoint_name",
+              "contrast_type"
+            ],
+            "properties": {
+              "intervention_label": {
+                "type": "string"
+              },
+              "comparator_label": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "endpoint_name": {
+                "type": "string"
+              },
+              "timepoint": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "population_or_model": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "units": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "contrast_type": {
+                "type": "string",
+                "enum": [
+                  "between_arm_comparative_paired_means",
+                  "between_arm_comparative_fold_ratio",
+                  "longitudinal_or_within_arm_descriptive",
+                  "right_censored_followup_observation",
+                  "single_arm_descriptive_only",
+                  "qualitative_statement_only",
+                  "quarantined_ambiguous_multi_clause_or_multi_ratio"
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "p_value_relation": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "=",
+              "<",
+              ">",
+              "<=",
+              ">=",
+              null
+            ]
+          },
+          "p_value_bound": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "direction_adjudication_method": {
+            "type": "string",
+            "enum": [
+              "rule_based_heuristic",
+              "source_adjudicated_curated_override"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "effect_modifier_interactions": {
+      "description": "Explicit within-study interactions where the effect of Focal Factor X on Outcome Y changes across levels of an Effect Modifier Z (dEffect(X->Y)/dZ != 0).",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "interaction_id",
+          "focal_factor_X",
+          "outcome_Y",
+          "modifier_variable_Z",
+          "modifier_class",
+          "level_1_condition_and_effect",
+          "level_2_condition_and_effect",
+          "modification_type",
+          "mechanistic_explanation"
+        ],
+        "properties": {
+          "interaction_id": {
+            "type": "string"
+          },
+          "source_figure_or_table": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "focal_factor_X": {
+            "type": "string"
+          },
+          "outcome_Y": {
+            "type": "string"
+          },
+          "modifier_variable_Z": {
+            "type": "string"
+          },
+          "modifier_class": {
+            "type": "string",
+            "enum": [
+              "Z1_Developmental_Timing_or_Stage",
+              "Z2_Genetic_Background_Zygosity_or_Surface_MFI_Dose",
+              "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
+              "Z4_Metabolic_Glucose_or_ER_Secretory_Load",
+              "Z5_Cytoarchitecture_Paracrine_or_Cluster_Diameter",
+              "Z6_Oxygen_Tension_Vascular_Site_or_ECM_Niche",
+              "Z7_Promoter_Locus_or_Epigenetic_Silencing_Window",
+              "Z8_Species_Donor_Age_or_Recipient_Sex",
+              "Epistatic_Second_Genetic_or_Pharmacological_Perturbation"
+            ]
+          },
+          "level_1_condition_and_effect": {
+            "type": "string"
+          },
+          "level_2_condition_and_effect": {
+            "type": "string"
+          },
+          "modification_type": {
+            "type": "string",
+            "enum": [
+              "Synergistic_Amplification",
+              "Quantitative_Attenuation",
+              "Complete_Bypass_or_Abrogation",
+              "Qualitative_Sign_Reversal_Flips_Direction",
+              "Threshold_Gate_Only_Works_Above_or_Below_Z",
+              "Rescue_of_Toxicity_or_Defect"
+            ]
+          },
+          "critical_threshold_value_and_unit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "mechanistic_explanation": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "causal_mechanism_edges": {
+      "description": "Directed intermediate causal edges (Node A -> Node B -> Node C) enabling graph traversal across disconnected papers.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "upstream_node",
+          "upstream_node_type",
+          "causal_relation",
+          "downstream_node",
+          "downstream_node_type",
+          "evidence_source"
+        ],
+        "properties": {
+          "upstream_node": {
+            "type": "string"
+          },
+          "upstream_node_type": {
+            "type": "string",
+            "enum": [
+              "Gene_or_Protein_Edit",
+              "Small_Molecule_or_Growth_Factor",
+              "Biophysical_or_Vascular_Cue",
+              "Signaling_Kinase_or_TF",
+              "Organelle_or_Metabolic_State",
+              "Surface_Ligand_or_Antigen_Presentation",
+              "Immune_or_Abiotic_Stressor",
+              "Secreted_Hormone_or_Chemokine_DAMP",
+              "Lineage_Identity_or_Maturation_State",
+              "Cell_Survival_or_Death_Pathway"
+            ]
+          },
+          "causal_relation": {
+            "type": "string",
+            "enum": [
+              "Activates_or_Upregulates",
+              "Inhibits_or_Downregulates",
+              "Physically_Binds_or_Blocks",
+              "Prevents_Cleavage_or_Aggregation_Of",
+              "Induces_Splicing_or_Translation_Of",
+              "Stabilizes_or_Rescues"
+            ]
+          },
+          "downstream_node": {
+            "type": "string"
+          },
+          "downstream_node_type": {
+            "type": "string",
+            "enum": [
+              "Gene_or_Protein_Edit",
+              "Small_Molecule_or_Growth_Factor",
+              "Biophysical_or_Vascular_Cue",
+              "Signaling_Kinase_or_TF",
+              "Organelle_or_Metabolic_State",
+              "Surface_Ligand_or_Antigen_Presentation",
+              "Immune_or_Abiotic_Stressor",
+              "Secreted_Hormone_or_Chemokine_DAMP",
+              "Lineage_Identity_or_Maturation_State",
+              "Cell_Survival_or_Death_Pathway"
+            ]
+          },
+          "evidence_source": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "cross_study_discovery_bridges": {
+      "description": "Structured capture of unexpected pleiotropy, residual failure modes (<100% survival bottlenecks), threshold regimes, and high-throughput screen hits.",
+      "type": "object",
+      "required": [
+        "collateral_and_pleiotropic_findings",
+        "residual_failure_and_escape_vectors",
+        "regime_thresholds",
+        "high_throughput_screen_hits"
+      ],
+      "properties": {
+        "collateral_and_pleiotropic_findings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "primary_gate_perturbed",
+              "secondary_gate_affected",
+              "observation"
+            ],
+            "properties": {
+              "primary_gate_perturbed": {
+                "type": "string"
+              },
+              "secondary_gate_affected": {
+                "type": "string"
+              },
+              "observation": {
+                "type": "string"
+              },
+              "is_beneficial_synergy_or_deleterious_tradeoff": {
+                "type": "string",
+                "enum": [
+                  "Beneficial_CrossGate_Bonus",
+                  "Deleterious_CrossGate_Tradeoff",
+                  "Neutral_Shift"
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "residual_failure_and_escape_vectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "arm_or_intervention",
+              "residual_loss_or_limitation",
+              "escape_mechanism_identified",
+              "complementary_lever_needed"
+            ],
+            "properties": {
+              "arm_or_intervention": {
+                "type": "string"
+              },
+              "residual_loss_or_limitation": {
+                "type": "string"
+              },
+              "escape_mechanism_identified": {
+                "type": "string"
+              },
+              "complementary_lever_needed": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "regime_thresholds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "parameter_name",
+              "critical_threshold_value",
+              "unit",
+              "below_threshold_behavior",
+              "above_threshold_behavior"
+            ],
+            "properties": {
+              "parameter_name": {
+                "type": "string"
+              },
+              "critical_threshold_value": {
+                "type": "number"
+              },
+              "unit": {
+                "type": "string"
+              },
+              "below_threshold_behavior": {
+                "type": "string"
+              },
+              "above_threshold_behavior": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "high_throughput_screen_hits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "gene_symbol_hgnc",
+              "selection_challenge",
+              "protective_perturbation_direction"
+            ],
+            "properties": {
+              "gene_symbol_hgnc": {
+                "type": "string"
+              },
+              "ensembl_gene_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "selection_challenge": {
+                "type": "string"
+              },
+              "effect_size_lfc_or_zscore": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "fdr_or_pvalue": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "protective_perturbation_direction": {
+                "type": "string",
+                "enum": [
+                  "Knockout_or_Depletion_is_Protective",
+                  "Overexpression_or_Activation_is_Protective"
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

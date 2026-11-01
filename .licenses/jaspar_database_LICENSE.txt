@@ -1,0 +1,9 @@
+Resource: JASPAR Transcription Factor Binding Profile Database
+Classification: Position Frequency Matrices (PFMs) redistributed in public bundle
+Audit Timestamp (UTC): 2026-10-23T09:34:31Z
+Upstream Source & Terms: https://jaspar.elixir.no/about/ (Creative Commons Attribution 4.0 International, CC-BY-4.0)
+Release: JASPAR 2024 CORE Vertebrates Non-Redundant (matrix IDs MA0137.4 STAT1, MA0517.2 STAT1::STAT2, MA0050.3 IRF1, MA0105.4 NFKB1, MA0101.1 RELA, MA0139.2 CTCF)
+Shipped Public Artifacts:
+  - data/raw/layer2_genomic_and_jaspar_reference.json (verbatim JASPAR 2024 PFMs)
+  - data/extracted/layer2_regulatory_and_perturbation_atlas.json (log-odds PWM motif scan results across B2M, CXCL10, and AAVS1 cassettes)
+Attribution & Modifications: Verbatim JASPAR 2024 PFMs redistributed in data/raw/layer2_genomic_and_jaspar_reference.json and converted to background-calibrated log-odds PWMs in Layer 2.

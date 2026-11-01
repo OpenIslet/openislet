@@ -1,0 +1,274 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "41607298",
+    "pmcid": null,
+    "doi": "10.1111/dom.70442",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Peptidylarginine deiminase 4-mediated neutrophil extracellular trap formation aggravates β-cell damage in type 1 diabetes: A multi-model study.",
+    "first_author": "Lei L",
+    "senior_author": "Huang B",
+    "pub_year": 2026,
+    "journal": "Diabetes, obesity & metabolism",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture"
+    ],
+    "max_biological_fidelity_tier": "Tier_4_Rodent_or_Xenogeneic_Only"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid41607298_arm1",
+      "arm_label": "Primary experimental arm in Lei L (2026)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": "independent_differentiations",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Rodent_Primary_Islet",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid41607298_eff1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP [INS]",
+      "comparator_X0": "Isogenic wild-type / untreated baseline control in study",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Rodent_Primary_Islet",
+        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "Increasing evidence suggests that neutrophils and neutrophil extracellular traps (NETs) may contribute to early islet inflammation; however, their precise role in T1DM pathogenesis remains incompletely understood.",
+      "focal_arm_id": "pmid41607298_arm1",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "521597cdb7a40eaba7ed9b4234104a4f57cbb739312ec995ef39a95cbee59ecf",
+      "source_span": "abstract[121:334]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP [INS]",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "Rodent_Primary_Islet (Tier_4_Rodent_or_Xenogeneic_Only)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "41607298"
+    },
+    {
+      "effect_id": "pmid41607298_eff2",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "comparator_X0": "Isogenic wild-type / untreated baseline control in study",
+      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Rodent_Primary_Islet",
+        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:41607298 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=91d2a18e5fd1dd25033ae8c58f553dc2dd579e034637aa79b05255a537aa066e]",
+      "focal_arm_id": "pmid41607298_arm1",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "521597cdb7a40eaba7ed9b4234104a4f57cbb739312ec995ef39a95cbee59ecf",
+      "source_span": "abstract[1139:1301]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+        "comparator_label": null,
+        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "timepoint": null,
+        "population_or_model": "Rodent_Primary_Islet (Tier_4_Rodent_or_Xenogeneic_Only)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "41607298"
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "pmid41607298_int1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
+      "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
+      "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
+      "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:41607298 field=level_1_condition_and_effect quote_sha256=6498aa5423a617c08055bfd1a91165483e46a7983c18cb34bc39aa54bf129622]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:41607298 field=level_2_condition_and_effect quote_sha256=9daca068ad42cc2f87e9b0f38bdf39b1342e5c89309968cab774984aefc51742]",
+      "modification_type": "Complete_Bypass_or_Abrogation",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:41607298 field=mechanistic_explanation quote_sha256=abc90ecbf5d4bfd92d5651ce62236c7eac922aacda4a94d20bc2142abd1ca39a]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "PMN_Neutrophil_NETosis_PAD4_CD99_CD200_Axis",
+      "downstream_node_type": "Immune_or_Abiotic_Stressor",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:41607298 field=evidence_source quote_sha256=ae2fe8d0b39172561cedf4c3a2f6b8ad234f07ff3bfc3e2db817c512475b3979]"
+    },
+    {
+      "upstream_node": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "upstream_node_type": "Lineage_Identity_or_Maturation_State",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "downstream_node_type": "Lineage_Identity_or_Maturation_State",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:41607298 field=evidence_source quote_sha256=13c76fdf10730527b5e686609e32b967fb8776bd91fca0b348d7717a61471fce]"
+    },
+    {
+      "upstream_node": "ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
+      "downstream_node_type": "Immune_or_Abiotic_Stressor",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:41607298 field=evidence_source quote_sha256=da3f487e08aaf199c5169ef4f6730f7ff734275ce025d3ab63327d3f6e6da7f6]"
+    },
+    {
+      "upstream_node": "ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
+      "downstream_node_type": "Immune_or_Abiotic_Stressor",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:41607298 field=evidence_source quote_sha256=d0e0c8b1750251507c7bfbfd6bc767977ad5dfc56329cd25a20d9f58dd90daad]"
+    },
+    {
+      "upstream_node": "ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
+      "upstream_node_type": "Gene_or_Protein_Edit",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "downstream_node_type": "Lineage_Identity_or_Maturation_State",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:41607298 field=evidence_source quote_sha256=757a8026b622ab9c85161bb99da8ac3e99ea6759d540eba4f6da0928e6f0bf13]"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:41607298 field=omitted_text quote_sha256=54f7d38213e4c0871edc2c1889d6164f2c45db40d70dce7001f904b3c1c3153b]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:41607298 field=omitted_text quote_sha256=6f409ec83508ddf67cd15737268ee42fb2e3745572f8c7fa290ff516068bf977]",
+        "complementary_lever_needed": "Multi-gate combinatorial pairing across Gates 1-5"
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

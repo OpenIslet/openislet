@@ -1,0 +1,12 @@
+{
+  "search": {
+    "hits": [
+      {
+        "id": "MONDO_0005147",
+        "name": "type 1 diabetes mellitus",
+        "description": "A chronic condition characterized by minimal or absent production of insulin by the pancreas.",
+        "entity": "disease"
+      }
+    ]
+  }
+}

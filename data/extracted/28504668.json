@@ -1,0 +1,198 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "28504668",
+    "pmcid": "PMC5548598",
+    "doi": "10.1038/nbt.3860",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "HLA-E-expressing pluripotent stem cells escape allogeneic responses and lysis by NK cells.",
+    "first_author": "Gornalusse GG",
+    "senior_author": "Russell DW",
+    "pub_year": 2017,
+    "journal": "Nature biotechnology",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth"
+    ],
+    "max_biological_fidelity_tier": "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid28504668_arm1",
+      "arm_label": "AAV-mediated B2M::HLA-E single-chain dimer/trimer knock-in human PSCs and differentiated derivatives",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": "independent_differentiations",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "hESC",
+        "cell_line_id": "Human PSCs with B2M::HLA-E knock-in",
+        "donor_hla_profile": "HLA-A/B/C surface negative, HLA-E single-chain trimer positive",
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Stage0_PSC",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "B2M",
+          "ensembl_gene_id": "ENSG00000166710",
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:28504668 field=exact_variant_or_swap_description mod=Endogenous_SwapIn_KO_plus_KI genes=B2M quote_sha256=41fb073a464c49e53966cc6c1c818682481b2f05d087fdaf803cf4852e7f77ed]"
+          },
+          "functional_gate": "Gate2_Allo_HLA_ClassI_or_II",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "Endogenous_SwapIn_KO_plus_KI",
+          "promoter_or_locus_context": "Housekeeping_GAPDH_ACTB_B2M",
+          "zygosity_or_allelic_state": "Homozygous_Biallelic",
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Bicistronic_Endogenous_Promoter_SwapIn_KO_plus_KI"
+        },
+        {
+          "gene_symbol_hgnc": "HLA-E",
+          "ensembl_gene_id": "ENSG00000204592",
+          "sub_molecular_coordinate": {
+            "region_class": "Signal_Peptide_Leader",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:28504668 field=exact_variant_or_swap_description mod=Endogenous_SwapIn_KO_plus_KI genes=HLA-E quote_sha256=40e73735eb1e542bc2c08afce994fbb6550703eaaee040512d9ea26cd80d5aa1]"
+          },
+          "functional_gate": "Gate3_NK_MissingSelf_Inhibition",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "Endogenous_SwapIn_KO_plus_KI",
+          "promoter_or_locus_context": "Housekeeping_GAPDH_ACTB_B2M",
+          "zygosity_or_allelic_state": "Homozygous_Biallelic",
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Bicistronic_Endogenous_Promoter_SwapIn_KO_plus_KI"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Subcutaneous_Unmodified",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Primary_NK_Cell_MissingSelf_Assay",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": "CD94/NKG2A+ primary human NK cells and allogeneic CD8+ T cells"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid28504668_eff1_b2m_hlae_trimer_escapes_cd8_and_nk_lysis",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "B2M::HLA-E single-chain trimer knock-in at endogenous B2M locus",
+      "comparator_X0": "B2M-/- HLA-I-null human PSC derivatives without HLA-E",
+      "outcome_variable_Y": "[Endpoint: NK_or_Macrophage_Innate_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "NK_or_Macrophage_Innate_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Human PSCs and differentiated hematopoietic/non-hematopoietic derivatives",
+        "Z2_genetic_background_and_allelic_dose": "Biallelic B2M disruption with AAV-mediated HLA-E single-chain knock-in",
+        "Z3_immune_effector_and_stressor_pathway": "Allogeneic CD8+ T cells, anti-HLA antibodies, and CD94/NKG2A+ NK cells",
+        "Z4_metabolic_and_glucose_load_state": "Standard culture and in vivo engraftment",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Differentiated hPSC derivatives",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "In vitro and in vivo mouse model",
+        "Z7_promoter_and_epigenetic_context": "Endogenous B2M promoter (inducible and regulated)",
+        "Z8_species_age_and_sex_context": "Human cells"
+      },
+      "verbatim_evidence_quote": "These HLA-engineered PSCs and their differentiated derivatives are not recognized as allogeneic by CD8+ T cells, do not bind anti-HLA antibodies and are resistant to NK-mediated lysis.",
+      "focal_arm_id": "pmid28504668_arm1",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "b3b13276a291a27daa74c6442fb15446c177f64288bc2daad03c4288727d6e66",
+      "source_span": "abstract[784:968]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "B2M::HLA-E single-chain trimer knock-in at endogenous B2M locus",
+        "comparator_label": null,
+        "endpoint_name": "NK_or_Macrophage_Innate_Survival",
+        "timepoint": null,
+        "population_or_model": "Biallelic B2M disruption with AAV-mediated HLA-E single-chain knock-in (Human cells)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "28504668"
+    }
+  ],
+  "effect_modifier_interactions": [],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [
+      {
+        "arm_or_intervention": "B2M::HLA-E single-chain trimer knock-in at endogenous B2M locus",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:28504668 field=omitted_text quote_sha256=0bf67deba778e8e6d8fe2fa22f1eee5811dc6c5bbc3676ec4be0d38a37695b41]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:28504668 field=omitted_text quote_sha256=a724e9b2e00a03c62df40cfbd33710610804fbb4d887870167a2066ae7858dd6]",
+        "complementary_lever_needed": "Co-expression of CD47 (or CD47-IgV) and alpha3-domain TCR-attenuated HLA-E trimer"
+      }
+    ],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

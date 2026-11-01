@@ -1,0 +1,253 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "32846125",
+    "pmcid": "PMC7491368",
+    "doi": "10.1016/j.celrep.2020.108067",
+    "nct_id": null,
+    "geo_accessions": [
+      "GSE151117",
+      "GSE139535"
+    ],
+    "title": "Single-Cell Transcriptome Profiling Reveals β Cell Maturation in Stem Cell-Derived Islets after Transplantation.",
+    "first_author": "Augsornworawat P",
+    "senior_author": "Millman JR",
+    "pub_year": 2020,
+    "journal": "Cell reports",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar3_Intrinsic_BetaCell_Genetic_Resilience_Amyloid_Viral"
+    ],
+    "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid32846125_arm1",
+      "arm_label": "In Vitro Stage 6 Stem Cell-Derived Islets (Pre-Transplantation Immature Baseline)",
+      "is_reference_control": true,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "hESC",
+        "cell_line_id": "HUES8 and WS4-corrected hiPSC SC-islets (GSE151117, GSE139535)",
+        "donor_hla_profile": "Wild-type human pluripotent stem cell lines",
+        "protocol_backbone": "Millman Lab 6-stage 3D suspension SC-islet differentiation protocol",
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid32846125_arm2",
+      "arm_label": "6-Month Post-Transplantation In Vivo Matured SC-Islets (Acquiring Adult MAFA, INS, CHGB, G6PC2, and IAPP Expression)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "hESC",
+        "cell_line_id": "HUES8 and hiPSC SC-islets harvested 6 months post-transplant (GSE151117)",
+        "donor_hla_profile": "Wild-type human pluripotent stem cell lines",
+        "protocol_backbone": "Millman Lab 6-stage SC-islet protocol followed by 6 months of in vivo engraftment maturation in diabetic immunodeficient mice",
+        "canonical_differentiation_stage_evaluated": "InVivo_Engrafted_Maturation",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Kidney_Capsule",
+        "prevascularization_lead_time_days": 0.0,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": 1,
+        "staged_insertion_schedule": "Transplantation into diabetic mice for 6 months prior to graft retrieval and 10x Genomics scRNA-seq (GSE151117)",
+        "encapsulation_or_biomaterial": "None",
+        "co_transplanted_cells_or_oxygen_source": "None",
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 180.0,
+          "specific_autoantigen_or_hla_restriction": "6 months in vivo engraftment in diabetic immunodeficient mice"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": 180.0,
+        "pct_graft_surviving_at_end_of_followup": 100.0,
+        "followup_duration_days": 180.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "augsornworawat2020_eff1_post_transplant_mafa_g6pc2_chgb_iapp_maturation",
+      "source_figure_or_table": "Abstract & GEO GSE151117 Summary",
+      "focal_factor_X": "6-month in vivo transplantation and vascular engraftment of Stage 6 SC-islets in diabetic mice",
+      "comparator_X0": "In vitro Stage 6 SC-islets prior to transplantation",
+      "outcome_variable_Y": "[Endpoint: Metabolic_and_Biphasic_GSIS_Maturation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Metabolic_and_Biphasic_GSIS_Maturation",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "PostTransplant_InVivo_Matured (6 months in vivo vs Stage 6 in vitro)",
+        "Z2_genetic_background_and_allelic_dose": "HUES8 and WS4-corrected hiPSC SC-islets",
+        "Z3_immune_effector_and_stressor_pathway": "Unchallenged immunodeficient diabetic mouse host",
+        "Z4_metabolic_and_glucose_load_state": "In vivo normoglycemia restoration",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D SC-islet clusters engrafted under kidney capsule",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Kidney_Capsule (6-month vascularized in vivo niche)",
+        "Z7_promoter_and_epigenetic_context": "Endogenous maturation transcriptional program",
+        "Z8_species_age_and_sex_context": "Human SC-islets in immunodeficient mice"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:32846125 field=verbatim_evidence_quote genes=G6PC2,IAPP pert=NONE quote_sha256=e86ad547dddec0d9aecefcf280f1a9df350233770e3a1cd7eb243dbfc3d51b5a]",
+      "focal_arm_id": "pmid32846125_arm2",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "df484f04e14340aae016836369617abd0269be7f299bcb61a0ecbb26f3682a0d",
+      "source_span": "abstract[548:862]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "6-month in vivo transplantation and vascular engraftment of Stage 6 SC-islets in diabetic mice",
+        "comparator_label": null,
+        "endpoint_name": "Metabolic_and_Biphasic_GSIS_Maturation",
+        "timepoint": null,
+        "population_or_model": "HUES8 and WS4-corrected hiPSC SC-islets (Human SC-islets in immunodeficient mice)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      },
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "quote_source_dossier_pmid": "32846125"
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "augsornworawat2020_mod1_in_vivo_6mo_engraftment_vs_stage6_in_vitro",
+      "source_figure_or_table": "Abstract & GEO GSE151117 Summary",
+      "focal_factor_X": "Human hESC/hiPSC SC-beta cell differentiation",
+      "outcome_Y": "Expression of adult maturation transcription factor MAFA, autoantigens G6PC2 (IGRP) and CHGB, and amyloidogenic IAPP secretion",
+      "modifier_variable_Z": "6-Month In Vivo Vascularized Engraftment Maturation vs Stage 6 In Vitro Differentiation",
+      "modifier_class": "Z1_Developmental_Timing_or_Stage",
+      "level_1_condition_and_effect": "In vitro Stage 6 SC-beta cells: lack MAFA, G6PC2, CHGB, and adult IAPP/INS secretion levels",
+      "level_2_condition_and_effect": "6-month post-transplantation SC-beta cells in vivo (GSE151117): strongly express MAFA, INS, CHGB, G6PC2, and secreted IAPP",
+      "modification_type": "Synergistic_Amplification",
+      "critical_threshold_value_and_unit": "6 months post-transplantation in vivo",
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:32846125 field=mechanistic_explanation quote_sha256=e12e2065e86a743e646147310ff74382fc684f2e10875671d828254eae259d58]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "6-month in vivo transplantation and vascular engraftment of Stage 6 SC-islets",
+      "upstream_node_type": "Biophysical_or_Vascular_Cue",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "Transcriptional upregulation of MAFA, INS, CHGB, G6PC2 (IGRP), and IAPP protein secretion in SC-beta cells",
+      "downstream_node_type": "Signaling_Kinase_or_TF",
+      "evidence_source": "Abstract & GSE151117"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [
+      {
+        "primary_gate_perturbed": "Gate1_Differentiation_Maturation_Cytoarchitecture",
+        "secondary_gate_affected": "Gate2_Autoantigen_or_Neoantigen_Specificity",
+        "observation": "[REDACTED_NON_OA_EXCERPT: see PMID:32846125 field=observation quote_sha256=50f69dac8d0b890b59f99e48996786caa6c59a54286e15cd4a0dbacd0f7a0dc0]",
+        "is_beneficial_synergy_or_deleterious_tradeoff": "Deleterious_CrossGate_Tradeoff"
+      }
+    ],
+    "residual_failure_and_escape_vectors": [],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

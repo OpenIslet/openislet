@@ -1,0 +1,10 @@
+Resource: Genome Aggregation Database (gnomAD, Broad Institute)
+Classification: Factual human genetic constraint metrics (pLI, LOEUF) and population allele frequencies redistributed in public bundle
+Audit Timestamp (UTC): 2026-10-19T10:35:30Z
+Upstream Source & Terms: https://gnomad.broadinstitute.org/policies (Creative Commons Zero / CC0 1.0 Public Domain Dedication; attribution requested)
+Release: gnomAD v4.1 (GRCh38)
+Shipped Public Artifacts:
+  - data/omics/target_prior_table.json, data/omics/gnomad_*.json, and data/extracted/omics_baseline_summary.json (gene constraint metrics pLI and LOEUF for candidate edit targets)
+  - data/graveyard/idea_graveyard_v0.5.json (GRAVEYARD_007 high-pLI knockout prohibition rule for PTPN2, TNFAIP3, and GAD2)
+  - data/extracted/layer5_personalized_patient_and_crispr_atlas.json (population allele frequencies for gRNA target windows and SIRPA/HLA-C/TYK2 variants)
+Attribution & Modifications: gnomAD v4.1 loss-of-function constraint scores and subcontinental allele frequencies extracted into Layer-1 and Layer-5 reference tables.

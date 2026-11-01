@@ -1,0 +1,254 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "26179209",
+    "pmcid": null,
+    "doi": "10.1111/xen.12178",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "In vitro exposure of pig neonatal isletlike cell clusters to human blood.",
+    "first_author": "Nagaraju S",
+    "senior_author": "Bottino R",
+    "pub_year": 2015,
+    "journal": "Xenotransplantation",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid26179209_arm1",
+      "arm_label": "Primary experimental arm in Nagaraju S (2015)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": null,
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Unspecified_In_Source_Abstract",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "ENTPD1",
+          "ensembl_gene_id": "ENSG00000138185",
+          "sub_molecular_coordinate": {
+            "region_class": "Transgene_cDNA_Cassette",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:26179209 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=ENTPD1 quote_sha256=b0fc08e3dc06536e114157f458208ac922b92b5db0b9dcbab5f5265bbc990936]"
+          },
+          "functional_gate": "Gate3_Complement_ADCC_IBMIR_Shield",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Loss_of_Function_KO_or_KD"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Unspecified_InVivo_or_Source_Site",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid26179209_eff1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Complement_or_IBMIR_Coagulation_Block | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Complement_or_IBMIR_Coagulation_Block",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Unspecified_In_Source_Abstract",
+        "Z3_immune_effector_and_stressor_pathway": "Complement_or_IBMIR_Coagulation_Block",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Unspecified_InVivo_or_Source_Site",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "One remaining question is whether neonatal pig isletlike cell clusters (NICC) are resistant to the early loss of islets from the instant blood-mediated inflammatory reaction (IBMIR).",
+      "focal_arm_id": "pmid26179209_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "none_or_mixed"
+      },
+      "dossier_sha256": "7275c329c336295c6092d8edba2c482e12d914c07c8a4b00d697d26bf7680346",
+      "source_span": "abstract[77:259]|norm=exact",
+      "quote_source_dossier_pmid": "26179209",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
+        "comparator_label": null,
+        "endpoint_name": "Complement_or_IBMIR_Coagulation_Block",
+        "timepoint": null,
+        "population_or_model": "Unspecified_In_Source_Abstract (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid26179209_eff2",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "ENTPD1 (CRISPR_Cas9_KO — Gate3_Complement_ADCC_IBMIR_Shield)",
+      "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
+      "outcome_variable_Y": "[Endpoint: Complement_or_IBMIR_Coagulation_Block | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
+      "outcome_domain": "Complement_or_IBMIR_Coagulation_Block",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Unspecified_In_Source_Abstract",
+        "Z3_immune_effector_and_stressor_pathway": "Complement_or_IBMIR_Coagulation_Block",
+        "Z4_metabolic_and_glucose_load_state": "Study assay condition",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Unspecified_InVivo_or_Source_Site",
+        "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:26179209 field=verbatim_evidence_quote genes=ENTPD1 pert=NONE quote_sha256=fcc87648b5c78694484595b8e7ce7f2be7130cc58f32717e17abe87f46f975f0]",
+      "focal_arm_id": "pmid26179209_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "rule_based_heuristic",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "viability"
+      },
+      "dossier_sha256": "7275c329c336295c6092d8edba2c482e12d914c07c8a4b00d697d26bf7680346",
+      "source_span": "abstract[698:863]|norm=exact",
+      "quote_source_dossier_pmid": "26179209",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "ENTPD1 (CRISPR_Cas9_KO — Gate3_Complement_ADCC_IBMIR_Shield)",
+        "comparator_label": null,
+        "endpoint_name": "Complement_or_IBMIR_Coagulation_Block",
+        "timepoint": null,
+        "population_or_model": "Unspecified_In_Source_Abstract (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [
+    {
+      "interaction_id": "pmid26179209_int1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "ENTPD1 (CRISPR_Cas9_KO — Gate3_Complement_ADCC_IBMIR_Shield)",
+      "outcome_Y": "Complement_or_IBMIR_Coagulation_Block",
+      "modifier_variable_Z": "Condition_1 vs. Condition_2",
+      "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:26179209 field=level_1_condition_and_effect quote_sha256=28ac21d83468df0429164fef38c316aa0f177ca6b28e5c35cb9eaa8cce56708d]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:26179209 field=level_2_condition_and_effect quote_sha256=a3ea44cc0411f01a9084c7d85a2560732a967f65e9e477169d8575aee84c0081]",
+      "modification_type": "Synergistic_Amplification",
+      "critical_threshold_value_and_unit": null,
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:26179209 field=mechanistic_explanation quote_sha256=fcc87648b5c78694484595b8e7ce7f2be7130cc58f32717e17abe87f46f975f0]"
+    }
+  ],
+  "causal_mechanism_edges": [
+    {
+      "upstream_node": "CD55_CD59_THBD_Complement_IBMIR_Axis",
+      "upstream_node_type": "Surface_Ligand_or_Antigen_Presentation",
+      "causal_relation": "Activates_or_Upregulates",
+      "downstream_node": "GAD2_GAD65_GABA_Paracrine_Autoantigen",
+      "downstream_node_type": "Gene_or_Protein_Edit",
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:26179209 field=evidence_source quote_sha256=cc32d091ed6d58fe6844a82d450baffb9b3ed3e2621aee5b0ba7851b234765ac]"
+    }
+  ],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

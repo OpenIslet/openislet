@@ -1,0 +1,14 @@
+Resource: AlphaFold Protein Structure Database (EMBL-EBI / Google DeepMind)
+Classification: Redistributed structural coordinates and confidence metrics (CC-BY-4.0)
+Audit Timestamp (UTC): 2026-10-23T09:34:31Z
+Upstream Source & Terms: https://alphafold.ebi.ac.uk/ (Creative Commons Attribution 4.0 International, CC-BY-4.0)
+Database Version: AlphaFold DB v6 (UniProt accessions P10144 Granzyme B and P50453 SERPINB9; plus derived confidence summaries for P61769, P13747, Q08722, P08174, Q9NZQ7, P55211)
+Shipped Public Artifacts:
+  - data/structures/AF-P10144-F1-metadata.json (Granzyme B AlphaFold DB v6 metadata)
+  - data/structures/AF-P10144-F1-model_v6.cif (Granzyme B monomer structure and pLDDT coordinates)
+  - data/structures/AF-P10144-F1-predicted_aligned_error_v6.json (Granzyme B PAE matrix)
+  - data/structures/AF-P50453-F1-metadata.json (SERPINB9 AlphaFold DB v6 metadata)
+  - data/structures/AF-P50453-F1-model_v6.cif (SERPINB9 monomer structure and pLDDT coordinates)
+  - data/structures/AF-P50453-F1-predicted_aligned_error_v6.json (SERPINB9 PAE matrix)
+  - data/extracted/layer3_structural_verification_atlas.json (derived structural audit metrics)
+Attribution & Modifications: Original model coordinates and PAE matrices by Google DeepMind and EMBL-EBI; redistributed unmodified in data/structures/ with derived inter-atomic geometry and RCL pLDDT/PAE summaries in Layer 3.

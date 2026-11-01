@@ -1,0 +1,8 @@
+Resource: PyMOL Molecular Graphics System (Schrodinger, LLC / Open-Source PyMOL)
+Classification: Structural visualization tool — rendered scene and session files redistributed in public bundle; no PyMOL source code redistributed
+Audit Timestamp (UTC): 2026-10-23T09:34:31Z
+Upstream Source & Terms: https://www.pymol.org/ and https://github.com/schrodinger/pymol-open-source (Open-Source PyMOL BSD-like license)
+Shipped Public Artifacts:
+  - data/structures/pymol/layer3_hlae_cd94_nkg2a_3cdg.png (rendered structural figure of 3CDG HLA-E/CD94-NKG2A complex)
+  - data/structures/pymol/openislet_layer3_all_complexes_v0.7.0.pse (PyMOL session file containing aligned Layer-3 complexes)
+Attribution & Modifications: Layer-3 quantitative structural geometry in scripts/run_layer3_structural_binder_plane.py is computed deterministically in pure Python from mmCIF/PDB coordinates without requiring PyMOL at runtime; PyMOL was used only to render the shipped figure and session file in data/structures/pymol/.
