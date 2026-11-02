@@ -127,6 +127,7 @@ def derive_facts(root: Path, manifest_pin_count: int) -> dict:
                       'geometry':data['layer4'].get('part_a_exact_oxygen_boundary_value_and_volume_algebra',{}),
                       'shrinking_core':strip_trajectories(pde.get('shrinking_core_coupled_bvp_safety_comparison_ultracode_v80_09',{})),
                       'grid_convergence':strip_trajectories(pde.get('spatial_grid_convergence_51_101_201_401_preastra_a094',{})),
+                      'joint_vascular_iip_0002':strip_trajectories(pde.get('joint_vascular_timing_and_exchange_sensitivity_iip_0002',{})),
                       'challenge':ode.get('low_glucose_challenge_below_4p2mM_oat1_verification_ultracode_v80_15',{}),
                       'reference_architectures':strip_trajectories(ode.get('graft_architectures_compared',[])),
                       'matched_pde_ode':strip_trajectories(ode.get('matched_pde_ode_qualification_scenarios',[]))},

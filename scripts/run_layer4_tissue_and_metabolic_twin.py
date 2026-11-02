@@ -1181,6 +1181,8 @@ def _run_single_pouch_pde_regime(
     areal_loading_ieq_cm2: float = 2500.0,
     cell_intrinsic_ocr_multiplier: float | None = None,
     prescribed_cluster_diameter_um: float = 120.0,
+    zero_internal_vascular_state: bool = False,
+    _include_hourly_slab_po2_vector: bool = False,
     _assess_numerical_gate: bool = True,
 ) -> Dict[str, Any]:
     # Reject malformed physical parameters before any zero-source branch or numerical integration.
@@ -1227,8 +1229,13 @@ def _run_single_pouch_pde_regime(
         raise ValueError("unsupported catalase_spatial_mode")
     if perfusion_spatial_mode not in {"uniform_slab", "outer_annulus_masked", "outer_annulus_masked_all_species"}:
         raise ValueError("unsupported perfusion_spatial_mode")
-    if not isinstance(catalase_present, bool) or not isinstance(_assess_numerical_gate, bool):
-        raise ValueError("catalase_present and _assess_numerical_gate must be booleans")
+    if (
+        not isinstance(catalase_present, bool)
+        or not isinstance(zero_internal_vascular_state, bool)
+        or not isinstance(_include_hourly_slab_po2_vector, bool)
+        or not isinstance(_assess_numerical_gate, bool)
+    ):
+        raise ValueError("catalase_present, zero_internal_vascular_state, _include_hourly_slab_po2_vector, and _assess_numerical_gate must be booleans")
     if release_kinetics_law not in {"first_order", "shrinking_core", "ginstling_brounshtein"}:
         raise ValueError("unsupported release_kinetics_law")
     if gb_regularization_mode not in {"early_shell_clamped", "exact_piecewise_conserving"}:
@@ -1324,7 +1331,11 @@ def _run_single_pouch_pde_regime(
 
     k_sc_h = 3.0 * (1.0 - (0.5 ** (1.0 / 3.0))) / cao2_half_life_h
 
-    perfusion_y = rk4_integrate(perfusion_ode, (0.0, 336.0), np.array([0.01]), t_hourly_grid, dt_max=0.25)[0]
+    perfusion_y = (
+        np.zeros(len(t_hourly_grid), dtype=np.float64)
+        if zero_internal_vascular_state
+        else rk4_integrate(perfusion_ode, (0.0, 336.0), np.array([0.01]), t_hourly_grid, dt_max=0.25)[0]
+    )
     # The source is the derivative of these exact stocks. Resolving stock with
     # explicit RK4 can step through finite-time depletion or become unstable for
     # half-lives shorter than the fixed perfusion time step.
@@ -1363,6 +1374,7 @@ def _run_single_pouch_pde_regime(
     robin_boundary_factor = float(dz / (dz + standoff_cm)) if standoff_cm > 0.0 else 1.0
 
     time_series = []
+    hourly_min_slab_po2_mmhg: list[float] = []
     min_po2_over_all_t = math.inf
     time_of_min_po2_h = 0.0
     max_h2o2_uM_over_all_t = 0.0
@@ -1493,6 +1505,7 @@ def _run_single_pouch_pde_regime(
         slab_solvers_converged = slab_solvers_converged and slab_residual < 1e-6
 
         min_p = float(np.min(p))
+        hourly_min_slab_po2_mmhg.append(min_p)
         center_p = float(p[nz // 2])
         if min_p < min_po2_over_all_t:
             min_po2_over_all_t = min_p
@@ -1696,6 +1709,7 @@ def _run_single_pouch_pde_regime(
             "two_zone_fv_uniform_supply_surface_po2_mmhg": bvp_r60["wigner_seitz_two_zone_fv_uniform_supply_surface_po2_mmhg"],
             "two_zone_fv_uniform_supply_surface_po2_unrounded_mmhg": bvp_r60["wigner_seitz_two_zone_fv_uniform_supply_surface_po2_unrounded_mmhg"],
             "two_zone_fv_uniform_supply_120um_core_po2_mmhg": bvp_r60["wigner_seitz_two_zone_fv_uniform_supply_core_po2_mmhg"],
+            "two_zone_fv_uniform_supply_120um_core_po2_unrounded_mmhg": bvp_r60["wigner_seitz_two_zone_fv_uniform_supply_core_po2_unrounded_mmhg"],
             "two_zone_fv_gel_only_supply_surface_po2_mmhg": bvp_r60["wigner_seitz_two_zone_fv_gel_only_supply_surface_po2_mmhg"],
             "two_zone_fv_gel_only_supply_surface_po2_unrounded_mmhg": bvp_r60["wigner_seitz_two_zone_fv_gel_only_supply_surface_po2_unrounded_mmhg"],
             "two_zone_fv_gel_only_supply_120um_core_po2_mmhg": bvp_r60["wigner_seitz_two_zone_fv_gel_only_supply_core_po2_mmhg"],
@@ -1801,6 +1815,7 @@ def _run_single_pouch_pde_regime(
         "max_interstitial_ph_unrounded": max_ph_over_all_t,
         "closed_pocket_unresupplied_co2_max_ph_v80_021": round(max_closed_pocket_ph_over_all_t, 3),
         "closed_pocket_metabolic_acidification_min_ph_v80_095": round(min_closed_pocket_acidic_ph_over_all_t, 3),
+        "closed_pocket_metabolic_acidification_min_ph_unrounded": min_closed_pocket_acidic_ph_over_all_t,
         "coupled_dynamic_14d_viable_endocrine_fraction_v80_066": round(f_viable_dynamic, 4),
         "coupled_dynamic_14d_viable_endocrine_fraction_unrounded": f_viable_dynamic,
         "slab_oxygen_solver_diagnostics": {"converged": slab_solvers_converged,
@@ -1839,6 +1854,8 @@ def _run_single_pouch_pde_regime(
         ),
         "trajectory_0h_to_336h": time_series,
     }
+    if _include_hourly_slab_po2_vector:
+        result["hourly_min_slab_po2_unrounded_mmhg"] = hourly_min_slab_po2_mmhg
 
     core_raw = bvp_r60["wigner_seitz_two_zone_fv_gel_only_supply_core_po2_unrounded_mmhg"]
     assessment = {"status": ("NUMERICAL_SOLVER_UNRESOLVED" if not result["required_120um_oxygen_solvers_converged"] else
@@ -1865,6 +1882,7 @@ def _run_single_pouch_pde_regime(
             areal_loading_ieq_cm2=sigma_loading,
             cell_intrinsic_ocr_multiplier=effective_ocr_mult,
             prescribed_cluster_diameter_um=prescribed_cluster_diameter_um,
+            zero_internal_vascular_state=zero_internal_vascular_state,
             _assess_numerical_gate=False)
             for n in (201, 401)]
         def raw_core(r):
@@ -1902,6 +1920,558 @@ def _run_single_pouch_pde_regime(
         "note": "Numerical oxygen/chemistry gates do not qualify material packing, finite-cluster placement, perfusion, or exact-product function.",
     }
     return result
+
+
+def _realized_half_plateau_perfusion_time_hours(target_midpoint_t50_h: float, iec_max_perfusion_fraction: float = 0.97) -> float:
+    """Compute the realized time (hours) when v_perf(t) reaches 0.5 * iec_max_perfusion_fraction under the 3h lag ODE."""
+    if iec_max_perfusion_fraction <= 0.0:
+        return math.nan
+    t_dense = [0.05 * i for i in range(int(336.0 / 0.05) + 1)]
+
+    def _target(t_h: float) -> float:
+        exponent = -(t_h - target_midpoint_t50_h) / 8.0
+        return 0.0 if exponent > math.log(sys.float_info.max) else iec_max_perfusion_fraction / (1.0 + math.exp(exponent))
+
+    def _ode(t_h: float, y: np.ndarray) -> np.ndarray:
+        return np.array([(_target(t_h) - y[0]) / 3.0])
+
+    v_vec = rk4_integrate(_ode, (0.0, 336.0), np.array([0.01]), t_dense, dt_max=0.05)[0]
+    half_target = 0.5 * iec_max_perfusion_fraction
+    idx = int(np.searchsorted(v_vec, half_target))
+    if 0 < idx < len(t_dense):
+        v0, v1 = float(v_vec[idx - 1]), float(v_vec[idx])
+        t0, t1 = float(t_dense[idx - 1]), float(t_dense[idx])
+        return t0 + (half_target - v0) * (t1 - t0) / max(1e-15, v1 - v0)
+    return float(t_dense[-1])
+
+
+def _build_joint_vascular_timing_and_exchange_sensitivity_iip_0002() -> Dict[str, Any]:
+    """Build the IIP-0002 joint vascular timing-by-exchange sensitivity grid and provenance audit."""
+    phi_lead = (2500.0 * VOL_1_IEQ_CM3) / 0.0350  # 0.1262247
+
+    def _bisect_slab_po2_for_cluster_threshold(key: str, threshold_mmhg: float) -> float:
+        lo, hi = 0.0, 40.0
+        for _ in range(44):
+            mid = 0.5 * (lo + hi)
+            val = float(solve_spherical_cluster_po2_bvp(mid, 0.0060, phi_islet_in_slab=phi_lead)[key])
+            if val < threshold_mmhg:
+                lo = mid
+            else:
+                hi = mid
+        return 0.5 * (lo + hi)
+
+    slab_po2_crit_gel_surf_15mmhg = _bisect_slab_po2_for_cluster_threshold(
+        "wigner_seitz_two_zone_fv_gel_only_supply_surface_po2_unrounded_mmhg", 15.0
+    )
+    slab_po2_crit_gel_core_2p0mmhg = _bisect_slab_po2_for_cluster_threshold(
+        "wigner_seitz_two_zone_fv_gel_only_supply_core_po2_unrounded_mmhg", 2.0
+    )
+    slab_po2_crit_gel_core_0p5mmhg = _bisect_slab_po2_for_cluster_threshold(
+        "wigner_seitz_two_zone_fv_gel_only_supply_core_po2_unrounded_mmhg", 0.5
+    )
+
+    bvp_cache: dict[float, Dict[str, Any]] = {}
+
+    def _cached_r60_bvp(p_slab_mmhg: float) -> Dict[str, Any]:
+        key = round(float(p_slab_mmhg), 8)
+        if key not in bvp_cache:
+            bvp_cache[key] = solve_spherical_cluster_po2_bvp(float(p_slab_mmhg), 0.0060, phi_islet_in_slab=phi_lead)
+        return bvp_cache[key]
+
+    timings_t50_h = [36.0, 40.0, 44.0, 48.0, 52.0, 56.0, 60.0, 96.0, 168.0]
+    kp_values = [0.0944, 0.1100, 0.1400, 0.1800]
+    release_laws = ["first_order", "shrinking_core"]
+    realized_t50_map = {t50: _realized_half_plateau_perfusion_time_hours(t50, 0.97) for t50 in timings_t50_h}
+    sample_hours_export = [0, 2, 6, 12, 24, 48, 72, 96, 120, 168, 336]
+
+    def _summarize_regime_row(
+        r: Dict[str, Any],
+        *,
+        law: str,
+        t50_h: float | None,
+        kp: float,
+        timing_scope: str,
+        include_cluster_trajectory: bool,
+    ) -> Dict[str, Any]:
+        ws = r["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"]
+        hourly_slab = r.get("hourly_min_slab_po2_unrounded_mmhg")
+        has_hourly_slab = isinstance(hourly_slab, list) and len(hourly_slab) > 0
+        min_slab_raw = float(r["min_slab_po2_unrounded_mmhg"])
+        gel_surf_raw = float(ws["two_zone_fv_gel_only_supply_surface_po2_unrounded_mmhg"])
+        gel_core_raw = float(ws["two_zone_fv_gel_only_supply_120um_core_po2_unrounded_mmhg"])
+        uni_surf_raw = float(ws["two_zone_fv_uniform_supply_surface_po2_unrounded_mmhg"])
+        uni_core_raw = float(
+            ws.get(
+                "two_zone_fv_uniform_supply_120um_core_po2_unrounded_mmhg",
+                ws["two_zone_fv_uniform_supply_120um_core_po2_mmhg"],
+            )
+        )
+        dir_core_raw = float(r["min_120um_cluster_core_po2_unrounded_mmhg"])
+        converged = bool(r["required_120um_oxygen_solvers_converged"])
+        row: Dict[str, Any] = {
+            "regime_id": r["regime_id"],
+            "release_kinetics_law": law,
+            "timing_scope": timing_scope,
+            "target_curve_midpoint_t50_h": t50_h,
+            "realized_half_plateau_perfusion_time_h": (
+                round(realized_t50_map[t50_h], 4) if t50_h is not None else None
+            ),
+            "realized_minus_target_midpoint_lag_h": (
+                round(realized_t50_map[t50_h] - t50_h, 4) if t50_h is not None else None
+            ),
+            "coupled_internal_vascular_exchange_kp_s_inv": kp,
+            "iec_max_perfusion_fraction": 0.0 if kp == 0.0 else 0.97,
+            "zero_internal_vascular_state_enforced": bool(kp == 0.0),
+            "cell_intrinsic_ocr_multiplier_gy004_consistent": 1.0,
+            "vascular_stromal_demand_overhead_multiplier": 1.15,
+            "time_of_min_slab_po2_hours": r["time_of_min_slab_po2_hours"],
+            "min_slab_po2_mmhg": round(min_slab_raw, 3),
+            "min_slab_po2_unrounded_mmhg": min_slab_raw,
+            "gel_only_120um_surface_po2_mmhg": round(gel_surf_raw, 3),
+            "gel_only_120um_surface_po2_unrounded_mmhg": gel_surf_raw,
+            "gel_only_120um_core_po2_mmhg": round(gel_core_raw, 3),
+            "gel_only_120um_core_po2_unrounded_mmhg": gel_core_raw,
+            "uniform_120um_surface_po2_mmhg": round(uni_surf_raw, 3),
+            "uniform_120um_surface_po2_unrounded_mmhg": uni_surf_raw,
+            "uniform_120um_core_po2_mmhg": round(uni_core_raw, 3),
+            "uniform_120um_core_po2_unrounded_mmhg": uni_core_raw,
+            "dirichlet_upper_bound_120um_core_po2_mmhg": round(dir_core_raw, 3),
+            "dirichlet_upper_bound_120um_core_po2_unrounded_mmhg": dir_core_raw,
+            "max_interstitial_h2o2_uM": r["max_interstitial_h2o2_uM"],
+            "max_interstitial_h2o2_unrounded_uM": r["max_interstitial_h2o2_unrounded_uM"],
+            "max_interstitial_ph": r["max_interstitial_ph"],
+            "max_interstitial_ph_unrounded": r["max_interstitial_ph_unrounded"],
+            "min_closed_pocket_acidic_ph": r["closed_pocket_metabolic_acidification_min_ph_v80_095"],
+            "min_closed_pocket_acidic_ph_unrounded": r.get(
+                "closed_pocket_metabolic_acidification_min_ph_unrounded",
+                r["closed_pocket_metabolic_acidification_min_ph_v80_095"],
+            ),
+            "coupled_dynamic_14d_viable_endocrine_fraction": r["coupled_dynamic_14d_viable_endocrine_fraction_v80_066"],
+            "coupled_dynamic_14d_viable_endocrine_fraction_unrounded": r["coupled_dynamic_14d_viable_endocrine_fraction_unrounded"],
+            "hours_below_15mmHg_slab_gate": (
+                int(sum(1 for p_h in hourly_slab if p_h < 15.0)) if has_hourly_slab else None
+            ),
+            "hours_below_15mmHg_gel_only_surface_gate": (
+                int(sum(1 for p_h in hourly_slab if p_h < slab_po2_crit_gel_surf_15mmhg)) if has_hourly_slab else None
+            ),
+            "hours_below_2p0mmHg_gel_only_core_gate": (
+                int(sum(1 for p_h in hourly_slab if p_h < slab_po2_crit_gel_core_2p0mmhg)) if has_hourly_slab else None
+            ),
+            "hours_below_0p5mmHg_gel_only_core_gate": (
+                int(sum(1 for p_h in hourly_slab if p_h < slab_po2_crit_gel_core_0p5mmhg)) if has_hourly_slab else None
+            ),
+            "required_120um_oxygen_solvers_converged": converged,
+            "passes_15mmHg_slab_po2_gate": bool(converged and min_slab_raw >= 15.0),
+            "passes_15mmHg_gel_only_cluster_surface_gsis_gate": bool(converged and gel_surf_raw >= 15.0),
+            "passes_strict_2p0mmHg_gel_only_120um_core_gate": bool(
+                converged and min_slab_raw >= 15.0 and gel_core_raw >= 2.0 and r["strict_nonoxygen_gates_passed"]
+            ),
+            "passes_2p0mmHg_uniform_120um_core_gate": bool(
+                converged and min_slab_raw >= 15.0 and uni_core_raw >= 2.0 and r["strict_nonoxygen_gates_passed"]
+            ),
+            "passes_0p5mmHg_gel_only_anoxic_necrosis_core_gate": bool(converged and gel_core_raw >= 0.5),
+        }
+        if include_cluster_trajectory and has_hourly_slab:
+            min_h_int = max(0, min(len(hourly_slab) - 1, int(round(float(r["time_of_min_slab_po2_hours"])))))
+            hours_to_sample = sorted(set(sample_hours_export + [min_h_int]))
+            traj_samples = []
+            for h_idx in hours_to_sample:
+                if 0 <= h_idx < len(hourly_slab):
+                    p_h = float(hourly_slab[h_idx])
+                    bvp_h = _cached_r60_bvp(p_h)
+                    traj_samples.append(
+                        {
+                            "time_hours": float(h_idx),
+                            "min_slab_po2_unrounded_mmhg": p_h,
+                            "gel_only_120um_surface_po2_unrounded_mmhg": float(
+                                bvp_h["wigner_seitz_two_zone_fv_gel_only_supply_surface_po2_unrounded_mmhg"]
+                            ),
+                            "gel_only_120um_core_po2_unrounded_mmhg": float(
+                                bvp_h["wigner_seitz_two_zone_fv_gel_only_supply_core_po2_unrounded_mmhg"]
+                            ),
+                            "uniform_120um_surface_po2_unrounded_mmhg": float(
+                                bvp_h["wigner_seitz_two_zone_fv_uniform_supply_surface_po2_unrounded_mmhg"]
+                            ),
+                            "uniform_120um_core_po2_unrounded_mmhg": float(
+                                bvp_h["wigner_seitz_two_zone_fv_uniform_supply_core_po2_unrounded_mmhg"]
+                            ),
+                        }
+                    )
+            row["unrounded_trajectory_samples"] = traj_samples
+        return row
+
+    joint_grid_rows: list[Dict[str, Any]] = []
+    near_threshold_refinement_rows: list[Dict[str, Any]] = []
+    for law in release_laws:
+        for t50_h in timings_t50_h:
+            scope = (
+                "hypothetical_extreme_delay_stress_test"
+                if t50_h in {96.0, 168.0}
+                else ("primary_2x2_endpoint" if t50_h in {36.0, 60.0} else "intermediate_4h_step_gate_flip_resolution")
+            )
+            for kp in kp_values:
+                r_cell = _run_single_pouch_pde_regime(
+                    regime_id=f"IIP0002_{law.upper()}_T50_{int(t50_h)}H_KP_{kp:.4f}",
+                    f_chem_initial=0.45,
+                    spatial_mode="central",
+                    cao2_half_life_h=68.0,
+                    catalase_present=True,
+                    iec_max_perfusion_fraction=0.97,
+                    boundary_po2_mmhg=40.0,
+                    inosculation_t50_h=t50_h,
+                    demand_multiplier_extra=1.0,
+                    release_kinetics_law=law,
+                    k_perf_max_s_override=kp,
+                    _include_hourly_slab_po2_vector=True,
+                    _assess_numerical_gate=False,
+                )
+                row_summary = _summarize_regime_row(
+                    r_cell,
+                    law=law,
+                    t50_h=t50_h,
+                    kp=kp,
+                    timing_scope=scope,
+                    include_cluster_trajectory=(t50_h in {36.0, 60.0} or math.isclose(kp, 0.14, rel_tol=1e-9)),
+                )
+                joint_grid_rows.append(row_summary)
+
+                # Grid-refinement check (Nz = 51, 101, 201) for any cell within 0.15 mmHg of 15.0 mmHg slab or 2.0/0.5 mmHg core gates:
+                slab_val = row_summary["min_slab_po2_unrounded_mmhg"]
+                gel_core_val = row_summary["gel_only_120um_core_po2_unrounded_mmhg"]
+                uni_core_val = row_summary["uniform_120um_core_po2_unrounded_mmhg"]
+                if (
+                    abs(slab_val - 15.0) <= 0.15
+                    or abs(gel_core_val - 2.0) <= 0.15
+                    or abs(gel_core_val - 0.5) <= 0.10
+                    or abs(uni_core_val - 2.0) <= 0.15
+                ):
+                    mesh_receipts = {}
+                    for nz_ref in (51, 101, 201):
+                        r_ref = (
+                            r_cell
+                            if nz_ref == 51
+                            else _run_single_pouch_pde_regime(
+                                regime_id=f"IIP0002_REF_{law.upper()}_T50_{int(t50_h)}H_KP_{kp:.4f}_NZ{nz_ref}",
+                                f_chem_initial=0.45,
+                                spatial_mode="central",
+                                cao2_half_life_h=68.0,
+                                catalase_present=True,
+                                iec_max_perfusion_fraction=0.97,
+                                boundary_po2_mmhg=40.0,
+                                inosculation_t50_h=t50_h,
+                                demand_multiplier_extra=1.0,
+                                release_kinetics_law=law,
+                                nz_override=nz_ref,
+                                k_perf_max_s_override=kp,
+                                _assess_numerical_gate=False,
+                            )
+                        )
+                        ws_ref = r_ref["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"]
+                        mesh_receipts[f"nz_{nz_ref}"] = {
+                            "nz_nodes": nz_ref,
+                            "dz_um": round(350.0 / (nz_ref - 1), 4),
+                            "min_slab_po2_unrounded_mmhg": float(r_ref["min_slab_po2_unrounded_mmhg"]),
+                            "gel_only_120um_surface_po2_unrounded_mmhg": float(
+                                ws_ref["two_zone_fv_gel_only_supply_surface_po2_unrounded_mmhg"]
+                            ),
+                            "gel_only_120um_core_po2_unrounded_mmhg": float(
+                                ws_ref["two_zone_fv_gel_only_supply_120um_core_po2_unrounded_mmhg"]
+                            ),
+                            "uniform_120um_core_po2_unrounded_mmhg": float(
+                                ws_ref["two_zone_fv_uniform_supply_120um_core_po2_unrounded_mmhg"]
+                            ),
+                            "passes_15mmHg_slab_po2_gate": bool(
+                                r_ref["required_120um_oxygen_solvers_converged"] and r_ref["min_slab_po2_unrounded_mmhg"] >= 15.0
+                            ),
+                            "passes_strict_2p0mmHg_gel_only_120um_core_gate": bool(
+                                r_ref["required_120um_oxygen_solvers_converged"]
+                                and r_ref["min_slab_po2_unrounded_mmhg"] >= 15.0
+                                and ws_ref["two_zone_fv_gel_only_supply_120um_core_po2_unrounded_mmhg"] >= 2.0
+                                and r_ref["strict_nonoxygen_gates_passed"]
+                            ),
+                        }
+                    near_threshold_refinement_rows.append(
+                        {
+                            "release_kinetics_law": law,
+                            "target_curve_midpoint_t50_h": t50_h,
+                            "coupled_internal_vascular_exchange_kp_s_inv": kp,
+                            "within_0p10mmHg_of_gate": bool(
+                                abs(slab_val - 15.0) <= 0.10
+                                or abs(gel_core_val - 2.0) <= 0.10
+                                or abs(gel_core_val - 0.5) <= 0.10
+                                or abs(uni_core_val - 2.0) <= 0.10
+                            ),
+                            "mesh_refinement_nz_51_101_201": mesh_receipts,
+                            "gate_stability_across_51_101_201": bool(
+                                len({m["passes_15mmHg_slab_po2_gate"] for m in mesh_receipts.values()}) == 1
+                                and len({m["passes_strict_2p0mmHg_gel_only_120um_core_gate"] for m in mesh_receipts.values()}) == 1
+                            ),
+                        }
+                    )
+
+    # Exact zero-vessel lower bound (v_perf(t) == 0 identically, k_p = 0) vs legacy v_perf(0) = 0.01 decay control:
+    zero_vessel_controls: Dict[str, Any] = {}
+    for law in release_laws:
+        r_zero_exact = _run_single_pouch_pde_regime(
+            regime_id=f"IIP0002_{law.upper()}_EXACT_ZERO_VESSEL_BOUND_KP_0",
+            f_chem_initial=0.45,
+            spatial_mode="central",
+            cao2_half_life_h=68.0,
+            catalase_present=True,
+            iec_max_perfusion_fraction=0.0,
+            boundary_po2_mmhg=40.0,
+            inosculation_t50_h=36.0,
+            demand_multiplier_extra=1.0,
+            release_kinetics_law=law,
+            k_perf_max_s_override=0.0,
+            zero_internal_vascular_state=True,
+            _include_hourly_slab_po2_vector=True,
+            _assess_numerical_gate=False,
+        )
+        r_zero_legacy_v0_0p01 = _run_single_pouch_pde_regime(
+            regime_id=f"IIP0002_{law.upper()}_LEGACY_V0_0P01_KP_0",
+            f_chem_initial=0.45,
+            spatial_mode="central",
+            cao2_half_life_h=68.0,
+            catalase_present=True,
+            iec_max_perfusion_fraction=0.0,
+            boundary_po2_mmhg=40.0,
+            inosculation_t50_h=36.0,
+            demand_multiplier_extra=1.0,
+            release_kinetics_law=law,
+            k_perf_max_s_override=0.0,
+            zero_internal_vascular_state=False,
+            _include_hourly_slab_po2_vector=True,
+            _assess_numerical_gate=False,
+        )
+        exact_row = _summarize_regime_row(
+            r_zero_exact,
+            law=law,
+            t50_h=None,
+            kp=0.0,
+            timing_scope="exact_zero_vessel_lower_bound",
+            include_cluster_trajectory=True,
+        )
+        joint_grid_rows.append(exact_row)
+        r_zero_legacy_min_ph = r_zero_legacy_v0_0p01.get(
+            "closed_pocket_metabolic_acidification_min_ph_unrounded",
+            r_zero_legacy_v0_0p01["closed_pocket_metabolic_acidification_min_ph_v80_095"],
+        )
+        r_zero_exact_min_ph = r_zero_exact.get(
+            "closed_pocket_metabolic_acidification_min_ph_unrounded",
+            r_zero_exact["closed_pocket_metabolic_acidification_min_ph_v80_095"],
+        )
+        zero_vessel_controls[law] = {
+            "exact_zero_internal_vascular_exchange_vperf_identically_zero": exact_row,
+            "legacy_kp0_with_vperf0_0p01_decay_comparator": {
+                "min_slab_po2_unrounded_mmhg": r_zero_legacy_v0_0p01["min_slab_po2_unrounded_mmhg"],
+                "min_closed_pocket_acidic_ph_unrounded": r_zero_legacy_min_ph,
+                "hour0_closed_pocket_acidic_ph_difference_from_exact_vperf0": round(
+                    abs(
+                        r_zero_exact["trajectory_0h_to_336h"][0]["min_closed_pocket_acidic_ph"]
+                        - r_zero_legacy_v0_0p01["trajectory_0h_to_336h"][0]["min_closed_pocket_acidic_ph"]
+                    ),
+                    6,
+                ),
+                "global_336h_min_acidic_ph_difference_from_exact_vperf0": abs(
+                    r_zero_exact_min_ph - r_zero_legacy_min_ph
+                ),
+            },
+        }
+
+    def _find_row(law: str, t50_h: float, kp: float) -> Dict[str, Any]:
+        return next(
+            r
+            for r in joint_grid_rows
+            if r["release_kinetics_law"] == law
+            and r["target_curve_midpoint_t50_h"] is not None
+            and math.isclose(float(r["target_curve_midpoint_t50_h"]), t50_h, rel_tol=1e-9)
+            and math.isclose(float(r["coupled_internal_vascular_exchange_kp_s_inv"]), kp, rel_tol=1e-9)
+        )
+
+    fo_36_014 = _find_row("first_order", 36.0, 0.1400)
+    sc_36_014 = _find_row("shrinking_core", 36.0, 0.1400)
+    fo_40_014 = _find_row("first_order", 40.0, 0.1400)
+    sc_40_014 = _find_row("shrinking_core", 40.0, 0.1400)
+    fo_56_014 = _find_row("first_order", 56.0, 0.1400)
+    sc_56_014 = _find_row("shrinking_core", 56.0, 0.1400)
+    fo_60_014 = _find_row("first_order", 60.0, 0.1400)
+    sc_60_014 = _find_row("shrinking_core", 60.0, 0.1400)
+    fo_36_00944 = _find_row("first_order", 36.0, 0.0944)
+    zv_fo_exact = zero_vessel_controls["first_order"]["exact_zero_internal_vascular_exchange_vperf_identically_zero"]
+    zv_sc_exact = zero_vessel_controls["shrinking_core"]["exact_zero_internal_vascular_exchange_vperf_identically_zero"]
+    diff_36_slab = fo_36_014["min_slab_po2_unrounded_mmhg"] - sc_36_014["min_slab_po2_unrounded_mmhg"]
+    diff_60_slab = fo_60_014["min_slab_po2_unrounded_mmhg"] - sc_60_014["min_slab_po2_unrounded_mmhg"]
+
+    return {
+        "proposal_id": "IIP-0002",
+        "title": "Test delayed and reduced vascular oxygen support together",
+        "layer": "Layer 4",
+        "test_gate": "Test 5",
+        "open_question_id": "OQ-005",
+        "open_question_title": "Does the oxygen supply hold up under pessimistic assumptions?",
+        "status": "accepted_in_open_draft",
+        "credit": (
+            "Marissa Famularo (ORCID 0009-0001-8032-2215, GitHub @MarissaFamularo), IIP-0002, "
+            "https://github.com/OpenIslet/openislet/issues/2. AI tools as she reported them: ChatGPT, GPT-6 Astra Pro "
+            "(self-reported, never verified)."
+        ),
+        "exploratory_engineering_scope_note": (
+            "Exploratory engineering sensitivity grid characterizing the combined early-window interaction of vascular "
+            "inosculation timing and internal vascular exchange across both CaO2 release laws. "
+            "Neither cited paper calibrates the chosen timing values, oxygen-transfer coefficients, or their joint distribution. "
+            "Grid corners are exploratory model-dependence stress settings, not experimentally calibrated worst cases or clinical probabilities."
+        ),
+        "timing_axis_specification": {
+            "timing_axis_label": "target_curve_midpoint_t50_h",
+            "target_logistic_curve_equation": "v_target(t) = v_max / (1 + exp(-(t - t50) / 8.0)), v_max = 0.97",
+            "lag_ode_equation": "dv_perf/dt = (v_target(t) - v_perf(t)) / 3.0, v_perf(0) = 0.01 (or v_perf(t) == 0 in exact zero-vessel bound)",
+            "realized_half_plateau_definition": "Time t (hours) at which realized v_perf(t) reaches 0.5 * v_max = 0.485",
+            "realized_minus_target_midpoint_lag_hours": round(realized_t50_map[36.0] - 36.0, 4),
+            "target_to_realized_half_plateau_hours_map": {
+                f"{int(t50)}h": round(realized_t50_map[t50], 4) for t50 in timings_t50_h
+            },
+            "hypothetical_stress_test_midpoints_hours": [96.0, 168.0],
+        },
+        "coupled_vascular_exchange_axis_disclosure": {
+            "capacity_axis_label": "coupled_internal_vascular_exchange_coefficient_kp_s_inv",
+            "effective_time_dependent_rate": "k_perf_s(t) = k_p * v_perf(t)",
+            "coupled_processes_controlled_by_kp": [
+                "Internal vascular O2 exchange: +k_perf_s(t) * (P_boundary - p(z, t)) in the slab O2 reaction-diffusion BVP (acts as an O2 source when local p < P_boundary = 40 mmHg, and as an O2 sink wherever local chemical O2 release raises p > 40 mmHg)",
+                "Interstitial H2O2 vascular washout: -k_perf_s(t) * [H2O2](z, t) in _solve_peroxide_slab_bvp (removing H2O2 before catalase disproportionation reduces local chemical O2 generation)",
+                "Interstitial OH- / alkaline species clearance: -k_perf_s(t) * [OH-](z, t) in the Henderson-Hasselbalch pH BVP",
+            ],
+            "interpretation_note": (
+                "Because k_perf_s(t) = k_p * v_perf(t) simultaneously governs O2 exchange, H2O2 washout (which reduces catalase-mediated "
+                "chemical O2 yield), and OH- clearance, and becomes an O2 sink wherever local pO2 exceeds the 40 mmHg host boundary, "
+                "k_p is reported as a coupled internal vascular-exchange parameter rather than a pure oxygen-delivery coefficient."
+            ),
+        },
+        "design_geometry_and_gy004_oxygen_demand_scope": {
+            "reference_architecture_evaluated": "LEAD_CENTRAL_LAMINA_PDMS_CAO2_F045_PLUS_CATALASE (350 um total slab thickness, 119 um central lamina [a = 0.34], uniform conservative cellular demand, 120 um cluster diameter [R = 60 um], 2,500 IEQ/cm^2 across 200 cm^2 [7.00 cm^3], D_O2,gel = 9.40254e-6 cm^2/s)",
+            "cao2_inventory_preserved_across_release_laws": {
+                "f_chem_initial": 0.45,
+                "cao2_initial_molar_inventory_mmol": 10.981,
+                "cao2_initial_mass_mg_in_7cm3_slab": 791.5,
+                "cao2_hydrolysis_half_life_hours": 68.0,
+            },
+            "gy004_oxygen_consumption_consistency": {
+                "graveyard_entry": "GY-004 (RNLS knockout excluded from lead backbone due to ~1.18x basal OCR elevation)",
+                "cell_intrinsic_ocr_multiplier_all_rows": 1.0,
+                "vmax_islet_pure_mol_cm3_s": VMAX_ISLET_PURE_MOL_CM3_S,
+                "iec_stromal_metabolic_overhead_multiplier": 1.15,
+                "cross_design_transferability_caveat": (
+                    "All rows hold intrinsic cellular oxygen demand fixed at 1.0x baseline V_max (RNLS-WT, consistent with GY-004) "
+                    "plus the 1.15x vascular/stromal demand factor in the 350 um / 119 um-lamina / 120 um-cluster uniform-demand reference slab. "
+                    "Numerical outputs do not automatically transfer to Design A Layout B (outer_annulus demand), Design B (GY-004 RNLS-KO 1.18x OCR comparator), "
+                    "or Design X (100 um thinned central lamina with 80-100 um micro-islet diameter cap)."
+                ),
+            },
+        },
+        "release_law_direction_flip_and_gate_brackets_at_kp_0p14": {
+            "direction_flip_explanation": (
+                "Under matched initial CaO2 inventory (10.981 mmol, 791.5 mg) and 68.0 h half-time, reaction-controlled shrinking-core "
+                "(m/m0)^(2/3) release is lower than first-order release around the early 13-18 h trough when t50 = 36 h "
+                f"(min slab pO2 {fo_36_014['min_slab_po2_mmhg']:.3f} mmHg [FO, t={fo_36_014['time_of_min_slab_po2_hours']:.0f} h, gel-only core {fo_36_014['gel_only_120um_core_po2_mmhg']:.3f} mmHg] "
+                f"vs {sc_36_014['min_slab_po2_mmhg']:.3f} mmHg [SC, t={sc_36_014['time_of_min_slab_po2_hours']:.0f} h, gel-only core {sc_36_014['gel_only_120um_core_po2_mmhg']:.3f} mmHg]), "
+                "but retains slightly higher mid-trajectory chemical O2 release around the 36-39 h trough when inosculation is delayed to t50 = 60 h "
+                f"(min slab pO2 {fo_60_014['min_slab_po2_mmhg']:.3f} mmHg [FO, t={fo_60_014['time_of_min_slab_po2_hours']:.0f} h, gel-only core {fo_60_014['gel_only_120um_core_po2_mmhg']:.3f} mmHg] "
+                f"vs {sc_60_014['min_slab_po2_mmhg']:.3f} mmHg [SC, t={sc_60_014['time_of_min_slab_po2_hours']:.0f} h, gel-only core {sc_60_014['gel_only_120um_core_po2_mmhg']:.3f} mmHg]), "
+                f"flipping the sign of (first_order - shrinking_core) between 36 h ({diff_36_slab:+.3f} mmHg slab) and 60 h ({diff_60_slab:+.3f} mmHg slab)."
+            ),
+            "strict_2p0mmHg_gel_only_core_gate_flip_at_kp_0p14": {
+                "first_order_flips_between_t50_hours": [36.0, 40.0],
+                "first_order_t50_36h_gel_only_core_unrounded_mmhg": fo_36_014["gel_only_120um_core_po2_unrounded_mmhg"],
+                "first_order_t50_40h_gel_only_core_unrounded_mmhg": fo_40_014["gel_only_120um_core_po2_unrounded_mmhg"],
+                "shrinking_core_already_below_2p0mmHg_at_t50_36h": True,
+                "shrinking_core_t50_36h_gel_only_core_unrounded_mmhg": sc_36_014["gel_only_120um_core_po2_unrounded_mmhg"],
+                "shrinking_core_t50_40h_gel_only_core_unrounded_mmhg": sc_40_014["gel_only_120um_core_po2_unrounded_mmhg"],
+            },
+            "slab_15mmHg_gate_flip_at_kp_0p14": {
+                "first_order_flips_between_t50_hours": [56.0, 60.0],
+                "first_order_t50_56h_min_slab_unrounded_mmhg": fo_56_014["min_slab_po2_unrounded_mmhg"],
+                "first_order_t50_60h_min_slab_unrounded_mmhg": fo_60_014["min_slab_po2_unrounded_mmhg"],
+                "shrinking_core_flips_between_t50_hours": [56.0, 60.0],
+                "shrinking_core_t50_56h_min_slab_unrounded_mmhg": sc_56_014["min_slab_po2_unrounded_mmhg"],
+                "shrinking_core_t50_60h_min_slab_unrounded_mmhg": sc_60_014["min_slab_po2_unrounded_mmhg"],
+            },
+            "near_threshold_36h_kp_0p0944_unrounded_check": {
+                "target_curve_midpoint_t50_h": 36.0,
+                "coupled_internal_vascular_exchange_kp_s_inv": 0.0944,
+                "nz51_min_slab_po2_unrounded_mmhg": fo_36_00944["min_slab_po2_unrounded_mmhg"],
+                "shortfall_below_15mmHg_at_nz51_mmhg": round(15.0 - fo_36_00944["min_slab_po2_unrounded_mmhg"], 6),
+                "passes_15mmHg_slab_po2_gate": fo_36_00944["passes_15mmHg_slab_po2_gate"],
+            },
+        },
+        "prior_repository_corner_tests_and_zero_vessel_bound_context": {
+            "novelty_boundary_statement": (
+                "The zero-vessel case (k_p = 0, v_perf(t) == 0) is presented as an analytical/numerical lower bound "
+                f"({zv_fo_exact['min_slab_po2_unrounded_mmhg']:.6f} mmHg [{zv_fo_exact['min_slab_po2_mmhg']:.3f} mmHg] minimum slab pO2 at "
+                f"{zv_fo_exact['time_of_min_slab_po2_hours']:.0f} h under first-order release, "
+                f"{zv_sc_exact['min_slab_po2_unrounded_mmhg']:.6f} mmHg [{zv_sc_exact['min_slab_po2_mmhg']:.3f} mmHg] at "
+                f"{zv_sc_exact['time_of_min_slab_po2_hours']:.0f} h under shrinking-core release after finite-time CaO2 depletion at 329.62 h, "
+                f"with gel-only cluster cores {zv_sc_exact['gel_only_120um_core_po2_unrounded_mmhg']:.6f}-{zv_fo_exact['gel_only_120um_core_po2_unrounded_mmhg']:.6f} mmHg "
+                f"[0.000 mmHg] and uniform cores {zv_sc_exact['uniform_120um_core_po2_unrounded_mmhg']:.6f}-{zv_fo_exact['uniform_120um_core_po2_unrounded_mmhg']:.6f} mmHg), "
+                "not as a newly introduced control. Earlier partial corner tests already existed in the repository; the specific addition of "
+                "IIP-0002 is the systematic early transient timing-by-exchange crossing on the lead reference slab across both release laws."
+            ),
+            "existing_repository_partial_coverage_cited": [
+                {
+                    "location": "part_a_336h_spatial_reaction_diffusion_pouch_pde.design_x_100um_lamina_transport_qualification_v80_018.chronic_zero_source_and_mineralization_extension_muse_r3.physical_outer_annulus_masked_chronic_zero_source_audit_argon_r4.joint_chronic_source_free_areal_loading_capsule_ocr_envelope_sol61_r4.avascular_capsule_vascular_dropout_kperf_0_at_d_cap_50um",
+                    "description": "Chronic post-CaO2 zero-source Design X capsule-dropout corner at k_perf = 0 s^-1 and d_cap = 50 um (delta_z_eq = 150 um), yielding min_slab_po2 = 0.0783 mmHg and 100-um/80-um cluster cores of 8.65e-6 / 7.50e-5 mmHg.",
+                },
+                {
+                    "location": "part_a_336h_spatial_reaction_diffusion_pouch_pde.design_x_100um_lamina_transport_qualification_v80_018.vascular_inosculation_target_t50_hours",
+                    "description": "Design Z pre-vascularized ribbon target midpoint t50 = 24.0 h (and Stage-0 Gate Z-04 microfluidic anastomosis target t50 <= 24-36 h).",
+                },
+                {
+                    "location": "part_a_336h_spatial_reaction_diffusion_pouch_pde.lead_regime_4_scenario_sensitivity_table_sol_v80_12 & vascular_perfusion_conductance_sensitivity_v80_014",
+                    "description": "Separate one-at-a-time lead-slab sensitivity sweeps for delayed inosculation (t50 = 60 h at k_p = 0.14 s^-1) and reduced k_p (0.0944-0.1800 s^-1 at t50 = 36 h).",
+                },
+            ],
+            "exact_zero_vessel_bound_controls": zero_vessel_controls,
+        },
+        "parameter_source_and_provenance_table": [
+            {
+                "parameter": "target_curve_midpoint_t50_h",
+                "values_tested": "36, 40, 44, 48, 52, 56, 60 h (plus hypothetical 96, 168 h)",
+                "role_in_model": "Logistic target-curve inflection time t50 in v_target(t) = v_max / (1 + exp(-(t - t50)/8.0)); realized half-plateau v_perf(t) = 0.485 occurs 2.9426 h later due to the 3.0 h first-order lag ODE.",
+                "source_and_provenance": (
+                    "Exploratory engineering sensitivity grid brackets. Shepherd et al. 2004 (Arterioscler Thromb Vasc Biol 24(5):898-904, PMID:14988090) "
+                    "demonstrates that microvessel-fragment constructs implanted in SCID mice can form perfused host connections "
+                    "early in engraftment, and Altalhi et al. 2019 (Cell Mol Bioeng 12(5):443-454, PMID:31719926 / PMC6816716 Fig. 6) "
+                    "shows reduced and delayed perfused vessel density in microvessel-fragment constructs in collagen hydrogels implanted subcutaneously "
+                    "in streptozotocin-diabetic donor+recipient mice relative to non-diabetic controls "
+                    "(confounded by simultaneous donor and recipient diabetic status). Neither cited paper calibrates the chosen timing values, "
+                    "oxygen-transfer coefficients, or their joint distribution."
+                ),
+            },
+            {
+                "parameter": "coupled_internal_vascular_exchange_kp_s_inv",
+                "values_tested": "0.0944, 0.1100, 0.1400, 0.1800 s^-1 (plus 0.0 s^-1 zero-vessel bound)",
+                "role_in_model": "Maximum internal vascular exchange rate constant multiplying v_perf(t) across O2 exchange, H2O2 washout, and OH- clearance.",
+                "source_and_provenance": (
+                    "Layer 4 continuum Krogh-type internal capillary exchange prior (nominal 0.14 s^-1, chronic capsule-attenuated 0.1358 s^-1, "
+                    "lower sensitivity brackets 0.1100 and 0.0944 s^-1, upper bracket 0.1800 s^-1; DEC-002 / AUDIT-REF). "
+                    "Neither cited paper calibrates the chosen timing values, oxygen-transfer coefficients, or their joint distribution."
+                ),
+            },
+            {
+                "parameter": "release_kinetics_law",
+                "values_tested": "first_order vs shrinking_core ((m/m0)^(2/3))",
+                "role_in_model": "Governs solid CaO2 hydrolysis rate at fixed initial inventory (10.981 mmol / 791.5 mg CaO2 in 7.00 cm^3) and matched t_1/2 = 68.0 h.",
+                "source_and_provenance": "Layer 4 Stage-0 Gate P05 (DIFF-0) dual kinetic-law qualification bracket (DEC-002 / DEC-078).",
+            },
+            {
+                "parameter": "vmax_islet_pure_mol_cm3_s & cell_intrinsic_ocr_multiplier",
+                "values_tested": "3.4e-8 mol/(cm^3*s) * 1.0x intrinsic OCR * 1.15x vascular/stromal overhead",
+                "role_in_model": "Michaelis-Menten cellular O2 demand in the 350 um slab and 120 um spherical Wigner-Seitz cluster BVP.",
+                "source_and_provenance": "Canonical human islet OCR prior with GY-004 consistency (RNLS-WT 1.0x baseline OCR retained across all lead-design rows).",
+            },
+        ],
+        "near_threshold_grid_refinement_audit_nz_51_101_201": near_threshold_refinement_rows,
+        "joint_grid_rows": joint_grid_rows,
+    }
 
 
 def solve_336h_spatial_pouch_pde() -> Dict[str, Any]:
@@ -2138,13 +2708,24 @@ def solve_336h_spatial_pouch_pde() -> Dict[str, Any]:
     perfusion_sensitivity = []
     for k_p in [0.0944, 0.1100, 0.1400, 0.1800]:
         r_p = _run_single_pouch_pde_regime(f"PERF_K_{k_p:.4f}", 0.45, "central", 68.0, True, 0.97, k_perf_max_s_override=k_p)
+        ws_p = r_p["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"]
         perfusion_sensitivity.append(
             {
                 "k_perf_max_s_inv": k_p,
                 "min_slab_po2_mmhg": r_p["min_slab_po2_across_14_days_mmhg"],
+                "min_slab_po2_unrounded_mmhg": r_p["min_slab_po2_unrounded_mmhg"],
+                "time_of_min_slab_po2_hours": r_p["time_of_min_slab_po2_hours"],
+                "two_zone_fv_gel_only_surface_po2_unrounded_mmhg": ws_p["two_zone_fv_gel_only_supply_surface_po2_unrounded_mmhg"],
+                "two_zone_fv_gel_only_120um_core_po2_unrounded_mmhg": ws_p["two_zone_fv_gel_only_supply_120um_core_po2_unrounded_mmhg"],
+                "two_zone_fv_uniform_120um_core_po2_unrounded_mmhg": ws_p.get(
+                    "two_zone_fv_uniform_supply_120um_core_po2_unrounded_mmhg",
+                    ws_p["two_zone_fv_uniform_supply_120um_core_po2_mmhg"],
+                ),
                 "passes_15mmHg_gsis_gate": bool(r_p["required_120um_oxygen_solvers_converged"] and r_p["min_slab_po2_unrounded_mmhg"] >= 15.0),
+                "passes_strict_gel_only_two_zone_fv_2p0mmHg_core_gate": r_p["passes_strict_gel_only_two_zone_fv_2p0mmHg_core_gate"],
             }
         )
+    joint_vascular_iip_0002 = _build_joint_vascular_timing_and_exchange_sensitivity_iip_0002()
 
     # Design X 100 um thinned central lamina (a = 100/350 = 0.285714, outer bands 125 um each >= 120 um cluster diameter,
     # 46.3906 wt% dry CaO2 in PDMS at porosity eps = 0.42; closes DEC-014 AUDIT-REF, L4-13, Audit C2, Audit FRESH-PHY-007):
@@ -3473,6 +4054,7 @@ def solve_336h_spatial_pouch_pde() -> Dict[str, Any]:
         "catalase_multi_denominator_iu_ledger_v80_093": catalase_multi_denominator_iu_ledger,
         "spatial_grid_convergence_51_101_201_401_preastra_a094": grid_convergence,
         "vascular_perfusion_conductance_sensitivity_v80_014": perfusion_sensitivity,
+        "joint_vascular_timing_and_exchange_sensitivity_iip_0002": joint_vascular_iip_0002,
         "shrinking_core_coupled_bvp_safety_comparison_ultracode_v80_09": {
             "calibration_note": (
                 f"First-order and shrinking-core laws share {results[2]['cao2_initial_molar_inventory_mmol']:.3f} mmol "

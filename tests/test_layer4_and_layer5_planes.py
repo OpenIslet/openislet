@@ -125,6 +125,72 @@ def main() -> None:
     _check(assessment["refinement_applied"] is True, "Nominal conservative gate requires its refinement receipt")
     _check(assessment["reference_core_interval_mmhg"][0] >= 2., "Nominal conservative pass has no numerical margin")
 
+    # DEC-080 / IIP-0002: Verify joint vascular timing-by-exchange sensitivity grid across both release laws
+    iip2 = pde_part["joint_vascular_timing_and_exchange_sensitivity_iip_0002"]
+    _check(iip2["proposal_id"] == "IIP-0002" and iip2["open_question_id"] == "OQ-005", "IIP-0002 metadata mismatch")
+    _check("Marissa Famularo (ORCID 0009-0001-8032-2215, GitHub @MarissaFamularo)" in iip2["credit"], "IIP-0002 credit mismatch")
+    _check(
+        "Neither cited paper calibrates the chosen timing values, oxygen-transfer coefficients, or their joint distribution."
+        in iip2["exploratory_engineering_scope_note"],
+        "IIP-0002 missing required calibration disclaimer",
+    )
+    _check(
+        abs(iip2["timing_axis_specification"]["realized_minus_target_midpoint_lag_hours"] - 2.9426) < 0.01,
+        "IIP-0002 realized-minus-target lag != ~2.9426 h",
+    )
+    iip2_rows = iip2["joint_grid_rows"]
+    _check(len(iip2_rows) == 74, f"Expected 74 IIP-0002 rows (2 laws x 9 timings x 4 kp + 2 zero-vessel bounds), got {len(iip2_rows)}")
+    flips = iip2["release_law_direction_flip_and_gate_brackets_at_kp_0p14"]
+    _check(
+        flips["strict_2p0mmHg_gel_only_core_gate_flip_at_kp_0p14"]["first_order_t50_36h_gel_only_core_unrounded_mmhg"] > 2.0
+        and flips["strict_2p0mmHg_gel_only_core_gate_flip_at_kp_0p14"]["first_order_t50_40h_gel_only_core_unrounded_mmhg"] < 2.0,
+        "First-order strict 2.0 mmHg core gate must flip between 36 h and 40 h at k_p = 0.14",
+    )
+    _check(
+        flips["slab_15mmHg_gate_flip_at_kp_0p14"]["first_order_t50_56h_min_slab_unrounded_mmhg"] > 15.0
+        and flips["slab_15mmHg_gate_flip_at_kp_0p14"]["first_order_t50_60h_min_slab_unrounded_mmhg"] < 15.0,
+        "First-order 15.0 mmHg slab gate must flip between 56 h and 60 h at k_p = 0.14",
+    )
+    ref_36_00944 = next(
+        r
+        for r in iip2["near_threshold_grid_refinement_audit_nz_51_101_201"]
+        if r["release_kinetics_law"] == "first_order"
+        and r["target_curve_midpoint_t50_h"] == 36.0
+        and abs(r["coupled_internal_vascular_exchange_kp_s_inv"] - 0.0944) < 1e-6
+    )
+    _check(
+        abs(ref_36_00944["mesh_refinement_nz_51_101_201"]["nz_51"]["min_slab_po2_unrounded_mmhg"] - 14.962351) < 1e-4
+        and abs(ref_36_00944["mesh_refinement_nz_51_101_201"]["nz_101"]["min_slab_po2_unrounded_mmhg"] - 14.958606) < 1e-4
+        and abs(ref_36_00944["mesh_refinement_nz_51_101_201"]["nz_201"]["min_slab_po2_unrounded_mmhg"] - 14.957812) < 1e-4
+        and ref_36_00944["gate_stability_across_51_101_201"] is True,
+        "36 h / k_p=0.0944 near-threshold refinement check mismatch",
+    )
+    zv_fo = iip2["prior_repository_corner_tests_and_zero_vessel_bound_context"]["exact_zero_vessel_bound_controls"]["first_order"][
+        "exact_zero_internal_vascular_exchange_vperf_identically_zero"
+    ]
+    zv_sc = iip2["prior_repository_corner_tests_and_zero_vessel_bound_context"]["exact_zero_vessel_bound_controls"]["shrinking_core"][
+        "exact_zero_internal_vascular_exchange_vperf_identically_zero"
+    ]
+    _check(
+        zv_fo["zero_internal_vascular_state_enforced"] is True
+        and abs(zv_fo["min_slab_po2_unrounded_mmhg"] - 0.111602) < 1e-4
+        and abs(zv_sc["min_slab_po2_unrounded_mmhg"] - 0.071825) < 1e-4
+        and zv_fo["gel_only_120um_core_po2_unrounded_mmhg"] < 1e-5
+        and zv_sc["gel_only_120um_core_po2_unrounded_mmhg"] < 1e-5,
+        "Exact zero-vessel bound check failed",
+    )
+    _check(
+        iip2["open_question_title"] == "Does the oxygen supply hold up under pessimistic assumptions?",
+        "IIP-0002 OQ-005 title mismatch",
+    )
+    iip2_json = json.dumps(iip2)
+    _check(
+        "PMID:14988090" in iip2_json and "PMID:31719926" in iip2_json and "31542725" not in iip2_json,
+        "IIP-0002 provenance PMIDs mismatch",
+    )
+    req_txt = (REPO_ROOT / "requirements.txt").read_text(encoding="utf-8")
+    _check("numpy>=2.0" in req_txt and "numpy>=1.24" not in req_txt, "requirements.txt must require numpy>=2.0 for np.trapezoid")
+
     # 2. Verify Layer 4 Part B 24h paracrine & metabolic ODE (AUDIT-REF, AUDIT-REF, AUDIT-REF & AUDIT-REF)
     ode_part = l4["part_b_24h_trihormonal_paracrine_and_whole_body_metabolic_ode"]
     _check("PMID:39169271" in ode_part["counter_evidence_and_scope_note_sol_v80_13"], "Missing PMID:39169271 counter-evidence")

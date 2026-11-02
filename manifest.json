@@ -162,12 +162,12 @@
       "bytes": 1039
     },
     "requirements.txt": {
-      "sha256": "4b8d008c654a32c5016cdb476d54820e97789f988f67a71f62615fafc7858ebe",
-      "bytes": 322
+      "sha256": "1003a85134f11e27f85c0a11b775b4ad69647b9f446db5f999afab529bb6e874",
+      "bytes": 321
     },
     "pyproject.toml": {
-      "sha256": "e720a2b420a42cec4e30d912163c9a7df056865676d548bf21db614d12481a0e",
-      "bytes": 553
+      "sha256": "37cc31acb55160fa288aae99d0e5e370ef7ad8e644ae3f8405ffa582423f4dfc",
+      "bytes": 552
     },
     ".licenses/alphafold_database_fetch_and_analyze_LICENSE.txt": {
       "sha256": "a4a90d26cede646a8433084252ebc10bdcd4eeff8c994297b009cbd8c34a9de4",
@@ -250,12 +250,12 @@
       "bytes": 153817
     },
     "README.md": {
-      "sha256": "c025268c2b56bdb9ba440271be1a865d8c4fcd6e3dcb9aef024383a9ed95cfd8",
-      "bytes": 6640
+      "sha256": "e6f9b63dd29cbd69cdd53bdda42d79c98504b66c7a9025446ecc396ba60093da",
+      "bytes": 6639
     },
     "docs/ISLET-1-DERIVATIONS-AND-AUDIT-TABLES.md": {
-      "sha256": "e8f682612e61ad54a795fa49dfb0f381687cd80a48f23422256bb286a4995b5f",
-      "bytes": 65293
+      "sha256": "e43f6cec24886a91f08c62526960a1db98b172994f2f6f8c9e3bc6c6a32e27bc",
+      "bytes": 65292
     },
     "docs/ISLET-1-MASTER-SPEC-v0.1.md": {
       "sha256": "d20ec099d2e25d02038f59e8d232b70ec74484eb3f96d9c862076e4cfc6a4441",
@@ -274,8 +274,8 @@
       "bytes": 20334
     },
     "docs/PROJECT-DECISIONS-LOG.md": {
-      "sha256": "7f162828ae0aff7bb5e9aaa35ff5c5ad0867d99c35d2346f1d71d84ea17b5a78",
-      "bytes": 451811
+      "sha256": "3deb55f2573d76259c1d247be3493564eaf21c73fe030d8f376368ac1336aef6",
+      "bytes": 457166
     },
     "docs/OPENISLET-2026-2030-MASTER-TIMELINE.md": {
       "sha256": "a8da8d81e9d5bfd96c079125fa080165ebe164005dc229202e95da09a7bb97d2",
@@ -298,8 +298,8 @@
       "bytes": 11990
     },
     "data/raw/doc_citation_metadata_cache.json": {
-      "sha256": "5d5e16e83e96e92d6739cf5a71f646a0d04784a6d2ad7a9058477a4c9aa5ab97",
-      "bytes": 58353
+      "sha256": "80f95db72e1b613dde072a88996c19d1b179d66463ca663942af14bd97623b13",
+      "bytes": 58873
     },
     "data/raw/layer2_genomic_and_jaspar_reference.json": {
       "sha256": "cefd7f2c529aa70e373a6d472ade0f5a8e1ebbf5a50d0f4117a1a47af6f77259",
@@ -374,8 +374,8 @@
       "bytes": 249841
     },
     "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": {
-      "sha256": "d26d86b9af9299165df7a365c71b5078184bab6ba33d9f3fd9c737100ce92645",
-      "bytes": 691654
+      "sha256": "7c391ff7b6774e529d71d00d2f6491999eb0c3b316bfe819358f7c20432e8dfa",
+      "bytes": 1107852
     },
     "data/extracted/layer5_personalized_patient_and_crispr_atlas.json": {
       "sha256": "ecfbe552954aaaa781896a4c0acb081e90ce2a8815bafb878ae566fd0e2dd648",
@@ -502,8 +502,8 @@
       "bytes": 189385
     },
     "scripts/render_documentation.py": {
-      "sha256": "2051e741d3e1986de6119a655ea33e945605561340a40168087d6bf4eedb533e",
-      "bytes": 62430
+      "sha256": "78a215056730e6bc84839e4a2fc07ea11349e66706a989a3d8f0e72e8b47328e",
+      "bytes": 62569
     },
     "data/protocols/islet1_product_definitions_v0.8.0.json": {
       "sha256": "0e9e5d97ed786fc80fabe1443a653123462bfe79f153b8a08f41f521b85ad884",
@@ -518,8 +518,8 @@
       "bytes": 19673
     },
     "data/extracted/documentation_facts_v0.8.0.json": {
-      "sha256": "9a39be0bbf76528db561f625b0a972e8e429126508a2865e536f39d6d8029566",
-      "bytes": 1311989
+      "sha256": "a5d7a3de26a58fbc89cc34fb044f60e49b778bfd4151609b46c827560bdee5f2",
+      "bytes": 1547731
     },
     "tests/test_preastra_layer1.py": {
       "sha256": "22003c36465438faacdaf2630f01d3b902a72556957cf0113775b1303ec79739",
@@ -618,8 +618,8 @@
       "bytes": 234103
     },
     "scripts/run_layer4_tissue_and_metabolic_twin.py": {
-      "sha256": "b51b43611ca02472ec259d340ef393dc50bdf4fb95bbdecf342cb82c9c769cca",
-      "bytes": 440090
+      "sha256": "de24ae96dedcf2afb4d960e7963f4419462b2132f6007e7e2321defb3c2026f4",
+      "bytes": 477726
     },
     "scripts/run_layer5_personalized_patient_compiler.py": {
       "sha256": "94403fc62e9e7a2f94fab16a75cb9f068fc65fa907fb2a18f59158cd58340fb1",
@@ -646,8 +646,8 @@
       "bytes": 31474
     },
     "tests/test_layer4_and_layer5_planes.py": {
-      "sha256": "7d63ec453a95f408e55deebf774412e4dfa955632e8b5dd6bb76a1ffe86f0e55",
-      "bytes": 28703
+      "sha256": "df39ddd5353c12e6a44a119b557dfb8841b8dfe3c80418f6d57bacd5891681ef",
+      "bytes": 32749
     },
     "data/extracted/10202046.json": {
       "sha256": "9a017146495eff8f937b68c887f31480467ac33932f338e98c743032b493abbd",

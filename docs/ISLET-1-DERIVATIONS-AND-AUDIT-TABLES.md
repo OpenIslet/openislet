@@ -152,7 +152,7 @@ In `v0.8.0`, OpenIslet ships executable **Layer 2** (`scripts/run_layer2_perturb
 
 ### 5A. Independent Verification from a Public Checkout (`git clone`)
 
-All verification, exact design-algebra, citation-resolution, and live Layer 1–5 evaluator tests run directly on the public bundle (`numpy>=1.24`, `pytest>=7.4`, `jsonschema>=4.18`) without requiring the non-redistributed raw full-text/abstract dossier cache (`data/dossiers/*.json`):
+All verification, exact design-algebra, citation-resolution, and live Layer 1–5 evaluator tests run directly on the public bundle (`numpy>=2.0`, `pytest>=7.4`, `jsonschema>=4.18`) without requiring the non-redistributed raw full-text/abstract dossier cache (`data/dossiers/*.json`):
 
 ```bash
 # Run from the OpenIslet repository root using a virtual environment outside the checkout:

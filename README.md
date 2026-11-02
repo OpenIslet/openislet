@@ -32,7 +32,7 @@
 
 ## Quick Start & Independent Verification
 
-Requires **Python `>= 3.10`** on macOS or Linux (`numpy>=1.24`, `pytest>=7.4`, `jsonschema>=4.18`):
+Requires **Python `>= 3.10`** on macOS or Linux (`numpy>=2.0`, `pytest>=7.4`, `jsonschema>=4.18`):
 
 ```bash
 # 1. Create a virtual environment outside the checkout and install dependencies

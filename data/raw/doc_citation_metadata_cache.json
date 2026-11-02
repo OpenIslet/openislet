@@ -1,7 +1,7 @@
 {
  "_meta": {
   "purpose": "offline snapshot for tests/test_citations_resolve.py; bibliographic facts only (first author, year, journal, title)",
-  "retrieved": "2026-10-31",
+  "retrieved": "2026-11-02",
   "source": "NCBI E-utilities esummary (db=pubmed)"
  },
  "pmids": {
@@ -130,6 +130,12 @@
    "journal": "Nat Immunol",
    "pubdate_year": "2003",
    "title": "Control of dendritic cell cross-presentation by the major histocompatibility complex class I cytoplasmic domain."
+  },
+  "14988090": {
+   "first_author": "Shepherd BR",
+   "journal": "Arterioscler Thromb Vasc Biol",
+   "pubdate_year": "2004",
+   "title": "Rapid perfusion and network remodeling in a microvascular construct after implantation."
   },
   "1512546": {
    "first_author": "Bix M",
@@ -521,6 +527,12 @@
    "pubdate_year": "2014",
    "title": "Generation of functional human pancreatic β cells in vitro."
   },
+  "2550826": {
+   "first_author": "Rorsman P",
+   "journal": "Nature",
+   "pubdate_year": "1989",
+   "title": "Glucose-inhibition of glucagon secretion involves activation of GABAA-receptor chloride channels."
+  },
   "25605798": {
    "first_author": "Müller-Kuller U",
    "journal": "Nucleic Acids Res",
@@ -532,12 +544,6 @@
    "journal": "Genes Dev",
    "pubdate_year": "1989",
    "title": "Definition of an efficient synthetic poly(A) site."
-  },
-  "2550826": {
-   "first_author": "Rorsman P",
-   "journal": "Nature",
-   "pubdate_year": "1989",
-   "title": "Glucose-inhibition of glucagon secretion involves activation of GABAA-receptor chloride channels."
   },
   "25985456": {
    "first_author": "Veiseh O",
@@ -904,6 +910,12 @@
    "journal": "Nat Genet",
    "pubdate_year": "2019",
    "title": "Loss of ZnT8 function protects against diabetes by enhanced insulin secretion."
+  },
+  "31719926": {
+   "first_author": "Altalhi W",
+   "journal": "Cell Mol Bioeng",
+   "pubdate_year": "2019",
+   "title": "Type I Diabetes Delays Perfusion and Engraftment of 3D Constructs by Impinging on Angiogenesis; Which can be Rescued by Hepatocyte Growth Factor Supplementation."
   },
   "31757674": {
    "first_author": "Zhao Y",
@@ -1319,6 +1331,12 @@
    "pubdate_year": "2025",
    "title": "Isolation of live human δ cells for genetic and functional analysis."
   },
+  "40544428": {
+   "first_author": "Reichman TW",
+   "journal": "N Engl J Med",
+   "pubdate_year": "2025",
+   "title": "Stem Cell-Derived, Fully Differentiated Islets for Type 1 Diabetes."
+  },
   "40668892": {
    "first_author": "Zhao D",
    "journal": "Sci Transl Med",
@@ -1348,12 +1366,6 @@
    "journal": "bioRxiv",
    "pubdate_year": "2025",
    "title": "Human Stem Cell-Derived β-cells Expressing An Optimized CD155 Reduce Cytotoxic Immune Cell Function for Application in Type 1 Diabetes."
-  },
-  "40544428": {
-   "first_author": "Reichman TW",
-   "journal": "N Engl J Med",
-   "pubdate_year": "2025",
-   "title": "Stem Cell-Derived, Fully Differentiated Islets for Type 1 Diabetes."
   },
   "40896833": {
    "first_author": "Walters K",
