@@ -2069,6 +2069,185 @@ def run_combinatorial_multi_gate_search(target_profiles: dict) -> list[dict]:
     return results
 
 
+def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
+    """Re-judged four-hurdle conditional scenario specification, score/rank measure labels, and OQ-016 (IIP-0003)."""
+    h1_1, h1_3 = 0.88, 0.88
+    h2_1, h2_3 = 0.78, 0.82
+    h3_1, h3_3 = 0.50, 0.72
+    h4_1, h4_3 = 0.60, 0.72
+    p1_exact = round(h1_1 * h2_1 * h3_1 * h4_1, 8)
+    p3_exact = round(h1_3 * h2_3 * h3_3 * h4_3, 8)
+    return {
+        "proposal_id": "IIP-0003",
+        "title": (
+            "The published chance-of-working estimate does not compute the quantity it states, "
+            "and omits failure modes the blueprint already documents"
+        ),
+        "layer": "Layer 1 & Cross-Blueprint Odds Specification",
+        "open_question_id": "OQ-016",
+        "open_question_title": "Which assumptions and definition of success sit behind the four-hurdle odds estimate?",
+        "status": "accepted_in_open_draft",
+        "reassessment_date": "2026-11-05",
+        "credit": (
+            "Linus Schumacher (ORCID 0000-0003-0797-3406, GitHub @ljschumacher, University of Edinburgh), "
+            "IIP-0003, https://github.com/openislet/openislet/issues/3."
+        ),
+        "sequential_conditional_definition": {
+            "one_design_label": "One design (Design A)",
+            "one_design_rule": (
+                "Reassessed and adopted on 2026-11-05 as a sequential conditional judgement: for Design A tested alone, "
+                "each step is the judged chance that Design A clears that hurdle given that Design A cleared the earlier hurdles."
+            ),
+            "three_designs_label": "Three designs in parallel (A, B and X)",
+            "three_designs_rule": (
+                "Reassessed and adopted on 2026-11-05 as a sequential surviving-portfolio conditional judgement: for Designs A, B and X "
+                "advanced in parallel, each step is the judged chance that at least one same design still in the running clears that hurdle "
+                "(the same design must clear every hurdle so far)."
+            ),
+            "composition_rule": (
+                "Chance of getting past every hurdle = hurdle 1 x hurdle 2 x hurdle 3 x hurdle 4, "
+                "each the chance that a design still in the running clears it."
+            ),
+        },
+        "selected_hurdle_scope_and_excluded_pre_trial_conditions": {
+            "selection_basis": (
+                "The four hurdles are a deliberate selection covering the four in-body biological steps that have published human or modelled anchors. "
+                "They assume this product's cells work as designed and pass the lab safety checks before any trial, so they are not the chance of a cure."
+            ),
+            "condition_line_short": (
+                "Assumes the edited cells work as designed and pass the lab safety and DNA checks before any trial."
+            ),
+            "assumed_passed_outside_the_four_hurdles": [
+                {
+                    "id": "GATE1_PRODUCT_FUNCTION",
+                    "description": (
+                        "Product-specific Gate 1 endocrine function: OpenIslet's own edited 60:30:10 cells retain regulated "
+                        "glucose-stimulated insulin secretion and rapid low-glucose shut-off (Hurdle 1 scores the class-level "
+                        "human stem-cell-islet precedent from zimislecel PMID:40544428; product-specific function is a stated condition)."
+                    ),
+                },
+                {
+                    "id": "OQ-012",
+                    "description": (
+                        "Pre-trial safety-switch qualification: biallelic AAVS1 iCasp9 clonogenic escape bound <= 1.0e-8 across "
+                        "endocrine and vascular stromal lineages under combined 1% O2 hypoxia and inflammatory cytokines."
+                    ),
+                },
+                {
+                    "id": "OQ-006",
+                    "description": (
+                        "Pre-trial edited-line genomic stability at manufacturing scale (rule GY-006): >=63,000x target-enriched "
+                        "duplex sequencing for TP53/PPM1D/BCOR, Chr20q11.21 ddPCR, 15-25 kb long-read LOH phasing, and CAST-Seq translocation checks."
+                    ),
+                },
+            ],
+        },
+        "reassessed_hurdles": [
+            {
+                "hurdle_number": 1,
+                "title": "Do lab-grown islet cells work as a treatment in people? (Gate 1)",
+                "one_design_design_a": h1_1,
+                "three_designs_parallel": h1_3,
+                "decision": "kept_after_2026_11_05_reassessment",
+                "reason_for_three_design_figure": (
+                    "All three designs use the same lab-grown stem-cell islet cells and 60:30:10 cell mix, "
+                    "so trying three designs adds no second route on this shared step."
+                ),
+            },
+            {
+                "hurdle_number": 2,
+                "title": "Does the genetic cloak stop rejection without anti-rejection drugs? (Gates 2A and 3)",
+                "one_design_design_a": h2_1,
+                "three_designs_parallel": h2_3,
+                "decision": "kept_after_2026_11_05_reassessment",
+                "reason_for_three_design_figure": (
+                    "Designs A and X share the same immune cloak, so only Design B (which keeps one matched HLA-C gene) "
+                    "offers a genuinely different way past rejection if that cloak falls short."
+                ),
+            },
+            {
+                "hurdle_number": 3,
+                "title": "Can the cells survive the autoimmune attack that caused the diabetes? (Gates 2B and 4)",
+                "one_design_design_a": h3_1,
+                "three_designs_parallel": h3_3,
+                "decision": "kept_after_2026_11_05_reassessment",
+                "reason_for_three_design_figure": (
+                    "All three designs rely on the same local anti-inflammatory shield at CXCL10, while Designs X and B add an "
+                    "insulin-flag edit and Design B also dampens interferon signalling, giving partial backup rather than three separate tries."
+                ),
+            },
+            {
+                "hurdle_number": 4,
+                "title": "Does the oxygen layer keep the graft alive until blood vessels grow in? (Gate 5 oxygen bridge)",
+                "one_design_design_a": h4_1,
+                "three_designs_parallel": h4_3,
+                "decision": "kept_after_2026_11_05_reassessment",
+                "reason_for_three_design_figure": (
+                    "All three designs use the same oxygen-releasing sheet and pre-built microvessels, while Design X tests a thinner "
+                    "oxygen sheet and smaller clusters if the baseline layout runs short."
+                ),
+            },
+        ],
+        "multiplied_conditional_totals": {
+            "one_design_exact": p1_exact,
+            "one_design_rounded_pct": 21,
+            "three_designs_exact": p3_exact,
+            "three_designs_rounded_pct": 37,
+        },
+        "section3_score_and_rank_measure_reconciliation": {
+            "overall_50_50_composite_score": {
+                "Design_A": 0.1085,
+                "Design_X_grid_2": 0.1046,
+                "Design_B_grid_25": 0.0673,
+                "definition": "Equal 50:50 weight on Pediatric_Early_Onset_T1D and Adult_Onset_LADA (composite_series_system_utility)",
+            },
+            "childrens_pediatric_t1d_score": {
+                "Design_A": 0.1070,
+                "Design_X_grid_2": 0.1032,
+                "Design_B_grid_25": 0.0664,
+                "definition": "Pediatric_Early_Onset_T1D cohort utility (utility_pediatric_early_onset_t1d.series_system_joint_survival_probability)",
+            },
+            "adults_lada_score": {
+                "Design_A": 0.1100,
+                "Design_X_grid_2": 0.1061,
+                "Design_B_grid_25": 0.0683,
+                "definition": "Adult_Onset_LADA cohort utility (utility_adult_onset_lada.series_system_joint_survival_probability)",
+            },
+            "rank_column_measure": "overall_50_50_composite_score",
+            "rank_column_explanation": (
+                "global_rank_among_all_combinations (#1 for Design A, #2 for Design X, #25 for Design B out of 2,160) "
+                "is sorted on the overall 50:50 composite score (composite_series_system_utility_unrounded / composite_series_system_utility "
+                "in _combination_order_key). On the children's score alone (Pediatric_Early_Onset_T1D), Design A ranks #1, Design X ranks #2, and Design B ranks #24."
+            ),
+        },
+        "new_open_question": {
+            "id": "OQ-016",
+            "title": "Which assumptions and definition of success sit behind the four-hurdle odds estimate?",
+            "plain": (
+                "The 21% and 37% figures are rough team judgements for clearing four in-body hurdles in sequence, "
+                "assuming the edited cells work as designed and pass lab safety checks before any trial. "
+                "Moving from one design to three depends on how much the designs overlap at each hurdle, "
+                "and the estimate depends on which clinical outcome counts as success."
+            ),
+            "detail": (
+                "Raised in IIP-0003 (issue #3). Each step in the four-hurdle estimate is judged for a design still in the running "
+                "after the earlier hurdles, and the three-design figure depends on how strongly Designs A, B and X share failure modes "
+                "at each hurdle. Lab release gates (OQ-012 safety-switch escape, OQ-006 DNA rearrangements, and product-specific Gate 1 "
+                "insulin and glucagon function) sit outside the four hurdles as pre-trial pass/fail conditions, and a single clinical endpoint "
+                "(such as one-year insulin independence without anti-rejection drugs and without severe hypoglycaemia) must be fixed before "
+                "replacing starting judgements with data."
+            ),
+            "settle": (
+                "Fix one clinical definition of success, write down the per-design and shared failure assumptions at each hurdle, "
+                "and replace the starting judgements with measured pass rates as lab and preclinical results arrive."
+            ),
+            "tests": ["1", "2A", "2B", "3", "4", "5"],
+            "designs": ["A", "B", "X"],
+            "linked_iip": "IIP-0003",
+        },
+    }
+
+
 def _rank_precision_summary(a_ranks: list[int], b_ranks: list[int], scheme: str, *, max_rank: int | None = None) -> dict:
     """Finite simulation precision only; these are not clinical probabilities."""
     grid_size = math.prod(len(modules) for modules in (
@@ -5886,6 +6065,7 @@ def main() -> None:
         "ranked_candidate_architectures": ranked_architectures,
         "target_gene_evidence_and_constraint_profiles": target_profiles,
         "hip_core_fractional_factorial_protocol": hip_core_protocol,
+        "odds_composition_and_profile_scope_audit_iip_0003": _build_odds_composition_and_profile_scope_audit_iip_0003(),
         "step7_high_value_of_information_gaps": [
             {
                 "voi_id": "DECISION_EXP_1_HOUR0_B2M_PROMOTER_SURFACE_DENSITY",
@@ -5916,6 +6096,13 @@ def main() -> None:
                 "title": "Head-to-Head Dynamic Perifusion (16.7 mM -> 2.8 mM Low-Glucose Shut-Off Time & Seahorse OCR) Across Isogenic WT, RNLS-/-, G6PC2-/-, and SLC30A8 Allelic Series",
                 "why_needed": "Tests RNLS-/- under an OCR precaution; MacDonald 2025 PMID:39988068 Fig. 6 showed poor GSIS in both WT and KO and does not establish a KO-specific GSIS penalty and G6PC2-/- fasting hypoglycemia risk (Bosma 2020 PMID:32569842; Audit §7.5).",
                 "kill_criterion": "Any survival edit that delays 2.8 mM glucose insulin shut-off beyond 3 minutes or increases basal insulin leak is permanently excluded.",
+            },
+            {
+                "voi_id": "OQ_016_FOUR_HURDLE_ODDS_ASSUMPTIONS_AND_SUCCESS_ENDPOINT_IIP_0003",
+                "open_question_id": "OQ-016",
+                "title": "Which assumptions and definition of success sit behind the four-hurdle odds estimate?",
+                "why_needed": "Raised by Linus Schumacher (ORCID 0000-0003-0797-3406, GitHub @ljschumacher, University of Edinburgh) in IIP-0003 (https://github.com/openislet/openislet/issues/3). The 21% and 37% figures are rough team judgements for clearing four in-body hurdles in sequence, assuming the edited cells work as designed and pass lab safety checks before any trial. Moving from one design to three depends on how much Designs A, B and X overlap at each hurdle, and the estimate depends on which clinical outcome counts as success.",
+                "kill_criterion": "Fix one clinical definition of success, write down the per-design and shared failure assumptions at each hurdle, and replace the starting judgements with measured pass rates as lab and preclinical results arrive.",
             },
         ],
     }

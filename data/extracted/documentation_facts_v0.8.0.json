@@ -11,7 +11,7 @@
   "source_sha256": {
     "data/raw/corpus_manifest_all_sources.jsonl": "119ecbd3be2ccb79a2f38ac7feca8713ffb7c6c5e92165078e2722331b9e0536",
     "data/extracted/cross_study_discovery_graph.json": "682740bf6c1110aae34b1a597a79055d17e295cfb014d891fc28614f08a268ec",
-    "data/extracted/islet1_candidate_stack_rankings.json": "9766b41644100f685353fe7c27871c267ead2bab7cd296dc43032c2507c59c43",
+    "data/extracted/islet1_candidate_stack_rankings.json": "5919dbc28559584c94e1e72f77c5d5341c637b8c9408b00983aac9488eddb620",
     "data/protocols/hip_core_fractional_factorial_v0.6.2.json": "dde3d9266afe526a605f5452e70d1fe45ebcedf76d8d8c1c2de119f55ec3034f",
     "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "a83129c0793d6254e7eccdfc077bff424f59b0436a9d7c82681621f698a5dca9",
     "data/extracted/layer3_structural_verification_atlas.json": "e3ae03617d1d0654b985061ff276080a0a8571cfe17aaba0f826b6bb5a60abbe",

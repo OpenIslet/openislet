@@ -246,8 +246,8 @@
       "bytes": 1157
     },
     "ISLET-1-BLUEPRINT.md": {
-      "sha256": "21a6f6c0e0a890bfb80b2e6429328d1736348f8da6cdcac7fe00c8c4931a2e0e",
-      "bytes": 153817
+      "sha256": "ea2f0df9bb0da8feac73ab45d666d40510324b7058ca5b8cabcf98ecf0173423",
+      "bytes": 157701
     },
     "README.md": {
       "sha256": "e6f9b63dd29cbd69cdd53bdda42d79c98504b66c7a9025446ecc396ba60093da",
@@ -274,8 +274,8 @@
       "bytes": 20334
     },
     "docs/PROJECT-DECISIONS-LOG.md": {
-      "sha256": "3deb55f2573d76259c1d247be3493564eaf21c73fe030d8f376368ac1336aef6",
-      "bytes": 457166
+      "sha256": "78b4dc28c9866da1c97ef6014eee964771a4ab64b6bf662089c0449498382969",
+      "bytes": 461944
     },
     "docs/OPENISLET-2026-2030-MASTER-TIMELINE.md": {
       "sha256": "a8da8d81e9d5bfd96c079125fa080165ebe164005dc229202e95da09a7bb97d2",
@@ -347,12 +347,12 @@
       "local_audit_tree_sha256": "682740bf6c1110aae34b1a597a79055d17e295cfb014d891fc28614f08a268ec"
     },
     "data/extracted/islet1_candidate_stack_rankings.json": {
-      "sha256": "9766b41644100f685353fe7c27871c267ead2bab7cd296dc43032c2507c59c43",
-      "bytes": 16857411
+      "sha256": "5919dbc28559584c94e1e72f77c5d5341c637b8c9408b00983aac9488eddb620",
+      "bytes": 16866828
     },
     "data/extracted/islet1_stack_ranking_v0.5.json": {
-      "sha256": "9766b41644100f685353fe7c27871c267ead2bab7cd296dc43032c2507c59c43",
-      "bytes": 16857411
+      "sha256": "5919dbc28559584c94e1e72f77c5d5341c637b8c9408b00983aac9488eddb620",
+      "bytes": 16866828
     },
     "data/extracted/ring1_study_dossiers_v0.5.jsonl": {
       "sha256": "69e6f912bf53f0fd03558f5130bfff379a11e0425f06402f1b8aae54021ff6e1",
@@ -518,7 +518,7 @@
       "bytes": 19673
     },
     "data/extracted/documentation_facts_v0.8.0.json": {
-      "sha256": "a5d7a3de26a58fbc89cc34fb044f60e49b778bfd4151609b46c827560bdee5f2",
+      "sha256": "a6b969f85b40642d0bb479edcbf91174904528abaf61c9430a2348b52ac3cb39",
       "bytes": 1547731
     },
     "tests/test_preastra_layer1.py": {
@@ -606,8 +606,8 @@
       "bytes": 142173
     },
     "scripts/rank_islet1_stacks.py": {
-      "sha256": "d715a3547babc18d5fcbc4838b6d13603f1967617b7ec5a489ee2bf0f50cb9de",
-      "bytes": 473944
+      "sha256": "0acb8f89058d7d946624d0c4086a5392cf22f02e6cf1c826084895a8e117b4c3",
+      "bytes": 485718
     },
     "scripts/run_layer2_perturbation_and_regulatory_plane.py": {
       "sha256": "383f2c29bb73edd896f45deac20cd0932996aabd2ebaa4a61c51ff9b0ab5f476",
@@ -6088,8 +6088,8 @@
       "bytes": 40897
     },
     "tests/test_round3_supporting_boundaries.py": {
-      "sha256": "7bce2aa690a0793bab87cd0d8209bddaa623342144694f441256106212f9f9c1",
-      "bytes": 302103
+      "sha256": "0629c169b66af32dc72036b603436e2d5675201bea96c01d50473678f9cc56af",
+      "bytes": 303677
     }
   },
   "public_export_file_inventory": [

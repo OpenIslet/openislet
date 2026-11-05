@@ -4248,6 +4248,26 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     assert abs(_r9_s8_cat["layout_b_119um_source_119um_mask_k1_6p3529_s_inv_22680_iu_hour0_nz201"] - 2.0476) < 0.001
     assert abs(_r9_s8_cat["design_x_100um_source_100um_mask_k1_6p3529_s_inv_19059_iu_hour0_nz201"] - 2.4288) < 0.001
 
+    # 39. DEC-081 / IIP-0003 (Re-judged four-hurdle conditional scenario specification, score/rank measures & OQ-016):
+    from scripts import rank_islet1_stacks as ranker
+    _iip3 = ranker._build_odds_composition_and_profile_scope_audit_iip_0003()
+    assert _iip3["proposal_id"] == "IIP-0003" and _iip3["open_question_id"] == "OQ-016"
+    assert _iip3["reassessment_date"] == "2026-11-05"
+    assert "Linus Schumacher (ORCID 0000-0003-0797-3406, GitHub @ljschumacher, University of Edinburgh)" in _iip3["credit"]
+    assert len(_iip3["reassessed_hurdles"]) == 4
+    assert [h["one_design_design_a"] for h in _iip3["reassessed_hurdles"]] == [0.88, 0.78, 0.50, 0.60]
+    assert [h["three_designs_parallel"] for h in _iip3["reassessed_hurdles"]] == [0.88, 0.82, 0.72, 0.72]
+    assert abs(_iip3["multiplied_conditional_totals"]["one_design_exact"] - 0.20592) < 1e-8
+    assert abs(_iip3["multiplied_conditional_totals"]["three_designs_exact"] - 0.37407744) < 1e-8
+    assert _iip3["section3_score_and_rank_measure_reconciliation"]["rank_column_measure"] == "overall_50_50_composite_score"
+    assert _iip3["new_open_question"]["id"] == "OQ-016"
+    if _r9_rank_atlas is not None:
+        assert _r9_rank_atlas["odds_composition_and_profile_scope_audit_iip_0003"]["proposal_id"] == "IIP-0003"
+        assert any(v.get("open_question_id") == "OQ-016" for v in _r9_rank_atlas["step7_high_value_of_information_gaps"])
+    assert "IIP-0003" in _r9_s2_bp_md and "OQ-016" in _r9_s2_bp_md and "Linus Schumacher" in _r9_s2_bp_md
+    assert "(Gate 5 oxygen bridge)" in _r9_s2_bp_md
+
+
 
 
 
