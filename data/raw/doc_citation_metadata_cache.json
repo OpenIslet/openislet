@@ -1,7 +1,7 @@
 {
  "_meta": {
   "purpose": "offline snapshot for tests/test_citations_resolve.py; bibliographic facts only (first author, year, journal, title)",
-  "retrieved": "2026-11-02",
+  "retrieved": "2026-11-06",
   "source": "NCBI E-utilities esummary (db=pubmed)"
  },
  "pmids": {
@@ -1175,6 +1175,12 @@
    "pubdate_year": "2023",
    "title": "HLA class I signal peptide polymorphism determines the level of CD94/NKG2-HLA-E-mediated regulation of effector cell responses."
   },
+  "37476069": {
+   "first_author": "Chendke GS",
+   "journal": "Bioeng Transl Med",
+   "pubdate_year": "2023",
+   "title": "Replenishable prevascularized cell encapsulation devices increase graft survival and function in the subcutaneous space."
+  },
   "37703830": {
    "first_author": "Morrissey MA",
    "journal": "Immunity",
@@ -1324,6 +1330,12 @@
    "journal": "Stem Cell Res Ther",
    "pubdate_year": "2025",
    "title": "Genome editing of TXNIP in human pluripotent stem cells for the generation of hepatocyte-like cells and insulin-producing islet-like aggregates."
+  },
+  "40404627": {
+   "first_author": "Wang X",
+   "journal": "Nat Commun",
+   "pubdate_year": "2025",
+   "title": "Improving cellular fitness of human stem cell-derived islets under hypoxia."
   },
   "40514008": {
    "first_author": "Hang Y",

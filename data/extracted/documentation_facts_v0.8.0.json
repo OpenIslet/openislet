@@ -15,7 +15,7 @@
     "data/protocols/hip_core_fractional_factorial_v0.6.2.json": "dde3d9266afe526a605f5452e70d1fe45ebcedf76d8d8c1c2de119f55ec3034f",
     "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "a83129c0793d6254e7eccdfc077bff424f59b0436a9d7c82681621f698a5dca9",
     "data/extracted/layer3_structural_verification_atlas.json": "e3ae03617d1d0654b985061ff276080a0a8571cfe17aaba0f826b6bb5a60abbe",
-    "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": "7c391ff7b6774e529d71d00d2f6491999eb0c3b316bfe819358f7c20432e8dfa",
+    "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": "20ac6c7e75401dfa8cf647780b3dd3db182a5ce4ed902bf0128297ee796acc16",
     "data/extracted/layer5_personalized_patient_and_crispr_atlas.json": "ecfbe552954aaaa781896a4c0acb081e90ce2a8815bafb878ae566fd0e2dd648",
     "data/extracted/10202046.json": "b3d836e8c0fc8ed898592975e0f09c0154a0d4f887c2b6893e7c8194befd0a6a",
     "data/extracted/10728379.json": "b2efcc82101e33914aebc51e74ddc7650894d097c11841518f6e848916cae3dc",
@@ -22291,6 +22291,13 @@
         "pde_coupling_applied": false,
         "evaluation_scope": "REFERENCE_FIXED_FUNCTIONAL_BETA_IEQ_NOT_PDE_DERIVED",
         "source_pde_regime_id": null,
+        "recipient_treatment_model_scope": {
+          "insulin_source": "GRAFT_INSULIN_ONLY",
+          "supplemental_insulin_delivery_and_absorption": "NOT_MODELLED",
+          "external_glucose_infusion_and_rescue": "NOT_MODELLED",
+          "sensor_and_treatment_controller": "NOT_MODELLED",
+          "insulin_supported_staging_applicability": "NOT_ESTABLISHED_BY_THIS_SIMULATION"
+        },
         "assumed_reference_functional_fraction": 1.0,
         "peripheral_insulin_action_clearance_p2_min_inv": 0.035,
         "mean_glucose_mM": 5.71,
@@ -22343,6 +22350,13 @@
         "pde_coupling_applied": false,
         "evaluation_scope": "REFERENCE_FIXED_FUNCTIONAL_BETA_IEQ_NOT_PDE_DERIVED",
         "source_pde_regime_id": null,
+        "recipient_treatment_model_scope": {
+          "insulin_source": "GRAFT_INSULIN_ONLY",
+          "supplemental_insulin_delivery_and_absorption": "NOT_MODELLED",
+          "external_glucose_infusion_and_rescue": "NOT_MODELLED",
+          "sensor_and_treatment_controller": "NOT_MODELLED",
+          "insulin_supported_staging_applicability": "NOT_ESTABLISHED_BY_THIS_SIMULATION"
+        },
         "assumed_reference_functional_fraction": 1.0,
         "peripheral_insulin_action_clearance_p2_min_inv": 0.035,
         "mean_glucose_mM": 4.94,
@@ -22395,6 +22409,13 @@
         "pde_coupling_applied": false,
         "evaluation_scope": "REFERENCE_FIXED_FUNCTIONAL_BETA_IEQ_NOT_PDE_DERIVED",
         "source_pde_regime_id": null,
+        "recipient_treatment_model_scope": {
+          "insulin_source": "GRAFT_INSULIN_ONLY",
+          "supplemental_insulin_delivery_and_absorption": "NOT_MODELLED",
+          "external_glucose_infusion_and_rescue": "NOT_MODELLED",
+          "sensor_and_treatment_controller": "NOT_MODELLED",
+          "insulin_supported_staging_applicability": "NOT_ESTABLISHED_BY_THIS_SIMULATION"
+        },
         "assumed_reference_functional_fraction": 1.0,
         "peripheral_insulin_action_clearance_p2_min_inv": 0.035,
         "mean_glucose_mM": 3.78,

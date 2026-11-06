@@ -4055,6 +4055,30 @@ def solve_336h_spatial_pouch_pde() -> Dict[str, Any]:
         "spatial_grid_convergence_51_101_201_401_preastra_a094": grid_convergence,
         "vascular_perfusion_conductance_sensitivity_v80_014": perfusion_sensitivity,
         "joint_vascular_timing_and_exchange_sensitivity_iip_0002": joint_vascular_iip_0002,
+        "post_bridge_endocrine_function_and_recovery_protocol_iip_0004": {
+            "iip_id": "IIP-0004",
+            "decision_id": "DEC-082",
+            "title": "Measure endocrine function after the modelled oxygen bridge and during recovery",
+            "type": "Missing evidence",
+            "affects_tests": ["1", "4", "5"],
+            "affects_designs": ["A", "B", "X"],
+            "playbook_cross_reference": "docs/STAGE-0-EXECUTION-PLAYBOOK.md (Readout 2 bounded 336-hour history-and-recovery characterisation)",
+            "primary_motivation_citation": "Wang et al. 2025 PMID:40404627 (PMC12098657; motivates testing survivor endocrine function after hypoxia without treating incubator set-points as pericellular measurements)",
+            "assembled_device_loading_citation": "Chendke et al. 2023 PMID:37476069",
+            "scope_and_gate_preservation": "Bounded history-and-recovery characterisation beside Readout 2; keeps the present product, existing gates, and numerical release rules unchanged, and does not relabel the 336-hour bridge as S6's day-14-to-90 chronic supply gate.",
+            "protocol_clauses": {
+                "1_test_defended_history": "Reproduce the selected exact-product lead's modelled 336-hour pericellular oxygen trajectory (e.g., from joint_vascular_timing_and_exchange_sensitivity_iip_0002), archive its time series, compare against contemporaneous age- and handling-matched controls, state whether peroxide and pH excursions (lines 1551-1554) are reproduced, record achieved exposure, cluster-size distribution, viable-cell recovery and OCR, distinguish measured surrounding oxygen from inferred core exposure, and include the parental comparator where available.",
+                "2_independent_sibling_aliquots": "Randomise size-stratified siblings within differentiation block to baseline, 72-hour anchor, end-of-exposure, and recovery readouts (including earliest technically valid point, 48 hours, and 7 days), log actual reoxygenation-to-assay delay, predeclare and log recovery-incubation oxygen separately from brief assay oxygen, assay at Readout 2's 40 mmHg boundary-matched condition as primary, and run the conditional 100 mmHg comparison on additional sibling aliquots where diffusion limitation could contribute without waiving existing Readout 2 qualification under both oxygen conditions.",
+                "3_visible_outputs_and_denominators": "Retain raw hormone traces and absolute low/high insulin or C-peptide output, basal leak, first-phase response, stimulation index, shut-off t50 and t90 derived from the same step-down trace with distinct definitions, low-glucose glucagon, and identity/processing readouts; report total allocated endocrine cells, starting beta/alpha counts, surviving endocrine cells, and surviving lineage/marker-positive counts separately, with whole-preparation and originally-allocated-input denominators primary for dose accounting.",
+                "4_model_coupling_scope": "Report history/control ratios, uncertainty, and absolute outputs separately for insulin stimulation, basal secretion, glucagon response, and timing; do not multiply original-input recovery into viable fraction v (which already counts cell loss); note that v scales insulin, stimulated glucagon (alpha_gain also multiplies v), and—unless preserved—local paracrine terms while glucagon basal is separate, so v * S_insulin + alpha_gain * S_glucagon is not an independent two-hormone correction.",
+                "5_predeclared_confirmation_design": "Treat a small paired pilot (e.g., 3 independent differentiation blocks = 2 residual degrees of freedom for a paired block-level contrast) as establishing feasibility and rough variability rather than equivalence; plan confirmation using a predeclared margin and conservative paired variability bound without reusing existing SI or 72-hour identity-retention thresholds as day-14 absolute-output non-inferiority margins.",
+            },
+            "paired_completion_clauses": {
+                "supplied_area_and_assembled_device_qualification": "Report nominal tissue-bearing area (200 cm^2 at 2,500 IEQ/cm^2; 333.33 cm^2 at S6 low-load 1,500 IEQ/cm^2 for 500,000 IEQ) and oxygen-supported area separately under one conserved supply-and-demand budget, retaining demand from all loaded tissue including uncredited regions, using S6's >= 15 mmHg surface and >= 5 mmHg core criteria for chronic S6, binding vascular access to the loaded and closed state (Chendke et al. 2023 PMID:37476069), and comparing any folded/corrugated capacity advantage against a matched separated reference at equal product, dose, and total supply.",
+                "treatment_state_applicability": "Record each functional-dose result as graft-only simulation, externally maintained clamp, or insulin-supported treatment state (including tested dose, site, lag, and concurrent treatment inputs), and do not use a graft-only trajectory to certify a treatment state it does not represent.",
+                "implantation_state_oxygen_release_material": "Bind coupon-derived kinetic parameters, remaining releasable inventory, peroxide/pH state, and material geometry to the material as implanted after storage, wetting, loading, and handling; replay preimplant history or initialise its measured residual state once (for the reaction-controlled shrinking-core law, a 68.0 h initial half-life after 24.0 h gives residual stock 0.797084 and residual half-life 63.0488 h, not 44 h, and crossing its 10 h branch requires ~281.145 h).",
+            },
+        },
         "shrinking_core_coupled_bvp_safety_comparison_ultracode_v80_09": {
             "calibration_note": (
                 f"First-order and shrinking-core laws share {results[2]['cao2_initial_molar_inventory_mmol']:.3f} mmol "
@@ -4622,6 +4646,13 @@ def solve_24h_paracrine_and_whole_body_metabolic_ode(
             "pde_coupling_applied": source_pde_regime_id is not None,
             "evaluation_scope": ("MATCHED_PDE_VIABLE_MASS" if source_pde_regime_id is not None else "REFERENCE_FIXED_FUNCTIONAL_BETA_IEQ_NOT_PDE_DERIVED"),
             "source_pde_regime_id": source_pde_regime_id,
+            "recipient_treatment_model_scope": {
+                "insulin_source": "GRAFT_INSULIN_ONLY",
+                "supplemental_insulin_delivery_and_absorption": "NOT_MODELLED",
+                "external_glucose_infusion_and_rescue": "NOT_MODELLED",
+                "sensor_and_treatment_controller": "NOT_MODELLED",
+                "insulin_supported_staging_applicability": "NOT_ESTABLISHED_BY_THIS_SIMULATION",
+            },
             **({"viable_endocrine_fraction_coupled": round(viable_endocrine_fraction, 4)} if source_pde_regime_id is not None
                else {"assumed_reference_functional_fraction": round(viable_endocrine_fraction, 4)}),
             "peripheral_insulin_action_clearance_p2_min_inv": k_x_decay_shared,
@@ -5421,7 +5452,7 @@ def solve_24h_paracrine_and_whole_body_metabolic_ode(
                             "mechanistic_site_selection_conclusion": (
                                 "Subcutaneous systemic-venous drainage (f_sys_ins = 1.35, f_hep_gcg = 0.55) bypasses 50-60% hepatic first-pass insulin extraction "
                                 "and dilutes graft glucagon across systemic venous return before reaching the liver, plunging exercise min_G to 2.2928-2.8198 mM in the 9-state co-lagged sweep above (2.8304 mM at v=0.60, T_ins=5.17 min, tau_clear=7.1429 min and 2.6014 mM at alpha_gain=0.80, tau_clear=8.0 min in the 13-state hepatic/peripheral split; 2.25-2.67 mM under extended clearance/lag; all < 3.00 mM Level-2 hypoglycemia); "
-                                "this provides quantitative physiological proof that the subcutaneous forearm pouch must be restricted to the low-dose 50,000 IEQ Stage-4A sentinel graft "
+                                "this provides conditional model evidence under the stated assumptions that the subcutaneous forearm pouch must be restricted to the low-dose 50,000 IEQ Stage-4A sentinel graft "
                                 "while the portal-draining omental pouch (f_sys_ins = 1.00, f_hep_gcg = 1.00; min_G >= 3.09-3.36 mM > 3.00 mM at t50 <= 4.34 min [T_ins = 5.17 min: 3.0856 mM co-lagged / 3.1796 mM insulin-only at v=0.60, 3.3563 mM at v=1.00], and >= 3.5207 mM at t50 <= 3.36 min [T_ins = 4.00 min] for v=1.00 [833,333 total IEQ / 500,000 beta-eq IEQ], whereas v=0.60 [500,000 total IEQ / 300,000 beta-eq IEQ] gives 3.2571 mM at t50 = 3.36 min and requires V3 T_ins <= 2.3317 min [t50 <= 1.96 min, giving 3.5625 mM at T_ins = 2.00 min] or staged two-cassette dosing to clear >= 3.50 mM; DEC-078) "
                                 "is required for full-dose (500,000 IEQ) metabolic replacement (AUDIT-REF & L4B-F01 [DEC-078])."
                             ),
@@ -5735,9 +5766,9 @@ def solve_24h_paracrine_and_whole_body_metabolic_ode(
                         "mandatory_joint_staged_dose_and_lag_clearance_rule": (
                             "In the 13-state bidirectional hormone-transport exercise challenge (v = 0.60, adult alpha/UCN3, portal_partitions = 1), "
                             "portal venous drainage with tau_clear = 12 min and 5.17 min insulin lag yields min_G = 2.7160 mM (3.0722 mM at tau_clear = 8 min; "
-                            "2.8721 mM at T_ins = 4.0 min, tau = 12 min; 3.1506 mM at T_ins = 2.0 min, tau = 12 min), proving that portal drainage + tau_clear <= 12 min "
+                            "2.8721 mM at T_ins = 4.0 min, tau = 12 min; 3.1506 mM at T_ins = 2.0 min, tau = 12 min), showing in this simulation that portal drainage + tau_clear <= 12 min "
                             "alone does not guarantee the 3.50 mM exercise floor at full 300k beta-eq IEQ load; high-exercise/slow-clearance recipients therefore require "
-                            "staged modular functional dose titration (initial single 100 cm^2 sentinel cassette loaded with 150,000 total IEQ = 90,000 beta-eq IEQ [30% of the 500,000 total / 300,000 beta-eq full dose, v = 0.18 per cassette; 50% of a two-cassette 300,000-total-IEQ v = 0.36 intermediate load] + Day-28 clamp-verified step-up; in the live 13-state portal ODE at tau_clear = 8.0 min and T_ins = 5.17 min, v = 0.18 yields exercise min_G = 4.6372 mM [4.6361 mM at matched G(0) = 5.10 mM], v = 0.36 yields 3.3217 mM [3.3238 mM at matched G(0) = 5.10 mM, already below 3.50 mM at tau_clear = 8.0 min], and v = 0.60 yields 3.0722 mM, giving an empirical additive full-dose drop of 1.5639-1.5650 mM [projected clamp baseline 5.0639-5.0650 mM to remain >= 3.50 mM at v = 0.60 without lag reduction], with >= 3.90 mM as the conservative normoglycemic single-cassette release floor) jointly constrained by device lag T_ins and recipient tau_clear (AUDIT-REF, L4B-GAP3-F1 & R9S8-L4B-01 [DEC-052/DEC-078/DEC-080])."
+                            "staged modular functional dose titration (initial single 100 cm^2 sentinel cassette loaded with 150,000 total IEQ = 90,000 beta-eq IEQ [30% of the 500,000 total / 300,000 beta-eq full dose, v = 0.18 per cassette; 50% of a two-cassette 300,000-total-IEQ v = 0.36 intermediate load] + Day-28 clamp-verified step-up; in the live 13-state portal ODE at tau_clear = 8.0 min and T_ins = 5.17 min, v = 0.18 yields exercise min_G = 4.6372 mM [4.6361 mM at matched G(0) = 5.10 mM], v = 0.36 yields 3.3217 mM [3.3238 mM at matched G(0) = 5.10 mM, already below 3.50 mM at tau_clear = 8.0 min], and v = 0.60 yields 3.0722 mM, giving a simulated additive full-dose drop of 1.5639-1.5650 mM [projected clamp baseline 5.0639-5.0650 mM to remain >= 3.50 mM at v = 0.60 without lag reduction], with >= 3.90 mM as the conservative normoglycemic single-cassette release floor) jointly constrained by device lag T_ins and recipient tau_clear (AUDIT-REF, L4B-GAP3-F1 & R9S8-L4B-01 [DEC-052/DEC-078/DEC-080])."
                         ),
                         "coupled_13state_portal_vs_subcutaneous_immaturity_and_lag_audit_sonnet55_r9": (lambda: {
                             "finding_ids": ["L4B-F01", "L4B-F03", "GAP-L4A-3-F1", "GAP-L4A-3-F2", "R9S8-L4B-01"],
@@ -5939,7 +5970,7 @@ def solve_24h_paracrine_and_whole_body_metabolic_ode(
                             "two 100 cm^2 cassettes provide 300,000 total IEQ / 180,000 beta-eq IEQ [v = 0.36, so the first cassette is 50% of the two-cassette intermediate step], whereas full 500,000 total IEQ at 1,500 IEQ/cm^2 requires 333.33 cm^2 [e.g., two 166.67 cm^2 pouches or three 111.11 cm^2 cassettes]). "
                             "In the live 13-state portal-drainage ODE at tau_clear = 8.0 min and T_ins = 5.17 min (preserved local paracrine scaling), v = 0.18 (150k total IEQ) gives exercise min_G = 4.6372 mM (4.637162 mM at default G(0) = 15.02 mM; 4.6361 mM [4.636082 mM] at matched G(0) = 5.10 mM; 3.5296 mM if local paracrine signals scale down with v), "
                             "v = 0.36 (300k total IEQ) gives min_G = 3.3217 mM (3.321672 mM at default G(0) = 12.84 mM; 3.3238 mM [3.323800 mM] at matched G(0) = 5.10 mM, already crossing below 3.50 mM at tau_clear = 8.0 min), and v = 0.60 (500k total IEQ) gives 3.0722 mM (3.072152 mM). "
-                            "Thus 3.90 mM is the necessary normoglycemic single-cassette floor, the simulated v = 0.18 nadir itself is 4.6372 mM (~4.64 mM), and the empirical nonlinear nadir drop from v = 0.18 to v = 0.60 at tau_clear = 8.0 min is 1.5639-1.5650 mM (requiring an additive baseline of 3.50 + 1.5639 = 5.0639 mM if extrapolated additively, or qualifying V3 T_ins <= 2.33 min / empirical post-step-up exercise clamp verification; R9S8-L4B-01 [DEC-080])."
+                            "Thus 3.90 mM is the necessary normoglycemic single-cassette floor, the simulated v = 0.18 nadir itself is 4.6372 mM (~4.64 mM), and the simulated nonlinear nadir drop from v = 0.18 to v = 0.60 at tau_clear = 8.0 min is 1.5639-1.5650 mM (requiring an additive baseline of 3.50 + 1.5639 = 5.0639 mM if extrapolated additively, or qualifying V3 T_ins <= 2.33 min / empirical post-step-up exercise clamp verification; R9S8-L4B-01 [DEC-080])."
                         ),
                         "wt_iapp_pouch_accumulation_and_pramlintide_lead_promotion_rule_muse_r6": {
                             "finding_id": "MW-R6-S1-13",
@@ -5968,6 +5999,15 @@ def main() -> None:
             "with verified islet oxygen transport and macroencapsulation biotransport studies: Papas et al. 2007 PMID:17497731, "
             "Evron et al. 2018 Sci Rep PMID:29695723, and Pedraza et al. 2012 PNAS PMID:22371586 (AUDIT-REF [DEC-050/DEC-078])."
         ),
+        # Oxygen-demand basis reconciliation (three distinct, non-interchangeable bases in this file):
+        # (i) Pure-islet Vmax basis: 500,000 IEQ x 1.7671e-6 cm^3/IEQ x 34 nmol/cm^3/s = 1.802 umol/min.
+        # (ii) Local-film peak basis (periimplant_stagnant_fluid_film_transport_limit below):
+        #      q_face = 1.125e-10 mol/cm^2/s at 2,500 IEQ/cm^2 over two faces of 200 cm^2 = 2.70 umol/min
+        #      (equivalently 6.75e-11 at 1,500 IEQ/cm^2 over two faces of 333.33 cm^2).
+        # (iii) Whole-bed macro-flow peak basis (this dict): 0.153 mL STP/min = 6.83 umol/min, matched by
+        #      6.21 mL/min x 1.10 mM arteriovenous extraction = 6.831 umol/min (2.53x basis (ii)).
+        # Bases (ii) and (iii) are different assumed demand states (local film peak vs safety-scaled whole-bed
+        # peak); map both to the same measured lot/state before combining them in one capacity claim.
         "macroscopic_bed_convective_o2_budget_500k_ieq": {
             "total_graft_o2_consumption_mol_min_range": [1.65e-6, 2.75e-6],
             "total_graft_o2_consumption_ml_stp_min_range": [0.037, 0.062],
