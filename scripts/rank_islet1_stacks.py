@@ -5733,13 +5733,33 @@ def main() -> None:
                 },
             },
             "endogenous_5tm_cd47_tsp1_axis_and_ectodomain_protease_shedding_gate0a_audit_astra6_r4": {
-                "primary_citations": ["PMID:40133488", "PMID:37820008", "PMID:38508139", "PMID:29345283"],
+                "primary_citations": ["PMID:40133488", "PMID:37820008", "PMID:38508139", "PMID:29345283", "PMID:39508879", "PMID:30951669"],
                 "gate_0a_tsp1_and_protease_shedding_panel": (
                     "Propagates Layer 3 endogenous 5-TM CD47 TSP-1 sensitivity (Ghimire et al. 2023 PMID:37820008; Kale et al. 2025 PMID:40133488; Xu et al. 2024 PMID:38508139) "
                     "and inflammatory protease ectodomain shedding (Hira-Miyazawa et al. 2018 PMID:29345283) directly into the Stage-0 protocol: "
                     "(1) Decision Experiment #5 adds a recombinant human TSP-1 (1-5 ug/mL) perifusion challenge and an exploratory endogenous CD47 5-TM KO + pure CD47-IgV-GPI replacement satellite arm; "
                     "(2) Gate 0A-surface / Gate 0C-kinetic adds a 4-h neutrophil elastase (100 nM) + recombinant MMP-7/MMP-9/MMP-13 challenge requiring >= 80% surface epitope retention by QuantiBRITE flow and < 10% soluble sPD-L1/sCD47 decoy accumulation by ELISA (AUDIT-REF & AUDIT-REF)."
                 ),
+                "cell_free_product_effluent_pdl1_functional_screen_iip_0005": {
+                    "iip_id": "IIP-0005",
+                    "decision_id": "DEC-083",
+                    "affects_tests": ["Gate_2B", "Gate_4"],
+                    "affects_designs": ["Design_A", "Design_B", "Design_X"],
+                    "primary_citations": ["PMID:39508879", "PMID:30951669", "PMID:29345283"],
+                    "related_graveyard_rules": ["GY-008", "GY-001", "GY-010"],
+                    "scope_and_non_conflation_note": (
+                        "Supplements post-protease soluble sPD-L1/sCD47 abundance ELISA (Hira-Miyazawa et al. 2018 PMID:29345283) and Gate 0d graft-antigen/exosome recipient-APC assays "
+                        "with a staged, bounded screen of minimally processed cell-free medium conditioned by the product's cells (distinct from Readout 5 CaO2 hydrolysis effluent) on an independently stimulated PD-1-responsive assay "
+                        "(Rao et al. 2025 PMID:39508879; Poggio et al. 2019 PMID:30951669). Leaves all construct sequences, ranking weights, Stage-0 COMPLETE/PASS rules, and acceptable shedding percentages unchanged."
+                    ),
+                    "staged_protocol_clauses": [
+                        "1. Dedicated post-washout conditioned-medium harvest from the materialised lead and a named matched parental or package-minus comparator under resting and one planned inflammatory condition, documenting viable input, conditioning time/volume, and maintained product PD-L1 state without reusing protease-challenge supernatant or antigen lysate.",
+                        "2. Minimally processed cell-free effluent with a verified cell-free collection boundary and qualified clarification/filtration and matrix recovery for biologically relevant carrier forms so a fixed 0.45-um filter does not silently remove membrane/vesicle carriers.",
+                        "3. One validated independently stimulated PD-1-responsive assay with stimulation/medium controls, matched control effluent, responder viability, active anti-PD-L1 blockade vs isotype (measured in blanks, control effluent, and lead effluent), and a form-relevant functional positive reference recovered through the actual processing train, reported as functional effects with uncertainty across independent preparations rather than inferred ng/mL PD-L1 equivalents.",
+                        "4. Inflammatory cytokine carryover quantification and lot-matched cytokine-spiked unconditioned blanks (plus neutralisation or source/receiver controls where needed), reporting anti-PD-L1 rescue as PD-L1-pathway-dependent activity until receiver/accessory-cell PD-L1 induction and product-side source attribution are resolved.",
+                        "5. Staged follow-up rule: a reproducible, source-attributed positive directs one decision-limiting follow-up (primary-human responder, carrier attribution, or extra-graft concentration-time bound); a sensitive controlled negative deprioritises further work within the tested product, state, processing method, and exposure bound; failed recovery, insensitive responder, carryover, or induction decay remains unresolved and triggers targeted calibration."
+                    ],
+                },
             },
             "dealiasing_note": dalg["dealiasing_note"],
         },

@@ -1,7 +1,7 @@
 {
  "_meta": {
   "purpose": "offline snapshot for tests/test_citations_resolve.py; bibliographic facts only (first author, year, journal, title)",
-  "retrieved": "2026-11-06",
+  "retrieved": "2026-11-07",
   "source": "NCBI E-utilities esummary (db=pubmed)"
  },
  "pmids": {
@@ -875,6 +875,12 @@
    "pubdate_year": "2019",
    "title": "Precise Gene Editing Preserves Hematopoietic Stem Cell Function following Transient p53-Mediated DNA Damage Response."
   },
+  "30951669": {
+   "first_author": "Poggio M",
+   "journal": "Cell",
+   "pubdate_year": "2019",
+   "title": "Suppression of Exosomal PD-L1 Induces Systemic Anti-tumor Immunity and Memory."
+  },
   "30952982": {
    "first_author": "Yao H",
    "journal": "Nat Biomed Eng",
@@ -1282,6 +1288,12 @@
    "journal": "Acta Crystallogr F Struct Biol Commun",
    "pubdate_year": "2024",
    "title": "Crystallization and crystallographic studies of human serine protease inhibitor (serpin) B9."
+  },
+  "39508879": {
+   "first_author": "Rao C",
+   "journal": "Diabetologia",
+   "pubdate_year": "2025",
+   "title": "Beta cell extracellular vesicle PD-L1 as a novel regulator of CD8(+) T cell activity and biomarker during the evolution of type 1 diabetes."
   },
   "39529170": {
    "first_author": "Wu L",

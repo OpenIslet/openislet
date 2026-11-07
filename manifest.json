@@ -246,8 +246,8 @@
       "bytes": 1157
     },
     "ISLET-1-BLUEPRINT.md": {
-      "sha256": "a612f5a09e66a9f8ab280981769bd7df54ba889d76804de22303be859bef0207",
-      "bytes": 160547
+      "sha256": "b95a71266f8751878d246e52bc1a9a310edec3e28b7afa4bb2c9fe0bee46985f",
+      "bytes": 161964
     },
     "README.md": {
       "sha256": "e6f9b63dd29cbd69cdd53bdda42d79c98504b66c7a9025446ecc396ba60093da",
@@ -274,16 +274,16 @@
       "bytes": 20334
     },
     "docs/PROJECT-DECISIONS-LOG.md": {
-      "sha256": "e7c2a97d9538506705ae7fd26499fa0b57ae1732408394a0ec0bc27c4f0796ee",
-      "bytes": 467306
+      "sha256": "a0eb2b03afa32aed7f5cdbd419fec34a41a35dc9ea8344678a93fcdbc8caf53b",
+      "bytes": 471161
     },
     "docs/OPENISLET-2026-2030-MASTER-TIMELINE.md": {
       "sha256": "a8da8d81e9d5bfd96c079125fa080165ebe164005dc229202e95da09a7bb97d2",
       "bytes": 32408
     },
     "docs/STAGE-0-EXECUTION-PLAYBOOK.md": {
-      "sha256": "14639db4081f7d10b1f7a97c986573fcb32d8223eb786a11502669fd68d08b78",
-      "bytes": 91538
+      "sha256": "d4a1198366c0de0b076bcbce1fdda53895d2b464abeac7d05b249a976c224a30",
+      "bytes": 96668
     },
     "data/raw/corpus_manifest_all_sources.jsonl": {
       "sha256": "119ecbd3be2ccb79a2f38ac7feca8713ffb7c6c5e92165078e2722331b9e0536",
@@ -298,8 +298,8 @@
       "bytes": 11990
     },
     "data/raw/doc_citation_metadata_cache.json": {
-      "sha256": "cdf299eae0e6744ff44ddacd38de664f9858e8bfbddd21cfcb4b52126f47712a",
-      "bytes": 59319
+      "sha256": "46ce663ef0799a17142b3b8b061bf1e8c1af9dae2360690f522d1f3de074e8e3",
+      "bytes": 59773
     },
     "data/raw/layer2_genomic_and_jaspar_reference.json": {
       "sha256": "cefd7f2c529aa70e373a6d472ade0f5a8e1ebbf5a50d0f4117a1a47af6f77259",
@@ -347,12 +347,12 @@
       "local_audit_tree_sha256": "682740bf6c1110aae34b1a597a79055d17e295cfb014d891fc28614f08a268ec"
     },
     "data/extracted/islet1_candidate_stack_rankings.json": {
-      "sha256": "5919dbc28559584c94e1e72f77c5d5341c637b8c9408b00983aac9488eddb620",
-      "bytes": 16866828
+      "sha256": "97cd58118db4052bad282f58f7704274feaf0e2e0d6cf195518edfda75352218",
+      "bytes": 16870070
     },
     "data/extracted/islet1_stack_ranking_v0.5.json": {
-      "sha256": "5919dbc28559584c94e1e72f77c5d5341c637b8c9408b00983aac9488eddb620",
-      "bytes": 16866828
+      "sha256": "97cd58118db4052bad282f58f7704274feaf0e2e0d6cf195518edfda75352218",
+      "bytes": 16870070
     },
     "data/extracted/ring1_study_dossiers_v0.5.jsonl": {
       "sha256": "69e6f912bf53f0fd03558f5130bfff379a11e0425f06402f1b8aae54021ff6e1",
@@ -394,8 +394,8 @@
       "bytes": 24449
     },
     "data/protocols/hip_core_fractional_factorial_v0.6.2.json": {
-      "sha256": "dde3d9266afe526a605f5452e70d1fe45ebcedf76d8d8c1c2de119f55ec3034f",
-      "bytes": 243193
+      "sha256": "7e0c9bd42f936defb0c27a8e234cc11417273355308ab81eecf1d82fbd549fde",
+      "bytes": 246369
     },
     "data/structures/AF-P10144-F1-metadata.json": {
       "sha256": "a3aa9f96665877f90a573a938c6a8edae6fc9661a206efdff0f0a1d09bc83264",
@@ -518,8 +518,8 @@
       "bytes": 19673
     },
     "data/extracted/documentation_facts_v0.8.0.json": {
-      "sha256": "447c11ada9a6a19f6fd2bc260c7418749f161948e75af3c2bf694c5ce9fe4aea",
-      "bytes": 1548922
+      "sha256": "0cb1ab7774a4c3f2746827d6baa1308f69e60d20f2142f943ea94e9d4f1665ce",
+      "bytes": 1552230
     },
     "tests/test_preastra_layer1.py": {
       "sha256": "22003c36465438faacdaf2630f01d3b902a72556957cf0113775b1303ec79739",
@@ -606,8 +606,8 @@
       "bytes": 142173
     },
     "scripts/rank_islet1_stacks.py": {
-      "sha256": "0acb8f89058d7d946624d0c4086a5392cf22f02e6cf1c826084895a8e117b4c3",
-      "bytes": 485718
+      "sha256": "3853de723686d600c1c0ec1fa5657e3ea24dc7805250aad34c82d7290818dd01",
+      "bytes": 489029
     },
     "scripts/run_layer2_perturbation_and_regulatory_plane.py": {
       "sha256": "383f2c29bb73edd896f45deac20cd0932996aabd2ebaa4a61c51ff9b0ab5f476",
