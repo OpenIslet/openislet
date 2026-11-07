@@ -11,11 +11,11 @@
   "source_sha256": {
     "data/raw/corpus_manifest_all_sources.jsonl": "119ecbd3be2ccb79a2f38ac7feca8713ffb7c6c5e92165078e2722331b9e0536",
     "data/extracted/cross_study_discovery_graph.json": "682740bf6c1110aae34b1a597a79055d17e295cfb014d891fc28614f08a268ec",
-    "data/extracted/islet1_candidate_stack_rankings.json": "97cd58118db4052bad282f58f7704274feaf0e2e0d6cf195518edfda75352218",
-    "data/protocols/hip_core_fractional_factorial_v0.6.2.json": "7e0c9bd42f936defb0c27a8e234cc11417273355308ab81eecf1d82fbd549fde",
+    "data/extracted/islet1_candidate_stack_rankings.json": "57fdefeb8790d4a9276f452ee50b093b549492ffd1c28cabb7993e5a41302fb6",
+    "data/protocols/hip_core_fractional_factorial_v0.6.2.json": "7ac6a1446788bfdc96ff946d52ebc1c6daf4002847615b66548a4554e145f97a",
     "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "a83129c0793d6254e7eccdfc077bff424f59b0436a9d7c82681621f698a5dca9",
     "data/extracted/layer3_structural_verification_atlas.json": "e3ae03617d1d0654b985061ff276080a0a8571cfe17aaba0f826b6bb5a60abbe",
-    "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": "20ac6c7e75401dfa8cf647780b3dd3db182a5ce4ed902bf0128297ee796acc16",
+    "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": "2cde0e8a3ed5c5c90306dbf95d405623b9ecb54b13109b661bb891ee0db473b0",
     "data/extracted/layer5_personalized_patient_and_crispr_atlas.json": "ecfbe552954aaaa781896a4c0acb081e90ce2a8815bafb878ae566fd0e2dd648",
     "data/extracted/10202046.json": "b3d836e8c0fc8ed898592975e0f09c0154a0d4f887c2b6893e7c8194befd0a6a",
     "data/extracted/10728379.json": "b2efcc82101e33914aebc51e74ddc7650894d097c11841518f6e848916cae3dc",
@@ -4878,6 +4878,60 @@
             "conditional_lead_promotion_rule": "Stage-0 Gate 0E-amyloid runs a 7-to-14-day confined high-glucose (16.7 mM) + exogenous preformed WT human IAPP fibril-seeding challenge in the 350-um hydrogel coupon; if WT IAPP exhibits Thioflavin-T (ThT) amyloid area > 1.0% (> 2.0x baseline), A11 toxic oligomer positivity, macrophage NLRP3 IL-1beta release (> 50 pg/mL), or > 3-5% beta-cell caspase-3/apoptosis, non-amyloidogenic pramlintide-like IAPP(A25P/S28P/S29P) (product candidate ISLET1_A4_IAPP_PRAM / satellite coupon ER_IAPP_PRAMLINTIDE_RNLS_WT, K=0 DSBs, B=1 base edit) is promoted via sequential DSB-free base editing (or paired only with DSB-only K<=4 stacks so simultaneous base-editor burden remains B<=1 and avoids the GRAVEYARD_006 B>=2 WARN engineering-complexity discount rule; DEC-054/057/058)."
           }
         }
+      },
+      "bounded_intermediate_endocrine_mixture_comparison_substudy_iip_0006": {
+        "iip_id": "IIP-0006",
+        "decision_id": "DEC-084",
+        "affects_tests": [
+          "Gate_1",
+          "Gate_5"
+        ],
+        "affects_designs": [
+          "Design_A",
+          "Design_B",
+          "Design_X"
+        ],
+        "primary_citations": [
+          "PMID:39169271",
+          "PMID:40782792",
+          "PMID:31068696"
+        ],
+        "related_graveyard_rules": [
+          "GY-003",
+          "GY-004",
+          "GY-007",
+          "GY-005",
+          "GY-009"
+        ],
+        "reference_recipe_retained": "R = 60:30:10 (beta:alpha:delta)",
+        "candidate_recipes_beta_alpha_delta": {
+          "M1": "70:20:10",
+          "M2": "70:25:5",
+          "M3": "80:15:5",
+          "M4": "80:10:10",
+          "lower_perturbation_screen_priorities": [
+            "M1",
+            "M2"
+          ]
+        },
+        "nominal_allocation_illustration_4_blocks_at_1p60M_viable_post_aggregation_cells_per_1000_ieq": {
+          "four_candidates_fixed_total_cells_millions": 25.6,
+          "four_candidates_plus_common_reference_fixed_total_cells_millions": 32.0,
+          "deferred_four_candidate_fixed_beta_arms_cells_millions": 20.57,
+          "four_candidates_fixed_total_plus_fixed_beta_cells_millions": 46.17,
+          "total_including_common_reference_and_fixed_beta_cells_millions": 52.57,
+          "candidate_only_allocation_reduction_pct_by_deferring_fixed_beta": 44.55,
+          "reference_inclusive_allocation_reduction_pct_by_deferring_fixed_beta": 39.13,
+          "note": "Nominal allocation illustration assuming stated beta fractions are achieved before beta-only controls, assay allocation, and process losses; recalculate actual cell budget from measured composition and recovery. Not a power analysis."
+        },
+        "scope_and_non_conflation_note": "Supplements the 60:30:10 reference and fixed-beta / fixed-total beta-only boundary controls (ISLET-1-BLUEPRINT.md:244-246) with a bounded, staged intermediate-mixture comparison motivated by Perez-Frances et al. 2024 PMID:39169271 (human primary beta-cell pseudoislets in vitro GSIS/OCR in Figure 7 and adult-mouse in vivo regulation) and counter-balanced by Meng et al. 2025 PMID:40782792 (reconstructed endocrine-subtype-complete human PSC-islets). Changes neither the 60:30:10 reference recipe nor any existing dynamic-function gate (scripts/wetlab_contract.py:1855-1867) or release threshold.",
+        "staged_protocol_clauses": [
+          "1. Screen at fixed total input first: use blocked, randomised sibling preparations of R=60:30:10 and M1=70:20:10, M2=70:25:5, M3=80:15:5, M4=80:10:10 (M1/M2 lower-perturbation priorities if capacity-limited) with existing beta-only boundary controls; keep assigned recipe primary while directly measuring input-stream purity (up to 80% live beta enrichment in Veres et al. 2019 PMID:31068696 is an enrichment step, not measured purity or a universal ceiling), achieved composition, post-handling recovery, aggregate size/volume, and process losses.",
+          "2. Measure whole-preparation function and burden: under the same declared glucose/oxygen waveform, retain raw traces, incremental insulin/C-peptide output U, absolute low-glucose glucagon output G, basal secretion, stimulation/first-phase measures, both t50 and t90 shut-off, and identity/processing readouts (per preparation and per starting/surviving beta and alpha populations), alongside total tissue volume V, state-qualified oxygen consumption Q, and starting-cell/process burden H.",
+          "3. Select once; confirm independently: advance at most one candidate from the blocked screen on the measured functional/burden trade-off and confirm on new independent differentiation blocks at fixed viable-beta input and at a directly measured equal-output dose (verified on new preparations, not inferred from beta fraction, SI, or the selected screen), without multiplying mixture dose savings by unqualified folded-area credit.",
+          "4. Predeclare the decision before confirmation: state the binding problem, material benefit, and functional precision required to change the recipe; retain existing dynamic gates and 60:30:10 if a justified functional margin is unavailable rather than treating an imprecise non-significant difference as equivalence.",
+          "5. Keep model predictions subordinate to their calibration: Layer 4 recipe fractions (scripts/run_layer4_tissue_and_metabolic_twin.py:4220-4222,4643-4645) are recorded metadata that do not scale the ODE right-hand side as lineage masses, so modelled exercise nadirs and per-alpha glucagon multipliers (~1.3x to 4x across M1-M4 and paracrine-scaling variants at equal beta mass) remain sensitivity analyses rather than mandatory recipe-advancement gates."
+        ]
       },
       "primary_readouts": [
         "Stage 0->7 Absolute Endocrine Yield & Lineage Purity: Absolute monohormonal NKX6-1+/C-peptide+ beta-cell yield per 10^6 starting hPSCs, % GCG+ alpha, % SST+ delta, % SLC18A1+ off-target enterochromaffin cells (<5% release gate after FACS re-aggregation into <=120 um 60:30:10 spheroids), and batch differentiation failure rate across constitutive TYK2-/- vs TYK2+/+ vs Stage 6/7 TYK2i (Chandra et al. 2022 PMID:36289205 ~32% INS+ reduction gate; Gate 1)",

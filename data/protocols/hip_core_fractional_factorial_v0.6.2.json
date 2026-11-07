@@ -2623,6 +2623,60 @@
       }
     }
   },
+  "bounded_intermediate_endocrine_mixture_comparison_substudy_iip_0006": {
+    "iip_id": "IIP-0006",
+    "decision_id": "DEC-084",
+    "affects_tests": [
+      "Gate_1",
+      "Gate_5"
+    ],
+    "affects_designs": [
+      "Design_A",
+      "Design_B",
+      "Design_X"
+    ],
+    "primary_citations": [
+      "PMID:39169271",
+      "PMID:40782792",
+      "PMID:31068696"
+    ],
+    "related_graveyard_rules": [
+      "GY-003",
+      "GY-004",
+      "GY-007",
+      "GY-005",
+      "GY-009"
+    ],
+    "reference_recipe_retained": "R = 60:30:10 (beta:alpha:delta)",
+    "candidate_recipes_beta_alpha_delta": {
+      "M1": "70:20:10",
+      "M2": "70:25:5",
+      "M3": "80:15:5",
+      "M4": "80:10:10",
+      "lower_perturbation_screen_priorities": [
+        "M1",
+        "M2"
+      ]
+    },
+    "nominal_allocation_illustration_4_blocks_at_1p60M_viable_post_aggregation_cells_per_1000_ieq": {
+      "four_candidates_fixed_total_cells_millions": 25.6,
+      "four_candidates_plus_common_reference_fixed_total_cells_millions": 32.0,
+      "deferred_four_candidate_fixed_beta_arms_cells_millions": 20.57,
+      "four_candidates_fixed_total_plus_fixed_beta_cells_millions": 46.17,
+      "total_including_common_reference_and_fixed_beta_cells_millions": 52.57,
+      "candidate_only_allocation_reduction_pct_by_deferring_fixed_beta": 44.55,
+      "reference_inclusive_allocation_reduction_pct_by_deferring_fixed_beta": 39.13,
+      "note": "Nominal allocation illustration assuming stated beta fractions are achieved before beta-only controls, assay allocation, and process losses; recalculate actual cell budget from measured composition and recovery. Not a power analysis."
+    },
+    "scope_and_non_conflation_note": "Supplements the 60:30:10 reference and fixed-beta / fixed-total beta-only boundary controls (ISLET-1-BLUEPRINT.md:244-246) with a bounded, staged intermediate-mixture comparison motivated by Perez-Frances et al. 2024 PMID:39169271 (human primary beta-cell pseudoislets in vitro GSIS/OCR in Figure 7 and adult-mouse in vivo regulation) and counter-balanced by Meng et al. 2025 PMID:40782792 (reconstructed endocrine-subtype-complete human PSC-islets). Changes neither the 60:30:10 reference recipe nor any existing dynamic-function gate (scripts/wetlab_contract.py:1855-1867) or release threshold.",
+    "staged_protocol_clauses": [
+      "1. Screen at fixed total input first: use blocked, randomised sibling preparations of R=60:30:10 and M1=70:20:10, M2=70:25:5, M3=80:15:5, M4=80:10:10 (M1/M2 lower-perturbation priorities if capacity-limited) with existing beta-only boundary controls; keep assigned recipe primary while directly measuring input-stream purity (up to 80% live beta enrichment in Veres et al. 2019 PMID:31068696 is an enrichment step, not measured purity or a universal ceiling), achieved composition, post-handling recovery, aggregate size/volume, and process losses.",
+      "2. Measure whole-preparation function and burden: under the same declared glucose/oxygen waveform, retain raw traces, incremental insulin/C-peptide output U, absolute low-glucose glucagon output G, basal secretion, stimulation/first-phase measures, both t50 and t90 shut-off, and identity/processing readouts (per preparation and per starting/surviving beta and alpha populations), alongside total tissue volume V, state-qualified oxygen consumption Q, and starting-cell/process burden H.",
+      "3. Select once; confirm independently: advance at most one candidate from the blocked screen on the measured functional/burden trade-off and confirm on new independent differentiation blocks at fixed viable-beta input and at a directly measured equal-output dose (verified on new preparations, not inferred from beta fraction, SI, or the selected screen), without multiplying mixture dose savings by unqualified folded-area credit.",
+      "4. Predeclare the decision before confirmation: state the binding problem, material benefit, and functional precision required to change the recipe; retain existing dynamic gates and 60:30:10 if a justified functional margin is unavailable rather than treating an imprecise non-significant difference as equivalence.",
+      "5. Keep model predictions subordinate to their calibration: Layer 4 recipe fractions (scripts/run_layer4_tissue_and_metabolic_twin.py:4220-4222,4643-4645) are recorded metadata that do not scale the ODE right-hand side as lineage masses, so modelled exercise nadirs and per-alpha glucagon multipliers (~1.3x to 4x across M1-M4 and paracrine-scaling variants at equal beta mass) remain sensitivity analyses rather than mandatory recipe-advancement gates."
+    ]
+  },
   "primary_readouts": [
     "Stage 0->7 Absolute Endocrine Yield & Lineage Purity: Absolute monohormonal NKX6-1+/C-peptide+ beta-cell yield per 10^6 starting hPSCs, % GCG+ alpha, % SST+ delta, % SLC18A1+ off-target enterochromaffin cells (<5% release gate after FACS re-aggregation into <=120 um 60:30:10 spheroids), and batch differentiation failure rate across constitutive TYK2-/- vs TYK2+/+ vs Stage 6/7 TYK2i (Chandra et al. 2022 PMID:36289205 ~32% INS+ reduction gate; Gate 1)",
     "Hour-0 and +IFN-gamma QuantiBRITE molecules/cell for HLA-E and CD47 (comparing bicistronic tPT2A vs 2A-free bidirectional vs CD47-IgV-GPI / CD47-dCT / CD47-WT) on Stage 7 CD49a+/NTPDase3+ beta-cells and iECs (Gate 3)",

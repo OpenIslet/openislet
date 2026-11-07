@@ -5273,13 +5273,33 @@ def solve_24h_paracrine_and_whole_body_metabolic_ode(
         },
         "counter_evidence_and_scope_note_sol_v80_13": (
             "Primary literature counter-evidence (Perez-Frances et al. 2024 PMID:39169271) demonstrates that adult mouse islets "
-            "and human primary beta-cell pseudoislets containing only beta cells can maintain regulated in vivo glycemic control "
-            "(in mice) and biphasic glucose-stimulated insulin secretion (GSIS) in vitro without alpha/delta cells. "
+            "containing only beta cells can maintain regulated in vivo glycemic control in mice, and separately that human primary "
+            "beta-cell pseudoislets maintain glucose-stimulated insulin secretion (GSIS) and mitochondrial respiration in vitro "
+            "(Figure 7); neither result tests human stem-cell-islet dynamic perifusion shut-off or exercise counter-regulation. "
             "Accordingly, the 60:30:10 tri-hormonal requirement modeled here is specifically a Stage 0 product hypothesis for "
             "stem-cell-derived human grafts regarding dynamic counter-regulation (UCN3 -> delta-cell SST braking of insulin tail "
             "secretion + alpha-cell glucagon rescue during exercise or fasting glucose decline), held under identical peripheral "
             "insulin clearance (p2 = 0.035 min^-1)."
         ),
+        "bounded_intermediate_endocrine_mixture_comparison_substudy_iip_0006": {
+            "iip_id": "IIP-0006",
+            "decision_id": "DEC-084",
+            "affects_tests": ["Gate_1", "Gate_5"],
+            "affects_designs": ["Design_A", "Design_B", "Design_X"],
+            "primary_citations": ["PMID:39169271", "PMID:40782792", "PMID:31068696"],
+            "related_graveyard_rules": ["GY-003", "GY-004", "GY-007", "GY-005", "GY-009"],
+            "ode_rhs_lineage_fraction_calibration_boundary": (
+                "The recipe fractions beta_cell_fraction, alpha_cell_fraction, and delta_cell_fraction recorded on graft_models "
+                "(lines 4220-4222) and echoed to each output entry (lines 4643-4645) are descriptive metadata and do not enter the "
+                "ODE right-hand side as independent lineage masses: insulin, stimulated glucagon, and (unless preserved) local paracrine "
+                "signals share the viable endocrine fraction v (lines 4311, 4364, 4429, 4435, 4462), glucagon also uses alpha_gain and a "
+                "separate basal term (line 4462), and there is no calibrated delta-mass response. Preserving alpha_gain * v preserves only "
+                "one stimulated-glucagon coefficient, not basal flux, inhibition, timing, or delta feedback; accordingly, modelled exercise "
+                "nadirs and per-alpha glucagon multipliers (~1.3x to 4x across M1=70:20:10, M2=70:25:5, M3=80:15:5, M4=80:10:10 and the two "
+                "paracrine-scaling variants at equal beta mass and one declared insulin lag to hold a 3.5 mM nadir) remain sensitivity "
+                "analyses subordinate to measured whole-preparation function and burden in the staged HIP-Core sub-study (DEC-084)."
+            ),
+        },
         "parameter_literature_provenance_table_v80_091": {
             "p2_insulin_action_clearance_0p035_min_inv": "Bergman minimal model peripheral insulin action rate constant (Bergman et al. 1979 PMID:443421; operationalized at p2 = 0.035 min^-1)",
             "gastric_emptying_tau_m_34_min_and_egp_0p056_mM_min": "UVA/Padova T1D meal appearance & endogenous glucose production framework (Dalla Man et al. 2007 PMID:17926672; Visentin et al. 2018 PMID:29451021)",
