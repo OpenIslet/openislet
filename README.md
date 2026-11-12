@@ -28,7 +28,7 @@
 | **[`docs/ISLET-1-CANDIDATE-BLUEPRINTS-AND-OPTIMIZER-v0.2.md`](docs/ISLET-1-CANDIDATE-BLUEPRINTS-AND-OPTIMIZER-v0.2.md)** | Multi-gate scenario evaluator specification, clinical benchmark comparisons, and MCP coordination architecture. |
 | **[`docs/ISLET-1-SYNTHESIS-REPORT-v0.4.md`](docs/ISLET-1-SYNTHESIS-REPORT-v0.4.md)** | Multi-model red-team convergence synthesis and verification ledger. |
 | **[`data/graveyard/idea_graveyard_v0.5.json`](data/graveyard/idea_graveyard_v0.5.json)** | Executable Idea Graveyard (`10/10` machine-actionable `BLOCK` and `WARN` rules preventing biological dead ends and epistatic traps). |
-| **`https://mcp.openislet.org/mcp`** | Hosted Model Context Protocol (`MCP`) connector (launched `2026-11-01` in Mode A: 10 read tools, `check_draft` dry-run validator, and open `IIP` proposal issue queue). |
+| **`https://mcp.openislet.org/mcp`** | Hosted Model Context Protocol (`MCP`) connector (launched `2026-11-01` in Mode A: 11 read tools [`10` bundle-read tools + `get_review_prompt`], `check_draft` dry-run validator, and open `IIP` proposal issue queue). |
 
 ## Quick Start & Independent Verification
 

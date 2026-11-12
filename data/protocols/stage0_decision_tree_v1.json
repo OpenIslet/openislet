@@ -153,7 +153,8 @@
       "max": 2.0,
       "default_se": 0.05,
       "unit": "kinetic_law_code_0_first_order_1_shrinking_core_2_ginstling_brounshtein_closed_interval_[0.0, 2.0]",
-      "gate_id": "Gate_P05_kinetics"
+      "gate_id": "Gate_P05_kinetics",
+      "qualification_scope_iip_0010": "Must be measured separately for each distinct CaO2:PDMS wt%/vol% recipe (e.g., 31.25 wt% / 13.86 vol% Layout B vs 46.39 wt% / 23.45 vol% Stage-0 Design X), CaO2 crystal PSD, composite microbead PSD, catalase immobilization chemistry, and as-implanted wetting state alongside empirical hydrolysis half-life t_1/2 (never inherited across formulations; IIP-0010 / OQ-005 / DEC-088)."
     },
     {
       "endpoint_id": "stage7_lot_ocr_ratio_over_nominal_34_nmol_cm3_s",
@@ -222,7 +223,7 @@
       "contract_decision_key": "S9_Chronic_Fibrotic_Capsule_and_Mineralization_Gate_0F",
       "precedence_tier": "4_BIOTRANSPORT_AND_CHRONIC_CAPSULE_S6_S7",
       "trigger": "obs_cao2_kinetic_law >= 1.5 or obs_masked_perfusion_confirmed is True or obs_capsule_dz_um > 10.4 or obs_d_o2_gel_aged_cm2_s < 1.50e-5 or obs_outer_band_kperf_s_inv < 0.10 or obs_periimplant_fluid_film_um > 50.0 or obs_explant_en_bloc_recovery_fraction < 0.99",
-      "action": "Enforce DX-b <= 100 um cluster diameter cap (and tighten to <= 80 um if chronic zero-source capsule thickness obs_capsule_dz_um exceeds 18.7 um; hold for 80-um viability-only derating or pre-vascularized omental scaffold if obs_capsule_dz_um > 30.0 um where surface pO2 drops below 15.0 mmHg even for 80-um clusters; hold if obs_outer_band_kperf_s_inv < 0.10 s^-1, obs_periimplant_fluid_film_um > 50.0 um without periimplant_closed_suction_drain_verified=True [hard seroma/hypoxia ceiling > 80.0 um], or obs_explant_en_bloc_recovery_fraction < 0.99 without obs_vascularized_explant_en_bloc_recovery_verified=True; hard stop if obs_capsule_dz_um > 100.0 um; AUDIT-REF, AUDIT-REF, AUDIT-REF & MW-R5-S1-18).",
+      "action": "Enforce DX-b <= 100 um cluster diameter cap (and tighten to <= 80 um if chronic zero-source capsule thickness obs_capsule_dz_um exceeds 18.7 um; qualify Gate_P05_kinetics obs_cao2_kinetic_law and empirical hydrolysis half-life t_1/2 separately per CaO2:PDMS wt% recipe, particle/microbead PSD, catalase immobilization, and as-implanted wetting state rather than inheriting 68 h across formulations per IIP-0010 / DEC-088; hold for 80-um viability-only derating or pre-vascularized omental scaffold if obs_capsule_dz_um > 30.0 um where surface pO2 drops below 15.0 mmHg even for 80-um clusters; hold if obs_outer_band_kperf_s_inv < 0.10 s^-1, obs_periimplant_fluid_film_um > 50.0 um without periimplant_closed_suction_drain_verified=True [hard seroma/hypoxia ceiling > 80.0 um], or obs_explant_en_bloc_recovery_fraction < 0.99 without obs_vascularized_explant_en_bloc_recovery_verified=True; hard stop if obs_capsule_dz_um > 100.0 um; AUDIT-REF, AUDIT-REF, AUDIT-REF & MW-R5-S1-18).",
       "enforced_cluster_cap_um_at_gb_or_masked": 100.0,
       "enforced_cluster_cap_um_at_chronic_capsule_gt_18p7um": 80.0,
       "surface_gsis_15mmhg_capsule_ceiling_um_100um_cluster": 20.0,

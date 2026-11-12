@@ -10,12 +10,12 @@
   },
   "source_sha256": {
     "data/raw/corpus_manifest_all_sources.jsonl": "119ecbd3be2ccb79a2f38ac7feca8713ffb7c6c5e92165078e2722331b9e0536",
-    "data/extracted/cross_study_discovery_graph.json": "682740bf6c1110aae34b1a597a79055d17e295cfb014d891fc28614f08a268ec",
-    "data/extracted/islet1_candidate_stack_rankings.json": "57fdefeb8790d4a9276f452ee50b093b549492ffd1c28cabb7993e5a41302fb6",
-    "data/protocols/hip_core_fractional_factorial_v0.6.2.json": "7ac6a1446788bfdc96ff946d52ebc1c6daf4002847615b66548a4554e145f97a",
-    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "a83129c0793d6254e7eccdfc077bff424f59b0436a9d7c82681621f698a5dca9",
+    "data/extracted/cross_study_discovery_graph.json": "1eb6248877b1dacf11154f608515c092ed1db2fdb7efc34b9c5456a3aa1113f4",
+    "data/extracted/islet1_candidate_stack_rankings.json": "15b30b6988f396fdbcee66cc12b0ec40aab3dc2bdeeb87fff7bcc44de0ae13eb",
+    "data/protocols/hip_core_fractional_factorial_v0.6.2.json": "7a3aead410a1c9a10ac4fb56b78a1775c73755aed90c1fff4861eb3b94595741",
+    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "aa38d76f6db95df58636cfc5e9da89d12efd4f683adfc1ab1e2ee48e1b5975ad",
     "data/extracted/layer3_structural_verification_atlas.json": "e3ae03617d1d0654b985061ff276080a0a8571cfe17aaba0f826b6bb5a60abbe",
-    "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": "2cde0e8a3ed5c5c90306dbf95d405623b9ecb54b13109b661bb891ee0db473b0",
+    "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": "c12ff0b87058a2af1390a73e9f39a2e5d0ea9b8ee43e75dfa96979cba7c619bd",
     "data/extracted/layer5_personalized_patient_and_crispr_atlas.json": "ecfbe552954aaaa781896a4c0acb081e90ce2a8815bafb878ae566fd0e2dd648",
     "data/extracted/10202046.json": "b3d836e8c0fc8ed898592975e0f09c0154a0d4f887c2b6893e7c8194befd0a6a",
     "data/extracted/10728379.json": "b2efcc82101e33914aebc51e74ddc7650894d097c11841518f6e848916cae3dc",
@@ -344,7 +344,7 @@
     "data/extracted/37017294.json": "99d9710514a942d2cd9ed8fd3a0b4e3260e74d175c626faf049183e9ee5c45f9",
     "data/extracted/37040771.json": "36d4f0ff797564ca6f6a5d411eb79376ca572d79ab68220e1a29137b38d55524",
     "data/extracted/37043559.json": "0024c9b8b01fc91b677f31da45b5a8e463e23d6fe873dd1e29412d54b787944a",
-    "data/extracted/37156915.json": "f26402a5bf8e111c6cad07d885ca416ae92b08aa4e54196147491efe5b0d5302",
+    "data/extracted/37156915.json": "bcfa70529cdba7c3619243bd56de039d531417fb9520d01dfc7e45182e65e7e4",
     "data/extracted/37188763.json": "15dcadf1047445ae3cc15f918a849925c071b06b54cf04f31b05f725e19b5428",
     "data/extracted/37216639.json": "0cbfe29fe3ca36554af43f7a374726619faf19834b7785c01ed8e5370360a295",
     "data/extracted/37264229.json": "455ceecdb5ec71c34ac2a4614f692fc139ce5d19f0848c2cf8f54c50fb7e70d7",
@@ -381,7 +381,7 @@
     "data/extracted/38351043.json": "e4be29e35d57b441ef925cfef61af5262d142af0b482147ad6ea63cf3b422910",
     "data/extracted/38496417.json": "f7c04a47ecf67f113dc0ffb23159254e5d7b35a39641f200c05f33568eaf8fc1",
     "data/extracted/38503901.json": "7fb3357b0c671833905fa2858cced37de7caf88b429a310ddf49eac7ebbf4b20",
-    "data/extracted/38508139.json": "19c1b3dd48c252b2e1e360bf550fa8f43c259b188f91a5bb357b5805bff7bc1a",
+    "data/extracted/38508139.json": "1b52c2844f0ec65bc389f723bc459ffd4223c63353777fd1ad8dc7a04e5659e0",
     "data/extracted/38509065.json": "b084edd6483753d17b52ebfbcacdc8c1ad3024f3eb7d810c859d424d2d5848c3",
     "data/extracted/38547668.json": "cedb9c486d2f1a57bf3eb01ed2ca5692bb18ac41aaaa323f29f8f1d00b3064df",
     "data/extracted/38598342.json": "0ecada5d090a2ebbc0a08e56537761ac2e7cf37392574a9bb245c2860a6b278e",
@@ -584,12 +584,12 @@
   },
   "corpus": {
     "studies": 563,
-    "arms": 592,
+    "arms": 596,
     "reference_control_arms": 20,
     "atomic_effects": 3093,
-    "raw_edit_entries": 231,
+    "raw_edit_entries": 237,
     "total_numeric_lrr_effects": 4,
-    "expanded_gene_occurrences": 236,
+    "expanded_gene_occurrences": 242,
     "heuristic_penalty_effects": 43,
     "active_deduplicated_studies_count": 548,
     "active_empirical_studies_count": 547,
@@ -630,25 +630,25 @@
       "active_preprints_without_in_corpus_twin_flagged": 18,
       "strict_active_peer_reviewed_empirical_studies_total": 529
     },
-    "active_deduplicated_arms_count": 577,
+    "active_deduplicated_arms_count": 581,
     "active_deduplicated_effects_count": 2991,
     "active_deduplicated_modifier_interactions_count": 1236,
     "active_deduplicated_causal_edges_count": 1050,
-    "non_superseded_arms_count": 578,
+    "non_superseded_arms_count": 582,
     "non_superseded_effects_count": 2992,
     "non_superseded_modifier_interactions_count": 1236,
     "non_superseded_causal_edges_count": 1051,
     "studies_by_biological_fidelity_tier": {
       "Tier_1_Human_InVivo": 16,
-      "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 35,
-      "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 75,
+      "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 34,
+      "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 76,
       "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 281,
       "Tier_4_Rodent_or_Xenogeneic_Only": 141
     },
     "studies_by_source_text_type": {
-      "Abstract_Only": 276,
+      "Abstract_Only": 275,
       "FullText_Plus_Supplement_or_GEO": 84,
-      "FullText_XML_or_PDF": 187,
+      "FullText_XML_or_PDF": 188,
       "Review_or_Commentary": 1
     },
     "exact_source_span_verified_effects_count": 2991,
@@ -683,10 +683,10 @@
       "method": "Computed from this evaluation's source studies, graph, registry, exact design and diagnostics; not an audit closure assertion",
       "source_counts": {
         "studies": 563,
-        "arms": 592,
+        "arms": 596,
         "atomic_effects": 3093,
-        "raw_edit_rows": 231,
-        "expanded_edit_gene_occurrences": 236
+        "raw_edit_rows": 237,
+        "expanded_edit_gene_occurrences": 242
       },
       "corpus_eligibility": {
         "active_deduplicated_studies_count": 548,
@@ -728,25 +728,25 @@
           "active_preprints_without_in_corpus_twin_flagged": 18,
           "strict_active_peer_reviewed_empirical_studies_total": 529
         },
-        "active_deduplicated_arms_count": 577,
+        "active_deduplicated_arms_count": 581,
         "active_deduplicated_effects_count": 2991,
         "active_deduplicated_modifier_interactions_count": 1236,
         "active_deduplicated_causal_edges_count": 1050,
-        "non_superseded_arms_count": 578,
+        "non_superseded_arms_count": 582,
         "non_superseded_effects_count": 2992,
         "non_superseded_modifier_interactions_count": 1236,
         "non_superseded_causal_edges_count": 1051,
         "studies_by_biological_fidelity_tier": {
           "Tier_1_Human_InVivo": 16,
-          "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 35,
-          "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 75,
+          "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 34,
+          "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 76,
           "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 281,
           "Tier_4_Rodent_or_Xenogeneic_Only": 141
         },
         "studies_by_source_text_type": {
-          "Abstract_Only": 276,
+          "Abstract_Only": 275,
           "FullText_Plus_Supplement_or_GEO": 84,
-          "FullText_XML_or_PDF": 187,
+          "FullText_XML_or_PDF": 188,
           "Review_or_Commentary": 1
         },
         "exact_source_span_verified_effects_count": 2991,
@@ -930,18 +930,18 @@
       "variance_diagnostics": {
         "design": "Uniform 2,160-stack grid, 6 pooled pediatric gate logits (12,960 gate-logit evaluations), all gene-signal channels zeroed vs loaded",
         "var_structural_priors": 0.476233,
-        "var_empirical_gene_signal_delta": 0.000696,
-        "var_empirical_gene_signal_delta_corpus_only": 0.000156,
+        "var_empirical_gene_signal_delta": 0.000695,
+        "var_empirical_gene_signal_delta_corpus_only": 0.000155,
         "var_empirical_gene_signal_delta_omics_only": 0.000307,
-        "twice_covariance": 0.013239,
-        "var_total": 0.490167,
+        "twice_covariance": 0.013156,
+        "var_total": 0.490084,
         "structural_share_of_component_variance_sum": 0.998542,
         "empirical_gene_signal_share_of_component_variance_sum": 0.001458,
-        "empirical_corpus_only_share_of_component_variance_sum": 0.000327,
+        "empirical_corpus_only_share_of_component_variance_sum": 0.000326,
         "empirical_omics_only_share_of_component_variance_sum": 0.000644,
-        "structural_share_of_total_variance": 0.971572,
+        "structural_share_of_total_variance": 0.971738,
         "empirical_gene_signal_share_of_total_variance": 0.001419,
-        "twice_covariance_share_of_total_variance": 0.027009,
+        "twice_covariance_share_of_total_variance": 0.026844,
         "top10_membership_overlap_loaded_vs_zero_gene_signal": "9 / 10",
         "top10_exact_rank_matches_loaded_vs_zero_gene_signal": "8 / 10"
       }
@@ -957,7 +957,7 @@
         "locus1_and_locus4_engineering_audit_notes": {
           "locus1_arm1a_vs_arm1b_donor_size_and_delivery": "Arm 1A bicistronic donor (4,880 bp donor / 5,170 bp with ITRs) exceeds the 4,700 bp single-AAV6 packaging limit and requires non-viral linear dsDNA/ceDNA HDR or Bridge-RNA recombinase (PMID:36008610, PMID:38926615, PMID:41642947) while leaving a 21-aa cytosolic -GSG-P2A tail on HLA-E*01:03; Arm 1B scarless 2A-free bidirectional cassette [SV40pA-CD47-IgV-GPI(antisense) <- EEF1A1-core | Syn_5xISRE_minP -> HLA-E*01:03(VMAPRTLVL)-bGHpA] is 3,974 bp donor / 4,264 bp with ITRs (+436 bp headroom below the 4,700 bp single-AAV6 limit) and eliminates all 2A peptide tails (Findings 075, 076, 077).",
           "hla_e_vmaprtlvl_hcmv_ul40_and_kw_motif_note": "VMAPRTLVL matches the HLA-A*02:01 leader and has ~12% sequence overlap with clinical HCMV UL40 isolates (vs ~43% for VMAPRTLIL; Lin et al. 2023 PMID:37264229), reducing but not eliminating NKG2C+ adaptive NK recognition in HCMV-seropositive recipients; Stage-0 Decision Experiment #1 compares WT HLA-E*01:03(VMAPRTLVL) against cytoplasmic tail KW-motif retention-signal removal (He et al. 2025 PMC12582296) across HCMV+ NKG2C+ and NKG2A- KIR2DL1/2/3+ primary NK donors (Finding 078).",
-          "cd47_igv_gpi_vs_dct_ectodomain_note": "CD47-IgV-GPI was evaluated in non-islet systems (Jurkat/macrophage phagocytosis, HUVEC angiogenesis, and hematopoietic stem-cell/immunodeficient-mouse assays; Xu et al. 2024 Cell Rep Med PMID:38508139, PMC10983038) rather than mature beta-cells; Stage-0 Decision Experiment #1 compares CD47-IgV-GPI against cytoplasmically truncated transmembrane CD47-dCT and full-length CD47-WT (OA3-323; Ghimire et al. 2023 PMID:37820008 Cdc42/GSIS counter-evidence) for GPI-PLC sensitivity, QuantiBRITE density, and dynamic perifusion GSIS (Finding 079).",
+          "cd47_igv_gpi_vs_dct_ectodomain_note": "CD47-IgV-GPI was evaluated in non-islet systems (human Jurkat/macrophage phagocytosis, murine A20 lymphoma, murine C57BL/6 LSK hematopoietic stem/progenitor cell competitive repopulation, and human EA.hy926 endothelial tube-formation plus 10-day NCG Matrigel-plug angiogenesis assays; Xu et al. 2024 Cell Rep Med PMID:38508139, PMC10983038; reclassified to Tier_2B under IIP-0008 / DEC-086) rather than mature beta-cells or HUVECs; Stage-0 Decision Experiment #1 compares CD47-IgV-GPI against cytoplasmically truncated transmembrane CD47-dCT and full-length CD47-WT (OA3-323; Ghimire et al. 2023 PMID:37820008 Cdc42/GSIS counter-evidence) for GPI-PLC sensitivity, anti-CD47 QuantiBRITE density (clone B6H12 in Stage 0 vs Hu et al. 2023 PMID:37156915 clone CC2C6 + BD Quantibrite calibration, OQ-008), and dynamic perifusion GSIS (Finding 079).",
           "sa_fasl_sa_thbd_immunosuppression_and_fratricide_note": "Published murine and NHP SA-FasL PEG-microgel studies (Headen et al. 2018 PMID:29867165; Lei et al. 2022 PMID:35559682) included transient short-course rapamycin, whereas Turan et al. 2024 (PMID:38709159) evaluated direct islet surface biotinylation co-displaying SA-THBD (SA-TM) and SA-CD47 in a murine syngeneic intraportal IBMIR/engraftment model without rapamycin and Kazmi et al. 2026 (PMID:41842939) demonstrated immunosuppression-free murine BALB/c->C57BL/6 intraportal allograft survival with direct surface SA-THBD + SA-CD47 (without SA-FasL, PEG microgels, or rapamycin); because IL-1beta sensitizes human beta-cells to Fas (CD95) apoptosis (Loweth et al. 1998 PMID:9588443), Decision Experiment #2 enforces an incremental fratricide kill gate of Delta_TUNEL+ <= +5.0 pp above cytokine-matched SA-THBD-only control AND anti-Fas ZB4 mAb rescue <= 5.0 pp (Finding 080; L3B-01/02/03 [DEC-077]).",
           "locus4_a2ucoe_xiap_and_smac_salvage_note": "Locus 4 uses the 455 bp HNRNPA2B1-proximal candidate (legacy CBX3-A2UCOE alias; insulation function pending) + 250 bp cHS4 insulator driving the 230 bp human EEF1A1 core promoter (3,457 bp donor / 3,747 bp with ITRs <= 4,700 bp single-AAV6 limit; PMID:25605798, PMID:28860464, PMID:23307570, PMID:26455413). Because hypoxia/cytokines upregulate XIAP (BIRC4), which inhibits processed Caspase-9 via its BIR3 domain (Srinivasula et al. 2001 PMID:11242052), Decision Experiment #4 evaluates an unvalidated preclinical salvage hypothesis of co-dosing AP1903 with an IAP antagonist (IV birinapant [PMC4742409] or oral xevinapant [noting Phase III TrilynX termination, doi:10.1200/JCO-25-00272]) (Findings 081, 086).",
           "step1_step2_sequential_editing_and_biallelic_hdr_yield_note": "Sequential 2-step editing (<=2 loci/step) with orthogonal nucleases (HiFi-SpCas9 + AsCas12a Ultra) and transient i53/RAD51 mRNA targets ~25-40% single-locus biallelic HDR (~6-16% dual-locus biallelic clone yield per step across 96-384 screened clones; Schiroli et al. 2019 PMID:30905619; Kosicki et al. 2018 PMID:30010673; Turchiano et al. 2021 PMID:33626327). In Step 2, targeting Locus 3 (CXCL10, Chr4q21) and Locus 4 (AAVS1, Chr19q13.42) yields N_effective = 2 simultaneously cleaved chromosomal loci (1 heterotypic locus pair), or N_total = 4 diploid alleles (6 allele pairs: 4 inter-chromosomal + 2 homologous sister/homolog pairs) (Findings 028, 082)."
@@ -1104,33 +1104,33 @@
           ]
         },
         "is_feasible_candidate": true,
-        "unblocked_diagnostic_utility": 0.1085,
+        "unblocked_diagnostic_utility": 0.1084,
         "global_rank_among_all_combinations": 1,
         "utility_pediatric_early_onset_t1d": {
           "gate_scores": {
             "Gate1_Maturation_GSIS_and_Paracrine": 0.7011,
-            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.6646,
+            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.6645,
             "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.7108,
-            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.6364,
+            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.6363,
             "Gate4_Intrinsic_Cytokine_ER_Granzyme_and_Amyloid_Resilience": 0.698,
             "Gate5_72h_Vascular_Oxygen_and_80yr_Safety": 0.7269
           },
           "gate_logits_unrounded": {
             "Gate1_Maturation_GSIS_and_Paracrine": 0.8524198000000001,
-            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.6839444,
-            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.8995058200000001,
-            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.5598637,
+            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.6835664,
+            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.8992286200000001,
+            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.5594227,
             "Gate4_Intrinsic_Cytokine_ER_Granzyme_and_Amyloid_Resilience": 0.8380217600000001,
             "Gate5_72h_Vascular_Oxygen_and_80yr_Safety": 0.9790235
           },
-          "unpenalized_gate_product": 0.107,
+          "unpenalized_gate_product": 0.1069,
           "geometric_mean_gate_score": 0.6395,
-          "geometric_mean_six_subgate_score": 0.689,
+          "geometric_mean_six_subgate_score": 0.6889,
           "limiting_bottleneck_gate": "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield",
-          "limiting_bottleneck_score": 0.6364,
+          "limiting_bottleneck_score": 0.6363,
           "manufacturing_locus_penalty_factor": 1.0,
-          "series_system_joint_survival_probability": 0.107,
-          "series_system_joint_survival_probability_unrounded": 0.10696128711296568,
+          "series_system_joint_survival_probability": 0.1069,
+          "series_system_joint_survival_probability_unrounded": 0.10692200618160114,
           "lower_10pct_cred_bound": 0.0322,
           "lower_10pct_cred_bound_with_b_edit_quadratic_discount": 0.0322,
           "heuristic_conservative_floor_index": 0.0322,
@@ -1140,35 +1140,35 @@
         "utility_adult_onset_lada": {
           "gate_scores": {
             "Gate1_Maturation_GSIS_and_Paracrine": 0.7011,
-            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.6646,
-            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.731,
-            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.6364,
+            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.6645,
+            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.7309,
+            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.6363,
             "Gate4_Intrinsic_Cytokine_ER_Granzyme_and_Amyloid_Resilience": 0.698,
             "Gate5_72h_Vascular_Oxygen_and_80yr_Safety": 0.7269
           },
           "gate_logits_unrounded": {
             "Gate1_Maturation_GSIS_and_Paracrine": 0.8524198000000001,
-            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.6839444,
-            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.9995058200000002,
-            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.5598637,
+            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.6835664,
+            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.99922862,
+            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.5594227,
             "Gate4_Intrinsic_Cytokine_ER_Granzyme_and_Amyloid_Resilience": 0.8380217600000001,
             "Gate5_72h_Vascular_Oxygen_and_80yr_Safety": 0.9790235
           },
-          "unpenalized_gate_product": 0.11,
-          "geometric_mean_gate_score": 0.6431,
-          "geometric_mean_six_subgate_score": 0.6922,
+          "unpenalized_gate_product": 0.1099,
+          "geometric_mean_gate_score": 0.643,
+          "geometric_mean_six_subgate_score": 0.6921,
           "limiting_bottleneck_gate": "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield",
-          "limiting_bottleneck_score": 0.6364,
+          "limiting_bottleneck_score": 0.6363,
           "manufacturing_locus_penalty_factor": 1.0,
-          "series_system_joint_survival_probability": 0.11,
-          "series_system_joint_survival_probability_unrounded": 0.10998776057648765,
+          "series_system_joint_survival_probability": 0.1099,
+          "series_system_joint_survival_probability_unrounded": 0.10994798123542165,
           "lower_10pct_cred_bound": 0.034,
           "lower_10pct_cred_bound_with_b_edit_quadratic_discount": 0.034,
           "heuristic_conservative_floor_index": 0.034,
           "lower_bound_field_note": "Heuristic conservative scenario floor index combining inverse-root evidence sparsity and locus burden (NOT a calibrated Bayesian 10th-percentile credible interval; retained under key lower_10pct_cred_bound for backward compatibility; lower_10pct_cred_bound_with_b_edit_quadratic_discount additionally subtracts 0.005 * B^2 for nickase base-edit stacks per Finding 013).",
           "estimand_note": "Prior-Anchored Multi-Gate Scenario Index (NOT a calibrated human survival probability)."
         },
-        "composite_series_system_utility": 0.1085,
+        "composite_series_system_utility": 0.1084,
         "search_grid_lower_10pct_cred_bound_pediatric": 0.0322,
         "lower_10pct_cred_bound_with_b_edit_quadratic_discount_pediatric": 0.0322,
         "triggered_graveyard_rules": [
@@ -1178,7 +1178,7 @@
             "evaluator_logit_delta": -0.2,
             "evaluator_target_gate": "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield",
             "evaluator_disposition_rule": "Applies -0.20 logit discount in Gate 3 + requires Decision Experiment #1 QuantiBRITE gate",
-            "reason": "Requires QuantiBRITE Hour-0 verification that resting endogenous B2M promoter achieves inhibitory HLA-E and CD47 surface density on Stage 7 beta-cells and iECs (Han 2019 PMID:31040209; Hu 2023 PMID:37156915; Xu 2024 PMID:38508139; Lin 2023 PMID:37264229)."
+            "reason": "Requires QuantiBRITE Hour-0 verification that resting endogenous B2M promoter achieves inhibitory HLA-E and CD47 surface density on Stage 7 beta-cells and iECs (Han 2019 PMID:31040209; Hu 2023 PMID:37156915; Lin 2023 PMID:37264229)."
           },
           {
             "graveyard_id": "GRAVEYARD_010_MHC_NULL_INDIRECT_APC_BYSTANDER_BLINDSPOT",
@@ -1403,17 +1403,17 @@
         "utility_pediatric_early_onset_t1d": {
           "gate_scores": {
             "Gate1_Maturation_GSIS_and_Paracrine": 0.5921,
-            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.6237,
-            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.6271,
-            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.6228,
+            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.6236,
+            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.627,
+            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.6227,
             "Gate4_Intrinsic_Cytokine_ER_Granzyme_and_Amyloid_Resilience": 0.3659,
             "Gate5_72h_Vascular_Oxygen_and_80yr_Safety": 0.2994
           },
           "gate_logits_unrounded": {
             "Gate1_Maturation_GSIS_and_Paracrine": 0.37255000000000005,
-            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.50520168,
-            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.51980132,
-            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.5014112,
+            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.50484888,
+            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.51952412,
+            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.5010584,
             "Gate4_Intrinsic_Cytokine_ER_Granzyme_and_Amyloid_Resilience": -0.55,
             "Gate5_72h_Vascular_Oxygen_and_80yr_Safety": -0.8500000000000001
           },
@@ -1424,7 +1424,7 @@
           "limiting_bottleneck_score": 0.2994,
           "manufacturing_locus_penalty_factor": 1.0,
           "series_system_joint_survival_probability": 0.0158,
-          "series_system_joint_survival_probability_unrounded": 0.015799334947963983,
+          "series_system_joint_survival_probability_unrounded": 0.015793502113347704,
           "lower_10pct_cred_bound": 0.0,
           "lower_10pct_cred_bound_with_b_edit_quadratic_discount": 0.0,
           "heuristic_conservative_floor_index": 0.0,
@@ -1434,17 +1434,17 @@
         "utility_adult_onset_lada": {
           "gate_scores": {
             "Gate1_Maturation_GSIS_and_Paracrine": 0.5921,
-            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.6237,
-            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.6502,
-            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.6228,
+            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.6236,
+            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.6501,
+            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.6227,
             "Gate4_Intrinsic_Cytokine_ER_Granzyme_and_Amyloid_Resilience": 0.3659,
             "Gate5_72h_Vascular_Oxygen_and_80yr_Safety": 0.343
           },
           "gate_logits_unrounded": {
             "Gate1_Maturation_GSIS_and_Paracrine": 0.37255000000000005,
-            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.50520168,
-            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.6198013200000001,
-            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.5014112,
+            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.50484888,
+            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.61952412,
+            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.5010584,
             "Gate4_Intrinsic_Cytokine_ER_Granzyme_and_Amyloid_Resilience": -0.55,
             "Gate5_72h_Vascular_Oxygen_and_80yr_Safety": -0.65
           },
@@ -1455,7 +1455,7 @@
           "limiting_bottleneck_score": 0.343,
           "manufacturing_locus_penalty_factor": 1.0,
           "series_system_joint_survival_probability": 0.0188,
-          "series_system_joint_survival_probability_unrounded": 0.018763406569432543,
+          "series_system_joint_survival_probability_unrounded": 0.018756599415505573,
           "lower_10pct_cred_bound": 0.0,
           "lower_10pct_cred_bound_with_b_edit_quadratic_discount": 0.0,
           "heuristic_conservative_floor_index": 0.0,
@@ -1494,7 +1494,7 @@
           "gate_scores": {
             "Gate1_Maturation_GSIS_and_Paracrine": 0.4875,
             "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.505,
-            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.6271,
+            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.627,
             "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.3659,
             "Gate4_Intrinsic_Cytokine_ER_Granzyme_and_Amyloid_Resilience": 0.5671,
             "Gate5_72h_Vascular_Oxygen_and_80yr_Safety": 0.2227
@@ -1502,7 +1502,7 @@
           "gate_logits_unrounded": {
             "Gate1_Maturation_GSIS_and_Paracrine": -0.04999999999999999,
             "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.01990800000000001,
-            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.51980132,
+            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.51952412,
             "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": -0.55,
             "Gate4_Intrinsic_Cytokine_ER_Granzyme_and_Amyloid_Resilience": 0.26990800000000004,
             "Gate5_72h_Vascular_Oxygen_and_80yr_Safety": -1.25
@@ -1514,7 +1514,7 @@
           "limiting_bottleneck_score": 0.2227,
           "manufacturing_locus_penalty_factor": 1.0,
           "series_system_joint_survival_probability": 0.0071,
-          "series_system_joint_survival_probability_unrounded": 0.007132859505455492,
+          "series_system_joint_survival_probability_unrounded": 0.00713212217350122,
           "lower_10pct_cred_bound": 0.0,
           "lower_10pct_cred_bound_with_b_edit_quadratic_discount": 0.0,
           "heuristic_conservative_floor_index": 0.0,
@@ -1525,7 +1525,7 @@
           "gate_scores": {
             "Gate1_Maturation_GSIS_and_Paracrine": 0.4875,
             "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.505,
-            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.6502,
+            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.6501,
             "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.3659,
             "Gate4_Intrinsic_Cytokine_ER_Granzyme_and_Amyloid_Resilience": 0.5671,
             "Gate5_72h_Vascular_Oxygen_and_80yr_Safety": 0.2592
@@ -1533,19 +1533,19 @@
           "gate_logits_unrounded": {
             "Gate1_Maturation_GSIS_and_Paracrine": -0.04999999999999999,
             "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.01990800000000001,
-            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.6198013200000001,
+            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.61952412,
             "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": -0.55,
             "Gate4_Intrinsic_Cytokine_ER_Granzyme_and_Amyloid_Resilience": 0.26990800000000004,
             "Gate5_72h_Vascular_Oxygen_and_80yr_Safety": -1.05
           },
           "unpenalized_gate_product": 0.0086,
-          "geometric_mean_gate_score": 0.3864,
+          "geometric_mean_gate_score": 0.3863,
           "geometric_mean_six_subgate_score": 0.4527,
           "limiting_bottleneck_gate": "Gate5_72h_Vascular_Oxygen_and_80yr_Safety",
           "limiting_bottleneck_score": 0.2592,
           "manufacturing_locus_penalty_factor": 1.0,
           "series_system_joint_survival_probability": 0.0086,
-          "series_system_joint_survival_probability_unrounded": 0.008608187130979009,
+          "series_system_joint_survival_probability_unrounded": 0.008607352343589478,
           "lower_10pct_cred_bound": 0.0,
           "lower_10pct_cred_bound_with_b_edit_quadratic_discount": 0.0,
           "heuristic_conservative_floor_index": 0.0,
@@ -1657,23 +1657,23 @@
         "utility_pediatric_early_onset_t1d": {
           "gate_scores": {
             "Gate1_Maturation_GSIS_and_Paracrine": 0.5954,
-            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.6646,
-            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.4182,
-            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.6364,
+            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.6645,
+            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.4181,
+            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.6363,
             "Gate4_Intrinsic_Cytokine_ER_Granzyme_and_Amyloid_Resilience": 0.2137,
             "Gate5_72h_Vascular_Oxygen_and_80yr_Safety": 0.303
           },
           "gate_logits_unrounded": {
             "Gate1_Maturation_GSIS_and_Paracrine": 0.38627500000000003,
-            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.6839444,
-            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": -0.33019867999999997,
-            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.5598637,
+            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.6835664,
+            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": -0.33047587999999994,
+            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.5594227,
             "Gate4_Intrinsic_Cytokine_ER_Granzyme_and_Amyloid_Resilience": -1.3026302,
             "Gate5_72h_Vascular_Oxygen_and_80yr_Safety": -0.8330425
           },
           "unpenalized_gate_product": 0.0068,
-          "geometric_mean_gate_score": 0.3688,
-          "geometric_mean_six_subgate_score": 0.4355,
+          "geometric_mean_gate_score": 0.3687,
+          "geometric_mean_six_subgate_score": 0.4354,
           "limiting_bottleneck_gate": "Gate4_Intrinsic_Cytokine_ER_Granzyme_and_Amyloid_Resilience",
           "limiting_bottleneck_score": 0.2137,
           "manufacturing_locus_penalty_factor": 1.0,
@@ -1689,17 +1689,17 @@
         "utility_adult_onset_lada": {
           "gate_scores": {
             "Gate1_Maturation_GSIS_and_Paracrine": 0.5954,
-            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.6646,
-            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.4427,
-            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.6364,
+            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.6645,
+            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": 0.4426,
+            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.6363,
             "Gate4_Intrinsic_Cytokine_ER_Granzyme_and_Amyloid_Resilience": 0.2137,
             "Gate5_72h_Vascular_Oxygen_and_80yr_Safety": 0.303
           },
           "gate_logits_unrounded": {
             "Gate1_Maturation_GSIS_and_Paracrine": 0.38627500000000003,
-            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.6839444,
-            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": -0.23019867999999988,
-            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.5598637,
+            "Gate2A_Allo_Adaptive_T_and_DSA_Stealth": 0.6835664,
+            "Gate2B_Autoimmune_T1D_Memory_and_Indirect_APC_Stealth": -0.23047587999999997,
+            "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield": 0.5594227,
             "Gate4_Intrinsic_Cytokine_ER_Granzyme_and_Amyloid_Resilience": -1.3026302,
             "Gate5_72h_Vascular_Oxygen_and_80yr_Safety": -0.8330425
           },
@@ -1744,7 +1744,7 @@
             "evaluator_logit_delta": -0.2,
             "evaluator_target_gate": "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield",
             "evaluator_disposition_rule": "Applies -0.20 logit discount in Gate 3 + requires Decision Experiment #1 QuantiBRITE gate",
-            "reason": "Requires QuantiBRITE Hour-0 verification that resting endogenous B2M promoter achieves inhibitory HLA-E and CD47 surface density on Stage 7 beta-cells and iECs (Han 2019 PMID:31040209; Hu 2023 PMID:37156915; Xu 2024 PMID:38508139; Lin 2023 PMID:37264229)."
+            "reason": "Requires QuantiBRITE Hour-0 verification that resting endogenous B2M promoter achieves inhibitory HLA-E and CD47 surface density on Stage 7 beta-cells and iECs (Han 2019 PMID:31040209; Hu 2023 PMID:37156915; Lin 2023 PMID:37264229)."
           },
           {
             "graveyard_id": "GRAVEYARD_010_MHC_NULL_INDIRECT_APC_BYSTANDER_BLINDSPOT",
@@ -1769,8 +1769,8 @@
           "point_estimate": 0.15,
           "scenario_a_rank_at_low": 1,
           "scenario_a_rank_at_high": 1,
-          "scenario_a_composite_at_low": 0.1085,
-          "scenario_a_composite_at_high": 0.1085,
+          "scenario_a_composite_at_low": 0.1084,
+          "scenario_a_composite_at_high": 0.1084,
           "scenario_a_composite_swing": 0.0,
           "scenario_b_rank_at_low": 17,
           "scenario_b_rank_at_high": 31,
@@ -1787,8 +1787,8 @@
           "point_estimate": 0.965,
           "scenario_a_rank_at_low": 1,
           "scenario_a_rank_at_high": 1,
-          "scenario_a_composite_at_low": 0.1085,
-          "scenario_a_composite_at_high": 0.1085,
+          "scenario_a_composite_at_low": 0.1084,
+          "scenario_a_composite_at_high": 0.1084,
           "scenario_a_composite_swing": 0.0,
           "scenario_b_rank_at_low": 25,
           "scenario_b_rank_at_high": 25,
@@ -1806,8 +1806,8 @@
           "scenario_a_rank_at_low": 1,
           "scenario_a_rank_at_high": 1,
           "scenario_a_composite_at_low": 0.0971,
-          "scenario_a_composite_at_high": 0.1129,
-          "scenario_a_composite_swing": 0.0158,
+          "scenario_a_composite_at_high": 0.1128,
+          "scenario_a_composite_swing": 0.0157,
           "scenario_b_rank_at_low": 18,
           "scenario_b_rank_at_high": 25,
           "scenario_b_composite_at_low": 0.0673,
@@ -1841,9 +1841,9 @@
           "point_estimate": 0.45,
           "scenario_a_rank_at_low": 1,
           "scenario_a_rank_at_high": 1,
-          "scenario_a_composite_at_low": 0.0928,
+          "scenario_a_composite_at_low": 0.0927,
           "scenario_a_composite_at_high": 0.1236,
-          "scenario_a_composite_swing": 0.0308,
+          "scenario_a_composite_swing": 0.0309,
           "scenario_b_rank_at_low": 25,
           "scenario_b_rank_at_high": 25,
           "scenario_b_composite_at_low": 0.0567,
@@ -1859,8 +1859,8 @@
           "point_estimate": -0.32,
           "scenario_a_rank_at_low": 1,
           "scenario_a_rank_at_high": 1,
-          "scenario_a_composite_at_low": 0.1085,
-          "scenario_a_composite_at_high": 0.1085,
+          "scenario_a_composite_at_low": 0.1084,
+          "scenario_a_composite_at_high": 0.1084,
           "scenario_a_composite_swing": 0.0,
           "scenario_b_rank_at_low": 28,
           "scenario_b_rank_at_high": 23,
@@ -1891,18 +1891,18 @@
       "uniform_grid_pooled_pediatric_gate_logit_variance_decomposition": {
         "design": "Uniform 2,160-stack grid, 6 pooled pediatric gate logits (12,960 gate-logit evaluations), all gene-signal channels zeroed vs loaded",
         "var_structural_priors": 0.476233,
-        "var_empirical_gene_signal_delta": 0.000696,
-        "var_empirical_gene_signal_delta_corpus_only": 0.000156,
+        "var_empirical_gene_signal_delta": 0.000695,
+        "var_empirical_gene_signal_delta_corpus_only": 0.000155,
         "var_empirical_gene_signal_delta_omics_only": 0.000307,
-        "twice_covariance": 0.013239,
-        "var_total": 0.490167,
+        "twice_covariance": 0.013156,
+        "var_total": 0.490084,
         "structural_share_of_component_variance_sum": 0.998542,
         "empirical_gene_signal_share_of_component_variance_sum": 0.001458,
-        "empirical_corpus_only_share_of_component_variance_sum": 0.000327,
+        "empirical_corpus_only_share_of_component_variance_sum": 0.000326,
         "empirical_omics_only_share_of_component_variance_sum": 0.000644,
-        "structural_share_of_total_variance": 0.971572,
+        "structural_share_of_total_variance": 0.971738,
         "empirical_gene_signal_share_of_total_variance": 0.001419,
-        "twice_covariance_share_of_total_variance": 0.027009,
+        "twice_covariance_share_of_total_variance": 0.026844,
         "top10_membership_overlap_loaded_vs_zero_gene_signal": "9 / 10",
         "top10_exact_rank_matches_loaded_vs_zero_gene_signal": "8 / 10"
       },
@@ -1910,29 +1910,29 @@
         "feasible_subset_n_stacks": 480,
         "feasible_var_structural_priors": 0.383494,
         "feasible_var_empirical_gene_signal_delta": 0.00049,
-        "feasible_var_total": 0.397367,
-        "feasible_structural_share_of_component_variance_sum": 0.998723,
-        "feasible_empirical_share_of_component_variance_sum": 0.001277,
-        "feasible_structural_share_of_total_variance": 0.965088,
-        "feasible_spearman_rho_loaded_vs_zero_gene_signal": 0.999485,
+        "feasible_var_total": 0.397292,
+        "feasible_structural_share_of_component_variance_sum": 0.998725,
+        "feasible_empirical_share_of_component_variance_sum": 0.001275,
+        "feasible_structural_share_of_total_variance": 0.96527,
+        "feasible_spearman_rho_loaded_vs_zero_gene_signal": 0.999482,
         "top25_membership_overlap_loaded_vs_zero_gene_signal": "25 / 25",
         "top50_membership_overlap_loaded_vs_zero_gene_signal": "49 / 50",
         "top_tier_code_defined_n_stacks": 48,
         "top_tier_var_structural_priors": 0.130575,
         "top_tier_var_empirical_gene_signal_delta": 0.000501,
-        "top_tier_twice_covariance": -0.001447,
-        "top_tier_var_total": 0.129629,
-        "top_tier_structural_share_of_component_variance_sum": 0.996181,
-        "top_tier_empirical_share_of_component_variance_sum": 0.003819,
-        "top_tier_structural_share_of_total_variance": 1.007299,
+        "top_tier_twice_covariance": -0.001451,
+        "top_tier_var_total": 0.129625,
+        "top_tier_structural_share_of_component_variance_sum": 0.996177,
+        "top_tier_empirical_share_of_component_variance_sum": 0.003823,
+        "top_tier_structural_share_of_total_variance": 1.007331,
         "feasible_k4_b0_n_stacks": 30,
         "feasible_k4_b0_var_structural_priors": 0.299605,
-        "feasible_k4_b0_var_empirical_gene_signal_delta": 0.000383,
-        "feasible_k4_b0_twice_covariance": 0.010472,
-        "feasible_k4_b0_var_total": 0.310461,
-        "feasible_k4_b0_structural_share_of_component_variance_sum": 0.998722,
-        "feasible_k4_b0_empirical_share_of_component_variance_sum": 0.001278,
-        "feasible_k4_b0_structural_share_of_total_variance": 0.965034,
+        "feasible_k4_b0_var_empirical_gene_signal_delta": 0.000382,
+        "feasible_k4_b0_twice_covariance": 0.010382,
+        "feasible_k4_b0_var_total": 0.310369,
+        "feasible_k4_b0_structural_share_of_component_variance_sum": 0.998727,
+        "feasible_k4_b0_empirical_share_of_component_variance_sum": 0.001273,
+        "feasible_k4_b0_structural_share_of_total_variance": 0.965318,
         "feasible_k4_b0_spearman_rho_loaded_vs_zero_gene_signal": 0.998665
       },
       "direct_output_gate_logit_perturbation_monte_carlo": {
@@ -2019,8 +2019,8 @@
             0.3853889117557111
           ],
           "scenario_a_top3_frequency_wilson95": [
-            0.45244602997442135,
-            0.6438546202048803
+            0.44264860323368227,
+            0.6343919169097589
           ],
           "scenario_a_rank_quantiles_linear": {
             "0.025": 1.0,
@@ -2034,18 +2034,18 @@
             "0.25": 17.0,
             "0.5": 25.0,
             "0.75": 35.25,
-            "0.975": 73.09999999999997
+            "0.975": 73.57499999999997
           },
           "effective_output_logit_sd": 0.25,
           "n_monte_carlo_draws": 100,
           "scenario_a_rank1_count": 29,
-          "scenario_a_top3_count": 55,
+          "scenario_a_top3_count": 54,
           "scenario_a_rank_median": 3.0,
           "scenario_a_rank_min": 1,
           "scenario_a_rank_max": 24,
           "scenario_b_median_rank": 25.0,
           "scenario_b_rank_min": 2,
-          "scenario_b_rank_max": 128
+          "scenario_b_rank_max": 130
         },
         "sigma_logit_0.50": {
           "random_seed": 20261022,
@@ -2062,7 +2062,7 @@
           "scenario_a_rank_quantiles_linear": {
             "0.025": 1.0,
             "0.25": 2.75,
-            "0.5": 8.0,
+            "0.5": 7.5,
             "0.75": 18.5,
             "0.975": 78.87499999999987
           },
@@ -2071,18 +2071,18 @@
             "0.25": 19.0,
             "0.5": 33.0,
             "0.75": 66.5,
-            "0.975": 185.77499999999992
+            "0.975": 184.77499999999992
           },
           "effective_output_logit_sd": 0.5,
           "n_monte_carlo_draws": 100,
           "scenario_a_rank1_count": 18,
           "scenario_a_top3_count": 29,
-          "scenario_a_rank_median": 8.0,
+          "scenario_a_rank_median": 7.5,
           "scenario_a_rank_min": 1,
-          "scenario_a_rank_max": 92,
+          "scenario_a_rank_max": 93,
           "scenario_b_median_rank": 33.0,
           "scenario_b_rank_min": 1,
-          "scenario_b_rank_max": 293
+          "scenario_b_rank_max": 292
         }
       },
       "shared_parameter_registry_monte_carlo": {
@@ -6751,10 +6751,10 @@
         "method": "Computed from this evaluation's source studies, graph, registry, exact design and diagnostics; not an audit closure assertion",
         "source_counts": {
           "studies": 563,
-          "arms": 592,
+          "arms": 596,
           "atomic_effects": 3093,
-          "raw_edit_rows": 231,
-          "expanded_edit_gene_occurrences": 236
+          "raw_edit_rows": 237,
+          "expanded_edit_gene_occurrences": 242
         },
         "corpus_eligibility": {
           "active_deduplicated_studies_count": 548,
@@ -6796,25 +6796,25 @@
             "active_preprints_without_in_corpus_twin_flagged": 18,
             "strict_active_peer_reviewed_empirical_studies_total": 529
           },
-          "active_deduplicated_arms_count": 577,
+          "active_deduplicated_arms_count": 581,
           "active_deduplicated_effects_count": 2991,
           "active_deduplicated_modifier_interactions_count": 1236,
           "active_deduplicated_causal_edges_count": 1050,
-          "non_superseded_arms_count": 578,
+          "non_superseded_arms_count": 582,
           "non_superseded_effects_count": 2992,
           "non_superseded_modifier_interactions_count": 1236,
           "non_superseded_causal_edges_count": 1051,
           "studies_by_biological_fidelity_tier": {
             "Tier_1_Human_InVivo": 16,
-            "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 35,
-            "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 75,
+            "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 34,
+            "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 76,
             "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 281,
             "Tier_4_Rodent_or_Xenogeneic_Only": 141
           },
           "studies_by_source_text_type": {
-            "Abstract_Only": 276,
+            "Abstract_Only": 275,
             "FullText_Plus_Supplement_or_GEO": 84,
-            "FullText_XML_or_PDF": 187,
+            "FullText_XML_or_PDF": 188,
             "Review_or_Commentary": 1
           },
           "exact_source_span_verified_effects_count": 2991,
@@ -6998,18 +6998,18 @@
         "variance_diagnostics": {
           "design": "Uniform 2,160-stack grid, 6 pooled pediatric gate logits (12,960 gate-logit evaluations), all gene-signal channels zeroed vs loaded",
           "var_structural_priors": 0.476233,
-          "var_empirical_gene_signal_delta": 0.000696,
-          "var_empirical_gene_signal_delta_corpus_only": 0.000156,
+          "var_empirical_gene_signal_delta": 0.000695,
+          "var_empirical_gene_signal_delta_corpus_only": 0.000155,
           "var_empirical_gene_signal_delta_omics_only": 0.000307,
-          "twice_covariance": 0.013239,
-          "var_total": 0.490167,
+          "twice_covariance": 0.013156,
+          "var_total": 0.490084,
           "structural_share_of_component_variance_sum": 0.998542,
           "empirical_gene_signal_share_of_component_variance_sum": 0.001458,
-          "empirical_corpus_only_share_of_component_variance_sum": 0.000327,
+          "empirical_corpus_only_share_of_component_variance_sum": 0.000326,
           "empirical_omics_only_share_of_component_variance_sum": 0.000644,
-          "structural_share_of_total_variance": 0.971572,
+          "structural_share_of_total_variance": 0.971738,
           "empirical_gene_signal_share_of_total_variance": 0.001419,
-          "twice_covariance_share_of_total_variance": 0.027009,
+          "twice_covariance_share_of_total_variance": 0.026844,
           "top10_membership_overlap_loaded_vs_zero_gene_signal": "9 / 10",
           "top10_exact_rank_matches_loaded_vs_zero_gene_signal": "8 / 10"
         }
@@ -16681,7 +16681,7 @@
         "loaded_cao2_inventory_mass_mg_at_1p15x_demand": 791.5,
         "pure_endocrine_1p00x_comparator_cao2_inventory_mmol": 9.5488,
         "pure_endocrine_1p00x_comparator_cao2_mass_mg": 688.26,
-        "reconciliation_note": "At f_chem_initial = 0.45 and t_1/2 = 68 h (k_hyd = 0.010193 h^-1), the Hour-0 chemical O2 release rate supplies 45.0% of total graft+iEC metabolic demand (1.15x vascular/stromal demand multiplier on pure endocrine V_max = 3.40e-8 mol/(cm^3*s), giving 8.9547 mmol cumulative 72-h O2 demand vs 7.7867 mmol pure endocrine demand, and 2 * 0.613145 * 8.9547 = 10.9811 mmol = 791.49 mg CaO2 vs 9.5488 mmol = 688.25 mg on a pure-endocrine basis; exceeding both the 35.44% delta-sheet lower bound and the 35.44% fixed-width zero-order threshold). Over the 72-hour avascular bridge, exponential decay yields a 0-72h time-averaged chemical supply fraction of 0.3188 (31.88%), while the total loaded CaO2 inventory equals 0.6131 (61.31%) of 72-hour cumulative graft+iEC O2 demand because progressive iEC vascular anastomosis (t_50 = 36.0 h in a 14-day pre-vascularized bed) takes over O2 delivery from Hour 24 onward."
+        "reconciliation_note": "At f_chem_initial = 0.45 and the unvalidated formulation-specific reference/target t_1/2 = 68 h (k_hyd = 0.010193 h^-1; used in 20 of 21 main PDE regimes while the uncoated CaO2 control uses 4 h; each distinct CaO2:PDMS wt% recipe, CaO2 crystal PSD, composite microbead PSD, catalase surface treatment, and pre-implant wetting state requires independent empirical t_1/2 + kinetic-law qualification under IIP-0010 / OQ-005 / DEC-088), the Hour-0 chemical O2 release rate supplies 45.0% of total graft+iEC metabolic demand (1.15x vascular/stromal demand multiplier on pure endocrine V_max = 3.40e-8 mol/(cm^3*s), giving 8.9547 mmol cumulative 72-h O2 demand vs 7.7867 mmol pure endocrine demand, and 2 * 0.613145 * 8.9547 = 10.9811 mmol = 791.49 mg CaO2 vs 9.5488 mmol = 688.25 mg on a pure-endocrine basis; exceeding both the 35.44% delta-sheet lower bound and the 35.44% fixed-width zero-order threshold). Over the 72-hour avascular bridge, exponential decay yields a 0-72h time-averaged chemical supply fraction of 0.3188 (31.88%), while the total loaded CaO2 inventory equals 0.6131 (61.31%) of 72-hour cumulative graft+iEC O2 demand because progressive iEC vascular anastomosis (t_50 = 36.0 h in a 14-day pre-vascularized bed) takes over O2 delivery from Hour 24 onward."
       },
       "active_vs_structural_volume_reconciliation_v70_12": "At 2,500 IEQ/cm^2 across 200 cm^2 exchange area (or 2,000 IEQ/cm^2 across 250 cm^2), the active 350 um oxygen-consuming hydrogel slab volume is exactly 200 * 0.035 = 7.00 cm^3 (or 250 * 0.035 = 8.75 cm^3), NOT 20 cm^3. Any external macroporous PTFE/silicone frame or inter-leaf vascularized host tissue channel (~11-13 cm^3) is outside the 350 um diffusion barrier and must not be used as the denominator for hydrogel CaO2 wt/vol loading.",
       "non_overlapping_phase_volume_and_cad_ledger_7cm3_ultracode_v80_18": {
@@ -16726,10 +16726,18 @@
           "d_o2_hydrogel_effective_cm2_s": 9.40254e-06,
           "derivation_note": "D_O2_HYDROGEL_CM2_S = 0.940254e-5 cm^2/s is the Maxwell-Garnett / Mackie-Meares effective diffusivity of a 5 wt% PEG-4MAL/fibrin hydrogel at 37 C containing phi_islet = 0.126225 and 15% vascular stroma, yielding sigma_passive_pure_islet = 1,198.286 IEQ/cm^2."
         },
-        "catalase_localization_and_homogenization_qualification": "The 1D reaction-diffusion BVP models k_decomp = 18.0 s^-1 and D_O2 = 0.940e-5 cm^2/s as homogenized effective continuum parameters across the hydrated hydrogel phase. Co-immobilizing Catalase on hydrophobic PDMS-CaO2 microbead surfaces requires wet-lab verification of retained specific activity, washout/inactivation half-life over 14 days, phase-dependent effective diffusivity, and local Ca2+/OH-/osmolality buffering."
+        "catalase_localization_and_homogenization_qualification": "The 1D reaction-diffusion BVP models k_decomp = 18.0 s^-1 and D_O2 = 0.940e-5 cm^2/s as homogenized effective continuum parameters across the hydrated hydrogel phase. Co-immobilizing Catalase on hydrophobic PDMS-CaO2 microbead surfaces requires wet-lab verification of retained specific activity, washout/inactivation half-life over 14 days, phase-dependent effective diffusivity, and local Ca2+/OH-/osmolality buffering.",
+        "cao2_crystal_particle_size_distribution_um": "unknown_pending_stage0_measurement",
+        "pdms_cao2_composite_microbead_diameter_distribution_um": "unknown_pending_stage0_measurement",
+        "cao2_solid_volume_fraction_in_cured_composite_by_formulation": {
+          "layout_option_a_25wt_pct": 0.1055,
+          "layout_option_b_31p25wt_pct": 0.1386,
+          "design_x_46p39wt_pct": 0.2345
+        },
+        "formulation_transfer_and_percolation_qualification_note_iip_0010": "At rho_CaO2 = 2.91 g/cm^3 and rho_PDMS = 1.03 g/cm^3, raising dry CaO2 loading from 25.00 wt% (10.55 vol% solid filler; Pedraza et al. 2012 PMID:22371586 macroscopic monolithic PDMS disk context) to 31.25 wt% (13.86 vol% in Layout B's 119-um lamina) and 46.39 wt% (23.45 vol% in Stage-0 Design X's 100-um lamina) substantially increases inorganic solid volume fraction inside cured PDMS microbeads, where hydrophilic filler clustering, particle-size distribution, microbead surface-to-volume ratio (Accolla et al. 2023 PMID:36971050; Ke et al. 2022 PMID:35743287), and co-immobilized hydrophilic catalase can alter water wicking, connected porosity, kinetic law (first-order vs reaction-controlled shrinking-core vs diffusion-controlled Ginstling-Brounshtein), and effective t_1/2. Accordingly, t_1/2 = 68.0 h is treated strictly as an unvalidated formulation-specific reference/target rather than a conserved material constant, without claiming a universal 16 vol% percolation cliff across polydisperse PDMS composites (IIP-0010 / OQ-005 / DEC-088)."
       },
       "selected_source_lamina_half_width_fraction": 0.34,
-      "alternative_a0p35_fields_scope": "Explicit unselected width sensitivity; the CAD and PDE use only the shared selected width.",
+      "alternative_a0p35_fields_scope": "Explicit unselected width sensitivity within part_a_exact_oxygen_boundary_value_and_volume_algebra (where the baseline CAD ledger and lead Layout B PDE use a = 0.34 [119.0 um], while dedicated off-grid Stage-0 Design X PDE scenarios in part_a_336h_spatial_reaction_diffusion_pouch_pde explicitly solve a = 100/350 = 0.285714 [100.0 um lamina, 125.0 um outer cell bands]; IIP-0009 / DEC-087).",
       "exact_boundary_value_loading_table": [
         {
           "areal_loading_ieq_per_cm2": 1500.0,

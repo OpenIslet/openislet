@@ -957,7 +957,7 @@ def verify_exact_slab_source_distribution_algebra() -> Dict[str, Any]:
             "pure_endocrine_1p00x_comparator_cao2_inventory_mmol": round(n_cao2_mmol_lead / 1.15, 4),
             "pure_endocrine_1p00x_comparator_cao2_mass_mg": round((n_cao2_mmol_lead / 1.15) * 72.078, 2),
             "reconciliation_note": (
-                "At f_chem_initial = 0.45 and t_1/2 = 68 h (k_hyd = 0.010193 h^-1), the Hour-0 chemical O2 release rate "
+                "At f_chem_initial = 0.45 and the unvalidated formulation-specific reference/target t_1/2 = 68 h (k_hyd = 0.010193 h^-1; used in 20 of 21 main PDE regimes while the uncoated CaO2 control uses 4 h; each distinct CaO2:PDMS wt% recipe, CaO2 crystal PSD, composite microbead PSD, catalase surface treatment, and pre-implant wetting state requires independent empirical t_1/2 + kinetic-law qualification under IIP-0010 / OQ-005 / DEC-088), the Hour-0 chemical O2 release rate "
                 "supplies 45.0% of total graft+iEC metabolic demand (1.15x vascular/stromal demand multiplier on pure endocrine V_max = 3.40e-8 mol/(cm^3*s), "
                 "giving 8.9547 mmol cumulative 72-h O2 demand vs 7.7867 mmol pure endocrine demand, and 2 * 0.613145 * 8.9547 = 10.9811 mmol = 791.49 mg CaO2 "
                 "vs 9.5488 mmol = 688.25 mg on a pure-endocrine basis; exceeding both the 35.44% delta-sheet lower bound and "
@@ -1037,9 +1037,26 @@ def verify_exact_slab_source_distribution_algebra() -> Dict[str, Any]:
                 "microbead surfaces requires wet-lab verification of retained specific activity, washout/inactivation half-life "
                 "over 14 days, phase-dependent effective diffusivity, and local Ca2+/OH-/osmolality buffering."
             ),
+            "cao2_crystal_particle_size_distribution_um": "unknown_pending_stage0_measurement",
+            "pdms_cao2_composite_microbead_diameter_distribution_um": "unknown_pending_stage0_measurement",
+            "cao2_solid_volume_fraction_in_cured_composite_by_formulation": {
+                "layout_option_a_25wt_pct": round((0.25 / rho_cao2) / ((0.25 / rho_cao2) + (0.75 / rho_pdms)), 4),
+                "layout_option_b_31p25wt_pct": round((0.3125 / rho_cao2) / ((0.3125 / rho_cao2) + (0.6875 / rho_pdms)), 4),
+                "design_x_46p39wt_pct": round((0.463906 / rho_cao2) / ((0.463906 / rho_cao2) + (0.536094 / rho_pdms)), 4),
+            },
+            "formulation_transfer_and_percolation_qualification_note_iip_0010": (
+                "At rho_CaO2 = 2.91 g/cm^3 and rho_PDMS = 1.03 g/cm^3, raising dry CaO2 loading from 25.00 wt% (10.55 vol% solid filler; Pedraza et al. 2012 PMID:22371586 macroscopic monolithic PDMS disk context) "
+                "to 31.25 wt% (13.86 vol% in Layout B's 119-um lamina) and 46.39 wt% (23.45 vol% in Stage-0 Design X's 100-um lamina) substantially increases inorganic solid volume fraction inside cured PDMS microbeads, "
+                "where hydrophilic filler clustering, particle-size distribution, microbead surface-to-volume ratio (Accolla et al. 2023 PMID:36971050; Ke et al. 2022 PMID:35743287), and co-immobilized hydrophilic catalase "
+                "can alter water wicking, connected porosity, kinetic law (first-order vs reaction-controlled shrinking-core vs diffusion-controlled Ginstling-Brounshtein), and effective t_1/2. "
+                "Accordingly, t_1/2 = 68.0 h is treated strictly as an unvalidated formulation-specific reference/target rather than a conserved material constant, without claiming a universal 16 vol% percolation cliff across polydisperse PDMS composites (IIP-0010 / OQ-005 / DEC-088)."
+            ),
         },
         "selected_source_lamina_half_width_fraction": CENTRAL_LAMINA_HALF_WIDTH_FRACTION,
-        "alternative_a0p35_fields_scope": "Explicit unselected width sensitivity; the CAD and PDE use only the shared selected width.",
+        "alternative_a0p35_fields_scope": (
+            "Explicit unselected width sensitivity within part_a_exact_oxygen_boundary_value_and_volume_algebra "
+            "(where the baseline CAD ledger and lead Layout B PDE use a = 0.34 [119.0 um], while dedicated off-grid Stage-0 Design X PDE scenarios in part_a_336h_spatial_reaction_diffusion_pouch_pde explicitly solve a = 100/350 = 0.285714 [100.0 um lamina, 125.0 um outer cell bands]; IIP-0009 / DEC-087)."
+        ),
         "exact_boundary_value_loading_table": loading_table,
     }
 
@@ -1945,6 +1962,126 @@ def _realized_half_plateau_perfusion_time_hours(target_midpoint_t50_h: float, ie
     return float(t_dense[-1])
 
 
+def _build_formulation_specific_cao2_half_life_sensitivity_iip_0010() -> Dict[str, Any]:
+    """Build the IIP-0010 fixed-inventory two-sided CaO2 half-life x kinetic-law x formulation sensitivity grid."""
+    half_lives_h = [24.0, 34.0, 48.0, 68.0, 87.0, 110.0, 130.0]
+    laws = ["first_order", "shrinking_core", "ginstling_brounshtein"]
+    timings_t50_h = [36.0, 60.0]
+    formulations = [
+        {
+            "formulation_id": "LAYOUT_B_31P25WT_119UM_LAMINA_DESIGNS_A_AND_B",
+            "cao2_wt_pct": 31.25,
+            "cao2_solid_vol_pct": 13.86,
+            "lamina_thickness_um": 119.0,
+            "outer_band_thickness_each_um": 115.5,
+            "lamina_half_width_fraction": CENTRAL_LAMINA_HALF_WIDTH_FRACTION,
+            "catalase_spatial_mode": "uniform_slab",
+            "catalase_k1_override_s_inv": None,
+        },
+        {
+            "formulation_id": "STAGE0_DESIGN_X_46P39WT_100UM_LAMINA_LOCALIZED_CATALASE",
+            "cao2_wt_pct": 46.39,
+            "cao2_solid_vol_pct": 23.45,
+            "lamina_thickness_um": 100.0,
+            "outer_band_thickness_each_um": 125.0,
+            "lamina_half_width_fraction": 100.0 / 350.0,
+            "catalase_spatial_mode": "central_lamina_masked",
+            "catalase_k1_override_s_inv": 18.0 * 0.42,
+        },
+    ]
+    phi_slab_2500 = (2500.0 * VOL_1_IEQ_CM3) / 0.0350
+    rows: list[Dict[str, Any]] = []
+    passing_windows: list[Dict[str, Any]] = []
+
+    for form in formulations:
+        a_frac = float(form["lamina_half_width_fraction"])
+        local_phi = phi_slab_2500 / (1.0 - a_frac)
+        for law in laws:
+            for t50_h in timings_t50_h:
+                passing_hl: list[float] = []
+                for hl_h in half_lives_h:
+                    r = _run_single_pouch_pde_regime(
+                        f"IIP0010_{form['formulation_id']}_{law.upper()}_T50_{int(t50_h)}H_HL_{int(hl_h)}H",
+                        0.45,
+                        "central",
+                        hl_h,
+                        True,
+                        0.97,
+                        inosculation_t50_h=t50_h,
+                        release_kinetics_law=law,
+                        nz_override=51,
+                        demand_spatial_mode="outer_annulus",
+                        lamina_d_o2_scale=0.42 ** 1.5,
+                        lamina_half_width_fraction=a_frac,
+                        catalase_spatial_mode=str(form["catalase_spatial_mode"]),
+                        catalase_k1_override_s_inv=form["catalase_k1_override_s_inv"],
+                        _assess_numerical_gate=False,
+                    )
+                    min_slab = float(r["min_slab_po2_unrounded_mmhg"])
+                    ws120 = r["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"]
+                    surf120 = float(ws120["two_zone_fv_gel_only_supply_surface_po2_unrounded_mmhg"])
+                    core120 = float(ws120["two_zone_fv_gel_only_supply_120um_core_po2_unrounded_mmhg"])
+                    bvp100 = solve_spherical_cluster_po2_bvp(min_slab, 0.0050, phi_islet_in_slab=local_phi)
+                    surf100 = float(bvp100["wigner_seitz_two_zone_fv_gel_only_supply_surface_po2_unrounded_mmhg"])
+                    core100 = float(bvp100["wigner_seitz_two_zone_fv_gel_only_supply_core_po2_unrounded_mmhg"])
+                    max_h2o2 = float(r["max_interstitial_h2o2_unrounded_uM"])
+                    max_ph = float(r["max_interstitial_ph_unrounded"])
+                    passes_100um = bool(surf100 >= 15.0 and core100 >= 2.0 and max_h2o2 <= 5.0 and max_ph <= 7.50)
+                    if passes_100um:
+                        passing_hl.append(hl_h)
+                    rows.append({
+                        "formulation_id": form["formulation_id"],
+                        "cao2_wt_pct": form["cao2_wt_pct"],
+                        "cao2_solid_vol_pct": form["cao2_solid_vol_pct"],
+                        "lamina_thickness_um": form["lamina_thickness_um"],
+                        "release_kinetics_law": law,
+                        "inosculation_t50_h": t50_h,
+                        "cao2_half_life_h": hl_h,
+                        "fixed_cao2_inventory_mmol": round(float(r["cao2_initial_molar_inventory_mmol"]), 4),
+                        "fixed_cao2_inventory_mg": round(float(r["cao2_initial_mass_mg_in_7cm3_slab"]), 2),
+                        "min_slab_po2_mmhg": round(min_slab, 3),
+                        "time_of_min_slab_po2_hours": r["time_of_min_slab_po2_hours"],
+                        "gel_only_120um_surface_po2_mmhg": round(surf120, 3),
+                        "gel_only_120um_core_po2_mmhg": round(core120, 3),
+                        "gel_only_100um_surface_po2_mmhg": round(surf100, 3),
+                        "gel_only_100um_core_po2_mmhg": round(core100, 3),
+                        "max_interstitial_h2o2_uM": round(max_h2o2, 3),
+                        "max_interstitial_ph": round(max_ph, 3),
+                        "passes_100um_15mmHg_surface_2mmHg_core_5uM_h2o2_gate": passes_100um,
+                    })
+                passing_windows.append({
+                    "formulation_id": form["formulation_id"],
+                    "cao2_wt_pct": form["cao2_wt_pct"],
+                    "cao2_solid_vol_pct": form["cao2_solid_vol_pct"],
+                    "release_kinetics_law": law,
+                    "inosculation_t50_h": t50_h,
+                    "passing_half_lives_h_for_100um_clusters": passing_hl,
+                    "min_passing_half_life_on_grid_h": min(passing_hl) if passing_hl else None,
+                    "max_passing_half_life_on_grid_h": max(passing_hl) if passing_hl else None,
+                })
+
+    return {
+        "iip_id": "IIP-0010",
+        "decision_id": "DEC-088",
+        "open_question_id": "OQ-005",
+        "credit": "giufra (GitHub @frafra013; https://github.com/openislet/openislet/issues/10)",
+        "parameter_status_of_68h": "unvalidated_formulation_specific_reference_target_not_conserved_across_wt_pct_or_microbead_psd",
+        "fixed_inventory_constraint": "Conserves n_CaO2(0) = 10.9811 mmol (791.49 mg in 7.00 cm^3 active slab) across all half-lives, laws, and formulations so shorter t_1/2 raises early H2O2 flux and accelerates pre-anastomosis depletion whereas longer t_1/2 reduces Hour-0 O2 flux.",
+        "particle_and_microbead_psd_status": {
+            "cao2_crystal_particle_size_distribution_um": "unknown_pending_stage0_measurement",
+            "pdms_cao2_composite_microbead_diameter_distribution_um": "unknown_pending_stage0_measurement",
+            "primary_literature_anchors": [
+                "Pedraza et al. 2012 PNAS PMID:22371586 (25 wt% CaO2 monolithic PDMS disk)",
+                "Accolla et al. 2023 Adv Healthc Mater PMID:36971050 (microscale OxySite PDMS-CaO2 microbeads)",
+                "Ke et al. 2022 Int J Mol Sci PMID:35743287 (tunable CaO2 microparticle oxygen release)",
+            ],
+        },
+        "half_life_grid_hours": half_lives_h,
+        "passing_half_life_windows_by_formulation_law_and_t50": passing_windows,
+        "grid_rows": rows,
+    }
+
+
 def _build_joint_vascular_timing_and_exchange_sensitivity_iip_0002() -> Dict[str, Any]:
     """Build the IIP-0002 joint vascular timing-by-exchange sensitivity grid and provenance audit."""
     phi_lead = (2500.0 * VOL_1_IEQ_CM3) / 0.0350  # 0.1262247
@@ -2726,6 +2863,7 @@ def solve_336h_spatial_pouch_pde() -> Dict[str, Any]:
             }
         )
     joint_vascular_iip_0002 = _build_joint_vascular_timing_and_exchange_sensitivity_iip_0002()
+    formulation_cao2_sensitivity_iip_0010 = _build_formulation_specific_cao2_half_life_sensitivity_iip_0010()
 
     # Design X 100 um thinned central lamina (a = 100/350 = 0.285714, outer bands 125 um each >= 120 um cluster diameter,
     # 46.3906 wt% dry CaO2 in PDMS at porosity eps = 0.42; closes DEC-014 AUDIT-REF, L4-13, Audit C2, Audit FRESH-PHY-007):
@@ -3199,6 +3337,26 @@ def solve_336h_spatial_pouch_pde() -> Dict[str, Any]:
                 "and capping cluster diameter at <= 100 um (R <= 50 um, DX-b) achieves both geometric containment (100 um <= 115.5 um) and 20.62 / 12.72 mmHg surface/core pO2; "
                 "Design X's 100-um thinned lamina (125-um outer bands) achieves geometric containment and 18.39 / 7.17 mmHg at 120 um (19.99 / 12.10 mmHg at 100 um; S55R2-D4-01, S2-03, AUDIT-REF & AUDIT-REF)."
             ),
+            "representation_and_score_scope_mapping_iip_0009": {
+                "iip_id": "IIP-0009",
+                "decision_id": "DEC-087",
+                "open_question_ids": ["OQ-014", "OQ-015"],
+                "credit": "giufra (GitHub @frafra013; https://github.com/openislet/openislet/issues/9)",
+                "scored_layer1_grid_challenger_x_grid": {
+                    "id": "ISLET1_CHASSIS_X_CONSERVATIVE_BASE_EDIT_CHALLENGER",
+                    "global_rank": 2,
+                    "edit_budget": "K=4, B=1 (AUTO_DUAL_INS_LEADER_AND_DRIP_EDIT)",
+                    "niche_module_in_score": "NICHE_TRIHORMONAL_120UM_MVF_CAO2 (shared categorical 120 um lamina / <=150 um cluster-cap grid prior)",
+                    "evaluation_scope": "COMBINATORIAL_GRID_ONLY (does not score the 100 um lamina or spatial boundary-ring microgels)",
+                },
+                "unscored_stage0_molecular_and_biophysical_design_x": {
+                    "hypothesis_id": "ISLET1_X_STAGE0_MOLECULAR_HYPOTHESIS_K4_B0",
+                    "edit_budget": "K=4, B=0",
+                    "oxygen_geometry": "100.0 um central PDMS-CaO2 lamina (a = 100/350 = 0.285714), two 125.0 um outer cell bands, 46.39 wt% (23.45 vol%) dry CaO2 at porosity eps = 0.42, <=100 um micro-islet diameter cap (DX-b)",
+                    "perigraft_microgel_geometry": "All three designs (A, B, X) share local SA-FasL/SA-THBD hydrogel chemistry, whereas Stage-0 Design X arranges SA-THBD/SA-FHL-1 at the inner vascular interface and conditional SA-FasL/CXCL12 in a peripheral boundary ring rather than mixing them uniformly around clusters",
+                    "evaluation_scope": "Dedicated Layer-4 PDE regimes (DESIGN_X_100UM_LAMINA_*) and Stage-0 physical qualification; composite_series_system_utility remains None on the 2,160-stack grid",
+                },
+            },
         },
         "first_order_nz51": {
             "min_slab_po2_mmhg": dx_fo_51["min_slab_po2_across_14_days_mmhg"],
@@ -4055,6 +4213,7 @@ def solve_336h_spatial_pouch_pde() -> Dict[str, Any]:
         "spatial_grid_convergence_51_101_201_401_preastra_a094": grid_convergence,
         "vascular_perfusion_conductance_sensitivity_v80_014": perfusion_sensitivity,
         "joint_vascular_timing_and_exchange_sensitivity_iip_0002": joint_vascular_iip_0002,
+        "formulation_specific_cao2_half_life_sensitivity_iip_0010": formulation_cao2_sensitivity_iip_0010,
         "post_bridge_endocrine_function_and_recovery_protocol_iip_0004": {
             "iip_id": "IIP-0004",
             "decision_id": "DEC-082",
@@ -4076,7 +4235,7 @@ def solve_336h_spatial_pouch_pde() -> Dict[str, Any]:
             "paired_completion_clauses": {
                 "supplied_area_and_assembled_device_qualification": "Report nominal tissue-bearing area (200 cm^2 at 2,500 IEQ/cm^2; 333.33 cm^2 at S6 low-load 1,500 IEQ/cm^2 for 500,000 IEQ) and oxygen-supported area separately under one conserved supply-and-demand budget, retaining demand from all loaded tissue including uncredited regions, using S6's >= 15 mmHg surface and >= 5 mmHg core criteria for chronic S6, binding vascular access to the loaded and closed state (Chendke et al. 2023 PMID:37476069), and comparing any folded/corrugated capacity advantage against a matched separated reference at equal product, dose, and total supply.",
                 "treatment_state_applicability": "Record each functional-dose result as graft-only simulation, externally maintained clamp, or insulin-supported treatment state (including tested dose, site, lag, and concurrent treatment inputs), and do not use a graft-only trajectory to certify a treatment state it does not represent.",
-                "implantation_state_oxygen_release_material": "Bind coupon-derived kinetic parameters, remaining releasable inventory, peroxide/pH state, and material geometry to the material as implanted after storage, wetting, loading, and handling; replay preimplant history or initialise its measured residual state once (for the reaction-controlled shrinking-core law, a 68.0 h initial half-life after 24.0 h gives residual stock 0.797084 and residual half-life 63.0488 h, not 44 h, and crossing its 10 h branch requires ~281.145 h).",
+                "implantation_state_oxygen_release_material": "Bind coupon-derived kinetic parameters, empirical hydrolysis half-life t_1/2, kinetic-law code (Gate_P05_kinetics), CaO2 crystal PSD, composite microbead diameter distribution, catalase surface immobilization state, remaining releasable inventory, peroxide/pH state, and material geometry to the exact CaO2:PDMS formulation (25 wt%, 31.25 wt% [13.86 vol%], or 46.39 wt% [23.45 vol%]; never inherited across wt% recipes per IIP-0010 / DEC-088) as implanted after storage, wetting, loading, and handling; replay preimplant history or initialise its measured residual state once (for the reaction-controlled shrinking-core law, a 68.0 h initial half-life after 24.0 h gives residual stock 0.797084 and residual half-life 63.0488 h, not 44 h, and crossing its 10 h branch requires ~281.145 h).",
             },
         },
         "shrinking_core_coupled_bvp_safety_comparison_ultracode_v80_09": {

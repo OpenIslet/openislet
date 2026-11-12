@@ -1315,7 +1315,7 @@ def evaluate_graveyard_rules_for_stack(
             "evaluator_logit_delta": float(gy009.get("evaluator_logit_delta", -0.20)),
             "evaluator_target_gate": str(gy009.get("evaluator_target_gate", "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield")),
             "evaluator_disposition_rule": str(gy009.get("evaluator_disposition_rule", "Applies -0.20 logit discount in Gate 3 + requires Decision Experiment #1 QuantiBRITE gate")),
-            "reason": "Requires QuantiBRITE Hour-0 verification that resting endogenous B2M promoter achieves inhibitory HLA-E and CD47 surface density on Stage 7 beta-cells and iECs (Han 2019 PMID:31040209; Hu 2023 PMID:37156915; Xu 2024 PMID:38508139; Lin 2023 PMID:37264229).",
+            "reason": "Requires QuantiBRITE Hour-0 verification that resting endogenous B2M promoter achieves inhibitory HLA-E and CD47 surface density on Stage 7 beta-cells and iECs (Han 2019 PMID:31040209; Hu 2023 PMID:37156915; Lin 2023 PMID:37264229).",
         })
     if _matches_gy("GRAVEYARD_010_MHC_NULL_INDIRECT_APC_BYSTANDER_BLINDSPOT", {"ALLO_B2M_HLAE_CD47_SWAP_CIITA_KO", "ALLO_B2M_CIITA_KO_CD47_LENTI"}):
         gy010 = gy_map.get("GRAVEYARD_010_MHC_NULL_INDIRECT_APC_BYSTANDER_BLINDSPOT") or {}
@@ -2196,19 +2196,19 @@ def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
         },
         "section3_score_and_rank_measure_reconciliation": {
             "overall_50_50_composite_score": {
-                "Design_A": 0.1085,
+                "Design_A": 0.1084,
                 "Design_X_grid_2": 0.1046,
                 "Design_B_grid_25": 0.0673,
                 "definition": "Equal 50:50 weight on Pediatric_Early_Onset_T1D and Adult_Onset_LADA (composite_series_system_utility)",
             },
             "childrens_pediatric_t1d_score": {
-                "Design_A": 0.1070,
+                "Design_A": 0.1069,
                 "Design_X_grid_2": 0.1032,
                 "Design_B_grid_25": 0.0664,
                 "definition": "Pediatric_Early_Onset_T1D cohort utility (utility_pediatric_early_onset_t1d.series_system_joint_survival_probability)",
             },
             "adults_lada_score": {
-                "Design_A": 0.1100,
+                "Design_A": 0.1099,
                 "Design_X_grid_2": 0.1061,
                 "Design_B_grid_25": 0.0683,
                 "definition": "Adult_Onset_LADA cohort utility (utility_adult_onset_lada.series_system_joint_survival_probability)",
@@ -2844,9 +2844,9 @@ CANDIDATE_ARCHITECTURES = [
                 "(He et al. 2025 PMC12582296) across HCMV+ NKG2C+ and NKG2A- KIR2DL1/2/3+ primary NK donors (Finding 078)."
             ),
             "cd47_igv_gpi_vs_dct_ectodomain_note": (
-                "CD47-IgV-GPI was evaluated in non-islet systems (Jurkat/macrophage phagocytosis, HUVEC angiogenesis, and hematopoietic stem-cell/immunodeficient-mouse assays; Xu et al. 2024 Cell Rep Med PMID:38508139, PMC10983038) rather than mature beta-cells; "
+                "CD47-IgV-GPI was evaluated in non-islet systems (human Jurkat/macrophage phagocytosis, murine A20 lymphoma, murine C57BL/6 LSK hematopoietic stem/progenitor cell competitive repopulation, and human EA.hy926 endothelial tube-formation plus 10-day NCG Matrigel-plug angiogenesis assays; Xu et al. 2024 Cell Rep Med PMID:38508139, PMC10983038; reclassified to Tier_2B under IIP-0008 / DEC-086) rather than mature beta-cells or HUVECs; "
                 "Stage-0 Decision Experiment #1 compares CD47-IgV-GPI against cytoplasmically truncated transmembrane CD47-dCT and full-length "
-                "CD47-WT (OA3-323; Ghimire et al. 2023 PMID:37820008 Cdc42/GSIS counter-evidence) for GPI-PLC sensitivity, QuantiBRITE density, "
+                "CD47-WT (OA3-323; Ghimire et al. 2023 PMID:37820008 Cdc42/GSIS counter-evidence) for GPI-PLC sensitivity, anti-CD47 QuantiBRITE density (clone B6H12 in Stage 0 vs Hu et al. 2023 PMID:37156915 clone CC2C6 + BD Quantibrite calibration, OQ-008), "
                 "and dynamic perifusion GSIS (Finding 079)."
             ),
             "sa_fasl_sa_thbd_immunosuppression_and_fratricide_note": (
@@ -4113,7 +4113,7 @@ def build_champion_challenger_portfolio(ranked_architectures: list[dict], all_co
             "B": {
                 "slot_id": "B",
                 "architecture_id": arch_b["architecture_id"],
-                "role": "HLA-C-Retained KIR-Matched Superdonor Comparator (Scored Grid #25: K=6, B=1 ISLET1_B1_6LOCUS_TYK2_KO_INS [0.0673] + K=5, B=1 ISLET1_B2_5LOCUS_TYK2_PE counterfactual [0.0782 complexity-discount sensitivity with gate logits held fixed; 0.0724 dropping +0.25 Gate-2B INS credit; 0.0569 full AUTO_NONE with TYK2-KO Gate-1 penalty or 0.0629 with TYK2 P1104A WT-yield]; Promoted Unscored Stage-0 Molecular Plan B'-SCT: K=4, B=0 ISLET1_B_SCT_C1_CIITA / ISLET1_B_SCT_C2_CIITA / ISLET1_B_SCT_C1C2_CIITA [counterfactual 0.1085])",
+                "role": "HLA-C-Retained KIR-Matched Superdonor Comparator (Scored Grid #25: K=6, B=1 ISLET1_B1_6LOCUS_TYK2_KO_INS [0.0673] + K=5, B=1 ISLET1_B2_5LOCUS_TYK2_PE counterfactual [0.0782 complexity-discount sensitivity with gate logits held fixed; 0.0724 dropping +0.25 Gate-2B INS credit; 0.0569 full AUTO_NONE with TYK2-KO Gate-1 penalty or 0.0629 with TYK2 P1104A WT-yield]; Promoted Unscored Stage-0 Molecular Plan B'-SCT: K=4, B=0 ISLET1_B_SCT_C1_CIITA / ISLET1_B_SCT_C2_CIITA / ISLET1_B_SCT_C1C2_CIITA [counterfactual 0.1084])",
                 "matched_combinatorial_search_id": arch_b["matched_combinatorial_search_id"],
                 "global_rank": arch_b["global_rank_among_all_combinations"],
                 "K": arch_b["genomic_locus_edit_count_K"],
@@ -4134,7 +4134,7 @@ def build_champion_challenger_portfolio(ranked_architectures: list[dict], all_co
                 "slot_id": "X",
                 "architecture_id": "ISLET1_CHASSIS_X_EMERGENT_CHALLENGER",
                 "grid_alias": "X-grid (ISLET1_CHASSIS_X_CONSERVATIVE_BASE_EDIT_CHALLENGER)",
-                "role": "Highest-ranked feasible non-A/non-B grid challenger (K=4, B=1 conservative prime/base-edit challenger; exact utility tie at #2/#3 between #2 AUTO_DUAL_INS_LEADER_AND_DRIP_EDIT + ER_NONE [K=4, B=1, discount = 0.9650] and #3 AUTO_NONE + ER_IAPP_PRAMLINTIDE_RNLS_WT [K=4, B=1, discount = 0.9650] at 0.10467791551016123 exact unrounded composite utility [0.10467792 8-dec; 0.1047 direct 4-dec; 0.1046 displayed via IEEE-754 binary64 cohort-rounded average round((0.1032 + 0.1061)/2, 4) = round(0.10464999999999999, 4) = 0.1046 (coinciding with exact-decimal half-even 0.10465 -> 0.1046, whereas literal binary64 round(0.10465, 4) = 0.1047)], resolved to #2 under reverse=True sort by the Gate-2B T1D autoantigen stealth priority tie-breaker for AUTO_DUAL_INS_LEADER_AND_DRIP_EDIT while #3 ER_IAPP_PRAMLINTIDE_RNLS_WT serves as the Gate-4 ER/amyloid Pareto watchlist challenger, whereas K=5, B=0 AUTO_NONE + ER_RNLS_KO [discount = exp(-0.15) = 0.860708] ranks #9 at 0.08192907 [0.0819]); strictly distinct from off-grid Stage-0 molecular/biophysical Design X (K=4, B=0: ISLET1_A4_X_MOL_RNLS_WT, ISLET1_A4_DXS_ARM1C_L4CD47, ISLET1_A4_L3_BFB_BASALFLOOR, ISLET1_COMP_R4_X_BFB_DXB_LOWLOAD1500; L1B-F1 & L1B-F2)",
+                "role": "Highest-ranked feasible non-A/non-B grid challenger (K=4, B=1 conservative prime/base-edit challenger inheriting the categorical NICHE_TRIHORMONAL_120UM_MVF_CAO2 120 um lamina / <=150 um cluster-cap indicator on the 2,160-stack grid; exact utility tie at #2/#3 between #2 AUTO_DUAL_INS_LEADER_AND_DRIP_EDIT + ER_NONE [K=4, B=1, discount = 0.9650] and #3 AUTO_NONE + ER_IAPP_PRAMLINTIDE_RNLS_WT [K=4, B=1, discount = 0.9650] at 0.10463976892871349 exact unrounded composite utility [0.10463977 8-dec; 0.1046 both direct 4-dec and IEEE-754 binary64 cohort-rounded average round((0.1032 + 0.1061)/2, 4) = round(0.10464999999999999, 4) = 0.1046], resolved to #2 under reverse=True sort by the Gate-2B T1D autoantigen stealth priority tie-breaker for AUTO_DUAL_INS_LEADER_AND_DRIP_EDIT while #3 ER_IAPP_PRAMLINTIDE_RNLS_WT serves as the Gate-4 ER/amyloid Pareto watchlist challenger, whereas K=5, B=0 AUTO_NONE + ER_RNLS_KO [discount = exp(-0.15) = 0.860708] ranks #9 at 0.08189922 [0.0819]); strictly distinct from unscored off-grid Stage-0 molecular/biophysical Design X (K=4, B=0, 100 um PDMS-CaO2 lamina / 125 um cell bands / 46.39 wt% CaO2 / <=100 um cluster cap + spatial boundary-ring microgel geometry evaluated in dedicated Layer-4 PDE scenarios: ISLET1_A4_X_MOL_RNLS_WT, ISLET1_A4_DXS_ARM1C_L4CD47, ISLET1_A4_L3_BFB_BASALFLOOR, ISLET1_COMP_R4_X_BFB_DXB_LOWLOAD1500; L1B-F1, L1B-F2 & IIP-0009 / DEC-087)",
                 "evaluation_scope": "COMBINATORIAL_GRID_ONLY",
                 "molecular_proposal_included_in_score": False,
                 "matched_combinatorial_search_id": emergent_x["combination_id"],
@@ -4200,12 +4200,12 @@ def build_champion_challenger_portfolio(ranked_architectures: list[dict], all_co
                 "relative_composite_gain_from_4dec_gate3_ratio_pct": round(100.0 * (x_g3_disp / a_g3_disp - 1.0), 2),
                 "derivation_note": (
                     "While the 2,160-stack grid evaluates fixed locus indicators (where X-grid = ISLET1_CHASSIS_X_CONSERVATIVE_BASE_EDIT_CHALLENGER "
-                    "has K=4, B=1, utility = 0.1046 [0.10467791551016123 exact unrounded / 0.10467792 8-dec / 0.1047 direct 4-dec; displayed as 0.1046 via IEEE-754 binary64 cohort-rounded average round((0.1032 + 0.1061)/2, 4) = round(0.10464999999999999, 4) = 0.1046 (coinciding with exact-decimal half-even 0.10465 -> 0.1046, whereas literal binary64 round(0.10465, 4) = 0.1047)]), off-grid molecular Design X (K=4, B=0, discount = 1.0000) replaces Arm 1B's resting-attenuated "
+                    "has K=4, B=1, utility = 0.1046 [0.10463976892871349 exact unrounded / 0.10463977 8-dec / 0.1046 both direct 4-dec and IEEE-754 binary64 cohort-rounded average round((0.1032 + 0.1061)/2, 4) = round(0.10464999999999999, 4) = 0.1046], inheriting the shared categorical NICHE_TRIHORMONAL_120UM_MVF_CAO2 indicator), unscored off-grid Stage-0 molecular/biophysical Design X (K=4, B=0, discount = 1.0000; IIP-0009 / DEC-087) replaces Arm 1B's resting-attenuated "
                     "Syn_5xISRE_minP promoter (10,890 molecules/cell at Hour 0 [< 15,000 NKG2A threshold; 0.6050x WT 18,000], incurring the -0.20 resting NK vulnerability penalty on Gate 3) "
                     "with constitutive HLA-E expression (Arm 1C promoter-trapped B2M::HLA-E SCT in DX-S or Arm 1A-lite EEF1A1_core) plus "
-                    "AAVS1::iCasp9-GSG-P2A-CD47-IgV-GPI and the 100 um PDMS-CaO2 lamina (eps = 0.42, <=100 um clusters). Removing the "
-                    "-0.20 Hour-0 resting HLA-E discount (GRAVEYARD_009; sigma(0.5598637 + 0.20) = 0.681324 vs 0.636421 while GRAVEYARD_010's -0.25 stays) increases Gate 3 pediatric survival from 0.6364 to 0.6813 (+4.49 pp) and lifts "
-                    f"projected off-grid K=4, B=0 composite utility from 0.1085 ({a_comp_unrounded:.8f} unrounded) to 0.1162 (0.1085 * 0.6813 / 0.6364 = 0.116155 from displayed 4-decimal inputs; 0.1161 [{x_comp_unrounded:.8f}] from exact unrounded evaluator inputs; exact relative gain is +7.06% [7.0556% unrounded / 7.0553% from 0.6813/0.6364; legacy +7.07% retained in legacy_rounded_relative_composite_gain_pct_reference]; strictly conditional on passing Decision Experiment #1 Hour-0 HLA-E >= 15,000 molecules/cell; unconditional baseline equals 0.1085; AUDIT-REF, D1-02, Q2-X4, AUDIT-REF, AUDIT-REF, AUDIT-REF, AUDIT-REF, AUDIT-REF, AUDIT-REF & L1B-F2 [DEC-077])."
+                    "AAVS1::iCasp9-GSG-P2A-CD47-IgV-GPI and the 100 um PDMS-CaO2 lamina (125 um cell bands, 46.39 wt% CaO2, eps = 0.42, <=100 um clusters; evaluated in dedicated Layer-4 PDE scenarios without altering the 2,160-stack Gate 5 prior). Removing the "
+                    "-0.20 Hour-0 resting HLA-E discount (GRAVEYARD_009; sigma(0.5594227 + 0.20) = 0.681228 vs 0.636319 while GRAVEYARD_010's -0.25 stays) increases Gate 3 pediatric survival from 0.6363 to 0.6812 (+4.49 pp) and lifts "
+                    f"projected off-grid K=4, B=0 composite utility from 0.1084 ({a_comp_unrounded:.8f} unrounded) to 0.1160 (0.1084 * 0.6812 / 0.6363 = 0.116050 from displayed 4-decimal inputs; 0.1161 [{x_comp_unrounded:.8f}] from exact unrounded evaluator inputs; exact relative gain is +7.06% [7.0577% unrounded / 7.0564% from 0.6812/0.6363; legacy +7.07% retained in legacy_rounded_relative_composite_gain_pct_reference]; strictly conditional on passing Decision Experiment #1 Hour-0 HLA-E >= 15,000 molecules/cell; unconditional baseline equals 0.1084; AUDIT-REF, D1-02, Q2-X4, L1B-F2 [DEC-077], IIP-0008 [DEC-086] & IIP-0009 [DEC-087])."
                 ),
             },
             "genomic_budget": "Proposed K=4, B=0; utility discount 1 is not measured manufacturing yield",
@@ -6170,7 +6170,7 @@ def main() -> None:
             {
                 "voi_id": "DECISION_EXP_1_HOUR0_B2M_PROMOTER_SURFACE_DENSITY",
                 "title": "Resting Hour-0 QuantiBRITE Surface Density & Head-to-Head Construct Comparison (Bicistronic HLA-E-GSG-tPT2A-CD47-IgV-GPI vs 2A-Free Bidirectional Cassette vs CD47-dCT vs CD47-WT; HLA-E*01:03[VMAPRTLVL] WT vs KW-Motif) Across Stage 7 Beta, Alpha, Delta & iEC Lineages",
-                "why_needed": "Mature resting human Stage 7 beta-cells have low basal B2M transcription before IFN-gamma exposure, and Xu et al. 2024 (PMID:38508139) tested GPI-anchored CD47-IgV-GPI in HUVECs/teratomas whereas Ghimire et al. 2023 (PMID:37820008) showed full-length CD47-WT inhibits beta-cell GSIS via Cdc42 and Lin et al. 2023 (PMID:37264229) showed VMAPRTLVL occurs in ~12% of clinical HCMV UL40 isolates. Because Golgi Furin cannot cleave the cytosolic C-terminal -GSG-P2A tail on HLA-E*01:03 in the bicistronic tPT2A cassette (Audit R01), Stage-0 compares bicistronic HLA-E-GSG-tPT2A-CD47-IgV-GPI against a scarless 2A-free bidirectional cassette [SV40pA-CD47-IgV-GPI(antisense) <- EEF1A1-core | Syn_5xISRE_minP -> HLA-E*01:03(VMAPRTLVL)-bGHpA] as well as 5'-CD47-dCT/WT-tPT2A-HLA-E for Hour-0 QuantiBRITE density (>200k CD47, >15k HLA-E), anti-2A read-through Western blot, dynamic GSIS, iEC tube formation, and protection against FACS-gated NKG2A- KIR2DL1/2/3+ and HCMV+ NKG2C+ adaptive NK subsets.",
+                "why_needed": "Mature resting human Stage 7 beta-cells have low basal B2M transcription before IFN-gamma exposure, and Xu et al. 2024 (PMID:38508139; Tier_2B non-islet models per IIP-0008 / DEC-086) tested GPI-anchored CD47-IgV-GPI in human Jurkat T-cells, murine A20 lymphoma, murine LSK HSPCs, and human EA.hy926 endothelial tube-formation / 10-day NCG Matrigel-plug angiogenesis assays (not beta-cells, HUVECs, or teratomas) whereas Ghimire et al. 2023 (PMID:37820008) showed full-length CD47-WT inhibits beta-cell GSIS via Cdc42 and Lin et al. 2023 (PMID:37264229) showed VMAPRTLVL occurs in ~12% of clinical HCMV UL40 isolates. Because Golgi Furin cannot cleave the cytosolic C-terminal -GSG-P2A tail on HLA-E*01:03 in the bicistronic tPT2A cassette (Audit R01), Stage-0 compares bicistronic HLA-E-GSG-tPT2A-CD47-IgV-GPI against a scarless 2A-free bidirectional cassette [SV40pA-CD47-IgV-GPI(antisense) <- EEF1A1-core | Syn_5xISRE_minP -> HLA-E*01:03(VMAPRTLVL)-bGHpA] as well as 5'-CD47-dCT/WT-tPT2A-HLA-E for Hour-0 QuantiBRITE density (>200k CD47 with anti-CD47 clone B6H12, cross-calibrated against Hu et al. 2023 PMID:37156915 clone CC2C6 + BD Quantibrite; >15k HLA-E), anti-2A read-through Western blot, dynamic GSIS, iEC tube formation, and protection against FACS-gated NKG2A- KIR2DL1/2/3+ and HCMV+ NKG2C+ adaptive NK subsets.",
                 "kill_criterion": "If CD47-IgV-GPI fails to match CD47-WT NK/macrophage protection across SIRPA V1/V2 donors, or if bicistronic tPT2A shows >5% unskipped read-through or impaired HLA-E trafficking relative to the 2A-free bidirectional cassette, lock the highest-performing construct uniformly across all 13 X2=+1 factorial runs prior to Stage 1.",
             },
             {
@@ -6203,6 +6203,13 @@ def main() -> None:
                 "title": "Which assumptions and definition of success sit behind the four-hurdle odds estimate?",
                 "why_needed": "Raised by Linus Schumacher (ORCID 0000-0003-0797-3406, GitHub @ljschumacher, University of Edinburgh) in IIP-0003 (https://github.com/openislet/openislet/issues/3). The 21% and 37% figures are rough team judgements for clearing four in-body hurdles in sequence, assuming the edited cells work as designed and pass lab safety checks before any trial. Moving from one design to three depends on how much Designs A, B and X overlap at each hurdle, and the estimate depends on which clinical outcome counts as success.",
                 "kill_criterion": "Fix one clinical definition of success, write down the per-design and shared failure assumptions at each hurdle, and replace the starting judgements with measured pass rates as lab and preclinical results arrive.",
+            },
+            {
+                "voi_id": "OQ_017_STAGE1_MULTILINEAGE_IMMUNE_ISLET_COCULTURE_STRESS_TEST_IIP_0007",
+                "open_question_id": "OQ-017",
+                "title": "Can a Stage-1 multi-lineage immune–islet co-culture catch cross-talk missed by split effector assays without obscuring which edit failed?",
+                "why_needed": "Raised by K Morris (GitHub @kmorris-islet) in IIP-0007 (https://github.com/openislet/openislet/issues/7). Stage-0 Readouts 3A, 3B and 3C test T cells, NK subsets and macrophages in separate wells so each edit gets a clean causal pass/fail read, which leaves open how macrophage-derived IL-1beta/TNF-alpha, NK IFN-gamma, shed autoantigen uptake by host APCs, and post-stress glucose-stimulated insulin secretion interact in one combined human microtissue before mouse studies.",
+                "kill_criterion": "Keep Stage-0 Readouts 3A, 3B and 3C separate and mandatory for causal factor attribution; at Stage 1, evaluate a supplementary combined human PBMC/APC/NK/macrophage co-culture only after pre-qualifying baseline alloreactive vs T1D-specific background lysis, multi-lineage viability over 48-72 h, and dynamic perifusion recovery from microgel-embedded clusters.",
             },
         ],
     }

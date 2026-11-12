@@ -108,7 +108,7 @@ def _has_matched_cell_source_and_stage(left: dict, right: dict) -> bool:
         value = left.get(field)
         if not isinstance(value, str) or not value.strip() or value != right.get(field):
             return False
-        if any(token in value.lower() for token in ("unknown", "unspecified", "mixed", "not_reported")):
+        if any(token in value.lower() for token in ("unknown", "unspecified", "mixed", "not_reported", "nonislet")):
             return False
     return True
 

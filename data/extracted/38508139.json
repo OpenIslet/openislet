@@ -11,13 +11,12 @@
     "senior_author": "Yang Yong-Guang",
     "pub_year": 2024,
     "journal": "Cell reports. Medicine",
-    "source_text_type": "Abstract_Only",
+    "source_text_type": "FullText_XML_or_PDF",
     "pillars_covered": [
       "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth",
-      "Pillar3_Intrinsic_BetaCell_Genetic_Resilience_Amyloid_Viral",
       "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
     ],
-    "max_biological_fidelity_tier": "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse"
+    "max_biological_fidelity_tier": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
   },
   "screening_decision": {
     "included": true,
@@ -28,16 +27,16 @@
   "arms": [
     {
       "arm_id": "pmid38508139_arm1",
-      "arm_label": "Membrane-anchored truncated CD47-IgV lacking transmembrane and intracellular signaling domains (Xu et al. 2024)",
+      "arm_label": "Human CD47KO Jurkat T-Leukemia Cells Transduced with GPI-Anchored hCD47-IgV vs Full-Length hCD47-iso2 (Fig. 1)",
       "is_reference_control": false,
-      "sample_size_n": null,
-      "sample_size_unit": null,
+      "sample_size_n": 3,
+      "sample_size_unit": "in_vitro_coculture_replicates",
       "gate1_substrate_and_differentiation": {
-        "cell_source_class": "Rodent_Primary_Islet",
-        "cell_line_id": null,
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cell_line_id": "Human Jurkat T-cell leukemia line (CD47KO transduced with lentiviral hCD47-IgV [DAF GPI signal] vs hCD47-iso2)",
         "donor_hla_profile": null,
-        "protocol_backbone": null,
-        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "protocol_backbone": "Non-islet human Jurkat T-cell line; zero pancreatic islet or endocrine differentiation evaluated",
+        "canonical_differentiation_stage_evaluated": null,
         "stage_small_molecules_and_factors": [],
         "cluster_mean_diameter_um": null,
         "pct_nkx6_1_cpeptide_double_pos": null,
@@ -52,7 +51,7 @@
           "ensembl_gene_id": "ENSG00000196776",
           "sub_molecular_coordinate": {
             "region_class": "Specific_Exon_or_Splice_Isoform",
-            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=exact_variant_or_swap_description mod=Signal_Peptide_or_Domain_Swap genes=CD47 quote_sha256=05f088ded41c14e6b2909badb8827aa0307b3bc939399edde6b4d38550efa462]"
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=exact_variant_or_swap_description mod=Signal_Peptide_or_Domain_Swap genes=CD47 quote_sha256=8b75788dbe47daa6b8e41c9b0887e7894e9af2d84305fd4f7f99edb566f23099]"
           },
           "functional_gate": "Gate3_Macrophage_DonotEatMe",
           "target_autoantibody_or_tcr_evaded": [
@@ -60,7 +59,7 @@
           ],
           "edit_modality": "Signal_Peptide_or_Domain_Swap",
           "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
-          "zygosity_or_allelic_state": null,
+          "zygosity_or_allelic_state": "Hemizygous_or_KnockIn",
           "protein_or_surface_expression_fold_vs_wt": null,
           "perturbation_class": "Precision_Epitope_or_Isoform_Edit"
         }
@@ -72,19 +71,259 @@
         "oxygen_bridge_72h_carrier": "None",
         "packing_density_ieq_per_cm2_or_ml": null,
         "number_of_distributed_micro_pockets": null,
-        "staged_insertion_schedule": null,
+        "staged_insertion_schedule": "4-h macrophage co-culture in vitro (Fig. 1C-H) and i.v. systemic injection into T/B/NK-deficient NCG mice (Fig. 1I; n=6-7)",
         "encapsulation_or_biomaterial": null,
         "co_transplanted_cells_or_oxygen_source": null,
         "systemic_immunosuppression_regimen": "None"
       },
       "challenge_conditions": [
         {
-          "challenge_type": "Primary_NK_Cell_MissingSelf_Assay",
+          "challenge_type": "Macrophage_Phagocytosis_Assay",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 4.0,
+          "specific_autoantigen_or_hla_restriction": "Human M-CSF PBMC-derived macrophages (Fig. 1C) and NCG mouse BMDMs (Fig. 1D-H), plus agonistic anti-CD47 mAb CC2C6 apoptosis assay (Fig. 1B)"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid38508139_arm2",
+      "arm_label": "Mouse Leukemic B-Cell Lymphoma A20 Cells Expressing GPI-Anchored mCD47-IgV vs mCD47-iso2 (Fig. 2)",
+      "is_reference_control": false,
+      "sample_size_n": 11,
+      "sample_size_unit": "mouse_recipients",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cell_line_id": "Mouse A20 B-cell lymphoma line (CD47KO and WT backgrounds transduced with mCD47-IgV vs mCD47-iso2)",
+        "donor_hla_profile": "Syngeneic BALB/c mouse lymphoma",
+        "protocol_backbone": "Non-islet mouse A20 lymphoma model",
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "CD47",
+          "ensembl_gene_id": "ENSG00000196776",
+          "sub_molecular_coordinate": {
+            "region_class": "Specific_Exon_or_Splice_Isoform",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=exact_variant_or_swap_description mod=Signal_Peptide_or_Domain_Swap genes=CD47 quote_sha256=d2a69a7b4e8385fdeb41e5d60693d6458496d5517b570b2959283afd3c917b95]"
+          },
+          "functional_gate": "Gate3_Macrophage_DonotEatMe",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "Signal_Peptide_or_Domain_Swap",
+          "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
+          "zygosity_or_allelic_state": "Hemizygous_or_KnockIn",
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Precision_Epitope_or_Isoform_Edit"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Unspecified_InVivo_or_Source_Site",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": "i.v. systemic injection (1 x 10^6 A20 cells) into 3.5-Gy-irradiated syngeneic BALB/c mice (Fig. 2G)",
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Macrophage_Phagocytosis_Assay",
           "effector_to_target_ratio": null,
           "oxygen_pct": null,
           "glucose_concentration_mM": null,
           "duration_hours_or_days": null,
-          "specific_autoantigen_or_hla_restriction": null
+          "specific_autoantigen_or_hla_restriction": "Mouse macrophage phagocytosis in vitro and macrophage-mediated tumor clearance in 3.5-Gy-irradiated syngeneic BALB/c mice (Fig. 2A-G)"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid38508139_arm3",
+      "arm_label": "Mouse CD47KO GFP+ Bone-Marrow LSK Hematopoietic Stem/Progenitor Cells Transduced with mCD47-IgV vs mCD47-iso2 (Fig. 3)",
+      "is_reference_control": false,
+      "sample_size_n": 8,
+      "sample_size_unit": "mouse_recipients",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cell_line_id": "Mouse GFP+ CD47KO C57BL/6 bone-marrow Lin-Sca-1+c-Kit+ (LSK) hematopoietic stem/progenitor cells (HSPCs)",
+        "donor_hla_profile": "Syngeneic C57BL/6 mouse bone marrow",
+        "protocol_backbone": "Non-islet mouse bone-marrow HSPC reconstitution assay (CD45+, CD11b+, CD3+, CD19+, LSK/GMP/CMP/MEP/CLP chimerism over 14 weeks)",
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "CD47",
+          "ensembl_gene_id": "ENSG00000196776",
+          "sub_molecular_coordinate": {
+            "region_class": "Specific_Exon_or_Splice_Isoform",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=exact_variant_or_swap_description mod=Signal_Peptide_or_Domain_Swap genes=CD47 quote_sha256=ba99f05d044dfc165cab083c02c13f0fce49811a918b33417dc2222067305969]"
+          },
+          "functional_gate": "Gate3_Macrophage_DonotEatMe",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "Signal_Peptide_or_Domain_Swap",
+          "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
+          "zygosity_or_allelic_state": "Hemizygous_or_KnockIn",
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Precision_Epitope_or_Isoform_Edit"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Unspecified_InVivo_or_Source_Site",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=omitted_text quote_sha256=16582cc2581f8ad47c68ab2b4c58e0ece8a624ff26bb8fdd75bad721b2dfaae4]",
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 98.0,
+          "specific_autoantigen_or_hla_restriction": "14-week syngeneic hematopoietic reconstitution and multilineage blood/spleen/LN/BM chimerism in lethally irradiated C57BL/6 mice (Fig. 3A-E; n=8/group)"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid38508139_arm4",
+      "arm_label": "Human CD47KO EA.hy926 Endothelial Cell Line Transduced with GPI-Anchored hCD47-IgV vs Full-Length hCD47-iso2 (Fig. 4)",
+      "is_reference_control": false,
+      "sample_size_n": 3,
+      "sample_size_unit": "in_vitro_coculture_replicates",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cell_line_id": "Human EA.hy926 endothelial cell line (CD47KO transduced with hCD47-IgV vs hCD47-iso2, plus WT and CD47KO controls)",
+        "donor_hla_profile": null,
+        "protocol_backbone": "Non-islet immortalized human EA.hy926 endothelial line (NOT primary HUVEC and NOT iPSC-derived iEC)",
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "CD47",
+          "ensembl_gene_id": "ENSG00000196776",
+          "sub_molecular_coordinate": {
+            "region_class": "Specific_Exon_or_Splice_Isoform",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=exact_variant_or_swap_description mod=Signal_Peptide_or_Domain_Swap genes=CD47 quote_sha256=29e305329b9f78a72a8b2fab63e3bac97bd8965cdf14851c437b1446bb57e071]"
+          },
+          "functional_gate": "Gate3_Macrophage_DonotEatMe",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "Signal_Peptide_or_Domain_Swap",
+          "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
+          "zygosity_or_allelic_state": "Hemizygous_or_KnockIn",
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Precision_Epitope_or_Isoform_Edit"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Subcutaneous_Unmodified",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": "6-h in vitro Matrigel tube formation at passages P-3 and P-10 (Fig. 4A-B) and 10-day subcutaneous Matrigel plug neovascularization in NCG mice (Fig. 4C; n=3/group, repeated twice)",
+        "encapsulation_or_biomaterial": "Matrigel plug (non-islet endothelial neovascularization assay)",
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 10.0,
+          "specific_autoantigen_or_hla_restriction": "In vitro EA.hy926 endothelial tube formation (P-3 vs P-10) and 10-day subcutaneous Matrigel plug CD31+ microvessel formation in NCG mice (Fig. 4A-C)"
         }
       ],
       "quantitative_readouts": {
@@ -110,9 +349,9 @@
   "atomic_effects": [
     {
       "effect_id": "xu2024_eff1_cd47_igv_protects_phagocytosis_without_cell_death_or_angiogenesis_block",
-      "source_figure_or_table": "Abstract & Figs. 1-5 (Cell Rep Med 2024)",
-      "focal_factor_X": "CD47 (Signaling-incompetent membrane-anchored extracellular CD47-IgV lacking transmembrane and intracellular domains)",
-      "comparator_X0": "Full-length wild-type CD47 overexpression or unedited control cells",
+      "source_figure_or_table": "Fig. 1A-I & Fig. 2A-G (Cell Rep Med 2024)",
+      "focal_factor_X": "CD47 (Signaling-incompetent GPI-anchored extracellular hCD47-IgV / mCD47-IgV domain swap lacking transmembrane and intracellular domains)",
+      "comparator_X0": "CD47-knockout control cells and full-length CD47-iso2 control cells",
       "outcome_variable_Y": "[Endpoint: NK_or_Macrophage_Innate_Survival | polarity=Lower_Is_Better_Hazard_Endpoint | orientation_sign=-1 | unit=qualitative_statement]",
       "outcome_domain": "NK_or_Macrophage_Innate_Survival",
       "treatment_mean": null,
@@ -127,16 +366,16 @@
       "effect_direction": "Protective_or_Improved",
       "secretome_or_differentiation_penalty_observed": false,
       "conditioning_context_Z": {
-        "Z1_developmental_stage_and_timing": "Stage7_MetabolicallyMature_SC_Islet",
-        "Z2_genetic_background_and_allelic_dose": "Truncated CD47-IgV membrane-anchored construct vs full-length CD47",
-        "Z3_immune_effector_and_stressor_pathway": "Macrophage and innate immune phagocytosis in vitro and in vivo",
-        "Z4_metabolic_and_glucose_load_state": "Unstressed and post-transplant engraftment",
-        "Z5_cytoarchitecture_and_cluster_diameter": "Human and mouse engineered cells",
-        "Z6_microenvironment_oxygen_and_vascular_niche": "In vivo angiogenic and engraftment niche",
-        "Z7_promoter_and_epigenetic_context": "Transgenic membrane-anchored CD47-IgV",
-        "Z8_species_age_and_sex_context": "Tier_2A_Human_Cells_HumanizedImmuneMouse"
+        "Z1_developmental_stage_and_timing": "Non-islet human Jurkat T-leukemia and mouse A20 B-lymphoma cell lines (zero pancreatic islet cells evaluated)",
+        "Z2_genetic_background_and_allelic_dose": "Lentiviral GPI-anchored CD47-IgV vs full-length CD47-iso2 on CD47KO Jurkat and CD47KO/WT A20 backgrounds",
+        "Z3_immune_effector_and_stressor_pathway": "Human M-CSF PBMC-derived macrophages (4 h co-culture, Fig. 1C), NCG mouse BMDMs (Fig. 1D-H), agonistic anti-CD47 mAb CC2C6 apoptosis test (Fig. 1B), and macrophage clearance in T/B/NK-deficient NCG or irradiated syngeneic BALB/c mice (Fig. 1I, Fig. 2G; NK cytotoxicity was NOT tested)",
+        "Z4_metabolic_and_glucose_load_state": "Standard leukemia/lymphoma line culture and systemic i.v. tumor challenge (no glucose/insulin or GSIS assays)",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Single-cell hematologic suspension lines",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "In vitro 4-h co-culture and systemic i.v. challenge",
+        "Z7_promoter_and_epigenetic_context": "Constitutive lentiviral transgene",
+        "Z8_species_age_and_sex_context": "Tier_2B human PBMC macrophage co-culture with human Jurkat cells plus mouse NCG and syngeneic BALB/c models"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=verbatim_evidence_quote genes=CD47 pert=NONE quote_sha256=607785a2bc34079f5fe130783e33ac5595c6f83d477e6f24c98e1e45e7d2162e]",
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=verbatim_evidence_quote genes=CD47 pert=NONE quote_sha256=6f6c9a31efc7bc56acbc2cd198eabe2cc9bb965524fd2772b6b0bc657a270dc1]",
       "focal_arm_id": "pmid38508139_arm1",
       "comparator_arm_id": null,
       "dispersion_type": "Not_Reported_in_Source_Sentence",
@@ -145,17 +384,17 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
         "orientation_sign": -1,
-        "matched_lexicon_term": "cell death"
+        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=omitted_text quote_sha256=a8d34d42aeff603765213ae709399cc6a5ef2251f3cf54eb14d392f1a8a7b69f]"
       },
-      "dossier_sha256": "4abc1b94a3624434621a558b8e18c8881bf23496fbc3394a4e81312410c08db9",
-      "source_span": "abstract[465:660]|norm=exact",
+      "dossier_sha256": "bf6223c546b2e44b8340fb3cc16259ed12f033ee78ea8a710aa52e3746fded04",
+      "source_span": "fulltext_data_sections.results_paragraphs[8][508:690]|norm=exact",
       "statistic_type": "qualitative_statement_only",
       "contrast_metadata": {
-        "intervention_label": "CD47 (Signaling-incompetent membrane-anchored extracellular CD47-IgV lacking transmembrane and intracellular domains)",
+        "intervention_label": "CD47 (Signaling-incompetent GPI-anchored extracellular hCD47-IgV / mCD47-IgV domain swap lacking transmembrane and intracellular domains)",
         "comparator_label": null,
         "endpoint_name": "NK_or_Macrophage_Innate_Survival",
-        "timepoint": null,
-        "population_or_model": "Truncated CD47-IgV membrane-anchored construct vs full-length CD47 (Tier_2A_Human_Cells_HumanizedImmuneMouse)",
+        "timepoint": "4 h in vitro",
+        "population_or_model": "Lentiviral GPI-anchored CD47-IgV vs full-length CD47-iso2 on CD47KO Jurkat and CD47KO/WT A20 backgrounds (Tier_2B human PBMC macrophage co-culture with human Jurkat cells plus mouse NCG and syngeneic BALB/c models)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
       },
@@ -165,12 +404,12 @@
       "quote_source_dossier_pmid": "38508139"
     },
     {
-      "effect_id": "xu2024_eff2_cd47_igv_preserves_engraftment_and_differentiation",
-      "source_figure_or_table": "Abstract & Fig. 6 (Cell Rep Med 2024)",
-      "focal_factor_X": "CD47 (Transgenic CD47-IgV expression during stem cell engraftment and differentiation)",
-      "comparator_X0": "Full-length CD47 or unedited control stem cells",
-      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
-      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "effect_id": "xu2024_eff2_cd47_igv_preserves_endothelial_angiogenesis_and_hspc_function",
+      "source_figure_or_table": "Fig. 4A-C & Fig. 3A-E (Cell Rep Med 2024)",
+      "focal_factor_X": "CD47 (Transgenic GPI-anchored hCD47-IgV expression on EA.hy926 endothelial cells and mCD47-IgV on mouse LSK bone-marrow HSPCs)",
+      "comparator_X0": "Full-length CD47-iso2 transgenic and endogenous WT CD47 endothelial cells (and CD47-iso2 mouse LSK HSPCs)",
+      "outcome_variable_Y": "[Endpoint: Hypoxia_72h_or_Vascular_Inosculation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
+      "outcome_domain": "Hypoxia_72h_or_Vascular_Inosculation",
       "treatment_mean": null,
       "treatment_sd_or_sem": null,
       "treatment_n": null,
@@ -183,17 +422,17 @@
       "effect_direction": "Protective_or_Improved",
       "secretome_or_differentiation_penalty_observed": false,
       "conditioning_context_Z": {
-        "Z1_developmental_stage_and_timing": "Stage7_MetabolicallyMature_SC_Islet",
-        "Z2_genetic_background_and_allelic_dose": "Truncated CD47-IgV membrane-anchored construct",
-        "Z3_immune_effector_and_stressor_pathway": "In vivo engraftment",
-        "Z4_metabolic_and_glucose_load_state": "Standard differentiation and engraftment",
-        "Z5_cytoarchitecture_and_cluster_diameter": "Human and mouse stem cells",
-        "Z6_microenvironment_oxygen_and_vascular_niche": "In vivo transplant niche",
-        "Z7_promoter_and_epigenetic_context": "Transgenic CD47-IgV",
-        "Z8_species_age_and_sex_context": "Tier_2A_Human_Cells_HumanizedImmuneMouse"
+        "Z1_developmental_stage_and_timing": "Non-islet human EA.hy926 endothelial cell line (passages P-3 and P-10) and mouse C57BL/6 bone-marrow LSK HSPCs (zero pancreatic or SC-islet lineage differentiation evaluated)",
+        "Z2_genetic_background_and_allelic_dose": "Lentiviral GPI-anchored hCD47-IgV vs full-length hCD47-iso2 on CD47KO EA.hy926 endothelial cells (and mCD47-IgV vs mCD47-iso2 on CD47KO GFP+ mouse LSK cells)",
+        "Z3_immune_effector_and_stressor_pathway": "Intracellular CD47 angiogenic-inhibition signaling comparison across passages P-3 vs P-10 and 10-day subcutaneous Matrigel plug assay in NCG mice",
+        "Z4_metabolic_and_glucose_load_state": "Standard endothelial and bone-marrow HSPC culture/engraftment (non-endocrine)",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Endothelial capillary-like networks on Matrigel and dispersed bone-marrow progenitors",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "6-h Matrigel tube formation in vitro and 10-day subcutaneous Matrigel plug neovascularization in NCG mice (Fig. 4A-C)",
+        "Z7_promoter_and_epigenetic_context": "Constitutive lentiviral transgene",
+        "Z8_species_age_and_sex_context": "Human EA.hy926 endothelial cells in vitro / in NCG mice and syngeneic C57BL/6 mouse bone marrow"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=verbatim_evidence_quote genes=CD47 pert=GOF_OE quote_sha256=1114f24a59dc24d0c62e0633737e79bc79e06fadeb4000e22f9a462304bda261]",
-      "focal_arm_id": "pmid38508139_arm1",
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=verbatim_evidence_quote genes=CD47 pert=GOF_OE quote_sha256=7c446163f51bd016c9cf02dc12ce33fd4d8124e6b48bf27c24a5172b1703bbb8]",
+      "focal_arm_id": "pmid38508139_arm4",
       "comparator_arm_id": null,
       "dispersion_type": "Not_Reported_in_Source_Sentence",
       "n_unit": "unspecified_in_source",
@@ -203,15 +442,15 @@
         "orientation_sign": 0,
         "matched_lexicon_term": "none_or_mixed"
       },
-      "dossier_sha256": "4abc1b94a3624434621a558b8e18c8881bf23496fbc3394a4e81312410c08db9",
-      "source_span": "abstract[661:795]|norm=exact",
+      "dossier_sha256": "bf6223c546b2e44b8340fb3cc16259ed12f033ee78ea8a710aa52e3746fded04",
+      "source_span": "fulltext_data_sections.results_paragraphs[25][731:939]|norm=exact",
       "statistic_type": "qualitative_statement_only",
       "contrast_metadata": {
-        "intervention_label": "CD47 (Transgenic CD47-IgV expression during stem cell engraftment and differentiation)",
+        "intervention_label": "CD47 (Transgenic GPI-anchored hCD47-IgV expression on EA.hy926 endothelial cells and mCD47-IgV on mouse LSK bone-marrow HSPCs)",
         "comparator_label": null,
-        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": null,
-        "population_or_model": "Truncated CD47-IgV membrane-anchored construct (Tier_2A_Human_Cells_HumanizedImmuneMouse)",
+        "endpoint_name": "Hypoxia_72h_or_Vascular_Inosculation",
+        "timepoint": "6 h in vitro / 10 days in vivo Matrigel plug",
+        "population_or_model": "Lentiviral GPI-anchored hCD47-IgV vs full-length hCD47-iso2 on CD47KO EA.hy926 endothelial cells (and mCD47-IgV vs mCD47-iso2 on CD47KO GFP+ mouse LSK cells) (Human EA.hy926 endothelial cells in vitro / in NCG mice and syngeneic C57BL/6 mouse bone marrow)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
       },
@@ -224,16 +463,16 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid38508139_int1",
-      "source_figure_or_table": "Abstract",
-      "focal_factor_X": "CD47 (SmallMolecule_Pharmacological_Modulator — Gate3_NK_MissingSelf_Inhibition)",
+      "source_figure_or_table": "Fig. 1B & Fig. 4A-C",
+      "focal_factor_X": "CD47 (Signal_Peptide_or_Domain_Swap — Gate3_Macrophage_DonotEatMe: GPI-anchored CD47-IgV vs full-length 5-TM CD47-iso2)",
       "outcome_Y": "NK_or_Macrophage_Innate_Survival",
-      "modifier_variable_Z": "CD47_SIRPa_DonotEatMe_Axis vs. CD47_SIRPa_DonotEatMe_Axis",
-      "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
-      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=level_1_condition_and_effect quote_sha256=18e8b7881283689ea41bd27094a39baca38cb4f09d70f8a7577ba8ed86245746]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=level_2_condition_and_effect quote_sha256=5d1840977734cabecb0844da7e6412ce5f8566e5017d64a4d4e8e2fd7641220b]",
+      "modifier_variable_Z": "Presence vs replacement of the 5-transmembrane and cytoplasmic signaling domains of CD47 with a GPI anchor",
+      "modifier_class": "Z2_Genetic_Background_Zygosity_or_Surface_MFI_Dose",
+      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=level_1_condition_and_effect quote_sha256=d449f029294f5bae9300c838cc0e3e1b17872b61aa0f531303ef4b4634d9e90c]",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=level_2_condition_and_effect quote_sha256=0af326045286f3ea7713b26b2e2d93b8f5f2458018d2c9287677fd2e24a29707]",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
-      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=mechanistic_explanation quote_sha256=5d1840977734cabecb0844da7e6412ce5f8566e5017d64a4d4e8e2fd7641220b]"
+      "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=mechanistic_explanation quote_sha256=be673a059328794db6df3daa2fd5054ab79bb33a3349867aa5b12d8b17d31652]"
     }
   ],
   "causal_mechanism_edges": [
@@ -243,17 +482,17 @@
       "causal_relation": "Inhibits_or_Downregulates",
       "downstream_node": "Macrophage_Phagocytosis_or_Efferocytosis",
       "downstream_node_type": "Cell_Survival_or_Death_Pathway",
-      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=evidence_source quote_sha256=bf1ee7861a474ce4c03a600003d45612f1cf36cfa1bf86cd92d61ff9d2aaa6d1]"
+      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=evidence_source quote_sha256=619d7242a324c4f8ec270e7d1ca86d57d202d054f20c70f40b866d35fb9c4477]"
     }
   ],
   "cross_study_discovery_bridges": {
     "collateral_and_pleiotropic_findings": [],
     "residual_failure_and_escape_vectors": [
       {
-        "arm_or_intervention": "CD47 (SmallMolecule_Pharmacological_Modulator — Gate3_NK_MissingSelf_Inhibition)",
-        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=omitted_text quote_sha256=d6327ced5119d56d6e3ee96497fd29a2a1e0f2130ffc602fd6f40091dde1e9ee]",
-        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=omitted_text quote_sha256=4859d651bb2ad2f405dea8abb658bda596e243c7ea9192459cf9d3f618bf5ae4]",
-        "complementary_lever_needed": "Empirical head-to-head comparison required"
+        "arm_or_intervention": "GPI-anchored CD47-IgV in non-islet Jurkat, A20, mouse LSK HSPC, and EA.hy926 endothelial models (Figs. 1-4)",
+        "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=omitted_text quote_sha256=1ab515e9613e85e939bc93fb65ab21f2158f6baf338fbc186a727f03a818ff5d]",
+        "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:38508139 field=omitted_text quote_sha256=aa4e1a0d076529d6dad73081708ec40e8601ba2bacbe48d69e9fdc376cd23384]",
+        "complementary_lever_needed": "Stage-0 Decision Experiment #1 head-to-head QuantiBRITE, GPI-PLC, dynamic GSIS, iEC tube-formation, and primary human macrophage + sorted NK subset qualification on human Stage-7 SC-islets."
       }
     ],
     "regime_thresholds": [],

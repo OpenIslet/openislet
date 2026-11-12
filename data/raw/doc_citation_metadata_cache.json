@@ -1,7 +1,7 @@
 {
  "_meta": {
   "purpose": "offline snapshot for tests/test_citations_resolve.py; bibliographic facts only (first author, year, journal, title)",
-  "retrieved": "2026-11-07",
+  "retrieved": "2026-11-12",
   "source": "NCBI E-utilities esummary (db=pubmed)"
  },
  "pmids": {
@@ -293,6 +293,12 @@
    "pubdate_year": "2009",
    "title": "The prevalence of enteroviral capsid protein vp1 immunostaining in pancreatic islets in human type 1 diabetes."
   },
+  "19272794": {
+   "first_author": "Byers AM",
+   "journal": "Biologicals",
+   "pubdate_year": "2009",
+   "title": "In vitro antibody response to tetanus in the MIMIC system is a representative measure of vaccine immunogenicity."
+  },
   "19336676": {
    "first_author": "Moore F",
    "journal": "Diabetes",
@@ -304,6 +310,12 @@
    "journal": "Diabetes",
    "pubdate_year": "2009",
    "title": "Enterovirus infection, CXC chemokine ligand 10 (CXCL10), and CXCR3 circuit: a mechanism of accelerated beta-cell failure in fulminant type 1 diabetes."
+  },
+  "19807200": {
+   "first_author": "Higbee RG",
+   "journal": "Altern Lab Anim",
+   "pubdate_year": "2009",
+   "title": "An immunologic model for rapid vaccine assessment -- a clinical trial in a test tube."
   },
   "19858389": {
    "first_author": "Hansen T",
@@ -328,6 +340,12 @@
    "journal": "Proc Natl Acad Sci U S A",
    "pubdate_year": "2010",
    "title": "Islet amyloid deposition limits the viability of human islet grafts but not porcine islet grafts."
+  },
+  "20331478": {
+   "first_author": "Ma Y",
+   "journal": "Immunology",
+   "pubdate_year": "2010",
+   "title": "Assessing the immunopotency of Toll-like receptor agonists in an in vitro tissue-engineered immunological model."
   },
   "20699420": {
    "first_author": "Keenan HA",
@@ -965,6 +983,12 @@
    "pubdate_year": "2020",
    "title": "G6PC2 confers protection against hypoglycemia upon ketogenic diet feeding and prolonged fasting."
   },
+  "32668238": {
+   "first_author": "Leite NC",
+   "journal": "Cell Rep",
+   "pubdate_year": "2020",
+   "title": "Modeling Type 1 Diabetes In Vitro Using Human Pluripotent Stem Cells."
+  },
   "32719542": {
    "first_author": "Cai EP",
    "journal": "Nat Metab",
@@ -1109,6 +1133,12 @@
    "pubdate_year": "2022",
    "title": "Alternative splicing encodes functional intracellular CD59 isoforms that mediate insulin secretion and are down-regulated in diabetic islets."
   },
+  "35743287": {
+   "first_author": "Ke D",
+   "journal": "Int J Mol Sci",
+   "pubdate_year": "2022",
+   "title": "Release Kinetics and In Vitro Characterization of Sodium Percarbonate and Calcium Peroxide to Oxygenate Bioprinted Tissue Models."
+  },
   "35795779": {
    "first_author": "Wunderlich S",
    "journal": "Mol Ther Methods Clin Dev",
@@ -1156,6 +1186,12 @@
    "journal": "Cell Rep Med",
    "pubdate_year": "2023",
    "title": "Engineering human stem cell-derived islets to evade immune rejection and promote localized immune tolerance."
+  },
+  "36971050": {
+   "first_author": "Accolla RP",
+   "journal": "Adv Healthc Mater",
+   "pubdate_year": "2023",
+   "title": "Engineering Modular, Oxygen-Generating Microbeads for the In Situ Mitigation of Cellular Hypoxia."
   },
   "37156915": {
    "first_author": "Hu X",

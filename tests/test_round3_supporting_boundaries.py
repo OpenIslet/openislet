@@ -592,7 +592,7 @@ def test_muse_wonder_convergence_round1_remediations_and_upgrades() -> None:
         bx = l1["champion_challenger_portfolio"]["blueprint_x_stage0_molecular_challenger_spec"]
         assert bx["candidate_arithmetic_donor_length_derivation_bp"] == 4056
         assert bx["fully_loaded_arm1x_donor_length_with_spa_maz4_and_20aa_l1_bp"] == 4225
-        assert bx["off_grid_molecular_design_x_locus1_and_lamina_counterfactual_projection_muse_r1"]["off_grid_design_x_constitutive_hlae_composite_utility_projection"] == 0.1162
+        assert bx["off_grid_molecular_design_x_locus1_and_lamina_counterfactual_projection_muse_r1"]["off_grid_design_x_constitutive_hlae_composite_utility_projection"] == 0.1160
         assert bx["stage0_arm1x_2cubed_deconfounding_subdesign_astra_r1"]["two_batch_hip_core_matched_sigma_run_pp"] == 5.4314
 
     hip_p = json.loads((ROOT / "data/protocols/hip_core_fractional_factorial_v0.6.2.json").read_text(encoding="utf-8"))
@@ -849,7 +849,7 @@ def test_sonnet55_r2_convergence_round2_step5_remediations() -> None:
         l1 = json.loads((ROOT / "data/extracted/islet1_candidate_stack_rankings.json").read_text(encoding="utf-8"))
         bx = l1["champion_challenger_portfolio"]["blueprint_x_stage0_molecular_challenger_spec"]
         proj = bx["off_grid_molecular_design_x_locus1_and_lamina_counterfactual_projection_muse_r1"]
-        assert proj["unconditional_composite_utility_if_graveyard_009_retained"] == 0.1085
+        assert proj["unconditional_composite_utility_if_graveyard_009_retained"] == 0.1084
         sub = bx["stage0_arm1x_2cubed_deconfounding_subdesign_astra_r1"]
         assert "arm1x_tier_endpoint_role_distinction_sonnet55_r2" in sub
         assert sub["mandatory_satellite_status"] == "MANDATORY_STAGE0_LINKER_DECONFOUNDING_CONTROL"
@@ -4266,6 +4266,33 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
         assert any(v.get("open_question_id") == "OQ-016" for v in _r9_rank_atlas["step7_high_value_of_information_gaps"])
     assert "IIP-0003" in _r9_s2_bp_md and "OQ-016" in _r9_s2_bp_md and "Linus Schumacher" in _r9_s2_bp_md
     assert "(Gate 5 oxygen bridge)" in _r9_s2_bp_md
+
+    # 40. DEC-085..DEC-088 / IIP-0007..IIP-0010 (OQ-017, Xu 2024 Tier_2B + Hu primary-islet CD47 arm, Design X scope mapping, and per-formulation CaO2 t_1/2 sensitivity):
+    _xu_rec = json.loads((ROOT / "data/extracted/38508139.json").read_text(encoding="utf-8"))
+    assert _xu_rec["study_metadata"]["max_biological_fidelity_tier"] == "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+    assert len(_xu_rec["arms"]) == 4
+    assert all(a["gate1_substrate_and_differentiation"]["cell_source_class"] == "NonIslet_Immune_Endothelial_or_Hematopoietic_Model" for a in _xu_rec["arms"])
+    _hu_rec = json.loads((ROOT / "data/extracted/37156915.json").read_text(encoding="utf-8"))
+    assert len(_hu_rec["arms"]) == 5
+    assert any(
+        a["arm_id"] == "hu2024_human_primary_islets_cd47_threshold"
+        and a["gate1_substrate_and_differentiation"]["cell_source_class"] == "Primary_Human_Islet"
+        for a in _hu_rec["arms"]
+    )
+    if _r9_rank_atlas is not None:
+        assert any(v.get("open_question_id") == "OQ-017" and "IIP-0007" in v.get("why_needed", "") for v in _r9_rank_atlas["step7_high_value_of_information_gaps"])
+        _gy9 = next(r for r in _r9_rank_atlas["top_15_combinatorial_search_results"][0]["triggered_graveyard_rules"] if r["graveyard_id"].startswith("GRAVEYARD_009"))
+        assert "38508139" not in _gy9["reason"]
+    _iip9_map = _r9_s6_l4["part_a_336h_spatial_reaction_diffusion_pouch_pde"]["design_x_100um_lamina_transport_qualification_v80_018"]["blueprint_a_outer_band_115p5um_vs_100um_cluster_cap_reconciliation_sonnet55_r2"]["representation_and_score_scope_mapping_iip_0009"]
+    assert _iip9_map["iip_id"] == "IIP-0009" and set(_iip9_map["open_question_ids"]) == {"OQ-014", "OQ-015"}
+    _iip10_sens = _r9_s6_l4["part_a_336h_spatial_reaction_diffusion_pouch_pde"]["formulation_specific_cao2_half_life_sensitivity_iip_0010"]
+    assert _iip10_sens["iip_id"] == "IIP-0010" and _iip10_sens["open_question_id"] == "OQ-005"
+    assert len(_iip10_sens["grid_rows"]) == 84
+    _cad_p5 = _r9_s6_l4["part_a_exact_oxygen_boundary_value_and_volume_algebra"]["non_overlapping_phase_volume_and_cad_ledger_7cm3_ultracode_v80_18"]
+    assert _cad_p5["cao2_crystal_particle_size_distribution_um"] == "unknown_pending_stage0_measurement"
+    assert _cad_p5["pdms_cao2_composite_microbead_diameter_distribution_um"] == "unknown_pending_stage0_measurement"
+    assert "IIP-0008" in _r9_s2_bp_md and "IIP-0009" in _r9_s2_bp_md and "IIP-0010" in _r9_s2_bp_md
+
 
 
 

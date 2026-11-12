@@ -2643,7 +2643,7 @@
           "null_probability_mass_reverse_strand": 1.0,
           "null_background_mean_log2_odds": -41.135,
           "null_background_sd_log2_odds": 14.053,
-          "empirical_markov0_p95_score": -19.833,
+          "empirical_markov0_p95_score": -19.834,
           "empirical_markov0_reverse_strand_p95_score": -19.73,
           "empirical_markov0_strand_background": "Forward windows use observed mononucleotide frequencies; reverse windows use complemented frequencies, matching the exact lattice model",
           "mc_2000_window_min_achievable_bonferroni_p": 1.0,
@@ -3126,7 +3126,7 @@
           "null_background_mean_log2_odds": -41.135,
           "null_background_sd_log2_odds": 14.053,
           "empirical_markov0_p95_score": -17.948,
-          "empirical_markov0_reverse_strand_p95_score": -21.767,
+          "empirical_markov0_reverse_strand_p95_score": -21.768,
           "empirical_markov0_strand_background": "Forward windows use observed mononucleotide frequencies; reverse windows use complemented frequencies, matching the exact lattice model",
           "mc_2000_window_min_achievable_bonferroni_p": 0.990505,
           "mc_2000_window_gate_resolution_limited": true,
@@ -6452,13 +6452,13 @@
     "input_provenance": {
       "ring1_atomic_effects": {
         "path": "data/extracted/ring1_atomic_effects_v0.5.jsonl",
-        "sha256": "b026ba759f82f734925e4d56997e01d6bc43b289a9ec3cbaafbd0e69721430de",
-        "bytes": 8884703,
+        "sha256": "33da819ff8fe6a4e24b3529ee52b458c0494713b1079ffbd985a96afecebee32",
+        "bytes": 8887785,
         "unique_effect_records": 3093
       },
       "raw_reference_object_sha256": "4de4446ac7697ab9d111b9ba894c7810b0c5084873c7c7fb20f8d87b9a2c1a49",
       "construct_verification_object_sha256": "47a95109d54fa56d5c2409a2d1231c8e7ec85be563899fc45f62b28397e08a85",
-      "motif_scan_object_sha256": "4443258d04a35e61d495a6e7ae0a4a9d15a07ea073114b19374d02ff631c6784",
+      "motif_scan_object_sha256": "114c5a8f35a47eccab3c1896a592db35687b7685a8f0f3bd2fba8239221a9a20",
       "scope": "Hashes bind the actual consumed bytes/objects, not an authenticated biological prediction."
     },
     "calibration_inputs_consumed": {
@@ -9401,7 +9401,7 @@
     ]
   },
   "public_effects_provenance_rebinding": {
-    "canonical_original_effects_sha256": "9e92991a8379e0535fa951833c96ac97822a0727767dcdcbb0b792eaad8e80ed",
+    "canonical_original_effects_sha256": "e56018562aaa99e9be32441aad998407529b839dce58f3f0fd91389a7fcfd9e5",
     "status": "REPLAYED_PUBLIC_BYTES_NUMERICAL_AND_SEMANTIC_OUTPUTS_IDENTICAL",
     "qualification": "Source redaction changes byte identity; only input fingerprints are rebound. No new prediction or assay is claimed."
   }

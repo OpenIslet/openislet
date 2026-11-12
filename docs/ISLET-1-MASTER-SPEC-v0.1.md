@@ -4,7 +4,7 @@
 
 **Current executable facts (generated from on-disk artifacts; physical gates pending).**
 
-Current corpus: 563 studies, 548 active deduplicated, 547 active empirical, 529 strict peer-reviewed empirical; 3,093 effects, 592 arms, 20 reference controls, 231 edit entries and 236 expanded gene occurrences under the ranker expander. Direction/penalty labels are rule-based heuristics; 43 flagged penalties are not an independently adjudicated accuracy dataset.
+Current corpus: 563 studies, 548 active deduplicated, 547 active empirical, 529 strict peer-reviewed empirical; 3,093 effects, 596 arms, 20 reference controls, 237 edit entries and 242 expanded gene occurrences under the ranker expander. Direction/penalty labels are rule-based heuristics; 43 flagged penalties are not an independently adjudicated accuracy dataset.
 
 Layer 1 evaluates 2,160 prior-anchored stacks (480 feasible, 48 code-defined top tier). Registry: 48 source terms / 46 net offsets / 39 auxiliary scalar leaves / 6 engineering priors. Structural share of component variance is 99.8542% from unrounded latent logits. Current utility-target profiles with typed numeric LRR evidence: 0; the shrinkage branch is checked separately against an actual HNF1A-KO source contrast when this count is zero. Seeded direct and shared-parameter Monte Carlo are exploratory sensitivity simulations with finite-draw Wilson intervals and rank quantiles, not clinical probabilities or fitted posterior intervals. CHK-12 recomputes and compares the complete current replay.
 

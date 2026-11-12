@@ -37,6 +37,7 @@ STAGE0_DECISION_TREE_ENDPOINT_SPECS = [
     ('stage7_basal_2p8mM_insulin_secretion_fraction_of_peak', 'obs_basal_insulin_frac_peak', 'obs_basal_insulin_frac_se', 0.0, 1.0, 'basal_2p8mM_secretion_fraction_of_16p7mM_peak_closed_interval_[0.0, 1.0]'),
     ('stage7_step_ramp_glucose_secretion_threshold_mM', 'obs_glucose_threshold_mM', 'obs_glucose_threshold_se', 1.0, 15.0, 'step_ramp_first_sustained_secretion_threshold_mM_closed_interval_[1.0, 15.0]'),
     ('b_prime_foreign_group_matched_cd8_specific_lysis_pct', 'obs_foreign_hlac_cd8_lysis_pct', 'obs_foreign_hlac_cd8_lysis_se', 0.0, 100.0, 'foreign_4digit_group_matched_cd8_specific_lysis_pct_closed_interval_[0.0, 100.0]'),
+    # Gate_P05_kinetics (IIP-0010 / DEC-088): qualified per distinct CaO2:PDMS wt%/vol% recipe, PSD, catalase coating, and as-implanted state (never inherited across formulations):
     ('cao2_hydrolysis_kinetic_law_code', 'obs_cao2_kinetic_law', 'obs_cao2_kinetic_law_se', 0.0, 2.0, 'kinetic_law_code_0_first_order_1_shrinking_core_2_ginstling_brounshtein_closed_interval_[0.0, 2.0]'),
     ('stage7_lot_ocr_ratio_over_nominal_34_nmol_cm3_s', 'obs_lot_ocr_ratio', 'obs_lot_ocr_ratio_se', 0.2, 3.0, 'lot_ocr_vmax_ratio_over_nominal_34_nmol_cm3_s_closed_interval_[0.2, 3.0]'),
     ('safety_kill_s9_icasp9_log10_kill', 'obs_icasp9_log10_kill', 'obs_icasp9_log10_kill_se', 0.0, 10.0, 'log10_clonal_depletion_kill_depth'),

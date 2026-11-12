@@ -4495,10 +4495,10 @@
     "method": "Computed from this evaluation's source studies, graph, registry, exact design and diagnostics; not an audit closure assertion",
     "source_counts": {
       "studies": 563,
-      "arms": 592,
+      "arms": 596,
       "atomic_effects": 3093,
-      "raw_edit_rows": 231,
-      "expanded_edit_gene_occurrences": 236
+      "raw_edit_rows": 237,
+      "expanded_edit_gene_occurrences": 242
     },
     "corpus_eligibility": {
       "active_deduplicated_studies_count": 548,
@@ -4540,25 +4540,25 @@
         "active_preprints_without_in_corpus_twin_flagged": 18,
         "strict_active_peer_reviewed_empirical_studies_total": 529
       },
-      "active_deduplicated_arms_count": 577,
+      "active_deduplicated_arms_count": 581,
       "active_deduplicated_effects_count": 2991,
       "active_deduplicated_modifier_interactions_count": 1236,
       "active_deduplicated_causal_edges_count": 1050,
-      "non_superseded_arms_count": 578,
+      "non_superseded_arms_count": 582,
       "non_superseded_effects_count": 2992,
       "non_superseded_modifier_interactions_count": 1236,
       "non_superseded_causal_edges_count": 1051,
       "studies_by_biological_fidelity_tier": {
         "Tier_1_Human_InVivo": 16,
-        "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 35,
-        "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 75,
+        "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 34,
+        "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 76,
         "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 281,
         "Tier_4_Rodent_or_Xenogeneic_Only": 141
       },
       "studies_by_source_text_type": {
-        "Abstract_Only": 276,
+        "Abstract_Only": 275,
         "FullText_Plus_Supplement_or_GEO": 84,
-        "FullText_XML_or_PDF": 187,
+        "FullText_XML_or_PDF": 188,
         "Review_or_Commentary": 1
       },
       "exact_source_span_verified_effects_count": 2991,
@@ -4742,18 +4742,18 @@
     "variance_diagnostics": {
       "design": "Uniform 2,160-stack grid, 6 pooled pediatric gate logits (12,960 gate-logit evaluations), all gene-signal channels zeroed vs loaded",
       "var_structural_priors": 0.476233,
-      "var_empirical_gene_signal_delta": 0.000696,
-      "var_empirical_gene_signal_delta_corpus_only": 0.000156,
+      "var_empirical_gene_signal_delta": 0.000695,
+      "var_empirical_gene_signal_delta_corpus_only": 0.000155,
       "var_empirical_gene_signal_delta_omics_only": 0.000307,
-      "twice_covariance": 0.013239,
-      "var_total": 0.490167,
+      "twice_covariance": 0.013156,
+      "var_total": 0.490084,
       "structural_share_of_component_variance_sum": 0.998542,
       "empirical_gene_signal_share_of_component_variance_sum": 0.001458,
-      "empirical_corpus_only_share_of_component_variance_sum": 0.000327,
+      "empirical_corpus_only_share_of_component_variance_sum": 0.000326,
       "empirical_omics_only_share_of_component_variance_sum": 0.000644,
-      "structural_share_of_total_variance": 0.971572,
+      "structural_share_of_total_variance": 0.971738,
       "empirical_gene_signal_share_of_total_variance": 0.001419,
-      "twice_covariance_share_of_total_variance": 0.027009,
+      "twice_covariance_share_of_total_variance": 0.026844,
       "top10_membership_overlap_loaded_vs_zero_gene_signal": "9 / 10",
       "top10_exact_rank_matches_loaded_vs_zero_gene_signal": "8 / 10"
     }
