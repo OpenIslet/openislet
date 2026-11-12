@@ -77,6 +77,12 @@
    "pubdate_year": "2001",
    "title": "Bidirectional negative regulation of human T and dendritic cells by CD47 and its cognate receptor signal-regulator protein-alpha: down-regulation of IL-12 responsiveness and inhibition of dendritic cell activation."
   },
+  "11734640": {
+   "first_author": "Renatus M",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "2001",
+   "title": "Dimer formation drives the activation of the cell death protease caspase 9."
+  },
   "11907065": {
    "first_author": "Yu YY",
    "journal": "J Immunol",
@@ -118,6 +124,12 @@
    "journal": "J Biol Chem",
    "pubdate_year": "2003",
    "title": "HLA-E allelic variants. Correlating differential expression, peptide affinities, crystal structures, and thermal stabilities."
+  },
+  "12620238": {
+   "first_author": "Shiozaki EN",
+   "journal": "Mol Cell",
+   "pubdate_year": "2003",
+   "title": "Mechanism of XIAP-mediated inhibition of caspase-9."
   },
   "12853576": {
    "first_author": "Shiroishi M",
@@ -196,6 +208,12 @@
    "journal": "EMBO J",
    "pubdate_year": "2006",
    "title": "Gene expression during acute and prolonged hypoxia is regulated by distinct mechanisms of translational control."
+  },
+  "16699517": {
+   "first_author": "Smyth DJ",
+   "journal": "Nat Genet",
+   "pubdate_year": "2006",
+   "title": "A genome-wide association study of nonsynonymous SNPs identifies a type 1 diabetes locus in the interferon-induced helicase (IFIH1) region."
   },
   "17475856": {
    "first_author": "Truscott SM",
@@ -280,6 +298,12 @@
    "journal": "Gene Ther",
    "pubdate_year": "2009",
    "title": "Validation of a mutated PRE sequence allowing high and sustained transgene expression while abrogating WHV-X protein synthesis: application to the gene therapy of WAS."
+  },
+  "19264985": {
+   "first_author": "Nejentsev S",
+   "journal": "Science",
+   "pubdate_year": "2009",
+   "title": "Rare variants of IFIH1, a gene implicated in antiviral responses, protect against type 1 diabetes."
   },
   "19265189": {
    "first_author": "Section of Pharmacy Informatics and Technology, American Society of Health-System Pharmacists",
@@ -761,6 +785,12 @@
    "pubdate_year": "2018",
    "title": "Peptide-specific recognition of human cytomegalovirus strains controls adaptive natural killer cells."
   },
+  "29679103": {
+   "first_author": "Balke EM",
+   "journal": "Diabetologia",
+   "pubdate_year": "2018",
+   "title": "SLC30A8 polymorphism and BMI complement HLA-A*24 as risk factors for poor graft function in islet allograft recipients."
+  },
   "29695723": {
    "first_author": "Evron Y",
    "journal": "Sci Rep",
@@ -1109,6 +1139,12 @@
    "pubdate_year": "2022",
    "title": "Ramifications of the HLA-I Allelic Reactivity of Anti-HLA-E*01:01 and Anti-HLA-E*01:03 Heavy Chain Monoclonal Antibodies in Comparison with Anti-HLA-I IgG Reactivity in Non-Alloimmunized Males, Melanoma-Vaccine Recipients, and End-Stage Renal Disease Patients."
   },
+  "35470158": {
+   "first_author": "Saevarsdottir S",
+   "journal": "Ann Rheum Dis",
+   "pubdate_year": "2022",
+   "title": "Multiomics analysis of rheumatoid arthritis yields sequence variants that have large effects on risk of the seropositive subset."
+  },
   "35559682": {
    "first_author": "Lei J",
    "journal": "Sci Adv",
@@ -1433,6 +1469,12 @@
    "pubdate_year": "2025",
    "title": "Proteogenomic Discovery of Novel Open Reading Frames With HLA Immune Presentation on Human β-Cells."
   },
+  "41020949": {
+   "first_author": "Lamarche LB",
+   "journal": "Diabetologia",
+   "pubdate_year": "2025",
+   "title": "Complete loss of SLC30A8 in humans improves glucose metabolism and beta cell function."
+  },
   "41202120": {
    "first_author": "Brown ME",
    "journal": "Sci Adv",
@@ -1594,6 +1636,12 @@
    "journal": "Mol Cell",
    "pubdate_year": "1998",
    "title": "Structural features impose tight peptide binding specificity in the nonclassical MHC molecule HLA-E."
+  },
+  "9724721": {
+   "first_author": "Clackson T",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "1998",
+   "title": "Redesigning an FKBP-ligand interface to generate chemical dimerizers with novel specificity."
   }
  }
 }

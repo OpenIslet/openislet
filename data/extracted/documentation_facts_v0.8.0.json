@@ -1,7 +1,7 @@
 {
   "schema_version": "0.8.0",
   "epistemic_status": "GENERATED_COMPUTATIONAL_FACTS_PHYSICAL_QUALIFICATION_PENDING",
-  "manifest_pin_count": 1355,
+  "manifest_pin_count": 1358,
   "discovery_manifest": {
     "jsonl_rows": 7703,
     "unique_pubmed_pmids": 7703,
@@ -13,10 +13,10 @@
     "data/extracted/cross_study_discovery_graph.json": "1eb6248877b1dacf11154f608515c092ed1db2fdb7efc34b9c5456a3aa1113f4",
     "data/extracted/islet1_candidate_stack_rankings.json": "15b30b6988f396fdbcee66cc12b0ec40aab3dc2bdeeb87fff7bcc44de0ae13eb",
     "data/protocols/hip_core_fractional_factorial_v0.6.2.json": "7a3aead410a1c9a10ac4fb56b78a1775c73755aed90c1fff4861eb3b94595741",
-    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "aa38d76f6db95df58636cfc5e9da89d12efd4f683adfc1ab1e2ee48e1b5975ad",
-    "data/extracted/layer3_structural_verification_atlas.json": "e3ae03617d1d0654b985061ff276080a0a8571cfe17aaba0f826b6bb5a60abbe",
+    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "1cf10d43a1c7d3490ddb59cd5f0afedd13b23b8282c9d2c74b81ac507ecd3757",
+    "data/extracted/layer3_structural_verification_atlas.json": "3f2cc53b3bd9f097af787d3224dc04440851dbe265e40b09631dadaea042dd52",
     "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": "c12ff0b87058a2af1390a73e9f39a2e5d0ea9b8ee43e75dfa96979cba7c619bd",
-    "data/extracted/layer5_personalized_patient_and_crispr_atlas.json": "ecfbe552954aaaa781896a4c0acb081e90ce2a8815bafb878ae566fd0e2dd648",
+    "data/extracted/layer5_personalized_patient_and_crispr_atlas.json": "8e563bf9342259a40f4ced83bd9633da39659b998f3fe5dc563f7e9d820462aa",
     "data/extracted/10202046.json": "b3d836e8c0fc8ed898592975e0f09c0154a0d4f887c2b6893e7c8194befd0a6a",
     "data/extracted/10728379.json": "b2efcc82101e33914aebc51e74ddc7650894d097c11841518f6e848916cae3dc",
     "data/extracted/10798768.json": "8fc4cdd4b8d420e666e0cab534c990fc545705c7563fc54d98a80197b9fa0082",
@@ -9073,7 +9073,50 @@
         "cytosolic_furin_motif_removed_per_r01": true,
         "2a_element_encoded_in_fasta": "Single 66-bp (22-aa) GSG-P2A peptide (leaving a 21-aa C-terminal stub on SERPINB9; 26-aa and 50-aa tandem tPT2A stubs are evaluated as sensitivity bounds in Layer 3, closing AUDIT-REF)",
         "exogenous_intron_omission_rationale_claude_v80_032": "HDR insertion occurs at chr4:76023468|76023467 (- strand) inside CXCL10 Exon 1 (29 bp downstream of the endogenous CXCL10 TSS at chr4:76023497 and upstream of the native Exon 1 ATG at chr4:76023429-76023431[-], which is displaced into the 3' homology arm downstream of bGH_polyA_225bp); no exogenous Chimeric_Intron_133bp is included so single-capsid AAV6 headroom (+320 bp) is preserved.",
-        "r01_verification": "Cytosolic SERPINB9 (376 aa) is translated on free cytosolic ribosomes with zero Furin motif, leaving a 21-aa GSG-P2A C-terminal stub after ribosomal skipping, followed by ER-targeted PD-L1 (290 aa)."
+        "r01_verification": "Cytosolic SERPINB9 (376 aa) is translated on free cytosolic ribosomes with zero Furin motif, leaving a 21-aa GSG-P2A C-terminal stub after ribosomal skipping, followed by ER-targeted PD-L1 (290 aa).",
+        "locus3_4q21_1_cis_neighbour_and_aav6_packaging_gate_iip_0011": {
+          "decision_id": "DEC-090",
+          "proposal_id": "IIP-0011",
+          "canonical_donor_bp": 4090,
+          "packaged_aav6_genome_with_2x145bp_itrs_bp": 4380,
+          "single_aav6_conservative_budget_bp": 4700,
+          "headroom_below_4700bp_budget_bp": 320,
+          "hypothetical_2x250bp_chs4_insulated_donor_bp": 4590,
+          "hypothetical_2x250bp_chs4_packaged_bp": 4880,
+          "overflow_above_4700bp_budget_bp": 180,
+          "packaging_literature_scope_note": "Wu et al. 2010 (PMID:19904234) demonstrated heterogeneous, 5'-truncated packaged genomes for oversized AAV2/5/8 vectors exceeding ~5 kb; adding 2 x 250 bp cHS4 insulators to Locus 3 yields 4,880 bp packaged, violating OpenIslet's conservative 4,700 bp single-AAV6 budget by 180 bp without claiming proven absolute AAV6 packaging failure at 4,880 bp. Any compacted (<= 4,700 bp packaged), non-AAV6, or relocated split safe-harbor cassette remains a separately qualified challenger.",
+          "blocked_cis_neighbour_and_compartment_assay_gate": {
+            "comparators_across_independent_clones_and_blocks": [
+              "Unedited parental SC-islet control",
+              "Clean CXCL10-indel knockout control",
+              "Locus 3 CXCL10::SERPINB9-GSG-P2A-PD-L1 knock-in clones"
+            ],
+            "stimulus_regimes": [
+              "Resting vehicle",
+              "Recombinant human IFN-alpha",
+              "Recombinant human IFN-gamma"
+            ],
+            "secreted_chemokine_neighbours_4q21_1": {
+              "genes": [
+                "CXCL9",
+                "CXCL11"
+              ],
+              "assays": "Paired RT-qPCR + cell-free supernatant ELISA across predeclared cytokine dose/time courses with explicit detection limits, absolute protein output, and predeclared insertion-specific excess-over-control hold margin with uncertainty (accounting for endogenous cytokine induction of CXCL9/CXCL11 in parental and CXCL10-indel controls)."
+            },
+            "host_overlapping_non_chemokine_neighbour_art3": {
+              "gene": "ART3 (ecto-ADP-ribosyltransferase 3; non-chemokine)",
+              "genomic_relationship_grch38": "GRCh38 RefSeq includes ART3 transcript isoforms whose large first intron spans the CXCL10 Exon 1 cut site (chr4:76023468|76023467).",
+              "assays": "Establish lineage-resolved baseline ART3 isoform expression across hPSC, Stage-7 endocrine, and vascular lineages, and measure isoform-specific splice-junction/transcript RT-qPCR plus cellular/membrane protein abundance for both disruption/repression and cis co-activation."
+            },
+            "payload_compartment_protein_assays": {
+              "SERPINB9": "Intracellular flow cytometry / Western blot + Granzyme B kinetics (never inferred from negative supernatant ELISA)",
+              "PD-L1": "Cell-surface QuantiBRITE flow cytometry alongside Readout 3A soluble shedding ELISA"
+            }
+          },
+          "primary_citations": [
+            "PMID:19904234"
+          ]
+        }
       },
       {
         "construct_id": "LOCUS4_AAVS1_CHS4_455BP_CBX3_A2UCOE_ICASP9_R17",
@@ -9501,6 +9544,60 @@
             "why_gate_0s_surgical_retrieval_remains_mandatory": "Even with an orthogonal second suicide switch (RQR8/rituximab or HSV-TK/ganciclovir) at a second safe harbor, a 5e8-cell total graft still has E=5.0 surviving cells (P(>=1)=99.33%) at a 10^-8 per-cell escape ceiling and 0.0943-0.9344 expected proliferating escapees across the 93,350 pan-lineage Ki67+ subpopulation under p_common = 10^-6-10^-5 (plus macromolecular IgG/complement diffusion limits inside a fibrotic capsule for RQR8); therefore pharmacological suicide switches serve as >=4-5 log debulking adjuncts while primary physical containment and en-bloc surgical retrievability of the dual omental pouches (Gate 0S-Retrieval) provide the definitive clinical fail-safe (AUDIT-REF & AUDIT-REF [DEC-044/045])."
           },
           "primary_containment_and_surgical_retrieval_architecture": "Because both alleles of biallelic AAVS1::cHS4-A2UCOE-EEF1A1-iCasp9 (or dual-safe-harbor AAVS1 + GAPDH) reside inside the same trans-acting nuclear DNMT3A/3B/KAP1/HUSH and post-mitotic beta-cell XIAP/BCL-xL environment, single-cell AP1903 escape follows the common-mode mixture model P_escape_cell = p_common + (1 - p_common) * p_ind^2 rather than a pure independent product p_ind^2 = 10^-8 (Wunderlich et al. 2022 PMID:35795779; Ordovas et al. 2015 PMID:26455413). Consequently: (1) Stage-0 Gate S9 enforces a cumulative MCB clonogenic trial floor of N_eff >= ceil(-ln(0.05)/10^-8) = 299,573,228 effective clonogenic trials (896,925,831 physical cells at eta = 0.334) after 35-day Stage 0->7 differentiation + 14-day cytokine/hypoxia culture with 0 surviving colonies; and (2) for human translation, iCasp9 + AP1903 is positioned as an adjunct pharmacological debulking switch (>= 4-5 log reduction) paired with primary mechanical containment and en-bloc surgical retrievability of the dual pre-vascularized omental scaffold pouches (Gate 0S-Retrieval; AUDIT-REF & AUDIT-REF [DEC-044/045])."
+        },
+        "decision_exp4_four_arm_ucoe_orientation_splicing_and_methylation_substudy_iip_0011": {
+          "decision_id": "DEC-090",
+          "proposal_id": "IIP-0011",
+          "aavs1_recipient_junction_grch38": "chr19:55115768|55115767 (PPP1R12C intron 1, minus-strand host transcription)",
+          "pinned_chr7_26201562_26201567_plus_strand_motif": "GTAAGT",
+          "pinned_chr7_26201562_26201567_reverse_complement_motif": "ACTTAC",
+          "four_arm_comparison": [
+            {
+              "arm_id": "Window_A_Reference_HNRNPA2B1_Proximal_455bp",
+              "genomic_interval_grch38_1based_closed": "chr7:26200580-26201034",
+              "element_length_bp": 455,
+              "cargo_bp": 2257,
+              "donor_bp": 3457,
+              "packaged_aav6_with_2x145bp_itrs_bp": 3747,
+              "orientation_relative_to_donor_eef1a1_icasp9": "canonical reference orientation in LOCUS4_AAVS1_CHS4_455BP_CBX3_A2UCOE_ICASP9_R17"
+            },
+            {
+              "arm_id": "Window_B_Genome_Derived_CBX3_453bp_Antisense_Candidate",
+              "genomic_interval_grch38_1based_closed": "chr7:26201456-26201908",
+              "element_length_bp": 453,
+              "cargo_bp": 2255,
+              "donor_bp": 3455,
+              "packaged_aav6_with_2x145bp_itrs_bp": 3745,
+              "orientation_relative_to_donor_eef1a1_icasp9": "Reverse-complemented relative to the donor's EEF1A1->iCasp9 direction (which follows minus-strand PPP1R12C transcription), inverting the plus-strand GTAAGT hexamer at chr7:26201562-26201567 out of the transcribed sense strand.",
+              "provenance_and_orientation_qualification_note": "Consistent with the BglI/BsrBI restriction boundaries of Zhang et al. 2017 (PMID:28860464), designated a genome-derived candidate pending ligated-terminus sequence reconciliation against the published insert. Because Zhang et al. 2017 reported orientation-dependent UCOE activity and inverting a single GTAAGT motif does not exclude other cryptic splice sites or transcriptional interference, antisense orientation is an empirical test arm rather than pre-established safe or equally anti-silencing."
+            },
+            {
+              "arm_id": "Window_B_Genome_Derived_CBX3_453bp_Sense_Candidate",
+              "genomic_interval_grch38_1based_closed": "chr7:26201456-26201908",
+              "element_length_bp": 453,
+              "cargo_bp": 2255,
+              "donor_bp": 3455,
+              "packaged_aav6_with_2x145bp_itrs_bp": 3745,
+              "orientation_relative_to_donor_eef1a1_icasp9": "Plus-strand sequence oriented colinearly with the donor's EEF1A1->iCasp9 transcription unit"
+            },
+            {
+              "arm_id": "No_UCOE_Control",
+              "genomic_interval_grch38_1based_closed": null,
+              "element_length_bp": 0,
+              "cargo_bp": 1802,
+              "donor_bp": 3002,
+              "packaged_aav6_with_2x145bp_itrs_bp": 3292,
+              "orientation_relative_to_donor_eef1a1_icasp9": "cHS4_core_insulator_250bp + EEF1A1_core_promoter_230bp + iCasp9 without UCOE"
+            }
+          ],
+          "required_readouts_and_authoritative_escape_gate": "Measure 5'/3' PPP1R12C-transgene fusion transcripts by RACE-seq, targeted/single-molecule bisulfite CpG methylation (explicitly covering the native 230-bp EEF1A1 core promoter's 19 CpG dinucleotides alongside UCOE CpGs), single-cell iCasp9 expression distributions, and 24-h/72-h 10 nM AP1903 killing under normoxia and 1% O2 hypoxia + cytokines across residual hPSCs, Stage-7 endocrine (beta, alpha, delta), and proliferative vascular/stromal (iEC, iPericyte) lineages (Ordovas et al. 2015 PMID:26455413; Muller-Kuller et al. 2015 PMID:25605798; Zhang et al. 2017 PMID:28860464; Wunderlich et al. 2022 PMID:35795779). Mean CpG methylation and bulk killing cannot bound rare resistant cells; Readout 6 Tier 6B effective-denominator clonogenic escape qualification remains authoritative (GY-002).",
+          "locus1_arm1b_longitudinal_methylation_parallel_check": "If Locus 1 Arm 1B (Syn_5xISRE_minP + antisense 230-bp EEF1A1 core with 19 native CpGs) advances, perform parallel longitudinal clonal bisulfite CpG sequencing and single-cell resting/IFN-induced HLA-E + Hour-0 CD47 surface-density distribution checks across differentiation passages (GY-009).",
+          "primary_citations": [
+            "PMID:26455413",
+            "PMID:25605798",
+            "PMID:28860464",
+            "PMID:35795779"
+          ]
         }
       }
     ],
@@ -12047,8 +12144,8 @@
   },
   "layer3": {
     "summary": {
-      "total_experimental_pdb_structures_verified": 10,
-      "experimental_rcsb_mmcif_structures_verified": 8,
+      "total_experimental_pdb_structures_verified": 13,
+      "experimental_rcsb_mmcif_structures_verified": 11,
       "experimental_rcsb_legacy_pdb_structures_verified": 2,
       "experimental_pdb_accession_inventory": [
         "1MHE",
@@ -12060,7 +12157,10 @@
         "4ZQK",
         "1IAU",
         "1EFX",
-        "1IM9"
+        "1IM9",
+        "1BL4",
+        "1JXQ",
+        "1NW9"
       ],
       "total_alphafold_v6_models_verified": 2,
       "foldseek_databases_queried": [
@@ -12068,6 +12168,7 @@
         "afdb-swissprot"
       ],
       "complexes_verified": 4,
+      "icasp9_locus4_structural_reference_audit_status": "FULL_FUSION_UNRESOLVED",
       "granzyme_b_1iau_insertion_code_safe_aligned_residues": 226,
       "granzyme_b_1iau_insertion_code_safe_rmsd_angstrom": 0.4049,
       "reference_coordinate_geometry_status": "PASS",
@@ -23124,6 +23225,68 @@
         ],
         "physical_uncloned_yield_prior": null,
         "physical_yield_evidence_status": "NOT_MEASURED",
+        "donor_seedline_tyk2_genotype_sensitivity_summary": {
+          "decision_id": "DEC-090",
+          "proposal_id": "IIP-0011",
+          "variant": "TYK2 rs34536443 (c.3310C>G, p.Pro1104Ala in the catalytic JH1 kinase domain; PMID:27807284, PMID:35470158)",
+          "cohort_evaluated": "Exact 10,000 main-simulation SIM-* patient records held fixed (separate COP-* copula sensitivity records excluded)",
+          "default_donor_genotype_in_main_trial": "G/G",
+          "donor_genotype_comparison_table": [
+            {
+              "donor_tyk2_rs34536443_genotype": "G/G",
+              "kb_complexity_counts": {
+                "K4_B0": 4286,
+                "K4_B1": 3347,
+                "K5_B0": 1340,
+                "K5_B1": 1027
+              },
+              "recipients_prescribed_tyk2_prime_editing": 4374,
+              "total_tyk2_alleles_requiring_prime_edit_across_cohort": 20000,
+              "analytic_personalized_mean_survival_pct": 97.4963,
+              "complexity_discounted_personalized_utility_pct": 92.8363,
+              "b_prime_sct_k4_complexity_discounted_utility_pct": 96.0046,
+              "max_abs_patient_survival_difference_vs_default_gg": 0.0
+            },
+            {
+              "donor_tyk2_rs34536443_genotype": "G/C",
+              "kb_complexity_counts": {
+                "K4_B0": 4286,
+                "K4_B1": 3347,
+                "K5_B0": 1340,
+                "K5_B1": 1027
+              },
+              "recipients_prescribed_tyk2_prime_editing": 4374,
+              "total_tyk2_alleles_requiring_prime_edit_across_cohort": 10000,
+              "analytic_personalized_mean_survival_pct": 97.4963,
+              "complexity_discounted_personalized_utility_pct": 92.8363,
+              "b_prime_sct_k4_complexity_discounted_utility_pct": 96.0046,
+              "max_abs_patient_survival_difference_vs_default_gg": 0.0
+            },
+            {
+              "donor_tyk2_rs34536443_genotype": "C/C",
+              "kb_complexity_counts": {
+                "K4_B0": 7633,
+                "K4_B1": 0,
+                "K5_B0": 2367,
+                "K5_B1": 0
+              },
+              "recipients_prescribed_tyk2_prime_editing": 0,
+              "total_tyk2_alleles_requiring_prime_edit_across_cohort": 0,
+              "analytic_personalized_mean_survival_pct": 97.4963,
+              "complexity_discounted_personalized_utility_pct": 94.2792,
+              "b_prime_sct_k4_complexity_discounted_utility_pct": 97.4963,
+              "max_abs_patient_survival_difference_vs_default_gg": 0.0
+            }
+          ],
+          "assigned_survival_invariance_verified": true,
+          "survival_and_utility_interpretation_note": "Every simulated patient's assigned 5-year survival probability is identical across G/G, G/C, and natural C/C donor seed lines; heterozygous G/C reduces the allele count requiring prime editing from 2 to 1 while retaining edited locus count B = 1, whereas natural homozygous C/C removes the optional TYK2 prime-editing step (B = 1 -> 0) for all 4,374 TYK2-eligible recipients. The complexity-discounted utility shift reflects solely removal of the assumed gamma_B locus-editing discount, not measured manufacturing yield or clinical benefit.",
+          "mcb_product_scope_and_seedline_qualification_gates": "Collapsing two TYK2-stratified Master Cell Bank sublines (B = 0 and B = 1) into a single B = 0 subline applies strictly to the TYK2 stratification dimension within a defined product: the main 10,000-patient simulation still retains 2,367 K = 5 endogenous-HLA-C Plan B patients (and the promoted B'-SCT route maintains separate K = 4 C1/C2/C1C2 KIR-matched products and requires >= 2 independent MCB clones from distinct donors; GY-005). Any candidate natural TYK2 C/C (p.Pro1104Ala/p.Pro1104Ala) donor hPSC line must clear: (1) Stage 0->7 endocrine precursor emergence and mature SC-islet yield equivalence (Chandra et al. 2022 PMID:36289205), (2) Stage-0 Rule S8 (< 70% shield-induction trigger) across both Locus-1 5xISRE->HLA-E and Locus-3 CXCL10::SERPINB9-GSG-P2A-PD-L1 under IFN-alpha plus low IFN-gamma alongside lineage-specific resting HLA-E and Hour-0 CD47 floors (GY-001, GY-009), and (3) 30x WGS, >= 63,000x TP53/PPM1D/BCOR duplex-seq, CAST-seq, and potency release (GY-006).",
+          "primary_citations": [
+            "PMID:27807284",
+            "PMID:35470158",
+            "PMID:36289205"
+          ]
+        },
         "b_prime_4digit_hlac_alloreactivity_and_b_prime_sct_pivot_audit_muse_r3": {
           "audit_id": "AUDIT-REF",
           "evidence_class": "IMMUNOGENETIC_ALLOREACTIVITY_AUDIT_AND_PRODUCT_PROMOTION",
@@ -23690,6 +23853,17 @@
           },
           "host_modifier_genotypes_and_dosing": {
             "ifih1_rs1990760_genotype": "C/T",
+            "donor_ifih1_rs1990760_genotype": "UNMEASURED",
+            "donor_ifih1_rs1990760_provenance": {
+              "input_status": "UNMEASURED_PROVENANCE_ONLY",
+              "variant_provenance": "Provenance-only donor seed-line record for common GWAS IFIH1 rs1990760 (GRCh38 minus-strand coding c.2836G>A, p.Ala946Thr; Smyth et al. 2006 PMID:16699517), explicitly separated from recipient IFIH1 risk scoring and from rare loss-of-function rs35744605 (p.Glu627Ter / E627*; Nejentsev et al. 2009 PMID:19264985; SC-islet functional comparison in Veronese-Paniagua et al. 2025 PMID:42787837). Zero effect on K, B, prescribed regimen, or survival.",
+              "affects_k_b_regimen_or_survival": false,
+              "primary_citations": [
+                "PMID:16699517",
+                "PMID:19264985",
+                "PMID:42787837"
+              ]
+            },
             "ptpn22_rs2476601_genotype": "G/G",
             "recipient_hla_e_genotype": "*01:03/*01:03",
             "tyk2_rs34536443_genotype": "G/G",
@@ -23719,6 +23893,7 @@
               "tyk2_rs34536443_genotype": "MEASURED_PATIENT_INPUT",
               "recipient_tyk2_rs34536443_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
               "donor_tyk2_rs34536443_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
+              "donor_ifih1_rs1990760_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
               "recipient_kir_ligand_group": "MEASURED_PATIENT_INPUT",
               "recipient_anti_hla_c_dsa": "DEFAULT_IMPUTED_NOT_MEASURED",
               "recipient_anti_hla_e_dsa": "DEFAULT_IMPUTED_NOT_MEASURED",
@@ -23879,6 +24054,17 @@
           },
           "host_modifier_genotypes_and_dosing": {
             "ifih1_rs1990760_genotype": "C/C",
+            "donor_ifih1_rs1990760_genotype": "UNMEASURED",
+            "donor_ifih1_rs1990760_provenance": {
+              "input_status": "UNMEASURED_PROVENANCE_ONLY",
+              "variant_provenance": "Provenance-only donor seed-line record for common GWAS IFIH1 rs1990760 (GRCh38 minus-strand coding c.2836G>A, p.Ala946Thr; Smyth et al. 2006 PMID:16699517), explicitly separated from recipient IFIH1 risk scoring and from rare loss-of-function rs35744605 (p.Glu627Ter / E627*; Nejentsev et al. 2009 PMID:19264985; SC-islet functional comparison in Veronese-Paniagua et al. 2025 PMID:42787837). Zero effect on K, B, prescribed regimen, or survival.",
+              "affects_k_b_regimen_or_survival": false,
+              "primary_citations": [
+                "PMID:16699517",
+                "PMID:19264985",
+                "PMID:42787837"
+              ]
+            },
             "ptpn22_rs2476601_genotype": "G/G",
             "recipient_hla_e_genotype": "*01:03/*01:03",
             "tyk2_rs34536443_genotype": "G/G",
@@ -23908,6 +24094,7 @@
               "tyk2_rs34536443_genotype": "MEASURED_PATIENT_INPUT",
               "recipient_tyk2_rs34536443_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
               "donor_tyk2_rs34536443_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
+              "donor_ifih1_rs1990760_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
               "recipient_kir_ligand_group": "MEASURED_PATIENT_INPUT",
               "recipient_anti_hla_c_dsa": "DEFAULT_IMPUTED_NOT_MEASURED",
               "recipient_anti_hla_e_dsa": "DEFAULT_IMPUTED_NOT_MEASURED",
@@ -24094,6 +24281,17 @@
           },
           "host_modifier_genotypes_and_dosing": {
             "ifih1_rs1990760_genotype": "T/T",
+            "donor_ifih1_rs1990760_genotype": "UNMEASURED",
+            "donor_ifih1_rs1990760_provenance": {
+              "input_status": "UNMEASURED_PROVENANCE_ONLY",
+              "variant_provenance": "Provenance-only donor seed-line record for common GWAS IFIH1 rs1990760 (GRCh38 minus-strand coding c.2836G>A, p.Ala946Thr; Smyth et al. 2006 PMID:16699517), explicitly separated from recipient IFIH1 risk scoring and from rare loss-of-function rs35744605 (p.Glu627Ter / E627*; Nejentsev et al. 2009 PMID:19264985; SC-islet functional comparison in Veronese-Paniagua et al. 2025 PMID:42787837). Zero effect on K, B, prescribed regimen, or survival.",
+              "affects_k_b_regimen_or_survival": false,
+              "primary_citations": [
+                "PMID:16699517",
+                "PMID:19264985",
+                "PMID:42787837"
+              ]
+            },
             "ptpn22_rs2476601_genotype": "G/A",
             "recipient_hla_e_genotype": "*01:01/*01:03",
             "tyk2_rs34536443_genotype": "G/G",
@@ -24123,6 +24321,7 @@
               "tyk2_rs34536443_genotype": "MEASURED_PATIENT_INPUT",
               "recipient_tyk2_rs34536443_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
               "donor_tyk2_rs34536443_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
+              "donor_ifih1_rs1990760_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
               "recipient_kir_ligand_group": "MEASURED_PATIENT_INPUT",
               "recipient_anti_hla_c_dsa": "DEFAULT_IMPUTED_NOT_MEASURED",
               "recipient_anti_hla_e_dsa": "DEFAULT_IMPUTED_NOT_MEASURED",
@@ -24304,6 +24503,17 @@
           },
           "host_modifier_genotypes_and_dosing": {
             "ifih1_rs1990760_genotype": "C/T",
+            "donor_ifih1_rs1990760_genotype": "UNMEASURED",
+            "donor_ifih1_rs1990760_provenance": {
+              "input_status": "UNMEASURED_PROVENANCE_ONLY",
+              "variant_provenance": "Provenance-only donor seed-line record for common GWAS IFIH1 rs1990760 (GRCh38 minus-strand coding c.2836G>A, p.Ala946Thr; Smyth et al. 2006 PMID:16699517), explicitly separated from recipient IFIH1 risk scoring and from rare loss-of-function rs35744605 (p.Glu627Ter / E627*; Nejentsev et al. 2009 PMID:19264985; SC-islet functional comparison in Veronese-Paniagua et al. 2025 PMID:42787837). Zero effect on K, B, prescribed regimen, or survival.",
+              "affects_k_b_regimen_or_survival": false,
+              "primary_citations": [
+                "PMID:16699517",
+                "PMID:19264985",
+                "PMID:42787837"
+              ]
+            },
             "ptpn22_rs2476601_genotype": "G/G",
             "recipient_hla_e_genotype": "*01:01/*01:01",
             "tyk2_rs34536443_genotype": "G/C",
@@ -24333,6 +24543,7 @@
               "tyk2_rs34536443_genotype": "MEASURED_PATIENT_INPUT",
               "recipient_tyk2_rs34536443_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
               "donor_tyk2_rs34536443_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
+              "donor_ifih1_rs1990760_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
               "recipient_kir_ligand_group": "MEASURED_PATIENT_INPUT",
               "recipient_anti_hla_c_dsa": "DEFAULT_IMPUTED_NOT_MEASURED",
               "recipient_anti_hla_e_dsa": "DEFAULT_IMPUTED_NOT_MEASURED",

@@ -12,7 +12,7 @@ AUDIT-REF, AUDIT-REF, AUDIT-REF, and AUDIT-REF):
         - OI-GRNA-03: CXCL10 Exon 1 (`chr4:76023451-76023473 (-)`, straddling the Layer 2 `76023468|76023467` HDR junction)
         - OI-GRNA-04: AAVS1 / PPP1R12C Intron 1 (`chr19:55115754-55115776 (-)`, straddling the Layer 2 `55115768|55115767` HDR junction)
     * Optional Non-DSB Prime Edit (PEmax SpCas9-H840A nickase + M-MLV RT + epegRNA; CGBE is an unimplemented contingency, requiring an explicit bystander/window ledger; minus-strand C:G->G:C editing requires an engineered SpG/SpRY PAM variant because no canonical 5'-NGG-3' minus-strand PAM places chr19:10352442C within positions 4-7):
-        - OI-GRNA-05: TYK2 Exon 23 (`chr19:10352421-10352443 (+)`, installing protective rs34536443 `c.3310C>G` [`p.Pro1104Ala`] transversion)
+        - OI-GRNA-05: TYK2 Exon 23 (`chr19:10352421-10352443 (+)`, installing protective rs34536443 `c.3310C>G` [`p.Pro1104Ala` in the catalytic `JH1` kinase domain; PMID:27807284, PMID:35470158] transversion)
     * Computes directional Sugimoto et al. (1995, PMID:7545436) RNA:DNA hybrid nearest-neighbor dG_37C alongside
       SantaLucia (1998) DNA:DNA duplex dG_37C, verifies 100% 0-mismatch identity against GRCh38 reference sequences,
       and proves bidirectional (+ and - strand) protospacer/PAM disruption in both HDR donor plasmids and assembled
@@ -96,6 +96,7 @@ VALID_TRACK_REQUESTS = {
     "TRACK_3_AUTOLOGOUS_IPSC",
 }
 VALID_IFIH1_GENOTYPES = {"C/C", "C/T", "T/C", "T/T"}
+VALID_DONOR_IFIH1_GENOTYPES = {"UNMEASURED", *VALID_IFIH1_GENOTYPES}
 VALID_PTPN22_GENOTYPES = {"G/G", "G/A", "A/G", "A/A"}
 VALID_HLA_E_GENOTYPES = {
     "*01:01/*01:01", "*01:01/*01:03", "*01:03/*01:01", "*01:03/*01:03",
@@ -668,7 +669,8 @@ def build_part_a_crispr_grna_and_polymorphism_atlas() -> Dict[str, Any]:
             "protospacer_dna_5to3": "GCCTGGCTCTCACCGTGGGG",
             "spacer_length_nt": 20,
             "epegRNA_extension_specification": {
-                "target_variant": "rs34536443 (GRCh38 chr19:10352442G>C on + strand; coding c.3310C>G transversion on - strand; p.Pro1104Ala CCC->GCC)",
+                "target_variant": "rs34536443 (GRCh38 chr19:10352442G>C on + strand; coding c.3310C>G transversion on - strand; p.Pro1104Ala CCC->GCC in the catalytic JH1 kinase domain; Dendrou et al. 2016 PMID:27807284, Saevarsdottir et al. 2022 PMID:35470158)",
+                "protein_domain_annotation": "Catalytic JH1 tyrosine kinase domain (p.Pro1104Ala; PMID:27807284, PMID:35470158)",
                 "why_prime_or_cgbe_not_abe8e": (
                     "c.3310C>G (g.10352442G>C) is a C:G -> G:C base transversion; adenine base editors (ABE8e) only "
                     "catalyze A:T -> G:C transitions and cannot install C:G -> G:C transversions (closing AUDIT-REF). "
@@ -712,7 +714,7 @@ def build_part_a_crispr_grna_and_polymorphism_atlas() -> Dict[str, Any]:
                     + TEVOPREQ1_PSEUDOKNOT_42NT_RNA
                 ),
             },
-            "cleavage_geometry": "Single-strand H840A nick only (0 DSB) at chr19:10352437|10352438 (+); M-MLV RT polymerizes chr19:10352442G>C (c.3310C>G, p.Pro1104Ala) at +5 downstream of the nick, directly disrupting the GGG PAM (GGG -> GCG)",
+            "cleavage_geometry": "Single-strand H840A nick only (0 DSB) at chr19:10352437|10352438 (+); M-MLV RT polymerizes chr19:10352442G>C (c.3310C>G, p.Pro1104Ala in the catalytic JH1 kinase domain) at +5 downstream of the nick, directly disrupting the GGG PAM (GGG -> GCG)",
             "hdr_junction_grch38": "PRIME_EDIT_SNV_CHR19_10352442_G_TO_C",
             "hdr_pam_and_seed_disrupted_post_knockin": True,
             "hdr_re_cutting_prevention_mechanism": "g.10352442G>C (+5 downstream of the H840A nick) directly mutates the middle G of the 5'-GGG-3' PAM to 5'-GCG-3', abolishing SpCas9 PAM recognition and preventing re-nicking.",
@@ -1336,6 +1338,7 @@ def compile_personalized_patient_blueprint(
         "tyk2_rs34536443_genotype",
         "recipient_tyk2_rs34536443_genotype",
         "donor_tyk2_rs34536443_genotype",
+        "donor_ifih1_rs1990760_genotype",
         "recipient_kir_ligand_group",
         "recipient_anti_hla_c_dsa",
         "recipient_anti_hla_e_dsa",
@@ -1415,6 +1418,7 @@ def compile_personalized_patient_blueprint(
             "tyk2_rs34536443_genotype",
             "recipient_tyk2_rs34536443_genotype",
             "donor_tyk2_rs34536443_genotype",
+            "donor_ifih1_rs1990760_genotype",
             "recipient_kir_ligand_group",
             "recipient_anti_hla_c_dsa",
             "recipient_anti_hla_e_dsa",
@@ -1457,6 +1461,17 @@ def compile_personalized_patient_blueprint(
     ifih1_genotype = raw_ifih1.strip().upper()
     if ifih1_genotype not in VALID_IFIH1_GENOTYPES:
         raise ValueError(f"Invalid ifih1_rs1990760_genotype {ifih1_genotype!r}; must be one of {sorted(VALID_IFIH1_GENOTYPES)}")
+
+    raw_donor_ifih1 = _get_opt(patient, "donor_ifih1_rs1990760_genotype", "UNMEASURED")
+    if not isinstance(raw_donor_ifih1, str):
+        raise ValueError(f"Invalid donor_ifih1_rs1990760_genotype {raw_donor_ifih1!r}")
+    donor_ifih1_genotype = raw_donor_ifih1.strip().upper()
+    if donor_ifih1_genotype not in VALID_DONOR_IFIH1_GENOTYPES:
+        raise ValueError(
+            f"Invalid donor_ifih1_rs1990760_genotype {donor_ifih1_genotype!r}; must be one of {sorted(VALID_DONOR_IFIH1_GENOTYPES)}"
+        )
+    if donor_ifih1_genotype == "T/C":
+        donor_ifih1_genotype = "C/T"
 
     raw_ptpn22 = _get_opt(patient, "ptpn22_rs2476601_genotype", "G/G")
     if not isinstance(raw_ptpn22, str):
@@ -2133,6 +2148,24 @@ def compile_personalized_patient_blueprint(
         },
         "host_modifier_genotypes_and_dosing": {
             "ifih1_rs1990760_genotype": ifih1_genotype,
+            "donor_ifih1_rs1990760_genotype": donor_ifih1_genotype,
+            "donor_ifih1_rs1990760_provenance": {
+                "input_status": (
+                    "MEASURED_DONOR_INPUT"
+                    if "donor_ifih1_rs1990760_genotype" in patient
+                    and patient["donor_ifih1_rs1990760_genotype"] is not None
+                    and donor_ifih1_genotype != "UNMEASURED"
+                    else "UNMEASURED_PROVENANCE_ONLY"
+                ),
+                "variant_provenance": (
+                    "Provenance-only donor seed-line record for common GWAS IFIH1 rs1990760 (GRCh38 minus-strand coding c.2836G>A, "
+                    "p.Ala946Thr; Smyth et al. 2006 PMID:16699517), explicitly separated from recipient IFIH1 risk scoring and from "
+                    "rare loss-of-function rs35744605 (p.Glu627Ter / E627*; Nejentsev et al. 2009 PMID:19264985; SC-islet functional "
+                    "comparison in Veronese-Paniagua et al. 2025 PMID:42787837). Zero effect on K, B, prescribed regimen, or survival."
+                ),
+                "affects_k_b_regimen_or_survival": False,
+                "primary_citations": ["PMID:16699517", "PMID:19264985", "PMID:42787837"],
+            },
             "ptpn22_rs2476601_genotype": ptpn22_genotype,
             "recipient_hla_e_genotype": recipient_hla_e,
             "tyk2_rs34536443_genotype": recipient_tyk2_genotype,
@@ -2411,6 +2444,7 @@ def evaluate_regimen_survival_probability(
         "tyk2_rs34536443_genotype",
         "recipient_tyk2_rs34536443_genotype",
         "donor_tyk2_rs34536443_genotype",
+        "donor_ifih1_rs1990760_genotype",
         "recipient_kir_ligand_group",
         "recipient_anti_hla_c_dsa",
         "recipient_anti_hla_e_dsa",
@@ -2468,12 +2502,15 @@ def evaluate_regimen_survival_probability(
 
     if "sirpa_genotype" in patient and not isinstance(patient["sirpa_genotype"], str):
         raise ValueError(f"Invalid sirpa_genotype: explicit value must be a string, got {patient['sirpa_genotype']!r} (AUDIT-REF)")
-    for str_field in ("ifih1_rs1990760_genotype", "ptpn22_rs2476601_genotype", "recipient_hla_e_genotype"):
+    for str_field in ("ifih1_rs1990760_genotype", "donor_ifih1_rs1990760_genotype", "ptpn22_rs2476601_genotype", "recipient_hla_e_genotype"):
         if str_field in patient and patient[str_field] is not None and not isinstance(patient[str_field], str):
             raise ValueError(f"Invalid {str_field}: explicit value must be a string, got {patient[str_field]!r} (AUDIT-REF)")
     ifih1_g = str(_get_opt(patient, "ifih1_rs1990760_genotype", "C/T")).strip().upper()
     if ifih1_g not in VALID_IFIH1_GENOTYPES:
         raise ValueError(f"Invalid ifih1_rs1990760_genotype {ifih1_g!r}")
+    donor_ifih1_eval = str(_get_opt(patient, "donor_ifih1_rs1990760_genotype", "UNMEASURED")).strip().upper()
+    if donor_ifih1_eval not in VALID_DONOR_IFIH1_GENOTYPES:
+        raise ValueError(f"Invalid donor_ifih1_rs1990760_genotype {donor_ifih1_eval!r}")
     ptpn22_g = str(_get_opt(patient, "ptpn22_rs2476601_genotype", "G/G")).strip().upper()
     if ptpn22_g not in VALID_PTPN22_GENOTYPES:
         raise ValueError(f"Invalid ptpn22_rs2476601_genotype {ptpn22_g!r}")
@@ -2885,6 +2922,7 @@ def simulate_10000_patient_global_population_trial(
     all_unmat_b_discounted: List[float] = []
     all_personalized_complexity_cases: List[tuple[float, int, int]] = []
     all_threshold_sensitivity_cases: List[tuple[float, float, float, int]] = []
+    all_sim_patient_records: List[Dict[str, Any]] = []
 
     sirpa_map = {0: "v2/v2", 1: "v1/v2", 2: "v1/v1"}
     ifih1_map = {0: "C/C", 1: "C/T", 2: "T/T"}
@@ -3003,6 +3041,7 @@ def simulate_10000_patient_global_population_trial(
             all_unmat_b_analytic.append(p_unmat_i)
             all_unmat_b_discounted.append(p_unmat_i * disc_factor)
             all_personalized_complexity_cases.append((float(p_personalized[i]), k_cnt, b_cnt))
+            all_sim_patient_records.append(pt_rec)
             if _is_default_compiler and 0.48 <= float(nkg2a_neg_kir_frac[i]) < 0.52:
                 pt_low_kir = dict(pt_rec, nkg2a_neg_kir_educated_nk_fraction=0.35)
                 reg_a_if_unrouted = compiler_fn(pt_low_kir)
@@ -3291,6 +3330,82 @@ def simulate_10000_patient_global_population_trial(
         }
         for lam in engineering_parameters["lambda_K_range"] for gamma in engineering_parameters["gamma_B_range"]
     ]
+    donor_tyk2_sensitivity_summary = None
+    if _is_default_compiler and len(all_sim_patient_records) == total_n:
+        donor_tyk2_rows = []
+        base_surv_arr = np.asarray(all_pers_analytic, dtype=np.float64)
+        for donor_g in ("G/G", "G/C", "C/C"):
+            kb_g = {"K4_B0": 0, "K4_B1": 0, "K5_B0": 0, "K5_B1": 0}
+            pe_cnt = 0
+            allele_sum = 0
+            surv_vec: List[float] = []
+            disc_vec: List[float] = []
+            b_prime_sct_disc_vec: List[float] = []
+            for pt_base in all_sim_patient_records:
+                pt_g = dict(pt_base, donor_tyk2_rs34536443_genotype=donor_g)
+                reg_g = compiler_fn(pt_g)
+                is_pb_g = "Plan B" in reg_g.get("plan_architecture_prescribed", "")
+                has_t2_g = bool(reg_g.get("include_tyk2_p1104a_rs34536443_shield"))
+                prod_k_g = reg_g.get("product_definition", {}).get("K") if isinstance(reg_g.get("product_definition"), dict) else None
+                k_g = int(prod_k_g) if isinstance(prod_k_g, int) and prod_k_g in (4, 5) else (5 if is_pb_g else 4)
+                b_g = 1 if has_t2_g else 0
+                kb_g[f"K{k_g}_B{b_g}"] += 1
+                if has_t2_g:
+                    pe_cnt += 1
+                allele_sum += int(reg_g["editing_complexity_and_manufacturing_accounting_v80_009"]["tyk2_alleles_requiring_prime_edit_count"])
+                p_g = float(evaluate_regimen_survival_probability(pt_g, reg_g))
+                surv_vec.append(p_g)
+                disc_vec.append(
+                    p_g * engineering_complexity_discount(
+                        k_g, b_g, lambda_K=engineering_parameters["lambda_K"], gamma_B=engineering_parameters["gamma_B"]
+                    )
+                )
+                b_prime_sct_disc_vec.append(
+                    p_g * engineering_complexity_discount(
+                        min(k_g, 4), b_g, lambda_K=engineering_parameters["lambda_K"], gamma_B=engineering_parameters["gamma_B"]
+                    )
+                )
+            donor_tyk2_rows.append({
+                "donor_tyk2_rs34536443_genotype": donor_g,
+                "kb_complexity_counts": kb_g,
+                "recipients_prescribed_tyk2_prime_editing": pe_cnt,
+                "total_tyk2_alleles_requiring_prime_edit_across_cohort": allele_sum,
+                "analytic_personalized_mean_survival_pct": round(100.0 * float(np.mean(surv_vec)), 4),
+                "complexity_discounted_personalized_utility_pct": round(100.0 * float(np.mean(disc_vec)), 4),
+                "b_prime_sct_k4_complexity_discounted_utility_pct": round(100.0 * float(np.mean(b_prime_sct_disc_vec)), 4),
+                "max_abs_patient_survival_difference_vs_default_gg": round(
+                    float(np.max(np.abs(np.asarray(surv_vec, dtype=np.float64) - base_surv_arr))),
+                    12,
+                ),
+            })
+        donor_tyk2_sensitivity_summary = {
+            "decision_id": "DEC-090",
+            "proposal_id": "IIP-0011",
+            "variant": "TYK2 rs34536443 (c.3310C>G, p.Pro1104Ala in the catalytic JH1 kinase domain; PMID:27807284, PMID:35470158)",
+            "cohort_evaluated": "Exact 10,000 main-simulation SIM-* patient records held fixed (separate COP-* copula sensitivity records excluded)",
+            "default_donor_genotype_in_main_trial": "G/G",
+            "donor_genotype_comparison_table": donor_tyk2_rows,
+            "assigned_survival_invariance_verified": bool(
+                all(r["max_abs_patient_survival_difference_vs_default_gg"] == 0.0 for r in donor_tyk2_rows)
+            ),
+            "survival_and_utility_interpretation_note": (
+                "Every simulated patient's assigned 5-year survival probability is identical across G/G, G/C, and natural C/C donor seed lines; "
+                "heterozygous G/C reduces the allele count requiring prime editing from 2 to 1 while retaining edited locus count B = 1, whereas "
+                "natural homozygous C/C removes the optional TYK2 prime-editing step (B = 1 -> 0) for all 4,374 TYK2-eligible recipients. "
+                "The complexity-discounted utility shift reflects solely removal of the assumed gamma_B locus-editing discount, not measured manufacturing yield or clinical benefit."
+            ),
+            "mcb_product_scope_and_seedline_qualification_gates": (
+                "Collapsing two TYK2-stratified Master Cell Bank sublines (B = 0 and B = 1) into a single B = 0 subline applies strictly to the "
+                "TYK2 stratification dimension within a defined product: the main 10,000-patient simulation still retains 2,367 K = 5 endogenous-HLA-C "
+                "Plan B patients (and the promoted B'-SCT route maintains separate K = 4 C1/C2/C1C2 KIR-matched products and requires >= 2 independent "
+                "MCB clones from distinct donors; GY-005). Any candidate natural TYK2 C/C (p.Pro1104Ala/p.Pro1104Ala) donor hPSC line must clear: "
+                "(1) Stage 0->7 endocrine precursor emergence and mature SC-islet yield equivalence (Chandra et al. 2022 PMID:36289205), "
+                "(2) Stage-0 Rule S8 (< 70% shield-induction trigger) across both Locus-1 5xISRE->HLA-E and Locus-3 CXCL10::SERPINB9-GSG-P2A-PD-L1 "
+                "under IFN-alpha plus low IFN-gamma alongside lineage-specific resting HLA-E and Hour-0 CD47 floors (GY-001, GY-009), and "
+                "(3) 30x WGS, >= 63,000x TP53/PPM1D/BCOR duplex-seq, CAST-seq, and potency release (GY-006)."
+            ),
+            "primary_citations": ["PMID:27807284", "PMID:35470158", "PMID:36289205"],
+        }
     return {
         "model_classification_and_scope_note_sol_v80_10": (
             "Illustrative assigned-rule scenario simulation (NOT clinical trial data, fitted survival hazard model, or "
@@ -3481,6 +3596,7 @@ def simulate_10000_patient_global_population_trial(
             ],
             "physical_uncloned_yield_prior": None,
             "physical_yield_evidence_status": "NOT_MEASURED",
+            "donor_seedline_tyk2_genotype_sensitivity_summary": donor_tyk2_sensitivity_summary,
             "b_prime_4digit_hlac_alloreactivity_and_b_prime_sct_pivot_audit_muse_r3": {
                 "audit_id": "AUDIT-REF",
                 "evidence_class": "IMMUNOGENETIC_ALLOREACTIVITY_AUDIT_AND_PRODUCT_PROMOTION",

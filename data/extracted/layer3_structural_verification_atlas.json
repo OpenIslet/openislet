@@ -4,8 +4,8 @@
   "status": "COORDINATE_GEOMETRY_VERIFIED_PRODUCT_FUNCTION_UNRESOLVED_PENDING_WETLAB",
   "layer2_construct_fasta_sha256_linked": "b5ba4e2b4bbbcc7d6cf1138975c5fae5c6ab074dda43973f071c671cd8cd1d88",
   "summary": {
-    "total_experimental_pdb_structures_verified": 10,
-    "experimental_rcsb_mmcif_structures_verified": 8,
+    "total_experimental_pdb_structures_verified": 13,
+    "experimental_rcsb_mmcif_structures_verified": 11,
     "experimental_rcsb_legacy_pdb_structures_verified": 2,
     "experimental_pdb_accession_inventory": [
       "1MHE",
@@ -17,7 +17,10 @@
       "4ZQK",
       "1IAU",
       "1EFX",
-      "1IM9"
+      "1IM9",
+      "1BL4",
+      "1JXQ",
+      "1NW9"
     ],
     "total_alphafold_v6_models_verified": 2,
     "foldseek_databases_queried": [
@@ -25,6 +28,7 @@
       "afdb-swissprot"
     ],
     "complexes_verified": 4,
+    "icasp9_locus4_structural_reference_audit_status": "FULL_FUSION_UNRESOLVED",
     "granzyme_b_1iau_insertion_code_safe_aligned_residues": 226,
     "granzyme_b_1iau_insertion_code_safe_rmsd_angstrom": 0.4049,
     "reference_coordinate_geometry_status": "PASS",
@@ -4352,6 +4356,168 @@
       }
     }
   ],
+  "icasp9_locus4_structural_reference_audit": {
+    "audit_id": "LOCUS4_ICASP9_DOMAIN_REFERENCE_AUDIT_IIP_0011",
+    "decision_id": "DEC-090",
+    "proposal_id": "IIP-0011",
+    "construct_id": "LOCUS4_AAVS1_CHS4_455BP_CBX3_A2UCOE_ICASP9_R17",
+    "polypeptide_id": "iCasp9_cytosolic_monomer",
+    "polypeptide_length_aa": 396,
+    "polypeptide_sha256": "9c658142531fb4fbad7b80d7c94d412118e2a878122ab6795bbac88035e836de",
+    "pinned_domain_boundary_mapping": {
+      "canonical_ledger_parse": "FKBP12(F36V) 1-108 (Met1 + Gly2-Glu108) + SGGGSG linker 109-114 + CASP9 G135-S416 at iCasp9 115-396",
+      "equivalent_alternative_parse_note": "Because native CASP9 position 134 is also Gly, the identical 396-aa translated polypeptide can alternatively be parsed as FKBP12(F36V) 1-108 + SGGGS 109-113 + CASP9 G134-S416 at iCasp9 114-396; the canonical ledger pins 6-aa SGGGSG (109-114) + CASP9 G135-S416 (115-396) without mixing a 5-aa linker with a G135 start.",
+      "cleaved_xiap_bir3_binding_tetrapeptide": "ATPF at iCasp9 296-299 (canonical CASP9 316-319)"
+    },
+    "qualification_status": "FULL_FUSION_UNRESOLVED",
+    "atom_selection_convention": "Model 1, polymer ATOM records only, non-hydrogen heavy atoms, label_alt_id in {'.', '?', 'A'}, no water/ligand atoms in protein-protein contact counts, and insertion-code-aware residue identities (auth_seq_id + pdbx_PDB_ins_code, preserving chymotrypsinogen insertion codes such as 240A-240G in 1JXQ).",
+    "fkbp12_f36v_domain_reference_1BL4": {
+      "pdb_id": "1BL4",
+      "mmcif_sha256": "ce142b747272c5fd3b7c0b5f5157750277614700bc32492f0eb7cb43056914d5",
+      "citation": "Clackson et al. 1998 Proc Natl Acad Sci U S A PMID:9724721",
+      "evaluated_chain": "A",
+      "icasp9_residue_span": "2-108",
+      "aligned_residues": 107,
+      "identical_residues": 107,
+      "non_water_hetatm_ligands_in_asymmetric_unit": [
+        "A:AP1:108",
+        "B:AP1:109"
+      ],
+      "ligand_state_scope_note": "1BL4 resolves two FKBP12(F36V) monomers (chains A and B) bound to monovalent AP1 ligands rather than a bivalent AP1903 (rimiducid) chemical inducer of dimerization bridge."
+    },
+    "caspase9_catalytic_homodimer_reference_1JXQ": {
+      "pdb_id": "1JXQ",
+      "mmcif_sha256": "4b7355537a8a81e90d5397cba398ff425dddc904a7748e3a25a0a9f57d1ff772",
+      "citation": "Renatus et al. 2001 Proc Natl Acad Sci U S A PMID:11734640",
+      "evaluated_chains": {
+        "monomer_1": "A",
+        "monomer_2": "B"
+      },
+      "numbering_system_note": "1JXQ uses chymotrypsinogen-homologous author residue numbers with insertion codes (e.g., 240A-240G); canonical human CASP9 residue position = label_seq_id + 138 (iCasp9 position = label_seq_id + 118).",
+      "chain_A_start_author_residue": "Met139 (engineered Met start replacing native CASP9 Val139 at iCasp9 Val119)",
+      "chain_B_start_author_residue": "Asn148 (canonical CASP9 Asn148 at iCasp9 Asn128)",
+      "all_model1_polymer_heavy_atoms_including_zero_occupancy": {
+        "heavy_atom_contact_pairs_le_4p5A": 674,
+        "chain_A_interface_residues_insertion_code_aware": 44,
+        "chain_B_interface_residues_insertion_code_aware": 42
+      },
+      "positive_occupancy_only_polymer_heavy_atoms": {
+        "heavy_atom_contact_pairs_le_4p5A": 667,
+        "chain_A_interface_residues_insertion_code_aware": 44,
+        "chain_B_interface_residues_insertion_code_aware": 41
+      },
+      "chain_A_sequence_differences_vs_construct": [
+        {
+          "canonical_casp9_pos": 139,
+          "icasp9_pos": 119,
+          "pdb_author_residue": "M139",
+          "construct_casp9_aa": "V"
+        },
+        {
+          "canonical_casp9_pos": 221,
+          "icasp9_pos": 201,
+          "pdb_author_residue": "R220",
+          "construct_casp9_aa": "Q"
+        }
+      ],
+      "chain_B_sequence_differences_vs_construct": [
+        {
+          "canonical_casp9_pos": 221,
+          "icasp9_pos": 201,
+          "pdb_author_residue": "R220",
+          "construct_casp9_aa": "Q"
+        }
+      ]
+    },
+    "caspase9_xiap_bir3_inhibitory_complex_reference_1NW9": {
+      "pdb_id": "1NW9",
+      "mmcif_sha256": "89edc3aa4833b22c9604872d163e64d53755af6de1c9163204f2244ac1ce5da4",
+      "citation": "Shiozaki et al. 2003 Mol Cell PMID:12620238",
+      "evaluated_chains": {
+        "xiap_bir3": "A",
+        "caspase9_catalytic_domain": "B"
+      },
+      "heavy_atom_contact_pairs_le_4p5A": 363,
+      "cleaved_atpf_316_319_heavy_atom_contact_pairs_le_4p5A": 145,
+      "xiap_chain_A_interface_residues": 27,
+      "caspase9_chain_B_interface_residues": 25,
+      "caspase9_chain_B_sequence_differences_vs_construct": [
+        {
+          "canonical_casp9_pos": 221,
+          "icasp9_pos": 201,
+          "pdb_author_residue": "R221",
+          "construct_casp9_aa": "Q"
+        }
+      ],
+      "shared_canonical_casp9_interface_residues_with_1JXQ_homodimer": {
+        "vs_1JXQ_chain_A_count": 17,
+        "vs_1JXQ_chain_A_canonical_casp9_positions": [
+          242,
+          243,
+          244,
+          245,
+          247,
+          337,
+          338,
+          381,
+          385,
+          388,
+          399,
+          400,
+          402,
+          403,
+          404,
+          405,
+          406
+        ],
+        "vs_1JXQ_chain_B_count": 19,
+        "vs_1JXQ_chain_B_canonical_casp9_positions": [
+          242,
+          243,
+          244,
+          245,
+          247,
+          334,
+          336,
+          337,
+          338,
+          381,
+          385,
+          388,
+          399,
+          400,
+          402,
+          403,
+          404,
+          405,
+          406
+        ],
+        "vs_1JXQ_AB_union_count": 19,
+        "vs_1JXQ_AB_union_canonical_casp9_positions": [
+          242,
+          243,
+          244,
+          245,
+          247,
+          334,
+          336,
+          337,
+          338,
+          381,
+          385,
+          388,
+          399,
+          400,
+          402,
+          403,
+          404,
+          405,
+          406
+        ]
+      }
+    },
+    "unresolved_exact_product_coordinates_and_functional_gate": "Experimental coordinates omit Met1, the flexible SGGGSG linker (iCasp9 109-114), native CASP9 135-139 (iCasp9 115-119, where 1JXQ chain A carries engineered Met139), internal disordered caspase loops, construct Gln221 (Arg in 1JXQ and 1NW9), and any intact AP1903-bridged full-length FKBP12(F36V)-SGGGSG-dCARD-CASP9 tetrameric assembly. No rigid-body linker pass/fail claim is made; Stage-0 Decision Experiment #4 and Readout 6 (normoxic and 1% O2 hypoxic + cytokine AP1903 bulk potency and Tier 6B clonogenic escape ceiling) remain authoritative (GY-002)."
+  },
   "hlac_sct_kir2dl_f_pocket_clearance_and_self_peptide_audit_argon_r4": {
     "evidence_class": "CRYSTALLOGRAPHIC_FOOTPRINT_AND_WLC_LINKER_CLEARANCE_MODEL_REQUIRES_GATE_0B_SCT_SPR_VERIFICATION",
     "c1_subbank_hlac0304_kir2dl2_1EFX": {

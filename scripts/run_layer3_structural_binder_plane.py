@@ -55,6 +55,9 @@ STRUCTURAL_REFERENCE_SHA256 = {
     "pdb_00004kjy.cif": "6294d015c1c24d97558650dc98ef8bced967b3fd658da8b49dc51090e8b2ccaa",
     "pdb_00004zqk.cif": "ed7114a3c653cf964155c5491a5df30d5c5e4edfc6b09d399662c5764a1bad31",
     "pdb_00001iau.cif": "c1ffdeab80cc9ecaf06c9901c756b0f59259e178a45a4a33ffc949bd01123161",
+    "pdb_00001bl4.cif": "ce142b747272c5fd3b7c0b5f5157750277614700bc32492f0eb7cb43056914d5",
+    "pdb_00001jxq.cif": "4b7355537a8a81e90d5397cba398ff425dddc904a7748e3a25a0a9f57d1ff772",
+    "pdb_00001nw9.cif": "89edc3aa4833b22c9604872d163e64d53755af6de1c9163204f2244ac1ce5da4",
     "AF-P50453-F1-model_v6.cif": "d0b27f7cc8317acd9cd59b76d3080b4019ffd38930dbfddf3bd2560814baf5b9",
     "AF-P10144-F1-model_v6.cif": "6362a677cc62d80b89229ea40a4c3ae81007a631d1c038a2e158541c8d40e9a5",
     "AF-P50453-F1-predicted_aligned_error_v6.json": "b88ea8a67dab0e5956f919c3205911d9d7d901973c3ff32e5277b81881b76f78",
@@ -184,7 +187,8 @@ def _finite_population_moments(values: List[float]) -> Tuple[float, float]:
 
 def parse_mmcif_atoms(cif_path: Path, keep_insertion_codes: bool = False,
                       allowed_alt_ids: Tuple[str, ...] = (".", "?", "A"), *,
-                      source_bytes: Optional[bytes] = None) -> List[Dict[str, Any]]:
+                      source_bytes: Optional[bytes] = None,
+                      include_zero_occupancy: bool = False) -> List[Dict[str, Any]]:
     """
     Parse ATOM/HETATM records from an mmCIF coordinate file (model 1, quote-aware tokenizer).
     When keep_insertion_codes=True, residues with PDB insertion codes (e.g. 184A in 1IAU)
@@ -199,10 +203,11 @@ def parse_mmcif_atoms(cif_path: Path, keep_insertion_codes: bool = False,
     pending: List[str] = []
     rows_started = False
     identities = set()
-    if (type(keep_insertion_codes) is not bool or not isinstance(allowed_alt_ids, tuple)
+    if (type(keep_insertion_codes) is not bool or type(include_zero_occupancy) is not bool
+            or not isinstance(allowed_alt_ids, tuple)
             or not allowed_alt_ids or any(not isinstance(alt, str) or not alt for alt in allowed_alt_ids)
             or len(set(allowed_alt_ids) - {".", "?"}) > 1):
-        raise ValueError("Select one named atom conformer and a boolean insertion-code policy")
+        raise ValueError("Select one named atom conformer and boolean insertion-code/occupancy policies")
 
     def _append_selected_atom(rec: Dict[str, str]) -> None:
         if rec.get("pdbx_PDB_model_num", "1") not in ("1", "?", "."):
@@ -218,7 +223,7 @@ def parse_mmcif_atoms(cif_path: Path, keep_insertion_codes: bool = False,
             raise ValueError(f"Invalid atom numeric field in {cif_path}") from exc
         if not all(math.isfinite(v) for v in (x, y, z, b_iso, occupancy)) or not 0.0 <= occupancy <= 1.0:
             raise ValueError(f"Non-finite coordinate/confidence or invalid occupancy in {cif_path}")
-        if occupancy == 0.0:
+        if occupancy == 0.0 and not include_zero_occupancy:
             return
         auth_seq_str = rec.get("auth_seq_id", rec.get("label_seq_id", "?"))
         try:
@@ -2418,6 +2423,259 @@ def analyze_complex_4_pdl1_pd1(layer2_ledger: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
+def analyze_icasp9_locus4_structural_reference_audit(layer2_ledger: Dict[str, Any]) -> Dict[str, Any]:
+    """Audit experimentally resolved reference domains for Locus 4 iCasp9 (IIP-0011 / DEC-090)."""
+    aa3_to_1 = {
+        "ALA": "A", "ARG": "R", "ASN": "N", "ASP": "D", "CYS": "C",
+        "GLN": "Q", "GLU": "E", "GLY": "G", "HIS": "H", "ILE": "I",
+        "LEU": "L", "LYS": "K", "MET": "M", "PHE": "F", "PRO": "P",
+        "SER": "S", "THR": "T", "TRP": "W", "TYR": "Y", "VAL": "V",
+    }
+    ic_entry = layer2_ledger["iCasp9_cytosolic_monomer"]
+    ic_seq = ic_entry["sequence"]
+    if len(ic_seq) != 396:
+        raise ValueError(f"Expected 396-aa iCasp9_cytosolic_monomer, got {len(ic_seq)}")
+    fkbp_seq = ic_seq[:108]
+    linker_6aa = ic_seq[108:114]
+    casp9_g135_s416 = ic_seq[114:]
+    if linker_6aa != "SGGGSG" or len(casp9_g135_s416) != 282 or ic_seq[295:299] != "ATPF":
+        raise ValueError("Unexpected iCasp9 domain boundary or cleaved ATPF tetrapeptide coordinates")
+
+    snaps = verify_structural_reference_inputs("pdb_00001bl4.cif", "pdb_00001jxq.cif", "pdb_00001nw9.cif")
+
+    # 1. PDB: 1BL4 — FKBP12(F36V) bound to monovalent AP1 ligands (Clackson et al. 1998 PMID:9724721)
+    atoms_1bl4 = parse_mmcif_atoms(
+        STRUCT_DIR / "pdb_00001bl4.cif",
+        keep_insertion_codes=True,
+        source_bytes=snaps["pdb_00001bl4.cif"],
+        include_zero_occupancy=True,
+    )
+    bl4_poly_a = [a for a in atoms_1bl4 if a["group"] == "ATOM" and a["chain"] == "A" and a["element"] not in ("H", "D")]
+    bl4_res_a: Dict[str, str] = {}
+    for a in bl4_poly_a:
+        bl4_res_a.setdefault(a["res_key"], aa3_to_1[a["comp_id"]])
+    bl4_seq_a = "".join(bl4_res_a.values())
+    bl4_matches_2_108 = sum(1 for x, y in zip(bl4_seq_a, fkbp_seq[1:]) if x == y)
+    bl4_ligands = sorted({
+        f"{a['chain']}:{a['comp_id']}:{a['res_key']}"
+        for a in atoms_1bl4
+        if a["group"] == "HETATM" and a["comp_id"] != "HOH" and a["element"] not in ("H", "D")
+    })
+    if len(bl4_seq_a) != 107 or bl4_matches_2_108 != 107:
+        raise ValueError(f"1BL4 chain A alignment mismatch: {bl4_matches_2_108}/{len(bl4_seq_a)}")
+
+    # 2. PDB: 1JXQ — Caspase-9 catalytic homodimer A:B (Renatus et al. 2001 PMID:11734640)
+    def _jxq_interface_metrics(include_zero_occ: bool) -> Dict[str, Any]:
+        parsed = parse_mmcif_atoms(
+            STRUCT_DIR / "pdb_00001jxq.cif",
+            keep_insertion_codes=True,
+            source_bytes=snaps["pdb_00001jxq.cif"],
+            include_zero_occupancy=include_zero_occ,
+        )
+        chain_a = [a for a in parsed if a["group"] == "ATOM" and a["chain"] == "A" and a["element"] not in ("H", "D")]
+        chain_b = [a for a in parsed if a["group"] == "ATOM" and a["chain"] == "B" and a["element"] not in ("H", "D")]
+        pair_count = 0
+        res_a_keys = set()
+        res_b_keys = set()
+        can_a_pos = set()
+        can_b_pos = set()
+        for xa in chain_a:
+            ca = (xa["x"], xa["y"], xa["z"])
+            for yb in chain_b:
+                if math.dist(ca, (yb["x"], yb["y"], yb["z"])) <= 4.5:
+                    pair_count += 1
+                    res_a_keys.add(xa["res_key"])
+                    res_b_keys.add(yb["res_key"])
+                    if xa["label_seq_id"] is not None:
+                        can_a_pos.add(int(xa["label_seq_id"]) + 138)
+                    if yb["label_seq_id"] is not None:
+                        can_b_pos.add(int(yb["label_seq_id"]) + 138)
+        map_a: Dict[int, Tuple[str, str]] = {}
+        for xa in chain_a:
+            if xa["label_seq_id"] is not None:
+                map_a.setdefault(int(xa["label_seq_id"]), (xa["res_key"], aa3_to_1[xa["comp_id"]]))
+        map_b: Dict[int, Tuple[str, str]] = {}
+        for yb in chain_b:
+            if yb["label_seq_id"] is not None:
+                map_b.setdefault(int(yb["label_seq_id"]), (yb["res_key"], aa3_to_1[yb["comp_id"]]))
+        diffs_a = [
+            {
+                "canonical_casp9_pos": ls + 138,
+                "icasp9_pos": ls + 118,
+                "pdb_author_residue": f"{aa}{rk}",
+                "construct_casp9_aa": casp9_g135_s416[ls + 138 - 135],
+            }
+            for ls, (rk, aa) in sorted(map_a.items())
+            if aa != casp9_g135_s416[ls + 138 - 135]
+        ]
+        diffs_b = [
+            {
+                "canonical_casp9_pos": ls + 138,
+                "icasp9_pos": ls + 118,
+                "pdb_author_residue": f"{aa}{rk}",
+                "construct_casp9_aa": casp9_g135_s416[ls + 138 - 135],
+            }
+            for ls, (rk, aa) in sorted(map_b.items())
+            if aa != casp9_g135_s416[ls + 138 - 135]
+        ]
+        return {
+            "heavy_atom_contact_pairs_le_4p5A": pair_count,
+            "chain_A_interface_residue_count_insertion_code_aware": len(res_a_keys),
+            "chain_B_interface_residue_count_insertion_code_aware": len(res_b_keys),
+            "chain_A_resolved_residue_count": len(map_a),
+            "chain_B_resolved_residue_count": len(map_b),
+            "chain_A_canonical_casp9_interface_positions": sorted(can_a_pos),
+            "chain_B_canonical_casp9_interface_positions": sorted(can_b_pos),
+            "chain_A_sequence_differences_vs_construct": diffs_a,
+            "chain_B_sequence_differences_vs_construct": diffs_b,
+        }
+
+    jxq_all_occ = _jxq_interface_metrics(include_zero_occ=True)
+    jxq_pos_occ = _jxq_interface_metrics(include_zero_occ=False)
+    if (
+        jxq_all_occ["heavy_atom_contact_pairs_le_4p5A"] != 674
+        or jxq_all_occ["chain_A_interface_residue_count_insertion_code_aware"] != 44
+        or jxq_all_occ["chain_B_interface_residue_count_insertion_code_aware"] != 42
+    ):
+        raise ValueError(f"Unexpected 1JXQ homodimer contact metrics: {jxq_all_occ}")
+
+    # 3. PDB: 1NW9 — XIAP-BIR3 (chain A) : Caspase-9 (chain B) inhibitory complex (Shiozaki et al. 2003 PMID:12620238)
+    atoms_1nw9 = parse_mmcif_atoms(
+        STRUCT_DIR / "pdb_00001nw9.cif",
+        keep_insertion_codes=True,
+        source_bytes=snaps["pdb_00001nw9.cif"],
+        include_zero_occupancy=True,
+    )
+    nw9_xiap_a = [a for a in atoms_1nw9 if a["group"] == "ATOM" and a["chain"] == "A" and a["element"] not in ("H", "D")]
+    nw9_casp9_b = [a for a in atoms_1nw9 if a["group"] == "ATOM" and a["chain"] == "B" and a["element"] not in ("H", "D")]
+    nw9_pairs = 0
+    nw9_atpf_pairs = 0
+    nw9_res_a = set()
+    nw9_res_b = set()
+    nw9_can_b = set()
+    for xa in nw9_xiap_a:
+        ca = (xa["x"], xa["y"], xa["z"])
+        for yb in nw9_casp9_b:
+            if math.dist(ca, (yb["x"], yb["y"], yb["z"])) <= 4.5:
+                nw9_pairs += 1
+                nw9_res_a.add(xa["res_key"])
+                nw9_res_b.add(yb["res_key"])
+                nw9_can_b.add(int(yb["seq_id"]))
+                if yb["seq_id"] in (316, 317, 318, 319) and yb["ins_code"] == "":
+                    nw9_atpf_pairs += 1
+    nw9_map_b: Dict[int, str] = {}
+    for yb in nw9_casp9_b:
+        nw9_map_b.setdefault(int(yb["seq_id"]), aa3_to_1[yb["comp_id"]])
+    nw9_diffs_b = [
+        {
+            "canonical_casp9_pos": s,
+            "icasp9_pos": s - 20,
+            "pdb_author_residue": f"{aa}{s}",
+            "construct_casp9_aa": casp9_g135_s416[s - 135],
+        }
+        for s, aa in sorted(nw9_map_b.items())
+        if 135 <= s <= 416 and aa != casp9_g135_s416[s - 135]
+    ]
+    if nw9_pairs != 363 or nw9_atpf_pairs != 145 or len(nw9_res_a) != 27 or len(nw9_res_b) != 25:
+        raise ValueError(f"Unexpected 1NW9 contact metrics: pairs={nw9_pairs}, atpf={nw9_atpf_pairs}")
+
+    shared_vs_jxq_a = sorted(set(jxq_all_occ["chain_A_canonical_casp9_interface_positions"]) & nw9_can_b)
+    shared_vs_jxq_b = sorted(set(jxq_all_occ["chain_B_canonical_casp9_interface_positions"]) & nw9_can_b)
+    shared_vs_jxq_union = sorted(
+        (set(jxq_all_occ["chain_A_canonical_casp9_interface_positions"]) | set(jxq_all_occ["chain_B_canonical_casp9_interface_positions"]))
+        & nw9_can_b
+    )
+
+    return {
+        "audit_id": "LOCUS4_ICASP9_DOMAIN_REFERENCE_AUDIT_IIP_0011",
+        "decision_id": "DEC-090",
+        "proposal_id": "IIP-0011",
+        "construct_id": ic_entry["source_construct"],
+        "polypeptide_id": "iCasp9_cytosolic_monomer",
+        "polypeptide_length_aa": len(ic_seq),
+        "polypeptide_sha256": ic_entry["sha256"],
+        "pinned_domain_boundary_mapping": {
+            "canonical_ledger_parse": "FKBP12(F36V) 1-108 (Met1 + Gly2-Glu108) + SGGGSG linker 109-114 + CASP9 G135-S416 at iCasp9 115-396",
+            "equivalent_alternative_parse_note": (
+                "Because native CASP9 position 134 is also Gly, the identical 396-aa translated polypeptide can alternatively "
+                "be parsed as FKBP12(F36V) 1-108 + SGGGS 109-113 + CASP9 G134-S416 at iCasp9 114-396; the canonical ledger pins "
+                "6-aa SGGGSG (109-114) + CASP9 G135-S416 (115-396) without mixing a 5-aa linker with a G135 start."
+            ),
+            "cleaved_xiap_bir3_binding_tetrapeptide": "ATPF at iCasp9 296-299 (canonical CASP9 316-319)",
+        },
+        "qualification_status": "FULL_FUSION_UNRESOLVED",
+        "atom_selection_convention": (
+            "Model 1, polymer ATOM records only, non-hydrogen heavy atoms, label_alt_id in {'.', '?', 'A'}, no water/ligand atoms "
+            "in protein-protein contact counts, and insertion-code-aware residue identities (auth_seq_id + pdbx_PDB_ins_code, preserving "
+            "chymotrypsinogen insertion codes such as 240A-240G in 1JXQ)."
+        ),
+        "fkbp12_f36v_domain_reference_1BL4": {
+            "pdb_id": "1BL4",
+            "mmcif_sha256": STRUCTURAL_REFERENCE_SHA256["pdb_00001bl4.cif"],
+            "citation": "Clackson et al. 1998 Proc Natl Acad Sci U S A PMID:9724721",
+            "evaluated_chain": "A",
+            "icasp9_residue_span": "2-108",
+            "aligned_residues": len(bl4_seq_a),
+            "identical_residues": bl4_matches_2_108,
+            "non_water_hetatm_ligands_in_asymmetric_unit": bl4_ligands,
+            "ligand_state_scope_note": (
+                "1BL4 resolves two FKBP12(F36V) monomers (chains A and B) bound to monovalent AP1 ligands rather than a bivalent "
+                "AP1903 (rimiducid) chemical inducer of dimerization bridge."
+            ),
+        },
+        "caspase9_catalytic_homodimer_reference_1JXQ": {
+            "pdb_id": "1JXQ",
+            "mmcif_sha256": STRUCTURAL_REFERENCE_SHA256["pdb_00001jxq.cif"],
+            "citation": "Renatus et al. 2001 Proc Natl Acad Sci U S A PMID:11734640",
+            "evaluated_chains": {"monomer_1": "A", "monomer_2": "B"},
+            "numbering_system_note": (
+                "1JXQ uses chymotrypsinogen-homologous author residue numbers with insertion codes (e.g., 240A-240G); "
+                "canonical human CASP9 residue position = label_seq_id + 138 (iCasp9 position = label_seq_id + 118)."
+            ),
+            "chain_A_start_author_residue": "Met139 (engineered Met start replacing native CASP9 Val139 at iCasp9 Val119)",
+            "chain_B_start_author_residue": "Asn148 (canonical CASP9 Asn148 at iCasp9 Asn128)",
+            "all_model1_polymer_heavy_atoms_including_zero_occupancy": {
+                "heavy_atom_contact_pairs_le_4p5A": jxq_all_occ["heavy_atom_contact_pairs_le_4p5A"],
+                "chain_A_interface_residues_insertion_code_aware": jxq_all_occ["chain_A_interface_residue_count_insertion_code_aware"],
+                "chain_B_interface_residues_insertion_code_aware": jxq_all_occ["chain_B_interface_residue_count_insertion_code_aware"],
+            },
+            "positive_occupancy_only_polymer_heavy_atoms": {
+                "heavy_atom_contact_pairs_le_4p5A": jxq_pos_occ["heavy_atom_contact_pairs_le_4p5A"],
+                "chain_A_interface_residues_insertion_code_aware": jxq_pos_occ["chain_A_interface_residue_count_insertion_code_aware"],
+                "chain_B_interface_residues_insertion_code_aware": jxq_pos_occ["chain_B_interface_residue_count_insertion_code_aware"],
+            },
+            "chain_A_sequence_differences_vs_construct": jxq_all_occ["chain_A_sequence_differences_vs_construct"],
+            "chain_B_sequence_differences_vs_construct": jxq_all_occ["chain_B_sequence_differences_vs_construct"],
+        },
+        "caspase9_xiap_bir3_inhibitory_complex_reference_1NW9": {
+            "pdb_id": "1NW9",
+            "mmcif_sha256": STRUCTURAL_REFERENCE_SHA256["pdb_00001nw9.cif"],
+            "citation": "Shiozaki et al. 2003 Mol Cell PMID:12620238",
+            "evaluated_chains": {"xiap_bir3": "A", "caspase9_catalytic_domain": "B"},
+            "heavy_atom_contact_pairs_le_4p5A": nw9_pairs,
+            "cleaved_atpf_316_319_heavy_atom_contact_pairs_le_4p5A": nw9_atpf_pairs,
+            "xiap_chain_A_interface_residues": len(nw9_res_a),
+            "caspase9_chain_B_interface_residues": len(nw9_res_b),
+            "caspase9_chain_B_sequence_differences_vs_construct": nw9_diffs_b,
+            "shared_canonical_casp9_interface_residues_with_1JXQ_homodimer": {
+                "vs_1JXQ_chain_A_count": len(shared_vs_jxq_a),
+                "vs_1JXQ_chain_A_canonical_casp9_positions": shared_vs_jxq_a,
+                "vs_1JXQ_chain_B_count": len(shared_vs_jxq_b),
+                "vs_1JXQ_chain_B_canonical_casp9_positions": shared_vs_jxq_b,
+                "vs_1JXQ_AB_union_count": len(shared_vs_jxq_union),
+                "vs_1JXQ_AB_union_canonical_casp9_positions": shared_vs_jxq_union,
+            },
+        },
+        "unresolved_exact_product_coordinates_and_functional_gate": (
+            "Experimental coordinates omit Met1, the flexible SGGGSG linker (iCasp9 109-114), native CASP9 135-139 (iCasp9 115-119, "
+            "where 1JXQ chain A carries engineered Met139), internal disordered caspase loops, construct Gln221 (Arg in 1JXQ and 1NW9), "
+            "and any intact AP1903-bridged full-length FKBP12(F36V)-SGGGSG-dCARD-CASP9 tetrameric assembly. No rigid-body linker pass/fail "
+            "claim is made; Stage-0 Decision Experiment #4 and Readout 6 (normoxic and 1% O2 hypoxic + cytokine AP1903 bulk potency and "
+            "Tier 6B clonogenic escape ceiling) remain authoritative (GY-002)."
+        ),
+    }
+
+
 def main() -> None:
     with LAYER2_ATLAS_PATH.open("r", encoding="utf-8") as f:
         layer2_atlas = json.load(f)
@@ -2430,6 +2688,7 @@ def main() -> None:
     c2 = analyze_complex_2_cd47_sirpa(layer2_ledger)
     c3 = analyze_complex_3_serpinb9_gzmb(layer2_ledger)
     c4 = analyze_complex_4_pdl1_pd1(layer2_ledger)
+    icasp9_audit = analyze_icasp9_locus4_structural_reference_audit(layer2_ledger)
     hlac_kir_snaps = verify_structural_reference_inputs("1EFX.pdb", "1IM9.pdb")
 
     def _parse_pdb_coords(payload: bytes) -> Dict[Tuple[str, int, str], Tuple[float, float, float]]:
@@ -2486,15 +2745,16 @@ def main() -> None:
         "status": ("COORDINATE_GEOMETRY_VERIFIED_PRODUCT_FUNCTION_UNRESOLVED_PENDING_WETLAB" if ref_geometry_passed else "COORDINATE_GEOMETRY_FAILED_PRODUCT_FUNCTION_UNRESOLVED_PENDING_WETLAB"),
         "layer2_construct_fasta_sha256_linked": layer2_atlas["construct_sequence_and_grammar_verification"]["fasta_sha256"],
         "summary": {
-            "total_experimental_pdb_structures_verified": 10,
-            "experimental_rcsb_mmcif_structures_verified": 8,
+            "total_experimental_pdb_structures_verified": 13,
+            "experimental_rcsb_mmcif_structures_verified": 11,
             "experimental_rcsb_legacy_pdb_structures_verified": 2,
             "experimental_pdb_accession_inventory": [
-                "1MHE", "3CDG", "3BZE", "2JJS", "4CMM", "4KJY", "4ZQK", "1IAU", "1EFX", "1IM9"
+                "1MHE", "3CDG", "3BZE", "2JJS", "4CMM", "4KJY", "4ZQK", "1IAU", "1EFX", "1IM9", "1BL4", "1JXQ", "1NW9"
             ],
             "total_alphafold_v6_models_verified": 2,
             "foldseek_databases_queried": ["pdb100", "afdb-swissprot"],
             "complexes_verified": 4,
+            "icasp9_locus4_structural_reference_audit_status": icasp9_audit["qualification_status"],
             "granzyme_b_1iau_insertion_code_safe_aligned_residues": 226,
             "granzyme_b_1iau_insertion_code_safe_rmsd_angstrom": c3["granzyme_b_active_site_and_s1_pocket_1IAU"]["rmsd_AF_P10144_vs_1IAU_angstrom"],
             "reference_coordinate_geometry_status": "PASS" if ref_geometry_passed else "FAIL",
@@ -2511,6 +2771,7 @@ def main() -> None:
             "all_graveyard_and_r01_structural_constraints_passed": all_product_functions_resolved,
         },
         "complexes": [c1, c2, c3, c4],
+        "icasp9_locus4_structural_reference_audit": icasp9_audit,
         "hlac_sct_kir2dl_f_pocket_clearance_and_self_peptide_audit_argon_r4": {
             "evidence_class": "CRYSTALLOGRAPHIC_FOOTPRINT_AND_WLC_LINKER_CLEARANCE_MODEL_REQUIRES_GATE_0B_SCT_SPR_VERIFICATION",
             "c1_subbank_hlac0304_kir2dl2_1EFX": {

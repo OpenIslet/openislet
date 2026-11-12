@@ -701,7 +701,8 @@
         "protospacer_dna_5to3": "GCCTGGCTCTCACCGTGGGG",
         "spacer_length_nt": 20,
         "epegRNA_extension_specification": {
-          "target_variant": "rs34536443 (GRCh38 chr19:10352442G>C on + strand; coding c.3310C>G transversion on - strand; p.Pro1104Ala CCC->GCC)",
+          "target_variant": "rs34536443 (GRCh38 chr19:10352442G>C on + strand; coding c.3310C>G transversion on - strand; p.Pro1104Ala CCC->GCC in the catalytic JH1 kinase domain; Dendrou et al. 2016 PMID:27807284, Saevarsdottir et al. 2022 PMID:35470158)",
+          "protein_domain_annotation": "Catalytic JH1 tyrosine kinase domain (p.Pro1104Ala; PMID:27807284, PMID:35470158)",
           "why_prime_or_cgbe_not_abe8e": "c.3310C>G (g.10352442G>C) is a C:G -> G:C base transversion; adenine base editors (ABE8e) only catalyze A:T -> G:C transitions and cannot install C:G -> G:C transversions (closing AUDIT-REF). Moreover, because this + strand protospacer places 10352442G inside the 3' GGG PAM (+22), it is specifically a PEmax prime-editing guide rather than a 5'-window CGBE1 guide (closing AUDIT-REF). On the minus strand (where chr19:10352432-10352434 (-) is 5'-GGT-3' and chr19:10352436-10352438 (-) is 5'-CCA-3'), the nearest canonical 5'-NGG-3' PAMs are 5'-AGG-3' at chr19:10352422-10352424 (-) (placing 10352442C at protospacer position 3) and 5'-CGG-3' at chr19:10352433-10352435 (-) (placing 10352442C at protospacer position 14), both outside the CGBE1 nt 4-7 deamination window, so CGBE1 requires an SpG (5'-AGC-3' PAM at chr19:10352426-10352428 -, position 7) or SpRY (5'-GCC-3' PAM at chr19:10352425-10352427 -, position 6) variant (closing AUDIT-REF, AUDIT-REF & R9-S1-L5B [DEC-074]).",
           "nick_position_grch38": "chr19:10352437|10352438 (+ strand, 3 nt upstream of GGG PAM)",
           "primer_binding_site_pbs_13nt_5to3": "CACGGTGAGAGCC",
@@ -720,7 +721,7 @@
           "full_assembled_epegrna_dna_equivalent_163nt_5to3": "GCCTGGCTCTCACCGTGGGGGTTTTAGAGCTAGAAATAGCAAGTTAAAATAAGGCTAGTCCGTTATCAACTTGAAAAAGTGGCACCGAGTCGGTGCCCAGAGCGCCCCCACGGTGAGAGCCCGCGGTTCTATCTAGTTACGCGTTAAACCAACTAGAAATTTT",
           "full_assembled_epegrna_rna_163nt_5to3": "GCCUGGCUCUCACCGUGGGGGUUUUAGAGCUAGAAAUAGCAAGUUAAAAUAAGGCUAGUCCGUUAUCAACUUGAAAAAGUGGCACCGAGUCGGUGCCCAGAGCGCCCCCACGGUGAGAGCCCGCGGUUCUAUCUAGUUACGCGUUAAACCAACUAGAAAUUUU"
         },
-        "cleavage_geometry": "Single-strand H840A nick only (0 DSB) at chr19:10352437|10352438 (+); M-MLV RT polymerizes chr19:10352442G>C (c.3310C>G, p.Pro1104Ala) at +5 downstream of the nick, directly disrupting the GGG PAM (GGG -> GCG)",
+        "cleavage_geometry": "Single-strand H840A nick only (0 DSB) at chr19:10352437|10352438 (+); M-MLV RT polymerizes chr19:10352442G>C (c.3310C>G, p.Pro1104Ala in the catalytic JH1 kinase domain) at +5 downstream of the nick, directly disrupting the GGG PAM (GGG -> GCG)",
         "hdr_junction_grch38": "PRIME_EDIT_SNV_CHR19_10352442_G_TO_C",
         "hdr_pam_and_seed_disrupted_post_knockin": true,
         "hdr_re_cutting_prevention_mechanism": "g.10352442G>C (+5 downstream of the H840A nick) directly mutates the middle G of the 5'-GGG-3' PAM to 5'-GCG-3', abolishing SpCas9 PAM recognition and preventing re-nicking.",
@@ -6335,6 +6336,68 @@
       ],
       "physical_uncloned_yield_prior": null,
       "physical_yield_evidence_status": "NOT_MEASURED",
+      "donor_seedline_tyk2_genotype_sensitivity_summary": {
+        "decision_id": "DEC-090",
+        "proposal_id": "IIP-0011",
+        "variant": "TYK2 rs34536443 (c.3310C>G, p.Pro1104Ala in the catalytic JH1 kinase domain; PMID:27807284, PMID:35470158)",
+        "cohort_evaluated": "Exact 10,000 main-simulation SIM-* patient records held fixed (separate COP-* copula sensitivity records excluded)",
+        "default_donor_genotype_in_main_trial": "G/G",
+        "donor_genotype_comparison_table": [
+          {
+            "donor_tyk2_rs34536443_genotype": "G/G",
+            "kb_complexity_counts": {
+              "K4_B0": 4286,
+              "K4_B1": 3347,
+              "K5_B0": 1340,
+              "K5_B1": 1027
+            },
+            "recipients_prescribed_tyk2_prime_editing": 4374,
+            "total_tyk2_alleles_requiring_prime_edit_across_cohort": 20000,
+            "analytic_personalized_mean_survival_pct": 97.4963,
+            "complexity_discounted_personalized_utility_pct": 92.8363,
+            "b_prime_sct_k4_complexity_discounted_utility_pct": 96.0046,
+            "max_abs_patient_survival_difference_vs_default_gg": 0.0
+          },
+          {
+            "donor_tyk2_rs34536443_genotype": "G/C",
+            "kb_complexity_counts": {
+              "K4_B0": 4286,
+              "K4_B1": 3347,
+              "K5_B0": 1340,
+              "K5_B1": 1027
+            },
+            "recipients_prescribed_tyk2_prime_editing": 4374,
+            "total_tyk2_alleles_requiring_prime_edit_across_cohort": 10000,
+            "analytic_personalized_mean_survival_pct": 97.4963,
+            "complexity_discounted_personalized_utility_pct": 92.8363,
+            "b_prime_sct_k4_complexity_discounted_utility_pct": 96.0046,
+            "max_abs_patient_survival_difference_vs_default_gg": 0.0
+          },
+          {
+            "donor_tyk2_rs34536443_genotype": "C/C",
+            "kb_complexity_counts": {
+              "K4_B0": 7633,
+              "K4_B1": 0,
+              "K5_B0": 2367,
+              "K5_B1": 0
+            },
+            "recipients_prescribed_tyk2_prime_editing": 0,
+            "total_tyk2_alleles_requiring_prime_edit_across_cohort": 0,
+            "analytic_personalized_mean_survival_pct": 97.4963,
+            "complexity_discounted_personalized_utility_pct": 94.2792,
+            "b_prime_sct_k4_complexity_discounted_utility_pct": 97.4963,
+            "max_abs_patient_survival_difference_vs_default_gg": 0.0
+          }
+        ],
+        "assigned_survival_invariance_verified": true,
+        "survival_and_utility_interpretation_note": "Every simulated patient's assigned 5-year survival probability is identical across G/G, G/C, and natural C/C donor seed lines; heterozygous G/C reduces the allele count requiring prime editing from 2 to 1 while retaining edited locus count B = 1, whereas natural homozygous C/C removes the optional TYK2 prime-editing step (B = 1 -> 0) for all 4,374 TYK2-eligible recipients. The complexity-discounted utility shift reflects solely removal of the assumed gamma_B locus-editing discount, not measured manufacturing yield or clinical benefit.",
+        "mcb_product_scope_and_seedline_qualification_gates": "Collapsing two TYK2-stratified Master Cell Bank sublines (B = 0 and B = 1) into a single B = 0 subline applies strictly to the TYK2 stratification dimension within a defined product: the main 10,000-patient simulation still retains 2,367 K = 5 endogenous-HLA-C Plan B patients (and the promoted B'-SCT route maintains separate K = 4 C1/C2/C1C2 KIR-matched products and requires >= 2 independent MCB clones from distinct donors; GY-005). Any candidate natural TYK2 C/C (p.Pro1104Ala/p.Pro1104Ala) donor hPSC line must clear: (1) Stage 0->7 endocrine precursor emergence and mature SC-islet yield equivalence (Chandra et al. 2022 PMID:36289205), (2) Stage-0 Rule S8 (< 70% shield-induction trigger) across both Locus-1 5xISRE->HLA-E and Locus-3 CXCL10::SERPINB9-GSG-P2A-PD-L1 under IFN-alpha plus low IFN-gamma alongside lineage-specific resting HLA-E and Hour-0 CD47 floors (GY-001, GY-009), and (3) 30x WGS, >= 63,000x TP53/PPM1D/BCOR duplex-seq, CAST-seq, and potency release (GY-006).",
+        "primary_citations": [
+          "PMID:27807284",
+          "PMID:35470158",
+          "PMID:36289205"
+        ]
+      },
       "b_prime_4digit_hlac_alloreactivity_and_b_prime_sct_pivot_audit_muse_r3": {
         "audit_id": "AUDIT-REF",
         "evidence_class": "IMMUNOGENETIC_ALLOREACTIVITY_AUDIT_AND_PRODUCT_PROMOTION",
@@ -6901,6 +6964,17 @@
         },
         "host_modifier_genotypes_and_dosing": {
           "ifih1_rs1990760_genotype": "C/T",
+          "donor_ifih1_rs1990760_genotype": "UNMEASURED",
+          "donor_ifih1_rs1990760_provenance": {
+            "input_status": "UNMEASURED_PROVENANCE_ONLY",
+            "variant_provenance": "Provenance-only donor seed-line record for common GWAS IFIH1 rs1990760 (GRCh38 minus-strand coding c.2836G>A, p.Ala946Thr; Smyth et al. 2006 PMID:16699517), explicitly separated from recipient IFIH1 risk scoring and from rare loss-of-function rs35744605 (p.Glu627Ter / E627*; Nejentsev et al. 2009 PMID:19264985; SC-islet functional comparison in Veronese-Paniagua et al. 2025 PMID:42787837). Zero effect on K, B, prescribed regimen, or survival.",
+            "affects_k_b_regimen_or_survival": false,
+            "primary_citations": [
+              "PMID:16699517",
+              "PMID:19264985",
+              "PMID:42787837"
+            ]
+          },
           "ptpn22_rs2476601_genotype": "G/G",
           "recipient_hla_e_genotype": "*01:03/*01:03",
           "tyk2_rs34536443_genotype": "G/G",
@@ -6930,6 +7004,7 @@
             "tyk2_rs34536443_genotype": "MEASURED_PATIENT_INPUT",
             "recipient_tyk2_rs34536443_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
             "donor_tyk2_rs34536443_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
+            "donor_ifih1_rs1990760_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
             "recipient_kir_ligand_group": "MEASURED_PATIENT_INPUT",
             "recipient_anti_hla_c_dsa": "DEFAULT_IMPUTED_NOT_MEASURED",
             "recipient_anti_hla_e_dsa": "DEFAULT_IMPUTED_NOT_MEASURED",
@@ -7090,6 +7165,17 @@
         },
         "host_modifier_genotypes_and_dosing": {
           "ifih1_rs1990760_genotype": "C/C",
+          "donor_ifih1_rs1990760_genotype": "UNMEASURED",
+          "donor_ifih1_rs1990760_provenance": {
+            "input_status": "UNMEASURED_PROVENANCE_ONLY",
+            "variant_provenance": "Provenance-only donor seed-line record for common GWAS IFIH1 rs1990760 (GRCh38 minus-strand coding c.2836G>A, p.Ala946Thr; Smyth et al. 2006 PMID:16699517), explicitly separated from recipient IFIH1 risk scoring and from rare loss-of-function rs35744605 (p.Glu627Ter / E627*; Nejentsev et al. 2009 PMID:19264985; SC-islet functional comparison in Veronese-Paniagua et al. 2025 PMID:42787837). Zero effect on K, B, prescribed regimen, or survival.",
+            "affects_k_b_regimen_or_survival": false,
+            "primary_citations": [
+              "PMID:16699517",
+              "PMID:19264985",
+              "PMID:42787837"
+            ]
+          },
           "ptpn22_rs2476601_genotype": "G/G",
           "recipient_hla_e_genotype": "*01:03/*01:03",
           "tyk2_rs34536443_genotype": "G/G",
@@ -7119,6 +7205,7 @@
             "tyk2_rs34536443_genotype": "MEASURED_PATIENT_INPUT",
             "recipient_tyk2_rs34536443_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
             "donor_tyk2_rs34536443_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
+            "donor_ifih1_rs1990760_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
             "recipient_kir_ligand_group": "MEASURED_PATIENT_INPUT",
             "recipient_anti_hla_c_dsa": "DEFAULT_IMPUTED_NOT_MEASURED",
             "recipient_anti_hla_e_dsa": "DEFAULT_IMPUTED_NOT_MEASURED",
@@ -7305,6 +7392,17 @@
         },
         "host_modifier_genotypes_and_dosing": {
           "ifih1_rs1990760_genotype": "T/T",
+          "donor_ifih1_rs1990760_genotype": "UNMEASURED",
+          "donor_ifih1_rs1990760_provenance": {
+            "input_status": "UNMEASURED_PROVENANCE_ONLY",
+            "variant_provenance": "Provenance-only donor seed-line record for common GWAS IFIH1 rs1990760 (GRCh38 minus-strand coding c.2836G>A, p.Ala946Thr; Smyth et al. 2006 PMID:16699517), explicitly separated from recipient IFIH1 risk scoring and from rare loss-of-function rs35744605 (p.Glu627Ter / E627*; Nejentsev et al. 2009 PMID:19264985; SC-islet functional comparison in Veronese-Paniagua et al. 2025 PMID:42787837). Zero effect on K, B, prescribed regimen, or survival.",
+            "affects_k_b_regimen_or_survival": false,
+            "primary_citations": [
+              "PMID:16699517",
+              "PMID:19264985",
+              "PMID:42787837"
+            ]
+          },
           "ptpn22_rs2476601_genotype": "G/A",
           "recipient_hla_e_genotype": "*01:01/*01:03",
           "tyk2_rs34536443_genotype": "G/G",
@@ -7334,6 +7432,7 @@
             "tyk2_rs34536443_genotype": "MEASURED_PATIENT_INPUT",
             "recipient_tyk2_rs34536443_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
             "donor_tyk2_rs34536443_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
+            "donor_ifih1_rs1990760_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
             "recipient_kir_ligand_group": "MEASURED_PATIENT_INPUT",
             "recipient_anti_hla_c_dsa": "DEFAULT_IMPUTED_NOT_MEASURED",
             "recipient_anti_hla_e_dsa": "DEFAULT_IMPUTED_NOT_MEASURED",
@@ -7515,6 +7614,17 @@
         },
         "host_modifier_genotypes_and_dosing": {
           "ifih1_rs1990760_genotype": "C/T",
+          "donor_ifih1_rs1990760_genotype": "UNMEASURED",
+          "donor_ifih1_rs1990760_provenance": {
+            "input_status": "UNMEASURED_PROVENANCE_ONLY",
+            "variant_provenance": "Provenance-only donor seed-line record for common GWAS IFIH1 rs1990760 (GRCh38 minus-strand coding c.2836G>A, p.Ala946Thr; Smyth et al. 2006 PMID:16699517), explicitly separated from recipient IFIH1 risk scoring and from rare loss-of-function rs35744605 (p.Glu627Ter / E627*; Nejentsev et al. 2009 PMID:19264985; SC-islet functional comparison in Veronese-Paniagua et al. 2025 PMID:42787837). Zero effect on K, B, prescribed regimen, or survival.",
+            "affects_k_b_regimen_or_survival": false,
+            "primary_citations": [
+              "PMID:16699517",
+              "PMID:19264985",
+              "PMID:42787837"
+            ]
+          },
           "ptpn22_rs2476601_genotype": "G/G",
           "recipient_hla_e_genotype": "*01:01/*01:01",
           "tyk2_rs34536443_genotype": "G/C",
@@ -7544,6 +7654,7 @@
             "tyk2_rs34536443_genotype": "MEASURED_PATIENT_INPUT",
             "recipient_tyk2_rs34536443_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
             "donor_tyk2_rs34536443_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
+            "donor_ifih1_rs1990760_genotype": "DEFAULT_IMPUTED_NOT_MEASURED",
             "recipient_kir_ligand_group": "MEASURED_PATIENT_INPUT",
             "recipient_anti_hla_c_dsa": "DEFAULT_IMPUTED_NOT_MEASURED",
             "recipient_anti_hla_e_dsa": "DEFAULT_IMPUTED_NOT_MEASURED",

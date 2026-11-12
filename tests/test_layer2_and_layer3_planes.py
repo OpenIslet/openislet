@@ -450,9 +450,9 @@ def main() -> None:
     }
     _check(profiles["SANA_UP421_CADAVERIC_PRIMARY_ISLET_BENCHMARK"]["stage7_sc_beta_yield_fraction"] is None, "UP421 should not have Stage 7 differentiation yield")
 
-    # 4. Parse all 10 .cif files in data/structures/ and verify Layer 3 fixes (V70-07, V70-08, V70-09, AUDIT-REF, AUDIT-REF)
+    # 4. Parse all 13 .cif files in data/structures/ (11 RCSB mmCIF + 2 AlphaFold v6) and verify Layer 3 fixes (V70-07, V70-08, V70-09, AUDIT-REF, IIP-0011)
     cif_files = sorted(STRUCT_DIR.rglob("*.cif"))
-    _check(len(cif_files) == 10, f"Expected 10 .cif files in {STRUCT_DIR}, found {len(cif_files)}")
+    _check(len(cif_files) == 13, f"Expected 13 .cif files in {STRUCT_DIR}, found {len(cif_files)}")
     for cif_path in cif_files:
         validate_cif_file_content(cif_path.read_text(encoding="utf-8"), str(cif_path.name))
 

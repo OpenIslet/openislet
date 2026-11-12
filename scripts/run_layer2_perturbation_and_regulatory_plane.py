@@ -2622,6 +2622,46 @@ def build_constructs(ref: Dict[str, Any], avi_summary: Dict[str, Any]) -> Dict[s
                         "Cytosolic SERPINB9 (376 aa) is translated on free cytosolic ribosomes with zero Furin motif, "
                         "leaving a 21-aa GSG-P2A C-terminal stub after ribosomal skipping, followed by ER-targeted PD-L1 (290 aa)."
                     ),
+                    "locus3_4q21_1_cis_neighbour_and_aav6_packaging_gate_iip_0011": {
+                        "decision_id": "DEC-090",
+                        "proposal_id": "IIP-0011",
+                        "canonical_donor_bp": 4090,
+                        "packaged_aav6_genome_with_2x145bp_itrs_bp": 4380,
+                        "single_aav6_conservative_budget_bp": 4700,
+                        "headroom_below_4700bp_budget_bp": 320,
+                        "hypothetical_2x250bp_chs4_insulated_donor_bp": 4590,
+                        "hypothetical_2x250bp_chs4_packaged_bp": 4880,
+                        "overflow_above_4700bp_budget_bp": 180,
+                        "packaging_literature_scope_note": (
+                            "Wu et al. 2010 (PMID:19904234) demonstrated heterogeneous, 5'-truncated packaged genomes for oversized "
+                            "AAV2/5/8 vectors exceeding ~5 kb; adding 2 x 250 bp cHS4 insulators to Locus 3 yields 4,880 bp packaged, "
+                            "violating OpenIslet's conservative 4,700 bp single-AAV6 budget by 180 bp without claiming proven absolute "
+                            "AAV6 packaging failure at 4,880 bp. Any compacted (<= 4,700 bp packaged), non-AAV6, or relocated split "
+                            "safe-harbor cassette remains a separately qualified challenger."
+                        ),
+                        "blocked_cis_neighbour_and_compartment_assay_gate": {
+                            "comparators_across_independent_clones_and_blocks": [
+                                "Unedited parental SC-islet control",
+                                "Clean CXCL10-indel knockout control",
+                                "Locus 3 CXCL10::SERPINB9-GSG-P2A-PD-L1 knock-in clones",
+                            ],
+                            "stimulus_regimes": ["Resting vehicle", "Recombinant human IFN-alpha", "Recombinant human IFN-gamma"],
+                            "secreted_chemokine_neighbours_4q21_1": {
+                                "genes": ["CXCL9", "CXCL11"],
+                                "assays": "Paired RT-qPCR + cell-free supernatant ELISA across predeclared cytokine dose/time courses with explicit detection limits, absolute protein output, and predeclared insertion-specific excess-over-control hold margin with uncertainty (accounting for endogenous cytokine induction of CXCL9/CXCL11 in parental and CXCL10-indel controls).",
+                            },
+                            "host_overlapping_non_chemokine_neighbour_art3": {
+                                "gene": "ART3 (ecto-ADP-ribosyltransferase 3; non-chemokine)",
+                                "genomic_relationship_grch38": "GRCh38 RefSeq includes ART3 transcript isoforms whose large first intron spans the CXCL10 Exon 1 cut site (chr4:76023468|76023467).",
+                                "assays": "Establish lineage-resolved baseline ART3 isoform expression across hPSC, Stage-7 endocrine, and vascular lineages, and measure isoform-specific splice-junction/transcript RT-qPCR plus cellular/membrane protein abundance for both disruption/repression and cis co-activation.",
+                            },
+                            "payload_compartment_protein_assays": {
+                                "SERPINB9": "Intracellular flow cytometry / Western blot + Granzyme B kinetics (never inferred from negative supernatant ELISA)",
+                                "PD-L1": "Cell-surface QuantiBRITE flow cytometry alongside Readout 3A soluble shedding ELISA",
+                            },
+                        },
+                        "primary_citations": ["PMID:19904234"],
+                    },
                 },
             ),
             make_construct_entry(
@@ -2696,6 +2736,77 @@ def build_constructs(ref: Dict[str, Any], avi_summary: Dict[str, Any]) -> Dict[s
                             "(2) for human translation, iCasp9 + AP1903 is positioned as an adjunct pharmacological debulking switch (>= 4-5 log reduction) paired with primary mechanical containment "
                             "and en-bloc surgical retrievability of the dual pre-vascularized omental scaffold pouches (Gate 0S-Retrieval; AUDIT-REF & AUDIT-REF [DEC-044/045])."
                         ),
+                    },
+                    "decision_exp4_four_arm_ucoe_orientation_splicing_and_methylation_substudy_iip_0011": {
+                        "decision_id": "DEC-090",
+                        "proposal_id": "IIP-0011",
+                        "aavs1_recipient_junction_grch38": "chr19:55115768|55115767 (PPP1R12C intron 1, minus-strand host transcription)",
+                        "pinned_chr7_26201562_26201567_plus_strand_motif": ref["ensembl_promoter_sequences"]["CBX3_A2UCOE_chr7_26200650_26201850"]["sequence"][26201562 - 26200650 : 26201568 - 26200650],
+                        "pinned_chr7_26201562_26201567_reverse_complement_motif": revcomp(
+                            ref["ensembl_promoter_sequences"]["CBX3_A2UCOE_chr7_26200650_26201850"]["sequence"][26201562 - 26200650 : 26201568 - 26200650]
+                        ),
+                        "four_arm_comparison": [
+                            {
+                                "arm_id": "Window_A_Reference_HNRNPA2B1_Proximal_455bp",
+                                "genomic_interval_grch38_1based_closed": "chr7:26200580-26201034",
+                                "element_length_bp": 455,
+                                "cargo_bp": 2257,
+                                "donor_bp": 3457,
+                                "packaged_aav6_with_2x145bp_itrs_bp": 3747,
+                                "orientation_relative_to_donor_eef1a1_icasp9": "canonical reference orientation in LOCUS4_AAVS1_CHS4_455BP_CBX3_A2UCOE_ICASP9_R17",
+                            },
+                            {
+                                "arm_id": "Window_B_Genome_Derived_CBX3_453bp_Antisense_Candidate",
+                                "genomic_interval_grch38_1based_closed": "chr7:26201456-26201908",
+                                "element_length_bp": 453,
+                                "cargo_bp": 2255,
+                                "donor_bp": 3455,
+                                "packaged_aav6_with_2x145bp_itrs_bp": 3745,
+                                "orientation_relative_to_donor_eef1a1_icasp9": (
+                                    "Reverse-complemented relative to the donor's EEF1A1->iCasp9 direction (which follows minus-strand PPP1R12C transcription), "
+                                    "inverting the plus-strand GTAAGT hexamer at chr7:26201562-26201567 out of the transcribed sense strand."
+                                ),
+                                "provenance_and_orientation_qualification_note": (
+                                    "Consistent with the BglI/BsrBI restriction boundaries of Zhang et al. 2017 (PMID:28860464), designated a genome-derived "
+                                    "candidate pending ligated-terminus sequence reconciliation against the published insert. Because Zhang et al. 2017 reported "
+                                    "orientation-dependent UCOE activity and inverting a single GTAAGT motif does not exclude other cryptic splice sites or "
+                                    "transcriptional interference, antisense orientation is an empirical test arm rather than pre-established safe or equally anti-silencing."
+                                ),
+                            },
+                            {
+                                "arm_id": "Window_B_Genome_Derived_CBX3_453bp_Sense_Candidate",
+                                "genomic_interval_grch38_1based_closed": "chr7:26201456-26201908",
+                                "element_length_bp": 453,
+                                "cargo_bp": 2255,
+                                "donor_bp": 3455,
+                                "packaged_aav6_with_2x145bp_itrs_bp": 3745,
+                                "orientation_relative_to_donor_eef1a1_icasp9": "Plus-strand sequence oriented colinearly with the donor's EEF1A1->iCasp9 transcription unit",
+                            },
+                            {
+                                "arm_id": "No_UCOE_Control",
+                                "genomic_interval_grch38_1based_closed": None,
+                                "element_length_bp": 0,
+                                "cargo_bp": 1802,
+                                "donor_bp": 3002,
+                                "packaged_aav6_with_2x145bp_itrs_bp": 3292,
+                                "orientation_relative_to_donor_eef1a1_icasp9": "cHS4_core_insulator_250bp + EEF1A1_core_promoter_230bp + iCasp9 without UCOE",
+                            },
+                        ],
+                        "required_readouts_and_authoritative_escape_gate": (
+                            "Measure 5'/3' PPP1R12C-transgene fusion transcripts by RACE-seq, targeted/single-molecule bisulfite CpG methylation "
+                            "(explicitly covering the native 230-bp EEF1A1 core promoter's 19 CpG dinucleotides alongside UCOE CpGs), single-cell "
+                            "iCasp9 expression distributions, and 24-h/72-h 10 nM AP1903 killing under normoxia and 1% O2 hypoxia + cytokines across "
+                            "residual hPSCs, Stage-7 endocrine (beta, alpha, delta), and proliferative vascular/stromal (iEC, iPericyte) lineages "
+                            "(Ordovas et al. 2015 PMID:26455413; Muller-Kuller et al. 2015 PMID:25605798; Zhang et al. 2017 PMID:28860464; "
+                            "Wunderlich et al. 2022 PMID:35795779). Mean CpG methylation and bulk killing cannot bound rare resistant cells; "
+                            "Readout 6 Tier 6B effective-denominator clonogenic escape qualification remains authoritative (GY-002)."
+                        ),
+                        "locus1_arm1b_longitudinal_methylation_parallel_check": (
+                            "If Locus 1 Arm 1B (Syn_5xISRE_minP + antisense 230-bp EEF1A1 core with 19 native CpGs) advances, perform parallel "
+                            "longitudinal clonal bisulfite CpG sequencing and single-cell resting/IFN-induced HLA-E + Hour-0 CD47 surface-density "
+                            "distribution checks across differentiation passages (GY-009)."
+                        ),
+                        "primary_citations": ["PMID:26455413", "PMID:25605798", "PMID:28860464", "PMID:35795779"],
                     },
                 },
             ),
@@ -4344,6 +4455,52 @@ def main() -> None:
         "jaspar_pwm_regulatory_motif_scans": motif_scans,
         "construct_sequence_and_grammar_verification": construct_verification,
         "stage0_to_stage7_perturbation_plane": perturbation_plane,
+        "stage0_core_construct_and_secretion_guardrails_iip_0011": {
+            "decision_id": "DEC-090",
+            "proposal_id": "IIP-0011",
+            "donor_slc30a8_znt8_precautionary_hold": {
+                "status": "EXCLUDED_FROM_LEAN_CORE_HOLD_FOR_ALLELE_AND_PROTOCOL_SPECIFIC_CHALLENGER_QUALIFICATION",
+                "context_stratified_evidence_summary": [
+                    {
+                        "citation": "Lamarche et al. 2025 PMID:41020949",
+                        "biological_context": "Adult human population genetics (germline natural SLC30A8 loss-of-function heterozygotes and homozygotes)",
+                        "finding_scope": "Lower adult type 2 diabetes risk in natural LoF carriers; argues against universal adult knockout harm without certifying in-vitro hPSC-to-beta differentiation yield.",
+                    },
+                    {
+                        "citation": "Dwivedi et al. 2019 PMID:31676859",
+                        "biological_context": "Human stem-cell beta-like differentiation in clones with premature stop codons in SLC30A8 alongside adult/physiological assays",
+                        "finding_scope": "Reduced INS- and SLC30A8-transcript-expressing cell formation in particular premature-stop differentiation experiments alongside beneficial physiological insulin-secretion effects.",
+                    },
+                    {
+                        "citation": "Balke et al. 2018 PMID:29679103",
+                        "biological_context": "Recipient rs13266634 genotyping in n = 40 immunosuppressed clinical islet transplant recipients (not donor SLC30A8 knockout)",
+                        "finding_scope": "Recipient CT/TT genotypes associated with failure to achieve insulin independence in multivariate analysis; does not test donor SC-islet knockout.",
+                    },
+                    {
+                        "citation": "Gasser et al. 2026 PMID:42078397 (non-peer-reviewed medRxiv preprint)",
+                        "biological_context": "R138X human SC-islet differentiation preprint",
+                        "finding_scope": "Reports normal differentiation and some improved identity/function measures in R138X SC-islets; as a non-peer-reviewed preprint, it qualifies Dwivedi 2019 rather than providing definitive product reassurance.",
+                    },
+                ],
+                "proposed_challenger_study_advancement_conditions": (
+                    "Any optional donor SLC30A8 challenger study (distinct from established Blueprint A/X release thresholds) must predeclare: "
+                    "(1) absolute viable Stage-7 INS+/NKX6-1+ cell yield per starting hPSC across independent differentiation blocks (never percentage among survivors alone), "
+                    "(2) the 12-week in-vivo stimulated human C-peptide model, implanted starting-cell/IEQ dose denominator, justified non-inferiority margin, and one-sided confidence criterion "
+                    "(never a pilot point estimate >= 90% or non-significant p-value), and "
+                    "(3) full retention of Readout 2 dynamic low-glucose shut-off (t50 and t90), basal secretion, glucagon counterregulation, and cellular OCR headroom gates (GY-003, GY-004, GY-007)."
+                ),
+            },
+            "endogenous_intracellular_cd59_iris_secretion_cross_reference": {
+                "status": "PRESERVED_IN_CANONICAL_DESIGNS_SEPARATE_SECRETION_AND_COMPLEMENT_READOUTS",
+                "primary_citation": "Golec et al. 2022 PMID:35666870",
+                "blueprint_anchor": "ISLET-1-BLUEPRINT.md Section 8 Row 3",
+                "qualification_scope": (
+                    "Endogenous CD59 remains unedited so non-GPI-anchored intracellular isoforms (IRIS-1/IRIS-2) required for SNARE-mediated "
+                    "insulin granule exocytosis are preserved and verified via Readout 2 dynamic GSIS/C-peptide perifusion separately from "
+                    "Readout 3C cell-surface GPI-anchored complement (C3b/C5b-9) lysis attribution."
+                ),
+            },
+        },
     }
 
     if (REPO_ROOT / ".openislet_public_bundle").is_file() and ATLAS_OUT.is_file():

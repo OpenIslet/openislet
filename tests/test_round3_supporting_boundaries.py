@@ -3993,11 +3993,11 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
         == "CANONICAL_TRACK2_KIR_ENGAGING_SUBBANK_K4_B1_3PASS_TYK2_PE_SATELLITE"
     )
 
-    # 34. DEC-075 (Audit Convergence Round 9 Step 3 Layers 1-5 Audit) regression checks:
-    # - AUDIT-REF & AUDIT-REF: 2A-free CD55(SCR1-4)-GPI + CD59-GPI complement challenger (no upstream GPI-P2A defect) and 10 experimental PDB structures (8 mmCIF + 2 legacy PDB)
+    # 34. DEC-075 & DEC-090 (IIP-0011) Layer 3 structural reference inventory checks:
+    # - AUDIT-REF & IIP-0011: 2A-free CD55(SCR1-4)-GPI + CD59-GPI complement challenger (no upstream GPI-P2A defect) and 13 experimental PDB structures (11 mmCIF + 2 legacy PDB, adding 1BL4, 1JXQ, 1NW9 for Locus 4 iCasp9)
     _r9_s3_l3 = json.loads((ROOT / "data/extracted/layer3_structural_verification_atlas.json").read_text(encoding="utf-8"))
-    assert _r9_s3_l3["summary"]["total_experimental_pdb_structures_verified"] == 10
-    assert _r9_s3_l3["summary"]["experimental_rcsb_mmcif_structures_verified"] == 8
+    assert _r9_s3_l3["summary"]["total_experimental_pdb_structures_verified"] == 13
+    assert _r9_s3_l3["summary"]["experimental_rcsb_mmcif_structures_verified"] == 11
     assert _r9_s3_l3["summary"]["experimental_rcsb_legacy_pdb_structures_verified"] == 2
     _r9_s3_chandler = _r9_s3_l3["hlac_sct_kir2dl_f_pocket_clearance_and_self_peptide_audit_argon_r4"]["endogenous_5tm_cd47_tsp1_axis_and_ectodomain_protease_shedding_audit_kimi31_r4"]["non_hla_chimeric_junction_neoepitope_and_flow_crossmatch_audit_sonnet55_r5"]["membrane_complement_regulator_cd55_scr14_cd59_and_assembled_cassette_ibmir_gate_muse_r6"]["assembled_cassette_chandler_loop_ibmir_and_complement_gate"]["cell_intrinsic_cd55_scr14_cd59_challenger"]
     assert "SV40pA-CD55(SCR1-4)-GPI(antisense) <- EEF1A1-core | hPGK1-min(sense) -> CD59-GPI-bGHpA" in _r9_s3_chandler
@@ -4021,7 +4021,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     # 35. DEC-076 (Audit Convergence Round 9 Step 4 Layers 1-5 Audit) regression checks:
     # - AUDIT-REF: experimental_pdb_accession_inventory matches the exact 10 authenticated experimental inputs (4CMM, 4ZQK, 1IAU instead of 2VSC, 1G1Q, 1I8L)
     assert _r9_s3_l3["summary"]["experimental_pdb_accession_inventory"] == [
-        "1MHE", "3CDG", "3BZE", "2JJS", "4CMM", "4KJY", "4ZQK", "1IAU", "1EFX", "1IM9"
+        "1MHE", "3CDG", "3BZE", "2JJS", "4CMM", "4KJY", "4ZQK", "1IAU", "1EFX", "1IM9", "1BL4", "1JXQ", "1NW9"
     ]
     # - AUDIT-REF: Decision Experiment #2 separates Headen/Lei SA-FasL rapamycin from Turan 2024 syngeneic SA-THBD+SA-CD47 without rapamycin
     if _r9_rank_atlas is not None:
@@ -4275,7 +4275,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     _hu_rec = json.loads((ROOT / "data/extracted/37156915.json").read_text(encoding="utf-8"))
     assert len(_hu_rec["arms"]) == 5
     assert any(
-        a["arm_id"] == "hu2024_human_primary_islets_cd47_threshold"
+        a["arm_id"] in ("hu2024_human_primary_islets_cd47_threshold", "pmid37156915_arm5")
         and a["gate1_substrate_and_differentiation"]["cell_source_class"] == "Primary_Human_Islet"
         for a in _hu_rec["arms"]
     )
@@ -4292,6 +4292,61 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     assert _cad_p5["cao2_crystal_particle_size_distribution_um"] == "unknown_pending_stage0_measurement"
     assert _cad_p5["pdms_cao2_composite_microbead_diameter_distribution_um"] == "unknown_pending_stage0_measurement"
     assert "IIP-0008" in _r9_s2_bp_md and "IIP-0009" in _r9_s2_bp_md and "IIP-0010" in _r9_s2_bp_md
+
+    # 41. DEC-090 / IIP-0011 (Locus 3/4 cis/UCOE guardrails, SLC30A8 hold, iCasp9 1BL4/1JXQ/1NW9 structural audit, donor TYK2 sensitivity & donor IFIH1 provenance invariance):
+    _r9_l2_iip11 = json.loads((ROOT / "data/extracted/layer2_regulatory_and_perturbation_atlas.json").read_text(encoding="utf-8"))
+    assert _r9_l2_iip11["stage0_core_construct_and_secretion_guardrails_iip_0011"]["proposal_id"] == "IIP-0011"
+    _r9_l3_iip11 = json.loads((ROOT / "data/extracted/layer3_structural_verification_atlas.json").read_text(encoding="utf-8"))
+    _icasp9_aud = _r9_l3_iip11["icasp9_locus4_structural_reference_audit"]
+    assert _icasp9_aud["proposal_id"] == "IIP-0011" and _icasp9_aud["qualification_status"] == "FULL_FUSION_UNRESOLVED"
+    assert _icasp9_aud["fkbp12_f36v_domain_reference_1BL4"]["identical_residues"] == 107
+    assert _icasp9_aud["caspase9_catalytic_homodimer_reference_1JXQ"]["all_model1_polymer_heavy_atoms_including_zero_occupancy"]["heavy_atom_contact_pairs_le_4p5A"] == 674
+    assert _icasp9_aud["caspase9_catalytic_homodimer_reference_1JXQ"]["all_model1_polymer_heavy_atoms_including_zero_occupancy"]["chain_A_interface_residues_insertion_code_aware"] == 44
+    assert _icasp9_aud["caspase9_catalytic_homodimer_reference_1JXQ"]["all_model1_polymer_heavy_atoms_including_zero_occupancy"]["chain_B_interface_residues_insertion_code_aware"] == 42
+    assert _icasp9_aud["caspase9_catalytic_homodimer_reference_1JXQ"]["positive_occupancy_only_polymer_heavy_atoms"]["heavy_atom_contact_pairs_le_4p5A"] == 667
+    assert _icasp9_aud["caspase9_xiap_bir3_inhibitory_complex_reference_1NW9"]["heavy_atom_contact_pairs_le_4p5A"] == 363
+    assert _icasp9_aud["caspase9_xiap_bir3_inhibitory_complex_reference_1NW9"]["cleaved_atpf_316_319_heavy_atom_contact_pairs_le_4p5A"] == 145
+    assert _icasp9_aud["caspase9_xiap_bir3_inhibitory_complex_reference_1NW9"]["shared_canonical_casp9_interface_residues_with_1JXQ_homodimer"]["vs_1JXQ_chain_A_count"] == 17
+    assert _icasp9_aud["caspase9_xiap_bir3_inhibitory_complex_reference_1NW9"]["shared_canonical_casp9_interface_residues_with_1JXQ_homodimer"]["vs_1JXQ_chain_B_count"] == 19
+    _tyk2_sens = _r9_s6_l5["part_b_personalized_patient_compiler_and_10k_population_trial"]["editing_complexity_and_manufacturing_sensitivity_audit_v80_009"]["donor_seedline_tyk2_genotype_sensitivity_summary"]
+    assert _tyk2_sens["proposal_id"] == "IIP-0011" and _tyk2_sens["assigned_survival_invariance_verified"] is True
+    _tyk2_rows = {r["donor_tyk2_rs34536443_genotype"]: r for r in _tyk2_sens["donor_genotype_comparison_table"]}
+    assert _tyk2_rows["G/G"]["kb_complexity_counts"] == {"K4_B0": 4286, "K4_B1": 3347, "K5_B0": 1340, "K5_B1": 1027}
+    assert _tyk2_rows["G/C"]["kb_complexity_counts"] == {"K4_B0": 4286, "K4_B1": 3347, "K5_B0": 1340, "K5_B1": 1027}
+    assert _tyk2_rows["C/C"]["kb_complexity_counts"] == {"K4_B0": 7633, "K4_B1": 0, "K5_B0": 2367, "K5_B1": 0}
+    assert _tyk2_rows["C/C"]["recipients_prescribed_tyk2_prime_editing"] == 0
+    from scripts import run_layer5_personalized_patient_compiler as _l5_mod
+    _pat_base = {
+        "patient_id": "TEST-IFIH1-PROV",
+        "ancestry": "EUR",
+        "nkg2a_neg_kir_educated_nk_fraction": 0.20,
+        "pre_existing_gad65_ia2_znt8_t_cell_zscore": 1.0,
+        "ifn1_ish_genetic_risk_percentile": 85.0,
+        "sirpa_genotype": "v1/v2",
+        "tyk2_rs34536443_genotype": "G/G",
+        "ifih1_rs1990760_genotype": "T/T",
+        "ptpn22_rs2476601_genotype": "G/G",
+        "recipient_bmi_kg_m2": 22.0,
+    }
+    _comp_none = _l5_mod.compile_personalized_patient_blueprint(dict(_pat_base))
+    assert _comp_none["host_modifier_genotypes_and_dosing"]["optional_field_input_provenance"]["donor_ifih1_rs1990760_genotype"] == "DEFAULT_IMPUTED_NOT_MEASURED"
+    assert _comp_none["host_modifier_genotypes_and_dosing"]["donor_ifih1_rs1990760_provenance"]["input_status"] == "UNMEASURED_PROVENANCE_ONLY"
+    _comp_unm = _l5_mod.compile_personalized_patient_blueprint({**_pat_base, "donor_ifih1_rs1990760_genotype": "UNMEASURED"})
+    assert _comp_unm["host_modifier_genotypes_and_dosing"]["donor_ifih1_rs1990760_provenance"]["input_status"] == "UNMEASURED_PROVENANCE_ONLY"
+    for _d_ifih1 in ("C/C", "C/T", "T/C", "T/T"):
+        _comp_var = _l5_mod.compile_personalized_patient_blueprint({**_pat_base, "donor_ifih1_rs1990760_genotype": _d_ifih1})
+        assert _comp_var["host_modifier_genotypes_and_dosing"]["optional_field_input_provenance"]["donor_ifih1_rs1990760_genotype"] == "MEASURED_PATIENT_INPUT"
+        assert _comp_var["host_modifier_genotypes_and_dosing"]["donor_ifih1_rs1990760_provenance"]["input_status"] == "MEASURED_DONOR_INPUT"
+        assert _comp_var["editing_complexity_and_manufacturing_accounting_v80_009"]["k_dsb_or_indel_chromosomal_loci"] == _comp_unm["editing_complexity_and_manufacturing_accounting_v80_009"]["k_dsb_or_indel_chromosomal_loci"]
+        assert _comp_var["editing_complexity_and_manufacturing_accounting_v80_009"]["b_prime_or_base_edit_loci"] == _comp_unm["editing_complexity_and_manufacturing_accounting_v80_009"]["b_prime_or_base_edit_loci"]
+        assert _comp_var["product_variant_id"] == _comp_unm["product_variant_id"]
+        assert _l5_mod.evaluate_regimen_survival_probability({**_pat_base, "donor_ifih1_rs1990760_genotype": _d_ifih1}, _comp_var) == _l5_mod.evaluate_regimen_survival_probability(_pat_base, _comp_unm)
+    try:
+        _l5_mod.compile_personalized_patient_blueprint({**_pat_base, "donor_ifih1_rs1990760_genotype": "G/G"})
+        raise AssertionError("Expected ValueError for invalid donor_ifih1_rs1990760_genotype")
+    except ValueError:
+        pass
+    assert "IIP-0011" in _r9_s2_bp_md and "DEC-090" in _r9_s2_bp_md
 
 
 
