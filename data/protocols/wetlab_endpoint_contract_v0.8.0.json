@@ -20,7 +20,11 @@
     "reset_prior_safety_stop_reason_code",
     "reset_prior_safety_stop_repeat_batch_ids",
     "reset_prior_safety_stop_independent_qp_approver_id",
-    "oos_retest_assignable_cause_code"
+    "oos_retest_assignable_cause_code",
+    "adjunct_conditioning_history_arm",
+    "adjunct_depletion_mode",
+    "adjunct_sa_fhl1_status",
+    "adjunct_immune_responder_history"
   ],
   "boolean_policy_keys": [
     "require_full_5endpoint_s9_panel",
@@ -53,7 +57,11 @@
     "prior_batch_sticky_s9_safety_stop",
     "reset_prior_safety_stop_after_investigation",
     "oos_retest_investigation_approved",
-    "allow_cross_clone_pooling_for_exploratory_research"
+    "allow_cross_clone_pooling_for_exploratory_research",
+    "obs_arm2_bound_and_supernatant_fasl_bioactivity_depleted_verified",
+    "obs_arm2_sa_thbd_bioactivity_depleted_verified",
+    "obs_arm2_contemporaneous_sham_handling_matched",
+    "obs_arm3_ongoing_adjunct_bioactivity_verified"
   ],
   "endpoints": [
     {
@@ -1743,6 +1751,39 @@
       "default_se": 1.0,
       "minimum_se": 0.001,
       "unit": "day28_post_stress_cells_scored_for_p16ink4a_sabgal_sasp_positivity"
+    },
+    {
+      "endpoint_id": "gate0d_arm2_post_depletion_viable_beta_recovery_pct",
+      "meanKey": "obs_arm2_post_depletion_viable_beta_recovery_pct",
+      "seKey": "obs_arm2_post_depletion_viable_beta_recovery_se",
+      "min": 0.0,
+      "max": 150.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 0.001,
+      "unit": "post_adjunct_depletion_rechallenge_viable_ins_nkx61_beta_recovery_percentage_of_sham"
+    },
+    {
+      "endpoint_id": "gate0d_arm2_post_depletion_perifusion_gsis_si",
+      "meanKey": "obs_arm2_post_depletion_perifusion_gsis_si",
+      "seKey": "obs_arm2_post_depletion_perifusion_gsis_si_se",
+      "min": 0.1,
+      "max": 30.0,
+      "se_required": false,
+      "default_se": 0.15,
+      "minimum_se": 0.001,
+      "unit": "post_adjunct_depletion_rechallenge_dynamic_perifusion_gsis_stimulation_index"
+    },
+    {
+      "endpoint_id": "gate0f_arm2_post_depletion_nhs_c5b9_mac_pct",
+      "meanKey": "obs_arm2_post_depletion_nhs_c5b9_mac_pct",
+      "seKey": "obs_arm2_post_depletion_nhs_c5b9_mac_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.5,
+      "minimum_se": 0.001,
+      "unit": "post_adjunct_depletion_20pct_nhs_c5b9_mac_positive_percentage"
     }
   ]
 }

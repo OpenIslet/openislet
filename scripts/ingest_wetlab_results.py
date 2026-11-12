@@ -582,7 +582,7 @@ def _verify_endpoint_algebraic_integrity(ep_name: str, ep_obj: Dict[str, Any], p
             raise ValueError(f"Prior endpoint {ep_name!r} integrity mismatch in {key!r}: {value!r} != {expected_value!r}")
 
 
-# Single authoritative 27-flag persisted Stage-0 boolean registry shared across writer, helper replay, and production replay (R7S2-F02; DEC-057):
+# Single authoritative 31-flag persisted Stage-0 boolean registry shared across writer, helper replay, and production replay (R7S2-F02 & IIP-0012; DEC-057/091):
 STAGE0_PERSISTED_BOOLEAN_FLAGS: tuple[str, ...] = (
     "require_full_5endpoint_s9_panel",
     "require_full_7metric_combined_stress_panel",
@@ -611,6 +611,10 @@ STAGE0_PERSISTED_BOOLEAN_FLAGS: tuple[str, ...] = (
     "periimplant_closed_suction_drain_verified",
     "obs_vascularized_explant_en_bloc_recovery_verified",
     "obs_ap1903_pulsed_pk_washout_regimen_verified",
+    "obs_arm2_bound_and_supernatant_fasl_bioactivity_depleted_verified",
+    "obs_arm2_sa_thbd_bioactivity_depleted_verified",
+    "obs_arm2_contemporaneous_sham_handling_matched",
+    "obs_arm3_ongoing_adjunct_bioactivity_verified",
 )
 
 HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS: tuple[str, ...] = (
@@ -639,6 +643,10 @@ ALLOWED_ORDERED_BATCH_LEDGER_KEYS: frozenset[str] = frozenset({
     "reset_prior_safety_stop_independent_qp_approver_id",
     "mcb_clone_id",
     "oos_retest_assignable_cause_code",
+    "adjunct_conditioning_history_arm",
+    "adjunct_depletion_mode",
+    "adjunct_sa_fhl1_status",
+    "adjunct_immune_responder_history",
     *HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS,
 })
 
@@ -968,6 +976,14 @@ def _validate_prior_posterior_report(
             for bf_k in STAGE0_PERSISTED_BOOLEAN_FLAGS:
                 if bf_k in entry and entry[bf_k] is not None:
                     merged_hist_payload_for_norm[bf_k] = entry[bf_k]
+            for adj_meta_k in (
+                "adjunct_conditioning_history_arm",
+                "adjunct_depletion_mode",
+                "adjunct_sa_fhl1_status",
+                "adjunct_immune_responder_history",
+            ):
+                if adj_meta_k in entry and entry[adj_meta_k] is not None:
+                    merged_hist_payload_for_norm[adj_meta_k] = entry[adj_meta_k]
             normalize_hist_measurements(merged_hist_payload_for_norm, require_observation=False)
             obs_active_keys = {
                 mk for mk, mv in entry["measurements"].items()
@@ -1158,7 +1174,14 @@ def _validate_prior_posterior_report(
                             else:
                                 pooled_hist_def_se.discard(k)
                                 pooled_hist_def_se.discard(se_to_mean_hist[k])
-                for meta_k in ("product_variant_id", "estimand_scale"):
+                for meta_k in (
+                    "product_variant_id",
+                    "estimand_scale",
+                    "adjunct_conditioning_history_arm",
+                    "adjunct_depletion_mode",
+                    "adjunct_sa_fhl1_status",
+                    "adjunct_immune_responder_history",
+                ):
                     if entry.get(meta_k) is not None:
                         pooled_hist_for_s0[meta_k] = entry[meta_k]
                 if entry.get("s8b_epistasis_estimand_scale") is not None:
@@ -1721,6 +1744,10 @@ def run_calibration(
         "allow_cross_clone_pooling_for_exploratory_research",
         "oos_retest_investigation_approved",
         "oos_retest_assignable_cause_code",
+        "adjunct_conditioning_history_arm",
+        "adjunct_depletion_mode",
+        "adjunct_sa_fhl1_status",
+        "adjunct_immune_responder_history",
         *stage0_persisted_boolean_flags,
     ):
         if qp_meta_k in input_payload and input_payload[qp_meta_k] is not None:
@@ -1802,9 +1829,18 @@ def run_calibration(
                     else:
                         pooled_defaulted_se_set.discard(k)
                         pooled_defaulted_se_set.discard(se_to_mean_lookup[k])
-        for meta_k in ("product_variant_id", "estimand_scale"):
+        for meta_k in (
+            "product_variant_id",
+            "estimand_scale",
+            "adjunct_conditioning_history_arm",
+            "adjunct_depletion_mode",
+            "adjunct_sa_fhl1_status",
+            "adjunct_immune_responder_history",
+        ):
             if hist_entry.get(meta_k) is not None:
                 pooled_stage0_payload[meta_k] = hist_entry[meta_k]
+                if meta_k != "product_variant_id" and meta_k != "estimand_scale":
+                    hist_meas[meta_k] = hist_entry[meta_k]
         if hist_entry.get("s8b_epistasis_estimand_scale") is not None:
             pooled_stage0_payload["s8b_epistasis_estimand_scale"] = hist_entry["s8b_epistasis_estimand_scale"]
         else:
@@ -2036,6 +2072,15 @@ def run_calibration(
             pooled_stage0_payload.pop("obs_beta_x3_x4_epistasis_scale", None)
     elif saved_x34_scale is not None:
         pooled_stage0_payload["obs_beta_x3_x4_epistasis_scale"] = saved_x34_scale
+    seen_active_adjunct_depletion_modes: set[str] = set()
+    for _dm_entry in [*prev_obs_ledger, current_obs_entry]:
+        _dm_val = _dm_entry.get("adjunct_depletion_mode")
+        if isinstance(_dm_val, str) and _dm_val.strip() in ("NATURAL_AGING_DECAY", "PHYSICAL_WASHOUT"):
+            seen_active_adjunct_depletion_modes.add(_dm_val.strip())
+    if len(seen_active_adjunct_depletion_modes) > 1:
+        raise ValueError(
+            "Cannot pool NATURAL_AGING_DECAY and PHYSICAL_WASHOUT adjunct_depletion_mode batches without separate comparability qualification (IIP-0012; DEC-091)"
+        )
     pooled_stage0_payload["batch_id"] = batch_id
     pooled_stage0_payload["verified_ledger_passing_s9_batch_ids"] = list(post_stop_passing_s9_batch_ids)
     stage0_eval_report = evaluate_stage0_decision_tree(

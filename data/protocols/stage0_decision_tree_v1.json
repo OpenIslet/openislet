@@ -286,5 +286,74 @@
       "specific_lysis_pct_max": 8.0
     },
     "trigger_rule": "Requires explicit observation of all three head-to-head comparator endpoints (obs_combined_stress_embodiment_a_star_lysis_pct > 8.0, obs_combined_stress_comp_r4_lysis_pct <= 8.0, obs_combined_stress_comp_r4_gsis_si >= 2.5) plus no secondary viability (<85%), shutoff (>3.0 min), H2O2 (>5.0 uM), or pH (>7.50) failure (and all 4 secondary endpoints observed when require_full_7metric_combined_stress_panel=True) -> PROMOTE_ISLET1_COMP_R4_X_BFB_DXB_LOWLOAD1500; partial comparator observations hold on HOLD_COMBINED_STRESS_INCOMPLETE_COMPARATOR_EVIDENCE (AUDIT-REF, AUDIT-REF & AUDIT-REF; DEC-043/044/045)"
+  },
+  "post_adjunct_depletion_three_history_rechallenge_and_cd55_gate_iip_0012": {
+    "gate_id": "STAGE0_POST_ADJUNCT_DEPLETION_THREE_HISTORY_RECHALLENGE_AND_CD55_GATE_IIP_0012",
+    "decision_id": "DEC-091",
+    "contribution_id": "IIP-0012",
+    "primary_citations": [
+      "PMID:29867165",
+      "PMID:35559682",
+      "PMID:38709159",
+      "PMID:41842939",
+      "PMID:35666870",
+      "PMID:27787618",
+      "PMID:38508139"
+    ],
+    "blocked_three_history_sibling_aliquot_design": {
+      "ARM1_NEVER_CONDITIONED": "Never-conditioned exact Stage-7 sibling aliquot at matched age and sham handling (negative conditioning reference; held from release as HOLD_GATE0D_ARM1_NEVER_CONDITIONED_REFERENCE_CONTROL_NOT_RELEASE_ARM).",
+      "ARM2_CONDITIONED_DEPLETED": "Conditioned with declared SA-FasL + SA-THBD (+/- SA-FHL-1) microgels and then functionally depleted below predeclared assay LLOD/depletion limits in both carrier-bound and cell-free supernatant fractions (obs_arm2_bound_and_supernatant_fasl_bioactivity_depleted_verified=True, obs_arm2_sa_thbd_bioactivity_depleted_verified=True) with contemporaneous age/sham handling controls (obs_arm2_contemporaneous_sham_handling_matched=True) and verified ongoing bioactivity in parallel Arm 3 (obs_arm3_ongoing_adjunct_bioactivity_verified=True). Exempts active-FasL >=80% CD4 apoptosis while requiring one-sided 95% bounds across all 6 shared post-depletion injury/activation/complement/recovery/GSIS endpoints: obs_indirect_apc_dq2_dq8_cd4_stimulation_index <= 1.5, obs_indirect_apc_cd4_ifng_si <= 2.0, obs_gate0d_transwell_beta_annexin_v_pct <= 15.0%, obs_arm2_post_depletion_nhs_c5b9_mac_pct <= 5.0%, obs_arm2_post_depletion_viable_beta_recovery_pct >= 85.0%, and obs_arm2_post_depletion_perifusion_gsis_si >= 2.5.",
+      "ARM3_CONTINUOUSLY_ACTIVE": "Continuously active microgel conditioning control with directly verified ongoing functional bioactivity (an intact DTT- or VPM-crosslinked PEG-4MAL/fibrin carrier alone is not a positive bioactivity control; Headen 2018 PMID:29867165 reported 3.0 +/- 0.8 d fluorescent SA-FasL retention rather than functional bioactivity half-life, and neither Headen 2018 PMID:29867165 nor Lei 2022 PMID:35559682 established SA-THBD or VPM-carrier depletion kinetics without transient systemic rapamycin)."
+    },
+    "mandatory_methodological_guards": {
+      "sa_fhl1_truth_in_labeling": "Every adjunct activity present in the tested lot (SA-FasL, SA-THBD, SA-FHL-1, carrier chemistry) must be declared via adjunct_sa_fhl1_status in {DEPLETED_VERIFIED, RETAINED_ACTIVE, ABSENT_FROM_LOT}; a FasL/THBD-depleted lot retaining active SA-FHL-1 is classified as PARTIAL_FASL_THBD_DEPLETED_SA_FHL1_RETAINED_ACTIVE_NOT_COMPLETE_ADJUNCT_DEPLETION and never as complete adjunct depletion.",
+      "depletion_mode_non_pooling": "adjunct_depletion_mode distinguishes NATURAL_AGING_DECAY from PHYSICAL_WASHOUT; calibration ledger replay rejects pooling across the two modes unless separate comparability qualification is established.",
+      "immune_responder_compartment_and_mhc_pathway_separation": "adjunct_immune_responder_history distinguishes RETAINED_CONDITIONED_RESPONDERS (testing persistence of local conditioning; FoxP3+ counts alone do not establish functional suppression), FRESH_RECIPIENT_RESPONDERS (testing graft resistance to renewed recipient HLA-DQ2/DQ8/DR4 APC + memory T-cell challenge), and PAIRED_BOTH, and separates MHC-II indirect CD4+ presentation from MHC-I CD8+ cross-presentation.",
+      "ectopic_cd55_scr14_unconfounded_causal_contrast": "Ectopic CD55(SCR1-4) complement evaluation remains an experimental satellite alongside the existing Layer-3 CD47-CD55 / 2A-free CD55+CD59 challenger and Playbook 20% NHS <=5.0% lysis gate: its primary causal contrast is exact same edited graft background + ectopic CD55(SCR1-4) (with declared GPI vs TM membrane anchor, localization, QuantiBRITE density, and PIGK GPI-biosynthesis non-competition against CD47-IgV-GPI and endogenous CD59) vs exact same edited graft background without ectopic CD55 under matched delivery/mock handling and intact endogenous CD59; unedited WT (van der Torren 2017 PMID:27787618) and CD59 loss-of-function (which also perturbs IRIS-1/2 insulin exocytosis per Golec 2022 PMID:35666870) are supplementary references only."
+    }
+  },
+  "stage0_held_challenger_falsifier_gates_iip_0012": {
+    "decision_id": "DEC-091",
+    "contribution_id": "IIP-0012",
+    "initial_state": "HOLD_FOR_PROSPECTIVE_FALSIFIER",
+    "explicit_state_transition_rules": {
+      "HOLD_FOR_PROSPECTIVE_FALSIFIER": "Candidate genetic change is excluded from all core constructs (Scenario A, Scenario B, Challenger X), excluded from Layer-1 scoring weights, and barred from silent or automatic promotion.",
+      "on_any_primary_falsifier_or_safety_breach": "Transition deterministically to DISQUALIFIED_AT_FALSIFIER.",
+      "on_missing_or_underpowered_falsifier_data": "Remain at HOLD_FOR_PROSPECTIVE_FALSIFIER (missing-data hold across predeclared independent clone, differentiation-batch, and immune-donor experimental units).",
+      "on_complete_independent_clearance": "Transition only to ELIGIBLE_FOR_INDEPENDENT_D2_CONFIRMATION_PROPOSAL, requiring a separate follow-on IIP and independent multi-clone/multi-batch/multi-donor confirmation before any core or challenger construct change."
+    },
+    "held_challenger_families": [
+      {
+        "challenger_family_id": "HELD_CHALLENGER_1_TYMS_DPYD_SALVAGE_CONTAINMENT_SATELLITE",
+        "status": "HOLD_FOR_PROSPECTIVE_FALSIFIER",
+        "primary_citations": ["PMID:38867450", "PMID:35931051"],
+        "falsifier_scope": "Evaluates TYMS disruption strictly as an additive dividing-cell containment challenger alongside retained, functionally verified biallelic pan-lineage AAVS1 iCasp9 (never a whole-graft post-mitotic erasability substitute; GY-002). Reconciles live Ensembl ENST00000323274.15 vs .9 (Exon 1 chr18:657653-657947, CDS start chr18:657743, antisense ENOSF1 ENSG00000132199 start chr18:667671; noting chr18:657600-658000 spans noncoding sequence rather than defining an exact allele, Tummala 2022 PMID:35931051 established ENOSF1-to-TYMS suppression rather than exon-5 KO damage to ENOSF1, and nuclease TYMS KO adds a K chromosomal cut rather than a B base edit under GY-006). Tests proliferation arrest across supplemented 2'-deoxythymidine (dThd, 0.1-20 uM) as an aggressive salvage-vulnerability falsifier (Sartori-Maldonado 2024 PMID:38867450 rescued KO proliferation at 20 uM dThd and noted dying-cell salvage and 3D residual growth), requires dTTP/dUTP nucleotide-balance, >=63,000x duplex-seq/CAST-seq genomic integrity, vascular/stromal (iEC/iPericyte) bank compatibility, intact Stage-7 perifusion GSIS, and intact AP1903 >=4-log10 kill."
+      },
+      {
+        "challenger_family_id": "HELD_CHALLENGER_2_DESIGN_B_NLRC5_ISRE_CIS_ALLELE",
+        "status": "HOLD_FOR_PROSPECTIVE_FALSIFIER",
+        "candidate_coordinate_grch38": "chr16:56989556:C>G",
+        "primary_citations": ["PMID:36103539"],
+        "falsifier_scope": "Requires naming the exact Design-B product background modified (scored 6-locus ISLET1_CHASSIS_B_HLA_C_RETAINED_6LOCUS_HYPOTHESIS vs unscored B'-SCT molecular hypotheses), measuring classical HLA-A, HLA-B, and Design B's defining retained HLA-C allele separately alongside trans HLA-E, PD-L1, and cis CETP under IFN-gamma/cytokine stimulation, and testing matched KIR-defined (NKG2A+, NKG2C+, KIR2DL1/2/3+, KIR3DL1+) primary NK subsets against existing Playbook resting/induced absolute lysis limits (never generic CD56+ survival; GY-001, GY-005). Notes >=75% HLA-A/B reduction with >=80% HLA-C/HLA-E/PD-L1 retention is an aspirational engineering gate given ~50% HLA-I reduction under near-complete NLRC5 knockdown in Szymczak 2022 PMID:36103539."
+      },
+      {
+        "challenger_family_id": "HELD_CHALLENGER_3_ENDOGENOUS_CD274_INTRON3_DONOR_PLUS6_ALLELE",
+        "status": "HOLD_FOR_PROSPECTIVE_FALSIFIER",
+        "candidate_coordinate_grch38": "chr9:5457426:A>T (ENST00000381577.4 exon 3 end 5457420, ATG|GTAAGA donor +6)",
+        "primary_citations": ["PMID:42856285", "PMID:37175900"],
+        "falsifier_scope": "Notes Rao et al. 2026 PMID:42856285 is a non-peer-reviewed September 2026 bioRxiv preprint and neither Rao 2026 PMID:42856285 nor Yan et al. 2023 PMID:37175900 tested +6A>T (which could impair protective PD-L1 splicing). Requires isoform-specific RT-ddPCR/long-read junction assays distinguishing endogenous CD274 Exon3-included vs Exon2->Exon4 skipped transcripts and endogenous surface vs secreted protein from the intronless Locus-3 PD-L1 cDNA cassette, cis PDCD1LG2 (PD-L2) undisturbed expression, and functional PD-1 engagement (GY-001, GY-006, GY-008)."
+      },
+      {
+        "challenger_family_id": "HELD_CHALLENGER_4_INDIVIDUAL_TXNIP_CHORE_SINGLE_BASE_ALLELES",
+        "status": "HOLD_FOR_PROSPECTIVE_FALSIFIER",
+        "candidate_coordinates_grch38": [
+          "chr1:145996652:T>A",
+          "chr1:145996656:G>C",
+          "chr1:145996667:G>T"
+        ],
+        "primary_citations": ["PMID:42120510"],
+        "falsifier_scope": "Evaluates each candidate ChoRE allele strictly as an independent single-allele (B = 1) experiment (never multiplexed B >= 3; GY-006), noting Bradley et al. 2026 PMID:42120510 documented 48-h 1% O2 SC-islet dysfunction in larger aggregates without testing TXNIP editing or reoxygenation. Requires matched cluster-size controls across 48-h 1% O2 hypoxia plus reoxygenation recovery, measuring absolute viable INS+NKX6-1+ beta-cell recovery per starting input, alpha/delta survival, basal insulin secretion, dynamic GSIS, low-glucose shut-off (t50 and t90), and cellular OCR without waiving G6PC2/RNLS or Layer-4 oxygen-budget gates (GY-003, GY-004)."
+      }
+    ]
   }
 }

@@ -9533,6 +9533,65 @@
       "qualification_scope": "Endogenous CD59 remains unedited so non-GPI-anchored intracellular isoforms (IRIS-1/IRIS-2) required for SNARE-mediated insulin granule exocytosis are preserved and verified via Readout 2 dynamic GSIS/C-peptide perifusion separately from Readout 3C cell-surface GPI-anchored complement (C3b/C5b-9) lysis attribution."
     }
   },
+  "stage0_post_adjunct_and_held_challenger_falsifier_gates_iip_0012": {
+    "decision_id": "DEC-091",
+    "contribution_id": "IIP-0012",
+    "core_scoring_impact": "ZERO_LAYER1_SCORE_CHANGE",
+    "post_adjunct_depletion_three_history_qualification_scope": {
+      "primary_citations": [
+        "Headen et al. 2018 PMID:29867165",
+        "Lei et al. 2022 PMID:35559682",
+        "Turan et al. 2024 PMID:38709159",
+        "Kazmi et al. 2026 PMID:41842939"
+      ],
+      "protocol_summary": "Blocked sibling-aliquot three-history Stage-0 rechallenge on existing exact Stage-7 preparations without new genomic edits: ARM1_NEVER_CONDITIONED vs ARM2_CONDITIONED_DEPLETED (verified carrier-bound + cell-free supernatant SA-FasL and SA-THBD bioactivity depleted below predeclared assay LLOD/depletion limits, matched contemporaneous sham/age handling, declared adjunct_sa_fhl1_status preventing active SA-FHL-1 lots from being misclassified as complete adjunct depletion, non-pooled NATURAL_AGING_DECAY vs PHYSICAL_WASHOUT depletion modes, and explicit RETAINED_CONDITIONED_RESPONDERS vs FRESH_RECIPIENT_RESPONDERS / MHC-II CD4+ vs MHC-I CD8+ cross-presentation separation) vs ARM3_CONTINUOUSLY_ACTIVE (directly verified ongoing functional bioactivity; noting Headen 2018 PMID:29867165 reported 3.0 +/- 0.8 d fluorescent SA-FasL retention rather than functional bioactivity half-life and used transient systemic rapamycin)."
+    },
+    "ectopic_cd55_scr14_unconfounded_satellite_scope": {
+      "status": "SEPARATE_EXPERIMENTAL_SATELLITE_NOT_CORE_CONSTRUCT",
+      "primary_citations": [
+        "Golec et al. 2022 PMID:35666870",
+        "van der Torren et al. 2017 PMID:27787618",
+        "Xu et al. 2024 PMID:38508139"
+      ],
+      "primary_causal_contrast": "Exact same edited graft background + ectopic CD55(SCR1-4) (with declared GPI vs TM anchor, surface localization, QuantiBRITE density, and PIGK GPI-biosynthesis non-competition against CD47-IgV-GPI and endogenous CD59) vs exact same edited graft background without ectopic CD55 under matched delivery/mock treatment and intact endogenous CD59; unedited WT (already complement-resistant in mature endocrine cells per van der Torren 2017 PMID:27787618) and CD59 loss-of-function (confounded by IRIS-1/2 SNARE secretion loss per Golec 2022 PMID:35666870) serve strictly as supplementary references alongside the existing Layer-3 CD47-CD55 / 2A-free CD55+CD59 challenger."
+    },
+    "held_challenger_state_machine": {
+      "initial_state": "HOLD_FOR_PROSPECTIVE_FALSIFIER",
+      "on_falsifier_breach": "DISQUALIFIED_AT_FALSIFIER",
+      "on_missing_or_underpowered_data": "HOLD_FOR_PROSPECTIVE_FALSIFIER",
+      "on_independent_clearance": "ELIGIBLE_FOR_INDEPENDENT_D2_CONFIRMATION_PROPOSAL",
+      "promotion_guard": "Never triggers automatic or silent promotion into Scenario A, Scenario B, or Challenger X; requires independent multi-clone, multi-differentiation-block, and multi-donor confirmation plus a separate follow-on IIP."
+    },
+    "held_challenger_families": [
+      {
+        "family_id": "TYMS_AUXOTROPHIC_DIVIDING_CELL_CONTAINMENT",
+        "status": "HOLD_FOR_PROSPECTIVE_FALSIFIER",
+        "transcript_and_locus_reconciliation": "Reconciles live Ensembl ENST00000323274.15 vs .9 (Exon 1 chr18:657653-657947, CDS start chr18:657743, antisense ENOSF1 ENSG00000132199 start chr18:667671; chr18:657600-658000 spans noncoding sequence and is a target window rather than an exact KO allele; Tummala et al. 2022 PMID:35931051 established ENOSF1-to-TYMS suppression rather than proving exon-5 KO damages ENOSF1). Nuclease TYMS KO adds a K chromosomal cut rather than a B base edit under GY-006; biallelic pan-lineage AAVS1 iCasp9 remains mandatory and functionally verified (GY-002); arrest across 0.1-20 uM supplemented 2'-deoxythymidine (dThd) is framed as an aggressive salvage-vulnerability falsifier (Sartori-Maldonado et al. 2024 PMID:38867450 rescued KO proliferation at 20 uM dThd and noted dying-cell salvage and 3D residual growth), paired with dTTP/dUTP balance, >=63,000x duplex-seq/CAST-seq, and shared iEC/iPericyte vascular bank checks."
+      },
+      {
+        "family_id": "DESIGN_B_NLRC5_ISRE_CIS_EDIT",
+        "status": "HOLD_FOR_PROSPECTIVE_FALSIFIER",
+        "candidate_allele_grch38": "chr16:56989556:C>G",
+        "qualification_requirements": "Must name the exact Design-B background modified (scored 6-locus ISLET1_CHASSIS_B_HLA_C_RETAINED_6LOCUS_HYPOTHESIS vs unscored B'-SCT molecular hypotheses), quantify HLA-A, HLA-B, and retained HLA-C separately alongside trans HLA-E, PD-L1, and cis CETP, and test matched KIR-defined (NKG2A+, NKG2C+, KIR2DL1/2/3+, KIR3DL1+) primary NK subsets under Playbook absolute lysis ceilings (never generic CD56+ survival; GY-001, GY-005); notes >=75% HLA-A/B reduction with >=80% HLA-C/HLA-E/PD-L1 retention is an aspirational engineering gate given ~50% HLA-I reduction under near-complete NLRC5 knockdown in Szymczak et al. 2022 PMID:36103539."
+      },
+      {
+        "family_id": "ENDOGENOUS_CD274_SPLICE_DONOR_PLUS6_EDIT",
+        "status": "HOLD_FOR_PROSPECTIVE_FALSIFIER",
+        "candidate_allele_grch38": "chr9:5457426:A>T (ENST00000381577.4 exon 3 end 5457420, ATG|GTAAGA donor +6)",
+        "qualification_requirements": "Notes Rao et al. 2026 PMID:42856285 is a non-peer-reviewed September 2026 bioRxiv preprint and neither Rao 2026 PMID:42856285 nor Yan et al. 2023 PMID:37175900 tested +6A>T (which could impair protective PD-L1). Requires isoform-specific junction assays distinguishing endogenous Ex3-included vs Ex2->Ex4 skipped transcripts and endogenous surface/secreted PD-L1 contribution from the intronless Locus-3 PD-L1 cDNA cassette, undisturbed cis PDCD1LG2, and functional PD-1 engagement (GY-001, GY-006, GY-008)."
+      },
+      {
+        "family_id": "TXNIP_CHORE_SINGLE_ALLELE_HYPOXIA_CHALLENGERS",
+        "status": "HOLD_FOR_PROSPECTIVE_FALSIFIER",
+        "candidate_alleles_grch38": [
+          "chr1:145996652:T>A",
+          "chr1:145996656:G>C",
+          "chr1:145996667:G>T"
+        ],
+        "qualification_requirements": "Tested strictly as individual B = 1 single-allele experiments (never multiplexed B >= 3; GY-006), noting Bradley et al. 2026 PMID:42120510 studied 48-h 1% O2 dysfunction in larger SC-islets without TXNIP editing or reoxygenation. Requires matched cluster-size controls across 48-h 1% O2 plus reoxygenation recovery, absolute viable INS+NKX6-1+ beta-cell recovery per starting input, alpha/delta survival, basal insulin secretion, dynamic GSIS, low-glucose shut-off (t50 and t90), and OCR without waiving G6PC2/RNLS or Layer-4 oxygen-budget gates (GY-003, GY-004)."
+      }
+    ]
+  },
   "public_effects_provenance_rebinding": {
     "canonical_original_effects_sha256": "e56018562aaa99e9be32441aad998407529b839dce58f3f0fd91389a7fcfd9e5",
     "status": "REPLAYED_PUBLIC_BYTES_NUMERICAL_AND_SEMANTIC_OUTPUTS_IDENTICAL",

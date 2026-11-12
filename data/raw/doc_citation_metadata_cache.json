@@ -1,7 +1,7 @@
 {
  "_meta": {
   "purpose": "offline snapshot for tests/test_citations_resolve.py; bibliographic facts only (first author, year, journal, title)",
-  "retrieved": "2026-11-12",
+  "retrieved": "2026-11-13",
   "source": "NCBI E-utilities esummary (db=pubmed)"
  },
  "pmids": {
@@ -689,6 +689,12 @@
    "pubdate_year": "2016",
    "title": "A Single-Cell Transcriptomic Map of the Human and Mouse Pancreas Reveals Inter- and Intra-cell Population Structure."
   },
+  "27787618": {
+   "first_author": "van der Torren CR",
+   "journal": "Diabetologia",
+   "pubdate_year": "2017",
+   "title": "Immunogenicity of human embryonic stem cell-derived beta cells."
+  },
   "27807284": {
    "first_author": "Dendrou CA",
    "journal": "Sci Transl Med",
@@ -1187,6 +1193,12 @@
    "pubdate_year": "2022",
    "title": "Reduced calcium levels and accumulation of abnormal insulin granules in stem cell models of HNF1A deficiency."
   },
+  "35931051": {
+   "first_author": "Tummala H",
+   "journal": "Am J Hum Genet",
+   "pubdate_year": "2022",
+   "title": "Germline thymidylate synthase deficiency impacts nucleotide metabolism and causes dyskeratosis congenita."
+  },
   "36008610": {
    "first_author": "Shy BR",
    "journal": "Nat Biotechnol",
@@ -1198,6 +1210,12 @@
    "journal": "Stem Cell Reports",
    "pubdate_year": "2022",
    "title": "Whole-genome CRISPR screening identifies genetic manipulations to reduce immune rejection of stem cell-derived islets."
+  },
+  "36103539": {
+   "first_author": "Szymczak F",
+   "journal": "Sci Adv",
+   "pubdate_year": "2022",
+   "title": "Transcription and splicing regulation by NLRC5 shape the interferon response in human pancreatic β cells."
   },
   "36170817": {
    "first_author": "Chimienti R",
@@ -1234,6 +1252,12 @@
    "journal": "Nat Biotechnol",
    "pubdate_year": "2024",
    "title": "Hypoimmune induced pluripotent stem cells survive long term in fully immunocompetent, allogeneic rhesus macaques."
+  },
+  "37175900": {
+   "first_author": "Yan L",
+   "journal": "Int J Mol Sci",
+   "pubdate_year": "2023",
+   "title": "PD-L1 Exon 3 Is a Hidden Switch of Its Expression and Function in Oral Cancer Cells."
   },
   "37188763": {
    "first_author": "Augsornworawat P",
@@ -1312,6 +1336,12 @@
    "journal": "J Immunol",
    "pubdate_year": "2024",
    "title": "Engineering Pancreatic Islets to Transiently Codisplay on Their Surface Thrombomodulin and CD47 Immunomodulatory Proteins as a Means of Mitigating Instant Blood-Mediated Inflammatory Reaction following Intraportal Transplantation."
+  },
+  "38867450": {
+   "first_author": "Sartori-Maldonado R",
+   "journal": "Mol Ther",
+   "pubdate_year": "2024",
+   "title": "Thymidylate synthase disruption to limit cell proliferation in cell therapies."
   },
   "38907368": {
    "first_author": "Zebrauskaite A",
@@ -1517,6 +1547,12 @@
    "pubdate_year": "2026",
    "title": "A loss of function variant in SLC30A8/ZnT8 drives proteomic changes associated with lowered apoptosis in human stem cell-derived islets."
   },
+  "42120510": {
+   "first_author": "Bradley K",
+   "journal": "Sci Rep",
+   "pubdate_year": "2026",
+   "title": "Divergent cell-type specific hypoxia responses in human stem cell-derived and primary islets."
+  },
   "42268925": {
    "first_author": "Howard CJ",
    "journal": "Elife",
@@ -1558,6 +1594,12 @@
    "journal": "Diabetes",
    "pubdate_year": "2026",
    "title": "Microgels Containing Protease Resistant CXCL12 and FasL Enable Long-term Allo-Islet Function Without Systemic Immunosuppression."
+  },
+  "42856285": {
+   "first_author": "Rao C",
+   "journal": "bioRxiv",
+   "pubdate_year": "2026",
+   "title": "A Novel PD-L1 Splice Isoform Modulates β Cell Communication in Response to Interferon Signaling."
   },
   "443421": {
    "first_author": "Bergman RN",

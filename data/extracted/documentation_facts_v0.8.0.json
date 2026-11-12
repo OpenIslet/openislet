@@ -11,10 +11,10 @@
   "source_sha256": {
     "data/raw/corpus_manifest_all_sources.jsonl": "119ecbd3be2ccb79a2f38ac7feca8713ffb7c6c5e92165078e2722331b9e0536",
     "data/extracted/cross_study_discovery_graph.json": "1eb6248877b1dacf11154f608515c092ed1db2fdb7efc34b9c5456a3aa1113f4",
-    "data/extracted/islet1_candidate_stack_rankings.json": "15b30b6988f396fdbcee66cc12b0ec40aab3dc2bdeeb87fff7bcc44de0ae13eb",
+    "data/extracted/islet1_candidate_stack_rankings.json": "fa883b9916f7329f2ff8d31f732e9a1ad36dc1de9334d61590bf526118cb7b9a",
     "data/protocols/hip_core_fractional_factorial_v0.6.2.json": "7a3aead410a1c9a10ac4fb56b78a1775c73755aed90c1fff4861eb3b94595741",
-    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "1cf10d43a1c7d3490ddb59cd5f0afedd13b23b8282c9d2c74b81ac507ecd3757",
-    "data/extracted/layer3_structural_verification_atlas.json": "3f2cc53b3bd9f097af787d3224dc04440851dbe265e40b09631dadaea042dd52",
+    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "515011fd0d38996d12b099b3dd3b168d3de881803a40276eaceea086b00c9c6f",
+    "data/extracted/layer3_structural_verification_atlas.json": "b1add05ba7efd4ed9f501f1e63b24160f3fe9cd024f7dfe5b2f695c52e0aa6e6",
     "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": "c12ff0b87058a2af1390a73e9f39a2e5d0ea9b8ee43e75dfa96979cba7c619bd",
     "data/extracted/layer5_personalized_patient_and_crispr_atlas.json": "8e563bf9342259a40f4ced83bd9633da39659b998f3fe5dc563f7e9d820462aa",
     "data/extracted/10202046.json": "b3d836e8c0fc8ed898592975e0f09c0154a0d4f887c2b6893e7c8194befd0a6a",

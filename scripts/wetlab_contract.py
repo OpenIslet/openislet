@@ -175,6 +175,10 @@ STAGE0_DECISION_TREE_ENDPOINT_SPECS = [
     ('gate0s_ductal_sox9_krt19_double_pos_cells_scored', 'obs_ductal_sox9_krt19_double_pos_cells_scored', 'obs_ductal_sox9_krt19_double_pos_cells_scored_se', 10.0, 1e9, 'assembled_cluster_cells_scored_for_sox9_krt19_double_positive_ductal_progenitors'),
     ('gate0m_assembled_cluster_slc18a1_enterochromaffin_cells_scored', 'obs_assembled_cluster_slc18a1_enterochromaffin_cells_scored', 'obs_assembled_cluster_slc18a1_enterochromaffin_cells_scored_se', 10.0, 1e9, 'assembled_cluster_cells_scored_for_slc18a1_fev_tph1_enterochromaffin_cells'),
     ('gate0s_senescent_p16_sasp_cells_scored', 'obs_senescent_p16_sasp_cells_scored', 'obs_senescent_p16_sasp_cells_scored_se', 10.0, 1e9, 'day28_post_stress_cells_scored_for_p16ink4a_sabgal_sasp_positivity'),
+    # Post-adjunct functional-depletion rechallenge endpoints for Arm 2 (conditioned then functionally depleted) sibling-aliquot qualification (IIP-0012; DEC-091):
+    ('gate0d_arm2_post_depletion_viable_beta_recovery_pct', 'obs_arm2_post_depletion_viable_beta_recovery_pct', 'obs_arm2_post_depletion_viable_beta_recovery_se', 0.0, 150.0, 'post_adjunct_depletion_rechallenge_viable_ins_nkx61_beta_recovery_percentage_of_sham'),
+    ('gate0d_arm2_post_depletion_perifusion_gsis_si', 'obs_arm2_post_depletion_perifusion_gsis_si', 'obs_arm2_post_depletion_perifusion_gsis_si_se', 0.1, 30.0, 'post_adjunct_depletion_rechallenge_dynamic_perifusion_gsis_stimulation_index'),
+    ('gate0f_arm2_post_depletion_nhs_c5b9_mac_pct', 'obs_arm2_post_depletion_nhs_c5b9_mac_pct', 'obs_arm2_post_depletion_nhs_c5b9_mac_se', 0.0, 100.0, 'post_adjunct_depletion_20pct_nhs_c5b9_mac_positive_percentage'),
 ]
 
 STICKY_S9_PRIOR_VARIANT_SAFETY_STATUSES: frozenset[str] = frozenset({
@@ -213,6 +217,30 @@ ALLOWED_S8B_EPISTASIS_ESTIMAND_SCALES: frozenset[str] = frozenset({
     'PP_HALF_EFFECT',
     'PP_FULL_CONTRAST',
     'DID_PP',
+})
+
+ALLOWED_ADJUNCT_CONDITIONING_HISTORY_ARMS: frozenset[str] = frozenset({
+    'ARM1_NEVER_CONDITIONED',
+    'ARM2_CONDITIONED_DEPLETED',
+    'ARM3_CONTINUOUSLY_ACTIVE',
+})
+
+ALLOWED_ADJUNCT_DEPLETION_MODES: frozenset[str] = frozenset({
+    'NATURAL_AGING_DECAY',
+    'PHYSICAL_WASHOUT',
+    'NOT_APPLICABLE',
+})
+
+ALLOWED_ADJUNCT_SA_FHL1_STATUSES: frozenset[str] = frozenset({
+    'DEPLETED_VERIFIED',
+    'RETAINED_ACTIVE',
+    'ABSENT_FROM_LOT',
+})
+
+ALLOWED_ADJUNCT_IMMUNE_RESPONDER_HISTORIES: frozenset[str] = frozenset({
+    'RETAINED_CONDITIONED_RESPONDERS',
+    'FRESH_RECIPIENT_RESPONDERS',
+    'PAIRED_BOTH',
 })
 
 STAGE0_CUSTOM_DEFAULT_SE: dict[str, float] = {
@@ -339,6 +367,9 @@ STAGE0_CUSTOM_DEFAULT_SE: dict[str, float] = {
     'obs_ductal_sox9_krt19_double_pos_cells_scored': 1.0,
     'obs_assembled_cluster_slc18a1_enterochromaffin_cells_scored': 1.0,
     'obs_senescent_p16_sasp_cells_scored': 1.0,
+    'obs_arm2_post_depletion_viable_beta_recovery_pct': 1.0,
+    'obs_arm2_post_depletion_perifusion_gsis_si': 0.15,
+    'obs_arm2_post_depletion_nhs_c5b9_mac_pct': 0.5,
 }
 
 STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
@@ -682,6 +713,10 @@ STAGE0_DECISION_TREE_BOOLEAN_KEYS: tuple[str, ...] = (
     'reset_prior_safety_stop_after_investigation',
     'oos_retest_investigation_approved',
     'allow_cross_clone_pooling_for_exploratory_research',
+    'obs_arm2_bound_and_supernatant_fasl_bioactivity_depleted_verified',
+    'obs_arm2_sa_thbd_bioactivity_depleted_verified',
+    'obs_arm2_contemporaneous_sham_handling_matched',
+    'obs_arm3_ongoing_adjunct_bioactivity_verified',
 )
 
 
@@ -728,6 +763,10 @@ def derive_contract(root: Path | str | None = None) -> dict:
                 'reset_prior_safety_stop_repeat_batch_ids',
                 'reset_prior_safety_stop_independent_qp_approver_id',
                 'oos_retest_assignable_cause_code',
+                'adjunct_conditioning_history_arm',
+                'adjunct_depletion_mode',
+                'adjunct_sa_fhl1_status',
+                'adjunct_immune_responder_history',
             ],
             'boolean_policy_keys': list(STAGE0_DECISION_TREE_BOOLEAN_KEYS),
             'endpoints': endpoints,
@@ -814,6 +853,22 @@ def normalize_measurements(payload: dict, *, require_observation: bool = True,
         elif key == 'prior_variant_safety_status':
             if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_PRIOR_VARIANT_SAFETY_STATUSES:
                 raise ValueError(f'prior_variant_safety_status must be one of {sorted(ALLOWED_PRIOR_VARIANT_SAFETY_STATUSES)} (AUDIT-REF)')
+            result[key] = payload[key].strip()
+        elif key == 'adjunct_conditioning_history_arm':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_ADJUNCT_CONDITIONING_HISTORY_ARMS:
+                raise ValueError(f'adjunct_conditioning_history_arm must be one of {sorted(ALLOWED_ADJUNCT_CONDITIONING_HISTORY_ARMS)} (IIP-0012; DEC-091)')
+            result[key] = payload[key].strip()
+        elif key == 'adjunct_depletion_mode':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_ADJUNCT_DEPLETION_MODES:
+                raise ValueError(f'adjunct_depletion_mode must be one of {sorted(ALLOWED_ADJUNCT_DEPLETION_MODES)} (IIP-0012; DEC-091)')
+            result[key] = payload[key].strip()
+        elif key == 'adjunct_sa_fhl1_status':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_ADJUNCT_SA_FHL1_STATUSES:
+                raise ValueError(f'adjunct_sa_fhl1_status must be one of {sorted(ALLOWED_ADJUNCT_SA_FHL1_STATUSES)} (IIP-0012; DEC-091)')
+            result[key] = payload[key].strip()
+        elif key == 'adjunct_immune_responder_history':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_ADJUNCT_IMMUNE_RESPONDER_HISTORIES:
+                raise ValueError(f'adjunct_immune_responder_history must be one of {sorted(ALLOWED_ADJUNCT_IMMUNE_RESPONDER_HISTORIES)} (IIP-0012; DEC-091)')
             result[key] = payload[key].strip()
         else:
             if not isinstance(payload[key], str) or not payload[key].strip() or len(payload[key]) > 120:
@@ -964,6 +1019,14 @@ def evaluate_stage0_decision_tree(
         'oos_retest_investigation_approved',
         'oos_retest_assignable_cause_code',
         'allow_cross_clone_pooling_for_exploratory_research',
+        'obs_arm2_bound_and_supernatant_fasl_bioactivity_depleted_verified',
+        'obs_arm2_sa_thbd_bioactivity_depleted_verified',
+        'obs_arm2_contemporaneous_sham_handling_matched',
+        'obs_arm3_ongoing_adjunct_bioactivity_verified',
+        'adjunct_conditioning_history_arm',
+        'adjunct_depletion_mode',
+        'adjunct_sa_fhl1_status',
+        'adjunct_immune_responder_history',
     }
     unknown_keys = sorted(set(observations) - set(spec_by_mean) - set(spec_by_se) - allowed_boolean_and_meta_flags)
     if unknown_keys:
@@ -974,6 +1037,18 @@ def evaluate_stage0_decision_tree(
             raise ValueError(
                 f"Invalid prior_variant_safety_status {pvs_val!r}; must be one of {sorted(ALLOWED_PRIOR_VARIANT_SAFETY_STATUSES)} (AUDIT-REF; DEC-071)"
             )
+    for _adj_k, _adj_allowed in (
+        ('adjunct_conditioning_history_arm', ALLOWED_ADJUNCT_CONDITIONING_HISTORY_ARMS),
+        ('adjunct_depletion_mode', ALLOWED_ADJUNCT_DEPLETION_MODES),
+        ('adjunct_sa_fhl1_status', ALLOWED_ADJUNCT_SA_FHL1_STATUSES),
+        ('adjunct_immune_responder_history', ALLOWED_ADJUNCT_IMMUNE_RESPONDER_HISTORIES),
+    ):
+        if _adj_k in observations and observations[_adj_k] is not None:
+            _adj_v = observations[_adj_k]
+            if not isinstance(_adj_v, str) or _adj_v.strip() not in _adj_allowed:
+                raise ValueError(
+                    f"Invalid {_adj_k} {_adj_v!r}; must be one of {sorted(_adj_allowed)} (IIP-0012; DEC-091)"
+                )
 
     defaulted_se_set = set(defaulted_se_keys or ())
     validated_stage0: dict[str, float] = {}
@@ -1867,12 +1942,77 @@ def evaluate_stage0_decision_tree(
         or prolonged_insulin_clearance_failed
         or observations.get('s8_fasting_leak_or_ucn3_failed') is True
     )
-    indirect_apc_cd4_failed = bool(
-        ('obs_indirect_apc_dq2_dq8_cd4_stimulation_index' in validated_stage0 and _upper95('obs_indirect_apc_dq2_dq8_cd4_stimulation_index') > 1.5)
-        or ('obs_indirect_apc_cd4_ifng_si' in validated_stage0 and _upper95('obs_indirect_apc_cd4_ifng_si') > 2.0)
-        or ('obs_gate0d_activated_cd4_fasl_apoptosis_pct' in validated_stage0 and _lower95('obs_gate0d_activated_cd4_fasl_apoptosis_pct') < 80.0)
-        or ('obs_gate0d_transwell_beta_annexin_v_pct' in validated_stage0 and _upper95('obs_gate0d_transwell_beta_annexin_v_pct') > 15.0)
+    _adj_arm_raw = observations.get('adjunct_conditioning_history_arm')
+    adjunct_conditioning_history_arm = (
+        _adj_arm_raw.strip() if isinstance(_adj_arm_raw, str) else 'ARM3_CONTINUOUSLY_ACTIVE'
     )
+    adjunct_depletion_mode = (
+        observations['adjunct_depletion_mode'].strip()
+        if isinstance(observations.get('adjunct_depletion_mode'), str)
+        else None
+    )
+    adjunct_sa_fhl1_status = (
+        observations['adjunct_sa_fhl1_status'].strip()
+        if isinstance(observations.get('adjunct_sa_fhl1_status'), str)
+        else None
+    )
+    adjunct_immune_responder_history = (
+        observations['adjunct_immune_responder_history'].strip()
+        if isinstance(observations.get('adjunct_immune_responder_history'), str)
+        else None
+    )
+    arm1_never_conditioned_reference_hold = bool(adjunct_conditioning_history_arm == 'ARM1_NEVER_CONDITIONED')
+    arm3_ongoing_bioactivity_explicit_false = bool(
+        adjunct_conditioning_history_arm == 'ARM3_CONTINUOUSLY_ACTIVE'
+        and observations.get('obs_arm3_ongoing_adjunct_bioactivity_verified') is False
+    )
+    has_complete_arm2_6endpoint_panel = bool(
+        'obs_indirect_apc_dq2_dq8_cd4_stimulation_index' in validated_stage0
+        and 'obs_indirect_apc_cd4_ifng_si' in validated_stage0
+        and 'obs_gate0d_transwell_beta_annexin_v_pct' in validated_stage0
+        and 'obs_arm2_post_depletion_viable_beta_recovery_pct' in validated_stage0
+        and 'obs_arm2_post_depletion_perifusion_gsis_si' in validated_stage0
+        and 'obs_arm2_post_depletion_nhs_c5b9_mac_pct' in validated_stage0
+    )
+    if adjunct_conditioning_history_arm == 'ARM2_CONDITIONED_DEPLETED':
+        # Exempt active-FasL >=80% CD4 apoptosis requirement on verified functionally depleted Arm 2 while enforcing shared post-depletion injury, activation, complement, recovery, and dynamic perifusion GSIS gates (IIP-0012; DEC-091):
+        indirect_apc_cd4_failed = False
+        arm2_depletion_verification_incomplete = not (
+            observations.get('obs_arm2_bound_and_supernatant_fasl_bioactivity_depleted_verified') is True
+            and observations.get('obs_arm2_sa_thbd_bioactivity_depleted_verified') is True
+            and observations.get('obs_arm2_contemporaneous_sham_handling_matched') is True
+            and observations.get('obs_arm3_ongoing_adjunct_bioactivity_verified') is True
+            and adjunct_depletion_mode in ('NATURAL_AGING_DECAY', 'PHYSICAL_WASHOUT')
+            and adjunct_sa_fhl1_status in ALLOWED_ADJUNCT_SA_FHL1_STATUSES
+            and adjunct_immune_responder_history in ALLOWED_ADJUNCT_IMMUNE_RESPONDER_HISTORIES
+        )
+        arm2_rebound_injury_or_function_failed = bool(
+            ('obs_indirect_apc_dq2_dq8_cd4_stimulation_index' in validated_stage0 and _upper95('obs_indirect_apc_dq2_dq8_cd4_stimulation_index') > 1.5)
+            or ('obs_indirect_apc_cd4_ifng_si' in validated_stage0 and _upper95('obs_indirect_apc_cd4_ifng_si') > 2.0)
+            or ('obs_gate0d_transwell_beta_annexin_v_pct' in validated_stage0 and _upper95('obs_gate0d_transwell_beta_annexin_v_pct') > 15.0)
+            or ('obs_arm2_post_depletion_viable_beta_recovery_pct' in validated_stage0 and _lower95('obs_arm2_post_depletion_viable_beta_recovery_pct') < 85.0)
+            or ('obs_arm2_post_depletion_perifusion_gsis_si' in validated_stage0 and _lower95('obs_arm2_post_depletion_perifusion_gsis_si') < 2.5)
+            or ('obs_arm2_post_depletion_nhs_c5b9_mac_pct' in validated_stage0 and _upper95('obs_arm2_post_depletion_nhs_c5b9_mac_pct') > 5.0)
+        )
+        arm2_post_depletion_panel_incomplete = bool(
+            not arm2_depletion_verification_incomplete
+            and not arm2_rebound_injury_or_function_failed
+            and not has_complete_arm2_6endpoint_panel
+        )
+    else:
+        arm2_depletion_verification_incomplete = False
+        arm2_rebound_injury_or_function_failed = False
+        arm2_post_depletion_panel_incomplete = False
+        indirect_apc_cd4_failed = bool(
+            ('obs_indirect_apc_dq2_dq8_cd4_stimulation_index' in validated_stage0 and _upper95('obs_indirect_apc_dq2_dq8_cd4_stimulation_index') > 1.5)
+            or ('obs_indirect_apc_cd4_ifng_si' in validated_stage0 and _upper95('obs_indirect_apc_cd4_ifng_si') > 2.0)
+            or (
+                adjunct_conditioning_history_arm == 'ARM3_CONTINUOUSLY_ACTIVE'
+                and 'obs_gate0d_activated_cd4_fasl_apoptosis_pct' in validated_stage0
+                and _lower95('obs_gate0d_activated_cd4_fasl_apoptosis_pct') < 80.0
+            )
+            or ('obs_gate0d_transwell_beta_annexin_v_pct' in validated_stage0 and _upper95('obs_gate0d_transwell_beta_annexin_v_pct') > 15.0)
+        )
 
     # S8b TYK2 x inducible-promoter epistasis: support explicit enumerated scale {FRACTION_HALF_EFFECT, PP_HALF_EFFECT, PP_FULL_CONTRAST, DID_PP} with per-endpoint scale retention across batches, unified fractional half-effect threshold (point < -0.05 or lower95 < -0.10), and sign-independent underpowered SE hold (AUDIT-REF & AUDIT-REF; DEC-042/044):
     s8b_scale_enum = observations.get('s8b_epistasis_estimand_scale')
@@ -1999,6 +2139,62 @@ def evaluate_stage0_decision_tree(
     )
 
     resolved_arch = dict(tree_doc.get('default_architecture_assignments', {}))
+    if (
+        _adj_arm_raw is not None
+        or adjunct_depletion_mode is not None
+        or adjunct_sa_fhl1_status is not None
+        or adjunct_immune_responder_history is not None
+        or any(
+            observations.get(_k) is not None
+            for _k in (
+                'obs_arm2_bound_and_supernatant_fasl_bioactivity_depleted_verified',
+                'obs_arm2_sa_thbd_bioactivity_depleted_verified',
+                'obs_arm2_contemporaneous_sham_handling_matched',
+                'obs_arm3_ongoing_adjunct_bioactivity_verified',
+            )
+        )
+        or any(
+            _k in validated_stage0
+            for _k in (
+                'obs_arm2_post_depletion_viable_beta_recovery_pct',
+                'obs_arm2_post_depletion_perifusion_gsis_si',
+                'obs_arm2_post_depletion_nhs_c5b9_mac_pct',
+            )
+        )
+    ):
+        resolved_arch['adjunct_conditioning_history_arm'] = adjunct_conditioning_history_arm
+        if adjunct_depletion_mode is not None:
+            resolved_arch['adjunct_depletion_mode'] = adjunct_depletion_mode
+        if adjunct_immune_responder_history is not None:
+            resolved_arch['adjunct_immune_responder_history'] = adjunct_immune_responder_history
+        if adjunct_sa_fhl1_status is not None:
+            resolved_arch['adjunct_sa_fhl1_status'] = adjunct_sa_fhl1_status
+            resolved_arch['adjunct_depletion_truth_in_labeling_status'] = (
+                'PARTIAL_FASL_THBD_DEPLETED_SA_FHL1_RETAINED_ACTIVE_NOT_COMPLETE_ADJUNCT_DEPLETION'
+                if adjunct_sa_fhl1_status == 'RETAINED_ACTIVE'
+                else (
+                    'COMPLETE_DECLARED_ADJUNCT_BIOACTIVITY_DEPLETED'
+                    if (
+                        observations.get('obs_arm2_bound_and_supernatant_fasl_bioactivity_depleted_verified') is True
+                        and observations.get('obs_arm2_sa_thbd_bioactivity_depleted_verified') is True
+                    )
+                    else 'UNVERIFIED_ADJUNCT_DEPLETION_STATE'
+                )
+            )
+        if adjunct_conditioning_history_arm == 'ARM2_CONDITIONED_DEPLETED':
+            resolved_arch['arm2_post_adjunct_depletion_qualification_status'] = (
+                'HOLD_GATE0D_ARM2_ADJUNCT_DEPLETION_OR_SHAM_VERIFICATION_INCOMPLETE'
+                if arm2_depletion_verification_incomplete
+                else (
+                    'HOLD_GATE0D_ARM2_POST_ADJUNCT_DEPLETION_REBOUND_INJURY_OR_FUNCTION_LOSS'
+                    if arm2_rebound_injury_or_function_failed
+                    else (
+                        'HOLD_GATE0D_ARM2_POST_ADJUNCT_DEPLETION_PANEL_INCOMPLETE'
+                        if arm2_post_depletion_panel_incomplete
+                        else 'ARM2_POST_ADJUNCT_DEPLETION_RECHALLENGE_CLEARED'
+                    )
+                )
+            )
     if prior_s9_reset_history_retained:
         resolved_arch['prior_s9_safety_stop_history_retained'] = True
     if 'obs_dxs_screened_cell_count' in validated_stage0:
@@ -2162,6 +2358,16 @@ def evaluate_stage0_decision_tree(
         resolved_arch['lot_maturation_status'] = 'HOLD_ASSEMBLED_CLUSTER_OFF_TARGET_LINEAGE_OR_BETA_IDENTITY_DRIFT_FAILED'
     elif indirect_apc_cd4_failed:
         resolved_arch['lot_maturation_status'] = 'HOLD_GATE0D_INDIRECT_APC_DQ2_DQ8_CD4_AUTOIMMUNE_STIMULATION_EXCEEDED'
+    elif arm3_ongoing_bioactivity_explicit_false:
+        resolved_arch['lot_maturation_status'] = 'HOLD_GATE0D_ARM3_ONGOING_ADJUNCT_BIOACTIVITY_UNVERIFIED'
+    elif arm1_never_conditioned_reference_hold:
+        resolved_arch['lot_maturation_status'] = 'HOLD_GATE0D_ARM1_NEVER_CONDITIONED_REFERENCE_CONTROL_NOT_RELEASE_ARM'
+    elif arm2_depletion_verification_incomplete:
+        resolved_arch['lot_maturation_status'] = 'HOLD_GATE0D_ARM2_ADJUNCT_DEPLETION_OR_SHAM_VERIFICATION_INCOMPLETE'
+    elif arm2_rebound_injury_or_function_failed:
+        resolved_arch['lot_maturation_status'] = 'HOLD_GATE0D_ARM2_POST_ADJUNCT_DEPLETION_REBOUND_INJURY_OR_FUNCTION_LOSS'
+    elif arm2_post_depletion_panel_incomplete:
+        resolved_arch['lot_maturation_status'] = 'HOLD_GATE0D_ARM2_POST_ADJUNCT_DEPLETION_PANEL_INCOMPLETE'
     elif avascular_outer_band_dropout and not omental_revascularization_cleared:
         resolved_arch['lot_maturation_status'] = 'HOLD_S9_CHRONIC_CAPSULE_GT_50UM_OR_AVASCULAR_DROPOUT_REQUIRES_OMENTAL_REVASCULARIZATION'
     elif subthreshold_outer_band_kperf and not omental_revascularization_cleared:
@@ -2463,11 +2669,21 @@ def evaluate_stage0_decision_tree(
         and 'obs_lot_ocr_ratio' in validated_stage0
     )
     has_explicit_indirect_apc_gate0d_obs = bool(
-        'obs_indirect_apc_dq2_dq8_cd4_stimulation_index' in validated_stage0
-        and 'obs_indirect_apc_cd4_ifng_si' in validated_stage0
-        and 'obs_gate0d_activated_cd4_fasl_apoptosis_pct' in validated_stage0
-        and 'obs_gate0d_transwell_beta_annexin_v_pct' in validated_stage0
-        and not indirect_apc_cd4_failed
+        (
+            has_complete_arm2_6endpoint_panel
+            and not arm2_depletion_verification_incomplete
+            and not arm2_rebound_injury_or_function_failed
+        )
+        if adjunct_conditioning_history_arm == 'ARM2_CONDITIONED_DEPLETED'
+        else (
+            adjunct_conditioning_history_arm == 'ARM3_CONTINUOUSLY_ACTIVE'
+            and 'obs_indirect_apc_dq2_dq8_cd4_stimulation_index' in validated_stage0
+            and 'obs_indirect_apc_cd4_ifng_si' in validated_stage0
+            and 'obs_gate0d_activated_cd4_fasl_apoptosis_pct' in validated_stage0
+            and 'obs_gate0d_transwell_beta_annexin_v_pct' in validated_stage0
+            and not indirect_apc_cd4_failed
+            and not arm3_ongoing_bioactivity_explicit_false
+        )
     )
     has_explicit_exogenous_b2m_obs = bool(
         'obs_exogenous_b2m_w632_surface_fold_isotype' in validated_stage0

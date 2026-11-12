@@ -5122,7 +5122,18 @@
               "obs_assembled_cassette_chandler_loop_sc5b9_fold",
               "obs_assembled_cassette_chandler_loop_platelet_retention_pct"
             ],
-            "cell_intrinsic_cd55_scr14_cd59_challenger": "If assembled-cassette Chandler-loop sC5b-9 exceeds 1.5x target (2.0x hard Stage-0 hold ceiling) or C3d opsonization exceeds 1.5x on hypoxic SC-islets/iECs, promote the chimeric single-chain CD47-IgV-CD55(SCR1-4)-GPI or 2A-free bidirectional/dual-promoter [SV40pA-CD55(SCR1-4)-GPI(antisense) <- EEF1A1-core | hPGK1-min(sense) -> CD59-GPI-bGHpA] complement-shield challenger (explicitly rejecting 2A-linked CD55-P2A-CD59 or CD59-P2A-CD55 bicistrons because placing either GPI-anchored protein upstream of a 2A peptide appends a C-terminal -GSG-P2A stub that blocks ER PIGK GPI-transamidase cleavage, and requiring Stage-0 Gate-0D flow-cytometric CD55/CD59 surface expression, PI-PLC cleavage >= 85%, and zero 2A-scar qualification; AUDIT-REF [DEC-075])."
+            "cell_intrinsic_cd55_scr14_cd59_challenger": "If assembled-cassette Chandler-loop sC5b-9 exceeds 1.5x target (2.0x hard Stage-0 hold ceiling) or C3d opsonization exceeds 1.5x on hypoxic SC-islets/iECs, promote the chimeric single-chain CD47-IgV-CD55(SCR1-4)-GPI or 2A-free bidirectional/dual-promoter [SV40pA-CD55(SCR1-4)-GPI(antisense) <- EEF1A1-core | hPGK1-min(sense) -> CD59-GPI-bGHpA] complement-shield challenger (explicitly rejecting 2A-linked CD55-P2A-CD59 or CD59-P2A-CD55 bicistrons because placing either GPI-anchored protein upstream of a 2A peptide appends a C-terminal -GSG-P2A stub that blocks ER PIGK GPI-transamidase cleavage, and requiring Stage-0 Gate-0D flow-cytometric CD55/CD59 surface expression, PI-PLC cleavage >= 85%, and zero 2A-scar qualification; AUDIT-REF [DEC-075]).",
+            "ectopic_cd55_scr14_unconfounded_causal_attribution_satellite_iip_0012": {
+              "decision_id": "DEC-091",
+              "contribution_id": "IIP-0012",
+              "primary_citations": [
+                "PMID:35666870",
+                "PMID:27787618",
+                "PMID:38508139"
+              ],
+              "primary_causal_contrast": "Exact same edited Stage-7 graft background + ectopic CD55(SCR1-4) vs exact same edited Stage-7 graft background without ectopic CD55 (matched vector/delivery mock handling and intact endogenous CD59), isolating CD55 convertase-decay attribution without confounding from the 4-locus edit package or from total CD59 loss-of-function (which impairs SNARE-mediated insulin exocytosis via intracellular IRIS-1/IRIS-2 isoforms per Golec et al. 2022 PMID:35666870).",
+              "supplementary_references_and_anchor_controls": "Unedited WT Stage-7 endocrine cells (already complement-resistant per van der Torren et al. 2017 PMID:27787618, so developmental CD55 variation alone does not establish a mature Stage-7 deficit) and CD59-perturbed controls are retained strictly as supplementary references; any ectopic CD55(SCR1-4) construct must specify its membrane anchor (GPI vs transmembrane), plasma-membrane localization, QuantiBRITE surface expression, and ER PIGK GPI-biosynthesis non-competition against CD47-IgV-GPI (>200,000 molecules/cell) and endogenous surface CD59 under both acute 20% NHS (<=5.0% lysis) and Arm-2 post-adjunct-depletion complement rechallenge."
+            }
           },
           "post_contact_trogocytosis_and_apoptotic_efferocytosis_sparing_gate": {
             "post_macrophage_contact_cd47_retention_min_molecules": 180000,

@@ -3069,11 +3069,11 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
         == 0.90
     )
 
-    # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (27 persisted boolean flags, 31 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
-    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 27
+    # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (31 persisted boolean flags, 35 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
+    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 31
     assert "require_full_5endpoint_s9_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
     assert "require_full_7metric_combined_stress_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
-    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 31
+    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 35
     assert "5.71 mmHg at 100 um clusters with matched D_caps = D_gel" in film_limit["surgical_mitigation"]
 
     batch1_r7s2 = {
@@ -3156,7 +3156,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     # - R7S3-F02: Both wetlab_contract.evaluate_stage0_decision_tree and ingest_wetlab_results.evaluate_stage0_decision_tree reject non-boolean policy values
     from scripts import wetlab_contract as wc_mod
 
-    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 31
+    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 35
     for bkey in wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS:
         for bad_val in ("false", "False", 0, "true", "True", 1):
             for eval_fn in (wc_mod.evaluate_stage0_decision_tree, wetlab.evaluate_stage0_decision_tree):
@@ -4347,6 +4347,129 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     except ValueError:
         pass
     assert "IIP-0011" in _r9_s2_bp_md and "DEC-090" in _r9_s2_bp_md
+
+    # =========================================================================
+    # 42. DEC-091 / IIP-0012 POST-ADJUNCT THREE-HISTORY RECHALLENGE CONTRACT,
+    #     SA-FHL-1 TRUTH-IN-LABELING, UNCONFOUNDED CD55 SATELLITE & HELD
+    #     STAGE-0 CHALLENGER FALSIFIER GATES
+    # =========================================================================
+    _dt_v1_iip12 = json.loads((ROOT / "data/protocols/stage0_decision_tree_v1.json").read_text(encoding="utf-8"))
+    assert "post_adjunct_depletion_three_history_rechallenge_and_cd55_gate_iip_0012" in _dt_v1_iip12
+    assert "stage0_held_challenger_falsifier_gates_iip_0012" in _dt_v1_iip12
+    _held_12 = _dt_v1_iip12["stage0_held_challenger_falsifier_gates_iip_0012"]
+    assert _held_12["initial_state"] == "HOLD_FOR_PROSPECTIVE_FALSIFIER"
+    assert len(_held_12["held_challenger_families"]) == 4
+
+    assert "stage0_post_adjunct_and_held_challenger_falsifier_gates_iip_0012" in _r9_l2_iip11
+    assert (
+        _r9_l2_iip11["stage0_post_adjunct_and_held_challenger_falsifier_gates_iip_0012"]["core_scoring_impact"]
+        == "ZERO_LAYER1_SCORE_CHANGE"
+    )
+    def _find_nested_dict_key(node, target_key):
+        if isinstance(node, dict):
+            if target_key in node:
+                return node[target_key]
+            for val in node.values():
+                hit = _find_nested_dict_key(val, target_key)
+                if hit is not None:
+                    return hit
+        elif isinstance(node, list):
+            for item in node:
+                hit = _find_nested_dict_key(item, target_key)
+                if hit is not None:
+                    return hit
+        return None
+
+    _cd55_l3 = _find_nested_dict_key(
+        _r9_l3_iip11,
+        "ectopic_cd55_scr14_unconfounded_causal_attribution_satellite_iip_0012",
+    )
+    assert _cd55_l3 is not None and _cd55_l3["decision_id"] == "DEC-091"
+
+    # Active Arm 3 default still fails when activated CD4 FasL apoptosis < 80%:
+    _arm3_low_fasl = {
+        **full_ext_payload,
+        "obs_indirect_apc_dq2_dq8_cd4_stimulation_index": 1.1,
+        "obs_indirect_apc_cd4_ifng_si": 1.2,
+        "obs_gate0d_activated_cd4_fasl_apoptosis_pct": 12.0,
+        "obs_gate0d_transwell_beta_annexin_v_pct": 6.0,
+    }
+    _eval_arm3_low = wc_mod.evaluate_stage0_decision_tree(_arm3_low_fasl)
+    assert (
+        _eval_arm3_low["resolved_architecture_assignments"]["lot_maturation_status"]
+        == "HOLD_GATE0D_INDIRECT_APC_DQ2_DQ8_CD4_AUTOIMMUNE_STIMULATION_EXCEEDED"
+    )
+
+    # Verified Arm 2 exempts <80% FasL CD4 apoptosis, enforces SA-FHL-1 truth-in-labeling, and clears shared 6-endpoint post-depletion bounds:
+    _arm2_pass = {
+        **_arm3_low_fasl,
+        "adjunct_conditioning_history_arm": "ARM2_CONDITIONED_DEPLETED",
+        "adjunct_depletion_mode": "NATURAL_AGING_DECAY",
+        "adjunct_sa_fhl1_status": "RETAINED_ACTIVE",
+        "adjunct_immune_responder_history": "PAIRED_BOTH",
+        "obs_arm2_bound_and_supernatant_fasl_bioactivity_depleted_verified": True,
+        "obs_arm2_sa_thbd_bioactivity_depleted_verified": True,
+        "obs_arm2_contemporaneous_sham_handling_matched": True,
+        "obs_arm3_ongoing_adjunct_bioactivity_verified": True,
+        "obs_arm2_post_depletion_viable_beta_recovery_pct": 92.0,
+        "obs_arm2_post_depletion_perifusion_gsis_si": 3.4,
+        "obs_arm2_post_depletion_nhs_c5b9_mac_pct": 2.5,
+    }
+    _eval_arm2_pass = wc_mod.evaluate_stage0_decision_tree(_arm2_pass)
+    assert (
+        _eval_arm2_pass["resolved_architecture_assignments"]["arm2_post_adjunct_depletion_qualification_status"]
+        == "ARM2_POST_ADJUNCT_DEPLETION_RECHALLENGE_CLEARED"
+    )
+    assert (
+        _eval_arm2_pass["resolved_architecture_assignments"]["adjunct_depletion_truth_in_labeling_status"]
+        == "PARTIAL_FASL_THBD_DEPLETED_SA_FHL1_RETAINED_ACTIVE_NOT_COMPLETE_ADJUNCT_DEPLETION"
+    )
+
+    # Incomplete Arm 2 verification & rebound injury holds + non-pooling of NATURAL_AGING_DECAY vs PHYSICAL_WASHOUT:
+    _eval_arm2_unver = wc_mod.evaluate_stage0_decision_tree(
+        {**_arm2_pass, "obs_arm2_sa_thbd_bioactivity_depleted_verified": False}
+    )
+    assert (
+        _eval_arm2_unver["resolved_architecture_assignments"]["lot_maturation_status"]
+        == "HOLD_GATE0D_ARM2_ADJUNCT_DEPLETION_OR_SHAM_VERIFICATION_INCOMPLETE"
+    )
+    _eval_arm2_rebound = wc_mod.evaluate_stage0_decision_tree(
+        {**_arm2_pass, "obs_arm2_post_depletion_nhs_c5b9_mac_pct": 9.5}
+    )
+    assert (
+        _eval_arm2_rebound["resolved_architecture_assignments"]["lot_maturation_status"]
+        == "HOLD_GATE0D_ARM2_POST_ADJUNCT_DEPLETION_REBOUND_INJURY_OR_FUNCTION_LOSS"
+    )
+    _cal_dm1 = wetlab.run_calibration(
+        {
+            "batch_id": "BATCH-IIP12-DM1",
+            "mcb_clone_id": "CLONE-IIP12",
+            "product_variant_id": "ISLET1_A4_ARM1B_EMB_A_STAR_4143",
+            "adjunct_conditioning_history_arm": "ARM2_CONDITIONED_DEPLETED",
+            "adjunct_depletion_mode": "NATURAL_AGING_DECAY",
+            "obs_stage7_yield_ratio": 0.91,
+            "obs_stage7_yield_se": 0.03,
+        },
+        is_dry_run=False,
+    )
+    try:
+        wetlab.run_calibration(
+            {
+                "batch_id": "BATCH-IIP12-DM2",
+                "mcb_clone_id": "CLONE-IIP12",
+                "product_variant_id": "ISLET1_A4_ARM1B_EMB_A_STAR_4143",
+                "adjunct_conditioning_history_arm": "ARM2_CONDITIONED_DEPLETED",
+                "adjunct_depletion_mode": "PHYSICAL_WASHOUT",
+                "obs_cd47_fold": 4.2,
+                "obs_cd47_fold_se": 0.2,
+            },
+            False,
+            _cal_dm1,
+        )
+        raise AssertionError("Expected ValueError when pooling NATURAL_AGING_DECAY and PHYSICAL_WASHOUT batches")
+    except ValueError as _exc_dm:
+        assert "adjunct_depletion_mode" in str(_exc_dm)
+    assert "IIP-0012" in _r9_s2_bp_md and "DEC-091" in _r9_s2_bp_md
 
 
 
