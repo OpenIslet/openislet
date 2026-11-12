@@ -393,6 +393,8 @@ def _generate_release_manifest() -> None:
         "data/omics/t1d_associated_targets_top100.json",
         "data/omics/t1d_disease_search.json",
         "data/extracted/cross_study_discovery_graph.json",
+        "data/extracted/context_evidence_graph_v1.json",
+        "data/extracted/layer1_context_evidence_graph_atlas.json",
         "data/extracted/islet1_candidate_stack_rankings.json",
         "data/extracted/islet1_stack_ranking_v0.5.json",
         "data/extracted/ring1_study_dossiers_v0.5.jsonl",
@@ -450,6 +452,7 @@ def _generate_release_manifest() -> None:
         "tests/test_round2_astra_layer1.py",
         "tests/test_round2_astra_molecular.py",
         "tests/test_round2_astra_physiology.py",
+        "scripts/build_context_evidence_graph.py",
         "scripts/build_cross_study_graph.py",
         "scripts/build_study_dossiers.py",
         "scripts/extract_ring1_corpus.py",
@@ -465,6 +468,7 @@ def _generate_release_manifest() -> None:
         "scripts/summarize_omics_baseline.py",
         "tests/test_adversarial_acceptance.py",
         "tests/test_citations_resolve.py",
+        "tests/test_context_evidence_graph.py",
         "tests/test_design_algebra_exact.py",
         "tests/test_layer2_and_layer3_planes.py",
         "tests/test_layer4_and_layer5_planes.py",
@@ -531,6 +535,7 @@ def _generate_release_manifest() -> None:
     layer2_atlas = json.loads((EXTRACTED_DIR / "layer2_regulatory_and_perturbation_atlas.json").read_text())
     layer3_atlas = json.loads((EXTRACTED_DIR / "layer3_structural_verification_atlas.json").read_text())
     layer5_atlas = json.loads((EXTRACTED_DIR / "layer5_personalized_patient_and_crispr_atlas.json").read_text())
+    layer1_ceg_atlas = json.loads((EXTRACTED_DIR / "layer1_context_evidence_graph_atlas.json").read_text(encoding="utf-8"))
 
     manifest = {
         "schema_version": "openislet_release_manifest_v0.8.0",
@@ -647,6 +652,13 @@ def _generate_release_manifest() -> None:
             "extracted_studies_total": len(studies),
             "extracted_arms_total": sum(len(s.get("arms", [])) for s in studies),
             "extracted_atomic_effects_total": n_effects,
+            "ceg_screened_records_total": layer1_ceg_atlas["summary"]["screened_candidate_records_total"],
+            "ceg_empirical_candidates_total": layer1_ceg_atlas["summary"]["empirical_candidates_identified_total"],
+            "ceg_studies_total": layer1_ceg_atlas["summary"]["primary_empirical_studies_extracted"],
+            "ceg_arms_total": layer1_ceg_atlas["summary"]["experimental_and_control_arms_total"],
+            "ceg_outcomes_total": layer1_ceg_atlas["summary"]["structured_outcomes_total"],
+            "ceg_blueprint_links_total": layer1_ceg_atlas["summary"]["blueprint_links_total"],
+            "ceg_effector_nodes_total": layer1_ceg_atlas["summary"]["biological_effector_nodes_total"],
             "extracted_thresholds_total": len(graph_data.get("regime_thresholds", [])),
             "extracted_failure_modes_total": len(
                 graph_data.get("residual_failure_and_complementary_lever_pairs", [])
@@ -1857,6 +1869,9 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                 raise ValueError('Public study contains an invalid opaque reference')
         if graph_path.exists() and public_token_errors(json.loads(graph_path.read_text(encoding='utf-8'))):
             raise ValueError('Public graph contains an invalid opaque reference')
+        ceg_export_path = work_dir / 'data/extracted/context_evidence_graph_v1.json'
+        if ceg_export_path.exists() and public_token_errors(json.loads(ceg_export_path.read_text(encoding='utf-8'))):
+            raise ValueError('Public Context-Evidence Graph contains an invalid opaque reference')
         verify_public_bundle_privacy_guard(
             work_dir,
             source_root=ROOT,

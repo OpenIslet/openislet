@@ -19,7 +19,7 @@ HIP-Core executes all 36 coded rows, including all 11 repeat/bridge/lead rows, a
 
 Native EEF1A1 core: 230 bp, 19 CpG dinucleotides, 3 exact/RC donor occurrences; these are native CpG-containing promoter sequences.
 
-Release manifest: `1,351` pinned files. Machine facts: `data/extracted/documentation_facts_v0.8.0.json`. These facts supersede stale numeric summaries in explicitly historical rationale sections. Outward rankings remain unfrozen (`outward_rankings_frozen: false`); no exact product has passed physical qualification.
+Release manifest: `1,355` pinned files. Machine facts: `data/extracted/documentation_facts_v0.8.0.json`. These facts supersede stale numeric summaries in explicitly historical rationale sections. Outward rankings remain unfrozen (`outward_rankings_frozen: false`); no exact product has passed physical qualification.
 
 <!-- OPENISLET_GENERATED_FACTS_END -->
 
@@ -274,7 +274,14 @@ For a curative adult/pediatric dose of $500{,}000\text{ IEQ}$ containing $N_{\te
 
 ---
 
-## 9. Layers 2–5 Execution & Verification Summary (`v0.8.0`)
+## 9. Layers 1–5 Execution & Verification Summary (`v0.8.0`)
+
+### 9.0 Layer 1 — T1D Context–Evidence Graph (`CEG`, `1,151` Primary Empirical Studies) & `2,160`-Stack Scenario Baseline
+- **Executable Engine & Artifacts:** `python3 scripts/build_context_evidence_graph.py` $\to$ `data/extracted/context_evidence_graph_v1.json`, `data/extracted/layer1_context_evidence_graph_atlas.json`, and `tests/test_context_evidence_graph.py` (alongside the `2,160`-stack scenario ranker `python3 scripts/rank_islet1_stacks.py` and the Ring-1 cross-study graph `data/extracted/cross_study_discovery_graph.json`).
+- **Context–Evidence Graph Scope (`3,922` Screened Candidate Records $\to$ `3,246` Empirical Candidates $\to$ `1,151` Wave-1 Extracted Primary Empirical Studies):**
+  - Indexes **`1,151` primary empirical studies** (`423` empirical Ring-1 core studies plus `728` newly extracted empirical studies across stem-cell islets, primary human islets, humanized/autoimmune mouse models, non-human primate and clinical transplant cohorts, and mechanistic immune/vascular assays), **`7,659` experimental and control arms** with explicit biological-model, immune-context, cell-source, follow-up, and causal-isolation annotations, **`14,105` structured outcomes** (`2,429` directly cited by blueprint links plus `11,676` retained background arm outcomes), **`2,447` blueprint claim, contradiction, and context-scoping links** (`0` unresolved outcome citations), **`20` biological effector pathway nodes**, and **`10` Idea Graveyard cross-links**.
+  - **Rights-Aware Public Packaging:** All inline `verbatim_quote` strings are withheld in `context_evidence_graph_v1.json` (retaining 64-hex `quote_sha256` digests and structured `source_pin` table/figure coordinates), and any string sharing a $\ge 6$-word normalized source shingle or $\ge 40$-character local dossier substring is replaced with a deterministic non-expressive structured descriptor so `build_context_evidence_graph.py` can verify and deterministically regenerate `layer1_context_evidence_graph_atlas.json` from any public checkout.
+  - **Explicit Separation from the `563`-Study Scoring Baseline:** The `2,160`-stack prior-anchored scenario evaluator (`scripts/rank_islet1_stacks.py`) retains its **`563`-study / `3,093`-effect Ring-1 scoring baseline** and published scenario indices (`0.1084` Blueprint A, `0.1046` Challenger X, `0.0673` Blueprint B) unchanged unless an explicit Islet Improvement Proposal updates a module parameter or Idea Graveyard rule.
 
 ### 9.1 Layer 2 — Authentic GRCh38/GenBank Construct Synthesis, AlphaGenome Scope Reconciliation (Quarantined Non-Commercial Output Terms vs. Open Public Bundle) & Stage 0→7 Perturbation Plane
 - **Executable Engine & Artifacts:** `python3 scripts/run_layer2_perturbation_and_regulatory_plane.py` $\to$ `data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta`, `data/raw/layer2_genomic_and_jaspar_reference.json`, `data/extracted/layer2_regulatory_and_perturbation_atlas.json`, and `tests/test_layer2_and_layer3_planes.py`.

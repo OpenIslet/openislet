@@ -101,6 +101,13 @@
     "extracted_studies_total": 563,
     "extracted_arms_total": 596,
     "extracted_atomic_effects_total": 3093,
+    "ceg_screened_records_total": 3922,
+    "ceg_empirical_candidates_total": 3246,
+    "ceg_studies_total": 1151,
+    "ceg_arms_total": 7659,
+    "ceg_outcomes_total": 14105,
+    "ceg_blueprint_links_total": 2447,
+    "ceg_effector_nodes_total": 20,
     "extracted_thresholds_total": 5,
     "extracted_failure_modes_total": 724,
     "graveyard_entries_total": 10,
@@ -246,43 +253,43 @@
       "bytes": 1157
     },
     "ISLET-1-BLUEPRINT.md": {
-      "sha256": "a14e11fb2c93463420412c01a1c66e70f1bf5c87f57420360d5b1f92c12a50ab",
-      "bytes": 167071
+      "sha256": "3614d25feca33a8bb2ed735248026ed0d92cfd7601db5864fb504967d88b7d7c",
+      "bytes": 169527
     },
     "README.md": {
-      "sha256": "9bf3e1aafba3528bd38460a382cdf41946abe6f96d894a0044cf0366e5fd190d",
-      "bytes": 6686
+      "sha256": "7ca26d8c382b5864def5523ccfaecd70f334fbc6eadca8c3e3236ea7d8d39136",
+      "bytes": 7372
     },
     "docs/ISLET-1-DERIVATIONS-AND-AUDIT-TABLES.md": {
-      "sha256": "b217a272a6c67b830c60da28572306ecf45b63ee836731601d746e0f2bf78641",
+      "sha256": "ddbe2a8d0d9b8c7c54ab2f93e298d4daa58a368b7e9c2fe40cbdf0ac37e8c9b2",
       "bytes": 65386
     },
     "docs/ISLET-1-MASTER-SPEC-v0.1.md": {
-      "sha256": "2efa62377f37f0795679e48a642177079af85b8e6664a4c2eb02f956999d3acf",
+      "sha256": "c110347c0b07dab7adb9c4b52a63ecefed771b74c2f86a9af5c64ef78f495b43",
       "bytes": 108468
     },
     "docs/ISLET-1-SYNTHESIS-REPORT-v0.4.md": {
-      "sha256": "28f60afa5a7ee0fd22bdafb1716bd3593eb209b15d7dba16a563f6917184fbb3",
+      "sha256": "4266f9a999273f2a16d59692ca0410eee83780d3c8a4a3a939e092f21f1f6b47",
       "bytes": 16319
     },
     "docs/ISLET-1-CANDIDATE-BLUEPRINTS-AND-OPTIMIZER-v0.2.md": {
-      "sha256": "6842d6bfd8999e51f49157f27844d00daedf4c9f99e445822195f45bbf8e88ca",
+      "sha256": "824a6961769ea5ca6ecf4b210cd2dab54478141929c031b2f11806af0b25bef9",
       "bytes": 46155
     },
     "docs/PROJECT-ISLET-1-RING1-DISCOVERY-ATLAS-AND-STRATEGY.md": {
-      "sha256": "2a293e370a5cd91d620f8c2b21ce607e70dc287e139d2639da8701905a0c90de",
+      "sha256": "a26961d0abfecea53e4211d7f5b89c88a14372266f9c13e610fa9036d8e75829",
       "bytes": 20334
     },
     "docs/PROJECT-DECISIONS-LOG.md": {
-      "sha256": "87a47467250fa0ec3e4b78234da3e699673d20ccabdcc7a708d95f6d7f991e83",
-      "bytes": 488553
+      "sha256": "83bfcdc4213e7ab8c27f0649fe59124b8b775903c9489abf2af15d6af0b7ca9f",
+      "bytes": 490998
     },
     "docs/OPENISLET-2026-2030-MASTER-TIMELINE.md": {
       "sha256": "29e60d85822d6bf4c7087de283c8519726fbacb2d322fa76309bfe03b6c26716",
       "bytes": 32455
     },
     "docs/STAGE-0-EXECUTION-PLAYBOOK.md": {
-      "sha256": "865c5e7c994779bf17d7209c84a42d4902276ed2b5553c27c090644bf353e544",
+      "sha256": "9c2ab634eeeb7edc2cc04997a45c1f52c975316adf935cc783ece27d48900cf0",
       "bytes": 106686
     },
     "data/raw/corpus_manifest_all_sources.jsonl": {
@@ -345,6 +352,14 @@
       "sha256": "0d3424ec2115573c3cb178877996efb163de0d99b8b92df8e562e9f0518c8a58",
       "bytes": 4750804,
       "local_audit_tree_sha256": "1eb6248877b1dacf11154f608515c092ed1db2fdb7efc34b9c5456a3aa1113f4"
+    },
+    "data/extracted/context_evidence_graph_v1.json": {
+      "sha256": "b2b6b97ab214727dac576dd9274beab4ce5664c4f1a068c5383481b57453fca3",
+      "bytes": 22871655
+    },
+    "data/extracted/layer1_context_evidence_graph_atlas.json": {
+      "sha256": "97d9f48ffd4d0110a6feee9c489b218ae952090a456067843399a146da3f81de",
+      "bytes": 581846
     },
     "data/extracted/islet1_candidate_stack_rankings.json": {
       "sha256": "15b30b6988f396fdbcee66cc12b0ec40aab3dc2bdeeb87fff7bcc44de0ae13eb",
@@ -518,7 +533,7 @@
       "bytes": 20371
     },
     "data/extracted/documentation_facts_v0.8.0.json": {
-      "sha256": "bec12d032244b4f7b8f2f66f9dd05da057de3592b8350f8fc3a7367fbfa0644a",
+      "sha256": "1e75a204ede1904adc7820bc24160d9c1086f7d80b8e08a047a9a395427d3afc",
       "bytes": 1559543
     },
     "tests/test_preastra_layer1.py": {
@@ -577,6 +592,10 @@
       "sha256": "8627164412a88872d4fd488879a61eaebce6e688c5f378ef7cd619e275d18846",
       "bytes": 18165
     },
+    "scripts/build_context_evidence_graph.py": {
+      "sha256": "d7a284d2f431bf467c8ea726d9f835657e0dcbc543b937913900a40d2651f6c7",
+      "bytes": 37299
+    },
     "scripts/build_cross_study_graph.py": {
       "sha256": "2299c2c821cfb3b60f15a600c19e5d51848fab992b20bb343dbd822bd5f5d410",
       "bytes": 38637
@@ -590,8 +609,8 @@
       "bytes": 215433
     },
     "scripts/generate_release_manifest.py": {
-      "sha256": "a7206161de585b3eedd359131d1ddff1e283483cc5037b3ce6777da93494e7a6",
-      "bytes": 111264
+      "sha256": "2281f7c424cb86870fcd9903274ac8a88c342a13c8c0c2b77d53594001201a2e",
+      "bytes": 112626
     },
     "scripts/harvest_corpus.py": {
       "sha256": "c61503b386f1f4860b56cc805ae139bf1a7b4f4ff7239a4b9dfa3a8740b14c1e",
@@ -636,6 +655,10 @@
     "tests/test_citations_resolve.py": {
       "sha256": "fc661436de871d2901558e6bafde596168a2df3e338ecb43b2c634e53c0997b1",
       "bytes": 10097
+    },
+    "tests/test_context_evidence_graph.py": {
+      "sha256": "907561bae9421e201573093a51746ced28bcaae6a46656010b9d671b53b39fe6",
+      "bytes": 3787
     },
     "tests/test_design_algebra_exact.py": {
       "sha256": "e41f7581722142beea8cc1771434b931d2c17ea9472ac296102a5909c64bdbf3",
@@ -6688,8 +6711,10 @@
     "data/extracted/9541172.json",
     "data/extracted/9701263.json",
     "data/extracted/9734483.json",
+    "data/extracted/context_evidence_graph_v1.json",
     "data/extracted/cross_study_discovery_graph.json",
     "data/extracted/documentation_facts_v0.8.0.json",
+    "data/extracted/layer1_context_evidence_graph_atlas.json",
     "data/extracted/layer2_regulatory_and_perturbation_atlas.json",
     "data/extracted/layer3_structural_verification_atlas.json",
     "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json",
@@ -6776,6 +6801,7 @@
     "pyproject.toml",
     "requirements.txt",
     "schemas/extraction_schema_v0.2.json",
+    "scripts/build_context_evidence_graph.py",
     "scripts/build_cross_study_graph.py",
     "scripts/build_study_dossiers.py",
     "scripts/engineering_priors.py",
@@ -6797,6 +6823,7 @@
     "scripts/wetlab_contract.py",
     "tests/test_adversarial_acceptance.py",
     "tests/test_citations_resolve.py",
+    "tests/test_context_evidence_graph.py",
     "tests/test_design_algebra_exact.py",
     "tests/test_layer2_and_layer3_planes.py",
     "tests/test_layer4_and_layer5_planes.py",

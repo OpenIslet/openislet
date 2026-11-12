@@ -19,7 +19,7 @@ HIP-Core executes all 36 coded rows, including all 11 repeat/bridge/lead rows, a
 
 Native EEF1A1 core: 230 bp, 19 CpG dinucleotides, 3 exact/RC donor occurrences; these are native CpG-containing promoter sequences.
 
-Release manifest: `1,351` pinned files. Machine facts: `data/extracted/documentation_facts_v0.8.0.json`. These facts supersede stale numeric summaries in explicitly historical rationale sections. Outward rankings remain unfrozen (`outward_rankings_frozen: false`); no exact product has passed physical qualification.
+Release manifest: `1,355` pinned files. Machine facts: `data/extracted/documentation_facts_v0.8.0.json`. These facts supersede stale numeric summaries in explicitly historical rationale sections. Outward rankings remain unfrozen (`outward_rankings_frozen: false`); no exact product has passed physical qualification.
 
 <!-- OPENISLET_GENERATED_FACTS_END -->
 
@@ -53,7 +53,7 @@ Release manifest: `1,351` pinned files. Machine facts: `data/extracted/documenta
 
 ## 1. Verified `v0.8.0 / Wave 0` Corpus & Red-Team Swarm Audit Status (`2026-11-01`)
 
-All extraction, graph-construction and scenario pipelines are hash-pinned in [`manifest.json`](../manifest.json) (`1,351` pinned files). Private research dossiers remain excluded from public bundles; the rights-aware exporter applies the <=240-character / <25%-abstract policy and preserves source/license qualification. Counts by scientific scope are generated above rather than inferred by adding separate inventories.
+All extraction, graph-construction and scenario pipelines are hash-pinned in [`manifest.json`](../manifest.json) (`1,355` pinned files). Private research dossiers remain excluded from public bundles; the rights-aware exporter applies the <=240-character / <25%-abstract policy and preserves source/license qualification. Counts by scientific scope are generated above rather than inferred by adding separate inventories.
 
 - **PubMed Discovery Manifest (`data/raw/corpus_manifest_all_sources.jsonl`):** 7,703 JSONL rows / 7,703 unique PubMed PMIDs, with 0 inline abstract strings. Separate preprint, patent, GEO and ClinicalTrials.gov inventories are retained in their own raw files and are not additive components of this PMID manifest.
 - **Validated Ring-1 records:** Current corpus: 563 studies, 548 active deduplicated, 547 active empirical, 529 strict peer-reviewed empirical; 3,093 effects, 596 arms, 20 reference controls, 237 edit entries and 242 expanded gene occurrences under the ranker expander. Direction/penalty labels are rule-based heuristics; 43 flagged penalties are not an independently adjudicated accuracy dataset. Private dossier caches are excluded from public redistribution.
