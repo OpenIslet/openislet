@@ -179,6 +179,12 @@ STAGE0_DECISION_TREE_ENDPOINT_SPECS = [
     ('gate0d_arm2_post_depletion_viable_beta_recovery_pct', 'obs_arm2_post_depletion_viable_beta_recovery_pct', 'obs_arm2_post_depletion_viable_beta_recovery_se', 0.0, 150.0, 'post_adjunct_depletion_rechallenge_viable_ins_nkx61_beta_recovery_percentage_of_sham'),
     ('gate0d_arm2_post_depletion_perifusion_gsis_si', 'obs_arm2_post_depletion_perifusion_gsis_si', 'obs_arm2_post_depletion_perifusion_gsis_si_se', 0.1, 30.0, 'post_adjunct_depletion_rechallenge_dynamic_perifusion_gsis_stimulation_index'),
     ('gate0f_arm2_post_depletion_nhs_c5b9_mac_pct', 'obs_arm2_post_depletion_nhs_c5b9_mac_pct', 'obs_arm2_post_depletion_nhs_c5b9_mac_se', 0.0, 100.0, 'post_adjunct_depletion_20pct_nhs_c5b9_mac_positive_percentage'),
+    # Two-strand knock-in splice-challenger IVT-RNA recovery, UMI isoform census, TOST host-exon retention, and dsRNA/ISG qualification endpoints (IIP-0015; DEC-092):
+    ('gate0s_challenger_ivt_relative_recovery_eta', 'obs_challenger_ivt_relative_recovery_eta', 'obs_challenger_ivt_relative_recovery_se', 0.01, 2.0, 'pre_extraction_chimeric_ivt_rna_relative_recovery_ratio_eta'),
+    ('gate0s_challenger_umi_molecules_profiled', 'obs_challenger_umi_molecules_profiled', 'obs_challenger_umi_molecules_profiled_se', 0.0, 1e9, 'unique_consensus_umi_cdna_molecules_profiled'),
+    ('gate0s_challenger_aberrant_splice_umi_count_k', 'obs_challenger_aberrant_splice_umi_count_k', 'obs_challenger_aberrant_splice_umi_count_se', 0.0, 1e6, 'observed_aberrant_chimeric_or_cryptic_splice_umi_molecule_count_k'),
+    ('gate0s_challenger_host_exon_splice_retention_ratio', 'obs_challenger_host_exon_splice_retention_ratio', 'obs_challenger_host_exon_splice_retention_se', 0.0, 5.0, 'host_exon_canonical_splice_retention_ratio_vs_unedited_parental'),
+    ('gate0s_challenger_dsrna_j2_or_isg_fold_wt', 'obs_challenger_dsrna_j2_or_isg_fold_wt', 'obs_challenger_dsrna_j2_or_isg_fold_se', 0.0, 50.0, 'anti_dsrna_j2_or_ifit1_oas1_isg15_fold_over_unedited_parental'),
 ]
 
 STICKY_S9_PRIOR_VARIANT_SAFETY_STATUSES: frozenset[str] = frozenset({
@@ -241,6 +247,52 @@ ALLOWED_ADJUNCT_IMMUNE_RESPONDER_HISTORIES: frozenset[str] = frozenset({
     'RETAINED_CONDITIONED_RESPONDERS',
     'FRESH_RECIPIENT_RESPONDERS',
     'PAIRED_BOTH',
+})
+
+UNSHIELDED_REFERENCE_SPLICE_CHALLENGER_ARMS: frozenset[str] = frozenset({
+    'S1_L3_CAN_SYN2_4090',
+    'S1_L3_CAN_SYN4_4090',
+    'S1_L3_CAN_BGH_ONLY_4090',
+    'S1_L3_CAN_WPRE_ONLY_4090',
+    'S2_L3_SF_SYN4_ONLY_3799',
+    'S2_L3_SF_SYN4_BGH_3799',
+    'S2_L3_SF_SYN4_1xFII80_3879',
+    'S2_L3_SF_SYN4_BGH_1xFII80_3879',
+    'S4_L1_ASTAR_505AA_STOP_ONLY_4143',
+    'S4_L1_ARM1B_500AA_STOP_ONLY_3974',
+})
+
+ALLOWED_KNOCKIN_SPLICE_CHALLENGER_ARMS: frozenset[str] = UNSHIELDED_REFERENCE_SPLICE_CHALLENGER_ARMS | frozenset({
+    'PARENTAL_REFERENCE',
+    'S1_L3_CAN_SYN2_PAM_SHIELDED_4090',
+    'S1_L3_CAN_SYN4_PAM_SHIELDED_4090',
+    'S1_L3_CAN_BGH_ONLY_PAM_SHIELDED_4090',
+    'S1_L3_CAN_WPRE_ONLY_PAM_SHIELDED_4090',
+    'S2_L3_SF_SYN4_ONLY_PAM_SHIELDED_3799',
+    'S2_L3_SF_SYN4_BGH_PAM_SHIELDED_3799',
+    'S2_L3_SF_SYN4_1xFII80_PAM_SHIELDED_3879',
+    'S2_L3_SF_SYN4_BGH_1xFII80_PAM_SHIELDED_3879',
+    'S2B_L3_BFB_SYN4_PAM_SHIELDED_4078',
+    'S2B_L3_BFB_SYN4_BGH_PAM_SHIELDED_4078',
+    'S3_L4_WINA_ONLY_3457',
+    'S3_L4_EEF230C_ONLY_3457',
+    'S3_L4_SPLICE_230C_3457',
+    'S3_L4_CODIR_7NT_230C_3457',
+    'S3_L4_CONVERGENT_WTCARGO_3457',
+    'S3_L4_CONVERGENT_5NT_230C_3457',
+    'S3_L4_CONVERGENT_2STRAND_230C_3457',
+    'S3_L4_WINDOW_B_COMPARATOR',
+    'S3_L4_NO_UCOE_COMPARATOR',
+    'S4_L1_ASTAR_505AA_STOP_ONLY_PAM_SHIELDED_4143',
+    'S4_L1_ARM1B_500AA_STOP_ONLY_PAM_SHIELDED_3974',
+    'S4_L1_DXS_ARM1C_500AA_STOP_ONLY_3300',
+    'S4_L1_DXS_ARM1C_500AA_STOP_ONLY_3459',
+})
+
+ALLOWED_KNOCKIN_LOCUS4_ORIENTATIONS: frozenset[str] = frozenset({
+    'CO_DIRECTIONAL_MINUS',
+    'CONVERGENT_PLUS',
+    'NOT_APPLICABLE',
 })
 
 STAGE0_CUSTOM_DEFAULT_SE: dict[str, float] = {
@@ -370,6 +422,11 @@ STAGE0_CUSTOM_DEFAULT_SE: dict[str, float] = {
     'obs_arm2_post_depletion_viable_beta_recovery_pct': 1.0,
     'obs_arm2_post_depletion_perifusion_gsis_si': 0.15,
     'obs_arm2_post_depletion_nhs_c5b9_mac_pct': 0.5,
+    'obs_challenger_ivt_relative_recovery_eta': 0.02,
+    'obs_challenger_umi_molecules_profiled': 1.0,
+    'obs_challenger_aberrant_splice_umi_count_k': 1.0,
+    'obs_challenger_host_exon_splice_retention_ratio': 0.03,
+    'obs_challenger_dsrna_j2_or_isg_fold_wt': 0.05,
 }
 
 STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
@@ -395,6 +452,7 @@ STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
     'obs_pdl1_hour0_mols': 1.0,
     'obs_gate0c_hour0_pdl1_molecules_per_cell': 1.0,
     'obs_serpinb9_kass_M_s': 10.0,
+    'obs_challenger_aberrant_splice_umi_count_k': 1e-12,
 }
 
 
@@ -717,6 +775,10 @@ STAGE0_DECISION_TREE_BOOLEAN_KEYS: tuple[str, ...] = (
     'obs_arm2_sa_thbd_bioactivity_depleted_verified',
     'obs_arm2_contemporaneous_sham_handling_matched',
     'obs_arm3_ongoing_adjunct_bioactivity_verified',
+    'obs_challenger_ivt_rna_recovery_standard_verified',
+    'obs_challenger_pam_seed_shield_coconversion_verified',
+    'obs_challenger_host_isoforms_above_loq_verified',
+    'obs_challenger_sv40pa_and_host_3prime_cleavage_checked',
 )
 
 
@@ -767,6 +829,8 @@ def derive_contract(root: Path | str | None = None) -> dict:
                 'adjunct_depletion_mode',
                 'adjunct_sa_fhl1_status',
                 'adjunct_immune_responder_history',
+                'knockin_splice_challenger_arm',
+                'knockin_locus4_orientation',
             ],
             'boolean_policy_keys': list(STAGE0_DECISION_TREE_BOOLEAN_KEYS),
             'endpoints': endpoints,
@@ -869,6 +933,14 @@ def normalize_measurements(payload: dict, *, require_observation: bool = True,
         elif key == 'adjunct_immune_responder_history':
             if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_ADJUNCT_IMMUNE_RESPONDER_HISTORIES:
                 raise ValueError(f'adjunct_immune_responder_history must be one of {sorted(ALLOWED_ADJUNCT_IMMUNE_RESPONDER_HISTORIES)} (IIP-0012; DEC-091)')
+            result[key] = payload[key].strip()
+        elif key == 'knockin_splice_challenger_arm':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_KNOCKIN_SPLICE_CHALLENGER_ARMS:
+                raise ValueError(f'knockin_splice_challenger_arm must be one of {sorted(ALLOWED_KNOCKIN_SPLICE_CHALLENGER_ARMS)} (IIP-0015; DEC-092)')
+            result[key] = payload[key].strip()
+        elif key == 'knockin_locus4_orientation':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_KNOCKIN_LOCUS4_ORIENTATIONS:
+                raise ValueError(f'knockin_locus4_orientation must be one of {sorted(ALLOWED_KNOCKIN_LOCUS4_ORIENTATIONS)} (IIP-0015; DEC-092)')
             result[key] = payload[key].strip()
         else:
             if not isinstance(payload[key], str) or not payload[key].strip() or len(payload[key]) > 120:
@@ -1027,6 +1099,12 @@ def evaluate_stage0_decision_tree(
         'adjunct_depletion_mode',
         'adjunct_sa_fhl1_status',
         'adjunct_immune_responder_history',
+        'obs_challenger_ivt_rna_recovery_standard_verified',
+        'obs_challenger_pam_seed_shield_coconversion_verified',
+        'obs_challenger_host_isoforms_above_loq_verified',
+        'obs_challenger_sv40pa_and_host_3prime_cleavage_checked',
+        'knockin_splice_challenger_arm',
+        'knockin_locus4_orientation',
     }
     unknown_keys = sorted(set(observations) - set(spec_by_mean) - set(spec_by_se) - allowed_boolean_and_meta_flags)
     if unknown_keys:
@@ -1042,12 +1120,14 @@ def evaluate_stage0_decision_tree(
         ('adjunct_depletion_mode', ALLOWED_ADJUNCT_DEPLETION_MODES),
         ('adjunct_sa_fhl1_status', ALLOWED_ADJUNCT_SA_FHL1_STATUSES),
         ('adjunct_immune_responder_history', ALLOWED_ADJUNCT_IMMUNE_RESPONDER_HISTORIES),
+        ('knockin_splice_challenger_arm', ALLOWED_KNOCKIN_SPLICE_CHALLENGER_ARMS),
+        ('knockin_locus4_orientation', ALLOWED_KNOCKIN_LOCUS4_ORIENTATIONS),
     ):
         if _adj_k in observations and observations[_adj_k] is not None:
             _adj_v = observations[_adj_k]
             if not isinstance(_adj_v, str) or _adj_v.strip() not in _adj_allowed:
                 raise ValueError(
-                    f"Invalid {_adj_k} {_adj_v!r}; must be one of {sorted(_adj_allowed)} (IIP-0012; DEC-091)"
+                    f"Invalid {_adj_k} {_adj_v!r}; must be one of {sorted(_adj_allowed)} (IIP-0012 / IIP-0015; DEC-091 / DEC-092)"
                 )
 
     defaulted_se_set = set(defaulted_se_keys or ())
@@ -2014,6 +2094,127 @@ def evaluate_stage0_decision_tree(
             or ('obs_gate0d_transwell_beta_annexin_v_pct' in validated_stage0 and _upper95('obs_gate0d_transwell_beta_annexin_v_pct') > 15.0)
         )
 
+    # Two-strand knock-in splice-challenger Stage-0 gate evaluation (IIP-0015; DEC-092):
+    _chall_arm_raw = observations.get('knockin_splice_challenger_arm')
+    knockin_splice_challenger_arm = (
+        _chall_arm_raw.strip() if isinstance(_chall_arm_raw, str) else 'PARENTAL_REFERENCE'
+    )
+    knockin_locus4_orientation = (
+        observations['knockin_locus4_orientation'].strip()
+        if isinstance(observations.get('knockin_locus4_orientation'), str)
+        else None
+    )
+    _chall_any_input = bool(
+        _chall_arm_raw is not None
+        or knockin_locus4_orientation is not None
+        or any(
+            observations.get(_ck) is not None
+            for _ck in (
+                'obs_challenger_ivt_rna_recovery_standard_verified',
+                'obs_challenger_pam_seed_shield_coconversion_verified',
+                'obs_challenger_host_isoforms_above_loq_verified',
+                'obs_challenger_sv40pa_and_host_3prime_cleavage_checked',
+            )
+        )
+        or any(
+            _ck in validated_stage0
+            for _ck in (
+                'obs_challenger_ivt_relative_recovery_eta',
+                'obs_challenger_umi_molecules_profiled',
+                'obs_challenger_aberrant_splice_umi_count_k',
+                'obs_challenger_host_exon_splice_retention_ratio',
+                'obs_challenger_dsrna_j2_or_isg_fold_wt',
+            )
+        )
+    )
+    challenger_umi_eff = (
+        validated_stage0['obs_challenger_umi_molecules_profiled']
+        * min(1.0, validated_stage0['obs_challenger_ivt_relative_recovery_eta'])
+        if (
+            'obs_challenger_umi_molecules_profiled' in validated_stage0
+            and 'obs_challenger_ivt_relative_recovery_eta' in validated_stage0
+        )
+        else 0.0
+    )
+    challenger_hold_status: str | None = None
+    if knockin_splice_challenger_arm != 'PARENTAL_REFERENCE' or _chall_any_input:
+        _is_active_chall = bool(knockin_splice_challenger_arm != 'PARENTAL_REFERENCE')
+        _tost_z95 = 1.6448536269514722
+        _host_ret_mean = validated_stage0.get('obs_challenger_host_exon_splice_retention_ratio')
+        _host_ret_se = _explicit_se('obs_challenger_host_exon_splice_retention_ratio')
+        _host_ret_se_supplied = (
+            se_provenance_by_mean.get('obs_challenger_host_exon_splice_retention_ratio') == 'EXPLICIT_SE_SUPPLIED'
+        )
+        _host_ret_tost_ok = bool(
+            _host_ret_mean is not None
+            and _host_ret_se_supplied
+            and (_host_ret_mean - _tost_z95 * _host_ret_se) >= 0.80
+            and (_host_ret_mean + _tost_z95 * _host_ret_se) <= 1.25
+        )
+        _orient_mismatch = bool(
+            (
+                knockin_splice_challenger_arm.startswith('S3_L4_CONVERGENT_')
+                and knockin_locus4_orientation != 'CONVERGENT_PLUS'
+            )
+            or (
+                knockin_splice_challenger_arm in (
+                    'S3_L4_WINA_ONLY_3457',
+                    'S3_L4_EEF230C_ONLY_3457',
+                    'S3_L4_SPLICE_230C_3457',
+                    'S3_L4_CODIR_7NT_230C_3457',
+                )
+                and knockin_locus4_orientation == 'CONVERGENT_PLUS'
+            )
+        )
+        if (
+            knockin_splice_challenger_arm in UNSHIELDED_REFERENCE_SPLICE_CHALLENGER_ARMS
+            or observations.get('obs_challenger_pam_seed_shield_coconversion_verified') is False
+            or (_is_active_chall and observations.get('obs_challenger_pam_seed_shield_coconversion_verified') is not True)
+        ):
+            challenger_hold_status = 'HOLD_CHALLENGER_SPLICE_UNSHIELDED_OR_PAM_SEED_COCONVERSION_UNVERIFIED'
+        elif _orient_mismatch:
+            challenger_hold_status = 'HOLD_CHALLENGER_SPLICE_LOCUS4_ORIENTATION_METADATA_MISMATCH'
+        elif (
+            observations.get('obs_challenger_ivt_rna_recovery_standard_verified') is False
+            or (_is_active_chall and observations.get('obs_challenger_ivt_rna_recovery_standard_verified') is not True)
+        ):
+            challenger_hold_status = 'HOLD_CHALLENGER_SPLICE_PREEXTRACTION_IVT_RNA_RECOVERY_STANDARD_UNVERIFIED'
+        elif (
+            observations.get('obs_challenger_host_isoforms_above_loq_verified') is False
+            or (_is_active_chall and observations.get('obs_challenger_host_isoforms_above_loq_verified') is not True)
+        ):
+            challenger_hold_status = 'HOLD_CHALLENGER_SPLICE_HOST_ISOFORM_BELOW_LOQ_OR_UNVERIFIED'
+        elif (
+            observations.get('obs_challenger_sv40pa_and_host_3prime_cleavage_checked') is False
+            or (_is_active_chall and observations.get('obs_challenger_sv40pa_and_host_3prime_cleavage_checked') is not True)
+        ):
+            challenger_hold_status = 'HOLD_CHALLENGER_SPLICE_SV40PA_AND_HOST_3PRIME_CLEAVAGE_UNCHECKED'
+        elif (
+            'obs_challenger_aberrant_splice_umi_count_k' in validated_stage0
+            and validated_stage0['obs_challenger_aberrant_splice_umi_count_k'] > 0.0
+        ):
+            challenger_hold_status = 'HOLD_CHALLENGER_SPLICE_ABERRANT_CHIMERIC_UMI_DETECTED'
+        elif (
+            ('obs_challenger_umi_molecules_profiled' in validated_stage0 or _is_active_chall)
+            and (
+                'obs_challenger_umi_molecules_profiled' not in validated_stage0
+                or 'obs_challenger_ivt_relative_recovery_eta' not in validated_stage0
+                or 'obs_challenger_aberrant_splice_umi_count_k' not in validated_stage0
+                or challenger_umi_eff < 3689.0
+            )
+        ):
+            challenger_hold_status = 'HOLD_CHALLENGER_SPLICE_EFFECTIVE_UMI_BELOW_3689_RECOVERY_ADJUSTED_MINIMUM'
+        elif ('obs_challenger_host_exon_splice_retention_ratio' in validated_stage0 or _is_active_chall) and not _host_ret_tost_ok:
+            challenger_hold_status = 'HOLD_CHALLENGER_SPLICE_HOST_EXON_RETENTION_OUTSIDE_90PCT_TOST_0P80_1P25'
+        elif (
+            ('obs_challenger_dsrna_j2_or_isg_fold_wt' in validated_stage0 or _is_active_chall)
+            and (
+                'obs_challenger_dsrna_j2_or_isg_fold_wt' not in validated_stage0
+                or _upper95('obs_challenger_dsrna_j2_or_isg_fold_wt') > 1.5
+            )
+        ):
+            challenger_hold_status = 'HOLD_CHALLENGER_SPLICE_CONVERGENT_DSRNA_J2_OR_ISG_EXCEEDS_1P5X_CEILING'
+
     # S8b TYK2 x inducible-promoter epistasis: support explicit enumerated scale {FRACTION_HALF_EFFECT, PP_HALF_EFFECT, PP_FULL_CONTRAST, DID_PP} with per-endpoint scale retention across batches, unified fractional half-effect threshold (point < -0.05 or lower95 < -0.10), and sign-independent underpowered SE hold (AUDIT-REF & AUDIT-REF; DEC-042/044):
     s8b_scale_enum = observations.get('s8b_epistasis_estimand_scale')
     if s8b_scale_enum is not None:
@@ -2139,6 +2340,17 @@ def evaluate_stage0_decision_tree(
     )
 
     resolved_arch = dict(tree_doc.get('default_architecture_assignments', {}))
+    if knockin_splice_challenger_arm != 'PARENTAL_REFERENCE' or _chall_any_input:
+        resolved_arch['knockin_splice_challenger_arm'] = knockin_splice_challenger_arm
+        if knockin_locus4_orientation is not None:
+            resolved_arch['knockin_locus4_orientation'] = knockin_locus4_orientation
+        if challenger_umi_eff > 0.0:
+            resolved_arch['challenger_effective_umi_molecules'] = round(challenger_umi_eff, 3)
+        resolved_arch['knockin_splice_challenger_qualification_status'] = (
+            challenger_hold_status
+            if challenger_hold_status is not None
+            else 'CHALLENGER_SPLICE_AND_RECOVERY_ADJUSTED_UMI_PANEL_CLEARED'
+        )
     if (
         _adj_arm_raw is not None
         or adjunct_depletion_mode is not None
@@ -2368,6 +2580,8 @@ def evaluate_stage0_decision_tree(
         resolved_arch['lot_maturation_status'] = 'HOLD_GATE0D_ARM2_POST_ADJUNCT_DEPLETION_REBOUND_INJURY_OR_FUNCTION_LOSS'
     elif arm2_post_depletion_panel_incomplete:
         resolved_arch['lot_maturation_status'] = 'HOLD_GATE0D_ARM2_POST_ADJUNCT_DEPLETION_PANEL_INCOMPLETE'
+    elif challenger_hold_status is not None:
+        resolved_arch['lot_maturation_status'] = challenger_hold_status
     elif avascular_outer_band_dropout and not omental_revascularization_cleared:
         resolved_arch['lot_maturation_status'] = 'HOLD_S9_CHRONIC_CAPSULE_GT_50UM_OR_AVASCULAR_DROPOUT_REQUIRES_OMENTAL_REVASCULARIZATION'
     elif subthreshold_outer_band_kperf and not omental_revascularization_cleared:

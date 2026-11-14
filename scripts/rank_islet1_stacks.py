@@ -6126,6 +6126,16 @@ def main() -> None:
             "chimeric_surface_junction_neoepitope_inventory_count": 306,
             "exact_boundary_constrained_8_to_11mer_window_count": 326,
             "exact_boundary_constrained_8_to_11mer_window_count_with_hlac_l2_alpha1": 360,
+            "exact_full_polypeptide_15mer_window_count_9_boundaries": 112,
+            "exact_full_polypeptide_15mer_window_count_10_boundaries_with_hlac_l2_alpha1": 126,
+            "exact_full_polypeptide_intracellular_15mer_window_count": 34,
+            "full_polypeptide_vs_snippet_reconciliation_iip_0015": (
+                "Across full-length translated polypeptides (DEC-092 / IIP-0015), unique-position 15-mer Class-II sliding windows crossing a single boundary "
+                "or overlapping both the 6-aa SGGGSG linker and >=1 flanking residue in full-length FKBP12[1..108]-SGGGSG[109..114]-dCasp9[115..396] total "
+                "20 for iCasp9, 34 intracellular (14 SERPINB9|GSG-P2A + 20 iCasp9), 112 across the 9 listed boundaries (9+9+9+9+14+14+14+14+20), and "
+                "126 across all 10 boundaries when including L2|HLA-C_alpha1 (+14); cropping the flanking proteins to the 13-aa/16-aa illustrative snippets "
+                "shown below yields 18 for the iCasp9 snippet and 32 intracellular (136 legacy snippet-bounded reference)."
+            ),
             "sliding_8_to_11mer_window_formula": "Nominal single-cut upper-bound formula: 9 chimeric junction entries * (7 + 8 + 9 + 10 = 34) junction-spanning 8..11-mer windows = 306 windows; exact boundary-length-constrained window count is 326 across the 9 entries (33 each for the three 9-mer tethered peptides [VMAPRTLVL, GAVDPLLAL, QYDDAVYKL] and the 9-aa retained CD55 stalk [PNKGSGTTS] where len(flank)=9 caps 11-mers at 9, 34 each for the four >=10-aa-flanked single-cut junctions [L1|B2M, B2M|L2, L2|HLA-E_alpha1, SERPINB9|GSG-P2A], and 58 across the two-boundary 6-aa linker in FKBP12-SGGGSG-dCasp9; or 360 when including the 34-window L2|HLA-C_alpha1 junction GGGGSGGGGSGGGGSGGGGS-GSHSMRYFSTSVSRPGRGEP)",
             "surface_ectodomain_junctions_audited": [
                 "VMAPRTLVL-GGGGSGGGGSGGGGSGGGGS (HLA-E SCT 20-aa L1 linker in 4,143-bp Embodiment A*; or VMAPRTLVL-GGGGSGGGGSGGGGS 15-aa L1 in 3,974-bp canonical donor)",
@@ -6138,7 +6148,7 @@ def main() -> None:
             ],
             "intracellular_chimeric_junctions_audited_for_indirect_apc_class_ii_presentation": [
                 "NSILFCGRFSSP-GSGATNFSLLKQAGDVEENPG (Locus 3 canonical R01 SERPINB9 C-terminus [Asn365-Pro376] to 21-aa retained GSG-P2A stub after Gly20|Pro21 ribosomal skipping [14 junction-spanning 15-mer windows]; eliminated in scar-free L3-BF-B and 3,799-bp comparator)",
-                "ATLVFDVELLKLE-SGGGSG-GFGDVGALESLRGNAD (Locus 4 AAVS1 iCasp9 FKBP12[F36V] C-terminus [Ala96-Glu108] + 6-aa SGGGSG linker [109..114] + dCARD-CASP9 [Gly135-Asp150] [18 junction-spanning 15-mer windows; 32 intracellular 15-mer windows total across both intracellular junctions, and 136 boundary-constrained 15-mer windows across all 10 ectodomain + intracellular junctions])",
+                "ATLVFDVELLKLE-SGGGSG-GFGDVGALESLRGNAD (Locus 4 AAVS1 iCasp9 FKBP12[F36V] C-terminus [Ala96-Glu108] + 6-aa SGGGSG linker [109..114] + dCARD-CASP9 [Gly135-Asp150] [20 junction-spanning 15-mer windows on full-length FKBP12[1..108]-SGGGSG-dCasp9[115..396] (34 intracellular 15-mer windows total across both intracellular junctions, 112 across the 9 boundaries, and 126 across all 10 boundaries including L2|HLA-C_alpha1; vs 18 snippet-bounded / 32 intracellular / 136 legacy snippet-bounded reference; DEC-092 / IIP-0015)])",
             ],
             "mandatory_stage0_gate_0d_0g_flow_crossmatch_and_cdc_protocol": {
                 "recipient_serum_panel": "n >= 50 human sera (25 high-cPRA >= 80% sensitized allogeneic sera + 25 T1D sera, including anti-HLA-E*01:03 Luminex SAB screening)",

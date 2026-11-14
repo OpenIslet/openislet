@@ -3069,11 +3069,11 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
         == 0.90
     )
 
-    # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (31 persisted boolean flags, 35 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
-    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 31
+    # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (35 persisted boolean flags, 39 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
+    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 35
     assert "require_full_5endpoint_s9_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
     assert "require_full_7metric_combined_stress_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
-    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 35
+    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 39
     assert "5.71 mmHg at 100 um clusters with matched D_caps = D_gel" in film_limit["surgical_mitigation"]
 
     batch1_r7s2 = {
@@ -3156,7 +3156,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     # - R7S3-F02: Both wetlab_contract.evaluate_stage0_decision_tree and ingest_wetlab_results.evaluate_stage0_decision_tree reject non-boolean policy values
     from scripts import wetlab_contract as wc_mod
 
-    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 35
+    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 39
     for bkey in wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS:
         for bad_val in ("false", "False", 0, "true", "True", 1):
             for eval_fn in (wc_mod.evaluate_stage0_decision_tree, wetlab.evaluate_stage0_decision_tree):
@@ -4471,30 +4471,171 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
         assert "adjunct_depletion_mode" in str(_exc_dm)
     assert "IIP-0012" in _r9_s2_bp_md and "DEC-091" in _r9_s2_bp_md
 
+    # =========================================================================
+    # 43. DEC-092 / IIP-0015: TWO-STRAND KNOCK-IN SPLICE CENSUS, PAM-SHIELDED
+    #     MODE-B CHALLENGER MANIFEST, SEPARATED 505/500-AA LOCUS-1 SEAMS, AND
+    #     RECOVERY-CALIBRATED UMI / 90% TOST / LOQ / NON-POOLING GATES
+    # =========================================================================
+    import hashlib as _hl_iip15
 
+    assert (
+        _hl_iip15.sha256(
+            (ROOT / "data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta").read_bytes()
+        ).hexdigest()
+        == "b5ba4e2b4bbbcc7d6cf1138975c5fae5c6ab074dda43973f071c671cd8cd1d88"
+    )
+    _l2_iip15 = _r9_l2_iip11["stage0_two_strand_splice_census_and_challenger_manifest_iip_0015"]
+    assert _l2_iip15["proposal_id"] == "IIP-0015" and _l2_iip15["decision_id"] == "DEC-092"
+    assert len(_l2_iip15["validator_fail_closed_adversarial_selftests"]) == 11
+    assert all(
+        row["rejected_as_expected"] is True
+        for row in _l2_iip15["validator_fail_closed_adversarial_selftests"]
+    )
+    _ref_hash_by_id = {
+        row["construct_id"]: row["donor_sha256"][:8]
+        for row in _l2_iip15["qualified_mode_b_reference_derivations"]
+    }
+    for _cid, _pfx in (
+        ("S3_L3_CAN_PDL1_SYN2_4090", "3cb5ce72"),
+        ("S3_L3_CAN_PDL1_SYN4_4090", "ccd86d6a"),
+        ("S3_L3_CAN_BGH_ONLY_4090", "304a08d9"),
+        ("S3_L3_SF_PDL1_SYN4_3799", "a678fade"),
+        ("S3_L3_SF_SYN4_1xFII80_3879", "6d594329"),
+        ("S3_L4_SPLICE_230C_NOSPA_3457", "3bc15171"),
+        ("S3_L4_CONVERGENT_2STRAND_230C_3457", "70424667"),
+        ("S3_L1_ASTAR_STOP_ONLY_4143", "aff2ec0d"),
+    ):
+        assert _ref_hash_by_id[_cid] == _pfx
+    _l4_mat_arms = _l2_iip15["pam_seed_shielded_synthesis_ready_manifest"][
+        "locus4_aavs1_pam_shielded_and_unconfounded_2x2_orientation_matrix"
+    ]["arms"]
+    assert len(_l4_mat_arms) >= 5
+    _conv_row = next(
+        r for r in _l4_mat_arms if r.get("alias_construct_id") == "S3_L4_CONVERGENT_2STRAND_230C_3457"
+    )
+    assert "70424667" in json.dumps(_conv_row) and "977495f1" in json.dumps(_conv_row)
+    _ab_l1 = _l2_iip15["aberrant_locus1_sct_to_b2m_exon2_cryptic_splice_audit"]
+    assert _ab_l1["embodiment_a_star_505aa_sct1514_audit"]["sct_precursor_aa"] == 505
+    assert _ab_l1["embodiment_a_star_505aa_sct1514_audit"]["total_chimeric_polypeptide_aa"] == 537
+    assert _ab_l1["arm1b_and_arm1c_500aa_sct1499_audit"]["sct_precursor_aa"] == 500
+    assert _ab_l1["arm1b_and_arm1c_500aa_sct1499_audit"]["total_chimeric_polypeptide_aa"] == 532
+    assert len(
+        _ab_l1["embodiment_a_star_505aa_sct1514_audit"]["appended_b2m_exon2_plus1_frame_tail_32aa"]
+    ) == 32
+    _rec_l1 = _l2_iip15["portfolio_chimeric_boundary_reconciliation"]
+    assert _rec_l1["nine_boundaries_8_11mer"] == 326
+    assert _rec_l1["nine_boundaries_15mer_full_polypeptide"] == 112
+    assert _rec_l1["ten_boundaries_with_hlac_l2_alpha1_15mer_full_polypeptide"] == 126
+    assert "two_strand_knockin_splice_challenger_and_umi_isoform_gate_iip_0015" in json.loads(
+        (ROOT / "data/protocols/stage0_decision_tree_v1.json").read_text(encoding="utf-8")
+    )
 
+    _chall_base_pass = {
+        **full_ext_payload,
+        "knockin_splice_challenger_arm": "S1_L3_CAN_SYN4_PAM_SHIELDED_4090",
+        "knockin_locus4_orientation": "NOT_APPLICABLE",
+        "obs_challenger_pam_seed_shield_coconversion_verified": True,
+        "obs_challenger_ivt_rna_recovery_standard_verified": True,
+        "obs_challenger_host_isoforms_above_loq_verified": True,
+        "obs_challenger_sv40pa_and_host_3prime_cleavage_checked": True,
+        "obs_challenger_ivt_relative_recovery_eta": 0.90,
+        "obs_challenger_ivt_relative_recovery_se": 0.02,
+        "obs_challenger_umi_molecules_profiled": 4200.0,
+        "obs_challenger_umi_molecules_profiled_se": 1.0,
+        "obs_challenger_aberrant_splice_umi_count_k": 0.0,
+        "obs_challenger_aberrant_splice_umi_count_se": 1e-6,
+        "obs_challenger_host_exon_splice_retention_ratio": 1.01,
+        "obs_challenger_host_exon_splice_retention_se": 0.03,
+        "obs_challenger_dsrna_j2_or_isg_fold_wt": 1.08,
+        "obs_challenger_dsrna_j2_or_isg_fold_se": 0.05,
+    }
+    _eval_chall_pass = wc_mod.evaluate_stage0_decision_tree(_chall_base_pass)
+    assert (
+        _eval_chall_pass["resolved_architecture_assignments"][
+            "knockin_splice_challenger_qualification_status"
+        ]
+        == "CHALLENGER_SPLICE_AND_RECOVERY_ADJUSTED_UMI_PANEL_CLEARED"
+    )
+    assert (
+        _eval_chall_pass["resolved_architecture_assignments"][
+            "challenger_effective_umi_molecules"
+        ]
+        == 3780.0
+    )
 
+    # Unshielded reference derivation holds from synthesis/release
+    _eval_unsh = wc_mod.evaluate_stage0_decision_tree(
+        {**_chall_base_pass, "knockin_splice_challenger_arm": "S1_L3_CAN_SYN4_4090"}
+    )
+    assert (
+        _eval_unsh["resolved_architecture_assignments"]["lot_maturation_status"]
+        == "HOLD_CHALLENGER_SPLICE_UNSHIELDED_OR_PAM_SEED_COCONVERSION_UNVERIFIED"
+    )
 
+    # 10% under-recovery (eta=0.90) on nominal N=3700 -> N_UMI_eff=3330 < 3689 holds!
+    _eval_low_umi = wc_mod.evaluate_stage0_decision_tree(
+        {**_chall_base_pass, "obs_challenger_umi_molecules_profiled": 3700.0}
+    )
+    assert (
+        _eval_low_umi["resolved_architecture_assignments"]["lot_maturation_status"]
+        == "HOLD_CHALLENGER_SPLICE_EFFECTIVE_UMI_BELOW_3689_RECOVERY_ADJUSTED_MINIMUM"
+    )
 
+    # TOST outside [0.80, 1.25], LOQ=False, SV40pA unchecked, and dsRNA > 1.5x holds
+    assert (
+        wc_mod.evaluate_stage0_decision_tree(
+            {**_chall_base_pass, "obs_challenger_host_exon_splice_retention_ratio": 0.81, "obs_challenger_host_exon_splice_retention_se": 0.04}
+        )["resolved_architecture_assignments"]["lot_maturation_status"]
+        == "HOLD_CHALLENGER_SPLICE_HOST_EXON_RETENTION_OUTSIDE_90PCT_TOST_0P80_1P25"
+    )
+    assert (
+        wc_mod.evaluate_stage0_decision_tree(
+            {**_chall_base_pass, "obs_challenger_host_isoforms_above_loq_verified": False}
+        )["resolved_architecture_assignments"]["lot_maturation_status"]
+        == "HOLD_CHALLENGER_SPLICE_HOST_ISOFORM_BELOW_LOQ_OR_UNVERIFIED"
+    )
+    assert (
+        wc_mod.evaluate_stage0_decision_tree(
+            {**_chall_base_pass, "obs_challenger_sv40pa_and_host_3prime_cleavage_checked": False}
+        )["resolved_architecture_assignments"]["lot_maturation_status"]
+        == "HOLD_CHALLENGER_SPLICE_SV40PA_AND_HOST_3PRIME_CLEAVAGE_UNCHECKED"
+    )
+    assert (
+        wc_mod.evaluate_stage0_decision_tree(
+            {**_chall_base_pass, "obs_challenger_dsrna_j2_or_isg_fold_wt": 1.48, "obs_challenger_dsrna_j2_or_isg_fold_se": 0.05}
+        )["resolved_architecture_assignments"]["lot_maturation_status"]
+        == "HOLD_CHALLENGER_SPLICE_CONVERGENT_DSRNA_J2_OR_ISG_EXCEEDS_1P5X_CEILING"
+    )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    # Cross-batch non-pooling guard across distinct challenger arms or Locus-4 orientations
+    _cal_ch1 = wetlab.run_calibration(
+        {
+            "batch_id": "BATCH-IIP15-C1",
+            "mcb_clone_id": "CLONE-IIP15",
+            "product_variant_id": "ISLET1_A4_ARM1B_EMB_A_STAR_4143",
+            "knockin_splice_challenger_arm": "S3_L4_SPLICE_230C_3457",
+            "knockin_locus4_orientation": "CO_DIRECTIONAL_MINUS",
+            "obs_stage7_yield_ratio": 0.92,
+            "obs_stage7_yield_se": 0.03,
+        },
+        is_dry_run=False,
+    )
+    try:
+        wetlab.run_calibration(
+            {
+                "batch_id": "BATCH-IIP15-C2",
+                "mcb_clone_id": "CLONE-IIP15",
+                "product_variant_id": "ISLET1_A4_ARM1B_EMB_A_STAR_4143",
+                "knockin_splice_challenger_arm": "S3_L4_CONVERGENT_2STRAND_230C_3457",
+                "knockin_locus4_orientation": "CONVERGENT_PLUS",
+                "obs_cd47_fold": 4.2,
+                "obs_cd47_fold_se": 0.2,
+            },
+            False,
+            _cal_ch1,
+        )
+        raise AssertionError("Expected ValueError when pooling distinct knockin_splice_challenger_arm / orientation batches")
+    except ValueError as _exc_ch:
+        assert "knockin_splice_challenger_arm" in str(_exc_ch) or "knockin_locus4_orientation" in str(_exc_ch)
+    assert "IIP-0015" in _r9_s2_bp_md and "DEC-092" in _r9_s2_bp_md
 

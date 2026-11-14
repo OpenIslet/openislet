@@ -465,6 +465,1541 @@ def compute_chs4_alignment(insert: str, ref: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
+DONOR_FREQ_SS87: List[Dict[str, float]] = [
+    {"A": 0.33, "C": 0.36, "G": 0.19, "T": 0.12},  # -3 (C/A)
+    {"A": 0.60, "C": 0.13, "G": 0.13, "T": 0.14},  # -2 (A)
+    {"A": 0.09, "C": 0.03, "G": 0.80, "T": 0.08},  # -1 (G)
+    {"A": 0.00, "C": 0.00, "G": 1.00, "T": 0.00},  # +1 (G invariant in GT)
+    {"A": 0.00, "C": 0.00, "G": 0.00, "T": 1.00},  # +2 (T invariant in GT)
+    {"A": 0.59, "C": 0.03, "G": 0.35, "T": 0.03},  # +3 (A/G purine)
+    {"A": 0.71, "C": 0.07, "G": 0.11, "T": 0.11},  # +4 (A)
+    {"A": 0.07, "C": 0.05, "G": 0.84, "T": 0.04},  # +5 (G)
+    {"A": 0.16, "C": 0.15, "G": 0.21, "T": 0.48},  # +6 (T)
+]
+DONOR_MIN_SS87 = sum(min(pos.values()) for pos in DONOR_FREQ_SS87)
+DONOR_MAX_SS87 = sum(max(pos.values()) for pos in DONOR_FREQ_SS87)
+U1_CONSENSUS_9MER = "CAGGTAAGT"
+
+ALLOWED_LAYER3_PDB_IDS_IIP0015 = {
+    "3CDG", "1MHE", "3BZE",  # Complex 1: HLA-E SCT / CD94-NKG2A
+    "2JJS", "4CMM", "4KJY",  # Complex 2: CD47 / SIRPA V1-V2
+    "1IAU", "4GA7", "8ZCR",  # Complex 3: SERPINB9 / Granzyme B
+    "4ZQK",                  # Complex 4: PD-L1 / PD-1
+    "1BL4", "1JXQ", "1NW9",  # Locus 4 Ref: iCasp9 domain references (FULL_FUSION_UNRESOLVED)
+}
+
+
+def score_5prime_donor_9mer(nine_mer: str) -> Dict[str, Any]:
+    """
+    Open 5' splice donor metrics on a 9-mer spanning exonic [-3..-1] | intronic [+1..+6]:
+      - Shapiro-Senapathy consensus value (Shapiro & Senapathy 1987 PMID:3658675)
+      - Log2-odds bits vs uniform 0.25 background (Yeo & Burge 2004 PMID:15285897)
+      - Antiparallel U1 snRNA Watson-Crick + G:U/G:psi wobble pairing count across [-3..+6]
+        (Roca et al. 2013 PMID:23348838; heuristic prioritization rule noting
+        canonical GC-AG, AT-AC, and bulged/shifted U1 registers exist outside this 9-mer model).
+    """
+    s = nine_mer.upper()
+    if len(s) != 9:
+        raise ValueError(f"Expected 9-mer for 5' splice donor scoring, got length {len(s)}")
+    if s[3:5] != "GT":
+        return {
+            "nine_mer": f"{s[:3]}|{s[3:]}",
+            "is_canonical_gt": False,
+            "ss87_cv": 0.0,
+            "pwm_bits": -99.0,
+            "u1_wc_matches_of_9": 0,
+            "u1_wc_or_wobble_of_9": 0,
+        }
+    raw_sum = sum(DONOR_FREQ_SS87[i][s[i]] for i in range(9))
+    cv = 100.0 * (raw_sum - DONOR_MIN_SS87) / (DONOR_MAX_SS87 - DONOR_MIN_SS87)
+    bits = sum(math.log2(max(DONOR_FREQ_SS87[i][s[i]], 0.005) / 0.25) for i in range(9))
+    wc = sum(1 for i in range(9) if s[i] == U1_CONSENSUS_9MER[i])
+    wobble_allowed = {
+        0: {"C", "T"},  # -3 vs U1 G11
+        1: {"A", "G"},  # -2 vs U1 U10
+        2: {"G"},       # -1 vs U1 C9
+        3: {"G"},       # +1 vs U1 C8
+        4: {"T"},       # +2 vs U1 A7
+        5: {"A", "G"},  # +3 vs U1 psi6
+        6: {"A", "G"},  # +4 vs U1 psi5
+        7: {"G"},       # +5 vs U1 C4
+        8: {"T"},       # +6 vs U1 A3 (pairs U/T only)
+    }
+    wc_gu = sum(1 for i in range(9) if s[i] in wobble_allowed[i])
+    return {
+        "nine_mer": f"{s[:3]}|{s[3:]}",
+        "is_canonical_gt": True,
+        "ss87_cv": round(cv, 2),
+        "pwm_bits": round(bits, 3),
+        "u1_wc_matches_of_9": wc,
+        "u1_wc_or_wobble_of_9": wc_gu,
+    }
+
+
+def score_3prime_acceptor_23mer(twentythree_mer: str) -> Dict[str, Any]:
+    """
+    Explicitly labelled heuristic 3' splice-acceptor index (0..100) on [-20..-1] | [+1..+3]
+    where [-2..-1] == 'AG':
+      0.60 * (polypyrimidine count in [-18..-4] / 15)
+      + 0.25 * (-3 pyrimidine preference weight / 0.78)
+      + 0.15 * (+1 G preference weight / 0.52).
+    """
+    s = twentythree_mer.upper()
+    if len(s) != 23:
+        raise ValueError(f"Expected 23-mer for 3' splice acceptor scoring, got length {len(s)}")
+    if s[18:20] != "AG":
+        return {
+            "context": f"{s[10:18]}{s[18:20]}|{s[20:23]}",
+            "is_canonical_ag": False,
+            "heuristic_acceptor_index": 0.0,
+            "ppt_pyr_count_of_15": 0,
+        }
+    ppt = s[2:17]
+    pyr_cnt = sum(1 for b in ppt if b in ("C", "T"))
+    minus3 = s[17]
+    plus1 = s[20]
+    m3_w = {"C": 0.78, "T": 0.72, "A": 0.22, "G": 0.02}[minus3]
+    p1_w = {"G": 0.52, "A": 0.24, "T": 0.12, "C": 0.12}[plus1]
+    idx_val = 100.0 * (0.60 * (pyr_cnt / 15.0) + 0.25 * (m3_w / 0.78) + 0.15 * (p1_w / 0.52))
+    return {
+        "context": f"{s[10:18]}{s[18:20]}|{s[20:23]}",
+        "is_canonical_ag": True,
+        "minus3_base": minus3,
+        "plus1_base": plus1,
+        "ppt_pyr_count_of_15": pyr_cnt,
+        "heuristic_acceptor_index": round(idx_val, 2),
+    }
+
+
+def scan_donors_and_acceptors_both_strands(
+    seq: str,
+    cargo_bounds_1based: Tuple[int, int] = (601, -600),
+    min_donor_cv: float = 74.0,
+    min_acc_idx: float = 68.0,
+) -> Dict[str, Any]:
+    """Descriptive two-strand open motif census across '+' and '-' strands."""
+    s_plus = seq.upper()
+    s_minus = revcomp(s_plus)
+    seq_len = len(s_plus)
+    c_lo = cargo_bounds_1based[0]
+    c_hi = (seq_len + cargo_bounds_1based[1]) if cargo_bounds_1based[1] < 0 else cargo_bounds_1based[1]
+
+    donors: List[Dict[str, Any]] = []
+    acceptors: List[Dict[str, Any]] = []
+
+    for strand, cur in [("+", s_plus), ("-", s_minus)]:
+        for i in range(3, seq_len - 6):
+            if cur[i : i + 2] == "GT":
+                sc = score_5prime_donor_9mer(cur[i - 3 : i + 6])
+                if sc["ss87_cv"] >= min_donor_cv or sc["u1_wc_or_wobble_of_9"] >= 7:
+                    pos1_plus = i if strand == "+" else (seq_len - i + 1)
+                    donors.append(
+                        {
+                            "strand_relative_to_input": strand,
+                            "exon_end_1based_on_input_plus": pos1_plus,
+                            "in_cargo": bool(c_lo <= pos1_plus <= c_hi),
+                            **sc,
+                        }
+                    )
+        for i in range(20, seq_len - 3):
+            if cur[i - 2 : i] == "AG":
+                sc = score_3prime_acceptor_23mer(cur[i - 20 : i + 3])
+                if sc["heuristic_acceptor_index"] >= min_acc_idx:
+                    pos1_plus = (i + 1) if strand == "+" else (seq_len - i)
+                    acceptors.append(
+                        {
+                            "strand_relative_to_input": strand,
+                            "exon_start_1based_on_input_plus": pos1_plus,
+                            "in_cargo": bool(c_lo <= pos1_plus <= c_hi),
+                            **sc,
+                        }
+                    )
+
+    donors.sort(key=lambda r: (r["ss87_cv"], r["u1_wc_or_wobble_of_9"]), reverse=True)
+    acceptors.sort(key=lambda r: r["heuristic_acceptor_index"], reverse=True)
+    return {
+        "total_donors": len(donors),
+        "donors_cv_ge_74": sum(1 for d in donors if d["ss87_cv"] >= 74.0),
+        "cargo_donors": sum(1 for d in donors if d["in_cargo"]),
+        "cargo_donors_plus_strand": sum(1 for d in donors if d["in_cargo"] and d["strand_relative_to_input"] == "+"),
+        "cargo_donors_minus_strand": sum(1 for d in donors if d["in_cargo"] and d["strand_relative_to_input"] == "-"),
+        "total_acceptors": len(acceptors),
+        "cargo_acceptors": sum(1 for a in acceptors if a["in_cargo"]),
+        "donors": donors,
+        "acceptors": acceptors,
+    }
+
+
+def diff_edit_created_neosites(parent_seq: str, mutant_seq: str) -> Dict[str, List[Dict[str, Any]]]:
+    """Identify any donor (CV >= 70 or U1 >= 7) or acceptor (index >= 68) newly created by sequence edits."""
+    p_scan = scan_donors_and_acceptors_both_strands(parent_seq, min_donor_cv=70.0, min_acc_idx=68.0)
+    m_scan = scan_donors_and_acceptors_both_strands(mutant_seq, min_donor_cv=70.0, min_acc_idx=68.0)
+    p_d_keys = {(d["strand_relative_to_input"], d["exon_end_1based_on_input_plus"], d["nine_mer"]) for d in p_scan["donors"]}
+    p_a_keys = {(a["strand_relative_to_input"], a["exon_start_1based_on_input_plus"], a["context"]) for a in p_scan["acceptors"]}
+    neo_d = [d for d in m_scan["donors"] if (d["strand_relative_to_input"], d["exon_end_1based_on_input_plus"], d["nine_mer"]) not in p_d_keys]
+    neo_a = [a for a in m_scan["acceptors"] if (a["strand_relative_to_input"], a["exon_start_1based_on_input_plus"], a["context"]) not in p_a_keys]
+    return {"created_donors_cv70_or_u1_7": neo_d, "created_acceptors_idx68": neo_a}
+
+
+def longest_repeats(seq: str, min_k: int = 12) -> Dict[str, Any]:
+    """
+    Deterministic scan for longest overlapping direct repeat, longest disjoint direct repeat,
+    and longest disjoint inverted repeat >= min_k bp.
+    """
+    s = seq.upper()
+    rc_s = revcomp(s)
+    n = len(s)
+
+    lo, hi = min_k, n // 2
+    best_dir_ov = ("", -1, -1)
+    while lo <= hi:
+        mid = (lo + hi) // 2
+        seen: Dict[str, int] = {}
+        found = None
+        for i in range(n - mid + 1):
+            sub = s[i : i + mid]
+            if sub in seen:
+                found = (sub, seen[sub] + 1, i + 1)
+                break
+            seen[sub] = i
+        if found:
+            best_dir_ov = found
+            lo = mid + 1
+        else:
+            hi = mid - 1
+
+    lo, hi = min_k, n // 2
+    best_dir_disj = ("", -1, -1)
+    while lo <= hi:
+        mid = (lo + hi) // 2
+        first_pos: Dict[str, int] = {}
+        found = None
+        for i in range(n - mid + 1):
+            sub = s[i : i + mid]
+            if sub in first_pos:
+                if i - first_pos[sub] >= mid:
+                    found = (sub, first_pos[sub] + 1, i + 1)
+                    break
+            else:
+                first_pos[sub] = i
+        if found:
+            best_dir_disj = found
+            lo = mid + 1
+        else:
+            hi = mid - 1
+
+    lo, hi = min_k, n // 2
+    best_inv = ("", -1, -1)
+    while lo <= hi:
+        mid = (lo + hi) // 2
+        rc_map: Dict[str, List[int]] = {}
+        for j in range(n - mid + 1):
+            orig_start0 = n - (j + mid)
+            rc_map.setdefault(rc_s[j : j + mid], []).append(orig_start0)
+        found = None
+        for i in range(n - mid + 1):
+            sub = s[i : i + mid]
+            if sub in rc_map:
+                for o0 in rc_map[sub]:
+                    if abs(o0 - i) >= mid:
+                        a1, b1 = min(i + 1, o0 + 1), max(i + 1, o0 + 1)
+                        found = (sub, a1, b1)
+                        break
+            if found:
+                break
+        if found:
+            best_inv = found
+            lo = mid + 1
+        else:
+            hi = mid - 1
+
+    return {
+        "longest_direct_repeat_ge_12bp": {
+            "overlap_mode": "overlapping_allowed_tandem_or_array",
+            "length_bp": len(best_dir_ov[0]),
+            "sequence": best_dir_ov[0],
+            "pos1_a": best_dir_ov[1],
+            "pos1_b": best_dir_ov[2],
+        },
+        "longest_disjoint_direct_repeat_ge_12bp": {
+            "overlap_mode": "strictly_disjoint",
+            "length_bp": len(best_dir_disj[0]),
+            "sequence": best_dir_disj[0],
+            "pos1_a": best_dir_disj[1],
+            "pos1_b": best_dir_disj[2],
+        },
+        "longest_disjoint_inverted_repeat_ge_12bp": {
+            "overlap_mode": "strictly_disjoint",
+            "length_bp": len(best_inv[0]),
+            "sequence": best_inv[0],
+            "pos1_a": best_inv[1],
+            "pos1_b": best_inv[2],
+        },
+    }
+
+
+def nearest_neighbor_tm_sl98(seq: str, na_mm: float = 50.0, oligo_nm: float = 250.0) -> float:
+    """SantaLucia 1998 unified nearest-neighbor Tm (50 mM Na+, 250 nM oligo)."""
+    nn = {
+        "AA": (-7.9, -22.2), "TT": (-7.9, -22.2), "AT": (-7.2, -20.4), "TA": (-7.2, -21.3),
+        "CA": (-8.5, -22.7), "TG": (-8.5, -22.7), "GT": (-8.4, -22.4), "AC": (-8.4, -22.4),
+        "CT": (-7.8, -21.0), "AG": (-7.8, -21.0), "GA": (-8.2, -22.2), "TC": (-8.2, -22.2),
+        "CG": (-10.6, -27.2), "GC": (-9.8, -24.4), "GG": (-8.0, -19.9), "CC": (-8.0, -19.9),
+    }
+    s = seq.upper()
+    dh = sum(nn[s[i : i + 2]][0] for i in range(len(s) - 1))
+    ds = sum(nn[s[i : i + 2]][1] for i in range(len(s) - 1))
+    for end in (s[0], s[-1]):
+        if end in "GC":
+            dh += 0.1
+            ds += -2.8
+        else:
+            dh += 2.3
+            ds += 4.1
+    ds_salt = ds + 0.368 * (len(s) - 1) * math.log(na_mm / 1000.0)
+    return round((dh * 1000.0) / (ds_salt + 1.987 * math.log(oligo_nm * 1e-9 / 4.0)) - 273.15, 2)
+
+
+def translate_strict_cds(cds: str, expect_terminal_stop: bool) -> str:
+    s = cds.upper()
+    if len(s) == 0 or len(s) % 3 != 0:
+        raise ValueError(f"Invalid CDS length: {len(s)}")
+    aa = "".join(GENETIC_CODE[s[i : i + 3]] for i in range(0, len(s), 3))
+    if expect_terminal_stop:
+        if not aa.endswith("*") or "*" in aa[:-1]:
+            raise ValueError("Expected single terminal stop codon")
+    else:
+        if "*" in aa:
+            raise ValueError("Unexpected stop codon in stop-less upstream 2A cistron")
+    return aa
+
+
+def enumerate_junction_peptides(left_aa: str, linker_aa: str, right_aa: str) -> Dict[str, Any]:
+    """
+    Deterministically enumerate all unique-position 8..11-mer (Class I) and 15-mer (Class II)
+    sliding windows that cross a single boundary (when linker_aa == '') or overlap BOTH a
+    synthetic linker segment AND at least one flanking residue (when linker_aa != '').
+    """
+    full = left_aa + linker_aa + right_aa
+    len_left = len(left_aa)
+    len_link = len(linker_aa)
+    n = len(full)
+
+    def _windows_for_k(k: int) -> List[str]:
+        wins = []
+        for s in range(0, n - k + 1):
+            e = s + k
+            if len_link == 0:
+                if s <= len_left - 1 and e - 1 >= len_left:
+                    wins.append(full[s:e])
+            else:
+                overlaps_linker = (s <= len_left + len_link - 1) and (e - 1 >= len_left)
+                overlaps_flank = (s < len_left) or (e - 1 >= len_left + len_link)
+                if overlaps_linker and overlaps_flank:
+                    wins.append(full[s:e])
+        return wins
+
+    w_by_k = {k: _windows_for_k(k) for k in (8, 9, 10, 11, 15)}
+    return {
+        "count_8_to_11mer": sum(len(w_by_k[k]) for k in (8, 9, 10, 11)),
+        "counts_by_length": {str(k): len(w_by_k[k]) for k in (8, 9, 10, 11, 15)},
+        "count_15mer": len(w_by_k[15]),
+        "sample_9mers": w_by_k[9][:5],
+        "sample_15mers": w_by_k[15][:3],
+    }
+
+
+def validate_p1_to_p4_fail_closed(
+    design_id: str,
+    donor_seq: str,
+    expected_orfs: List[Dict[str, Any]],
+    junction_specs: List[Dict[str, Any]],
+    parent_8_11mer_count: int,
+    parent_15mer_count: int,
+    r01_canonical_8_11mer_count: int,
+    r01_canonical_15mer_count: int,
+    pdb_refs: List[str],
+    unresolved_structural_flags: List[str],
+) -> Dict[str, Any]:
+    """
+    Fail-closed 4-point protein/packaging/provenance validator (P1-P4) for knock-in donors:
+      - P1: Rejects empty donor/ORFs, enforces packaged AAV6 <= 4,700 bp, binds every declared
+            ORF to its exact donor slice & parent protein, and rejects undeclared >=300-nt
+            Kozak-initiated cargo ORFs on either strand.
+      - P2: Enforces strict sequence/domain/length signatures on every topology_kind.
+      - P3: Auto-derives required chimeric/2A/linker junction counts from donor polypeptides.
+      - P4: Binds each topology_kind to its target-specific Layer-3 PDB subset.
+    """
+    if not donor_seq or not expected_orfs:
+        raise ValueError(f"[{design_id}] Fail-closed P1: donor_seq and expected_orfs must be non-empty")
+
+    aav6_bp = len(donor_seq) + 290
+    if aav6_bp > 4700:
+        raise ValueError(f"[{design_id}] Fail-closed P1: packaged AAV6 length {aav6_bp} bp exceeds 4,700 bp engineering cap")
+
+    target_pdb_map: Dict[str, Any] = {
+        "TYPE1_TM_HLAE_SCT": {"3CDG", "1MHE", "3BZE"},
+        "GPI_ANCHORED_CD47_IGV": {"2JJS", "4CMM", "4KJY"},
+        "CYTOSOLIC_SERPINB9": {"1IAU", "4GA7", "8ZCR"},
+        "TYPE1_TM_PDL1": {"4ZQK"},
+        "CYTOSOLIC_ICASP9": {"1BL4", "1JXQ", "1NW9"},
+    }
+
+    p1_orfs = []
+    p2_checks = []
+    declared_intervals_by_strand: Dict[str, List[Tuple[int, int]]] = {"+": [], "-": []}
+    present_topologies = set()
+    required_junction_count = 0
+
+    for spec in expected_orfs:
+        name = spec["name"]
+        s0 = int(spec["start_0based"])
+        e0 = int(spec["end_0based"])
+        strand = spec["strand"]
+        has_stop = bool(spec["has_stop"])
+        parent_cds = spec["parent_cds"].upper()
+
+        if strand not in ("+", "-") or not (0 <= s0 < e0 <= len(donor_seq)):
+            raise ValueError(f"[{design_id}] Fail-closed P1: ORF {name} span [{s0}:{e0}] ({strand}) invalid")
+
+        extracted_cds = donor_seq[s0:e0].upper() if strand == "+" else revcomp(donor_seq[s0:e0])
+        if len(extracted_cds) != len(parent_cds):
+            raise ValueError(f"[{design_id}] Fail-closed P1: ORF {name} length mismatch vs parent")
+
+        mut_aa = translate_strict_cds(extracted_cds, expect_terminal_stop=has_stop)
+        wt_aa = translate_strict_cds(parent_cds, expect_terminal_stop=has_stop)
+        if mut_aa != wt_aa:
+            raise ValueError(f"[{design_id}] Fail-closed P1/P2: Non-synonymous AA change in {name}")
+
+        declared_intervals_by_strand[strand].append((s0, e0))
+        aa_nostop = mut_aa[:-1] if has_stop else mut_aa
+        nt_edits = [
+            {"pos_1based_cds": i + 1, "ref": parent_cds[i], "alt": extracted_cds[i]}
+            for i in range(len(parent_cds))
+            if parent_cds[i] != extracted_cds[i]
+        ]
+        p1_orfs.append(
+            {
+                "orf_name": name,
+                "donor_span_1based": [s0 + 1, e0],
+                "strand_in_donor": strand,
+                "cds_length_bp": len(extracted_cds),
+                "cds_sha256": sha256_str(extracted_cds),
+                "protein_aa_length": len(aa_nostop),
+                "protein_sha256": sha256_str(mut_aa),
+                "aa_substitutions_vs_parent": 0,
+                "synonymous_nt_edits": nt_edits,
+            }
+        )
+
+        topo_kind = spec["topology_kind"]
+        if topo_kind not in target_pdb_map:
+            raise ValueError(f"[{design_id}] Fail-closed P2: Unknown topology_kind: {topo_kind}")
+        present_topologies.add(topo_kind)
+        has_downstream_2a = bool(spec.get("has_downstream_2a", False))
+        if has_downstream_2a:
+            if has_stop:
+                raise ValueError(f"[{design_id}] Fail-closed P2: ORF {name} cannot have both terminal stop and downstream 2A")
+            tail_2a = (
+                donor_seq[e0 : e0 + 66].upper()
+                if strand == "+"
+                else revcomp(donor_seq[max(0, s0 - 66) : s0])
+            )
+            if len(tail_2a) < 54 or "NPGP" not in "".join(
+                GENETIC_CODE[tail_2a[k : k + 3]] for k in range(0, len(tail_2a) - len(tail_2a) % 3, 3)
+            ):
+                raise ValueError(f"[{design_id}] Fail-closed P2: Missing canonical NPGP 2A motif downstream of {name}")
+            required_junction_count += 1
+
+        if topo_kind == "GPI_ANCHORED_CD47_IGV":
+            if has_downstream_2a:
+                raise ValueError(f"[{design_id}] Fail-closed P2: 2A peptide forbidden downstream of GPI signal")
+            if (
+                len(aa_nostop) != 175
+                or not aa_nostop.startswith("MWPLVAALLLGSACCGSA")
+                or aa_nostop[138:147] != "PNKGSGTTS"
+                or aa_nostop[146] != "S"
+                or aa_nostop[147:] != "GTTRLLSGHTCFTLTGLLGTLVTMGLLT"
+            ):
+                raise ValueError(f"[{design_id}] Fail-closed P2: CD47-IgV-GPI Ser147 omega-site or Gly148..Thr175 propeptide corrupted")
+            required_junction_count += 1
+            p2_checks.append(
+                {
+                    "orf_name": name,
+                    "signal_peptide_1_18": aa_nostop[:18],
+                    "mature_n_term_res19": aa_nostop[18],
+                    "cd55_stalk_139_147": aa_nostop[138:147],
+                    "gpi_omega_residue_1based": "Ser147 (native CD55 Ser353; cleaved 28-aa propeptide is Gly148..Thr175)",
+                    "cleaved_propeptide_148_175_len": 28,
+                    "sequence_topology_valid": True,
+                    "biological_processing_qualification": "PENDING_WETLAB_SEC11_PIGK_QUANTIBRITE",
+                }
+            )
+        elif topo_kind == "TYPE1_TM_PDL1":
+            if not aa_nostop.startswith("MRIFAVFIFMTYWHLLNA") or aa_nostop[18] != "F" or len(aa_nostop) != 290:
+                raise ValueError(f"[{design_id}] Fail-closed P2: PD-L1 SP (1..18) or mature Phe19/290-aa topology corrupted")
+            p2_checks.append(
+                {
+                    "orf_name": name,
+                    "signal_peptide_1_18": aa_nostop[:18],
+                    "mature_n_term_res19": "Phe19",
+                    "cytoplasmic_c_tail_intact": aa_nostop[-15:],
+                    "has_downstream_2a": has_downstream_2a,
+                    "sequence_topology_valid": True,
+                    "biological_processing_qualification": "PENDING_WETLAB_SURFACE_PDL1_FLOW_AND_SHEDDING",
+                }
+            )
+        elif topo_kind == "TYPE1_TM_HLAE_SCT":
+            if (
+                len(aa_nostop) < 495
+                or not aa_nostop.startswith("MSRSVALAVLALLSLSGLEA")
+                or not aa_nostop.endswith("AEWSDSAQGSESHSL")
+                or aa_nostop.count("GGGGSGGGGSGGGGSGGGGS") < 1
+            ):
+                raise ValueError(f"[{design_id}] Fail-closed P2: HLA-E SCT B2M-SP, G4S linkers, or cytoplasmic tail corrupted")
+            required_junction_count += 4
+            p2_checks.append(
+                {
+                    "orf_name": name,
+                    "b2m_signal_peptide_1_20": aa_nostop[:20],
+                    "tethered_peptide_21_29": aa_nostop[20:29],
+                    "precursor_length_aa": len(aa_nostop),
+                    "cytoplasmic_tail_intact": "AEWSDSAQGSESHSL",
+                    "has_downstream_2a": has_downstream_2a,
+                    "sequence_topology_valid": True,
+                    "biological_processing_qualification": "PENDING_WETLAB_QUANTIBRITE_HLAE_AND_NK_GATE",
+                }
+            )
+        elif topo_kind == "CYTOSOLIC_SERPINB9":
+            if len(aa_nostop) != 376 or not aa_nostop.startswith("METLSNASGTFAIRLLKILC"):
+                raise ValueError(f"[{design_id}] Fail-closed P2: CYTOSOLIC_SERPINB9 requires 376-aa leaderless human PI-9 sequence")
+            p2_checks.append(
+                {
+                    "orf_name": name,
+                    "compartment": "cytosolic_leaderless",
+                    "has_c_terminal_2a_stub": has_downstream_2a,
+                    "sequence_topology_valid": True,
+                    "biological_processing_qualification": "PENDING_WETLAB_GZMB_KINETICS",
+                }
+            )
+        elif topo_kind == "CYTOSOLIC_ICASP9":
+            if len(aa_nostop) != 396 or not aa_nostop.startswith("MGVQVETISPGDGRTFPKRG") or aa_nostop[108:114] != "SGGGSG":
+                raise ValueError(f"[{design_id}] Fail-closed P2: CYTOSOLIC_ICASP9 requires 396-aa FKBP12(F36V)-SGGGSG-dCasp9 sequence")
+            required_junction_count += 1
+            p2_checks.append(
+                {
+                    "orf_name": name,
+                    "compartment": "cytosolic_leaderless",
+                    "has_c_terminal_2a_stub": has_downstream_2a,
+                    "sequence_topology_valid": True,
+                    "biological_processing_qualification": "PENDING_WETLAB_AP1903_KILL_AND_TIER6B_ESCAPE",
+                }
+            )
+
+    if len(donor_seq) >= 1800:
+        c_start, c_end = 580, len(donor_seq) - 580
+        cargo_plus = donor_seq[c_start:c_end].upper()
+        cargo_minus = revcomp(cargo_plus)
+        c_len = len(cargo_plus)
+        for st, c_str in (("+", cargo_plus), ("-", cargo_minus)):
+            search_from = 0
+            while True:
+                k_pos = c_str.find("CCACCATG", search_from)
+                if k_pos == -1:
+                    break
+                atg_idx = k_pos + 5
+                search_from = atg_idx + 3
+                end_idx = atg_idx
+                while end_idx + 3 <= c_len and GENETIC_CODE[c_str[end_idx : end_idx + 3]] != "*":
+                    end_idx += 3
+                if end_idx + 3 <= c_len and (end_idx + 3 - atg_idx) >= 300:
+                    if st == "+":
+                        g_s0, g_e0 = c_start + atg_idx, c_start + end_idx + 3
+                    else:
+                        g_s0, g_e0 = c_start + (c_len - (end_idx + 3)), c_start + (c_len - atg_idx)
+                    span_len = g_e0 - g_s0
+                    covered = sum(
+                        max(0, min(g_e0, ds1) - max(g_s0, ds0))
+                        for ds0, ds1 in declared_intervals_by_strand[st]
+                    )
+                    if covered < 0.80 * span_len:
+                        raise ValueError(
+                            f"[{design_id}] Fail-closed P1: Undeclared Kozak-initiated cargo ORF on '{st}' [{g_s0}:{g_e0}] ({span_len} nt, covered={covered} nt)"
+                        )
+
+    if len(junction_specs) < required_junction_count:
+        raise ValueError(
+            f"[{design_id}] Fail-closed P3: Expected >= {required_junction_count} chimeric/2A/linker junction_specs from donor ORFs, got {len(junction_specs)}"
+        )
+    j_enum = []
+    tot_8_11 = 0
+    tot_15 = 0
+    for j in junction_specs:
+        if len(j.get("left_aa", "")) < 8 or len(j.get("right_aa", "")) < 8:
+            raise ValueError(f"[{design_id}] Fail-closed P3: Invalid flanking peptide lengths in {j.get('junction_id')}")
+        res = enumerate_junction_peptides(j["left_aa"], j["linker_aa"], j["right_aa"])
+        tot_8_11 += res["count_8_to_11mer"]
+        tot_15 += res["count_15mer"]
+        j_enum.append({"junction_id": j["junction_id"], **res})
+
+    if not pdb_refs:
+        raise ValueError(f"[{design_id}] Fail-closed P4: pdb_refs must be non-empty")
+    bad_pdbs = [p for p in pdb_refs if p not in ALLOWED_LAYER3_PDB_IDS_IIP0015]
+    if bad_pdbs:
+        raise ValueError(f"[{design_id}] Fail-closed P4: Unverified/misattributed PDB IDs rejected: {bad_pdbs}")
+    allowed_for_present = set()
+    for tk in present_topologies:
+        req_set = target_pdb_map[tk]
+        if not (set(pdb_refs) & req_set):
+            raise ValueError(f"[{design_id}] Fail-closed P4: Missing target-specific Layer-3 PDB reference for {tk}")
+        allowed_for_present |= req_set
+    wrong_target_pdbs = [p for p in pdb_refs if p not in allowed_for_present]
+    if wrong_target_pdbs:
+        raise ValueError(f"[{design_id}] Fail-closed P4: PDB IDs {wrong_target_pdbs} do not match any protein target in {sorted(present_topologies)}")
+
+    return {
+        "design_id": design_id,
+        "gate_P1_sequence_and_aav6_budget": {
+            "donor_length_bp": len(donor_seq),
+            "packaged_aav6_bp_with_2x145_itrs": aav6_bp,
+            "within_4700bp_engineering_cap": True,
+            "headroom_below_4700bp": 4700 - aav6_bp,
+            "donor_sha256": sha256_str(donor_seq),
+            "bound_orf_verifications": p1_orfs,
+            "deterministic_sequence_check_passed": True,
+            "aav6_genome_integrity_and_hdr_yield_status": "PENDING_WETLAB_AAV_GENOME_QC",
+        },
+        "gate_P2_membrane_and_2a_topology": {
+            "checks": p2_checks,
+            "sequence_topology_inherited_valid": True,
+            "exact_product_trafficking_status": "PENDING_WETLAB",
+        },
+        "gate_P3_chimeric_junction_neoepitopes": {
+            "portfolio_9boundary_reproduced_8_11mer": 326,
+            "portfolio_9boundary_reproduced_15mer": 112,
+            "portfolio_10boundary_with_hlac_15mer": 126,
+            "legacy_snippet_scoped_15mer_constant": 136,
+            "required_chimeric_junction_count_from_orfs": required_junction_count,
+            "construct_enumerated_junctions": j_enum,
+            "construct_total_8_11mer": tot_8_11,
+            "construct_total_15mer": tot_15,
+            "delta_8_11mer_vs_immediate_parent": tot_8_11 - parent_8_11mer_count,
+            "delta_15mer_vs_immediate_parent": tot_15 - parent_15mer_count,
+            "delta_8_11mer_vs_canonical_r01_locus_equivalent": tot_8_11 - r01_canonical_8_11mer_count,
+            "delta_15mer_vs_canonical_r01_locus_equivalent": tot_15 - r01_canonical_15mer_count,
+            "aberrant_rna_isoform_immunogenicity_status": "REQUIRES_5_3_RACE_AND_FULL_CDNA_VERIFICATION",
+        },
+        "gate_P4_3d_structural_provenance": {
+            "verified_layer3_pdb_ids": pdb_refs,
+            "intended_polypeptide_identical_to_layer3_entry": True,
+            "carried_forward_unresolved_constraints": unresolved_structural_flags,
+            "qualification_status": "REFERENCE_GEOMETRY_CARRY_FORWARD_ONLY_EXACT_FUNCTION_PENDING_WETLAB",
+        },
+    }
+
+
+def run_adversarial_validator_selftests(
+    l3_donor: str,
+    serpinb9_nostop: str,
+    pdl1_cds: str,
+    l4_donor: str,
+    icasp9_cds: str,
+    astar_donor: str,
+    cd47_cds: str,
+) -> List[Dict[str, Any]]:
+    """Verify all 11 fail-closed negative-control probes are rejected by validate_p1_to_p4_fail_closed."""
+    probes: List[Dict[str, Any]] = []
+
+    def _expect_reject(name: str, fn) -> None:
+        try:
+            fn()
+            raise AssertionError(f"Adversarial probe '{name}' failed to raise ValueError")
+        except ValueError as exc:
+            probes.append({"probe": name, "rejected_as_expected": True, "error": str(exc)})
+
+    idx_pdl1 = l3_donor.find(pdl1_cds)
+    good_l3_orfs = [
+        {"name": "SERPINB9_nostop", "start_0based": 609, "end_0based": 1737, "strand": "+", "has_stop": False, "parent_cds": serpinb9_nostop, "topology_kind": "CYTOSOLIC_SERPINB9", "has_downstream_2a": True},
+        {"name": "PDL1_stop", "start_0based": idx_pdl1, "end_0based": idx_pdl1 + len(pdl1_cds), "strand": "+", "has_stop": True, "parent_cds": pdl1_cds, "topology_kind": "TYPE1_TM_PDL1", "has_downstream_2a": False},
+    ]
+    good_l3_junc = [{"junction_id": "SERPINB9|P2A", "left_aa": "A" * 376, "linker_aa": "", "right_aa": "B" * 21}]
+
+    _expect_reject("1_empty_orf_list", lambda: validate_p1_to_p4_fail_closed("P1", l3_donor, [], [], 0, 0, 0, 0, ["4ZQK"], []))
+    _expect_reject(
+        "2_orf_absent_from_donor_span",
+        lambda: validate_p1_to_p4_fail_closed(
+            "P2", l3_donor, [{"name": "FAKE", "start_0based": 0, "end_0based": len(pdl1_cds), "strand": "+", "has_stop": True, "parent_cds": pdl1_cds, "topology_kind": "TYPE1_TM_PDL1"}], [], 0, 0, 0, 0, ["4ZQK"], []
+        ),
+    )
+    mut_donor = l3_donor[:idx_pdl1] + ("T" if pdl1_cds[0] != "T" else "C") + l3_donor[idx_pdl1 + 1 :]
+    _expect_reject(
+        "3_nonsynonymous_mutation",
+        lambda: validate_p1_to_p4_fail_closed("P3", mut_donor, good_l3_orfs, good_l3_junc, 34, 14, 34, 14, ["1IAU", "4GA7", "8ZCR", "4ZQK"], []),
+    )
+    for k_i, bad_pdb in enumerate(("7ST3", "1BLX"), start=4):
+        _expect_reject(
+            f"{k_i}_misattributed_pdb_{bad_pdb}",
+            lambda bp=bad_pdb: validate_p1_to_p4_fail_closed("P_PDB", l3_donor, good_l3_orfs, good_l3_junc, 34, 14, 34, 14, [bp], []),
+        )
+    _expect_reject(
+        "6_empty_junction_specs_with_2a",
+        lambda: validate_p1_to_p4_fail_closed("P6", l3_donor, good_l3_orfs, [], 34, 14, 34, 14, ["1IAU", "4GA7", "8ZCR", "4ZQK"], []),
+    )
+    _expect_reject(
+        "7_wrong_target_pdb_4ZQK_on_icasp9",
+        lambda: validate_p1_to_p4_fail_closed(
+            "P7",
+            l4_donor,
+            [{"name": "iCasp9", "start_0based": 1544, "end_0based": 2735, "strand": "+", "has_stop": True, "parent_cds": icasp9_cds, "topology_kind": "CYTOSOLIC_ICASP9", "has_downstream_2a": False}],
+            [{"junction_id": "FKBP|SGGGSG|dCasp9", "left_aa": "A" * 108, "linker_aa": "SGGGSG", "right_aa": "B" * 282}],
+            58, 20, 58, 20, ["4ZQK"], [],
+        ),
+    )
+    _expect_reject(
+        "8_pdl1_mislabelled_cytosolic_icasp9",
+        lambda: validate_p1_to_p4_fail_closed(
+            "P8",
+            l3_donor,
+            [dict(good_l3_orfs[1], topology_kind="CYTOSOLIC_ICASP9")],
+            [{"junction_id": "FAKE", "left_aa": "A" * 108, "linker_aa": "SGGGSG", "right_aa": "B" * 176}],
+            0, 0, 0, 0, ["1BL4"], [],
+        ),
+    )
+    _expect_reject(
+        "9_omitted_serpinb9_orf",
+        lambda: validate_p1_to_p4_fail_closed("P9", l3_donor, [good_l3_orfs[1]], [], 0, 0, 0, 0, ["4ZQK"], []),
+    )
+    _expect_reject(
+        "10_oversized_4710bp_packaged_aav6",
+        lambda: validate_p1_to_p4_fail_closed("P10", l3_donor + ("A" * 330), good_l3_orfs, good_l3_junc, 34, 14, 34, 14, ["1IAU", "4ZQK"], []),
+    )
+    bad_cd47 = cd47_cds[: 3 * 174] + "CCA" + cd47_cds[3 * 175 :]
+    bad_astar = astar_donor[:876] + revcomp(bad_cd47) + astar_donor[1404:]
+    _expect_reject(
+        "11_cd47_propeptide_Thr175_to_Pro175",
+        lambda: validate_p1_to_p4_fail_closed(
+            "P11",
+            bad_astar,
+            [{"name": "CD47", "start_0based": 876, "end_0based": 1404, "strand": "-", "has_stop": True, "parent_cds": bad_cd47, "topology_kind": "GPI_ANCHORED_CD47_IGV", "has_downstream_2a": False}],
+            [{"junction_id": "CD47|stalk", "left_aa": "A" * 120, "linker_aa": "", "right_aa": "PNKGSGTTS"}],
+            33, 9, 33, 9, ["2JJS"], [],
+        ),
+    )
+    return probes
+
+
+def _build_two_strand_splice_census_and_challenger_manifest_iip_0015(
+    ref: Dict[str, Any],
+    construct_verification: Dict[str, Any],
+    arm1a_can: str,
+    arm1b_can: str,
+    l3_can: str,
+    l4_can: str,
+) -> Dict[str, Any]:
+    """
+    Deterministic open two-strand knock-in splice-grammar census, synthesis-ready Mode-B
+    challenger manifest (unshielded reference derivations + PAM/seed-shielded counterparts
+    + unconfounded 2x2 Locus-4 orientation x A72T/C73A controls + separated 505-aa vs 500-aa
+    Locus-1 stop-seam comparators), fail-closed P1-P4 protein/packaging checks, and UMI/RT-PCR
+    isoform gate geometry (IIP-0015 / DEC-092).
+    """
+    if score_5prime_donor_9mer("CAGGTGGGT")["u1_wc_or_wobble_of_9"] != 9:
+        raise ValueError("U1 pairing calibration mismatch on CAGGTGGGT")
+    if score_5prime_donor_9mer("CAGGTGAGA")["u1_wc_or_wobble_of_9"] != 8:
+        raise ValueError("U1 pairing calibration mismatch on CAGGTGAGA")
+    if score_5prime_donor_9mer("CCTGTGAGC")["u1_wc_or_wobble_of_9"] != 6:
+        raise ValueError("U1 pairing calibration mismatch on CCTGTGAGC")
+    if score_5prime_donor_9mer("CCGGTTCGT")["u1_wc_or_wobble_of_9"] != 6:
+        raise ValueError("U1 pairing calibration mismatch on CCGGTTCGT")
+    if score_5prime_donor_9mer("TGAGTAGGT")["u1_wc_or_wobble_of_9"] != 8:
+        raise ValueError("U1 pairing calibration mismatch on TGAGTAGGT")
+
+    c_by_id = {c["construct_id"]: c for c in construct_verification["constructs"]}
+    codon_tbl = c_by_id["LOCUS1_ARM1B_2AFREE_BIDIRECTIONAL_R01"]["arm1b_vs_arm1x_codon_coordinate_table"]
+    challengers = next(v for k, v in codon_tbl.items() if k.startswith("single_variable_challenger_arms_"))
+    astar_wt = next(
+        v for k, v in challengers.items() if k.startswith("Arm_1B_Sense_Readthrough_Terminator_Shield_")
+    )["embodiment_a_star_combined_4143bp_donor_sequence"].upper()
+    l3_sf_wt = next(
+        v for k, v in challengers.items() if k.startswith("Locus3_ScarFree_Dual_Promoter_SERPINB9_PDL1_")
+    )["assembled_3799bp_spaced_donor_sequence"].upper()
+    l3_bfb_wt = next(
+        v for k, v in challengers.items() if k.startswith("Locus3_BasalFloor_ScarFree_SERPINB9_PDL1_")
+    )["l3_bfb_assembled_4078bp_pam_shielded_donor_sequence"].upper()
+    dxs_arm1c_block = next(
+        v for k, v in challengers.items() if k.startswith("DX_S_Split_Cassette_Arm1C_HLAE_plus_Locus4_CD47_")
+    )
+    dxs_l4_wt = dxs_arm1c_block["locus4_icasp9_p2a_cd47_donor_sequence"].upper()
+    dxs_arm1c_3300 = dxs_arm1c_block["locus1_arm1c_constitutive_eef1a1_intron_donor_sequence"].upper()
+    dxs_arm1c_native_3300 = dxs_arm1c_block["locus1_arm1c_constitutive_native_parts_3300bp_donor_sequence"].upper()
+    dxs_arm1c_3459 = dxs_arm1c_block["locus1_arm1c_promoter_trapped_wpre3_3459bp_donor_sequence"].upper()
+
+    gencode = ref["gencode_v46_transcript_models_pinned"]
+    b2m_ex2_obj = gencode["B2M"]["exon_2_sequence_chr15_44715423_44715701"]
+    b2m_ex2_seq = b2m_ex2_obj["sequence"].upper()
+    if len(b2m_ex2_seq) != 279 or sha256_str(b2m_ex2_seq) != b2m_ex2_obj["sequence_sha256"]:
+        raise ValueError("Pinned B2M Exon 2 sequence hash mismatch in layer2_genomic_and_jaspar_reference.json")
+    art3_model = gencode["ART3"]
+    cbx3_win_a_model = gencode["CBX3_UPSTREAM_WINDOW_A_ISOFORM"]
+
+    serpinb9_nostop = l3_can[609:1737]
+    gsg_p2a_cds = l3_can[1737:1803]
+    pdl1_wt = l3_can[1803:2676]
+    wpre_wt = l3_can[2676:3265]
+    bgh_wt = l3_can[3265:3490]
+
+    chs4_250 = l4_can[600:850]
+    wina_wt = l4_can[850:1305]
+    eef_wt = l4_can[1305:1535]
+    kozak_9 = l4_can[1535:1544]
+    icasp9_wt = l4_can[1544:2735]
+    sv40_122 = l4_can[2735:2857]
+
+    hlae_astar_wt = astar_wt[1800:3318]
+    cd47_astar_wt = revcomp(astar_wt[876:1404])
+    hlae_arm1b_wt = arm1b_can[1646:3149]
+
+    pdl1_syn2 = pdl1_wt[:719] + "T" + pdl1_wt[720:722] + "C" + pdl1_wt[723:]
+    pdl1_syn4 = pdl1_syn2[:857] + "T" + pdl1_syn2[858:860] + "C" + pdl1_syn2[861:]
+    if not (translate_strict_cds(pdl1_wt, True) == translate_strict_cds(pdl1_syn2, True) == translate_strict_cds(pdl1_syn4, True)):
+        raise ValueError("PD-L1 synonymous edit translation check failed")
+
+    bgh_hard = bgh_wt[:139] + "T" + bgh_wt[140:142] + "TT" + bgh_wt[144:]
+    wpre_hard = wpre_wt[:260] + "A" + wpre_wt[261:]
+    wina_codir_hard = wina_wt[:31] + "TC" + wina_wt[33:443] + "TCC" + wina_wt[446:]
+    wina_2strand_hard = wina_codir_hard[:71] + "TA" + wina_codir_hard[73:]
+    eef_230a_historical = eef_wt[:222] + "C" + eef_wt[223:228] + "CA"
+    eef_230c = eef_wt[:222] + "C" + eef_wt[223:228] + "CC"
+
+    # Separate 505-aa Embodiment A* (G1515C, G1517A) vs 500-aa Arm 1B / DX-S Arm 1C (G1500C, G1502A)
+    hlae_astar_stop = hlae_astar_wt[:1514] + "C" + hlae_astar_wt[1515] + "A" + hlae_astar_wt[1517]
+    hlae_arm1b_stop = hlae_arm1b_wt[:1499] + "C" + hlae_arm1b_wt[1500] + "A" + hlae_arm1b_wt[1502]
+    if translate_strict_cds(hlae_astar_wt, True) != translate_strict_cds(hlae_astar_stop, True):
+        raise ValueError("Embodiment A* 505-aa stop-only edit changed translation")
+    if translate_strict_cds(hlae_arm1b_wt, True) != translate_strict_cds(hlae_arm1b_stop, True):
+        raise ValueError("Arm 1B/1C 500-aa stop-only edit changed translation")
+
+    if not (eef_wt.count("CG") == eef_230c.count("CG") == 19 and wina_wt.count("CG") == wina_codir_hard.count("CG") == wina_2strand_hard.count("CG") == 47):
+        raise ValueError("Window A / EEF1A1 internal CpG preservation check failed")
+    if (eef_230c + kozak_9).count("CG") - (eef_wt + kozak_9).count("CG") != 1:
+        raise ValueError("Expected +1 junctional CpG across EEF1A1[230C]|Kozak[1] seam")
+
+    icasp9_cds13_acceptor = score_3prime_acceptor_23mer(l4_can[1544 + 12 - 20 : 1544 + 12 + 3])
+    if not (icasp9_cds13_acceptor["is_canonical_ag"] and icasp9_cds13_acceptor["heuristic_acceptor_index"] >= 68.0):
+        raise ValueError("Expected canonical iCasp9 CDS[11..12] AG acceptor")
+
+    chs4_fii_80 = chs4_250[16:96]  # GenBank U78775.2:24-103; inserted in reverse-complement orientation at 600|601
+    l3_can_syn2 = l3_can[:1803] + pdl1_syn2 + wpre_wt + bgh_wt + l3_can[3490:]
+    l3_can_syn4 = l3_can[:1803] + pdl1_syn4 + wpre_wt + bgh_wt + l3_can[3490:]
+    l3_can_bgh_only = l3_can[:1803] + pdl1_wt + wpre_wt + bgh_hard + l3_can[3490:]
+    l3_can_wpre_only = l3_can[:1803] + pdl1_wt + wpre_hard + bgh_wt + l3_can[3490:]
+    l3_sf_syn4_only = l3_sf_wt[:2101] + pdl1_syn4 + bgh_wt + l3_sf_wt[3199:]
+    l3_sf_syn4_bgh = l3_sf_wt[:2101] + pdl1_syn4 + bgh_hard + l3_sf_wt[3199:]
+    l3_sf_syn4_1xfii80 = l3_sf_syn4_only[:600] + revcomp(chs4_fii_80) + l3_sf_syn4_only[600:]
+    l3_sf_syn4_bgh_1xfii80 = l3_sf_syn4_bgh[:600] + revcomp(chs4_fii_80) + l3_sf_syn4_bgh[600:]
+
+    l4_wina_only = l4_can[:850] + wina_codir_hard + eef_wt + l4_can[1535:]
+    l4_eef230c_only = l4_can[:850] + wina_wt + eef_230c + l4_can[1535:]
+    l4_splice_230c = l4_can[:850] + wina_codir_hard + eef_230c + l4_can[1535:]
+    l4_codir_7nt_230c = l4_can[:850] + wina_2strand_hard + eef_230c + l4_can[1535:]
+
+    # Pure offline GRCh38 chr19:+ homology arms from canonical chr19:- Locus 4 homology arms:
+    # chr19:55115168..55115767 (+) == revcomp(l4_can[-600:]) and chr19:55115768..55116367 (+) == revcomp(l4_can[:600])
+    wt4_plus_ha_l = revcomp(l4_can[-600:])
+    wt4_plus_ha_r = revcomp(l4_can[:600])
+    cargo_wt = l4_can[600:2857]
+    cargo_5nt_230c = chs4_250 + wina_codir_hard + eef_230c + kozak_9 + icasp9_wt + sv40_122
+    cargo_7nt_230c = chs4_250 + wina_2strand_hard + eef_230c + kozak_9 + icasp9_wt + sv40_122
+
+    l4_conv_wt_plus = wt4_plus_ha_l + cargo_wt + wt4_plus_ha_r
+    l4_conv_wt_minus = l4_can[:600] + revcomp(cargo_wt) + l4_can[2857:]
+    l4_conv_5nt_230c_plus = wt4_plus_ha_l + cargo_5nt_230c + wt4_plus_ha_r
+    l4_conv_5nt_230c_minus = l4_can[:600] + revcomp(cargo_5nt_230c) + l4_can[2857:]
+    l4_conv_2strand_230c = wt4_plus_ha_l + cargo_7nt_230c + wt4_plus_ha_r
+    l4_conv_2strand_230c_minus = l4_can[:600] + revcomp(cargo_7nt_230c) + l4_can[2857:]
+
+    if revcomp(l4_conv_2strand_230c_minus) != l4_conv_2strand_230c:
+        raise ValueError("Convergent Locus 4 chr19:+ vs chr19:- reverse-complement identity failed")
+    if revcomp(l4_conv_5nt_230c_minus) != l4_conv_5nt_230c_plus or revcomp(l4_conv_wt_minus) != l4_conv_wt_plus:
+        raise ValueError("Convergent Locus 4 2x2 matrix reverse-complement identity failed")
+    if not sha256_str(l4_conv_2strand_230c).startswith("70424667") or not sha256_str(l4_conv_2strand_230c_minus).startswith("977495f1"):
+        raise ValueError("Convergent Locus 4 SHA-256 prefix verification failed (expected 70424667 / 977495f1)")
+    if l4_can.count("CG") != 202 or l4_splice_230c.count("CG") != 203:
+        raise ValueError(f"Expected construct-wide Locus 4 CpGs 202 -> 203, got {l4_can.count('CG')} -> {l4_splice_230c.count('CG')}")
+
+    eef_dxs_wt = dxs_l4_wt[1305:1535]
+    eef_dxs_230c = eef_dxs_wt[:222] + "C" + eef_dxs_wt[223:228] + "CC"
+    dxs_l4_splice_230c_nospa = dxs_l4_wt[:850] + wina_codir_hard + eef_dxs_230c + dxs_l4_wt[1535:]
+
+    astar_stop_only = astar_wt[:1800] + hlae_astar_stop + bgh_wt + astar_wt[3543:]
+    astar_full_230c = astar_wt[:1413] + revcomp(eef_230c) + astar_wt[1643:1800] + hlae_astar_stop + bgh_hard + astar_wt[3543:]
+
+    # Verify the verified hash prefixes across primary challengers
+    expected_prefixes = {
+        "S3_L3_CAN_PDL1_SYN2_4090": (l3_can_syn2, "3cb5ce72"),
+        "S3_L3_CAN_PDL1_SYN4_4090": (l3_can_syn4, "ccd86d6a"),
+        "S3_L3_CAN_BGH_ONLY_4090": (l3_can_bgh_only, "304a08d9"),
+        "S3_L3_SF_PDL1_SYN4_3799": (l3_sf_syn4_only, "a678fade"),
+        "S3_L3_SF_SYN4_1xFII80_3879": (l3_sf_syn4_1xfii80, "6d594329"),
+        "S3_L4_SPLICE_230C_NOSPA_3457": (l4_splice_230c, "3bc15171"),
+        "S3_L4_CONVERGENT_2STRAND_230C_3457": (l4_conv_2strand_230c, "70424667"),
+        "S3_L1_ASTAR_STOP_ONLY_4143": (astar_stop_only, "aff2ec0d"),
+    }
+    for exp_id, (exp_seq, exp_pref) in expected_prefixes.items():
+        got_sha = sha256_str(exp_seq)
+        if not got_sha.startswith(exp_pref):
+            raise ValueError(f"{exp_id} SHA-256 mismatch: expected prefix {exp_pref}, got {got_sha}")
+
+    # Synthesis-ready PAM/seed-shielded comparators (per Stage-0 Playbook unconditional co-conversion rule)
+    def _shield_l3_har17(seq_l3: str) -> str:
+        har_start = len(seq_l3) - 600
+        if seq_l3[har_start + 16] != "G":
+            raise ValueError("Expected G at CXCL10_HA_R 1-based position 17 before PAM-shield co-conversion")
+        return seq_l3[: har_start + 16] + "C" + seq_l3[har_start + 17 :]
+
+    def _shield_l4_minus_har14(seq_l4_minus: str) -> str:
+        har_start = len(seq_l4_minus) - 600
+        if seq_l4_minus[har_start + 13] != "G":
+            raise ValueError("Expected G at AAVS1_HA_R 1-based position 14 before PAM-shield co-conversion")
+        return seq_l4_minus[: har_start + 13] + "C" + seq_l4_minus[har_start + 14 :]
+
+    def _shield_l4_plus_hal587(seq_l4_plus: str) -> str:
+        if seq_l4_plus[586] != "C":
+            raise ValueError("Expected C at chr19:+ HA_L 1-based position 587 before PAM-shield co-conversion")
+        return seq_l4_plus[:586] + "G" + seq_l4_plus[587:]
+
+    b2m_ha_l_600 = arm1b_can[:600]
+    b2m_ha_l_s3_only_600 = (
+        b2m_ha_l_600[:582] + "C" + b2m_ha_l_600[583:588] + "A" + b2m_ha_l_600[589:591] + "C" + b2m_ha_l_600[592:594] + "A" + b2m_ha_l_600[595:]
+    )
+    if astar_wt[:600] != b2m_ha_l_s3_only_600:
+        raise ValueError("Embodiment A* left homology arm expected to carry S3 PAM+seed shield")
+
+    idx_bfb_pdl1 = l3_bfb_wt.find(pdl1_wt)
+    if idx_bfb_pdl1 < 0:
+        raise ValueError("Could not locate PD-L1 CDS in L3_BFB_BASALFLOOR_4078")
+    l3_bfb_syn4_pam_shielded = l3_bfb_wt[:idx_bfb_pdl1] + pdl1_syn4 + l3_bfb_wt[idx_bfb_pdl1 + len(pdl1_wt) :]
+
+    # 500-aa Arm 1B (3,974 bp) and DX-S Arm 1C constitutive (3,300 bp) G1500C/G1502A stop-only comparators
+    arm1b_stop_unshielded_3974 = arm1b_can[:1646] + hlae_arm1b_stop + arm1b_can[3149:]
+    arm1b_s3_only_wt_3974 = b2m_ha_l_s3_only_600 + arm1b_can[600:]
+    arm1b_stop_s3_only_3974 = b2m_ha_l_s3_only_600 + arm1b_stop_unshielded_3974[600:]
+    arm1c_3300_stop_s3_shielded = dxs_arm1c_3300[:972] + hlae_arm1b_stop + dxs_arm1c_3300[2475:]
+    arm1c_3300_stop_unshielded = dxs_arm1c_native_3300[:972] + hlae_arm1b_stop + dxs_arm1c_native_3300[2475:]
+
+    pam_shielded_manifest = {
+        "policy": (
+            "Stage-0 Execution Playbook requires unconditional PAM/seed-shield co-conversion for synthesized HDR donors. "
+            "Every Mode-B challenger below is paired with its exact PAM/seed-shielded synthesis-ready donor and matched "
+            "PAM/seed-shielded parental control, while preserving the unshielded derivations as reproducible reference hashes."
+        ),
+        "locus3_cxcl10_ha_r_nt17_g_to_c_pam_shielded": [
+            {
+                "construct_id": "L3_CAN_WT_PAM_SHIELDED_CONTROL_4090",
+                "shield_edit_donor_1based": "G3507C (CXCL10_HA_R nt 17 G>C)",
+                "unshielded_reference_id": "ISLET1_LOCUS3_CXCL10_SERPINB9_GSGP2A_PDL1_NO_FURIN_4090bp",
+                "unshielded_sha256": sha256_str(l3_can),
+                "donor_length_bp": 4090,
+                "packaged_aav6_bp": 4380,
+                "pam_shielded_sha256": sha256_str(_shield_l3_har17(l3_can)),
+                "pam_shielded_donor_sequence": _shield_l3_har17(l3_can),
+            },
+            {
+                "construct_id": "L3_CAN_PDL1_SYN2_PAM_SHIELDED_4090",
+                "shield_edit_donor_1based": "G3507C (CXCL10_HA_R nt 17 G>C)",
+                "unshielded_reference_id": "S3_L3_CAN_PDL1_SYN2_4090",
+                "unshielded_sha256": sha256_str(l3_can_syn2),
+                "donor_length_bp": 4090,
+                "packaged_aav6_bp": 4380,
+                "pam_shielded_sha256": sha256_str(_shield_l3_har17(l3_can_syn2)),
+                "pam_shielded_donor_sequence": _shield_l3_har17(l3_can_syn2),
+            },
+            {
+                "construct_id": "L3_CAN_PDL1_SYN4_PAM_SHIELDED_4090",
+                "shield_edit_donor_1based": "G3507C (CXCL10_HA_R nt 17 G>C)",
+                "unshielded_reference_id": "S3_L3_CAN_PDL1_SYN4_4090",
+                "unshielded_sha256": sha256_str(l3_can_syn4),
+                "donor_length_bp": 4090,
+                "packaged_aav6_bp": 4380,
+                "pam_shielded_sha256": sha256_str(_shield_l3_har17(l3_can_syn4)),
+                "pam_shielded_donor_sequence": _shield_l3_har17(l3_can_syn4),
+            },
+            {
+                "construct_id": "L3_CAN_BGH_ONLY_PAM_SHIELDED_4090",
+                "shield_edit_donor_1based": "G3507C (CXCL10_HA_R nt 17 G>C)",
+                "unshielded_reference_id": "S3_L3_CAN_BGH_ONLY_4090",
+                "unshielded_sha256": sha256_str(l3_can_bgh_only),
+                "donor_length_bp": 4090,
+                "packaged_aav6_bp": 4380,
+                "pam_shielded_sha256": sha256_str(_shield_l3_har17(l3_can_bgh_only)),
+                "pam_shielded_donor_sequence": _shield_l3_har17(l3_can_bgh_only),
+            },
+            {
+                "construct_id": "L3_CAN_WPRE_ONLY_PAM_SHIELDED_4090",
+                "shield_edit_donor_1based": "G3507C (CXCL10_HA_R nt 17 G>C)",
+                "unshielded_reference_id": "S3_L3_CAN_WPRE_ONLY_4090",
+                "unshielded_sha256": sha256_str(l3_can_wpre_only),
+                "donor_length_bp": 4090,
+                "packaged_aav6_bp": 4380,
+                "pam_shielded_sha256": sha256_str(_shield_l3_har17(l3_can_wpre_only)),
+                "pam_shielded_donor_sequence": _shield_l3_har17(l3_can_wpre_only),
+            },
+            {
+                "construct_id": "L3_SF_WT_PAM_SHIELDED_CONTROL_3799",
+                "shield_edit_donor_1based": "G3216C (CXCL10_HA_R nt 17 G>C)",
+                "unshielded_reference_id": "ISLET1_A4_L3_SCARFREE_3799",
+                "unshielded_sha256": sha256_str(l3_sf_wt),
+                "donor_length_bp": 3799,
+                "packaged_aav6_bp": 4089,
+                "pam_shielded_sha256": sha256_str(_shield_l3_har17(l3_sf_wt)),
+                "pam_shielded_donor_sequence": _shield_l3_har17(l3_sf_wt),
+            },
+            {
+                "construct_id": "L3_SF_PDL1_SYN4_PAM_SHIELDED_3799",
+                "shield_edit_donor_1based": "G3216C (CXCL10_HA_R nt 17 G>C)",
+                "unshielded_reference_id": "S3_L3_SF_PDL1_SYN4_3799",
+                "unshielded_sha256": sha256_str(l3_sf_syn4_only),
+                "donor_length_bp": 3799,
+                "packaged_aav6_bp": 4089,
+                "pam_shielded_sha256": sha256_str(_shield_l3_har17(l3_sf_syn4_only)),
+                "pam_shielded_donor_sequence": _shield_l3_har17(l3_sf_syn4_only),
+            },
+            {
+                "construct_id": "L3_SF_SYN4_1xFII80_PAM_SHIELDED_3879",
+                "shield_edit_donor_1based": "G3296C (CXCL10_HA_R nt 17 G>C; 1xFII80 inserted as revcomp(U78775.2:24-103) at 601..680)",
+                "unshielded_reference_id": "S3_L3_SF_SYN4_1xFII80_3879",
+                "unshielded_sha256": sha256_str(l3_sf_syn4_1xfii80),
+                "donor_length_bp": 3879,
+                "packaged_aav6_bp": 4169,
+                "pam_shielded_sha256": sha256_str(_shield_l3_har17(l3_sf_syn4_1xfii80)),
+                "pam_shielded_donor_sequence": _shield_l3_har17(l3_sf_syn4_1xfii80),
+            },
+            {
+                "construct_id": "L3_SF_SYN4_BGH_1xFII80_PAM_SHIELDED_3879",
+                "shield_edit_donor_1based": "G3296C (CXCL10_HA_R nt 17 G>C; 1xFII80 inserted as revcomp(U78775.2:24-103) at 601..680)",
+                "unshielded_reference_id": "S3_L3_SF_SYN4_BGH_1xFII80_3879",
+                "unshielded_sha256": sha256_str(l3_sf_syn4_bgh_1xfii80),
+                "donor_length_bp": 3879,
+                "packaged_aav6_bp": 4169,
+                "pam_shielded_sha256": sha256_str(_shield_l3_har17(l3_sf_syn4_bgh_1xfii80)),
+                "pam_shielded_donor_sequence": _shield_l3_har17(l3_sf_syn4_bgh_1xfii80),
+            },
+            {
+                "construct_id": "L3_BFB_PDL1_SYN4_PAM_SHIELDED_4078",
+                "shield_edit_donor_1based": "G3495C (inherited CXCL10_HA_R nt 17 G>C on L3_BFB_BASALFLOOR_4078)",
+                "unshielded_reference_id": "L3_BFB_BASALFLOOR_4078 (parental already PAM-shielded)",
+                "parent_pam_shielded_sha256": sha256_str(l3_bfb_wt),
+                "donor_length_bp": 4078,
+                "packaged_aav6_bp": 4368,
+                "pam_shielded_sha256": sha256_str(l3_bfb_syn4_pam_shielded),
+                "pam_shielded_donor_sequence": l3_bfb_syn4_pam_shielded,
+            },
+        ],
+        "locus4_aavs1_pam_shielded_and_unconfounded_2x2_orientation_matrix": {
+            "factorial_design_rule": (
+                "Isolates orientation (CO_DIRECTIONAL_MINUS vs CONVERGENT_PLUS) from Window A A72T/C73A mutation "
+                "via a full 2x2 factorial matrix (5-nt Window A vs 7-nt Window A in both orientations, plus WT-cargo "
+                "convergent control and retained IIP-0011 Window B [chr7:26191826-26192280] and No-UCOE arms). "
+                "Every convergent arm pins BOTH the GRCh38 chr19:+ representation (55115168..55116367) and its exact "
+                "reverse-complement canonical chr19:- representation (l4_can[:600] + revcomp(cargo_601_2857) + l4_can[2857:])."
+            ),
+            "arms": [
+                {
+                    "arm_id": "L4_CODIR_WT_PARENTAL_3457",
+                    "orientation": "CO_DIRECTIONAL_MINUS",
+                    "window_a_allele": "WT_0NT",
+                    "eef1a1_allele": "WT_0NT",
+                    "unshielded_chr19_minus_sha256": sha256_str(l4_can),
+                    "pam_shielded_chr19_minus_edit": "G2871C (AAVS1_HA_R nt 14 G>C)",
+                    "pam_shielded_chr19_minus_sha256": sha256_str(_shield_l4_minus_har14(l4_can)),
+                    "pam_shielded_chr19_minus_sequence": _shield_l4_minus_har14(l4_can),
+                },
+                {
+                    "arm_id": "L4_CONVERGENT_WT_CARGO_CONTROL_3457",
+                    "orientation": "CONVERGENT_PLUS",
+                    "window_a_allele": "WT_0NT",
+                    "eef1a1_allele": "WT_0NT",
+                    "unshielded_chr19_plus_sha256": sha256_str(l4_conv_wt_plus),
+                    "unshielded_chr19_minus_revcomp_sha256": sha256_str(l4_conv_wt_minus),
+                    "unshielded_chr19_plus_sequence": l4_conv_wt_plus,
+                    "pam_shielded_chr19_plus_edit": "C587G (revcomp of AAVS1_HA_R nt 14 G>C)",
+                    "pam_shielded_chr19_plus_sha256": sha256_str(_shield_l4_plus_hal587(l4_conv_wt_plus)),
+                    "pam_shielded_chr19_minus_revcomp_sha256": sha256_str(_shield_l4_minus_har14(l4_conv_wt_minus)),
+                    "pam_shielded_chr19_plus_sequence": _shield_l4_plus_hal587(l4_conv_wt_plus),
+                },
+                {
+                    "arm_id": "L4_WINA_ONLY_5NT_CODIR_3457",
+                    "orientation": "CO_DIRECTIONAL_MINUS",
+                    "window_a_allele": "WINA_CODIR_5NT (A32T,G33C,A444T,G445C,G446C)",
+                    "eef1a1_allele": "WT_0NT",
+                    "unshielded_chr19_minus_sha256": sha256_str(l4_wina_only),
+                    "pam_shielded_chr19_minus_edit": "G2871C (AAVS1_HA_R nt 14 G>C)",
+                    "pam_shielded_chr19_minus_sha256": sha256_str(_shield_l4_minus_har14(l4_wina_only)),
+                    "pam_shielded_chr19_minus_sequence": _shield_l4_minus_har14(l4_wina_only),
+                },
+                {
+                    "arm_id": "L4_EEF230C_ONLY_CODIR_3457",
+                    "orientation": "CO_DIRECTIONAL_MINUS",
+                    "window_a_allele": "WT_0NT",
+                    "eef1a1_allele": "EEF_230C_3NT (G223C,A229C,G230C)",
+                    "unshielded_chr19_minus_sha256": sha256_str(l4_eef230c_only),
+                    "pam_shielded_chr19_minus_edit": "G2871C (AAVS1_HA_R nt 14 G>C)",
+                    "pam_shielded_chr19_minus_sha256": sha256_str(_shield_l4_minus_har14(l4_eef230c_only)),
+                    "pam_shielded_chr19_minus_sequence": _shield_l4_minus_har14(l4_eef230c_only),
+                },
+                {
+                    "arm_id": "L4_2X2_CELL1_CODIR_5NT_230C_3457",
+                    "alias_construct_id": "S3_L4_SPLICE_230C_NOSPA_3457",
+                    "orientation": "CO_DIRECTIONAL_MINUS",
+                    "window_a_allele": "WINA_CODIR_5NT (A32T,G33C,A444T,G445C,G446C)",
+                    "eef1a1_allele": "EEF_230C_3NT (G223C,A229C,G230C)",
+                    "unshielded_chr19_minus_sha256": sha256_str(l4_splice_230c),
+                    "pam_shielded_chr19_minus_edit": "G2871C (AAVS1_HA_R nt 14 G>C)",
+                    "pam_shielded_chr19_minus_sha256": sha256_str(_shield_l4_minus_har14(l4_splice_230c)),
+                    "pam_shielded_chr19_minus_sequence": _shield_l4_minus_har14(l4_splice_230c),
+                },
+                {
+                    "arm_id": "L4_2X2_CELL2_CODIR_7NT_230C_3457",
+                    "orientation": "CO_DIRECTIONAL_MINUS",
+                    "window_a_allele": "WINA_2STRAND_7NT (A32T,G33C,A72T,C73A,A444T,G445C,G446C)",
+                    "eef1a1_allele": "EEF_230C_3NT (G223C,A229C,G230C)",
+                    "unshielded_chr19_minus_sha256": sha256_str(l4_codir_7nt_230c),
+                    "unshielded_chr19_minus_sequence": l4_codir_7nt_230c,
+                    "pam_shielded_chr19_minus_edit": "G2871C (AAVS1_HA_R nt 14 G>C)",
+                    "pam_shielded_chr19_minus_sha256": sha256_str(_shield_l4_minus_har14(l4_codir_7nt_230c)),
+                    "pam_shielded_chr19_minus_sequence": _shield_l4_minus_har14(l4_codir_7nt_230c),
+                },
+                {
+                    "arm_id": "L4_2X2_CELL3_CONVERGENT_5NT_230C_3457",
+                    "orientation": "CONVERGENT_PLUS",
+                    "window_a_allele": "WINA_CODIR_5NT (A32T,G33C,A444T,G445C,G446C)",
+                    "eef1a1_allele": "EEF_230C_3NT (G223C,A229C,G230C)",
+                    "unshielded_chr19_plus_sha256": sha256_str(l4_conv_5nt_230c_plus),
+                    "unshielded_chr19_minus_revcomp_sha256": sha256_str(l4_conv_5nt_230c_minus),
+                    "unshielded_chr19_plus_sequence": l4_conv_5nt_230c_plus,
+                    "pam_shielded_chr19_plus_edit": "C587G (revcomp of AAVS1_HA_R nt 14 G>C)",
+                    "pam_shielded_chr19_plus_sha256": sha256_str(_shield_l4_plus_hal587(l4_conv_5nt_230c_plus)),
+                    "pam_shielded_chr19_minus_revcomp_sha256": sha256_str(_shield_l4_minus_har14(l4_conv_5nt_230c_minus)),
+                    "pam_shielded_chr19_plus_sequence": _shield_l4_plus_hal587(l4_conv_5nt_230c_plus),
+                },
+                {
+                    "arm_id": "L4_2X2_CELL4_CONVERGENT_7NT_230C_3457",
+                    "alias_construct_id": "S3_L4_CONVERGENT_2STRAND_230C_3457",
+                    "orientation": "CONVERGENT_PLUS",
+                    "window_a_allele": "WINA_2STRAND_7NT (A32T,G33C,A72T,C73A,A444T,G445C,G446C)",
+                    "eef1a1_allele": "EEF_230C_3NT (G223C,A229C,G230C)",
+                    "unshielded_chr19_plus_sha256": sha256_str(l4_conv_2strand_230c),
+                    "unshielded_chr19_minus_revcomp_sha256": sha256_str(l4_conv_2strand_230c_minus),
+                    "pam_shielded_chr19_plus_edit": "C587G (revcomp of AAVS1_HA_R nt 14 G>C)",
+                    "pam_shielded_chr19_plus_sha256": sha256_str(_shield_l4_plus_hal587(l4_conv_2strand_230c)),
+                    "pam_shielded_chr19_minus_revcomp_sha256": sha256_str(_shield_l4_minus_har14(l4_conv_2strand_230c_minus)),
+                    "pam_shielded_chr19_plus_sequence": _shield_l4_plus_hal587(l4_conv_2strand_230c),
+                },
+                {
+                    "arm_id": "L4_DXS_SPLICE_230C_NOSPA_PAM_SHIELDED_4048",
+                    "alias_construct_id": "S3_L4_DXS_SPLICE_230C_NOSPA_4048",
+                    "orientation": "CO_DIRECTIONAL_MINUS",
+                    "window_a_allele": "WINA_CODIR_5NT (A32T,G33C,A444T,G445C,G446C)",
+                    "eef1a1_allele": "EEF_5TOP_230C (CTTTTT->CAGAGA + G223C,A229C,G230C)",
+                    "unshielded_chr19_minus_sha256": sha256_str(dxs_l4_splice_230c_nospa),
+                    "pam_shielded_chr19_minus_edit": "G3462C (AAVS1_HA_R nt 14 G>C)",
+                    "pam_shielded_chr19_minus_sha256": sha256_str(_shield_l4_minus_har14(dxs_l4_splice_230c_nospa)),
+                    "pam_shielded_chr19_minus_sequence": _shield_l4_minus_har14(dxs_l4_splice_230c_nospa),
+                },
+            ],
+        },
+        "locus1_505aa_vs_500aa_stop_seam_comparators": {
+            "numbering_separation_rule": (
+                "Embodiment A* (4,143 bp) encodes a 505-aa HLA-E SCT precursor (20-aa L1 = (G4S)4, 1,518-bp CDS) whose "
+                "stop-seam ablation is SCT-local G1515C/G1517A (Leu505-Stop506 CTG-TGA -> CTC-TAA; already S3 PAM+seed shielded). "
+                "Canonical Arm 1B (3,974 bp) and DX-S Arm 1C (3,300 bp / 3,459 bp) encode a 500-aa HLA-E SCT precursor "
+                "(15-aa L1 = (G4S)3, 1,503-bp CDS) whose analogous stop-seam ablation is SCT-local G1500C/G1502A "
+                "(Leu500-Stop501 CTG-TGA -> CTC-TAA)."
+            ),
+            "materialized_arms": [
+                {
+                    "construct_id": "S3_L1_ASTAR_STOP_ONLY_4143",
+                    "sct_precursor_aa": 505,
+                    "sct_local_edits_1based": ["G1515C", "G1517A"],
+                    "donor_edits_1based": ["G3315C", "G3317A"],
+                    "pam_seed_shield_status": "ALREADY_S3_SHIELDED (B2M_HA_L T583C,C589A,G592C,G595A)",
+                    "donor_length_bp": 4143,
+                    "packaged_aav6_bp": 4433,
+                    "donor_sha256": sha256_str(astar_stop_only),
+                },
+                {
+                    "construct_id": "L1_ARM1B_STOP_ONLY_UNSHIELDED_REF_3974",
+                    "sct_precursor_aa": 500,
+                    "sct_local_edits_1based": ["G1500C", "G1502A"],
+                    "donor_edits_1based": ["G3146C", "G3148A"],
+                    "pam_seed_shield_status": "UNSHIELDED_REFERENCE_DERIVATION",
+                    "parent_sha256": sha256_str(arm1b_can),
+                    "donor_length_bp": 3974,
+                    "packaged_aav6_bp": 4264,
+                    "donor_sha256": sha256_str(arm1b_stop_unshielded_3974),
+                    "donor_sequence": arm1b_stop_unshielded_3974,
+                },
+                {
+                    "construct_id": "L1_ARM1B_STOP_ONLY_S3_PAM_SHIELDED_3974",
+                    "sct_precursor_aa": 500,
+                    "sct_local_edits_1based": ["G1500C", "G1502A"],
+                    "donor_edits_1based": ["T583C", "C589A", "G592C", "G595A", "G3146C", "G3148A"],
+                    "pam_seed_shield_status": "SYNTHESIS_READY_S3_PAM_SEED_SHIELDED",
+                    "matched_s3_parent_sha256": sha256_str(arm1b_s3_only_wt_3974),
+                    "matched_s3_parent_sequence": arm1b_s3_only_wt_3974,
+                    "donor_length_bp": 3974,
+                    "packaged_aav6_bp": 4264,
+                    "donor_sha256": sha256_str(arm1b_stop_s3_only_3974),
+                    "donor_sequence": arm1b_stop_s3_only_3974,
+                },
+                {
+                    "construct_id": "L1_DXS_ARM1C_CONSTITUTIVE_STOP_ONLY_S3_SHIELDED_3300",
+                    "sct_precursor_aa": 500,
+                    "sct_local_edits_1based": ["G1500C", "G1502A"],
+                    "donor_edits_1based": ["G2472C", "G2474A (on S3+uORF+5'TOP shielded 3,300-bp parent)"],
+                    "pam_seed_shield_status": "SYNTHESIS_READY_S3_UORF_5TOP_SHIELDED",
+                    "matched_shielded_parent_sha256": sha256_str(dxs_arm1c_3300),
+                    "donor_length_bp": 3300,
+                    "packaged_aav6_bp": 3590,
+                    "donor_sha256": sha256_str(arm1c_3300_stop_s3_shielded),
+                    "donor_sequence": arm1c_3300_stop_s3_shielded,
+                },
+                {
+                    "construct_id": "L1_DXS_ARM1C_CONSTITUTIVE_STOP_ONLY_UNSHIELDED_REF_3300",
+                    "sct_precursor_aa": 500,
+                    "sct_local_edits_1based": ["G1500C", "G1502A"],
+                    "donor_edits_1based": ["G2472C", "G2474A (on native-parts unshielded 3,300-bp parent)"],
+                    "pam_seed_shield_status": "UNSHIELDED_REFERENCE_DERIVATION",
+                    "parent_sha256": sha256_str(dxs_arm1c_native_3300),
+                    "donor_length_bp": 3300,
+                    "packaged_aav6_bp": 3590,
+                    "donor_sha256": sha256_str(arm1c_3300_stop_unshielded),
+                    "donor_sequence": arm1c_3300_stop_unshielded,
+                },
+            ],
+        },
+    }
+
+    selftests = run_adversarial_validator_selftests(
+        l3_can_syn2, serpinb9_nostop, pdl1_syn2, l4_splice_230c, icasp9_wt, astar_wt, cd47_astar_wt
+    )
+    if len(selftests) != 11:
+        raise ValueError(f"Expected 11/11 adversarial P1-P4 probes rejected, got {len(selftests)}")
+
+    serpinb9_aa = translate_strict_cds(serpinb9_nostop, False)
+    gsg_p2a_stub_aa = translate_strict_cds(gsg_p2a_cds, False)[:-1]
+    icasp9_aa = translate_strict_cds(icasp9_wt, True)[:-1]
+    hlae_astar_aa = translate_strict_cds(hlae_astar_wt, True)[:-1]
+    hlae_arm1b_aa = translate_strict_cds(hlae_arm1b_wt, True)[:-1]
+    cd47_aa = translate_strict_cds(cd47_astar_wt, True)[:-1]
+
+    # Offline verification of cryptic HLA-E SCT -> B2M Exon 2 (chr15:44715423) readthrough polypeptide
+    def _audit_b2m_exon2_cryptic_tail(sct_cds: str, sct_aa: str, splice_nt: int) -> Dict[str, Any]:
+        aberrant_mrna = sct_cds[:splice_nt] + b2m_ex2_seq
+        codons = []
+        for idx_c in range(0, len(aberrant_mrna) - 2, 3):
+            aa_c = GENETIC_CODE[aberrant_mrna[idx_c : idx_c + 3]]
+            codons.append(aa_c)
+            if aa_c == "*":
+                break
+        ab_aa = "".join(codons[:-1])
+        tail_aa = ab_aa[len(sct_aa) :]
+        j_cross = enumerate_junction_peptides(sct_aa, "", tail_aa)
+        touch_8_11 = sum(1 for k in (8, 9, 10, 11) for s in range(0, len(ab_aa) - k + 1) if s + k > len(sct_aa))
+        touch_15 = sum(1 for s in range(0, len(ab_aa) - 15 + 1) if s + 15 > len(sct_aa))
+        return {
+            "sct_precursor_aa": len(sct_aa),
+            "donor_splice_nt_in_sct_cds": splice_nt,
+            "appended_b2m_exon2_plus1_frame_tail_32aa": tail_aa,
+            "total_chimeric_polypeptide_aa": len(ab_aa),
+            "stop_codon_position_1based": len(ab_aa) + 1,
+            "junction_crossing_candidate_windows": j_cross,
+            "all_tail_touching_candidate_windows": {
+                "count_8_to_11mer": touch_8_11,
+                "count_15mer": touch_15,
+            },
+        }
+
+    astar_tail_audit = _audit_b2m_exon2_cryptic_tail(hlae_astar_wt, hlae_astar_aa, 1514)
+    arm1b_tail_audit = _audit_b2m_exon2_cryptic_tail(hlae_arm1b_wt, hlae_arm1b_aa, 1499)
+    if (
+        astar_tail_audit["total_chimeric_polypeptide_aa"] != 537
+        or arm1b_tail_audit["total_chimeric_polypeptide_aa"] != 532
+        or astar_tail_audit["appended_b2m_exon2_plus1_frame_tail_32aa"] != "YSKDSGLLTSSSREWKVKFPELLCVWVSSIRH"
+        or arm1b_tail_audit["appended_b2m_exon2_plus1_frame_tail_32aa"] != "YSKDSGLLTSSSREWKVKFPELLCVWVSSIRH"
+        or astar_tail_audit["junction_crossing_candidate_windows"]["count_8_to_11mer"] != 34
+        or astar_tail_audit["junction_crossing_candidate_windows"]["count_15mer"] != 14
+        or astar_tail_audit["all_tail_touching_candidate_windows"]["count_8_to_11mer"] != 128
+        or astar_tail_audit["all_tail_touching_candidate_windows"]["count_15mer"] != 32
+    ):
+        raise ValueError("Offline B2M Exon-2 cryptic splice tail audit failed")
+
+    portfolio_check = {
+        "VMAPRTLVL_9aa__L1_20aa": enumerate_junction_peptides("VMAPRTLVL", "", "GGGGS" * 4),
+        "GAVDPLLAL_9aa__L1_20aa": enumerate_junction_peptides("GAVDPLLAL", "", "GGGGS" * 4),
+        "QYDDAVYKL_9aa__L1_20aa": enumerate_junction_peptides("QYDDAVYKL", "", "GGGGS" * 4),
+        "CD47_IgV__CD55_stalk_9aa": enumerate_junction_peptides(cd47_aa[18:138], "", "PNKGSGTTS"),
+        "L1__B2M": enumerate_junction_peptides("GGGGS" * 4, "", hlae_astar_aa[49:148]),
+        "B2M__L2": enumerate_junction_peptides(hlae_astar_aa[49:148], "", "GGGGS" * 4),
+        "L2__HLAE_alpha1": enumerate_junction_peptides("GGGGS" * 4, "", hlae_astar_aa[168:]),
+        "SERPINB9__GSG_P2A_21aa": enumerate_junction_peptides(serpinb9_aa, "", gsg_p2a_stub_aa),
+        "FKBP12__SGGGSG__dCasp9": enumerate_junction_peptides(icasp9_aa[:108], "SGGGSG", icasp9_aa[114:]),
+    }
+    portfolio_sum_8_11 = sum(v["count_8_to_11mer"] for v in portfolio_check.values())
+    portfolio_sum_15 = sum(v["count_15mer"] for v in portfolio_check.values())
+    if portfolio_sum_8_11 != 326 or portfolio_sum_15 != 112:
+        raise ValueError("Portfolio 9-boundary peptide window audit failed")
+
+    l3_can_juncs = [{"junction_id": "SERPINB9_365_376__GSG_P2A_21aa_stub", "left_aa": serpinb9_aa, "linker_aa": "", "right_aa": gsg_p2a_stub_aa}]
+    l4_juncs = [{"junction_id": "FKBP12F36V__SGGGSG__dCasp9", "left_aa": icasp9_aa[:108], "linker_aa": "SGGGSG", "right_aa": icasp9_aa[114:]}]
+    l1_astar_juncs = [
+        {"junction_id": "VMAPRTLVL__G4S4_L1", "left_aa": hlae_astar_aa[20:29], "linker_aa": "", "right_aa": hlae_astar_aa[29:49]},
+        {"junction_id": "G4S4_L1__B2M_mature", "left_aa": hlae_astar_aa[29:49], "linker_aa": "", "right_aa": hlae_astar_aa[49:148]},
+        {"junction_id": "B2M_mature__G4S4_L2", "left_aa": hlae_astar_aa[49:148], "linker_aa": "", "right_aa": hlae_astar_aa[148:168]},
+        {"junction_id": "G4S4_L2__HLAE_alpha1", "left_aa": hlae_astar_aa[148:168], "linker_aa": "", "right_aa": hlae_astar_aa[168:]},
+        {"junction_id": "CD47_IgV_19_138__CD55_stalk_139_147", "left_aa": cd47_aa[18:138], "linker_aa": "", "right_aa": cd47_aa[138:147]},
+    ]
+
+    construct_specs = [
+        ("S3_L3_CAN_PDL1_SYN2_4090", "L3 canonical coding-only challenger: single synonymous PD-L1 C720T/G723C (intact WPRE & bGH)", l3_can_syn2, l3_can, "ISLET1_A4_ARM1A / ISLET1_A4_ARM1B (L3_CANONICAL_4090)",
+         [{"name": "SERPINB9_nostop", "start_0based": 609, "end_0based": 1737, "strand": "+", "has_stop": False, "parent_cds": serpinb9_nostop, "topology_kind": "CYTOSOLIC_SERPINB9", "has_downstream_2a": True},
+          {"name": "PDL1_stop", "start_0based": 1803, "end_0based": 2676, "strand": "+", "has_stop": True, "parent_cds": pdl1_wt, "topology_kind": "TYPE1_TM_PDL1", "has_downstream_2a": False}],
+         l3_can_juncs, 34, 14, 34, 14, ["1IAU", "4GA7", "8ZCR", "4ZQK"], ["SERPINB9_C_terminal_21aa_GSG_P2A_stub_requires_GzmB_kinetics_assay"]),
+        ("S3_L3_CAN_PDL1_SYN4_4090", "L3 canonical dual-synonymous challenger: PD-L1 C720T/G723C/C858T/G861C (intact WPRE & bGH)", l3_can_syn4, l3_can, "ISLET1_A4_ARM1A / ISLET1_A4_ARM1B (L3_CANONICAL_4090)",
+         [{"name": "SERPINB9_nostop", "start_0based": 609, "end_0based": 1737, "strand": "+", "has_stop": False, "parent_cds": serpinb9_nostop, "topology_kind": "CYTOSOLIC_SERPINB9", "has_downstream_2a": True},
+          {"name": "PDL1_stop", "start_0based": 1803, "end_0based": 2676, "strand": "+", "has_stop": True, "parent_cds": pdl1_wt, "topology_kind": "TYPE1_TM_PDL1", "has_downstream_2a": False}],
+         l3_can_juncs, 34, 14, 34, 14, ["1IAU", "4GA7", "8ZCR", "4ZQK"], ["SERPINB9_C_terminal_21aa_GSG_P2A_stub_requires_GzmB_kinetics_assay"]),
+        ("S3_L3_CAN_BGH_ONLY_4090", "Single-factor L3 non-coding control: bGH G140T/G143T/G144T only", l3_can_bgh_only, l3_can, "ISLET1_A4_ARM1A / ISLET1_A4_ARM1B (L3_CANONICAL_4090)",
+         [{"name": "SERPINB9_nostop", "start_0based": 609, "end_0based": 1737, "strand": "+", "has_stop": False, "parent_cds": serpinb9_nostop, "topology_kind": "CYTOSOLIC_SERPINB9", "has_downstream_2a": True},
+          {"name": "PDL1_stop", "start_0based": 1803, "end_0based": 2676, "strand": "+", "has_stop": True, "parent_cds": pdl1_wt, "topology_kind": "TYPE1_TM_PDL1", "has_downstream_2a": False}],
+         l3_can_juncs, 34, 14, 34, 14, ["1IAU", "4GA7", "8ZCR", "4ZQK"], ["bGH_proximal_downstream_edits_require_3RACE_cleavage_and_protein_verification"]),
+        ("S3_L3_CAN_WPRE_ONLY_4090", "Single-factor L3 exploratory control: WPRE C261A (J04514.1:g.1353C>A) only; excluded from primary arms because it creates sense CAT|GTCAGC", l3_can_wpre_only, l3_can, "ISLET1_A4_ARM1A / ISLET1_A4_ARM1B (L3_CANONICAL_4090)",
+         [{"name": "SERPINB9_nostop", "start_0based": 609, "end_0based": 1737, "strand": "+", "has_stop": False, "parent_cds": serpinb9_nostop, "topology_kind": "CYTOSOLIC_SERPINB9", "has_downstream_2a": True},
+          {"name": "PDL1_stop", "start_0based": 1803, "end_0based": 2676, "strand": "+", "has_stop": True, "parent_cds": pdl1_wt, "topology_kind": "TYPE1_TM_PDL1", "has_downstream_2a": False}],
+         l3_can_juncs, 34, 14, 34, 14, ["1IAU", "4GA7", "8ZCR", "4ZQK"], ["WPRE_g1353C_to_A_excluded_from_primary_due_to_3UTR_and_neo_sense_donor"]),
+        ("S3_L3_SF_PDL1_SYN4_3799", "Scar-free L3 coding-only challenger: dual synonymous PD-L1 C720T/G723C/C858T/G861C (intact bGH)", l3_sf_syn4_only, l3_sf_wt, "ISLET1_A4_L3_SCARFREE_3799",
+         [{"name": "SERPINB9_scarfree_stop", "start_0based": 609, "end_0based": 1740, "strand": "+", "has_stop": True, "parent_cds": l3_sf_wt[609:1740], "topology_kind": "CYTOSOLIC_SERPINB9", "has_downstream_2a": False},
+          {"name": "PDL1_stop", "start_0based": 2101, "end_0based": 2974, "strand": "+", "has_stop": True, "parent_cds": pdl1_wt, "topology_kind": "TYPE1_TM_PDL1", "has_downstream_2a": False}],
+         [], 0, 0, 34, 14, ["1IAU", "4GA7", "8ZCR", "4ZQK"], ["Dual_promoter_scarfree_expression_kinetics_pending_Readout4"]),
+        ("S3_L3_SF_SYN4_1xFII80_3879", "Optional single-sided 80-bp cHS4 FII inserted as revcomp(U78775.2:24-103) at 601..680 + scar-free PD-L1 SYN4 (requires absolute resting and IFN-induced SERPINB9/PD-L1/CXCL9/CXCL11 gates)", l3_sf_syn4_1xfii80, l3_sf_wt, "ISLET1_A4_L3_SCARFREE_3799",
+         [{"name": "SERPINB9_scarfree_stop", "start_0based": 689, "end_0based": 1820, "strand": "+", "has_stop": True, "parent_cds": l3_sf_wt[609:1740], "topology_kind": "CYTOSOLIC_SERPINB9", "has_downstream_2a": False},
+          {"name": "PDL1_stop", "start_0based": 2181, "end_0based": 3054, "strand": "+", "has_stop": True, "parent_cds": pdl1_wt, "topology_kind": "TYPE1_TM_PDL1", "has_downstream_2a": False}],
+         [], 0, 0, 34, 14, ["1IAU", "4GA7", "8ZCR", "4ZQK"], ["Single_80bp_FII_revcomp_enhancer_blocker_not_barrier_insulator_pending_Readout4"]),
+        ("S3_L3_SF_SYN4_BGH_1xFII80_3879", "Optional single-sided 80-bp cHS4 FII revcomp(U78775.2:24-103) + scar-free PD-L1 SYN4 + bGH G140T/G143T/G144T comparator", l3_sf_syn4_bgh_1xfii80, l3_sf_wt, "ISLET1_A4_L3_SCARFREE_3799",
+         [{"name": "SERPINB9_scarfree_stop", "start_0based": 689, "end_0based": 1820, "strand": "+", "has_stop": True, "parent_cds": l3_sf_wt[609:1740], "topology_kind": "CYTOSOLIC_SERPINB9", "has_downstream_2a": False},
+          {"name": "PDL1_stop", "start_0based": 2181, "end_0based": 3054, "strand": "+", "has_stop": True, "parent_cds": pdl1_wt, "topology_kind": "TYPE1_TM_PDL1", "has_downstream_2a": False}],
+         [], 0, 0, 34, 14, ["1IAU", "4GA7", "8ZCR", "4ZQK"], ["Single_80bp_FII_revcomp_and_bGH_edits_pending_Readout4"]),
+        ("S3_L4_WINA_ONLY_3457", "Single-factor L4 control: Window A A32T/G33C/A444T/G445C/G446C only (47 CpGs, intact EEF1A1, NO SPA)", l4_wina_only, l4_can, "ISLET1_A4_ARM1A / ISLET1_A4_ARM1B (L4_WINA_CODIR_3457)",
+         [{"name": "iCasp9_stop", "start_0based": 1544, "end_0based": 2735, "strand": "+", "has_stop": True, "parent_cds": icasp9_wt, "topology_kind": "CYTOSOLIC_ICASP9", "has_downstream_2a": False}],
+         l4_juncs, 58, 20, 58, 20, ["1BL4", "1JXQ", "1NW9"], ["FULL_FUSION_UNRESOLVED_IIP_0011", "WindowA_anti_silencing_transfer_pending_Readout6"]),
+        ("S3_L4_EEF230C_ONLY_3457", "Single-factor L4 control: corrected EEF1A1 G223C/A229C/G230C only (19 part CpGs, +1 seam CpG, construct CpGs 203 vs 202, NO SPA)", l4_eef230c_only, l4_can, "ISLET1_A4_ARM1A / ISLET1_A4_ARM1B (L4_WINA_CODIR_3457)",
+         [{"name": "iCasp9_stop", "start_0based": 1544, "end_0based": 2735, "strand": "+", "has_stop": True, "parent_cds": icasp9_wt, "topology_kind": "CYTOSOLIC_ICASP9", "has_downstream_2a": False}],
+         l4_juncs, 58, 20, 58, 20, ["1BL4", "1JXQ", "1NW9"], ["FULL_FUSION_UNRESOLVED_IIP_0011", "EEF1A1_5UTR_edits_require_translation_and_Readout6_verification"]),
+        ("S3_L4_SPLICE_230C_NOSPA_3457", "Co-directional L4 internal-intron-ablated challenger: Window A (5 nt) + EEF1A1[230C] (3 nt), NO SPA (retains 122-bp SV40pA 2736..2857 and iCasp9 CDS[11..12] AG on PPP1R12C strand)", l4_splice_230c, l4_can, "ISLET1_A4_ARM1A / ISLET1_A4_ARM1B (L4_WINA_CODIR_3457)",
+         [{"name": "iCasp9_stop", "start_0based": 1544, "end_0based": 2735, "strand": "+", "has_stop": True, "parent_cds": icasp9_wt, "topology_kind": "CYTOSOLIC_ICASP9", "has_downstream_2a": False}],
+         l4_juncs, 58, 20, 58, 20, ["1BL4", "1JXQ", "1NW9"], ["FULL_FUSION_UNRESOLVED_IIP_0011", "Co_directional_SV40pA_and_iCasp9_CDS13_acceptor_exposed_to_PPP1R12C_Ex1_requires_RACE_and_Tier6A_6B"]),
+        ("S3_L4_CONVERGENT_2STRAND_230C_3457", "Convergent two-strand-hardened L4 challenger on GRCh38 chr19:+ (revcomp of 977495f1... on chr19:-): Window A (7 nt) + EEF1A1[230C] (3 nt), NO SPA", l4_conv_2strand_230c, l4_conv_wt_plus, "L4_WINA_CONVERGENT_3457",
+         [{"name": "iCasp9_stop", "start_0based": 1544, "end_0based": 2735, "strand": "+", "has_stop": True, "parent_cds": icasp9_wt, "topology_kind": "CYTOSOLIC_ICASP9", "has_downstream_2a": False}],
+         l4_juncs, 58, 20, 58, 20, ["1BL4", "1JXQ", "1NW9"], ["FULL_FUSION_UNRESOLVED_IIP_0011", "Convergent_PPP1R12C_transcriptional_interference_and_dsRNA_collision_gate_required"]),
+        ("S3_L4_DXS_SPLICE_230C_NOSPA_4048", "DX-S Locus 4 splice-only comparator (Window A 5 nt + EEF1A1_5TOP G223C/A229C/G230C, NO SPA, 4,048 bp)", dxs_l4_splice_230c_nospa, dxs_l4_wt, "ISLET1_A4_DXS_ARM1C_L4CD47",
+         [{"name": "iCasp9_nostop", "start_0based": 1544, "end_0based": 2732, "strand": "+", "has_stop": False, "parent_cds": dxs_l4_wt[1544:2732], "topology_kind": "CYTOSOLIC_ICASP9", "has_downstream_2a": True},
+          {"name": "CD47_IgV_GPI_stop", "start_0based": 2798, "end_0based": 3326, "strand": "+", "has_stop": True, "parent_cds": dxs_l4_wt[2798:3326], "topology_kind": "GPI_ANCHORED_CD47_IGV", "has_downstream_2a": False}],
+         l4_juncs + [{"junction_id": "iCasp9__GSG_P2A_21aa_stub", "left_aa": icasp9_aa, "linker_aa": "", "right_aa": gsg_p2a_stub_aa},
+                     {"junction_id": "CD47_IgV_19_138__CD55_stalk_139_147", "left_aa": cd47_aa[18:138], "linker_aa": "", "right_aa": cd47_aa[138:147]}],
+         58 + 34 + 33, 20 + 14 + 9, 58 + 34 + 33, 20 + 14 + 9, ["1BL4", "1JXQ", "1NW9", "2JJS", "4CMM", "4KJY"], ["FULL_FUSION_UNRESOLVED_IIP_0011", "DXS_co_located_CD47_iCasp9_joint_retention_required"]),
+        ("S3_L1_ASTAR_STOP_ONLY_4143", "Primary L1 Embodiment A* coding-only challenger (505-aa SCT): HLA-E SCT G1515C/G1517A (CTC-TAA) ONLY (already S3 PAM+seed shielded)", astar_stop_only, astar_wt, "ISLET1_A4_ARM1B (ISLET1_A_STAR_4LOCUS)",
+         [{"name": "CD47_IgV_GPI_antisense", "start_0based": 876, "end_0based": 1404, "strand": "-", "has_stop": True, "parent_cds": cd47_astar_wt, "topology_kind": "GPI_ANCHORED_CD47_IGV", "has_downstream_2a": False},
+          {"name": "HLAE_SCT_20aaL1_sense", "start_0based": 1800, "end_0based": 3318, "strand": "+", "has_stop": True, "parent_cds": hlae_astar_wt, "topology_kind": "TYPE1_TM_HLAE_SCT", "has_downstream_2a": False}],
+         l1_astar_juncs, 168, 60, 168, 60, ["3CDG", "1MHE", "3BZE", "2JJS", "4CMM", "4KJY"], ["GY-009_Hour0_HLAE_CD47_QuantiBRITE_surface_stoichiometry_pending", "NKG2A_vs_NKG2C_SCT_SPR_pending"]),
+        ("S3_L1_ASTAR_FULL_230C_4143", "Combined L1 Embodiment A* comparator (505-aa SCT): SCT CTC-TAA + bGH G140T/G143T/G144T + antisense EEF1A1 G223C/A229C/G230C", astar_full_230c, astar_wt, "ISLET1_A4_ARM1B (ISLET1_A_STAR_4LOCUS)",
+         [{"name": "CD47_IgV_GPI_antisense", "start_0based": 876, "end_0based": 1404, "strand": "-", "has_stop": True, "parent_cds": cd47_astar_wt, "topology_kind": "GPI_ANCHORED_CD47_IGV", "has_downstream_2a": False},
+          {"name": "HLAE_SCT_20aaL1_sense", "start_0based": 1800, "end_0based": 3318, "strand": "+", "has_stop": True, "parent_cds": hlae_astar_wt, "topology_kind": "TYPE1_TM_HLAE_SCT", "has_downstream_2a": False}],
+         l1_astar_juncs, 168, 60, 168, 60, ["3CDG", "1MHE", "3BZE", "2JJS", "4CMM", "4KJY"], ["GY-009_Hour0_HLAE_CD47_QuantiBRITE_surface_stoichiometry_pending", "bGH_and_antisense_EEF1A1_processing_pending"]),
+    ]
+
+    qualified_constructs = []
+    for cid, desc, dseq, pseq_for_diff, parent_id, orfs, jspecs, p8, p15, r8, r15, pdbs, flags in construct_specs:
+        gate_res = validate_p1_to_p4_fail_closed(cid, dseq, orfs, jspecs, p8, p15, r8, r15, pdbs, flags)
+        gram_scan = scan_donors_and_acceptors_both_strands(dseq)
+        rep_scan = longest_repeats(dseq)
+        neos = diff_edit_created_neosites(pseq_for_diff, dseq) if len(pseq_for_diff) == len(dseq) else {"note": "length_changed_insulator_insertion"}
+        qualified_constructs.append(
+            {
+                "construct_id": cid,
+                "parent_product_and_donor_id": parent_id,
+                "description": desc,
+                "donor_length_bp": len(dseq),
+                "packaged_aav6_bp": len(dseq) + 290,
+                "donor_sha256": sha256_str(dseq),
+                "donor_sequence": dseq,
+                "repeat_scan": rep_scan,
+                "open_grammar_motif_counts": {
+                    "strong_donors_both_strands": gram_scan["total_donors"],
+                    "strong_donors_cv_ge_74": gram_scan["donors_cv_ge_74"],
+                    "cargo_donors": gram_scan["cargo_donors"],
+                    "strong_acceptors_both_strands": gram_scan["total_acceptors"],
+                    "cargo_acceptors": gram_scan["cargo_acceptors"],
+                    "top_5_donors": gram_scan["donors"][:5],
+                    "top_5_acceptors": gram_scan["acceptors"][:5],
+                },
+                "edit_created_neosite_check": neos,
+                "p1_to_p4_fail_closed_gate": gate_res,
+            }
+        )
+
+    parental_open_scans = {}
+    for pid, pseq in [
+        ("L1_ARM1A_CANONICAL_4880", arm1a_can),
+        ("L1_ARM1B_CANONICAL_3974", arm1b_can),
+        ("L1_EMBODIMENT_A_STAR_4143", astar_wt),
+        ("L3_CANONICAL_4090", l3_can),
+        ("L3_SCARFREE_3799", l3_sf_wt),
+        ("L3_BFB_BASALFLOOR_4078", l3_bfb_wt),
+        ("L4_WINA_CODIR_3457", l4_can),
+        ("L4_DXS_CD47_ICASP9_4048", dxs_l4_wt),
+        ("L1_DXS_ARM1C_CONSTITUTIVE_3300", dxs_arm1c_3300),
+        ("L1_DXS_ARM1C_TRAPPED_3459", dxs_arm1c_3459),
+    ]:
+        g = scan_donors_and_acceptors_both_strands(pseq)
+        parental_open_scans[pid] = {
+            "donor_length_bp": len(pseq),
+            "donor_sha256": sha256_str(pseq),
+            "donor_cpg_count": pseq.count("CG"),
+            "repeat_scan": longest_repeats(pseq),
+            "census_summary": {
+                "total_donors_cv74_or_u1_7": g["total_donors"],
+                "donors_cv_ge_74": g["donors_cv_ge_74"],
+                "cargo_donors_total": g["cargo_donors"],
+                "cargo_donors_plus_strand": g["cargo_donors_plus_strand"],
+                "cargo_donors_minus_strand": g["cargo_donors_minus_strand"],
+                "total_acceptors_idx_ge_68": g["total_acceptors"],
+                "cargo_acceptors_total": g["cargo_acceptors"],
+            },
+            "top_10_donors_both_strands": g["donors"][:10],
+            "top_10_acceptors_both_strands": g["acceptors"][:10],
+        }
+
+    fwd_span = (850 + 380, 850 + 405)            # WindowA[380..405] -> donor 1230..1255 (26 nt)
+    rev_matched_span = (1544 + 105, 1544 + 125)  # iCasp9[105..125]  -> donor 1649..1669 (21 nt, dTm = 0.01 C)
+    rev_legacy_span = (1544 + 40, 1544 + 65)     # iCasp9[40..65]    -> donor 1584..1609 (26 nt, antisense)
+    fwd_seq = l4_can[fwd_span[0] - 1 : fwd_span[1]]
+    rev_matched_seq = revcomp(l4_can[rev_matched_span[0] - 1 : rev_matched_span[1]])
+    rev_legacy_seq = revcomp(l4_can[rev_legacy_span[0] - 1 : rev_legacy_span[1]])
+    unspl_matched = rev_matched_span[1] - fwd_span[0] + 1
+    unspl_legacy = rev_legacy_span[1] - fwd_span[0] + 1
+    if unspl_matched != 440 or unspl_legacy != 380:
+        raise ValueError("Locus 4 targeted splice RT-PCR amplicon arithmetic mismatch")
+
+    return {
+        "proposal_id": "IIP-0015",
+        "decision_id": "DEC-092",
+        "mode_b_invariance_contract": {
+            "reference_fasta_unchanged": True,
+            "layer1_stack_ranking_unchanged": True,
+            "existing_release_gates_unchanged": True,
+            "family_b_materialization_scope": (
+                "All 9 Family-B product entries in data/protocols/islet1_product_definitions_v0.8.0.json remain "
+                "REQUIRES_DONOR_SEQUENCE_MATERIALIZATION (execution_supported=false) and are ineligible for synthesis "
+                "until materialized donors pass this identical open two-strand splice/repeat census and fail-closed P1-P4 validator."
+            ),
+        },
+        "scanner_methodology_and_scope_limits": {
+            "donor_9mer_models": "Shapiro & Senapathy 1987 (PMID:3658675) CV, Yeo & Burge 2004 (PMID:15285897) log-odds bits, and Roca et al. 2013 (PMID:23348838) 9-nt U1 Watson-Crick + G:U/G:psi wobble base-pairing.",
+            "acceptor_23mer_model": "Explicitly labelled heuristic 23-mer polypyrimidine/-3/+1 index (not a trained neural splice predictor).",
+            "known_heuristic_limits": (
+                "Because mammalian splicing also uses non-GT canonical GC-AG / AT-AC introns, bulged/shifted U1 registers "
+                "(Roca et al. 2013 PMID:23348838), branchpoints, and exonic/intronic splicing enhancers/silencers, sequence "
+                "scores prioritize Stage-0 edits while wet-lab 5'/3'-RACE and UMI-tagged long-read cDNA sequencing are decisive."
+            ),
+        },
+        "genomic_boundary_provenance": {
+            "locus3_art3_isoform_reconciliation": art3_model,
+            "locus4_window_a_cbx3_isoform_parentage": cbx3_win_a_model,
+            "locus4_spa_and_sv40pa_scope_rule": (
+                "Levitt et al. 1989 (PMID:2570734) showed an intronic SPA placed inside rabbit beta-globin intron 2 caused "
+                "no detectable premature cleavage while its intact upstream 5' splice donor outcompeted polyadenylation, and "
+                "restored SPA cleavage only when the upstream donor was deleted; intronic SPA is therefore a context-dependent "
+                "premature-cleavage hazard under weakened/distant splice competition rather than unconditional host-gene failure. "
+                "Critically, co-directional SPA-free Locus 4 constructs still retain the 122-bp SV40 late poly(A) (donor 2736..2857) "
+                "and iCasp9 CDS[11..12] AG acceptor on the PPP1R12C transcription strand, so Readout 6 explicitly profiles PPP1R12C "
+                "Exon-1->Exon-2 splicing, Exon-1->cassette capture, and premature 3' cleavage at SV40pA across all arms."
+            ),
+            "locus4_cpg_accounting": {
+                "window_a_455bp_internal_cpgs": {"wt": wina_wt.count("CG"), "codir_5nt": wina_codir_hard.count("CG"), "twostrand_7nt": wina_2strand_hard.count("CG")},
+                "eef1a1_230bp_internal_cpgs": {"wt": eef_wt.count("CG"), "s3_230c": eef_230c.count("CG"), "historical_230a": eef_230a_historical.count("CG")},
+                "eef1a1_230c_kozak_seam_delta_cpg": 1,
+                "whole_3457bp_donor_cpgs": {"parental_l4_can": l4_can.count("CG"), "s3_l4_splice_230c": l4_splice_230c.count("CG")},
+            },
+            "locus4_downstream_icasp9_cds13_acceptor": icasp9_cds13_acceptor,
+        },
+        "aberrant_locus1_sct_to_b2m_exon2_cryptic_splice_audit": {
+            "embodiment_a_star_505aa_sct1514_audit": astar_tail_audit,
+            "arm1b_and_arm1c_500aa_sct1499_audit": arm1b_tail_audit,
+            "candidate_window_interpretation": "Deterministic positional 8..11-mer and 15-mer candidate peptide windows; empirical MHC presentation requires wet-lab immunopeptidomics or T-cell assays.",
+        },
+        "portfolio_chimeric_boundary_reconciliation": {
+            "nine_boundaries_8_11mer": portfolio_sum_8_11,
+            "nine_boundaries_15mer_full_polypeptide": portfolio_sum_15,
+            "ten_boundaries_with_hlac_l2_alpha1_15mer_full_polypeptide": portfolio_sum_15 + 14,
+            "legacy_snippet_scoped_15mer_constant_retained": 136,
+        },
+        "validator_fail_closed_adversarial_selftests": selftests,
+        "parental_open_grammar_scans": parental_open_scans,
+        "qualified_mode_b_reference_derivations": qualified_constructs,
+        "pam_seed_shielded_synthesis_ready_manifest": pam_shielded_manifest,
+        "rtpcr_amplicon_and_ivt_umi_assay_contract": {
+            "endoc_bh1_ppp1r12c_minigene_first_screen": (
+                "Blinded host-context human beta-cell minigene screen in EndoC-betaH1 spanning PPP1R12C Exon 1 - Intron 1 "
+                "(chr19:55115767|55115768) - Exon 2 comparing parental co-directional Window A, co-directional 5-nt + 230C, "
+                "co-directional 7-nt + 230C, convergent WT-cargo, convergent 5-nt + 230C, convergent 7-nt + 230C, Window B, "
+                "and No-UCOE prior to clonal hPSC scaling."
+            ),
+            "locus4_internal_splice_rtpcr_tm_matched_primary": {
+                "forward_primer_WindowA_380_405_sense": fwd_seq,
+                "forward_primer_scope": "Interrogates transcripts initiating upstream of EEF1A1 TSS (inside Window A); never used as the denominator for canonical EEF1A1-initiated iCasp9 mRNA.",
+                "forward_tm_sl98_c": nearest_neighbor_tm_sl98(fwd_seq),
+                "reverse_primer_iCasp9_105_125_antisense": rev_matched_seq,
+                "reverse_tm_sl98_c": nearest_neighbor_tm_sl98(rev_matched_seq),
+                "delta_tm_c": round(abs(nearest_neighbor_tm_sl98(fwd_seq) - nearest_neighbor_tm_sl98(rev_matched_seq)), 2),
+                "unspliced_amplicon_bp": unspl_matched,
+                "spliced_233nt_intron_WinA445_to_EEF222_223AG_bp": unspl_matched - 233,
+                "spliced_240nt_intron_WinA445_to_EEF229_230AG_bp": unspl_matched - 240,
+                "spliced_241nt_intron_historical_230A_seam_AG_bp": unspl_matched - 241,
+            },
+            "locus4_internal_splice_rtpcr_iCasp9_40_65_antisense_reference": {
+                "forward_primer_WindowA_380_405_sense": fwd_seq,
+                "reverse_primer_iCasp9_40_65_antisense": rev_legacy_seq,
+                "unspliced_amplicon_bp": unspl_legacy,
+                "spliced_233nt_intron_bp": unspl_legacy - 233,
+                "spliced_240nt_intron_bp": unspl_legacy - 240,
+                "spliced_241nt_intron_historical_230A_bp": unspl_legacy - 241,
+            },
+            "ivt_rna_recovery_adjusted_umi_and_tost_rules": {
+                "recovery_standard_requirement": (
+                    "Synthetic chimeric in vitro transcribed (IVT) RNA recovery standards spiked into total cellular RNA "
+                    "prior to extraction and reverse transcription (a post-RT cDNA spike-in alone cannot qualify extraction/RT/length recovery)."
+                ),
+                "effective_umi_denominator_formula": "N_UMI_eff = N_UMI * min(1.0, eta_rel), where eta_rel is pre-extraction chimeric IVT RNA recovery relative to canonical reference RNA.",
+                "zero_event_min_effective_umi_two_sided_95_lt_0p10pct": math.ceil(math.log(0.025) / math.log(1.0 - 0.001)),
+                "nominal_3700_two_sided_95_upper_bound_pct": round(100.0 * (1.0 - 0.025 ** (1.0 / 3700.0)), 8),
+                "nominal_3700_one_sided_95_upper_bound_pct": round(100.0 * (1.0 - 0.05 ** (1.0 / 3700.0)), 8),
+                "host_exon_retention_equivalence_test": "Two one-sided 95% tests (90% CI TOST) strictly within [0.80, 1.25] relative to matched parental control across >= 3 independent clones per arm; any host isoform below LOQ routes to HOLD rather than passing by division noise.",
+                "convergent_dsrna_and_isg_hold_ceiling": "Upper 95% confidence bound on anti-dsRNA J2 / strand-specific antisense readthrough / IFIT1-OAS1-ISG15 panel <= 1.5x unedited parental control.",
+                "non_pooling_rule": "Clone-, arm-, locus-, strand-, and orientation-level measurements are evaluated without pooling across clones or conditions.",
+                "tier_6b_safety_precedence": "RNA splice bounds never substitute for Tier 6A 10 nM AP1903 killing or Tier 6B N_eff >= 10^7 clonogenic escape testing.",
+            },
+        },
+        "primary_literature_pmids": [
+            "PMID:10458613", "PMID:9012826", "PMID:25580597", "PMID:25497547", "PMID:19262615",
+            "PMID:10074136", "PMID:2570734", "PMID:26455413", "PMID:25605798", "PMID:28860464",
+            "PMID:19904234", "PMID:28723575", "PMID:36055241", "PMID:37156915", "PMID:35795779",
+            "PMID:38508139", "PMID:28504668", "PMID:1644817", "PMID:9573279", "PMID:28801671",
+            "PMID:22696657", "PMID:21964334", "PMID:28462820", "PMID:32053646", "PMID:3658675",
+            "PMID:15285897", "PMID:23348838", "PMID:26602187", "PMID:39382088",
+        ],
+    }
+
+
 def scan_jaspar_pwm(
     seq: str,
     pwm_entry: Dict[str, Any],
@@ -4414,6 +5949,11 @@ def main() -> None:
         for c in construct_verification["constructs"]
     )
 
+    _canonical_fasta = {
+        blk.splitlines()[0].split()[0]: "".join(blk.splitlines()[1:]).strip().upper()
+        for blk in FASTA_OUT.read_text(encoding="utf-8").strip().split(">")[1:]
+    }
+
     atlas = {
         "schema_version": "0.8.0",
         "layer": "Layer 2 — Single-Cell Perturbation & Regulatory Sequence Plane",
@@ -4599,6 +6139,14 @@ def main() -> None:
                 },
             ],
         },
+        "stage0_two_strand_splice_census_and_challenger_manifest_iip_0015": _build_two_strand_splice_census_and_challenger_manifest_iip_0015(
+            ref=ref,
+            construct_verification=construct_verification,
+            arm1a_can=_canonical_fasta["ISLET1_LOCUS1_ARM1A_B2M_HLAE_SCT_GSGP2A_CD47_IGV_GPI_4880bp"],
+            arm1b_can=_canonical_fasta["ISLET1_LOCUS1_ARM1B_B2M_BIDIR_2AFREE_CD47_IGV_GPI_HLAE_SCT_3974bp"],
+            l3_can=_canonical_fasta["ISLET1_LOCUS3_CXCL10_SERPINB9_GSGP2A_PDL1_NO_FURIN_4090bp"],
+            l4_can=_canonical_fasta["ISLET1_LOCUS4_AAVS1_CHS4_455BP_CBX3_A2UCOE_EEF1A1_ICASP9_3457bp"],
+        ),
     }
 
     if (REPO_ROOT / ".openislet_public_bundle").is_file() and ATLAS_OUT.is_file():

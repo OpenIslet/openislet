@@ -24,7 +24,9 @@
     "adjunct_conditioning_history_arm",
     "adjunct_depletion_mode",
     "adjunct_sa_fhl1_status",
-    "adjunct_immune_responder_history"
+    "adjunct_immune_responder_history",
+    "knockin_splice_challenger_arm",
+    "knockin_locus4_orientation"
   ],
   "boolean_policy_keys": [
     "require_full_5endpoint_s9_panel",
@@ -61,7 +63,11 @@
     "obs_arm2_bound_and_supernatant_fasl_bioactivity_depleted_verified",
     "obs_arm2_sa_thbd_bioactivity_depleted_verified",
     "obs_arm2_contemporaneous_sham_handling_matched",
-    "obs_arm3_ongoing_adjunct_bioactivity_verified"
+    "obs_arm3_ongoing_adjunct_bioactivity_verified",
+    "obs_challenger_ivt_rna_recovery_standard_verified",
+    "obs_challenger_pam_seed_shield_coconversion_verified",
+    "obs_challenger_host_isoforms_above_loq_verified",
+    "obs_challenger_sv40pa_and_host_3prime_cleavage_checked"
   ],
   "endpoints": [
     {
@@ -1784,6 +1790,61 @@
       "default_se": 0.5,
       "minimum_se": 0.001,
       "unit": "post_adjunct_depletion_20pct_nhs_c5b9_mac_positive_percentage"
+    },
+    {
+      "endpoint_id": "gate0s_challenger_ivt_relative_recovery_eta",
+      "meanKey": "obs_challenger_ivt_relative_recovery_eta",
+      "seKey": "obs_challenger_ivt_relative_recovery_se",
+      "min": 0.01,
+      "max": 2.0,
+      "se_required": false,
+      "default_se": 0.02,
+      "minimum_se": 0.001,
+      "unit": "pre_extraction_chimeric_ivt_rna_relative_recovery_ratio_eta"
+    },
+    {
+      "endpoint_id": "gate0s_challenger_umi_molecules_profiled",
+      "meanKey": "obs_challenger_umi_molecules_profiled",
+      "seKey": "obs_challenger_umi_molecules_profiled_se",
+      "min": 0.0,
+      "max": 1000000000.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 0.001,
+      "unit": "unique_consensus_umi_cdna_molecules_profiled"
+    },
+    {
+      "endpoint_id": "gate0s_challenger_aberrant_splice_umi_count_k",
+      "meanKey": "obs_challenger_aberrant_splice_umi_count_k",
+      "seKey": "obs_challenger_aberrant_splice_umi_count_se",
+      "min": 0.0,
+      "max": 1000000.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 1e-12,
+      "unit": "observed_aberrant_chimeric_or_cryptic_splice_umi_molecule_count_k"
+    },
+    {
+      "endpoint_id": "gate0s_challenger_host_exon_splice_retention_ratio",
+      "meanKey": "obs_challenger_host_exon_splice_retention_ratio",
+      "seKey": "obs_challenger_host_exon_splice_retention_se",
+      "min": 0.0,
+      "max": 5.0,
+      "se_required": false,
+      "default_se": 0.03,
+      "minimum_se": 0.001,
+      "unit": "host_exon_canonical_splice_retention_ratio_vs_unedited_parental"
+    },
+    {
+      "endpoint_id": "gate0s_challenger_dsrna_j2_or_isg_fold_wt",
+      "meanKey": "obs_challenger_dsrna_j2_or_isg_fold_wt",
+      "seKey": "obs_challenger_dsrna_j2_or_isg_fold_se",
+      "min": 0.0,
+      "max": 50.0,
+      "se_required": false,
+      "default_se": 0.05,
+      "minimum_se": 0.001,
+      "unit": "anti_dsrna_j2_or_ifit1_oas1_isg15_fold_over_unedited_parental"
     }
   ]
 }

@@ -355,5 +355,41 @@
         "falsifier_scope": "Evaluates each candidate ChoRE allele strictly as an independent single-allele (B = 1) experiment (never multiplexed B >= 3; GY-006), noting Bradley et al. 2026 PMID:42120510 documented 48-h 1% O2 SC-islet dysfunction in larger aggregates without testing TXNIP editing or reoxygenation. Requires matched cluster-size controls across 48-h 1% O2 hypoxia plus reoxygenation recovery, measuring absolute viable INS+NKX6-1+ beta-cell recovery per starting input, alpha/delta survival, basal insulin secretion, dynamic GSIS, low-glucose shut-off (t50 and t90), and cellular OCR without waiving G6PC2/RNLS or Layer-4 oxygen-budget gates (GY-003, GY-004)."
       }
     ]
+  },
+  "two_strand_knockin_splice_challenger_and_umi_isoform_gate_iip_0015": {
+    "gate_id": "STAGE0_TWO_STRAND_KNOCKIN_SPLICE_CHALLENGER_AND_UMI_ISOFORM_GATE_IIP_0015",
+    "decision_id": "DEC-092",
+    "contribution_id": "IIP-0015",
+    "mode_b_invariance": "Preserves all pinned reference FASTA digests in data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta, all Layer-1 stack rankings, and all existing release thresholds; challenger arms execute strictly as parallel Stage-0 Mode-B comparators.",
+    "primary_citations": [
+      "PMID:22696657",
+      "PMID:28504668",
+      "PMID:2570734",
+      "PMID:3658675",
+      "PMID:15285897",
+      "PMID:23348838",
+      "PMID:10458613",
+      "PMID:9012826",
+      "PMID:1644817",
+      "PMID:19262615",
+      "PMID:9573279",
+      "PMID:28801671",
+      "PMID:21964334",
+      "PMID:28462820",
+      "PMID:32053646",
+      "PMID:22101854",
+      "PMID:24363023",
+      "PMID:11504275",
+      "PMID:22047558"
+    ],
+    "mandatory_qualification_guards": {
+      "pam_seed_shield_coconversion": "Every synthesized Locus-1 and Locus-3 HDR donor challenger must apply unconditional PAM/seed-shield co-conversion (obs_challenger_pam_seed_shield_coconversion_verified=True); unshielded analytical reference derivations hold from synthesis/release.",
+      "locus4_2x2_orientation_by_mutation_matrix": "Locus-4 orientation comparisons include the full 2x2 factorial matrix (co-directional vs convergent cargo x 5-nt vs 7-nt Window-A + EEF1A1 230C edits) plus the WT-cargo convergent control alongside Window B and No-UCOE comparators, separating sequence effects from transcriptional convergence.",
+      "locus4_spa_and_sv40pa_3prime_cleavage_audit": "Because intronic SPA cleavage is context-dependent under splice-donor competition (Levitt et al. 1989 PMID:2570734) and co-directional SPA-free Locus-4 cassettes still retain the 122-bp SV40 late poly(A) (donor 2736..2857) and iCasp9 CDS[11..12] AG acceptor on the PPP1R12C transcription strand, Readout 6 requires explicit PPP1R12C Exon-1->Exon-2 splicing, Exon-1->cassette capture, and premature 3' cleavage checks (obs_challenger_sv40pa_and_host_3prime_cleavage_checked=True).",
+      "separated_505aa_vs_500aa_locus1_stop_seams": "Embodiment A* (505-aa SCT precursor; G1515C/G1517A) and canonical Arm 1B / DX-S Arm 1C (500-aa SCT precursor; G1500C/G1502A) are tracked under distinct sequence-verified challenger IDs.",
+      "pre_extraction_ivt_rna_recovery_adjusted_umi_bound": "Requires synthetic chimeric IVT RNA recovery standards spiked into total cellular RNA prior to extraction and reverse transcription (obs_challenger_ivt_rna_recovery_standard_verified=True; cDNA spike-in alone insufficient), N_UMI_eff = N_UMI * min(1.0, eta_rel) >= 3,689 consensus UMI molecules per clone/locus/strand/condition, and k = 0 aberrant chimeric/cryptic UMI molecules (< 0.10% exact two-sided 95% Clopper-Pearson bound).",
+      "host_exon_retention_90pct_tost_and_loq_hold": "Requires two one-sided 95% equivalence tests (90% CI TOST) strictly within [0.80, 1.25] for obs_challenger_host_exon_splice_retention_ratio with explicit SE and obs_challenger_host_isoforms_above_loq_verified=True (any host isoform below LOQ routes to HOLD).",
+      "convergent_dsrna_isg_ceiling_and_non_pooling": "Requires obs_challenger_dsrna_j2_or_isg_fold_wt upper 95% confidence bound <= 1.5x parental control and rejects cross-batch pooling of distinct knockin_splice_challenger_arm or knockin_locus4_orientation conditions; RNA bounds never substitute for Tier 6A 10 nM AP1903 potency or Tier 6B N_eff >= 10^7 clonogenic escape testing."
+    }
   }
 }

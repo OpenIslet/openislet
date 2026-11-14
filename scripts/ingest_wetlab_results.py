@@ -296,6 +296,11 @@ RARE_EVENT_ASSAY_GROUPS: tuple[tuple[str, ...], ...] = (
         "obs_senescent_p16_sasp_positive_cell_pct",
         "obs_senescent_p16_sasp_cells_scored",
     ),
+    (
+        "obs_challenger_ivt_relative_recovery_eta",
+        "obs_challenger_umi_molecules_profiled",
+        "obs_challenger_aberrant_splice_umi_count_k",
+    ),
 )
 
 
@@ -582,7 +587,7 @@ def _verify_endpoint_algebraic_integrity(ep_name: str, ep_obj: Dict[str, Any], p
             raise ValueError(f"Prior endpoint {ep_name!r} integrity mismatch in {key!r}: {value!r} != {expected_value!r}")
 
 
-# Single authoritative 31-flag persisted Stage-0 boolean registry shared across writer, helper replay, and production replay (R7S2-F02 & IIP-0012; DEC-057/091):
+# Single authoritative 35-flag persisted Stage-0 boolean registry shared across writer, helper replay, and production replay (R7S2-F02, IIP-0012 & IIP-0015; DEC-057/091/092):
 STAGE0_PERSISTED_BOOLEAN_FLAGS: tuple[str, ...] = (
     "require_full_5endpoint_s9_panel",
     "require_full_7metric_combined_stress_panel",
@@ -615,6 +620,10 @@ STAGE0_PERSISTED_BOOLEAN_FLAGS: tuple[str, ...] = (
     "obs_arm2_sa_thbd_bioactivity_depleted_verified",
     "obs_arm2_contemporaneous_sham_handling_matched",
     "obs_arm3_ongoing_adjunct_bioactivity_verified",
+    "obs_challenger_ivt_rna_recovery_standard_verified",
+    "obs_challenger_pam_seed_shield_coconversion_verified",
+    "obs_challenger_host_isoforms_above_loq_verified",
+    "obs_challenger_sv40pa_and_host_3prime_cleavage_checked",
 )
 
 HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS: tuple[str, ...] = (
@@ -647,6 +656,8 @@ ALLOWED_ORDERED_BATCH_LEDGER_KEYS: frozenset[str] = frozenset({
     "adjunct_depletion_mode",
     "adjunct_sa_fhl1_status",
     "adjunct_immune_responder_history",
+    "knockin_splice_challenger_arm",
+    "knockin_locus4_orientation",
     *HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS,
 })
 
@@ -981,6 +992,8 @@ def _validate_prior_posterior_report(
                 "adjunct_depletion_mode",
                 "adjunct_sa_fhl1_status",
                 "adjunct_immune_responder_history",
+                "knockin_splice_challenger_arm",
+                "knockin_locus4_orientation",
             ):
                 if adj_meta_k in entry and entry[adj_meta_k] is not None:
                     merged_hist_payload_for_norm[adj_meta_k] = entry[adj_meta_k]
@@ -1181,6 +1194,8 @@ def _validate_prior_posterior_report(
                     "adjunct_depletion_mode",
                     "adjunct_sa_fhl1_status",
                     "adjunct_immune_responder_history",
+                    "knockin_splice_challenger_arm",
+                    "knockin_locus4_orientation",
                 ):
                     if entry.get(meta_k) is not None:
                         pooled_hist_for_s0[meta_k] = entry[meta_k]
@@ -1748,6 +1763,8 @@ def run_calibration(
         "adjunct_depletion_mode",
         "adjunct_sa_fhl1_status",
         "adjunct_immune_responder_history",
+        "knockin_splice_challenger_arm",
+        "knockin_locus4_orientation",
         *stage0_persisted_boolean_flags,
     ):
         if qp_meta_k in input_payload and input_payload[qp_meta_k] is not None:
@@ -1836,6 +1853,8 @@ def run_calibration(
             "adjunct_depletion_mode",
             "adjunct_sa_fhl1_status",
             "adjunct_immune_responder_history",
+            "knockin_splice_challenger_arm",
+            "knockin_locus4_orientation",
         ):
             if hist_entry.get(meta_k) is not None:
                 pooled_stage0_payload[meta_k] = hist_entry[meta_k]
@@ -2080,6 +2099,23 @@ def run_calibration(
     if len(seen_active_adjunct_depletion_modes) > 1:
         raise ValueError(
             "Cannot pool NATURAL_AGING_DECAY and PHYSICAL_WASHOUT adjunct_depletion_mode batches without separate comparability qualification (IIP-0012; DEC-091)"
+        )
+    seen_active_splice_challenger_arms: set[str] = set()
+    seen_active_locus4_orientations: set[str] = set()
+    for _sc_entry in [*prev_obs_ledger, current_obs_entry]:
+        _sc_arm = _sc_entry.get("knockin_splice_challenger_arm")
+        if isinstance(_sc_arm, str) and _sc_arm.strip() != "PARENTAL_REFERENCE":
+            seen_active_splice_challenger_arms.add(_sc_arm.strip())
+        _sc_ori = _sc_entry.get("knockin_locus4_orientation")
+        if isinstance(_sc_ori, str) and _sc_ori.strip() in ("CO_DIRECTIONAL_MINUS", "CONVERGENT_PLUS"):
+            seen_active_locus4_orientations.add(_sc_ori.strip())
+    if len(seen_active_splice_challenger_arms) > 1:
+        raise ValueError(
+            "Cannot pool distinct knockin_splice_challenger_arm conditions across calibration batches (IIP-0015; DEC-092)"
+        )
+    if len(seen_active_locus4_orientations) > 1:
+        raise ValueError(
+            "Cannot pool CO_DIRECTIONAL_MINUS and CONVERGENT_PLUS knockin_locus4_orientation batches (IIP-0015; DEC-092)"
         )
     pooled_stage0_payload["batch_id"] = batch_id
     pooled_stage0_payload["verified_ledger_passing_s9_batch_ids"] = list(post_stop_passing_s9_batch_ids)

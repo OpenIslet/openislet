@@ -1,10 +1,16 @@
 {
  "_meta": {
   "purpose": "offline snapshot for tests/test_citations_resolve.py; bibliographic facts only (first author, year, journal, title)",
-  "retrieved": "2026-11-13",
+  "retrieved": "2026-11-14",
   "source": "NCBI E-utilities esummary (db=pubmed)"
  },
  "pmids": {
+  "10074136": {
+   "first_author": "Zufferey R",
+   "journal": "J Virol",
+   "pubdate_year": "1999",
+   "title": "Woodchuck hepatitis virus posttranscriptional regulatory element enhances expression of transgenes delivered by retroviral vectors."
+  },
   "10428963": {
    "first_author": "Valés-Gómez M",
    "journal": "EMBO J",
@@ -155,6 +161,12 @@
    "pubdate_year": "1992",
    "title": "Functionally conformed free class I heavy chains exist on the surface of beta 2 microglobulin negative cells."
   },
+  "15285897": {
+   "first_author": "Yeo G",
+   "journal": "J Comput Biol",
+   "pubdate_year": "2004",
+   "title": "Maximum entropy modeling of short sequence motifs with applications to RNA splicing signals."
+  },
   "15494398": {
    "first_author": "Mahrus S",
    "journal": "J Biol Chem",
@@ -190,6 +202,12 @@
    "journal": "J Mol Biol",
    "pubdate_year": "2006",
    "title": "Entropically driven MHC class I recognition by human inhibitory receptor leukocyte Ig-like receptor B1 (LILRB1/ILT2/CD85j)."
+  },
+  "1644817": {
+   "first_author": "Goodwin EC",
+   "journal": "J Biol Chem",
+   "pubdate_year": "1992",
+   "title": "The 3'-flanking sequence of the bovine growth hormone gene contains novel elements required for efficient and accurate polyadenylation."
   },
   "16455647": {
    "first_author": "Shiroishi M",
@@ -419,11 +437,23 @@
    "pubdate_year": "2011",
    "title": "Intracellular serine protease inhibitor SERPINB4 inhibits granzyme M-induced cell death."
   },
+  "21964334": {
+   "first_author": "Shukla S",
+   "journal": "Nature",
+   "pubdate_year": "2011",
+   "title": "CTCF-promoted RNA polymerase II pausing links DNA methylation to splicing."
+  },
   "22047558": {
    "first_author": "Di Stasi A",
    "journal": "N Engl J Med",
    "pubdate_year": "2011",
    "title": "Inducible apoptosis as a safety switch for adoptive cell therapy."
+  },
+  "22101854": {
+   "first_author": "Kivioja T",
+   "journal": "Nat Methods",
+   "pubdate_year": "2011",
+   "title": "Counting absolute numbers of molecules using unique molecular identifiers."
   },
   "22371083": {
    "first_author": "Blum B",
@@ -443,6 +473,12 @@
    "pubdate_year": "2012",
    "title": "Preventing β-cell loss and diabetes with calcium channel blockers."
   },
+  "22696657": {
+   "first_author": "Knight S",
+   "journal": "J Virol",
+   "pubdate_year": "2012",
+   "title": "Safer, silencing-resistant lentiviral vectors: optimization of the ubiquitous chromatin-opening element through elimination of aberrant splicing."
+  },
   "22934097": {
    "first_author": "Rajagopalan S",
    "journal": "Front Immunol",
@@ -460,6 +496,12 @@
    "journal": "Stem Cells",
    "pubdate_year": "2013",
    "title": "A ubiquitous chromatin opening element prevents transgene silencing in pluripotent stem cells and their differentiated progeny."
+  },
+  "23348838": {
+   "first_author": "Roca X",
+   "journal": "Genes Dev",
+   "pubdate_year": "2013",
+   "title": "Pick one, but be quick: 5' splice sites and the problems of too many choices."
   },
   "23377437": {
    "first_author": "Lopez JA",
@@ -508,6 +550,12 @@
    "journal": "Stem Cell Reports",
    "pubdate_year": "2013",
    "title": "BCL-XL mediates the strong selective advantage of a 20q11.21 amplification commonly found in human embryonic stem cell cultures."
+  },
+  "24363023": {
+   "first_author": "Islam S",
+   "journal": "Nat Methods",
+   "pubdate_year": "2014",
+   "title": "Quantitative single-cell RNA-seq with unique molecular identifiers."
   },
   "24550402": {
    "first_author": "Hatherley D",
@@ -569,11 +617,23 @@
    "pubdate_year": "2014",
    "title": "Generation of functional human pancreatic β cells in vitro."
   },
+  "25497547": {
+   "first_author": "Rao SS",
+   "journal": "Cell",
+   "pubdate_year": "2014",
+   "title": "A 3D map of the human genome at kilobase resolution reveals principles of chromatin looping."
+  },
   "2550826": {
    "first_author": "Rorsman P",
    "journal": "Nature",
    "pubdate_year": "1989",
    "title": "Glucose-inhibition of glucagon secretion involves activation of GABAA-receptor chloride channels."
+  },
+  "25580597": {
+   "first_author": "Liu M",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2015",
+   "title": "Genomic discovery of potent chromatin insulators for human gene therapy."
   },
   "25605798": {
    "first_author": "Müller-Kuller U",
@@ -731,6 +791,12 @@
    "pubdate_year": "2017",
    "title": "Human pluripotent stem cells recurrently acquire and expand dominant negative P53 mutations."
   },
+  "28462820": {
+   "first_author": "Xie J",
+   "journal": "Mol Ther",
+   "pubdate_year": "2017",
+   "title": "Short DNA Hairpins Compromise Recombinant Adeno-Associated Virus Genome Homogeneity."
+  },
   "28489987": {
    "first_author": "Baidal DA",
    "journal": "N Engl J Med",
@@ -754,6 +820,12 @@
    "journal": "Cell Rep",
    "pubdate_year": "2017",
    "title": "CRISPR-Mediated Integration of Large Gene Cassettes Using AAV Donor Vectors."
+  },
+  "28801671": {
+   "first_author": "Kunkiel J",
+   "journal": "Sci Rep",
+   "pubdate_year": "2017",
+   "title": "The CpG-sites of the CBX3 ubiquitous chromatin opening element are critical structural determinants for the anti-silencing function."
   },
   "28813417": {
    "first_author": "Burr ML",
@@ -988,6 +1060,12 @@
    "journal": "Stem Cell Res Ther",
    "pubdate_year": "2020",
    "title": "Pro-inflammatory cytokines induce cell death, inflammatory responses, and endoplasmic reticulum stress in human iPSC-derived beta cells."
+  },
+  "32053646": {
+   "first_author": "Forrest ME",
+   "journal": "PLoS One",
+   "pubdate_year": "2020",
+   "title": "Codon and amino acid content are associated with mRNA stability in mammalian cells."
   },
   "32094658": {
    "first_author": "Hogrebe NJ",
@@ -1228,6 +1306,12 @@
    "journal": "Nat Commun",
    "pubdate_year": "2022",
    "title": "The type 1 diabetes gene TYK2 regulates β-cell development and its responses to interferon-α."
+  },
+  "3658675": {
+   "first_author": "Shapiro MB",
+   "journal": "Nucleic Acids Res",
+   "pubdate_year": "1987",
+   "title": "RNA splice junctions of different classes of eukaryotes: sequence statistics and functional implications in gene expression."
   },
   "36593395": {
    "first_author": "Gravina A",
@@ -1666,6 +1750,12 @@
    "journal": "Proc Natl Acad Sci U S A",
    "pubdate_year": "1997",
    "title": "Characterization of the chicken beta-globin insulator."
+  },
+  "9573279": {
+   "first_author": "Donello JE",
+   "journal": "J Virol",
+   "pubdate_year": "1998",
+   "title": "Woodchuck hepatitis virus contains a tripartite posttranscriptional regulatory element."
   },
   "9588443": {
    "first_author": "Loweth AC",
