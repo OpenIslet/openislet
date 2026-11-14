@@ -253,40 +253,40 @@
       "bytes": 1157
     },
     "ISLET-1-BLUEPRINT.md": {
-      "sha256": "bd9de37bd15afb12685dab6bb9b0ee08a35499f1f466bfd9df0566940265db73",
-      "bytes": 180501
+      "sha256": "5db8adf4e07986fe2952fa9d6c52570f651cd612108588b96f4a11efa3c1b382",
+      "bytes": 181720
     },
     "README.md": {
-      "sha256": "f7395fc6c364b48c0fc8690c28c9c89b9f5bf4738eb69da27f5f6f9b5d631afd",
-      "bytes": 7372
+      "sha256": "96fbd0be6c00e54d23eea6c5d99bc7e8b122c8716ac62fc064fd58026614a98c",
+      "bytes": 7452
     },
     "docs/ISLET-1-DERIVATIONS-AND-AUDIT-TABLES.md": {
-      "sha256": "a79c107aee668cbd8fae8ed15769e3616636a5938df2917d1d65c42b50dad673",
-      "bytes": 65386
+      "sha256": "6f70126cdf1014c38bebe0bd7cc2eb493c3f97717ee92b6bdfb752310cfa71a8",
+      "bytes": 65994
     },
     "docs/ISLET-1-MASTER-SPEC-v0.1.md": {
       "sha256": "c43819a3153057a871c02028a53888cead652c56831476395d9f37f557e90aa5",
       "bytes": 108468
     },
     "docs/ISLET-1-SYNTHESIS-REPORT-v0.4.md": {
-      "sha256": "23e6c712595cce9b10e5a7acbf8c11fffea61cfc86057d67c1c6b9cca4b1c7c4",
-      "bytes": 16319
+      "sha256": "87952e41cd12e6a05187bcb9c2236c8c673cff22cf2d8f23ff16828de5e8e707",
+      "bytes": 16410
     },
     "docs/ISLET-1-CANDIDATE-BLUEPRINTS-AND-OPTIMIZER-v0.2.md": {
-      "sha256": "c4a6c2144458f2d1d87d89da15620fe5150a4d508023dfaccc4c9ec984d6e561",
-      "bytes": 46155
+      "sha256": "5833a88e7b543fac5ace8ebb7e884f24fe81d2cb0bd58b318e3e09a8322ffee8",
+      "bytes": 46208
     },
     "docs/PROJECT-ISLET-1-RING1-DISCOVERY-ATLAS-AND-STRATEGY.md": {
       "sha256": "66e9fabe95fda3098044317788a3eef8acaaa3b95535c3ebb463578de320a06a",
       "bytes": 20334
     },
     "docs/PROJECT-DECISIONS-LOG.md": {
-      "sha256": "29b3bd38c4bc996229ef167be56a68e78fd1928c65de41b4b8dbe6bd94247f0d",
-      "bytes": 507449
+      "sha256": "49f8f52b3c97e6997540515bb16e22e75f99fc5e65756083fe245c4f1276891e",
+      "bytes": 510192
     },
     "docs/OPENISLET-2026-2030-MASTER-TIMELINE.md": {
-      "sha256": "29e60d85822d6bf4c7087de283c8519726fbacb2d322fa76309bfe03b6c26716",
-      "bytes": 32455
+      "sha256": "9c42a296f5aab5cf8d75361505cf8cfc42ebd3e5ac1fc83816a9d5a4ca395305",
+      "bytes": 32751
     },
     "docs/STAGE-0-EXECUTION-PLAYBOOK.md": {
       "sha256": "95d2aeabd109a4c2300e300d58f8a6e61f88ca1d2bda42c39cba2b676a2e5a68",

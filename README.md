@@ -16,7 +16,7 @@
 > [!IMPORTANT]
 > **What Islet-1 Is — and What It Is Not:**
 > - **What it is:** A pre-registered, falsifiable 5-layer computational and preclinical research blueprint (`v0.8.0` open draft, launched `2026-11-01`), backed by `563` extracted studies (`548` active deduplicated, `3,093 atomic effects`) in the active Layer-1 scoring set plus an expanded **`1,151`-study Type 1 Diabetes Context–Evidence Graph (`CEG`: `7,659` experimental and control arms, `14,105` structured outcomes, and `2,447` blueprint links screened from `3,922` candidate records)**, `10` machine-actionable Idea Graveyard rules, base-resolution construct sequences, 3D structural re-verifications, reaction-diffusion/metabolic simulations, and a 36-run fractional-factorial wet-lab protocol (`1,358` pinned files in [`manifest.json`](manifest.json)).
-> - **What it is not:** Islet-1 is **not** medical or clinical advice, **not** an approved or clinically tested therapy, and **not** an empirically fitted clinical survival forecast (`outward_rankings_frozen: false`). All Layer 1–5 outputs are prior-anchored scenario evaluations (`99.8542%` structural prior share of component variance) awaiting Stage 0–4 physical wet-lab qualification.
+> - **What it is not:** Islet-1 is **not** medical or clinical advice, **not** an approved or clinically tested therapy, and **not** an empirically fitted clinical survival forecast (`outward_rankings_frozen: false`). All Layer 1–5 outputs are prior-anchored scenario evaluations (`99.8542%` structural prior share of component variance) awaiting Stage 0–4 physical wet-lab, preclinical, and clinical-grade manufacturing qualification prior to any Stage 5 human trial.
 
 ## Explore the Blueprint
 
