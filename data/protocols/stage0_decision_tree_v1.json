@@ -109,9 +109,9 @@
       "endpoint_id": "chronic_day28_90_capsule_o2_diffusivity_cm2_s",
       "meanKey": "obs_capsule_d_o2_cm2_s",
       "seKey": "obs_capsule_d_o2_se",
-      "min": 1e-7,
-      "max": 5e-5,
-      "default_se": 1e-7,
+      "min": 1e-07,
+      "max": 5e-05,
+      "default_se": 1e-07,
       "unit": "capsule_oxygen_diffusivity_cm2_s_closed_interval_[1e-7, 5e-5]",
       "gate_id": "Gate_0F_chronic"
     },
@@ -279,10 +279,10 @@
       "post_24h_viable_beta_cell_mass_fraction_min": 0.85,
       "post_24h_viable_beta_cell_mass_pct_min": 85.0,
       "dynamic_perifusion_gsis_stimulation_index_min": 2.5,
-      "post_stepdown_2p8mM_secretion_fraction_of_peak_at_15min_max": 0.20,
+      "post_stepdown_2p8mM_secretion_fraction_of_peak_at_15min_max": 0.2,
       "shutoff_t90_min_max": 3.0,
       "interstitial_h2o2_uM_max": 5.0,
-      "interstitial_ph_max": 7.50,
+      "interstitial_ph_max": 7.5,
       "specific_lysis_pct_max": 8.0
     },
     "trigger_rule": "Requires explicit observation of all three head-to-head comparator endpoints (obs_combined_stress_embodiment_a_star_lysis_pct > 8.0, obs_combined_stress_comp_r4_lysis_pct <= 8.0, obs_combined_stress_comp_r4_gsis_si >= 2.5) plus no secondary viability (<85%), shutoff (>3.0 min), H2O2 (>5.0 uM), or pH (>7.50) failure (and all 4 secondary endpoints observed when require_full_7metric_combined_stress_panel=True) -> PROMOTE_ISLET1_COMP_R4_X_BFB_DXB_LOWLOAD1500; partial comparator observations hold on HOLD_COMBINED_STRESS_INCOMPLETE_COMPARATOR_EVIDENCE (AUDIT-REF, AUDIT-REF & AUDIT-REF; DEC-043/044/045)"
@@ -326,21 +326,29 @@
       {
         "challenger_family_id": "HELD_CHALLENGER_1_TYMS_DPYD_SALVAGE_CONTAINMENT_SATELLITE",
         "status": "HOLD_FOR_PROSPECTIVE_FALSIFIER",
-        "primary_citations": ["PMID:38867450", "PMID:35931051"],
+        "primary_citations": [
+          "PMID:38867450",
+          "PMID:35931051"
+        ],
         "falsifier_scope": "Evaluates TYMS disruption strictly as an additive dividing-cell containment challenger alongside retained, functionally verified biallelic pan-lineage AAVS1 iCasp9 (never a whole-graft post-mitotic erasability substitute; GY-002). Reconciles live Ensembl ENST00000323274.15 vs .9 (Exon 1 chr18:657653-657947, CDS start chr18:657743, antisense ENOSF1 ENSG00000132199 start chr18:667671; noting chr18:657600-658000 spans noncoding sequence rather than defining an exact allele, Tummala 2022 PMID:35931051 established ENOSF1-to-TYMS suppression rather than exon-5 KO damage to ENOSF1, and nuclease TYMS KO adds a K chromosomal cut rather than a B base edit under GY-006). Tests proliferation arrest across supplemented 2'-deoxythymidine (dThd, 0.1-20 uM) as an aggressive salvage-vulnerability falsifier (Sartori-Maldonado 2024 PMID:38867450 rescued KO proliferation at 20 uM dThd and noted dying-cell salvage and 3D residual growth), requires dTTP/dUTP nucleotide-balance, >=63,000x duplex-seq/CAST-seq genomic integrity, vascular/stromal (iEC/iPericyte) bank compatibility, intact Stage-7 perifusion GSIS, and intact AP1903 >=4-log10 kill."
       },
       {
         "challenger_family_id": "HELD_CHALLENGER_2_DESIGN_B_NLRC5_ISRE_CIS_ALLELE",
         "status": "HOLD_FOR_PROSPECTIVE_FALSIFIER",
         "candidate_coordinate_grch38": "chr16:56989556:C>G",
-        "primary_citations": ["PMID:36103539"],
+        "primary_citations": [
+          "PMID:36103539"
+        ],
         "falsifier_scope": "Requires naming the exact Design-B product background modified (scored 6-locus ISLET1_CHASSIS_B_HLA_C_RETAINED_6LOCUS_HYPOTHESIS vs unscored B'-SCT molecular hypotheses), measuring classical HLA-A, HLA-B, and Design B's defining retained HLA-C allele separately alongside trans HLA-E, PD-L1, and cis CETP under IFN-gamma/cytokine stimulation, and testing matched KIR-defined (NKG2A+, NKG2C+, KIR2DL1/2/3+, KIR3DL1+) primary NK subsets against existing Playbook resting/induced absolute lysis limits (never generic CD56+ survival; GY-001, GY-005). Notes >=75% HLA-A/B reduction with >=80% HLA-C/HLA-E/PD-L1 retention is an aspirational engineering gate given ~50% HLA-I reduction under near-complete NLRC5 knockdown in Szymczak 2022 PMID:36103539."
       },
       {
         "challenger_family_id": "HELD_CHALLENGER_3_ENDOGENOUS_CD274_INTRON3_DONOR_PLUS6_ALLELE",
         "status": "HOLD_FOR_PROSPECTIVE_FALSIFIER",
         "candidate_coordinate_grch38": "chr9:5457426:A>T (ENST00000381577.4 exon 3 end 5457420, ATG|GTAAGA donor +6)",
-        "primary_citations": ["PMID:42856285", "PMID:37175900"],
+        "primary_citations": [
+          "PMID:42856285",
+          "PMID:37175900"
+        ],
         "falsifier_scope": "Notes Rao et al. 2026 PMID:42856285 is a non-peer-reviewed September 2026 bioRxiv preprint and neither Rao 2026 PMID:42856285 nor Yan et al. 2023 PMID:37175900 tested +6A>T (which could impair protective PD-L1 splicing). Requires isoform-specific RT-ddPCR/long-read junction assays distinguishing endogenous CD274 Exon3-included vs Exon2->Exon4 skipped transcripts and endogenous surface vs secreted protein from the intronless Locus-3 PD-L1 cDNA cassette, cis PDCD1LG2 (PD-L2) undisturbed expression, and functional PD-1 engagement (GY-001, GY-006, GY-008)."
       },
       {
@@ -351,7 +359,9 @@
           "chr1:145996656:G>C",
           "chr1:145996667:G>T"
         ],
-        "primary_citations": ["PMID:42120510"],
+        "primary_citations": [
+          "PMID:42120510"
+        ],
         "falsifier_scope": "Evaluates each candidate ChoRE allele strictly as an independent single-allele (B = 1) experiment (never multiplexed B >= 3; GY-006), noting Bradley et al. 2026 PMID:42120510 documented 48-h 1% O2 SC-islet dysfunction in larger aggregates without testing TXNIP editing or reoxygenation. Requires matched cluster-size controls across 48-h 1% O2 hypoxia plus reoxygenation recovery, measuring absolute viable INS+NKX6-1+ beta-cell recovery per starting input, alpha/delta survival, basal insulin secretion, dynamic GSIS, low-glucose shut-off (t50 and t90), and cellular OCR without waiving G6PC2/RNLS or Layer-4 oxygen-budget gates (GY-003, GY-004)."
       }
     ]
@@ -431,6 +441,34 @@
       "lin_2023_six_leader_reconciliation_and_calibration_block": "Reconciles all 6/6 soluble HLA-E*01:03 leaders in Lin et al. 2023 PMID:37264229 Supp. Table 1 (0/6 central estimates >= 4.0; VMAPRTLFL = 0.18 / 0.71 uM = 3.9444x binds NKG2C 9.18x tighter than VMAPRTLVL) separately from historical monomer SPR (Vales-Gomez 1999 PMID:10428963 explicit HLA-E*01:01; Kaiser 2008 PMID:18448674), and hard-blocks Arm 2 (VMAPRTLFL) and Arm 3 (QMRPVSRVL) as CALIBRATION_CONTROL_NEVER_PROMOTE.",
       "contract_repairs_c1_to_c4": "Emits UNMEASURED_EXTENDED_S10_PANEL when explicit S10 observations are absent (C1), evaluates local and global S10 triggers on one-sided 95% confidence bounds (C2), rejects unverified ratio-only or spoofed legacy coupon=True claims (C3), and replaces unconditional s10_nkg2c_triggered trapping in any_fallback_switch_triggered with (s10_nkg2c_triggered and not s10_v3_release_qualified) while requiring s10_hlae_floor_mode == LOT_RELEASE_25K for complete release (C4).",
       "paired_regime_functional_and_race_provenance": "Requires exact s10_construct_id + s10_construct_donor_sha256 + current_lot_id == s10_qualified_lot_id + s10_is_replacement_challenger_lot=True + s10_race_5p_3p_junction_verified=True, recorded covalent-SCT SPR K_D(NKG2A) upper95 <= 10.0 uM and K_D(NKG2C) with explicit SEs, paired Regime II resting and Regime I 24-h IFN-gamma sorted NKG2A+ NKG2C- and KIR2DL+/KIR2DL- NKG2A- NKG2C+ primary HCMV+ NK lysis upper95 <= 8.0% and CD107a fold upper95 <= 1.25x across n >= 6 donors with 0 failing donors, UL40-reactive CD8+ CTL lysis upper95 <= 5.0% across n >= 6 donors with 0 failing donors, GY-010 delta-only HLA-DQ2/DQ8 SI upper95 <= 1.5 and Class-I cross-presentation lysis upper95 <= 5.0% on non-self arms (Arms 4-9), and CD8aa/CD8ab SPR > 1,000 uM + HLA-A2 positive-control verification + >= 80% CD8+ Treg suppression retention (delta >= -10.0 pp) + UL40 delta <= +2.0 pp on D227K/T228A arms (Arms 8-9)."
+    }
+  },
+  "design_b2_tyk2_p1104a_hlac_neoantigen_gate_0b_iip_0017": {
+    "gate_id": "STAGE0_GATE0B_DESIGN_B2_TYK2_P1104A_HLAC_NEOANTIGEN_OR_HOLD_GATE_IIP_0017",
+    "decision_id": "DEC-095",
+    "contribution_id": "IIP-0017",
+    "applies_to_product_variant_id": "ISLET1_B2_5LOCUS_TYK2_PE",
+    "untouched_distinct_comparators": [
+      "ISLET1_A4_ARM1B / ISLET1_A4_ARM1B_TYK2_PE (Design A B2M-/- pure MHC-I/II-null)",
+      "ISLET1_B1_6LOCUS_TYK2_KO_INS (scored 6-locus Scenario B TYK2-/- KO comparator)",
+      "ISLET1_B2_5LOCUS_BASE (Design B-WT retained HLA-C with WT TYK2 1104P)",
+      "ISLET1_B_SCT_C1_CIITA / ISLET1_B_SCT_C2_CIITA / ISLET1_B_SCT_C1C2_CIITA (Track-2 B'-SCT covalent self-peptide SCT with B2M-/-)"
+    ],
+    "primary_citations": [
+      "PMID:32711842",
+      "PMID:37733863",
+      "PMID:23698740",
+      "PMID:27807284",
+      "PMID:30578352",
+      "PMID:36289205",
+      "PMID:30853558",
+      "PMID:29302013",
+      "PMID:37264229",
+      "PMID:37207206"
+    ],
+    "mandatory_qualification_guards": {
+      "empirical_or_hold_precedence": "Evaluates on retained-HLA-C TYK2 p.Pro1104Ala (NM_003331.5:c.3310C>G, rs34536443; SAPTKFLEL vs WT SPPTKFLEL) using a strict OR-hold rule: (1) functional CD8+ killing/ELISPOT hazard in ANY recipient genotype stratum (obs_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_pp upper95 > 5.0 pp, obs_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_pp upper95 > 5.0 pp, or obs_b2_tyk2_p1104a_primed_cd8_elispot_sfu_per_1e6 upper95 > 50.0 SFU/10^6) immediately holds (HOLD_DESIGN_B2_TYK2_P1104A_HLAC_NEOANTIGEN_HAZARD_DETECTED) even when MS immunopeptidomics is negative; (2) allele-assigned SAPTKFLEL MS detection (b2_tyk2_saptkflel_allele_assigned_ms_detected=True) holds (HOLD_DESIGN_B2_TYK2_P1104A_HLAC_MS_DETECTED_OR_DISCORDANT_REQUIRES_STRATIFIED_REVIEW); (3) missing or underpowered stratified observations (lysis SE > 2.5 pp or ELISPOT SE > 20.0 SFU/10^6) hold (HOLD_DESIGN_B2_TYK2_P1104A_INCOMPLETE_OR_UNDERPOWERED_STRATIFIED_PANEL); and (4) unverified synthetic SAPTKFLEL peptide-pulsed positive controls or HLA-C antibody blockade causal restriction hold (HOLD_DESIGN_B2_TYK2_P1104A_POSITIVE_CONTROL_OR_CAUSAL_RESTRICTION_UNVERIFIED).",
+      "unpooled_recipient_genotype_strata_and_alleles": "Requires explicit b2_tyk2_recipient_genotype_stratum in {G_G, G_C, C_C} and b2_tyk2_hlac_allele across the 14-allele IPD-IMGT/HLA-annotated HLA-C panel, rejecting cross-batch pooling of distinct genotype strata or HLA-C alleles; natural C_C or G_C recipient genotype never auto-waives peripheral tolerance testing across SC-islet and iEC/pericyte compartments, and in-silico MHCflurry affinity cutoffs (e.g. HLA-C*04:01 448.93 nM) never auto-authorize routing."
     }
   }
 }

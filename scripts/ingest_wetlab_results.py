@@ -627,6 +627,9 @@ STAGE0_PERSISTED_BOOLEAN_FLAGS: tuple[str, ...] = (
     "s10_is_replacement_challenger_lot",
     "s10_race_5p_3p_junction_verified",
     "hla_a2_d227k_t228a_positive_control_spr_verified",
+    "b2_tyk2_saptkflel_allele_assigned_ms_detected",
+    "b2_tyk2_peptide_pulsed_positive_control_verified",
+    "b2_tyk2_hlac_blockade_abrogation_verified",
 )
 
 HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS: tuple[str, ...] = (
@@ -666,6 +669,8 @@ ALLOWED_ORDERED_BATCH_LEDGER_KEYS: frozenset[str] = frozenset({
     "current_lot_id",
     "s10_qualified_lot_id",
     "s10_hlae_floor_mode",
+    "b2_tyk2_recipient_genotype_stratum",
+    "b2_tyk2_hlac_allele",
     *HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS,
 })
 
@@ -1007,6 +1012,8 @@ def _validate_prior_posterior_report(
                 "current_lot_id",
                 "s10_qualified_lot_id",
                 "s10_hlae_floor_mode",
+                "b2_tyk2_recipient_genotype_stratum",
+                "b2_tyk2_hlac_allele",
             ):
                 if adj_meta_k in entry and entry[adj_meta_k] is not None:
                     merged_hist_payload_for_norm[adj_meta_k] = entry[adj_meta_k]
@@ -1214,6 +1221,8 @@ def _validate_prior_posterior_report(
                     "current_lot_id",
                     "s10_qualified_lot_id",
                     "s10_hlae_floor_mode",
+                    "b2_tyk2_recipient_genotype_stratum",
+                    "b2_tyk2_hlac_allele",
                 ):
                     if entry.get(meta_k) is not None:
                         pooled_hist_for_s0[meta_k] = entry[meta_k]
@@ -1790,6 +1799,8 @@ def run_calibration(
         "current_lot_id",
         "s10_qualified_lot_id",
         "s10_hlae_floor_mode",
+        "b2_tyk2_recipient_genotype_stratum",
+        "b2_tyk2_hlac_allele",
         *stage0_persisted_boolean_flags,
     ):
         if qp_meta_k in input_payload and input_payload[qp_meta_k] is not None:
@@ -1885,6 +1896,8 @@ def run_calibration(
             "current_lot_id",
             "s10_qualified_lot_id",
             "s10_hlae_floor_mode",
+            "b2_tyk2_recipient_genotype_stratum",
+            "b2_tyk2_hlac_allele",
         ):
             if hist_entry.get(meta_k) is not None:
                 pooled_stage0_payload[meta_k] = hist_entry[meta_k]
@@ -2155,6 +2168,23 @@ def run_calibration(
     if len(seen_active_s10_construct_ids) > 1:
         raise ValueError(
             "Cannot pool distinct s10_construct_id conditions across calibration batches (IIP-0016; DEC-094)"
+        )
+    seen_b2_tyk2_strata: set[str] = set()
+    seen_b2_tyk2_alleles: set[str] = set()
+    for _b2_entry in [*prev_obs_ledger, current_obs_entry]:
+        _b2_st = _b2_entry.get("b2_tyk2_recipient_genotype_stratum")
+        if isinstance(_b2_st, str) and _b2_st.strip():
+            seen_b2_tyk2_strata.add(_b2_st.strip())
+        _b2_al = _b2_entry.get("b2_tyk2_hlac_allele")
+        if isinstance(_b2_al, str) and _b2_al.strip():
+            seen_b2_tyk2_alleles.add(_b2_al.strip())
+    if len(seen_b2_tyk2_strata) > 1:
+        raise ValueError(
+            "Cannot pool distinct b2_tyk2_recipient_genotype_stratum conditions across calibration batches (IIP-0017; DEC-095)"
+        )
+    if len(seen_b2_tyk2_alleles) > 1:
+        raise ValueError(
+            "Cannot pool distinct b2_tyk2_hlac_allele conditions across calibration batches (IIP-0017; DEC-095)"
         )
     pooled_stage0_payload["batch_id"] = batch_id
     pooled_stage0_payload["verified_ledger_passing_s9_batch_ids"] = list(post_stop_passing_s9_batch_ids)

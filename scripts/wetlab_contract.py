@@ -212,6 +212,10 @@ STAGE0_DECISION_TREE_ENDPOINT_SPECS = [
     ('stage0_s10_ul40_ctl_lysis_delta_vs_wt_pp', 'obs_cmv_ul40_hlae_cd8_lysis_delta_vs_wt_pp', 'obs_cmv_ul40_hlae_cd8_lysis_delta_vs_wt_se', -100.0, 100.0, 'cmv_ul40_cd8_ctl_4h_lysis_delta_d227k_t228a_minus_wt_sct_percentage_points'),
     ('stage0_s10_nonself_dq2_dq8_indirect_apc_si', 'obs_nonself_dq2_dq8_indirect_apc_si', 'obs_nonself_dq2_dq8_indirect_apc_si_se', 0.1, 100.0, 'recipient_dq2_dq8_apc_indirect_cd4_stimulation_index_on_nonself_seam_or_alpha3'),
     ('stage0_s10_nonself_host_class1_cross_pres_lysis_pct', 'obs_nonself_host_class1_cross_pres_lysis_pct', 'obs_nonself_host_class1_cross_pres_lysis_se', 0.0, 100.0, 'host_hla_abc_cross_presented_cd8_ctl_specific_lysis_percentage'),
+    # Stage-0 Gate 0B Design B2 (ISLET1_B2_5LOCUS_TYK2_PE) retained-HLA-C TYK2 p.Pro1104Ala (SAPTKFLEL) stratified OR-hold endpoints (IIP-0017; DEC-095):
+    ('stage0_gate0b_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_pp', 'obs_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_pp', 'obs_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_se', -100.0, 100.0, '4digit_hlac_matched_cd8_lysis_delta_design_b2_minus_isogenic_bwt_percentage_points'),
+    ('stage0_gate0b_b2_tyk2_p1104a_primed_cd8_elispot_sfu_per_1e6', 'obs_b2_tyk2_p1104a_primed_cd8_elispot_sfu_per_1e6', 'obs_b2_tyk2_p1104a_primed_cd8_elispot_se', 0.0, 5000.0, 'day21_saptkflel_primed_autologous_cd8_ifng_elispot_sfu_per_1e6_cells'),
+    ('stage0_gate0b_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_pp', 'obs_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_pp', 'obs_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_se', -100.0, 100.0, 'ifng_treated_iec_pericyte_cd8_lysis_delta_design_b2_minus_isogenic_bwt_percentage_points'),
 ]
 
 STAGE0_S10_V3_MEAN_KEYS: frozenset[str] = frozenset({
@@ -260,6 +264,29 @@ STAGE0_S10_V3_BOOLEAN_KEYS: tuple[str, ...] = (
 ALLOWED_S10_HLAE_FLOOR_MODES: frozenset[str] = frozenset({
     'GATE_0A_SCREENING_15K',
     'LOT_RELEASE_25K',
+})
+
+ALLOWED_B2_TYK2_RECIPIENT_GENOTYPE_STRATA: frozenset[str] = frozenset({
+    'G_G',
+    'G_C',
+    'C_C',
+})
+
+ALLOWED_B2_TYK2_HLAC_ALLELES: frozenset[str] = frozenset({
+    'HLA-C*01:02',
+    'HLA-C*02:02',
+    'HLA-C*03:04',
+    'HLA-C*04:01',
+    'HLA-C*05:01',
+    'HLA-C*06:02',
+    'HLA-C*07:01',
+    'HLA-C*07:02',
+    'HLA-C*08:01',
+    'HLA-C*12:02',
+    'HLA-C*12:03',
+    'HLA-C*14:02',
+    'HLA-C*15:02',
+    'HLA-C*16:01',
 })
 
 STAGE0_S10_V3_CONSTRUCT_REGISTRY: dict[str, dict[str, object]] = {
@@ -751,6 +778,9 @@ STAGE0_CUSTOM_DEFAULT_SE: dict[str, float] = {
     'obs_cmv_ul40_hlae_cd8_lysis_delta_vs_wt_pp': 0.5,
     'obs_nonself_dq2_dq8_indirect_apc_si': 0.10,
     'obs_nonself_host_class1_cross_pres_lysis_pct': 0.65,
+    'obs_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_pp': 0.75,
+    'obs_b2_tyk2_p1104a_primed_cd8_elispot_sfu_per_1e6': 5.0,
+    'obs_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_pp': 0.75,
 }
 
 STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
@@ -1110,6 +1140,9 @@ STAGE0_DECISION_TREE_BOOLEAN_KEYS: tuple[str, ...] = (
     's10_is_replacement_challenger_lot',
     's10_race_5p_3p_junction_verified',
     'hla_a2_d227k_t228a_positive_control_spr_verified',
+    'b2_tyk2_saptkflel_allele_assigned_ms_detected',
+    'b2_tyk2_peptide_pulsed_positive_control_verified',
+    'b2_tyk2_hlac_blockade_abrogation_verified',
 )
 
 
@@ -1167,6 +1200,8 @@ def derive_contract(root: Path | str | None = None) -> dict:
                 'current_lot_id',
                 's10_qualified_lot_id',
                 's10_hlae_floor_mode',
+                'b2_tyk2_recipient_genotype_stratum',
+                'b2_tyk2_hlac_allele',
             ],
             'boolean_policy_keys': list(STAGE0_DECISION_TREE_BOOLEAN_KEYS),
             'endpoints': endpoints,
@@ -1281,6 +1316,14 @@ def normalize_measurements(payload: dict, *, require_observation: bool = True,
         elif key == 's10_hlae_floor_mode':
             if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_S10_HLAE_FLOOR_MODES:
                 raise ValueError(f's10_hlae_floor_mode must be one of {sorted(ALLOWED_S10_HLAE_FLOOR_MODES)} (IIP-0016; DEC-094)')
+            result[key] = payload[key].strip()
+        elif key == 'b2_tyk2_recipient_genotype_stratum':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_B2_TYK2_RECIPIENT_GENOTYPE_STRATA:
+                raise ValueError(f'b2_tyk2_recipient_genotype_stratum must be one of {sorted(ALLOWED_B2_TYK2_RECIPIENT_GENOTYPE_STRATA)} (IIP-0017; DEC-095)')
+            result[key] = payload[key].strip()
+        elif key == 'b2_tyk2_hlac_allele':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_B2_TYK2_HLAC_ALLELES:
+                raise ValueError(f'b2_tyk2_hlac_allele must be one of {sorted(ALLOWED_B2_TYK2_HLAC_ALLELES)} (IIP-0017; DEC-095)')
             result[key] = payload[key].strip()
         else:
             if not isinstance(payload[key], str) or not payload[key].strip() or len(payload[key]) > 120:
@@ -1703,6 +1746,11 @@ def evaluate_stage0_decision_tree(
         's10_is_replacement_challenger_lot',
         's10_race_5p_3p_junction_verified',
         'hla_a2_d227k_t228a_positive_control_spr_verified',
+        'b2_tyk2_recipient_genotype_stratum',
+        'b2_tyk2_hlac_allele',
+        'b2_tyk2_saptkflel_allele_assigned_ms_detected',
+        'b2_tyk2_peptide_pulsed_positive_control_verified',
+        'b2_tyk2_hlac_blockade_abrogation_verified',
     }
     unknown_keys = sorted(set(observations) - set(spec_by_mean) - set(spec_by_se) - allowed_boolean_and_meta_flags)
     if unknown_keys:
@@ -1721,6 +1769,8 @@ def evaluate_stage0_decision_tree(
         ('knockin_splice_challenger_arm', ALLOWED_KNOCKIN_SPLICE_CHALLENGER_ARMS),
         ('knockin_locus4_orientation', ALLOWED_KNOCKIN_LOCUS4_ORIENTATIONS),
         ('s10_hlae_floor_mode', ALLOWED_S10_HLAE_FLOOR_MODES),
+        ('b2_tyk2_recipient_genotype_stratum', ALLOWED_B2_TYK2_RECIPIENT_GENOTYPE_STRATA),
+        ('b2_tyk2_hlac_allele', ALLOWED_B2_TYK2_HLAC_ALLELES),
     ):
         if _adj_k in observations and observations[_adj_k] is not None:
             _adj_v = observations[_adj_k]
@@ -2642,6 +2692,103 @@ def evaluate_stage0_decision_tree(
         )
     )
     s7_promoted = bool(s7_allo_triggered and sct_density_explicitly_qualified and not b_prime_sct_direct_cd8_failed)
+    # Design B2 (ISLET1_B2_5LOCUS_TYK2_PE) retained-HLA-C TYK2 p.Pro1104Ala (SAPTKFLEL) empirical OR-hold gate (IIP-0017; DEC-095):
+    _b2_tyk2_product_selected = bool(
+        product_def is not None
+        and str(product_def.get('product_variant_id', '')) == 'ISLET1_B2_5LOCUS_TYK2_PE'
+    )
+    _b2_tyk2_stratum = (
+        observations['b2_tyk2_recipient_genotype_stratum'].strip()
+        if isinstance(observations.get('b2_tyk2_recipient_genotype_stratum'), str)
+        else None
+    )
+    _b2_tyk2_allele = (
+        observations['b2_tyk2_hlac_allele'].strip()
+        if isinstance(observations.get('b2_tyk2_hlac_allele'), str)
+        else None
+    )
+    _b2_tyk2_gate_active = bool(
+        _b2_tyk2_product_selected
+        or _b2_tyk2_stratum is not None
+        or _b2_tyk2_allele is not None
+        or any(
+            observations.get(_bk) is not None
+            for _bk in (
+                'b2_tyk2_saptkflel_allele_assigned_ms_detected',
+                'b2_tyk2_peptide_pulsed_positive_control_verified',
+                'b2_tyk2_hlac_blockade_abrogation_verified',
+            )
+        )
+        or any(
+            _bmk in validated_stage0
+            for _bmk in (
+                'obs_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_pp',
+                'obs_b2_tyk2_p1104a_primed_cd8_elispot_sfu_per_1e6',
+                'obs_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_pp',
+            )
+        )
+    )
+    b2_tyk2_gate_status: str | None = None
+    b2_tyk2_hold_status: str | None = None
+    b2_tyk2_eval_summary: dict[str, object] | None = None
+    if _b2_tyk2_gate_active:
+        _b2_sc_hazard = bool(
+            'obs_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_pp' in validated_stage0
+            and _upper95('obs_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_pp') > 5.0
+        )
+        _b2_iec_hazard = bool(
+            'obs_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_pp' in validated_stage0
+            and _upper95('obs_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_pp') > 5.0
+        )
+        _b2_elispot_hazard = bool(
+            'obs_b2_tyk2_p1104a_primed_cd8_elispot_sfu_per_1e6' in validated_stage0
+            and _upper95('obs_b2_tyk2_p1104a_primed_cd8_elispot_sfu_per_1e6') > 50.0
+        )
+        _b2_ms_flag = observations.get('b2_tyk2_saptkflel_allele_assigned_ms_detected')
+        _b2_pos_ctrl = observations.get('b2_tyk2_peptide_pulsed_positive_control_verified')
+        _b2_block_ok = observations.get('b2_tyk2_hlac_blockade_abrogation_verified')
+        _b2_quant_powered_complete = bool(
+            _b2_tyk2_stratum in ALLOWED_B2_TYK2_RECIPIENT_GENOTYPE_STRATA
+            and _b2_tyk2_allele in ALLOWED_B2_TYK2_HLAC_ALLELES
+            and _b2_ms_flag is False
+            and all(
+                _bmk in validated_stage0 and se_provenance_by_mean.get(_bmk) == 'EXPLICIT_SE_SUPPLIED'
+                for _bmk in (
+                    'obs_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_pp',
+                    'obs_b2_tyk2_p1104a_primed_cd8_elispot_sfu_per_1e6',
+                    'obs_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_pp',
+                )
+            )
+            and validated_stage0_se.get('obs_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_se', 999.0) <= 2.5
+            and validated_stage0_se.get('obs_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_se', 999.0) <= 2.5
+            and validated_stage0_se.get('obs_b2_tyk2_p1104a_primed_cd8_elispot_se', 999.0) <= 20.0
+        )
+        if _b2_sc_hazard or _b2_iec_hazard or _b2_elispot_hazard:
+            b2_tyk2_gate_status = 'HOLD_DESIGN_B2_TYK2_P1104A_HLAC_NEOANTIGEN_HAZARD_DETECTED'
+            b2_tyk2_hold_status = b2_tyk2_gate_status
+        elif _b2_ms_flag is True:
+            b2_tyk2_gate_status = 'HOLD_DESIGN_B2_TYK2_P1104A_HLAC_MS_DETECTED_OR_DISCORDANT_REQUIRES_STRATIFIED_REVIEW'
+            b2_tyk2_hold_status = b2_tyk2_gate_status
+        elif _b2_pos_ctrl is False or _b2_block_ok is False:
+            b2_tyk2_gate_status = 'HOLD_DESIGN_B2_TYK2_P1104A_POSITIVE_CONTROL_OR_CAUSAL_RESTRICTION_UNVERIFIED'
+            b2_tyk2_hold_status = b2_tyk2_gate_status
+        elif not _b2_quant_powered_complete:
+            b2_tyk2_gate_status = 'HOLD_DESIGN_B2_TYK2_P1104A_INCOMPLETE_OR_UNDERPOWERED_STRATIFIED_PANEL'
+            b2_tyk2_hold_status = b2_tyk2_gate_status
+        elif _b2_pos_ctrl is not True or _b2_block_ok is not True:
+            b2_tyk2_gate_status = 'HOLD_DESIGN_B2_TYK2_P1104A_POSITIVE_CONTROL_OR_CAUSAL_RESTRICTION_UNVERIFIED'
+            b2_tyk2_hold_status = b2_tyk2_gate_status
+        else:
+            b2_tyk2_gate_status = 'CLEARED_DESIGN_B2_TYK2_P1104A_STRATIFIED_HLAC_GATE'
+        b2_tyk2_eval_summary = {
+            'gate_pass': b2_tyk2_hold_status is None,
+            'status': b2_tyk2_gate_status,
+            'recipient_genotype_stratum': _b2_tyk2_stratum,
+            'hlac_allele': _b2_tyk2_allele,
+            'saptkflel_allele_assigned_ms_detected': _b2_ms_flag,
+            'peptide_pulsed_positive_control_verified': _b2_pos_ctrl,
+            'hlac_blockade_abrogation_verified': _b2_block_ok,
+        }
     s7_hold_unqualified_sct = bool(s7_allo_triggered and not sct_density_explicitly_qualified)
     s7_hold_unverified_sct_allo = bool((s7_allo_triggered and sct_density_explicitly_qualified and not sct_cd8_mlc_explicitly_cleared) or b_prime_sct_direct_cd8_failed)
     glucagon_2mM_lower95 = _lower95('obs_gate0m_glucagon_2mM_fold_increase', 2.5)
@@ -3124,6 +3271,13 @@ def evaluate_stage0_decision_tree(
         resolved_arch['track2_kir_subbank_construct'] = 'HOLD_B_PRIME_SCT_DIRECT_CD8_ALLOREACTIVITY_FAILED'
     elif s7_hold_unqualified_sct:
         resolved_arch['track2_kir_subbank_construct'] = 'HOLD_PENDING_B_SCT_GATE0B_DENSITY_QUALIFICATION'
+    if b2_tyk2_gate_status is not None:
+        resolved_arch['design_b2_tyk2_p1104a_hlac_gate_status'] = b2_tyk2_gate_status
+        resolved_arch['design_b2_tyk2_p1104a_hlac_evaluation'] = b2_tyk2_eval_summary
+        if _b2_tyk2_stratum is not None:
+            resolved_arch['b2_tyk2_recipient_genotype_stratum'] = _b2_tyk2_stratum
+        if _b2_tyk2_allele is not None:
+            resolved_arch['b2_tyk2_hlac_allele'] = _b2_tyk2_allele
 
     # Terminal NO-GO and unmitigated fallback HOLD states (AUDIT-REF, S2-01..03, AUDIT-REF, AUDIT-REF, AUDIT-REF, MW-R5-S2-F01..F06, AUDIT-REF & AUDIT-REF; DEC-041..050):
     if prior_s9_flag:
@@ -3282,6 +3436,8 @@ def evaluate_stage0_decision_tree(
         resolved_arch['lot_maturation_status'] = 'HOLD_PENDING_B_SCT_GATE0B_DENSITY_QUALIFICATION'
     elif s7_hold_unverified_sct_allo:
         resolved_arch['lot_maturation_status'] = 'HOLD_B_PRIME_ALLO_FAILED_REQUIRES_4DIGIT_MATCH_OR_SCT_CD8_MLC_CLEARANCE'
+    elif b2_tyk2_hold_status is not None:
+        resolved_arch['lot_maturation_status'] = b2_tyk2_hold_status
     elif s8_tyk2_epistasis_underpowered_hold:
         resolved_arch['lot_maturation_status'] = 'HOLD_INCONCLUSIVE_UNDERPOWERED_TYK2_EPISTASIS_SE'
     elif s8_tyk2_epistasis_triggered and observations.get('s2_arm1x_clears_15k_resting_hlae_and_cd47_c15g_noninferior') is not True:
@@ -3301,7 +3457,10 @@ def evaluate_stage0_decision_tree(
     is_track2_sct_product = bool(
         product_def is not None
         and (
-            str(product_def.get('family', 'A')).upper().startswith('B')
+            (
+                str(product_def.get('family', 'A')).upper().startswith('B')
+                and str(product_def.get('product_variant_id', '')) != 'ISLET1_B2_5LOCUS_TYK2_PE'
+            )
             or 'SCT' in str(product_def.get('product_variant_id', '')).upper()
         )
     )
@@ -3855,7 +4014,11 @@ def evaluate_stage0_decision_tree(
                 else (
                     'HOLD_B_PRIME_ALLO_FAILED_PENDING_B_SCT_DENSITY_QUALIFICATION'
                     if s7_hold_unqualified_sct
-                    else 'RETAIN_4DIGIT_MATCHED_HLAC'
+                    else (
+                        b2_tyk2_gate_status
+                        if b2_tyk2_gate_status is not None
+                        else 'RETAIN_4DIGIT_MATCHED_HLAC'
+                    )
                 )
             )
         ),

@@ -3069,11 +3069,11 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
         == 0.90
     )
 
-    # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (38 persisted boolean flags, 42 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
-    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 38
+    # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (41 persisted boolean flags, 45 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
+    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 41
     assert "require_full_5endpoint_s9_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
     assert "require_full_7metric_combined_stress_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
-    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 42
+    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 45
     assert "5.71 mmHg at 100 um clusters with matched D_caps = D_gel" in film_limit["surgical_mitigation"]
 
     batch1_r7s2 = {
@@ -3156,7 +3156,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     # - R7S3-F02: Both wetlab_contract.evaluate_stage0_decision_tree and ingest_wetlab_results.evaluate_stage0_decision_tree reject non-boolean policy values
     from scripts import wetlab_contract as wc_mod
 
-    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 42
+    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 45
     for bkey in wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS:
         for bad_val in ("false", "False", 0, "true", "True", 1):
             for eval_fn in (wc_mod.evaluate_stage0_decision_tree, wetlab.evaluate_stage0_decision_tree):
@@ -4808,5 +4808,119 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     except ValueError as _exc_s10:
         assert "s10_construct_id" in str(_exc_s10)
     assert "IIP-0016" in _r9_s2_bp_md and "DEC-094" in _r9_s2_bp_md
+
+    # --- IIP-0017 (DEC-095) Species-Separated Proteome Census, TYK2 P1104A HLA-C OR-Hold Gate & AlphaMissense v3 Provenance ---
+    _l2_iip17 = json.loads((ROOT / "data/extracted/layer2_regulatory_and_perturbation_atlas.json").read_text(encoding="utf-8"))
+    _l3_iip17 = json.loads((ROOT / "data/extracted/layer3_structural_verification_atlas.json").read_text(encoding="utf-8"))
+    _l5_iip17 = json.loads((ROOT / "data/extracted/layer5_personalized_patient_and_crispr_atlas.json").read_text(encoding="utf-8"))
+    _c17 = _l2_iip17["species_separated_proteome_subtracted_peptide_census_iip_0017"]
+    assert _c17["decision_id"] == "DEC-095" and _c17["contribution_id"] == "IIP-0017"
+    assert _c17["canonical_fasta_and_ranking_invariance"]["canonical_scenario_a_fasta_sha256"] == "b5ba4e2b4bbbcc7d6cf1138975c5fae5c6ab074dda43973f071c671cd8cd1d88"
+    assert _c17["rule_c3_and_reference_proteome_provenance"]["uniprot_human_swissprot_snapshot"]["fasta_gz_sha256"] == "40a8856b4e3f3620b11635143b501ef701558ed97309b0cdb4423ef09e4618d0"
+    assert len(_c17["rule_c3_and_reference_proteome_provenance"]["mhcflurry_2_3_28_and_v2_3_0_weights_provenance"]["pinned_model_file_sha256s"]) == 10
+    _iedb17 = _c17["rule_c3_and_reference_proteome_provenance"]["iedb_and_arber_2013_t2a_vs_p2a_reconciliation"]
+    assert _iedb17["total_study_iedb_records"] == 44 and len(_iedb17["t2a_records"]) == 12
+    assert sum(1 for r in _iedb17["t2a_records"] if r["source_organism_name"] == "Thosea asigna virus (Setothosea asigna virus)") == 4
+    assert sum(1 for r in _iedb17["t2a_records"] if r["source_organism_name"] is None) == 8
+    assert len(_c17["species_catalog_22_molecular_species"]["per_species_ledger"]) == 22
+    _arch17 = _c17["causally_separated_architecture_census"]["architectures"]
+    assert _arch17["DesignA_EmbodimentAstar_1xP2A_mature_only_WT_TYK2"]["unique_unmatched_8_11mer_count"] == 319
+    assert _arch17["DesignA_EmbodimentAstar_1xP2A_mature_only_plus_optional_TYK2_P1104A"]["unique_unmatched_8_11mer_count"] == 357
+    assert _arch17["DesignA_EmbodimentAstar_plus_existing_L3BFB_4078bp_0xP2A_mature_only_WT_TYK2"]["unique_unmatched_8_11mer_count"] == 235
+    assert _arch17["DesignA_EmbodimentAstar_plus_existing_L3BFB_4078bp_0xP2A_mature_only_plus_optional_TYK2_P1104A"]["unique_unmatched_8_11mer_count"] == 273
+    assert _arch17["DesignB2_TYK2_P1104A_plus_Canonical_P2A_Locus3"]["unique_unmatched_8_11mer_count"] == 243
+    assert _arch17["DesignB2_TYK2_P1104A_plus_Existing_ScarFree_L3BFB_4078bp_or_DXL3_3799bp"]["unique_unmatched_8_11mer_count"] == 121
+    assert len(_c17["tyk2_p1104a_32row_hlac_and_hlae_presentation_table"]["rows"]) == 32
+    _am17 = _l3_iip17["alphamissense_v3_ccby4_provenance_iip_0017"]
+    assert _am17["gating_authority"] == "NON_GATING_DESCRIPTIVE_ANNOTATION_ONLY"
+    assert _am17["dataset_and_license"]["zenodo_v3_record_doi"] == "10.5281/zenodo.10813168"
+    assert _am17["tyk2_exon23_p1104a_window_audit"]["exonic_missense_snv_count"] == 96
+    assert _am17["tyk2_exon23_p1104a_window_audit"]["likely_pathogenic_gt_0564_count"] == 38
+    assert _l5_iip17["alphamissense_v3_ccby4_provenance_iip_0017"]["dataset_and_license"]["zenodo_v3_record_doi"] == "10.5281/zenodo.10813168"
+
+    _b2_valid_base = {
+        **full_ext_payload,
+        "product_variant_id": "ISLET1_B2_5LOCUS_TYK2_PE",
+        "b2_tyk2_recipient_genotype_stratum": "G_G",
+        "b2_tyk2_hlac_allele": "HLA-C*12:03",
+        "b2_tyk2_saptkflel_allele_assigned_ms_detected": False,
+        "b2_tyk2_peptide_pulsed_positive_control_verified": True,
+        "b2_tyk2_hlac_blockade_abrogation_verified": True,
+        "obs_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_pp": 0.8,
+        "obs_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_se": 0.6,
+        "obs_b2_tyk2_p1104a_primed_cd8_elispot_sfu_per_1e6": 12.0,
+        "obs_b2_tyk2_p1104a_primed_cd8_elispot_se": 4.0,
+        "obs_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_pp": 0.9,
+        "obs_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_se": 0.6,
+    }
+    _dt_b2_clear = wetlab.evaluate_stage0_decision_tree(_b2_valid_base)
+    assert _dt_b2_clear["resolved_architecture_assignments"]["design_b2_tyk2_p1104a_hlac_gate_status"] == "CLEARED_DESIGN_B2_TYK2_P1104A_STRATIFIED_HLAC_GATE"
+
+    # MS negative + functional killing positive in C_C stratum -> still holds on NEOANTIGEN_HAZARD_DETECTED (OR-hold across all strata)
+    _dt_b2_cc_hazard = wetlab.evaluate_stage0_decision_tree({
+        **_b2_valid_base,
+        "b2_tyk2_recipient_genotype_stratum": "C_C",
+        "obs_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_pp": 4.8,
+        "obs_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_se": 0.5,
+    })
+    assert _dt_b2_cc_hazard["resolved_architecture_assignments"]["design_b2_tyk2_p1104a_hlac_gate_status"] == "HOLD_DESIGN_B2_TYK2_P1104A_HLAC_NEOANTIGEN_HAZARD_DETECTED"
+    assert _dt_b2_cc_hazard["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_DESIGN_B2_TYK2_P1104A_HLAC_NEOANTIGEN_HAZARD_DETECTED"
+
+    # MS positive + functional killing negative -> holds on MS_DETECTED_OR_DISCORDANT
+    _dt_b2_ms_pos = wetlab.evaluate_stage0_decision_tree({
+        **_b2_valid_base,
+        "b2_tyk2_saptkflel_allele_assigned_ms_detected": True,
+    })
+    assert _dt_b2_ms_pos["resolved_architecture_assignments"]["design_b2_tyk2_p1104a_hlac_gate_status"] == "HOLD_DESIGN_B2_TYK2_P1104A_HLAC_MS_DETECTED_OR_DISCORDANT_REQUIRES_STRATIFIED_REVIEW"
+
+    # Missing positive control / blockade -> POSITIVE_CONTROL_OR_CAUSAL_RESTRICTION_UNVERIFIED
+    _dt_b2_unver = wetlab.evaluate_stage0_decision_tree({
+        **_b2_valid_base,
+        "b2_tyk2_hlac_blockade_abrogation_verified": None,
+    })
+    assert _dt_b2_unver["resolved_architecture_assignments"]["design_b2_tyk2_p1104a_hlac_gate_status"] == "HOLD_DESIGN_B2_TYK2_P1104A_POSITIVE_CONTROL_OR_CAUSAL_RESTRICTION_UNVERIFIED"
+
+    # Underpowered SE -> INCOMPLETE_OR_UNDERPOWERED_STRATIFIED_PANEL
+    _dt_b2_underpow = wetlab.evaluate_stage0_decision_tree({
+        **_b2_valid_base,
+        "obs_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_pp": 0.1,
+        "obs_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_se": 2.9,
+    })
+    assert _dt_b2_underpow["resolved_architecture_assignments"]["design_b2_tyk2_p1104a_hlac_gate_status"] == "HOLD_DESIGN_B2_TYK2_P1104A_INCOMPLETE_OR_UNDERPOWERED_STRATIFIED_PANEL"
+
+    # Cross-batch non-pooling guard on b2_tyk2_recipient_genotype_stratum and b2_tyk2_hlac_allele
+    _cal_b2_1 = wetlab.run_calibration(
+        {
+            "batch_id": "BATCH-IIP17-1",
+            "mcb_clone_id": "CLONE-IIP17",
+            "b2_tyk2_recipient_genotype_stratum": "G_G",
+            "b2_tyk2_hlac_allele": "HLA-C*12:03",
+            "obs_stage7_yield_ratio": 0.94,
+            "obs_stage7_yield_se": 0.02,
+        },
+        is_dry_run=False,
+    )
+    for _bad_b2_meta, _expected_err_sub in (
+        ({"b2_tyk2_recipient_genotype_stratum": "C_C", "b2_tyk2_hlac_allele": "HLA-C*12:03"}, "b2_tyk2_recipient_genotype_stratum"),
+        ({"b2_tyk2_recipient_genotype_stratum": "G_G", "b2_tyk2_hlac_allele": "HLA-C*04:01"}, "b2_tyk2_hlac_allele"),
+    ):
+        try:
+            wetlab.run_calibration(
+                {
+                    "batch_id": "BATCH-IIP17-2",
+                    "mcb_clone_id": "CLONE-IIP17",
+                    **_bad_b2_meta,
+                    "obs_cd47_fold": 4.4,
+                    "obs_cd47_fold_se": 0.2,
+                },
+                False,
+                _cal_b2_1,
+            )
+            raise AssertionError(f"Expected ValueError when pooling {_expected_err_sub}")
+        except ValueError as _exc_b2:
+            assert _expected_err_sub in str(_exc_b2)
+    _r9_s2_bp_md_17 = (ROOT / "ISLET-1-BLUEPRINT.md").read_text(encoding="utf-8")
+    assert "IIP-0017" in _r9_s2_bp_md_17 and "DEC-095" in _r9_s2_bp_md_17
+
 
 

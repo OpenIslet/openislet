@@ -6094,7 +6094,7 @@ def _build_s10_hlae_comparator_panel_manifest_iip_0016(
         ),
         "mhcflurry_2_3_28_scope_and_swissprot_provenance": {
             "uniprot_human_swissprot_records": 20429,
-            "uniprot_fasta_gz_sha256": "40a8856b8ebefeb35721ca94f75dc1b36b8da6f5ef525fd4ff5e66bf291ab368",
+            "uniprot_fasta_gz_sha256": "40a8856b4e3f3620b11635143b501ef701558ed97309b0cdb4423ef09e4618d0",
             "mhcflurry_version": "2.3.28",
             "pseudosequence_caveat": (
                 "MHCflurry 2.3.28 assigns an identical 39-residue binding-pocket pseudosequence to HLA-E*01:01 and HLA-E*01:03 "
@@ -6105,6 +6105,1393 @@ def _build_s10_hlae_comparator_panel_manifest_iip_0016(
         "naive_ctg_counterfactuals_both_backbones": naive_ctg_runs,
         "verified_20_constructs": construct_entries,
     }
+
+
+
+def _build_species_separated_proteome_census_iip_0017() -> Dict[str, Any]:
+    """Return the deterministic species-separated Swiss-Prot-subtracted peptide & TYK2 HLA-C ledger (IIP-0017; DEC-095)."""
+    return {'decision_id': 'DEC-095',
+ 'contribution_id': 'IIP-0017',
+ 'evidence_class': 'deterministic_swissprot_subtracted_species_separated_sequence_census_and_stage0_gate_specification',
+ 'canonical_fasta_and_ranking_invariance': {'canonical_scenario_a_fasta': 'data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta',
+                                            'canonical_scenario_a_fasta_sha256': 'b5ba4e2b4bbbcc7d6cf1138975c5fae5c6ab074dda43973f071c671cd8cd1d88',
+                                            'layer1_stack_scores_and_subjective_odds_modified': False,
+                                            'safety_switch_and_duplex_gates_modified': False},
+ 'primary_citations': ['PMID:32711842',
+                       'PMID:37733863',
+                       'PMID:23698740',
+                       'PMID:27807284',
+                       'PMID:30578352',
+                       'PMID:36289205',
+                       'PMID:30853558',
+                       'PMID:29302013',
+                       'PMID:40757665',
+                       'PMID:22047558',
+                       'PMID:9724721',
+                       'PMID:11297676',
+                       'PMID:15064769',
+                       'PMID:37207206',
+                       'PMID:39988068',
+                       'PMID:37264229'],
+ 'rule_c3_and_reference_proteome_provenance': {'uniprot_human_swissprot_snapshot': {'license': 'CC-BY-4.0',
+                                                                                    'reviewed_canonical_protein_count': 20429,
+                                                                                    'fasta_gz_sha256': '40a8856b4e3f3620b11635143b501ef701558ed97309b0cdb4423ef09e4618d0',
+                                                                                    'unique_canonical_kmers': {'8mer': 10304732,
+                                                                                                               '9mer': 10409155,
+                                                                                                               '10mer': 10470109,
+                                                                                                               '11mer': 10513225,
+                                                                                                               '15mer': 10596151},
+                                                                                    'corroborated_live_release_2026_04_check': {'reviewed_canonical_protein_count': 20425,
+                                                                                                                                'uncompressed_fasta_sha256': '0444b7cf4f4ddca5467aee7e2d86d45fcf440a9a879c791ecfc4cc186ac0b3d7',
+                                                                                                                                'matrix_counts_identical_across_snapshots': True},
+                                                                                    'scope_qualification': 'Canonical '
+                                                                                                           'UniProt/Swiss-Prot '
+                                                                                                           'reference '
+                                                                                                           'subtraction '
+                                                                                                           'flags '
+                                                                                                           'non-reference '
+                                                                                                           'sequence '
+                                                                                                           'windows '
+                                                                                                           'across '
+                                                                                                           'declared '
+                                                                                                           'molecular '
+                                                                                                           'species; '
+                                                                                                           'it omits '
+                                                                                                           'uncataloged '
+                                                                                                           'tissue '
+                                                                                                           'isoforms, '
+                                                                                                           'polymorphic '
+                                                                                                           'recipient '
+                                                                                                           'allotypes, '
+                                                                                                           'post-translational '
+                                                                                                           'modifications, '
+                                                                                                           'and '
+                                                                                                           'proteasome-catalyzed '
+                                                                                                           'peptide '
+                                                                                                           'splicing. '
+                                                                                                           'A human '
+                                                                                                           'reference '
+                                                                                                           'match does '
+                                                                                                           'not '
+                                                                                                           'guarantee '
+                                                                                                           'peripheral '
+                                                                                                           'immune '
+                                                                                                           'tolerance '
+                                                                                                           'under '
+                                                                                                           'ectopic/high-density '
+                                                                                                           'expression, '
+                                                                                                           'and a '
+                                                                                                           'non-match '
+                                                                                                           'does not '
+                                                                                                           'establish '
+                                                                                                           'physical '
+                                                                                                           'MHC '
+                                                                                                           'presentation '
+                                                                                                           'or T-cell '
+                                                                                                           'immunogenicity.'},
+                                               'mhcflurry_2_3_28_and_v2_3_0_weights_provenance': {'software_package_version': '2.3.28',
+                                                                                                  'software_license': 'Apache-2.0 '
+                                                                                                                      "(O'Donnell "
+                                                                                                                      'et '
+                                                                                                                      'al. '
+                                                                                                                      '2020 '
+                                                                                                                      'PMID:32711842)',
+                                                                                                  'weights_bundle': 'models_class1_presentation.20260928 '
+                                                                                                                    '(release '
+                                                                                                                    'v2.3.0)',
+                                                                                                  'training_git_commit': 'ac253f8c859dc687f7fbce9f4840fb55d5acf2c5',
+                                                                                                  'pinned_model_file_sha256s': {'DOWNLOAD_INFO.csv': '17c7125cc269d2d7b771898a07e268938d8c3d20d7c01e63c77867c67727b02b',
+                                                                                                                                'models/inference_export.json': 'd262b457324fab4a55e32fec7c03fb557f7207428584c1bbece4e00f97bac11b',
+                                                                                                                                'models/weights.csv': 'ce91f12e0d6f437ed5477d55fd9df81bef6bdb5a70344be8c6a9f71bd83402fd',
+                                                                                                                                'models/percent_ranks.json': '39e53c5ea6ad30d19f59b9822e47832d8b154cd8b28d5a8cab365540fb40e233',
+                                                                                                                                'models/affinity_predictor/allele_sequences.csv': '0967249e8d73dc06a675ecfafae71f03f90d13a274bb1c0122140d22d521df8a',
+                                                                                                                                'models/affinity_predictor/manifest.csv': '5e749c5b9da19ee2b0467aa2486b447a9e2971b13f7954a803f75f93fc12d56e',
+                                                                                                                                'models/affinity_predictor/percent_ranks.json': '9cb4ee611dfce6b7f8c3365bd420546ef4f05e91af3e18ef58abec4dbd30df2b',
+                                                                                                                                'models/affinity_predictor/pseudosequences.mhcflurry.39aa.csv': '80bcdf5c250ce9954524b7bffccf80f030add9e9a090dd61bed0380f55652980',
+                                                                                                                                'models/processing_predictor_with_flanks/manifest.csv': '57d305002b9924375a9e399684f9e7e6dc08ca6b5af40486d92575e09cc76a7e',
+                                                                                                                                'models/processing_predictor_without_flanks/manifest.csv': '93a2ed30e31a905cc30eefdbfea38743fdfa0265857569d5d39d4accb0f4c35f'},
+                                                                                                  'excluded_non_open_tools': ['MHCnuggets '
+                                                                                                                              '(quarantined '
+                                                                                                                              'and '
+                                                                                                                              'excluded: '
+                                                                                                                              'JHU '
+                                                                                                                              'Academic '
+                                                                                                                              'Software '
+                                                                                                                              'License '
+                                                                                                                              'sha256 '
+                                                                                                                              '0637b6154f7ad7230deed230346609daaab5ddaade783d22bc165631a7ca27fb)',
+                                                                                                                              'NetMHCpan '
+                                                                                                                              '/ '
+                                                                                                                              'NetMHCIIpan '
+                                                                                                                              '(academic-only '
+                                                                                                                              'license '
+                                                                                                                              'excluded '
+                                                                                                                              'under '
+                                                                                                                              'Rule '
+                                                                                                                              'C3)',
+                                                                                                                              'AlphaGenome '
+                                                                                                                              '/ '
+                                                                                                                              'Boltz '
+                                                                                                                              'non-commercial '
+                                                                                                                              'outputs '
+                                                                                                                              '(excluded '
+                                                                                                                              'under '
+                                                                                                                              'Rule '
+                                                                                                                              'C3)'],
+                                                                                                  'methodological_caveats': 'Percentiles '
+                                                                                                                            'describe '
+                                                                                                                            'empirical '
+                                                                                                                            'ranks '
+                                                                                                                            'against '
+                                                                                                                            'a '
+                                                                                                                            'random '
+                                                                                                                            'reference-peptide '
+                                                                                                                            'score '
+                                                                                                                            'distribution '
+                                                                                                                            'rather '
+                                                                                                                            'than '
+                                                                                                                            'physical '
+                                                                                                                            'presentation '
+                                                                                                                            'probabilities; '
+                                                                                                                            'HLA-C*04:01 '
+                                                                                                                            '(448.9257 '
+                                                                                                                            'nM, '
+                                                                                                                            '0.3897% '
+                                                                                                                            'presentation '
+                                                                                                                            'rank) '
+                                                                                                                            'is '
+                                                                                                                            'a '
+                                                                                                                            'lower-predicted-affinity '
+                                                                                                                            'comparator '
+                                                                                                                            'rather '
+                                                                                                                            'than '
+                                                                                                                            'a '
+                                                                                                                            'verified '
+                                                                                                                            'non-presenter; '
+                                                                                                                            'HLA-E*01:01 '
+                                                                                                                            'and '
+                                                                                                                            'HLA-E*01:03 '
+                                                                                                                            'share '
+                                                                                                                            'one '
+                                                                                                                            '39-aa '
+                                                                                                                            'binding-pocket '
+                                                                                                                            'pseudosequence '
+                                                                                                                            '(1,455.416 '
+                                                                                                                            'nM '
+                                                                                                                            'for '
+                                                                                                                            'SAPTKFLEL); '
+                                                                                                                            'and '
+                                                                                                                            'free-peptide '
+                                                                                                                            'predictors '
+                                                                                                                            'can '
+                                                                                                                            'diverge '
+                                                                                                                            'substantially '
+                                                                                                                            'from '
+                                                                                                                            'covalent '
+                                                                                                                            'SCT '
+                                                                                                                            'stability '
+                                                                                                                            'and '
+                                                                                                                            'presentation '
+                                                                                                                            'experiments '
+                                                                                                                            '(Finton '
+                                                                                                                            'et '
+                                                                                                                            'al. '
+                                                                                                                            '2023 '
+                                                                                                                            'PMID:37207206).'},
+                                               'iedb_and_arber_2013_t2a_vs_p2a_reconciliation': {'primary_citation': 'Arber '
+                                                                                                                     'et '
+                                                                                                                     'al. '
+                                                                                                                     '2013 '
+                                                                                                                     'Gene '
+                                                                                                                     'Ther '
+                                                                                                                     'PMID:23698740 '
+                                                                                                                     '(PMC3766470)',
+                                                                                                 'iedb_license': 'CC-BY-4.0',
+                                                                                                 'total_study_iedb_records': 44,
+                                                                                                 't2a_spanning_15mer_records_count': 12,
+                                                                                                 't2a_records': [{'tcell_id': 1989775,
+                                                                                                                  'linear_sequence': 'LFFKTSASRAEGRGS',
+                                                                                                                  'source_organism_name': None,
+                                                                                                                  'assay_names': 'IFNg '
+                                                                                                                                 'release|ELISPOT',
+                                                                                                                  'qualitative_measure': 'Negative'},
+                                                                                                                 {'tcell_id': 1989776,
+                                                                                                                  'linear_sequence': 'TSASRAEGRGSLLTC',
+                                                                                                                  'source_organism_name': None,
+                                                                                                                  'assay_names': 'IFNg '
+                                                                                                                                 'release|ELISPOT',
+                                                                                                                  'qualitative_measure': 'Negative'},
+                                                                                                                 {'tcell_id': 1989777,
+                                                                                                                  'linear_sequence': 'RAEGRGSLLTCGDVE',
+                                                                                                                  'source_organism_name': 'Thosea '
+                                                                                                                                          'asigna '
+                                                                                                                                          'virus '
+                                                                                                                                          '(Setothosea '
+                                                                                                                                          'asigna '
+                                                                                                                                          'virus)',
+                                                                                                                  'assay_names': 'IFNg '
+                                                                                                                                 'release|ELISPOT',
+                                                                                                                  'qualitative_measure': 'Positive'},
+                                                                                                                 {'tcell_id': 1989792,
+                                                                                                                  'linear_sequence': 'RGSLLTCGDVEENPG',
+                                                                                                                  'source_organism_name': 'Thosea '
+                                                                                                                                          'asigna '
+                                                                                                                                          'virus '
+                                                                                                                                          '(Setothosea '
+                                                                                                                                          'asigna '
+                                                                                                                                          'virus)',
+                                                                                                                  'assay_names': 'IFNg '
+                                                                                                                                 'release|ELISPOT',
+                                                                                                                  'qualitative_measure': 'Negative'},
+                                                                                                                 {'tcell_id': 1989793,
+                                                                                                                  'linear_sequence': 'LTCGDVEENPGPMPP',
+                                                                                                                  'source_organism_name': None,
+                                                                                                                  'assay_names': 'IFNg '
+                                                                                                                                 'release|ELISPOT',
+                                                                                                                  'qualitative_measure': 'Negative'},
+                                                                                                                 {'tcell_id': 1989794,
+                                                                                                                  'linear_sequence': 'DVEENPGPMPPPRLL',
+                                                                                                                  'source_organism_name': None,
+                                                                                                                  'assay_names': 'IFNg '
+                                                                                                                                 'release|ELISPOT',
+                                                                                                                  'qualitative_measure': 'Negative'},
+                                                                                                                 {'tcell_id': 1989842,
+                                                                                                                  'linear_sequence': 'RAEGRGSLLTCGDVE',
+                                                                                                                  'source_organism_name': 'Thosea '
+                                                                                                                                          'asigna '
+                                                                                                                                          'virus '
+                                                                                                                                          '(Setothosea '
+                                                                                                                                          'asigna '
+                                                                                                                                          'virus)',
+                                                                                                                  'assay_names': 'degranulation|biological '
+                                                                                                                                 'activity',
+                                                                                                                  'qualitative_measure': 'Negative'},
+                                                                                                                 {'tcell_id': 1989845,
+                                                                                                                  'linear_sequence': 'LFFKTSASRAEGRGS',
+                                                                                                                  'source_organism_name': None,
+                                                                                                                  'assay_names': 'degranulation|biological '
+                                                                                                                                 'activity',
+                                                                                                                  'qualitative_measure': 'Negative'},
+                                                                                                                 {'tcell_id': 1989846,
+                                                                                                                  'linear_sequence': 'TSASRAEGRGSLLTC',
+                                                                                                                  'source_organism_name': None,
+                                                                                                                  'assay_names': 'degranulation|biological '
+                                                                                                                                 'activity',
+                                                                                                                  'qualitative_measure': 'Negative'},
+                                                                                                                 {'tcell_id': 1989847,
+                                                                                                                  'linear_sequence': 'RGSLLTCGDVEENPG',
+                                                                                                                  'source_organism_name': 'Thosea '
+                                                                                                                                          'asigna '
+                                                                                                                                          'virus '
+                                                                                                                                          '(Setothosea '
+                                                                                                                                          'asigna '
+                                                                                                                                          'virus)',
+                                                                                                                  'assay_names': 'degranulation|biological '
+                                                                                                                                 'activity',
+                                                                                                                  'qualitative_measure': 'Negative'},
+                                                                                                                 {'tcell_id': 1989848,
+                                                                                                                  'linear_sequence': 'LTCGDVEENPGPMPP',
+                                                                                                                  'source_organism_name': None,
+                                                                                                                  'assay_names': 'degranulation|biological '
+                                                                                                                                 'activity',
+                                                                                                                  'qualitative_measure': 'Negative'},
+                                                                                                                 {'tcell_id': 1989849,
+                                                                                                                  'linear_sequence': 'DVEENPGPMPPPRLL',
+                                                                                                                  'source_organism_name': None,
+                                                                                                                  'assay_names': 'degranulation|biological '
+                                                                                                                                 'activity',
+                                                                                                                  'qualitative_measure': 'Negative'}],
+                                                                                                 'reconciled_interpretation': 'Across '
+                                                                                                                              'the '
+                                                                                                                              '12 '
+                                                                                                                              '2A-TAV '
+                                                                                                                              '(T2A)-spanning '
+                                                                                                                              '15-mer '
+                                                                                                                              'records '
+                                                                                                                              'in '
+                                                                                                                              'Arber '
+                                                                                                                              'et '
+                                                                                                                              'al. '
+                                                                                                                              '2013 '
+                                                                                                                              '(PMID:23698740), '
+                                                                                                                              '4 '
+                                                                                                                              'internal '
+                                                                                                                              'T2A '
+                                                                                                                              'records '
+                                                                                                                              'carry '
+                                                                                                                              'source_organism_name '
+                                                                                                                              '= '
+                                                                                                                              "'Thosea "
+                                                                                                                              'asigna '
+                                                                                                                              'virus '
+                                                                                                                              '(Setothosea '
+                                                                                                                              'asigna '
+                                                                                                                              "virus)' "
+                                                                                                                              '(1989777 '
+                                                                                                                              'RAEGRGSLLTCGDVE '
+                                                                                                                              'Positive '
+                                                                                                                              'on '
+                                                                                                                              'IFNg '
+                                                                                                                              'ELISPOT '
+                                                                                                                              '[3/16 '
+                                                                                                                              'donors '
+                                                                                                                              'at '
+                                                                                                                              '51.9 '
+                                                                                                                              '+/- '
+                                                                                                                              '6.9 '
+                                                                                                                              'SFCs/10^5 '
+                                                                                                                              'cells; '
+                                                                                                                              '5/16 '
+                                                                                                                              'donors '
+                                                                                                                              'T2A-pepmix '
+                                                                                                                              'reactive], '
+                                                                                                                              '1989792 '
+                                                                                                                              'Negative '
+                                                                                                                              'on '
+                                                                                                                              'IFNg '
+                                                                                                                              'ELISPOT, '
+                                                                                                                              'and '
+                                                                                                                              '1989842 '
+                                                                                                                              '/ '
+                                                                                                                              '1989847 '
+                                                                                                                              'Negative '
+                                                                                                                              'on '
+                                                                                                                              'CD107a/b '
+                                                                                                                              'degranulation), '
+                                                                                                                              'while '
+                                                                                                                              '8 '
+                                                                                                                              'junction-flanking '
+                                                                                                                              'synthetic '
+                                                                                                                              'fusion '
+                                                                                                                              'records '
+                                                                                                                              'carry '
+                                                                                                                              'source_organism_name '
+                                                                                                                              '= '
+                                                                                                                              'null '
+                                                                                                                              'and '
+                                                                                                                              'are '
+                                                                                                                              'Negative '
+                                                                                                                              'across '
+                                                                                                                              'both '
+                                                                                                                              'assays '
+                                                                                                                              '(6/6 '
+                                                                                                                              'CD107a/b '
+                                                                                                                              'degranulation '
+                                                                                                                              'assays '
+                                                                                                                              'Negative; '
+                                                                                                                              '0/16 '
+                                                                                                                              'donors '
+                                                                                                                              'cytotoxic '
+                                                                                                                              'and '
+                                                                                                                              '0 '
+                                                                                                                              'endogenous '
+                                                                                                                              'processing '
+                                                                                                                              'by '
+                                                                                                                              'transduced '
+                                                                                                                              'T '
+                                                                                                                              'cells; '
+                                                                                                                              '0/11 '
+                                                                                                                              'donors '
+                                                                                                                              'E2A '
+                                                                                                                              'reactive). '
+                                                                                                                              'Crucially, '
+                                                                                                                              'porcine '
+                                                                                                                              'teschovirus-1 '
+                                                                                                                              'P2A '
+                                                                                                                              '(GSGATNFSLLKQAGDVEENPGP, '
+                                                                                                                              'encoded '
+                                                                                                                              'by '
+                                                                                                                              'OpenIslet '
+                                                                                                                              'GSG-P2A) '
+                                                                                                                              'was '
+                                                                                                                              'NOT '
+                                                                                                                              'tested '
+                                                                                                                              'in '
+                                                                                                                              'Arber '
+                                                                                                                              'et '
+                                                                                                                              'al. '
+                                                                                                                              '2013 '
+                                                                                                                              '(0 '
+                                                                                                                              'hits '
+                                                                                                                              'in '
+                                                                                                                              'PMC3766470), '
+                                                                                                                              'so '
+                                                                                                                              'empirical '
+                                                                                                                              'recipient '
+                                                                                                                              'HLA-DQ2.5/DQ8/DR3/DR4 '
+                                                                                                                              'host-APC '
+                                                                                                                              'testing '
+                                                                                                                              'of '
+                                                                                                                              'GSG-P2A '
+                                                                                                                              'remains '
+                                                                                                                              'mandatory '
+                                                                                                                              '(OQ-003 '
+                                                                                                                              '/ '
+                                                                                                                              'GY-010).'}},
+ 'legacy_9boundary_partition': {'positional_8_11mer': 326,
+                                'unique_8_11mer': 318,
+                                'swissprot_reference_unmatched_8_11mer': 285,
+                                'swissprot_reference_matched_self_8_11mer': 33,
+                                'swissprot_reference_matched_list': ['GGFGDVGA',
+                                                                     'GGFGDVGAL',
+                                                                     'GGFGDVGALE',
+                                                                     'GGFGDVGALES',
+                                                                     'GGGGSGGGGSG',
+                                                                     'GGGSGGGGSG',
+                                                                     'GGSGGFGD',
+                                                                     'GGSGGGGSG',
+                                                                     'GGSGGGGSGS',
+                                                                     'GGSGGGGSI',
+                                                                     'GSGGFGDV',
+                                                                     'GSGGFGDVG',
+                                                                     'GSGGFGDVGA',
+                                                                     'GSGGFGDVGAL',
+                                                                     'GSGGGGSG',
+                                                                     'GSGGGGSGS',
+                                                                     'GSGGGGSI',
+                                                                     'KYRVVSWFSP',
+                                                                     'KYRVVSWFSPN',
+                                                                     'LGGGGSGG',
+                                                                     'LGGGGSGGG',
+                                                                     'LGGGGSGGGG',
+                                                                     'LKYRVVSWFSP',
+                                                                     'RVVSWFSP',
+                                                                     'RVVSWFSPN',
+                                                                     'SGGFGDVG',
+                                                                     'SGGFGDVGA',
+                                                                     'SGGFGDVGAL',
+                                                                     'SGGFGDVGALE',
+                                                                     'SGGGGSGS',
+                                                                     'VVSWFSPN',
+                                                                     'YRVVSWFSP',
+                                                                     'YRVVSWFSPN'],
+                                'positional_15mer': 112,
+                                'unique_15mer': 110,
+                                'swissprot_reference_unmatched_15mer': 105,
+                                'swissprot_reference_matched_self_15mer': 5,
+                                'swissprot_reference_matched_15mer_list': ['GGFGDVGALESLRGN',
+                                                                           'GSGGFGDVGALESLR',
+                                                                           'IIELKYRVVSWFSPN',
+                                                                           'SGGFGDVGALESLRG',
+                                                                           'TIIELKYRVVSWFSP']},
+ 'existing_materialized_locus3_comparators_and_native_core_scope': {'donors': {'L3_CANONICAL_4090': {'donor_length_bp': 4090,
+                                                                                                     'packaged_aav6_bp_with_2x145_itrs': 4380,
+                                                                                                     'donor_sha256': '2fbcf1652f202cd77b7f4739133e6e998226f57bcd9b1635d92bd4b1de4c925c'},
+                                                                               'L3_SCARFREE_3799': {'donor_length_bp': 3799,
+                                                                                                    'packaged_aav6_bp_with_2x145_itrs': 4089,
+                                                                                                    'donor_sha256': '3d6bf68e2f0b70911cfea69255e4733db2862ce3baa2b92ae4206561e284bcf7'},
+                                                                               'L3_BFB_BASALFLOOR_4078': {'donor_length_bp': 4078,
+                                                                                                          'packaged_aav6_bp_with_2x145_itrs': 4368,
+                                                                                                          'donor_sha256': '0a5f714d536cfb427039e50966fbc88cc6f7dbec8252f26bf43f32a359017c7e'}},
+                                                                    'pam_shielded_dxl3_3799_sha256': '13cccea87e227b6ca0f6a0dfef067736e61a9e772bf2cd63b69923f25874d2c7',
+                                                                    'native_protein_core_vs_complete_species_note': 'Canonical '
+                                                                                                                    'Locus '
+                                                                                                                    '3 '
+                                                                                                                    '(4,090 '
+                                                                                                                    'bp, '
+                                                                                                                    'sha256 '
+                                                                                                                    '2fbcf165...) '
+                                                                                                                    'produces '
+                                                                                                                    'a '
+                                                                                                                    '397-aa '
+                                                                                                                    'SERPINB9-GSG-P2A '
+                                                                                                                    'cistron '
+                                                                                                                    'plus '
+                                                                                                                    'a '
+                                                                                                                    '291-aa '
+                                                                                                                    'Pro+PD-L1 '
+                                                                                                                    'precursor '
+                                                                                                                    '(predicted '
+                                                                                                                    'ER '
+                                                                                                                    'signal-peptidase '
+                                                                                                                    'cleavage '
+                                                                                                                    'to '
+                                                                                                                    '272-aa '
+                                                                                                                    'mature '
+                                                                                                                    'PD-L1, '
+                                                                                                                    'plus '
+                                                                                                                    'unskipped '
+                                                                                                                    '688-aa '
+                                                                                                                    'readthrough '
+                                                                                                                    'species '
+                                                                                                                    'gated '
+                                                                                                                    'at '
+                                                                                                                    '< '
+                                                                                                                    '5% '
+                                                                                                                    'target), '
+                                                                                                                    'whereas '
+                                                                                                                    'already-materialized '
+                                                                                                                    '2A-free '
+                                                                                                                    'L3-BF-B '
+                                                                                                                    '(4,078 '
+                                                                                                                    'bp, '
+                                                                                                                    'sha256 '
+                                                                                                                    '0a5f714d...) '
+                                                                                                                    'and '
+                                                                                                                    'DX-L3 '
+                                                                                                                    '(3,799 '
+                                                                                                                    'bp '
+                                                                                                                    'unshielded '
+                                                                                                                    'reference '
+                                                                                                                    'sha256 '
+                                                                                                                    '3d6bf68e..., '
+                                                                                                                    'kept '
+                                                                                                                    'distinct '
+                                                                                                                    'from '
+                                                                                                                    'PAM-shielded '
+                                                                                                                    'synthesis '
+                                                                                                                    'derivative '
+                                                                                                                    'sha256 '
+                                                                                                                    '13cccea8...) '
+                                                                                                                    'share '
+                                                                                                                    'identical '
+                                                                                                                    'native '
+                                                                                                                    'protein '
+                                                                                                                    'cores '
+                                                                                                                    '(376-aa '
+                                                                                                                    'SERPINB9 '
+                                                                                                                    'and '
+                                                                                                                    '272-aa '
+                                                                                                                    'mature '
+                                                                                                                    'PD-L1 '
+                                                                                                                    'from '
+                                                                                                                    '290-aa '
+                                                                                                                    'native '
+                                                                                                                    'precursor) '
+                                                                                                                    'while '
+                                                                                                                    'differing '
+                                                                                                                    'in '
+                                                                                                                    'complete '
+                                                                                                                    'precursor/stub '
+                                                                                                                    'species '
+                                                                                                                    'and '
+                                                                                                                    'transcriptional '
+                                                                                                                    'architecture.'},
+ 'species_catalog_22_molecular_species': {'species_count_reconciliation': 'Catalogs 22 distinct molecular species (the '
+                                                                          '21 species in the S3 clean-core union — 11 '
+                                                                          'mature/processed chains, 7 ER/post-2A '
+                                                                          'precursors, 2 uncleaved 2A readthrough '
+                                                                          'fusions [697-aa Arm 1A, 688-aa Locus 3], '
+                                                                          'and the 537-aa Embodiment A* unhardened B2M '
+                                                                          'Exon-2 cryptic-splice frameshift species — '
+                                                                          'plus the corresponding 532-aa Arm 1B '
+                                                                          'unhardened B2M Exon-2 cryptic-splice '
+                                                                          'frameshift species). In both 537-aa (291 '
+                                                                          'pos / 288 unique 8-11; 109 pos / 101 unique '
+                                                                          '15) and 532-aa (290 pos / 288 unique 8-11; '
+                                                                          '104 pos / 101 unique 15) cryptic-splice '
+                                                                          'species, 128 8-11mers and 32 15mers '
+                                                                          'actually touch the 32-aa B2M Exon-2 '
+                                                                          '+1-frame tail while the remaining windows '
+                                                                          'arise from the upstream HLA-E SCT linkers. '
+                                                                          'Across the 22-species union there are '
+                                                                          'exactly 659 distinct Swiss-Prot-unmatched '
+                                                                          '8-11mers, 768 distinct (peptide, 5-aa '
+                                                                          'n_flank, 5-aa c_flank) contexts, and 94 '
+                                                                          'peptides occurring in multiple flank '
+                                                                          'contexts.',
+                                          'union_context_preservation_summary': {'distinct_unmatched_peptides_8_11mer': 659,
+                                                                                 'distinct_peptide_flank_contexts_8_11mer': 768,
+                                                                                 'peptides_occurring_in_multiple_flank_contexts': 94},
+                                          'per_species_ledger': {'HLAE_SCT_Arm1A_mature_with_P2A_501aa': {'length_aa': 501,
+                                                                                                          'sha256': 'af3a6d11ce66f1d69adc6871ce92618008d854196d713131c989dda6c3b5319b',
+                                                                                                          'positional_unmatched_8_11mer': 213,
+                                                                                                          'unique_unmatched_8_11mer': 211,
+                                                                                                          'distinct_flank_contexts_8_11mer': 213,
+                                                                                                          'positional_unmatched_15mer': 79,
+                                                                                                          'unique_unmatched_15mer': 76},
+                                                                 'HLAE_SCT_Arm1B_15aaL1_mature_480aa': {'length_aa': 480,
+                                                                                                        'sha256': '178b1c5377a0ecccda4ad398cc4c4208b1599e8d245177b5e482f14a366e7f79',
+                                                                                                        'positional_unmatched_8_11mer': 129,
+                                                                                                        'unique_unmatched_8_11mer': 127,
+                                                                                                        'distinct_flank_contexts_8_11mer': 129,
+                                                                                                        'positional_unmatched_15mer': 58,
+                                                                                                        'unique_unmatched_15mer': 55},
+                                                                 'HLAE_SCT_EmbodimentAstar_20aaL1_mature_485aa': {'length_aa': 485,
+                                                                                                                  'sha256': 'b6f6de69719ae1cefea9d24e0533e04006430f10e2c35b95f191131f31e094a8',
+                                                                                                                  'positional_unmatched_8_11mer': 130,
+                                                                                                                  'unique_unmatched_8_11mer': 127,
+                                                                                                                  'distinct_flank_contexts_8_11mer': 130,
+                                                                                                                  'positional_unmatched_15mer': 63,
+                                                                                                                  'unique_unmatched_15mer': 55},
+                                                                 'CD47_IgV_GPI_WT_Cys15_mature_129aa': {'length_aa': 129,
+                                                                                                        'sha256': '8da1592d946815faf4dd12f1845a9bc9cdbc1820d3df60c05d106e0f33670883',
+                                                                                                        'positional_unmatched_8_11mer': 25,
+                                                                                                        'unique_unmatched_8_11mer': 25,
+                                                                                                        'distinct_flank_contexts_8_11mer': 25,
+                                                                                                        'positional_unmatched_15mer': 7,
+                                                                                                        'unique_unmatched_15mer': 7},
+                                                                 'CD47_IgV_GPI_Arm1X_C15G_mature_129aa': {'length_aa': 129,
+                                                                                                          'sha256': 'b99e46848d592d325ddd7426806203ac8eb2809b1f2a3c97d9ad19b8396da5a8',
+                                                                                                          'positional_unmatched_8_11mer': 63,
+                                                                                                          'unique_unmatched_8_11mer': 63,
+                                                                                                          'distinct_flank_contexts_8_11mer': 63,
+                                                                                                          'positional_unmatched_15mer': 22,
+                                                                                                          'unique_unmatched_15mer': 22},
+                                                                 'SERPINB9_with_P2A_Locus3_canonical_397aa': {'length_aa': 397,
+                                                                                                              'sha256': '2cba54d74a7809015d496bce611ebea1af43f26aafba0b989cfa5bb4af5812fa',
+                                                                                                              'positional_unmatched_8_11mer': 84,
+                                                                                                              'unique_unmatched_8_11mer': 84,
+                                                                                                              'distinct_flank_contexts_8_11mer': 84,
+                                                                                                              'positional_unmatched_15mer': 21,
+                                                                                                              'unique_unmatched_15mer': 21},
+                                                                 'SERPINB9_WT_scarfree_L3BFB_4078bp_376aa': {'length_aa': 376,
+                                                                                                             'sha256': '5941182405e96639c6b0faccdeee7b72d773cd2ab67405bb49143592bebc6567',
+                                                                                                             'positional_unmatched_8_11mer': 0,
+                                                                                                             'unique_unmatched_8_11mer': 0,
+                                                                                                             'distinct_flank_contexts_8_11mer': 0,
+                                                                                                             'positional_unmatched_15mer': 0,
+                                                                                                             'unique_unmatched_15mer': 0},
+                                                                 'PDL1_mature_272aa': {'length_aa': 272,
+                                                                                       'sha256': 'dd57f4093f48274aba79b402470e8eb3cbedb164d764d59d922f2a89187c93b9',
+                                                                                       'positional_unmatched_8_11mer': 0,
+                                                                                       'unique_unmatched_8_11mer': 0,
+                                                                                       'distinct_flank_contexts_8_11mer': 0,
+                                                                                       'positional_unmatched_15mer': 0,
+                                                                                       'unique_unmatched_15mer': 0},
+                                                                 'iCasp9_cytosolic_monomer_396aa': {'length_aa': 396,
+                                                                                                    'sha256': '9c658142531fb4fbad7b80d7c94d412118e2a878122ab6795bbac88035e836de',
+                                                                                                    'positional_unmatched_8_11mer': 83,
+                                                                                                    'unique_unmatched_8_11mer': 83,
+                                                                                                    'distinct_flank_contexts_8_11mer': 83,
+                                                                                                    'positional_unmatched_15mer': 32,
+                                                                                                    'unique_unmatched_15mer': 32},
+                                                                 'TYK2_WT_1187aa': {'length_aa': 1187,
+                                                                                    'sha256': '3f6b27ef15f1a0769f6d67bc2e74c379d3b7bd9e36093cb9bb74486a4a241890',
+                                                                                    'positional_unmatched_8_11mer': 0,
+                                                                                    'unique_unmatched_8_11mer': 0,
+                                                                                    'distinct_flank_contexts_8_11mer': 0,
+                                                                                    'positional_unmatched_15mer': 0,
+                                                                                    'unique_unmatched_15mer': 0},
+                                                                 'TYK2_P1104A_c3310CG_1187aa': {'length_aa': 1187,
+                                                                                                'sha256': '15b05dca3761952b9d7ca904e17fa2ed3da919588e636873c326604bde6fb087',
+                                                                                                'positional_unmatched_8_11mer': 38,
+                                                                                                'unique_unmatched_8_11mer': 38,
+                                                                                                'distinct_flank_contexts_8_11mer': 38,
+                                                                                                'positional_unmatched_15mer': 15,
+                                                                                                'unique_unmatched_15mer': 15},
+                                                                 'HLAE_SCT_Arm1A_precursor_521aa': {'length_aa': 521,
+                                                                                                    'sha256': '40bae37521bec09819ae9ac5395a6344b21e596b8e347ec494c08e604dc4d9eb',
+                                                                                                    'positional_unmatched_8_11mer': 246,
+                                                                                                    'unique_unmatched_8_11mer': 244,
+                                                                                                    'distinct_flank_contexts_8_11mer': 246,
+                                                                                                    'positional_unmatched_15mer': 93,
+                                                                                                    'unique_unmatched_15mer': 90},
+                                                                 'HLAE_SCT_Arm1B_precursor_500aa': {'length_aa': 500,
+                                                                                                    'sha256': 'a55d6e121d4528648c606fab355bf63a701581116f04898af5249bbdbefe8177',
+                                                                                                    'positional_unmatched_8_11mer': 162,
+                                                                                                    'unique_unmatched_8_11mer': 160,
+                                                                                                    'distinct_flank_contexts_8_11mer': 162,
+                                                                                                    'positional_unmatched_15mer': 72,
+                                                                                                    'unique_unmatched_15mer': 69},
+                                                                 'HLAE_SCT_EmbodimentAstar_precursor_505aa': {'length_aa': 505,
+                                                                                                              'sha256': '56dca2c1a5fc00252920dec9d6d9391976be3993ae4d838ce3885df1a1e71281',
+                                                                                                              'positional_unmatched_8_11mer': 163,
+                                                                                                              'unique_unmatched_8_11mer': 160,
+                                                                                                              'distinct_flank_contexts_8_11mer': 163,
+                                                                                                              'positional_unmatched_15mer': 77,
+                                                                                                              'unique_unmatched_15mer': 69},
+                                                                 'CD47_Arm1A_postP2A_Pro_precursor_176aa': {'length_aa': 176,
+                                                                                                            'sha256': 'b9315764d80f1f4b392ad60bf05ab18428352eec56ad60f15643889377a43fbb',
+                                                                                                            'positional_unmatched_8_11mer': 30,
+                                                                                                            'unique_unmatched_8_11mer': 30,
+                                                                                                            'distinct_flank_contexts_8_11mer': 30,
+                                                                                                            'positional_unmatched_15mer': 13,
+                                                                                                            'unique_unmatched_15mer': 13},
+                                                                 'CD47_Arm1B_nativeSP_precursor_175aa': {'length_aa': 175,
+                                                                                                         'sha256': '14c634833d8775819193419862c3950d6f54395c0e696d75748a0d06c3f767b3',
+                                                                                                         'positional_unmatched_8_11mer': 26,
+                                                                                                         'unique_unmatched_8_11mer': 26,
+                                                                                                         'distinct_flank_contexts_8_11mer': 26,
+                                                                                                         'positional_unmatched_15mer': 12,
+                                                                                                         'unique_unmatched_15mer': 12},
+                                                                 'PDL1_postP2A_Pro_precursor_291aa': {'length_aa': 291,
+                                                                                                      'sha256': 'a682b44b57ac479f67af2e43de88acb5d39de3cf8c32b42996cac2c8b337fb9a',
+                                                                                                      'positional_unmatched_8_11mer': 4,
+                                                                                                      'unique_unmatched_8_11mer': 4,
+                                                                                                      'distinct_flank_contexts_8_11mer': 4,
+                                                                                                      'positional_unmatched_15mer': 1,
+                                                                                                      'unique_unmatched_15mer': 1},
+                                                                 'PDL1_nativeSP_precursor_290aa': {'length_aa': 290,
+                                                                                                   'sha256': 'b1b17c7fca3cbab15bc66b90bd4c07f73617cb5a03db105b0a38084fe7bca48b',
+                                                                                                   'positional_unmatched_8_11mer': 0,
+                                                                                                   'unique_unmatched_8_11mer': 0,
+                                                                                                   'distinct_flank_contexts_8_11mer': 0,
+                                                                                                   'positional_unmatched_15mer': 0,
+                                                                                                   'unique_unmatched_15mer': 0},
+                                                                 'Locus1_Arm1A_uncleaved_HLAE_P2A_CD47_697aa': {'length_aa': 697,
+                                                                                                                'sha256': '05a098488326e504fd92b0575ef1b4dc3e4a4ef346025f7273000f8d42227cac',
+                                                                                                                'positional_unmatched_8_11mer': 310,
+                                                                                                                'unique_unmatched_8_11mer': 308,
+                                                                                                                'distinct_flank_contexts_8_11mer': 310,
+                                                                                                                'positional_unmatched_15mer': 120,
+                                                                                                                'unique_unmatched_15mer': 117},
+                                                                 'Locus3_canonical_uncleaved_SERPINB9_P2A_PDL1_688aa': {'length_aa': 688,
+                                                                                                                        'sha256': 'd4b76ab36859b2f884895ff983bf96fb861de1eebd6ecb4cb574b19c9fbbe34b',
+                                                                                                                        'positional_unmatched_8_11mer': 122,
+                                                                                                                        'unique_unmatched_8_11mer': 122,
+                                                                                                                        'distinct_flank_contexts_8_11mer': 122,
+                                                                                                                        'positional_unmatched_15mer': 36,
+                                                                                                                        'unique_unmatched_15mer': 36},
+                                                                 'Locus1_unhardened_B2M_Exon2_cryptic_splice_537aa': {'length_aa': 537,
+                                                                                                                      'sha256': 'a9906c035373b3445147f1d21b20370a94938f60e940342c58f699e90903c3ae',
+                                                                                                                      'positional_unmatched_8_11mer': 291,
+                                                                                                                      'unique_unmatched_8_11mer': 288,
+                                                                                                                      'distinct_flank_contexts_8_11mer': 291,
+                                                                                                                      'positional_unmatched_15mer': 109,
+                                                                                                                      'unique_unmatched_15mer': 101},
+                                                                 'Locus1_unhardened_Arm1B_B2M_Exon2_cryptic_splice_532aa': {'length_aa': 532,
+                                                                                                                            'sha256': 'aef6df26d0428bf7ac6a96b0c45cf87e370205b8ca6c54a54debfb75c0ebeb50',
+                                                                                                                            'positional_unmatched_8_11mer': 290,
+                                                                                                                            'unique_unmatched_8_11mer': 288,
+                                                                                                                            'distinct_flank_contexts_8_11mer': 290,
+                                                                                                                            'positional_unmatched_15mer': 104,
+                                                                                                                            'unique_unmatched_15mer': 101}}},
+ 'causally_separated_architecture_census': {'design_identity_boundary_note': 'Preserves strict separation across '
+                                                                             'Design A (B2M-/- pure MHC-I/II-null), '
+                                                                             'scored 6-locus Scenario B '
+                                                                             '(unmaterialized TYK2-/- KO '
+                                                                             'ISLET1_B1_6LOCUS_TYK2_KO_INS), Design '
+                                                                             'B-WT (WT TYK2 1104P retained-HLA-C '
+                                                                             'counterfactual ISLET1_B2_5LOCUS_BASE), '
+                                                                             'Design B2 (K=5, B=1 TYK2 p.Pro1104Ala '
+                                                                             'prime-edited counterfactual '
+                                                                             'ISLET1_B2_5LOCUS_TYK2_PE), and Track-2 '
+                                                                             "B'-SCT (covalent self-peptide HLA-C SCT "
+                                                                             'at CIITA Exon 5 with B2M-/-). '
+                                                                             'Mature-only and precursor+readthrough '
+                                                                             'inventories are reported side-by-side.',
+                                            'architectures': {'DesignA_Arm1A_2xP2A_mature_only': {'included_species': ['HLAE_SCT_Arm1A_mature_with_P2A_501aa',
+                                                                                                                       'CD47_IgV_GPI_WT_Cys15_mature_129aa',
+                                                                                                                       'SERPINB9_with_P2A_Locus3_canonical_397aa',
+                                                                                                                       'PDL1_mature_272aa',
+                                                                                                                       'iCasp9_cytosolic_monomer_396aa'],
+                                                                                                  'positional_unmatched_8_11mer_sum': 405,
+                                                                                                  'unique_unmatched_8_11mer_count': 353,
+                                                                                                  'distinct_peptide_flank_contexts_8_11mer': 375,
+                                                                                                  'positional_unmatched_15mer_sum': 139,
+                                                                                                  'unique_unmatched_15mer_count': 129},
+                                                              'DesignA_Arm1A_2xP2A_with_precursors_and_readthrough': {'included_species': ['HLAE_SCT_Arm1A_precursor_521aa',
+                                                                                                                                           'CD47_Arm1A_postP2A_Pro_precursor_176aa',
+                                                                                                                                           'Locus1_Arm1A_uncleaved_HLAE_P2A_CD47_697aa',
+                                                                                                                                           'SERPINB9_with_P2A_Locus3_canonical_397aa',
+                                                                                                                                           'PDL1_postP2A_Pro_precursor_291aa',
+                                                                                                                                           'Locus3_canonical_uncleaved_SERPINB9_P2A_PDL1_688aa',
+                                                                                                                                           'iCasp9_cytosolic_monomer_396aa'],
+                                                                                                                      'positional_unmatched_8_11mer_sum': 879,
+                                                                                                                      'unique_unmatched_8_11mer_count': 455,
+                                                                                                                      'distinct_peptide_flank_contexts_8_11mer': 525,
+                                                                                                                      'positional_unmatched_15mer_sum': 316,
+                                                                                                                      'unique_unmatched_15mer_count': 176},
+                                                              'DesignA_EmbodimentAstar_1xP2A_with_precursors_and_readthrough': {'included_species': ['HLAE_SCT_EmbodimentAstar_precursor_505aa',
+                                                                                                                                                     'CD47_Arm1B_nativeSP_precursor_175aa',
+                                                                                                                                                     'SERPINB9_with_P2A_Locus3_canonical_397aa',
+                                                                                                                                                     'PDL1_postP2A_Pro_precursor_291aa',
+                                                                                                                                                     'Locus3_canonical_uncleaved_SERPINB9_P2A_PDL1_688aa',
+                                                                                                                                                     'iCasp9_cytosolic_monomer_396aa'],
+                                                                                                                                'positional_unmatched_8_11mer_sum': 482,
+                                                                                                                                'unique_unmatched_8_11mer_count': 391,
+                                                                                                                                'distinct_peptide_flank_contexts_8_11mer': 418,
+                                                                                                                                'positional_unmatched_15mer_sum': 179,
+                                                                                                                                'unique_unmatched_15mer_count': 149},
+                                                              'DesignA_EmbodimentAstar_plus_existing_L3BFB_4078bp_0xP2A_with_precursors': {'included_species': ['HLAE_SCT_EmbodimentAstar_precursor_505aa',
+                                                                                                                                                                'CD47_Arm1B_nativeSP_precursor_175aa',
+                                                                                                                                                                'SERPINB9_WT_scarfree_L3BFB_4078bp_376aa',
+                                                                                                                                                                'PDL1_nativeSP_precursor_290aa',
+                                                                                                                                                                'iCasp9_cytosolic_monomer_396aa'],
+                                                                                                                                           'positional_unmatched_8_11mer_sum': 272,
+                                                                                                                                           'unique_unmatched_8_11mer_count': 269,
+                                                                                                                                           'distinct_peptide_flank_contexts_8_11mer': 272,
+                                                                                                                                           'positional_unmatched_15mer_sum': 121,
+                                                                                                                                           'unique_unmatched_15mer_count': 113},
+                                                              'DesignA_Arm1B_15aaL1_plus_existing_L3BFB_4078bp_0xP2A_with_precursors': {'included_species': ['HLAE_SCT_Arm1B_precursor_500aa',
+                                                                                                                                                             'CD47_Arm1B_nativeSP_precursor_175aa',
+                                                                                                                                                             'SERPINB9_WT_scarfree_L3BFB_4078bp_376aa',
+                                                                                                                                                             'PDL1_nativeSP_precursor_290aa',
+                                                                                                                                                             'iCasp9_cytosolic_monomer_396aa'],
+                                                                                                                                        'positional_unmatched_8_11mer_sum': 271,
+                                                                                                                                        'unique_unmatched_8_11mer_count': 269,
+                                                                                                                                        'distinct_peptide_flank_contexts_8_11mer': 271,
+                                                                                                                                        'positional_unmatched_15mer_sum': 116,
+                                                                                                                                        'unique_unmatched_15mer_count': 113},
+                                                              'DesignB_WT_TYK2_plus_Canonical_P2A_Locus3': {'included_species': ['SERPINB9_with_P2A_Locus3_canonical_397aa',
+                                                                                                                                 'PDL1_postP2A_Pro_precursor_291aa',
+                                                                                                                                 'Locus3_canonical_uncleaved_SERPINB9_P2A_PDL1_688aa',
+                                                                                                                                 'iCasp9_cytosolic_monomer_396aa',
+                                                                                                                                 'TYK2_WT_1187aa'],
+                                                                                                            'positional_unmatched_8_11mer_sum': 293,
+                                                                                                            'unique_unmatched_8_11mer_count': 205,
+                                                                                                            'distinct_peptide_flank_contexts_8_11mer': 229,
+                                                                                                            'positional_unmatched_15mer_sum': 90,
+                                                                                                            'unique_unmatched_15mer_count': 68,
+                                                                                                            'hlac_14allele_panel': {'peptide_allele_pairs_affinity_le_500nM': 38,
+                                                                                                                                    'peptide_allele_pairs_affinity_le_100nM': 11,
+                                                                                                                                    'peptide_allele_pairs_affinity_le_50nM': 4,
+                                                                                                                                    'peptide_allele_pairs_best_context_pres_pct_le_0_5': 8,
+                                                                                                                                    'alleles_with_any_binder_le_500nM': '12/14',
+                                                                                                                                    'alleles_with_any_binder_le_100nM': '7/14'}},
+                                                              'DesignB_WT_TYK2_plus_Existing_ScarFree_L3BFB_4078bp_or_DXL3_3799bp': {'included_species': ['SERPINB9_WT_scarfree_L3BFB_4078bp_376aa',
+                                                                                                                                                          'PDL1_nativeSP_precursor_290aa',
+                                                                                                                                                          'iCasp9_cytosolic_monomer_396aa',
+                                                                                                                                                          'TYK2_WT_1187aa'],
+                                                                                                                                     'positional_unmatched_8_11mer_sum': 83,
+                                                                                                                                     'unique_unmatched_8_11mer_count': 83,
+                                                                                                                                     'distinct_peptide_flank_contexts_8_11mer': 83,
+                                                                                                                                     'positional_unmatched_15mer_sum': 32,
+                                                                                                                                     'unique_unmatched_15mer_count': 32,
+                                                                                                                                     'hlac_14allele_panel': {'peptide_allele_pairs_affinity_le_500nM': 5,
+                                                                                                                                                             'peptide_allele_pairs_affinity_le_100nM': 0,
+                                                                                                                                                             'peptide_allele_pairs_affinity_le_50nM': 0,
+                                                                                                                                                             'peptide_allele_pairs_best_context_pres_pct_le_0_5': 0,
+                                                                                                                                                             'alleles_with_any_binder_le_500nM': '2/14',
+                                                                                                                                                             'alleles_with_any_binder_le_100nM': '0/14'}},
+                                                              'DesignB2_TYK2_P1104A_plus_Canonical_P2A_Locus3': {'included_species': ['SERPINB9_with_P2A_Locus3_canonical_397aa',
+                                                                                                                                      'PDL1_postP2A_Pro_precursor_291aa',
+                                                                                                                                      'Locus3_canonical_uncleaved_SERPINB9_P2A_PDL1_688aa',
+                                                                                                                                      'iCasp9_cytosolic_monomer_396aa',
+                                                                                                                                      'TYK2_P1104A_c3310CG_1187aa'],
+                                                                                                                 'positional_unmatched_8_11mer_sum': 331,
+                                                                                                                 'unique_unmatched_8_11mer_count': 243,
+                                                                                                                 'distinct_peptide_flank_contexts_8_11mer': 267,
+                                                                                                                 'positional_unmatched_15mer_sum': 105,
+                                                                                                                 'unique_unmatched_15mer_count': 83,
+                                                                                                                 'hlac_14allele_panel': {'peptide_allele_pairs_affinity_le_500nM': 78,
+                                                                                                                                         'peptide_allele_pairs_affinity_le_100nM': 26,
+                                                                                                                                         'peptide_allele_pairs_affinity_le_50nM': 12,
+                                                                                                                                         'peptide_allele_pairs_best_context_pres_pct_le_0_5': 27,
+                                                                                                                                         'alleles_with_any_binder_le_500nM': '14/14',
+                                                                                                                                         'alleles_with_any_binder_le_100nM': '13/14'}},
+                                                              'DesignB2_TYK2_P1104A_plus_Existing_ScarFree_L3BFB_4078bp_or_DXL3_3799bp': {'included_species': ['SERPINB9_WT_scarfree_L3BFB_4078bp_376aa',
+                                                                                                                                                               'PDL1_nativeSP_precursor_290aa',
+                                                                                                                                                               'iCasp9_cytosolic_monomer_396aa',
+                                                                                                                                                               'TYK2_P1104A_c3310CG_1187aa'],
+                                                                                                                                          'positional_unmatched_8_11mer_sum': 121,
+                                                                                                                                          'unique_unmatched_8_11mer_count': 121,
+                                                                                                                                          'distinct_peptide_flank_contexts_8_11mer': 121,
+                                                                                                                                          'positional_unmatched_15mer_sum': 47,
+                                                                                                                                          'unique_unmatched_15mer_count': 47,
+                                                                                                                                          'hlac_14allele_panel': {'peptide_allele_pairs_affinity_le_500nM': 45,
+                                                                                                                                                                  'peptide_allele_pairs_affinity_le_100nM': 15,
+                                                                                                                                                                  'peptide_allele_pairs_affinity_le_50nM': 8,
+                                                                                                                                                                  'peptide_allele_pairs_best_context_pres_pct_le_0_5': 19,
+                                                                                                                                                                  'alleles_with_any_binder_le_500nM': '14/14',
+                                                                                                                                                                  'alleles_with_any_binder_le_100nM': '12/14'}},
+                                                              'DesignA_EmbodimentAstar_1xP2A_mature_only_WT_TYK2': {'included_species': ['HLAE_SCT_EmbodimentAstar_20aaL1_mature_485aa',
+                                                                                                                                         'CD47_IgV_GPI_WT_Cys15_mature_129aa',
+                                                                                                                                         'SERPINB9_with_P2A_Locus3_canonical_397aa',
+                                                                                                                                         'PDL1_mature_272aa',
+                                                                                                                                         'iCasp9_cytosolic_monomer_396aa'],
+                                                                                                                    'positional_unmatched_8_11mer_sum': 322,
+                                                                                                                    'unique_unmatched_8_11mer_count': 319,
+                                                                                                                    'distinct_peptide_flank_contexts_8_11mer': 322,
+                                                                                                                    'positional_unmatched_15mer_sum': 123,
+                                                                                                                    'unique_unmatched_15mer_count': 115},
+                                                              'DesignA_EmbodimentAstar_1xP2A_mature_only_plus_optional_TYK2_P1104A': {'included_species': ['HLAE_SCT_EmbodimentAstar_20aaL1_mature_485aa',
+                                                                                                                                                           'CD47_IgV_GPI_WT_Cys15_mature_129aa',
+                                                                                                                                                           'SERPINB9_with_P2A_Locus3_canonical_397aa',
+                                                                                                                                                           'PDL1_mature_272aa',
+                                                                                                                                                           'iCasp9_cytosolic_monomer_396aa',
+                                                                                                                                                           'TYK2_P1104A_c3310CG_1187aa'],
+                                                                                                                                      'positional_unmatched_8_11mer_sum': 360,
+                                                                                                                                      'unique_unmatched_8_11mer_count': 357,
+                                                                                                                                      'distinct_peptide_flank_contexts_8_11mer': 360,
+                                                                                                                                      'positional_unmatched_15mer_sum': 138,
+                                                                                                                                      'unique_unmatched_15mer_count': 130},
+                                                              'DesignA_EmbodimentAstar_plus_existing_L3BFB_4078bp_0xP2A_mature_only_WT_TYK2': {'included_species': ['HLAE_SCT_EmbodimentAstar_20aaL1_mature_485aa',
+                                                                                                                                                                    'CD47_IgV_GPI_WT_Cys15_mature_129aa',
+                                                                                                                                                                    'SERPINB9_WT_scarfree_L3BFB_4078bp_376aa',
+                                                                                                                                                                    'PDL1_mature_272aa',
+                                                                                                                                                                    'iCasp9_cytosolic_monomer_396aa'],
+                                                                                                                                               'positional_unmatched_8_11mer_sum': 238,
+                                                                                                                                               'unique_unmatched_8_11mer_count': 235,
+                                                                                                                                               'distinct_peptide_flank_contexts_8_11mer': 238,
+                                                                                                                                               'positional_unmatched_15mer_sum': 102,
+                                                                                                                                               'unique_unmatched_15mer_count': 94},
+                                                              'DesignA_EmbodimentAstar_plus_existing_L3BFB_4078bp_0xP2A_mature_only_plus_optional_TYK2_P1104A': {'included_species': ['HLAE_SCT_EmbodimentAstar_20aaL1_mature_485aa',
+                                                                                                                                                                                      'CD47_IgV_GPI_WT_Cys15_mature_129aa',
+                                                                                                                                                                                      'SERPINB9_WT_scarfree_L3BFB_4078bp_376aa',
+                                                                                                                                                                                      'PDL1_mature_272aa',
+                                                                                                                                                                                      'iCasp9_cytosolic_monomer_396aa',
+                                                                                                                                                                                      'TYK2_P1104A_c3310CG_1187aa'],
+                                                                                                                                                                 'positional_unmatched_8_11mer_sum': 276,
+                                                                                                                                                                 'unique_unmatched_8_11mer_count': 273,
+                                                                                                                                                                 'distinct_peptide_flank_contexts_8_11mer': 276,
+                                                                                                                                                                 'positional_unmatched_15mer_sum': 117,
+                                                                                                                                                                 'unique_unmatched_15mer_count': 109}}},
+ 'tyk2_p1104a_32row_hlac_and_hlae_presentation_table': {'coding_hgvs': 'NM_003331.5:c.3310C>G (p.Pro1104Ala, '
+                                                                       'rs34536443)',
+                                                        'genomic_grch38': 'chr19:10352442G>C (minus-strand '
+                                                                          'ENST00000525621.6 / UniProt P29597)',
+                                                        'wt_nonamer': 'SPPTKFLEL',
+                                                        'mutant_p2_ala_nonamer': 'SAPTKFLEL',
+                                                        'flanks_5aa': {'n_flank': 'CDSSQ', 'c_flank': 'IGIAQ'},
+                                                        'hlac_leader_vs_hlab_dimorphism_note': 'All 14 HLA-C alleles '
+                                                                                               'are annotated directly '
+                                                                                               'from IPD-IMGT/HLA '
+                                                                                               'C_prot.fasta by HLA-C '
+                                                                                               'leader peptide class '
+                                                                                               '(SP-1C VMAPRTLIL, '
+                                                                                               'SP-2C VMAPRTLLL, SP-3C '
+                                                                                               'VMAPRALLL; Lin et al. '
+                                                                                               '2023 PMID:37264229) '
+                                                                                               'and mature alpha1 '
+                                                                                               'residues 77/80 KIR2DL '
+                                                                                               'group (C1 Ser77/Asn80 '
+                                                                                               'vs C2 Asn77/Lys80), '
+                                                                                               'kept strictly distinct '
+                                                                                               "from HLA-B's -21M/-21T "
+                                                                                               'leader dimorphism '
+                                                                                               '(Ramsuran et al. 2018 '
+                                                                                               'PMID:29302013; '
+                                                                                               'GY-005).',
+                                                        'rows': [{'allele': 'HLA-C*01:02',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-1C '
+                                                                                                       '(VMAPRTLIL)',
+                                                                  'kir_or_receptor_licensing_group': 'C1 (Ser77/Asn80, '
+                                                                                                     'KIR2DL2/3)',
+                                                                  'peptide': 'SPPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'WT_TYK2_1104P',
+                                                                  'affinity_nM': 42.7524,
+                                                                  'affinity_percentile': 0.1031,
+                                                                  'processing_score': 0.52563,
+                                                                  'presentation_score': 0.914807,
+                                                                  'presentation_percentile': 0.1011},
+                                                                 {'allele': 'HLA-C*01:02',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-1C '
+                                                                                                       '(VMAPRTLIL)',
+                                                                  'kir_or_receptor_licensing_group': 'C1 (Ser77/Asn80, '
+                                                                                                     'KIR2DL2/3)',
+                                                                  'peptide': 'SAPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'TYK2_p.Pro1104Ala_c.3310C>G',
+                                                                  'affinity_nM': 12.9153,
+                                                                  'affinity_percentile': 0.0004,
+                                                                  'processing_score': 0.784848,
+                                                                  'presentation_score': 0.99082,
+                                                                  'presentation_percentile': 0.0032},
+                                                                 {'allele': 'HLA-C*02:02',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-2C '
+                                                                                                       '(VMAPRTLLL)',
+                                                                  'kir_or_receptor_licensing_group': 'C2 (Asn77/Lys80, '
+                                                                                                     'KIR2DL1)',
+                                                                  'peptide': 'SPPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'WT_TYK2_1104P',
+                                                                  'affinity_nM': 993.9797,
+                                                                  'affinity_percentile': 3.1146,
+                                                                  'processing_score': 0.52563,
+                                                                  'presentation_score': 0.279089,
+                                                                  'presentation_percentile': 1.3521},
+                                                                 {'allele': 'HLA-C*02:02',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-2C '
+                                                                                                       '(VMAPRTLLL)',
+                                                                  'kir_or_receptor_licensing_group': 'C2 (Asn77/Lys80, '
+                                                                                                     'KIR2DL1)',
+                                                                  'peptide': 'SAPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'TYK2_p.Pro1104Ala_c.3310C>G',
+                                                                  'affinity_nM': 31.375,
+                                                                  'affinity_percentile': 0.0837,
+                                                                  'processing_score': 0.784848,
+                                                                  'presentation_score': 0.976891,
+                                                                  'presentation_percentile': 0.0152},
+                                                                 {'allele': 'HLA-C*03:04',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-1C '
+                                                                                                       '(VMAPRTLIL)',
+                                                                  'kir_or_receptor_licensing_group': 'C1 (Ser77/Asn80, '
+                                                                                                     'KIR2DL2/3)',
+                                                                  'peptide': 'SPPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'WT_TYK2_1104P',
+                                                                  'affinity_nM': 170.2878,
+                                                                  'affinity_percentile': 0.9174,
+                                                                  'processing_score': 0.52563,
+                                                                  'presentation_score': 0.71386,
+                                                                  'presentation_percentile': 0.3953},
+                                                                 {'allele': 'HLA-C*03:04',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-1C '
+                                                                                                       '(VMAPRTLIL)',
+                                                                  'kir_or_receptor_licensing_group': 'C1 (Ser77/Asn80, '
+                                                                                                     'KIR2DL2/3)',
+                                                                  'peptide': 'SAPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'TYK2_p.Pro1104Ala_c.3310C>G',
+                                                                  'affinity_nM': 20.7529,
+                                                                  'affinity_percentile': 0.0369,
+                                                                  'processing_score': 0.784848,
+                                                                  'presentation_score': 0.984942,
+                                                                  'presentation_percentile': 0.0077},
+                                                                 {'allele': 'HLA-C*04:01',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-1C '
+                                                                                                       '(VMAPRTLIL)',
+                                                                  'kir_or_receptor_licensing_group': 'C2 (Asn77/Lys80, '
+                                                                                                     'KIR2DL1)',
+                                                                  'peptide': 'SPPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'WT_TYK2_1104P',
+                                                                  'affinity_nM': 341.3328,
+                                                                  'affinity_percentile': 0.4255,
+                                                                  'processing_score': 0.52563,
+                                                                  'presentation_score': 0.544836,
+                                                                  'presentation_percentile': 0.667},
+                                                                 {'allele': 'HLA-C*04:01',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-1C '
+                                                                                                       '(VMAPRTLIL)',
+                                                                  'kir_or_receptor_licensing_group': 'C2 (Asn77/Lys80, '
+                                                                                                     'KIR2DL1)',
+                                                                  'peptide': 'SAPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'TYK2_p.Pro1104Ala_c.3310C>G',
+                                                                  'affinity_nM': 448.9257,
+                                                                  'affinity_percentile': 0.5158,
+                                                                  'processing_score': 0.784848,
+                                                                  'presentation_score': 0.717893,
+                                                                  'presentation_percentile': 0.3897},
+                                                                 {'allele': 'HLA-C*05:01',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-1C '
+                                                                                                       '(VMAPRTLIL)',
+                                                                  'kir_or_receptor_licensing_group': 'C2 (Asn77/Lys80, '
+                                                                                                     'KIR2DL1)',
+                                                                  'peptide': 'SPPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'WT_TYK2_1104P',
+                                                                  'affinity_nM': 670.4509,
+                                                                  'affinity_percentile': 1.4554,
+                                                                  'processing_score': 0.52563,
+                                                                  'presentation_score': 0.369787,
+                                                                  'presentation_percentile': 1.045},
+                                                                 {'allele': 'HLA-C*05:01',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-1C '
+                                                                                                       '(VMAPRTLIL)',
+                                                                  'kir_or_receptor_licensing_group': 'C2 (Asn77/Lys80, '
+                                                                                                     'KIR2DL1)',
+                                                                  'peptide': 'SAPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'TYK2_p.Pro1104Ala_c.3310C>G',
+                                                                  'affinity_nM': 102.4305,
+                                                                  'affinity_percentile': 0.4438,
+                                                                  'processing_score': 0.784848,
+                                                                  'presentation_score': 0.923762,
+                                                                  'presentation_percentile': 0.089},
+                                                                 {'allele': 'HLA-C*06:02',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-1C '
+                                                                                                       '(VMAPRTLIL)',
+                                                                  'kir_or_receptor_licensing_group': 'C2 (Asn77/Lys80, '
+                                                                                                     'KIR2DL1)',
+                                                                  'peptide': 'SPPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'WT_TYK2_1104P',
+                                                                  'affinity_nM': 1106.8543,
+                                                                  'affinity_percentile': 2.2647,
+                                                                  'processing_score': 0.52563,
+                                                                  'presentation_score': 0.256817,
+                                                                  'presentation_percentile': 1.4505},
+                                                                 {'allele': 'HLA-C*06:02',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-1C '
+                                                                                                       '(VMAPRTLIL)',
+                                                                  'kir_or_receptor_licensing_group': 'C2 (Asn77/Lys80, '
+                                                                                                     'KIR2DL1)',
+                                                                  'peptide': 'SAPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'TYK2_p.Pro1104Ala_c.3310C>G',
+                                                                  'affinity_nM': 55.8516,
+                                                                  'affinity_percentile': 0.0954,
+                                                                  'processing_score': 0.784848,
+                                                                  'presentation_score': 0.958318,
+                                                                  'presentation_percentile': 0.0395},
+                                                                 {'allele': 'HLA-C*07:01',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-3C '
+                                                                                                       '(VMAPRALLL)',
+                                                                  'kir_or_receptor_licensing_group': 'C1 (Ser77/Asn80, '
+                                                                                                     'KIR2DL2/3)',
+                                                                  'peptide': 'SPPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'WT_TYK2_1104P',
+                                                                  'affinity_nM': 988.468,
+                                                                  'affinity_percentile': 1.7939,
+                                                                  'processing_score': 0.52563,
+                                                                  'presentation_score': 0.280272,
+                                                                  'presentation_percentile': 1.3472},
+                                                                 {'allele': 'HLA-C*07:01',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-3C '
+                                                                                                       '(VMAPRALLL)',
+                                                                  'kir_or_receptor_licensing_group': 'C1 (Ser77/Asn80, '
+                                                                                                     'KIR2DL2/3)',
+                                                                  'peptide': 'SAPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'TYK2_p.Pro1104Ala_c.3310C>G',
+                                                                  'affinity_nM': 94.8228,
+                                                                  'affinity_percentile': 0.3647,
+                                                                  'processing_score': 0.784848,
+                                                                  'presentation_score': 0.929307,
+                                                                  'presentation_percentile': 0.0809},
+                                                                 {'allele': 'HLA-C*07:02',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-3C '
+                                                                                                       '(VMAPRALLL)',
+                                                                  'kir_or_receptor_licensing_group': 'C1 (Ser77/Asn80, '
+                                                                                                     'KIR2DL2/3)',
+                                                                  'peptide': 'SPPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'WT_TYK2_1104P',
+                                                                  'affinity_nM': 351.4344,
+                                                                  'affinity_percentile': 1.4397,
+                                                                  'processing_score': 0.52563,
+                                                                  'presentation_score': 0.537188,
+                                                                  'presentation_percentile': 0.6818},
+                                                                 {'allele': 'HLA-C*07:02',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-3C '
+                                                                                                       '(VMAPRALLL)',
+                                                                  'kir_or_receptor_licensing_group': 'C1 (Ser77/Asn80, '
+                                                                                                     'KIR2DL2/3)',
+                                                                  'peptide': 'SAPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'TYK2_p.Pro1104Ala_c.3310C>G',
+                                                                  'affinity_nM': 69.4228,
+                                                                  'affinity_percentile': 0.2883,
+                                                                  'processing_score': 0.784848,
+                                                                  'presentation_score': 0.948112,
+                                                                  'presentation_percentile': 0.0536},
+                                                                 {'allele': 'HLA-C*08:01',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-1C '
+                                                                                                       '(VMAPRTLIL)',
+                                                                  'kir_or_receptor_licensing_group': 'C1 (Ser77/Asn80, '
+                                                                                                     'KIR2DL2/3)',
+                                                                  'peptide': 'SPPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'WT_TYK2_1104P',
+                                                                  'affinity_nM': 618.5246,
+                                                                  'affinity_percentile': 1.0506,
+                                                                  'processing_score': 0.52563,
+                                                                  'presentation_score': 0.389837,
+                                                                  'presentation_percentile': 0.9912},
+                                                                 {'allele': 'HLA-C*08:01',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-1C '
+                                                                                                       '(VMAPRTLIL)',
+                                                                  'kir_or_receptor_licensing_group': 'C1 (Ser77/Asn80, '
+                                                                                                     'KIR2DL2/3)',
+                                                                  'peptide': 'SAPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'TYK2_p.Pro1104Ala_c.3310C>G',
+                                                                  'affinity_nM': 82.6606,
+                                                                  'affinity_percentile': 0.1176,
+                                                                  'processing_score': 0.784848,
+                                                                  'presentation_score': 0.938258,
+                                                                  'presentation_percentile': 0.0675},
+                                                                 {'allele': 'HLA-C*12:02',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-1C '
+                                                                                                       '(VMAPRTLIL)',
+                                                                  'kir_or_receptor_licensing_group': 'C1 (Ser77/Asn80, '
+                                                                                                     'KIR2DL2/3)',
+                                                                  'peptide': 'SPPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'WT_TYK2_1104P',
+                                                                  'affinity_nM': 841.2635,
+                                                                  'affinity_percentile': 4.1534,
+                                                                  'processing_score': 0.52563,
+                                                                  'presentation_score': 0.31587,
+                                                                  'presentation_percentile': 1.2124},
+                                                                 {'allele': 'HLA-C*12:02',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-1C '
+                                                                                                       '(VMAPRTLIL)',
+                                                                  'kir_or_receptor_licensing_group': 'C1 (Ser77/Asn80, '
+                                                                                                     'KIR2DL2/3)',
+                                                                  'peptide': 'SAPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'TYK2_p.Pro1104Ala_c.3310C>G',
+                                                                  'affinity_nM': 41.4941,
+                                                                  'affinity_percentile': 0.1316,
+                                                                  'processing_score': 0.784848,
+                                                                  'presentation_score': 0.969199,
+                                                                  'presentation_percentile': 0.0242},
+                                                                 {'allele': 'HLA-C*12:03',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-1C '
+                                                                                                       '(VMAPRTLIL)',
+                                                                  'kir_or_receptor_licensing_group': 'C1 (Ser77/Asn80, '
+                                                                                                     'KIR2DL2/3)',
+                                                                  'peptide': 'SPPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'WT_TYK2_1104P',
+                                                                  'affinity_nM': 503.9655,
+                                                                  'affinity_percentile': 1.8236,
+                                                                  'processing_score': 0.52563,
+                                                                  'presentation_score': 0.442338,
+                                                                  'presentation_percentile': 0.8666},
+                                                                 {'allele': 'HLA-C*12:03',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-1C '
+                                                                                                       '(VMAPRTLIL)',
+                                                                  'kir_or_receptor_licensing_group': 'C1 (Ser77/Asn80, '
+                                                                                                     'KIR2DL2/3)',
+                                                                  'peptide': 'SAPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'TYK2_p.Pro1104Ala_c.3310C>G',
+                                                                  'affinity_nM': 26.4341,
+                                                                  'affinity_percentile': 0.0487,
+                                                                  'processing_score': 0.784848,
+                                                                  'presentation_score': 0.980642,
+                                                                  'presentation_percentile': 0.0114},
+                                                                 {'allele': 'HLA-C*14:02',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-1C '
+                                                                                                       '(VMAPRTLIL)',
+                                                                  'kir_or_receptor_licensing_group': 'C1 (Ser77/Asn80, '
+                                                                                                     'KIR2DL2/3)',
+                                                                  'peptide': 'SPPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'WT_TYK2_1104P',
+                                                                  'affinity_nM': 201.2999,
+                                                                  'affinity_percentile': 0.8975,
+                                                                  'processing_score': 0.52563,
+                                                                  'presentation_score': 0.676452,
+                                                                  'presentation_percentile': 0.4484},
+                                                                 {'allele': 'HLA-C*14:02',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-1C '
+                                                                                                       '(VMAPRTLIL)',
+                                                                  'kir_or_receptor_licensing_group': 'C1 (Ser77/Asn80, '
+                                                                                                     'KIR2DL2/3)',
+                                                                  'peptide': 'SAPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'TYK2_p.Pro1104Ala_c.3310C>G',
+                                                                  'affinity_nM': 57.236,
+                                                                  'affinity_percentile': 0.252,
+                                                                  'processing_score': 0.784848,
+                                                                  'presentation_score': 0.957272,
+                                                                  'presentation_percentile': 0.0412},
+                                                                 {'allele': 'HLA-C*15:02',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-2C '
+                                                                                                       '(VMAPRTLLL)',
+                                                                  'kir_or_receptor_licensing_group': 'C2 (Asn77/Lys80, '
+                                                                                                     'KIR2DL1)',
+                                                                  'peptide': 'SPPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'WT_TYK2_1104P',
+                                                                  'affinity_nM': 1098.0153,
+                                                                  'affinity_percentile': 2.2234,
+                                                                  'processing_score': 0.52563,
+                                                                  'presentation_score': 0.258436,
+                                                                  'presentation_percentile': 1.443},
+                                                                 {'allele': 'HLA-C*15:02',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-2C '
+                                                                                                       '(VMAPRTLLL)',
+                                                                  'kir_or_receptor_licensing_group': 'C2 (Asn77/Lys80, '
+                                                                                                     'KIR2DL1)',
+                                                                  'peptide': 'SAPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'TYK2_p.Pro1104Ala_c.3310C>G',
+                                                                  'affinity_nM': 32.8193,
+                                                                  'affinity_percentile': 0.051,
+                                                                  'processing_score': 0.784848,
+                                                                  'presentation_score': 0.975793,
+                                                                  'presentation_percentile': 0.0164},
+                                                                 {'allele': 'HLA-C*16:01',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-1C '
+                                                                                                       '(VMAPRTLIL)',
+                                                                  'kir_or_receptor_licensing_group': 'C1 (Ser77/Asn80, '
+                                                                                                     'KIR2DL2/3)',
+                                                                  'peptide': 'SPPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'WT_TYK2_1104P',
+                                                                  'affinity_nM': 195.8777,
+                                                                  'affinity_percentile': 1.2558,
+                                                                  'processing_score': 0.52563,
+                                                                  'presentation_score': 0.682731,
+                                                                  'presentation_percentile': 0.4392},
+                                                                 {'allele': 'HLA-C*16:01',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'SP-1C '
+                                                                                                       '(VMAPRTLIL)',
+                                                                  'kir_or_receptor_licensing_group': 'C1 (Ser77/Asn80, '
+                                                                                                     'KIR2DL2/3)',
+                                                                  'peptide': 'SAPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'TYK2_p.Pro1104Ala_c.3310C>G',
+                                                                  'affinity_nM': 20.9479,
+                                                                  'affinity_percentile': 0.023,
+                                                                  'processing_score': 0.784848,
+                                                                  'presentation_score': 0.984794,
+                                                                  'presentation_percentile': 0.0078},
+                                                                 {'allele': 'HLA-E*01:01',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'Non-classical '
+                                                                                                       'HLA-E (leader '
+                                                                                                       'receptor)',
+                                                                  'kir_or_receptor_licensing_group': 'CD94/NKG2A-NKG2C',
+                                                                  'peptide': 'SPPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'WT_TYK2_1104P',
+                                                                  'affinity_nM': 11679.8533,
+                                                                  'affinity_percentile': 0.8357,
+                                                                  'processing_score': 0.52563,
+                                                                  'presentation_score': 0.027893,
+                                                                  'presentation_percentile': 8.4303},
+                                                                 {'allele': 'HLA-E*01:01',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'Non-classical '
+                                                                                                       'HLA-E (leader '
+                                                                                                       'receptor)',
+                                                                  'kir_or_receptor_licensing_group': 'CD94/NKG2A-NKG2C',
+                                                                  'peptide': 'SAPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'TYK2_p.Pro1104Ala_c.3310C>G',
+                                                                  'affinity_nM': 1455.416,
+                                                                  'affinity_percentile': 0.0099,
+                                                                  'processing_score': 0.784848,
+                                                                  'presentation_score': 0.42357,
+                                                                  'presentation_percentile': 0.9087},
+                                                                 {'allele': 'HLA-E*01:03',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'Non-classical '
+                                                                                                       'HLA-E (leader '
+                                                                                                       'receptor)',
+                                                                  'kir_or_receptor_licensing_group': 'CD94/NKG2A-NKG2C',
+                                                                  'peptide': 'SPPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'WT_TYK2_1104P',
+                                                                  'affinity_nM': 11679.8533,
+                                                                  'affinity_percentile': 0.8357,
+                                                                  'processing_score': 0.52563,
+                                                                  'presentation_score': 0.027893,
+                                                                  'presentation_percentile': 8.4303},
+                                                                 {'allele': 'HLA-E*01:03',
+                                                                  'ipd_imgt_hla_signal_peptide_class': 'Non-classical '
+                                                                                                       'HLA-E (leader '
+                                                                                                       'receptor)',
+                                                                  'kir_or_receptor_licensing_group': 'CD94/NKG2A-NKG2C',
+                                                                  'peptide': 'SAPTKFLEL',
+                                                                  'n_flank_5aa': 'CDSSQ',
+                                                                  'c_flank_5aa': 'IGIAQ',
+                                                                  'variant': 'TYK2_p.Pro1104Ala_c.3310C>G',
+                                                                  'affinity_nM': 1455.416,
+                                                                  'affinity_percentile': 0.0099,
+                                                                  'processing_score': 0.784848,
+                                                                  'presentation_score': 0.42357,
+                                                                  'presentation_percentile': 0.9087}]}}
 
 
 def main() -> None:
@@ -6390,6 +7777,7 @@ def main() -> None:
             iip_0015_manifest=_iip_0015_manifest,
             arm1b_can=_canonical_fasta["ISLET1_LOCUS1_ARM1B_B2M_BIDIR_2AFREE_CD47_IGV_GPI_HLAE_SCT_3974bp"],
         ),
+        "species_separated_proteome_subtracted_peptide_census_iip_0017": _build_species_separated_proteome_census_iip_0017(),
     }
 
     if (REPO_ROOT / ".openislet_public_bundle").is_file() and ATLAS_OUT.is_file():

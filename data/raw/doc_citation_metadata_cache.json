@@ -59,6 +59,12 @@
    "pubdate_year": "2001",
    "title": "Markedly decreased oxygen tension in transplanted rat pancreatic islets irrespective of the implantation site."
   },
+  "11297676": {
+   "first_author": "Donnelly MLL",
+   "journal": "J Gen Virol",
+   "pubdate_year": "2001",
+   "title": "Analysis of the aphthovirus 2A/2B polyprotein 'cleavage' mechanism indicates not a proteolytic reaction, but a novel translational effect: a putative ribosomal 'skip'."
+  },
   "11323700": {
    "first_author": "Fan QR",
    "journal": "Nat Immunol",
@@ -166,6 +172,12 @@
    "journal": "Arterioscler Thromb Vasc Biol",
    "pubdate_year": "2004",
    "title": "Rapid perfusion and network remodeling in a microvascular construct after implantation."
+  },
+  "15064769": {
+   "first_author": "Szymczak AL",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2004",
+   "title": "Correction of multi-gene deficiency in vivo using a single 'self-cleaving' 2A peptide-based retroviral vector."
   },
   "1512546": {
    "first_author": "Bix M",
@@ -581,6 +593,12 @@
    "pubdate_year": "2013",
    "title": "NK cell tolerance of self-specific activating receptor KIR2DS1 in individuals with cognate HLA-C2 ligand."
   },
+  "23698740": {
+   "first_author": "Arber C",
+   "journal": "Gene Ther",
+   "pubdate_year": "2013",
+   "title": "The immunogenicity of virus-derived 2A sequences in immunocompetent individuals."
+  },
   "23722425": {
    "first_author": "Weiskopf K",
    "journal": "Science",
@@ -670,6 +688,12 @@
    "journal": "Cell",
    "pubdate_year": "2014",
    "title": "Generation of functional human pancreatic β cells in vitro."
+  },
+  "25311805": {
+   "first_author": "Rasmussen M",
+   "journal": "J Immunol",
+   "pubdate_year": "2014",
+   "title": "Uncovering the peptide-binding specificities of HLA-C: a general strategy to determine the specificity of any MHC class I molecule."
   },
   "25497547": {
    "first_author": "Rao SS",
@@ -1462,6 +1486,12 @@
    "journal": "Immunity",
    "pubdate_year": "2023",
    "title": "CD47 Ligation Repositions the Inhibitory Receptor SIRPA to Suppress Integrin Activation and Phagocytosis."
+  },
+  "37733863": {
+   "first_author": "Cheng J",
+   "journal": "Science",
+   "pubdate_year": "2023",
+   "title": "Accurate proteome-wide missense variant effect prediction with AlphaMissense."
   },
   "37738292": {
    "first_author": "Krishnan SR",

@@ -13,10 +13,10 @@
     "data/extracted/cross_study_discovery_graph.json": "1eb6248877b1dacf11154f608515c092ed1db2fdb7efc34b9c5456a3aa1113f4",
     "data/extracted/islet1_candidate_stack_rankings.json": "7fe47bfd8d19309781921341696159e9f30a0754587139f0aaca9affea77b24e",
     "data/protocols/hip_core_fractional_factorial_v0.6.2.json": "7a3aead410a1c9a10ac4fb56b78a1775c73755aed90c1fff4861eb3b94595741",
-    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "8f147c97f6d42b5d4a42c095b613e54ce5b92f2873e6af65684f5fa822a63f6f",
-    "data/extracted/layer3_structural_verification_atlas.json": "ea7f6e989b43b92305bb84659b56105b9132ffe75cad4e3855dbb779b078083d",
+    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "39615f81dbd99767a440e6a1691429407e2a4311380e5ecb6d5566fdbdcc300d",
+    "data/extracted/layer3_structural_verification_atlas.json": "dcbd47a6144c89294eed22475ce6c68f551f338c27131aba205b347ef9119424",
     "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": "c12ff0b87058a2af1390a73e9f39a2e5d0ea9b8ee43e75dfa96979cba7c619bd",
-    "data/extracted/layer5_personalized_patient_and_crispr_atlas.json": "8e563bf9342259a40f4ced83bd9633da39659b998f3fe5dc563f7e9d820462aa",
+    "data/extracted/layer5_personalized_patient_and_crispr_atlas.json": "dd0da26878fd36d0f70afc140943a489e381f38e994510bd03996de3edeaed69",
     "data/extracted/10202046.json": "b3d836e8c0fc8ed898592975e0f09c0154a0d4f887c2b6893e7c8194befd0a6a",
     "data/extracted/10728379.json": "b2efcc82101e33914aebc51e74ddc7650894d097c11841518f6e848916cae3dc",
     "data/extracted/10798768.json": "8fc4cdd4b8d420e666e0cab534c990fc545705c7563fc54d98a80197b9fa0082",
@@ -24826,7 +24826,18 @@
             "note": "Because KIR C1/C2 dimorphism is a 2-group epitope (Asn80 vs Lys80) while T-cell & DSA alloreactivity is 4-digit allele-specific (Xu et al. 2019 PMID:30853558; Tran et al. 2011 PMID:21743387), a 3-line endogenous HLA-C sub-bank leaves ~70-85% of recipients 4-digit mismatched at HLA-C unless a ~12-16 line homozygous 4-digit bank is used or a non-allogenic self-peptide HLA-C SCT (Design B'-SCT: ISLET1_B_SCT_C1_CIITA [GAVDPLLAL, PDB:1EFX] / ISLET1_B_SCT_C2_CIITA [QYDDAVYKL, PDB:1IM9] at CIITA Exon 5, K=4, B=0 [P_passes=2] or B=1 [P_passes=3]) is deployed (AUDIT-REF & AUDIT-REF)."
           }
         }
-      ]
+      ],
+      "design_b2_tyk2_p1104a_hlac_neoantigen_qualification_note_iip_0017": {
+        "decision_id": "DEC-095",
+        "contribution_id": "IIP-0017",
+        "applies_to_product_variant_id": "ISLET1_B2_5LOCUS_TYK2_PE",
+        "distinct_untouched_comparators": [
+          "ISLET1_B1_6LOCUS_TYK2_KO_INS (scored 6-locus Scenario B TYK2-/- KO comparator)",
+          "ISLET1_B2_5LOCUS_BASE (WT TYK2 1104P retained-HLA-C counterfactual)",
+          "ISLET1_B_SCT_C1_CIITA / ISLET1_B_SCT_C2_CIITA / ISLET1_B_SCT_C1C2_CIITA (Track-2 B'-SCT with B2M-/-)"
+        ],
+        "routing_restriction": "Population rs34536443 allele frequencies (2.7-4.2% C -> ~91.8-94.7% G/G) cannot classify individual recipients, natural C/C or G/C genotype does not establish peripheral tolerance to SAPTKFLEL across endocrine and vascular iEC/pericyte compartments, and an in-silico MHCflurry affinity cutoff (e.g., HLA-C*04:01 448.93 nM) never auto-authorizes clinical routing. Any evaluation of Design B2 (ISLET1_B2_5LOCUS_TYK2_PE) requires clearing the Stage-0 Gate 0B empirical OR-hold presentation and CD8+ killing gate across unpooled recipient TYK2 genotype strata (G_G, G_C, C_C) alongside preserved Rule S8 5xISRE/CXCL10 promoter-induction and Stage 0->7 yield checks (Boisson-Dupuis et al. 2018 PMID:30578352; Chandra et al. 2022 PMID:36289205; GY-001)."
+      }
     }
   }
 }

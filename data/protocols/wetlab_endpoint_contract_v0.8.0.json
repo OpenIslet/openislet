@@ -31,7 +31,9 @@
     "s10_construct_donor_sha256",
     "current_lot_id",
     "s10_qualified_lot_id",
-    "s10_hlae_floor_mode"
+    "s10_hlae_floor_mode",
+    "b2_tyk2_recipient_genotype_stratum",
+    "b2_tyk2_hlac_allele"
   ],
   "boolean_policy_keys": [
     "require_full_5endpoint_s9_panel",
@@ -75,7 +77,10 @@
     "obs_challenger_sv40pa_and_host_3prime_cleavage_checked",
     "s10_is_replacement_challenger_lot",
     "s10_race_5p_3p_junction_verified",
-    "hla_a2_d227k_t228a_positive_control_spr_verified"
+    "hla_a2_d227k_t228a_positive_control_spr_verified",
+    "b2_tyk2_saptkflel_allele_assigned_ms_detected",
+    "b2_tyk2_peptide_pulsed_positive_control_verified",
+    "b2_tyk2_hlac_blockade_abrogation_verified"
   ],
   "endpoints": [
     {
@@ -2139,6 +2144,39 @@
       "default_se": 0.65,
       "minimum_se": 0.001,
       "unit": "host_hla_abc_cross_presented_cd8_ctl_specific_lysis_percentage"
+    },
+    {
+      "endpoint_id": "stage0_gate0b_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_pp",
+      "meanKey": "obs_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_pp",
+      "seKey": "obs_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_se",
+      "min": -100.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.75,
+      "minimum_se": 0.001,
+      "unit": "4digit_hlac_matched_cd8_lysis_delta_design_b2_minus_isogenic_bwt_percentage_points"
+    },
+    {
+      "endpoint_id": "stage0_gate0b_b2_tyk2_p1104a_primed_cd8_elispot_sfu_per_1e6",
+      "meanKey": "obs_b2_tyk2_p1104a_primed_cd8_elispot_sfu_per_1e6",
+      "seKey": "obs_b2_tyk2_p1104a_primed_cd8_elispot_se",
+      "min": 0.0,
+      "max": 5000.0,
+      "se_required": false,
+      "default_se": 5.0,
+      "minimum_se": 0.001,
+      "unit": "day21_saptkflel_primed_autologous_cd8_ifng_elispot_sfu_per_1e6_cells"
+    },
+    {
+      "endpoint_id": "stage0_gate0b_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_pp",
+      "meanKey": "obs_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_pp",
+      "seKey": "obs_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_se",
+      "min": -100.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.75,
+      "minimum_se": 0.001,
+      "unit": "ifng_treated_iec_pericyte_cd8_lysis_delta_design_b2_minus_isogenic_bwt_percentage_points"
     }
   ]
 }
