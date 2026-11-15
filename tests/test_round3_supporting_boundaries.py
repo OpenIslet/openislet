@@ -4248,17 +4248,23 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     assert abs(_r9_s8_cat["layout_b_119um_source_119um_mask_k1_6p3529_s_inv_22680_iu_hour0_nz201"] - 2.0476) < 0.001
     assert abs(_r9_s8_cat["design_x_100um_source_100um_mask_k1_6p3529_s_inv_19059_iu_hour0_nz201"] - 2.4288) < 0.001
 
-    # 39. DEC-081 / IIP-0003 (Re-judged four-hurdle conditional scenario specification, score/rank measures & OQ-016):
+    # 39. DEC-081 / IIP-0003 (Re-judged four-hurdle conditional scenario specification, score/rank measures & OQ-016; reassessed 2026-11-15 after IIP-0016..IIP-0019):
     from scripts import rank_islet1_stacks as ranker
     _iip3 = ranker._build_odds_composition_and_profile_scope_audit_iip_0003()
     assert _iip3["proposal_id"] == "IIP-0003" and _iip3["open_question_id"] == "OQ-016"
-    assert _iip3["reassessment_date"] == "2026-11-05"
+    assert _iip3["initial_reassessment_date"] == "2026-11-05" and _iip3["reassessment_date"] == "2026-11-15"
     assert "Linus Schumacher (ORCID 0000-0003-0797-3406, GitHub @ljschumacher, University of Edinburgh)" in _iip3["credit"]
     assert len(_iip3["reassessed_hurdles"]) == 4
-    assert [h["one_design_design_a"] for h in _iip3["reassessed_hurdles"]] == [0.88, 0.78, 0.50, 0.60]
-    assert [h["three_designs_parallel"] for h in _iip3["reassessed_hurdles"]] == [0.88, 0.82, 0.72, 0.72]
-    assert abs(_iip3["multiplied_conditional_totals"]["one_design_exact"] - 0.20592) < 1e-8
-    assert abs(_iip3["multiplied_conditional_totals"]["three_designs_exact"] - 0.37407744) < 1e-8
+    assert [h["one_design_design_a"] for h in _iip3["reassessed_hurdles"]] == [0.88, 0.78, 0.56, 0.68]
+    assert [h["one_design_design_b"] for h in _iip3["reassessed_hurdles"]] == [0.88, 0.79, 0.64, 0.70]
+    assert [h["one_design_design_x"] for h in _iip3["reassessed_hurdles"]] == [0.88, 0.81, 0.70, 0.68]
+    assert [h["three_designs_parallel"] for h in _iip3["reassessed_hurdles"]] == [0.88, 0.87, 0.85, 0.79]
+    assert abs(_iip3["multiplied_conditional_totals"]["design_a_exact"] - 0.26138112) < 1e-8
+    assert abs(_iip3["multiplied_conditional_totals"]["design_b_exact"] - 0.3114496) < 1e-8
+    assert abs(_iip3["multiplied_conditional_totals"]["design_x_exact"] - 0.3392928) < 1e-8
+    assert abs(_iip3["multiplied_conditional_totals"]["three_designs_exact"] - 0.5141004) < 1e-8
+    assert _iip3["multiplied_conditional_totals"]["prior_2026_11_05_baseline"]["one_design_rounded_pct"] == 21
+    assert _iip3["multiplied_conditional_totals"]["prior_2026_11_05_baseline"]["three_designs_rounded_pct"] == 37
     assert _iip3["section3_score_and_rank_measure_reconciliation"]["rank_column_measure"] == "overall_50_50_composite_score"
     assert _iip3["new_open_question"]["id"] == "OQ-016"
     if _r9_rank_atlas is not None:

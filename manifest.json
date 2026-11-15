@@ -253,8 +253,8 @@
       "bytes": 1157
     },
     "ISLET-1-BLUEPRINT.md": {
-      "sha256": "c59944a7cf032120aa75b9a7b3cd38bd15a4fb75f5ed40f23aea18dfbf80e8a5",
-      "bytes": 196916
+      "sha256": "ee376495f5d916a69d6ab7f274a72789e09d9fb363e221542e9cf2a3d8b9da3f",
+      "bytes": 198506
     },
     "README.md": {
       "sha256": "be8a8a707997064209acb55193f6c5f39335c7e245315470d06c117f4b31f0d0",
@@ -370,12 +370,12 @@
       "bytes": 581846
     },
     "data/extracted/islet1_candidate_stack_rankings.json": {
-      "sha256": "7fe47bfd8d19309781921341696159e9f30a0754587139f0aaca9affea77b24e",
-      "bytes": 16869307
+      "sha256": "7e1444fd745950f702bbcd60a279ed3b19d4a944546b9129affbc7d755091012",
+      "bytes": 16872576
     },
     "data/extracted/islet1_stack_ranking_v0.5.json": {
-      "sha256": "7fe47bfd8d19309781921341696159e9f30a0754587139f0aaca9affea77b24e",
-      "bytes": 16869307
+      "sha256": "7e1444fd745950f702bbcd60a279ed3b19d4a944546b9129affbc7d755091012",
+      "bytes": 16872576
     },
     "data/extracted/ring1_study_dossiers_v0.5.jsonl": {
       "sha256": "ffb236e8eb273935af6d2436b4533ab4ee8f7ec0764037deae0b875e519689f3",
@@ -553,7 +553,7 @@
       "bytes": 47382
     },
     "data/extracted/documentation_facts_v0.8.0.json": {
-      "sha256": "eaaced996f0b20478adf5c114832afbdc0d3d7022579fbd51baf2f26b824fe27",
+      "sha256": "817824780e9ba632a077abfebfa7bf151f10c52e849fd298d1932f19a1ce0e5b",
       "bytes": 1589877
     },
     "tests/test_preastra_layer1.py": {
@@ -645,8 +645,8 @@
       "bytes": 151533
     },
     "scripts/rank_islet1_stacks.py": {
-      "sha256": "d87d211462a93284588d0df6dd05f179d8113f8ea7a118b2e4a208d277d474ef",
-      "bytes": 504473
+      "sha256": "a2ff5a328aab5a114859773e2e345bc59ba12f1ad5057e20c2fddb4042e47edd",
+      "bytes": 508287
     },
     "scripts/run_layer2_perturbation_and_regulatory_plane.py": {
       "sha256": "3bebb9c7a4ae20493ac848fca938ef240dc249dd7b8d0a7cf428a2ab60226213",
@@ -6131,8 +6131,8 @@
       "bytes": 40897
     },
     "tests/test_round3_supporting_boundaries.py": {
-      "sha256": "9e553fa9f60323ede7e2f7ede72b5287aeb41c186b824fb5081acae459337382",
-      "bytes": 358779
+      "sha256": "ef144ca47be5288cab2733db18ec58cb4afed4bfffc6ebca364039073ffdadbd",
+      "bytes": 359497
     }
   },
   "public_export_file_inventory": [
