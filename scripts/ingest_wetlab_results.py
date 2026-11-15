@@ -633,6 +633,11 @@ STAGE0_PERSISTED_BOOLEAN_FLAGS: tuple[str, ...] = (
     "l3_multimir_pre_aav6_2x2_transient_kd_falsifier_cleared",
     "l3_multimir_low_ifn_and_resting_shield_retention_verified",
     "l3_multimir_arm6_c341s_hlac_and_dq2_dq8_peptide_screen_cleared",
+    "s6_dose_matched_1500_ieq_verified",
+    "s6_divider_iso10993_leachables_cleared",
+    "p05_full_336h_coupled_o2_h2o2_ca_ph_qualified",
+    "design_z_empty_lumen_14d_persistence_verified",
+    "design_z_loaded_closed_state_confirmed",
 )
 
 HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS: tuple[str, ...] = (
@@ -674,6 +679,9 @@ ALLOWED_ORDERED_BATCH_LEDGER_KEYS: frozenset[str] = frozenset({
     "s10_hlae_floor_mode",
     "b2_tyk2_recipient_genotype_stratum",
     "b2_tyk2_hlac_allele",
+    "s6_cluster_size_arm",
+    "p05_barrier_slab_geometry_mode",
+    "design_z_divider_arm",
     *HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS,
 })
 
@@ -1017,6 +1025,9 @@ def _validate_prior_posterior_report(
                 "s10_hlae_floor_mode",
                 "b2_tyk2_recipient_genotype_stratum",
                 "b2_tyk2_hlac_allele",
+                "s6_cluster_size_arm",
+                "p05_barrier_slab_geometry_mode",
+                "design_z_divider_arm",
             ):
                 if adj_meta_k in entry and entry[adj_meta_k] is not None:
                     merged_hist_payload_for_norm[adj_meta_k] = entry[adj_meta_k]
@@ -1226,6 +1237,9 @@ def _validate_prior_posterior_report(
                     "s10_hlae_floor_mode",
                     "b2_tyk2_recipient_genotype_stratum",
                     "b2_tyk2_hlac_allele",
+                    "s6_cluster_size_arm",
+                    "p05_barrier_slab_geometry_mode",
+                    "design_z_divider_arm",
                 ):
                     if entry.get(meta_k) is not None:
                         pooled_hist_for_s0[meta_k] = entry[meta_k]
@@ -1804,6 +1818,9 @@ def run_calibration(
         "s10_hlae_floor_mode",
         "b2_tyk2_recipient_genotype_stratum",
         "b2_tyk2_hlac_allele",
+        "s6_cluster_size_arm",
+        "p05_barrier_slab_geometry_mode",
+        "design_z_divider_arm",
         *stage0_persisted_boolean_flags,
     ):
         if qp_meta_k in input_payload and input_payload[qp_meta_k] is not None:
@@ -1901,6 +1918,9 @@ def run_calibration(
             "s10_hlae_floor_mode",
             "b2_tyk2_recipient_genotype_stratum",
             "b2_tyk2_hlac_allele",
+            "s6_cluster_size_arm",
+            "p05_barrier_slab_geometry_mode",
+            "design_z_divider_arm",
         ):
             if hist_entry.get(meta_k) is not None:
                 pooled_stage0_payload[meta_k] = hist_entry[meta_k]
@@ -2188,6 +2208,31 @@ def run_calibration(
     if len(seen_b2_tyk2_alleles) > 1:
         raise ValueError(
             "Cannot pool distinct b2_tyk2_hlac_allele conditions across calibration batches (IIP-0017; DEC-095)"
+        )
+    seen_s6_arms: set[str] = set()
+    seen_p05_geom_modes: set[str] = set()
+    seen_dz_arms: set[str] = set()
+    for _t3d_entry in [*prev_obs_ledger, current_obs_entry]:
+        _s6_a = _t3d_entry.get("s6_cluster_size_arm")
+        if isinstance(_s6_a, str) and _s6_a.strip():
+            seen_s6_arms.add(_s6_a.strip())
+        _p05_g = _t3d_entry.get("p05_barrier_slab_geometry_mode")
+        if isinstance(_p05_g, str) and _p05_g.strip():
+            seen_p05_geom_modes.add(_p05_g.strip())
+        _dz_a = _t3d_entry.get("design_z_divider_arm")
+        if isinstance(_dz_a, str) and _dz_a.strip():
+            seen_dz_arms.add(_dz_a.strip())
+    if len(seen_s6_arms) > 1:
+        raise ValueError(
+            "Cannot pool distinct s6_cluster_size_arm conditions across calibration batches (IIP-0019; DEC-097)"
+        )
+    if len(seen_p05_geom_modes) > 1:
+        raise ValueError(
+            "Cannot pool distinct p05_barrier_slab_geometry_mode conditions across calibration batches (IIP-0019; DEC-097)"
+        )
+    if len(seen_dz_arms) > 1:
+        raise ValueError(
+            "Cannot pool distinct design_z_divider_arm conditions across calibration batches (IIP-0019; DEC-097)"
         )
     pooled_stage0_payload["batch_id"] = batch_id
     pooled_stage0_payload["verified_ledger_passing_s9_batch_ids"] = list(post_stop_passing_s9_batch_ids)

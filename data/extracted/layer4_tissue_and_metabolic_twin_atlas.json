@@ -18425,6 +18425,1980 @@
           "passes_rheological_and_maxwell_diffusivity_budget": true
         }
       }
+    },
+    "explicit_3d_clumping_and_microbead_h2o2_audit_iip_0019": {
+      "iip_id": "IIP-0019",
+      "decision_id": "DEC-097",
+      "evidence_class": "pure_numpy_explicit_3d_finite_volume_transport_audit_and_stage0_qualification_matrix",
+      "governance_note": "Numerical PDE audit and pre-registered Stage-0 physical qualification matrix only; agreement between 3D and 1D discretizations verifies numerical implementation, not empirical graft survival.",
+      "3d_solver_verification_gate": {
+        "gate_id": "Gate_3D_V",
+        "distinct_from_seed_line_gate_0": true,
+        "planar_1d_o2_collapse_3d_mmhg": 19.912708,
+        "planar_1d_o2_layer4_ref_mmhg": 19.92452,
+        "planar_1d_o2_rel_diff_pct": 0.0593,
+        "planar_1d_h2o2_collapse_3d_uM": 4.026097,
+        "planar_1d_h2o2_layer4_ref_uM": 4.059,
+        "planar_1d_h2o2_rel_diff_pct": 0.8106,
+        "analytic_1d_robin_standoff_max_rel_err_pct": 0.00719,
+        "spherical_120um_closure_reconciliation": {
+          "surface_reference_po2_mmhg": 19.92452,
+          "3d_fv_64cubed_dirichlet_exterior_core_mmhg": 8.6053,
+          "layer4_dirichlet_fixed_surface_upper_bound_core_mmhg": 8.6447,
+          "dirichlet_3d_vs_1d_rel_diff_pct": 0.4558,
+          "layer4_coupled_wigner_seitz_uniform_supply_surface_mmhg": 13.615,
+          "layer4_coupled_wigner_seitz_uniform_supply_core_mmhg": 4.0762,
+          "layer4_coupled_wigner_seitz_gel_only_surface_mmhg": 12.7794,
+          "layer4_coupled_wigner_seitz_gel_only_lower_bound_core_mmhg": 2.1468,
+          "closure_distinction_note": "The 64^3 3D sphere benchmark (8.6053 vs 8.6447 mmHg) verifies 3D Cartesian discretization against Layer-4's fixed-surface Dirichlet upper-bound sphere (p(R)=19.9245 mmHg), whereas external-supply pericellular depletion is governed by the coupled two-zone Wigner-Seitz uniform-supply (4.0762 mmHg core) and gel-only lower-bound (2.1468 mmHg core) closures."
+        },
+        "scale_invariant_mass_balance_formula": "abs(boundary_in + total_gen - total_sink) / max(abs(boundary_in), abs(total_gen), abs(total_sink), 1e-30)",
+        "negative_controls": {
+          "arithmetic_vs_harmonic_heterogeneous_flux_rel_diff": 0.1135,
+          "scaled_vs_fixed_capsule_robin_rel_diff": 0.9,
+          "unconverged_maxiter1_raises_runtime_error": true,
+          "all_3_negative_controls_passed": true
+        }
+      },
+      "rule_s6_3d_lateral_clumping_capsule_and_dose_matching_audit": {
+        "retracted_single_pouch_2500_ieq_cases": [
+          {
+            "areal_loading_ieq_cm2": 2500.0,
+            "cluster_diam_um": 120.0,
+            "square_lattice_pitch_um": 202.39,
+            "hexagonal_lattice_pitch_um": 217.48,
+            "ocr_multiplier": 1.097,
+            "capsule_standoff_um": 45.0,
+            "nominal_strut_phi": 0.0,
+            "realized_strut_phi": 0.0,
+            "k_perf_s_inv": 0.1358,
+            "nx_lateral": 40,
+            "pericellular_interface_po2_mmhg_0p95_to_1p05R": 9.4351,
+            "outer_shell_po2_mmhg_0p85_to_1p04R": 8.3732,
+            "min_core_po2_mmhg": 0.0529,
+            "passes_rule_s6_15mmhg_interface_and_5mmhg_core": false,
+            "passes_conservative_15mmhg_outer_shell_and_5mmhg_core": false,
+            "rel_mass_balance_error": 1.0423648517716535e-13
+          },
+          {
+            "areal_loading_ieq_cm2": 2500.0,
+            "cluster_diam_um": 100.0,
+            "square_lattice_pitch_um": 153.96,
+            "hexagonal_lattice_pitch_um": 165.44,
+            "ocr_multiplier": 1.097,
+            "capsule_standoff_um": 45.0,
+            "nominal_strut_phi": 0.18,
+            "realized_strut_phi": 0.1378,
+            "k_perf_s_inv": 0.1358,
+            "nx_lateral": 28,
+            "pericellular_interface_po2_mmhg_0p95_to_1p05R": 11.2957,
+            "outer_shell_po2_mmhg_0p85_to_1p04R": 10.5405,
+            "min_core_po2_mmhg": 2.7044,
+            "passes_rule_s6_15mmhg_interface_and_5mmhg_core": false,
+            "passes_conservative_15mmhg_outer_shell_and_5mmhg_core": false,
+            "rel_mass_balance_error": 1.4875490262669173e-16
+          },
+          {
+            "areal_loading_ieq_cm2": 2500.0,
+            "cluster_diam_um": 100.0,
+            "square_lattice_pitch_um": 153.96,
+            "hexagonal_lattice_pitch_um": 165.44,
+            "ocr_multiplier": 1.097,
+            "capsule_standoff_um": 45.0,
+            "nominal_strut_phi": 0.18,
+            "realized_strut_phi": 0.2028,
+            "k_perf_s_inv": 0.1358,
+            "nx_lateral": 56,
+            "pericellular_interface_po2_mmhg_0p95_to_1p05R": 11.3694,
+            "outer_shell_po2_mmhg_0p85_to_1p04R": 10.5753,
+            "min_core_po2_mmhg": 2.8093,
+            "passes_rule_s6_15mmhg_interface_and_5mmhg_core": false,
+            "passes_conservative_15mmhg_outer_shell_and_5mmhg_core": false,
+            "rel_mass_balance_error": 1.3373777455413426e-15
+          },
+          {
+            "areal_loading_ieq_cm2": 2500.0,
+            "cluster_diam_um": 100.0,
+            "square_lattice_pitch_um": 153.96,
+            "hexagonal_lattice_pitch_um": 165.44,
+            "ocr_multiplier": 1.097,
+            "capsule_standoff_um": 45.0,
+            "nominal_strut_phi": 0.18,
+            "realized_strut_phi": 0.19,
+            "k_perf_s_inv": 0.045,
+            "nx_lateral": 40,
+            "pericellular_interface_po2_mmhg_0p95_to_1p05R": 7.6257,
+            "outer_shell_po2_mmhg_0p85_to_1p04R": 6.9396,
+            "min_core_po2_mmhg": 0.3251,
+            "passes_rule_s6_15mmhg_interface_and_5mmhg_core": false,
+            "passes_conservative_15mmhg_outer_shell_and_5mmhg_core": false,
+            "rel_mass_balance_error": 1.290461641056404e-13
+          }
+        ],
+        "exact_operator_equivalence_15um_phys_collagen_vs_45um_geleq_max_diff_mmhg": 0.0,
+        "physical_collagen_vs_hydrogel_equivalent_standoff_comparison": {
+          "100um_1500ieq_15um_physical_collagen_45um_hydrogel_equiv": {
+            "areal_loading_ieq_cm2": 1500.0,
+            "cluster_diam_um": 100.0,
+            "slab_thickness_um": 350.0,
+            "lamina_thickness_um": 100.0,
+            "barrier_film_each_um": 0.0,
+            "cell_band_each_um": 125.0,
+            "square_pitch_um": 198.76,
+            "hexagonal_pitch_um": 213.58,
+            "square_edge_gap_um": 98.76,
+            "hexagonal_edge_gap_um": 113.58,
+            "ocr_multiplier": 1.097,
+            "physical_collagen_standoff_um": 15.0,
+            "chronic_hydrogel_equiv_standoff_um": 45.0,
+            "nx_lateral": 40,
+            "nz_vertical": 70,
+            "shift_half_voxel": false,
+            "fv_harmonic_face_mean_mmhg": 17.0804,
+            "fv_harmonic_face_min_mmhg": 12.7988,
+            "inner_surface_voxel_mean_mmhg": 16.3509,
+            "shell_0p95_to_1p05R_mmhg": 17.0613,
+            "shell_0p95_to_1p06R_mmhg": 17.1596,
+            "shell_0p85_to_1p04R_mmhg": 16.2634,
+            "shell_0p85_to_1p06R_mmhg": 16.4613,
+            "min_core_po2_mmhg": 8.1635,
+            "voxel_frac_below_0p5mmhg_pct": 0.0,
+            "rel_mass_balance_error": 4.3491948526483256e-16
+          },
+          "100um_1500ieq_45um_physical_collagen_135um_hydrogel_equiv": {
+            "areal_loading_ieq_cm2": 1500.0,
+            "cluster_diam_um": 100.0,
+            "slab_thickness_um": 350.0,
+            "lamina_thickness_um": 100.0,
+            "barrier_film_each_um": 0.0,
+            "cell_band_each_um": 125.0,
+            "square_pitch_um": 198.76,
+            "hexagonal_pitch_um": 213.58,
+            "square_edge_gap_um": 98.76,
+            "hexagonal_edge_gap_um": 113.58,
+            "ocr_multiplier": 1.097,
+            "physical_collagen_standoff_um": 45.0,
+            "chronic_hydrogel_equiv_standoff_um": 135.0,
+            "nx_lateral": 40,
+            "nz_vertical": 70,
+            "shift_half_voxel": false,
+            "fv_harmonic_face_mean_mmhg": 12.4414,
+            "fv_harmonic_face_min_mmhg": 9.1123,
+            "inner_surface_voxel_mean_mmhg": 11.7175,
+            "shell_0p95_to_1p05R_mmhg": 12.4224,
+            "shell_0p95_to_1p06R_mmhg": 12.5116,
+            "shell_0p85_to_1p04R_mmhg": 11.6278,
+            "shell_0p85_to_1p06R_mmhg": 11.8242,
+            "min_core_po2_mmhg": 4.0062,
+            "voxel_frac_below_0p5mmhg_pct": 0.0,
+            "rel_mass_balance_error": 1.3659683211466926e-13
+          },
+          "80um_1500ieq_45um_physical_collagen_135um_hydrogel_equiv": {
+            "areal_loading_ieq_cm2": 1500.0,
+            "cluster_diam_um": 80.0,
+            "slab_thickness_um": 350.0,
+            "lamina_thickness_um": 100.0,
+            "barrier_film_each_um": 0.0,
+            "cell_band_each_um": 125.0,
+            "square_pitch_um": 142.22,
+            "hexagonal_pitch_um": 152.83,
+            "square_edge_gap_um": 62.22,
+            "hexagonal_edge_gap_um": 72.83,
+            "ocr_multiplier": 1.097,
+            "physical_collagen_standoff_um": 45.0,
+            "chronic_hydrogel_equiv_standoff_um": 135.0,
+            "nx_lateral": 40,
+            "nz_vertical": 70,
+            "shift_half_voxel": false,
+            "fv_harmonic_face_mean_mmhg": 14.2371,
+            "fv_harmonic_face_min_mmhg": 12.3246,
+            "inner_surface_voxel_mean_mmhg": 13.7489,
+            "shell_0p95_to_1p05R_mmhg": 14.2377,
+            "shell_0p95_to_1p06R_mmhg": 14.3067,
+            "shell_0p85_to_1p04R_mmhg": 13.7097,
+            "shell_0p85_to_1p06R_mmhg": 13.8346,
+            "min_core_po2_mmhg": 8.6253,
+            "voxel_frac_below_0p5mmhg_pct": 0.0,
+            "rel_mass_balance_error": 1.4210717472028242e-15
+          },
+          "provenance_note": "Rule S6 baseline models 15.0 um physical fibrous collagen at D_capsule = D_gel_chronic / 3 (equivalent to 45.0 um chronic hydrogel resistance; 17.0804 mmHg harmonic-face / 8.1635 mmHg core PASS). A true 45.0 um physical fibrous collagen capsule equals 135.0 um chronic-hydrogel-equivalent standoff (12.4414 mmHg harmonic-face / 4.0062 mmHg core FAIL on 100 um clusters), consistent with Playbook chronic capsule escalation (>30 um enforcing 80 um clusters [14.2371 / 8.6253 mmHg] or >50 um requiring omental revascularization). Montazeri 2016 (PMID:26970510) tested PVP/H2O2-PLGA microparticles with fibrin in diabetic mouse omentum and does not supply a fixed 45 um pouch capsule parameter."
+        },
+        "cluster_80um_dose_matched_1500ieq_vs_pitch_held_768ieq_comparison": {
+          "dose_matched_80um_1500ieq_142p22um_square_152p83um_hex_pitch": {
+            "areal_loading_ieq_cm2": 1500.0,
+            "cluster_diam_um": 80.0,
+            "slab_thickness_um": 350.0,
+            "lamina_thickness_um": 100.0,
+            "barrier_film_each_um": 0.0,
+            "cell_band_each_um": 125.0,
+            "square_pitch_um": 142.22,
+            "hexagonal_pitch_um": 152.83,
+            "square_edge_gap_um": 62.22,
+            "hexagonal_edge_gap_um": 72.83,
+            "ocr_multiplier": 1.097,
+            "physical_collagen_standoff_um": 15.0,
+            "chronic_hydrogel_equiv_standoff_um": 45.0,
+            "nx_lateral": 40,
+            "nz_vertical": 70,
+            "shift_half_voxel": false,
+            "fv_harmonic_face_mean_mmhg": 18.7707,
+            "fv_harmonic_face_min_mmhg": 16.1611,
+            "inner_surface_voxel_mean_mmhg": 18.2847,
+            "shell_0p95_to_1p05R_mmhg": 18.7682,
+            "shell_0p95_to_1p06R_mmhg": 18.8362,
+            "shell_0p85_to_1p04R_mmhg": 18.2323,
+            "shell_0p85_to_1p06R_mmhg": 18.3606,
+            "min_core_po2_mmhg": 12.9217,
+            "voxel_frac_below_0p5mmhg_pct": 0.0,
+            "rel_mass_balance_error": 1.3867202987629922e-13
+          },
+          "dose_matched_80um_1500ieq_plus10pct_ocr_and_standoff": {
+            "areal_loading_ieq_cm2": 1500.0,
+            "cluster_diam_um": 80.0,
+            "slab_thickness_um": 350.0,
+            "lamina_thickness_um": 100.0,
+            "barrier_film_each_um": 0.0,
+            "cell_band_each_um": 125.0,
+            "square_pitch_um": 142.22,
+            "hexagonal_pitch_um": 152.83,
+            "square_edge_gap_um": 62.22,
+            "hexagonal_edge_gap_um": 72.83,
+            "ocr_multiplier": 1.2067,
+            "physical_collagen_standoff_um": 16.5,
+            "chronic_hydrogel_equiv_standoff_um": 49.5,
+            "nx_lateral": 40,
+            "nz_vertical": 70,
+            "shift_half_voxel": false,
+            "fv_harmonic_face_mean_mmhg": 16.8387,
+            "fv_harmonic_face_min_mmhg": 14.0384,
+            "inner_surface_voxel_mean_mmhg": 16.3057,
+            "shell_0p95_to_1p05R_mmhg": 16.8363,
+            "shell_0p95_to_1p06R_mmhg": 16.9109,
+            "shell_0p85_to_1p04R_mmhg": 16.2495,
+            "shell_0p85_to_1p06R_mmhg": 16.3899,
+            "min_core_po2_mmhg": 10.4593,
+            "voxel_frac_below_0p5mmhg_pct": 0.0,
+            "rel_mass_balance_error": 3.72567303613142e-15
+          },
+          "pitch_held_80um_768ieq_198p76um_square_213p58um_hex_pitch_48p8pct_dose_reduction": {
+            "areal_loading_ieq_cm2": 768.0,
+            "cluster_diam_um": 80.0,
+            "slab_thickness_um": 350.0,
+            "lamina_thickness_um": 100.0,
+            "barrier_film_each_um": 0.0,
+            "cell_band_each_um": 125.0,
+            "square_pitch_um": 198.76,
+            "hexagonal_pitch_um": 213.58,
+            "square_edge_gap_um": 118.76,
+            "hexagonal_edge_gap_um": 133.58,
+            "ocr_multiplier": 1.097,
+            "physical_collagen_standoff_um": 15.0,
+            "chronic_hydrogel_equiv_standoff_um": 45.0,
+            "nx_lateral": 40,
+            "nz_vertical": 70,
+            "shift_half_voxel": false,
+            "fv_harmonic_face_mean_mmhg": 24.1886,
+            "fv_harmonic_face_min_mmhg": 22.3388,
+            "inner_surface_voxel_mean_mmhg": 23.6158,
+            "shell_0p95_to_1p05R_mmhg": 24.1279,
+            "shell_0p95_to_1p06R_mmhg": 24.199,
+            "shell_0p85_to_1p04R_mmhg": 23.6617,
+            "shell_0p85_to_1p06R_mmhg": 23.7777,
+            "min_core_po2_mmhg": 18.551,
+            "voxel_frac_below_0p5mmhg_pct": 0.0,
+            "rel_mass_balance_error": 2.5179928713629497e-15
+          }
+        },
+        "joint_plus10pct_100um_knife_edge_discretization_audit": {
+          "classification": "NUMERICALLY_KNIFE_EDGE_UNRESOLVED",
+          "baseline_nx40_nz70": {
+            "areal_loading_ieq_cm2": 1500.0,
+            "cluster_diam_um": 100.0,
+            "slab_thickness_um": 350.0,
+            "lamina_thickness_um": 100.0,
+            "barrier_film_each_um": 0.0,
+            "cell_band_each_um": 125.0,
+            "square_pitch_um": 198.76,
+            "hexagonal_pitch_um": 213.58,
+            "square_edge_gap_um": 98.76,
+            "hexagonal_edge_gap_um": 113.58,
+            "ocr_multiplier": 1.2067,
+            "physical_collagen_standoff_um": 16.5,
+            "chronic_hydrogel_equiv_standoff_um": 49.5,
+            "nx_lateral": 40,
+            "nz_vertical": 70,
+            "shift_half_voxel": false,
+            "fv_harmonic_face_mean_mmhg": 15.0336,
+            "fv_harmonic_face_min_mmhg": 10.4545,
+            "inner_surface_voxel_mean_mmhg": 14.2369,
+            "shell_0p95_to_1p05R_mmhg": 15.0126,
+            "shell_0p95_to_1p06R_mmhg": 15.1193,
+            "shell_0p85_to_1p04R_mmhg": 14.1414,
+            "shell_0p85_to_1p06R_mmhg": 14.3575,
+            "min_core_po2_mmhg": 5.3853,
+            "voxel_frac_below_0p5mmhg_pct": 0.0,
+            "rel_mass_balance_error": 7.964362164539071e-16
+          },
+          "half_voxel_shifted_nx40_nz70": {
+            "areal_loading_ieq_cm2": 1500.0,
+            "cluster_diam_um": 100.0,
+            "slab_thickness_um": 350.0,
+            "lamina_thickness_um": 100.0,
+            "barrier_film_each_um": 0.0,
+            "cell_band_each_um": 125.0,
+            "square_pitch_um": 198.76,
+            "hexagonal_pitch_um": 213.58,
+            "square_edge_gap_um": 98.76,
+            "hexagonal_edge_gap_um": 113.58,
+            "ocr_multiplier": 1.2067,
+            "physical_collagen_standoff_um": 16.5,
+            "chronic_hydrogel_equiv_standoff_um": 49.5,
+            "nx_lateral": 40,
+            "nz_vertical": 70,
+            "shift_half_voxel": true,
+            "fv_harmonic_face_mean_mmhg": 15.0599,
+            "fv_harmonic_face_min_mmhg": 10.435,
+            "inner_surface_voxel_mean_mmhg": 14.2569,
+            "shell_0p95_to_1p05R_mmhg": 15.1019,
+            "shell_0p95_to_1p06R_mmhg": 15.1405,
+            "shell_0p85_to_1p04R_mmhg": 14.1243,
+            "shell_0p85_to_1p06R_mmhg": 14.2821,
+            "min_core_po2_mmhg": 5.3598,
+            "voxel_frac_below_0p5mmhg_pct": 0.0,
+            "rel_mass_balance_error": 0.0
+          },
+          "finer_nx60_nz105_reference": {
+            "areal_loading_ieq_cm2": 1500.0,
+            "cluster_diam_um": 100.0,
+            "slab_thickness_um": 350.0,
+            "lamina_thickness_um": 100.0,
+            "barrier_film_each_um": 0.0,
+            "cell_band_each_um": 125.0,
+            "square_pitch_um": 198.76,
+            "hexagonal_pitch_um": 213.58,
+            "square_edge_gap_um": 98.76,
+            "hexagonal_edge_gap_um": 113.58,
+            "ocr_multiplier": 1.2067,
+            "physical_standoff_um": 16.5,
+            "gel_equiv_standoff_um": 49.5,
+            "nx_lateral": 60,
+            "nz_vertical": 105,
+            "shift_half_voxel": false,
+            "fv_harmonic_face_mean_mmhg": 15.1371,
+            "fv_harmonic_face_min_mmhg": 10.8307,
+            "inner_surface_voxel_mean_mmhg": 14.6025,
+            "shell_0p95_to_1p05R_mmhg": 15.1229,
+            "shell_0p95_to_1p06R_mmhg": 15.2015,
+            "shell_0p85_to_1p04R_mmhg": 14.2394,
+            "shell_0p85_to_1p06R_mmhg": 14.4376,
+            "min_core_po2_mmhg": 5.2904,
+            "voxel_frac_below_0p5mmhg_pct": 0.0,
+            "rel_mass_balance_error": 5.309089404854251e-16
+          },
+          "note": "At +10% joint OCR and standoff perturbation on 100 um clusters (1,500 IEQ/cm^2), the 0.95R..1.05R shell mean (15.0126 mmHg; +0.0126 mmHg margin above 15.0 mmHg) straddles voxel discretization sensitivity (0.85R..1.04R outer shell = 14.1414 mmHg; planar 3D-vs-1D delta = 0.0118 mmHg) and is classified NUMERICALLY_KNIFE_EDGE_UNRESOLVED, whereas dose-matched 80 um clusters at 142.22 um square pitch retain 16.8387 mmHg harmonic-face / 10.4593 mmHg core."
+        },
+        "ordered_2cluster_periodic_unit_cell_note": "Ordered lattice baseline solves a 2-cluster periodic unit cell (100% pass; never reported as 0/160).",
+        "stochastic_3d_rsa_10_tile_160_cluster_ensemble": {
+          "rng_seed": 20261115,
+          "n_independent_tiles": 10,
+          "clusters_per_tile": 16,
+          "total_clusters_evaluated": 160,
+          "fail_fv_harmonic_face_lt15_count": 64,
+          "fail_fv_harmonic_face_lt15_pct_mean": 40.0,
+          "fail_fv_harmonic_face_lt15_pct_se": 3.51,
+          "fail_shell_0p95_1p05_lt15_count": 70,
+          "fail_shell_0p95_1p05_lt15_pct_mean": 43.75,
+          "fail_shell_0p95_1p06_lt15_count": 67,
+          "fail_shell_0p95_1p06_lt15_pct_mean": 41.88,
+          "fail_shell_0p95_1p06_lt15_pct_se": 3.49,
+          "fail_shell_0p85_1p04_lt15_count": 104,
+          "fail_shell_0p85_1p04_lt15_pct_mean": 65.0,
+          "fail_shell_0p85_1p06_lt15_count": 96,
+          "fail_shell_0p85_1p06_lt15_pct_mean": 60.0,
+          "fail_shell_0p85_1p06_lt15_pct_se": 5.45,
+          "fail_core_lt5_mmhg_count": 32,
+          "fail_core_lt5_mmhg_pct_mean": 20.0,
+          "clusters_with_any_voxel_lt0p5mmhg_severe_anoxia_count": 0,
+          "tiles": [
+            {
+              "tile_index": 0,
+              "fail_count_fv_harmonic_face_lt15": 9,
+              "fail_count_shell_0p95_1p05_lt15": 10,
+              "fail_count_shell_0p95_1p06_lt15": 9,
+              "fail_count_shell_0p85_1p04_lt15": 11,
+              "fail_count_shell_0p85_1p06_lt15": 11,
+              "fail_count_core_lt5": 8,
+              "clusters_with_any_voxel_lt0p5mmhg": 0,
+              "min_fv_harmonic_face_mmhg": 11.7631,
+              "min_shell_0p95_1p06_mmhg": 11.8799,
+              "min_core_mmhg": 2.9344,
+              "tile_side_um": 562.18,
+              "top_centers_um": [
+                [
+                  1.06,
+                  -100.36
+                ],
+                [
+                  111.01,
+                  -62.15
+                ],
+                [
+                  -46.96,
+                  29.65
+                ],
+                [
+                  263.14,
+                  -102.49
+                ],
+                [
+                  58.31,
+                  156.4
+                ],
+                [
+                  140.5,
+                  62.08
+                ],
+                [
+                  230.42,
+                  277.72
+                ],
+                [
+                  -44.74,
+                  -242.2
+                ]
+              ],
+              "bot_centers_um": [
+                [
+                  35.47,
+                  98.83
+                ],
+                [
+                  -217.96,
+                  -68.8
+                ],
+                [
+                  -276.5,
+                  100.98
+                ],
+                [
+                  205.53,
+                  -71.75
+                ],
+                [
+                  -207.72,
+                  214.86
+                ],
+                [
+                  -100.44,
+                  -66.16
+                ],
+                [
+                  -114.56,
+                  154.34
+                ],
+                [
+                  -159.7,
+                  -171.74
+                ]
+              ],
+              "min_top_edge_gap_um": 16.4,
+              "min_bot_edge_gap_um": 11.09
+            },
+            {
+              "tile_index": 1,
+              "fail_count_fv_harmonic_face_lt15": 3,
+              "fail_count_shell_0p95_1p05_lt15": 3,
+              "fail_count_shell_0p95_1p06_lt15": 3,
+              "fail_count_shell_0p85_1p04_lt15": 6,
+              "fail_count_shell_0p85_1p06_lt15": 4,
+              "fail_count_core_lt5": 1,
+              "clusters_with_any_voxel_lt0p5mmhg": 0,
+              "min_fv_harmonic_face_mmhg": 13.3275,
+              "min_shell_0p95_1p06_mmhg": 13.2569,
+              "min_core_mmhg": 4.3693,
+              "tile_side_um": 562.18,
+              "top_centers_um": [
+                [
+                  -176.59,
+                  235.0
+                ],
+                [
+                  -178.67,
+                  0.53
+                ],
+                [
+                  147.32,
+                  214.37
+                ],
+                [
+                  -11.87,
+                  -82.14
+                ],
+                [
+                  -173.29,
+                  -131.62
+                ],
+                [
+                  152.38,
+                  73.55
+                ],
+                [
+                  -42.83,
+                  241.11
+                ],
+                [
+                  262.02,
+                  -178.71
+                ]
+              ],
+              "bot_centers_um": [
+                [
+                  -187.66,
+                  -21.17
+                ],
+                [
+                  -69.24,
+                  85.15
+                ],
+                [
+                  -224.01,
+                  -199.84
+                ],
+                [
+                  52.4,
+                  92.87
+                ],
+                [
+                  -157.95,
+                  202.72
+                ],
+                [
+                  99.87,
+                  237.09
+                ],
+                [
+                  122.38,
+                  -15.59
+                ],
+                [
+                  137.5,
+                  -197.24
+                ]
+              ],
+              "min_top_edge_gap_um": 32.26,
+              "min_bot_edge_gap_um": 21.88
+            },
+            {
+              "tile_index": 2,
+              "fail_count_fv_harmonic_face_lt15": 8,
+              "fail_count_shell_0p95_1p05_lt15": 8,
+              "fail_count_shell_0p95_1p06_lt15": 8,
+              "fail_count_shell_0p85_1p04_lt15": 9,
+              "fail_count_shell_0p85_1p06_lt15": 8,
+              "fail_count_core_lt5": 5,
+              "clusters_with_any_voxel_lt0p5mmhg": 0,
+              "min_fv_harmonic_face_mmhg": 11.9681,
+              "min_shell_0p95_1p06_mmhg": 12.0468,
+              "min_core_mmhg": 3.0256,
+              "tile_side_um": 562.18,
+              "top_centers_um": [
+                [
+                  -129.0,
+                  160.02
+                ],
+                [
+                  19.28,
+                  8.84
+                ],
+                [
+                  -95.59,
+                  -216.89
+                ],
+                [
+                  144.42,
+                  168.49
+                ],
+                [
+                  97.24,
+                  -99.46
+                ],
+                [
+                  -11.5,
+                  132.69
+                ],
+                [
+                  -130.71,
+                  35.76
+                ],
+                [
+                  -262.74,
+                  221.59
+                ]
+              ],
+              "bot_centers_um": [
+                [
+                  176.34,
+                  89.99
+                ],
+                [
+                  -98.07,
+                  -38.4
+                ],
+                [
+                  -205.09,
+                  -63.45
+                ],
+                [
+                  -85.32,
+                  102.03
+                ],
+                [
+                  236.78,
+                  275.19
+                ],
+                [
+                  206.13,
+                  -100.78
+                ],
+                [
+                  2.64,
+                  164.72
+                ],
+                [
+                  115.44,
+                  -223.62
+                ]
+              ],
+              "min_top_edge_gap_um": 20.64,
+              "min_bot_edge_gap_um": 8.01
+            },
+            {
+              "tile_index": 3,
+              "fail_count_fv_harmonic_face_lt15": 5,
+              "fail_count_shell_0p95_1p05_lt15": 6,
+              "fail_count_shell_0p95_1p06_lt15": 5,
+              "fail_count_shell_0p85_1p04_lt15": 8,
+              "fail_count_shell_0p85_1p06_lt15": 6,
+              "fail_count_core_lt5": 2,
+              "clusters_with_any_voxel_lt0p5mmhg": 0,
+              "min_fv_harmonic_face_mmhg": 13.5238,
+              "min_shell_0p95_1p06_mmhg": 13.5362,
+              "min_core_mmhg": 4.6282,
+              "tile_side_um": 562.18,
+              "top_centers_um": [
+                [
+                  183.63,
+                  5.19
+                ],
+                [
+                  -41.78,
+                  -187.21
+                ],
+                [
+                  -150.11,
+                  -240.83
+                ],
+                [
+                  150.48,
+                  136.5
+                ],
+                [
+                  -158.64,
+                  -6.66
+                ],
+                [
+                  153.55,
+                  -187.34
+                ],
+                [
+                  -51.36,
+                  49.39
+                ],
+                [
+                  71.73,
+                  -278.24
+                ]
+              ],
+              "bot_centers_um": [
+                [
+                  -214.33,
+                  -204.71
+                ],
+                [
+                  -126.88,
+                  95.92
+                ],
+                [
+                  -266.06,
+                  47.97
+                ],
+                [
+                  71.97,
+                  4.82
+                ],
+                [
+                  -52.5,
+                  -195.74
+                ],
+                [
+                  81.28,
+                  -266.96
+                ],
+                [
+                  -43.95,
+                  209.55
+                ],
+                [
+                  -32.88,
+                  -63.76
+                ]
+              ],
+              "min_top_edge_gap_um": 20.88,
+              "min_bot_edge_gap_um": 25.28
+            },
+            {
+              "tile_index": 4,
+              "fail_count_fv_harmonic_face_lt15": 7,
+              "fail_count_shell_0p95_1p05_lt15": 8,
+              "fail_count_shell_0p95_1p06_lt15": 8,
+              "fail_count_shell_0p85_1p04_lt15": 11,
+              "fail_count_shell_0p85_1p06_lt15": 11,
+              "fail_count_core_lt5": 3,
+              "clusters_with_any_voxel_lt0p5mmhg": 0,
+              "min_fv_harmonic_face_mmhg": 13.1595,
+              "min_shell_0p95_1p06_mmhg": 13.2745,
+              "min_core_mmhg": 4.265,
+              "tile_side_um": 562.18,
+              "top_centers_um": [
+                [
+                  258.36,
+                  16.03
+                ],
+                [
+                  -270.86,
+                  -99.93
+                ],
+                [
+                  -217.15,
+                  -254.52
+                ],
+                [
+                  46.73,
+                  171.14
+                ],
+                [
+                  -26.0,
+                  -42.85
+                ],
+                [
+                  -17.49,
+                  -144.5
+                ],
+                [
+                  -153.18,
+                  25.52
+                ],
+                [
+                  -54.7,
+                  -279.04
+                ]
+              ],
+              "bot_centers_um": [
+                [
+                  200.21,
+                  52.62
+                ],
+                [
+                  -179.08,
+                  104.63
+                ],
+                [
+                  -5.96,
+                  38.7
+                ],
+                [
+                  -1.96,
+                  179.42
+                ],
+                [
+                  58.39,
+                  -169.95
+                ],
+                [
+                  -215.71,
+                  -58.42
+                ],
+                [
+                  -261.44,
+                  231.07
+                ],
+                [
+                  130.56,
+                  138.96
+                ]
+              ],
+              "min_top_edge_gap_um": 2.0,
+              "min_bot_edge_gap_um": 10.93
+            },
+            {
+              "tile_index": 5,
+              "fail_count_fv_harmonic_face_lt15": 6,
+              "fail_count_shell_0p95_1p05_lt15": 6,
+              "fail_count_shell_0p95_1p06_lt15": 6,
+              "fail_count_shell_0p85_1p04_lt15": 12,
+              "fail_count_shell_0p85_1p06_lt15": 10,
+              "fail_count_core_lt5": 3,
+              "clusters_with_any_voxel_lt0p5mmhg": 0,
+              "min_fv_harmonic_face_mmhg": 12.6556,
+              "min_shell_0p95_1p06_mmhg": 12.6386,
+              "min_core_mmhg": 3.272,
+              "tile_side_um": 562.18,
+              "top_centers_um": [
+                [
+                  260.6,
+                  81.73
+                ],
+                [
+                  79.03,
+                  168.24
+                ],
+                [
+                  -107.98,
+                  279.03
+                ],
+                [
+                  -55.14,
+                  -49.12
+                ],
+                [
+                  -254.29,
+                  -160.79
+                ],
+                [
+                  -125.53,
+                  178.39
+                ],
+                [
+                  122.03,
+                  33.11
+                ],
+                [
+                  -165.05,
+                  2.11
+                ]
+              ],
+              "bot_centers_um": [
+                [
+                  -141.74,
+                  -155.37
+                ],
+                [
+                  -37.15,
+                  -65.14
+                ],
+                [
+                  -44.03,
+                  -187.69
+                ],
+                [
+                  171.05,
+                  244.16
+                ],
+                [
+                  244.47,
+                  -37.57
+                ],
+                [
+                  -227.06,
+                  117.24
+                ],
+                [
+                  150.79,
+                  -118.73
+                ],
+                [
+                  -203.13,
+                  249.97
+                ]
+              ],
+              "min_top_edge_gap_um": 2.16,
+              "min_bot_edge_gap_um": 2.91
+            },
+            {
+              "tile_index": 6,
+              "fail_count_fv_harmonic_face_lt15": 7,
+              "fail_count_shell_0p95_1p05_lt15": 8,
+              "fail_count_shell_0p95_1p06_lt15": 7,
+              "fail_count_shell_0p85_1p04_lt15": 13,
+              "fail_count_shell_0p85_1p06_lt15": 12,
+              "fail_count_core_lt5": 2,
+              "clusters_with_any_voxel_lt0p5mmhg": 0,
+              "min_fv_harmonic_face_mmhg": 12.3304,
+              "min_shell_0p95_1p06_mmhg": 12.3372,
+              "min_core_mmhg": 3.3774,
+              "tile_side_um": 562.18,
+              "top_centers_um": [
+                [
+                  172.88,
+                  213.31
+                ],
+                [
+                  160.22,
+                  -185.77
+                ],
+                [
+                  52.4,
+                  33.76
+                ],
+                [
+                  -13.25,
+                  140.37
+                ],
+                [
+                  -71.23,
+                  -65.63
+                ],
+                [
+                  274.44,
+                  -264.22
+                ],
+                [
+                  -98.59,
+                  275.72
+                ],
+                [
+                  15.36,
+                  -158.37
+                ]
+              ],
+              "bot_centers_um": [
+                [
+                  -280.69,
+                  -187.71
+                ],
+                [
+                  217.24,
+                  -109.32
+                ],
+                [
+                  259.72,
+                  -0.51
+                ],
+                [
+                  -8.76,
+                  154.73
+                ],
+                [
+                  -131.07,
+                  -252.47
+                ],
+                [
+                  -127.0,
+                  156.24
+                ],
+                [
+                  62.87,
+                  39.39
+                ],
+                [
+                  222.54,
+                  255.59
+                ]
+              ],
+              "min_top_edge_gap_um": 25.2,
+              "min_bot_edge_gap_um": 1.35
+            },
+            {
+              "tile_index": 7,
+              "fail_count_fv_harmonic_face_lt15": 5,
+              "fail_count_shell_0p95_1p05_lt15": 6,
+              "fail_count_shell_0p95_1p06_lt15": 6,
+              "fail_count_shell_0p85_1p04_lt15": 10,
+              "fail_count_shell_0p85_1p06_lt15": 10,
+              "fail_count_core_lt5": 1,
+              "clusters_with_any_voxel_lt0p5mmhg": 0,
+              "min_fv_harmonic_face_mmhg": 12.5729,
+              "min_shell_0p95_1p06_mmhg": 12.7039,
+              "min_core_mmhg": 3.7694,
+              "tile_side_um": 562.18,
+              "top_centers_um": [
+                [
+                  105.04,
+                  10.25
+                ],
+                [
+                  -33.88,
+                  -258.19
+                ],
+                [
+                  235.09,
+                  18.59
+                ],
+                [
+                  -208.29,
+                  173.97
+                ],
+                [
+                  -223.33,
+                  -95.66
+                ],
+                [
+                  34.5,
+                  -64.52
+                ],
+                [
+                  108.21,
+                  170.39
+                ],
+                [
+                  246.92,
+                  232.8
+                ]
+              ],
+              "bot_centers_um": [
+                [
+                  -92.56,
+                  -101.81
+                ],
+                [
+                  205.63,
+                  138.35
+                ],
+                [
+                  -120.64,
+                  97.69
+                ],
+                [
+                  2.99,
+                  143.39
+                ],
+                [
+                  39.2,
+                  253.23
+                ],
+                [
+                  66.28,
+                  -132.84
+                ],
+                [
+                  187.56,
+                  -69.5
+                ],
+                [
+                  -267.61,
+                  -116.65
+                ]
+              ],
+              "min_top_edge_gap_um": 2.79,
+              "min_bot_edge_gap_um": 15.66
+            },
+            {
+              "tile_index": 8,
+              "fail_count_fv_harmonic_face_lt15": 8,
+              "fail_count_shell_0p95_1p05_lt15": 8,
+              "fail_count_shell_0p95_1p06_lt15": 8,
+              "fail_count_shell_0p85_1p04_lt15": 12,
+              "fail_count_shell_0p85_1p06_lt15": 12,
+              "fail_count_core_lt5": 4,
+              "clusters_with_any_voxel_lt0p5mmhg": 0,
+              "min_fv_harmonic_face_mmhg": 12.701,
+              "min_shell_0p95_1p06_mmhg": 12.7745,
+              "min_core_mmhg": 3.8959,
+              "tile_side_um": 562.18,
+              "top_centers_um": [
+                [
+                  136.29,
+                  -180.91
+                ],
+                [
+                  76.88,
+                  225.54
+                ],
+                [
+                  -257.44,
+                  243.55
+                ],
+                [
+                  -6.93,
+                  142.76
+                ],
+                [
+                  -110.72,
+                  80.25
+                ],
+                [
+                  71.83,
+                  7.07
+                ],
+                [
+                  -46.04,
+                  -91.13
+                ],
+                [
+                  -157.72,
+                  -96.54
+                ]
+              ],
+              "bot_centers_um": [
+                [
+                  125.38,
+                  -258.28
+                ],
+                [
+                  48.68,
+                  65.02
+                ],
+                [
+                  76.68,
+                  204.17
+                ],
+                [
+                  -138.02,
+                  -63.98
+                ],
+                [
+                  -109.18,
+                  235.89
+                ],
+                [
+                  -197.3,
+                  23.33
+                ],
+                [
+                  24.71,
+                  -140.99
+                ],
+                [
+                  155.93,
+                  18.73
+                ]
+              ],
+              "min_top_edge_gap_um": 11.8,
+              "min_bot_edge_gap_um": 5.53
+            },
+            {
+              "tile_index": 9,
+              "fail_count_fv_harmonic_face_lt15": 6,
+              "fail_count_shell_0p95_1p05_lt15": 7,
+              "fail_count_shell_0p95_1p06_lt15": 7,
+              "fail_count_shell_0p85_1p04_lt15": 12,
+              "fail_count_shell_0p85_1p06_lt15": 12,
+              "fail_count_core_lt5": 3,
+              "clusters_with_any_voxel_lt0p5mmhg": 0,
+              "min_fv_harmonic_face_mmhg": 12.5229,
+              "min_shell_0p95_1p06_mmhg": 12.5721,
+              "min_core_mmhg": 3.5148,
+              "tile_side_um": 562.18,
+              "top_centers_um": [
+                [
+                  229.75,
+                  -143.04
+                ],
+                [
+                  135.39,
+                  88.25
+                ],
+                [
+                  23.7,
+                  192.03
+                ],
+                [
+                  -138.26,
+                  -63.29
+                ],
+                [
+                  -12.86,
+                  -74.9
+                ],
+                [
+                  251.99,
+                  113.34
+                ],
+                [
+                  -32.83,
+                  -189.78
+                ],
+                [
+                  129.06,
+                  -121.24
+                ]
+              ],
+              "bot_centers_um": [
+                [
+                  -174.3,
+                  -130.08
+                ],
+                [
+                  122.58,
+                  138.99
+                ],
+                [
+                  138.11,
+                  -10.62
+                ],
+                [
+                  -13.13,
+                  13.1
+                ],
+                [
+                  1.17,
+                  235.8
+                ],
+                [
+                  56.12,
+                  -125.76
+                ],
+                [
+                  -236.93,
+                  102.31
+                ],
+                [
+                  -108.17,
+                  -272.26
+                ]
+              ],
+              "min_top_edge_gap_um": 3.02,
+              "min_bot_edge_gap_um": 22.0
+            }
+          ]
+        }
+      },
+      "discrete_microbead_h2o2_and_barrier_film_cross_section_audit": {
+        "conserved_patient_cao2_inventory_mg_500k_ieq": 791.5,
+        "areal_cao2_loading_200cm2_single_pouch_mg_cm2": 3.9575,
+        "areal_cao2_loading_333p33cm2_rule_s6_two_pouch_mg_cm2": 2.3745,
+        "reconciled_slab_cross_sections_chronic_o2": {
+          "baseline_350um_no_film_2x125um_bands_100um_cluster": {
+            "areal_loading_ieq_cm2": 1500.0,
+            "cluster_diam_um": 100.0,
+            "slab_thickness_um": 350.0,
+            "lamina_thickness_um": 100.0,
+            "barrier_film_each_um": 0.0,
+            "cell_band_each_um": 125.0,
+            "square_pitch_um": 198.76,
+            "hexagonal_pitch_um": 213.58,
+            "square_edge_gap_um": 98.76,
+            "hexagonal_edge_gap_um": 113.58,
+            "ocr_multiplier": 1.097,
+            "physical_collagen_standoff_um": 15.0,
+            "chronic_hydrogel_equiv_standoff_um": 45.0,
+            "nx_lateral": 40,
+            "nz_vertical": 70,
+            "shift_half_voxel": false,
+            "fv_harmonic_face_mean_mmhg": 17.0804,
+            "fv_harmonic_face_min_mmhg": 12.7988,
+            "inner_surface_voxel_mean_mmhg": 16.3509,
+            "shell_0p95_to_1p05R_mmhg": 17.0613,
+            "shell_0p95_to_1p06R_mmhg": 17.1596,
+            "shell_0p85_to_1p04R_mmhg": 16.2634,
+            "shell_0p85_to_1p06R_mmhg": 16.4613,
+            "min_core_po2_mmhg": 8.1635,
+            "voxel_frac_below_0p5mmhg_pct": 0.0,
+            "rel_mass_balance_error": 4.3491948526483256e-16
+          },
+          "expanded_390um_2x20um_film_2x125um_bands_100um_cluster": {
+            "areal_loading_ieq_cm2": 1500.0,
+            "cluster_diam_um": 100.0,
+            "slab_thickness_um": 390.0,
+            "lamina_thickness_um": 100.0,
+            "barrier_film_each_um": 20.0,
+            "cell_band_each_um": 125.0,
+            "square_pitch_um": 198.76,
+            "hexagonal_pitch_um": 213.58,
+            "square_edge_gap_um": 98.76,
+            "hexagonal_edge_gap_um": 113.58,
+            "ocr_multiplier": 1.097,
+            "physical_collagen_standoff_um": 15.0,
+            "chronic_hydrogel_equiv_standoff_um": 45.0,
+            "nx_lateral": 40,
+            "nz_vertical": 78,
+            "shift_half_voxel": false,
+            "fv_harmonic_face_mean_mmhg": 17.2205,
+            "fv_harmonic_face_min_mmhg": 13.6192,
+            "inner_surface_voxel_mean_mmhg": 16.4958,
+            "shell_0p95_to_1p05R_mmhg": 17.2032,
+            "shell_0p95_to_1p06R_mmhg": 17.3042,
+            "shell_0p85_to_1p04R_mmhg": 16.4096,
+            "shell_0p85_to_1p06R_mmhg": 16.6069,
+            "min_core_po2_mmhg": 8.3638,
+            "voxel_frac_below_0p5mmhg_pct": 0.0,
+            "rel_mass_balance_error": 1.4491995995597093e-15
+          },
+          "fixed_350um_2x20um_film_compressed_2x105um_bands_100um_cluster": {
+            "areal_loading_ieq_cm2": 1500.0,
+            "cluster_diam_um": 100.0,
+            "slab_thickness_um": 350.0,
+            "lamina_thickness_um": 100.0,
+            "barrier_film_each_um": 20.0,
+            "cell_band_each_um": 105.0,
+            "square_pitch_um": 198.76,
+            "hexagonal_pitch_um": 213.58,
+            "square_edge_gap_um": 98.76,
+            "hexagonal_edge_gap_um": 113.58,
+            "ocr_multiplier": 1.097,
+            "physical_collagen_standoff_um": 15.0,
+            "chronic_hydrogel_equiv_standoff_um": 45.0,
+            "nx_lateral": 40,
+            "nz_vertical": 70,
+            "shift_half_voxel": false,
+            "fv_harmonic_face_mean_mmhg": 17.0185,
+            "fv_harmonic_face_min_mmhg": 12.6447,
+            "inner_surface_voxel_mean_mmhg": 16.2878,
+            "shell_0p95_to_1p05R_mmhg": 16.998,
+            "shell_0p95_to_1p06R_mmhg": 17.0969,
+            "shell_0p85_to_1p04R_mmhg": 16.201,
+            "shell_0p85_to_1p06R_mmhg": 16.3986,
+            "min_core_po2_mmhg": 8.0395,
+            "voxel_frac_below_0p5mmhg_pct": 0.0,
+            "rel_mass_balance_error": 1.3050768151966031e-15
+          },
+          "fixed_350um_2x20um_film_compressed_2x105um_bands_80um_cluster": {
+            "areal_loading_ieq_cm2": 1500.0,
+            "cluster_diam_um": 80.0,
+            "slab_thickness_um": 350.0,
+            "lamina_thickness_um": 100.0,
+            "barrier_film_each_um": 20.0,
+            "cell_band_each_um": 105.0,
+            "square_pitch_um": 142.22,
+            "hexagonal_pitch_um": 152.83,
+            "square_edge_gap_um": 62.22,
+            "hexagonal_edge_gap_um": 72.83,
+            "ocr_multiplier": 1.097,
+            "physical_collagen_standoff_um": 15.0,
+            "chronic_hydrogel_equiv_standoff_um": 45.0,
+            "nx_lateral": 40,
+            "nz_vertical": 70,
+            "shift_half_voxel": false,
+            "fv_harmonic_face_mean_mmhg": 18.6736,
+            "fv_harmonic_face_min_mmhg": 15.7101,
+            "inner_surface_voxel_mean_mmhg": 18.1876,
+            "shell_0p95_to_1p05R_mmhg": 18.6703,
+            "shell_0p95_to_1p06R_mmhg": 18.7384,
+            "shell_0p85_to_1p04R_mmhg": 18.1346,
+            "shell_0p85_to_1p06R_mmhg": 18.263,
+            "min_core_po2_mmhg": 12.7202,
+            "voxel_frac_below_0p5mmhg_pct": 0.0,
+            "rel_mass_balance_error": 1.806661719570814e-13
+          },
+          "layout_b_119um_lamina_geometry_exclusion_note": "Inserting 2 x 20 um barrier films inside a fixed 350 um slab around Layout B's 119 um lamina leaves only 95.5 um per cell band, physically excluding undeformed 100 um spheres."
+        },
+        "coupled_acute_o2_and_h2o2_cross_section_solves": [
+          {
+            "case_id": "Baseline_350um_NoFilm_1500IEQ_100umCluster_t18h_thalf68h",
+            "areal_loading_ieq_cm2": 1500.0,
+            "cluster_diam_um": 100.0,
+            "slab_thickness_um": 350.0,
+            "lamina_thickness_um": 100.0,
+            "barrier_film_each_um": 0.0,
+            "cell_band_each_um": 125.0,
+            "t_eval_h": 18.0,
+            "t_half_h": 68.0,
+            "active_catalase_t0_iu_333cm2": 37800.0,
+            "islet_plane_max_h2o2_uM": 26.1639,
+            "cluster_surface_max_h2o2_uM": 10.6274,
+            "fv_harmonic_face_mean_po2_mmhg": 24.0205,
+            "shell_0p95_to_1p05R_po2_mmhg": 24.1485,
+            "min_core_po2_mmhg": 10.7265,
+            "min_slab_po2_mmhg": 10.7265
+          },
+          {
+            "case_id": "Expanded_390um_2x20umFilm_Full18s_1500IEQ_100umCluster_t18h_thalf68h",
+            "areal_loading_ieq_cm2": 1500.0,
+            "cluster_diam_um": 100.0,
+            "slab_thickness_um": 390.0,
+            "lamina_thickness_um": 100.0,
+            "barrier_film_each_um": 20.0,
+            "cell_band_each_um": 125.0,
+            "t_eval_h": 18.0,
+            "t_half_h": 68.0,
+            "active_catalase_t0_iu_333cm2": 73800.0,
+            "islet_plane_max_h2o2_uM": 1.709,
+            "cluster_surface_max_h2o2_uM": 0.8514,
+            "fv_harmonic_face_mean_po2_mmhg": 24.3605,
+            "shell_0p95_to_1p05R_po2_mmhg": 24.4867,
+            "min_core_po2_mmhg": 10.774,
+            "min_slab_po2_mmhg": 10.774
+          },
+          {
+            "case_id": "CompressedBands_350um_2x20umFilm_Full18s_1500IEQ_100umCluster_t18h_thalf68h",
+            "areal_loading_ieq_cm2": 1500.0,
+            "cluster_diam_um": 100.0,
+            "slab_thickness_um": 350.0,
+            "lamina_thickness_um": 100.0,
+            "barrier_film_each_um": 20.0,
+            "cell_band_each_um": 105.0,
+            "t_eval_h": 18.0,
+            "t_half_h": 68.0,
+            "active_catalase_t0_iu_333cm2": 73800.0,
+            "islet_plane_max_h2o2_uM": 1.7054,
+            "cluster_surface_max_h2o2_uM": 1.3205,
+            "fv_harmonic_face_mean_po2_mmhg": 27.1379,
+            "shell_0p95_to_1p05R_po2_mmhg": 27.2812,
+            "min_core_po2_mmhg": 13.5081,
+            "min_slab_po2_mmhg": 13.5081
+          },
+          {
+            "case_id": "CompressedBands_350um_2x20umFilm_Full18s_1500IEQ_80umCluster_t18h_thalf68h",
+            "areal_loading_ieq_cm2": 1500.0,
+            "cluster_diam_um": 80.0,
+            "slab_thickness_um": 350.0,
+            "lamina_thickness_um": 100.0,
+            "barrier_film_each_um": 20.0,
+            "cell_band_each_um": 105.0,
+            "t_eval_h": 18.0,
+            "t_half_h": 68.0,
+            "active_catalase_t0_iu_333cm2": 73800.0,
+            "islet_plane_max_h2o2_uM": 0.8783,
+            "cluster_surface_max_h2o2_uM": 0.4459,
+            "fv_harmonic_face_mean_po2_mmhg": 26.9979,
+            "shell_0p95_to_1p05R_po2_mmhg": 27.085,
+            "min_core_po2_mmhg": 17.0854,
+            "min_slab_po2_mmhg": 17.0854
+          }
+        ],
+        "tier1_2p5uM_target_vs_tier2_5p0uM_ceiling_and_catalase_budget": {
+          "tier1_target_h2o2_uM": 2.5,
+          "tier2_abort_ceiling_h2o2_uM": 5.0,
+          "zero_added_enzyme_split_37800iu_333cm2_t68_max_uM": 0.9931,
+          "zero_added_enzyme_split_37800iu_333cm2_t24_burst_max_uM": 2.815,
+          "zero_added_enzyme_split_50pct_washout_t68_max_uM": 2.8237,
+          "zero_added_enzyme_split_tier1_2p5uM_status_at_24h_or_50pct_washout": "EXCEEDS_2P5UM_TIER1_TARGET_CLEARS_ONLY_5P0UM_TIER2_CEILING",
+          "full_18s_barrier_active_day7_retained_target_iu_333cm2": 73800.0,
+          "full_18s_barrier_active_day7_retained_target_iu_200cm2": 44280.0,
+          "required_post_cure_t0_active_catalase_at_70pct_day7_retention_iu_333cm2": 105428.6,
+          "required_post_cure_t0_active_catalase_at_70pct_day7_retention_iu_200cm2": 63257.1,
+          "min_net_immobilization_yield_pct_at_158300iu_playbook_upper_input": 66.6,
+          "mandatory_full_336h_gate_p05_qualification": true,
+          "accolla_2023_pmid36971050_citation_scope_note": "Accolla 2023 (PMID:36971050) tested a ~17.5 um PDMS coating shell on 106-212 um and 300-600 um CaO2-PDMS beads (reducing burst H2O2 but lowering O2 delivery on larger beads), not a catalase-hydrogel barrier film."
+        },
+        "unconfounded_14_case_2p5um_microbead_sweep": [
+          {
+            "case_id": "LayoutB_115um_Edge_PlaybookNominal_11271IU_t68",
+            "mesh_h_um": 2.5,
+            "d_bead_um": 115.0,
+            "bead_placement": "edge",
+            "t_half_h": 68.0,
+            "catalase_retention_pct": 100.0,
+            "physical_barrier_film_um": 0.0,
+            "barrier_film_k_cat_s_inv": 0.0,
+            "active_catalase_iu_200cm2_ref": 11270.5,
+            "active_catalase_iu_333cm2_rule_s6": 18784.2,
+            "islet_plane_max_h2o2_uM": 9.4155,
+            "islet_plane_mean_h2o2_uM": 3.9188,
+            "global_peak_pore_h2o2_uM": 9.4155,
+            "passes_2p5uM_tier1_target": false,
+            "passes_5p0uM_tier2_ceiling": false,
+            "rel_mass_balance_error": 5.1503196799553305e-12
+          },
+          {
+            "case_id": "LayoutB_115um_Edge_EqualizedToDesignX_22680IU_t68",
+            "mesh_h_um": 2.5,
+            "d_bead_um": 115.0,
+            "bead_placement": "edge",
+            "t_half_h": 68.0,
+            "catalase_retention_pct": 100.0,
+            "physical_barrier_film_um": 0.0,
+            "barrier_film_k_cat_s_inv": 0.0,
+            "active_catalase_iu_200cm2_ref": 22680.0,
+            "active_catalase_iu_333cm2_rule_s6": 37800.0,
+            "islet_plane_max_h2o2_uM": 6.9055,
+            "islet_plane_mean_h2o2_uM": 2.0732,
+            "global_peak_pore_h2o2_uM": 6.9055,
+            "passes_2p5uM_tier1_target": false,
+            "passes_5p0uM_tier2_ceiling": false,
+            "rel_mass_balance_error": 1.234840636497649e-12
+          },
+          {
+            "case_id": "DesignX_50um_Center_NoBarrier_22680IU_t24",
+            "mesh_h_um": 2.5,
+            "d_bead_um": 50.0,
+            "bead_placement": "center",
+            "t_half_h": 24.0,
+            "catalase_retention_pct": 100.0,
+            "physical_barrier_film_um": 0.0,
+            "barrier_film_k_cat_s_inv": 0.0,
+            "active_catalase_iu_200cm2_ref": 22680.0,
+            "active_catalase_iu_333cm2_rule_s6": 37800.0,
+            "islet_plane_max_h2o2_uM": 1.6327,
+            "islet_plane_mean_h2o2_uM": 1.5096,
+            "global_peak_pore_h2o2_uM": 17.8711,
+            "passes_2p5uM_tier1_target": true,
+            "passes_5p0uM_tier2_ceiling": true,
+            "rel_mass_balance_error": 1.1632291150482394e-16
+          },
+          {
+            "case_id": "DesignX_50um_Edge_NoBarrier_22680IU_t68",
+            "mesh_h_um": 2.5,
+            "d_bead_um": 50.0,
+            "bead_placement": "edge",
+            "t_half_h": 68.0,
+            "catalase_retention_pct": 100.0,
+            "physical_barrier_film_um": 0.0,
+            "barrier_film_k_cat_s_inv": 0.0,
+            "active_catalase_iu_200cm2_ref": 22680.0,
+            "active_catalase_iu_333cm2_rule_s6": 37800.0,
+            "islet_plane_max_h2o2_uM": 6.8776,
+            "islet_plane_mean_h2o2_uM": 4.5222,
+            "global_peak_pore_h2o2_uM": 7.1853,
+            "passes_2p5uM_tier1_target": false,
+            "passes_5p0uM_tier2_ceiling": false,
+            "rel_mass_balance_error": 3.6135324715935213e-12
+          },
+          {
+            "case_id": "DesignX_50um_Edge_NoBarrier_22680IU_t24",
+            "mesh_h_um": 2.5,
+            "d_bead_um": 50.0,
+            "bead_placement": "edge",
+            "t_half_h": 24.0,
+            "catalase_retention_pct": 100.0,
+            "physical_barrier_film_um": 0.0,
+            "barrier_film_k_cat_s_inv": 0.0,
+            "active_catalase_iu_200cm2_ref": 22680.0,
+            "active_catalase_iu_333cm2_rule_s6": 37800.0,
+            "islet_plane_max_h2o2_uM": 19.4908,
+            "islet_plane_mean_h2o2_uM": 12.8169,
+            "global_peak_pore_h2o2_uM": 20.3628,
+            "passes_2p5uM_tier1_target": false,
+            "passes_5p0uM_tier2_ceiling": false,
+            "rel_mass_balance_error": 4.652916460192958e-16
+          },
+          {
+            "case_id": "DesignX_50um_Edge_EmptyHydrogelSpacer20um_0IU_Film_22680IU_t24",
+            "mesh_h_um": 2.5,
+            "d_bead_um": 50.0,
+            "bead_placement": "edge",
+            "t_half_h": 24.0,
+            "catalase_retention_pct": 100.0,
+            "physical_barrier_film_um": 20.0,
+            "barrier_film_k_cat_s_inv": 0.0,
+            "active_catalase_iu_200cm2_ref": 22680.0,
+            "active_catalase_iu_333cm2_rule_s6": 37800.0,
+            "islet_plane_max_h2o2_uM": 11.247,
+            "islet_plane_mean_h2o2_uM": 10.6957,
+            "global_peak_pore_h2o2_uM": 20.3668,
+            "passes_2p5uM_tier1_target": false,
+            "passes_5p0uM_tier2_ceiling": false,
+            "rel_mass_balance_error": 2.326458230096479e-16
+          },
+          {
+            "case_id": "DesignX_50um_Edge_EqualTotalInventorySplit_22680IU_t68_100pct",
+            "mesh_h_um": 2.5,
+            "d_bead_um": 50.0,
+            "bead_placement": "edge",
+            "t_half_h": 68.0,
+            "catalase_retention_pct": 100.0,
+            "physical_barrier_film_um": 20.0,
+            "barrier_film_k_cat_s_inv": 13.5,
+            "active_catalase_iu_200cm2_ref": 22680.0,
+            "active_catalase_iu_333cm2_rule_s6": 37800.0,
+            "islet_plane_max_h2o2_uM": 0.9931,
+            "islet_plane_mean_h2o2_uM": 0.9524,
+            "global_peak_pore_h2o2_uM": 12.0464,
+            "passes_2p5uM_tier1_target": true,
+            "passes_5p0uM_tier2_ceiling": true,
+            "rel_mass_balance_error": 7.003279048603679e-12
+          },
+          {
+            "case_id": "DesignX_50um_Edge_EqualTotalInventorySplit_22680IU_t68_50pctWashout",
+            "mesh_h_um": 2.5,
+            "d_bead_um": 50.0,
+            "bead_placement": "edge",
+            "t_half_h": 68.0,
+            "catalase_retention_pct": 50.0,
+            "physical_barrier_film_um": 20.0,
+            "barrier_film_k_cat_s_inv": 6.75,
+            "active_catalase_iu_200cm2_ref": 11340.0,
+            "active_catalase_iu_333cm2_rule_s6": 18900.0,
+            "islet_plane_max_h2o2_uM": 2.8237,
+            "islet_plane_mean_h2o2_uM": 2.7842,
+            "global_peak_pore_h2o2_uM": 16.7375,
+            "passes_2p5uM_tier1_target": false,
+            "passes_5p0uM_tier2_ceiling": true,
+            "rel_mass_balance_error": 1.8119406666435335e-11
+          },
+          {
+            "case_id": "DesignX_50um_Edge_EqualTotalInventorySplit_22680IU_t24_100pct",
+            "mesh_h_um": 2.5,
+            "d_bead_um": 50.0,
+            "bead_placement": "edge",
+            "t_half_h": 24.0,
+            "catalase_retention_pct": 100.0,
+            "physical_barrier_film_um": 20.0,
+            "barrier_film_k_cat_s_inv": 13.5,
+            "active_catalase_iu_200cm2_ref": 22680.0,
+            "active_catalase_iu_333cm2_rule_s6": 37800.0,
+            "islet_plane_max_h2o2_uM": 2.815,
+            "islet_plane_mean_h2o2_uM": 2.6996,
+            "global_peak_pore_h2o2_uM": 34.1413,
+            "passes_2p5uM_tier1_target": false,
+            "passes_5p0uM_tier2_ceiling": true,
+            "rel_mass_balance_error": 1.1632291150482394e-16
+          },
+          {
+            "case_id": "DesignX_50um_Edge_Underdosed5400IU_Film_28080IU_t24_50pctWashout",
+            "mesh_h_um": 2.5,
+            "d_bead_um": 50.0,
+            "bead_placement": "edge",
+            "t_half_h": 24.0,
+            "catalase_retention_pct": 50.0,
+            "physical_barrier_film_um": 20.0,
+            "barrier_film_k_cat_s_inv": 2.25,
+            "active_catalase_iu_200cm2_ref": 14040.0,
+            "active_catalase_iu_333cm2_rule_s6": 23400.0,
+            "islet_plane_max_h2o2_uM": 10.452,
+            "islet_plane_mean_h2o2_uM": 10.0587,
+            "global_peak_pore_h2o2_uM": 27.9326,
+            "passes_2p5uM_tier1_target": false,
+            "passes_5p0uM_tier2_ceiling": false,
+            "rel_mass_balance_error": 0.0
+          },
+          {
+            "case_id": "DesignX_50um_Edge_Full18sBarrier20um_44280IU_t68_100pct",
+            "mesh_h_um": 2.5,
+            "d_bead_um": 50.0,
+            "bead_placement": "edge",
+            "t_half_h": 68.0,
+            "catalase_retention_pct": 100.0,
+            "physical_barrier_film_um": 20.0,
+            "barrier_film_k_cat_s_inv": 18.0,
+            "active_catalase_iu_200cm2_ref": 44280.0,
+            "active_catalase_iu_333cm2_rule_s6": 73800.0,
+            "islet_plane_max_h2o2_uM": 0.3996,
+            "islet_plane_mean_h2o2_uM": 0.3459,
+            "global_peak_pore_h2o2_uM": 6.2332,
+            "passes_2p5uM_tier1_target": true,
+            "passes_5p0uM_tier2_ceiling": true,
+            "rel_mass_balance_error": 1.4053358681936132e-12
+          },
+          {
+            "case_id": "DesignX_50um_Edge_Full18sBarrier20um_44280IU_t24_100pct",
+            "mesh_h_um": 2.5,
+            "d_bead_um": 50.0,
+            "bead_placement": "edge",
+            "t_half_h": 24.0,
+            "catalase_retention_pct": 100.0,
+            "physical_barrier_film_um": 20.0,
+            "barrier_film_k_cat_s_inv": 18.0,
+            "active_catalase_iu_200cm2_ref": 44280.0,
+            "active_catalase_iu_333cm2_rule_s6": 73800.0,
+            "islet_plane_max_h2o2_uM": 1.1324,
+            "islet_plane_mean_h2o2_uM": 0.9804,
+            "global_peak_pore_h2o2_uM": 17.6643,
+            "passes_2p5uM_tier1_target": true,
+            "passes_5p0uM_tier2_ceiling": true,
+            "rel_mass_balance_error": 0.0
+          },
+          {
+            "case_id": "DesignX_50um_Edge_Full18sBarrier20um_22140IU_t68_50pctWashout",
+            "mesh_h_um": 2.5,
+            "d_bead_um": 50.0,
+            "bead_placement": "edge",
+            "t_half_h": 68.0,
+            "catalase_retention_pct": 50.0,
+            "physical_barrier_film_um": 20.0,
+            "barrier_film_k_cat_s_inv": 9.0,
+            "active_catalase_iu_200cm2_ref": 22140.0,
+            "active_catalase_iu_333cm2_rule_s6": 36900.0,
+            "islet_plane_max_h2o2_uM": 1.2713,
+            "islet_plane_mean_h2o2_uM": 1.1962,
+            "global_peak_pore_h2o2_uM": 9.3108,
+            "passes_2p5uM_tier1_target": true,
+            "passes_5p0uM_tier2_ceiling": true,
+            "rel_mass_balance_error": 4.624359185418524e-12
+          },
+          {
+            "case_id": "DesignX_50um_Edge_Full18sBarrier20um_22140IU_t24_50pctWashout",
+            "mesh_h_um": 2.5,
+            "d_bead_um": 50.0,
+            "bead_placement": "edge",
+            "t_half_h": 24.0,
+            "catalase_retention_pct": 50.0,
+            "physical_barrier_film_um": 20.0,
+            "barrier_film_k_cat_s_inv": 9.0,
+            "active_catalase_iu_200cm2_ref": 22140.0,
+            "active_catalase_iu_333cm2_rule_s6": 36900.0,
+            "islet_plane_max_h2o2_uM": 3.6032,
+            "islet_plane_mean_h2o2_uM": 3.3906,
+            "global_peak_pore_h2o2_uM": 26.3875,
+            "passes_2p5uM_tier1_target": false,
+            "passes_5p0uM_tier2_ceiling": true,
+            "rel_mass_balance_error": 1.1632291150482394e-16
+          }
+        ],
+        "mesh_convergence_5p0_to_2p5_to_1p25um_and_gci": {
+          "runs": [
+            {
+              "case_id": "MeshConv_5p0um_DesignX_50um_Edge_Full18sBarrier20um_t24",
+              "mesh_h_um": 5.0,
+              "d_bead_um": 50.0,
+              "bead_placement": "edge",
+              "t_half_h": 24.0,
+              "catalase_retention_pct": 100.0,
+              "physical_barrier_film_um": 20.0,
+              "barrier_film_k_cat_s_inv": 18.0,
+              "active_catalase_iu_200cm2_ref": 44280.0,
+              "active_catalase_iu_333cm2_rule_s6": 73800.0,
+              "islet_plane_max_h2o2_uM": 1.0947,
+              "islet_plane_mean_h2o2_uM": 0.97,
+              "global_peak_pore_h2o2_uM": 16.351,
+              "passes_2p5uM_tier1_target": true,
+              "passes_5p0uM_tier2_ceiling": true,
+              "rel_mass_balance_error": 2.32645823009648e-16
+            },
+            {
+              "case_id": "MeshConv_2p5um_DesignX_50um_Edge_Full18sBarrier20um_t24",
+              "mesh_h_um": 2.5,
+              "d_bead_um": 50.0,
+              "bead_placement": "edge",
+              "t_half_h": 24.0,
+              "catalase_retention_pct": 100.0,
+              "physical_barrier_film_um": 20.0,
+              "barrier_film_k_cat_s_inv": 18.0,
+              "active_catalase_iu_200cm2_ref": 44280.0,
+              "active_catalase_iu_333cm2_rule_s6": 73800.0,
+              "islet_plane_max_h2o2_uM": 1.1324,
+              "islet_plane_mean_h2o2_uM": 0.9804,
+              "global_peak_pore_h2o2_uM": 17.6643,
+              "passes_2p5uM_tier1_target": true,
+              "passes_5p0uM_tier2_ceiling": true,
+              "rel_mass_balance_error": 0.0
+            },
+            {
+              "case_id": "MeshConv_1p25um_DesignX_50um_Edge_Full18sBarrier20um_t24",
+              "mesh_h_um": 1.25,
+              "d_bead_um": 50.0,
+              "bead_placement": "edge",
+              "t_half_h": 24.0,
+              "catalase_retention_pct": 100.0,
+              "physical_barrier_film_um": 20.0,
+              "barrier_film_k_cat_s_inv": 18.0,
+              "active_catalase_iu_200cm2_ref": 44280.0,
+              "active_catalase_iu_333cm2_rule_s6": 73800.0,
+              "islet_plane_max_h2o2_uM": 1.1691,
+              "islet_plane_mean_h2o2_uM": 1.0013,
+              "global_peak_pore_h2o2_uM": 20.2154,
+              "passes_2p5uM_tier1_target": true,
+              "passes_5p0uM_tier2_ceiling": true,
+              "rel_mass_balance_error": 3.347028926475202e-11
+            }
+          ],
+          "rel_step_2p5_to_1p25um_pct": 3.241,
+          "first_order_richardson_extrapolated_max_uM": 1.2058,
+          "conservative_roache_fs3_p1_upper_bound_uM": 1.2792
+        }
+      },
+      "design_z_zero_cao2_140um_two_stage_qualification_matrix": {
+        "two_stage_qualification_required": "Empty-lumen 5-site micro-optode pO2 screening (days 1-14; PMID:38993891) is necessary but insufficient alone; cellular O2 sink drawdown (PMID:24065585, PMID:37476069) requires loaded, closed-state oxygen and perifusion GSIS confirmation (preserving Readout 2 SI >= 3.0 alongside coupon Z-02 SI >= 2.5; PMID:25893782) before retiring CaO2.",
+        "scenarios_plain_hydrogel_vs_exploratory_18pct_dividers": [
+          {
+            "scenario_id": "Acute_Surgical_Pocket_65um_35mmHg_2000IEQ_AcuteGel",
+            "areal_loading_ieq_cm2": 2000.0,
+            "cluster_diam_um": 100.0,
+            "bed_po2_mmhg": 35.0,
+            "standoff_um": 65.0,
+            "plain_hydrogel_0pct_struts": {
+              "pericellular_interface_po2_mmhg": 3.8208,
+              "outer_shell_po2_mmhg": 3.2817,
+              "min_core_po2_mmhg": 0.0467,
+              "voxel_frac_below_0p5mmhg_pct": 20.415,
+              "passes_15mmhg_interface_and_core_gate": false,
+              "passes_15mmhg_outer_shell_and_core_gate": false
+            },
+            "exploratory_18pct_breathable_dividers": {
+              "pericellular_interface_po2_mmhg": 5.7701,
+              "outer_shell_po2_mmhg": 5.0909,
+              "min_core_po2_mmhg": 0.1997,
+              "voxel_frac_below_0p5mmhg_pct": 3.489,
+              "passes_15mmhg_interface_and_core_gate": false,
+              "passes_15mmhg_outer_shell_and_core_gate": false
+            }
+          },
+          {
+            "scenario_id": "Einstein2023_EmptyDeviceLumen_12mmHg_15um_2000IEQ_PMID38993891",
+            "areal_loading_ieq_cm2": 2000.0,
+            "cluster_diam_um": 100.0,
+            "bed_po2_mmhg": 12.0,
+            "standoff_um": 15.0,
+            "plain_hydrogel_0pct_struts": {
+              "pericellular_interface_po2_mmhg": 2.0609,
+              "outer_shell_po2_mmhg": 1.7096,
+              "min_core_po2_mmhg": 0.0082,
+              "voxel_frac_below_0p5mmhg_pct": 44.835,
+              "passes_15mmhg_interface_and_core_gate": false,
+              "passes_15mmhg_outer_shell_and_core_gate": false
+            },
+            "exploratory_18pct_breathable_dividers": {
+              "pericellular_interface_po2_mmhg": 3.0537,
+              "outer_shell_po2_mmhg": 2.5879,
+              "min_core_po2_mmhg": 0.0181,
+              "voxel_frac_below_0p5mmhg_pct": 24.076,
+              "passes_15mmhg_interface_and_core_gate": false,
+              "passes_15mmhg_outer_shell_and_core_gate": false
+            }
+          },
+          {
+            "scenario_id": "Playbook_DesignZ_Z02_Benchmark_25mmHg_15um_1500IEQ_80umCluster_AcuteGel",
+            "areal_loading_ieq_cm2": 1500.0,
+            "cluster_diam_um": 80.0,
+            "bed_po2_mmhg": 25.0,
+            "standoff_um": 15.0,
+            "plain_hydrogel_0pct_struts": {
+              "pericellular_interface_po2_mmhg": 6.1036,
+              "outer_shell_po2_mmhg": 5.634,
+              "min_core_po2_mmhg": 1.6576,
+              "voxel_frac_below_0p5mmhg_pct": 0.0,
+              "passes_15mmhg_interface_and_core_gate": false,
+              "passes_15mmhg_outer_shell_and_core_gate": false
+            },
+            "exploratory_18pct_breathable_dividers": {
+              "pericellular_interface_po2_mmhg": 12.4914,
+              "outer_shell_po2_mmhg": 11.9832,
+              "min_core_po2_mmhg": 7.5254,
+              "voxel_frac_below_0p5mmhg_pct": 0.0,
+              "passes_15mmhg_interface_and_core_gate": false,
+              "passes_15mmhg_outer_shell_and_core_gate": false
+            }
+          },
+          {
+            "scenario_id": "Prepared_Bed_MicroOptode_35mmHg_20um_1500IEQ_AcuteGel",
+            "areal_loading_ieq_cm2": 1500.0,
+            "cluster_diam_um": 100.0,
+            "bed_po2_mmhg": 35.0,
+            "standoff_um": 20.0,
+            "plain_hydrogel_0pct_struts": {
+              "pericellular_interface_po2_mmhg": 14.4605,
+              "outer_shell_po2_mmhg": 13.6915,
+              "min_core_po2_mmhg": 6.7248,
+              "voxel_frac_below_0p5mmhg_pct": 0.0,
+              "passes_15mmhg_interface_and_core_gate": false,
+              "passes_15mmhg_outer_shell_and_core_gate": false
+            },
+            "exploratory_18pct_breathable_dividers": {
+              "pericellular_interface_po2_mmhg": 19.3645,
+              "outer_shell_po2_mmhg": 18.5653,
+              "min_core_po2_mmhg": 11.4547,
+              "voxel_frac_below_0p5mmhg_pct": 0.0,
+              "passes_15mmhg_interface_and_core_gate": true,
+              "passes_15mmhg_outer_shell_and_core_gate": true
+            }
+          },
+          {
+            "scenario_id": "Prepared_Arterialized_Bed_40mmHg_15um_1500IEQ_AcuteGel",
+            "areal_loading_ieq_cm2": 1500.0,
+            "cluster_diam_um": 100.0,
+            "bed_po2_mmhg": 40.0,
+            "standoff_um": 15.0,
+            "plain_hydrogel_0pct_struts": {
+              "pericellular_interface_po2_mmhg": 20.2925,
+              "outer_shell_po2_mmhg": 19.5127,
+              "min_core_po2_mmhg": 12.4044,
+              "voxel_frac_below_0p5mmhg_pct": 0.0,
+              "passes_15mmhg_interface_and_core_gate": true,
+              "passes_15mmhg_outer_shell_and_core_gate": true
+            },
+            "exploratory_18pct_breathable_dividers": {
+              "pericellular_interface_po2_mmhg": 25.4941,
+              "outer_shell_po2_mmhg": 24.6883,
+              "min_core_po2_mmhg": 17.5057,
+              "voxel_frac_below_0p5mmhg_pct": 0.0,
+              "passes_15mmhg_interface_and_core_gate": true,
+              "passes_15mmhg_outer_shell_and_core_gate": true
+            }
+          },
+          {
+            "scenario_id": "Prepared_Arterialized_Bed_40mmHg_15um_2000IEQ_ChronicGel",
+            "areal_loading_ieq_cm2": 2000.0,
+            "cluster_diam_um": 100.0,
+            "bed_po2_mmhg": 40.0,
+            "standoff_um": 15.0,
+            "plain_hydrogel_0pct_struts": {
+              "pericellular_interface_po2_mmhg": 22.2759,
+              "outer_shell_po2_mmhg": 21.5624,
+              "min_core_po2_mmhg": 14.4219,
+              "voxel_frac_below_0p5mmhg_pct": 0.0,
+              "passes_15mmhg_interface_and_core_gate": true,
+              "passes_15mmhg_outer_shell_and_core_gate": true
+            },
+            "exploratory_18pct_breathable_dividers": {
+              "pericellular_interface_po2_mmhg": 27.1014,
+              "outer_shell_po2_mmhg": 26.3688,
+              "min_core_po2_mmhg": 19.1951,
+              "voxel_frac_below_0p5mmhg_pct": 0.0,
+              "passes_15mmhg_interface_and_core_gate": true,
+              "passes_15mmhg_outer_shell_and_core_gate": true
+            }
+          },
+          {
+            "scenario_id": "Chronic_Pruned_Bed_35mmHg_45um_2000IEQ_kperf0p045",
+            "areal_loading_ieq_cm2": 2000.0,
+            "cluster_diam_um": 100.0,
+            "bed_po2_mmhg": 35.0,
+            "standoff_um": 45.0,
+            "plain_hydrogel_0pct_struts": {
+              "pericellular_interface_po2_mmhg": 8.3444,
+              "outer_shell_po2_mmhg": 7.6244,
+              "min_core_po2_mmhg": 0.9439,
+              "voxel_frac_below_0p5mmhg_pct": 0.0,
+              "passes_15mmhg_interface_and_core_gate": false,
+              "passes_15mmhg_outer_shell_and_core_gate": false
+            },
+            "exploratory_18pct_breathable_dividers": {
+              "pericellular_interface_po2_mmhg": 11.5937,
+              "outer_shell_po2_mmhg": 10.8221,
+              "min_core_po2_mmhg": 3.4202,
+              "voxel_frac_below_0p5mmhg_pct": 0.0,
+              "passes_15mmhg_interface_and_core_gate": false,
+              "passes_15mmhg_outer_shell_and_core_gate": false
+            }
+          },
+          {
+            "scenario_id": "Chronic_RuleS6_Derated_35mmHg_45um_1500IEQ_NominalPerf",
+            "areal_loading_ieq_cm2": 1500.0,
+            "cluster_diam_um": 100.0,
+            "bed_po2_mmhg": 35.0,
+            "standoff_um": 45.0,
+            "plain_hydrogel_0pct_struts": {
+              "pericellular_interface_po2_mmhg": 16.1251,
+              "outer_shell_po2_mmhg": 15.3421,
+              "min_core_po2_mmhg": 7.6988,
+              "voxel_frac_below_0p5mmhg_pct": 0.0,
+              "passes_15mmhg_interface_and_core_gate": true,
+              "passes_15mmhg_outer_shell_and_core_gate": true
+            },
+            "exploratory_18pct_breathable_dividers": {
+              "pericellular_interface_po2_mmhg": 17.7071,
+              "outer_shell_po2_mmhg": 16.9108,
+              "min_core_po2_mmhg": 9.2124,
+              "voxel_frac_below_0p5mmhg_pct": 0.0,
+              "passes_15mmhg_interface_and_core_gate": true,
+              "passes_15mmhg_outer_shell_and_core_gate": true
+            }
+          }
+        ]
+      },
+      "conservative_engineering_margin_vs_empirical_injury_framing": {
+        "cluster_core_5mmhg_margin_note": "Core pO2 >= 5.0 mmHg and interface >= 15.0 mmHg are conservative product engineering gates above classical anoxic necrosis (~0.07 mmHg, PMID:21693022; Layer-4 0.5 mmHg floor; 0/160 RSA clusters < 0.5 mmHg) and within viable low-oxygen graft staining regimes (<10 mmHg pimonidazole, PMID:21788581).",
+        "extracellular_h2o2_2p5_and_5p0uM_margin_note": "Extracellular H2O2 <= 2.5 uM (Tier-1 target) and <= 5.0 uM (Tier-2 ceiling) are conservative chronic redox/maturation engineering gates well below acute intact-islet cell-death thresholds (<50 uM bolus non-lethal short-term, PMID:27729543; low beta catalase vulnerability, PMID:8720919; SC-islet maturity and oxidative-stress context, PMID:35241836, PMID:20124731, PMID:27872147).",
+        "supporting_transport_and_biomaterial_pmids": [
+          "PMID:24582600",
+          "PMID:26837777",
+          "PMID:21693022",
+          "PMID:22371586",
+          "PMID:35743287",
+          "PMID:26970510",
+          "PMID:37476069",
+          "PMID:35241836",
+          "PMID:8720919",
+          "PMID:27729543",
+          "PMID:36971050",
+          "PMID:38993891",
+          "PMID:25893782",
+          "PMID:21788581",
+          "PMID:24065585",
+          "PMID:20124731",
+          "PMID:27872147"
+        ]
+      }
     }
   },
   "part_b_24h_trihormonal_paracrine_and_whole_body_metabolic_ode": {

@@ -33,7 +33,10 @@
     "s10_qualified_lot_id",
     "s10_hlae_floor_mode",
     "b2_tyk2_recipient_genotype_stratum",
-    "b2_tyk2_hlac_allele"
+    "b2_tyk2_hlac_allele",
+    "s6_cluster_size_arm",
+    "p05_barrier_slab_geometry_mode",
+    "design_z_divider_arm"
   ],
   "boolean_policy_keys": [
     "require_full_5endpoint_s9_panel",
@@ -83,7 +86,12 @@
     "b2_tyk2_hlac_blockade_abrogation_verified",
     "l3_multimir_pre_aav6_2x2_transient_kd_falsifier_cleared",
     "l3_multimir_low_ifn_and_resting_shield_retention_verified",
-    "l3_multimir_arm6_c341s_hlac_and_dq2_dq8_peptide_screen_cleared"
+    "l3_multimir_arm6_c341s_hlac_and_dq2_dq8_peptide_screen_cleared",
+    "s6_dose_matched_1500_ieq_verified",
+    "s6_divider_iso10993_leachables_cleared",
+    "p05_full_336h_coupled_o2_h2o2_ca_ph_qualified",
+    "design_z_empty_lumen_14d_persistence_verified",
+    "design_z_loaded_closed_state_confirmed"
   ],
   "endpoints": [
     {
@@ -2246,6 +2254,160 @@
       "default_se": 1.5,
       "minimum_se": 0.001,
       "unit": "matched_absolute_perifusion_insulin_output_retention_percentage_of_arm1"
+    },
+    {
+      "endpoint_id": "stage0_s6_p10_nearest_neighbor_edge_gap_um",
+      "meanKey": "obs_s6_p10_nearest_neighbor_edge_gap_um",
+      "seKey": "obs_s6_p10_nearest_neighbor_edge_gap_se",
+      "min": 0.0,
+      "max": 500.0,
+      "se_required": false,
+      "default_se": 2.0,
+      "minimum_se": 0.001,
+      "unit": "tenth_percentile_nearest_neighbor_cluster_edge_to_edge_gap_micrometers"
+    },
+    {
+      "endpoint_id": "stage0_s6_cluster_diam_p90_um",
+      "meanKey": "obs_s6_cluster_diam_p90_um",
+      "seKey": "obs_s6_cluster_diam_p90_se",
+      "min": 20.0,
+      "max": 300.0,
+      "se_required": false,
+      "default_se": 2.0,
+      "minimum_se": 0.001,
+      "unit": "ninetieth_percentile_assembled_sc_islet_cluster_diameter_micrometers"
+    },
+    {
+      "endpoint_id": "stage0_s6_divider_14d_hydrated_po2_retention_pct",
+      "meanKey": "obs_s6_divider_14d_hydrated_po2_retention_pct",
+      "seKey": "obs_s6_divider_14d_hydrated_po2_retention_se",
+      "min": 0.0,
+      "max": 150.0,
+      "se_required": false,
+      "default_se": 1.5,
+      "minimum_se": 0.001,
+      "unit": "day14_37c_hydrated_breathable_divider_oxygen_permeability_retention_percentage"
+    },
+    {
+      "endpoint_id": "stage0_s6_hydrogel_shear_modulus_gprime_pa",
+      "meanKey": "obs_s6_hydrogel_shear_modulus_gprime_pa",
+      "seKey": "obs_s6_hydrogel_shear_modulus_gprime_se",
+      "min": 10.0,
+      "max": 20000.0,
+      "se_required": false,
+      "default_se": 25.0,
+      "minimum_se": 0.001,
+      "unit": "pericellular_hydrogel_storage_shear_modulus_g_prime_pascals"
+    },
+    {
+      "endpoint_id": "stage0_p05_microbead_volume_d99_um",
+      "meanKey": "obs_p05_microbead_volume_d99_um",
+      "seKey": "obs_p05_microbead_volume_d99_se",
+      "min": 1.0,
+      "max": 600.0,
+      "se_required": false,
+      "default_se": 1.5,
+      "minimum_se": 0.001,
+      "unit": "laser_diffraction_volume_weighted_d99_pdms_cao2_microbead_diameter_micrometers"
+    },
+    {
+      "endpoint_id": "stage0_p05_catalase_barrier_film_um",
+      "meanKey": "obs_p05_catalase_barrier_film_um",
+      "seKey": "obs_p05_catalase_barrier_film_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 0.001,
+      "unit": "cell_free_immobilized_catalase_barrier_film_thickness_per_side_micrometers"
+    },
+    {
+      "endpoint_id": "stage0_p05_islet_plane_h2o2_max_uM",
+      "meanKey": "obs_p05_islet_plane_h2o2_max_uM",
+      "seKey": "obs_p05_islet_plane_h2o2_max_se",
+      "min": 0.0,
+      "max": 200.0,
+      "se_required": false,
+      "default_se": 0.15,
+      "minimum_se": 0.001,
+      "unit": "interstitial_islet_plane_peak_hydrogen_peroxide_micromolar"
+    },
+    {
+      "endpoint_id": "stage0_p05_day7_catalase_retention_pct",
+      "meanKey": "obs_p05_day7_catalase_retention_pct",
+      "seKey": "obs_p05_day7_catalase_retention_se",
+      "min": 0.0,
+      "max": 150.0,
+      "se_required": false,
+      "default_se": 1.5,
+      "minimum_se": 0.001,
+      "unit": "day7_dynamic_washout_active_film_catalase_retention_percentage"
+    },
+    {
+      "endpoint_id": "stage0_p05_336h_retained_catalase_iu_333cm2",
+      "meanKey": "obs_p05_336h_retained_catalase_iu_333cm2",
+      "seKey": "obs_p05_336h_retained_catalase_iu_333cm2_se",
+      "min": 0.0,
+      "max": 300000.0,
+      "se_required": false,
+      "default_se": 500.0,
+      "minimum_se": 0.001,
+      "unit": "retained_active_catalase_inventory_across_333p33cm2_two_pouch_bridge_iu"
+    },
+    {
+      "endpoint_id": "stage0_design_z_empty_lumen_5site_min_po2_mmhg",
+      "meanKey": "obs_design_z_empty_lumen_5site_min_po2_mmhg",
+      "seKey": "obs_design_z_empty_lumen_5site_min_po2_se",
+      "min": 0.0,
+      "max": 120.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 0.001,
+      "unit": "five_position_minimum_empty_prevascularized_lumen_phosphorescence_po2_mmhg"
+    },
+    {
+      "endpoint_id": "stage0_design_z_vessel_standoff_p90_um",
+      "meanKey": "obs_design_z_vessel_standoff_p90_um",
+      "seKey": "obs_design_z_vessel_standoff_p90_se",
+      "min": 0.0,
+      "max": 250.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 0.001,
+      "unit": "ninetieth_percentile_nearest_perfused_capillary_to_slab_standoff_micrometers"
+    },
+    {
+      "endpoint_id": "stage0_design_z_loaded_surface_po2_mmhg",
+      "meanKey": "obs_design_z_loaded_surface_po2_mmhg",
+      "seKey": "obs_design_z_loaded_surface_po2_se",
+      "min": 0.0,
+      "max": 120.0,
+      "se_required": false,
+      "default_se": 0.75,
+      "minimum_se": 0.001,
+      "unit": "loaded_closed_state_pericellular_cluster_surface_po2_mmhg"
+    },
+    {
+      "endpoint_id": "stage0_design_z_loaded_core_po2_mmhg",
+      "meanKey": "obs_design_z_loaded_core_po2_mmhg",
+      "seKey": "obs_design_z_loaded_core_po2_se",
+      "min": 0.0,
+      "max": 120.0,
+      "se_required": false,
+      "default_se": 0.5,
+      "minimum_se": 0.001,
+      "unit": "loaded_closed_state_minimum_cluster_core_po2_mmhg"
+    },
+    {
+      "endpoint_id": "stage0_design_z_loaded_perifusion_gsis_si",
+      "meanKey": "obs_design_z_loaded_perifusion_gsis_si",
+      "seKey": "obs_design_z_loaded_perifusion_gsis_se",
+      "min": 0.1,
+      "max": 50.0,
+      "se_required": false,
+      "default_se": 0.15,
+      "minimum_se": 0.001,
+      "unit": "loaded_closed_state_dynamic_perifusion_gsis_stimulation_index_preserving_readout2_ge3"
     }
   ]
 }

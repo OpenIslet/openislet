@@ -514,5 +514,35 @@
       "quantitative_splicing_rnai_shield_and_matched_gsis_bounds": "Requires explicit SEs and one-sided 95% lower bounds clearing obs_l3_multimir_spliced_fraction >= 0.85, obs_l3_multimir_5prime_seed_fidelity_pct >= 85.0%, obs_l3_multimir_ago2_mir375_retention_pct >= 90.0%, obs_l3_multimir_shield_protein_retention_pct >= 85.0%, obs_l3_multimir_min_receptor_knockdown_pct >= 70.0%, and obs_l3_multimir_matched_gsis_output_retention_pct >= 85.0%, alongside l3_multimir_low_ifn_and_resting_shield_retention_verified=True (GY-001).",
       "inherited_splice_s9_and_background_specific_peptide_gates": "Inherits all IIP-0015 two-strand UMI/IVT-recovery/TOST/dsRNA challenger gates (>=3,689 effective UMIs, 0 aberrant chimeras), all existing S9 safety gates (>=62,958 duplex UMIs for TP53/PPM1D/BCOR and CAST-Seq; >=299,573,228 effective MCB clonogenic trials), Arm-2 post-adjunct-depletion rechallenge, and requires l3_multimir_arm6_c341s_hlac_and_dq2_dq8_peptide_screen_cleared=True on ARM6 across host HLA-DQ2/DQ8 (GY-010) and retained HLA-C in Design B (GY-005)."
     }
+  },
+  "transport_3d_clumping_h2o2_and_design_z_gate_iip_0019": {
+    "gate_id": "STAGE0_EXPLICIT_3D_CLUMPING_MICROBEAD_H2O2_AND_DESIGN_Z_QUALIFICATION_GATE_IIP_0019",
+    "decision_id": "DEC-097",
+    "contribution_id": "IIP-0019",
+    "applies_to_shared_pouch_transport_layer": "Layer 4 shared pouch/scaffold microenvironment across Designs A, B, X, and conditional wildcard Design Z (zero genetic construct or Layer-1 stack changes)",
+    "primary_citations": [
+      "PMID:24582600",
+      "PMID:26837777",
+      "PMID:21693022",
+      "PMID:22371586",
+      "PMID:35743287",
+      "PMID:26970510",
+      "PMID:37476069",
+      "PMID:35241836",
+      "PMID:8720919",
+      "PMID:27729543",
+      "PMID:36971050",
+      "PMID:38993891",
+      "PMID:25893782",
+      "PMID:21788581",
+      "PMID:24065585",
+      "PMID:20124731",
+      "PMID:27872147"
+    ],
+    "mandatory_qualification_guards": {
+      "rule_s6_lateral_spacing_and_dose_matched_cluster_cap": "Requires s6_cluster_size_arm in {DXB_100UM_1500IEQ, DOSE_MATCHED_80UM_1500IEQ, DERATED_80UM_768IEQ}, s6_dose_matched_1500_ieq_verified=True (holding DERATED_80UM_768IEQ at 198.76/213.58 um pitch because 80 um at unchanged pitch cuts areal dose by 48.8% unless multi-pouch area expansion is verified; DOSE_MATCHED_80UM_1500IEQ requires 142.22 um square / 152.83 um hexagonal pitch), and explicit SEs clearing obs_s6_cluster_diam_p90_um upper95 <= 100.0 um (or <= 80.0 um) and obs_s6_p10_nearest_neighbor_edge_gap_um lower95 >= 85.0 um (or >= 55.0 um). Optional breathable dividers remain gated on s6_divider_iso10993_leachables_cleared=True, obs_s6_divider_14d_hydrated_po2_retention_pct lower95 >= 90.0%, and obs_s6_hydrogel_shear_modulus_gprime_pa upper95 <= 1000.0 Pa.",
+      "gate_p05_wet_sieved_microbead_and_catalase_barrier_film": "Requires p05_barrier_slab_geometry_mode in {EXPANDED_390UM_2X125UM_BANDS, FIXED_350UM_2X105UM_BANDS} (reconciling cross-section band clearance against Layout B's 119 um lamina), p05_full_336h_coupled_o2_h2o2_ca_ph_qualified=True (preserving full 336-h Gate P05 coupled O2 + H2O2 + Ca2+ + pH qualification), and explicit SEs clearing obs_p05_microbead_volume_d99_um upper95 <= 50.0 um, obs_p05_catalase_barrier_film_um lower95 >= 20.0 um, obs_p05_day7_catalase_retention_pct lower95 >= 70.0%, obs_p05_336h_retained_catalase_iu_333cm2 lower95 >= 73800.0 IU (~105,429 IU post-cure t=0 active load at 70% retention), and obs_p05_islet_plane_h2o2_max_uM upper95 <= 2.5 uM Tier-1 target (distinguishing (2.5, 5.0] uM Tier-1 hold from > 5.0 uM Tier-2 abort ceiling).",
+      "design_z_two_stage_empty_lumen_plus_loaded_closed_state": "Requires design_z_divider_arm in {PLAIN_HYDROGEL_140UM, EXPLORATORY_18PCT_DIVIDER_140UM} and strictly enforces a two-stage gate: Stage 1 (exclusion screen only) requires design_z_empty_lumen_14d_persistence_verified=True and explicit SEs clearing obs_design_z_empty_lumen_5site_min_po2_mmhg lower95 >= 40.0 mmHg with obs_design_z_vessel_standoff_p90_um upper95 <= 15.0 um in plain hydrogel (>= 35.0 mmHg and <= 20.0 um only with QC-cleared dividers); Stage 2 requires design_z_loaded_closed_state_confirmed=True and explicit SEs clearing obs_design_z_loaded_surface_po2_mmhg lower95 >= 15.0 mmHg, obs_design_z_loaded_core_po2_mmhg lower95 >= 5.0 mmHg, and obs_design_z_loaded_perifusion_gsis_si lower95 >= 3.0 (preserving Readout 2 SI >= 3.0). Empty-lumen clearance alone always holds on HOLD_DESIGN_Z_EMPTY_LUMEN_ONLY_REQUIRES_LOADED_CLOSED_STATE_CONFIRMATION."
+    }
   }
 }

@@ -3069,11 +3069,11 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
         == 0.90
     )
 
-    # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (44 persisted boolean flags, 48 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
-    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 44
+    # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (49 persisted boolean flags, 53 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
+    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 49
     assert "require_full_5endpoint_s9_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
     assert "require_full_7metric_combined_stress_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
-    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 48
+    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 53
     assert "5.71 mmHg at 100 um clusters with matched D_caps = D_gel" in film_limit["surgical_mitigation"]
 
     batch1_r7s2 = {
@@ -3156,7 +3156,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     # - R7S3-F02: Both wetlab_contract.evaluate_stage0_decision_tree and ingest_wetlab_results.evaluate_stage0_decision_tree reject non-boolean policy values
     from scripts import wetlab_contract as wc_mod
 
-    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 48
+    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 53
     for bkey in wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS:
         for bad_val in ("false", "False", 0, "true", "True", 1):
             for eval_fn in (wc_mod.evaluate_stage0_decision_tree, wetlab.evaluate_stage0_decision_tree):
@@ -5018,6 +5018,100 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
         assert "knockin_splice_challenger_arm" in str(_exc_mm)
     _r9_s2_bp_md_18 = (ROOT / "ISLET-1-BLUEPRINT.md").read_text(encoding="utf-8")
     assert "IIP-0018" in _r9_s2_bp_md_18 and "DEC-096" in _r9_s2_bp_md_18
+
+    # IIP-0019 / DEC-097: Layer-4 explicit-3D transport audit + Stage-0 S6 / P05 / Design-Z fail-closed qualification gates
+    _l4_iip19 = l4["part_a_336h_spatial_reaction_diffusion_pouch_pde"]["explicit_3d_clumping_and_microbead_h2o2_audit_iip_0019"]
+    assert _l4_iip19["iip_id"] == "IIP-0019" and _l4_iip19["decision_id"] == "DEC-097"
+    _g3dv = _l4_iip19["3d_solver_verification_gate"]
+    assert _g3dv["gate_id"] == "Gate_3D_V" and _g3dv["distinct_from_seed_line_gate_0"] is True
+    assert _g3dv["planar_1d_o2_rel_diff_pct"] < 0.5 and _g3dv["planar_1d_h2o2_rel_diff_pct"] < 1.0
+    assert _g3dv["spherical_120um_closure_reconciliation"]["dirichlet_3d_vs_1d_rel_diff_pct"] < 0.5
+    assert abs(_g3dv["spherical_120um_closure_reconciliation"]["layer4_coupled_wigner_seitz_uniform_supply_core_mmhg"] - 4.0762) < 1e-3
+    assert abs(_g3dv["spherical_120um_closure_reconciliation"]["layer4_coupled_wigner_seitz_gel_only_lower_bound_core_mmhg"] - 2.1468) < 1e-3
+    assert _g3dv["negative_controls"]["all_3_negative_controls_passed"] is True
+    _s6_3d = _l4_iip19["rule_s6_3d_lateral_clumping_capsule_and_dose_matching_audit"]
+    assert _s6_3d["exact_operator_equivalence_15um_phys_collagen_vs_45um_geleq_max_diff_mmhg"] == 0.0
+    assert _s6_3d["physical_collagen_vs_hydrogel_equivalent_standoff_comparison"]["100um_1500ieq_15um_physical_collagen_45um_hydrogel_equiv"]["fv_harmonic_face_mean_mmhg"] > 17.0
+    assert _s6_3d["physical_collagen_vs_hydrogel_equivalent_standoff_comparison"]["100um_1500ieq_45um_physical_collagen_135um_hydrogel_equiv"]["fv_harmonic_face_mean_mmhg"] < 13.0
+    assert _s6_3d["cluster_80um_dose_matched_1500ieq_vs_pitch_held_768ieq_comparison"]["dose_matched_80um_1500ieq_142p22um_square_152p83um_hex_pitch"]["square_pitch_um"] == 142.22
+    assert _s6_3d["joint_plus10pct_100um_knife_edge_discretization_audit"]["classification"] == "NUMERICALLY_KNIFE_EDGE_UNRESOLVED"
+    _rsa_ens = _s6_3d["stochastic_3d_rsa_10_tile_160_cluster_ensemble"]
+    assert len(_rsa_ens["tiles"]) == 10 and _rsa_ens["fail_shell_0p95_1p06_lt15_count"] == 67 and _rsa_ens["clusters_with_any_voxel_lt0p5mmhg_severe_anoxia_count"] == 0
+    _h2o2_blk = _l4_iip19["discrete_microbead_h2o2_and_barrier_film_cross_section_audit"]
+    assert _h2o2_blk["tier1_2p5uM_target_vs_tier2_5p0uM_ceiling_and_catalase_budget"]["zero_added_enzyme_split_tier1_2p5uM_status_at_24h_or_50pct_washout"] == "EXCEEDS_2P5UM_TIER1_TARGET_CLEARS_ONLY_5P0UM_TIER2_CEILING"
+    assert abs(_h2o2_blk["tier1_2p5uM_target_vs_tier2_5p0uM_ceiling_and_catalase_budget"]["required_post_cure_t0_active_catalase_at_70pct_day7_retention_iu_333cm2"] - 105428.6) < 0.2
+
+    _t3d_valid = {
+        **full_ext_payload,
+        "s6_cluster_size_arm": "DOSE_MATCHED_80UM_1500IEQ",
+        "s6_dose_matched_1500_ieq_verified": True,
+        "obs_s6_p10_nearest_neighbor_edge_gap_um": 62.0,
+        "obs_s6_p10_nearest_neighbor_edge_gap_se": 1.5,
+        "obs_s6_cluster_diam_p90_um": 76.0,
+        "obs_s6_cluster_diam_p90_se": 1.0,
+        "p05_barrier_slab_geometry_mode": "EXPANDED_390UM_2X125UM_BANDS",
+        "p05_full_336h_coupled_o2_h2o2_ca_ph_qualified": True,
+        "obs_p05_microbead_volume_d99_um": 45.0,
+        "obs_p05_microbead_volume_d99_se": 1.0,
+        "obs_p05_catalase_barrier_film_um": 22.0,
+        "obs_p05_catalase_barrier_film_se": 0.5,
+        "obs_p05_islet_plane_h2o2_max_uM": 1.4,
+        "obs_p05_islet_plane_h2o2_max_se": 0.15,
+        "obs_p05_day7_catalase_retention_pct": 78.0,
+        "obs_p05_day7_catalase_retention_se": 1.5,
+        "obs_p05_336h_retained_catalase_iu_333cm2": 78000.0,
+        "obs_p05_336h_retained_catalase_iu_333cm2_se": 500.0,
+        "design_z_divider_arm": "PLAIN_HYDROGEL_140UM",
+        "design_z_empty_lumen_14d_persistence_verified": True,
+        "obs_design_z_empty_lumen_5site_min_po2_mmhg": 43.0,
+        "obs_design_z_empty_lumen_5site_min_po2_se": 1.0,
+        "obs_design_z_vessel_standoff_p90_um": 12.0,
+        "obs_design_z_vessel_standoff_p90_se": 0.5,
+        "design_z_loaded_closed_state_confirmed": True,
+        "obs_design_z_loaded_surface_po2_mmhg": 19.5,
+        "obs_design_z_loaded_surface_po2_se": 0.5,
+        "obs_design_z_loaded_core_po2_mmhg": 11.2,
+        "obs_design_z_loaded_core_po2_se": 0.4,
+        "obs_design_z_loaded_perifusion_gsis_si": 3.4,
+        "obs_design_z_loaded_perifusion_gsis_se": 0.1,
+    }
+    _dt_t3d_ok = wetlab.evaluate_stage0_decision_tree(_t3d_valid)
+    assert _dt_t3d_ok["resolved_architecture_assignments"]["transport_3d_clumping_h2o2_and_design_z_evaluation"]["gate_pass"] is True
+    assert _dt_t3d_ok["lot_release_readiness_tier"] == "READY_FOR_ENCAPSULATION_COMPLETE_STAGE0_EVIDENCE"
+
+    assert wetlab.evaluate_stage0_decision_tree({**_t3d_valid, "s6_cluster_size_arm": "DERATED_80UM_768IEQ"})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_S6_DOSE_DERATED_80UM_768IEQ_NOT_SINGLE_POUCH_EQUIVALENT_REQUIRES_DOSE_MATCHED_1500IEQ_OR_AREA_EXPANSION"
+    assert wetlab.evaluate_stage0_decision_tree({**_t3d_valid, "obs_p05_islet_plane_h2o2_max_uM": 2.815})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_P05_ISLET_PLANE_H2O2_EXCEEDS_2P5UM_TIER1_TARGET_REQUIRES_FULL_73800IU_RETENTION"
+    assert wetlab.evaluate_stage0_decision_tree({**_t3d_valid, "obs_p05_islet_plane_h2o2_max_uM": 6.88})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_P05_ISLET_PLANE_H2O2_EXCEEDS_5P0UM_TIER2_ABORT_CEILING"
+    assert wetlab.evaluate_stage0_decision_tree({**_t3d_valid, "p05_full_336h_coupled_o2_h2o2_ca_ph_qualified": False})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_P05_FULL_336H_COUPLED_TRANSPORT_QUALIFICATION_UNVERIFIED"
+    assert wetlab.evaluate_stage0_decision_tree({**_t3d_valid, "design_z_loaded_closed_state_confirmed": False})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_DESIGN_Z_EMPTY_LUMEN_ONLY_REQUIRES_LOADED_CLOSED_STATE_CONFIRMATION"
+    assert wetlab.evaluate_stage0_decision_tree({**_t3d_valid, "obs_design_z_loaded_perifusion_gsis_si": 2.6})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_DESIGN_Z_LOADED_CLOSED_STATE_PO2_OR_READOUT2_GSIS_SI3_FAILED"
+
+    _cal_t3d_1 = wetlab.run_calibration(
+        {
+            "batch_id": "BATCH-IIP19-1",
+            "mcb_clone_id": "CLONE-IIP19",
+            "s6_cluster_size_arm": "DXB_100UM_1500IEQ",
+            "obs_stage7_yield_ratio": 0.94,
+            "obs_stage7_yield_se": 0.02,
+        },
+        is_dry_run=False,
+    )
+    try:
+        wetlab.run_calibration(
+            {
+                "batch_id": "BATCH-IIP19-2",
+                "mcb_clone_id": "CLONE-IIP19",
+                "s6_cluster_size_arm": "DOSE_MATCHED_80UM_1500IEQ",
+                "obs_cd47_fold": 4.4,
+                "obs_cd47_fold_se": 0.2,
+            },
+            False,
+            _cal_t3d_1,
+        )
+        raise AssertionError("Expected ValueError when pooling distinct s6_cluster_size_arm conditions")
+    except ValueError as _exc_t3d:
+        assert "s6_cluster_size_arm" in str(_exc_t3d)
+    assert "IIP-0019" in _r9_s2_bp_md_18 and "DEC-097" in _r9_s2_bp_md_18
 
 
 

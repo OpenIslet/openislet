@@ -1,7 +1,7 @@
 {
  "_meta": {
   "purpose": "offline snapshot for tests/test_citations_resolve.py; bibliographic facts only (first author, year, journal, title)",
-  "retrieved": "2026-11-15",
+  "retrieved": "2026-11-16",
   "source": "NCBI E-utilities esummary (db=pubmed)"
  },
  "pmids": {
@@ -461,6 +461,12 @@
    "pubdate_year": "2010",
    "title": "Effect of genome size on AAV vector packaging."
   },
+  "20124731": {
+   "first_author": "Matsuoka N",
+   "journal": "J Clin Invest",
+   "pubdate_year": "2010",
+   "title": "High-mobility group box 1 is involved in the initial events of early loss of transplanted islets in mice."
+  },
   "20160085": {
    "first_author": "Potter KJ",
    "journal": "Proc Natl Acad Sci U S A",
@@ -527,11 +533,23 @@
    "pubdate_year": "2011",
    "title": "High cleavage efficiency of a 2A peptide derived from porcine teschovirus-1 in human cell lines, zebrafish and mice."
   },
+  "21693022": {
+   "first_author": "Buchwald P",
+   "journal": "Theor Biol Med Model",
+   "pubdate_year": "2011",
+   "title": "A local glucose-and oxygen concentration-based insulin secretion model for pancreatic islets."
+  },
   "21743387": {
    "first_author": "Tran TH",
    "journal": "Transplantation",
    "pubdate_year": "2011",
    "title": "Deleterious impact of mismatching for human leukocyte antigen-C in presensitized recipients of kidney transplants."
+  },
+  "21788581": {
+   "first_author": "Olsson R",
+   "journal": "Diabetes",
+   "pubdate_year": "2011",
+   "title": "A low-oxygenated subpopulation of pancreatic islets constitutes a functional reserve of endocrine cells."
   },
   "21841799": {
    "first_author": "Tang C",
@@ -677,6 +695,12 @@
    "pubdate_year": "2013",
    "title": "Candidate genes for type 1 diabetes modulate pancreatic islet inflammation and β-cell apoptosis."
   },
+  "24065585": {
+   "first_author": "Markov DA",
+   "journal": "Biomed Microdevices",
+   "pubdate_year": "2014",
+   "title": "Variation in diffusion of gases through PDMS due to plasma surface treatment and storage conditions."
+  },
   "24286026": {
    "first_author": "Avery S",
    "journal": "Stem Cell Reports",
@@ -700,6 +724,12 @@
    "journal": "J Biol Chem",
    "pubdate_year": "2014",
    "title": "Polymorphisms in the human inhibitory signal-regulatory protein α do not affect binding to its ligand CD47."
+  },
+  "24582600": {
+   "first_author": "Colton CK",
+   "journal": "Adv Drug Deliv Rev",
+   "pubdate_year": "2014",
+   "title": "Oxygen supply to encapsulated therapeutic cells."
   },
   "24584071": {
    "first_author": "Flannick J",
@@ -821,6 +851,12 @@
    "pubdate_year": "1989",
    "title": "Definition of an efficient synthetic poly(A) site."
   },
+  "25893782": {
+   "first_author": "Pepper AR",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2015",
+   "title": "A prevascularized subcutaneous device-less site for islet and cellular transplantation."
+  },
   "25985456": {
    "first_author": "Veiseh O",
    "journal": "Nat Mater",
@@ -905,6 +941,12 @@
    "pubdate_year": "2016",
    "title": "Translation from the 5' untranslated region shapes the integrated stress response."
   },
+  "26837777": {
+   "first_author": "Papas KK",
+   "journal": "Panminerva Med",
+   "pubdate_year": "2016",
+   "title": "Effect of oxygen supply on the size of implantable islet-containing encapsulation devices."
+  },
   "26912858": {
    "first_author": "Delong T",
    "journal": "Science",
@@ -940,6 +982,12 @@
    "journal": "JCI Insight",
    "pubdate_year": "2016",
    "title": "Interleukin-1 signaling contributes to acute islet compensation."
+  },
+  "27729543": {
+   "first_author": "Neal A",
+   "journal": "Biochem J",
+   "pubdate_year": "2016",
+   "title": "Real-time imaging of intracellular hydrogen peroxide in pancreatic islets."
   },
   "27787618": {
    "first_author": "van der Torren CR",
@@ -1798,6 +1846,12 @@
    "journal": "Cell Stem Cell",
    "pubdate_year": "2024",
    "title": "Genetic ablation of adhesion ligands mitigates rejection of allogeneic cellular immunotherapies."
+  },
+  "38993891": {
+   "first_author": "Einstein SA",
+   "journal": "Front Transplant",
+   "pubdate_year": "2023",
+   "title": "Hypoxia within subcutaneously implanted macroencapsulation devices limits the viability and functionality of densely loaded islets."
   },
   "39169271": {
    "first_author": "Perez-Frances M",

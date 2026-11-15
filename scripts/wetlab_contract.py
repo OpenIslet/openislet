@@ -223,6 +223,21 @@ STAGE0_DECISION_TREE_ENDPOINT_SPECS = [
     ('stage0_l3_multimir_shield_protein_retention_pct', 'obs_l3_multimir_shield_protein_retention_pct', 'obs_l3_multimir_shield_protein_retention_se', 0.0, 200.0, 'min_of_cytosolic_serpinb9_and_surface_pdl1_protein_retention_percentage_of_arm1'),
     ('stage0_l3_multimir_min_receptor_knockdown_pct', 'obs_l3_multimir_min_receptor_knockdown_pct', 'obs_l3_multimir_min_receptor_knockdown_se', 0.0, 100.0, 'surface_flow_knockdown_percentage_vs_arm2_scramble_for_targeted_receptors'),
     ('stage0_l3_multimir_matched_gsis_output_retention_pct', 'obs_l3_multimir_matched_gsis_output_retention_pct', 'obs_l3_multimir_matched_gsis_output_retention_se', 0.0, 200.0, 'matched_absolute_perifusion_insulin_output_retention_percentage_of_arm1'),
+    # Stage-0 explicit-3D transport hazard qualification gates for Rule S6 lateral spacing / dose-matched 80 um sizing, Readout 5 (Gate P05) wet-sieved microbeads + co-cast catalase barrier films, and Design Z two-stage empty-lumen + loaded closed-state confirmation (IIP-0019; DEC-097):
+    ('stage0_s6_p10_nearest_neighbor_edge_gap_um', 'obs_s6_p10_nearest_neighbor_edge_gap_um', 'obs_s6_p10_nearest_neighbor_edge_gap_se', 0.0, 500.0, 'tenth_percentile_nearest_neighbor_cluster_edge_to_edge_gap_micrometers'),
+    ('stage0_s6_cluster_diam_p90_um', 'obs_s6_cluster_diam_p90_um', 'obs_s6_cluster_diam_p90_se', 20.0, 300.0, 'ninetieth_percentile_assembled_sc_islet_cluster_diameter_micrometers'),
+    ('stage0_s6_divider_14d_hydrated_po2_retention_pct', 'obs_s6_divider_14d_hydrated_po2_retention_pct', 'obs_s6_divider_14d_hydrated_po2_retention_se', 0.0, 150.0, 'day14_37c_hydrated_breathable_divider_oxygen_permeability_retention_percentage'),
+    ('stage0_s6_hydrogel_shear_modulus_gprime_pa', 'obs_s6_hydrogel_shear_modulus_gprime_pa', 'obs_s6_hydrogel_shear_modulus_gprime_se', 10.0, 20000.0, 'pericellular_hydrogel_storage_shear_modulus_g_prime_pascals'),
+    ('stage0_p05_microbead_volume_d99_um', 'obs_p05_microbead_volume_d99_um', 'obs_p05_microbead_volume_d99_se', 1.0, 600.0, 'laser_diffraction_volume_weighted_d99_pdms_cao2_microbead_diameter_micrometers'),
+    ('stage0_p05_catalase_barrier_film_um', 'obs_p05_catalase_barrier_film_um', 'obs_p05_catalase_barrier_film_se', 0.0, 100.0, 'cell_free_immobilized_catalase_barrier_film_thickness_per_side_micrometers'),
+    ('stage0_p05_islet_plane_h2o2_max_uM', 'obs_p05_islet_plane_h2o2_max_uM', 'obs_p05_islet_plane_h2o2_max_se', 0.0, 200.0, 'interstitial_islet_plane_peak_hydrogen_peroxide_micromolar'),
+    ('stage0_p05_day7_catalase_retention_pct', 'obs_p05_day7_catalase_retention_pct', 'obs_p05_day7_catalase_retention_se', 0.0, 150.0, 'day7_dynamic_washout_active_film_catalase_retention_percentage'),
+    ('stage0_p05_336h_retained_catalase_iu_333cm2', 'obs_p05_336h_retained_catalase_iu_333cm2', 'obs_p05_336h_retained_catalase_iu_333cm2_se', 0.0, 300000.0, 'retained_active_catalase_inventory_across_333p33cm2_two_pouch_bridge_iu'),
+    ('stage0_design_z_empty_lumen_5site_min_po2_mmhg', 'obs_design_z_empty_lumen_5site_min_po2_mmhg', 'obs_design_z_empty_lumen_5site_min_po2_se', 0.0, 120.0, 'five_position_minimum_empty_prevascularized_lumen_phosphorescence_po2_mmhg'),
+    ('stage0_design_z_vessel_standoff_p90_um', 'obs_design_z_vessel_standoff_p90_um', 'obs_design_z_vessel_standoff_p90_se', 0.0, 250.0, 'ninetieth_percentile_nearest_perfused_capillary_to_slab_standoff_micrometers'),
+    ('stage0_design_z_loaded_surface_po2_mmhg', 'obs_design_z_loaded_surface_po2_mmhg', 'obs_design_z_loaded_surface_po2_se', 0.0, 120.0, 'loaded_closed_state_pericellular_cluster_surface_po2_mmhg'),
+    ('stage0_design_z_loaded_core_po2_mmhg', 'obs_design_z_loaded_core_po2_mmhg', 'obs_design_z_loaded_core_po2_se', 0.0, 120.0, 'loaded_closed_state_minimum_cluster_core_po2_mmhg'),
+    ('stage0_design_z_loaded_perifusion_gsis_si', 'obs_design_z_loaded_perifusion_gsis_si', 'obs_design_z_loaded_perifusion_gsis_se', 0.1, 50.0, 'loaded_closed_state_dynamic_perifusion_gsis_stimulation_index_preserving_readout2_ge3'),
 ]
 
 STAGE0_S10_V3_MEAN_KEYS: frozenset[str] = frozenset({
@@ -294,6 +309,22 @@ ALLOWED_B2_TYK2_HLAC_ALLELES: frozenset[str] = frozenset({
     'HLA-C*14:02',
     'HLA-C*15:02',
     'HLA-C*16:01',
+})
+
+ALLOWED_S6_CLUSTER_SIZE_ARMS: frozenset[str] = frozenset({
+    'DXB_100UM_1500IEQ',
+    'DOSE_MATCHED_80UM_1500IEQ',
+    'DERATED_80UM_768IEQ',
+})
+
+ALLOWED_P05_BARRIER_SLAB_GEOMETRY_MODES: frozenset[str] = frozenset({
+    'EXPANDED_390UM_2X125UM_BANDS',
+    'FIXED_350UM_2X105UM_BANDS',
+})
+
+ALLOWED_DESIGN_Z_DIVIDER_ARMS: frozenset[str] = frozenset({
+    'PLAIN_HYDROGEL_140UM',
+    'EXPLORATORY_18PCT_DIVIDER_140UM',
 })
 
 STAGE0_S10_V3_CONSTRUCT_REGISTRY: dict[str, dict[str, object]] = {
@@ -814,6 +845,20 @@ STAGE0_CUSTOM_DEFAULT_SE: dict[str, float] = {
     'obs_l3_multimir_shield_protein_retention_pct': 1.5,
     'obs_l3_multimir_min_receptor_knockdown_pct': 1.5,
     'obs_l3_multimir_matched_gsis_output_retention_pct': 1.5,
+    'obs_s6_p10_nearest_neighbor_edge_gap_um': 2.0,
+    'obs_s6_cluster_diam_p90_um': 2.0,
+    'obs_s6_divider_14d_hydrated_po2_retention_pct': 1.5,
+    'obs_s6_hydrogel_shear_modulus_gprime_pa': 25.0,
+    'obs_p05_microbead_volume_d99_um': 1.5,
+    'obs_p05_catalase_barrier_film_um': 1.0,
+    'obs_p05_islet_plane_h2o2_max_uM': 0.15,
+    'obs_p05_day7_catalase_retention_pct': 1.5,
+    'obs_p05_336h_retained_catalase_iu_333cm2': 500.0,
+    'obs_design_z_empty_lumen_5site_min_po2_mmhg': 1.0,
+    'obs_design_z_vessel_standoff_p90_um': 1.0,
+    'obs_design_z_loaded_surface_po2_mmhg': 0.75,
+    'obs_design_z_loaded_core_po2_mmhg': 0.50,
+    'obs_design_z_loaded_perifusion_gsis_si': 0.15,
 }
 
 STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
@@ -1179,6 +1224,11 @@ STAGE0_DECISION_TREE_BOOLEAN_KEYS: tuple[str, ...] = (
     'l3_multimir_pre_aav6_2x2_transient_kd_falsifier_cleared',
     'l3_multimir_low_ifn_and_resting_shield_retention_verified',
     'l3_multimir_arm6_c341s_hlac_and_dq2_dq8_peptide_screen_cleared',
+    's6_dose_matched_1500_ieq_verified',
+    's6_divider_iso10993_leachables_cleared',
+    'p05_full_336h_coupled_o2_h2o2_ca_ph_qualified',
+    'design_z_empty_lumen_14d_persistence_verified',
+    'design_z_loaded_closed_state_confirmed',
 )
 
 
@@ -1238,6 +1288,9 @@ def derive_contract(root: Path | str | None = None) -> dict:
                 's10_hlae_floor_mode',
                 'b2_tyk2_recipient_genotype_stratum',
                 'b2_tyk2_hlac_allele',
+                's6_cluster_size_arm',
+                'p05_barrier_slab_geometry_mode',
+                'design_z_divider_arm',
             ],
             'boolean_policy_keys': list(STAGE0_DECISION_TREE_BOOLEAN_KEYS),
             'endpoints': endpoints,
@@ -1360,6 +1413,18 @@ def normalize_measurements(payload: dict, *, require_observation: bool = True,
         elif key == 'b2_tyk2_hlac_allele':
             if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_B2_TYK2_HLAC_ALLELES:
                 raise ValueError(f'b2_tyk2_hlac_allele must be one of {sorted(ALLOWED_B2_TYK2_HLAC_ALLELES)} (IIP-0017; DEC-095)')
+            result[key] = payload[key].strip()
+        elif key == 's6_cluster_size_arm':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_S6_CLUSTER_SIZE_ARMS:
+                raise ValueError(f's6_cluster_size_arm must be one of {sorted(ALLOWED_S6_CLUSTER_SIZE_ARMS)} (IIP-0019; DEC-097)')
+            result[key] = payload[key].strip()
+        elif key == 'p05_barrier_slab_geometry_mode':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_P05_BARRIER_SLAB_GEOMETRY_MODES:
+                raise ValueError(f'p05_barrier_slab_geometry_mode must be one of {sorted(ALLOWED_P05_BARRIER_SLAB_GEOMETRY_MODES)} (IIP-0019; DEC-097)')
+            result[key] = payload[key].strip()
+        elif key == 'design_z_divider_arm':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_DESIGN_Z_DIVIDER_ARMS:
+                raise ValueError(f'design_z_divider_arm must be one of {sorted(ALLOWED_DESIGN_Z_DIVIDER_ARMS)} (IIP-0019; DEC-097)')
             result[key] = payload[key].strip()
         else:
             if not isinstance(payload[key], str) or not payload[key].strip() or len(payload[key]) > 120:
@@ -1790,6 +1855,14 @@ def evaluate_stage0_decision_tree(
         'l3_multimir_pre_aav6_2x2_transient_kd_falsifier_cleared',
         'l3_multimir_low_ifn_and_resting_shield_retention_verified',
         'l3_multimir_arm6_c341s_hlac_and_dq2_dq8_peptide_screen_cleared',
+        's6_cluster_size_arm',
+        'p05_barrier_slab_geometry_mode',
+        'design_z_divider_arm',
+        's6_dose_matched_1500_ieq_verified',
+        's6_divider_iso10993_leachables_cleared',
+        'p05_full_336h_coupled_o2_h2o2_ca_ph_qualified',
+        'design_z_empty_lumen_14d_persistence_verified',
+        'design_z_loaded_closed_state_confirmed',
     }
     unknown_keys = sorted(set(observations) - set(spec_by_mean) - set(spec_by_se) - allowed_boolean_and_meta_flags)
     if unknown_keys:
@@ -1810,6 +1883,9 @@ def evaluate_stage0_decision_tree(
         ('s10_hlae_floor_mode', ALLOWED_S10_HLAE_FLOOR_MODES),
         ('b2_tyk2_recipient_genotype_stratum', ALLOWED_B2_TYK2_RECIPIENT_GENOTYPE_STRATA),
         ('b2_tyk2_hlac_allele', ALLOWED_B2_TYK2_HLAC_ALLELES),
+        ('s6_cluster_size_arm', ALLOWED_S6_CLUSTER_SIZE_ARMS),
+        ('p05_barrier_slab_geometry_mode', ALLOWED_P05_BARRIER_SLAB_GEOMETRY_MODES),
+        ('design_z_divider_arm', ALLOWED_DESIGN_Z_DIVIDER_ARMS),
     ):
         if _adj_k in observations and observations[_adj_k] is not None:
             _adj_v = observations[_adj_k]
@@ -3125,6 +3201,177 @@ def evaluate_stage0_decision_tree(
             'arm6_c341s_peptide_screen_required': _l3_is_arm6,
         }
 
+    # Stage-0 explicit-3D transport qualification gates for Rule S6 lateral spacing / dose-matched 80 um sizing, Readout 5 (Gate P05) wet-sieved microbeads + co-cast catalase barrier films, and Design Z two-stage empty-lumen + loaded closed-state confirmation (IIP-0019; DEC-097):
+    _s6_arm_val = observations.get('s6_cluster_size_arm')
+    if isinstance(_s6_arm_val, str):
+        _s6_arm_val = _s6_arm_val.strip()
+    _p05_geom_val = observations.get('p05_barrier_slab_geometry_mode')
+    if isinstance(_p05_geom_val, str):
+        _p05_geom_val = _p05_geom_val.strip()
+    _dz_arm_val = observations.get('design_z_divider_arm')
+    if isinstance(_dz_arm_val, str):
+        _dz_arm_val = _dz_arm_val.strip()
+
+    _s6_mean_keys = (
+        'obs_s6_p10_nearest_neighbor_edge_gap_um',
+        'obs_s6_cluster_diam_p90_um',
+    )
+    _s6_divider_mean_keys = (
+        'obs_s6_divider_14d_hydrated_po2_retention_pct',
+        'obs_s6_hydrogel_shear_modulus_gprime_pa',
+    )
+    _p05_mean_keys = (
+        'obs_p05_microbead_volume_d99_um',
+        'obs_p05_catalase_barrier_film_um',
+        'obs_p05_islet_plane_h2o2_max_uM',
+        'obs_p05_day7_catalase_retention_pct',
+        'obs_p05_336h_retained_catalase_iu_333cm2',
+    )
+    _dz_empty_mean_keys = (
+        'obs_design_z_empty_lumen_5site_min_po2_mmhg',
+        'obs_design_z_vessel_standoff_p90_um',
+    )
+    _dz_loaded_mean_keys = (
+        'obs_design_z_loaded_surface_po2_mmhg',
+        'obs_design_z_loaded_core_po2_mmhg',
+        'obs_design_z_loaded_perifusion_gsis_si',
+    )
+
+    _divider_qc_active = bool(
+        _dz_arm_val == 'EXPLORATORY_18PCT_DIVIDER_140UM'
+        or observations.get('s6_divider_iso10993_leachables_cleared') is not None
+        or any(_mk in validated_stage0 for _mk in _s6_divider_mean_keys)
+    )
+    _divider_qc_cleared = bool(
+        observations.get('s6_divider_iso10993_leachables_cleared') is True
+        and all(
+            _mk in validated_stage0 and se_provenance_by_mean.get(_mk) == 'EXPLICIT_SE_SUPPLIED'
+            for _mk in _s6_divider_mean_keys
+        )
+        and _lower95('obs_s6_divider_14d_hydrated_po2_retention_pct') >= 90.0
+        and _upper95('obs_s6_hydrogel_shear_modulus_gprime_pa') <= 1000.0
+    )
+
+    _s6_active = bool(
+        _s6_arm_val is not None
+        or observations.get('s6_dose_matched_1500_ieq_verified') is not None
+        or any(_mk in validated_stage0 for _mk in _s6_mean_keys)
+        or (_divider_qc_active and _dz_arm_val is None)
+    )
+    _p05_active = bool(
+        _p05_geom_val is not None
+        or observations.get('p05_full_336h_coupled_o2_h2o2_ca_ph_qualified') is not None
+        or any(_mk in validated_stage0 for _mk in _p05_mean_keys)
+    )
+    _dz_active = bool(
+        _dz_arm_val is not None
+        or observations.get('design_z_empty_lumen_14d_persistence_verified') is not None
+        or observations.get('design_z_loaded_closed_state_confirmed') is not None
+        or any(_mk in validated_stage0 for _mk in (*_dz_empty_mean_keys, *_dz_loaded_mean_keys))
+    )
+
+    iip0019_s6_status: str | None = None
+    iip0019_p05_status: str | None = None
+    iip0019_dz_status: str | None = None
+    iip0019_transport_hold_status: str | None = None
+
+    if _s6_active:
+        _s6_quant_ok = all(
+            _mk in validated_stage0 and se_provenance_by_mean.get(_mk) == 'EXPLICIT_SE_SUPPLIED'
+            for _mk in _s6_mean_keys
+        )
+        if _s6_arm_val is None or not _s6_quant_ok:
+            iip0019_s6_status = 'HOLD_S6_INCOMPLETE_OR_DEFAULT_SE_LATERAL_SPACING_PANEL'
+        elif _s6_arm_val == 'DERATED_80UM_768IEQ' or observations.get('s6_dose_matched_1500_ieq_verified') is not True:
+            iip0019_s6_status = 'HOLD_S6_DOSE_DERATED_80UM_768IEQ_NOT_SINGLE_POUCH_EQUIVALENT_REQUIRES_DOSE_MATCHED_1500IEQ_OR_AREA_EXPANSION'
+        elif _divider_qc_active and not _divider_qc_cleared:
+            iip0019_s6_status = 'HOLD_S6_EXPLORATORY_DIVIDER_HYDRATED_PO2_LEACHABLES_OR_MODULUS_QC_FAILED'
+        else:
+            _diam_cap = 80.0 if _s6_arm_val == 'DOSE_MATCHED_80UM_1500IEQ' else 100.0
+            _gap_floor = 55.0 if _s6_arm_val == 'DOSE_MATCHED_80UM_1500IEQ' else 85.0
+            if (
+                _upper95('obs_s6_cluster_diam_p90_um') > _diam_cap
+                or _lower95('obs_s6_p10_nearest_neighbor_edge_gap_um') < _gap_floor
+            ):
+                iip0019_s6_status = 'HOLD_S6_LATERAL_CLUMPING_EDGE_GAP_OR_CLUSTER_DIAMETER_CAP_FAILED'
+            else:
+                iip0019_s6_status = 'CLEARED_S6_LATERAL_SPACING_AND_DOSE_MATCHED_CLUSTER_CAP'
+        if iip0019_s6_status != 'CLEARED_S6_LATERAL_SPACING_AND_DOSE_MATCHED_CLUSTER_CAP':
+            iip0019_transport_hold_status = iip0019_s6_status
+
+    if _p05_active:
+        _p05_quant_ok = all(
+            _mk in validated_stage0 and se_provenance_by_mean.get(_mk) == 'EXPLICIT_SE_SUPPLIED'
+            for _mk in _p05_mean_keys
+        )
+        if _p05_geom_val is None or not _p05_quant_ok:
+            iip0019_p05_status = 'HOLD_P05_INCOMPLETE_OR_DEFAULT_SE_BARRIER_QUALIFICATION_PANEL'
+        elif observations.get('p05_full_336h_coupled_o2_h2o2_ca_ph_qualified') is not True:
+            iip0019_p05_status = 'HOLD_P05_FULL_336H_COUPLED_TRANSPORT_QUALIFICATION_UNVERIFIED'
+        elif _upper95('obs_p05_islet_plane_h2o2_max_uM') > 5.0:
+            iip0019_p05_status = 'HOLD_P05_ISLET_PLANE_H2O2_EXCEEDS_5P0UM_TIER2_ABORT_CEILING'
+        elif _upper95('obs_p05_islet_plane_h2o2_max_uM') > 2.5:
+            iip0019_p05_status = 'HOLD_P05_ISLET_PLANE_H2O2_EXCEEDS_2P5UM_TIER1_TARGET_REQUIRES_FULL_73800IU_RETENTION'
+        elif (
+            _upper95('obs_p05_microbead_volume_d99_um') > 50.0
+            or _lower95('obs_p05_catalase_barrier_film_um') < 20.0
+            or _lower95('obs_p05_day7_catalase_retention_pct') < 70.0
+            or _lower95('obs_p05_336h_retained_catalase_iu_333cm2') < 73800.0
+        ):
+            iip0019_p05_status = 'HOLD_P05_MICROBEAD_D99_FILM_THICKNESS_OR_CATALASE_RETENTION_FAILED'
+        else:
+            iip0019_p05_status = 'CLEARED_P05_WET_SIEVED_MICROBEAD_AND_20UM_CATALASE_BARRIER_GATE'
+        if iip0019_p05_status != 'CLEARED_P05_WET_SIEVED_MICROBEAD_AND_20UM_CATALASE_BARRIER_GATE' and iip0019_transport_hold_status is None:
+            iip0019_transport_hold_status = iip0019_p05_status
+
+    if _dz_active:
+        _dz_empty_ok = all(
+            _mk in validated_stage0 and se_provenance_by_mean.get(_mk) == 'EXPLICIT_SE_SUPPLIED'
+            for _mk in _dz_empty_mean_keys
+        )
+        _dz_loaded_ok = all(
+            _mk in validated_stage0 and se_provenance_by_mean.get(_mk) == 'EXPLICIT_SE_SUPPLIED'
+            for _mk in _dz_loaded_mean_keys
+        )
+        if _dz_arm_val is None or not _dz_empty_ok:
+            iip0019_dz_status = 'HOLD_DESIGN_Z_INCOMPLETE_OR_DEFAULT_SE_EMPTY_LUMEN_OPTODE_PANEL'
+        elif _dz_arm_val == 'EXPLORATORY_18PCT_DIVIDER_140UM' and not _divider_qc_cleared:
+            iip0019_dz_status = 'HOLD_S6_EXPLORATORY_DIVIDER_HYDRATED_PO2_LEACHABLES_OR_MODULUS_QC_FAILED'
+        else:
+            _lumen_floor = 35.0 if _dz_arm_val == 'EXPLORATORY_18PCT_DIVIDER_140UM' else 40.0
+            _standoff_cap = 20.0 if _dz_arm_val == 'EXPLORATORY_18PCT_DIVIDER_140UM' else 15.0
+            if (
+                observations.get('design_z_empty_lumen_14d_persistence_verified') is not True
+                or _lower95('obs_design_z_empty_lumen_5site_min_po2_mmhg') < _lumen_floor
+                or _upper95('obs_design_z_vessel_standoff_p90_um') > _standoff_cap
+            ):
+                iip0019_dz_status = 'HOLD_DESIGN_Z_EMPTY_LUMEN_PO2_STANDOFF_OR_14D_PERSISTENCE_FAILED'
+            elif observations.get('design_z_loaded_closed_state_confirmed') is not True or not _dz_loaded_ok:
+                iip0019_dz_status = 'HOLD_DESIGN_Z_EMPTY_LUMEN_ONLY_REQUIRES_LOADED_CLOSED_STATE_CONFIRMATION'
+            elif (
+                _lower95('obs_design_z_loaded_surface_po2_mmhg') < 15.0
+                or _lower95('obs_design_z_loaded_core_po2_mmhg') < 5.0
+                or _lower95('obs_design_z_loaded_perifusion_gsis_si') < 3.0
+            ):
+                iip0019_dz_status = 'HOLD_DESIGN_Z_LOADED_CLOSED_STATE_PO2_OR_READOUT2_GSIS_SI3_FAILED'
+            else:
+                iip0019_dz_status = 'CLEARED_DESIGN_Z_TWO_STAGE_EMPTY_LUMEN_AND_LOADED_CLOSED_STATE_GATE'
+        if iip0019_dz_status != 'CLEARED_DESIGN_Z_TWO_STAGE_EMPTY_LUMEN_AND_LOADED_CLOSED_STATE_GATE' and iip0019_transport_hold_status is None:
+            iip0019_transport_hold_status = iip0019_dz_status
+
+    iip0019_eval_summary: dict[str, object] | None = None
+    if _s6_active or _p05_active or _dz_active:
+        iip0019_eval_summary = {
+            'gate_pass': iip0019_transport_hold_status is None,
+            'hold_status': iip0019_transport_hold_status,
+            's6_cluster_size_arm': _s6_arm_val,
+            's6_lateral_spacing_status': iip0019_s6_status,
+            'p05_barrier_slab_geometry_mode': _p05_geom_val,
+            'p05_microbead_barrier_status': iip0019_p05_status,
+            'design_z_divider_arm': _dz_arm_val,
+            'design_z_two_stage_status': iip0019_dz_status,
+        }
+
     # S8b TYK2 x inducible-promoter epistasis: support explicit enumerated scale {FRACTION_HALF_EFFECT, PP_HALF_EFFECT, PP_FULL_CONTRAST, DID_PP} with per-endpoint scale retention across batches, unified fractional half-effect threshold (point < -0.05 or lower95 < -0.10), and sign-independent underpowered SE hold (AUDIT-REF & AUDIT-REF; DEC-042/044):
     s8b_scale_enum = observations.get('s8b_epistasis_estimand_scale')
     if s8b_scale_enum is not None:
@@ -3264,6 +3511,14 @@ def evaluate_stage0_decision_tree(
     if l3_multimir_gate_status is not None:
         resolved_arch['locus3_multimir_modeb_gate_status'] = l3_multimir_gate_status
         resolved_arch['locus3_multimir_modeb_evaluation'] = l3_multimir_eval_summary
+    if iip0019_eval_summary is not None:
+        resolved_arch['transport_3d_clumping_h2o2_and_design_z_evaluation'] = iip0019_eval_summary
+        if iip0019_s6_status is not None:
+            resolved_arch['s6_3d_lateral_spacing_gate_status'] = iip0019_s6_status
+        if iip0019_p05_status is not None:
+            resolved_arch['p05_microbead_catalase_barrier_gate_status'] = iip0019_p05_status
+        if iip0019_dz_status is not None:
+            resolved_arch['design_z_two_stage_optode_gate_status'] = iip0019_dz_status
     if (
         _adj_arm_raw is not None
         or adjunct_depletion_mode is not None
@@ -3514,6 +3769,8 @@ def evaluate_stage0_decision_tree(
         resolved_arch['lot_maturation_status'] = 'HOLD_GATE0D_ARM2_POST_ADJUNCT_DEPLETION_PANEL_INCOMPLETE'
     elif l3_multimir_hold_status is not None:
         resolved_arch['lot_maturation_status'] = l3_multimir_hold_status
+    elif iip0019_transport_hold_status is not None:
+        resolved_arch['lot_maturation_status'] = iip0019_transport_hold_status
     elif challenger_hold_status is not None:
         resolved_arch['lot_maturation_status'] = challenger_hold_status
     elif avascular_outer_band_dropout and not omental_revascularization_cleared:
