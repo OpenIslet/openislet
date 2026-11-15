@@ -3992,6 +3992,122 @@ def _build_alphamissense_v3_ccby4_provenance_iip_0017() -> Dict[str, Any]:
                                                                                      '(GY-002).'}}
 
 
+
+
+def _build_hurdle3_receptor_and_compartment_reconciliation_iip_0018() -> Dict[str, Any]:
+    """Return deterministic Hurdle-3 crystal contact, 4MSV geometry, and parameter-conditional compartment ledger (IIP-0018; DEC-096)."""
+    def _solve_illustrative_beta_il1_complexes(
+        r1_beta: float,
+        decoy_cis_beta: float,
+        il1_local_nM: float = 0.50,
+        racp_beta: float = 2000.0,
+        kd1_nM: float = 1.0,
+        kd_tern_molecules: float = 400.0,
+    ) -> float:
+        occ = il1_local_nM / (kd1_nM + il1_local_nM)
+        b1 = r1_beta * occ
+        bd = decoy_cis_beta * occ
+        b_tot = b1 + bd
+        if b_tot <= 0.0:
+            return 0.0
+        s = b_tot + racp_beta + kd_tern_molecules
+        c_tot = 0.5 * (s - math.sqrt(max(0.0, s * s - 4.0 * b_tot * racp_beta)))
+        return round(c_tot * (b1 / b_tot), 2)
+
+    wt_c = _solve_illustrative_beta_il1_complexes(1500.0, 0.0, 0.50)
+    trans_16 = _solve_illustrative_beta_il1_complexes(1500.0, 0.0, 0.42)
+    trans_50 = _solve_illustrative_beta_il1_complexes(1500.0, 0.0, 0.25)
+    cis_50k = _solve_illustrative_beta_il1_complexes(1500.0, 50000.0, 0.50)
+    mir_85 = _solve_illustrative_beta_il1_complexes(225.0, 0.0, 0.50)
+    if (wt_c, trans_16, trans_50, cis_50k, mir_85) != (400.0, 356.81, 244.33, 56.76, 62.17):
+        raise ValueError("Illustrative IL-1R1/IL-1RAcP mass-action equilibrium mismatch")
+
+    return {
+        "proposal_id": "IIP-0018",
+        "decision_id": "DEC-096",
+        "evidence_class": "crystallographic_interface_and_uncalibrated_compartment_mass_action_illustration",
+        "primary_citations": [
+            "PMID:22426547",
+            "PMID:20802483",
+            "PMID:12530978",
+            "PMID:27806260",
+            "PMID:25087510",
+            "PMID:11325591",
+            "PMID:26670609",
+        ],
+        "il1_signaling_vs_decoy_crystal_contacts_4p5A": {
+            "method_and_limitation": (
+                "Non-hydrogen cross-chain ATOM pairs within <= 4.5 A in deposited RCSB coordinates. "
+                "Contact counts depend on crystallographic copy and cutoff and do NOT measure equilibrium affinity or physiological occupancy."
+            ),
+            "pdb_4dep_il1beta_il1r1_il1racp_pmid_22426547": {
+                "copy_1_chains_A_B_C": {
+                    "IL1beta_to_IL1R1": 504,
+                    "binary_complex_to_IL1RAcP": 250,
+                },
+                "copy_2_chains_D_E_F": {
+                    "IL1beta_to_IL1R1": 618,
+                    "binary_complex_to_IL1RAcP": 352,
+                },
+            },
+            "pdb_3o4o_il1beta_il1r2_il1racp_pmid_20802483": {
+                "chains_A_C_B": {
+                    "IL1beta_to_IL1R2": 455,
+                    "binary_complex_to_IL1RAcP": 237,
+                },
+            },
+        },
+        "fasl_dcr3_c3_assembly_geometry_pdb_4msv": {
+            "pdb_id": "4MSV",
+            "citation": "Liu et al. 2016 Structure PMID:27806260 (human FasL : DcR3 complex; distinct from PDB 4J6G LIGHT : DcR3, Liu et al. 2014 PMID:25087510)",
+            "c3_symmetry_ca_triangle_edges_angstrom": {
+                "dcr3_chainB_cys193_cterm_edge_A": 61.5796,
+                "fasl_chainA_leu143_resolved_nterm_stalk_edge_A": 19.6245,
+                "fasl_chainA_leu281_distal_cterm_tip_edge_A": 8.09,
+            },
+            "structural_scope_note": (
+                "Resolved Chain-A N-terminus in 4MSV is Leu143 (not Pro143) and Chain-B C-terminus is Cys193; "
+                "these represent distinct ectodomain crystal-construct endpoints rather than full plasma-membrane or SA-FasL microgel tether geometry. "
+                "Used strictly as a qualitative caution against constitutive soluble DcR3 neutralizing Rule S8b SA-FasL microgels on Design X."
+            ),
+        },
+        "granzyme_b_and_serpinb9_c341s_scope": {
+            "pdb_1iau_scope": "PDB 1IAU (Rotonda et al. 2001 PMID:11325591) contains human Granzyme B bound to tetrapeptide aldehyde Ac-IEPD-CHO with NO SERPINB9 protein chain.",
+            "mangan_2016_pmid_26670609_scope": (
+                "Mangan et al. 2016 tested single substitutions in synthetic RCL peptides and the C341S/C342S double mutant in full-length protein/cellular "
+                "oxidative-resistance assays; single C341S(TCA) in ARM6 remains strictly exploratory pending direct H2O2 + Granzyme B kinetic and HLA-C/DQ2/DQ8 screening."
+            ),
+        },
+        "uncalibrated_2d_compartment_mass_action_illustration": {
+            "exact_equations": (
+                "occ = [IL1] / (Kd_3D + [IL1]); B1 = R1_beta * occ; Bd = R2_cis_beta * occ; B_tot = B1 + Bd; "
+                "C_tot = 0.5 * ((B_tot + RAcP_beta + Kd_2D) - sqrt((B_tot + RAcP_beta + Kd_2D)^2 - 4 * B_tot * RAcP_beta)); "
+                "Active_beta = C_tot * (B1 / B_tot)."
+            ),
+            "assumed_illustrative_parameters": {
+                "R1_beta_molecules_per_cell": 1500.0,
+                "RAcP_beta_molecules_per_cell": 2000.0,
+                "Kd_3D_binary_nM": 1.0,
+                "Kd_2D_ternary_molecules_per_cell": 400.0,
+                "baseline_local_IL1beta_nM": 0.50,
+            },
+            "computed_active_signaling_complexes_per_beta_cell": {
+                "wt_beta_cell_0p50nM": wt_c,
+                "trans_iec_16pct_interstitial_depletion_0p42nM": trans_16,
+                "trans_iec_50pct_interstitial_depletion_0p25nM": trans_50,
+                "hypothetical_same_membrane_cis_decoy_50000_per_beta_cell": cis_50k,
+                "beta_cell_cis_mir_il1r1_85pct_knockdown_225_receptors": mir_85,
+            },
+            "strict_interpretation_boundary": (
+                "Uncalibrated illustrative toy calculation without spatial transport, receptor shedding, or parameter uncertainty. "
+                "Justifies retiring ONLY the physically impossible same-membrane cis-IL1RAcP competition mechanism for trans endothelial IL1R2; "
+                "it does NOT retire extracellular interstitial IL-1beta capture by iECs or cooperative soluble sIL1R2 + sIL1RAcP ligand neutralization "
+                "(Smith et al. 2003 PMID:12530978), nor does comparing assumed 16%/50% ligand depletion against 85% receptor knockdown prove equal-capacity superiority."
+            ),
+        },
+    }
+
+
 def main() -> None:
     with LAYER2_ATLAS_PATH.open("r", encoding="utf-8") as f:
         layer2_atlas = json.load(f)
@@ -4604,6 +4720,7 @@ def main() -> None:
             },
         },
         "alphamissense_v3_ccby4_provenance_iip_0017": _build_alphamissense_v3_ccby4_provenance_iip_0017(),
+        "hurdle3_receptor_and_compartment_reconciliation_iip_0018": _build_hurdle3_receptor_and_compartment_reconciliation_iip_0018(),
     }
 
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)

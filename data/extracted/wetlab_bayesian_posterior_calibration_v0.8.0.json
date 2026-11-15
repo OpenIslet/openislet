@@ -446,7 +446,7 @@
       "S8_SC_Islet_Paracrine_Maturity_Gate_0M": "PASS_MATURITY_GATE_0M",
       "S8b_TYK2_Inducible_Promoter_Epistasis_Gate_0E": "PASS_TYK2_INDUCIBLE_PROMOTER_COMPATIBILITY",
       "S9_Chronic_Fibrotic_Capsule_and_Mineralization_Gate_0F": "PASS_CHRONIC_CAPSULE_GATE_0F",
-      "S10_CMV_NKG2C_Adaptive_NK_Peptide_Selectivity_Gate_0A": "PASS_CMV_NKG2C_SELECTIVITY_GATE_0A"
+      "S10_CMV_NKG2C_Adaptive_NK_Peptide_Selectivity_Gate_0A": "UNMEASURED_EXTENDED_S10_PANEL"
     },
     "canonical_json_switch_id_map": {
       "JSON_S1_CD47_Split_Fallback_DX_S": "INACTIVE",
@@ -459,7 +459,7 @@
       "JSON_S8_SC_Islet_Maturity_Gate_0M": "PASS_MATURITY_GATE_0M",
       "JSON_S8b_TYK2_Inducible_Promoter_Epistasis": "PASS_TYK2_INDUCIBLE_PROMOTER_COMPATIBILITY",
       "JSON_S9_Hard_Safety_Stop": "HOLD_UNMEASURED_MANDATORY_SAFETY_PANEL",
-      "JSON_S10_CMV_NKG2C_Adaptive_NK_Selectivity_Gate_0A": "PASS_CMV_NKG2C_SELECTIVITY_GATE_0A"
+      "JSON_S10_CMV_NKG2C_Adaptive_NK_Selectivity_Gate_0A": "UNMEASURED_EXTENDED_S10_PANEL"
     },
     "pivotal_combined_stress_coupon_gate": {
       "coupon_id": "STAGE0_COMBINED_STRESS_KILL_CHAIN_COUPON_MUSE_R4",
@@ -485,6 +485,6 @@
       "evaluation_status": "PENDING_COMBINED_STRESS_COUPON_EXECUTION"
     }
   },
-  "calibration_state_sha256": "74d7e4a56a803850b3b2b05f47de0eec5775a6a161ad16e4c41aed1a263f127f",
+  "calibration_state_sha256": "1956274bb3d19040ccd45d6a0ebfe09e28f27bec9ab4699d632b94cb8a687c42",
   "state_integrity_scope": "Checks complete-state consistency and replay history; hashes and PURE_EMPIRICAL labels do not authenticate bench records or donor/clone independence."
 }

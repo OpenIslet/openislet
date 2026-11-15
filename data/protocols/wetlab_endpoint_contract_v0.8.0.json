@@ -80,7 +80,10 @@
     "hla_a2_d227k_t228a_positive_control_spr_verified",
     "b2_tyk2_saptkflel_allele_assigned_ms_detected",
     "b2_tyk2_peptide_pulsed_positive_control_verified",
-    "b2_tyk2_hlac_blockade_abrogation_verified"
+    "b2_tyk2_hlac_blockade_abrogation_verified",
+    "l3_multimir_pre_aav6_2x2_transient_kd_falsifier_cleared",
+    "l3_multimir_low_ifn_and_resting_shield_retention_verified",
+    "l3_multimir_arm6_c341s_hlac_and_dq2_dq8_peptide_screen_cleared"
   ],
   "endpoints": [
     {
@@ -2177,6 +2180,72 @@
       "default_se": 0.75,
       "minimum_se": 0.001,
       "unit": "ifng_treated_iec_pericyte_cd8_lysis_delta_design_b2_minus_isogenic_bwt_percentage_points"
+    },
+    {
+      "endpoint_id": "stage0_l3_multimir_mature_spliced_fraction",
+      "meanKey": "obs_l3_multimir_spliced_fraction",
+      "seKey": "obs_l3_multimir_spliced_fraction_se",
+      "min": 0.0,
+      "max": 1.0,
+      "se_required": false,
+      "default_se": 0.01,
+      "minimum_se": 0.001,
+      "unit": "mature_exon1_exon2_spliced_transcript_fraction_0_to_1"
+    },
+    {
+      "endpoint_id": "stage0_l3_multimir_5prime_seed_fidelity_pct",
+      "meanKey": "obs_l3_multimir_5prime_seed_fidelity_pct",
+      "seKey": "obs_l3_multimir_5prime_seed_fidelity_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 0.001,
+      "unit": "small_rna_seq_exact_5prime_drosha_dicer_seed_register_percentage"
+    },
+    {
+      "endpoint_id": "stage0_l3_multimir_ago2_mir375_retention_pct",
+      "meanKey": "obs_l3_multimir_ago2_mir375_retention_pct",
+      "seKey": "obs_l3_multimir_ago2_mir375_retention_se",
+      "min": 0.0,
+      "max": 200.0,
+      "se_required": false,
+      "default_se": 1.5,
+      "minimum_se": 0.001,
+      "unit": "ago2_rip_endogenous_mir375_occupancy_retention_percentage_of_arm1"
+    },
+    {
+      "endpoint_id": "stage0_l3_multimir_shield_protein_retention_pct",
+      "meanKey": "obs_l3_multimir_shield_protein_retention_pct",
+      "seKey": "obs_l3_multimir_shield_protein_retention_se",
+      "min": 0.0,
+      "max": 200.0,
+      "se_required": false,
+      "default_se": 1.5,
+      "minimum_se": 0.001,
+      "unit": "min_of_cytosolic_serpinb9_and_surface_pdl1_protein_retention_percentage_of_arm1"
+    },
+    {
+      "endpoint_id": "stage0_l3_multimir_min_receptor_knockdown_pct",
+      "meanKey": "obs_l3_multimir_min_receptor_knockdown_pct",
+      "seKey": "obs_l3_multimir_min_receptor_knockdown_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 1.5,
+      "minimum_se": 0.001,
+      "unit": "surface_flow_knockdown_percentage_vs_arm2_scramble_for_targeted_receptors"
+    },
+    {
+      "endpoint_id": "stage0_l3_multimir_matched_gsis_output_retention_pct",
+      "meanKey": "obs_l3_multimir_matched_gsis_output_retention_pct",
+      "seKey": "obs_l3_multimir_matched_gsis_output_retention_se",
+      "min": 0.0,
+      "max": 200.0,
+      "se_required": false,
+      "default_se": 1.5,
+      "minimum_se": 0.001,
+      "unit": "matched_absolute_perifusion_insulin_output_retention_percentage_of_arm1"
     }
   ]
 }

@@ -470,5 +470,49 @@
       "empirical_or_hold_precedence": "Evaluates on retained-HLA-C TYK2 p.Pro1104Ala (NM_003331.5:c.3310C>G, rs34536443; SAPTKFLEL vs WT SPPTKFLEL) using a strict OR-hold rule: (1) functional CD8+ killing/ELISPOT hazard in ANY recipient genotype stratum (obs_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_pp upper95 > 5.0 pp, obs_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_pp upper95 > 5.0 pp, or obs_b2_tyk2_p1104a_primed_cd8_elispot_sfu_per_1e6 upper95 > 50.0 SFU/10^6) immediately holds (HOLD_DESIGN_B2_TYK2_P1104A_HLAC_NEOANTIGEN_HAZARD_DETECTED) even when MS immunopeptidomics is negative; (2) allele-assigned SAPTKFLEL MS detection (b2_tyk2_saptkflel_allele_assigned_ms_detected=True) holds (HOLD_DESIGN_B2_TYK2_P1104A_HLAC_MS_DETECTED_OR_DISCORDANT_REQUIRES_STRATIFIED_REVIEW); (3) missing or underpowered stratified observations (lysis SE > 2.5 pp or ELISPOT SE > 20.0 SFU/10^6) hold (HOLD_DESIGN_B2_TYK2_P1104A_INCOMPLETE_OR_UNDERPOWERED_STRATIFIED_PANEL); and (4) unverified synthetic SAPTKFLEL peptide-pulsed positive controls or HLA-C antibody blockade causal restriction hold (HOLD_DESIGN_B2_TYK2_P1104A_POSITIVE_CONTROL_OR_CAUSAL_RESTRICTION_UNVERIFIED).",
       "unpooled_recipient_genotype_strata_and_alleles": "Requires explicit b2_tyk2_recipient_genotype_stratum in {G_G, G_C, C_C} and b2_tyk2_hlac_allele across the 14-allele IPD-IMGT/HLA-annotated HLA-C panel, rejecting cross-batch pooling of distinct genotype strata or HLA-C alleles; natural C_C or G_C recipient genotype never auto-waives peripheral tolerance testing across SC-islet and iEC/pericyte compartments, and in-silico MHCflurry affinity cutoffs (e.g. HLA-C*04:01 448.93 nM) never auto-authorize routing."
     }
+  },
+  "locus3_multimir_modeb_challenger_gate_iip_0018": {
+    "gate_id": "STAGE0_LOCUS3_MULTIMIR_IL1R1_FAS_MODEB_CHALLENGER_QUALIFICATION_GATE_IIP_0018",
+    "decision_id": "DEC-096",
+    "contribution_id": "IIP-0018",
+    "registered_6_arm_constructs_fasta": "data/constructs/islet1_locus3_multimir_modeb_comparators_v0.8.0.fasta",
+    "factorial_control_arms_never_promoted": [
+      "ARM1_L3_WT_PARENT_4078",
+      "ARM2_L3_V2_INTRON_NT_SCRAMBLE_4398",
+      "ARM3_L3_V2_INTRON_SINGLE_IL1R1_4398",
+      "ARM4_L3_V2_INTRON_SINGLE_FAS_4398"
+    ],
+    "duplex_challenger_arms": [
+      "ARM5_L3_V2_INTRON_DUPLEX_IL1R1_FAS_WT_SB9_4398 (primary clean duplex challenger; 0 novel peptides vs ARM1)",
+      "ARM6_L3_V2_INTRON_DUPLEX_IL1R1_FAS_C341S_TCA_4398 (exploratory redox sub-arm; +38 8-11mers / +15 15mers requiring HLA-DQ2/DQ8 and Design-B HLA-C peptide screening)"
+    ],
+    "primary_citations": [
+      "PMID:36055241",
+      "PMID:29867165",
+      "PMID:21368762",
+      "PMID:35880017",
+      "PMID:24332856",
+      "PMID:22101854",
+      "PMID:15285897",
+      "PMID:15538371",
+      "PMID:16724069",
+      "PMID:9588443",
+      "PMID:11220355",
+      "PMID:17299038",
+      "PMID:27699257",
+      "PMID:28092375",
+      "PMID:36357719",
+      "PMID:38402281",
+      "PMID:22426547",
+      "PMID:20802483",
+      "PMID:12530978",
+      "PMID:27806260",
+      "PMID:26670609"
+    ],
+    "mandatory_qualification_guards": {
+      "pre_aav6_2x2_transient_falsifier_and_transcriptome_rescue": "Requires l3_multimir_pre_aav6_2x2_transient_kd_falsifier_cleared=True confirming a blocked 2x2 transient IL1R1 x FAS knockdown SC-islet experiment across IL-1beta, membrane mFasL vs SA-FasL, and TNF-alpha+IFN-gamma+TRAIL bypass with an independent reagent pair or RNAi-resistant rescue and transcriptome/isomiR screening prior to integrated synthesis.",
+      "quantitative_splicing_rnai_shield_and_matched_gsis_bounds": "Requires explicit SEs and one-sided 95% lower bounds clearing obs_l3_multimir_spliced_fraction >= 0.85, obs_l3_multimir_5prime_seed_fidelity_pct >= 85.0%, obs_l3_multimir_ago2_mir375_retention_pct >= 90.0%, obs_l3_multimir_shield_protein_retention_pct >= 85.0%, obs_l3_multimir_min_receptor_knockdown_pct >= 70.0%, and obs_l3_multimir_matched_gsis_output_retention_pct >= 85.0%, alongside l3_multimir_low_ifn_and_resting_shield_retention_verified=True (GY-001).",
+      "inherited_splice_s9_and_background_specific_peptide_gates": "Inherits all IIP-0015 two-strand UMI/IVT-recovery/TOST/dsRNA challenger gates (>=3,689 effective UMIs, 0 aberrant chimeras), all existing S9 safety gates (>=62,958 duplex UMIs for TP53/PPM1D/BCOR and CAST-Seq; >=299,573,228 effective MCB clonogenic trials), Arm-2 post-adjunct-depletion rechallenge, and requires l3_multimir_arm6_c341s_hlac_and_dq2_dq8_peptide_screen_cleared=True on ARM6 across host HLA-DQ2/DQ8 (GY-010) and retained HLA-C in Design B (GY-005)."
+    }
   }
 }

@@ -216,6 +216,13 @@ STAGE0_DECISION_TREE_ENDPOINT_SPECS = [
     ('stage0_gate0b_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_pp', 'obs_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_pp', 'obs_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_se', -100.0, 100.0, '4digit_hlac_matched_cd8_lysis_delta_design_b2_minus_isogenic_bwt_percentage_points'),
     ('stage0_gate0b_b2_tyk2_p1104a_primed_cd8_elispot_sfu_per_1e6', 'obs_b2_tyk2_p1104a_primed_cd8_elispot_sfu_per_1e6', 'obs_b2_tyk2_p1104a_primed_cd8_elispot_se', 0.0, 5000.0, 'day21_saptkflel_primed_autologous_cd8_ifng_elispot_sfu_per_1e6_cells'),
     ('stage0_gate0b_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_pp', 'obs_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_pp', 'obs_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_se', -100.0, 100.0, 'ifng_treated_iec_pericyte_cd8_lysis_delta_design_b2_minus_isogenic_bwt_percentage_points'),
+    # Stage-0 Locus 3 Mode-B Multi-miR(IL1R1+FAS) splicing, Drosha/Dicer 5' seed fidelity, AGO2 miR-375 retention, shield protein retention, receptor knockdown, and matched absolute GSIS output endpoints (IIP-0018; DEC-096):
+    ('stage0_l3_multimir_mature_spliced_fraction', 'obs_l3_multimir_spliced_fraction', 'obs_l3_multimir_spliced_fraction_se', 0.0, 1.0, 'mature_exon1_exon2_spliced_transcript_fraction_0_to_1'),
+    ('stage0_l3_multimir_5prime_seed_fidelity_pct', 'obs_l3_multimir_5prime_seed_fidelity_pct', 'obs_l3_multimir_5prime_seed_fidelity_se', 0.0, 100.0, 'small_rna_seq_exact_5prime_drosha_dicer_seed_register_percentage'),
+    ('stage0_l3_multimir_ago2_mir375_retention_pct', 'obs_l3_multimir_ago2_mir375_retention_pct', 'obs_l3_multimir_ago2_mir375_retention_se', 0.0, 200.0, 'ago2_rip_endogenous_mir375_occupancy_retention_percentage_of_arm1'),
+    ('stage0_l3_multimir_shield_protein_retention_pct', 'obs_l3_multimir_shield_protein_retention_pct', 'obs_l3_multimir_shield_protein_retention_se', 0.0, 200.0, 'min_of_cytosolic_serpinb9_and_surface_pdl1_protein_retention_percentage_of_arm1'),
+    ('stage0_l3_multimir_min_receptor_knockdown_pct', 'obs_l3_multimir_min_receptor_knockdown_pct', 'obs_l3_multimir_min_receptor_knockdown_se', 0.0, 100.0, 'surface_flow_knockdown_percentage_vs_arm2_scramble_for_targeted_receptors'),
+    ('stage0_l3_multimir_matched_gsis_output_retention_pct', 'obs_l3_multimir_matched_gsis_output_retention_pct', 'obs_l3_multimir_matched_gsis_output_retention_se', 0.0, 200.0, 'matched_absolute_perifusion_insulin_output_retention_percentage_of_arm1'),
 ]
 
 STAGE0_S10_V3_MEAN_KEYS: frozenset[str] = frozenset({
@@ -587,32 +594,52 @@ UNSHIELDED_REFERENCE_SPLICE_CHALLENGER_ARMS: frozenset[str] = frozenset({
     'S4_L1_ARM1B_500AA_STOP_ONLY_3974',
 })
 
-ALLOWED_KNOCKIN_SPLICE_CHALLENGER_ARMS: frozenset[str] = UNSHIELDED_REFERENCE_SPLICE_CHALLENGER_ARMS | frozenset({
-    'PARENTAL_REFERENCE',
-    'S1_L3_CAN_SYN2_PAM_SHIELDED_4090',
-    'S1_L3_CAN_SYN4_PAM_SHIELDED_4090',
-    'S1_L3_CAN_BGH_ONLY_PAM_SHIELDED_4090',
-    'S1_L3_CAN_WPRE_ONLY_PAM_SHIELDED_4090',
-    'S2_L3_SF_SYN4_ONLY_PAM_SHIELDED_3799',
-    'S2_L3_SF_SYN4_BGH_PAM_SHIELDED_3799',
-    'S2_L3_SF_SYN4_1xFII80_PAM_SHIELDED_3879',
-    'S2_L3_SF_SYN4_BGH_1xFII80_PAM_SHIELDED_3879',
-    'S2B_L3_BFB_SYN4_PAM_SHIELDED_4078',
-    'S2B_L3_BFB_SYN4_BGH_PAM_SHIELDED_4078',
-    'S3_L4_WINA_ONLY_3457',
-    'S3_L4_EEF230C_ONLY_3457',
-    'S3_L4_SPLICE_230C_3457',
-    'S3_L4_CODIR_7NT_230C_3457',
-    'S3_L4_CONVERGENT_WTCARGO_3457',
-    'S3_L4_CONVERGENT_5NT_230C_3457',
-    'S3_L4_CONVERGENT_2STRAND_230C_3457',
-    'S3_L4_WINDOW_B_COMPARATOR',
-    'S3_L4_NO_UCOE_COMPARATOR',
-    'S4_L1_ASTAR_505AA_STOP_ONLY_PAM_SHIELDED_4143',
-    'S4_L1_ARM1B_500AA_STOP_ONLY_PAM_SHIELDED_3974',
-    'S4_L1_DXS_ARM1C_500AA_STOP_ONLY_3300',
-    'S4_L1_DXS_ARM1C_500AA_STOP_ONLY_3459',
+LOCUS3_MULTIMIR_MODEB_CONTROL_ARMS: frozenset[str] = frozenset({
+    'ARM1_L3_WT_PARENT_4078',
+    'ARM2_L3_V2_INTRON_NT_SCRAMBLE_4398',
+    'ARM3_L3_V2_INTRON_SINGLE_IL1R1_4398',
+    'ARM4_L3_V2_INTRON_SINGLE_FAS_4398',
 })
+
+LOCUS3_MULTIMIR_MODEB_DUPLEX_CHALLENGER_ARMS: frozenset[str] = frozenset({
+    'ARM5_L3_V2_INTRON_DUPLEX_IL1R1_FAS_WT_SB9_4398',
+    'ARM6_L3_V2_INTRON_DUPLEX_IL1R1_FAS_C341S_TCA_4398',
+})
+
+LOCUS3_MULTIMIR_MODEB_ALL_ARMS: frozenset[str] = (
+    LOCUS3_MULTIMIR_MODEB_CONTROL_ARMS | LOCUS3_MULTIMIR_MODEB_DUPLEX_CHALLENGER_ARMS
+)
+
+ALLOWED_KNOCKIN_SPLICE_CHALLENGER_ARMS: frozenset[str] = (
+    UNSHIELDED_REFERENCE_SPLICE_CHALLENGER_ARMS
+    | LOCUS3_MULTIMIR_MODEB_ALL_ARMS
+    | frozenset({
+        'PARENTAL_REFERENCE',
+        'S1_L3_CAN_SYN2_PAM_SHIELDED_4090',
+        'S1_L3_CAN_SYN4_PAM_SHIELDED_4090',
+        'S1_L3_CAN_BGH_ONLY_PAM_SHIELDED_4090',
+        'S1_L3_CAN_WPRE_ONLY_PAM_SHIELDED_4090',
+        'S2_L3_SF_SYN4_ONLY_PAM_SHIELDED_3799',
+        'S2_L3_SF_SYN4_BGH_PAM_SHIELDED_3799',
+        'S2_L3_SF_SYN4_1xFII80_PAM_SHIELDED_3879',
+        'S2_L3_SF_SYN4_BGH_1xFII80_PAM_SHIELDED_3879',
+        'S2B_L3_BFB_SYN4_PAM_SHIELDED_4078',
+        'S2B_L3_BFB_SYN4_BGH_PAM_SHIELDED_4078',
+        'S3_L4_WINA_ONLY_3457',
+        'S3_L4_EEF230C_ONLY_3457',
+        'S3_L4_SPLICE_230C_3457',
+        'S3_L4_CODIR_7NT_230C_3457',
+        'S3_L4_CONVERGENT_WTCARGO_3457',
+        'S3_L4_CONVERGENT_5NT_230C_3457',
+        'S3_L4_CONVERGENT_2STRAND_230C_3457',
+        'S3_L4_WINDOW_B_COMPARATOR',
+        'S3_L4_NO_UCOE_COMPARATOR',
+        'S4_L1_ASTAR_505AA_STOP_ONLY_PAM_SHIELDED_4143',
+        'S4_L1_ARM1B_500AA_STOP_ONLY_PAM_SHIELDED_3974',
+        'S4_L1_DXS_ARM1C_500AA_STOP_ONLY_3300',
+        'S4_L1_DXS_ARM1C_500AA_STOP_ONLY_3459',
+    })
+)
 
 ALLOWED_KNOCKIN_LOCUS4_ORIENTATIONS: frozenset[str] = frozenset({
     'CO_DIRECTIONAL_MINUS',
@@ -781,6 +808,12 @@ STAGE0_CUSTOM_DEFAULT_SE: dict[str, float] = {
     'obs_b2_tyk2_p1104a_isogenic_cd8_lysis_delta_vs_bwt_pp': 0.75,
     'obs_b2_tyk2_p1104a_primed_cd8_elispot_sfu_per_1e6': 5.0,
     'obs_b2_tyk2_p1104a_iec_cd8_lysis_delta_vs_bwt_pp': 0.75,
+    'obs_l3_multimir_spliced_fraction': 0.01,
+    'obs_l3_multimir_5prime_seed_fidelity_pct': 1.0,
+    'obs_l3_multimir_ago2_mir375_retention_pct': 1.5,
+    'obs_l3_multimir_shield_protein_retention_pct': 1.5,
+    'obs_l3_multimir_min_receptor_knockdown_pct': 1.5,
+    'obs_l3_multimir_matched_gsis_output_retention_pct': 1.5,
 }
 
 STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
@@ -1143,6 +1176,9 @@ STAGE0_DECISION_TREE_BOOLEAN_KEYS: tuple[str, ...] = (
     'b2_tyk2_saptkflel_allele_assigned_ms_detected',
     'b2_tyk2_peptide_pulsed_positive_control_verified',
     'b2_tyk2_hlac_blockade_abrogation_verified',
+    'l3_multimir_pre_aav6_2x2_transient_kd_falsifier_cleared',
+    'l3_multimir_low_ifn_and_resting_shield_retention_verified',
+    'l3_multimir_arm6_c341s_hlac_and_dq2_dq8_peptide_screen_cleared',
 )
 
 
@@ -1751,6 +1787,9 @@ def evaluate_stage0_decision_tree(
         'b2_tyk2_saptkflel_allele_assigned_ms_detected',
         'b2_tyk2_peptide_pulsed_positive_control_verified',
         'b2_tyk2_hlac_blockade_abrogation_verified',
+        'l3_multimir_pre_aav6_2x2_transient_kd_falsifier_cleared',
+        'l3_multimir_low_ifn_and_resting_shield_retention_verified',
+        'l3_multimir_arm6_c341s_hlac_and_dq2_dq8_peptide_screen_cleared',
     }
     unknown_keys = sorted(set(observations) - set(spec_by_mean) - set(spec_by_se) - allowed_boolean_and_meta_flags)
     if unknown_keys:
@@ -3004,6 +3043,88 @@ def evaluate_stage0_decision_tree(
         ):
             challenger_hold_status = 'HOLD_CHALLENGER_SPLICE_CONVERGENT_DSRNA_J2_OR_ISG_EXCEEDS_1P5X_CEILING'
 
+    # Locus 3 Mode-B Multi-miR(IL1R1+FAS) 6-arm challenger qualification gate (IIP-0018; DEC-096):
+    _l3_multimir_mean_keys = (
+        'obs_l3_multimir_spliced_fraction',
+        'obs_l3_multimir_5prime_seed_fidelity_pct',
+        'obs_l3_multimir_ago2_mir375_retention_pct',
+        'obs_l3_multimir_shield_protein_retention_pct',
+        'obs_l3_multimir_min_receptor_knockdown_pct',
+        'obs_l3_multimir_matched_gsis_output_retention_pct',
+    )
+    _l3_multimir_gate_active = bool(
+        knockin_splice_challenger_arm in LOCUS3_MULTIMIR_MODEB_ALL_ARMS
+        or any(
+            observations.get(_lmk) is not None
+            for _lmk in (
+                'l3_multimir_pre_aav6_2x2_transient_kd_falsifier_cleared',
+                'l3_multimir_low_ifn_and_resting_shield_retention_verified',
+                'l3_multimir_arm6_c341s_hlac_and_dq2_dq8_peptide_screen_cleared',
+            )
+        )
+        or any(_lmk in validated_stage0 for _lmk in _l3_multimir_mean_keys)
+    )
+    l3_multimir_gate_status: str | None = None
+    l3_multimir_hold_status: str | None = None
+    l3_multimir_eval_summary: dict[str, object] | None = None
+    if _l3_multimir_gate_active:
+        _l3_is_arm6 = bool(knockin_splice_challenger_arm == 'ARM6_L3_V2_INTRON_DUPLEX_IL1R1_FAS_C341S_TCA_4398')
+        _l3_is_design_b = bool(
+            product_def is not None
+            and str(product_def.get('family', 'A')).upper().startswith('B')
+        )
+        _l3_quant_complete = all(
+            _lmk in validated_stage0 and se_provenance_by_mean.get(_lmk) == 'EXPLICIT_SE_SUPPLIED'
+            for _lmk in _l3_multimir_mean_keys
+        )
+        if knockin_splice_challenger_arm in LOCUS3_MULTIMIR_MODEB_CONTROL_ARMS:
+            l3_multimir_gate_status = 'HOLD_L3_MULTIMIR_FACTORIAL_CONTROL_ARM_NOT_RELEASE_CHALLENGER'
+            l3_multimir_hold_status = l3_multimir_gate_status
+        elif knockin_splice_challenger_arm not in LOCUS3_MULTIMIR_MODEB_DUPLEX_CHALLENGER_ARMS:
+            l3_multimir_gate_status = 'HOLD_L3_MULTIMIR_DUPLEX_CHALLENGER_ARM_ID_REQUIRED'
+            l3_multimir_hold_status = l3_multimir_gate_status
+        elif observations.get('l3_multimir_pre_aav6_2x2_transient_kd_falsifier_cleared') is not True:
+            l3_multimir_gate_status = 'HOLD_L3_MULTIMIR_PRE_AAV6_2X2_TRANSIENT_FALSIFIER_UNVERIFIED'
+            l3_multimir_hold_status = l3_multimir_gate_status
+        elif observations.get('l3_multimir_low_ifn_and_resting_shield_retention_verified') is not True:
+            l3_multimir_gate_status = 'HOLD_L3_MULTIMIR_RESTING_OR_LOW_IFN_SHIELD_RETENTION_UNVERIFIED'
+            l3_multimir_hold_status = l3_multimir_gate_status
+        elif (
+            (_l3_is_arm6 or observations.get('l3_multimir_arm6_c341s_hlac_and_dq2_dq8_peptide_screen_cleared') is False)
+            and observations.get('l3_multimir_arm6_c341s_hlac_and_dq2_dq8_peptide_screen_cleared') is not True
+        ):
+            l3_multimir_gate_status = 'HOLD_L3_MULTIMIR_ARM6_C341S_HLAC_OR_DQ2_DQ8_PEPTIDE_SCREEN_UNVERIFIED'
+            l3_multimir_hold_status = l3_multimir_gate_status
+        elif not _l3_quant_complete:
+            l3_multimir_gate_status = 'HOLD_L3_MULTIMIR_INCOMPLETE_OR_DEFAULT_SE_QUALIFICATION_PANEL'
+            l3_multimir_hold_status = l3_multimir_gate_status
+        elif (
+            _lower95('obs_l3_multimir_spliced_fraction') < 0.85
+            or _lower95('obs_l3_multimir_5prime_seed_fidelity_pct') < 85.0
+            or _lower95('obs_l3_multimir_ago2_mir375_retention_pct') < 90.0
+        ):
+            l3_multimir_gate_status = 'HOLD_L3_MULTIMIR_SPLICING_DROSHA_SEED_OR_AGO2_MIR375_FAILED'
+            l3_multimir_hold_status = l3_multimir_gate_status
+        elif (
+            _lower95('obs_l3_multimir_shield_protein_retention_pct') < 85.0
+            or _lower95('obs_l3_multimir_min_receptor_knockdown_pct') < 70.0
+            or _lower95('obs_l3_multimir_matched_gsis_output_retention_pct') < 85.0
+        ):
+            l3_multimir_gate_status = 'HOLD_L3_MULTIMIR_RECEPTOR_KD_SHIELD_RETENTION_OR_MATCHED_GSIS_FAILED'
+            l3_multimir_hold_status = l3_multimir_gate_status
+        elif challenger_hold_status is not None:
+            l3_multimir_gate_status = challenger_hold_status
+            l3_multimir_hold_status = challenger_hold_status
+        else:
+            l3_multimir_gate_status = 'CLEARED_L3_MULTIMIR_MODEB_STAGE0_CHALLENGER_GATE'
+        l3_multimir_eval_summary = {
+            'gate_pass': l3_multimir_hold_status is None,
+            'status': l3_multimir_gate_status,
+            'challenger_arm': knockin_splice_challenger_arm,
+            'design_b_retained_hlac_background': _l3_is_design_b,
+            'arm6_c341s_peptide_screen_required': _l3_is_arm6,
+        }
+
     # S8b TYK2 x inducible-promoter epistasis: support explicit enumerated scale {FRACTION_HALF_EFFECT, PP_HALF_EFFECT, PP_FULL_CONTRAST, DID_PP} with per-endpoint scale retention across batches, unified fractional half-effect threshold (point < -0.05 or lower95 < -0.10), and sign-independent underpowered SE hold (AUDIT-REF & AUDIT-REF; DEC-042/044):
     s8b_scale_enum = observations.get('s8b_epistasis_estimand_scale')
     if s8b_scale_enum is not None:
@@ -3140,6 +3261,9 @@ def evaluate_stage0_decision_tree(
             if challenger_hold_status is not None
             else 'CHALLENGER_SPLICE_AND_RECOVERY_ADJUSTED_UMI_PANEL_CLEARED'
         )
+    if l3_multimir_gate_status is not None:
+        resolved_arch['locus3_multimir_modeb_gate_status'] = l3_multimir_gate_status
+        resolved_arch['locus3_multimir_modeb_evaluation'] = l3_multimir_eval_summary
     if (
         _adj_arm_raw is not None
         or adjunct_depletion_mode is not None
@@ -3388,6 +3512,8 @@ def evaluate_stage0_decision_tree(
         resolved_arch['lot_maturation_status'] = 'HOLD_GATE0D_ARM2_POST_ADJUNCT_DEPLETION_REBOUND_INJURY_OR_FUNCTION_LOSS'
     elif arm2_post_depletion_panel_incomplete:
         resolved_arch['lot_maturation_status'] = 'HOLD_GATE0D_ARM2_POST_ADJUNCT_DEPLETION_PANEL_INCOMPLETE'
+    elif l3_multimir_hold_status is not None:
+        resolved_arch['lot_maturation_status'] = l3_multimir_hold_status
     elif challenger_hold_status is not None:
         resolved_arch['lot_maturation_status'] = challenger_hold_status
     elif avascular_outer_band_dropout and not omental_revascularization_cleared:

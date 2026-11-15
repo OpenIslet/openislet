@@ -19,7 +19,7 @@ HIP-Core executes all 36 coded rows, including all 11 repeat/bridge/lead rows, a
 
 Native EEF1A1 core: 230 bp, 19 CpG dinucleotides, 3 exact/RC donor occurrences; these are native CpG-containing promoter sequences.
 
-Release manifest: `1,359` pinned files. Machine facts: `data/extracted/documentation_facts_v0.8.0.json`. These facts supersede stale numeric summaries in explicitly historical rationale sections. Outward rankings remain unfrozen (`outward_rankings_frozen: false`); no exact product has passed physical qualification.
+Release manifest: `1,360` pinned files. Machine facts: `data/extracted/documentation_facts_v0.8.0.json`. These facts supersede stale numeric summaries in explicitly historical rationale sections. Outward rankings remain unfrozen (`outward_rankings_frozen: false`); no exact product has passed physical qualification.
 
 <!-- OPENISLET_GENERATED_FACTS_END -->
 
@@ -28,7 +28,7 @@ Release manifest: `1,359` pinned files. Machine facts: `data/extracted/documenta
 **Author:** Chief Scientist (`Gemini 4 Argon (High Effort)`, incorporating audits from `Claude 5.5 Sonnet Max Effort`, `ChatGPT 6 Astra xhigh`, `Kimi K3.1 Pro xhigh`, `ChatGPT 6.1 Pro / Sol 6.1`, `Spark Muse Wonder`, `Grok 4.7 Heavy`, and the 5-Agent Red-Team Swarm)  
 **Date:** 2026-10-23  
 **Project Root:** `./` (`OpenIslet` repository root)  
-**Release Manifest (`P0-8`):** [`manifest.json`](../manifest.json) (`1,359` pinned files + `public_redistribution_allowlist_spec` + `export_public_bundle` with `<=240`-char non-OA per-article excerpt cap)  
+**Release Manifest (`P0-8`):** [`manifest.json`](../manifest.json) (`1,360` pinned files + `public_redistribution_allowlist_spec` + `export_public_bundle` with `<=240`-char non-OA per-article excerpt cap)  
 **Companion Blueprint & Evaluator Spec:** [`docs/ISLET-1-CANDIDATE-BLUEPRINTS-AND-OPTIMIZER-v0.2.md`](ISLET-1-CANDIDATE-BLUEPRINTS-AND-OPTIMIZER-v0.2.md)
 
 ---

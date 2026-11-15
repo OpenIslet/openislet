@@ -18787,6 +18787,3458 @@
       ]
     }
   },
+  "stage0_locus3_multimir_and_cbe_needle_manifest_iip_0018": {
+    "proposal_id": "IIP-0018",
+    "decision_id": "DEC-096",
+    "evidence_class": "pre_registered_mode_b_locus3_multimir_challenger_suite_and_standalone_cbe_comparator_ledger",
+    "canonical_fasta_and_ranking_invariance": {
+      "canonical_scenario_a_fasta": "data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta",
+      "canonical_scenario_a_fasta_untouched": true,
+      "layer1_stack_rankings_untouched": true,
+      "illustrative_hurdle3_vs_biological_gate3_distinction": "Illustrative Hurdle 3 (autoimmune bystander survival) is distinct from biological Gate 3 (innate NK, macrophage, and complement protection); neither computational pre-registration nor a single Stage-0 assay recalibrates the blueprint's subjective hurdle percentages.",
+      "product_background_separation": "K = 4, B = 0 applies strictly to replacing the Locus-3 donor within the four-locus Design A background. Design B retains endogenous/engineered HLA-C under GY-005 with a distinct edit ledger and presentation profile; Design A/X and Design B backgrounds require separately identified qualification runs (especially for ARM6 C341S +38 8-11mers)."
+    },
+    "mode_b_comparator_fasta": {
+      "relative_path": "data/constructs/islet1_locus3_multimir_modeb_comparators_v0.8.0.fasta",
+      "construct_count": 6,
+      "sha256": "22df54a27ef3f68b646b63dc036b11f5a66a9fcadb50378dfb8057e108c79ffa",
+      "ha_l_grch38_chr4_minus": "chr4:76023468-76024067",
+      "ha_r_grch38_chr4_minus": "chr4:76022868-76023467",
+      "outer_chromosomal_flank_verification_bp": 300
+    },
+    "cassette_anatomy_and_scanner_scope": {
+      "inserted_cassette_bp": 320,
+      "retained_exon1_anchor_bp": 3,
+      "excised_synthetic_intron_bp": 317,
+      "exon1_sequence_9nt": "CAGAGACAG",
+      "exon2_kozak_leader_9nt": "GCCGCCACC",
+      "mature_spliced_5utr_18nt": "CAGAGACAGGCCGCCACC",
+      "hairpin_1_mir_e_v2_target_22nt": {
+        "IL1R1": "CACTTTAGTGGAGTCAAAGATA",
+        "NT1_v2": "CACGGTAACGCTAACTACGCTA"
+      },
+      "hairpin_2_mir_16_2_v2_target_22nt": {
+        "FAS": "AACTCCAAGGGATTGGAATTGA",
+        "NT2": "GCCTAGTCTGATTAGTTTCGGA"
+      },
+      "seed_audit_summary": {
+        "nt1_v2": {
+          "target_22": "CACGGTAACGCTAACTACGCTA",
+          "guide_5to3": "TAGCGTAGTTAGCGTTACCGTG",
+          "passenger_5to3": "CACGGTAACGCTAACTACGCTC",
+          "il1r1_cdna_guide_seeds": {
+            "6mer_nt2_7": 0,
+            "7mer_m8_nt2_8": 0,
+            "7mer_A1": 0
+          },
+          "fas_cdna_guide_seeds": {
+            "6mer_nt2_7": 0,
+            "7mer_m8_nt2_8": 0,
+            "7mer_A1": 0
+          }
+        },
+        "nt2": {
+          "target_22": "GCCTAGTCTGATTAGTTTCGGA",
+          "guide_5to3": "TCCGAAACTAATCAGACTAGGC",
+          "passenger_5to3": "GCCTAGTCTGATTAGTTTCGGC",
+          "il1r1_cdna_guide_seeds": {
+            "6mer_nt2_7": 0,
+            "7mer_m8_nt2_8": 0,
+            "7mer_A1": 0
+          },
+          "fas_cdna_guide_seeds": {
+            "6mer_nt2_7": 0,
+            "7mer_m8_nt2_8": 0,
+            "7mer_A1": 0
+          }
+        },
+        "target_dictated_cross_transcript_seed_disclosure": {
+          "il1r1_guide_on_fas_cdna": {
+            "6mer_nt2_7": 4,
+            "7mer_m8_nt2_8": 1,
+            "7mer_A1": 0
+          },
+          "fas_guide_on_il1r1_cdna": {
+            "6mer_nt2_7": 3,
+            "7mer_m8_nt2_8": 2,
+            "7mer_A1": 1
+          },
+          "note": "Target-dictated 7mer-m8 occurrences in the reciprocal 3' UTR align with dual-knockdown directionality in ARM5/ARM6 and are directly isolated by single-hairpin controls ARM3 and ARM4."
+        }
+      },
+      "motif_scanner_scope_limitation": "The Layer-2 two-strand splice scanner uses positional consensus/log-odds for 5' donors and a 23-mer polypyrimidine heuristic for 3' acceptors—not the dependency-aware MaxEnt model of Yeo & Burge 2004 (PMID:15285897)—and does not model non-GT introns, shifted U1 register, branchpoint competition, or exonic/intronic splicing enhancers/silencers. Furthermore, avoiding IL1R1/FAS seed matches in NT1_v2/NT2 does not screen the rest of the beta-cell transcriptome, passenger strands, or 5'-isomiRs (Fellmann 2013 PMID:24332856; Schirle 2014 PMID:25359968; Amen 2022 PMID:35880017). Quantitative spliced-fraction (>=85% spliced / <=15% intron retention), recovery-calibrated two-strand UMI chimeras (>=3,689 effective molecules -> 0.09994675% two-sided 95% upper bound; Kivioja 2011 PMID:22101854), transcriptome-wide RNA-seq, absolute AGO-RIP small-RNA-seq (Poy 2004 PMID:15538371; Grimm 2006 PMID:16724069), and resting/low-IFN SERPINB9+PD-L1 retention (GY-001) are mandatory."
+    },
+    "pre_synthesis_2x2_transient_falsifier_and_human_gsis_tradeoff": {
+      "design": "Blocked 2x2 transient IL1R1-knockdown x FAS-knockdown human SC-islet experiment within matched independent differentiations prior to integrated 6-arm AAV6 donor synthesis, comparing double-control, single IL1R1 KD, single FAS KD, and dual KD with an independent targeting reagent pair or RNAi-resistant rescue across IL-1beta, membrane mFasL vs SA-FasL (Trivedi 2019 PMID:31552143; Headen 2018 PMID:29867165), and a TNF-alpha + IFN-gamma + TRAIL bypass condition.",
+      "unresolved_human_islet_secretory_tradeoffs": "Must test matched absolute insulin/C-peptide output (>=85% of ARM1), low-glucose shut-off, and post-cytokine recovery alongside SI >= 2.5 because human islet literature shows conflicting effects: Loweth 1998 (PMID:9588443) vs Loweth 2000 (PMID:11220355) on Fas-expression sufficiency, Schumann 2007 (PMID:17299038) reporting impaired human-islet fuel-stimulated secretion under Fas blockade, Hajmrle 2016 (PMID:27699257) and Dror 2017 (PMID:28092375) showing acute/postprandial IL-1beta insulinotropic compensation, and Wiedemann 2022 (PMID:35750050) addressing microglial/vagal cephalic IL-1beta signaling that isolated graft perifusion does not model.",
+      "inherited_stricter_stage0_gates": "Inherits existing clonogenic AP1903 escape bounds and recovery controls, >=62,958 independent duplex-UMI molecules for TP53/PPM1D/BCOR somatic sweeps (50,000 target molecules gives only 87.53% probability of >=3 mutants at VAF 1e-4 and 0.005991% one-sided 95% 0-event bound), CAST-Seq chromosomal-rearrangement scope (Turchiano 2021 PMID:33626327), Rule S8b SA-FasL microgel drop rule, and Arm-2 post-adjunct-depletion rechallenge."
+    },
+    "verified_6_arm_constructs": [
+      {
+        "construct_id": "ARM1_L3_WT_PARENT_4078",
+        "donor_length_bp": 4078,
+        "packaged_aav6_length_bp": 4368,
+        "packaged_aav6_headroom_bp": 332,
+        "donor_sha256": "8a4810af423eeb33a214d70284958d65a4bccfbafd0daadd9e740cad46efdd19",
+        "exon1_9nt": null,
+        "excised_intron_length_bp": 0,
+        "mature_spliced_5utr": "CAGAGAGCCGCCACC",
+        "spliced_5utr_length_nt": 15,
+        "unspliced_insert_atg_count": 0,
+        "spliced_5utr_atg_count": 0,
+        "isolated_donor_total_donors_both_strands": 30,
+        "integrated_chr4_plus_2x300bp_total_donors_both_strands": 38,
+        "cargo_two_strand_motif_counts": {
+          "+don": 10,
+          "-don": 12,
+          "+acc": 21,
+          "-acc": 58
+        },
+        "novel_8_to_11mers_vs_arm1": 0,
+        "novel_15mers_vs_arm1": 0,
+        "promotion_status": "BASELINE_CONTROL"
+      },
+      {
+        "construct_id": "ARM2_L3_V2_INTRON_NT_SCRAMBLE_4398",
+        "donor_length_bp": 4398,
+        "packaged_aav6_length_bp": 4688,
+        "packaged_aav6_headroom_bp": 12,
+        "donor_sha256": "f2bc435f7098f0ac0018b17e7cc95a2ceb477a74b7da203eefafdd31a578fcf8",
+        "exon1_9nt": "CAGAGACAG",
+        "excised_intron_length_bp": 317,
+        "mature_spliced_5utr": "CAGAGACAGGCCGCCACC",
+        "spliced_5utr_length_nt": 18,
+        "unspliced_insert_atg_count": 0,
+        "spliced_5utr_atg_count": 0,
+        "isolated_donor_total_donors_both_strands": 31,
+        "integrated_chr4_plus_2x300bp_total_donors_both_strands": 39,
+        "cargo_two_strand_motif_counts": {
+          "+don": 11,
+          "-don": 12,
+          "+acc": 22,
+          "-acc": 58
+        },
+        "novel_8_to_11mers_vs_arm1": 0,
+        "novel_15mers_vs_arm1": 0,
+        "promotion_status": "HELD_MODE_B_FACTORIAL_OR_EXPLORATORY_COMPARATOR"
+      },
+      {
+        "construct_id": "ARM3_L3_V2_INTRON_SINGLE_IL1R1_4398",
+        "donor_length_bp": 4398,
+        "packaged_aav6_length_bp": 4688,
+        "packaged_aav6_headroom_bp": 12,
+        "donor_sha256": "e3aed4b0af1f4adc3b34b3f9b0b721065c3c162f2d2fcaffa5d64bd0e77f45fc",
+        "exon1_9nt": "CAGAGACAG",
+        "excised_intron_length_bp": 317,
+        "mature_spliced_5utr": "CAGAGACAGGCCGCCACC",
+        "spliced_5utr_length_nt": 18,
+        "unspliced_insert_atg_count": 0,
+        "spliced_5utr_atg_count": 0,
+        "isolated_donor_total_donors_both_strands": 31,
+        "integrated_chr4_plus_2x300bp_total_donors_both_strands": 39,
+        "cargo_two_strand_motif_counts": {
+          "+don": 11,
+          "-don": 12,
+          "+acc": 22,
+          "-acc": 58
+        },
+        "novel_8_to_11mers_vs_arm1": 0,
+        "novel_15mers_vs_arm1": 0,
+        "promotion_status": "HELD_MODE_B_FACTORIAL_OR_EXPLORATORY_COMPARATOR"
+      },
+      {
+        "construct_id": "ARM4_L3_V2_INTRON_SINGLE_FAS_4398",
+        "donor_length_bp": 4398,
+        "packaged_aav6_length_bp": 4688,
+        "packaged_aav6_headroom_bp": 12,
+        "donor_sha256": "508147a82b4a19370b672cccac8693b145cf34f80bccfa3bc331ee1e09789883",
+        "exon1_9nt": "CAGAGACAG",
+        "excised_intron_length_bp": 317,
+        "mature_spliced_5utr": "CAGAGACAGGCCGCCACC",
+        "spliced_5utr_length_nt": 18,
+        "unspliced_insert_atg_count": 0,
+        "spliced_5utr_atg_count": 0,
+        "isolated_donor_total_donors_both_strands": 31,
+        "integrated_chr4_plus_2x300bp_total_donors_both_strands": 39,
+        "cargo_two_strand_motif_counts": {
+          "+don": 11,
+          "-don": 12,
+          "+acc": 22,
+          "-acc": 58
+        },
+        "novel_8_to_11mers_vs_arm1": 0,
+        "novel_15mers_vs_arm1": 0,
+        "promotion_status": "HELD_MODE_B_FACTORIAL_OR_EXPLORATORY_COMPARATOR"
+      },
+      {
+        "construct_id": "ARM5_L3_V2_INTRON_DUPLEX_IL1R1_FAS_WT_SB9_4398",
+        "donor_length_bp": 4398,
+        "packaged_aav6_length_bp": 4688,
+        "packaged_aav6_headroom_bp": 12,
+        "donor_sha256": "aec58d9d23b41f69ff4b21420702d062080e0704506ca75433c23fb8018fff14",
+        "exon1_9nt": "CAGAGACAG",
+        "excised_intron_length_bp": 317,
+        "mature_spliced_5utr": "CAGAGACAGGCCGCCACC",
+        "spliced_5utr_length_nt": 18,
+        "unspliced_insert_atg_count": 0,
+        "spliced_5utr_atg_count": 0,
+        "isolated_donor_total_donors_both_strands": 31,
+        "integrated_chr4_plus_2x300bp_total_donors_both_strands": 39,
+        "cargo_two_strand_motif_counts": {
+          "+don": 11,
+          "-don": 12,
+          "+acc": 22,
+          "-acc": 58
+        },
+        "novel_8_to_11mers_vs_arm1": 0,
+        "novel_15mers_vs_arm1": 0,
+        "promotion_status": "HELD_MODE_B_PRIMARY_CHALLENGER_PENDING_2X2_AND_STAGE0_QUALIFICATION"
+      },
+      {
+        "construct_id": "ARM6_L3_V2_INTRON_DUPLEX_IL1R1_FAS_C341S_TCA_4398",
+        "donor_length_bp": 4398,
+        "packaged_aav6_length_bp": 4688,
+        "packaged_aav6_headroom_bp": 12,
+        "donor_sha256": "d6cfadde021dd285b327b891fae2a1ca8c9fd43db49c8d2553c9426c9d53c1ea",
+        "exon1_9nt": "CAGAGACAG",
+        "excised_intron_length_bp": 317,
+        "mature_spliced_5utr": "CAGAGACAGGCCGCCACC",
+        "spliced_5utr_length_nt": 18,
+        "unspliced_insert_atg_count": 0,
+        "spliced_5utr_atg_count": 0,
+        "isolated_donor_total_donors_both_strands": 31,
+        "integrated_chr4_plus_2x300bp_total_donors_both_strands": 39,
+        "cargo_two_strand_motif_counts": {
+          "+don": 11,
+          "-don": 12,
+          "+acc": 22,
+          "-acc": 58
+        },
+        "novel_8_to_11mers_vs_arm1": 38,
+        "novel_15mers_vs_arm1": 15,
+        "promotion_status": "HELD_MODE_B_FACTORIAL_OR_EXPLORATORY_COMPARATOR"
+      }
+    ],
+    "standalone_cbe_comparator_registry_ensembl_116": {
+      "annotation_release_note": "Reconstructed against Ensembl release 116 canonical transcripts FAS ENST00000652046.1 and IL1R1 ENST00000410023.6, explicitly distinguished from Layer-2's pinned baseline Ensembl release 112 / GENCODE v46 cache. Zero-bystander status applies ONLY to the narrow C-only [4..8] sequence filter: all 3 FAS guides carry an additional C9 inside TadCBEd's [3..9] window (Neugebauer 2023 PMID:36357719), and all 4 CAG->TAG guides carry an adjacent in-codon adenine where residual CBE adenine deamination can convert CAG->TAG->TGG (Trp) and undo stop installation (Zhang 2024 PMID:38402281; GC-context deaminase scope per Thuronyi 2019 PMID:31332326).",
+      "candidate_guides_9_across_7_variants": [
+        {
+          "gene": "FAS",
+          "transcript": "ENST00000652046.1",
+          "exon": "9/9",
+          "protein_change": "p.Q276Ter",
+          "codon_change": "CAA->TAA",
+          "grch38_vcf": "chr10:89014268:C>T",
+          "editor_class": "SpCas9-CBE_canonical_NGG",
+          "protospacer_5to3": "AAGTTCAACTGCTTCGTAAT",
+          "pam_3nt": "TGG",
+          "protospacer_strand": "+",
+          "target_pos_in_protospacer_1based": 6,
+          "five_prime_dinucleotide_context": "TC",
+          "deaminase_context_note": "TC motif: compatible with standard APOBEC/TadA CBEs",
+          "bystander_cytidines_in_4to8": [],
+          "expected_mechanism": "Terminal-exon truncation hypothesis (requires empirical NMD-escape, surface flow, and FADD/MyD88 non-signaling verification)",
+          "ensembl_reconstruction_release": "Ensembl release 116 (distinct from Layer-2 baseline Ensembl 112 / GENCODE v46)",
+          "narrow_filter_scope": "C-only positions [4..8] sequence filter only (NOT editor-independent biological purity)",
+          "extended_tadcbEd_3to9_bystander_cytidines": [
+            9
+          ],
+          "extended_tadcbEd_c9_consequence": "C9_synonymous_p.Leu277= (CTT->TTT/CTT depending on frame; coding c.831C>T p.Leu277=)",
+          "residual_adenine_editing_stop_loss_hazard": "NONE_AT_STOP_CODON_TAA_OR_MINUS_STRAND_TGG (requires empirical haplotype sequencing for A positions [7, 8])",
+          "uniprot_domain_and_nmd_context": "UniProt P25445 death domain (DD) spans aa 230-314; exon 9/9 is the terminal canonical exon so canonical downstream-EJC NMD escape is plausible (p.Q311Ter removes only the final 4 DD residues 311-314; requires direct surface flow, FADD recruitment/signaling, isoform coverage, and validated sFas assay LLOD)"
+        },
+        {
+          "gene": "FAS",
+          "transcript": "ENST00000652046.1",
+          "exon": "9/9",
+          "protein_change": "p.W281Ter",
+          "codon_change": "TGG->TGA",
+          "grch38_vcf": "chr10:89014285:G>A",
+          "editor_class": "SpG-CBE_NGN",
+          "protospacer_5to3": "GTTGATGCCAATTACGAAGC",
+          "pam_3nt": "AGT",
+          "protospacer_strand": "-",
+          "target_pos_in_protospacer_1based": 8,
+          "five_prime_dinucleotide_context": "GC",
+          "deaminase_context_note": "GC motif: requires GC-compatible deaminase (evoAPOBEC1 / TadCBEd) rather than rAPOBEC1",
+          "bystander_cytidines_in_4to8": [],
+          "expected_mechanism": "Terminal-exon truncation hypothesis (requires empirical NMD-escape, surface flow, and FADD/MyD88 non-signaling verification)",
+          "ensembl_reconstruction_release": "Ensembl release 116 (distinct from Layer-2 baseline Ensembl 112 / GENCODE v46)",
+          "narrow_filter_scope": "C-only positions [4..8] sequence filter only (NOT editor-independent biological purity)",
+          "extended_tadcbEd_3to9_bystander_cytidines": [
+            9
+          ],
+          "extended_tadcbEd_c9_consequence": "C9_alternative_stop_within_p.Trp281Ter_codon (TGG->TAG/TGA)",
+          "residual_adenine_editing_stop_loss_hazard": "NONE_AT_STOP_CODON_TAA_OR_MINUS_STRAND_TGG (requires empirical haplotype sequencing for A positions [5])",
+          "uniprot_domain_and_nmd_context": "UniProt P25445 death domain (DD) spans aa 230-314; exon 9/9 is the terminal canonical exon so canonical downstream-EJC NMD escape is plausible (p.Q311Ter removes only the final 4 DD residues 311-314; requires direct surface flow, FADD recruitment/signaling, isoform coverage, and validated sFas assay LLOD)"
+        },
+        {
+          "gene": "FAS",
+          "transcript": "ENST00000652046.1",
+          "exon": "9/9",
+          "protein_change": "p.Q311Ter",
+          "codon_change": "CAG->TAG",
+          "grch38_vcf": "chr10:89014373:C>T",
+          "editor_class": "SpCas9-CBE_canonical_NGG",
+          "protospacer_5to3": "AATTCAGACTATCATCCTCA",
+          "pam_3nt": "AGG",
+          "protospacer_strand": "+",
+          "target_pos_in_protospacer_1based": 5,
+          "five_prime_dinucleotide_context": "TC",
+          "deaminase_context_note": "TC motif: compatible with standard APOBEC/TadA CBEs",
+          "bystander_cytidines_in_4to8": [],
+          "expected_mechanism": "Terminal-exon truncation hypothesis (requires empirical NMD-escape, surface flow, and FADD/MyD88 non-signaling verification)",
+          "ensembl_reconstruction_release": "Ensembl release 116 (distinct from Layer-2 baseline Ensembl 112 / GENCODE v46)",
+          "narrow_filter_scope": "C-only positions [4..8] sequence filter only (NOT editor-independent biological purity)",
+          "extended_tadcbEd_3to9_bystander_cytidines": [
+            9
+          ],
+          "extended_tadcbEd_c9_consequence": "C9_missense_p.Thr312Ile_on_alleles_retaining_Q311 (ACT->ATT)",
+          "residual_adenine_editing_stop_loss_hazard": "PRESENT_CAG_TO_TAG_TO_TGG_TRP_AT_PROTOSPACER_A6 (Neugebauer 2023 PMID:36357719; Zhang 2024 PMID:38402281)",
+          "uniprot_domain_and_nmd_context": "UniProt P25445 death domain (DD) spans aa 230-314; exon 9/9 is the terminal canonical exon so canonical downstream-EJC NMD escape is plausible (p.Q311Ter removes only the final 4 DD residues 311-314; requires direct surface flow, FADD recruitment/signaling, isoform coverage, and validated sFas assay LLOD)"
+        },
+        {
+          "gene": "IL1R1",
+          "transcript": "ENST00000410023.6",
+          "exon": "5/12",
+          "protein_change": "p.Q130Ter",
+          "codon_change": "CAG->TAG",
+          "grch38_vcf": "chr2:102165206:C>T",
+          "editor_class": "SpCas9-CBE_canonical_NGG",
+          "protospacer_5to3": "AAGCAGAAACTACCCGTTGC",
+          "pam_3nt": "AGG",
+          "protospacer_strand": "+",
+          "target_pos_in_protospacer_1based": 4,
+          "five_prime_dinucleotide_context": "GC",
+          "deaminase_context_note": "GC motif: requires GC-compatible deaminase (evoAPOBEC1 / TadCBEd) rather than rAPOBEC1",
+          "bystander_cytidines_in_4to8": [],
+          "expected_mechanism": "Premature-termination NMD receptor knockout hypothesis",
+          "ensembl_reconstruction_release": "Ensembl release 116 (distinct from Layer-2 baseline Ensembl 112 / GENCODE v46)",
+          "narrow_filter_scope": "C-only positions [4..8] sequence filter only (NOT editor-independent biological purity)",
+          "extended_tadcbEd_3to9_bystander_cytidines": [],
+          "extended_tadcbEd_c9_consequence": "NONE_IN_3TO9",
+          "residual_adenine_editing_stop_loss_hazard": "PRESENT_CAG_TO_TAG_TO_TGG_TRP_AT_PROTOSPACER_A5 (Neugebauer 2023 PMID:36357719; Zhang 2024 PMID:38402281)",
+          "uniprot_domain_and_nmd_context": "Internal canonical exon (5/12 or 6/12) upstream of transmembrane segment (aa 337-356, UniProt P14778); premature termination is a candidate NMD knockout requiring empirical mRNA decay, surface flow, and soluble ectodomain verification"
+        },
+        {
+          "gene": "IL1R1",
+          "transcript": "ENST00000410023.6",
+          "exon": "6/12",
+          "protein_change": "p.Q206Ter",
+          "codon_change": "CAA->TAA",
+          "grch38_vcf": "chr2:102166242:C>T",
+          "editor_class": "SpCas9-CBE_canonical_NGG",
+          "protospacer_5to3": "CAAGCAATATCCTATTACCC",
+          "pam_3nt": "GGG",
+          "protospacer_strand": "+",
+          "target_pos_in_protospacer_1based": 5,
+          "five_prime_dinucleotide_context": "GC",
+          "deaminase_context_note": "GC motif: requires GC-compatible deaminase (evoAPOBEC1 / TadCBEd) rather than rAPOBEC1",
+          "bystander_cytidines_in_4to8": [],
+          "expected_mechanism": "Premature-termination NMD receptor knockout hypothesis",
+          "ensembl_reconstruction_release": "Ensembl release 116 (distinct from Layer-2 baseline Ensembl 112 / GENCODE v46)",
+          "narrow_filter_scope": "C-only positions [4..8] sequence filter only (NOT editor-independent biological purity)",
+          "extended_tadcbEd_3to9_bystander_cytidines": [],
+          "extended_tadcbEd_c9_consequence": "NONE_IN_3TO9",
+          "residual_adenine_editing_stop_loss_hazard": "NONE_AT_STOP_CODON_TAA_OR_MINUS_STRAND_TGG (requires empirical haplotype sequencing for A positions [3, 6, 7, 9])",
+          "uniprot_domain_and_nmd_context": "Internal canonical exon (5/12 or 6/12) upstream of transmembrane segment (aa 337-356, UniProt P14778); premature termination is a candidate NMD knockout requiring empirical mRNA decay, surface flow, and soluble ectodomain verification"
+        },
+        {
+          "gene": "IL1R1",
+          "transcript": "ENST00000410023.6",
+          "exon": "6/12",
+          "protein_change": "p.Q206Ter",
+          "codon_change": "CAA->TAA",
+          "grch38_vcf": "chr2:102166242:C>T",
+          "editor_class": "SpCas9-CBE_canonical_NGG",
+          "protospacer_5to3": "GCAAGCAATATCCTATTACC",
+          "pam_3nt": "CGG",
+          "protospacer_strand": "+",
+          "target_pos_in_protospacer_1based": 6,
+          "five_prime_dinucleotide_context": "GC",
+          "deaminase_context_note": "GC motif: requires GC-compatible deaminase (evoAPOBEC1 / TadCBEd) rather than rAPOBEC1",
+          "bystander_cytidines_in_4to8": [],
+          "expected_mechanism": "Premature-termination NMD receptor knockout hypothesis",
+          "ensembl_reconstruction_release": "Ensembl release 116 (distinct from Layer-2 baseline Ensembl 112 / GENCODE v46)",
+          "narrow_filter_scope": "C-only positions [4..8] sequence filter only (NOT editor-independent biological purity)",
+          "extended_tadcbEd_3to9_bystander_cytidines": [],
+          "extended_tadcbEd_c9_consequence": "NONE_IN_3TO9",
+          "residual_adenine_editing_stop_loss_hazard": "NONE_AT_STOP_CODON_TAA_OR_MINUS_STRAND_TGG (requires empirical haplotype sequencing for A positions [3, 4, 7, 8])",
+          "uniprot_domain_and_nmd_context": "Internal canonical exon (5/12 or 6/12) upstream of transmembrane segment (aa 337-356, UniProt P14778); premature termination is a candidate NMD knockout requiring empirical mRNA decay, surface flow, and soluble ectodomain verification"
+        },
+        {
+          "gene": "IL1R1",
+          "transcript": "ENST00000410023.6",
+          "exon": "12/12",
+          "protein_change": "p.Q471Ter",
+          "codon_change": "CAA->TAA",
+          "grch38_vcf": "chr2:102176460:C>T",
+          "editor_class": "SpG-CBE_NGN",
+          "protospacer_5to3": "GAGCAAATAGCCATGTATAA",
+          "pam_3nt": "TGC",
+          "protospacer_strand": "+",
+          "target_pos_in_protospacer_1based": 4,
+          "five_prime_dinucleotide_context": "GC",
+          "deaminase_context_note": "GC motif: requires GC-compatible deaminase (evoAPOBEC1 / TadCBEd) rather than rAPOBEC1",
+          "bystander_cytidines_in_4to8": [],
+          "expected_mechanism": "Terminal-exon truncation hypothesis (requires empirical NMD-escape, surface flow, and FADD/MyD88 non-signaling verification)",
+          "ensembl_reconstruction_release": "Ensembl release 116 (distinct from Layer-2 baseline Ensembl 112 / GENCODE v46)",
+          "narrow_filter_scope": "C-only positions [4..8] sequence filter only (NOT editor-independent biological purity)",
+          "extended_tadcbEd_3to9_bystander_cytidines": [],
+          "extended_tadcbEd_c9_consequence": "NONE_IN_3TO9",
+          "residual_adenine_editing_stop_loss_hazard": "NONE_AT_STOP_CODON_TAA_OR_MINUS_STRAND_TGG (requires empirical haplotype sequencing for A positions [5, 6, 7, 9])",
+          "uniprot_domain_and_nmd_context": "UniProt P14778 TIR domain spans aa 383-538; exon 12/12 is the terminal canonical exon so canonical downstream-EJC NMD escape is plausible, truncating the intracellular TIR domain while retaining the ectodomain and transmembrane segment (requires surface-decoy vs residual MyD88 signaling verification)"
+        },
+        {
+          "gene": "IL1R1",
+          "transcript": "ENST00000410023.6",
+          "exon": "12/12",
+          "protein_change": "p.Q480Ter",
+          "codon_change": "CAG->TAG",
+          "grch38_vcf": "chr2:102176487:C>T",
+          "editor_class": "SpG-CBE_NGN",
+          "protospacer_5to3": "GTTCAGGATGGAATTAAAGT",
+          "pam_3nt": "TGT",
+          "protospacer_strand": "+",
+          "target_pos_in_protospacer_1based": 4,
+          "five_prime_dinucleotide_context": "TC",
+          "deaminase_context_note": "TC motif: compatible with standard APOBEC/TadA CBEs",
+          "bystander_cytidines_in_4to8": [],
+          "expected_mechanism": "Terminal-exon truncation hypothesis (requires empirical NMD-escape, surface flow, and FADD/MyD88 non-signaling verification)",
+          "ensembl_reconstruction_release": "Ensembl release 116 (distinct from Layer-2 baseline Ensembl 112 / GENCODE v46)",
+          "narrow_filter_scope": "C-only positions [4..8] sequence filter only (NOT editor-independent biological purity)",
+          "extended_tadcbEd_3to9_bystander_cytidines": [],
+          "extended_tadcbEd_c9_consequence": "NONE_IN_3TO9",
+          "residual_adenine_editing_stop_loss_hazard": "PRESENT_CAG_TO_TAG_TO_TGG_TRP_AT_PROTOSPACER_A5 (Neugebauer 2023 PMID:36357719; Zhang 2024 PMID:38402281)",
+          "uniprot_domain_and_nmd_context": "UniProt P14778 TIR domain spans aa 383-538; exon 12/12 is the terminal canonical exon so canonical downstream-EJC NMD escape is plausible, truncating the intracellular TIR domain while retaining the ectodomain and transmembrane segment (requires surface-decoy vs residual MyD88 signaling verification)"
+        },
+        {
+          "gene": "IL1R1",
+          "transcript": "ENST00000410023.6",
+          "exon": "12/12",
+          "protein_change": "p.Q480Ter",
+          "codon_change": "CAG->TAG",
+          "grch38_vcf": "chr2:102176487:C>T",
+          "editor_class": "SpG-CBE_NGN",
+          "protospacer_5to3": "CTTGTTCAGGATGGAATTAA",
+          "pam_3nt": "AGT",
+          "protospacer_strand": "+",
+          "target_pos_in_protospacer_1based": 7,
+          "five_prime_dinucleotide_context": "TC",
+          "deaminase_context_note": "TC motif: compatible with standard APOBEC/TadA CBEs",
+          "bystander_cytidines_in_4to8": [],
+          "expected_mechanism": "Terminal-exon truncation hypothesis (requires empirical NMD-escape, surface flow, and FADD/MyD88 non-signaling verification)",
+          "ensembl_reconstruction_release": "Ensembl release 116 (distinct from Layer-2 baseline Ensembl 112 / GENCODE v46)",
+          "narrow_filter_scope": "C-only positions [4..8] sequence filter only (NOT editor-independent biological purity)",
+          "extended_tadcbEd_3to9_bystander_cytidines": [],
+          "extended_tadcbEd_c9_consequence": "NONE_IN_3TO9",
+          "residual_adenine_editing_stop_loss_hazard": "PRESENT_CAG_TO_TAG_TO_TGG_TRP_AT_PROTOSPACER_A8 (Neugebauer 2023 PMID:36357719; Zhang 2024 PMID:38402281)",
+          "uniprot_domain_and_nmd_context": "UniProt P14778 TIR domain spans aa 383-538; exon 12/12 is the terminal canonical exon so canonical downstream-EJC NMD escape is plausible, truncating the intracellular TIR domain while retaining the ectodomain and transmembrane segment (requires surface-decoy vs residual MyD88 signaling verification)"
+        }
+      ],
+      "retracted_or_reclassified_s1_edits": [
+        {
+          "s1_string": "IFIH1 chr2:162268127:T>A (rs35667974)",
+          "s3_correction": "chr2:162268127:T>C on current MANE Select ENST00000649979.2 (NM_022168.4; fixing retired ENST00000263642 and OAS3 ENST00000680230 typo) encodes minus-strand c.2767A>G -> p.Ile923Val (T>A was p.Ile923Phe). Live [4..8] window audit shows ZERO canonical NGG ABE windows, an E924G missense bystander on SpG (pos 4 CGT), and a synonymous V922V bystander on SpRY-ABE8e (pos 7 TCA, 5'-CATGTAATTGAGAAAATGCA-3').",
+          "verified_modality": "Benchmark germline allele requiring PEmax + epegRNA or PAM-relaxed SpRY-ABE8e (with synonymous V922V)"
+        },
+        {
+          "s1_string": "TYK2 chr19:10352442:G>C (rs34536443, P1104A) labeled JH2 / base edit",
+          "s3_correction": "chr19:10352442:G>C (ENST00000525621.8 c.3310C>G -> p.Pro1104Ala) sits in the JH1 catalytic kinase domain and is a C>G transversion",
+          "verified_modality": "Benchmark germline allele installed via PEmax + epegRNA in Layer 5 / CAND-009"
+        },
+        {
+          "s1_string": "IL1R1 chr2:102172839:G>A labeled post-TM DeltaTIR membrane self-decoy",
+          "s3_correction": "RETRACTED as membrane self-decoy: Exon-9 donor c.991+1G>A sits upstream of TM (aa 337-356) and carries V331I exonic bystander",
+          "verified_modality": "Replaced by Exon-6/5 canonical NGG CBE NMD KO (Q206Ter/Q130Ter) and Exon-12 SpG-CBE stop needles (Q471Ter/Q480Ter)"
+        },
+        {
+          "s1_string": "IL1R1 chr2:102176457:G>T (p.Glu470Ter) grouped under CBE",
+          "s3_correction": "G>T transversion requires PEmax + epegRNA; superseded for CBE by zero-bystander C>T Q471Ter (chr2:102176460:C>T) and Q480Ter (chr2:102176487:C>T)",
+          "verified_modality": "Superseded by SpG-CBE Q471Ter / Q480Ter"
+        }
+      ],
+      "germline_protective_coding_benchmarks_non_cbe": [
+        {
+          "gene": "IFIH1",
+          "mane_select_transcript": "ENST00000649979.2 (NM_022168.4)",
+          "rsid": "rs35667974",
+          "grch38_vcf": "chr2:162268127:T>C",
+          "protein_change": "p.Ile923Val",
+          "domain": "C-terminal dsRNA-sensing regulatory domain",
+          "abe_4to8_window_audit": [
+            {
+              "target_pos_1based": 4,
+              "protospacer_5to3": "GTAATTGAGAAAATGCATCA",
+              "pam_3nt": "CGT",
+              "bystander_adenines_in_4to8": [
+                8
+              ]
+            },
+            {
+              "target_pos_1based": 5,
+              "protospacer_5to3": "TGTAATTGAGAAAATGCATC",
+              "pam_3nt": "ACG",
+              "bystander_adenines_in_4to8": [
+                4
+              ]
+            },
+            {
+              "target_pos_1based": 6,
+              "protospacer_5to3": "ATGTAATTGAGAAAATGCAT",
+              "pam_3nt": "CAC",
+              "bystander_adenines_in_4to8": [
+                5
+              ]
+            },
+            {
+              "target_pos_1based": 7,
+              "protospacer_5to3": "CATGTAATTGAGAAAATGCA",
+              "pam_3nt": "TCA",
+              "bystander_adenines_in_4to8": [
+                6
+              ]
+            },
+            {
+              "target_pos_1based": 8,
+              "protospacer_5to3": "CCATGTAATTGAGAAAATGC",
+              "pam_3nt": "ATC",
+              "bystander_adenines_in_4to8": [
+                7
+              ]
+            }
+          ],
+          "required_modality": "PEmax + epegRNA (or SpRY-ABE8e pos 7 TCA PAM with synonymous p.Val922= bystander; zero canonical NGG windows)",
+          "biological_caveat": "Attenuates MDA5 dsRNA sensing; requires Stage-0 enterovirus/picornavirus innate IFN-beta survival qualification in SC-islets."
+        },
+        {
+          "gene": "TYK2",
+          "mane_select_transcript": "ENST00000525621.8 (NM_003331.5)",
+          "rsid": "rs34536443",
+          "grch38_vcf": "chr19:10352442:G>C",
+          "protein_change": "p.Pro1104Ala",
+          "domain": "JH1 catalytic tyrosine kinase domain",
+          "required_modality": "PEmax + epegRNA (specified in Layer 5 / CAND-009; no separate pegRNA newly designed in CAND-010)",
+          "biological_caveat": "Impairs IL-23-dependent IFN-gamma immunity in systemic human homozygotes while largely preserving primary-leukocyte IFN-alpha/IL-12 (Boisson-Dupuis 2018 PMID:30578352) vs dose-dependent partial IFN-alpha/IL-12/IL-23 attenuation (Dendrou 2016 PMID:27807284); ex vivo graft-only editing leaves host leukocyte mycobacterial immunity intact, while Stage-0 SC-islet differentiation (Chandra 2022 PMID:36289205) and Rule S8 CXCL10 licensing (GY-001) remain mandatory gates."
+        }
+      ]
+    },
+    "opentargets_mondo_0005147_top200_timestamped_receipt": {
+      "retrieved_utc": "2026-11-15T14:11:32Z",
+      "disease_efo_id": "MONDO_0005147",
+      "total_associated_targets_in_opentargets": 6069,
+      "queried_top_n": 200,
+      "partition_counts": {
+        "germline_associated_t1d_loci_gt_0p05": 112,
+        "mody_neonatal_confounders": 1,
+        "drug_or_metformin_label_confounders": 76,
+        "exocrine_acinar_confounders": 2,
+        "t2d_metabolic_confounders": 6,
+        "subthreshold_somatic_or_literature_tail": 3
+      },
+      "rows_200": [
+        {
+          "rank": 1,
+          "symbol": "INS",
+          "ensembl_id": "ENSG00000254647",
+          "overall_score": 0.7333,
+          "genetic_association": 0.8065,
+          "gwas_credible_sets": 0.9419,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 2,
+          "symbol": "HNF1A",
+          "ensembl_id": "ENSG00000135100",
+          "overall_score": 0.6931,
+          "genetic_association": 0.754,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.0,
+          "partition": "mody_neonatal_confounders"
+        },
+        {
+          "rank": 3,
+          "symbol": "IL2RA",
+          "ensembl_id": "ENSG00000134460",
+          "overall_score": 0.6342,
+          "genetic_association": 0.8116,
+          "gwas_credible_sets": 0.8116,
+          "clinical_or_drug_score": 0.6095,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 4,
+          "symbol": "PTPN22",
+          "ensembl_id": "ENSG00000134242",
+          "overall_score": 0.6322,
+          "genetic_association": 0.7884,
+          "gwas_credible_sets": 0.9247,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 5,
+          "symbol": "INSR",
+          "ensembl_id": "ENSG00000171105",
+          "overall_score": 0.6303,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.9879,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 6,
+          "symbol": "SH2B3",
+          "ensembl_id": "ENSG00000111252",
+          "overall_score": 0.629,
+          "genetic_association": 0.9502,
+          "gwas_credible_sets": 0.9502,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 7,
+          "symbol": "SLC5A2",
+          "ensembl_id": "ENSG00000140675",
+          "overall_score": 0.606,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.9439,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 8,
+          "symbol": "CTLA4",
+          "ensembl_id": "ENSG00000163599",
+          "overall_score": 0.5972,
+          "genetic_association": 0.9355,
+          "gwas_credible_sets": 0.9355,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 9,
+          "symbol": "TYK2",
+          "ensembl_id": "ENSG00000105397",
+          "overall_score": 0.5835,
+          "genetic_association": 0.9187,
+          "gwas_credible_sets": 0.9187,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 10,
+          "symbol": "CD3E",
+          "ensembl_id": "ENSG00000198851",
+          "overall_score": 0.5643,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.9239,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 11,
+          "symbol": "CTRB1",
+          "ensembl_id": "ENSG00000168925",
+          "overall_score": 0.5599,
+          "genetic_association": 0.9013,
+          "gwas_credible_sets": 0.9013,
+          "clinical_or_drug_score": 0.0,
+          "partition": "exocrine_acinar_confounders"
+        },
+        {
+          "rank": 12,
+          "symbol": "CTSH",
+          "ensembl_id": "ENSG00000103811",
+          "overall_score": 0.5581,
+          "genetic_association": 0.8895,
+          "gwas_credible_sets": 0.8895,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 13,
+          "symbol": "IL10",
+          "ensembl_id": "ENSG00000136634",
+          "overall_score": 0.5567,
+          "genetic_association": 0.8737,
+          "gwas_credible_sets": 0.8737,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 14,
+          "symbol": "TCF7L2",
+          "ensembl_id": "ENSG00000148737",
+          "overall_score": 0.5541,
+          "genetic_association": 0.8717,
+          "gwas_credible_sets": 0.8717,
+          "clinical_or_drug_score": 0.0,
+          "partition": "t2d_metabolic_confounders"
+        },
+        {
+          "rank": 15,
+          "symbol": "GCGR",
+          "ensembl_id": "ENSG00000215644",
+          "overall_score": 0.5531,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.8593,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 16,
+          "symbol": "BACH2",
+          "ensembl_id": "ENSG00000112182",
+          "overall_score": 0.5516,
+          "genetic_association": 0.8825,
+          "gwas_credible_sets": 0.8825,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 17,
+          "symbol": "CD226",
+          "ensembl_id": "ENSG00000150637",
+          "overall_score": 0.5494,
+          "genetic_association": 0.8599,
+          "gwas_credible_sets": 0.8599,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 18,
+          "symbol": "CTRB2",
+          "ensembl_id": "ENSG00000168928",
+          "overall_score": 0.5475,
+          "genetic_association": 0.8916,
+          "gwas_credible_sets": 0.8916,
+          "clinical_or_drug_score": 0.0,
+          "partition": "exocrine_acinar_confounders"
+        },
+        {
+          "rank": 19,
+          "symbol": "FOXP3",
+          "ensembl_id": "ENSG00000049768",
+          "overall_score": 0.5473,
+          "genetic_association": 0.4863,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 20,
+          "symbol": "SIRPG",
+          "ensembl_id": "ENSG00000089012",
+          "overall_score": 0.5464,
+          "genetic_association": 0.8654,
+          "gwas_credible_sets": 0.8654,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 21,
+          "symbol": "FUT2",
+          "ensembl_id": "ENSG00000176920",
+          "overall_score": 0.5231,
+          "genetic_association": 0.8402,
+          "gwas_credible_sets": 0.8402,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 22,
+          "symbol": "GLP1R",
+          "ensembl_id": "ENSG00000112164",
+          "overall_score": 0.5208,
+          "genetic_association": 0.6114,
+          "gwas_credible_sets": 0.6114,
+          "clinical_or_drug_score": 0.6848,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 23,
+          "symbol": "SUOX",
+          "ensembl_id": "ENSG00000139531",
+          "overall_score": 0.5147,
+          "genetic_association": 0.8392,
+          "gwas_credible_sets": 0.8392,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 24,
+          "symbol": "PTPN2",
+          "ensembl_id": "ENSG00000175354",
+          "overall_score": 0.5105,
+          "genetic_association": 0.8129,
+          "gwas_credible_sets": 0.8129,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 25,
+          "symbol": "SLC5A1",
+          "ensembl_id": "ENSG00000100170",
+          "overall_score": 0.5094,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.8258,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 26,
+          "symbol": "ITPR3",
+          "ensembl_id": "ENSG00000096433",
+          "overall_score": 0.4957,
+          "genetic_association": 0.6483,
+          "gwas_credible_sets": 0.7618,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 27,
+          "symbol": "APOBR",
+          "ensembl_id": "ENSG00000184730",
+          "overall_score": 0.4777,
+          "genetic_association": 0.7823,
+          "gwas_credible_sets": 0.7823,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 28,
+          "symbol": "ZFP36L1",
+          "ensembl_id": "ENSG00000185650",
+          "overall_score": 0.477,
+          "genetic_association": 0.7847,
+          "gwas_credible_sets": 0.7847,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 29,
+          "symbol": "IFIH1",
+          "ensembl_id": "ENSG00000115267",
+          "overall_score": 0.4759,
+          "genetic_association": 0.7363,
+          "gwas_credible_sets": 0.7363,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 30,
+          "symbol": "GLIS3",
+          "ensembl_id": "ENSG00000107249",
+          "overall_score": 0.4752,
+          "genetic_association": 0.7523,
+          "gwas_credible_sets": 0.7523,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 31,
+          "symbol": "UBASH3A",
+          "ensembl_id": "ENSG00000160185",
+          "overall_score": 0.4742,
+          "genetic_association": 0.7382,
+          "gwas_credible_sets": 0.7382,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 32,
+          "symbol": "ANG",
+          "ensembl_id": "ENSG00000214274",
+          "overall_score": 0.4733,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.0,
+          "partition": "subthreshold_somatic_or_literature_tail"
+        },
+        {
+          "rank": 33,
+          "symbol": "FTO",
+          "ensembl_id": "ENSG00000140718",
+          "overall_score": 0.4627,
+          "genetic_association": 0.7514,
+          "gwas_credible_sets": 0.7514,
+          "clinical_or_drug_score": 0.0,
+          "partition": "t2d_metabolic_confounders"
+        },
+        {
+          "rank": 34,
+          "symbol": "ICOS",
+          "ensembl_id": "ENSG00000163600",
+          "overall_score": 0.4624,
+          "genetic_association": 0.7431,
+          "gwas_credible_sets": 0.7431,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 35,
+          "symbol": "COXFA4",
+          "ensembl_id": "ENSG00000189043",
+          "overall_score": 0.4565,
+          "genetic_association": 0.4077,
+          "gwas_credible_sets": 0.4077,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 36,
+          "symbol": "ERBB3",
+          "ensembl_id": "ENSG00000065361",
+          "overall_score": 0.4565,
+          "genetic_association": 0.7273,
+          "gwas_credible_sets": 0.7273,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 37,
+          "symbol": "CD6",
+          "ensembl_id": "ENSG00000013725",
+          "overall_score": 0.4552,
+          "genetic_association": 0.6402,
+          "gwas_credible_sets": 0.6402,
+          "clinical_or_drug_score": 0.4256,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 38,
+          "symbol": "KCNQ1",
+          "ensembl_id": "ENSG00000053918",
+          "overall_score": 0.4524,
+          "genetic_association": 0.7296,
+          "gwas_credible_sets": 0.7296,
+          "clinical_or_drug_score": 0.0,
+          "partition": "t2d_metabolic_confounders"
+        },
+        {
+          "rank": 39,
+          "symbol": "CDKAL1",
+          "ensembl_id": "ENSG00000145996",
+          "overall_score": 0.4516,
+          "genetic_association": 0.7369,
+          "gwas_credible_sets": 0.7369,
+          "clinical_or_drug_score": 0.0,
+          "partition": "t2d_metabolic_confounders"
+        },
+        {
+          "rank": 40,
+          "symbol": "C1QTNF6",
+          "ensembl_id": "ENSG00000133466",
+          "overall_score": 0.4488,
+          "genetic_association": 0.7093,
+          "gwas_credible_sets": 0.7093,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 41,
+          "symbol": "PGM1",
+          "ensembl_id": "ENSG00000079739",
+          "overall_score": 0.4431,
+          "genetic_association": 0.7178,
+          "gwas_credible_sets": 0.7178,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 42,
+          "symbol": "IL7R",
+          "ensembl_id": "ENSG00000168685",
+          "overall_score": 0.4408,
+          "genetic_association": 0.6816,
+          "gwas_credible_sets": 0.6816,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 43,
+          "symbol": "CLEC16A",
+          "ensembl_id": "ENSG00000038532",
+          "overall_score": 0.4384,
+          "genetic_association": 0.6403,
+          "gwas_credible_sets": 0.6403,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 44,
+          "symbol": "GATA3",
+          "ensembl_id": "ENSG00000107485",
+          "overall_score": 0.4381,
+          "genetic_association": 0.7086,
+          "gwas_credible_sets": 0.7086,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 45,
+          "symbol": "AFF3",
+          "ensembl_id": "ENSG00000144218",
+          "overall_score": 0.4246,
+          "genetic_association": 0.6928,
+          "gwas_credible_sets": 0.6928,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 46,
+          "symbol": "PCLO",
+          "ensembl_id": "ENSG00000186472",
+          "overall_score": 0.4215,
+          "genetic_association": 0.6927,
+          "gwas_credible_sets": 0.6927,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 47,
+          "symbol": "RGS1",
+          "ensembl_id": "ENSG00000090104",
+          "overall_score": 0.4208,
+          "genetic_association": 0.6789,
+          "gwas_credible_sets": 0.6789,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 48,
+          "symbol": "RPS26",
+          "ensembl_id": "ENSG00000197728",
+          "overall_score": 0.4207,
+          "genetic_association": 0.653,
+          "gwas_credible_sets": 0.653,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 49,
+          "symbol": "IRF4",
+          "ensembl_id": "ENSG00000137265",
+          "overall_score": 0.4165,
+          "genetic_association": 0.6605,
+          "gwas_credible_sets": 0.6605,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 50,
+          "symbol": "DPP4",
+          "ensembl_id": "ENSG00000197635",
+          "overall_score": 0.4142,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6306,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 51,
+          "symbol": "PRKD2",
+          "ensembl_id": "ENSG00000105287",
+          "overall_score": 0.4081,
+          "genetic_association": 0.6655,
+          "gwas_credible_sets": 0.6655,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 52,
+          "symbol": "VDR",
+          "ensembl_id": "ENSG00000111424",
+          "overall_score": 0.4062,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6235,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 53,
+          "symbol": "NDUFS3",
+          "ensembl_id": "ENSG00000213619",
+          "overall_score": 0.4027,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 54,
+          "symbol": "NDUFS5",
+          "ensembl_id": "ENSG00000168653",
+          "overall_score": 0.4005,
+          "genetic_association": 0.0413,
+          "gwas_credible_sets": 0.0413,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "subthreshold_somatic_or_literature_tail"
+        },
+        {
+          "rank": 55,
+          "symbol": "FKBP1A",
+          "ensembl_id": "ENSG00000088832",
+          "overall_score": 0.3998,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6568,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 56,
+          "symbol": "NDUFS8",
+          "ensembl_id": "ENSG00000110717",
+          "overall_score": 0.3991,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 57,
+          "symbol": "MT-ND2",
+          "ensembl_id": "ENSG00000198763",
+          "overall_score": 0.3985,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 58,
+          "symbol": "NDUFAF3",
+          "ensembl_id": "ENSG00000178057",
+          "overall_score": 0.3973,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 59,
+          "symbol": "HHEX",
+          "ensembl_id": "ENSG00000152804",
+          "overall_score": 0.3973,
+          "genetic_association": 0.6391,
+          "gwas_credible_sets": 0.6391,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 60,
+          "symbol": "GPD2",
+          "ensembl_id": "ENSG00000115159",
+          "overall_score": 0.3965,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 61,
+          "symbol": "NDUFB10",
+          "ensembl_id": "ENSG00000140990",
+          "overall_score": 0.3964,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 62,
+          "symbol": "MT-ND5",
+          "ensembl_id": "ENSG00000198786",
+          "overall_score": 0.3962,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 63,
+          "symbol": "MT-ND3",
+          "ensembl_id": "ENSG00000198840",
+          "overall_score": 0.3962,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 64,
+          "symbol": "MT-ND1",
+          "ensembl_id": "ENSG00000198888",
+          "overall_score": 0.3957,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 65,
+          "symbol": "NDUFA3",
+          "ensembl_id": "ENSG00000170906",
+          "overall_score": 0.3957,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 66,
+          "symbol": "NDUFV3",
+          "ensembl_id": "ENSG00000160194",
+          "overall_score": 0.3951,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 67,
+          "symbol": "NDUFA2",
+          "ensembl_id": "ENSG00000131495",
+          "overall_score": 0.395,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 68,
+          "symbol": "NDUFAB1",
+          "ensembl_id": "ENSG00000004779",
+          "overall_score": 0.395,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 69,
+          "symbol": "NDUFB4",
+          "ensembl_id": "ENSG00000065518",
+          "overall_score": 0.3949,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 70,
+          "symbol": "NDUFS1",
+          "ensembl_id": "ENSG00000023228",
+          "overall_score": 0.3948,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 71,
+          "symbol": "NDUFA7",
+          "ensembl_id": "ENSG00000267855",
+          "overall_score": 0.3948,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 72,
+          "symbol": "NDUFB9",
+          "ensembl_id": "ENSG00000147684",
+          "overall_score": 0.3948,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 73,
+          "symbol": "NDUFB6",
+          "ensembl_id": "ENSG00000165264",
+          "overall_score": 0.3946,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 74,
+          "symbol": "MT-ND6",
+          "ensembl_id": "ENSG00000198695",
+          "overall_score": 0.3944,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 75,
+          "symbol": "MT-ND4",
+          "ensembl_id": "ENSG00000198886",
+          "overall_score": 0.3944,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 76,
+          "symbol": "MT-ND4L",
+          "ensembl_id": "ENSG00000212907",
+          "overall_score": 0.3944,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 77,
+          "symbol": "NDUFB7",
+          "ensembl_id": "ENSG00000099795",
+          "overall_score": 0.3943,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 78,
+          "symbol": "NDUFB1",
+          "ensembl_id": "ENSG00000183648",
+          "overall_score": 0.3942,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 79,
+          "symbol": "LIPJ",
+          "ensembl_id": "ENSG00000204022",
+          "overall_score": 0.3941,
+          "genetic_association": 0.6467,
+          "gwas_credible_sets": 0.6467,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 80,
+          "symbol": "NDUFA12",
+          "ensembl_id": "ENSG00000184752",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 81,
+          "symbol": "NDUFS6",
+          "ensembl_id": "ENSG00000145494",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 82,
+          "symbol": "NDUFB3",
+          "ensembl_id": "ENSG00000119013",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 83,
+          "symbol": "NDUFS4",
+          "ensembl_id": "ENSG00000164258",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 84,
+          "symbol": "NDUFA9",
+          "ensembl_id": "ENSG00000139180",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 85,
+          "symbol": "NDUFB8",
+          "ensembl_id": "ENSG00000166136",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 86,
+          "symbol": "NDUFAF1",
+          "ensembl_id": "ENSG00000137806",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 87,
+          "symbol": "NDUFA5",
+          "ensembl_id": "ENSG00000128609",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 88,
+          "symbol": "NDUFA1",
+          "ensembl_id": "ENSG00000125356",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 89,
+          "symbol": "NDUFC1",
+          "ensembl_id": "ENSG00000109390",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 90,
+          "symbol": "NDUFA8",
+          "ensembl_id": "ENSG00000119421",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 91,
+          "symbol": "NDUFA11",
+          "ensembl_id": "ENSG00000174886",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 92,
+          "symbol": "NDUFB11",
+          "ensembl_id": "ENSG00000147123",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 93,
+          "symbol": "NDUFC2",
+          "ensembl_id": "ENSG00000151366",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 94,
+          "symbol": "NDUFS2",
+          "ensembl_id": "ENSG00000158864",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 95,
+          "symbol": "NDUFV2",
+          "ensembl_id": "ENSG00000178127",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 96,
+          "symbol": "NDUFA6",
+          "ensembl_id": "ENSG00000184983",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 97,
+          "symbol": "COXFA4L2",
+          "ensembl_id": "ENSG00000185633",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 98,
+          "symbol": "NDUFB5",
+          "ensembl_id": "ENSG00000136521",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 99,
+          "symbol": "NDUFA10",
+          "ensembl_id": "ENSG00000130414",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 100,
+          "symbol": "NDUFS7",
+          "ensembl_id": "ENSG00000115286",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 101,
+          "symbol": "NDUFAF4",
+          "ensembl_id": "ENSG00000123545",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 102,
+          "symbol": "NDUFV1",
+          "ensembl_id": "ENSG00000167792",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 103,
+          "symbol": "NDUFAF2",
+          "ensembl_id": "ENSG00000164182",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 104,
+          "symbol": "NDUFB2",
+          "ensembl_id": "ENSG00000090266",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 105,
+          "symbol": "NDUFA13",
+          "ensembl_id": "ENSG00000186010",
+          "overall_score": 0.3938,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6479,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 106,
+          "symbol": "CD69",
+          "ensembl_id": "ENSG00000110848",
+          "overall_score": 0.3927,
+          "genetic_association": 0.6333,
+          "gwas_credible_sets": 0.6333,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 107,
+          "symbol": "SKAP2",
+          "ensembl_id": "ENSG00000005020",
+          "overall_score": 0.3926,
+          "genetic_association": 0.62,
+          "gwas_credible_sets": 0.62,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 108,
+          "symbol": "IGF2BP2",
+          "ensembl_id": "ENSG00000073792",
+          "overall_score": 0.3915,
+          "genetic_association": 0.6302,
+          "gwas_credible_sets": 0.6302,
+          "clinical_or_drug_score": 0.0,
+          "partition": "t2d_metabolic_confounders"
+        },
+        {
+          "rank": 109,
+          "symbol": "RAMP2",
+          "ensembl_id": "ENSG00000131477",
+          "overall_score": 0.3903,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6411,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 110,
+          "symbol": "CENPW",
+          "ensembl_id": "ENSG00000203760",
+          "overall_score": 0.3902,
+          "genetic_association": 0.6375,
+          "gwas_credible_sets": 0.6375,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 111,
+          "symbol": "RAMP1",
+          "ensembl_id": "ENSG00000132329",
+          "overall_score": 0.3901,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6411,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 112,
+          "symbol": "RAMP3",
+          "ensembl_id": "ENSG00000122679",
+          "overall_score": 0.3897,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6411,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 113,
+          "symbol": "CALCR",
+          "ensembl_id": "ENSG00000004948",
+          "overall_score": 0.3897,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6411,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 114,
+          "symbol": "GP2",
+          "ensembl_id": "ENSG00000169347",
+          "overall_score": 0.3894,
+          "genetic_association": 0.6349,
+          "gwas_credible_sets": 0.6349,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 115,
+          "symbol": "IRS1",
+          "ensembl_id": "ENSG00000169047",
+          "overall_score": 0.3848,
+          "genetic_association": 0.5974,
+          "gwas_credible_sets": 0.5974,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 116,
+          "symbol": "IL2RG",
+          "ensembl_id": "ENSG00000147168",
+          "overall_score": 0.3842,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6095,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 117,
+          "symbol": "GRB10",
+          "ensembl_id": "ENSG00000106070",
+          "overall_score": 0.383,
+          "genetic_association": 0.6268,
+          "gwas_credible_sets": 0.6268,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 118,
+          "symbol": "CARMIL1",
+          "ensembl_id": "ENSG00000079691",
+          "overall_score": 0.3809,
+          "genetic_association": 0.6266,
+          "gwas_credible_sets": 0.6266,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 119,
+          "symbol": "GIPR",
+          "ensembl_id": "ENSG00000010310",
+          "overall_score": 0.3804,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6065,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 120,
+          "symbol": "PPARG",
+          "ensembl_id": "ENSG00000132170",
+          "overall_score": 0.3789,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6099,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 121,
+          "symbol": "PAM",
+          "ensembl_id": "ENSG00000145730",
+          "overall_score": 0.3786,
+          "genetic_association": 0.6212,
+          "gwas_credible_sets": 0.6212,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 122,
+          "symbol": "IL2RB",
+          "ensembl_id": "ENSG00000100385",
+          "overall_score": 0.3779,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.6095,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 123,
+          "symbol": "ANKRD55",
+          "ensembl_id": "ENSG00000164512",
+          "overall_score": 0.3773,
+          "genetic_association": 0.6187,
+          "gwas_credible_sets": 0.6187,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 124,
+          "symbol": "TRPS1",
+          "ensembl_id": "ENSG00000104447",
+          "overall_score": 0.3768,
+          "genetic_association": 0.6198,
+          "gwas_credible_sets": 0.6198,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 125,
+          "symbol": "PRF1",
+          "ensembl_id": "ENSG00000180644",
+          "overall_score": 0.3741,
+          "genetic_association": 0.6003,
+          "gwas_credible_sets": 0.6003,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 126,
+          "symbol": "SMPD4",
+          "ensembl_id": "ENSG00000136699",
+          "overall_score": 0.3721,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.0,
+          "partition": "subthreshold_somatic_or_literature_tail"
+        },
+        {
+          "rank": 127,
+          "symbol": "HBP1",
+          "ensembl_id": "ENSG00000105856",
+          "overall_score": 0.3696,
+          "genetic_association": 0.5971,
+          "gwas_credible_sets": 0.5971,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 128,
+          "symbol": "RPH3A",
+          "ensembl_id": "ENSG00000089169",
+          "overall_score": 0.3634,
+          "genetic_association": 0.5978,
+          "gwas_credible_sets": 0.5978,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 129,
+          "symbol": "ATM",
+          "ensembl_id": "ENSG00000149311",
+          "overall_score": 0.3591,
+          "genetic_association": 0.5866,
+          "gwas_credible_sets": 0.5866,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 130,
+          "symbol": "STAT4",
+          "ensembl_id": "ENSG00000138378",
+          "overall_score": 0.3589,
+          "genetic_association": 0.5513,
+          "gwas_credible_sets": 0.5513,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 131,
+          "symbol": "TNRC18",
+          "ensembl_id": "ENSG00000182095",
+          "overall_score": 0.3577,
+          "genetic_association": 0.5863,
+          "gwas_credible_sets": 0.5863,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 132,
+          "symbol": "ATP4A",
+          "ensembl_id": "ENSG00000105675",
+          "overall_score": 0.3551,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.5579,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 133,
+          "symbol": "SLC30A8",
+          "ensembl_id": "ENSG00000164756",
+          "overall_score": 0.3546,
+          "genetic_association": 0.528,
+          "gwas_credible_sets": 0.528,
+          "clinical_or_drug_score": 0.0,
+          "partition": "t2d_metabolic_confounders"
+        },
+        {
+          "rank": 134,
+          "symbol": "TRIB2",
+          "ensembl_id": "ENSG00000071575",
+          "overall_score": 0.3519,
+          "genetic_association": 0.5788,
+          "gwas_credible_sets": 0.5788,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 135,
+          "symbol": "ATP4B",
+          "ensembl_id": "ENSG00000186009",
+          "overall_score": 0.351,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.5579,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 136,
+          "symbol": "TNFAIP3",
+          "ensembl_id": "ENSG00000118503",
+          "overall_score": 0.3498,
+          "genetic_association": 0.5637,
+          "gwas_credible_sets": 0.5637,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 137,
+          "symbol": "ANXA1",
+          "ensembl_id": "ENSG00000135046",
+          "overall_score": 0.3461,
+          "genetic_association": 0.5371,
+          "gwas_credible_sets": 0.5371,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 138,
+          "symbol": "TLL1",
+          "ensembl_id": "ENSG00000038295",
+          "overall_score": 0.3446,
+          "genetic_association": 0.5635,
+          "gwas_credible_sets": 0.5635,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 139,
+          "symbol": "AGO1",
+          "ensembl_id": "ENSG00000092847",
+          "overall_score": 0.3441,
+          "genetic_association": 0.5645,
+          "gwas_credible_sets": 0.5645,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 140,
+          "symbol": "CD52",
+          "ensembl_id": "ENSG00000169442",
+          "overall_score": 0.344,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.5641,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 141,
+          "symbol": "PPIA",
+          "ensembl_id": "ENSG00000196262",
+          "overall_score": 0.3436,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.5567,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 142,
+          "symbol": "CLNK",
+          "ensembl_id": "ENSG00000109684",
+          "overall_score": 0.3428,
+          "genetic_association": 0.5492,
+          "gwas_credible_sets": 0.5492,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 143,
+          "symbol": "SLC16A11",
+          "ensembl_id": "ENSG00000174326",
+          "overall_score": 0.3418,
+          "genetic_association": 0.5595,
+          "gwas_credible_sets": 0.5595,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 144,
+          "symbol": "ARHGAP12",
+          "ensembl_id": "ENSG00000165322",
+          "overall_score": 0.3417,
+          "genetic_association": 0.562,
+          "gwas_credible_sets": 0.562,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 145,
+          "symbol": "AIRE",
+          "ensembl_id": "ENSG00000160224",
+          "overall_score": 0.3416,
+          "genetic_association": 0.5466,
+          "gwas_credible_sets": 0.5466,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 146,
+          "symbol": "FLI1",
+          "ensembl_id": "ENSG00000151702",
+          "overall_score": 0.341,
+          "genetic_association": 0.561,
+          "gwas_credible_sets": 0.561,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 147,
+          "symbol": "APCDD1",
+          "ensembl_id": "ENSG00000154856",
+          "overall_score": 0.3409,
+          "genetic_association": 0.5608,
+          "gwas_credible_sets": 0.5608,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 148,
+          "symbol": "RNLS",
+          "ensembl_id": "ENSG00000184719",
+          "overall_score": 0.3399,
+          "genetic_association": 0.5468,
+          "gwas_credible_sets": 0.5468,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 149,
+          "symbol": "CCR5",
+          "ensembl_id": "ENSG00000160791",
+          "overall_score": 0.3393,
+          "genetic_association": 0.5168,
+          "gwas_credible_sets": 0.5168,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 150,
+          "symbol": "DCLRE1B",
+          "ensembl_id": "ENSG00000118655",
+          "overall_score": 0.3388,
+          "genetic_association": 0.551,
+          "gwas_credible_sets": 0.551,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 151,
+          "symbol": "DRD2",
+          "ensembl_id": "ENSG00000149295",
+          "overall_score": 0.3376,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.553,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 152,
+          "symbol": "PLXNA4",
+          "ensembl_id": "ENSG00000221866",
+          "overall_score": 0.3368,
+          "genetic_association": 0.5539,
+          "gwas_credible_sets": 0.5539,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 153,
+          "symbol": "ARHGAP20",
+          "ensembl_id": "ENSG00000137727",
+          "overall_score": 0.3367,
+          "genetic_association": 0.5539,
+          "gwas_credible_sets": 0.5539,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 154,
+          "symbol": "SOX4",
+          "ensembl_id": "ENSG00000124766",
+          "overall_score": 0.3355,
+          "genetic_association": 0.528,
+          "gwas_credible_sets": 0.528,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 155,
+          "symbol": "DGKB",
+          "ensembl_id": "ENSG00000136267",
+          "overall_score": 0.3347,
+          "genetic_association": 0.5493,
+          "gwas_credible_sets": 0.5493,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 156,
+          "symbol": "KEAP1",
+          "ensembl_id": "ENSG00000079999",
+          "overall_score": 0.3337,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.5151,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 157,
+          "symbol": "WFS1",
+          "ensembl_id": "ENSG00000109501",
+          "overall_score": 0.3333,
+          "genetic_association": 0.5367,
+          "gwas_credible_sets": 0.5367,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 158,
+          "symbol": "MYL2",
+          "ensembl_id": "ENSG00000111245",
+          "overall_score": 0.3329,
+          "genetic_association": 0.5463,
+          "gwas_credible_sets": 0.5463,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 159,
+          "symbol": "PFKFB3",
+          "ensembl_id": "ENSG00000170525",
+          "overall_score": 0.332,
+          "genetic_association": 0.5272,
+          "gwas_credible_sets": 0.5272,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 160,
+          "symbol": "AKAP11",
+          "ensembl_id": "ENSG00000023516",
+          "overall_score": 0.3318,
+          "genetic_association": 0.5459,
+          "gwas_credible_sets": 0.5459,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 161,
+          "symbol": "SCN1A",
+          "ensembl_id": "ENSG00000144285",
+          "overall_score": 0.3307,
+          "genetic_association": 0.2308,
+          "gwas_credible_sets": 0.2308,
+          "clinical_or_drug_score": 0.4863,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 162,
+          "symbol": "SHC4",
+          "ensembl_id": "ENSG00000185634",
+          "overall_score": 0.3305,
+          "genetic_association": 0.5437,
+          "gwas_credible_sets": 0.5437,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 163,
+          "symbol": "TNF",
+          "ensembl_id": "ENSG00000232810",
+          "overall_score": 0.3302,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.4967,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 164,
+          "symbol": "LINGO1",
+          "ensembl_id": "ENSG00000169783",
+          "overall_score": 0.3294,
+          "genetic_association": 0.5418,
+          "gwas_credible_sets": 0.5418,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 165,
+          "symbol": "PTGER4",
+          "ensembl_id": "ENSG00000171522",
+          "overall_score": 0.3294,
+          "genetic_association": 0.5323,
+          "gwas_credible_sets": 0.5323,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 166,
+          "symbol": "IL2",
+          "ensembl_id": "ENSG00000109471",
+          "overall_score": 0.3293,
+          "genetic_association": 0.4944,
+          "gwas_credible_sets": 0.4944,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 167,
+          "symbol": "JAZF1",
+          "ensembl_id": "ENSG00000153814",
+          "overall_score": 0.3287,
+          "genetic_association": 0.5247,
+          "gwas_credible_sets": 0.5247,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 168,
+          "symbol": "CAMK4",
+          "ensembl_id": "ENSG00000152495",
+          "overall_score": 0.3274,
+          "genetic_association": 0.5363,
+          "gwas_credible_sets": 0.5363,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 169,
+          "symbol": "PTPRC",
+          "ensembl_id": "ENSG00000081237",
+          "overall_score": 0.3265,
+          "genetic_association": 0.5178,
+          "gwas_credible_sets": 0.5178,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 170,
+          "symbol": "CYTL1",
+          "ensembl_id": "ENSG00000170891",
+          "overall_score": 0.3258,
+          "genetic_association": 0.5271,
+          "gwas_credible_sets": 0.5271,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 171,
+          "symbol": "TNFSF15",
+          "ensembl_id": "ENSG00000181634",
+          "overall_score": 0.325,
+          "genetic_association": 0.5323,
+          "gwas_credible_sets": 0.5323,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 172,
+          "symbol": "IDUA",
+          "ensembl_id": "ENSG00000127415",
+          "overall_score": 0.3247,
+          "genetic_association": 0.5331,
+          "gwas_credible_sets": 0.5331,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 173,
+          "symbol": "CTSB",
+          "ensembl_id": "ENSG00000164733",
+          "overall_score": 0.3244,
+          "genetic_association": 0.5114,
+          "gwas_credible_sets": 0.5114,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 174,
+          "symbol": "MKI67",
+          "ensembl_id": "ENSG00000148773",
+          "overall_score": 0.3241,
+          "genetic_association": 0.5085,
+          "gwas_credible_sets": 0.5085,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 175,
+          "symbol": "PTPRR",
+          "ensembl_id": "ENSG00000153233",
+          "overall_score": 0.3232,
+          "genetic_association": 0.5317,
+          "gwas_credible_sets": 0.5317,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 176,
+          "symbol": "TYR",
+          "ensembl_id": "ENSG00000077498",
+          "overall_score": 0.323,
+          "genetic_association": 0.5262,
+          "gwas_credible_sets": 0.5262,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 177,
+          "symbol": "ITGB1",
+          "ensembl_id": "ENSG00000150093",
+          "overall_score": 0.3226,
+          "genetic_association": 0.5248,
+          "gwas_credible_sets": 0.5248,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 178,
+          "symbol": "C2",
+          "ensembl_id": "ENSG00000166278",
+          "overall_score": 0.3197,
+          "genetic_association": 0.5217,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 179,
+          "symbol": "GSDMB",
+          "ensembl_id": "ENSG00000073605",
+          "overall_score": 0.3193,
+          "genetic_association": 0.5125,
+          "gwas_credible_sets": 0.5125,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 180,
+          "symbol": "KLRG1",
+          "ensembl_id": "ENSG00000139187",
+          "overall_score": 0.3187,
+          "genetic_association": 0.4925,
+          "gwas_credible_sets": 0.4925,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 181,
+          "symbol": "RASGRP1",
+          "ensembl_id": "ENSG00000172575",
+          "overall_score": 0.3185,
+          "genetic_association": 0.5028,
+          "gwas_credible_sets": 0.5028,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 182,
+          "symbol": "CUX2",
+          "ensembl_id": "ENSG00000111249",
+          "overall_score": 0.3172,
+          "genetic_association": 0.5192,
+          "gwas_credible_sets": 0.5192,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 183,
+          "symbol": "SCN4A",
+          "ensembl_id": "ENSG00000007314",
+          "overall_score": 0.316,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.4863,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 184,
+          "symbol": "GADD45G",
+          "ensembl_id": "ENSG00000130222",
+          "overall_score": 0.3156,
+          "genetic_association": 0.5191,
+          "gwas_credible_sets": 0.5191,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 185,
+          "symbol": "CLINT1",
+          "ensembl_id": "ENSG00000113282",
+          "overall_score": 0.3152,
+          "genetic_association": 0.5185,
+          "gwas_credible_sets": 0.5185,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 186,
+          "symbol": "CAPSL",
+          "ensembl_id": "ENSG00000152611",
+          "overall_score": 0.3149,
+          "genetic_association": 0.5135,
+          "gwas_credible_sets": 0.5135,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 187,
+          "symbol": "ADCYAP1",
+          "ensembl_id": "ENSG00000141433",
+          "overall_score": 0.3143,
+          "genetic_association": 0.5143,
+          "gwas_credible_sets": 0.5143,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 188,
+          "symbol": "PMFBP1",
+          "ensembl_id": "ENSG00000118557",
+          "overall_score": 0.3141,
+          "genetic_association": 0.5166,
+          "gwas_credible_sets": 0.5166,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 189,
+          "symbol": "CBLN2",
+          "ensembl_id": "ENSG00000141668",
+          "overall_score": 0.313,
+          "genetic_association": 0.5148,
+          "gwas_credible_sets": 0.5148,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 190,
+          "symbol": "SLC25A37",
+          "ensembl_id": "ENSG00000147454",
+          "overall_score": 0.3125,
+          "genetic_association": 0.5098,
+          "gwas_credible_sets": 0.5098,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 191,
+          "symbol": "FOXN3",
+          "ensembl_id": "ENSG00000053254",
+          "overall_score": 0.3113,
+          "genetic_association": 0.512,
+          "gwas_credible_sets": 0.512,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 192,
+          "symbol": "LMX1A",
+          "ensembl_id": "ENSG00000162761",
+          "overall_score": 0.309,
+          "genetic_association": 0.507,
+          "gwas_credible_sets": 0.507,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 193,
+          "symbol": "CACNA1D",
+          "ensembl_id": "ENSG00000157388",
+          "overall_score": 0.3089,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.4839,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 194,
+          "symbol": "IGFBP7",
+          "ensembl_id": "ENSG00000163453",
+          "overall_score": 0.3078,
+          "genetic_association": 0.4976,
+          "gwas_credible_sets": 0.4976,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 195,
+          "symbol": "PTPN1",
+          "ensembl_id": "ENSG00000196396",
+          "overall_score": 0.3073,
+          "genetic_association": 0.4697,
+          "gwas_credible_sets": 0.4697,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 196,
+          "symbol": "DIPK1A",
+          "ensembl_id": "ENSG00000154511",
+          "overall_score": 0.3066,
+          "genetic_association": 0.5044,
+          "gwas_credible_sets": 0.5044,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 197,
+          "symbol": "SCN8A",
+          "ensembl_id": "ENSG00000196876",
+          "overall_score": 0.3064,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.4863,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 198,
+          "symbol": "CXCR1",
+          "ensembl_id": "ENSG00000163464",
+          "overall_score": 0.3064,
+          "genetic_association": 0.0,
+          "gwas_credible_sets": 0.0,
+          "clinical_or_drug_score": 0.4836,
+          "partition": "drug_or_metformin_label_confounders"
+        },
+        {
+          "rank": 199,
+          "symbol": "RAD51B",
+          "ensembl_id": "ENSG00000182185",
+          "overall_score": 0.3062,
+          "genetic_association": 0.5001,
+          "gwas_credible_sets": 0.5001,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        },
+        {
+          "rank": 200,
+          "symbol": "ADCY8",
+          "ensembl_id": "ENSG00000155897",
+          "overall_score": 0.306,
+          "genetic_association": 0.5019,
+          "gwas_credible_sets": 0.5019,
+          "clinical_or_drug_score": 0.0,
+          "partition": "germline_associated_t1d_loci_gt_0p05"
+        }
+      ]
+    },
+    "bcrank_t1d_heuristic_stage0_rubric": {
+      "governance_framing": "Transparent heuristic Stage-0 target-prioritization rubric (NOT a calibrated clinical or causal probability estimator).",
+      "monte_carlo_500_weight_perturbations_plus_minus_25pct": {
+        "il1r1_and_fas_both_in_top8_pct": 100.0,
+        "top_6_retention_rates_pct": {
+          "FAS": 100.0,
+          "IL1R1": 100.0,
+          "CXCL10": 100.0,
+          "TYK2": 100.0,
+          "SERPINB9_C341S": 100.0,
+          "B2M": 100.0,
+          "IFIH1": 0.0,
+          "CIITA": 0.0
+        }
+      },
+      "cc_by_4_clean_ranked_34": [
+        {
+          "gene_or_intervention": "FAS",
+          "cascade_layer": "U4_Execution_Receptor",
+          "causal_classification": "AMPLIFIER_KNOCKDOWN_OR_DOMINANT_NEGATIVE",
+          "bcrank_t1d_score_0_to_100": 94.85,
+          "unpenalized_subscore_0_to_100": 94.85,
+          "safety_gate_multiplier": 1.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 23.0,
+            "amplifier_potency_25": 24.0,
+            "iaa_plus_gada_endotype_breadth_20": 19.2,
+            "cascade_nonredundancy_15": 14.25,
+            "human_sc_islet_gsis_safety_15": 14.4
+          },
+          "gnomad_v4": {
+            "pLI": 0.9999,
+            "oe_lof": 0.1504,
+            "loeuf": 0.3162,
+            "oe_mis": 0.8782
+          },
+          "gtex_v10_pancreas_tpm": 0.446,
+          "gtex_v10_whole_blood_tpm": 2.881,
+          "recommended_modality": "K=4,B=0 Pol II Multi-miR (ARM5/ARM6) OR B=1 Exon-9 Q276Ter/Q311Ter canonical-NGG CBE needle",
+          "mechanistic_evidence_and_pmids": "Death receptor for membrane-bound mFasL on infiltrating T/macrophage effectors (native human islets: Loweth 1998 PMID:9588443; NOD mouse perforin dominance with soluble sFasL dispensable when mFasL intact: Trivedi 2019/2020 PMID:31552143) AND acute Rule S8b SA-FasL microgel fratricide (Headen 2018 PMID:29867165), keeping Caspase-8 intact to prevent RIPK3 necroptosis (Kaiser 2011 PMID:21368762).",
+          "rank": 1
+        },
+        {
+          "gene_or_intervention": "IL1R1",
+          "cascade_layer": "U4_Execution_Receptor",
+          "causal_classification": "AMPLIFIER_KNOCKDOWN_OR_SELFDECOY",
+          "bcrank_t1d_score_0_to_100": 93.65,
+          "unpenalized_subscore_0_to_100": 93.65,
+          "safety_gate_multiplier": 1.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 22.5,
+            "amplifier_potency_25": 24.5,
+            "iaa_plus_gada_endotype_breadth_20": 19.2,
+            "cascade_nonredundancy_15": 14.25,
+            "human_sc_islet_gsis_safety_15": 13.2
+          },
+          "gnomad_v4": {
+            "pLI": 0.07,
+            "oe_lof": 0.4381,
+            "loeuf": 0.6256,
+            "oe_mis": 0.7527
+          },
+          "gtex_v10_pancreas_tpm": 12.365,
+          "gtex_v10_whole_blood_tpm": 14.267,
+          "recommended_modality": "K=4,B=0 Pol II Multi-miR (ARM5/ARM6) OR B=1 Exon-6 Q206Ter (NGG) / Exon-12 Q471Ter,Q480Ter (SpG) CBE needle",
+          "mechanistic_evidence_and_pmids": "Primary signaling receptor for M1 macrophage IL-1beta -> NF-kB/JNK/iNOS toxicity (4DEP PMID:22426547; 3O4O PMID:20802483; bulk pancreas 12.37 vs 0.73 TPM IL1R2 with mixed-tissue caveat disclosed); requires postprandial physiological IL-1beta GSIS perifusion check (Dror 2017 PMID:28092375; distinct from neural cephalic pathway in Wiedemann 2022 PMID:35750050).",
+          "rank": 2
+        },
+        {
+          "gene_or_intervention": "CXCL10",
+          "cascade_layer": "U2_Chemokine_Beacon",
+          "causal_classification": "AMPLIFIER_ALREADY_ABLATED_AT_LOCUS3",
+          "bcrank_t1d_score_0_to_100": 92.3,
+          "unpenalized_subscore_0_to_100": 92.3,
+          "safety_gate_multiplier": 1.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 23.5,
+            "amplifier_potency_25": 22.5,
+            "iaa_plus_gada_endotype_breadth_20": 18.4,
+            "cascade_nonredundancy_15": 13.2,
+            "human_sc_islet_gsis_safety_15": 14.7
+          },
+          "gnomad_v4": {
+            "pLI": 0.0631,
+            "oe_lof": 0.5541,
+            "loeuf": 1.0935,
+            "oe_mis": 0.9975
+          },
+          "gtex_v10_pancreas_tpm": 0.266,
+          "gtex_v10_whole_blood_tpm": 0.274,
+          "recommended_modality": "Already ablated via biallelic Locus 3 HDR knock-in in Islet-1",
+          "mechanistic_evidence_and_pmids": "Validated by human SC-islet genome-wide CRISPR screen (Sintov 2022 PMID:36055241): primary CXCR3+ T/NK recruiting chemokine; already disrupted at Locus 3 to drive inducible SERPINB9 + PD-L1.",
+          "rank": 3
+        },
+        {
+          "gene_or_intervention": "TYK2",
+          "cascade_layer": "U3_Signal_Hub",
+          "causal_classification": "ALLOSTERIC_MUTEIN_P1104A_PREFERRED",
+          "bcrank_t1d_score_0_to_100": 91.8,
+          "unpenalized_subscore_0_to_100": 91.8,
+          "safety_gate_multiplier": 1.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 24.5,
+            "amplifier_potency_25": 22.0,
+            "iaa_plus_gada_endotype_breadth_20": 18.0,
+            "cascade_nonredundancy_15": 13.5,
+            "human_sc_islet_gsis_safety_15": 13.8
+          },
+          "gnomad_v4": {
+            "pLI": 0.0,
+            "oe_lof": 0.4966,
+            "loeuf": 0.6105,
+            "oe_mis": 0.8555
+          },
+          "gtex_v10_pancreas_tpm": 19.284,
+          "gtex_v10_whole_blood_tpm": 92.688,
+          "recommended_modality": "B=1 P1104A JH1 kinase mutein via PEmax + epegRNA (Layer 5 / CAND-009); full KO penalized",
+          "mechanistic_evidence_and_pmids": "Human germline P1104A (rs34536443, JH1 catalytic domain) protects against T1D (Dendrou 2016 PMID:27807284) with selective IL-23 impairment and largely preserved primary-leukocyte IFN-alpha/IL-12 (Boisson-Dupuis 2018 PMID:30578352); Stage-0 SC-islet differentiation (Chandra 2022 PMID:36289205) and Rule S8 CXCL10 licensing (GY-001) remain mandatory empirical gates.",
+          "rank": 4
+        },
+        {
+          "gene_or_intervention": "SERPINB9_C341S",
+          "cascade_layer": "U4_Cytosolic_Armor",
+          "causal_classification": "REDOX_HARDENED_GAIN_OF_RESILIENCE",
+          "bcrank_t1d_score_0_to_100": 89.9,
+          "unpenalized_subscore_0_to_100": 89.9,
+          "safety_gate_multiplier": 1.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 21.5,
+            "amplifier_potency_25": 22.5,
+            "iaa_plus_gada_endotype_breadth_20": 18.0,
+            "cascade_nonredundancy_15": 13.2,
+            "human_sc_islet_gsis_safety_15": 14.7
+          },
+          "gnomad_v4": {
+            "pLI": 0.0,
+            "oe_lof": 0.7358,
+            "loeuf": 1.0692,
+            "oe_mis": 1.0346
+          },
+          "gtex_v10_pancreas_tpm": 1.396,
+          "gtex_v10_whole_blood_tpm": 19.248,
+          "recommended_modality": "0-bp TGC->TCA codon swap at Locus 3 Unit 1 (ARM6 exploratory redox sub-arm; pre-registered in Layer 2)",
+          "mechanistic_evidence_and_pmids": "Targets Cys341-Cys342 vicinal-disulfide RCL redox inactivation (Mangan 2016 PMID:26670609; GzmB catalytic cleft PDB:1IAU PMID:11325591); creates +38 8-11mers / +15 15mers vs WT parent requiring host HLA-DQ2/DQ8 indirect APC screening (GY-010) and retained HLA-C check on Design B (GY-005).",
+          "rank": 5
+        },
+        {
+          "gene_or_intervention": "B2M",
+          "cascade_layer": "U1_Antigen_Presentation",
+          "causal_classification": "AMPLIFIER_ALREADY_ABLATED_AT_LOCUS1",
+          "bcrank_t1d_score_0_to_100": 88.65,
+          "unpenalized_subscore_0_to_100": 88.65,
+          "safety_gate_multiplier": 1.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 24.0,
+            "amplifier_potency_25": 21.25,
+            "iaa_plus_gada_endotype_breadth_20": 17.0,
+            "cascade_nonredundancy_15": 12.0,
+            "human_sc_islet_gsis_safety_15": 14.4
+          },
+          "gnomad_v4": {},
+          "gtex_v10_pancreas_tpm": null,
+          "gtex_v10_whole_blood_tpm": null,
+          "recommended_modality": "Already ablated at Locus 1 (replaced by HLA-E or SP-1C HLA-C)",
+          "mechanistic_evidence_and_pmids": "Eliminates direct CD8+ TCR recognition of PPI/IGRP/ZnT8/GAD peptides (Gate 2A), leaving the indirect GY-010 CD4/macrophage bystander loop that EXP-010 solves.",
+          "rank": 6
+        },
+        {
+          "gene_or_intervention": "IFIH1",
+          "cascade_layer": "U1_Sensor_dsRNA",
+          "causal_classification": "AMPLIFIER_KNOCKDOWN_OR_I923V_NEEDLE",
+          "bcrank_t1d_score_0_to_100": 87.25,
+          "unpenalized_subscore_0_to_100": 87.25,
+          "safety_gate_multiplier": 1.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 24.5,
+            "amplifier_potency_25": 19.5,
+            "iaa_plus_gada_endotype_breadth_20": 16.4,
+            "cascade_nonredundancy_15": 12.6,
+            "human_sc_islet_gsis_safety_15": 14.25
+          },
+          "gnomad_v4": {
+            "pLI": 0.0,
+            "oe_lof": 1.1635,
+            "loeuf": 1.3498,
+            "oe_mis": 1.0983
+          },
+          "gtex_v10_pancreas_tpm": 4.237,
+          "gtex_v10_whole_blood_tpm": 3.095,
+          "recommended_modality": "B=1 I923V (rs35667974) / rare LoF needle OR U1+U4 Multi-miR arm",
+          "mechanistic_evidence_and_pmids": "Gold-standard human T1D causal protective direction: rare human LoF & I923V (rs35667974) protect against T1D (OR=0.51, Nejentsev 2009 PMID:19264985; Downes 2010 PMID:20844740; gnomAD v4 LOEUF=1.350, LoF-tolerant). Blunts intracrine dsRNA/Alu -> IFN-beta amplification (especially T1DE2), but CANNOT block exogenous macrophage IL-1beta or Th1 mFasL once host GY-010 APCs are primed — hence lower standalone Hurdle-3 execution coverage than [IL1R1 + FAS].",
+          "rank": 7
+        },
+        {
+          "gene_or_intervention": "CIITA",
+          "cascade_layer": "U1_Antigen_Presentation",
+          "causal_classification": "AMPLIFIER_ALREADY_ABLATED_AT_LOCUS2",
+          "bcrank_t1d_score_0_to_100": 86.6,
+          "unpenalized_subscore_0_to_100": 86.6,
+          "safety_gate_multiplier": 1.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 23.5,
+            "amplifier_potency_25": 20.0,
+            "iaa_plus_gada_endotype_breadth_20": 17.0,
+            "cascade_nonredundancy_15": 11.7,
+            "human_sc_islet_gsis_safety_15": 14.4
+          },
+          "gnomad_v4": {},
+          "gtex_v10_pancreas_tpm": null,
+          "gtex_v10_whole_blood_tpm": null,
+          "recommended_modality": "Already ablated at Locus 2",
+          "mechanistic_evidence_and_pmids": "Prevents IFN-gamma-induced ectopic HLA-DR/DQ expression on SC-islets.",
+          "rank": 8
+        },
+        {
+          "gene_or_intervention": "TNFRSF10B",
+          "cascade_layer": "U4_Execution_Receptor",
+          "causal_classification": "SECONDARY_AMPLIFIER_DR5_TRAIL",
+          "bcrank_t1d_score_0_to_100": 78.8,
+          "unpenalized_subscore_0_to_100": 78.8,
+          "safety_gate_multiplier": 1.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 18.0,
+            "amplifier_potency_25": 19.0,
+            "iaa_plus_gada_endotype_breadth_20": 16.0,
+            "cascade_nonredundancy_15": 12.3,
+            "human_sc_islet_gsis_safety_15": 13.5
+          },
+          "gnomad_v4": {
+            "pLI": 0.0,
+            "oe_lof": 0.846,
+            "loeuf": 1.1216,
+            "oe_mis": 1.0567
+          },
+          "gtex_v10_pancreas_tpm": 24.446,
+          "gtex_v10_whole_blood_tpm": 15.106,
+          "recommended_modality": "3rd-hairpin candidate only in inducible L3-SF (exceeds L3-BF-B 4,700 bp cap)",
+          "mechanistic_evidence_and_pmids": "TRAIL-R2 (DR5; Pancreas 24.45 TPM) mediates secondary TRAIL bystander apoptosis; valid secondary target but adding a 3rd hairpin overflows Basal-Floor L3-BF-B single-AAV6 cap by +114 bp (4,814 > 4,700 bp).",
+          "rank": 9
+        },
+        {
+          "gene_or_intervention": "CXCL9",
+          "cascade_layer": "U2_Chemokine_Beacon",
+          "causal_classification": "SECONDARY_CHEMOKINE_AMPLIFIER",
+          "bcrank_t1d_score_0_to_100": 73.2,
+          "unpenalized_subscore_0_to_100": 73.2,
+          "safety_gate_multiplier": 1.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 17.5,
+            "amplifier_potency_25": 16.25,
+            "iaa_plus_gada_endotype_breadth_20": 15.0,
+            "cascade_nonredundancy_15": 10.2,
+            "human_sc_islet_gsis_safety_15": 14.25
+          },
+          "gnomad_v4": {},
+          "gtex_v10_pancreas_tpm": null,
+          "gtex_v10_whole_blood_tpm": null,
+          "recommended_modality": "Redundant with CXCL10 ablation (Pancreas basal 0.12 TPM)",
+          "mechanistic_evidence_and_pmids": "Secondary CXCR3 ligand co-induced with CXCL10 (Sintov 2022 PMID:36055241); quantitatively minor vs CXCL10 in human beta cells.",
+          "rank": 10
+        },
+        {
+          "gene_or_intervention": "CCL5",
+          "cascade_layer": "U2_Chemokine_Beacon",
+          "causal_classification": "SECONDARY_CHEMOKINE_AMPLIFIER",
+          "bcrank_t1d_score_0_to_100": 72.0,
+          "unpenalized_subscore_0_to_100": 72.0,
+          "safety_gate_multiplier": 1.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 16.5,
+            "amplifier_potency_25": 16.0,
+            "iaa_plus_gada_endotype_breadth_20": 15.2,
+            "cascade_nonredundancy_15": 10.2,
+            "human_sc_islet_gsis_safety_15": 14.1
+          },
+          "gnomad_v4": {},
+          "gtex_v10_pancreas_tpm": null,
+          "gtex_v10_whole_blood_tpm": null,
+          "recommended_modality": "Optional secondary CCR5 chemokine target",
+          "mechanistic_evidence_and_pmids": "Recruits CCR5+ macrophages and Th1 cells under STAT1/NF-kB stimulation; downstream execution already intercepted by [IL1R1 + FAS].",
+          "rank": 11
+        },
+        {
+          "gene_or_intervention": "CXCL11",
+          "cascade_layer": "U2_Chemokine_Beacon",
+          "causal_classification": "SECONDARY_CHEMOKINE_AMPLIFIER",
+          "bcrank_t1d_score_0_to_100": 71.45,
+          "unpenalized_subscore_0_to_100": 71.45,
+          "safety_gate_multiplier": 1.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 17.0,
+            "amplifier_potency_25": 15.5,
+            "iaa_plus_gada_endotype_breadth_20": 14.8,
+            "cascade_nonredundancy_15": 9.9,
+            "human_sc_islet_gsis_safety_15": 14.25
+          },
+          "gnomad_v4": {},
+          "gtex_v10_pancreas_tpm": null,
+          "gtex_v10_whole_blood_tpm": null,
+          "recommended_modality": "Redundant with CXCL10 ablation",
+          "mechanistic_evidence_and_pmids": "Tertiary CXCR3 ligand; far lower transcript abundance than CXCL10 in cytokine-stimulated human islets.",
+          "rank": 12
+        },
+        {
+          "gene_or_intervention": "NOS2",
+          "cascade_layer": "U4_Cytosolic_Effector",
+          "causal_classification": "DOWNSTREAM_ENZYME_REDUNDANT_WITH_IL1R1",
+          "bcrank_t1d_score_0_to_100": 70.45,
+          "unpenalized_subscore_0_to_100": 70.45,
+          "safety_gate_multiplier": 1.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 16.25,
+            "amplifier_potency_25": 17.0,
+            "iaa_plus_gada_endotype_breadth_20": 14.4,
+            "cascade_nonredundancy_15": 9.0,
+            "human_sc_islet_gsis_safety_15": 13.8
+          },
+          "gnomad_v4": {},
+          "gtex_v10_pancreas_tpm": null,
+          "gtex_v10_whole_blood_tpm": null,
+          "recommended_modality": "Suboptimal vs upstream IL1R1 knockdown",
+          "mechanistic_evidence_and_pmids": "Inducible iNOS generates NO/peroxynitrite downstream of IL-1beta + IFN-gamma; knocking down IL1R1 blocks BOTH iNOS induction AND JNK/CHOP ER stress upstream.",
+          "rank": 13
+        },
+        {
+          "gene_or_intervention": "DEXI",
+          "cascade_layer": "U1_Chromatin_Amplifier",
+          "causal_classification": "AMPLIFIER_WITH_PARTIAL_STAT1_CAUTION",
+          "bcrank_t1d_score_0_to_100": 64.86,
+          "unpenalized_subscore_0_to_100": 79.1,
+          "safety_gate_multiplier": 1.0,
+          "islet1_epistasis_multiplier": 0.82,
+          "subscores": {
+            "human_evidence_25": 21.0,
+            "amplifier_potency_25": 18.0,
+            "iaa_plus_gada_endotype_breadth_20": 15.2,
+            "cascade_nonredundancy_15": 11.7,
+            "human_sc_islet_gsis_safety_15": 13.2
+          },
+          "gnomad_v4": {
+            "pLI": 0.1083,
+            "oe_lof": 0.81,
+            "loeuf": 2.5498,
+            "oe_mis": 0.829
+          },
+          "gtex_v10_pancreas_tpm": 0.861,
+          "gtex_v10_whole_blood_tpm": 0.866,
+          "recommended_modality": "16p13.13 unresolved candidate alongside CLEC16A (context-dependent hypothesis only)",
+          "mechanistic_evidence_and_pmids": "16p13.13 candidate alongside CLEC16A: human EndoC-betaH1 STAT1/chemokine knockdown evidence (Dos Santos 2019 PMID:30478640), balanced against negative NOD mouse Dexi-KO evidence (Nieves-Bonilla 2020 PMID:31435002; commentary Gingerich 2020 PMID:31570815).",
+          "rank": 14
+        },
+        {
+          "gene_or_intervention": "RNLS",
+          "cascade_layer": "U3_ER_Stress_Modifier",
+          "causal_classification": "SPECIES_DIVERGENT_HUMAN_OCR_PENALTY",
+          "bcrank_t1d_score_0_to_100": 30.96,
+          "unpenalized_subscore_0_to_100": 68.8,
+          "safety_gate_multiplier": 0.45,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 19.5,
+            "amplifier_potency_25": 17.5,
+            "iaa_plus_gada_endotype_breadth_20": 15.0,
+            "cascade_nonredundancy_15": 10.8,
+            "human_sc_islet_gsis_safety_15": 6.0
+          },
+          "gnomad_v4": {
+            "pLI": 0.0,
+            "oe_lof": 0.9811,
+            "loeuf": 1.2815,
+            "oe_mis": 0.9921
+          },
+          "gtex_v10_pancreas_tpm": 1.485,
+          "gtex_v10_whole_blood_tpm": 0.408,
+          "recommended_modality": "Quarantined by GY-004 (human SC-islet OCR/GSIS maturation trade-off)",
+          "mechanistic_evidence_and_pmids": "Top hit in mouse NIT-1 in vivo CRISPR screen (Cai 2020 PMID:32719542), but human Stage-6 SC-islet follow-up (MacDonald 2025 PMID:39988068; GY-004) showed full RNLS loss alters glycolytic/oxidative metabolism and GSIS.",
+          "rank": 15
+        },
+        {
+          "gene_or_intervention": "GAD2",
+          "cascade_layer": "U1_GADA_Autoantigen",
+          "causal_classification": "NEUROENDOCRINE_GABA_CAUTION_GY007",
+          "bcrank_t1d_score_0_to_100": 18.11,
+          "unpenalized_subscore_0_to_100": 51.75,
+          "safety_gate_multiplier": 0.35,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 20.0,
+            "amplifier_potency_25": 8.75,
+            "iaa_plus_gada_endotype_breadth_20": 8.0,
+            "cascade_nonredundancy_15": 6.75,
+            "human_sc_islet_gsis_safety_15": 8.25
+          },
+          "gnomad_v4": {},
+          "gtex_v10_pancreas_tpm": null,
+          "gtex_v10_whole_blood_tpm": null,
+          "recommended_modality": "Endotype-narrow (GADA-first only; 0% protection in IAA-first) + paracrine GABA role",
+          "mechanistic_evidence_and_pmids": "Encodes GAD65 autoantigen (T1DE2), but deleting GAD2 gives zero protection against IAA-first/PPI/IGRP/HIP bystander responses and perturbs intra-islet alpha-cell glucagon paracrine GABA inhibition.",
+          "rank": 16
+        },
+        {
+          "gene_or_intervention": "TNFRSF1A",
+          "cascade_layer": "U4_Dual_Signaling_Receptor",
+          "causal_classification": "EPISTASIS_PENALIZED_NFKB_BYPASS_LOSS",
+          "bcrank_t1d_score_0_to_100": 17.12,
+          "unpenalized_subscore_0_to_100": 85.6,
+          "safety_gate_multiplier": 0.8,
+          "islet1_epistasis_multiplier": 0.25,
+          "subscores": {
+            "human_evidence_25": 22.0,
+            "amplifier_potency_25": 20.5,
+            "iaa_plus_gada_endotype_breadth_20": 17.6,
+            "cascade_nonredundancy_15": 12.75,
+            "human_sc_islet_gsis_safety_15": 12.75
+          },
+          "gnomad_v4": {
+            "pLI": 0.9999,
+            "oe_lof": 0.2163,
+            "loeuf": 0.3775,
+            "oe_mis": 0.7828
+          },
+          "gtex_v10_pancreas_tpm": 22.048,
+          "gtex_v10_whole_blood_tpm": 159.402,
+          "recommended_modality": "AVOID ON ISLET-1 (cripples GY-001 TNF-alpha -> NF-kB bypass on Locus 3!)",
+          "mechanistic_evidence_and_pmids": "Although systemic anti-TNFa (golimumab PMID:33207093) slows new-onset T1D, knocking down TNFR1 on Islet-1 PLUS IL1R1 eliminates BOTH NF-kB inputs to Locus 3 CXCL10, crippling the mandatory GY-001 NF-kB rescue bypass for SERPINB9 & PD-L1!",
+          "rank": 17
+        },
+        {
+          "gene_or_intervention": "ERBB3",
+          "cascade_layer": "U4_Trophic_Receptor",
+          "causal_classification": "UNRESOLVED_12Q13_MULTIGENE_PLEIOTROPIC_LOCUS",
+          "bcrank_t1d_score_0_to_100": 15.4,
+          "unpenalized_subscore_0_to_100": 44.0,
+          "safety_gate_multiplier": 0.35,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 14.0,
+            "amplifier_potency_25": 8.0,
+            "iaa_plus_gada_endotype_breadth_20": 10.0,
+            "cascade_nonredundancy_15": 6.0,
+            "human_sc_islet_gsis_safety_15": 6.0
+          },
+          "gnomad_v4": {
+            "pLI": 0.0,
+            "oe_lof": 0.6125,
+            "loeuf": 0.7258,
+            "oe_mis": 0.8225
+          },
+          "gtex_v10_pancreas_tpm": 20.889,
+          "gtex_v10_whole_blood_tpm": 0.083,
+          "recommended_modality": "Hold / unresolved 12q13.2 multi-gene locus (IKZF4/RPS26/ERBB3)",
+          "mechanistic_evidence_and_pmids": "12q13.2 T1D locus (rs2292239): Kaur et al. 2016 (PMID:26450151) reported ERBB3 downregulation by cytokines in human islets and decreased cytokine-induced apoptosis upon Erbb3 knockdown in rat INS-1E cells, but human 12q13.2 gene attribution (IKZF4/RPS26/ERBB3) and pan-endocrine RTK developmental pleiotropy remain unresolved.",
+          "rank": 18
+        },
+        {
+          "gene_or_intervention": "NLRC5",
+          "cascade_layer": "U1_MHC_I_Transactivator",
+          "causal_classification": "REDUNDANT_WITH_B2M_KO",
+          "bcrank_t1d_score_0_to_100": 7.16,
+          "unpenalized_subscore_0_to_100": 50.25,
+          "safety_gate_multiplier": 0.95,
+          "islet1_epistasis_multiplier": 0.15,
+          "subscores": {
+            "human_evidence_25": 18.0,
+            "amplifier_potency_25": 5.0,
+            "iaa_plus_gada_endotype_breadth_20": 10.0,
+            "cascade_nonredundancy_15": 3.0,
+            "human_sc_islet_gsis_safety_15": 14.25
+          },
+          "gnomad_v4": {
+            "pLI": 0.0,
+            "oe_lof": 0.551,
+            "loeuf": 0.6438,
+            "oe_mis": 0.8709
+          },
+          "gtex_v10_pancreas_tpm": 1.682,
+          "gtex_v10_whole_blood_tpm": 41.731,
+          "recommended_modality": "Redundant with Locus 1 B2M KO (risks blunting HLA-E / SP-1C transcription)",
+          "mechanistic_evidence_and_pmids": "MHC-I transactivator; already superseded by B2M replacement and risks downregulating endogenous-promoter HLA-E/HLA-C.",
+          "rank": 19
+        },
+        {
+          "gene_or_intervention": "JAK1",
+          "cascade_layer": "U3_Kinase_Hub",
+          "causal_classification": "HARD_BLOCKED_GY001_DEADLOCK",
+          "bcrank_t1d_score_0_to_100": 0.0,
+          "unpenalized_subscore_0_to_100": 86.1,
+          "safety_gate_multiplier": 0.5,
+          "islet1_epistasis_multiplier": 0.0,
+          "subscores": {
+            "human_evidence_25": 22.5,
+            "amplifier_potency_25": 21.25,
+            "iaa_plus_gada_endotype_breadth_20": 17.6,
+            "cascade_nonredundancy_15": 13.5,
+            "human_sc_islet_gsis_safety_15": 11.25
+          },
+          "gnomad_v4": {},
+          "gtex_v10_pancreas_tpm": null,
+          "gtex_v10_whole_blood_tpm": null,
+          "recommended_modality": "FORBIDDEN KO (GY-001 IFN-gamma blindness + pLI=0.99)",
+          "mechanistic_evidence_and_pmids": "Systemic baricitinib works transiently by suppressing host T cells (PMID:38055252), but graft JAK1 KO blinds Locus 3 ISRE promoters so PD-L1 and SERPINB9 stay dark during attack (GY-001).",
+          "rank": 20
+        },
+        {
+          "gene_or_intervention": "STAT1",
+          "cascade_layer": "U3_Master_TF",
+          "causal_classification": "HARD_BLOCKED_GY001_DEADLOCK",
+          "bcrank_t1d_score_0_to_100": 0.0,
+          "unpenalized_subscore_0_to_100": 84.5,
+          "safety_gate_multiplier": 0.7,
+          "islet1_epistasis_multiplier": 0.0,
+          "subscores": {
+            "human_evidence_25": 21.25,
+            "amplifier_potency_25": 20.0,
+            "iaa_plus_gada_endotype_breadth_20": 17.0,
+            "cascade_nonredundancy_15": 13.5,
+            "human_sc_islet_gsis_safety_15": 12.75
+          },
+          "gnomad_v4": {
+            "pLI": 1.0,
+            "oe_lof": 0.2148,
+            "loeuf": 0.3021,
+            "oe_mis": 0.3849
+          },
+          "gtex_v10_pancreas_tpm": 8.238,
+          "gtex_v10_whole_blood_tpm": 25.041,
+          "recommended_modality": "FORBIDDEN KO (GY-001 promoter deadlock)",
+          "mechanistic_evidence_and_pmids": "Sintov 2022 (PMID:36055241) showed STAT1 KO reduces CXCL10 in unengineered SC-islets, but in Islet-1 STAT1 is REQUIRED to license CXCL10/ISRE promoters driving PD-L1 & SERPINB9 (GY-001).",
+          "rank": 21
+        },
+        {
+          "gene_or_intervention": "IFNGR1",
+          "cascade_layer": "U4_Licensing_Receptor",
+          "causal_classification": "HARD_BLOCKED_GY001_DEADLOCK",
+          "bcrank_t1d_score_0_to_100": 0.0,
+          "unpenalized_subscore_0_to_100": 79.75,
+          "safety_gate_multiplier": 0.85,
+          "islet1_epistasis_multiplier": 0.0,
+          "subscores": {
+            "human_evidence_25": 18.75,
+            "amplifier_potency_25": 18.75,
+            "iaa_plus_gada_endotype_breadth_20": 16.0,
+            "cascade_nonredundancy_15": 12.75,
+            "human_sc_islet_gsis_safety_15": 13.5
+          },
+          "gnomad_v4": {},
+          "gtex_v10_pancreas_tpm": null,
+          "gtex_v10_whole_blood_tpm": null,
+          "recommended_modality": "FORBIDDEN KO (GY-001 IFN-gamma sensor for Locus 3)",
+          "mechanistic_evidence_and_pmids": "Required to sense T/NK IFN-gamma and upregulate Locus 3 PD-L1 & SERPINB9.",
+          "rank": 22
+        },
+        {
+          "gene_or_intervention": "IRF1",
+          "cascade_layer": "U3_Licensing_TF",
+          "causal_classification": "HARD_BLOCKED_GY001_ISRE_DRIVER",
+          "bcrank_t1d_score_0_to_100": 0.0,
+          "unpenalized_subscore_0_to_100": 77.75,
+          "safety_gate_multiplier": 0.8,
+          "islet1_epistasis_multiplier": 0.0,
+          "subscores": {
+            "human_evidence_25": 19.5,
+            "amplifier_potency_25": 17.5,
+            "iaa_plus_gada_endotype_breadth_20": 16.0,
+            "cascade_nonredundancy_15": 12.0,
+            "human_sc_islet_gsis_safety_15": 12.75
+          },
+          "gnomad_v4": {
+            "pLI": 0.9946,
+            "oe_lof": 0.2973,
+            "loeuf": 0.4726,
+            "oe_mis": 0.5771
+          },
+          "gtex_v10_pancreas_tpm": 2.779,
+          "gtex_v10_whole_blood_tpm": 82.413,
+          "recommended_modality": "FORBIDDEN KO (drives ISRE licensing + antiproliferative restraint)",
+          "mechanistic_evidence_and_pmids": "Essential IFN-gamma -> ISRE feed-forward transcription factor for Locus 3.",
+          "rank": 23
+        },
+        {
+          "gene_or_intervention": "TNFAIP3",
+          "cascade_layer": "U3_Survival_Brake",
+          "causal_classification": "PROTECTIVE_BRAKE_DO_NOT_KO_PLUS_EPISTASIS",
+          "bcrank_t1d_score_0_to_100": 0.0,
+          "unpenalized_subscore_0_to_100": 27.5,
+          "safety_gate_multiplier": 0.0,
+          "islet1_epistasis_multiplier": 0.2,
+          "subscores": {
+            "human_evidence_25": 23.0,
+            "amplifier_potency_25": 0.0,
+            "iaa_plus_gada_endotype_breadth_20": 0.0,
+            "cascade_nonredundancy_15": 0.0,
+            "human_sc_islet_gsis_safety_15": 4.5
+          },
+          "gnomad_v4": {
+            "pLI": 1.0,
+            "oe_lof": 0.1243,
+            "loeuf": 0.2169,
+            "oe_mis": 0.8177
+          },
+          "gtex_v10_pancreas_tpm": 7.444,
+          "gtex_v10_whole_blood_tpm": 39.886,
+          "recommended_modality": "PROTECTIVE BRAKE (gnomAD v4 pLI=1.00, LOEUF=0.217): KO kills beta cells; constitutive OE blunts CXCL10 NF-kB (PMID:10523611)",
+          "mechanistic_evidence_and_pmids": "A20 is an essential survival brake (KO sensitizes islets to death), while constitutive A20 overexpression blocks NF-kB licensing of Locus 3 (and VCTX211 NCT05565248 terminated).",
+          "rank": 24
+        },
+        {
+          "gene_or_intervention": "PTPN2",
+          "cascade_layer": "U3_Survival_Brake",
+          "causal_classification": "PROTECTIVE_BRAKE_SIGN_TRAP_DO_NOT_KO",
+          "bcrank_t1d_score_0_to_100": 0.0,
+          "unpenalized_subscore_0_to_100": 26.5,
+          "safety_gate_multiplier": 0.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 23.5,
+            "amplifier_potency_25": 0.0,
+            "iaa_plus_gada_endotype_breadth_20": 0.0,
+            "cascade_nonredundancy_15": 0.0,
+            "human_sc_islet_gsis_safety_15": 3.0
+          },
+          "gnomad_v4": {
+            "pLI": 0.9905,
+            "oe_lof": 0.3314,
+            "loeuf": 0.4862,
+            "oe_mis": 0.7144
+          },
+          "gtex_v10_pancreas_tpm": 5.636,
+          "gtex_v10_whole_blood_tpm": 6.526,
+          "recommended_modality": "PROTECTIVE BRAKE (gnomAD v4 pLI=0.991, LOEUF=0.486) — DO NOT KNOCK OUT!",
+          "mechanistic_evidence_and_pmids": "PTPN2 dephosphorylates STAT1 and restrains BIM-mediated mitochondrial apoptosis in human beta cells (Santin & Eizirik PMID:24003923); T1D risk allele lowers PTPN2 -> KO accelerates cytokine death!",
+          "rank": 25
+        },
+        {
+          "gene_or_intervention": "SOCS1",
+          "cascade_layer": "U3_Survival_Brake",
+          "causal_classification": "PROTECTIVE_JAK_BRAKE_PLUS_EPISTASIS",
+          "bcrank_t1d_score_0_to_100": 0.0,
+          "unpenalized_subscore_0_to_100": 26.5,
+          "safety_gate_multiplier": 0.0,
+          "islet1_epistasis_multiplier": 0.0,
+          "subscores": {
+            "human_evidence_25": 20.5,
+            "amplifier_potency_25": 0.0,
+            "iaa_plus_gada_endotype_breadth_20": 0.0,
+            "cascade_nonredundancy_15": 0.0,
+            "human_sc_islet_gsis_safety_15": 6.0
+          },
+          "gnomad_v4": {
+            "pLI": 0.6129,
+            "oe_lof": 0.3094,
+            "loeuf": 0.7998,
+            "oe_mis": 1.1332
+          },
+          "gtex_v10_pancreas_tpm": 1.037,
+          "gtex_v10_whole_blood_tpm": 5.965,
+          "recommended_modality": "PROTECTIVE BRAKE — KO hyperactivates STAT1 death; constitutive OE blinds GY-001!",
+          "mechanistic_evidence_and_pmids": "Same bidirectional trap as A20: endogenous SOCS1 protects beta cells from runaway IFN toxicity, whereas transgenic SOCS1 overexpression blocks IFN-gamma -> CXCL10 licensing (GY-001).",
+          "rank": 26
+        },
+        {
+          "gene_or_intervention": "CTSH",
+          "cascade_layer": "U3_Survival_Brake",
+          "causal_classification": "PROTECTIVE_BRAKE_SIGN_TRAP_DO_NOT_KO",
+          "bcrank_t1d_score_0_to_100": 0.0,
+          "unpenalized_subscore_0_to_100": 26.25,
+          "safety_gate_multiplier": 0.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 22.5,
+            "amplifier_potency_25": 0.0,
+            "iaa_plus_gada_endotype_breadth_20": 0.0,
+            "cascade_nonredundancy_15": 0.0,
+            "human_sc_islet_gsis_safety_15": 3.75
+          },
+          "gnomad_v4": {
+            "pLI": 0.0,
+            "oe_lof": 0.9234,
+            "loeuf": 1.1634,
+            "oe_mis": 0.9564
+          },
+          "gtex_v10_pancreas_tpm": 7.616,
+          "gtex_v10_whole_blood_tpm": 21.591,
+          "recommended_modality": "PROTECTIVE BRAKE — DO NOT KNOCK OUT!",
+          "mechanistic_evidence_and_pmids": "Floyel et al. 2014 Diabetes (PMID:24982147): Cathepsin H overexpression protects beta cells against cytokine apoptosis via Rac2/JNK inhibition and preserves C-peptide in T1D; knocking CTSH down WORSENS beta-cell death!",
+          "rank": 27
+        },
+        {
+          "gene_or_intervention": "BACH2",
+          "cascade_layer": "U3_Survival_Brake",
+          "causal_classification": "PROTECTIVE_BRAKE_SIGN_TRAP_DO_NOT_KO",
+          "bcrank_t1d_score_0_to_100": 0.0,
+          "unpenalized_subscore_0_to_100": 26.0,
+          "safety_gate_multiplier": 0.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 23.75,
+            "amplifier_potency_25": 0.0,
+            "iaa_plus_gada_endotype_breadth_20": 0.0,
+            "cascade_nonredundancy_15": 0.0,
+            "human_sc_islet_gsis_safety_15": 2.25
+          },
+          "gnomad_v4": {
+            "pLI": 1.0,
+            "oe_lof": 0.0809,
+            "loeuf": 0.17,
+            "oe_mis": 0.7552
+          },
+          "gtex_v10_pancreas_tpm": 0.761,
+          "gtex_v10_whole_blood_tpm": 1.028,
+          "recommended_modality": "PROTECTIVE BRAKE (gnomAD v4 pLI=1.00, LOEUF=0.170) — DO NOT KNOCK OUT!",
+          "mechanistic_evidence_and_pmids": "Intronic T1D risk SNP rs72928038 downregulates BACH2 in CD4+ T cells, AND Marroqui et al. 2014 (PMID:24608439) proves BACH2 silencing in human beta cells hyperactivates MKK7/JNK1/BIM apoptosis!",
+          "rank": 28
+        },
+        {
+          "gene_or_intervention": "INS",
+          "cascade_layer": "U1_Primary_Autoantigen",
+          "causal_classification": "ESSENTIAL_THERAPEUTIC_PRODUCT_CANNOT_KO",
+          "bcrank_t1d_score_0_to_100": 0.0,
+          "unpenalized_subscore_0_to_100": 25.0,
+          "safety_gate_multiplier": 0.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 25.0,
+            "amplifier_potency_25": 0.0,
+            "iaa_plus_gada_endotype_breadth_20": 0.0,
+            "cascade_nonredundancy_15": 0.0,
+            "human_sc_islet_gsis_safety_15": 0.0
+          },
+          "gnomad_v4": {
+            "pLI": 0.0539,
+            "oe_lof": 0.5708,
+            "loeuf": 1.1266,
+            "oe_mis": 0.7867
+          },
+          "gtex_v10_pancreas_tpm": 2898.83,
+          "gtex_v10_whole_blood_tpm": 0.0,
+          "recommended_modality": "ESSENTIAL HORMONE PRODUCT — protect via Hurdle-4 normoxia & ER homeostasis, NEVER KO!",
+          "mechanistic_evidence_and_pmids": "Primary IAA-first autoantigen (rs689; Leete 2020 PMID:32172310), but insulin secretion IS the graft's raison d'etre; mitigate proinsulin misfolding by preventing Hurdle-4 hypoxia (<15 mmHg) and IL-1beta ER stress!",
+          "rank": 29
+        },
+        {
+          "gene_or_intervention": "CLEC16A",
+          "cascade_layer": "U1_Mitophagy_Protector",
+          "causal_classification": "NEAREST_GENE_TRAP_ESSENTIAL_MITOPHAGY_BRAKE",
+          "bcrank_t1d_score_0_to_100": 0.0,
+          "unpenalized_subscore_0_to_100": 24.25,
+          "safety_gate_multiplier": 0.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 23.5,
+            "amplifier_potency_25": 0.0,
+            "iaa_plus_gada_endotype_breadth_20": 0.0,
+            "cascade_nonredundancy_15": 0.0,
+            "human_sc_islet_gsis_safety_15": 0.75
+          },
+          "gnomad_v4": {
+            "pLI": 0.0002,
+            "oe_lof": 0.4659,
+            "loeuf": 0.5883,
+            "oe_mis": 0.9605
+          },
+          "gtex_v10_pancreas_tpm": 3.271,
+          "gtex_v10_whole_blood_tpm": 4.896,
+          "recommended_modality": "ESSENTIAL MITOPHAGY PROTECTOR (gnomAD v4 LOEUF=0.588) — DO NOT KNOCK OUT!",
+          "mechanistic_evidence_and_pmids": "16p13.13 mitophagy regulator required for Nrdp1/Parkin mitophagy and GSIS (Soleimanpour 2014 PMID:24949970) — DO NOT KNOCK OUT; neighboring DEXI causality remains unresolved (PMID:31435002; commentary PMID:31570815).",
+          "rank": 30
+        },
+        {
+          "gene_or_intervention": "GLIS3",
+          "cascade_layer": "U1_Lineage_Survival_TF",
+          "causal_classification": "PROTECTIVE_LINEAGE_TF_DO_NOT_KO",
+          "bcrank_t1d_score_0_to_100": 0.0,
+          "unpenalized_subscore_0_to_100": 23.0,
+          "safety_gate_multiplier": 0.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 23.0,
+            "amplifier_potency_25": 0.0,
+            "iaa_plus_gada_endotype_breadth_20": 0.0,
+            "cascade_nonredundancy_15": 0.0,
+            "human_sc_islet_gsis_safety_15": 0.0
+          },
+          "gnomad_v4": {
+            "pLI": 0.0,
+            "oe_lof": 0.6743,
+            "loeuf": 0.8477,
+            "oe_mis": 1.3833
+          },
+          "gtex_v10_pancreas_tpm": 3.006,
+          "gtex_v10_whole_blood_tpm": 0.037,
+          "recommended_modality": "ESSENTIAL BETA-CELL TF (gnomAD v4 LOEUF=0.848; recessive neonatal diabetes) — DO NOT KNOCK OUT!",
+          "mechanistic_evidence_and_pmids": "Required for INS transcription and suppression of SRp55 splicing stress / BIM apoptosis; LoF causes neonatal diabetes and sensitizes human beta cells to cytokines (PMID:27899417).",
+          "rank": 31
+        },
+        {
+          "gene_or_intervention": "DLK1",
+          "cascade_layer": "U1_Beta_Lineage_Factor",
+          "causal_classification": "PROTECTIVE_BETA_CELL_IDENTITY_FACTOR",
+          "bcrank_t1d_score_0_to_100": 0.0,
+          "unpenalized_subscore_0_to_100": 22.5,
+          "safety_gate_multiplier": 0.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 19.5,
+            "amplifier_potency_25": 0.0,
+            "iaa_plus_gada_endotype_breadth_20": 0.0,
+            "cascade_nonredundancy_15": 0.0,
+            "human_sc_islet_gsis_safety_15": 3.0
+          },
+          "gnomad_v4": {
+            "pLI": 0.9971,
+            "oe_lof": 0.2559,
+            "loeuf": 0.4465,
+            "oe_mis": 0.9877
+          },
+          "gtex_v10_pancreas_tpm": 3.721,
+          "gtex_v10_whole_blood_tpm": 0.052,
+          "recommended_modality": "Imprinted 14q32 beta-cell highly expressed notch-like factor — DO NOT KO",
+          "mechanistic_evidence_and_pmids": "Highly enriched in human beta cells; loss impairs islet secretory identity.",
+          "rank": 32
+        },
+        {
+          "gene_or_intervention": "CASP8",
+          "cascade_layer": "U4_Apoptosis_Switch",
+          "causal_classification": "HARD_BLOCKED_RIPK3_NECROPTOSIS_TRAP",
+          "bcrank_t1d_score_0_to_100": 0.0,
+          "unpenalized_subscore_0_to_100": 20.5,
+          "safety_gate_multiplier": 0.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 17.5,
+            "amplifier_potency_25": 0.0,
+            "iaa_plus_gada_endotype_breadth_20": 0.0,
+            "cascade_nonredundancy_15": 0.0,
+            "human_sc_islet_gsis_safety_15": 3.0
+          },
+          "gnomad_v4": {
+            "pLI": 0.0009,
+            "oe_lof": 0.5183,
+            "loeuf": 0.7288,
+            "oe_mis": 0.8229
+          },
+          "gtex_v10_pancreas_tpm": 2.234,
+          "gtex_v10_whole_blood_tpm": 30.317,
+          "recommended_modality": "FORBIDDEN KO/KD (triggers lytic RIPK1->RIPK3->MLKL necroptosis!)",
+          "mechanistic_evidence_and_pmids": "Kaiser et al. 2011 Nature (PMID:21368762): loss of Caspase-8 catalytic restraint on RIPK1 under TNF-alpha converts clean apoptosis blockade into explosive DAMP-releasing necroptosis, supercharging GY-010!",
+          "rank": 33
+        },
+        {
+          "gene_or_intervention": "FADD",
+          "cascade_layer": "U4_Death_Adaptor",
+          "causal_classification": "HARD_BLOCKED_RIPK3_NECROPTOSIS_TRAP",
+          "bcrank_t1d_score_0_to_100": 0.0,
+          "unpenalized_subscore_0_to_100": 20.0,
+          "safety_gate_multiplier": 0.0,
+          "islet1_epistasis_multiplier": 1.0,
+          "subscores": {
+            "human_evidence_25": 17.0,
+            "amplifier_potency_25": 0.0,
+            "iaa_plus_gada_endotype_breadth_20": 0.0,
+            "cascade_nonredundancy_15": 0.0,
+            "human_sc_islet_gsis_safety_15": 3.0
+          },
+          "gnomad_v4": {
+            "pLI": 0.1713,
+            "oe_lof": 0.5182,
+            "loeuf": 1.3392,
+            "oe_mis": 0.8685
+          },
+          "gtex_v10_pancreas_tpm": 3.696,
+          "gtex_v10_whole_blood_tpm": 18.203,
+          "recommended_modality": "FORBIDDEN KO/KD (triggers lytic RIPK3 necroptosis!)",
+          "mechanistic_evidence_and_pmids": "Same fatal necroptosis switch as CASP8 under TNF-alpha exposure (PMID:21368762); block FAS at the plasma membrane instead!",
+          "rank": 34
+        }
+      ]
+    },
+    "portfolio_2pow12_same_design_withdrawal_proof": {
+      "symmetric_p05_true_same_design_survivor_states": "721/4096",
+      "symmetric_p05_naive_product_of_hurdle_unions_states": "2401/4096",
+      "symmetric_p05_true_same_design_survivor_prob": 0.176025,
+      "symmetric_p05_naive_product_of_hurdle_unions_prob": 0.586182,
+      "cross_design_chimera_inflation_factor": 3.33,
+      "formal_action": "WITHDRAWN: S1/Phase-3 numeric portfolio waterfall (37.43% -> 62.80%) is permanently retired from CAND-010."
+    }
+  },
   "public_effects_provenance_rebinding": {
     "canonical_original_effects_sha256": "e56018562aaa99e9be32441aad998407529b839dce58f3f0fd91389a7fcfd9e5",
     "status": "REPLAYED_PUBLIC_BYTES_NUMERICAL_AND_SEMANTIC_OUTPUTS_IDENTICAL",

@@ -3069,11 +3069,11 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
         == 0.90
     )
 
-    # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (41 persisted boolean flags, 45 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
-    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 41
+    # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (44 persisted boolean flags, 48 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
+    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 44
     assert "require_full_5endpoint_s9_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
     assert "require_full_7metric_combined_stress_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
-    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 45
+    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 48
     assert "5.71 mmHg at 100 um clusters with matched D_caps = D_gel" in film_limit["surgical_mitigation"]
 
     batch1_r7s2 = {
@@ -3156,7 +3156,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     # - R7S3-F02: Both wetlab_contract.evaluate_stage0_decision_tree and ingest_wetlab_results.evaluate_stage0_decision_tree reject non-boolean policy values
     from scripts import wetlab_contract as wc_mod
 
-    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 45
+    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 48
     for bkey in wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS:
         for bad_val in ("false", "False", 0, "true", "True", 1):
             for eval_fn in (wc_mod.evaluate_stage0_decision_tree, wetlab.evaluate_stage0_decision_tree):
@@ -4921,6 +4921,103 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
             assert _expected_err_sub in str(_exc_b2)
     _r9_s2_bp_md_17 = (ROOT / "ISLET-1-BLUEPRINT.md").read_text(encoding="utf-8")
     assert "IIP-0017" in _r9_s2_bp_md_17 and "DEC-095" in _r9_s2_bp_md_17
+
+    # --- IIP-0018 (DEC-096) 6-Arm Locus 3 Multi-miR(IL1R1+FAS) Mode-B Suite, Editor-Scoped CBE Needles & Stage-0 Gate ---
+    import hashlib
+
+    _f18_path = ROOT / "data/constructs/islet1_locus3_multimir_modeb_comparators_v0.8.0.fasta"
+    assert _f18_path.exists()
+    assert hashlib.sha256(_f18_path.read_bytes()).hexdigest() == "22df54a27ef3f68b646b63dc036b11f5a66a9fcadb50378dfb8057e108c79ffa"
+    assert hashlib.sha256((ROOT / "data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta").read_bytes()).hexdigest() == "b5ba4e2b4bbbcc7d6cf1138975c5fae5c6ab074dda43973f071c671cd8cd1d88"
+    _l2_iip18 = json.loads((ROOT / "data/extracted/layer2_regulatory_and_perturbation_atlas.json").read_text(encoding="utf-8"))["stage0_locus3_multimir_and_cbe_needle_manifest_iip_0018"]
+    assert _l2_iip18["proposal_id"] == "IIP-0018" and _l2_iip18["decision_id"] == "DEC-096"
+    _arms18 = {a["construct_id"]: a for a in _l2_iip18["verified_6_arm_constructs"]}
+    assert len(_arms18) == 6
+    assert _arms18["ARM1_L3_WT_PARENT_4078"]["donor_length_bp"] == 4078
+    assert _arms18["ARM5_L3_V2_INTRON_DUPLEX_IL1R1_FAS_WT_SB9_4398"]["donor_length_bp"] == 4398
+    assert _arms18["ARM5_L3_V2_INTRON_DUPLEX_IL1R1_FAS_WT_SB9_4398"]["packaged_aav6_length_bp"] == 4688
+    assert _arms18["ARM5_L3_V2_INTRON_DUPLEX_IL1R1_FAS_WT_SB9_4398"]["novel_8_to_11mers_vs_arm1"] == 0
+    assert _arms18["ARM5_L3_V2_INTRON_DUPLEX_IL1R1_FAS_WT_SB9_4398"]["novel_15mers_vs_arm1"] == 0
+    assert _arms18["ARM6_L3_V2_INTRON_DUPLEX_IL1R1_FAS_C341S_TCA_4398"]["novel_8_to_11mers_vs_arm1"] == 38
+    assert _arms18["ARM6_L3_V2_INTRON_DUPLEX_IL1R1_FAS_C341S_TCA_4398"]["novel_15mers_vs_arm1"] == 15
+    assert len(_l2_iip18["standalone_cbe_comparator_registry_ensembl_116"]["candidate_guides_9_across_7_variants"]) == 9
+    _l3_iip18 = json.loads((ROOT / "data/extracted/layer3_structural_verification_atlas.json").read_text(encoding="utf-8"))["hurdle3_receptor_and_compartment_reconciliation_iip_0018"]
+    assert _l3_iip18["proposal_id"] == "IIP-0018" and _l3_iip18["decision_id"] == "DEC-096"
+    _c4dep = _l3_iip18["il1_signaling_vs_decoy_crystal_contacts_4p5A"]["pdb_4dep_il1beta_il1r1_il1racp_pmid_22426547"]
+    assert _c4dep["copy_1_chains_A_B_C"]["IL1beta_to_IL1R1"] == 504 and _c4dep["copy_1_chains_A_B_C"]["binary_complex_to_IL1RAcP"] == 250
+    assert _c4dep["copy_2_chains_D_E_F"]["IL1beta_to_IL1R1"] == 618 and _c4dep["copy_2_chains_D_E_F"]["binary_complex_to_IL1RAcP"] == 352
+    _c4msv = _l3_iip18["fasl_dcr3_c3_assembly_geometry_pdb_4msv"]["c3_symmetry_ca_triangle_edges_angstrom"]
+    assert abs(_c4msv["dcr3_chainB_cys193_cterm_edge_A"] - 61.5796) < 1e-3 and abs(_c4msv["fasl_chainA_leu143_resolved_nterm_stalk_edge_A"] - 19.6245) < 1e-3
+
+    _l3_mm_valid = {
+        **full_ext_payload,
+        "knockin_splice_challenger_arm": "ARM5_L3_V2_INTRON_DUPLEX_IL1R1_FAS_WT_SB9_4398",
+        "obs_challenger_pam_seed_shield_coconversion_verified": True,
+        "obs_challenger_ivt_rna_recovery_standard_verified": True,
+        "obs_challenger_host_isoforms_above_loq_verified": True,
+        "obs_challenger_sv40pa_and_host_3prime_cleavage_checked": True,
+        "obs_challenger_ivt_relative_recovery_eta": 0.96,
+        "obs_challenger_ivt_relative_recovery_se": 0.01,
+        "obs_challenger_umi_molecules_profiled": 5000.0,
+        "obs_challenger_umi_molecules_profiled_se": 10.0,
+        "obs_challenger_aberrant_splice_umi_count_k": 0.0,
+        "obs_challenger_aberrant_splice_umi_count_se": 0.001,
+        "obs_challenger_host_exon_splice_retention_ratio": 1.01,
+        "obs_challenger_host_exon_splice_retention_se": 0.03,
+        "obs_challenger_dsrna_j2_or_isg_fold_wt": 1.05,
+        "obs_challenger_dsrna_j2_or_isg_fold_se": 0.05,
+        "l3_multimir_pre_aav6_2x2_transient_kd_falsifier_cleared": True,
+        "l3_multimir_low_ifn_and_resting_shield_retention_verified": True,
+        "obs_l3_multimir_spliced_fraction": 0.93,
+        "obs_l3_multimir_spliced_fraction_se": 0.01,
+        "obs_l3_multimir_5prime_seed_fidelity_pct": 92.0,
+        "obs_l3_multimir_5prime_seed_fidelity_se": 1.0,
+        "obs_l3_multimir_ago2_mir375_retention_pct": 95.0,
+        "obs_l3_multimir_ago2_mir375_retention_se": 1.0,
+        "obs_l3_multimir_shield_protein_retention_pct": 91.0,
+        "obs_l3_multimir_shield_protein_retention_se": 1.5,
+        "obs_l3_multimir_min_receptor_knockdown_pct": 78.0,
+        "obs_l3_multimir_min_receptor_knockdown_se": 1.5,
+        "obs_l3_multimir_matched_gsis_output_retention_pct": 93.0,
+        "obs_l3_multimir_matched_gsis_output_retention_se": 1.5,
+    }
+    _dt_mm_ok = wetlab.evaluate_stage0_decision_tree(_l3_mm_valid)
+    assert _dt_mm_ok["resolved_architecture_assignments"]["locus3_multimir_modeb_gate_status"] == "CLEARED_L3_MULTIMIR_MODEB_STAGE0_CHALLENGER_GATE"
+    assert _dt_mm_ok["resolved_architecture_assignments"]["lot_release_readiness_tier"] == "READY_FOR_ENCAPSULATION_COMPLETE_STAGE0_EVIDENCE"
+
+    assert wetlab.evaluate_stage0_decision_tree({**_l3_mm_valid, "knockin_splice_challenger_arm": "ARM2_L3_V2_INTRON_NT_SCRAMBLE_4398"})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_L3_MULTIMIR_FACTORIAL_CONTROL_ARM_NOT_RELEASE_CHALLENGER"
+    assert wetlab.evaluate_stage0_decision_tree({**_l3_mm_valid, "l3_multimir_pre_aav6_2x2_transient_kd_falsifier_cleared": None})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_L3_MULTIMIR_PRE_AAV6_2X2_TRANSIENT_FALSIFIER_UNVERIFIED"
+    assert wetlab.evaluate_stage0_decision_tree({**_l3_mm_valid, "knockin_splice_challenger_arm": "ARM6_L3_V2_INTRON_DUPLEX_IL1R1_FAS_C341S_TCA_4398"})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_L3_MULTIMIR_ARM6_C341S_HLAC_OR_DQ2_DQ8_PEPTIDE_SCREEN_UNVERIFIED"
+    assert wetlab.evaluate_stage0_decision_tree({**_l3_mm_valid, "obs_l3_multimir_ago2_mir375_retention_pct": 85.0})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_L3_MULTIMIR_SPLICING_DROSHA_SEED_OR_AGO2_MIR375_FAILED"
+    assert wetlab.evaluate_stage0_decision_tree({**_l3_mm_valid, "obs_l3_multimir_matched_gsis_output_retention_pct": 80.0})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_L3_MULTIMIR_RECEPTOR_KD_SHIELD_RETENTION_OR_MATCHED_GSIS_FAILED"
+
+    _cal_mm_1 = wetlab.run_calibration(
+        {
+            "batch_id": "BATCH-IIP18-1",
+            "mcb_clone_id": "CLONE-IIP18",
+            "knockin_splice_challenger_arm": "ARM5_L3_V2_INTRON_DUPLEX_IL1R1_FAS_WT_SB9_4398",
+            "obs_stage7_yield_ratio": 0.94,
+            "obs_stage7_yield_se": 0.02,
+        },
+        is_dry_run=False,
+    )
+    try:
+        wetlab.run_calibration(
+            {
+                "batch_id": "BATCH-IIP18-2",
+                "mcb_clone_id": "CLONE-IIP18",
+                "knockin_splice_challenger_arm": "ARM6_L3_V2_INTRON_DUPLEX_IL1R1_FAS_C341S_TCA_4398",
+                "obs_cd47_fold": 4.4,
+                "obs_cd47_fold_se": 0.2,
+            },
+            False,
+            _cal_mm_1,
+        )
+        raise AssertionError("Expected ValueError when pooling ARM5 and ARM6")
+    except ValueError as _exc_mm:
+        assert "knockin_splice_challenger_arm" in str(_exc_mm)
+    _r9_s2_bp_md_18 = (ROOT / "ISLET-1-BLUEPRINT.md").read_text(encoding="utf-8")
+    assert "IIP-0018" in _r9_s2_bp_md_18 and "DEC-096" in _r9_s2_bp_md_18
 
 
 

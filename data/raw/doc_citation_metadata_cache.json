@@ -47,6 +47,12 @@
    "pubdate_year": "2000",
    "title": "Regulated translation initiation controls stress-induced gene expression in mammalian cells."
   },
+  "11220355": {
+   "first_author": "Loweth AC",
+   "journal": "Diabetes Obes Metab",
+   "pubdate_year": "2000",
+   "title": "Dissociation between Fas expression and induction of apoptosis in human islets of Langerhans."
+  },
   "11242052": {
    "first_author": "Srinivasula SM",
    "journal": "Nature",
@@ -143,6 +149,12 @@
    "pubdate_year": "2002",
    "title": "A signal peptide derived from hsp60 binds HLA-E and interferes with CD94/NKG2A recognition."
   },
+  "12530978": {
+   "first_author": "Smith DE",
+   "journal": "Immunity",
+   "pubdate_year": "2003",
+   "title": "The soluble form of IL-1 receptor accessory protein enhances the ability of soluble type II IL-1 receptor to inhibit IL-1 action."
+  },
   "12620238": {
    "first_author": "Shiozaki EN",
    "journal": "Mol Cell",
@@ -202,6 +214,12 @@
    "journal": "J Biol Chem",
    "pubdate_year": "2004",
    "title": "Granzyme M is a regulatory protease that inactivates proteinase inhibitor 9, an endogenous inhibitor of granzyme B."
+  },
+  "15538371": {
+   "first_author": "Poy MN",
+   "journal": "Nature",
+   "pubdate_year": "2004",
+   "title": "A pancreatic islet-specific microRNA regulates insulin secretion."
   },
   "15728125": {
    "first_author": "Straathof KC",
@@ -268,6 +286,18 @@
    "journal": "Nat Genet",
    "pubdate_year": "2006",
    "title": "A genome-wide association study of nonsynonymous SNPs identifies a type 1 diabetes locus in the interferon-induced helicase (IFIH1) region."
+  },
+  "16724069": {
+   "first_author": "Grimm D",
+   "journal": "Nature",
+   "pubdate_year": "2006",
+   "title": "Fatality in mice due to oversaturation of cellular microRNA/short hairpin RNA pathways."
+  },
+  "17299038": {
+   "first_author": "Schumann DM",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "2007",
+   "title": "The Fas pathway is involved in pancreatic beta cell secretory function."
   },
   "17475856": {
    "first_author": "Truscott SM",
@@ -449,6 +479,12 @@
    "pubdate_year": "2010",
    "title": "Residual insulin production and pancreatic ß-cell turnover after 50 years of diabetes: Joslin Medalist Study."
   },
+  "20802483": {
+   "first_author": "Wang D",
+   "journal": "Nat Immunol",
+   "pubdate_year": "2010",
+   "title": "Structural insights into the assembly and activation of IL-1β with its receptors."
+  },
   "20835230": {
    "first_author": "Masters SL",
    "journal": "Nat Immunol",
@@ -467,11 +503,23 @@
    "pubdate_year": "2010",
    "title": "Inhibition of follicular T-helper cells by CD8(+) regulatory T cells is essential for self tolerance."
   },
+  "20844740": {
+   "first_author": "Downes K",
+   "journal": "PLoS One",
+   "pubdate_year": "2010",
+   "title": "Reduced expression of IFIH1 is protective for type 1 diabetes."
+  },
   "2124002": {
    "first_author": "Vitiello A",
    "journal": "Science",
    "pubdate_year": "1990",
    "title": "The role of beta 2-microglobulin in peptide binding by class I molecules."
+  },
+  "21368762": {
+   "first_author": "Kaiser WJ",
+   "journal": "Nature",
+   "pubdate_year": "2011",
+   "title": "RIP3 mediates the embryonic lethality of caspase-8-deficient mice."
   },
   "21602908": {
    "first_author": "Kim JH",
@@ -526,6 +574,12 @@
    "journal": "Proc Natl Acad Sci U S A",
    "pubdate_year": "2012",
    "title": "Preventing hypoxia-induced cell death in beta cells and islets via hydrolytically activated, oxygen-generating biomaterials."
+  },
+  "22426547": {
+   "first_author": "Thomas C",
+   "journal": "Nat Struct Mol Biol",
+   "pubdate_year": "2012",
+   "title": "Structure of the activating IL-1 receptor signaling complex."
   },
   "22442301": {
    "first_author": "Xu G",
@@ -617,11 +671,23 @@
    "pubdate_year": "2014",
    "title": "Coxsackievirus B1 is associated with induction of β-cell autoimmunity that portends type 1 diabetes."
   },
+  "24003923": {
+   "first_author": "Santin I",
+   "journal": "Diabetes Obes Metab",
+   "pubdate_year": "2013",
+   "title": "Candidate genes for type 1 diabetes modulate pancreatic islet inflammation and β-cell apoptosis."
+  },
   "24286026": {
    "first_author": "Avery S",
    "journal": "Stem Cell Reports",
    "pubdate_year": "2013",
    "title": "BCL-XL mediates the strong selective advantage of a 20q11.21 amplification commonly found in human embryonic stem cell cultures."
+  },
+  "24332856": {
+   "first_author": "Fellmann C",
+   "journal": "Cell Rep",
+   "pubdate_year": "2013",
+   "title": "An optimized microRNA backbone for effective single-copy RNAi."
   },
   "24363023": {
    "first_author": "Islam S",
@@ -647,6 +713,12 @@
    "pubdate_year": "2014",
    "title": "Thoracic-to-hip circumference ratio as a novel marker of type 2 diabetes, independent of body mass index and waist-to-hip ratio, in Korean adults."
   },
+  "24608439": {
+   "first_author": "Marroquí L",
+   "journal": "Diabetes",
+   "pubdate_year": "2014",
+   "title": "BACH2, a candidate risk gene for type 1 diabetes, regulates apoptosis in pancreatic β-cells via JNK1 modulation and crosstalk with the candidate gene PTPN2."
+  },
   "24618276": {
    "first_author": "Choi JH",
    "journal": "Mol Brain",
@@ -671,6 +743,24 @@
    "pubdate_year": "2014",
    "title": "Minireview: Thioredoxin-interacting protein: regulation and function in the pancreatic β-cell."
   },
+  "24949970": {
+   "first_author": "Soleimanpour SA",
+   "journal": "Cell",
+   "pubdate_year": "2014",
+   "title": "The diabetes susceptibility gene Clec16a regulates mitophagy."
+  },
+  "24982147": {
+   "first_author": "Fløyel T",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "2014",
+   "title": "CTSH regulates β-cell function and disease progression in newly diagnosed type 1 diabetes patients."
+  },
+  "25087510": {
+   "first_author": "Liu W",
+   "journal": "Structure",
+   "pubdate_year": "2014",
+   "title": "Mechanistic basis for functional promiscuity in the TNF and TNF receptor superfamilies: structure of the LIGHT:DcR3 assembly."
+  },
   "25140605": {
    "first_author": "Wang H",
    "journal": "Biochemistry",
@@ -694,6 +784,12 @@
    "journal": "J Immunol",
    "pubdate_year": "2014",
    "title": "Uncovering the peptide-binding specificities of HLA-C: a general strategy to determine the specificity of any MHC class I molecule."
+  },
+  "25359968": {
+   "first_author": "Schirle NT",
+   "journal": "Science",
+   "pubdate_year": "2014",
+   "title": "Structural basis for microRNA targeting."
   },
   "25497547": {
    "first_author": "Rao SS",
@@ -773,6 +869,12 @@
    "pubdate_year": "2015",
    "title": "HLA-E regulates NKG2C+ natural killer cell function through presentation of a restricted peptide repertoire."
   },
+  "26450151": {
+   "first_author": "Kaur S",
+   "journal": "Mol Cell Endocrinol",
+   "pubdate_year": "2016",
+   "title": "The genetic and regulatory architecture of ERBB3-type 1 diabetes susceptibility locus."
+  },
   "26455413": {
    "first_author": "Ordovás L",
    "journal": "Stem Cell Reports",
@@ -833,11 +935,23 @@
    "pubdate_year": "2016",
    "title": "A Single-Cell Transcriptomic Map of the Human and Mouse Pancreas Reveals Inter- and Intra-cell Population Structure."
   },
+  "27699257": {
+   "first_author": "Hajmrle C",
+   "journal": "JCI Insight",
+   "pubdate_year": "2016",
+   "title": "Interleukin-1 signaling contributes to acute islet compensation."
+  },
   "27787618": {
    "first_author": "van der Torren CR",
    "journal": "Diabetologia",
    "pubdate_year": "2017",
    "title": "Immunogenicity of human embryonic stem cell-derived beta cells."
+  },
+  "27806260": {
+   "first_author": "Liu W",
+   "journal": "Structure",
+   "pubdate_year": "2016",
+   "title": "Crystal Structure of the Complex of Human FasL and Its Decoy Receptor DcR3."
   },
   "27807284": {
    "first_author": "Dendrou CA",
@@ -851,11 +965,23 @@
    "pubdate_year": "2017",
    "title": "Primary Human and Rat β-Cells Release the Intracellular Autoantigens GAD65, IA-2, and Proinsulin in Exosomes Together With Cytokine-Induced Enhancers of Immunity."
   },
+  "27899417": {
+   "first_author": "Wen X",
+   "journal": "J Mol Endocrinol",
+   "pubdate_year": "2017",
+   "title": "Emerging roles of GLIS3 in neonatal diabetes, type 1 and type 2 diabetes."
+  },
   "27942611": {
    "first_author": "Marino J",
    "journal": "Sci Immunol",
    "pubdate_year": "2016",
    "title": "Donor exosomes rather than passenger leukocytes initiate alloreactive T cell responses after transplantation."
+  },
+  "28092375": {
+   "first_author": "Dror E",
+   "journal": "Nat Immunol",
+   "pubdate_year": "2017",
+   "title": "Postprandial macrophage-derived IL-1β stimulates insulin, and both synergistically promote glucose disposal and inflammation."
   },
   "28263308": {
    "first_author": "Kracht MJ",
@@ -1043,6 +1169,12 @@
    "pubdate_year": "2019",
    "title": "Ectonucleoside Triphosphate Diphosphohydrolase-3 Antibody Targets Adult Human Pancreatic β Cells for In Vitro and In Vivo Analysis."
   },
+  "30478640": {
+   "first_author": "Dos Santos RS",
+   "journal": "Diabetologia",
+   "pubdate_year": "2019",
+   "title": "DEXI, a candidate gene for type 1 diabetes, modulates rat and human pancreatic beta cell inflammation via regulation of the type I IFN/STAT signalling pathway."
+  },
   "30578352": {
    "first_author": "Boisson-Dupuis S",
    "journal": "Sci Immunol",
@@ -1109,6 +1241,12 @@
    "pubdate_year": "2019",
    "title": "Inhibiting PD-L1 palmitoylation enhances T-cell immune responses against tumours."
   },
+  "30967432": {
+   "first_author": "Krischer JP",
+   "journal": "Diabetes Care",
+   "pubdate_year": "2019",
+   "title": "Predicting Islet Cell Autoimmunity and Type 1 Diabetes: An 8-Year TEDDY Study Progress Report."
+  },
   "31040209": {
    "first_author": "Han X",
    "journal": "Proc Natl Acad Sci U S A",
@@ -1121,11 +1259,35 @@
    "pubdate_year": "2019",
    "title": "Charting cellular identity during human in vitro β-cell differentiation."
   },
+  "31332326": {
+   "first_author": "Thuronyi BW",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2019",
+   "title": "Continuous evolution of base editors with expanded target compatibility and improved activity."
+  },
+  "31435002": {
+   "first_author": "Nieves-Bonilla JM",
+   "journal": "Genes Immun",
+   "pubdate_year": "2020",
+   "title": "The type 1 diabetes candidate gene Dexi does not affect disease risk in the nonobese diabetic mouse model."
+  },
+  "31552143": {
+   "first_author": "Trivedi PM",
+   "journal": "Cell Death Discov",
+   "pubdate_year": "2019",
+   "title": "Soluble FAS ligand is not required for pancreatic islet inflammation or beta-cell destruction in non-obese diabetic mice."
+  },
   "31570731": {
    "first_author": "Hanlon KS",
    "journal": "Nat Commun",
    "pubdate_year": "2019",
    "title": "High levels of AAV vector integration into CRISPR-induced DNA breaks."
+  },
+  "31570815": {
+   "first_author": "Gingerich MA",
+   "journal": "Genes Immun",
+   "pubdate_year": "2020",
+   "title": "Clarifying the function of genes at the chromosome 16p13 locus in type 1 diabetes: CLEC16A and DEXI."
   },
   "31581152": {
    "first_author": "Zammit NW",
@@ -1144,6 +1306,12 @@
    "journal": "Cell Mol Bioeng",
    "pubdate_year": "2019",
    "title": "Type I Diabetes Delays Perfusion and Engraftment of 3D Constructs by Impinging on Angiogenesis; Which can be Rescued by Hepatocyte Growth Factor Supplementation."
+  },
+  "31753960": {
+   "first_author": "Battaglia M",
+   "journal": "Diabetes Care",
+   "pubdate_year": "2020",
+   "title": "Introducing the Endotype Concept to Address the Challenge of Disease Heterogeneity in Type 1 Diabetes."
   },
   "31757674": {
    "first_author": "Zhao Y",
@@ -1174,6 +1342,12 @@
    "journal": "J Clin Invest",
    "pubdate_year": "2020",
    "title": "Minimal PD-1 expression in mouse and human NK cells under diverse conditions."
+  },
+  "32172310": {
+   "first_author": "Leete P",
+   "journal": "Diabetologia",
+   "pubdate_year": "2020",
+   "title": "Studies of insulin and proinsulin in pancreas and serum support the existence of aetiopathological endotypes of type 1 diabetes associated with age at diagnosis."
   },
   "32432213": {
    "first_author": "Menegaz D",
@@ -1247,6 +1421,12 @@
    "pubdate_year": "2021",
    "title": "Improvement of islet transplantation by the fusion of islet cells with functional blood vessels."
   },
+  "33207093": {
+   "first_author": "Quattrin T",
+   "journal": "N Engl J Med",
+   "pubdate_year": "2020",
+   "title": "Golimumab and Beta-Cell Function in Youth with New-Onset Type 1 Diabetes."
+  },
   "33416832": {
    "first_author": "Deuse T",
    "journal": "J Exp Med",
@@ -1271,11 +1451,23 @@
    "pubdate_year": "2021",
    "title": "Structural plasticity of KIR2DL2 and KIR2DL3 enables altered docking geometries atop HLA-C."
   },
+  "34012112": {
+   "first_author": "Chiou J",
+   "journal": "Nature",
+   "pubdate_year": "2021",
+   "title": "Interpreting type 1 diabetes risk with genetics and single-cell epigenomics."
+  },
   "34035238": {
    "first_author": "Low BSJ",
    "journal": "Nat Commun",
    "pubdate_year": "2021",
    "title": "Decreased GLUT2 and glucose uptake contribute to insulin secretion defects in MODY3/HNF1A hiPSC-derived mutant β cells."
+  },
+  "34127860": {
+   "first_author": "Robertson CC",
+   "journal": "Nat Genet",
+   "pubdate_year": "2021",
+   "title": "Fine-mapping, trans-ancestral and genomic analyses identify causal variants, cells, genes and drug targets for type 1 diabetes."
   },
   "34380648": {
    "first_author": "Nilsson PH",
@@ -1373,11 +1565,23 @@
    "pubdate_year": "2022",
    "title": "Release Kinetics and In Vitro Characterization of Sodium Percarbonate and Calcium Peroxide to Oxygenate Bioprinted Tissue Models."
   },
+  "35750050": {
+   "first_author": "Wiedemann SJ",
+   "journal": "Cell Metab",
+   "pubdate_year": "2022",
+   "title": "The cephalic phase of insulin release is modulated by IL-1β."
+  },
   "35795779": {
    "first_author": "Wunderlich S",
    "journal": "Mol Ther Methods Clin Dev",
    "pubdate_year": "2022",
    "title": "Targeted biallelic integration of an inducible Caspase 9 suicide gene in iPSCs for safer therapies."
+  },
+  "35880017": {
+   "first_author": "Amen AM",
+   "journal": "Cell Rep Methods",
+   "pubdate_year": "2022",
+   "title": "Endogenous spacing enables co-processing of microRNAs and efficient combinatorial RNAi."
   },
   "35918471": {
    "first_author": "González BJ",
@@ -1420,6 +1624,12 @@
    "journal": "Nat Commun",
    "pubdate_year": "2022",
    "title": "The type 1 diabetes gene TYK2 regulates β-cell development and its responses to interferon-α."
+  },
+  "36357719": {
+   "first_author": "Neugebauer ME",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2023",
+   "title": "Evolution of an adenine base editor into a small, efficient cytosine base editor with low off-target activity."
   },
   "3658675": {
    "first_author": "Shapiro MB",
@@ -1505,6 +1715,12 @@
    "pubdate_year": "2023",
    "title": "A metabolic role for CD47 in pancreatic β cell insulin secretion and islet transplant outcomes."
   },
+  "38055252": {
+   "first_author": "Waibel M",
+   "journal": "N Engl J Med",
+   "pubdate_year": "2023",
+   "title": "Baricitinib and β-Cell Function in Patients with New-Onset Type 1 Diabetes."
+  },
   "38246194": {
    "first_author": "Weber JS",
    "journal": "Lancet",
@@ -1516,6 +1732,12 @@
    "journal": "ACS Omega",
    "pubdate_year": "2024",
    "title": "Controlled Release of Oxygen from Calcium Peroxide in a Weak Acidic Condition by Stabilized Amorphous Calcium Carbonate Nanocoating for Biomedical Applications."
+  },
+  "38402281": {
+   "first_author": "Zhang E",
+   "journal": "Nat Commun",
+   "pubdate_year": "2024",
+   "title": "Phage-assisted evolution of highly active cytosine base editors with enhanced selectivity and minimal sequence context preference."
   },
   "38508139": {
    "first_author": "Xu L",

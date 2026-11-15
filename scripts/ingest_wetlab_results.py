@@ -630,6 +630,9 @@ STAGE0_PERSISTED_BOOLEAN_FLAGS: tuple[str, ...] = (
     "b2_tyk2_saptkflel_allele_assigned_ms_detected",
     "b2_tyk2_peptide_pulsed_positive_control_verified",
     "b2_tyk2_hlac_blockade_abrogation_verified",
+    "l3_multimir_pre_aav6_2x2_transient_kd_falsifier_cleared",
+    "l3_multimir_low_ifn_and_resting_shield_retention_verified",
+    "l3_multimir_arm6_c341s_hlac_and_dq2_dq8_peptide_screen_cleared",
 )
 
 HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS: tuple[str, ...] = (
