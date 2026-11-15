@@ -5870,6 +5870,243 @@ def simulate_stage0_to_stage7_perturbation_plane(
     }
 
 
+def _build_s10_hlae_comparator_panel_manifest_iip_0016(
+    *,
+    iip_0015_manifest: Dict[str, Any],
+    arm1b_can: str,
+) -> Dict[str, Any]:
+    """Deterministically verify all 20 Mode-B S10 Locus-1 comparator constructs (IIP-0016; DEC-094)."""
+    s10_fasta_path = REPO_ROOT / "data/constructs/islet1_locus1_s10_modeb_comparators_v0.8.0.fasta"
+    if not s10_fasta_path.is_file():
+        raise FileNotFoundError(f"Missing Mode-B S10 comparator FASTA: {s10_fasta_path}")
+
+    q_by_id = {c["construct_id"]: c for c in iip_0015_manifest["qualified_mode_b_reference_derivations"]}
+    astar_parent = q_by_id["S3_L1_ASTAR_STOP_ONLY_4143"]["donor_sequence"].upper()
+    if len(astar_parent) != 4143 or sha256_str(astar_parent) != "aff2ec0d862b9a99f54518465221106444e3ce0f8b055b29dd0f41faac262225":
+        raise ValueError("S3_L1_ASTAR_STOP_ONLY_4143 parent sequence SHA-256 mismatch")
+
+    arm1b_chars = list(arm1b_can.upper())
+    for edit_tok in ("T583C", "C589A", "G592C", "G595A", "G3146C", "G3148A"):
+        ref_nt, pos_1b, alt_nt = edit_tok[0], int(edit_tok[1:-1]), edit_tok[-1]
+        if arm1b_chars[pos_1b - 1] != ref_nt:
+            raise ValueError(f"ARM1B stop-only derivation mismatch at {edit_tok}")
+        arm1b_chars[pos_1b - 1] = alt_nt
+    arm1b_parent = "".join(arm1b_chars)
+    if len(arm1b_parent) != 3974 or sha256_str(arm1b_parent) != "3d516e2f0fa4408ffe60aa111183ad4e57f4a669c77cba2b2aad15e322d17964":
+        raise ValueError("L1_ARM1B_STOP_ONLY_S3_PAM_SHIELDED_3974 parent sequence SHA-256 mismatch")
+
+    fasta_records: List[Tuple[str, Dict[str, str], str]] = []
+    cur_id: str | None = None
+    cur_kv: Dict[str, str] = {}
+    cur_chunks: List[str] = []
+    for raw_line in s10_fasta_path.read_text(encoding="utf-8").splitlines():
+        if raw_line.startswith(">"):
+            if cur_id is not None:
+                fasta_records.append((cur_id, cur_kv, "".join(cur_chunks).upper()))
+            toks = raw_line[1:].strip().split()
+            cur_id = toks[0]
+            cur_kv = dict(tok.split("=", 1) for tok in toks[1:])
+            cur_chunks = []
+        else:
+            cur_chunks.append(raw_line.strip())
+    if cur_id is not None:
+        fasta_records.append((cur_id, cur_kv, "".join(cur_chunks).upper()))
+    if len(fasta_records) != 20:
+        raise ValueError(f"Expected 20 constructs in {s10_fasta_path.name}, found {len(fasta_records)}")
+    fasta_by_id = {cid: (kv, seq) for cid, kv, seq in fasta_records}
+
+    arms_spec = [
+        (1, "CTRL_WT_VMAPRTLVL", "BASELINE_PARENTAL_CONTROL", "BASELINE_REFERENCE", False, "VMAPRTLVL", "GTGATGGCCCCCAGAACCCTGGTGCTG", "GTGATGGCCCCCAGAACCCTGGTGCTG", "WT_D227_T228", "GACACC"),
+        (2, "CTRL_POS_VMAPRTLFL", "POSITIVE_NKG2C_AGONIST_RATIO_PARADOX_CONTROL", "CALIBRATION_CONTROL_NEVER_PROMOTE", False, "VMAPRTLFL", "GTGATGGCCCCCAGAACCCTCTTCCTC", "GTGATGGCCCCCAGAACCCTGTTCCTG", "WT_D227_T228", "GACACC"),
+        (3, "CTRL_NEG_QMRPVSRVL", "GROOVE_STABILIZING_RECEPTOR_PROTECTION_NEGATIVE_CONTROL", "CALIBRATION_CONTROL_NEVER_PROMOTE", False, "QMRPVSRVL", "CAGATGCGTCCCGTGTCCAGAGTGCTC", "CAGATGCGTCCCGTGTCCAGAGTGCTG", "WT_D227_T228", "GACACC"),
+        (4, "CHAL1_SP6B_VMAPRTVLL", "EXPLORATORY_WEAK_RECOGNITION_DUAL_ATTENUATED_SP6B_COMPARATOR", "ELIGIBLE_MODE_B_CHALLENGER", True, "VMAPRTVLL", "GTGATGGCCCCCAGAACCGTGCTCCTC", "GTGATGGCCCCCAGAACCGTGCTGCTG", "WT_D227_T228", "GACACC"),
+        (5, "CHAL2_SP1B_VTAPRTLLL", "COVALENT_MINUS21T_BYPASS_WEAK_ENHANCER_CALIBRATION_COMPARATOR", "ELIGIBLE_MODE_B_CHALLENGER", True, "VTAPRTLLL", "GTGACCGCCCCCAGAACCCTTCTCCTC", "GTGACCGCCCCCAGAACCCTGCTGCTG", "WT_D227_T228", "GACACC"),
+        (6, "CHAL3_SP5A_VMPPRTLLL", "FUNCTIONAL_P3PRO_UL40_COHORT_NULL_WEAK_ENHANCER_COMPARATOR", "ELIGIBLE_MODE_B_CHALLENGER", True, "VMPPRTLLL", "GTGATGCCCCCTAGAACCCTTCTCCTC", "GTGATGCCCCCTAGAACCCTGCTGCTG", "WT_D227_T228", "GACACC"),
+        (7, "CHAL4_P8A_VMAPRTLAL", "SYNTHETIC_P8ALA_UL40_NULL_NKG2A_SELECTIVE_MECHANISTIC_PROBE", "ELIGIBLE_MODE_B_CHALLENGER", True, "VMAPRTLAL", "GTGATGGCCCCCAGAACCCTCGCCCTC", "GTGATGGCCCCCAGAACCCTGGCCCTG", "WT_D227_T228", "GACACC"),
+        (8, "CHAL5A_WT_VL_D227K_T228A", "SINGLE_FACTOR_ALPHA3_CD8_CORECEPTOR_NULL_CHALLENGER", "ELIGIBLE_MODE_B_CHALLENGER", True, "VMAPRTLVL", "GTGATGGCCCCCAGAACCCTGGTGCTG", "GTGATGGCCCCCAGAACCCTGGTGCTG", "MUT_D227K_T228A", "AAGGCC"),
+        (9, "CHAL5B_SP6B_VMAPRTVLL_D227K_T228A", "FACTORIAL_2X2_SP6B_PLUS_ALPHA3_CD8_NULL_CHALLENGER", "ELIGIBLE_MODE_B_CHALLENGER", True, "VMAPRTVLL", "GTGATGGCCCCCAGAACCGTGCTCCTC", "GTGATGGCCCCCAGAACCGTGCTGCTG", "MUT_D227K_T228A", "AAGGCC"),
+        (10, "CTRL_HARDWT_VMAPRTLVL", "SYNONYMOUS_CTC_SPLICE_HARDENED_WT_SINGLE_FACTOR_CONTROL", "BASELINE_REFERENCE", False, "VMAPRTLVL", "GTGATGGCCCCCAGAACCCTCGTGCTC", "GTGATGGCCCCCAGAACCCTGGTGCTG", "WT_D227_T228", "GACACC"),
+    ]
+
+    cd47_astar_cds = revcomp(astar_parent[876:1404])
+    cd47_aa = translate_strict_cds(cd47_astar_cds, True)[:-1]
+    wt_astar_scan = scan_donors_and_acceptors_both_strands(astar_parent)
+    wt_arm1b_scan = scan_donors_and_acceptors_both_strands(arm1b_parent)
+    wt_astar_sub64 = {
+        (a["strand_relative_to_input"], a["exon_start_1based_on_input_plus"]): a
+        for a in scan_donors_and_acceptors_both_strands(astar_parent, min_acc_idx=64.0)["acceptors"]
+    }
+    wt_arm1b_sub64 = {
+        (a["strand_relative_to_input"], a["exon_start_1based_on_input_plus"]): a
+        for a in scan_donors_and_acceptors_both_strands(arm1b_parent, min_acc_idx=64.0)["acceptors"]
+    }
+
+    naive_ctg_runs: List[Dict[str, Any]] = []
+    construct_entries: List[Dict[str, Any]] = []
+
+    for arm_idx, short_key, role, elig, is_repl, pep, dna27, naive27, alpha3_allele, hx6 in arms_spec:
+        if arm_idx <= 9 and naive27 != astar_parent[1860:1887]:
+            for btag, pseq, s0, e0 in (
+                ("ASTAR_4143", astar_parent, 1860, 1887),
+                ("ARM1B_3974", arm1b_parent, 1706, 1733),
+            ):
+                d_naive = pseq[:s0] + naive27 + pseq[e0:]
+                neos_naive = diff_edit_created_neosites(pseq, d_naive)
+                naive_ctg_runs.append({
+                    "arm_index": arm_idx,
+                    "backbone": btag,
+                    "nonamer_aa": pep,
+                    "naive_ctg_dna27": naive27,
+                    "hardened_ctc_ctt_dna27": dna27,
+                    "naive_created_donors_cv70_or_u1_7_count": len(neos_naive["created_donors_cv70_or_u1_7"]),
+                    "naive_created_acceptors_idx68_count": len(neos_naive["created_acceptors_idx68"]),
+                })
+
+        d_astar = astar_parent[:1860] + dna27 + astar_parent[1887:2982] + hx6 + astar_parent[2988:]
+        d_arm1b = arm1b_parent[:1706] + dna27 + arm1b_parent[1733:2813] + hx6 + arm1b_parent[2819:]
+
+        for btag, donor_seq, parent_seq, parent_id, wt_scan, wt_sub64, sct_s0, sct_e0, cd47_s0, cd47_e0, l1_len in (
+            ("ASTAR_4143", d_astar, astar_parent, "S3_L1_ASTAR_STOP_ONLY_4143", wt_astar_scan, wt_astar_sub64, 1800, 3318, 876, 1404, 20),
+            ("ARM1B_3974", d_arm1b, arm1b_parent, "L1_ARM1B_STOP_ONLY_S3_PAM_SHIELDED_3974", wt_arm1b_scan, wt_arm1b_sub64, 1646, 3149, 722, 1250, 15),
+        ):
+            cid = f"S10_{short_key}_{btag}"
+            if cid not in fasta_by_id:
+                raise ValueError(f"Construct {cid} missing from {s10_fasta_path.name}")
+            kv, fseq = fasta_by_id[cid]
+            sha_hex = sha256_str(donor_seq)
+            if fseq != donor_seq or kv.get("sha256") != sha_hex or kv.get("parent") != parent_id or kv.get("role") != role:
+                raise ValueError(f"FASTA integrity mismatch on {cid}")
+
+            sct_cds = donor_seq[sct_s0:sct_e0]
+            parent_sct_cds = parent_seq[sct_s0:sct_e0]
+            sct_aa = translate_strict_cds(sct_cds, True)[:-1]
+            parent_sct_aa = translate_strict_cds(parent_sct_cds, True)[:-1]
+            aa_diffs = [f"{parent_sct_aa[i]}{i + 1}{sct_aa[i]}" for i in range(len(sct_aa)) if sct_aa[i] != parent_sct_aa[i]]
+            pep_wt = "VMAPRTLVL"
+            expected_aa_diffs = [
+                f"{pep_wt[j]}{21 + j}{pep[j]}"
+                for j in range(9)
+                if pep[j] != pep_wt[j]
+            ]
+            if alpha3_allele == "MUT_D227K_T228A":
+                expected_aa_diffs.extend([f"D{375 + l1_len}K", f"T{376 + l1_len}A"])
+            if aa_diffs != expected_aa_diffs:
+                raise ValueError(
+                    f"Pinned parental SCT amino-acid substitution mismatch on {cid}: expected {expected_aa_diffs}, got {aa_diffs}"
+                )
+
+            b2m_start = 29 + l1_len
+            b2m_end = b2m_start + 99
+            l2_end = b2m_end + 20
+            j_specs = [
+                {"junction_id": f"{pep}__G4S{l1_len // 5}_L1", "left_aa": sct_aa[20:29], "linker_aa": "", "right_aa": sct_aa[29:b2m_start]},
+                {"junction_id": f"G4S{l1_len // 5}_L1__B2M_mature", "left_aa": sct_aa[29:b2m_start], "linker_aa": "", "right_aa": sct_aa[b2m_start:b2m_end]},
+                {"junction_id": "B2M_mature__G4S4_L2", "left_aa": sct_aa[b2m_start:b2m_end], "linker_aa": "", "right_aa": sct_aa[b2m_end:l2_end]},
+                {"junction_id": "G4S4_L2__HLAE_alpha1", "left_aa": sct_aa[b2m_end:l2_end], "linker_aa": "", "right_aa": sct_aa[l2_end:]},
+                {"junction_id": "CD47_IgV_19_138__CD55_stalk_139_147", "left_aa": cd47_aa[18:138], "linker_aa": "", "right_aa": cd47_aa[138:147]},
+            ]
+            orf_specs = [
+                {
+                    "name": "CD47_IgV_GPI_antisense",
+                    "start_0based": cd47_s0,
+                    "end_0based": cd47_e0,
+                    "strand": "-",
+                    "has_stop": True,
+                    "parent_cds": cd47_astar_cds,
+                    "topology_kind": "GPI_ANCHORED_CD47_IGV",
+                    "has_downstream_2a": False,
+                },
+                {
+                    "name": f"HLAE_SCT_{l1_len}aaL1_sense",
+                    "start_0based": sct_s0,
+                    "end_0based": sct_e0,
+                    "strand": "+",
+                    "has_stop": True,
+                    "parent_cds": parent_sct_cds if len(aa_diffs) == 0 else sct_cds,
+                    "topology_kind": "TYPE1_TM_HLAE_SCT",
+                    "has_downstream_2a": False,
+                },
+            ]
+            p1_p4 = validate_p1_to_p4_fail_closed(
+                cid, donor_seq, orf_specs, j_specs, 168, 60, 168, 60,
+                ["3CDG", "1MHE", "3BZE", "2JJS", "4CMM", "4KJY"],
+                ["Covalent_SCT_ectodomain_NKG2A_NKG2C_SPR_pending_Gate0A"],
+            )
+            neos = diff_edit_created_neosites(parent_seq, donor_seq)
+            m_scan = scan_donors_and_acceptors_both_strands(donor_seq)
+            m_sub64 = {
+                (a["strand_relative_to_input"], a["exon_start_1based_on_input_plus"]): a
+                for a in scan_donors_and_acceptors_both_strands(donor_seq, min_acc_idx=64.0)["acceptors"]
+            }
+            sub68_created = [
+                v for k, v in sorted(m_sub64.items())
+                if 64.0 <= v["heuristic_acceptor_index"] < 68.0
+                and (k not in wt_sub64 or wt_sub64[k]["heuristic_acceptor_index"] != v["heuristic_acceptor_index"])
+            ]
+            wt_acc_coords = {(a["strand_relative_to_input"], a["exon_start_1based_on_input_plus"]) for a in wt_scan["acceptors"]}
+            m_acc_coords = {(a["strand_relative_to_input"], a["exon_start_1based_on_input_plus"]) for a in m_scan["acceptors"]}
+            if len(neos["created_donors_cv70_or_u1_7"]) != 0 or len(m_acc_coords - wt_acc_coords) != 0:
+                raise ValueError(f"Splice hardening regression on {cid}")
+
+            construct_entries.append({
+                "construct_id": cid,
+                "arm_index": arm_idx,
+                "backbone": btag,
+                "parent_construct_id": parent_id,
+                "role": role,
+                "promotion_eligibility": elig,
+                "is_replacement_challenger": is_repl,
+                "donor_length_bp": len(donor_seq),
+                "packaged_aav6_bp": len(donor_seq) + 290,
+                "donor_sha256": sha_hex,
+                "nonamer_aa": pep,
+                "nonamer_dna27": dna27,
+                "alpha3_allele": alpha3_allele,
+                "sct_precursor_aa_diffs_vs_wt_parent": aa_diffs,
+                "junction_8_to_11mer_windows": p1_p4["gate_P3_chimeric_junction_neoepitopes"]["construct_total_8_11mer"],
+                "junction_15mer_windows": p1_p4["gate_P3_chimeric_junction_neoepitopes"]["construct_total_15mer"],
+                "created_donors_cv70_or_u1_7": len(neos["created_donors_cv70_or_u1_7"]),
+                "created_new_acceptor_coordinates": len(m_acc_coords - wt_acc_coords),
+                "created_acceptors_idx68_context_shift_count": len(neos["created_acceptors_idx68"]),
+                "subthreshold_64_to_68_acceptors_created_or_shifted_count": len(sub68_created),
+                "cargo_acceptors_delta_vs_parent": m_scan["cargo_acceptors"] - wt_scan["cargo_acceptors"],
+            })
+
+    return {
+        "proposal_id": "IIP-0016",
+        "decision_id": "DEC-094",
+        "mode_b_comparator_fasta": {
+            "relative_path": "data/constructs/islet1_locus1_s10_modeb_comparators_v0.8.0.fasta",
+            "construct_count": 20,
+            "sha256": hashlib.sha256(s10_fasta_path.read_bytes()).hexdigest(),
+            "canonical_scenario_a_fasta_untouched": True,
+        },
+        "divergent_bidirectional_locus1_note": (
+            "Locus 1 (Embodiment A* / Arm 1B) is a divergent head-to-head bidirectional cassette "
+            "(<- SV40 polyA <- antisense CD47 CDS [877..1404 on ASTAR_4143 / 723..1250 on ARM1B_3974] <- antisense promoter "
+            "| sense promoter -> HLA-E SCT CDS [1801..3318 on ASTAR_4143 / 1647..3149 on ARM1B_3974] -> bGH polyA). "
+            "Two-strand CTC/CTT Leu codon hardening eliminates +2 naive-CTG minus-strand acceptors (indices 68.46 and 72.46 on SP-6B) "
+            "with 0 created donors across all 20 constructs; Arm 3 (Hsp60 QMRPVSRVL) retains 1 sub-threshold sense ('+') motif "
+            "CCGTGTCCAG|AGT at heuristic index 67.92 (0.08 below 68.0), reinforcing mandatory Stage-0 5'/3'-RACE across all arms."
+        ),
+        "mature_vs_precursor_numbering_note": (
+            "Mature HLA-E alpha3 D227K/T228A maps to precursor codons D395K/T396A in ASTAR_4143 (20-aa L1) and D390K/T391A in ARM1B_3974 (15-aa L1)."
+        ),
+        "mhcflurry_2_3_28_scope_and_swissprot_provenance": {
+            "uniprot_human_swissprot_records": 20429,
+            "uniprot_fasta_gz_sha256": "40a8856b8ebefeb35721ca94f75dc1b36b8da6f5ef525fd4ff5e66bf291ab368",
+            "mhcflurry_version": "2.3.28",
+            "pseudosequence_caveat": (
+                "MHCflurry 2.3.28 assigns an identical 39-residue binding-pocket pseudosequence to HLA-E*01:01 and HLA-E*01:03 "
+                "and scores free 8-11mers rather than covalent (G4S)n-tethered SCTs; outputs are strictly in silico host Class-I "
+                "cross-presentation flags (e.g., synthetic P8=Ala VMAPRTLAL predicted at 17.8 nM on HLA-B*08:01), never proof of stronger SCT stability."
+            ),
+        },
+        "naive_ctg_counterfactuals_both_backbones": naive_ctg_runs,
+        "verified_20_constructs": construct_entries,
+    }
+
+
 def main() -> None:
     with REF_PATH.open("r", encoding="utf-8") as f:
         ref = json.load(f)
@@ -6139,13 +6376,19 @@ def main() -> None:
                 },
             ],
         },
-        "stage0_two_strand_splice_census_and_challenger_manifest_iip_0015": _build_two_strand_splice_census_and_challenger_manifest_iip_0015(
-            ref=ref,
-            construct_verification=construct_verification,
-            arm1a_can=_canonical_fasta["ISLET1_LOCUS1_ARM1A_B2M_HLAE_SCT_GSGP2A_CD47_IGV_GPI_4880bp"],
+        "stage0_two_strand_splice_census_and_challenger_manifest_iip_0015": (
+            _iip_0015_manifest := _build_two_strand_splice_census_and_challenger_manifest_iip_0015(
+                ref=ref,
+                construct_verification=construct_verification,
+                arm1a_can=_canonical_fasta["ISLET1_LOCUS1_ARM1A_B2M_HLAE_SCT_GSGP2A_CD47_IGV_GPI_4880bp"],
+                arm1b_can=_canonical_fasta["ISLET1_LOCUS1_ARM1B_B2M_BIDIR_2AFREE_CD47_IGV_GPI_HLAE_SCT_3974bp"],
+                l3_can=_canonical_fasta["ISLET1_LOCUS3_CXCL10_SERPINB9_GSGP2A_PDL1_NO_FURIN_4090bp"],
+                l4_can=_canonical_fasta["ISLET1_LOCUS4_AAVS1_CHS4_455BP_CBX3_A2UCOE_EEF1A1_ICASP9_3457bp"],
+            )
+        ),
+        "stage0_s10_hlae_comparator_panel_manifest_iip_0016": _build_s10_hlae_comparator_panel_manifest_iip_0016(
+            iip_0015_manifest=_iip_0015_manifest,
             arm1b_can=_canonical_fasta["ISLET1_LOCUS1_ARM1B_B2M_BIDIR_2AFREE_CD47_IGV_GPI_HLAE_SCT_3974bp"],
-            l3_can=_canonical_fasta["ISLET1_LOCUS3_CXCL10_SERPINB9_GSGP2A_PDL1_NO_FURIN_4090bp"],
-            l4_can=_canonical_fasta["ISLET1_LOCUS4_AAVS1_CHS4_455BP_CBX3_A2UCOE_EEF1A1_ICASP9_3457bp"],
         ),
     }
 

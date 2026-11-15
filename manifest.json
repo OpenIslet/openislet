@@ -253,44 +253,44 @@
       "bytes": 1157
     },
     "ISLET-1-BLUEPRINT.md": {
-      "sha256": "5db8adf4e07986fe2952fa9d6c52570f651cd612108588b96f4a11efa3c1b382",
-      "bytes": 181720
+      "sha256": "cc65c1f765bb85f6c084735403a0041b7673e51eac85fa2efc41ec4d73ac56d5",
+      "bytes": 183972
     },
     "README.md": {
-      "sha256": "96fbd0be6c00e54d23eea6c5d99bc7e8b122c8716ac62fc064fd58026614a98c",
+      "sha256": "31554bcbaad508535de1ba4d4389044fc9280139d9e2ec8dc665c8fc12b8d92d",
       "bytes": 7452
     },
     "docs/ISLET-1-DERIVATIONS-AND-AUDIT-TABLES.md": {
-      "sha256": "6f70126cdf1014c38bebe0bd7cc2eb493c3f97717ee92b6bdfb752310cfa71a8",
+      "sha256": "df61bba8f77a3caa1d67c1f8d193e75d0bbf7ed8e86a6513662afcb0faa9d593",
       "bytes": 65994
     },
     "docs/ISLET-1-MASTER-SPEC-v0.1.md": {
-      "sha256": "c43819a3153057a871c02028a53888cead652c56831476395d9f37f557e90aa5",
+      "sha256": "b581d0140faeb7c1424a88210f22154011bb7ff6a2626ef8f371a0770b8dab96",
       "bytes": 108468
     },
     "docs/ISLET-1-SYNTHESIS-REPORT-v0.4.md": {
-      "sha256": "87952e41cd12e6a05187bcb9c2236c8c673cff22cf2d8f23ff16828de5e8e707",
+      "sha256": "d2cc1501b5507b3f741609e979c5ac6f849745e1506fe398b7697bd12580d506",
       "bytes": 16410
     },
     "docs/ISLET-1-CANDIDATE-BLUEPRINTS-AND-OPTIMIZER-v0.2.md": {
-      "sha256": "5833a88e7b543fac5ace8ebb7e884f24fe81d2cb0bd58b318e3e09a8322ffee8",
+      "sha256": "75e3d72b406afb5e3f5e8016948e7c72c9c36439554ff55e639222abb6c016b0",
       "bytes": 46208
     },
     "docs/PROJECT-ISLET-1-RING1-DISCOVERY-ATLAS-AND-STRATEGY.md": {
-      "sha256": "66e9fabe95fda3098044317788a3eef8acaaa3b95535c3ebb463578de320a06a",
+      "sha256": "afedf411fe4511f3241716ccd5bbce9db58981dfe633614b134e9755e33b9e78",
       "bytes": 20334
     },
     "docs/PROJECT-DECISIONS-LOG.md": {
-      "sha256": "49f8f52b3c97e6997540515bb16e22e75f99fc5e65756083fe245c4f1276891e",
-      "bytes": 510192
+      "sha256": "fb8b591a6d3e27b1f12c59076985b0dec227942fb1244b97c8e237a4b6f3ef9b",
+      "bytes": 515818
     },
     "docs/OPENISLET-2026-2030-MASTER-TIMELINE.md": {
       "sha256": "9c42a296f5aab5cf8d75361505cf8cfc42ebd3e5ac1fc83816a9d5a4ca395305",
       "bytes": 32751
     },
     "docs/STAGE-0-EXECUTION-PLAYBOOK.md": {
-      "sha256": "95d2aeabd109a4c2300e300d58f8a6e61f88ca1d2bda42c39cba2b676a2e5a68",
-      "bytes": 133393
+      "sha256": "b9d4e9cb9876b742302649ab23ee650b403e59571bc4540985181215163e014d",
+      "bytes": 135668
     },
     "data/raw/corpus_manifest_all_sources.jsonl": {
       "sha256": "119ecbd3be2ccb79a2f38ac7feca8713ffb7c6c5e92165078e2722331b9e0536",
@@ -305,8 +305,8 @@
       "bytes": 11990
     },
     "data/raw/doc_citation_metadata_cache.json": {
-      "sha256": "44f80eb8188b21cb7f0eabf4dc3d154ceebc5a7af3c4a096b1b6c5ca8afb9667",
-      "bytes": 67710
+      "sha256": "207be5c52adfa898ffc44c6e6da2fc5d321b23d01f68a4213493f24622eb6f4e",
+      "bytes": 71517
     },
     "data/raw/layer2_genomic_and_jaspar_reference.json": {
       "sha256": "5a7d0da91936e5be815b5cf8844b087b8fcbe8d02f837db806eccadee882737d",
@@ -331,6 +331,10 @@
     "data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta": {
       "sha256": "b5ba4e2b4bbbcc7d6cf1138975c5fae5c6ab074dda43973f071c671cd8cd1d88",
       "bytes": 17196
+    },
+    "data/constructs/islet1_locus1_s10_modeb_comparators_v0.8.0.fasta": {
+      "sha256": "a589ea72144cf1ad2cfa82e9b08c22e075746c63a9264e276a3bd4ec3f896854",
+      "bytes": 87368
     },
     "data/graveyard/idea_graveyard_v0.5.json": {
       "sha256": "c1f7919c2f61a02caf35471e9c96b12b8b5a231ea0982e9a212b3d215fc38abf",
@@ -380,13 +384,13 @@
       "local_audit_tree_sha256": "e56018562aaa99e9be32441aad998407529b839dce58f3f0fd91389a7fcfd9e5"
     },
     "data/extracted/layer2_regulatory_and_perturbation_atlas.json": {
-      "sha256": "d56fb2d3b86b8e56af6ee3b2bde943a175bb3cdab897872b3b147080b091e42d",
-      "bytes": 1105036,
-      "local_audit_tree_sha256": "767050eeef653a71f26fefb73081868d43a3996450f488bf80e8b5c3e9d7c799"
+      "sha256": "caad1dcb90e1c503ac7ac02b43218aa47a21f06eaca5e9559755f82388180213",
+      "bytes": 1134050,
+      "local_audit_tree_sha256": "8f147c97f6d42b5d4a42c095b613e54ce5b92f2873e6af65684f5fa822a63f6f"
     },
     "data/extracted/layer3_structural_verification_atlas.json": {
-      "sha256": "b1add05ba7efd4ed9f501f1e63b24160f3fe9cd024f7dfe5b2f695c52e0aa6e6",
-      "bytes": 258185
+      "sha256": "ea7f6e989b43b92305bb84659b56105b9132ffe75cad4e3855dbb779b078083d",
+      "bytes": 268027
     },
     "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": {
       "sha256": "c12ff0b87058a2af1390a73e9f39a2e5d0ea9b8ee43e75dfa96979cba7c619bd",
@@ -525,8 +529,8 @@
       "bytes": 4935
     },
     "scripts/wetlab_contract.py": {
-      "sha256": "2ae21f665030e3196b75e475e5443287dfa6a3f2780d653adc2b1dc5cf88600e",
-      "bytes": 214401
+      "sha256": "1fe4a7147455b35e1ec7da7c4b6f32f7f7daaf9a7faf9aaaa60ebcc0b28584ba",
+      "bytes": 253436
     },
     "scripts/render_documentation.py": {
       "sha256": "78a215056730e6bc84839e4a2fc07ea11349e66706a989a3d8f0e72e8b47328e",
@@ -537,16 +541,16 @@
       "bytes": 57048
     },
     "data/protocols/wetlab_endpoint_contract_v0.8.0.json": {
-      "sha256": "8d0ef767bdc0536d50001b0f6ca0f54162389115f723e3833322e2517ae9588c",
-      "bytes": 66250
+      "sha256": "9252221818f34c7a780c2437f768b8795bdf9c8d032e664c5a555caa1263b16f",
+      "bytes": 76601
     },
     "data/protocols/stage0_decision_tree_v1.json": {
-      "sha256": "627d2c399505e21a2339dd139b5a0c9152f4fb3418b043d6362c2c39f765c8e4",
-      "bytes": 33816
+      "sha256": "c966aa9290946006cbc9681dc1780257b9e7d14db337c495c5f96572c8a7d9a0",
+      "bytes": 38131
     },
     "data/extracted/documentation_facts_v0.8.0.json": {
-      "sha256": "5c3b40613f4b4ed55b37e8dd561e0cfd6d6779d99db0bdb4eceac2457d6268cd",
-      "bytes": 1580133
+      "sha256": "7be4ffb64e0ba7d97548b29e905f3faccccede660dcc4ee4c171bf2278da7706",
+      "bytes": 1588527
     },
     "tests/test_preastra_layer1.py": {
       "sha256": "22003c36465438faacdaf2630f01d3b902a72556957cf0113775b1303ec79739",
@@ -621,8 +625,8 @@
       "bytes": 215433
     },
     "scripts/generate_release_manifest.py": {
-      "sha256": "9dd945d9e13122ce1e87b66ca1d96405fa14ce32d2fdb8f264cdf6679af173b6",
-      "bytes": 112758
+      "sha256": "4de62289f56f984968fc5088423c81b558cff337d7d5376f4b4dcd8ba05ebaac",
+      "bytes": 112834
     },
     "scripts/harvest_corpus.py": {
       "sha256": "c61503b386f1f4860b56cc805ae139bf1a7b4f4ff7239a4b9dfa3a8740b14c1e",
@@ -633,20 +637,20 @@
       "bytes": 22891
     },
     "scripts/ingest_wetlab_results.py": {
-      "sha256": "cba87d75e212fe4ec45a97f9b7bd69445bab93465f437499c0e5b774ce2f8bc9",
-      "bytes": 146205
+      "sha256": "3e9a3006ffb494e60fa023ed62ef884b80c950b503849e81966bc4562362040a",
+      "bytes": 147852
     },
     "scripts/rank_islet1_stacks.py": {
       "sha256": "d87d211462a93284588d0df6dd05f179d8113f8ea7a118b2e4a208d277d474ef",
       "bytes": 504473
     },
     "scripts/run_layer2_perturbation_and_regulatory_plane.py": {
-      "sha256": "1414623a382ad771b334a2e31ba105ce8f6abe8d0c3ecb9735833513e79676f5",
-      "bytes": 476578
+      "sha256": "41ef11a50063bf790952f1e10e05fac38e19c1367b012d966dc8347939f9fed2",
+      "bytes": 492303
     },
     "scripts/run_layer3_structural_binder_plane.py": {
-      "sha256": "ffe8c58b201490fc17adad2e19ebc21c660594bf11c5f19d65ba778e24c3959d",
-      "bytes": 251098
+      "sha256": "d1f5c3abb3f8bb584be6ad243559aa146974a8e87299993947d00f402cb8bbb6",
+      "bytes": 260413
     },
     "scripts/run_layer4_tissue_and_metabolic_twin.py": {
       "sha256": "3969a6b276e72fae94527155685569bcd54cd964f61b980936dedc72d1a5f604",
@@ -6123,8 +6127,8 @@
       "bytes": 40897
     },
     "tests/test_round3_supporting_boundaries.py": {
-      "sha256": "32abf03ce6f22045df54d5053b108792aabea129711edd5462f9e2af1bdbe344",
-      "bytes": 326219
+      "sha256": "adfa8302b66b86248374137d2fb4c2705c35dbcf279bf4d95cc2fc484a9fb420",
+      "bytes": 336443
     }
   },
   "public_export_file_inventory": [
@@ -6159,6 +6163,7 @@
     "LICENSE-DATA",
     "README.md",
     "SECURITY.md",
+    "data/constructs/islet1_locus1_s10_modeb_comparators_v0.8.0.fasta",
     "data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta",
     "data/extracted/10202046.json",
     "data/extracted/10728379.json",

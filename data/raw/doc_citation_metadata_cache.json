@@ -1,7 +1,7 @@
 {
  "_meta": {
   "purpose": "offline snapshot for tests/test_citations_resolve.py; bibliographic facts only (first author, year, journal, title)",
-  "retrieved": "2026-11-14",
+  "retrieved": "2026-11-15",
   "source": "NCBI E-utilities esummary (db=pubmed)"
  },
  "pmids": {
@@ -131,6 +131,12 @@
    "pubdate_year": "2003",
    "title": "HLA-E allelic variants. Correlating differential expression, peptide affinities, crystal structures, and thermal stabilities."
   },
+  "12461076": {
+   "first_author": "Michaëlsson J",
+   "journal": "J Exp Med",
+   "pubdate_year": "2002",
+   "title": "A signal peptide derived from hsp60 binds HLA-E and interferes with CD94/NKG2A recognition."
+  },
   "12620238": {
    "first_author": "Shiozaki EN",
    "journal": "Mol Cell",
@@ -142,6 +148,12 @@
    "journal": "Proc Natl Acad Sci U S A",
    "pubdate_year": "2003",
    "title": "Human inhibitory receptors Ig-like transcript 2 (ILT2) and ILT4 compete with CD8 for MHC class I binding and bind preferentially to HLA-G."
+  },
+  "12874227": {
+   "first_author": "Miller JD",
+   "journal": "J Immunol",
+   "pubdate_year": "2003",
+   "title": "Analysis of HLA-E peptide-binding specificity and contact residues in bound peptide required for recognition by CD94/NKG2."
   },
   "14566337": {
    "first_author": "Lizée G",
@@ -167,6 +179,12 @@
    "pubdate_year": "2004",
    "title": "Maximum entropy modeling of short sequence motifs with applications to RNA splicing signals."
   },
+  "15304389": {
+   "first_author": "Gumá M",
+   "journal": "Blood",
+   "pubdate_year": "2004",
+   "title": "Imprint of human cytomegalovirus infection on the NK cell receptor repertoire."
+  },
   "15494398": {
    "first_author": "Mahrus S",
    "journal": "J Biol Chem",
@@ -178,6 +196,12 @@
    "journal": "Blood",
    "pubdate_year": "2005",
    "title": "An inducible caspase 9 safety switch for T-cell therapy."
+  },
+  "15728498": {
+   "first_author": "Kaiser BK",
+   "journal": "J Immunol",
+   "pubdate_year": "2005",
+   "title": "Interactions between NKG2x immunoreceptors and HLA-E ligands display overlapping affinities and thermodynamics."
   },
   "15837791": {
    "first_author": "Wooldridge L",
@@ -263,6 +287,12 @@
    "pubdate_year": "2008",
    "title": "A decrease in cellular energy status stimulates PERK-dependent eIF2alpha phosphorylation and regulates protein synthesis in pancreatic beta-cells."
   },
+  "18083576": {
+   "first_author": "Sullivan LC",
+   "journal": "Immunity",
+   "pubdate_year": "2007",
+   "title": "The heterodimeric assembly of the CD94-NKG2 receptor family and implications for human leukocyte antigen-E recognition."
+  },
   "1824699": {
    "first_author": "Moran P",
    "journal": "J Biol Chem",
@@ -293,6 +323,12 @@
    "pubdate_year": "2008",
    "title": "Thioredoxin-interacting protein deficiency induces Akt/Bcl-xL signaling and pancreatic beta-cell mass and protects against diabetes."
   },
+  "18579774": {
+   "first_author": "Yan HH",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "2008",
+   "title": "An autocrine axis in the testis that coordinates spermiation and blood-testis barrier restructuring during spermatogenesis."
+  },
   "18585785": {
    "first_author": "Butte MJ",
    "journal": "Mol Immunol",
@@ -310,6 +346,12 @@
    "journal": "N Engl J Med",
    "pubdate_year": "2008",
    "title": "Widespread amyloid deposition in transplanted human pancreatic islets."
+  },
+  "19047627": {
+   "first_author": "Lu L",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "2008",
+   "title": "Regulation of CD8+ regulatory T cells: Interruption of the NKG2A-Qa-1 interaction allows robust suppressive activity and resolution of autoimmune disease."
   },
   "19262615": {
    "first_author": "Zanta-Boussif MA",
@@ -407,6 +449,12 @@
    "pubdate_year": "2010",
    "title": "CD8 controls T cell cross-reactivity."
   },
+  "20844537": {
+   "first_author": "Kim HJ",
+   "journal": "Nature",
+   "pubdate_year": "2010",
+   "title": "Inhibition of follicular T-helper cells by CD8(+) regulatory T cells is essential for self tolerance."
+  },
   "2124002": {
    "first_author": "Vitiello A",
    "journal": "Science",
@@ -496,6 +544,12 @@
    "journal": "Stem Cells",
    "pubdate_year": "2013",
    "title": "A ubiquitous chromatin opening element prevents transgene silencing in pluripotent stem cells and their differentiated progeny."
+  },
+  "23325834": {
+   "first_author": "Béziat V",
+   "journal": "Blood",
+   "pubdate_year": "2013",
+   "title": "NK cell responses to cytomegalovirus infection lead to stable imprints in the human KIR repertoire and involve activating KIRs."
   },
   "23348838": {
    "first_author": "Roca X",
@@ -689,6 +743,12 @@
    "pubdate_year": "2015",
    "title": "Mast cells infiltrate pancreatic islets in human type 1 diabetes."
   },
+  "26382247": {
+   "first_author": "Lauterbach N",
+   "journal": "Hum Immunol",
+   "pubdate_year": "2015",
+   "title": "HLA-E regulates NKG2C+ natural killer cell function through presentation of a restricted peptide repertoire."
+  },
   "26455413": {
    "first_author": "Ordovás L",
    "journal": "Stem Cell Reports",
@@ -875,6 +935,12 @@
    "pubdate_year": "2018",
    "title": "Long-term viability and function of transplanted islets macroencapsulated at high density are achieved by enhanced oxygen supply."
   },
+  "29709038": {
+   "first_author": "Jouand N",
+   "journal": "PLoS Pathog",
+   "pubdate_year": "2018",
+   "title": "HCMV triggers frequent and persistent UL40-specific unconventional HLA-E-restricted CD8 T-cell responses with potential autologous and allogeneic peptide recognition."
+  },
   "29779948": {
    "first_author": "Koren I",
    "journal": "Cell",
@@ -916,6 +982,12 @@
    "journal": "Diabetologia",
    "pubdate_year": "2018",
    "title": "Unexpected subcellular distribution of a specific isoform of the Coxsackie and adenovirus receptor, CAR-SIV, in human pancreatic beta cells."
+  },
+  "30087334": {
+   "first_author": "Walters LC",
+   "journal": "Nat Commun",
+   "pubdate_year": "2018",
+   "title": "Pathogen-derived HLA-E bound epitopes reveal broad primary anchor pocket tolerability and conformationally malleable peptide binding."
   },
   "30269996": {
    "first_author": "Colli ML",
@@ -1103,6 +1175,12 @@
    "pubdate_year": "2020",
    "title": "Modeling Type 1 Diabetes In Vitro Using Human Pluripotent Stem Cells."
   },
+  "32711842": {
+   "first_author": "O'Donnell TJ",
+   "journal": "Cell Syst",
+   "pubdate_year": "2020",
+   "title": "MHCflurry 2.0: Improved Pan-Allele Prediction of MHC Class I-Presented Peptides by Incorporating Antigen Processing."
+  },
   "32719542": {
    "first_author": "Cai EP",
    "journal": "Nat Metab",
@@ -1241,6 +1319,12 @@
    "pubdate_year": "2022",
    "title": "Application of the C3 inhibitor compstatin in a human whole blood model designed for complement research - 20 years of experience and future perspectives."
   },
+  "35596615": {
+   "first_author": "Battin C",
+   "journal": "Immunology",
+   "pubdate_year": "2022",
+   "title": "NKG2A-checkpoint inhibition and its blockade critically depends on peptides presented by its ligand HLA-E."
+  },
   "35650334": {
    "first_author": "Nekoua MP",
    "journal": "Nat Rev Endocrinol",
@@ -1252,6 +1336,12 @@
    "journal": "Proc Natl Acad Sci U S A",
    "pubdate_year": "2022",
    "title": "Alternative splicing encodes functional intracellular CD59 isoforms that mediate insulin secretion and are down-regulated in diabetic islets."
+  },
+  "35705051": {
+   "first_author": "Walters LC",
+   "journal": "Cell Rep",
+   "pubdate_year": "2022",
+   "title": "Primary and secondary functions of HLA-E are determined by stability and conformation of the peptide-bound complexes."
   },
   "35743287": {
    "first_author": "Ke D",
@@ -1750,6 +1840,12 @@
    "journal": "Proc Natl Acad Sci U S A",
    "pubdate_year": "1997",
    "title": "Characterization of the chicken beta-globin insulator."
+  },
+  "9486650": {
+   "first_author": "Braud VM",
+   "journal": "Nature",
+   "pubdate_year": "1998",
+   "title": "HLA-E binds to natural killer cell receptors CD94/NKG2A, B and C."
   },
   "9573279": {
    "first_author": "Donello JE",

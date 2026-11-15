@@ -3069,11 +3069,11 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
         == 0.90
     )
 
-    # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (35 persisted boolean flags, 39 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
-    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 35
+    # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (38 persisted boolean flags, 42 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
+    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 38
     assert "require_full_5endpoint_s9_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
     assert "require_full_7metric_combined_stress_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
-    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 39
+    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 42
     assert "5.71 mmHg at 100 um clusters with matched D_caps = D_gel" in film_limit["surgical_mitigation"]
 
     batch1_r7s2 = {
@@ -3156,7 +3156,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     # - R7S3-F02: Both wetlab_contract.evaluate_stage0_decision_tree and ingest_wetlab_results.evaluate_stage0_decision_tree reject non-boolean policy values
     from scripts import wetlab_contract as wc_mod
 
-    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 39
+    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 42
     for bkey in wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS:
         for bad_val in ("false", "False", 0, "true", "True", 1):
             for eval_fn in (wc_mod.evaluate_stage0_decision_tree, wetlab.evaluate_stage0_decision_tree):
@@ -4638,4 +4638,175 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     except ValueError as _exc_ch:
         assert "knockin_splice_challenger_arm" in str(_exc_ch) or "knockin_locus4_orientation" in str(_exc_ch)
     assert "IIP-0015" in _r9_s2_bp_md and "DEC-092" in _r9_s2_bp_md
+
+    # 31. IIP-0016 / DEC-094: Reconciled Lin 2023 HLA-E*01:03 6-leader SPR table, 20-construct Mode-B S10 comparator panel, and C1-C4 v3 contract repairs
+    import hashlib as _hl_iip16
+    assert (
+        _hl_iip16.sha256((ROOT / "data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta").read_bytes()).hexdigest()
+        == "b5ba4e2b4bbbcc7d6cf1138975c5fae5c6ab074dda43973f071c671cd8cd1d88"
+    )
+    _s10_fasta_bytes = (ROOT / "data/constructs/islet1_locus1_s10_modeb_comparators_v0.8.0.fasta").read_bytes()
+    assert _hl_iip16.sha256(_s10_fasta_bytes).hexdigest() == "a589ea72144cf1ad2cfa82e9b08c22e075746c63a9264e276a3bd4ec3f896854"
+
+    _l2_s10 = _r9_l2_iip11["stage0_s10_hlae_comparator_panel_manifest_iip_0016"]
+    assert _l2_s10["proposal_id"] == "IIP-0016" and _l2_s10["decision_id"] == "DEC-094"
+    assert len(_l2_s10["verified_20_constructs"]) == 20
+    _s10_by_id = {c["construct_id"]: c for c in _l2_s10["verified_20_constructs"]}
+    assert _s10_by_id["S10_CTRL_HARDWT_VMAPRTLVL_ASTAR_4143"]["donor_sha256"].startswith("b5e0bee49a1c")
+    assert _s10_by_id["S10_CTRL_HARDWT_VMAPRTLVL_ARM1B_3974"]["donor_sha256"].startswith("e3b3f04321dc")
+    assert _s10_by_id["S10_CTRL_HARDWT_VMAPRTLVL_ASTAR_4143"]["sct_precursor_aa_diffs_vs_wt_parent"] == []
+    assert _s10_by_id["S10_CTRL_HARDWT_VMAPRTLVL_ASTAR_4143"]["cargo_acceptors_delta_vs_parent"] == -2
+    assert _s10_by_id["S10_CHAL5B_SP6B_VMAPRTVLL_D227K_T228A_ASTAR_4143"]["sct_precursor_aa_diffs_vs_wt_parent"] == ["L27V", "V28L", "D395K", "T396A"]
+    assert _s10_by_id["S10_CHAL5B_SP6B_VMAPRTVLL_D227K_T228A_ARM1B_3974"]["sct_precursor_aa_diffs_vs_wt_parent"] == ["L27V", "V28L", "D390K", "T391A"]
+    for _c16 in _l2_s10["verified_20_constructs"]:
+        assert _c16["created_donors_cv70_or_u1_7"] == 0
+        assert _c16["created_new_acceptor_coordinates"] == 0
+        assert _c16["junction_8_to_11mer_windows"] == 168
+        assert _c16["junction_15mer_windows"] == 60
+
+    _l3_s10 = _r9_l3_iip11["complexes"][0]["s10_hlae_nkg2a_nkg2c_selectivity_and_14pdb_audit_iip_0016"]
+    assert len(_l3_s10["lin_2023_pmid_37264229_hlae_0103_complete_6_leader_spr_table"]) == 6
+    assert all(r["kc_over_ka_point_estimate"] < 4.0 for r in _l3_s10["lin_2023_pmid_37264229_hlae_0103_complete_6_leader_spr_table"])
+    assert len(_l3_s10["pdb_14_structure_reconciled_audit"]["peptide_bound_13_structures"]) == 13
+    assert "3BDW" in _l3_s10["pdb_14_structure_reconciled_audit"]["unliganded_receptor_structure_excluded_from_chords"]
+
+    # C1: Unmeasured S10 on core-14 emits UNMEASURED_EXTENDED_S10_PANEL
+    _dt_core14_s10 = wetlab.evaluate_stage0_decision_tree(core_14_panel)
+    assert _dt_core14_s10["switch_decisions"]["S10_CMV_NKG2C_Adaptive_NK_Peptide_Selectivity_Gate_0A"] == "UNMEASURED_EXTENDED_S10_PANEL"
+    assert _dt_core14_s10["canonical_json_switch_id_map"]["JSON_S10_CMV_NKG2C_Adaptive_NK_Selectivity_Gate_0A"] == "UNMEASURED_EXTENDED_S10_PANEL"
+
+    # C2: Raw mean 7.5% with SE=1.0 -> upper95=9.1449% > 8.0% triggers local S10
+    _dt_c2 = wetlab.evaluate_stage0_decision_tree(
+        {
+            **core_14_panel,
+            "obs_nkg2c_adaptive_nk_lysis_pct": 7.5,
+            "obs_nkg2c_adaptive_nk_lysis_se": 1.0,
+        }
+    )
+    assert _dt_c2["switch_decisions"]["S10_CMV_NKG2C_Adaptive_NK_Peptide_Selectivity_Gate_0A"] == "STRATIFY_CMV_NKG2C_RECIPIENTS_AND_EVALUATE_SCT_SELECTIVITY_MUTANT_COUPON"
+
+    # C3 & C4: Calibration controls blocked; spoofed legacy coupon=True rejected for complete release; valid v3 challenger advances to READY
+    _sp6b_sha = wc.STAGE0_S10_V3_CONSTRUCT_REGISTRY["S10_CHAL1_SP6B_VMAPRTVLL_ASTAR_4143"]["donor_sha256"]
+    _fl_sha = wc.STAGE0_S10_V3_CONSTRUCT_REGISTRY["S10_CTRL_POS_VMAPRTLFL_ASTAR_4143"]["donor_sha256"]
+    _dt_cal_blocked = wetlab.evaluate_stage0_decision_tree(
+        {
+            **full_ext_payload,
+            "s10_construct_id": "S10_CTRL_POS_VMAPRTLFL_ASTAR_4143",
+            "s10_construct_donor_sha256": _fl_sha,
+            "current_lot_id": "LOT-FL-1",
+            "s10_qualified_lot_id": "LOT-FL-1",
+            "s10_is_replacement_challenger_lot": True,
+            "s10_sct_selectivity_coupon_cleared_kc_ka_ge_4_and_lysis_le_8pct": True,
+        }
+    )
+    assert _dt_cal_blocked["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_CALIBRATION_CONTROL_NEVER_ELIGIBLE_FOR_CLINICAL_PROMOTION"
+    assert _dt_cal_blocked["resolved_architecture_assignments"]["lot_release_readiness_tier"] == "HOLD_FAILED_OR_INCOMPLETE_GATE"
+
+    _dt_spoof_legacy = wetlab.evaluate_stage0_decision_tree(
+        {
+            **full_ext_payload,
+            "obs_hlae_nkg2c_over_nkg2a_kd_ratio": 2.68,
+            "obs_hlae_nkg2c_over_nkg2a_kd_ratio_se": 0.10,
+            "s10_sct_selectivity_coupon_cleared_kc_ka_ge_4_and_lysis_le_8pct": True,
+        }
+    )
+    assert _dt_spoof_legacy["resolved_architecture_assignments"]["lot_release_readiness_tier"] == "CANDIDATE_FALLBACK_PROMOTED_PENDING_REPLACEMENT_QUALIFICATION"
+
+    _v3_valid_payload = {
+        **full_ext_payload,
+        "obs_hlae_nkg2c_over_nkg2a_kd_ratio": 2.68,
+        "obs_hlae_nkg2c_over_nkg2a_kd_ratio_se": 0.10,
+        "s10_construct_id": "S10_CHAL1_SP6B_VMAPRTVLL_ASTAR_4143",
+        "s10_construct_donor_sha256": _sp6b_sha,
+        "current_lot_id": "LOT-SP6B-01",
+        "s10_qualified_lot_id": "LOT-SP6B-01",
+        "s10_hlae_floor_mode": "LOT_RELEASE_25K",
+        "s10_is_replacement_challenger_lot": True,
+        "s10_race_5p_3p_junction_verified": True,
+        "obs_hlae_hour0_molecules": 28000.0,
+        "obs_hlae_hour0_molecules_se": 500.0,
+        "obs_hypoxic_72h_hlae_p10_single_cell_molecules": 18000.0,
+        "obs_hypoxic_72h_hlae_p10_single_cell_se": 400.0,
+        "obs_hlae_sct_nkg2a_kd_uM": 2.98,
+        "obs_hlae_sct_nkg2a_kd_se_uM": 0.12,
+        "obs_hlae_sct_nkg2c_kd_uM": 8.00,
+        "obs_hlae_sct_nkg2c_kd_se_uM": 0.20,
+        "obs_nkg2a_pos_resting_nk_lysis_pct": 3.1,
+        "obs_nkg2a_pos_resting_nk_lysis_se": 0.6,
+        "obs_nkg2a_pos_ifng24h_nk_lysis_pct": 3.5,
+        "obs_nkg2a_pos_ifng24h_nk_lysis_se": 0.6,
+        "obs_nkg2a_pos_resting_cd107a_pct": 4.2,
+        "obs_nkg2a_pos_resting_cd107a_se": 0.6,
+        "obs_nkg2a_pos_ifng24h_cd107a_pct": 4.5,
+        "obs_nkg2a_pos_ifng24h_cd107a_se": 0.6,
+        "obs_nkg2c_kir_pos_resting_lysis_pct": 4.1,
+        "obs_nkg2c_kir_pos_resting_lysis_se": 0.6,
+        "obs_nkg2c_kir_pos_ifng24h_lysis_pct": 4.6,
+        "obs_nkg2c_kir_pos_ifng24h_lysis_se": 0.6,
+        "obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_resting_lysis_pct": 4.4,
+        "obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_resting_lysis_se": 0.6,
+        "obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_ifng24h_lysis_pct": 4.9,
+        "obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_ifng24h_lysis_se": 0.6,
+        "obs_hcmv_pooled_3subset_resting_nk_lysis_pct": 4.5,
+        "obs_hcmv_pooled_3subset_resting_nk_lysis_se": 0.6,
+        "obs_hcmv_pooled_3subset_ifng24h_nk_lysis_pct": 5.0,
+        "obs_hcmv_pooled_3subset_ifng24h_nk_lysis_se": 0.6,
+        "obs_nkg2c_cd107a_degranulation_fold_vs_b2m_ko": 1.02,
+        "obs_nkg2c_cd107a_degranulation_fold_se": 0.05,
+        "obs_hcmv_pos_donor_count": 6.0,
+        "obs_hcmv_pos_donor_count_se": 0.001,
+        "obs_s10_nk_failing_donor_count": 0.0,
+        "obs_s10_nk_failing_donor_count_se": 0.001,
+        "obs_cmv_ul40_hlae_cd8_lysis_pct": 1.8,
+        "obs_cmv_ul40_hlae_cd8_lysis_se": 0.4,
+        "obs_ul40_reactive_donor_count": 6.0,
+        "obs_ul40_reactive_donor_count_se": 0.001,
+        "obs_ul40_ctl_failing_donor_count": 0.0,
+        "obs_ul40_ctl_failing_donor_count_se": 0.001,
+        "obs_nonself_dq2_dq8_indirect_apc_si": 1.12,
+        "obs_nonself_dq2_dq8_indirect_apc_si_se": 0.08,
+        "obs_nonself_host_class1_cross_pres_lysis_pct": 1.5,
+        "obs_nonself_host_class1_cross_pres_lysis_se": 0.4,
+    }
+    _dt_v3_ready = wetlab.evaluate_stage0_decision_tree(_v3_valid_payload)
+    assert _dt_v3_ready["switch_decisions"]["S10_CMV_NKG2C_Adaptive_NK_Peptide_Selectivity_Gate_0A"] == "CLEARED_S10_FUNCTIONAL_SELECTIVITY_SUB4_SCT_V3"
+    assert _dt_v3_ready["resolved_architecture_assignments"]["lot_release_readiness_tier"] == "READY_FOR_ENCAPSULATION_COMPLETE_STAGE0_EVIDENCE"
+
+    # Screening 15k mode holds complete release even when v3 screening passes; unrelated failure also holds
+    _dt_v3_screen_only = wetlab.evaluate_stage0_decision_tree({**_v3_valid_payload, "s10_hlae_floor_mode": "GATE_0A_SCREENING_15K"})
+    assert _dt_v3_screen_only["switch_decisions"]["S10_CMV_NKG2C_Adaptive_NK_Peptide_Selectivity_Gate_0A"] == "CLEARED_S10_FUNCTIONAL_SELECTIVITY_SCREENING_15K_V3"
+    assert _dt_v3_screen_only["resolved_architecture_assignments"]["lot_release_readiness_tier"] != "READY_FOR_ENCAPSULATION_COMPLETE_STAGE0_EVIDENCE"
+    _dt_v3_unrelated_hold = wetlab.evaluate_stage0_decision_tree({**_v3_valid_payload, "obs_phagocytosis_index_pct": 9.0, "obs_phagocytosis_index_se": 0.5})
+    assert _dt_v3_unrelated_hold["resolved_architecture_assignments"]["lot_release_readiness_tier"] == "HOLD_FAILED_OR_INCOMPLETE_GATE"
+
+    # Cross-batch non-pooling guard on s10_construct_id
+    _cal_s10_a = wetlab.run_calibration(
+        {
+            "batch_id": "BATCH-IIP16-1",
+            "mcb_clone_id": "CLONE-IIP16",
+            "product_variant_id": "ISLET1_A4_ARM1B_EMB_A_STAR_4143",
+            "s10_construct_id": "S10_CTRL_WT_VMAPRTLVL_ASTAR_4143",
+            "obs_stage7_yield_ratio": 0.94,
+            "obs_stage7_yield_se": 0.02,
+        },
+        is_dry_run=False,
+    )
+    try:
+        wetlab.run_calibration(
+            {
+                "batch_id": "BATCH-IIP16-2",
+                "mcb_clone_id": "CLONE-IIP16",
+                "product_variant_id": "ISLET1_A4_ARM1B_EMB_A_STAR_4143",
+                "s10_construct_id": "S10_CHAL1_SP6B_VMAPRTVLL_ASTAR_4143",
+                "obs_cd47_fold": 4.4,
+                "obs_cd47_fold_se": 0.2,
+            },
+            False,
+            _cal_s10_a,
+        )
+        raise AssertionError("Expected ValueError when pooling distinct s10_construct_id batches")
+    except ValueError as _exc_s10:
+        assert "s10_construct_id" in str(_exc_s10)
+    assert "IIP-0016" in _r9_s2_bp_md and "DEC-094" in _r9_s2_bp_md
+
 

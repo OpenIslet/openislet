@@ -1,7 +1,7 @@
 {
   "schema_version": "0.8.0",
   "epistemic_status": "GENERATED_COMPUTATIONAL_FACTS_PHYSICAL_QUALIFICATION_PENDING",
-  "manifest_pin_count": 1358,
+  "manifest_pin_count": 1359,
   "discovery_manifest": {
     "jsonl_rows": 7703,
     "unique_pubmed_pmids": 7703,
@@ -13,8 +13,8 @@
     "data/extracted/cross_study_discovery_graph.json": "1eb6248877b1dacf11154f608515c092ed1db2fdb7efc34b9c5456a3aa1113f4",
     "data/extracted/islet1_candidate_stack_rankings.json": "7fe47bfd8d19309781921341696159e9f30a0754587139f0aaca9affea77b24e",
     "data/protocols/hip_core_fractional_factorial_v0.6.2.json": "7a3aead410a1c9a10ac4fb56b78a1775c73755aed90c1fff4861eb3b94595741",
-    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "767050eeef653a71f26fefb73081868d43a3996450f488bf80e8b5c3e9d7c799",
-    "data/extracted/layer3_structural_verification_atlas.json": "b1add05ba7efd4ed9f501f1e63b24160f3fe9cd024f7dfe5b2f695c52e0aa6e6",
+    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "8f147c97f6d42b5d4a42c095b613e54ce5b92f2873e6af65684f5fa822a63f6f",
+    "data/extracted/layer3_structural_verification_atlas.json": "ea7f6e989b43b92305bb84659b56105b9132ffe75cad4e3855dbb779b078083d",
     "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": "c12ff0b87058a2af1390a73e9f39a2e5d0ea9b8ee43e75dfa96979cba7c619bd",
     "data/extracted/layer5_personalized_patient_and_crispr_atlas.json": "8e563bf9342259a40f4ced83bd9633da39659b998f3fe5dc563f7e9d820462aa",
     "data/extracted/10202046.json": "b3d836e8c0fc8ed898592975e0f09c0154a0d4f887c2b6893e7c8194befd0a6a",
@@ -14257,6 +14257,155 @@
               "physical_limitations_note": "Euclidean anchor distance is a lower bound on the excluded-volume path around the protein surface; the fixed lp=4.00 A reference gives ~23.0 pN entropic tension at selected l0=3.5 A (l0=3.80 A comparator: 18.3 pN); selected lp=4 A gives 23 pN. This coarse calculation is an unrelaxed geometric screen and requires experimental thermal-shift / flow-cytometry surface density confirmation."
             },
             "stage0_intact_sct_and_signal_peptidase_gate_p02": "Because the straight 19.43 A chord in 3CDG copy 1 ([17.96, 19.55] A across all 8 crystallographic copies in 3CDG [2], 1MHE [2], and 3BZE [4]; mean = 19.004468 A, SD_pop = 0.611622 A, SD_sample = 0.653851 A; [19.03, 19.55] A across the 6 Ile1-resolved copies in 3CDG/3BZE vs 17.96 / 18.00 A [17.9601 A in 1MHE copy 1 and 18.0036 A in 1MHE copy 2] to author seq_id=1 MET1:N [fMet0 recombinant leader] in 1MHE, whereas 1MHE's insertion-coded native Ile1 [ILE1A:N] lies at 19.5652 / 19.6179 A; AUDIT-REF, AUDIT-REF, AUDIT-REF, AUDIT-REF, AUDIT-REF & AUDIT-REF) from P9(Leu9:C) to B2M(Ile1:N) traverses 31-38 internal heavy atoms (37 in 3CDG copy 1 / 38 in 3CDG copy 2 under open-segment 0 < t < 1 cylinder projection excluding P9 and B2M residues 0-1, or 36-42 deduplicated [40 in 3CDG copy 1; 39-46 / 44 un-deduplicated cylinder + P9:C-sphere + Ile1:N-sphere sum on the identical non-anchor atom set, or 35-44 / 43 omitting inner-sphere A:Asp119:O] under 0 <= t <= 1 capsule projection; S55R2-D3-03, AUDIT-REF & AUDIT-REF) of the HLA-E alpha1/alpha2/B2M trimer, the excluded-volume surface detour path around the alpha1 F-pocket rim is parameterized at 33.5-43.7 A across the 8 crystallographic copies in 3CDG/1MHE/3BZE (35.6 A imported surface-detour reference in 3CDG copy 1; live 26-connected 0.5 A voxel Dijkstra in 3CDG copy 1 gives 33.8/35.1/36.6/39.0 A across r_obs = 2.5/2.8/3.1/3.4 A [8-copy open ranges [20.8, 39.8] / [30.1, 35.6] / [31.9, 36.8] / [33.2, 40.3] A; grid-spacing sensitivity 22.7 / 33.8 / 35.2 A at 0.25 / 0.50 / 1.00 A], vs imported surface-route table [32.7, 38.0] / [34.6, 41.2] / [38.1, 43.0] A, and in 3CDG copy 1 the nearest non-peptide heavy-chain neighbors to P9:C are A:Ser143:OG at 3.27 A, A:Asn77:OD1 at 3.93 A, and A:Tyr84:OH at 4.00 A [while 2.88 A is intrapeptide P8(Phe8):C, and residue 143 is Ser143], and to B2M Ile1:N are B:Met0:C at 1.32 A [peptide bond], B:Gln2:N at 3.58 A [adjacent backbone], and A:Asp119:O at 3.67 A [heavy-chain; with P9:C -> Ile1:CA = 20.50 A]; S55R2-D3-02, S2-06, AUDIT-REF & AUDIT-REF,03; conditional on the 33.5-43.7 A route lengths, Marko-Siggia WLC gives fractional extension 0.6781 / 30.396 pN for 15-aa (G4S)3 at 35.6 A and x = 43.7/52.5 = 0.832381 / 101.441 pN at the 43.7 A upper tail copy, whereas 20-aa L1=(G4S)4 reduces conditional tension to 13.843 pN at 35.6 A and x = 43.7/70.0 = 0.624286 / 22.955 pN at 43.7 A, and Stage-0 Gate P02 verifies intact SCT Edman/LC-MS Ala20|Val21 cleavage, PD-L1 Ala18|Phe19 cleavage, and post-P2A CD47-IgV-GPI PCA1 pyroglutamate cyclization (-17.03 Da via top-down/intact LC-MS or after pyroglutamate aminopeptidase [PGP] deblocking, because N-terminal pyroglutamate blocks classic PITC Edman degradation); AUDIT-REF, AUDIT-REF, AUDIT-REF, AUDIT-REF, S55R2-D3-02, AUDIT-REF, AUDIT-REF,02,06 & AUDIT-REF,03)."
+          }
+        },
+        "s10_hlae_nkg2a_nkg2c_selectivity_and_14pdb_audit_iip_0016": {
+          "proposal_id": "IIP-0016",
+          "decision_id": "DEC-094",
+          "lin_2023_pmid_37264229_hlae_0103_complete_6_leader_spr_table": [
+            {
+              "sp_group": "1A/3A/4A/2C",
+              "nonamer": "VMAPRTLLL",
+              "kd_nkg2a_uM": 1.7,
+              "kd_nkg2a_ci95_uM": [
+                1.5,
+                1.93
+              ],
+              "kd_nkg2c_uM": 4.97,
+              "kd_nkg2c_ci95_uM": [
+                4.8,
+                5.14
+              ],
+              "kc_over_ka_point_estimate": 2.9235,
+              "ul40_217_isolates_pct": 16.0,
+              "lauterbach_2015_pmid_26382247_nkg2c_cd107a": "non-enhancing"
+            },
+            {
+              "sp_group": "2A",
+              "nonamer": "VMAPRTLVL",
+              "kd_nkg2a_uM": 2.1,
+              "kd_nkg2a_ci95_uM": [
+                1.93,
+                2.28
+              ],
+              "kd_nkg2c_uM": 6.52,
+              "kd_nkg2c_ci95_uM": [
+                6.41,
+                6.63
+              ],
+              "kc_over_ka_point_estimate": 3.1048,
+              "ul40_217_isolates_pct": 12.0,
+              "lauterbach_2015_pmid_26382247_nkg2c_cd107a": "non-enhancing"
+            },
+            {
+              "sp_group": "5A",
+              "nonamer": "VMPPRTLLL",
+              "kd_nkg2a_uM": 1.42,
+              "kd_nkg2a_ci95_uM": [
+                1.22,
+                1.65
+              ],
+              "kd_nkg2c_uM": 4.21,
+              "kd_nkg2c_ci95_uM": [
+                4.06,
+                4.37
+              ],
+              "kc_over_ka_point_estimate": 2.9648,
+              "ul40_217_isolates_pct": 0.0,
+              "lauterbach_2015_pmid_26382247_nkg2c_cd107a": "1.3-fold NKG2A- NKG2C+ CD107a enhancement"
+            },
+            {
+              "sp_group": "6B/7B",
+              "nonamer": "VMAPRTVLL",
+              "kd_nkg2a_uM": 2.98,
+              "kd_nkg2a_ci95_uM": [
+                2.81,
+                3.15
+              ],
+              "kd_nkg2c_uM": 8.0,
+              "kd_nkg2c_ci95_uM": [
+                7.84,
+                8.16
+              ],
+              "kc_over_ka_point_estimate": 2.6846,
+              "ul40_217_isolates_pct": 0.0,
+              "lauterbach_2015_pmid_26382247_nkg2c_cd107a": "non-enhancing; cross-reactive UL40/HLA-E CD8+ CTL recognition reported in Jouand et al. 2018 PMID:29709038"
+            },
+            {
+              "sp_group": "1C",
+              "nonamer": "VMAPRTLIL",
+              "kd_nkg2a_uM": 1.33,
+              "kd_nkg2a_ci95_uM": [
+                1.15,
+                1.53
+              ],
+              "kd_nkg2c_uM": 4.35,
+              "kd_nkg2c_ci95_uM": [
+                4.24,
+                4.46
+              ],
+              "kc_over_ka_point_estimate": 3.2707,
+              "ul40_217_isolates_pct": 41.0,
+              "lauterbach_2015_pmid_26382247_nkg2c_cd107a": "1.3-fold NKG2A- NKG2C+ CD107a enhancement"
+            },
+            {
+              "sp_group": "G",
+              "nonamer": "VMAPRTLFL",
+              "kd_nkg2a_uM": 0.18,
+              "kd_nkg2a_ci95_uM": [
+                0.15,
+                0.21
+              ],
+              "kd_nkg2c_uM": 0.71,
+              "kd_nkg2c_ci95_uM": [
+                0.59,
+                0.86
+              ],
+              "kc_over_ka_point_estimate": 3.9444,
+              "ul40_217_isolates_pct": 0.46,
+              "lauterbach_2015_pmid_26382247_nkg2c_cd107a": "3.2-fold NKG2A- NKG2C+ CD107a enhancement + NKG2C internalization (agonist trap)"
+            }
+          ],
+          "hlae_0101_vs_0103_assay_regime_separation": "All 6 functional human HLA-I leaders in Lin et al. 2023 (PMID:37264229, Supplementary Table 1, soluble HLA-E*01:03 SPR) have point-estimate K_C/K_A < 4.0x (2.6846x-3.9444x; VMAPRTLFL component 95% CIs are 0.15-0.21 uM and 0.59-0.86 uM while absolute K_C = 0.71 uM is a 9.18x tighter NKG2C agonist trap than VMAPRTLVL). Historical monomer SPR ratios > 4.0x come from separate experimental preparations (Vales-Gomez et al. 1999 PMID:10428963 Table I, explicit HLA-E*01:01 monomer: HLA-G VMAPRTLFL = 2.33 / 10.77 uM = 4.6223x, Cw*0302 VMAPRTLIL = 7.35 / >=35.4 uM, B*0702 VMAPRTVLL = 11.23 / >=56.2 uM, B*5801 VTAPRTVLL = 17.06 / >=238 uM; Kaiser et al. 2008 PMID:18448674 Table 1 monomer SPR: WT VMAPRTLFL = 0.80 / 5.20 uM = 6.50x, SPR-only R5K VMAPKTLFL = 12.40 / 10.60 uM = 0.8548x) and are kept separate from Lin 2023 rather than spliced across studies. Strong et al. 2003 (PMID:12411439) establishes thermal-stability/surface-level differences between HLA-E*01:03 (Gly107) and HLA-E*01:01 (Arg107) without groove shift, while Kaiser et al. 2005 (PMID:15728498) examines soluble NKG2x peptide-dependent affinity across heavy-chain allotypes.",
+          "conditional_dynamic_swing_corollary": {
+            "general_formula": "K_C / K_A >= [a / (1 - a)] * [(1 - c) / c] * (L_IFNg / L_rest) * (alpha_2D_A / alpha_2D_C)",
+            "equal_alpha_condition_note": "Under monomeric Langmuir 2D synaptic equilibrium and conditional on equal effective 2D confinement factors (alpha_2D_A == alpha_2D_C), maintaining resting NKG2A occupancy >= 0.50 alongside 24-h IFN-gamma NKG2C occupancy <= 0.20 across inducible swings yields conditional sensitivity ratios K_C/K_A >= 25.5339x (10,890 -> 69,516 Layer-2 prior), >= 18.5376x (15,000 -> 69,516 Gate 0A floor), or >= 11.1226x (25,000 -> 69,516 release floor), vs exact 4.0000x for constitutive Arm 1A (66,744 -> 66,744); because subset-specific alpha_2D_A / alpha_2D_C, cell-contact geometry, and multivalent SCT avidity are unmeasured, functional paired resting + 24-h IFN-gamma primary NK lysis/CD107a gates govern Stage-0 Gate 0A alongside recorded covalent-SCT SPR K_D(NKG2A) and K_D(NKG2C)."
+          },
+          "pdb_14_structure_reconciled_audit": {
+            "peptide_bound_13_structures": [
+              "1MHE",
+              "3BZE",
+              "3CDG",
+              "1KPR",
+              "1KTL",
+              "2ESV",
+              "3BZF",
+              "3CII",
+              "5W1V",
+              "5W1W",
+              "6GH1",
+              "7BH8",
+              "7P4B"
+            ],
+            "unliganded_receptor_structure_excluded_from_chords": "3BDW (unliganded CD94/NKG2A heterodimer, Sullivan et al. 2007 PMID:18083576)",
+            "nterm_resolved_12_structures_first_au_copy_chord_range_A": [
+              17.15,
+              20.7
+            ],
+            "nterm_resolved_12_structures_all_33_au_copies_chord_range_A": [
+              17.15,
+              21.53
+            ],
+            "pdb_3bzf_disordered_ile1_gln2_chord_to_arg3_N_A": {
+              "P_to_B": 26.89,
+              "Q_to_D": 26.65
+            },
+            "polar_chemistry_and_epocket_notes": [
+              "In PDB 3CDG (Petrie et al. 2008 PMID:18332182), P5-Arg:NH1 to Glu152:OE2 is 2.886 / 2.741 A across AU copies 1/2, while P5-Arg:NH1 to CD94 Gln112:NE2 (3.609 / 3.698 A) is a donor-donor proximity rather than an H-bond; CD94 Gln112:NE2 donates a direct cross-interface H-bond to P6-Thr main-chain carbonyl oxygen P6:O (3.005 / 2.618 A), and P5-Arg main-chain carbonyl oxygen P5:O accepts an H-bond from HLA-E Gln156:NE2 (2.492 / 2.310 A).",
+              "HLA-E carries Ser147 and Ser143 in the E/F-pocket wall (verified across 3CDG, 1MHE, 3BZE, and 7BH8), rather than classical Class-I Trp147.",
+              "PDB 3CII (4.41 A, Kaiser et al. 2008 PMID:18448674) contains wild-type VMAPRTLFL, whereas R5K VMAPKTLFL is an SPR-only mutant.",
+              "HLA-E alpha3 Asp227/Thr228 lies 46.9966 / 47.0073 A (minima involving Thr228 across AU copies 1/2) from the nearest CD94/NKG2A heavy atom in PDB 3CDG; however, because classical HLA-A2 D227K/T228A (Wooldridge et al. 2005 PMID:15837791; Wooldridge et al. 2010 PMID:20844204) does not exclude CD8-independent TCR agonists and murine Qa-1 D227K disrupts Qa-1-restricted CD8+ regulatory T-cell self-tolerance in vivo (Lu et al. 2008 PMID:19047627; Kim et al. 2010 PMID:20844537), D227K/T228A arms remain strictly exploratory Mode-B comparators gated on >= 80% human HLA-E-restricted CD8+ Treg suppression retention (delta >= -10.0 pp vs WT SCT), UL40-reactive CTL clearance, and parallel HLA-A*02:01 WT vs D227K/T228A SPR assay controls."
+            ]
           }
         }
       },

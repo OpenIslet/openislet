@@ -624,6 +624,9 @@ STAGE0_PERSISTED_BOOLEAN_FLAGS: tuple[str, ...] = (
     "obs_challenger_pam_seed_shield_coconversion_verified",
     "obs_challenger_host_isoforms_above_loq_verified",
     "obs_challenger_sv40pa_and_host_3prime_cleavage_checked",
+    "s10_is_replacement_challenger_lot",
+    "s10_race_5p_3p_junction_verified",
+    "hla_a2_d227k_t228a_positive_control_spr_verified",
 )
 
 HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS: tuple[str, ...] = (
@@ -658,6 +661,11 @@ ALLOWED_ORDERED_BATCH_LEDGER_KEYS: frozenset[str] = frozenset({
     "adjunct_immune_responder_history",
     "knockin_splice_challenger_arm",
     "knockin_locus4_orientation",
+    "s10_construct_id",
+    "s10_construct_donor_sha256",
+    "current_lot_id",
+    "s10_qualified_lot_id",
+    "s10_hlae_floor_mode",
     *HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS,
 })
 
@@ -994,6 +1002,11 @@ def _validate_prior_posterior_report(
                 "adjunct_immune_responder_history",
                 "knockin_splice_challenger_arm",
                 "knockin_locus4_orientation",
+                "s10_construct_id",
+                "s10_construct_donor_sha256",
+                "current_lot_id",
+                "s10_qualified_lot_id",
+                "s10_hlae_floor_mode",
             ):
                 if adj_meta_k in entry and entry[adj_meta_k] is not None:
                     merged_hist_payload_for_norm[adj_meta_k] = entry[adj_meta_k]
@@ -1196,9 +1209,16 @@ def _validate_prior_posterior_report(
                     "adjunct_immune_responder_history",
                     "knockin_splice_challenger_arm",
                     "knockin_locus4_orientation",
+                    "s10_construct_id",
+                    "s10_construct_donor_sha256",
+                    "current_lot_id",
+                    "s10_qualified_lot_id",
+                    "s10_hlae_floor_mode",
                 ):
                     if entry.get(meta_k) is not None:
                         pooled_hist_for_s0[meta_k] = entry[meta_k]
+                        if meta_k not in ("product_variant_id", "estimand_scale"):
+                            hist_meas_for_s0[meta_k] = entry[meta_k]
                 if entry.get("s8b_epistasis_estimand_scale") is not None:
                     pooled_hist_for_s0["s8b_epistasis_estimand_scale"] = entry["s8b_epistasis_estimand_scale"]
                 else:
@@ -1765,6 +1785,11 @@ def run_calibration(
         "adjunct_immune_responder_history",
         "knockin_splice_challenger_arm",
         "knockin_locus4_orientation",
+        "s10_construct_id",
+        "s10_construct_donor_sha256",
+        "current_lot_id",
+        "s10_qualified_lot_id",
+        "s10_hlae_floor_mode",
         *stage0_persisted_boolean_flags,
     ):
         if qp_meta_k in input_payload and input_payload[qp_meta_k] is not None:
@@ -1855,6 +1880,11 @@ def run_calibration(
             "adjunct_immune_responder_history",
             "knockin_splice_challenger_arm",
             "knockin_locus4_orientation",
+            "s10_construct_id",
+            "s10_construct_donor_sha256",
+            "current_lot_id",
+            "s10_qualified_lot_id",
+            "s10_hlae_floor_mode",
         ):
             if hist_entry.get(meta_k) is not None:
                 pooled_stage0_payload[meta_k] = hist_entry[meta_k]
@@ -2116,6 +2146,15 @@ def run_calibration(
     if len(seen_active_locus4_orientations) > 1:
         raise ValueError(
             "Cannot pool CO_DIRECTIONAL_MINUS and CONVERGENT_PLUS knockin_locus4_orientation batches (IIP-0015; DEC-092)"
+        )
+    seen_active_s10_construct_ids: set[str] = set()
+    for _s10_entry in [*prev_obs_ledger, current_obs_entry]:
+        _s10_cid = _s10_entry.get("s10_construct_id")
+        if isinstance(_s10_cid, str) and _s10_cid.strip():
+            seen_active_s10_construct_ids.add(_s10_cid.strip())
+    if len(seen_active_s10_construct_ids) > 1:
+        raise ValueError(
+            "Cannot pool distinct s10_construct_id conditions across calibration batches (IIP-0016; DEC-094)"
         )
     pooled_stage0_payload["batch_id"] = batch_id
     pooled_stage0_payload["verified_ledger_passing_s9_batch_ids"] = list(post_stop_passing_s9_batch_ids)

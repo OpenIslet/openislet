@@ -185,7 +185,305 @@ STAGE0_DECISION_TREE_ENDPOINT_SPECS = [
     ('gate0s_challenger_aberrant_splice_umi_count_k', 'obs_challenger_aberrant_splice_umi_count_k', 'obs_challenger_aberrant_splice_umi_count_se', 0.0, 1e6, 'observed_aberrant_chimeric_or_cryptic_splice_umi_molecule_count_k'),
     ('gate0s_challenger_host_exon_splice_retention_ratio', 'obs_challenger_host_exon_splice_retention_ratio', 'obs_challenger_host_exon_splice_retention_se', 0.0, 5.0, 'host_exon_canonical_splice_retention_ratio_vs_unedited_parental'),
     ('gate0s_challenger_dsrna_j2_or_isg_fold_wt', 'obs_challenger_dsrna_j2_or_isg_fold_wt', 'obs_challenger_dsrna_j2_or_isg_fold_se', 0.0, 50.0, 'anti_dsrna_j2_or_ifit1_oas1_isg15_fold_over_unedited_parental'),
+    # Stage-0 Gate 0A (Rule S10) covalent-SCT SPR, paired resting + 24h IFN-gamma NK subset, UL40 CTL, CD8-coreceptor/Treg, and non-self seam endpoints (IIP-0016; DEC-094):
+    ('stage0_s10_covalent_sct_nkg2a_kd_uM', 'obs_hlae_sct_nkg2a_kd_uM', 'obs_hlae_sct_nkg2a_kd_se_uM', 0.001, 200.0, 'covalent_sct_spr_cd94_nkg2a_kd_uM'),
+    ('stage0_s10_covalent_sct_nkg2c_kd_uM', 'obs_hlae_sct_nkg2c_kd_uM', 'obs_hlae_sct_nkg2c_kd_se_uM', 0.001, 500.0, 'covalent_sct_spr_cd94_nkg2c_kd_uM'),
+    ('stage0_s10_wt_sct_reference_nkg2a_kd_uM', 'obs_wt_sct_nkg2a_kd_uM', 'obs_wt_sct_nkg2a_kd_se_uM', 0.001, 200.0, 'parallel_wt_hlae_sct_reference_cd94_nkg2a_kd_uM'),
+    ('stage0_s10_nkg2a_pos_resting_nk_lysis_pct', 'obs_nkg2a_pos_resting_nk_lysis_pct', 'obs_nkg2a_pos_resting_nk_lysis_se', 0.0, 100.0, 'regime_ii_resting_nkg2a_pos_nkg2c_neg_kir_neg_nk_lysis_percentage'),
+    ('stage0_s10_nkg2a_pos_ifng24h_nk_lysis_pct', 'obs_nkg2a_pos_ifng24h_nk_lysis_pct', 'obs_nkg2a_pos_ifng24h_nk_lysis_se', 0.0, 100.0, 'regime_i_ifng24h_nkg2a_pos_nkg2c_neg_kir_neg_nk_lysis_percentage'),
+    ('stage0_s10_nkg2a_pos_resting_cd107a_pct', 'obs_nkg2a_pos_resting_cd107a_pct', 'obs_nkg2a_pos_resting_cd107a_se', 0.0, 100.0, 'regime_ii_resting_nkg2a_pos_nkg2c_neg_nk_cd107a_degranulation_percentage'),
+    ('stage0_s10_nkg2a_pos_ifng24h_cd107a_pct', 'obs_nkg2a_pos_ifng24h_cd107a_pct', 'obs_nkg2a_pos_ifng24h_cd107a_se', 0.0, 100.0, 'regime_i_ifng24h_nkg2a_pos_nkg2c_neg_nk_cd107a_degranulation_percentage'),
+    ('stage0_s10_nkg2c_kir_pos_resting_lysis_pct', 'obs_nkg2c_kir_pos_resting_lysis_pct', 'obs_nkg2c_kir_pos_resting_lysis_se', 0.0, 100.0, 'regime_ii_resting_nkg2c_pos_nkg2a_neg_kir2dl_pos_nk_lysis_percentage'),
+    ('stage0_s10_nkg2c_kir_pos_ifng24h_lysis_pct', 'obs_nkg2c_kir_pos_ifng24h_lysis_pct', 'obs_nkg2c_kir_pos_ifng24h_lysis_se', 0.0, 100.0, 'regime_i_ifng24h_nkg2c_pos_nkg2a_neg_kir2dl_pos_nk_lysis_percentage'),
+    ('stage0_s10_double_neg_nkg2c_resting_lysis_pct', 'obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_resting_lysis_pct', 'obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_resting_lysis_se', 0.0, 100.0, 'regime_ii_resting_nkg2a_neg_kir2dl_neg_nkg2c_pos_nk_lysis_percentage'),
+    ('stage0_s10_double_neg_nkg2c_ifng24h_lysis_pct', 'obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_ifng24h_lysis_pct', 'obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_ifng24h_lysis_se', 0.0, 100.0, 'regime_i_ifng24h_nkg2a_neg_kir2dl_neg_nkg2c_pos_nk_lysis_percentage'),
+    ('stage0_s10_hcmv_pooled_3subset_resting_lysis_pct', 'obs_hcmv_pooled_3subset_resting_nk_lysis_pct', 'obs_hcmv_pooled_3subset_resting_nk_lysis_se', 0.0, 100.0, 'regime_ii_resting_total_3subset_sorted_hcmv_nk_lysis_percentage'),
+    ('stage0_s10_hcmv_pooled_3subset_ifng24h_lysis_pct', 'obs_hcmv_pooled_3subset_ifng24h_nk_lysis_pct', 'obs_hcmv_pooled_3subset_ifng24h_nk_lysis_se', 0.0, 100.0, 'regime_i_ifng24h_total_3subset_sorted_hcmv_nk_lysis_percentage'),
+    ('stage0_s10_nkg2c_cd107a_fold_vs_b2m_ko', 'obs_nkg2c_cd107a_degranulation_fold_vs_b2m_ko', 'obs_nkg2c_cd107a_degranulation_fold_se', 0.0, 20.0, 'nkg2a_neg_nkg2c_pos_cd107a_degranulation_fold_over_b2m_ko_control'),
+    ('stage0_s10_cmv_ul40_hlae_cd8_ctl_lysis_pct', 'obs_cmv_ul40_hlae_cd8_lysis_pct', 'obs_cmv_ul40_hlae_cd8_lysis_se', 0.0, 100.0, 'cmv_ul40_hlae_restricted_cd8_ctl_4h_specific_lysis_percentage'),
+    ('stage0_s10_hcmv_pos_donor_count', 'obs_hcmv_pos_donor_count', 'obs_hcmv_pos_donor_count_se', 0.0, 1000.0, 'independent_hcmv_seropositive_nk_donors_assayed_integer_count'),
+    ('stage0_s10_nk_failing_donor_count', 'obs_s10_nk_failing_donor_count', 'obs_s10_nk_failing_donor_count_se', 0.0, 1000.0, 'hcmv_nk_donors_exceeding_individual_subset_lysis_threshold_integer_count'),
+    ('stage0_s10_ul40_reactive_donor_count', 'obs_ul40_reactive_donor_count', 'obs_ul40_reactive_donor_count_se', 0.0, 1000.0, 'tetramer_or_peptide_confirmed_ul40_reactive_hcmv_cd8_ctl_donors_integer_count'),
+    ('stage0_s10_ul40_ctl_failing_donor_count', 'obs_ul40_ctl_failing_donor_count', 'obs_ul40_ctl_failing_donor_count_se', 0.0, 1000.0, 'ul40_reactive_cd8_ctl_donors_exceeding_5pct_or_2pp_over_wt_integer_count'),
+    ('stage0_s10_hlae_cd8aa_spr_kd_uM', 'obs_hlae_cd8aa_kd_uM', 'obs_hlae_cd8aa_kd_se_uM', 0.001, 50000.0, 'covalent_sct_spr_cd8alpha_alpha_homodimer_kd_uM'),
+    ('stage0_s10_hlae_cd8ab_spr_kd_uM', 'obs_hlae_cd8ab_kd_uM', 'obs_hlae_cd8ab_kd_se_uM', 0.001, 50000.0, 'covalent_sct_spr_cd8alpha_beta_heterodimer_kd_uM'),
+    ('stage0_s10_cd8_treg_suppression_retention_pct_of_wt', 'obs_cd8_treg_suppression_retention_pct_of_wt', 'obs_cd8_treg_suppression_retention_se', 0.0, 200.0, 'hlae_restricted_cd8_treg_suppression_retention_percentage_of_wt_sct'),
+    ('stage0_s10_cd8_treg_suppression_delta_vs_wt_pp', 'obs_cd8_treg_suppression_delta_vs_wt_pp', 'obs_cd8_treg_suppression_delta_vs_wt_se', -100.0, 100.0, 'hlae_restricted_cd8_treg_suppression_delta_mutant_minus_wt_percentage_points'),
+    ('stage0_s10_ul40_ctl_lysis_delta_vs_wt_pp', 'obs_cmv_ul40_hlae_cd8_lysis_delta_vs_wt_pp', 'obs_cmv_ul40_hlae_cd8_lysis_delta_vs_wt_se', -100.0, 100.0, 'cmv_ul40_cd8_ctl_4h_lysis_delta_d227k_t228a_minus_wt_sct_percentage_points'),
+    ('stage0_s10_nonself_dq2_dq8_indirect_apc_si', 'obs_nonself_dq2_dq8_indirect_apc_si', 'obs_nonself_dq2_dq8_indirect_apc_si_se', 0.1, 100.0, 'recipient_dq2_dq8_apc_indirect_cd4_stimulation_index_on_nonself_seam_or_alpha3'),
+    ('stage0_s10_nonself_host_class1_cross_pres_lysis_pct', 'obs_nonself_host_class1_cross_pres_lysis_pct', 'obs_nonself_host_class1_cross_pres_lysis_se', 0.0, 100.0, 'host_hla_abc_cross_presented_cd8_ctl_specific_lysis_percentage'),
 ]
+
+STAGE0_S10_V3_MEAN_KEYS: frozenset[str] = frozenset({
+    'obs_hlae_sct_nkg2a_kd_uM',
+    'obs_hlae_sct_nkg2c_kd_uM',
+    'obs_wt_sct_nkg2a_kd_uM',
+    'obs_nkg2a_pos_resting_nk_lysis_pct',
+    'obs_nkg2a_pos_ifng24h_nk_lysis_pct',
+    'obs_nkg2a_pos_resting_cd107a_pct',
+    'obs_nkg2a_pos_ifng24h_cd107a_pct',
+    'obs_nkg2c_kir_pos_resting_lysis_pct',
+    'obs_nkg2c_kir_pos_ifng24h_lysis_pct',
+    'obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_resting_lysis_pct',
+    'obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_ifng24h_lysis_pct',
+    'obs_hcmv_pooled_3subset_resting_nk_lysis_pct',
+    'obs_hcmv_pooled_3subset_ifng24h_nk_lysis_pct',
+    'obs_nkg2c_cd107a_degranulation_fold_vs_b2m_ko',
+    'obs_cmv_ul40_hlae_cd8_lysis_pct',
+    'obs_hcmv_pos_donor_count',
+    'obs_s10_nk_failing_donor_count',
+    'obs_ul40_reactive_donor_count',
+    'obs_ul40_ctl_failing_donor_count',
+    'obs_hlae_cd8aa_kd_uM',
+    'obs_hlae_cd8ab_kd_uM',
+    'obs_cd8_treg_suppression_retention_pct_of_wt',
+    'obs_cd8_treg_suppression_delta_vs_wt_pp',
+    'obs_cmv_ul40_hlae_cd8_lysis_delta_vs_wt_pp',
+    'obs_nonself_dq2_dq8_indirect_apc_si',
+    'obs_nonself_host_class1_cross_pres_lysis_pct',
+})
+
+STAGE0_S10_V3_METADATA_KEYS: tuple[str, ...] = (
+    's10_construct_id',
+    's10_construct_donor_sha256',
+    'current_lot_id',
+    's10_qualified_lot_id',
+    's10_hlae_floor_mode',
+)
+
+STAGE0_S10_V3_BOOLEAN_KEYS: tuple[str, ...] = (
+    's10_is_replacement_challenger_lot',
+    's10_race_5p_3p_junction_verified',
+    'hla_a2_d227k_t228a_positive_control_spr_verified',
+)
+
+ALLOWED_S10_HLAE_FLOOR_MODES: frozenset[str] = frozenset({
+    'GATE_0A_SCREENING_15K',
+    'LOT_RELEASE_25K',
+})
+
+STAGE0_S10_V3_CONSTRUCT_REGISTRY: dict[str, dict[str, object]] = {
+    'S10_CTRL_WT_VMAPRTLVL_ASTAR_4143': {
+        'construct_id': 'S10_CTRL_WT_VMAPRTLVL_ASTAR_4143',
+        'donor_sha256': 'aff2ec0d862b9a99f54518465221106444e3ce0f8b055b29dd0f41faac262225',
+        'parent_construct_id': 'S3_L1_ASTAR_STOP_ONLY_4143',
+        'nonamer_aa': 'VMAPRTLVL',
+        'alpha3_allele': 'WT_D227_T228',
+        'role': 'BASELINE_PARENTAL_CONTROL',
+        'promotion_eligibility': 'BASELINE_REFERENCE',
+        'is_replacement_challenger': False,
+        'requires_nonself_peptide_gate': False,
+    },
+    'S10_CTRL_WT_VMAPRTLVL_ARM1B_3974': {
+        'construct_id': 'S10_CTRL_WT_VMAPRTLVL_ARM1B_3974',
+        'donor_sha256': '3d516e2f0fa4408ffe60aa111183ad4e57f4a669c77cba2b2aad15e322d17964',
+        'parent_construct_id': 'L1_ARM1B_STOP_ONLY_S3_PAM_SHIELDED_3974',
+        'nonamer_aa': 'VMAPRTLVL',
+        'alpha3_allele': 'WT_D227_T228',
+        'role': 'BASELINE_PARENTAL_CONTROL',
+        'promotion_eligibility': 'BASELINE_REFERENCE',
+        'is_replacement_challenger': False,
+        'requires_nonself_peptide_gate': False,
+    },
+    'S10_CTRL_POS_VMAPRTLFL_ASTAR_4143': {
+        'construct_id': 'S10_CTRL_POS_VMAPRTLFL_ASTAR_4143',
+        'donor_sha256': 'ba47b154207763f44c72baef3b27f35beecc84cfd37ae6be9eb009605202955b',
+        'parent_construct_id': 'S3_L1_ASTAR_STOP_ONLY_4143',
+        'nonamer_aa': 'VMAPRTLFL',
+        'alpha3_allele': 'WT_D227_T228',
+        'role': 'POSITIVE_NKG2C_AGONIST_RATIO_PARADOX_CONTROL',
+        'promotion_eligibility': 'CALIBRATION_CONTROL_NEVER_PROMOTE',
+        'is_replacement_challenger': False,
+        'requires_nonself_peptide_gate': True,
+    },
+    'S10_CTRL_POS_VMAPRTLFL_ARM1B_3974': {
+        'construct_id': 'S10_CTRL_POS_VMAPRTLFL_ARM1B_3974',
+        'donor_sha256': '6e6288704e9cdc243b1d97ad6c3d7404bd03579477cf6ef796137e853423cd2d',
+        'parent_construct_id': 'L1_ARM1B_STOP_ONLY_S3_PAM_SHIELDED_3974',
+        'nonamer_aa': 'VMAPRTLFL',
+        'alpha3_allele': 'WT_D227_T228',
+        'role': 'POSITIVE_NKG2C_AGONIST_RATIO_PARADOX_CONTROL',
+        'promotion_eligibility': 'CALIBRATION_CONTROL_NEVER_PROMOTE',
+        'is_replacement_challenger': False,
+        'requires_nonself_peptide_gate': True,
+    },
+    'S10_CTRL_NEG_QMRPVSRVL_ASTAR_4143': {
+        'construct_id': 'S10_CTRL_NEG_QMRPVSRVL_ASTAR_4143',
+        'donor_sha256': 'a6fd61149f07a9c87e69526729448e44679e949521f8bc7dc4036d0b16fa6489',
+        'parent_construct_id': 'S3_L1_ASTAR_STOP_ONLY_4143',
+        'nonamer_aa': 'QMRPVSRVL',
+        'alpha3_allele': 'WT_D227_T228',
+        'role': 'GROOVE_STABILIZING_RECEPTOR_PROTECTION_NEGATIVE_CONTROL',
+        'promotion_eligibility': 'CALIBRATION_CONTROL_NEVER_PROMOTE',
+        'is_replacement_challenger': False,
+        'requires_nonself_peptide_gate': True,
+    },
+    'S10_CTRL_NEG_QMRPVSRVL_ARM1B_3974': {
+        'construct_id': 'S10_CTRL_NEG_QMRPVSRVL_ARM1B_3974',
+        'donor_sha256': '9e064dbfa7ca1ba55b7d7e55e3cb8b36869e7abae310e4d9ee7d51a95ee305d7',
+        'parent_construct_id': 'L1_ARM1B_STOP_ONLY_S3_PAM_SHIELDED_3974',
+        'nonamer_aa': 'QMRPVSRVL',
+        'alpha3_allele': 'WT_D227_T228',
+        'role': 'GROOVE_STABILIZING_RECEPTOR_PROTECTION_NEGATIVE_CONTROL',
+        'promotion_eligibility': 'CALIBRATION_CONTROL_NEVER_PROMOTE',
+        'is_replacement_challenger': False,
+        'requires_nonself_peptide_gate': True,
+    },
+    'S10_CHAL1_SP6B_VMAPRTVLL_ASTAR_4143': {
+        'construct_id': 'S10_CHAL1_SP6B_VMAPRTVLL_ASTAR_4143',
+        'donor_sha256': '797cf4472a096797cb46490ef133100866827de88420b02b5e6ac15195715765',
+        'parent_construct_id': 'S3_L1_ASTAR_STOP_ONLY_4143',
+        'nonamer_aa': 'VMAPRTVLL',
+        'alpha3_allele': 'WT_D227_T228',
+        'role': 'EXPLORATORY_WEAK_RECOGNITION_DUAL_ATTENUATED_SP6B_COMPARATOR',
+        'promotion_eligibility': 'ELIGIBLE_MODE_B_CHALLENGER',
+        'is_replacement_challenger': True,
+        'requires_nonself_peptide_gate': True,
+    },
+    'S10_CHAL1_SP6B_VMAPRTVLL_ARM1B_3974': {
+        'construct_id': 'S10_CHAL1_SP6B_VMAPRTVLL_ARM1B_3974',
+        'donor_sha256': '663cb4bcdc5f0473f6b310ecd60d1a7d218cf4843162d5fbe9497b89e8845791',
+        'parent_construct_id': 'L1_ARM1B_STOP_ONLY_S3_PAM_SHIELDED_3974',
+        'nonamer_aa': 'VMAPRTVLL',
+        'alpha3_allele': 'WT_D227_T228',
+        'role': 'EXPLORATORY_WEAK_RECOGNITION_DUAL_ATTENUATED_SP6B_COMPARATOR',
+        'promotion_eligibility': 'ELIGIBLE_MODE_B_CHALLENGER',
+        'is_replacement_challenger': True,
+        'requires_nonself_peptide_gate': True,
+    },
+    'S10_CHAL2_SP1B_VTAPRTLLL_ASTAR_4143': {
+        'construct_id': 'S10_CHAL2_SP1B_VTAPRTLLL_ASTAR_4143',
+        'donor_sha256': '180ad50d74b035752ddd4fda4f370419db07c4bc470767d793aefbe68b1b992e',
+        'parent_construct_id': 'S3_L1_ASTAR_STOP_ONLY_4143',
+        'nonamer_aa': 'VTAPRTLLL',
+        'alpha3_allele': 'WT_D227_T228',
+        'role': 'COVALENT_MINUS21T_BYPASS_WEAK_ENHANCER_CALIBRATION_COMPARATOR',
+        'promotion_eligibility': 'ELIGIBLE_MODE_B_CHALLENGER',
+        'is_replacement_challenger': True,
+        'requires_nonself_peptide_gate': True,
+    },
+    'S10_CHAL2_SP1B_VTAPRTLLL_ARM1B_3974': {
+        'construct_id': 'S10_CHAL2_SP1B_VTAPRTLLL_ARM1B_3974',
+        'donor_sha256': 'b136a00e566e0dc7069536d734f76677904b224f518540ce616943d7d39de216',
+        'parent_construct_id': 'L1_ARM1B_STOP_ONLY_S3_PAM_SHIELDED_3974',
+        'nonamer_aa': 'VTAPRTLLL',
+        'alpha3_allele': 'WT_D227_T228',
+        'role': 'COVALENT_MINUS21T_BYPASS_WEAK_ENHANCER_CALIBRATION_COMPARATOR',
+        'promotion_eligibility': 'ELIGIBLE_MODE_B_CHALLENGER',
+        'is_replacement_challenger': True,
+        'requires_nonself_peptide_gate': True,
+    },
+    'S10_CHAL3_SP5A_VMPPRTLLL_ASTAR_4143': {
+        'construct_id': 'S10_CHAL3_SP5A_VMPPRTLLL_ASTAR_4143',
+        'donor_sha256': '9e2de8f649d3d7b4b33bb37c6e10cb21b7ed587dba110243ba6e7a2dee53ac7b',
+        'parent_construct_id': 'S3_L1_ASTAR_STOP_ONLY_4143',
+        'nonamer_aa': 'VMPPRTLLL',
+        'alpha3_allele': 'WT_D227_T228',
+        'role': 'FUNCTIONAL_P3PRO_UL40_COHORT_NULL_WEAK_ENHANCER_COMPARATOR',
+        'promotion_eligibility': 'ELIGIBLE_MODE_B_CHALLENGER',
+        'is_replacement_challenger': True,
+        'requires_nonself_peptide_gate': True,
+    },
+    'S10_CHAL3_SP5A_VMPPRTLLL_ARM1B_3974': {
+        'construct_id': 'S10_CHAL3_SP5A_VMPPRTLLL_ARM1B_3974',
+        'donor_sha256': 'f286ca0cf0cb9b399bd80b334022d0b57fe57594d750730577cfb6d378a8aae0',
+        'parent_construct_id': 'L1_ARM1B_STOP_ONLY_S3_PAM_SHIELDED_3974',
+        'nonamer_aa': 'VMPPRTLLL',
+        'alpha3_allele': 'WT_D227_T228',
+        'role': 'FUNCTIONAL_P3PRO_UL40_COHORT_NULL_WEAK_ENHANCER_COMPARATOR',
+        'promotion_eligibility': 'ELIGIBLE_MODE_B_CHALLENGER',
+        'is_replacement_challenger': True,
+        'requires_nonself_peptide_gate': True,
+    },
+    'S10_CHAL4_P8A_VMAPRTLAL_ASTAR_4143': {
+        'construct_id': 'S10_CHAL4_P8A_VMAPRTLAL_ASTAR_4143',
+        'donor_sha256': '334eddd5d77553825c39a17a451117b68433933807f283054bc15aa5c050a9e2',
+        'parent_construct_id': 'S3_L1_ASTAR_STOP_ONLY_4143',
+        'nonamer_aa': 'VMAPRTLAL',
+        'alpha3_allele': 'WT_D227_T228',
+        'role': 'SYNTHETIC_P8ALA_UL40_NULL_NKG2A_SELECTIVE_MECHANISTIC_PROBE',
+        'promotion_eligibility': 'ELIGIBLE_MODE_B_CHALLENGER',
+        'is_replacement_challenger': True,
+        'requires_nonself_peptide_gate': True,
+    },
+    'S10_CHAL4_P8A_VMAPRTLAL_ARM1B_3974': {
+        'construct_id': 'S10_CHAL4_P8A_VMAPRTLAL_ARM1B_3974',
+        'donor_sha256': 'c76c54199c495281461cdc3237021313b9e15077639f5dbc6e4e385cf1568811',
+        'parent_construct_id': 'L1_ARM1B_STOP_ONLY_S3_PAM_SHIELDED_3974',
+        'nonamer_aa': 'VMAPRTLAL',
+        'alpha3_allele': 'WT_D227_T228',
+        'role': 'SYNTHETIC_P8ALA_UL40_NULL_NKG2A_SELECTIVE_MECHANISTIC_PROBE',
+        'promotion_eligibility': 'ELIGIBLE_MODE_B_CHALLENGER',
+        'is_replacement_challenger': True,
+        'requires_nonself_peptide_gate': True,
+    },
+    'S10_CHAL5A_WT_VL_D227K_T228A_ASTAR_4143': {
+        'construct_id': 'S10_CHAL5A_WT_VL_D227K_T228A_ASTAR_4143',
+        'donor_sha256': '8d9286c847228b19dde95e3113ea817b5622394646276c9c48b24edd3e9e0902',
+        'parent_construct_id': 'S3_L1_ASTAR_STOP_ONLY_4143',
+        'nonamer_aa': 'VMAPRTLVL',
+        'alpha3_allele': 'MUT_D227K_T228A',
+        'role': 'SINGLE_FACTOR_ALPHA3_CD8_CORECEPTOR_NULL_CHALLENGER',
+        'promotion_eligibility': 'ELIGIBLE_MODE_B_CHALLENGER',
+        'is_replacement_challenger': True,
+        'requires_nonself_peptide_gate': True,
+    },
+    'S10_CHAL5A_WT_VL_D227K_T228A_ARM1B_3974': {
+        'construct_id': 'S10_CHAL5A_WT_VL_D227K_T228A_ARM1B_3974',
+        'donor_sha256': '80f60a9de0409438775df4a49bb6862d2d7cb0f87f34c6df5611210e92586ebe',
+        'parent_construct_id': 'L1_ARM1B_STOP_ONLY_S3_PAM_SHIELDED_3974',
+        'nonamer_aa': 'VMAPRTLVL',
+        'alpha3_allele': 'MUT_D227K_T228A',
+        'role': 'SINGLE_FACTOR_ALPHA3_CD8_CORECEPTOR_NULL_CHALLENGER',
+        'promotion_eligibility': 'ELIGIBLE_MODE_B_CHALLENGER',
+        'is_replacement_challenger': True,
+        'requires_nonself_peptide_gate': True,
+    },
+    'S10_CHAL5B_SP6B_VMAPRTVLL_D227K_T228A_ASTAR_4143': {
+        'construct_id': 'S10_CHAL5B_SP6B_VMAPRTVLL_D227K_T228A_ASTAR_4143',
+        'donor_sha256': 'dc87e10e98b4599486d34aa4e76a306072670ee2a67c7d8a9c5d8f5d0584003b',
+        'parent_construct_id': 'S3_L1_ASTAR_STOP_ONLY_4143',
+        'nonamer_aa': 'VMAPRTVLL',
+        'alpha3_allele': 'MUT_D227K_T228A',
+        'role': 'FACTORIAL_2X2_SP6B_PLUS_ALPHA3_CD8_NULL_CHALLENGER',
+        'promotion_eligibility': 'ELIGIBLE_MODE_B_CHALLENGER',
+        'is_replacement_challenger': True,
+        'requires_nonself_peptide_gate': True,
+    },
+    'S10_CHAL5B_SP6B_VMAPRTVLL_D227K_T228A_ARM1B_3974': {
+        'construct_id': 'S10_CHAL5B_SP6B_VMAPRTVLL_D227K_T228A_ARM1B_3974',
+        'donor_sha256': '2b2f2875f7a9bb8392d92e592667b4850edb89c77c3469b0ea1737317385a31b',
+        'parent_construct_id': 'L1_ARM1B_STOP_ONLY_S3_PAM_SHIELDED_3974',
+        'nonamer_aa': 'VMAPRTVLL',
+        'alpha3_allele': 'MUT_D227K_T228A',
+        'role': 'FACTORIAL_2X2_SP6B_PLUS_ALPHA3_CD8_NULL_CHALLENGER',
+        'promotion_eligibility': 'ELIGIBLE_MODE_B_CHALLENGER',
+        'is_replacement_challenger': True,
+        'requires_nonself_peptide_gate': True,
+    },
+    'S10_CTRL_HARDWT_VMAPRTLVL_ASTAR_4143': {
+        'construct_id': 'S10_CTRL_HARDWT_VMAPRTLVL_ASTAR_4143',
+        'donor_sha256': 'b5e0bee49a1c59d9368dbe083132485cd8da666fd6e311d22abcd103c589f1e9',
+        'parent_construct_id': 'S3_L1_ASTAR_STOP_ONLY_4143',
+        'nonamer_aa': 'VMAPRTLVL',
+        'alpha3_allele': 'WT_D227_T228',
+        'role': 'SYNONYMOUS_CTC_SPLICE_HARDENED_WT_SINGLE_FACTOR_CONTROL',
+        'promotion_eligibility': 'BASELINE_REFERENCE',
+        'is_replacement_challenger': False,
+        'requires_nonself_peptide_gate': False,
+    },
+    'S10_CTRL_HARDWT_VMAPRTLVL_ARM1B_3974': {
+        'construct_id': 'S10_CTRL_HARDWT_VMAPRTLVL_ARM1B_3974',
+        'donor_sha256': 'e3b3f04321dceccf0fb013d7572a7bbccbf9aa4ae10dbe47a14d659b90f0652f',
+        'parent_construct_id': 'L1_ARM1B_STOP_ONLY_S3_PAM_SHIELDED_3974',
+        'nonamer_aa': 'VMAPRTLVL',
+        'alpha3_allele': 'WT_D227_T228',
+        'role': 'SYNONYMOUS_CTC_SPLICE_HARDENED_WT_SINGLE_FACTOR_CONTROL',
+        'promotion_eligibility': 'BASELINE_REFERENCE',
+        'is_replacement_challenger': False,
+        'requires_nonself_peptide_gate': False,
+    },
+}
 
 STICKY_S9_PRIOR_VARIANT_SAFETY_STATUSES: frozenset[str] = frozenset({
     'HARD_SAFETY_STOP_REJECTED',
@@ -427,6 +725,32 @@ STAGE0_CUSTOM_DEFAULT_SE: dict[str, float] = {
     'obs_challenger_aberrant_splice_umi_count_k': 1.0,
     'obs_challenger_host_exon_splice_retention_ratio': 0.03,
     'obs_challenger_dsrna_j2_or_isg_fold_wt': 0.05,
+    'obs_hlae_sct_nkg2a_kd_uM': 0.15,
+    'obs_hlae_sct_nkg2c_kd_uM': 0.35,
+    'obs_wt_sct_nkg2a_kd_uM': 0.15,
+    'obs_nkg2a_pos_resting_nk_lysis_pct': 0.75,
+    'obs_nkg2a_pos_ifng24h_nk_lysis_pct': 0.75,
+    'obs_nkg2a_pos_resting_cd107a_pct': 0.85,
+    'obs_nkg2a_pos_ifng24h_cd107a_pct': 0.85,
+    'obs_nkg2c_kir_pos_resting_lysis_pct': 0.75,
+    'obs_nkg2c_kir_pos_ifng24h_lysis_pct': 0.75,
+    'obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_resting_lysis_pct': 0.75,
+    'obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_ifng24h_lysis_pct': 0.75,
+    'obs_hcmv_pooled_3subset_resting_nk_lysis_pct': 0.85,
+    'obs_hcmv_pooled_3subset_ifng24h_nk_lysis_pct': 0.85,
+    'obs_nkg2c_cd107a_degranulation_fold_vs_b2m_ko': 0.08,
+    'obs_cmv_ul40_hlae_cd8_lysis_pct': 0.65,
+    'obs_hcmv_pos_donor_count': 1e-12,
+    'obs_s10_nk_failing_donor_count': 1e-12,
+    'obs_ul40_reactive_donor_count': 1e-12,
+    'obs_ul40_ctl_failing_donor_count': 1e-12,
+    'obs_hlae_cd8aa_kd_uM': 50.0,
+    'obs_hlae_cd8ab_kd_uM': 50.0,
+    'obs_cd8_treg_suppression_retention_pct_of_wt': 2.5,
+    'obs_cd8_treg_suppression_delta_vs_wt_pp': 1.5,
+    'obs_cmv_ul40_hlae_cd8_lysis_delta_vs_wt_pp': 0.5,
+    'obs_nonself_dq2_dq8_indirect_apc_si': 0.10,
+    'obs_nonself_host_class1_cross_pres_lysis_pct': 0.65,
 }
 
 STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
@@ -453,6 +777,10 @@ STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
     'obs_gate0c_hour0_pdl1_molecules_per_cell': 1.0,
     'obs_serpinb9_kass_M_s': 10.0,
     'obs_challenger_aberrant_splice_umi_count_k': 1e-12,
+    'obs_hcmv_pos_donor_count': 1e-12,
+    'obs_s10_nk_failing_donor_count': 1e-12,
+    'obs_ul40_reactive_donor_count': 1e-12,
+    'obs_ul40_ctl_failing_donor_count': 1e-12,
 }
 
 
@@ -779,6 +1107,9 @@ STAGE0_DECISION_TREE_BOOLEAN_KEYS: tuple[str, ...] = (
     'obs_challenger_pam_seed_shield_coconversion_verified',
     'obs_challenger_host_isoforms_above_loq_verified',
     'obs_challenger_sv40pa_and_host_3prime_cleavage_checked',
+    's10_is_replacement_challenger_lot',
+    's10_race_5p_3p_junction_verified',
+    'hla_a2_d227k_t228a_positive_control_spr_verified',
 )
 
 
@@ -831,6 +1162,11 @@ def derive_contract(root: Path | str | None = None) -> dict:
                 'adjunct_immune_responder_history',
                 'knockin_splice_challenger_arm',
                 'knockin_locus4_orientation',
+                's10_construct_id',
+                's10_construct_donor_sha256',
+                'current_lot_id',
+                's10_qualified_lot_id',
+                's10_hlae_floor_mode',
             ],
             'boolean_policy_keys': list(STAGE0_DECISION_TREE_BOOLEAN_KEYS),
             'endpoints': endpoints,
@@ -942,6 +1278,10 @@ def normalize_measurements(payload: dict, *, require_observation: bool = True,
             if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_KNOCKIN_LOCUS4_ORIENTATIONS:
                 raise ValueError(f'knockin_locus4_orientation must be one of {sorted(ALLOWED_KNOCKIN_LOCUS4_ORIENTATIONS)} (IIP-0015; DEC-092)')
             result[key] = payload[key].strip()
+        elif key == 's10_hlae_floor_mode':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_S10_HLAE_FLOOR_MODES:
+                raise ValueError(f's10_hlae_floor_mode must be one of {sorted(ALLOWED_S10_HLAE_FLOOR_MODES)} (IIP-0016; DEC-094)')
+            result[key] = payload[key].strip()
         else:
             if not isinstance(payload[key], str) or not payload[key].strip() or len(payload[key]) > 120:
                 raise ValueError(f'{key} must be a nonempty string of at most 120 characters')
@@ -998,6 +1338,256 @@ def normalize_measurements(payload: dict, *, require_observation: bool = True,
     )
     return result, {'validated_endpoints': observed, 'defaulted_standard_error_keys': defaulted,
                     'default_se_status': 'DECLARED_ASSUMPTION_NOT_MEASURED' if defaulted else 'NOT_USED'}
+
+
+def evaluate_s10_functional_and_replacement_gate_v3(
+    obs: dict,
+    construct_registry: dict[str, dict[str, object]] | None = None,
+    *,
+    defaulted_se_keys: list[str] | set[str] | None = None,
+) -> dict:
+    """Fail-closed Stage-0 Gate 0A (Rule S10) functional selectivity & comparator gate v3 (IIP-0016; DEC-094).
+
+    Enforces:
+      - Exact 20-construct registry lookup and hard block on calibration controls (VMAPRTLFL, QMRPVSRVL).
+      - Unconditional cryptographic donor SHA-256 (s10_construct_donor_sha256) and lot-identity binding
+        (current_lot_id == s10_qualified_lot_id), plus strict s10_is_replacement_challenger_lot class match
+        and Stage-0 5'/3'-RACE junction verification (s10_race_5p_3p_junction_verified == True).
+      - Explicit SE bounds on all continuous endpoints, positive covalent-SCT SPR K_D bounds, and paired
+        resting (Regime II) + 24h IFN-gamma (Regime I) NK subset lysis/CD107a, pooled 3-subset lysis,
+        NKG2C CD107a fold vs B2M-KO, and HCMV UL40 / HLA-E CD8+ CTL 4h lysis across n >= 6 donors (0 failing).
+      - Mode-specific resting HLA-E floor ('GATE_0A_SCREENING_15K' -> >= 15,000 vs 'LOT_RELEASE_25K' ->
+        >= 25,000 plus 72h hypoxic p10 >= 15,000).
+      - Full Layer-3 D227K/T228A biophysics, parallel HLA-A*02:01 WT vs D227K/T228A SPR positive control,
+        CD8+ Treg suppression retention (>= 80% of WT and delta >= -10.0 pp), and UL40 CTL delta vs WT (<= +2.0 pp).
+      - Unfiltered non-self seam / alpha3 indirect DQ2/DQ8 APC CD4 SI <= 1.5 and host Class-I CTL lysis <= 5.0%.
+    """
+    registry = STAGE0_S10_V3_CONSTRUCT_REGISTRY if construct_registry is None else construct_registry
+    defaulted_set = set(defaulted_se_keys or ())
+    z95 = 1.6448536269514722
+
+    cid = obs.get('s10_construct_id')
+    if not isinstance(cid, str) or cid not in registry:
+        return {
+            'gate_pass': False,
+            'status': 'HOLD_INVALID_OR_UNREGISTERED_S10_CONSTRUCT_ID',
+            'failed_checks': ['s10_construct_id'],
+        }
+    meta = registry[cid]
+    if meta['promotion_eligibility'] == 'CALIBRATION_CONTROL_NEVER_PROMOTE':
+        return {
+            'gate_pass': False,
+            'status': 'HOLD_CALIBRATION_CONTROL_NEVER_ELIGIBLE_FOR_CLINICAL_PROMOTION',
+            'failed_checks': ['calibration_control_hard_block'],
+        }
+
+    sha_in = obs.get('s10_construct_donor_sha256')
+    lot_id = obs.get('current_lot_id')
+    qual_lot_id = obs.get('s10_qualified_lot_id')
+    is_repl = obs.get('s10_is_replacement_challenger_lot')
+    race_ok = obs.get('s10_race_5p_3p_junction_verified')
+    floor_mode = obs.get('s10_hlae_floor_mode', 'GATE_0A_SCREENING_15K')
+
+    if (
+        type(is_repl) is not bool
+        or type(race_ok) is not bool
+        or not isinstance(floor_mode, str)
+        or floor_mode not in ALLOWED_S10_HLAE_FLOOR_MODES
+    ):
+        return {
+            'gate_pass': False,
+            'status': 'HOLD_INVALID_BOOLEAN_OR_FLOOR_MODE_METADATA',
+            'failed_checks': ['s10_boolean_or_floor_mode_typecheck'],
+        }
+
+    spec_lookup: dict[str, tuple[float, float, float]] = {
+        mk: (lo, hi, STAGE0_CUSTOM_MINIMUM_SE.get(mk, 0.001))
+        for _eid, mk, _sk, lo, hi, _u in STAGE0_DECISION_TREE_ENDPOINT_SPECS
+        if mk in STAGE0_S10_V3_MEAN_KEYS
+    }
+    spec_lookup['obs_hlae_hour0_molecules'] = (0.0, 1000000.0, 1.0)
+    spec_lookup['obs_hypoxic_72h_hlae_p10_single_cell_molecules'] = (0.0, 1000000.0, 1.0)
+
+    def _read_pair(mk: str, sk: str) -> tuple[float, float] | None:
+        if mk in defaulted_set or sk in defaulted_set:
+            return None
+        v = obs.get(mk)
+        s = obs.get(sk)
+        if isinstance(v, bool) or isinstance(s, bool) or not isinstance(v, (int, float)) or not isinstance(s, (int, float)):
+            return None
+        vf, sf = float(v), float(s)
+        if not math.isfinite(vf) or not math.isfinite(sf):
+            return None
+        lo, hi, min_se = spec_lookup[mk]
+        if not (lo <= vf <= hi) or sf < min_se:
+            return None
+        return vf, sf
+
+    def _read_exact_nonneg_int(mk: str, sk: str) -> int | None:
+        v = obs.get(mk)
+        s = obs.get(sk, 1e-12)
+        if isinstance(v, bool) or isinstance(s, bool) or not isinstance(v, (int, float)) or not isinstance(s, (int, float)):
+            return None
+        vf, sf = float(v), float(s)
+        if not math.isfinite(vf) or not math.isfinite(sf) or vf < 0.0 or vf > 1000.0 or abs(vf - round(vf)) > 1e-9 or sf < 1e-12:
+            return None
+        return int(round(vf))
+
+    req_continuous_pairs = (
+        ('obs_hlae_sct_nkg2a_kd_uM', 'obs_hlae_sct_nkg2a_kd_se_uM'),
+        ('obs_hlae_sct_nkg2c_kd_uM', 'obs_hlae_sct_nkg2c_kd_se_uM'),
+        ('obs_hlae_hour0_molecules', 'obs_hlae_hour0_molecules_se'),
+        ('obs_nkg2a_pos_resting_nk_lysis_pct', 'obs_nkg2a_pos_resting_nk_lysis_se'),
+        ('obs_nkg2a_pos_ifng24h_nk_lysis_pct', 'obs_nkg2a_pos_ifng24h_nk_lysis_se'),
+        ('obs_nkg2a_pos_resting_cd107a_pct', 'obs_nkg2a_pos_resting_cd107a_se'),
+        ('obs_nkg2a_pos_ifng24h_cd107a_pct', 'obs_nkg2a_pos_ifng24h_cd107a_se'),
+        ('obs_nkg2c_kir_pos_resting_lysis_pct', 'obs_nkg2c_kir_pos_resting_lysis_se'),
+        ('obs_nkg2c_kir_pos_ifng24h_lysis_pct', 'obs_nkg2c_kir_pos_ifng24h_lysis_se'),
+        ('obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_resting_lysis_pct', 'obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_resting_lysis_se'),
+        ('obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_ifng24h_lysis_pct', 'obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_ifng24h_lysis_se'),
+        ('obs_hcmv_pooled_3subset_resting_nk_lysis_pct', 'obs_hcmv_pooled_3subset_resting_nk_lysis_se'),
+        ('obs_hcmv_pooled_3subset_ifng24h_nk_lysis_pct', 'obs_hcmv_pooled_3subset_ifng24h_nk_lysis_se'),
+        ('obs_nkg2c_cd107a_degranulation_fold_vs_b2m_ko', 'obs_nkg2c_cd107a_degranulation_fold_se'),
+        ('obs_cmv_ul40_hlae_cd8_lysis_pct', 'obs_cmv_ul40_hlae_cd8_lysis_se'),
+    )
+    vals: dict[str, tuple[float, float]] = {}
+    for mk, sk in req_continuous_pairs:
+        pr = _read_pair(mk, sk)
+        if pr is None:
+            return {
+                'gate_pass': False,
+                'status': 'HOLD_MISSING_OR_OUT_OF_DOMAIN_S10_ENDPOINT_OR_SE',
+                'failed_checks': [f'{mk}/{sk}'],
+            }
+        vals[mk] = pr
+
+    donor_n = _read_exact_nonneg_int('obs_hcmv_pos_donor_count', 'obs_hcmv_pos_donor_count_se')
+    nk_fail_n = _read_exact_nonneg_int('obs_s10_nk_failing_donor_count', 'obs_s10_nk_failing_donor_count_se')
+    ul40_resp_n = _read_exact_nonneg_int('obs_ul40_reactive_donor_count', 'obs_ul40_reactive_donor_count_se')
+    ul40_fail_n = _read_exact_nonneg_int('obs_ul40_ctl_failing_donor_count', 'obs_ul40_ctl_failing_donor_count_se')
+    if donor_n is None or nk_fail_n is None or ul40_resp_n is None or ul40_fail_n is None:
+        return {
+            'gate_pass': False,
+            'status': 'HOLD_MISSING_OR_INVALID_DONOR_COUNT_PANEL',
+            'failed_checks': ['donor_panel_integer_counts'],
+        }
+
+    def _u95(mk: str) -> float:
+        m, s = vals[mk]
+        return m + z95 * s
+
+    def _l95(mk: str) -> float:
+        m, s = vals[mk]
+        return m - z95 * s
+
+    ka_u95 = _u95('obs_hlae_sct_nkg2a_kd_uM')
+    kc_l95 = max(0.0, _l95('obs_hlae_sct_nkg2c_kd_uM'))
+    sct_ratio_mean = vals['obs_hlae_sct_nkg2c_kd_uM'][0] / vals['obs_hlae_sct_nkg2a_kd_uM'][0]
+    hlae_h0_l95 = _l95('obs_hlae_hour0_molecules')
+    req_h0_floor = 25000.0 if floor_mode == 'LOT_RELEASE_25K' else 15000.0
+
+    checks: dict[str, bool] = {
+        'unconditional_construct_sha256_and_lot_identity_bound': (
+            isinstance(sha_in, str)
+            and sha_in == meta['donor_sha256']
+            and isinstance(lot_id, str)
+            and 0 < len(lot_id.strip()) <= 120
+            and lot_id == qual_lot_id
+        ),
+        'replacement_challenger_flag_matches_construct_class': (
+            is_repl is bool(meta['is_replacement_challenger'])
+        ),
+        'stage0_5p_3p_race_splice_junction_verified': (race_ok is True),
+        'hcmv_pos_nk_donor_panel_ge_6_with_zero_failing_donors': (
+            donor_n >= 6 and nk_fail_n == 0
+        ),
+        'ul40_reactive_ctl_donor_panel_ge_6_with_zero_failing_donors': (
+            ul40_resp_n >= 6 and ul40_fail_n == 0
+        ),
+        'sct_nkg2a_kd_positive_and_upper95_le_10uM': (0.001 <= vals['obs_hlae_sct_nkg2a_kd_uM'][0] and ka_u95 <= 10.0),
+        'sct_nkg2c_kd_positive': (vals['obs_hlae_sct_nkg2c_kd_uM'][0] >= 0.001),
+        'resting_hlae_hour0_lower95_clears_mode_floor': (hlae_h0_l95 >= req_h0_floor),
+        'resting_nkg2a_pos_nk_lysis_upper95_le_8pct': (_u95('obs_nkg2a_pos_resting_nk_lysis_pct') <= 8.0),
+        'ifng24h_nkg2a_pos_nk_lysis_upper95_le_8pct': (_u95('obs_nkg2a_pos_ifng24h_nk_lysis_pct') <= 8.0),
+        'resting_nkg2a_pos_nk_cd107a_upper95_le_10pct': (_u95('obs_nkg2a_pos_resting_cd107a_pct') <= 10.0),
+        'ifng24h_nkg2a_pos_nk_cd107a_upper95_le_10pct': (_u95('obs_nkg2a_pos_ifng24h_cd107a_pct') <= 10.0),
+        'resting_nkg2c_kir_pos_lysis_upper95_le_8pct': (_u95('obs_nkg2c_kir_pos_resting_lysis_pct') <= 8.0),
+        'ifng24h_nkg2c_kir_pos_lysis_upper95_le_8pct': (_u95('obs_nkg2c_kir_pos_ifng24h_lysis_pct') <= 8.0),
+        'resting_double_neg_nkg2c_pos_lysis_upper95_le_8pct': (_u95('obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_resting_lysis_pct') <= 8.0),
+        'ifng24h_double_neg_nkg2c_pos_lysis_upper95_le_8pct': (_u95('obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_ifng24h_lysis_pct') <= 8.0),
+        'resting_pooled_3subset_hcmv_nk_lysis_upper95_le_10pct': (_u95('obs_hcmv_pooled_3subset_resting_nk_lysis_pct') <= 10.0),
+        'ifng24h_pooled_3subset_hcmv_nk_lysis_upper95_le_10pct': (_u95('obs_hcmv_pooled_3subset_ifng24h_nk_lysis_pct') <= 10.0),
+        'nkg2c_cd107a_degranulation_fold_upper95_le_1p25x': (_u95('obs_nkg2c_cd107a_degranulation_fold_vs_b2m_ko') <= 1.25),
+        'cmv_ul40_hlae_cd8_ctl_lysis_upper95_le_5pct': (_u95('obs_cmv_ul40_hlae_cd8_lysis_pct') <= 5.0),
+    }
+
+    if floor_mode == 'LOT_RELEASE_25K':
+        p10_pair = _read_pair('obs_hypoxic_72h_hlae_p10_single_cell_molecules', 'obs_hypoxic_72h_hlae_p10_single_cell_se')
+        checks['release_mode_hypoxic_72h_hlae_p10_lower95_ge_15000'] = (
+            p10_pair is not None and (p10_pair[0] - z95 * p10_pair[1]) >= 15000.0
+        )
+
+    if meta['alpha3_allele'] == 'MUT_D227K_T228A':
+        wt_ka = _read_pair('obs_wt_sct_nkg2a_kd_uM', 'obs_wt_sct_nkg2a_kd_se_uM')
+        cd8aa = _read_pair('obs_hlae_cd8aa_kd_uM', 'obs_hlae_cd8aa_kd_se_uM')
+        cd8ab = _read_pair('obs_hlae_cd8ab_kd_uM', 'obs_hlae_cd8ab_kd_se_uM')
+        treg_ret = _read_pair('obs_cd8_treg_suppression_retention_pct_of_wt', 'obs_cd8_treg_suppression_retention_se')
+        treg_del = _read_pair('obs_cd8_treg_suppression_delta_vs_wt_pp', 'obs_cd8_treg_suppression_delta_vs_wt_se')
+        ctl_del_wt = _read_pair('obs_cmv_ul40_hlae_cd8_lysis_delta_vs_wt_pp', 'obs_cmv_ul40_hlae_cd8_lysis_delta_vs_wt_se')
+        hla_a2_ctrl = obs.get('hla_a2_d227k_t228a_positive_control_spr_verified')
+
+        checks['d227k_t228a_layer3_nkg2a_kd_upper95_le_2p5uM_and_le_1p25x_wt'] = (
+            wt_ka is not None and ka_u95 <= 2.5 and ka_u95 <= 1.25 * wt_ka[0]
+        )
+        checks['d227k_t228a_layer3_cd8aa_and_cd8ab_kd_lower95_gt_1000uM'] = (
+            cd8aa is not None
+            and cd8ab is not None
+            and (cd8aa[0] - z95 * cd8aa[1]) > 1000.0
+            and (cd8ab[0] - z95 * cd8ab[1]) > 1000.0
+        )
+        checks['d227k_t228a_layer3_hla_a2_positive_control_spr_verified'] = (hla_a2_ctrl is True)
+        checks['d227k_t228a_layer3_cd8_treg_retention_ge_80pct_and_delta_ge_minus10pp'] = (
+            treg_ret is not None
+            and treg_del is not None
+            and (treg_ret[0] - z95 * treg_ret[1]) >= 80.0
+            and (treg_del[0] - z95 * treg_del[1]) >= -10.0
+        )
+        checks['d227k_t228a_layer3_ul40_ctl_delta_vs_wt_upper95_le_2pp'] = (
+            ctl_del_wt is not None
+            and (ctl_del_wt[0] + z95 * ctl_del_wt[1]) <= 2.0
+        )
+
+    if meta['requires_nonself_peptide_gate']:
+        dq_si = _read_pair('obs_nonself_dq2_dq8_indirect_apc_si', 'obs_nonself_dq2_dq8_indirect_apc_si_se')
+        host_ctl = _read_pair('obs_nonself_host_class1_cross_pres_lysis_pct', 'obs_nonself_host_class1_cross_pres_lysis_se')
+        checks['nonself_seam_or_alpha3_dq2_dq8_and_class1_cleared'] = (
+            dq_si is not None
+            and host_ctl is not None
+            and (dq_si[0] + z95 * dq_si[1]) <= 1.5
+            and (host_ctl[0] + z95 * host_ctl[1]) <= 5.0
+        )
+
+    failed = [k for k, ok in checks.items() if not ok]
+    gate_pass = len(failed) == 0
+    if gate_pass:
+        if sct_ratio_mean >= 4.0:
+            mode = 'PASS_S10_STATIC_RATIO_AND_PAIRED_FUNCTIONAL_GATE_V3'
+        else:
+            mode = 'PASS_S10_FUNCTIONAL_SELECTIVITY_WITH_SUB4_SCT_RATIO_RECORDED_V3'
+    else:
+        mode = 'HOLD_S10_FUNCTIONAL_OR_BIOPHYSICAL_GATE_V3'
+
+    return {
+        'gate_pass': gate_pass,
+        'status': mode,
+        'construct_id': cid,
+        'floor_mode': floor_mode,
+        'recorded_sct_kd_nkg2a_upper95_uM': round(ka_u95, 4),
+        'recorded_sct_kd_nkg2c_lower95_uM': round(kc_l95, 4),
+        'recorded_sct_kc_over_ka_mean': round(sct_ratio_mean, 4),
+        'checks': checks,
+        'failed_checks': failed,
+    }
 
 
 def evaluate_stage0_decision_tree(
@@ -1105,6 +1695,14 @@ def evaluate_stage0_decision_tree(
         'obs_challenger_sv40pa_and_host_3prime_cleavage_checked',
         'knockin_splice_challenger_arm',
         'knockin_locus4_orientation',
+        's10_construct_id',
+        's10_construct_donor_sha256',
+        'current_lot_id',
+        's10_qualified_lot_id',
+        's10_hlae_floor_mode',
+        's10_is_replacement_challenger_lot',
+        's10_race_5p_3p_junction_verified',
+        'hla_a2_d227k_t228a_positive_control_spr_verified',
     }
     unknown_keys = sorted(set(observations) - set(spec_by_mean) - set(spec_by_se) - allowed_boolean_and_meta_flags)
     if unknown_keys:
@@ -1122,12 +1720,13 @@ def evaluate_stage0_decision_tree(
         ('adjunct_immune_responder_history', ALLOWED_ADJUNCT_IMMUNE_RESPONDER_HISTORIES),
         ('knockin_splice_challenger_arm', ALLOWED_KNOCKIN_SPLICE_CHALLENGER_ARMS),
         ('knockin_locus4_orientation', ALLOWED_KNOCKIN_LOCUS4_ORIENTATIONS),
+        ('s10_hlae_floor_mode', ALLOWED_S10_HLAE_FLOOR_MODES),
     ):
         if _adj_k in observations and observations[_adj_k] is not None:
             _adj_v = observations[_adj_k]
             if not isinstance(_adj_v, str) or _adj_v.strip() not in _adj_allowed:
                 raise ValueError(
-                    f"Invalid {_adj_k} {_adj_v!r}; must be one of {sorted(_adj_allowed)} (IIP-0012 / IIP-0015; DEC-091 / DEC-092)"
+                    f"Invalid {_adj_k} {_adj_v!r}; must be one of {sorted(_adj_allowed)} (IIP-0012 / IIP-0015 / IIP-0016; DEC-091 / DEC-092 / DEC-094)"
                 )
 
     defaulted_se_set = set(defaulted_se_keys or ())
@@ -1625,7 +2224,7 @@ def evaluate_stage0_decision_tree(
     receptor_neg_nkg2c_nk_failed = bool(
         (
             'obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_nk_lysis_pct' in validated_stage0
-            and validated_stage0['obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_nk_lysis_pct'] > 8.0
+            and receptor_neg_nkg2c_upper95 > 8.0
         )
         or (
             'obs_nkp46_innate_nk_lysis_pct' in validated_stage0
@@ -1670,16 +2269,59 @@ def evaluate_stage0_decision_tree(
         kir_nkg2a_neg_nk_exceeded_raw
         and not track2_kir_or_hlag1_fallback_promoted
     )
-    # S10 triggers on CMV-imprinted NKG2C+NKG2A-CD57+ adaptive NK lysis > 8% OR receptor-negative NKG2A-KIR2DL-NKG2C+ NK lysis > 8% OR covalent-SCT NKG2C/NKG2A KD selectivity ratio < 4.0 (AUDIT-REF & AUDIT-REF; DEC-042/046):
-    s10_nkg2c_triggered = bool(
-        validated_stage0.get('obs_nkg2c_adaptive_nk_lysis_pct', 2.0) > 8.0
-        or receptor_neg_nkg2c_nk_failed
-        or _lower95('obs_hlae_nkg2c_over_nkg2a_kd_ratio', 4.5) < 4.0
+    # S10 triggers on one-sided 95% bounds (CMV-imprinted NKG2C+NKG2A-CD57+ adaptive NK lysis upper95 > 8% OR receptor-negative NKG2A-KIR2DL-NKG2C+ NK lysis upper95 > 8% OR covalent-SCT NKG2C/NKG2A KD selectivity ratio lower95 < 4.0) or any failing S10 v3 functional/comparator panel (AUDIT-REF & IIP-0016; DEC-042/046/094):
+    _s10_v3_active = bool(
+        any(observations.get(_mk) is not None for _mk in STAGE0_S10_V3_METADATA_KEYS)
+        or any(observations.get(_bk) is not None for _bk in STAGE0_S10_V3_BOOLEAN_KEYS)
+        or any(_ek in validated_stage0 for _ek in STAGE0_S10_V3_MEAN_KEYS)
     )
-    s10_coupon_cleared = bool(
+    _has_explicit_s10_obs = bool(
+        _s10_v3_active
+        or 'obs_nkg2c_adaptive_nk_lysis_pct' in validated_stage0
+        or 'obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_nk_lysis_pct' in validated_stage0
+        or 'obs_hlae_nkg2c_over_nkg2a_kd_ratio' in validated_stage0
+        or observations.get('s10_sct_selectivity_coupon_cleared_kc_ka_ge_4_and_lysis_le_8pct') is not None
+    )
+    s10_v3_eval: dict | None = None
+    s10_v3_hold_status: str | None = None
+    if _s10_v3_active:
+        _v3_obs = dict(observations)
+        for _mk_v, _val_v in validated_stage0.items():
+            _v3_obs[_mk_v] = _val_v
+        for _sk_v, _sval_v in validated_stage0_se.items():
+            _v3_obs[_sk_v] = _sval_v
+        s10_v3_eval = evaluate_s10_functional_and_replacement_gate_v3(
+            _v3_obs,
+            STAGE0_S10_V3_CONSTRUCT_REGISTRY,
+            defaulted_se_keys=defaulted_se_set,
+        )
+        if not s10_v3_eval['gate_pass']:
+            s10_v3_hold_status = str(s10_v3_eval['status'])
+    s10_kd_ratio_lower95_sub4 = bool(_lower95('obs_hlae_nkg2c_over_nkg2a_kd_ratio', 4.5) < 4.0)
+    s10_nkg2c_triggered = bool(
+        ('obs_nkg2c_adaptive_nk_lysis_pct' in validated_stage0 and nkg2c_adaptive_upper95 > 8.0)
+        or receptor_neg_nkg2c_nk_failed
+        or s10_kd_ratio_lower95_sub4
+        or (_s10_v3_active and s10_v3_eval is not None and not s10_v3_eval['gate_pass'])
+    )
+    s10_coupon_cleared_legacy = bool(
         observations.get('s10_sct_selectivity_coupon_cleared_kc_ka_ge_4_and_lysis_le_8pct') is True
         and not receptor_neg_nkg2c_nk_failed
-        and validated_stage0.get('obs_nkg2c_adaptive_nk_lysis_pct', 2.0) <= 8.0
+        and ('obs_nkg2c_adaptive_nk_lysis_pct' not in validated_stage0 or nkg2c_adaptive_upper95 <= 8.0)
+    )
+    # Unified S10 clearance binding: when S10 v3 panel/metadata is active, clearance is strictly bound to s10_v3_eval['gate_pass'] (defeating spoofed legacy coupon=True); bare legacy coupon=True unmasks S2 screening only and cannot clear lot_release_readiness_tier without v3 LOT_RELEASE_25K qualification (IIP-0016; DEC-094):
+    s10_coupon_cleared = bool(
+        s10_v3_eval['gate_pass']
+        if (_s10_v3_active and s10_v3_eval is not None)
+        else s10_coupon_cleared_legacy
+    )
+    s10_v3_release_qualified = bool(
+        _s10_v3_active
+        and s10_v3_eval is not None
+        and s10_v3_eval['gate_pass'] is True
+        and str(observations.get('s10_hlae_floor_mode', 'GATE_0A_SCREENING_15K')).strip() == 'LOT_RELEASE_25K'
+        and not receptor_neg_nkg2c_nk_failed
+        and ('obs_nkg2c_adaptive_nk_lysis_pct' not in validated_stage0 or nkg2c_adaptive_upper95 <= 8.0)
     )
     # S2 triggers on low resting HLA-E (<15,000 molecules/cell) OR moderate CD94/NKG2A+ NK lysis in (8.0%, 15.0%], strictly when neither catastrophic (>15%) NKG2A+ lysis nor CD94-independent KIR+NKG2A- / IL-12/IL-18 SIRPa-low NK failure nor uncleared S10 NKG2C peptide-selectivity failure is active (MW-R5-S2-F01/F02 & AUDIT-REF; DEC-048/049):
     s2_arm1b_failed = bool(
@@ -2437,12 +3079,24 @@ def evaluate_stage0_decision_tree(
         resolved_arch['locus1_construct'] = 'HOLD_LOCUS1_CD47_DEFICIENT_PENDING_DXS_QUALIFICATION'
     elif unmitigated_cd47_or_hypoxic_retention_cliff_failed:
         resolved_arch['locus1_construct'] = 'HOLD_PLAYBOOK_CD47_200K_OR_PHAGO_5PCT_OR_HYPOXIC_RETENTION_CLIFF_FAILED'
-    if s10_nkg2c_triggered:
-        s10_status_val = (
-            'CLEARED_SCT_SELECTIVITY_COUPON_KC_KA_GE_4'
-            if s10_coupon_cleared
-            else 'HOLD_S10_NKG2C_SELECTIVITY_FAILED_REQUIRES_SCT_PEPTIDE_SELECTIVITY_COUPON_OR_CMV_STRATIFIED_LABEL'
-        )
+    if s10_v3_eval is not None:
+        resolved_arch['s10_v3_functional_selectivity_evaluation'] = s10_v3_eval
+    if s10_nkg2c_triggered or (_s10_v3_active and s10_v3_eval is not None):
+        if _s10_v3_active and s10_v3_eval is not None:
+            if not s10_v3_eval['gate_pass']:
+                s10_status_val = str(s10_v3_eval['status'])
+            elif not s10_v3_release_qualified:
+                s10_status_val = 'CLEARED_S10_FUNCTIONAL_SELECTIVITY_SCREENING_15K_V3'
+            elif s10_kd_ratio_lower95_sub4 or float(s10_v3_eval['recorded_sct_kc_over_ka_mean']) < 4.0:
+                s10_status_val = 'CLEARED_S10_FUNCTIONAL_SELECTIVITY_SUB4_SCT_V3'
+            else:
+                s10_status_val = 'CLEARED_S10_STATIC_RATIO_AND_PAIRED_FUNCTIONAL_GATE_V3'
+        else:
+            s10_status_val = (
+                'CLEARED_SCT_SELECTIVITY_COUPON_KC_KA_GE_4'
+                if s10_coupon_cleared
+                else 'HOLD_S10_NKG2C_SELECTIVITY_FAILED_REQUIRES_SCT_PEPTIDE_SELECTIVITY_COUPON_OR_CMV_STRATIFIED_LABEL'
+            )
         resolved_arch['nkg2c_selectivity_contingency_status'] = s10_status_val
         resolved_arch['nkg2c_adaptive_nk_selectivity_status'] = s10_status_val
     if s8_tyk2_epistasis_triggered:
@@ -2610,6 +3264,8 @@ def evaluate_stage0_decision_tree(
         resolved_arch['lot_maturation_status'] = 'CANDIDATE_FALLBACK_PROMOTED_PENDING_REPLACEMENT_QUALIFICATION'
     elif receptor_neg_nkg2c_nk_failed and observations.get('s1_l3_bfb_replacement_qualified') is not True:
         resolved_arch['lot_maturation_status'] = 'HOLD_S10_RECEPTOR_NEGATIVE_NKG2C_NK_LYSIS_EXCEEDED_REQUIRES_L3_BFB_AND_FASL_CUFF_CLEARANCE'
+    elif s10_v3_hold_status is not None:
+        resolved_arch['lot_maturation_status'] = s10_v3_hold_status
     elif s10_nkg2c_triggered and not s10_coupon_cleared:
         resolved_arch['lot_maturation_status'] = 'HOLD_S10_NKG2C_SELECTIVITY_FAILED_REQUIRES_SCT_PEPTIDE_SELECTIVITY_COUPON_OR_CMV_STRATIFIED_LABEL'
     elif excessive_immune_donor_variance_or_upper95_failed:
@@ -3118,7 +3774,8 @@ def evaluate_stage0_decision_tree(
         or s8_promoted
         or s8_tyk2_epistasis_triggered
         or s9_promoted
-        or s10_nkg2c_triggered
+        or (s10_nkg2c_triggered and not s10_v3_release_qualified)
+        or (_s10_v3_active and not s10_v3_release_qualified)
         or combined_stress_promoted
         or track2_kir_or_hlag1_fallback_promoted
     )
@@ -3214,12 +3871,32 @@ def evaluate_stage0_decision_tree(
         ),
         'S9_Chronic_Fibrotic_Capsule_and_Mineralization_Gate_0F': 'ENFORCE_80UM_CLUSTER_CAP_AND_CITRATE_CHELATION' if s9_promoted else 'PASS_CHRONIC_CAPSULE_GATE_0F',
         'S10_CMV_NKG2C_Adaptive_NK_Peptide_Selectivity_Gate_0A': (
-            'CLEARED_SCT_SELECTIVITY_COUPON_KC_KA_GE_4'
-            if (s10_nkg2c_triggered and s10_coupon_cleared)
+            (
+                str(s10_v3_eval['status'])
+                if not s10_v3_eval['gate_pass']
+                else (
+                    'CLEARED_S10_FUNCTIONAL_SELECTIVITY_SCREENING_15K_V3'
+                    if not s10_v3_release_qualified
+                    else (
+                        'CLEARED_S10_FUNCTIONAL_SELECTIVITY_SUB4_SCT_V3'
+                        if (s10_kd_ratio_lower95_sub4 or float(s10_v3_eval['recorded_sct_kc_over_ka_mean']) < 4.0)
+                        else 'CLEARED_S10_STATIC_RATIO_AND_PAIRED_FUNCTIONAL_GATE_V3'
+                    )
+                )
+            )
+            if (_s10_v3_active and s10_v3_eval is not None)
             else (
-                'STRATIFY_CMV_NKG2C_RECIPIENTS_AND_EVALUATE_SCT_SELECTIVITY_MUTANT_COUPON'
-                if s10_nkg2c_triggered
-                else 'PASS_CMV_NKG2C_SELECTIVITY_GATE_0A'
+                'CLEARED_SCT_SELECTIVITY_COUPON_KC_KA_GE_4'
+                if (s10_nkg2c_triggered and s10_coupon_cleared)
+                else (
+                    'STRATIFY_CMV_NKG2C_RECIPIENTS_AND_EVALUATE_SCT_SELECTIVITY_MUTANT_COUPON'
+                    if s10_nkg2c_triggered
+                    else (
+                        'UNMEASURED_EXTENDED_S10_PANEL'
+                        if not _has_explicit_s10_obs
+                        else 'PASS_CMV_NKG2C_SELECTIVITY_GATE_0A'
+                    )
+                )
             )
         ),
     }

@@ -26,7 +26,12 @@
     "adjunct_sa_fhl1_status",
     "adjunct_immune_responder_history",
     "knockin_splice_challenger_arm",
-    "knockin_locus4_orientation"
+    "knockin_locus4_orientation",
+    "s10_construct_id",
+    "s10_construct_donor_sha256",
+    "current_lot_id",
+    "s10_qualified_lot_id",
+    "s10_hlae_floor_mode"
   ],
   "boolean_policy_keys": [
     "require_full_5endpoint_s9_panel",
@@ -67,7 +72,10 @@
     "obs_challenger_ivt_rna_recovery_standard_verified",
     "obs_challenger_pam_seed_shield_coconversion_verified",
     "obs_challenger_host_isoforms_above_loq_verified",
-    "obs_challenger_sv40pa_and_host_3prime_cleavage_checked"
+    "obs_challenger_sv40pa_and_host_3prime_cleavage_checked",
+    "s10_is_replacement_challenger_lot",
+    "s10_race_5p_3p_junction_verified",
+    "hla_a2_d227k_t228a_positive_control_spr_verified"
   ],
   "endpoints": [
     {
@@ -1845,6 +1853,292 @@
       "default_se": 0.05,
       "minimum_se": 0.001,
       "unit": "anti_dsrna_j2_or_ifit1_oas1_isg15_fold_over_unedited_parental"
+    },
+    {
+      "endpoint_id": "stage0_s10_covalent_sct_nkg2a_kd_uM",
+      "meanKey": "obs_hlae_sct_nkg2a_kd_uM",
+      "seKey": "obs_hlae_sct_nkg2a_kd_se_uM",
+      "min": 0.001,
+      "max": 200.0,
+      "se_required": false,
+      "default_se": 0.15,
+      "minimum_se": 0.001,
+      "unit": "covalent_sct_spr_cd94_nkg2a_kd_uM"
+    },
+    {
+      "endpoint_id": "stage0_s10_covalent_sct_nkg2c_kd_uM",
+      "meanKey": "obs_hlae_sct_nkg2c_kd_uM",
+      "seKey": "obs_hlae_sct_nkg2c_kd_se_uM",
+      "min": 0.001,
+      "max": 500.0,
+      "se_required": false,
+      "default_se": 0.35,
+      "minimum_se": 0.001,
+      "unit": "covalent_sct_spr_cd94_nkg2c_kd_uM"
+    },
+    {
+      "endpoint_id": "stage0_s10_wt_sct_reference_nkg2a_kd_uM",
+      "meanKey": "obs_wt_sct_nkg2a_kd_uM",
+      "seKey": "obs_wt_sct_nkg2a_kd_se_uM",
+      "min": 0.001,
+      "max": 200.0,
+      "se_required": false,
+      "default_se": 0.15,
+      "minimum_se": 0.001,
+      "unit": "parallel_wt_hlae_sct_reference_cd94_nkg2a_kd_uM"
+    },
+    {
+      "endpoint_id": "stage0_s10_nkg2a_pos_resting_nk_lysis_pct",
+      "meanKey": "obs_nkg2a_pos_resting_nk_lysis_pct",
+      "seKey": "obs_nkg2a_pos_resting_nk_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.75,
+      "minimum_se": 0.001,
+      "unit": "regime_ii_resting_nkg2a_pos_nkg2c_neg_kir_neg_nk_lysis_percentage"
+    },
+    {
+      "endpoint_id": "stage0_s10_nkg2a_pos_ifng24h_nk_lysis_pct",
+      "meanKey": "obs_nkg2a_pos_ifng24h_nk_lysis_pct",
+      "seKey": "obs_nkg2a_pos_ifng24h_nk_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.75,
+      "minimum_se": 0.001,
+      "unit": "regime_i_ifng24h_nkg2a_pos_nkg2c_neg_kir_neg_nk_lysis_percentage"
+    },
+    {
+      "endpoint_id": "stage0_s10_nkg2a_pos_resting_cd107a_pct",
+      "meanKey": "obs_nkg2a_pos_resting_cd107a_pct",
+      "seKey": "obs_nkg2a_pos_resting_cd107a_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.85,
+      "minimum_se": 0.001,
+      "unit": "regime_ii_resting_nkg2a_pos_nkg2c_neg_nk_cd107a_degranulation_percentage"
+    },
+    {
+      "endpoint_id": "stage0_s10_nkg2a_pos_ifng24h_cd107a_pct",
+      "meanKey": "obs_nkg2a_pos_ifng24h_cd107a_pct",
+      "seKey": "obs_nkg2a_pos_ifng24h_cd107a_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.85,
+      "minimum_se": 0.001,
+      "unit": "regime_i_ifng24h_nkg2a_pos_nkg2c_neg_nk_cd107a_degranulation_percentage"
+    },
+    {
+      "endpoint_id": "stage0_s10_nkg2c_kir_pos_resting_lysis_pct",
+      "meanKey": "obs_nkg2c_kir_pos_resting_lysis_pct",
+      "seKey": "obs_nkg2c_kir_pos_resting_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.75,
+      "minimum_se": 0.001,
+      "unit": "regime_ii_resting_nkg2c_pos_nkg2a_neg_kir2dl_pos_nk_lysis_percentage"
+    },
+    {
+      "endpoint_id": "stage0_s10_nkg2c_kir_pos_ifng24h_lysis_pct",
+      "meanKey": "obs_nkg2c_kir_pos_ifng24h_lysis_pct",
+      "seKey": "obs_nkg2c_kir_pos_ifng24h_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.75,
+      "minimum_se": 0.001,
+      "unit": "regime_i_ifng24h_nkg2c_pos_nkg2a_neg_kir2dl_pos_nk_lysis_percentage"
+    },
+    {
+      "endpoint_id": "stage0_s10_double_neg_nkg2c_resting_lysis_pct",
+      "meanKey": "obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_resting_lysis_pct",
+      "seKey": "obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_resting_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.75,
+      "minimum_se": 0.001,
+      "unit": "regime_ii_resting_nkg2a_neg_kir2dl_neg_nkg2c_pos_nk_lysis_percentage"
+    },
+    {
+      "endpoint_id": "stage0_s10_double_neg_nkg2c_ifng24h_lysis_pct",
+      "meanKey": "obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_ifng24h_lysis_pct",
+      "seKey": "obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_ifng24h_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.75,
+      "minimum_se": 0.001,
+      "unit": "regime_i_ifng24h_nkg2a_neg_kir2dl_neg_nkg2c_pos_nk_lysis_percentage"
+    },
+    {
+      "endpoint_id": "stage0_s10_hcmv_pooled_3subset_resting_lysis_pct",
+      "meanKey": "obs_hcmv_pooled_3subset_resting_nk_lysis_pct",
+      "seKey": "obs_hcmv_pooled_3subset_resting_nk_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.85,
+      "minimum_se": 0.001,
+      "unit": "regime_ii_resting_total_3subset_sorted_hcmv_nk_lysis_percentage"
+    },
+    {
+      "endpoint_id": "stage0_s10_hcmv_pooled_3subset_ifng24h_lysis_pct",
+      "meanKey": "obs_hcmv_pooled_3subset_ifng24h_nk_lysis_pct",
+      "seKey": "obs_hcmv_pooled_3subset_ifng24h_nk_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.85,
+      "minimum_se": 0.001,
+      "unit": "regime_i_ifng24h_total_3subset_sorted_hcmv_nk_lysis_percentage"
+    },
+    {
+      "endpoint_id": "stage0_s10_nkg2c_cd107a_fold_vs_b2m_ko",
+      "meanKey": "obs_nkg2c_cd107a_degranulation_fold_vs_b2m_ko",
+      "seKey": "obs_nkg2c_cd107a_degranulation_fold_se",
+      "min": 0.0,
+      "max": 20.0,
+      "se_required": false,
+      "default_se": 0.08,
+      "minimum_se": 0.001,
+      "unit": "nkg2a_neg_nkg2c_pos_cd107a_degranulation_fold_over_b2m_ko_control"
+    },
+    {
+      "endpoint_id": "stage0_s10_cmv_ul40_hlae_cd8_ctl_lysis_pct",
+      "meanKey": "obs_cmv_ul40_hlae_cd8_lysis_pct",
+      "seKey": "obs_cmv_ul40_hlae_cd8_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.65,
+      "minimum_se": 0.001,
+      "unit": "cmv_ul40_hlae_restricted_cd8_ctl_4h_specific_lysis_percentage"
+    },
+    {
+      "endpoint_id": "stage0_s10_hcmv_pos_donor_count",
+      "meanKey": "obs_hcmv_pos_donor_count",
+      "seKey": "obs_hcmv_pos_donor_count_se",
+      "min": 0.0,
+      "max": 1000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "independent_hcmv_seropositive_nk_donors_assayed_integer_count"
+    },
+    {
+      "endpoint_id": "stage0_s10_nk_failing_donor_count",
+      "meanKey": "obs_s10_nk_failing_donor_count",
+      "seKey": "obs_s10_nk_failing_donor_count_se",
+      "min": 0.0,
+      "max": 1000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "hcmv_nk_donors_exceeding_individual_subset_lysis_threshold_integer_count"
+    },
+    {
+      "endpoint_id": "stage0_s10_ul40_reactive_donor_count",
+      "meanKey": "obs_ul40_reactive_donor_count",
+      "seKey": "obs_ul40_reactive_donor_count_se",
+      "min": 0.0,
+      "max": 1000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "tetramer_or_peptide_confirmed_ul40_reactive_hcmv_cd8_ctl_donors_integer_count"
+    },
+    {
+      "endpoint_id": "stage0_s10_ul40_ctl_failing_donor_count",
+      "meanKey": "obs_ul40_ctl_failing_donor_count",
+      "seKey": "obs_ul40_ctl_failing_donor_count_se",
+      "min": 0.0,
+      "max": 1000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "ul40_reactive_cd8_ctl_donors_exceeding_5pct_or_2pp_over_wt_integer_count"
+    },
+    {
+      "endpoint_id": "stage0_s10_hlae_cd8aa_spr_kd_uM",
+      "meanKey": "obs_hlae_cd8aa_kd_uM",
+      "seKey": "obs_hlae_cd8aa_kd_se_uM",
+      "min": 0.001,
+      "max": 50000.0,
+      "se_required": false,
+      "default_se": 50.0,
+      "minimum_se": 0.001,
+      "unit": "covalent_sct_spr_cd8alpha_alpha_homodimer_kd_uM"
+    },
+    {
+      "endpoint_id": "stage0_s10_hlae_cd8ab_spr_kd_uM",
+      "meanKey": "obs_hlae_cd8ab_kd_uM",
+      "seKey": "obs_hlae_cd8ab_kd_se_uM",
+      "min": 0.001,
+      "max": 50000.0,
+      "se_required": false,
+      "default_se": 50.0,
+      "minimum_se": 0.001,
+      "unit": "covalent_sct_spr_cd8alpha_beta_heterodimer_kd_uM"
+    },
+    {
+      "endpoint_id": "stage0_s10_cd8_treg_suppression_retention_pct_of_wt",
+      "meanKey": "obs_cd8_treg_suppression_retention_pct_of_wt",
+      "seKey": "obs_cd8_treg_suppression_retention_se",
+      "min": 0.0,
+      "max": 200.0,
+      "se_required": false,
+      "default_se": 2.5,
+      "minimum_se": 0.001,
+      "unit": "hlae_restricted_cd8_treg_suppression_retention_percentage_of_wt_sct"
+    },
+    {
+      "endpoint_id": "stage0_s10_cd8_treg_suppression_delta_vs_wt_pp",
+      "meanKey": "obs_cd8_treg_suppression_delta_vs_wt_pp",
+      "seKey": "obs_cd8_treg_suppression_delta_vs_wt_se",
+      "min": -100.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 1.5,
+      "minimum_se": 0.001,
+      "unit": "hlae_restricted_cd8_treg_suppression_delta_mutant_minus_wt_percentage_points"
+    },
+    {
+      "endpoint_id": "stage0_s10_ul40_ctl_lysis_delta_vs_wt_pp",
+      "meanKey": "obs_cmv_ul40_hlae_cd8_lysis_delta_vs_wt_pp",
+      "seKey": "obs_cmv_ul40_hlae_cd8_lysis_delta_vs_wt_se",
+      "min": -100.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.5,
+      "minimum_se": 0.001,
+      "unit": "cmv_ul40_cd8_ctl_4h_lysis_delta_d227k_t228a_minus_wt_sct_percentage_points"
+    },
+    {
+      "endpoint_id": "stage0_s10_nonself_dq2_dq8_indirect_apc_si",
+      "meanKey": "obs_nonself_dq2_dq8_indirect_apc_si",
+      "seKey": "obs_nonself_dq2_dq8_indirect_apc_si_se",
+      "min": 0.1,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.1,
+      "minimum_se": 0.001,
+      "unit": "recipient_dq2_dq8_apc_indirect_cd4_stimulation_index_on_nonself_seam_or_alpha3"
+    },
+    {
+      "endpoint_id": "stage0_s10_nonself_host_class1_cross_pres_lysis_pct",
+      "meanKey": "obs_nonself_host_class1_cross_pres_lysis_pct",
+      "seKey": "obs_nonself_host_class1_cross_pres_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.65,
+      "minimum_se": 0.001,
+      "unit": "host_hla_abc_cross_presented_cd8_ctl_specific_lysis_percentage"
     }
   ]
 }

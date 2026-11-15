@@ -263,8 +263,8 @@
       "switch_id": "S10",
       "contract_decision_key": "S10_CMV_NKG2C_Adaptive_NK_Peptide_Selectivity_Gate_0A",
       "precedence_tier": "2_HOUR0_IMMUNITY_S1_S2_S3_S4_S5",
-      "trigger": "obs_nkg2c_adaptive_nk_lysis_pct > 8.0 or obs_hlae_nkg2c_over_nkg2a_kd_ratio < 4.0",
-      "action": "Do NOT promote constitutive Arm 1X VMAPRTLVL overexpression for isolated NKG2C adaptive NK failure (which is density-invariant at K_C/K_A = 3.10 < 4.0 and increases NKG2C engagement); hold universal claim for CMV+ NKG2C-high recipients and evaluate Gate 0A-NK covalent-SCT peptide selectivity coupon (testing VMAPRTLFL [Kaiser 2008 PMID:18448674 K_C/K_A = 6.50x, Vales-Gomez 1999 PMID:10428963 K_C/K_A = 4.62x] and HLA-E*01:03(D227K/T228A) subject to CMV HLA-E-restricted CD8+ CTL non-escape; note pure NKG2A-NKG2C+ adaptive NK subsets receive zero NKG2A inhibition regardless of K_C/K_A and require KIR2DL/HLA-C SCT or PD-L1/L3-BF-B; AUDIT-REF & AUDIT-REF)."
+      "trigger": "Unmeasured explicit S10 observations -> UNMEASURED_EXTENDED_S10_PANEL (C1); otherwise one-sided 95% upper bound obs_nkg2c_adaptive_nk_lysis_pct_upper95 > 8.0 or obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_nk_lysis_pct_upper95 > 8.0 or one-sided 95% lower bound obs_hlae_nkg2c_over_nkg2a_kd_ratio_lower95 < 4.0 (C2)",
+      "action": "Do NOT promote constitutive Arm 1X VMAPRTLVL overexpression for isolated NKG2C adaptive NK failure (in Lin et al. 2023 PMID:37264229 Supp. Table 1 soluble HLA-E*01:03 SPR, all 6/6 functional human leaders sit below 4.0x [2.6846x-3.9444x; VMAPRTLFL = 0.18 / 0.71 uM = 3.9444x binds NKG2C 9.18x tighter than VMAPRTLVL and acts as a 3.2x primary NKG2A- NKG2C+ agonist trap per Lauterbach et al. 2015 PMID:26382247, kept separate from historical monomer SPR ratios in Vales-Gomez 1999 PMID:10428963 explicit HLA-E*01:01 4.6223x and Kaiser 2008 PMID:18448674 6.50x]); hard-block calibration controls (VMAPRTLFL, QMRPVSRVL) and bind all S10 consumers (C3-C4) to evaluate_s10_functional_and_replacement_gate_v3() across the 20-construct Mode-B comparator panel (data/constructs/islet1_locus1_s10_modeb_comparators_v0.8.0.fasta), requiring matched construct SHA-256 and lot ID, recorded covalent-SCT SPR (K_D[NKG2A] upper95 <= 10.0 uM), 5'/3'-RACE, paired Regime II resting + Regime I 24-h IFN-gamma sorted NKG2A+ and KIR2DL+/KIR2DL- NKG2A- NKG2C+ NK lysis (<= 8.0%) and CD107a (<= 1.25x) across n >= 6 HCMV+ donors with 0 failing donors, UL40-reactive CD8+ CTL lysis <= 5.0% (n >= 6, 0 failing; Jouand et al. 2018 PMID:29709038), LOT_RELEASE_25K QuantiBRITE floors, GY-010 delta-only clearance, and >= 80% CD8+ Treg retention (Lu et al. 2008 PMID:19047627; Kim et al. 2010 PMID:20844537) on D227K/T228A arms (IIP-0016 / DEC-094)."
     }
   ],
   "pivotal_combined_stress_stage0_coupon_gate_muse_r4": {
@@ -390,6 +390,47 @@
       "pre_extraction_ivt_rna_recovery_adjusted_umi_bound": "Requires synthetic chimeric IVT RNA recovery standards spiked into total cellular RNA prior to extraction and reverse transcription (obs_challenger_ivt_rna_recovery_standard_verified=True; cDNA spike-in alone insufficient), N_UMI_eff = N_UMI * min(1.0, eta_rel) >= 3,689 consensus UMI molecules per clone/locus/strand/condition, and k = 0 aberrant chimeric/cryptic UMI molecules (< 0.10% exact two-sided 95% Clopper-Pearson bound).",
       "host_exon_retention_90pct_tost_and_loq_hold": "Requires two one-sided 95% equivalence tests (90% CI TOST) strictly within [0.80, 1.25] for obs_challenger_host_exon_splice_retention_ratio with explicit SE and obs_challenger_host_isoforms_above_loq_verified=True (any host isoform below LOQ routes to HOLD).",
       "convergent_dsrna_isg_ceiling_and_non_pooling": "Requires obs_challenger_dsrna_j2_or_isg_fold_wt upper 95% confidence bound <= 1.5x parental control and rejects cross-batch pooling of distinct knockin_splice_challenger_arm or knockin_locus4_orientation conditions; RNA bounds never substitute for Tier 6A 10 nM AP1903 potency or Tier 6B N_eff >= 10^7 clonogenic escape testing."
+    }
+  },
+  "s10_hlae_comparator_panel_and_paired_functional_gate_v3_iip_0016": {
+    "gate_id": "STAGE0_S10_HLAE_COMPARATOR_PANEL_AND_PAIRED_FUNCTIONAL_GATE_V3_IIP_0016",
+    "decision_id": "DEC-094",
+    "contribution_id": "IIP-0016",
+    "mode_b_comparator_fasta": "data/constructs/islet1_locus1_s10_modeb_comparators_v0.8.0.fasta",
+    "mode_b_comparator_fasta_sha256": "a589ea72144cf1ad2cfa82e9b08c22e075746c63a9264e276a3bd4ec3f896854",
+    "canonical_scenario_a_fasta_invariance": "Preserves data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta byte-for-byte (sha256 b5ba4e2b4bbbcc7d6cf1138975c5fae5c6ab074dda43973f071c671cd8cd1d88) and all 2,160 Layer-1 combinatorial stack scores/ranks.",
+    "primary_citations": [
+      "PMID:37264229",
+      "PMID:26382247",
+      "PMID:10428963",
+      "PMID:18448674",
+      "PMID:12411439",
+      "PMID:15728498",
+      "PMID:28504668",
+      "PMID:35596615",
+      "PMID:29709038",
+      "PMID:15837791",
+      "PMID:20844204",
+      "PMID:19047627",
+      "PMID:20844537",
+      "PMID:18332182",
+      "PMID:9660937",
+      "PMID:18083576",
+      "PMID:18339401",
+      "PMID:30087334",
+      "PMID:35705051",
+      "PMID:12461076",
+      "PMID:12874227",
+      "PMID:15304389",
+      "PMID:23325834",
+      "PMID:29632329",
+      "PMID:9486650",
+      "PMID:32711842"
+    ],
+    "mandatory_qualification_guards": {
+      "lin_2023_six_leader_reconciliation_and_calibration_block": "Reconciles all 6/6 soluble HLA-E*01:03 leaders in Lin et al. 2023 PMID:37264229 Supp. Table 1 (0/6 central estimates >= 4.0; VMAPRTLFL = 0.18 / 0.71 uM = 3.9444x binds NKG2C 9.18x tighter than VMAPRTLVL) separately from historical monomer SPR (Vales-Gomez 1999 PMID:10428963 explicit HLA-E*01:01; Kaiser 2008 PMID:18448674), and hard-blocks Arm 2 (VMAPRTLFL) and Arm 3 (QMRPVSRVL) as CALIBRATION_CONTROL_NEVER_PROMOTE.",
+      "contract_repairs_c1_to_c4": "Emits UNMEASURED_EXTENDED_S10_PANEL when explicit S10 observations are absent (C1), evaluates local and global S10 triggers on one-sided 95% confidence bounds (C2), rejects unverified ratio-only or spoofed legacy coupon=True claims (C3), and replaces unconditional s10_nkg2c_triggered trapping in any_fallback_switch_triggered with (s10_nkg2c_triggered and not s10_v3_release_qualified) while requiring s10_hlae_floor_mode == LOT_RELEASE_25K for complete release (C4).",
+      "paired_regime_functional_and_race_provenance": "Requires exact s10_construct_id + s10_construct_donor_sha256 + current_lot_id == s10_qualified_lot_id + s10_is_replacement_challenger_lot=True + s10_race_5p_3p_junction_verified=True, recorded covalent-SCT SPR K_D(NKG2A) upper95 <= 10.0 uM and K_D(NKG2C) with explicit SEs, paired Regime II resting and Regime I 24-h IFN-gamma sorted NKG2A+ NKG2C- and KIR2DL+/KIR2DL- NKG2A- NKG2C+ primary HCMV+ NK lysis upper95 <= 8.0% and CD107a fold upper95 <= 1.25x across n >= 6 donors with 0 failing donors, UL40-reactive CD8+ CTL lysis upper95 <= 5.0% across n >= 6 donors with 0 failing donors, GY-010 delta-only HLA-DQ2/DQ8 SI upper95 <= 1.5 and Class-I cross-presentation lysis upper95 <= 5.0% on non-self arms (Arms 4-9), and CD8aa/CD8ab SPR > 1,000 uM + HLA-A2 positive-control verification + >= 80% CD8+ Treg suppression retention (delta >= -10.0 pp) + UL40 delta <= +2.0 pp on D227K/T228A arms (Arms 8-9)."
     }
   }
 }
