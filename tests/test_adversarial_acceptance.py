@@ -1019,16 +1019,30 @@ def run_acceptance_suite(out_path: Path) -> int:
             chk19_failures.append({"subcheck": "19C.chs4_coords", "got": [int(m_coord.group(1)), int(m_coord.group(2))]})
 
     known_digests_19: set[str] = set()
-    fasta_19 = ROOT / "data" / "constructs" / "islet1_scenario_a_constructs_v0.7.0.fasta"
-    if fasta_19.exists():
+    manifest_19 = json.loads((ROOT / "manifest.json").read_text(encoding="utf-8")) if (ROOT / "manifest.json").exists() else {}
+    for mf_art in manifest_19.get("artifacts", {}).values():
+        if isinstance(mf_art, dict) and isinstance(mf_art.get("sha256"), str):
+            known_digests_19.add(mf_art["sha256"])
+    for fasta_19 in sorted((ROOT / "data" / "constructs").glob("*.fasta")):
+        known_digests_19.add(hashlib.sha256(fasta_19.read_bytes()).hexdigest())
         for rec in re.split(r"^>", fasta_19.read_text(encoding="utf-8"), flags=re.M)[1:]:
             lines_r = rec.strip().split("\n")
-            seq_r = re.sub(r"[^A-Za-z]", "", "".join(lines_r[1:]))
-            known_digests_19.add(hashlib.sha256(seq_r.encode()).hexdigest())
-            known_digests_19.update(re.findall(r"sha256=([0-9a-f]{64})", lines_r[0]))
+            seq_r = re.sub(r"[^A-Za-z]", "", "".join(lines_r[1:])).upper()
+            seq_h = hashlib.sha256(seq_r.encode()).hexdigest()
+            known_digests_19.add(seq_h)
+            for hdr_h in re.findall(r"sha256=([0-9a-f]{64})", lines_r[0]):
+                if hdr_h != seq_h:
+                    chk19_failures.append({"subcheck": "19D.fasta_header_sha256_mismatch", "fasta": fasta_19.name, "header": hdr_h, "computed": seq_h})
+    l2_hex_by_prefix8: dict[str, set[str]] = {}
     for art_obj in (l2_atlas, l3_atlas):
-        for m_hex in re.findall(r'"([0-9a-f]{64})"', json.dumps(art_obj)):
+        art_dump = json.dumps(art_obj)
+        for m_hex in re.findall(r'"([0-9a-f]{64})"', art_dump):
             known_digests_19.add(m_hex)
+            if art_obj is l2_atlas:
+                l2_hex_by_prefix8.setdefault(m_hex[:8], set()).add(m_hex)
+    for pref8, full_set in l2_hex_by_prefix8.items():
+        if len(full_set) > 1:
+            chk19_failures.append({"subcheck": "19E.layer2_8hex_prefix_collision", "prefix8": pref8, "digests": sorted(full_set)})
     n_digest_refs_19 = 0
     for dname in doc_files_19:
         dtext_19 = doc_texts_19.get(dname, "")
@@ -1041,8 +1055,28 @@ def run_acceptance_suite(out_path: Path) -> int:
             pref_hex = m_pref.group(1)
             if not any(full_d.startswith(pref_hex) for full_d in known_digests_19):
                 chk19_failures.append({"subcheck": "19D.unresolved_sha256_prefix", "doc": dname, "sha256_prefix": pref_hex})
+        for m_short in re.finditer(r"`(?:sha256 )?([0-9a-f]{8,64})\.\.\.`", dtext_19):
+            n_digest_refs_19 += 1
+            short_hex = m_short.group(1)
+            if not any(full_d.startswith(short_hex) for full_d in known_digests_19):
+                chk19_failures.append({"subcheck": "19E.unresolved_shorthand_sha256_prefix", "doc": dname, "sha256_prefix": short_hex})
         if "results/current/" in dtext_19 or "3,701 bp" in dtext_19:
             chk19_failures.append({"subcheck": "19A.stale_playbook_path_or_length", "doc": dname})
+    bp_text_19e = doc_texts_19.get("ISLET-1-BLUEPRINT.md", "")
+    for stale_hurdle_phrase in ("Hurdle 2` percentages untouched", "Hurdle 3` percentages untouched", "Hurdle 4` percentages untouched"):
+        if stale_hurdle_phrase in bp_text_19e:
+            chk19_failures.append({"subcheck": "19E.stale_hurdle_untouched_claim", "phrase": stale_hurdle_phrase})
+    bcrank_rows_19e = (
+        l2_atlas.get("stage0_locus3_multimir_and_cbe_needle_manifest_iip_0018", {})
+        .get("bcrank_t1d_heuristic_stage0_rubric", {})
+        .get("cc_by_4_clean_ranked_34", [])
+    )
+    gy_dump_19e = json.dumps(gy_entries)
+    for row_19e in bcrank_rows_19e:
+        if isinstance(row_19e, dict) and row_19e.get("bcrank_t1d_score_0_to_100") == 0.0:
+            g_sym = str(row_19e.get("gene_symbol", ""))
+            if g_sym and (g_sym not in bp_text_19e or g_sym not in gy_dump_19e):
+                chk19_failures.append({"subcheck": "19E.unpropagated_bcrank_zero_trap_gene", "gene": g_sym})
     if n_digest_refs_19 == 0:
         chk19_failures.append({"subcheck": "19D.zero_sha256_or_prefix_references_harvested"})
 

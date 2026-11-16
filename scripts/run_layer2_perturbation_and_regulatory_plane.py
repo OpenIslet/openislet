@@ -6583,7 +6583,7 @@ def _build_species_separated_proteome_census_iip_0017() -> Dict[str, Any]:
                                                                                'L3_BFB_BASALFLOOR_4078': {'donor_length_bp': 4078,
                                                                                                           'packaged_aav6_bp_with_2x145_itrs': 4368,
                                                                                                           'donor_sha256': '0a5f714d536cfb427039e50966fbc88cc6f7dbec8252f26bf43f32a359017c7e'}},
-                                                                    'pam_shielded_dxl3_3799_sha256': '13cccea87e227b6ca0f6a0dfef067736e61a9e772bf2cd63b69923f25874d2c7',
+                                                                    'pam_shielded_dxl3_3799_sha256': '13cccea841fbb056c1c5f8ab3f083e6729dd35817436c7788d6b294a6e3508c4',
                                                                     'native_protein_core_vs_complete_species_note': 'Canonical '
                                                                                                                     'Locus '
                                                                                                                     '3 '

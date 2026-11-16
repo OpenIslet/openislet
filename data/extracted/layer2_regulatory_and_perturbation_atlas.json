@@ -17892,7 +17892,7 @@
           "donor_sha256": "0a5f714d536cfb427039e50966fbc88cc6f7dbec8252f26bf43f32a359017c7e"
         }
       },
-      "pam_shielded_dxl3_3799_sha256": "13cccea87e227b6ca0f6a0dfef067736e61a9e772bf2cd63b69923f25874d2c7",
+      "pam_shielded_dxl3_3799_sha256": "13cccea841fbb056c1c5f8ab3f083e6729dd35817436c7788d6b294a6e3508c4",
       "native_protein_core_vs_complete_species_note": "Canonical Locus 3 (4,090 bp, sha256 2fbcf165...) produces a 397-aa SERPINB9-GSG-P2A cistron plus a 291-aa Pro+PD-L1 precursor (predicted ER signal-peptidase cleavage to 272-aa mature PD-L1, plus unskipped 688-aa readthrough species gated at < 5% target), whereas already-materialized 2A-free L3-BF-B (4,078 bp, sha256 0a5f714d...) and DX-L3 (3,799 bp unshielded reference sha256 3d6bf68e..., kept distinct from PAM-shielded synthesis derivative sha256 13cccea8...) share identical native protein cores (376-aa SERPINB9 and 272-aa mature PD-L1 from 290-aa native precursor) while differing in complete precursor/stub species and transcriptional architecture."
     },
     "species_catalog_22_molecular_species": {

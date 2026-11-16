@@ -22,7 +22,7 @@
         "condition": "(STAT1_KO_or_JAK1_KO AND GAS_ISRE_promoter AND NOT NFkB_enhancer_bypass) OR (TYK2_KO AND strict_TypeI_IFN_ISRE_without_IFNg_or_NFkB_bypass)"
       },
       "proposed_idea": "Combine clonal STAT1-/- or JAK1-/- knockout with an IFN-gamma/STAT1-inducible (GAS/ISRE) promoter driving PD-L1 and SERPINB9 (or combine TYK2-/- with a strict Type-I-IFN ISRE-only promoter).",
-      "why_it_fails": "Mechanistic epistatic pathway synthesis across component SC-islet studies (not a single combined wet-lab construct test): deleting STAT1 or JAK1 blocks canonical IFN-gamma -> JAK1/JAK2 -> STAT1 phosphorylation and nuclear translocation (Sintov et al. 2022 PMID:36055241 demonstrated that clonal STAT1-/- ST1L SC-islets lose IFN-gamma-inducible PD-L1, HLA-E, and SOCS1 upregulation and suffer increased NK cell apoptosis, whereas Chandra et al. 2022 PMID:36289205 demonstrated that TYK2-/- blocks Type I IFN-alpha/beta -> TYK2/JAK1 -> STAT1/STAT2/ISGF3 signaling). Consequently, pairing STAT1/JAK1 KO with a pure STAT1-dependent GAS/ISRE synthetic promoter creates an epistatic deadlock unless driven by an endogenous locus such as CXCL10 (Sintov et al. 2022 PMID:36055241; Tanaka et al. 2009 PMID:19641142) that retains an independent TNF-alpha/IL-1beta -> NF-kB enhancer bypass.",
+      "why_it_fails": "Mechanistic epistatic pathway synthesis across component SC-islet studies (not a single combined wet-lab construct test): deleting STAT1 or JAK1 (or upstream IFNGR1 / IRF1) blocks canonical IFN-gamma -> IFNGR1 -> JAK1/JAK2 -> STAT1/IRF1 phosphorylation and nuclear translocation (Sintov et al. 2022 PMID:36055241 demonstrated that clonal STAT1-/- ST1L SC-islets lose IFN-gamma-inducible PD-L1, HLA-E, and SOCS1 upregulation and suffer increased NK cell apoptosis, whereas Chandra et al. 2022 PMID:36289205 demonstrated that TYK2-/- blocks Type I IFN-alpha/beta -> TYK2/JAK1 -> STAT1/STAT2/ISGF3 signaling). Consequently, pairing STAT1/JAK1/IFNGR1/IRF1 KO with a pure STAT1-dependent GAS/ISRE synthetic promoter creates an epistatic deadlock unless driven by an endogenous locus such as CXCL10 (Sintov et al. 2022 PMID:36055241; Tanaka et al. 2009 PMID:19641142) that retains an independent TNF-alpha/IL-1beta -> NF-kB enhancer bypass (which likewise precludes co-deleting TNFRSF1A alongside IL1R1 on CXCL10-driven Islet-1 constructs; IIP-0018).",
       "supporting_pmids": [
         "36055241",
         "36289205",
@@ -174,13 +174,18 @@
         "condition": "Aggressive pan-autoantigen/GWAS editing stack combining biallelic G6PC2/SLC30A8 knockouts with multiplex coding edits at high-pLI GAD2 (pLI=1.000) or knockout of high-pLI beta-cell survival brakes (PTPN2 pLI=0.990, TNFAIP3 pLI=1.000)"
       },
       "proposed_idea": "Knock out T1D GWAS candidate genes PTPN2 or TNFAIP3 (A20) to prevent autoimmune recognition, or apply aggressive multiplex knockouts/coding disruptions across GAD2 (GAD65, pLI=1.000) alongside biallelic G6PC2-/- and SLC30A8-/- in a 6-gene pan-autoantigen stack.",
-      "why_it_fails": "gnomAD v4 human constraint demonstrates strong population-level loss-of-function constraint for PTPN2 (pLI=0.990), TNFAIP3 (pLI=1.000), and GAD2 (pLI=1.000). PTPN2 and TNFAIP3 (A20) are essential anti-apoptotic brakes whose loss sensitizes beta-cells to cytokine death and graft hyperinflammation (Moore et al. 2009 PMID:19336676 for PTPN2; Grey et al. 1999 PMID:10523611 and Zammit et al. 2019 PMID:31581152 for TNFAIP3/A20), while GAD2 synthesizes intra-islet GABA required for paracrine regulation of islet hormone secretion and alpha-cell glucagon suppression (Rorsman et al. 1989 Nature PMID:2550826; Menegaz et al. 2019 Nature Metabolism PMID:32432213), so unvalidated coding disruption or bystander indels at GAD2 in a 6-locus multiplex edit stack risks paracrine dysregulation.",
+      "why_it_fails": "gnomAD v4 human constraint demonstrates strong population-level loss-of-function constraint for PTPN2 (pLI=0.990), TNFAIP3 (pLI=1.000), and GAD2 (pLI=1.000). PTPN2 and TNFAIP3 (A20) are essential anti-apoptotic brakes whose loss sensitizes beta-cells to cytokine death and graft hyperinflammation (Moore et al. 2009 PMID:19336676 for PTPN2; Grey et al. 1999 PMID:10523611 and Zammit et al. 2019 PMID:31581152 for TNFAIP3/A20), while GAD2 synthesizes intra-islet GABA required for paracrine regulation of islet hormone secretion and alpha-cell glucagon suppression (Rorsman et al. 1989 Nature PMID:2550826; Menegaz et al. 2019 Nature Metabolism PMID:32432213), so unvalidated coding disruption or bystander indels at GAD2 in a 6-locus multiplex edit stack risks paracrine dysregulation. More broadly across the 112 germline-associated T1D genetic regions triaged in IIP-0018, beta-cell knockout is likewise excluded for nearest-gene mitophagy regulator CLEC16A at 16p13 (Soleimanpour et al. 2014 PMID:24949970, where intronic rs12708716 loops instead to pro-inflammatory DEXI; Dos Santos et al. 2019 PMID:30478640), protective causal-sign survival and lineage brakes BACH2 (Marroquí et al. 2014 PMID:24608439), CTSH (Fløyel et al. 2014 PMID:24982147), SOCS1, GLIS3, DLK1, and INS, and necroptosis-restraining adaptors CASP8 and FADD whose deletion unleashes RIPK3 lytic necroptosis (Kaiser et al. 2011 PMID:21368762).",
       "supporting_pmids": [
         "19336676",
         "10523611",
         "31581152",
         "2550826",
-        "32432213"
+        "32432213",
+        "24949970",
+        "30478640",
+        "24608439",
+        "24982147",
+        "21368762"
       ],
       "cheapest_falsification_assay": "Cytokine cocktail (IFN-gamma + IL-1beta + TNF-alpha) apoptosis assay and alpha-cell glucagon suppression perifusion assay.",
       "evaluator_logit_delta": null,

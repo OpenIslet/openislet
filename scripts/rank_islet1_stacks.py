@@ -2091,7 +2091,7 @@ def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
         "status": "accepted_in_open_draft",
         "initial_reassessment_date": "2026-11-05",
         "reassessment_date": "2026-11-15",
-        "reassessment_basis_iips": ["IIP-0003", "IIP-0012", "IIP-0016", "IIP-0017", "IIP-0018", "IIP-0019"],
+        "reassessment_basis_iips": ["IIP-0003", "IIP-0012", "IIP-0015", "IIP-0016", "IIP-0017", "IIP-0018", "IIP-0019"],
         "credit": (
             "Linus Schumacher (ORCID 0000-0003-0797-3406, GitHub @ljschumacher, University of Edinburgh), "
             "IIP-0003, https://github.com/openislet/openislet/issues/3."
@@ -2188,8 +2188,8 @@ def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
                 "three_designs_parallel": h3_3,
                 "decision": "reassessed_2026_11_15_after_iip_0012_iip_0017_and_iip_0018",
                 "reason_for_three_design_figure": (
-                    "Instead of leaving IL1R1 and FAS unshielded across all three designs, Design A pairs scar-free SERPINB9[C341S] with "
-                    "washout-qualified SA-FasL microgels (56%; IIP-0012/0018), Design B dampens interferon signalling via protective TYK2 "
+                    "Instead of leaving IL1R1 and FAS unshielded across all three designs, Design A pairs a scar-free (2A-free) SERPINB9 "
+                    "comparator with washout-qualified SA-FasL microgels (56%; IIP-0012/0015/0018), Design B dampens interferon signalling via protective TYK2 "
                     "p.Pro1104Ala (64%; IIP-0017), and Design X adds cell-intrinsic IL1R1 + FAS receptor knockdown via a single-AAV6 Locus-3 "
                     "synthetic-intron Multi-miR or zero-bystander CBE stop comparators (70%; IIP-0018), lifting the surviving-portfolio "
                     "conditional pass rate from 72% to 85% (exact 2^12 conditional 84.73%)."
@@ -2206,7 +2206,7 @@ def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
                 "reason_for_three_design_figure": (
                     "Explicit 3D reaction-diffusion checks replace unpatterned clumping and unbuffered edge-bead H2O2 plumes in Designs A and X "
                     "with ordered microwells, wet-sieved <= 50 um CaO2 beads and >= 20 um catalase barrier films (68%; IIP-0019), while Design B "
-                    "tests an orthogonal 140 um chemical-free Zero-CaO2 pre-vascularized track (70%), yielding an 84.4% unconditional two-route "
+                    "tests an orthogonal 140 um chemical-free Zero-CaO2 pre-vascularized sheet comparator (Design Z track; 70%), yielding an 84.4% unconditional two-route "
                     "pouch pass rate and a 79% conditional pass rate among designs surviving Hurdles 1-3 (exact 2^12 conditional 79.42%)."
                 ),
             },
