@@ -2070,11 +2070,11 @@ def run_combinatorial_multi_gate_search(target_profiles: dict) -> list[dict]:
 
 
 def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
-    """Re-judged four-hurdle conditional scenario specification, score/rank measure labels, and OQ-016 (IIP-0003; reassessed 2026-11-15 after IIP-0016..IIP-0019)."""
+    """Re-judged four-hurdle conditional scenario specification, score/rank measure labels, and OQ-016 (IIP-0003; reassessed 2026-11-16 after IIP-0016..IIP-0020)."""
     h1_a, h1_b, h1_x, h1_3 = 0.88, 0.88, 0.88, 0.88
-    h2_a, h2_b, h2_x, h2_3 = 0.78, 0.79, 0.81, 0.87
-    h3_a, h3_b, h3_x, h3_3 = 0.56, 0.64, 0.70, 0.85
-    h4_a, h4_b, h4_x, h4_3 = 0.68, 0.70, 0.68, 0.79
+    h2_a, h2_b, h2_x, h2_3 = 0.78, 0.79, 0.82, 0.87
+    h3_a, h3_b, h3_x, h3_3 = 0.57, 0.64, 0.73, 0.86
+    h4_a, h4_b, h4_x, h4_3 = 0.69, 0.70, 0.69, 0.80
     pa_exact = round(h1_a * h2_a * h3_a * h4_a, 8)
     pb_exact = round(h1_b * h2_b * h3_b * h4_b, 8)
     px_exact = round(h1_x * h2_x * h3_x * h4_x, 8)
@@ -2090,8 +2090,8 @@ def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
         "open_question_title": "Which assumptions and definition of success sit behind the four-hurdle odds estimate?",
         "status": "accepted_in_open_draft",
         "initial_reassessment_date": "2026-11-05",
-        "reassessment_date": "2026-11-15",
-        "reassessment_basis_iips": ["IIP-0003", "IIP-0012", "IIP-0015", "IIP-0016", "IIP-0017", "IIP-0018", "IIP-0019"],
+        "reassessment_date": "2026-11-16",
+        "reassessment_basis_iips": ["IIP-0003", "IIP-0012", "IIP-0015", "IIP-0016", "IIP-0017", "IIP-0018", "IIP-0019", "IIP-0020"],
         "credit": (
             "Linus Schumacher (ORCID 0000-0003-0797-3406, GitHub @ljschumacher, University of Edinburgh), "
             "IIP-0003, https://github.com/openislet/openislet/issues/3."
@@ -2099,13 +2099,13 @@ def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
         "sequential_conditional_definition": {
             "one_design_label": "Each design on its own (Designs A, B and X modelled head to head)",
             "one_design_rule": (
-                "Defined under IIP-0003 on 2026-11-05 and reassessed on 2026-11-15 across all three blueprints (A, B and X) "
-                "incorporating accepted Stage-0 computational designs (IIP-0016..IIP-0019): for any single design tested alone, "
+                "Defined under IIP-0003 on 2026-11-05 and reassessed on 2026-11-16 across all three blueprints (A, B and X) "
+                "incorporating accepted Stage-0 computational designs (IIP-0016..IIP-0020): for any single design tested alone, "
                 "each step is the judged chance that that design clears the hurdle given that it cleared the earlier hurdles."
             ),
             "three_designs_label": "Three designs in parallel (A, B and X)",
             "three_designs_rule": (
-                "Defined under IIP-0003 on 2026-11-05 and reassessed on 2026-11-15 from the exact 4,096-state (2^12) joint "
+                "Defined under IIP-0003 on 2026-11-05 and reassessed on 2026-11-16 from the exact 4,096-state (2^12) joint "
                 "common-shock tree as a sequential surviving-portfolio conditional judgement: for Designs A, B and X "
                 "advanced in parallel, each step is the judged chance that at least one same design still in the running clears that hurdle "
                 "(the same design must clear every hurdle so far)."
@@ -2171,12 +2171,12 @@ def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
                 "one_design_design_b": h2_b,
                 "one_design_design_x": h2_x,
                 "three_designs_parallel": h2_3,
-                "decision": "reassessed_2026_11_15_after_iip_0016_and_iip_0017",
+                "decision": "reassessed_2026_11_16_after_iip_0016_iip_0017_and_iip_0020",
                 "reason_for_three_design_figure": (
                     "Design A retains the canonical B2M/CIITA + HLA-E(VMAPRTLVL) + CD47 cloak (78%), Design B keeps one matched HLA-C gene "
-                    "cleared against a 22-species Swiss-Prot-subtracted peptide census (79%; IIP-0017), and Design X tests a 20-construct S10 "
-                    "HLA-E selectivity panel to attenuate activating CD94/NKG2C recognition in HCMV+ adults while retaining NKG2A inhibition "
-                    "(81%; IIP-0016), lifting the surviving-portfolio conditional pass rate from 82% to 87% (exact 2^12 conditional 86.94%)."
+                    "cleared against a 22-species Swiss-Prot-subtracted peptide census (79%; IIP-0017), and Design X pairs the 20-construct S10 "
+                    "HLA-E selectivity panel (IIP-0016) with anti-PEG / streptavidin-free human CFH+THBD+Hexa-FasL microgel cuff challengers and "
+                    "PEG-free carrier fallback (82%; IIP-0020), yielding an 87% surviving-portfolio conditional pass rate (exact 2^12 conditional 86.95%)."
                 ),
             },
             {
@@ -2186,13 +2186,13 @@ def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
                 "one_design_design_b": h3_b,
                 "one_design_design_x": h3_x,
                 "three_designs_parallel": h3_3,
-                "decision": "reassessed_2026_11_15_after_iip_0012_iip_0017_and_iip_0018",
+                "decision": "reassessed_2026_11_16_after_iip_0012_iip_0017_iip_0018_and_iip_0020",
                 "reason_for_three_design_figure": (
-                    "Instead of leaving IL1R1 and FAS unshielded across all three designs, Design A pairs a scar-free (2A-free) SERPINB9 "
-                    "comparator with washout-qualified SA-FasL microgels (56%; IIP-0012/0015/0018), Design B dampens interferon signalling via protective TYK2 "
-                    "p.Pro1104Ala (64%; IIP-0017), and Design X adds cell-intrinsic IL1R1 + FAS receptor knockdown via a single-AAV6 Locus-3 "
-                    "synthetic-intron Multi-miR or zero-bystander CBE stop comparators (70%; IIP-0018), lifting the surviving-portfolio "
-                    "conditional pass rate from 72% to 85% (exact 2^12 conditional 84.73%)."
+                    "Design A pairs a scar-free (2A-free) SERPINB9 comparator with DPR-ring-hydrolyzed, primed-serum-gated microgel cuffs (57%; IIP-0012/0015/0018/0020), "
+                    "Design B dampens interferon signalling via protective TYK2 p.Pro1104Ala (64%; IIP-0017), and Design X combines cell-intrinsic "
+                    "IL1R1 + FAS knockdown (IIP-0018) with a streptavidin-free human CFH[19-448] + THBD[363-497]-Cys + H1a ADIPOQ-Hexa-FasL cuff challenger "
+                    "against Day-28 step-up humoral opsonization (73%; IIP-0020, easing effective H3 common shock c_3 from 0.88 to 0.89), lifting the "
+                    "surviving-portfolio conditional pass rate to 86% (exact 2^12 conditional 86.06%; uncalibrated computational scenario)."
                 ),
             },
             {
@@ -2202,28 +2202,49 @@ def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
                 "one_design_design_b": h4_b,
                 "one_design_design_x": h4_x,
                 "three_designs_parallel": h4_3,
-                "decision": "reassessed_2026_11_15_after_iip_0019",
+                "decision": "reassessed_2026_11_16_after_iip_0019_and_iip_0020",
                 "reason_for_three_design_figure": (
-                    "Explicit 3D reaction-diffusion checks replace unpatterned clumping and unbuffered edge-bead H2O2 plumes in Designs A and X "
-                    "with ordered microwells, wet-sieved <= 50 um CaO2 beads and >= 20 um catalase barrier films (68%; IIP-0019), while Design B "
-                    "tests an orthogonal 140 um chemical-free Zero-CaO2 pre-vascularized sheet comparator (Design Z track; 70%), yielding an 84.4% unconditional two-route "
-                    "pouch pass rate and a 79% conditional pass rate among designs surviving Hurdles 1-3 (exact 2^12 conditional 79.42%)."
+                    "Designs A and X pair ordered microwells, wet-sieved <= 50 um CaO2 beads and >= 20 um catalase barrier films (IIP-0019) with a "
+                    "fail-closed Gate P05 species lock to recombinant human CAT (UniProt P04040, 0% foreign peptides vs 50.6-99.9% xeno-catalase, "
+                    "<=30% Day-7 shed mass; 69%; IIP-0020), while Design B tests an orthogonal 140 um chemical-free Zero-CaO2 pre-vascularized sheet "
+                    "comparator (Design Z track; 70%), yielding an 80% conditional pass rate among designs surviving Hurdles 1-3 (exact 2^12 conditional 79.87%)."
                 ),
             },
         ],
         "multiplied_conditional_totals": {
             "one_design_exact": pa_exact,
-            "one_design_rounded_pct": 26,
+            "one_design_rounded_pct": 27,
             "design_a_exact": pa_exact,
-            "design_a_rounded_pct": 26,
+            "design_a_rounded_pct": 27,
             "design_b_exact": pb_exact,
             "design_b_rounded_pct": 31,
             "design_x_exact": px_exact,
-            "design_x_rounded_pct": 34,
+            "design_x_rounded_pct": 36,
             "three_designs_exact": p3_exact,
-            "three_designs_rounded_pct": 51,
-            "three_designs_2pow12_locked_exact": 0.5148,
-            "three_designs_stage0_modular_cell_x_pouch_exact": 0.5471,
+            "three_designs_rounded_pct": 53,
+            "three_designs_2pow12_locked_exact": 0.5259,
+            "three_designs_stage0_modular_cell_x_pouch_exact": 0.5563,
+            "iip_0020_sensitivity_and_calibration_notes": {
+                "uncalibrated_engineering_scenario": True,
+                "locked_2pow12_exact_6dp": 0.525942,
+                "locked_2pow12_at_fixed_universal_c3_0p88": 0.522228,
+                "stage0_modular_3slot_legacy_exact_6dp": 0.556257,
+                "stage0_modular_2route_shared_ax_pouch_exact_6dp": 0.541163,
+                "locked_shared_ax_pouch_exact_6dp": 0.507782,
+                "modular_cell_cuff_pouch_compatibility_required": True,
+            },
+            "prior_2026_11_15_dec098_baseline": {
+                "design_a_hurdles": [0.88, 0.78, 0.56, 0.68],
+                "design_b_hurdles": [0.88, 0.79, 0.64, 0.70],
+                "design_x_hurdles": [0.88, 0.81, 0.70, 0.68],
+                "three_designs_hurdles": [0.88, 0.87, 0.85, 0.79],
+                "design_a_rounded_pct": 26,
+                "design_b_rounded_pct": 31,
+                "design_x_rounded_pct": 34,
+                "three_designs_rounded_pct": 51,
+                "three_designs_2pow12_locked_exact": 0.5148,
+                "three_designs_stage0_modular_cell_x_pouch_exact": 0.5471,
+            },
             "prior_2026_11_05_baseline": {
                 "design_a_hurdles": [0.88, 0.78, 0.50, 0.60],
                 "three_designs_hurdles": [0.88, 0.82, 0.72, 0.72],
@@ -6252,7 +6273,7 @@ def main() -> None:
                 "voi_id": "OQ_016_FOUR_HURDLE_ODDS_ASSUMPTIONS_AND_SUCCESS_ENDPOINT_IIP_0003",
                 "open_question_id": "OQ-016",
                 "title": "Which assumptions and definition of success sit behind the four-hurdle odds estimate?",
-                "why_needed": "Raised by Linus Schumacher (ORCID 0000-0003-0797-3406, GitHub @ljschumacher, University of Edinburgh) in IIP-0003 (https://github.com/openislet/openislet/issues/3) and reassessed on 2026-11-15 after IIP-0016..IIP-0019. The 26%, 31% and 34% single-design figures (Designs A, B and X) and the 51% three-design figure are computational team judgements for clearing four in-body hurdles in sequence, assuming the edited cells work as designed and pass lab safety checks before any trial. Layering new untested edits together can shift earlier human-anchored hurdles too, moving from one design to three depends on how much Designs A, B and X overlap at each hurdle, and the estimate depends on which clinical outcome counts as success.",
+                "why_needed": "Raised by Linus Schumacher (ORCID 0000-0003-0797-3406, GitHub @ljschumacher, University of Edinburgh) in IIP-0003 (https://github.com/openislet/openislet/issues/3) and reassessed on 2026-11-16 after IIP-0016..IIP-0020. The 27%, 31% and 36% single-design figures (Designs A, B and X) and the 53% three-design figure (52.59% exact locked 2^12; 52.22% at fixed universal c_3 = 0.88) are uncalibrated computational team judgements for clearing four in-body hurdles in sequence, assuming the edited cells work as designed and pass lab safety checks before any trial. Layering new untested edits together can shift earlier human-anchored hurdles too, moving from one design to three depends on how much Designs A, B and X overlap at each hurdle, and the estimate depends on which clinical outcome counts as success.",
                 "kill_criterion": "Fix one clinical definition of success, test the per-design and shared failure assumptions in Stage 0-2 experiments, and replace the computational judgements with measured pass rates as lab and preclinical results arrive.",
             },
             {

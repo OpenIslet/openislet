@@ -11015,6 +11015,37 @@ _IIP_0018_OFFLINE_REFERENCE_BUNDLE: Dict[str, Any] = {'comparator_fasta_sha256':
                                                         'CAND-010.'}}
 
 
+
+
+def _build_extracellular_biomaterial_census_iip_0020() -> Dict[str, Any]:
+    """Deterministic extracellular pouch/cuff biomaterial foreign-peptide census against pinned 20,429-protein Swiss-Prot (IIP-0020; DEC-099)."""
+    return {
+        "contribution_id": "IIP-0020",
+        "decision_id": "DEC-099",
+        "pinned_human_swissprot_protein_count": 20429,
+        "pinned_human_swissprot_gzip_sha256": "40a8856b4e3f3620b11635143b501ef701558ed97309b0cdb4423ef09e4618d0",
+        "license": "CC-BY-4.0",
+        "reference_scope_and_isoform_qualification": (
+            "Positional 8-11mer and 15mer non-matches are counted against the canonical 20,429-entry UniProtKB/Swiss-Prot human reference "
+            "(matching IIP-0017). Absence from canonical Swiss-Prot is a reference-sequence classification rather than proof of recipient "
+            "immunogenicity: for example, FHL-1 (UniProt P08603-2) carries a genuine human alternative-splice C-terminal SFTL tetrapeptide "
+            "absent from canonical CFH (P08603-1), whereas canonical CFH[19-448] has 0/1,686 and 0/416 canonical non-matches. Conversely, "
+            "MHCflurry 2.3.28 scans cover Layer 2's 14 retained HLA-C alleles for Design B cross-presentation screening and do not replace "
+            "recipient HLA-A/B, HLA-DP/DQ/DR, B-cell antibody, or host-cell impurity testing."
+        ),
+        "gate_p05_catalase_species_lock": {
+            "required_uniprot_accession": "P04040",
+            "disqualified_xeno_accessions": ["P00432", "P55303"],
+            "rationale": (
+                "Gate P05 activity retention (>=70% Day-7, >=73,800 IU retained across 333.33 cm^2) does not enforce enzyme species or bound "
+                "shed inactive protein mass; bovine P00432 (1,049/2,074 [50.58%] 8-11mers) and fungal P55303 (2,884/2,886 [99.93%] 8-11mers) "
+                "are disqualified fail-closed in favor of sequence-verified recombinant human CAT P04040 (0/2,074 [527 aa] and 0/2,070 [526-aa Met-cleaved])."
+            ),
+        },
+        "audited_extracellular_chains": {'Human_CAT_P04040': {'length_aa': 527, 'sequence_sha256': None, 'sequence': None, 'positional_foreign_8_11mers': '0/2074', 'foreign_8_11mer_pct': 0.0, 'unique_foreign_8_11mers': 0, 'positional_foreign_15mers': '0/513', 'foreign_15mer_pct': 0.0, 'unique_foreign_15mers': 0, 'mhcflurry_2p3p28_14_hlac_summary': None}, 'Bovine_CAT_P00432': {'length_aa': 527, 'sequence_sha256': None, 'sequence': None, 'positional_foreign_8_11mers': '1049/2074', 'foreign_8_11mer_pct': 50.58, 'unique_foreign_8_11mers': 1049, 'positional_foreign_15mers': '321/513', 'foreign_15mer_pct': 62.57, 'unique_foreign_15mers': 321, 'mhcflurry_2p3p28_14_hlac_summary': None}, 'Aspergillus_CAT_P55303': {'length_aa': 730, 'sequence_sha256': None, 'sequence': None, 'positional_foreign_8_11mers': '2884/2886', 'foreign_8_11mer_pct': 99.93, 'unique_foreign_8_11mers': 2884, 'positional_foreign_15mers': '716/716', 'foreign_15mer_pct': 100.0, 'unique_foreign_15mers': 716, 'mhcflurry_2p3p28_14_hlac_summary': None}, 'SA_P22629_1based_37_163': {'length_aa': 127, 'sequence_sha256': None, 'sequence': None, 'positional_foreign_8_11mers': '474/474', 'foreign_8_11mer_pct': 100.0, 'unique_foreign_8_11mers': 474, 'positional_foreign_15mers': '113/113', 'foreign_15mer_pct': 100.0, 'unique_foreign_15mers': 113, 'mhcflurry_2p3p28_14_hlac_summary': {'pairs_8_11mer_x_14_hlac_le_500nM': 132, 'pairs_8_11mer_x_14_hlac_le_100nM': 31, 'pairs_9mer_x_14_hlac_le_500nM': 84, 'pairs_9mer_x_14_hlac_le_100nM': 23, 'strongest_HLA_C0304_hit': [40.92, 'ATDGSGTAL']}}, 'SA_mature_P22629_25_183': {'length_aa': 159, 'sequence_sha256': None, 'sequence': None, 'positional_foreign_8_11mers': '602/602', 'foreign_8_11mer_pct': 100.0, 'unique_foreign_8_11mers': 602, 'positional_foreign_15mers': '145/145', 'foreign_15mer_pct': 100.0, 'unique_foreign_15mers': 145, 'mhcflurry_2p3p28_14_hlac_summary': None}, 'CFH_19_448': {'length_aa': 430, 'sequence_sha256': None, 'sequence': '', 'positional_foreign_8_11mers': '0/1686', 'foreign_8_11mer_pct': 0.0, 'unique_foreign_8_11mers': 0, 'positional_foreign_15mers': '0/416', 'foreign_15mer_pct': 0.0, 'unique_foreign_15mers': 0, 'mhcflurry_2p3p28_14_hlac_summary': None}, 'THBD_363_497_Cys': {'length_aa': 136, 'sequence_sha256': None, 'sequence': '', 'positional_foreign_8_11mers': '4/510', 'foreign_8_11mer_pct': 0.78, 'unique_foreign_8_11mers': 4, 'positional_foreign_15mers': '1/122', 'foreign_15mer_pct': 0.82, 'unique_foreign_15mers': 1, 'mhcflurry_2p3p28_14_hlac_summary': {'pairs_8_11mer_x_14_hlac_le_500nM': 0, 'pairs_8_11mer_x_14_hlac_le_100nM': 0, 'pairs_9mer_x_14_hlac_le_500nM': 0, 'pairs_9mer_x_14_hlac_le_100nM': 0, 'strongest_HLA_C0304_hit': [8694.97, 'SGSGEPPPC']}}, 'H1a_tagless_ADIPOQ_FasL_232aa': {'length_aa': 232, 'sequence_sha256': None, 'sequence': None, 'positional_foreign_8_11mers': '34/894', 'foreign_8_11mer_pct': 3.8, 'unique_foreign_8_11mers': 34, 'positional_foreign_15mers': '14/218', 'foreign_15mer_pct': 6.42, 'unique_foreign_15mers': 14, 'mhcflurry_2p3p28_14_hlac_summary': None}, 'H1a_CysGGS_ADIPOQ_FasL_236aa': {'length_aa': 236, 'sequence_sha256': None, 'sequence': '', 'positional_foreign_8_11mers': '50/910', 'foreign_8_11mer_pct': 5.49, 'unique_foreign_8_11mers': 50, 'positional_foreign_15mers': '18/222', 'foreign_15mer_pct': 8.11, 'unique_foreign_15mers': 18, 'mhcflurry_2p3p28_14_hlac_summary': {'pairs_8_11mer_x_14_hlac_le_500nM': 0, 'pairs_8_11mer_x_14_hlac_le_100nM': 0, 'pairs_9mer_x_14_hlac_le_500nM': 0, 'pairs_9mer_x_14_hlac_le_100nM': 0, 'strongest_HLA_C0304_hit': [9273.96, 'GEPGEGEKKEL']}}, 'T0_CysGGS_TNC_FasL_177aa': {'length_aa': 177, 'sequence_sha256': None, 'sequence': '', 'positional_foreign_8_11mers': '49/674', 'foreign_8_11mer_pct': 7.27, 'unique_foreign_8_11mers': 49, 'positional_foreign_15mers': '18/163', 'foreign_15mer_pct': 11.04, 'unique_foreign_15mers': 18, 'mhcflurry_2p3p28_14_hlac_summary': {'pairs_8_11mer_x_14_hlac_le_500nM': 3, 'pairs_8_11mer_x_14_hlac_le_100nM': 0, 'pairs_9mer_x_14_hlac_le_500nM': 3, 'pairs_9mer_x_14_hlac_le_100nM': 0, 'strongest_HLA_C0304_hit': [3749.52, 'SLREQEKKEL']}}, 'IgG1Fc_LALAPG_direct_FasL_368aa': {'length_aa': 368, 'sequence_sha256': None, 'sequence': '', 'positional_foreign_8_11mers': '106/1438', 'foreign_8_11mer_pct': 7.37, 'unique_foreign_8_11mers': 106, 'positional_foreign_15mers': '42/354', 'foreign_15mer_pct': 11.86, 'unique_foreign_15mers': 42, 'mhcflurry_2p3p28_14_hlac_summary': {'pairs_8_11mer_x_14_hlac_le_500nM': 65, 'pairs_8_11mer_x_14_hlac_le_100nM': 25, 'pairs_9mer_x_14_hlac_le_500nM': 38, 'pairs_9mer_x_14_hlac_le_100nM': 20, 'strongest_HLA_C0304_hit': [27.61, 'AAGGPSVFL']}}, 'Human_CAT_P04040_MetCleaved_2_527': {'length_aa': 526, 'sequence_sha256': None, 'sequence': None, 'positional_foreign_8_11mers': '0/2070', 'foreign_8_11mer_pct': 0.0, 'unique_foreign_8_11mers': 0, 'positional_foreign_15mers': '0/512', 'foreign_15mer_pct': 0.0, 'unique_foreign_15mers': 0, 'mhcflurry_2p3p28_14_hlac_summary': {'pairs_8_11mer_x_14_hlac_le_500nM': 0, 'pairs_8_11mer_x_14_hlac_le_100nM': 0}}},
+    }
+
+
 def _build_locus3_multimir_and_cbe_needle_manifest_iip_0018(
     iip_0015_manifest: Dict[str, Any],
 ) -> Dict[str, Any]:
@@ -11573,6 +11604,7 @@ def main() -> None:
         "stage0_locus3_multimir_and_cbe_needle_manifest_iip_0018": _build_locus3_multimir_and_cbe_needle_manifest_iip_0018(
             iip_0015_manifest=_iip_0015_manifest,
         ),
+        "extracellular_biomaterial_foreign_peptide_census_iip_0020": _build_extracellular_biomaterial_census_iip_0020(),
     }
 
     if (REPO_ROOT / ".openislet_public_bundle").is_file() and ATLAS_OUT.is_file():

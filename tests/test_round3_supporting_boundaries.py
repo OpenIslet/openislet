@@ -3070,10 +3070,10 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     )
 
     # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (49 persisted boolean flags, 53 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
-    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 49
+    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 54
     assert "require_full_5endpoint_s9_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
     assert "require_full_7metric_combined_stress_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
-    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 53
+    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 58
     assert "5.71 mmHg at 100 um clusters with matched D_caps = D_gel" in film_limit["surgical_mitigation"]
 
     batch1_r7s2 = {
@@ -3156,7 +3156,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     # - R7S3-F02: Both wetlab_contract.evaluate_stage0_decision_tree and ingest_wetlab_results.evaluate_stage0_decision_tree reject non-boolean policy values
     from scripts import wetlab_contract as wc_mod
 
-    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 53
+    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 58
     for bkey in wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS:
         for bad_val in ("false", "False", 0, "true", "True", 1):
             for eval_fn in (wc_mod.evaluate_stage0_decision_tree, wetlab.evaluate_stage0_decision_tree):
@@ -4252,17 +4252,18 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     from scripts import rank_islet1_stacks as ranker
     _iip3 = ranker._build_odds_composition_and_profile_scope_audit_iip_0003()
     assert _iip3["proposal_id"] == "IIP-0003" and _iip3["open_question_id"] == "OQ-016"
-    assert _iip3["initial_reassessment_date"] == "2026-11-05" and _iip3["reassessment_date"] == "2026-11-15"
+    assert _iip3["initial_reassessment_date"] == "2026-11-05" and _iip3["reassessment_date"] == "2026-11-16"
     assert "Linus Schumacher (ORCID 0000-0003-0797-3406, GitHub @ljschumacher, University of Edinburgh)" in _iip3["credit"]
     assert len(_iip3["reassessed_hurdles"]) == 4
-    assert [h["one_design_design_a"] for h in _iip3["reassessed_hurdles"]] == [0.88, 0.78, 0.56, 0.68]
+    assert [h["one_design_design_a"] for h in _iip3["reassessed_hurdles"]] == [0.88, 0.78, 0.57, 0.69]
     assert [h["one_design_design_b"] for h in _iip3["reassessed_hurdles"]] == [0.88, 0.79, 0.64, 0.70]
-    assert [h["one_design_design_x"] for h in _iip3["reassessed_hurdles"]] == [0.88, 0.81, 0.70, 0.68]
-    assert [h["three_designs_parallel"] for h in _iip3["reassessed_hurdles"]] == [0.88, 0.87, 0.85, 0.79]
-    assert abs(_iip3["multiplied_conditional_totals"]["design_a_exact"] - 0.26138112) < 1e-8
+    assert [h["one_design_design_x"] for h in _iip3["reassessed_hurdles"]] == [0.88, 0.82, 0.73, 0.69]
+    assert [h["three_designs_parallel"] for h in _iip3["reassessed_hurdles"]] == [0.88, 0.87, 0.86, 0.80]
+    assert abs(_iip3["multiplied_conditional_totals"]["design_a_exact"] - 0.26996112) < 1e-8
     assert abs(_iip3["multiplied_conditional_totals"]["design_b_exact"] - 0.3114496) < 1e-8
-    assert abs(_iip3["multiplied_conditional_totals"]["design_x_exact"] - 0.3392928) < 1e-8
-    assert abs(_iip3["multiplied_conditional_totals"]["three_designs_exact"] - 0.5141004) < 1e-8
+    assert abs(_iip3["multiplied_conditional_totals"]["design_x_exact"] - 0.36346992) < 1e-8
+    assert abs(_iip3["multiplied_conditional_totals"]["three_designs_exact"] - 0.5267328) < 1e-8
+    assert _iip3["multiplied_conditional_totals"]["prior_2026_11_15_dec098_baseline"]["three_designs_rounded_pct"] == 51
     assert _iip3["multiplied_conditional_totals"]["prior_2026_11_05_baseline"]["one_design_rounded_pct"] == 21
     assert _iip3["multiplied_conditional_totals"]["prior_2026_11_05_baseline"]["three_designs_rounded_pct"] == 37
     assert _iip3["section3_score_and_rank_measure_reconciliation"]["rank_column_measure"] == "overall_50_50_composite_score"
@@ -5118,6 +5119,74 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     except ValueError as _exc_t3d:
         assert "s6_cluster_size_arm" in str(_exc_t3d)
     assert "IIP-0019" in _r9_s2_bp_md_18 and "DEC-097" in _r9_s2_bp_md_18
+
+    # 45. IIP-0020 / DEC-099: Extracellular biomaterial census, Gate P05 P04040 lock, humoral/DPR/hepatocyte cuff gates & OQ-016 reassessment:
+    _l2_iip20 = json.loads((ROOT / "data/extracted/layer2_regulatory_and_perturbation_atlas.json").read_text(encoding="utf-8"))["extracellular_biomaterial_foreign_peptide_census_iip_0020"]
+    assert _l2_iip20["decision_id"] == "DEC-099" and _l2_iip20["pinned_human_swissprot_protein_count"] == 20429
+    assert _l2_iip20["audited_extracellular_chains"]["Human_CAT_P04040"]["positional_foreign_8_11mers"] == "0/2074"
+    assert _l2_iip20["audited_extracellular_chains"]["Human_CAT_P04040_MetCleaved_2_527"]["positional_foreign_8_11mers"] == "0/2070"
+    assert _l2_iip20["audited_extracellular_chains"]["Bovine_CAT_P00432"]["positional_foreign_8_11mers"] == "1049/2074"
+    assert _l2_iip20["audited_extracellular_chains"]["CFH_19_448"]["positional_foreign_8_11mers"] == "0/1686"
+    _l3_iip20 = json.loads((ROOT / "data/extracted/layer3_structural_verification_atlas.json").read_text(encoding="utf-8"))["biomaterial_cuff_and_catalase_structural_audit_iip_0020"]
+    assert _l3_iip20["registered_pdb_entries"]["2FHA"]["status"] == "REJECTED_GEOMETRIC_AND_CYSTEINE_MISMATCH"
+
+    _iip20_valid = {
+        **_t3d_valid,
+        "design_z_divider_arm": None,
+        "require_full_iip0020_biomaterial_and_humoral_panel": True,
+        "p05_catalase_uniprot_accession": "P04040",
+        "p05_recombinant_human_catalase_verified": True,
+        "obs_p05_catalase_endotoxin_eu_per_mg": 0.04,
+        "obs_p05_catalase_endotoxin_eu_per_mg_se": 0.01,
+        "obs_p05_total_implant_catalase_endotoxin_eu": 0.18,
+        "obs_p05_total_implant_catalase_endotoxin_eu_se": 0.03,
+        "obs_p05_day7_shed_catalase_mass_pct": 12.0,
+        "obs_p05_day7_shed_catalase_mass_se": 1.5,
+        "cuff_bioconjugation_arm": "DPR_HYDROLYZED_CFH_THBD_H1A_ADIPOQ_HEXAFASL",
+        "cuff_serum_challenge_stratum": "HIGH_ANTI_PEG_IGG_GT_500NG_ML",
+        "cuff_dpr_ring_hydrolysis_lcms_verified": True,
+        "cuff_conjugate_disulfide_and_site_occupancy_lcms_verified": True,
+        "cuff_hexafasl_inventory_within_provisional_cap_verified": True,
+        "obs_cuff_surface_c3b_deposition_pct_pos_ctrl": 2.1,
+        "obs_cuff_surface_c3b_deposition_se": 0.4,
+        "obs_cuff_soluble_sc5b9_pct_pos_ctrl": 2.4,
+        "obs_cuff_soluble_sc5b9_se": 0.4,
+        "obs_cuff_macrophage_fcgammar_cytokine_fold": 1.15,
+        "obs_cuff_macrophage_fcgammar_cytokine_se": 0.05,
+        "obs_cuff_primed_serum_fasl_ec50_fold_shift": 1.25,
+        "obs_cuff_primed_serum_fasl_ec50_fold_se": 0.10,
+        "obs_cuff_primed_serum_fasl_emax_apoptosis_pct": 88.0,
+        "obs_cuff_primed_serum_fasl_emax_apoptosis_se": 1.5,
+        "obs_cuff_primed_serum_thbd_apc_retention_pct": 89.0,
+        "obs_cuff_primed_serum_thbd_apc_retention_se": 1.5,
+        "obs_cuff_primed_serum_cfh_c3b_cleavage_retention_pct": 90.0,
+        "obs_cuff_primed_serum_cfh_c3b_cleavage_retention_se": 1.5,
+        "obs_cuff_dpr_ring_hydrolysis_pct": 99.1,
+        "obs_cuff_dpr_ring_hydrolysis_se": 0.2,
+        "obs_cuff_14d_hsa_shed_bioactive_fasl_pct": 1.8,
+        "obs_cuff_14d_hsa_shed_bioactive_fasl_se": 0.3,
+        "obs_cuff_h1a_sec_mals_hexamer_purity_pct": 94.5,
+        "obs_cuff_h1a_sec_mals_hexamer_purity_se": 0.8,
+        "obs_cuff_unreacted_free_thiol_pct": 1.9,
+        "obs_cuff_unreacted_free_thiol_se": 0.3,
+        "obs_cuff_hepatocyte_72h_caspase37_fold": 1.04,
+        "obs_cuff_hepatocyte_72h_caspase37_se": 0.03,
+        "obs_cuff_hepatocyte_72h_alt_ldh_fold": 1.05,
+        "obs_cuff_hepatocyte_72h_alt_ldh_se": 0.03,
+        "obs_cuff_serum_donor_count": 14.0,
+        "obs_cuff_serum_donor_count_se": 0.001,
+        "obs_cuff_serum_failing_donor_count": 0.0,
+        "obs_cuff_serum_failing_donor_count_se": 0.001,
+    }
+    _clean_iip20_valid = {k: v for k, v in _iip20_valid.items() if not k.startswith("design_z_") and not k.startswith("obs_design_z_")}
+    _dt_iip20_ok = wetlab.evaluate_stage0_decision_tree(_clean_iip20_valid)
+    assert _dt_iip20_ok["resolved_architecture_assignments"]["biomaterial_antigen_humoral_and_human_cuff_evaluation"]["gate_pass"] is True
+    assert _dt_iip20_ok["lot_release_readiness_tier"] == "READY_FOR_ENCAPSULATION_COMPLETE_STAGE0_EVIDENCE"
+    assert wetlab.evaluate_stage0_decision_tree({**_clean_iip20_valid, "p05_catalase_uniprot_accession": "P00432_BOVINE_DISQUALIFIED"})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_P05_XENO_OR_UNVERIFIED_CATALASE_SPECIES_REQUIRES_HUMAN_P04040"
+    assert wetlab.evaluate_stage0_decision_tree({**full_ext_payload, "require_full_iip0020_biomaterial_and_humoral_panel": True})["lot_release_readiness_tier"] != "READY_FOR_ENCAPSULATION_COMPLETE_STAGE0_EVIDENCE"
+    assert wetlab.evaluate_stage0_decision_tree({**_clean_iip20_valid, "obs_cuff_dpr_ring_hydrolysis_pct": 95.0})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_CUFF_THIOSUCCINIMIDE_RING_HYDROLYSIS_LT_98PCT_RETRO_MICHAEL_HAZARD"
+    assert wetlab.evaluate_stage0_decision_tree({**_clean_iip20_valid, "obs_cuff_hepatocyte_72h_caspase37_fold": 1.35})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_CUFF_PRIMARY_HUMAN_HEPATOCYTE_LEACHATE_OR_DIGEST_TOXICITY_EXCEEDED"
+
 
 
 

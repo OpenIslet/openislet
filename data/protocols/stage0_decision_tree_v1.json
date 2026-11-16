@@ -544,5 +544,29 @@
       "gate_p05_wet_sieved_microbead_and_catalase_barrier_film": "Requires p05_barrier_slab_geometry_mode in {EXPANDED_390UM_2X125UM_BANDS, FIXED_350UM_2X105UM_BANDS} (reconciling cross-section band clearance against Layout B's 119 um lamina), p05_full_336h_coupled_o2_h2o2_ca_ph_qualified=True (preserving full 336-h Gate P05 coupled O2 + H2O2 + Ca2+ + pH qualification), and explicit SEs clearing obs_p05_microbead_volume_d99_um upper95 <= 50.0 um, obs_p05_catalase_barrier_film_um lower95 >= 20.0 um, obs_p05_day7_catalase_retention_pct lower95 >= 70.0%, obs_p05_336h_retained_catalase_iu_333cm2 lower95 >= 73800.0 IU (~105,429 IU post-cure t=0 active load at 70% retention), and obs_p05_islet_plane_h2o2_max_uM upper95 <= 2.5 uM Tier-1 target (distinguishing (2.5, 5.0] uM Tier-1 hold from > 5.0 uM Tier-2 abort ceiling).",
       "design_z_two_stage_empty_lumen_plus_loaded_closed_state": "Requires design_z_divider_arm in {PLAIN_HYDROGEL_140UM, EXPLORATORY_18PCT_DIVIDER_140UM} and strictly enforces a two-stage gate: Stage 1 (exclusion screen only) requires design_z_empty_lumen_14d_persistence_verified=True and explicit SEs clearing obs_design_z_empty_lumen_5site_min_po2_mmhg lower95 >= 40.0 mmHg with obs_design_z_vessel_standoff_p90_um upper95 <= 15.0 um in plain hydrogel (>= 35.0 mmHg and <= 20.0 um only with QC-cleared dividers); Stage 2 requires design_z_loaded_closed_state_confirmed=True and explicit SEs clearing obs_design_z_loaded_surface_po2_mmhg lower95 >= 15.0 mmHg, obs_design_z_loaded_core_po2_mmhg lower95 >= 5.0 mmHg, and obs_design_z_loaded_perifusion_gsis_si lower95 >= 3.0 (preserving Readout 2 SI >= 3.0). Empty-lumen clearance alone always holds on HOLD_DESIGN_Z_EMPTY_LUMEN_ONLY_REQUIRES_LOADED_CLOSED_STATE_CONFIRMATION."
     }
+  },
+  "biomaterial_antigen_humoral_and_human_cuff_gate_iip_0020": {
+    "gate_id": "STAGE0_BIOMATERIAL_ANTIGEN_HUMAN_CATALASE_AND_CUFF_QUALIFICATION_GATE_IIP_0020",
+    "decision_id": "DEC-099",
+    "contribution_id": "IIP-0020",
+    "applies_to_shared_boundary_adjuncts": "Gate P05 CaO2+catalase pouch in Designs A & X plus shared microgel boundary cuff across Designs A, B, and X (canonical SA baseline retained pending head-to-head qualification; zero cellular FASTA edits)",
+    "primary_citations": [
+      "PMID:22371586",
+      "PMID:29867165",
+      "PMID:35559682",
+      "PMID:29466233",
+      "PMID:31782946",
+      "PMID:10647616",
+      "PMID:40605797",
+      "PMID:27804292",
+      "PMID:25194818",
+      "PMID:21183510",
+      "PMID:32619459",
+      "PMID:19276268"
+    ],
+    "mandatory_qualification_guards": {
+      "gate_p05_recombinant_human_catalase_species_and_shed_mass_lock": "Requires p05_catalase_uniprot_accession == 'P04040', p05_recombinant_human_catalase_verified=True, obs_p05_catalase_endotoxin_eu_per_mg upper95 <= 0.10 EU/mg, obs_p05_total_implant_catalase_endotoxin_eu upper95 <= 0.50 EU, and obs_p05_day7_shed_catalase_mass_pct upper95 <= 30.0% by human CAT ELISA + protein mass balance across all active CaO2-bearing pouch runs.",
+      "anti_peg_day28_anti_sa_humoral_and_dpr_maleimide_hepatocyte_gate": "Requires unpooled donor-stratified human serum testing (n >= 12 biological donors, 0 failing donors across NORMAL_DONOR_SERA, HIGH_ANTI_PEG_IGG_GT_500NG_ML, ANTI_SA_POSITIVE_HUMAN_SERA, and documented DAY28_SA_FASL_PRIMED_SERA) clearing separated surface C1q/C3b deposition upper95 <= 5.0% and fluid-phase sC5b-9 upper95 <= 5.0% of positive control, macrophage FcgammaR cytokine fold upper95 <= 1.5x, primed-serum FasL EC50 fold shift within [0.50, 2.00] with Emax >= 80.0% apoptosis and >= 80.0% THBD/CFH retention, LC-MS thiosuccinimide ring hydrolysis >= 98.0%, 14-day 50 mg/mL HSA free+polymer-fragment bioactive FasL shedding <= 5.0%, provisional total perimeter Hexa-FasL <= min(2.25 ug, 2.25 ug/m^2 x BSA), LC-MS post-conjugation disulfide/site-occupancy verification (SEC-MALS >= 90% hexamer on H1a, unreacted thiol <= 5.0%), and 72-h primary human hepatocyte Caspase-3/7 and ALT/LDH upper95 <= 1.20x vehicle across both leachates and complete MMP-2/9 digests."
+    }
   }
 }

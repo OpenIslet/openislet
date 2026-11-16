@@ -238,6 +238,25 @@ STAGE0_DECISION_TREE_ENDPOINT_SPECS = [
     ('stage0_design_z_loaded_surface_po2_mmhg', 'obs_design_z_loaded_surface_po2_mmhg', 'obs_design_z_loaded_surface_po2_se', 0.0, 120.0, 'loaded_closed_state_pericellular_cluster_surface_po2_mmhg'),
     ('stage0_design_z_loaded_core_po2_mmhg', 'obs_design_z_loaded_core_po2_mmhg', 'obs_design_z_loaded_core_po2_se', 0.0, 120.0, 'loaded_closed_state_minimum_cluster_core_po2_mmhg'),
     ('stage0_design_z_loaded_perifusion_gsis_si', 'obs_design_z_loaded_perifusion_gsis_si', 'obs_design_z_loaded_perifusion_gsis_se', 0.1, 50.0, 'loaded_closed_state_dynamic_perifusion_gsis_stimulation_index_preserving_readout2_ge3'),
+    # Stage-0 Gate P05 recombinant human CAT (P04040) species/endotoxin/shed-mass lock and anti-PEG / Day-28 anti-SA humoral, DPR-maleimide hydrolysis, and primary human hepatocyte safety gates (IIP-0020; DEC-099):
+    ('stage0_p05_catalase_endotoxin_eu_per_mg', 'obs_p05_catalase_endotoxin_eu_per_mg', 'obs_p05_catalase_endotoxin_eu_per_mg_se', 0.0, 50.0, 'recombinant_human_catalase_endotoxin_burden_eu_per_mg_protein'),
+    ('stage0_p05_total_implant_catalase_endotoxin_eu', 'obs_p05_total_implant_catalase_endotoxin_eu', 'obs_p05_total_implant_catalase_endotoxin_eu_se', 0.0, 50.0, 'total_implant_catalase_endotoxin_burden_eu_across_333p33cm2'),
+    ('stage0_p05_day7_shed_catalase_mass_pct', 'obs_p05_day7_shed_catalase_mass_pct', 'obs_p05_day7_shed_catalase_mass_se', 0.0, 100.0, 'day7_human_cat_elisa_and_mass_balance_shed_protein_percentage'),
+    ('stage0_cuff_surface_c3b_deposition_pct_pos_ctrl', 'obs_cuff_surface_c3b_deposition_pct_pos_ctrl', 'obs_cuff_surface_c3b_deposition_se', 0.0, 200.0, 'surface_c1q_c3b_flow_deposition_percentage_of_positive_control_in_donor_sera'),
+    ('stage0_cuff_soluble_sc5b9_pct_pos_ctrl', 'obs_cuff_soluble_sc5b9_pct_pos_ctrl', 'obs_cuff_soluble_sc5b9_se', 0.0, 200.0, 'fluid_phase_soluble_sc5b9_percentage_of_positive_control_in_donor_sera'),
+    ('stage0_cuff_macrophage_fcgammar_cytokine_fold', 'obs_cuff_macrophage_fcgammar_cytokine_fold', 'obs_cuff_macrophage_fcgammar_cytokine_se', 0.1, 50.0, 'primary_human_macrophage_fcgammar_tnfa_il1b_fold_over_blank_gel'),
+    ('stage0_cuff_primed_serum_fasl_ec50_fold_shift', 'obs_cuff_primed_serum_fasl_ec50_fold_shift', 'obs_cuff_primed_serum_fasl_ec50_fold_se', 0.05, 50.0, 'day28_primed_serum_activated_cd8_fasl_ec50_fold_shift_two_sided_0p5_to_2p0'),
+    ('stage0_cuff_primed_serum_fasl_emax_apoptosis_pct', 'obs_cuff_primed_serum_fasl_emax_apoptosis_pct', 'obs_cuff_primed_serum_fasl_emax_apoptosis_se', 0.0, 100.0, 'day28_primed_serum_activated_cd8_maximal_fasl_apoptosis_percentage'),
+    ('stage0_cuff_primed_serum_thbd_apc_retention_pct', 'obs_cuff_primed_serum_thbd_apc_retention_pct', 'obs_cuff_primed_serum_thbd_apc_retention_se', 0.0, 150.0, 'day28_primed_serum_thrombomodulin_protein_c_activation_retention_percentage'),
+    ('stage0_cuff_primed_serum_cfh_c3b_cleavage_retention_pct', 'obs_cuff_primed_serum_cfh_c3b_cleavage_retention_pct', 'obs_cuff_primed_serum_cfh_c3b_cleavage_retention_se', 0.0, 150.0, 'day28_primed_serum_factor_h_factor_i_c3b_ic3b_cleavage_retention_percentage'),
+    ('stage0_cuff_dpr_ring_hydrolysis_pct', 'obs_cuff_dpr_ring_hydrolysis_pct', 'obs_cuff_dpr_ring_hydrolysis_se', 0.0, 100.0, 'lcms_thiosuccinimide_ring_hydrolysis_completion_percentage_pre_cell_contact'),
+    ('stage0_cuff_14d_hsa_shed_bioactive_fasl_pct', 'obs_cuff_14d_hsa_shed_bioactive_fasl_pct', 'obs_cuff_14d_hsa_shed_bioactive_fasl_se', 0.0, 100.0, 'day14_37c_50mg_ml_hsa_total_free_and_polymer_fragment_bioactive_fasl_release_percentage'),
+    ('stage0_cuff_h1a_sec_mals_hexamer_purity_pct', 'obs_cuff_h1a_sec_mals_hexamer_purity_pct', 'obs_cuff_h1a_sec_mals_hexamer_purity_se', 0.0, 100.0, 'sec_mals_hexameric_h1a_adipoq_fasl_oligomer_fraction_percentage'),
+    ('stage0_cuff_unreacted_free_thiol_pct', 'obs_cuff_unreacted_free_thiol_pct', 'obs_cuff_unreacted_free_thiol_se', 0.0, 100.0, 'post_conjugation_unreacted_accessible_free_thiol_percentage'),
+    ('stage0_cuff_hepatocyte_72h_caspase37_fold', 'obs_cuff_hepatocyte_72h_caspase37_fold', 'obs_cuff_hepatocyte_72h_caspase37_se', 0.1, 50.0, 'primary_human_hepatocyte_72h_caspase3_7_fold_over_vehicle_leachate_and_mmp_digest'),
+    ('stage0_cuff_hepatocyte_72h_alt_ldh_fold', 'obs_cuff_hepatocyte_72h_alt_ldh_fold', 'obs_cuff_hepatocyte_72h_alt_ldh_se', 0.1, 50.0, 'primary_human_hepatocyte_72h_alt_ldh_release_fold_over_vehicle_leachate_and_mmp_digest'),
+    ('stage0_cuff_serum_donor_count', 'obs_cuff_serum_donor_count', 'obs_cuff_serum_donor_count_se', 0.0, 500.0, 'unpooled_human_serum_biological_donor_count_across_humoral_panel'),
+    ('stage0_cuff_serum_failing_donor_count', 'obs_cuff_serum_failing_donor_count', 'obs_cuff_serum_failing_donor_count_se', 0.0, 500.0, 'failing_individual_donor_count_in_humoral_or_hepatocyte_panel'),
 ]
 
 STAGE0_S10_V3_MEAN_KEYS: frozenset[str] = frozenset({
@@ -325,6 +344,27 @@ ALLOWED_P05_BARRIER_SLAB_GEOMETRY_MODES: frozenset[str] = frozenset({
 ALLOWED_DESIGN_Z_DIVIDER_ARMS: frozenset[str] = frozenset({
     'PLAIN_HYDROGEL_140UM',
     'EXPLORATORY_18PCT_DIVIDER_140UM',
+})
+
+# Stage-0 Gate P05 human catalase species lock and Mode-B streptavidin-free / DPR-maleimide humoral cuff qualification enums (IIP-0020; DEC-099):
+ALLOWED_P05_CATALASE_UNIPROT_ACCESSIONS: frozenset[str] = frozenset({
+    'P04040',
+    'P00432_BOVINE_DISQUALIFIED',
+    'P55303_FUNGAL_DISQUALIFIED',
+    'UNSPECIFIED_XENO_DISQUALIFIED',
+})
+ALLOWED_CUFF_BIOCONJUGATION_ARMS: frozenset[str] = frozenset({
+    'CANONICAL_SA_BIOTIN_PEG4MAL_BASELINE',
+    'DPR_HYDROLYZED_CFH_THBD_H1A_ADIPOQ_HEXAFASL',
+    'DPR_HYDROLYZED_CFH_THBD_T0_TNC_FASL',
+    'DPR_HYDROLYZED_CFH_THBD_FASL_FREE',
+    'ZWITTERIONIC_ALGINATE_PEG_FREE_CUFF',
+})
+ALLOWED_CUFF_SERUM_CHALLENGE_STRATA: frozenset[str] = frozenset({
+    'NORMAL_DONOR_SERA',
+    'HIGH_ANTI_PEG_IGG_GT_500NG_ML',
+    'ANTI_SA_POSITIVE_HUMAN_SERA',
+    'DAY28_SA_FASL_PRIMED_SERA',
 })
 
 STAGE0_S10_V3_CONSTRUCT_REGISTRY: dict[str, dict[str, object]] = {
@@ -859,6 +899,24 @@ STAGE0_CUSTOM_DEFAULT_SE: dict[str, float] = {
     'obs_design_z_loaded_surface_po2_mmhg': 0.75,
     'obs_design_z_loaded_core_po2_mmhg': 0.50,
     'obs_design_z_loaded_perifusion_gsis_si': 0.15,
+    'obs_p05_catalase_endotoxin_eu_per_mg': 0.01,
+    'obs_p05_total_implant_catalase_endotoxin_eu': 0.03,
+    'obs_p05_day7_shed_catalase_mass_pct': 1.5,
+    'obs_cuff_surface_c3b_deposition_pct_pos_ctrl': 0.4,
+    'obs_cuff_soluble_sc5b9_pct_pos_ctrl': 0.4,
+    'obs_cuff_macrophage_fcgammar_cytokine_fold': 0.05,
+    'obs_cuff_primed_serum_fasl_ec50_fold_shift': 0.10,
+    'obs_cuff_primed_serum_fasl_emax_apoptosis_pct': 1.5,
+    'obs_cuff_primed_serum_thbd_apc_retention_pct': 1.5,
+    'obs_cuff_primed_serum_cfh_c3b_cleavage_retention_pct': 1.5,
+    'obs_cuff_dpr_ring_hydrolysis_pct': 0.2,
+    'obs_cuff_14d_hsa_shed_bioactive_fasl_pct': 0.3,
+    'obs_cuff_h1a_sec_mals_hexamer_purity_pct': 0.8,
+    'obs_cuff_unreacted_free_thiol_pct': 0.3,
+    'obs_cuff_hepatocyte_72h_caspase37_fold': 0.03,
+    'obs_cuff_hepatocyte_72h_alt_ldh_fold': 0.03,
+    'obs_cuff_serum_donor_count': 1e-12,
+    'obs_cuff_serum_failing_donor_count': 1e-12,
 }
 
 STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
@@ -889,6 +947,8 @@ STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
     'obs_s10_nk_failing_donor_count': 1e-12,
     'obs_ul40_reactive_donor_count': 1e-12,
     'obs_ul40_ctl_failing_donor_count': 1e-12,
+    'obs_cuff_serum_donor_count': 1e-12,
+    'obs_cuff_serum_failing_donor_count': 1e-12,
 }
 
 
@@ -1229,6 +1289,11 @@ STAGE0_DECISION_TREE_BOOLEAN_KEYS: tuple[str, ...] = (
     'p05_full_336h_coupled_o2_h2o2_ca_ph_qualified',
     'design_z_empty_lumen_14d_persistence_verified',
     'design_z_loaded_closed_state_confirmed',
+    'require_full_iip0020_biomaterial_and_humoral_panel',
+    'p05_recombinant_human_catalase_verified',
+    'cuff_dpr_ring_hydrolysis_lcms_verified',
+    'cuff_conjugate_disulfide_and_site_occupancy_lcms_verified',
+    'cuff_hexafasl_inventory_within_provisional_cap_verified',
 )
 
 
@@ -1291,6 +1356,9 @@ def derive_contract(root: Path | str | None = None) -> dict:
                 's6_cluster_size_arm',
                 'p05_barrier_slab_geometry_mode',
                 'design_z_divider_arm',
+                'p05_catalase_uniprot_accession',
+                'cuff_bioconjugation_arm',
+                'cuff_serum_challenge_stratum',
             ],
             'boolean_policy_keys': list(STAGE0_DECISION_TREE_BOOLEAN_KEYS),
             'endpoints': endpoints,
@@ -1425,6 +1493,18 @@ def normalize_measurements(payload: dict, *, require_observation: bool = True,
         elif key == 'design_z_divider_arm':
             if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_DESIGN_Z_DIVIDER_ARMS:
                 raise ValueError(f'design_z_divider_arm must be one of {sorted(ALLOWED_DESIGN_Z_DIVIDER_ARMS)} (IIP-0019; DEC-097)')
+            result[key] = payload[key].strip()
+        elif key == 'p05_catalase_uniprot_accession':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_P05_CATALASE_UNIPROT_ACCESSIONS:
+                raise ValueError(f'p05_catalase_uniprot_accession must be one of {sorted(ALLOWED_P05_CATALASE_UNIPROT_ACCESSIONS)} (IIP-0020; DEC-099)')
+            result[key] = payload[key].strip()
+        elif key == 'cuff_bioconjugation_arm':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_CUFF_BIOCONJUGATION_ARMS:
+                raise ValueError(f'cuff_bioconjugation_arm must be one of {sorted(ALLOWED_CUFF_BIOCONJUGATION_ARMS)} (IIP-0020; DEC-099)')
+            result[key] = payload[key].strip()
+        elif key == 'cuff_serum_challenge_stratum':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_CUFF_SERUM_CHALLENGE_STRATA:
+                raise ValueError(f'cuff_serum_challenge_stratum must be one of {sorted(ALLOWED_CUFF_SERUM_CHALLENGE_STRATA)} (IIP-0020; DEC-099)')
             result[key] = payload[key].strip()
         else:
             if not isinstance(payload[key], str) or not payload[key].strip() or len(payload[key]) > 120:
@@ -1863,6 +1943,14 @@ def evaluate_stage0_decision_tree(
         'p05_full_336h_coupled_o2_h2o2_ca_ph_qualified',
         'design_z_empty_lumen_14d_persistence_verified',
         'design_z_loaded_closed_state_confirmed',
+        'p05_catalase_uniprot_accession',
+        'cuff_bioconjugation_arm',
+        'cuff_serum_challenge_stratum',
+        'require_full_iip0020_biomaterial_and_humoral_panel',
+        'p05_recombinant_human_catalase_verified',
+        'cuff_dpr_ring_hydrolysis_lcms_verified',
+        'cuff_conjugate_disulfide_and_site_occupancy_lcms_verified',
+        'cuff_hexafasl_inventory_within_provisional_cap_verified',
     }
     unknown_keys = sorted(set(observations) - set(spec_by_mean) - set(spec_by_se) - allowed_boolean_and_meta_flags)
     if unknown_keys:
@@ -1886,6 +1974,9 @@ def evaluate_stage0_decision_tree(
         ('s6_cluster_size_arm', ALLOWED_S6_CLUSTER_SIZE_ARMS),
         ('p05_barrier_slab_geometry_mode', ALLOWED_P05_BARRIER_SLAB_GEOMETRY_MODES),
         ('design_z_divider_arm', ALLOWED_DESIGN_Z_DIVIDER_ARMS),
+        ('p05_catalase_uniprot_accession', ALLOWED_P05_CATALASE_UNIPROT_ACCESSIONS),
+        ('cuff_bioconjugation_arm', ALLOWED_CUFF_BIOCONJUGATION_ARMS),
+        ('cuff_serum_challenge_stratum', ALLOWED_CUFF_SERUM_CHALLENGE_STRATA),
     ):
         if _adj_k in observations and observations[_adj_k] is not None:
             _adj_v = observations[_adj_k]
@@ -3372,6 +3463,156 @@ def evaluate_stage0_decision_tree(
             'design_z_two_stage_status': iip0019_dz_status,
         }
 
+    # Stage-0 Gate P05 recombinant human CAT (P04040) species/shed-mass/endotoxin lock and anti-PEG / Day-28 anti-SA humoral + DPR-maleimide/hepatocyte cuff gate (IIP-0020; DEC-099):
+    _req_iip0020_full = observations.get('require_full_iip0020_biomaterial_and_humoral_panel') is True
+    _p05_cat_acc = observations.get('p05_catalase_uniprot_accession')
+    if isinstance(_p05_cat_acc, str):
+        _p05_cat_acc = _p05_cat_acc.strip()
+    _cuff_arm = observations.get('cuff_bioconjugation_arm')
+    if isinstance(_cuff_arm, str):
+        _cuff_arm = _cuff_arm.strip()
+    _cuff_stratum = observations.get('cuff_serum_challenge_stratum')
+    if isinstance(_cuff_stratum, str):
+        _cuff_stratum = _cuff_stratum.strip()
+
+    _iip0020_p05_mean_keys = (
+        'obs_p05_catalase_endotoxin_eu_per_mg',
+        'obs_p05_total_implant_catalase_endotoxin_eu',
+        'obs_p05_day7_shed_catalase_mass_pct',
+    )
+    _iip0020_cuff_core_mean_keys = (
+        'obs_cuff_surface_c3b_deposition_pct_pos_ctrl',
+        'obs_cuff_soluble_sc5b9_pct_pos_ctrl',
+        'obs_cuff_macrophage_fcgammar_cytokine_fold',
+        'obs_cuff_primed_serum_thbd_apc_retention_pct',
+        'obs_cuff_primed_serum_cfh_c3b_cleavage_retention_pct',
+        'obs_cuff_dpr_ring_hydrolysis_pct',
+        'obs_cuff_hepatocyte_72h_caspase37_fold',
+        'obs_cuff_hepatocyte_72h_alt_ldh_fold',
+    )
+    _iip0020_cuff_donor_count_keys = (
+        'obs_cuff_serum_donor_count',
+        'obs_cuff_serum_failing_donor_count',
+    )
+    _iip0020_fasl_mean_keys = (
+        'obs_cuff_primed_serum_fasl_ec50_fold_shift',
+        'obs_cuff_primed_serum_fasl_emax_apoptosis_pct',
+        'obs_cuff_14d_hsa_shed_bioactive_fasl_pct',
+    )
+    _iip0020_p05_species_active = bool(
+        _req_iip0020_full
+        or _p05_cat_acc is not None
+        or observations.get('p05_recombinant_human_catalase_verified') is not None
+        or any(_mk in validated_stage0 for _mk in _iip0020_p05_mean_keys)
+    )
+    _iip0020_cuff_active = bool(
+        _req_iip0020_full
+        or _cuff_arm is not None
+        or _cuff_stratum is not None
+        or observations.get('cuff_dpr_ring_hydrolysis_lcms_verified') is not None
+        or observations.get('cuff_conjugate_disulfide_and_site_occupancy_lcms_verified') is not None
+        or observations.get('cuff_hexafasl_inventory_within_provisional_cap_verified') is not None
+        or any(_mk in validated_stage0 for _mk in (*_iip0020_cuff_core_mean_keys, *_iip0020_cuff_donor_count_keys, *_iip0020_fasl_mean_keys, 'obs_cuff_h1a_sec_mals_hexamer_purity_pct', 'obs_cuff_unreacted_free_thiol_pct'))
+    )
+    iip0020_p05_species_status: str | None = None
+    iip0020_cuff_status: str | None = None
+    iip0020_hold_status: str | None = None
+
+    if _iip0020_p05_species_active and _dz_arm_val is None:
+        _iip20_p05_quant_ok = all(
+            _mk in validated_stage0 and se_provenance_by_mean.get(_mk) == 'EXPLICIT_SE_SUPPLIED'
+            for _mk in _iip0020_p05_mean_keys
+        )
+        if _p05_cat_acc != 'P04040' or observations.get('p05_recombinant_human_catalase_verified') is not True:
+            iip0020_p05_species_status = 'HOLD_P05_XENO_OR_UNVERIFIED_CATALASE_SPECIES_REQUIRES_HUMAN_P04040'
+        elif not _iip20_p05_quant_ok:
+            iip0020_p05_species_status = 'HOLD_P05_INCOMPLETE_OR_DEFAULT_SE_CATALASE_ENDOTOXIN_OR_SHED_MASS_PANEL'
+        elif (
+            _upper95('obs_p05_catalase_endotoxin_eu_per_mg') > 0.10
+            or _upper95('obs_p05_total_implant_catalase_endotoxin_eu') > 0.50
+            or _upper95('obs_p05_day7_shed_catalase_mass_pct') > 30.0
+        ):
+            iip0020_p05_species_status = 'HOLD_P05_CATALASE_ENDOTOXIN_OR_DAY7_SHED_MASS_EXCEEDED'
+        else:
+            iip0020_p05_species_status = 'CLEARED_P05_HUMAN_P04040_SPECIES_ENDOTOXIN_AND_SHED_MASS_GATE'
+        if iip0020_p05_species_status != 'CLEARED_P05_HUMAN_P04040_SPECIES_ENDOTOXIN_AND_SHED_MASS_GATE':
+            iip0020_hold_status = iip0020_p05_species_status
+
+    if _iip0020_cuff_active:
+        _is_fasl_free = _cuff_arm == 'DPR_HYDROLYZED_CFH_THBD_FASL_FREE'
+        _is_h1a = _cuff_arm == 'DPR_HYDROLYZED_CFH_THBD_H1A_ADIPOQ_HEXAFASL'
+        _is_dpr_covalent = _cuff_arm in (
+            'DPR_HYDROLYZED_CFH_THBD_H1A_ADIPOQ_HEXAFASL',
+            'DPR_HYDROLYZED_CFH_THBD_T0_TNC_FASL',
+            'DPR_HYDROLYZED_CFH_THBD_FASL_FREE',
+        )
+        _req_cuff_keys = list(_iip0020_cuff_core_mean_keys)
+        if not _is_fasl_free:
+            _req_cuff_keys.extend(_iip0020_fasl_mean_keys)
+        if _is_dpr_covalent:
+            _req_cuff_keys.append('obs_cuff_unreacted_free_thiol_pct')
+        if _is_h1a:
+            _req_cuff_keys.append('obs_cuff_h1a_sec_mals_hexamer_purity_pct')
+        _cuff_quant_ok = all(
+            _mk in validated_stage0 and se_provenance_by_mean.get(_mk) == 'EXPLICIT_SE_SUPPLIED'
+            for _mk in _req_cuff_keys
+        ) and all(
+            _mk in validated_stage0 and abs(validated_stage0[_mk] - round(validated_stage0[_mk])) <= 1e-9
+            for _mk in _iip0020_cuff_donor_count_keys
+        )
+        _cuff_donor_n = int(round(validated_stage0['obs_cuff_serum_donor_count'])) if 'obs_cuff_serum_donor_count' in validated_stage0 else -1
+        _cuff_fail_n = int(round(validated_stage0['obs_cuff_serum_failing_donor_count'])) if 'obs_cuff_serum_failing_donor_count' in validated_stage0 else 999
+        if _cuff_arm is None or _cuff_stratum is None or not _cuff_quant_ok:
+            iip0020_cuff_status = 'HOLD_CUFF_INCOMPLETE_OR_DEFAULT_SE_HUMORAL_MALEIMIDE_HEPATOCYTE_PANEL'
+        elif observations.get('cuff_dpr_ring_hydrolysis_lcms_verified') is not True or _lower95('obs_cuff_dpr_ring_hydrolysis_pct') < 98.0:
+            iip0020_cuff_status = 'HOLD_CUFF_THIOSUCCINIMIDE_RING_HYDROLYSIS_LT_98PCT_RETRO_MICHAEL_HAZARD'
+        elif _is_dpr_covalent and (
+            observations.get('cuff_conjugate_disulfide_and_site_occupancy_lcms_verified') is not True
+            or _upper95('obs_cuff_unreacted_free_thiol_pct') > 5.0
+        ):
+            iip0020_cuff_status = 'HOLD_CUFF_CONJUGATE_DISULFIDE_SITE_OCCUPANCY_OR_FREE_THIOL_FAILED'
+        elif _is_h1a and _lower95('obs_cuff_h1a_sec_mals_hexamer_purity_pct') < 90.0:
+            iip0020_cuff_status = 'HOLD_CUFF_H1A_HEXAMER_PURITY_LT_90PCT'
+        elif not _is_fasl_free and (
+            observations.get('cuff_hexafasl_inventory_within_provisional_cap_verified') is not True
+            or _upper95('obs_cuff_14d_hsa_shed_bioactive_fasl_pct') > 5.0
+            or _upper95('obs_cuff_primed_serum_fasl_ec50_fold_shift') > 2.0
+            or _lower95('obs_cuff_primed_serum_fasl_ec50_fold_shift') < 0.50
+            or _lower95('obs_cuff_primed_serum_fasl_emax_apoptosis_pct') < 80.0
+        ):
+            iip0020_cuff_status = 'HOLD_CUFF_FASL_CAP_SHEDDING_OR_PRIMED_SERUM_POTENCY_FAILED'
+        elif (
+            _cuff_donor_n < 12
+            or _cuff_fail_n > 0
+            or _upper95('obs_cuff_surface_c3b_deposition_pct_pos_ctrl') > 5.0
+            or _upper95('obs_cuff_soluble_sc5b9_pct_pos_ctrl') > 5.0
+            or _upper95('obs_cuff_macrophage_fcgammar_cytokine_fold') > 1.5
+            or _lower95('obs_cuff_primed_serum_thbd_apc_retention_pct') < 80.0
+            or _lower95('obs_cuff_primed_serum_cfh_c3b_cleavage_retention_pct') < 80.0
+        ):
+            iip0020_cuff_status = 'HOLD_CUFF_ANTI_PEG_OR_DAY28_ANTI_SA_HUMORAL_COMPLEMENT_OR_COFACTOR_FAILED'
+        elif (
+            _upper95('obs_cuff_hepatocyte_72h_caspase37_fold') > 1.20
+            or _upper95('obs_cuff_hepatocyte_72h_alt_ldh_fold') > 1.20
+        ):
+            iip0020_cuff_status = 'HOLD_CUFF_PRIMARY_HUMAN_HEPATOCYTE_LEACHATE_OR_DIGEST_TOXICITY_EXCEEDED'
+        else:
+            iip0020_cuff_status = 'CLEARED_CUFF_HUMORAL_HYDROLYSIS_AND_HEPATOCYTE_SAFETY_GATE'
+        if iip0020_cuff_status != 'CLEARED_CUFF_HUMORAL_HYDROLYSIS_AND_HEPATOCYTE_SAFETY_GATE' and iip0020_hold_status is None:
+            iip0020_hold_status = iip0020_cuff_status
+
+    iip0020_eval_summary: dict[str, object] | None = None
+    if _iip0020_p05_species_active or _iip0020_cuff_active:
+        iip0020_eval_summary = {
+            'gate_pass': iip0020_hold_status is None,
+            'hold_status': iip0020_hold_status,
+            'p05_catalase_uniprot_accession': _p05_cat_acc,
+            'p05_catalase_species_status': iip0020_p05_species_status,
+            'cuff_bioconjugation_arm': _cuff_arm,
+            'cuff_serum_challenge_stratum': _cuff_stratum,
+            'cuff_humoral_and_safety_status': iip0020_cuff_status,
+        }
+
     # S8b TYK2 x inducible-promoter epistasis: support explicit enumerated scale {FRACTION_HALF_EFFECT, PP_HALF_EFFECT, PP_FULL_CONTRAST, DID_PP} with per-endpoint scale retention across batches, unified fractional half-effect threshold (point < -0.05 or lower95 < -0.10), and sign-independent underpowered SE hold (AUDIT-REF & AUDIT-REF; DEC-042/044):
     s8b_scale_enum = observations.get('s8b_epistasis_estimand_scale')
     if s8b_scale_enum is not None:
@@ -3519,6 +3760,12 @@ def evaluate_stage0_decision_tree(
             resolved_arch['p05_microbead_catalase_barrier_gate_status'] = iip0019_p05_status
         if iip0019_dz_status is not None:
             resolved_arch['design_z_two_stage_optode_gate_status'] = iip0019_dz_status
+    if iip0020_eval_summary is not None:
+        resolved_arch['biomaterial_antigen_humoral_and_human_cuff_evaluation'] = iip0020_eval_summary
+        if iip0020_p05_species_status is not None:
+            resolved_arch['p05_catalase_species_gate_status'] = iip0020_p05_species_status
+        if iip0020_cuff_status is not None:
+            resolved_arch['cuff_humoral_and_hepatocyte_gate_status'] = iip0020_cuff_status
     if (
         _adj_arm_raw is not None
         or adjunct_depletion_mode is not None
@@ -3771,6 +4018,8 @@ def evaluate_stage0_decision_tree(
         resolved_arch['lot_maturation_status'] = l3_multimir_hold_status
     elif iip0019_transport_hold_status is not None:
         resolved_arch['lot_maturation_status'] = iip0019_transport_hold_status
+    elif iip0020_hold_status is not None:
+        resolved_arch['lot_maturation_status'] = iip0020_hold_status
     elif challenger_hold_status is not None:
         resolved_arch['lot_maturation_status'] = challenger_hold_status
     elif avascular_outer_band_dropout and not omental_revascularization_cleared:
@@ -4304,6 +4553,7 @@ def evaluate_stage0_decision_tree(
         and combined_stress_spec.get('full_7metric_panel_complete') is True
         and combined_stress_coupon_status == 'RETAIN_EMBODIMENT_A_STAR_4143BP'
         and not is_comp_r4_product
+        and (not _req_iip0020_full or (iip0020_hold_status is None and (_dz_arm_val is not None or iip0020_p05_species_status == 'CLEARED_P05_HUMAN_P04040_SPECIES_ENDOTOXIN_AND_SHED_MASS_GATE') and iip0020_cuff_status == 'CLEARED_CUFF_HUMORAL_HYDROLYSIS_AND_HEPATOCYTE_SAFETY_GATE'))
     )
     any_fallback_switch_triggered = bool(
         s1_promoted

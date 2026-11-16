@@ -35,6 +35,12 @@
    "pubdate_year": "1999",
    "title": "A20 inhibits cytokine-induced apoptosis and nuclear factor kappaB-dependent gene activation in islets."
   },
+  "10647616": {
+   "first_author": "Breitz HB",
+   "journal": "J Nucl Med",
+   "pubdate_year": "2000",
+   "title": "Clinical optimization of pretargeted radioimmunotherapy with antibody-streptavidin conjugate and 90Y-DOTA-biotin."
+  },
   "10850706": {
    "first_author": "Boyington JC",
    "journal": "Nature",
@@ -425,6 +431,12 @@
    "pubdate_year": "2009",
    "title": "In vitro antibody response to tetanus in the MIMIC system is a representative measure of vaccine immunogenicity."
   },
+  "19276268": {
+   "first_author": "Verbrugge I",
+   "journal": "Clin Cancer Res",
+   "pubdate_year": "2009",
+   "title": "Combining radiotherapy with APO010 in cancer treatment."
+  },
   "19336676": {
    "first_author": "Moore F",
    "journal": "Diabetes",
@@ -514,6 +526,12 @@
    "journal": "PLoS One",
    "pubdate_year": "2010",
    "title": "Reduced expression of IFIH1 is protective for type 1 diabetes."
+  },
+  "21183510": {
+   "first_author": "Eisele G",
+   "journal": "Neuro Oncol",
+   "pubdate_year": "2011",
+   "title": "APO010, a synthetic hexameric CD95 ligand, induces human glioma cell death in vitro and in vivo."
   },
   "2124002": {
    "first_author": "Vitiello A",
@@ -803,6 +821,12 @@
    "pubdate_year": "2014",
    "title": "Lack of evidence for a role of islet autoimmunity in the aetiology of canine diabetes mellitus."
   },
+  "25194818": {
+   "first_author": "Lyon RP",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2014",
+   "title": "Self-hydrolyzing maleimides improve the stability and pharmacological properties of antibody-drug conjugates."
+  },
   "25303535": {
    "first_author": "Pagliuca FW",
    "journal": "Cell",
@@ -995,6 +1019,12 @@
    "pubdate_year": "2017",
    "title": "Immunogenicity of human embryonic stem cell-derived beta cells."
   },
+  "27804292": {
+   "first_author": "Yang Q",
+   "journal": "Anal Chem",
+   "pubdate_year": "2016",
+   "title": "Analysis of Pre-existing IgG and IgM Antibodies against Polyethylene Glycol (PEG) in the General Population."
+  },
   "27806260": {
    "first_author": "Liu W",
    "journal": "Structure",
@@ -1114,6 +1144,12 @@
    "journal": "J Diabetes Sci Technol",
    "pubdate_year": "2018",
    "title": "The UVA/Padova Type 1 Diabetes Simulator Goes From Single Meal to Single Day."
+  },
+  "29466233": {
+   "first_author": "Berth M",
+   "journal": "Clin Chem Lab Med",
+   "pubdate_year": "2018",
+   "title": "Anti-streptavidin IgG antibody interference in anti-cyclic citrullinated peptide (CCP) IgG antibody assays is a rare but important cause of false-positive anti-CCP results."
   },
   "29632329": {
    "first_author": "Hammer Q",
@@ -1367,6 +1403,12 @@
    "pubdate_year": "2019",
    "title": "PD-L1:CD80 Cis-Heterodimer Triggers the Co-stimulatory Receptor CD28 While Repressing the Inhibitory PD-1 and CTLA-4 Pathways."
   },
+  "31782946": {
+   "first_author": "Verougstraete N",
+   "journal": "Clin Chem Lab Med",
+   "pubdate_year": "2020",
+   "title": "Interference of anti-streptavidin antibodies in immunoassays: a very rare phenomenon or a more common finding?"
+  },
   "31900242": {
    "first_author": "Demine S",
    "journal": "Stem Cell Res Ther",
@@ -1414,6 +1456,12 @@
    "journal": "Mol Metab",
    "pubdate_year": "2020",
    "title": "G6PC2 confers protection against hypoglycemia upon ketogenic diet feeding and prolonged fasting."
+  },
+  "32619459": {
+   "first_author": "Jandu H",
+   "journal": "Exp Hematol",
+   "pubdate_year": "2020",
+   "title": "Characterization of resistance to a recombinant hexameric Fas-ligand (APO010) in human cancer cell lines."
   },
   "32668238": {
    "first_author": "Leite NC",
@@ -1942,6 +1990,12 @@
    "journal": "N Engl J Med",
    "pubdate_year": "2025",
    "title": "Stem Cell-Derived, Fully Differentiated Islets for Type 1 Diabetes."
+  },
+  "40605797": {
+   "first_author": "Orozco JJ",
+   "journal": "Mol Cancer Ther",
+   "pubdate_year": "2025",
+   "title": "Pretargeted Anti-CD20 Radioimmunotherapy with scFv Fusion Protein Safely Combines with BEAM and ASCT in Patients with High-risk B-cell Lymphomas."
   },
   "40668892": {
    "first_author": "Zhao D",

@@ -6820,5 +6820,187 @@
       },
       "strict_interpretation_boundary": "Uncalibrated illustrative toy calculation without spatial transport, receptor shedding, or parameter uncertainty. Justifies retiring ONLY the physically impossible same-membrane cis-IL1RAcP competition mechanism for trans endothelial IL1R2; it does NOT retire extracellular interstitial IL-1beta capture by iECs or cooperative soluble sIL1R2 + sIL1RAcP ligand neutralization (Smith et al. 2003 PMID:12530978), nor does comparing assumed 16%/50% ligand depletion against 85% receptor knockdown prove equal-capacity superiority."
     }
+  },
+  "biomaterial_cuff_and_catalase_structural_audit_iip_0020": {
+    "contribution_id": "IIP-0020",
+    "decision_id": "DEC-099",
+    "license_provenance": {
+      "rcsb_pdb_coordinates_license": "CC0-1.0",
+      "alphafold_db_v6_license": "CC-BY-4.0",
+      "hosted_af3_or_boltz_api_called": false
+    },
+    "registered_pdb_entries": {
+      "1DGF": {
+        "role": "Human erythrocyte catalase tetramer reference for Gate P05 P04040 lock",
+        "uniprot": "P04040",
+        "status": "ACCEPTED_REFERENCE"
+      },
+      "1MK5": {
+        "role": "Core Streptomyces avidinii streptavidin (P22629[37-163], 127 aa) baseline control",
+        "uniprot": "P22629",
+        "status": "BASELINE_XENO_CONTROL"
+      },
+      "2WII": {
+        "role": "Human Factor H SCR1-4:C3b cofactor complex (paired with AF-P08603-F1-v6 SCR5-7 for CFH[19-448])",
+        "uniprot": "P08603",
+        "status": "MODE_B_CHALLENGER_REFERENCE"
+      },
+      "1DX5": {
+        "role": "Human Thrombomodulin EGF4-6:Thrombin complex (4 ASU copies)",
+        "uniprot": "P07204",
+        "status": "MODE_B_CHALLENGER_REFERENCE"
+      },
+      "4MSV": {
+        "role": "Human FasL trimer bound to DcR3 decoy receptor (C3 template)",
+        "uniprot": "P48023",
+        "status": "MODE_B_CHALLENGER_REFERENCE"
+      },
+      "5L19": {
+        "role": "Human FasL ectodomain mutant trimer (0.711 A C-alpha RMSD to 4MSV)",
+        "uniprot": "P48023",
+        "status": "MODE_B_CHALLENGER_REFERENCE"
+      },
+      "3TJE": {
+        "role": "Human Fas receptor ectodomain (0.821 A 8-Cys CRD2 C-alpha RMSD onto DcR3 in 4MSV)",
+        "uniprot": "P25445",
+        "status": "MODE_B_CHALLENGER_REFERENCE"
+      },
+      "3EZQ": {
+        "role": "Intracellular human FAS death-domain : FADD DISC oligomer (39.65 A reference spacing)",
+        "uniprot": "P25445",
+        "status": "MODE_B_CHALLENGER_REFERENCE"
+      },
+      "1K6F": {
+        "role": "[(PPG)10]3 collagen triple-helix reference (noting ADIPOQ Cys36 hexamerization is disulfide/sequence-modeled, not crystallographic)",
+        "uniprot": "Q80BK4",
+        "status": "STRUCTURAL_REFERENCE"
+      },
+      "2FHA": {
+        "role": "Human FTH1 24-mer ferritin nanocage (43.4 A C3 Thr5 spacing vs 19.62 A FasL base, 72 Cys, ~980 kDa)",
+        "uniprot": "P02794",
+        "status": "REJECTED_GEOMETRIC_AND_CYSTEINE_MISMATCH"
+      }
+    },
+    "alphafold_db_v6_domain_and_pae_summaries": {
+      "P04040": {
+        "len_aa": 527,
+        "global_plddt_mean": 95.79,
+        "pae_matrix_mean_A": 4.67,
+        "domain_1_504_plddt": 98.19,
+        "tail_505_527_plddt": 43.2,
+        "domain_1_504_pae_mean": 2.83
+      },
+      "P07204": {
+        "len_aa": 575,
+        "global_plddt_mean": 78.65,
+        "pae_matrix_mean_A": 22.08,
+        "stalk_481_497_plddt": 38.52
+      },
+      "P25445": {
+        "len_aa": 335,
+        "global_plddt_mean": 77.88,
+        "pae_matrix_mean_A": 21.5,
+        "ecd_58_168_plddt": 94.15,
+        "hinge_169_223_plddt": 65.06,
+        "dd_224_333_plddt": 84.47,
+        "interdomain_ecd_vs_dd_pae_mean": 27.92
+      }
+    },
+    "pdb_1dx5_thbd_cys480_exosite_clearance_and_cys498_handle_qualification": {
+      "exosite_subset_vs_all_heavy_atom_disambiguation": "Across the 4 cognate EGF4-6:Thrombin ASU pairs in PDB 1DX5, Cys480 (disulfide-paired to Cys466 inside EGF6) clears the Exosite-I side-chain subset by 6.85-7.22 A min heavy-atom distance (6.52-6.87 A across all cognate thrombin heavy atoms; 8.54-8.77 A from Cys480 C-alpha to nearest thrombin heavy atom, and 13.17-13.27 A true C-alpha-to-C-alpha minimum). In THBD[363-497]-Cys (136 aa), the DPR-maleimide capture handle is the appended C-terminal Cys498 downstream of the native 481-497 flexible O-glycosylated spacer (unresolved in 1DX5; AF-P07204-F1-v6 stalk pLDDT 38.52), requiring post-conjugation LC-MS disulfide/site-occupancy and Protein C activation (>=80%) verification.",
+      "asu_copy_distances": {
+        "I_MA": {
+          "cys480_all_heavy_min_dist_A": 6.86,
+          "cys480_CA_to_thrombin_heavy_min_dist_A": 8.54
+        },
+        "J_NB": {
+          "cys480_all_heavy_min_dist_A": 6.87,
+          "cys480_CA_to_thrombin_heavy_min_dist_A": 8.64
+        },
+        "K_OC": {
+          "cys480_all_heavy_min_dist_A": 7.22,
+          "cys480_CA_to_thrombin_heavy_min_dist_A": 8.77
+        },
+        "L_PD": {
+          "cys480_all_heavy_min_dist_A": 6.85,
+          "cys480_CA_to_thrombin_heavy_min_dist_A": 8.66
+        }
+      }
+    },
+    "cfh_19_448_and_h1a_attachment_site_qualifications": {
+      "cfh_19_448_cys448": "CFH[19-448] (430 aa) retains all 14 annotated SCR1-7 intra-domain disulfides (Cys21-Cys442) and omits SCR8 partner Cys494, leaving native Cys448 unpaired; because UniProt annotates SCR8 as 446-507 (so terminal 445-448 VKTC extends 3 aa into truncated SCR8), Stage-0 conjugation gates require intact disulfide mapping and >=80% Factor I C3b->iC3b cofactor retention.",
+      "h1a_cys_ggs_adipoq_fasl": "Appending N-terminal Cys-GGS ahead of ADIPOQ[19-107]-FasL[139-281] supplies a solvent-accessible thiol intended to preserve ADIPOQ Cys36 inter-trimer disulfide hexamerization, but maleimide chemistry is not inherently orthogonal to other accessible thiols; Stage-0 release requires SEC-MALS hexamer purity >=90%, unreacted thiol <=5%, LC-MS site-occupancy/disulfide verification, and preserved effector T-cell EC50/Emax."
+    },
+    "replayable_c3_and_two_trimer_symmetry_stitch_geometry": {
+      "superposition_method": "Rigid Kabsch alignment of 3TJE hFas-ECD 8-Cys CRD2 C-alpha atoms onto each of the 3 DcR3 chains in 4MSV hFasL3:DcR3_3 (0.821 A CRD2 C-alpha RMSD; 0 backbone clashes <2.2 A and 28 unrelaxed side-chain contacts <2.2 A prior to side-chain rotamer relaxation), followed by rigid translation [D_cc, 0, 0] of a second coplanar C3 trimer along the membrane plane (delta_z = 0.0 A).",
+      "single_trimer_summary": {
+        "fasl_5l19_vs_4msv_ca_rmsd_A": 0.711,
+        "fas_ecd_3tje_vs_dcr3_4msv_8cys_crd2_rmsd_A": 0.821,
+        "raw_unshifted_superposition_min_dist_A": 0.5,
+        "raw_unshifted_heavy_clashes_lt_2p2A_per_interface": 28,
+        "raw_unshifted_backbone_clashes_lt_2p2A_per_interface": 0,
+        "rigid_body_c3_radial_relief_shift_A": 0.0,
+        "post_relief_min_heavy_dist_A": 0.5,
+        "post_relief_heavy_clashes_lt_2p2A": 28,
+        "post_relief_backbone_clashes_lt_2p2A": 0,
+        "post_relief_interface_atom_pairs_le_4p5A_per_protomer": 427,
+        "intra_trimer_fasl_n143_spacing_A": 19.62,
+        "adjacent_protomer_fasl_c281_to_n143_dist_A": 11.15,
+        "scfasl3_10aa_g4s2_contour_length_38A_bridges_c281_to_n143": true,
+        "intra_trimer_fas_c147_membrane_triangle_side_A": 42.92
+      },
+      "two_trimer_spacing_sweep_A": [
+        {
+          "c3_axis_center_to_center_A": 64.0,
+          "min_inter_trimer_heavy_atom_dist_A": 1.78,
+          "inter_trimer_heavy_clashes_lt_2p2A": 4,
+          "inter_trimer_backbone_clashes_lt_2p2A": 0,
+          "nearest_inter_trimer_fas_c147_membrane_dist_A": 29.77,
+          "median_inter_trimer_fas_c147_membrane_dist_A": 67.3,
+          "max_inter_trimer_fas_c147_membrane_dist_A": 108.88,
+          "coplanar_membrane_delta_z_A": 0.0
+        },
+        {
+          "c3_axis_center_to_center_A": 66.0,
+          "min_inter_trimer_heavy_atom_dist_A": 3.44,
+          "inter_trimer_heavy_clashes_lt_2p2A": 0,
+          "inter_trimer_backbone_clashes_lt_2p2A": 0,
+          "nearest_inter_trimer_fas_c147_membrane_dist_A": 31.13,
+          "median_inter_trimer_fas_c147_membrane_dist_A": 69.16,
+          "max_inter_trimer_fas_c147_membrane_dist_A": 110.82,
+          "coplanar_membrane_delta_z_A": 0.0
+        },
+        {
+          "c3_axis_center_to_center_A": 68.0,
+          "min_inter_trimer_heavy_atom_dist_A": 5.31,
+          "inter_trimer_heavy_clashes_lt_2p2A": 0,
+          "inter_trimer_backbone_clashes_lt_2p2A": 0,
+          "nearest_inter_trimer_fas_c147_membrane_dist_A": 32.56,
+          "median_inter_trimer_fas_c147_membrane_dist_A": 71.03,
+          "max_inter_trimer_fas_c147_membrane_dist_A": 112.76,
+          "coplanar_membrane_delta_z_A": 0.0
+        },
+        {
+          "c3_axis_center_to_center_A": 74.0,
+          "min_inter_trimer_heavy_atom_dist_A": 11.02,
+          "inter_trimer_heavy_clashes_lt_2p2A": 0,
+          "inter_trimer_backbone_clashes_lt_2p2A": 0,
+          "nearest_inter_trimer_fas_c147_membrane_dist_A": 37.16,
+          "median_inter_trimer_fas_c147_membrane_dist_A": 76.68,
+          "max_inter_trimer_fas_c147_membrane_dist_A": 118.59,
+          "coplanar_membrane_delta_z_A": 0.0
+        }
+      ],
+      "fth1_2fha_disqualification": {
+        "fth1_bare_outer_diameter_A": 129.79,
+        "fth1_plus_8x_fasl3_estimated_outer_diameter_A": 253.8,
+        "fth1_n_term_thr5_radius_from_center_A": 63.2,
+        "fth1_c_term_gly176_radius_from_center_A": 39.54,
+        "c_term_buried_inside_4fold_cavity_inward_of_surface": true,
+        "nearest_n_term_thr5_c3_pore_spacing_A": 43.4,
+        "mismatch_vs_fasl_n143_trimer_base_spacing_A": 23.77,
+        "total_native_free_cysteines_per_24mer": 72
+      }
+    }
   }
 }

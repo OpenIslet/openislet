@@ -638,6 +638,11 @@ STAGE0_PERSISTED_BOOLEAN_FLAGS: tuple[str, ...] = (
     "p05_full_336h_coupled_o2_h2o2_ca_ph_qualified",
     "design_z_empty_lumen_14d_persistence_verified",
     "design_z_loaded_closed_state_confirmed",
+    "require_full_iip0020_biomaterial_and_humoral_panel",
+    "p05_recombinant_human_catalase_verified",
+    "cuff_dpr_ring_hydrolysis_lcms_verified",
+    "cuff_conjugate_disulfide_and_site_occupancy_lcms_verified",
+    "cuff_hexafasl_inventory_within_provisional_cap_verified",
 )
 
 HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS: tuple[str, ...] = (
@@ -682,6 +687,9 @@ ALLOWED_ORDERED_BATCH_LEDGER_KEYS: frozenset[str] = frozenset({
     "s6_cluster_size_arm",
     "p05_barrier_slab_geometry_mode",
     "design_z_divider_arm",
+    "p05_catalase_uniprot_accession",
+    "cuff_bioconjugation_arm",
+    "cuff_serum_challenge_stratum",
     *HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS,
 })
 
@@ -1028,6 +1036,9 @@ def _validate_prior_posterior_report(
                 "s6_cluster_size_arm",
                 "p05_barrier_slab_geometry_mode",
                 "design_z_divider_arm",
+                "p05_catalase_uniprot_accession",
+                "cuff_bioconjugation_arm",
+                "cuff_serum_challenge_stratum",
             ):
                 if adj_meta_k in entry and entry[adj_meta_k] is not None:
                     merged_hist_payload_for_norm[adj_meta_k] = entry[adj_meta_k]
@@ -1240,6 +1251,9 @@ def _validate_prior_posterior_report(
                     "s6_cluster_size_arm",
                     "p05_barrier_slab_geometry_mode",
                     "design_z_divider_arm",
+                    "p05_catalase_uniprot_accession",
+                    "cuff_bioconjugation_arm",
+                    "cuff_serum_challenge_stratum",
                 ):
                     if entry.get(meta_k) is not None:
                         pooled_hist_for_s0[meta_k] = entry[meta_k]
@@ -1821,6 +1835,9 @@ def run_calibration(
         "s6_cluster_size_arm",
         "p05_barrier_slab_geometry_mode",
         "design_z_divider_arm",
+        "p05_catalase_uniprot_accession",
+        "cuff_bioconjugation_arm",
+        "cuff_serum_challenge_stratum",
         *stage0_persisted_boolean_flags,
     ):
         if qp_meta_k in input_payload and input_payload[qp_meta_k] is not None:
@@ -1921,6 +1938,9 @@ def run_calibration(
             "s6_cluster_size_arm",
             "p05_barrier_slab_geometry_mode",
             "design_z_divider_arm",
+            "p05_catalase_uniprot_accession",
+            "cuff_bioconjugation_arm",
+            "cuff_serum_challenge_stratum",
         ):
             if hist_entry.get(meta_k) is not None:
                 pooled_stage0_payload[meta_k] = hist_entry[meta_k]
@@ -2233,6 +2253,31 @@ def run_calibration(
     if len(seen_dz_arms) > 1:
         raise ValueError(
             "Cannot pool distinct design_z_divider_arm conditions across calibration batches (IIP-0019; DEC-097)"
+        )
+    seen_p05_cat_accs: set[str] = set()
+    seen_cuff_arms: set[str] = set()
+    seen_cuff_strata: set[str] = set()
+    for _b20_entry in [*prev_obs_ledger, current_obs_entry]:
+        _ca = _b20_entry.get("p05_catalase_uniprot_accession")
+        if isinstance(_ca, str) and _ca.strip():
+            seen_p05_cat_accs.add(_ca.strip())
+        _cba = _b20_entry.get("cuff_bioconjugation_arm")
+        if isinstance(_cba, str) and _cba.strip():
+            seen_cuff_arms.add(_cba.strip())
+        _css = _b20_entry.get("cuff_serum_challenge_stratum")
+        if isinstance(_css, str) and _css.strip():
+            seen_cuff_strata.add(_css.strip())
+    if len(seen_p05_cat_accs) > 1:
+        raise ValueError(
+            "Cannot pool distinct p05_catalase_uniprot_accession conditions across calibration batches (IIP-0020; DEC-099)"
+        )
+    if len(seen_cuff_arms) > 1:
+        raise ValueError(
+            "Cannot pool distinct cuff_bioconjugation_arm conditions across calibration batches (IIP-0020; DEC-099)"
+        )
+    if len(seen_cuff_strata) > 1:
+        raise ValueError(
+            "Cannot pool distinct cuff_serum_challenge_stratum conditions across calibration batches (IIP-0020; DEC-099)"
         )
     pooled_stage0_payload["batch_id"] = batch_id
     pooled_stage0_payload["verified_ledger_passing_s9_batch_ids"] = list(post_stop_passing_s9_batch_ids)
