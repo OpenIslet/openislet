@@ -648,6 +648,10 @@ STAGE0_PERSISTED_BOOLEAN_FLAGS: tuple[str, ...] = (
     "rest_120h_viable_lineage_yield_and_during_exposure_function_verified",
     "conditioning_pellet_loq_and_extraction_recovery_verified",
     "conditioning_orthogonal_pathway_controls_verified",
+    "track2_b_sct_kir_rescue_qualified",
+    "track2_hlag1_lilrb1_rescue_qualified",
+    "require_full_iip0022_track2_and_guardrail_panel",
+    "lineage_necroptosis_time_resolved_viability_and_rescue_verified",
 )
 
 HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS: tuple[str, ...] = (
@@ -698,6 +702,7 @@ ALLOWED_ORDERED_BATCH_LEDGER_KEYS: frozenset[str] = frozenset({
     "rest_ocr_coupon_arm",
     "conditioning_4arm_arm",
     "conditioning_washout_analyte_scope",
+    "track2_rescue_route",
     *HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS,
 })
 
@@ -1050,6 +1055,7 @@ def _validate_prior_posterior_report(
                 "rest_ocr_coupon_arm",
                 "conditioning_4arm_arm",
                 "conditioning_washout_analyte_scope",
+                "track2_rescue_route",
             ):
                 if adj_meta_k in entry and entry[adj_meta_k] is not None:
                     merged_hist_payload_for_norm[adj_meta_k] = entry[adj_meta_k]
@@ -1268,6 +1274,7 @@ def _validate_prior_posterior_report(
                     "rest_ocr_coupon_arm",
                     "conditioning_4arm_arm",
                     "conditioning_washout_analyte_scope",
+                    "track2_rescue_route",
                 ):
                     if entry.get(meta_k) is not None:
                         pooled_hist_for_s0[meta_k] = entry[meta_k]
@@ -1855,6 +1862,7 @@ def run_calibration(
         "rest_ocr_coupon_arm",
         "conditioning_4arm_arm",
         "conditioning_washout_analyte_scope",
+        "track2_rescue_route",
         *stage0_persisted_boolean_flags,
     ):
         if qp_meta_k in input_payload and input_payload[qp_meta_k] is not None:
@@ -1961,6 +1969,7 @@ def run_calibration(
             "rest_ocr_coupon_arm",
             "conditioning_4arm_arm",
             "conditioning_washout_analyte_scope",
+            "track2_rescue_route",
         ):
             if hist_entry.get(meta_k) is not None:
                 pooled_stage0_payload[meta_k] = hist_entry[meta_k]
@@ -2318,6 +2327,13 @@ def run_calibration(
         raise ValueError("Cannot pool distinct conditioning_4arm_arm conditions across calibration batches (IIP-0021; DEC-100)")
     if len(seen_cond_scopes) > 1:
         raise ValueError("Cannot pool distinct conditioning_washout_analyte_scope conditions across calibration batches (IIP-0021; DEC-100)")
+    seen_t2_routes: set[str] = set()
+    for _b22_entry in [*prev_obs_ledger, current_obs_entry]:
+        _t2r = _b22_entry.get("track2_rescue_route")
+        if isinstance(_t2r, str) and _t2r.strip():
+            seen_t2_routes.add(_t2r.strip())
+    if len(seen_t2_routes) > 1:
+        raise ValueError("Cannot pool distinct track2_rescue_route conditions across calibration batches (IIP-0022; DEC-101)")
     pooled_stage0_payload["batch_id"] = batch_id
     pooled_stage0_payload["verified_ledger_passing_s9_batch_ids"] = list(post_stop_passing_s9_batch_ids)
     stage0_eval_report = evaluate_stage0_decision_tree(

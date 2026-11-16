@@ -2069,6 +2069,170 @@ def run_combinatorial_multi_gate_search(target_profiles: dict) -> list[dict]:
     return results
 
 
+def compute_common_shock_2pow12_portfolio_tree(
+    pa_vec: list[float] | tuple[float, ...],
+    pb_vec: list[float] | tuple[float, ...],
+    px_vec: list[float] | tuple[float, ...],
+    c_vec: list[float] | tuple[float, ...],
+) -> dict:
+    """
+    Exact 4,096-state (2^12; 1,024 positive-mass states) common-shock portfolio probability generator
+    (IIP-0022; DEC-101). Validates 0 <= p_{h,d} <= c_h <= 1, shared Hurdle-1 equality, and positive
+    surviving-portfolio denominators, and returns both legacy 3-slot and shared-A/X 2-route pouch unions.
+    """
+    if len(pa_vec) != 4 or len(pb_vec) != 4 or len(px_vec) != 4 or len(c_vec) != 4:
+        raise ValueError("All hurdle and common-shock vectors must have length 4 (IIP-0022; DEC-101)")
+    for h_idx in range(4):
+        ch = float(c_vec[h_idx])
+        if not (0.0 < ch <= 1.0):
+            raise ValueError(f"Common-shock ceiling c[{h_idx}]={ch} must lie in (0, 1]")
+        for d_lbl, pv in (("A", pa_vec[h_idx]), ("B", pb_vec[h_idx]), ("X", px_vec[h_idx])):
+            pvf = float(pv)
+            if pvf < 0.0 or pvf > ch + 1e-12:
+                raise ValueError(f"Hurdle {h_idx+1} design {d_lbl} probability {pvf} outside [0, c_h={ch}]")
+    if not (abs(float(pa_vec[0]) - float(c_vec[0])) < 1e-12 and abs(float(pb_vec[0]) - float(c_vec[0])) < 1e-12 and abs(float(px_vec[0]) - float(c_vec[0])) < 1e-12):
+        raise ValueError("Hurdle 1 is a 100% shared class step: pa[0], pb[0], px[0] must equal c[0]")
+
+    # Build 8-outcome single-hurdle distributions under:
+    # (1) 3 conditionally independent design slots on H2..H4 (legacy 3-slot pouch on H4), and
+    # (2) shared A/X CaO2+catalase pouch route on H4 (where A and X share common pouch shock or paired outcome).
+    def _hurdle_dist_independent(h_idx: int) -> list[float]:
+        ch = float(c_vec[h_idx])
+        if h_idx == 0:
+            # 8 states indexed by 3-bit mask (bit0=A, bit1=B, bit2=X): only 000 (1-c1) and 111 (c1) have positive mass
+            d = [0.0] * 8
+            d[0] = 1.0 - ch
+            d[7] = ch
+            return d
+        ua = min(1.0, max(0.0, float(pa_vec[h_idx]) / ch))
+        ub = min(1.0, max(0.0, float(pb_vec[h_idx]) / ch))
+        ux = min(1.0, max(0.0, float(px_vec[h_idx]) / ch))
+        d = [0.0] * 8
+        d[0] += 1.0 - ch
+        for mask in range(8):
+            pa_m = ua if (mask & 1) else (1.0 - ua)
+            pb_m = ub if (mask & 2) else (1.0 - ub)
+            px_m = ux if (mask & 4) else (1.0 - ux)
+            d[mask] += ch * pa_m * pb_m * px_m
+        return d
+
+    def _hurdle4_dist_shared_ax() -> list[float]:
+        c4 = float(c_vec[3])
+        ua = min(1.0, max(0.0, float(pa_vec[3]) / c4))
+        ub = min(1.0, max(0.0, float(pb_vec[3]) / c4))
+        ux = min(1.0, max(0.0, float(px_vec[3]) / c4))
+        # Comonotonic shared A/X CaO2+catalase pouch route coupled independently with orthogonal Design B (140 um Zero-CaO2):
+        # P(A=1, X=1 | c4) = min(ua, ux), P(A=1, X=0 | c4) = max(0, ua - ux), P(A=0, X=1 | c4) = max(0, ux - ua), P(A=0, X=0 | c4) = 1 - max(ua, ux)
+        p11 = min(ua, ux)
+        p10 = max(0.0, ua - ux)
+        p01 = max(0.0, ux - ua)
+        p00 = 1.0 - max(ua, ux)
+        d = [0.0] * 8
+        d[0] += 1.0 - c4
+        for ax_bits, p_ax in (((0, 0), p00), ((1, 0), p10), ((0, 1), p01), ((1, 1), p11)):
+            for b_bit, p_b in ((0, 1.0 - ub), (1, ub)):
+                mask = ax_bits[0] | (b_bit << 1) | (ax_bits[1] << 2)
+                d[mask] += c4 * p_ax * p_b
+        return d
+
+    dists_3slot = [_hurdle_dist_independent(h) for h in range(4)]
+    total_states = 0
+    pos_states = 0
+    total_mass = 0.0
+    surv_prefix = [0.0, 0.0, 0.0, 0.0]
+    any_cell_h123 = 0.0
+    marg_counts = [[0.0, 0.0, 0.0] for _ in range(4)]
+
+    for m0 in range(8):
+        p0 = dists_3slot[0][m0]
+        for m1 in range(8):
+            p01 = p0 * dists_3slot[1][m1]
+            s1 = m0 & m1
+            for m2 in range(8):
+                p012 = p01 * dists_3slot[2][m2]
+                s2 = s1 & m2
+                for m3 in range(8):
+                    total_states += 1
+                    pm = p012 * dists_3slot[3][m3]
+                    total_mass += pm
+                    if pm > 0.0:
+                        pos_states += 1
+                    s3 = s2 & m3
+                    if m0 != 0:
+                        surv_prefix[0] += pm
+                    if s1 != 0:
+                        surv_prefix[1] += pm
+                    if s2 != 0:
+                        surv_prefix[2] += pm
+                        any_cell_h123 += pm
+                    if s3 != 0:
+                        surv_prefix[3] += pm
+                    for h_i, mh in enumerate((m0, m1, m2, m3)):
+                        if mh & 1:
+                            marg_counts[h_i][0] += pm
+                        if mh & 2:
+                            marg_counts[h_i][1] += pm
+                        if mh & 4:
+                            marg_counts[h_i][2] += pm
+
+    if total_states != 4096 or abs(total_mass - 1.0) > 1e-12:
+        raise ValueError(f"2^12 tree mass/state check failed: states={total_states}, mass={total_mass}")
+    if any(sp <= 0.0 for sp in surv_prefix[:3]):
+        raise ValueError("Zero surviving-portfolio denominator encountered in 2^12 tree")
+
+    cond_h1 = surv_prefix[0]
+    cond_h2 = surv_prefix[1] / surv_prefix[0]
+    cond_h3 = surv_prefix[2] / surv_prefix[1]
+    cond_h4 = surv_prefix[3] / surv_prefix[2]
+    locked_3slot = surv_prefix[3]
+
+    # Locked shared-A/X pouch tree (comonotonic A/X pouch on H4):
+    d4_shared = _hurdle4_dist_shared_ax()
+    locked_shared_ax = 0.0
+    for m0 in range(8):
+        for m1 in range(8):
+            for m2 in range(8):
+                s2 = m0 & m1 & m2
+                if s2 == 0:
+                    continue
+                p012 = dists_3slot[0][m0] * dists_3slot[1][m1] * dists_3slot[2][m2]
+                for m3 in range(8):
+                    if (s2 & m3) != 0:
+                        locked_shared_ax += p012 * d4_shared[m3]
+
+    # Modular Stage-0 cell x pouch unions:
+    # Legacy 3-slot pouch union vs true 2-route shared-A/X pouch union (where A/X share CaO2+catalase route max(pa4, px4) vs B's Design Z pb4):
+    c4 = float(c_vec[3])
+    ua4, ub4, ux4 = float(pa_vec[3]) / c4, float(pb_vec[3]) / c4, float(px_vec[3]) / c4
+    pouch_union_legacy_3slot = c4 * (1.0 - (1.0 - ua4) * (1.0 - ub4) * (1.0 - ux4))
+    u_ax_shared = max(ua4, ux4)
+    pouch_union_2route_shared_ax = c4 * (1.0 - (1.0 - u_ax_shared) * (1.0 - ub4))
+
+    return {
+        "total_enumerated_states": total_states,
+        "positive_mass_states": pos_states,
+        "total_probability_mass": round(total_mass, 12),
+        "common_shock_ceiling_vector": [round(float(x), 6) for x in c_vec],
+        "recovered_marginals_check": {
+            "design_a": [round(marg_counts[h][0], 8) for h in range(4)],
+            "design_b": [round(marg_counts[h][1], 8) for h in range(4)],
+            "design_x": [round(marg_counts[h][2], 8) for h in range(4)],
+        },
+        "surviving_portfolio_conditionals_exact": [
+            round(cond_h1, 9),
+            round(cond_h2, 9),
+            round(cond_h3, 9),
+            round(cond_h4, 9),
+        ],
+        "locked_3slot_2pow12_exact": round(locked_3slot, 9),
+        "legacy_modular_3slot_cell_x_pouch_exact": round(any_cell_h123 * pouch_union_legacy_3slot, 9),
+        "modular_2route_shared_ax_pouch_exact": round(any_cell_h123 * pouch_union_2route_shared_ax, 9),
+        "locked_2route_shared_ax_pouch_exact": round(locked_shared_ax, 9),
+        "pouch_union_legacy_3slot_exact": round(pouch_union_legacy_3slot, 9),
+        "pouch_union_2route_shared_ax_exact": round(pouch_union_2route_shared_ax, 9),
+    }
+
+
 def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
     """Re-judged four-hurdle conditional scenario specification, score/rank measure labels, and OQ-016 (IIP-0003; reassessed 2026-11-16 after IIP-0016..IIP-0020)."""
     h1_a, h1_b, h1_x, h1_3 = 0.88, 0.88, 0.88, 0.88
@@ -2079,6 +2243,24 @@ def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
     pb_exact = round(h1_b * h2_b * h3_b * h4_b, 8)
     px_exact = round(h1_x * h2_x * h3_x * h4_x, 8)
     p3_exact = round(h1_3 * h2_3 * h3_3 * h4_3, 8)
+    active_tree = compute_common_shock_2pow12_portfolio_tree(
+        [h1_a, h2_a, h3_a, h4_a],
+        [h1_b, h2_b, h3_b, h4_b],
+        [h1_x, h2_x, h3_x, h4_x],
+        [0.88, 0.87, 0.89, 0.85],
+    )
+    active_tree_fixed_c3_088 = compute_common_shock_2pow12_portfolio_tree(
+        [h1_a, h2_a, h3_a, h4_a],
+        [h1_b, h2_b, h3_b, h4_b],
+        [h1_x, h2_x, h3_x, h4_x],
+        [0.88, 0.87, 0.88, 0.85],
+    )
+    dec098_ref_tree = compute_common_shock_2pow12_portfolio_tree(
+        [0.88, 0.78, 0.56, 0.68],
+        [0.88, 0.79, 0.64, 0.70],
+        [0.88, 0.81, 0.70, 0.68],
+        [0.88, 0.87, 0.88, 0.85],
+    )
     return {
         "proposal_id": "IIP-0003",
         "title": (
@@ -2222,16 +2404,21 @@ def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
             "design_x_rounded_pct": 36,
             "three_designs_exact": p3_exact,
             "three_designs_rounded_pct": 53,
-            "three_designs_2pow12_locked_exact": 0.5259,
-            "three_designs_stage0_modular_cell_x_pouch_exact": 0.5563,
+            "three_designs_2pow12_locked_exact": round(active_tree["locked_3slot_2pow12_exact"], 4),
+            "three_designs_stage0_modular_cell_x_pouch_exact": round(active_tree["legacy_modular_3slot_cell_x_pouch_exact"], 4),
             "iip_0020_sensitivity_and_calibration_notes": {
                 "uncalibrated_engineering_scenario": True,
-                "locked_2pow12_exact_6dp": 0.525942,
-                "locked_2pow12_at_fixed_universal_c3_0p88": 0.522228,
-                "stage0_modular_3slot_legacy_exact_6dp": 0.556257,
-                "stage0_modular_2route_shared_ax_pouch_exact_6dp": 0.541163,
-                "locked_shared_ax_pouch_exact_6dp": 0.507782,
+                "locked_2pow12_exact_6dp": round(active_tree["locked_3slot_2pow12_exact"], 6),
+                "locked_2pow12_at_fixed_universal_c3_0p88": round(active_tree_fixed_c3_088["locked_3slot_2pow12_exact"], 6),
+                "stage0_modular_3slot_legacy_exact_6dp": round(active_tree["legacy_modular_3slot_cell_x_pouch_exact"], 6),
+                "stage0_modular_2route_shared_ax_pouch_exact_6dp": round(active_tree["modular_2route_shared_ax_pouch_exact"], 6),
+                "locked_shared_ax_pouch_exact_6dp": round(active_tree["locked_2route_shared_ax_pouch_exact"], 6),
                 "modular_cell_cuff_pouch_compatibility_required": True,
+                "programmatic_2pow12_generator_audit_iip_0022": active_tree,
+                "dependence_model_disclosure": (
+                    "Common-shock ceiling vector c is an uncalibrated dependence assumption; legacy 3-slot pouch union "
+                    "and shared-A/X 2-route CaO2+catalase pouch union are reported side by side with explicit labels."
+                ),
             },
             "prior_2026_11_15_dec098_baseline": {
                 "design_a_hurdles": [0.88, 0.78, 0.56, 0.68],
@@ -2242,8 +2429,9 @@ def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
                 "design_b_rounded_pct": 31,
                 "design_x_rounded_pct": 34,
                 "three_designs_rounded_pct": 51,
-                "three_designs_2pow12_locked_exact": 0.5148,
-                "three_designs_stage0_modular_cell_x_pouch_exact": 0.5471,
+                "three_designs_2pow12_locked_exact": round(dec098_ref_tree["locked_3slot_2pow12_exact"], 4),
+                "three_designs_stage0_modular_cell_x_pouch_exact": round(dec098_ref_tree["legacy_modular_3slot_cell_x_pouch_exact"], 4),
+                "programmatic_2pow12_generator_reproduction_iip_0022": dec098_ref_tree,
             },
             "prior_2026_11_05_baseline": {
                 "design_a_hurdles": [0.88, 0.78, 0.50, 0.60],

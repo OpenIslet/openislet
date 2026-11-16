@@ -857,6 +857,12 @@
    "pubdate_year": "2014",
    "title": "Self-hydrolyzing maleimides improve the stability and pharmacological properties of antibody-drug conjugates."
   },
+  "25301392": {
+   "first_author": "Zhao Y",
+   "journal": "Diabetologia",
+   "pubdate_year": "2015",
+   "title": "Autoreactive T cells induce necrosis and not BCL-2-regulated or death receptor-mediated apoptosis or RIPK3-dependent necroptosis of transplanted islets in a mouse model of type 1 diabetes."
+  },
   "25303535": {
    "first_author": "Pagliuca FW",
    "journal": "Cell",
@@ -1745,6 +1751,12 @@
    "pubdate_year": "2022",
    "title": "Germline thymidylate synthase deficiency impacts nucleotide metabolism and causes dyskeratosis congenita."
   },
+  "35947095": {
+   "first_author": "Matsuo T",
+   "journal": "Cancer Sci",
+   "pubdate_year": "2022",
+   "title": "CD155 mutation (Ala67Thr) increases the binding affinity for and the signaling via an inhibitory immunoreceptor TIGIT."
+  },
   "36008610": {
    "first_author": "Shy BR",
    "journal": "Nat Biotechnol",
@@ -1799,6 +1811,12 @@
    "pubdate_year": "2023",
    "title": "Engineering human stem cell-derived islets to evade immune rejection and promote localized immune tolerance."
   },
+  "36707047": {
+   "first_author": "Takiishi T",
+   "journal": "Mol Metab",
+   "pubdate_year": "2023",
+   "title": "Inhibition of RIPK1 kinase does not affect diabetes development: β-Cells survive RIPK1 activation."
+  },
   "36971050": {
    "first_author": "Accolla RP",
    "journal": "Adv Healthc Mater",
@@ -1846,6 +1864,12 @@
    "journal": "Bioeng Transl Med",
    "pubdate_year": "2023",
    "title": "Replenishable prevascularized cell encapsulation devices increase graft survival and function in the subcutaneous space."
+  },
+  "37675979": {
+   "first_author": "Diong SJ",
+   "journal": "MAbs",
+   "pubdate_year": "2023",
+   "title": "Biophysical characterization of PVR family interactions and therapeutic antibody recognition to TIGIT."
   },
   "37703830": {
    "first_author": "Morrissey MA",
@@ -1961,6 +1985,12 @@
    "pubdate_year": "2023",
    "title": "Hypoxia within subcutaneously implanted macroencapsulation devices limits the viability and functionality of densely loaded islets."
   },
+  "39004142": {
+   "first_author": "Veli Ö",
+   "journal": "Mol Metab",
+   "pubdate_year": "2024",
+   "title": "RIPK1 is dispensable for cell death regulation in β-cells during hyperglycemia."
+  },
   "39169271": {
    "first_author": "Perez-Frances M",
    "journal": "Nat Metab",
@@ -2074,6 +2104,12 @@
    "journal": "Cell Stem Cell",
    "pubdate_year": "2025",
    "title": "Reconstruction of endocrine subtype-complete human pluripotent stem cell-derived islets with capacity for hypoglycemia protection in vivo."
+  },
+  "40796566": {
+   "first_author": "Saha S",
+   "journal": "Nat Commun",
+   "pubdate_year": "2025",
+   "title": "Diminished immune cell adhesion in hypoimmune ICAM-1 knockout human pluripotent stem cells."
   },
   "40812299": {
    "first_author": "Hu X",

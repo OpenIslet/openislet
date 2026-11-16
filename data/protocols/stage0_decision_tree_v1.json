@@ -592,5 +592,26 @@
       "rest_120h_ocr_coupon": "Bars unencapsulated free-drug washout (7.09-44.33 s two-sink / 28.37-177.30 s one-sink at D=2.8e-6 cm^2/s) and requires simultaneous 0-120 h longitudinal coverage of obs_rest_120h_graft_ocr_ratio upper95 <= 0.80 with preserved viable lineage yield and function during exposure, depot t_1/2 lower95 >= 72 h, post-washout GSIS SI lower95 >= 3.0, absolute insulin output retention lower95 >= 85.0%, and alpha-cell glucagon fold lower95 >= 2.0 before any coupled Stage-2 CaO2-reduction test.",
       "conditioning_4arm_pellet_loq_and_nqo1_gate": "Evaluates Vehicle, Nec-1s (10 uM), Ferrostatin-1 (2 uM), and Nec-1s + Ferrostatin-1 (holding 100 uM benchmark and Nec-1 anti-ferroptotic comparator arms as non-release controls) with orthogonal pathway controls, supernatant LC-MS < 10 nM, matrix-spiked washed cell-pellet extraction recovery >= 80% and residual/LOQ <= 1.0, undiluted endocrine and vascular NQO1 activity >= 90% of vehicle, SC-beta and PLVAP+ iEC viable yields >= 85%, and post-washout GSIS SI >= 3.0."
     }
+  },
+  "track2_nk_split_and_pvr_necroptosis_guardrails_iip_0022": {
+    "gate_id": "STAGE0_TRACK2_SPLIT_AND_PVR_NECROPTOSIS_GUARDRAILS_IIP_0022",
+    "decision_id": "DEC-101",
+    "contribution_id": "IIP-0022",
+    "primary_citations": [
+      "PMID:37675979",
+      "PMID:35947095",
+      "PMID:41202120",
+      "PMID:36170817",
+      "PMID:36707047",
+      "PMID:39004142",
+      "PMID:25301392",
+      "PMID:40796566",
+      "PMID:38981470"
+    ],
+    "rules": {
+      "upper95_kir_and_il12_il18_routing": "Routes Switch S10/S2 escape on upper95 bounds when obs_kir_nkg2a_neg_nk_lysis_pct (<=8.0%) or obs_il12_il18_sirpa_low_nk_lysis_pct (<=10.0%) is supplied while preserving provisional core_14_panel compatibility when omitted.",
+      "track2_bsct_vs_hlag1_split": "Splits deprecated track2_b_sct_or_hlag1_lilrb1_rescue_qualified into track2_b_sct_kir_rescue_qualified (<=8.0% upper95 across n>=6 KIR-typed donors, 0 failing donors) and track2_hlag1_lilrb1_rescue_qualified (uniform <=8.0% upper95 on sorted LILRB1- NKG2A- KIR+ primary NK across n>=6 donors, held pending HLA-G1 product definition registration with distinct locus2_construct routing).",
+      "pvr_and_lineage_necroptosis_guardrails": "Records possible B2M-/- CD155/CD226 synaptic sign-inversion (requiring matched TIGIT-low/CD226-high NK testing vs MHC-I-intact benefit) and lineage-separated SC-beta vs PLVAP+ iEC necroptosis testing with time-resolved viability and orthogonal rescue."
+    }
   }
 }

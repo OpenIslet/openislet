@@ -7002,5 +7002,118 @@
         "total_native_free_cysteines_per_24mer": 72
       }
     }
+  },
+  "pvr_tigit_cd226_cd96_and_hlag1_structural_audit_iip_0022": {
+    "contribution_id": "IIP-0022",
+    "decision_id": "DEC-101",
+    "coordinate_license": "CC0-1.0 (wwPDB archive coordinate policy; associated primary articles carry separate journal copyrights)",
+    "primary_citations": [
+      "PMID:37675979",
+      "PMID:35947095",
+      "PMID:41202120",
+      "PMID:36170817"
+    ],
+    "authenticated_rcsb_mmcif_records": {
+      "3UDW": {
+        "complex": "Human PVR (CD155) D1 : TIGIT IgV heterotetramer",
+        "method": "X-RAY DIFFRACTION",
+        "resolution_angstrom": 2.9,
+        "rcsb_mmcif_sha256": "60e9a70f6a7e169967a4738d025f907735d62f2656b92d73b49d523d9fc9b373",
+        "author_chain_pairs_pvr_to_receptor": [
+          "C:A",
+          "D:B"
+        ],
+        "pvr_ala67_min_heavy_atom_distance_angstrom": {
+          "C:A": 6.4485,
+          "D:B": 6.7609
+        },
+        "pvr_ala67_contacts_le_4p5A": 0
+      },
+      "6O3O": {
+        "complex": "Human PVR (CD155) D1 : CD226 (DNAM-1) D1",
+        "method": "X-RAY DIFFRACTION",
+        "resolution_angstrom": 2.8,
+        "rcsb_mmcif_sha256": "08f9f8c58f5ebc44d068ee6602efe48464946fa0f3336f0d925e03ddc87a96ea",
+        "author_chain_pairs_pvr_to_receptor": [
+          "C:A",
+          "D:B"
+        ],
+        "pvr_ala67_min_heavy_atom_distance_angstrom": {
+          "C:A": 6.414,
+          "D:B": 6.4895
+        },
+        "pvr_ala67_contacts_le_4p5A": 0
+      },
+      "6ARQ": {
+        "complex": "Human PVR (CD155) D1 : CD96 D1 (engineered CD96 C110S crystal construct)",
+        "method": "X-RAY DIFFRACTION",
+        "resolution_angstrom": 2.88,
+        "rcsb_mmcif_sha256": "6fe4a00f7f86b1938fed3b95d16d2ce3a82f52f7781616808f2825b27991e363",
+        "author_chain_pairs_pvr_to_receptor": [
+          "D:A"
+        ],
+        "pvr_ala67_min_heavy_atom_distance_angstrom": {
+          "D:A": 7.0569
+        },
+        "pvr_ala67_contacts_le_4p5A": 0,
+        "engineered_crystal_sequence_differences": "CD96 carries engineered C110S substitution in crystal construct."
+      },
+      "6AEE": {
+        "complex": "Human HLA-G1 : B2M : nonamer peptide : LILRB1 (ILT2) D1D2",
+        "method": "X-RAY DIFFRACTION",
+        "resolution_angstrom": 3.3,
+        "rcsb_mmcif_sha256": "d8fe444a303773512777f10f35c92a55ade2dd3c1902e58edebc67d7833928d1",
+        "engineered_crystal_sequence_differences": "Mature HLA-G1 chain carries engineered C42S/L110I/Q115R substitutions as a non-covalent three-chain heterotrimer without single-chain-trimer (SCT) flexible linkers; reference geometry does not qualify an unregistered covalent HLA-G1 SCT product."
+      }
+    },
+    "chain_explicit_4p5A_footprint_overlap_and_allosteric_qualification": {
+      "contact_cutoff_angstrom": 4.5,
+      "first_copy_3UDW_CA_vs_6O3O_CA_shared_over_cd226_contacts": "19/23 (82.61%)",
+      "second_copy_3UDW_DB_vs_6O3O_DB_shared_over_cd226_contacts": "19/19 (100.0%)",
+      "allosteric_caveat": "WT Ala67 sits 6.41-7.06 A from bound receptor heavy atoms in static crystals, which rules out a direct <=4.5 A WT side-chain contact but does NOT exclude conformational or dynamic C/C'-loop effects in Ala67Thr."
+    },
+    "valency_separated_binding_and_mhc_context_reconciliation": {
+      "monovalent_spr_diong_2023_pmid37675979_kd_nM": {
+        "CD226": 530.0,
+        "TIGIT": 1150.0,
+        "CD96": 3700.0
+      },
+      "bivalent_cd155_fc_bli_matsuo_2022_pmid35947095": {
+        "analyte_orientation": "Bivalent CD155-Fc in solution over immobilized His-tagged TIGIT or CD226 (not receptor-Fc analyte)",
+        "cd226_apparent_kd_wt_vs_a67t_nM": [
+          515.0,
+          316.0
+        ],
+        "tigit_apparent_kd_wt_vs_a67t_nM": [
+          1900.0,
+          393.0
+        ],
+        "cd226_over_tigit_kd_ratio_wt_to_a67t": [
+          0.2711,
+          0.8041
+        ]
+      },
+      "cellular_staining_and_nk_context_brown_2025_vs_chimienti_2022": {
+        "brown_2025_pmid41202120_mhc_intact_hla_a2_sc_beta": "Reduced primary human NK lysis to 0.34/0.41/0.41 of parental at E:T 1/5/10 with TIGIT-blockade reversal (fluorescence binding-curve AUC fold ratio 1.37 / 1.29 = 1.062x).",
+        "chimienti_2022_pmid36170817_b2m_null_ipsc_and_ibeta": "In B2M-/- targets lacking classical MHC-I KIR ligands, anti-CD155 blockade reduced CD16+ NK lysis from 82.1% +/- 7.1% to 30.2% +/- 5.0% on iPSCs, and CD155 KO / CD155+B7-H3 DKO yielded 50.9% +/- 6.4% / 34.6% +/- 7.9% lysis on B2M-/- iBeta cells\u2014motivating direct matched-cell testing for possible sign inversion."
+      },
+      "population_and_packaging_metrics": {
+        "rs1058402_grch38": "chr19:44647342G>A",
+        "gnomad_v4_thr67_af": {
+          "NFE": 0.045234,
+          "Global": 0.059009
+        },
+        "hardy_weinberg_ala67_homozygote_pct": {
+          "NFE": 91.16,
+          "Global": 88.55
+        },
+        "non_canonical_p15151_8_to_11mer_windows": 38,
+        "locus1_single_aav6_packaged_bp_if_appended": {
+          "Embodiment_A_star": 5750,
+          "Arm_1B": 5581,
+          "aav6_cap_bp": 4700
+        }
+      }
+    }
   }
 }

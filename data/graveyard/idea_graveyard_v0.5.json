@@ -22,7 +22,7 @@
         "condition": "(STAT1_KO_or_JAK1_KO AND GAS_ISRE_promoter AND NOT NFkB_enhancer_bypass) OR (TYK2_KO AND strict_TypeI_IFN_ISRE_without_IFNg_or_NFkB_bypass)"
       },
       "proposed_idea": "Combine clonal STAT1-/- or JAK1-/- knockout with an IFN-gamma/STAT1-inducible (GAS/ISRE) promoter driving PD-L1 and SERPINB9 (or combine TYK2-/- with a strict Type-I-IFN ISRE-only promoter).",
-      "why_it_fails": "Mechanistic epistatic pathway synthesis across component SC-islet studies (not a single combined wet-lab construct test): deleting STAT1 or JAK1 (or upstream IFNGR1 / IRF1) blocks canonical IFN-gamma -> IFNGR1 -> JAK1/JAK2 -> STAT1/IRF1 phosphorylation and nuclear translocation (Sintov et al. 2022 PMID:36055241 demonstrated that clonal STAT1-/- ST1L SC-islets lose IFN-gamma-inducible PD-L1, HLA-E, and SOCS1 upregulation and suffer increased NK cell apoptosis, whereas Chandra et al. 2022 PMID:36289205 demonstrated that TYK2-/- blocks Type I IFN-alpha/beta -> TYK2/JAK1 -> STAT1/STAT2/ISGF3 signaling). Consequently, pairing STAT1/JAK1/IFNGR1/IRF1 KO with a pure STAT1-dependent GAS/ISRE synthetic promoter creates an epistatic deadlock unless driven by an endogenous locus such as CXCL10 (Sintov et al. 2022 PMID:36055241; Tanaka et al. 2009 PMID:19641142) that retains an independent TNF-alpha/IL-1beta -> NF-kB enhancer bypass (which likewise precludes co-deleting TNFRSF1A alongside IL1R1 on CXCL10-driven Islet-1 constructs; IIP-0018).",
+      "why_it_fails": "Mechanistic epistatic pathway synthesis across component SC-islet studies (not a single combined wet-lab construct test): deleting STAT1 or JAK1 (or upstream IFNGR1 / IRF1) blocks canonical IFN-gamma -> IFNGR1 -> JAK1/JAK2 -> STAT1/IRF1 phosphorylation and nuclear translocation (Sintov et al. 2022 PMID:36055241 demonstrated that clonal STAT1-/- ST1L SC-islets lose IFN-gamma-inducible PD-L1, HLA-E, and SOCS1 upregulation and suffer increased NK cell apoptosis, whereas Chandra et al. 2022 PMID:36289205 demonstrated that TYK2-/- blocks Type I IFN-alpha/beta -> TYK2/JAK1 -> STAT1/STAT2/ISGF3 signaling). Consequently, pairing STAT1/JAK1/IFNGR1/IRF1 KO with a pure STAT1-dependent GAS/ISRE synthetic promoter creates an epistatic deadlock unless driven by an endogenous locus such as CXCL10 (Sintov et al. 2022 PMID:36055241; Tanaka et al. 2009 PMID:19641142) that retains an independent TNF-alpha/IL-1beta -> NF-kB enhancer bypass (which likewise precludes co-deleting TNFRSF1A alongside IL1R1 on CXCL10-driven Islet-1 constructs; IIP-0018). Note on single-receptor TNFRSF1A knockdown (IIP-0022; DEC-101): unlike combined TNFRSF1A + IL1R1 removal, TNFRSF1A knockdown alone leaves IL1R1 and IFN-gamma inputs intact (attenuating TNF-alpha NF-kB drive rather than causing total promoter deadlock), so any Locus-3 TNFRSF1A proposal requires empirical CXCL10 and Syn_3xISRE_2xNFkB induction and basal-floor verification alongside single-AAV6 <= 4,700 bp packaging checks.",
       "supporting_pmids": [
         "36055241",
         "36289205",
@@ -174,7 +174,7 @@
         "condition": "Aggressive pan-autoantigen/GWAS editing stack combining biallelic G6PC2/SLC30A8 knockouts with multiplex coding edits at high-pLI GAD2 (pLI=1.000) or knockout of high-pLI beta-cell survival brakes (PTPN2 pLI=0.990, TNFAIP3 pLI=1.000)"
       },
       "proposed_idea": "Knock out T1D GWAS candidate genes PTPN2 or TNFAIP3 (A20) to prevent autoimmune recognition, or apply aggressive multiplex knockouts/coding disruptions across GAD2 (GAD65, pLI=1.000) alongside biallelic G6PC2-/- and SLC30A8-/- in a 6-gene pan-autoantigen stack.",
-      "why_it_fails": "gnomAD v4 human constraint demonstrates strong population-level loss-of-function constraint for PTPN2 (pLI=0.990), TNFAIP3 (pLI=1.000), and GAD2 (pLI=1.000). PTPN2 and TNFAIP3 (A20) are essential anti-apoptotic brakes whose loss sensitizes beta-cells to cytokine death and graft hyperinflammation (Moore et al. 2009 PMID:19336676 for PTPN2; Grey et al. 1999 PMID:10523611 and Zammit et al. 2019 PMID:31581152 for TNFAIP3/A20), while GAD2 synthesizes intra-islet GABA required for paracrine regulation of islet hormone secretion and alpha-cell glucagon suppression (Rorsman et al. 1989 Nature PMID:2550826; Menegaz et al. 2019 Nature Metabolism PMID:32432213), so unvalidated coding disruption or bystander indels at GAD2 in a 6-locus multiplex edit stack risks paracrine dysregulation. More broadly across the 112 germline-associated T1D genetic regions triaged in IIP-0018, beta-cell knockout is likewise excluded for nearest-gene mitophagy regulator CLEC16A at 16p13 (Soleimanpour et al. 2014 PMID:24949970, where intronic rs12708716 loops instead to pro-inflammatory DEXI; Dos Santos et al. 2019 PMID:30478640), protective causal-sign survival and lineage brakes BACH2 (Marroquí et al. 2014 PMID:24608439), CTSH (Fløyel et al. 2014 PMID:24982147), SOCS1, GLIS3, DLK1, and INS, and necroptosis-restraining adaptors CASP8 and FADD whose deletion unleashes RIPK3 lytic necroptosis (Kaiser et al. 2011 PMID:21368762).",
+      "why_it_fails": "gnomAD v4 human constraint demonstrates strong population-level loss-of-function constraint for PTPN2 (pLI=0.990), TNFAIP3 (pLI=1.000), and GAD2 (pLI=1.000). PTPN2 and TNFAIP3 (A20) are essential anti-apoptotic brakes whose loss sensitizes beta-cells to cytokine death and graft hyperinflammation (Moore et al. 2009 PMID:19336676 for PTPN2; Grey et al. 1999 PMID:10523611 and Zammit et al. 2019 PMID:31581152 for TNFAIP3/A20), while GAD2 synthesizes intra-islet GABA required for paracrine regulation of islet hormone secretion and alpha-cell glucagon suppression (Rorsman et al. 1989 Nature PMID:2550826; Menegaz et al. 2019 Nature Metabolism PMID:32432213), so unvalidated coding disruption or bystander indels at GAD2 in a 6-locus multiplex edit stack risks paracrine dysregulation. More broadly across the 112 germline-associated T1D genetic regions triaged in IIP-0018, beta-cell knockout is likewise excluded for nearest-gene mitophagy regulator CLEC16A at 16p13 (Soleimanpour et al. 2014 PMID:24949970, where intronic rs12708716 loops instead to pro-inflammatory DEXI; Dos Santos et al. 2019 PMID:30478640), protective causal-sign survival and lineage brakes BACH2 (Marroquí et al. 2014 PMID:24608439), CTSH (Fløyel et al. 2014 PMID:24982147), SOCS1, GLIS3, DLK1, and INS, and necroptosis-restraining adaptors CASP8 and FADD whose deletion unleashes RIPK3 lytic necroptosis (Kaiser et al. 2011 PMID:21368762). Additional off-grid lineage and constraint guardrails (IIP-0022; DEC-101): TNFRSF1A exhibits strong human LoF constraint (gnomAD v4 pLI = 0.9999, o/e = 0.216, upper bound = 0.3775; cautioning against unvalidated knockout while noting population LoF constraint does not by itself prove differentiated-cell knockdown lethality), whereas mouse islet and human EndoC-betaH1 studies report resistance of beta cells to canonical TNF/BV6/zVAD RIPK1/RIPK3/MLKL necroptosis (Takiishi et al. 2023 PMID:36707047, including MLKL phosphorylation without ensuing death; Veli et al. 2024 PMID:39004142; Zhao et al. 2015 PMID:25301392) in contrast to vascular endothelial cells—requiring separate human SC-beta vs PLVAP+ iEC causal viability and rescue testing rather than assuming universal beta-cell protection from RIPK3 knockdown (and noting ICAM1/CD58 adhesion-knockout immune-evasion studies in Saha et al. 2025 PMID:40796566 and Hammer et al. 2024 PMID:38981470 require product-specific efferocytosis verification rather than representing demonstrated SC-islet failures).",
       "supporting_pmids": [
         "19336676",
         "10523611",
@@ -185,7 +185,12 @@
         "30478640",
         "24608439",
         "24982147",
-        "21368762"
+        "21368762",
+        "36707047",
+        "39004142",
+        "25301392",
+        "40796566",
+        "38981470"
       ],
       "cheapest_falsification_assay": "Cytokine cocktail (IFN-gamma + IL-1beta + TNF-alpha) apoptosis assay and alpha-cell glucagon suppression perifusion assay.",
       "evaluator_logit_delta": null,
@@ -241,7 +246,7 @@
       ],
       "cheapest_falsification_assay": "QuantiBRITE calibrated flow cytometry measuring absolute surface HLA-E and CD47 molecules/cell on resting (unstimulated) vs +IFN-gamma Stage 7 beta, alpha, delta, and iEC cells, paired with Hour-0 primary human NK and macrophage killing assays across SIRPa V1/V2 and CMV+/NKG2C+ donors.",
       "replacement_solution": "Pre-specify Decision Experiment #1: if resting endogenous B2M-driven CD47/HLA-E density is below the inhibitory threshold in any lineage (especially iEC endothelium), supplement with a basal housekeeping enhancer floor (e.g., native human EEF1A1-core [230 bp, 19 CpGs, 60.0% GC] + intron or GAPDH/AAVS1 bicistronic co-expression) before in vivo translation.",
-      "evaluator_logit_delta": -0.20,
+      "evaluator_logit_delta": -0.2,
       "evaluator_target_gate": "Gate3_Innate_NK_Macrophage_and_IBMIR_Shield",
       "evaluator_disposition_rule": "Applies -0.20 logit discount in Gate 3 + requires Decision Experiment #1 QuantiBRITE gate",
       "Evaluator_Disposition_Rule": "WARN (non-blocking precautionary gate): does NOT set is_feasible_candidate = false; instead triggers Decision Experiment #1 (Hour-0 QuantiBRITE surface stoichiometry gate across beta, alpha, delta, and iEC lineages) and applies a -0.20 logit stoichiometry penalty on Gate 3 unless paired with a housekeeping promoter or verified enhancer floor."
@@ -261,11 +266,15 @@
         "condition": "Applies to the listed donor MHC-null modules regardless of INS leader/DRiP edits; those edits do not eliminate other host-APC-presented autoantigens or alloantigens."
       },
       "proposed_idea": "Assume that because B2M-/- + CIITA-/- eliminates donor surface MHC-I and MHC-II, pre-existing T1D memory CD4+ T-cells, B-cells, and autoantibodies (IAA, GADA, ZnT8A, IA-2A) are completely neutralized.",
-      "why_it_fails": "Donor MHC deletion eliminates only direct T-cell presentation on donor classical HLA-A/B/C and HLA-II. A curative ~0.8B cell graft continuously secretes insulin/C-peptide/IAPP and sheds necrotic cellular debris (GAD65, ZnT8, IA-2, minor histocompatibility antigens, plus synthetic HLA-E linker, P2A scar, and iCasp9-FKBP fusion peptides) during the 0-72h post-implantation window. Recipient conventional dendritic cells (APCs) phagocytose these shed antigens and present them via the canonical indirect pathway on host HLA-DQ2/DQ8 (MHC-II) and cross-present them on host MHC-I to reactivate memory CD4+ and CD8+ T-cells and B-cells; in addition, where residual donor pMHC is present (such as engineered HLA-E single-chain trimers or retained HLA-C in Chassis B), donor extracellular vesicles can cross-dress recipient APC membranes via the semi-direct pathway (Marino et al. 2016 PMID:27942611), driving opsonizing antibodies, complement, and TCR-independent macrophage TNF-alpha/IL-1beta/NO/ROS and FasL/perforin bystander destruction of adjacent MHC-null beta-cells (Demine et al. 2020 PMID:31900242 characterizes beta-cell cytokine/chemokine stress responses, and Hu et al. 2024 PMID:37156915 establishes direct B2M-/- CIITA-/- + CD47 survival, while indirect host-APC presentation and residual donor-vesicle semi-direct cross-dressing remain unmeasured long-term residual hazards).",
+      "why_it_fails": "Donor MHC deletion eliminates only direct T-cell presentation on donor classical HLA-A/B/C and HLA-II. A curative ~0.8B cell graft continuously secretes insulin/C-peptide/IAPP and sheds necrotic cellular debris (GAD65, ZnT8, IA-2, minor histocompatibility antigens, plus synthetic HLA-E linker, P2A scar, and iCasp9-FKBP fusion peptides) during the 0-72h post-implantation window. Recipient conventional dendritic cells (APCs) phagocytose these shed antigens and present them via the canonical indirect pathway on host HLA-DQ2/DQ8 (MHC-II) and cross-present them on host MHC-I to reactivate memory CD4+ and CD8+ T-cells and B-cells; in addition, where residual donor pMHC is present (such as engineered HLA-E single-chain trimers or retained HLA-C in Chassis B), donor extracellular vesicles can cross-dress recipient APC membranes via the semi-direct pathway (Marino et al. 2016 PMID:27942611), driving opsonizing antibodies, complement, and TCR-independent macrophage TNF-alpha/IL-1beta/NO/ROS and FasL/perforin bystander destruction of adjacent MHC-null beta-cells (Demine et al. 2020 PMID:31900242 characterizes beta-cell cytokine/chemokine stress responses, and Hu et al. 2024 PMID:37156915 establishes direct B2M-/- CIITA-/- + CD47 survival, while indirect host-APC presentation and residual donor-vesicle semi-direct cross-dressing remain unmeasured long-term residual hazards). Off-grid PVR/CD155 Ala67Thr (rs1058402) MHC-context & minor-histocompatibility guardrail (IIP-0022; DEC-101): while CD155 Ala67Thr strengthens bivalent CD155-Fc binding to immobilized TIGIT and CD226 (KD ratio 0.271 -> 0.804; Matsuo et al. 2022 PMID:35947095; monovalent WT SPR CD226 530 nM vs TIGIT 1,150 nM vs CD96 3,700 nM in Diong et al. 2023 PMID:37675979) and reduced primary human NK lysis to 0.34/0.41/0.41 of parental on MHC-I-intact HLA-A2+ SC-beta cells (1.062x staining AUC fold ratio; Brown et al. 2025 PMID:41202120), in B2M-/- (MHC-I-null) hPSC/iBeta derivatives lacking classical KIR ligands endogenous CD155 drives activating DNAM-1/CD226 NK killing (82.1% -> 30.2% with anti-CD155 blockade on B2M-/- iPSCs, 50.9% on CD155-/- and 34.6% on CD155/B7-H3-/- iBeta; Chimienti et al. 2022 PMID:36170817), and Thr67 (gnomAD v4 NFE AF = 4.52%, global AF = 5.90%; HWE ~91.16% NFE and ~88.55% global Ala67/Ala67) creates 38 non-canonical 8-11mer windows and overflows single-AAV6 Locus-1 packaging (5,581-5,750 bp > 4,700 bp), making matched B2M-/- TIGIT-low/CD226-high NK testing mandatory for possible synaptic sign inversion before any PVR engineering.",
       "supporting_pmids": [
         "31900242",
         "37156915",
-        "27942611"
+        "27942611",
+        "37675979",
+        "35947095",
+        "41202120",
+        "36170817"
       ],
       "cheapest_falsification_assay": "Indirect-pathway co-culture assay: HLA-DQ2/DQ8+ T1D patient monocyte-derived dendritic cells pulsed with necrotic/secretome supernatant from B2M-/- CIITA-/- SC-islets + autologous CD4+ T-cells + autologous macrophages co-cultured with live MHC-null SC-islets.",
       "replacement_solution": "Explicitly cap Gate 2B scores for MHC-null designs with an unmeasured indirect-presentation residual hazard term, minimize Hour-0 necrotic debris (<120 um clusters + pre-vascularized niche), and evaluate whether epitope-level stealth or transient peri-transplant innate/APC blockade is required.",
@@ -274,5 +283,39 @@
       "evaluator_disposition_rule": "Applies -0.25 logit discount in Gate 2B + requires Decision Experiment #2 indirect APC / SA-FasL gate",
       "Evaluator_Disposition_Rule": "WARN (non-blocking mechanistic precaution): retains the existing -0.25 Gate 2B logit discount for listed MHC-null modules, including INS-edited variants. No hard calibrated probability ceiling is implemented or claimed."
     }
-  ]
+  ],
+  "off_grid_molecular_dead_end_guardrails": {
+    "schema_role": "Non-grid Stage-0 molecular hypothesis guardrails (preserving exact 10 grid-firing graveyard_entries for CHK-05)",
+    "decision_id": "DEC-101",
+    "contribution_id": "IIP-0022",
+    "consumed_by_validators": [
+      "scripts/wetlab_contract.py (evaluate_stage0_decision_tree iip0022_eval_summary)",
+      "tests/test_round3_supporting_boundaries.py (section 47)"
+    ],
+    "guardrails": [
+      {
+        "guardrail_id": "OFFGRID_GUARD_001_PVR_ALA67THR_B2M_NULL_SIGN_INVERSION_HYPOTHESIS",
+        "status": "PROSPECTIVE_CONTEXT_DEPENDENT_RISK_REQUIRES_MATCHED_B2M_NULL_TESTING",
+        "summary": "CD155 Ala67Thr (rs1058402) reduced primary NK lysis (0.34/0.41/0.41) on HLA-A2+ MHC-I-intact SC-beta cells (PMID:41202120) and improved bivalent CD155-Fc TIGIT/CD226 binding ratio (0.271 -> 0.804, PMID:35947095; monovalent SPR in PMID:37675979), so it is NOT an established universal dead end; however, in B2M-/- iPSC/iBeta targets CD155 mediates activating CD226 lysis (PMID:36170817), Thr67 introduces 38 variant 8-11mers (~88.55% global / ~91.16% NFE HWE Ala/Ala), and full-length PVR overflows Locus-1 AAV6 (5,581-5,750 bp > 4,700 bp). Requires direct sorted TIGIT-low/CD226-high NKG2A- KIR+ NK testing on B2M-/- SC-islets.",
+        "pmids": [
+          "37675979",
+          "35947095",
+          "41202120",
+          "36170817"
+        ]
+      },
+      {
+        "guardrail_id": "OFFGRID_GUARD_002_LINEAGE_SEPARATED_SC_BETA_VS_IEC_NECROPTOSIS_AND_TNFRSF1A_PACKAGING",
+        "status": "PROSPECTIVE_LINEAGE_ASYMMETRY_REQUIRES_TIME_RESOLVED_VIABILITY_AND_RESCUE",
+        "summary": "Mouse islet and human EndoC-betaH1 models resist canonical RIPK1/RIPK3/MLKL necroptosis (PMID:36707047, PMID:39004142, PMID:25301392), including pMLKL phosphorylation without death, whereas vascular endothelial cells can undergo necroptosis and TNFRSF1A (gnomAD v4 pLI=0.9999) attenuates TNF-alpha NF-kB promoter drive and exceeds 4,700 bp on bGHpA L3-BF-B (4,810 bp). Requires lineage-gated C-peptide+ SC-beta vs CDH5+ PLVAP+ iEC time-resolved viability and orthogonal rescue alongside pMLKL/Cleaved Caspase-3.",
+        "pmids": [
+          "36707047",
+          "39004142",
+          "25301392",
+          "40796566",
+          "38981470"
+        ]
+      }
+    ]
+  }
 }

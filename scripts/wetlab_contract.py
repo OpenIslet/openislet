@@ -271,6 +271,14 @@ STAGE0_DECISION_TREE_ENDPOINT_SPECS = [
     ('stage0_cond_endocrine_nqo1_activity_pct', 'obs_cond_endocrine_nqo1_activity_pct', 'obs_cond_endocrine_nqo1_activity_se', 0.0, 200.0, 'undiluted_endocrine_compartment_cellular_nqo1_enzymatic_activity_pct_of_vehicle'),
     ('stage0_cond_vascular_nqo1_activity_pct', 'obs_cond_vascular_nqo1_activity_pct', 'obs_cond_vascular_nqo1_activity_se', 0.0, 200.0, 'undiluted_vascular_iec_compartment_cellular_nqo1_enzymatic_activity_pct_of_vehicle'),
     ('stage0_cond_post_washout_gsis_si', 'obs_cond_post_washout_gsis_si', 'obs_cond_post_washout_gsis_se', 0.1, 50.0, 'post_conditioning_and_washout_dynamic_perifusion_gsis_stimulation_index'),
+    # Stage-0 Track-2 B'-SCT vs HLA-G1 NK rescue split, B2M-null PVR/CD226 NK sign-inversion check, and lineage-separated SC-beta vs iEC necroptosis attribution (IIP-0022; DEC-101):
+    ('stage0_track2_bsct_kir_nkg2a_neg_nk_lysis_pct', 'obs_track2_bsct_kir_nkg2a_neg_nk_lysis_pct', 'obs_track2_bsct_kir_nkg2a_neg_nk_lysis_se', 0.0, 100.0, 'sorted_c1_c2_kir2dl_pos_nkg2a_neg_primary_nk_lysis_pct_on_track2_bsct'),
+    ('stage0_track2_bsct_donor_count', 'obs_track2_bsct_donor_count', 'obs_track2_bsct_donor_count_se', 0.0, 500.0, 'independent_kir_typed_primary_nk_donor_count_for_track2_bsct'),
+    ('stage0_track2_bsct_failing_donor_count', 'obs_track2_bsct_failing_donor_count', 'obs_track2_bsct_failing_donor_count_se', 0.0, 500.0, 'individual_donors_exceeding_8pct_lysis_on_track2_bsct'),
+    ('stage0_track2_hlag1_lilrb1_neg_kir_nk_lysis_pct', 'obs_track2_hlag1_lilrb1_neg_kir_nk_lysis_pct', 'obs_track2_hlag1_lilrb1_neg_kir_nk_lysis_se', 0.0, 100.0, 'sorted_lilrb1_neg_nkg2a_neg_kir_pos_primary_nk_lysis_pct_on_hlag1_challenger'),
+    ('stage0_track2_hlag1_donor_count', 'obs_track2_hlag1_donor_count', 'obs_track2_hlag1_donor_count_se', 0.0, 500.0, 'independent_primary_nk_donor_count_for_hlag1_lilrb1_neg_subset'),
+    ('stage0_track2_hlag1_failing_donor_count', 'obs_track2_hlag1_failing_donor_count', 'obs_track2_hlag1_failing_donor_count_se', 0.0, 500.0, 'individual_donors_exceeding_8pct_lysis_on_hlag1_lilrb1_neg_subset'),
+    ('stage0_b2m_null_pvr_cd226_nk_lysis_pct', 'obs_b2m_null_pvr_cd226_nk_lysis_pct', 'obs_b2m_null_pvr_cd226_nk_lysis_se', 0.0, 100.0, 'sorted_tigit_low_cd226_high_nkg2a_neg_kir_pos_nk_lysis_pct_on_b2m_null_sc_islets'),
 ]
 
 STAGE0_S10_V3_MEAN_KEYS: frozenset[str] = frozenset({
@@ -398,6 +406,13 @@ ALLOWED_CONDITIONING_4ARM_ARMS: frozenset[str] = frozenset({
 ALLOWED_CONDITIONING_WASHOUT_ANALYTE_SCOPES: frozenset[str] = frozenset({
     'SUPERNATANT_AND_CELL_PELLET_PARENT_PLUS_METABOLITES',
     'AQUEOUS_SUPERNATANT_ONLY_INSUFFICIENT',
+})
+
+# Stage-0 Track-2 NK rescue split (HLA-C B'-SCT KIR vs held HLA-G1 LILRB1 challenger; IIP-0022; DEC-101):
+ALLOWED_TRACK2_RESCUE_ROUTES: frozenset[str] = frozenset({
+    'TRACK1_MHC_NULL_NO_TRACK2_SWITCH',
+    'TRACK2_HLAC_B_SCT_KIR_RESCUE',
+    'TRACK2_HLAG1_LILRB1_CHALLENGER_HELD',
 })
 
 STAGE0_S10_V3_CONSTRUCT_REGISTRY: dict[str, dict[str, object]] = {
@@ -963,6 +978,13 @@ STAGE0_CUSTOM_DEFAULT_SE: dict[str, float] = {
     'obs_cond_endocrine_nqo1_activity_pct': 1.5,
     'obs_cond_vascular_nqo1_activity_pct': 1.5,
     'obs_cond_post_washout_gsis_si': 0.15,
+    'obs_track2_bsct_kir_nkg2a_neg_nk_lysis_pct': 0.75,
+    'obs_track2_bsct_donor_count': 1e-12,
+    'obs_track2_bsct_failing_donor_count': 1e-12,
+    'obs_track2_hlag1_lilrb1_neg_kir_nk_lysis_pct': 0.75,
+    'obs_track2_hlag1_donor_count': 1e-12,
+    'obs_track2_hlag1_failing_donor_count': 1e-12,
+    'obs_b2m_null_pvr_cd226_nk_lysis_pct': 0.75,
 }
 
 STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
@@ -995,6 +1017,10 @@ STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
     'obs_ul40_ctl_failing_donor_count': 1e-12,
     'obs_cuff_serum_donor_count': 1e-12,
     'obs_cuff_serum_failing_donor_count': 1e-12,
+    'obs_track2_bsct_donor_count': 1e-12,
+    'obs_track2_bsct_failing_donor_count': 1e-12,
+    'obs_track2_hlag1_donor_count': 1e-12,
+    'obs_track2_hlag1_failing_donor_count': 1e-12,
 }
 
 
@@ -1345,6 +1371,10 @@ STAGE0_DECISION_TREE_BOOLEAN_KEYS: tuple[str, ...] = (
     'rest_120h_viable_lineage_yield_and_during_exposure_function_verified',
     'conditioning_pellet_loq_and_extraction_recovery_verified',
     'conditioning_orthogonal_pathway_controls_verified',
+    'track2_b_sct_kir_rescue_qualified',
+    'track2_hlag1_lilrb1_rescue_qualified',
+    'require_full_iip0022_track2_and_guardrail_panel',
+    'lineage_necroptosis_time_resolved_viability_and_rescue_verified',
 )
 
 
@@ -1413,6 +1443,7 @@ def derive_contract(root: Path | str | None = None) -> dict:
                 'rest_ocr_coupon_arm',
                 'conditioning_4arm_arm',
                 'conditioning_washout_analyte_scope',
+                'track2_rescue_route',
             ],
             'boolean_policy_keys': list(STAGE0_DECISION_TREE_BOOLEAN_KEYS),
             'endpoints': endpoints,
@@ -1571,6 +1602,10 @@ def normalize_measurements(payload: dict, *, require_observation: bool = True,
         elif key == 'conditioning_washout_analyte_scope':
             if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_CONDITIONING_WASHOUT_ANALYTE_SCOPES:
                 raise ValueError(f'conditioning_washout_analyte_scope must be one of {sorted(ALLOWED_CONDITIONING_WASHOUT_ANALYTE_SCOPES)} (IIP-0021; DEC-100)')
+            result[key] = payload[key].strip()
+        elif key == 'track2_rescue_route':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_TRACK2_RESCUE_ROUTES:
+                raise ValueError(f'track2_rescue_route must be one of {sorted(ALLOWED_TRACK2_RESCUE_ROUTES)} (IIP-0022; DEC-101)')
             result[key] = payload[key].strip()
         else:
             if not isinstance(payload[key], str) or not payload[key].strip() or len(payload[key]) > 120:
@@ -2025,6 +2060,11 @@ def evaluate_stage0_decision_tree(
         'rest_120h_viable_lineage_yield_and_during_exposure_function_verified',
         'conditioning_pellet_loq_and_extraction_recovery_verified',
         'conditioning_orthogonal_pathway_controls_verified',
+        'track2_rescue_route',
+        'track2_b_sct_kir_rescue_qualified',
+        'track2_hlag1_lilrb1_rescue_qualified',
+        'require_full_iip0022_track2_and_guardrail_panel',
+        'lineage_necroptosis_time_resolved_viability_and_rescue_verified',
     }
     unknown_keys = sorted(set(observations) - set(spec_by_mean) - set(spec_by_se) - allowed_boolean_and_meta_flags)
     if unknown_keys:
@@ -2054,6 +2094,7 @@ def evaluate_stage0_decision_tree(
         ('rest_ocr_coupon_arm', ALLOWED_REST_OCR_COUPON_ARMS),
         ('conditioning_4arm_arm', ALLOWED_CONDITIONING_4ARM_ARMS),
         ('conditioning_washout_analyte_scope', ALLOWED_CONDITIONING_WASHOUT_ANALYTE_SCOPES),
+        ('track2_rescue_route', ALLOWED_TRACK2_RESCUE_ROUTES),
     ):
         if _adj_k in observations and observations[_adj_k] is not None:
             _adj_v = observations[_adj_k]
@@ -2590,17 +2631,65 @@ def evaluate_stage0_decision_tree(
             or nkg2a_lysis_upper95 > 15.0
         )
     )
+    # Uncertainty-aware upper95 KIR+NKG2A- (<= 8.0%) and IL-12/IL-18 SIRPa-low (<= 10.0%) escape routing & fail-closed Track-2 B'-SCT vs HLA-G1 split (IIP-0022; DEC-101):
+    # Preserves provisional core_14_panel compatibility when subset endpoints are unmeasured while preventing raw-mean <= 8.0% with upper95 > 8.0% from misrouting to S2 Arm 1X.
     kir_nkg2a_neg_nk_exceeded_raw = bool(
-        validated_stage0.get('obs_kir_nkg2a_neg_nk_lysis_pct', 2.0) > 8.0
-        or ('obs_il12_il18_sirpa_low_nk_lysis_pct' in validated_stage0 and validated_stage0['obs_il12_il18_sirpa_low_nk_lysis_pct'] > 10.0)
+        ('obs_kir_nkg2a_neg_nk_lysis_pct' in validated_stage0 and (validated_stage0['obs_kir_nkg2a_neg_nk_lysis_pct'] > 8.0 or kir_nkg2a_neg_upper95 > 8.0))
+        or ('obs_il12_il18_sirpa_low_nk_lysis_pct' in validated_stage0 and (validated_stage0['obs_il12_il18_sirpa_low_nk_lysis_pct'] > 10.0 or il12_il18_sirpa_low_upper95 > 10.0))
     )
-    track2_kir_or_hlag1_fallback_promoted = bool(
+    _t2_route = observations.get('track2_rescue_route')
+    if isinstance(_t2_route, str):
+        _t2_route = _t2_route.strip()
+    _legacy_conflated_t2 = observations.get('track2_b_sct_or_hlag1_lilrb1_rescue_qualified') is True
+    _bsct_flag = observations.get('track2_b_sct_kir_rescue_qualified') is True
+    _hlag1_flag = observations.get('track2_hlag1_lilrb1_rescue_qualified') is True
+    _bsct_quant_present = any(
+        _k in validated_stage0
+        for _k in ('obs_track2_bsct_kir_nkg2a_neg_nk_lysis_pct', 'obs_track2_bsct_donor_count', 'obs_track2_bsct_failing_donor_count')
+    )
+    _hlag1_quant_present = any(
+        _k in validated_stage0
+        for _k in ('obs_track2_hlag1_lilrb1_neg_kir_nk_lysis_pct', 'obs_track2_hlag1_donor_count', 'obs_track2_hlag1_failing_donor_count')
+    )
+    _bsct_quant_cleared = bool(
+        'obs_track2_bsct_kir_nkg2a_neg_nk_lysis_pct' in validated_stage0
+        and se_provenance_by_mean.get('obs_track2_bsct_kir_nkg2a_neg_nk_lysis_pct') == 'EXPLICIT_SE_SUPPLIED'
+        and _upper95('obs_track2_bsct_kir_nkg2a_neg_nk_lysis_pct') <= 8.0
+        and 'obs_track2_bsct_donor_count' in validated_stage0
+        and abs(validated_stage0['obs_track2_bsct_donor_count'] - round(validated_stage0['obs_track2_bsct_donor_count'])) <= 1e-9
+        and int(round(validated_stage0['obs_track2_bsct_donor_count'])) >= 6
+        and 'obs_track2_bsct_failing_donor_count' in validated_stage0
+        and abs(validated_stage0['obs_track2_bsct_failing_donor_count'] - round(validated_stage0['obs_track2_bsct_failing_donor_count'])) <= 1e-9
+        and int(round(validated_stage0['obs_track2_bsct_failing_donor_count'])) == 0
+    )
+    _hlag1_quant_cleared_uniform_8pct = bool(
+        'obs_track2_hlag1_lilrb1_neg_kir_nk_lysis_pct' in validated_stage0
+        and se_provenance_by_mean.get('obs_track2_hlag1_lilrb1_neg_kir_nk_lysis_pct') == 'EXPLICIT_SE_SUPPLIED'
+        and _upper95('obs_track2_hlag1_lilrb1_neg_kir_nk_lysis_pct') <= 8.0
+        and 'obs_track2_hlag1_donor_count' in validated_stage0
+        and abs(validated_stage0['obs_track2_hlag1_donor_count'] - round(validated_stage0['obs_track2_hlag1_donor_count'])) <= 1e-9
+        and int(round(validated_stage0['obs_track2_hlag1_donor_count'])) >= 6
+        and 'obs_track2_hlag1_failing_donor_count' in validated_stage0
+        and abs(validated_stage0['obs_track2_hlag1_failing_donor_count'] - round(validated_stage0['obs_track2_hlag1_failing_donor_count'])) <= 1e-9
+        and int(round(validated_stage0['obs_track2_hlag1_failing_donor_count'])) == 0
+    )
+    # Deprecated conflated alias preserves legacy B'-SCT fallback candidate promotion ONLY when neither HLA-G1 route nor failing B'-SCT quant panel is present; never auto-clears HLA-G1!
+    track2_bsct_route_promoted = bool(
         kir_nkg2a_neg_nk_exceeded_raw
-        and observations.get('track2_b_sct_or_hlag1_lilrb1_rescue_qualified') is True
+        and not _hlag1_flag
+        and _t2_route != 'TRACK2_HLAG1_LILRB1_CHALLENGER_HELD'
+        and (
+            (_bsct_flag and (not _bsct_quant_present or _bsct_quant_cleared))
+            or (_legacy_conflated_t2 and not _bsct_flag and _t2_route is None and not _bsct_quant_present)
+        )
     )
+    track2_hlag1_route_attempted = bool(
+        _hlag1_flag or _t2_route == 'TRACK2_HLAG1_LILRB1_CHALLENGER_HELD' or _hlag1_quant_present
+    )
+    track2_kir_or_hlag1_fallback_promoted = bool(track2_bsct_route_promoted)
     kir_nkg2a_neg_nk_failed = bool(
         kir_nkg2a_neg_nk_exceeded_raw
-        and not track2_kir_or_hlag1_fallback_promoted
+        and not track2_bsct_route_promoted
     )
     # S10 triggers on one-sided 95% bounds (CMV-imprinted NKG2C+NKG2A-CD57+ adaptive NK lysis upper95 > 8% OR receptor-negative NKG2A-KIR2DL-NKG2C+ NK lysis upper95 > 8% OR covalent-SCT NKG2C/NKG2A KD selectivity ratio lower95 < 4.0) or any failing S10 v3 functional/comparator panel (AUDIT-REF & IIP-0016; DEC-042/046/094):
     _s10_v3_active = bool(
@@ -3819,6 +3908,63 @@ def evaluate_stage0_decision_tree(
             'conditioning_pellet_nqo1_status': iip0021_cond_status,
         }
 
+    # Stage-0 Track-2 B'-SCT vs HLA-G1 split, B2M-null PVR/CD226 NK check, and lineage-separated necroptosis guardrail evaluation (IIP-0022; DEC-101):
+    _req_iip0022_full = observations.get('require_full_iip0022_track2_and_guardrail_panel') is True
+    _iip0022_active = bool(
+        _req_iip0022_full
+        or _t2_route is not None
+        or _bsct_flag
+        or _hlag1_flag
+        or _bsct_quant_present
+        or _hlag1_quant_present
+        or 'obs_b2m_null_pvr_cd226_nk_lysis_pct' in validated_stage0
+        or observations.get('lineage_necroptosis_time_resolved_viability_and_rescue_verified') is not None
+    )
+    iip0022_hold_status: str | None = None
+    iip0022_track2_status: str | None = None
+    if _iip0022_active:
+        if _bsct_flag and _hlag1_flag:
+            iip0022_track2_status = 'HOLD_TRACK2_MUTUALLY_EXCLUSIVE_BSCT_AND_HLAG1_FLAGS_BOTH_SET'
+            iip0022_hold_status = iip0022_track2_status
+        elif _legacy_conflated_t2 and (_t2_route is not None or _req_iip0022_full):
+            iip0022_track2_status = 'HOLD_TRACK2_DEPRECATED_CONFLATED_RESCUE_FLAG_REQUIRES_EXPLICIT_SPLIT_ROUTE'
+            iip0022_hold_status = iip0022_track2_status
+        elif track2_hlag1_route_attempted:
+            if not _hlag1_quant_cleared_uniform_8pct:
+                iip0022_track2_status = 'HOLD_TRACK2_HLAG1_LILRB1_NEG_KIR_NK_EXCEEDS_8PCT_OR_UNDERPOWERED_DONOR_PANEL'
+            else:
+                # Even if sorted LILRB1- NKG2A- KIR+ primary NK clears <= 8.0% across n >= 6 donors, HLA-G1 remains HELD until registered in islet1_product_definitions_v0.8.0.json:
+                iip0022_track2_status = 'HOLD_TRACK2_HLAG1_CLEARED_UNIFORM_8PCT_COUPON_PENDING_PRODUCT_DEFINITION_REGISTRATION'
+            iip0022_hold_status = iip0022_track2_status
+        elif _bsct_flag or _t2_route == 'TRACK2_HLAC_B_SCT_KIR_RESCUE' or _bsct_quant_present:
+            if not _bsct_quant_cleared:
+                iip0022_track2_status = 'HOLD_TRACK2_BSCT_KIR_NK_EXCEEDS_8PCT_OR_MISSING_EXPLICIT_6DONOR_PANEL'
+                iip0022_hold_status = iip0022_track2_status
+            else:
+                iip0022_track2_status = 'CLEARED_TRACK2_BSCT_KIR_6DONOR_8PCT_COUPON'
+        else:
+            iip0022_track2_status = 'TRACK1_MHC_NULL_ACTIVE_NO_TRACK2_SWITCH'
+
+        if iip0022_hold_status is None and ('obs_b2m_null_pvr_cd226_nk_lysis_pct' in validated_stage0 or _req_iip0022_full):
+            if (
+                'obs_b2m_null_pvr_cd226_nk_lysis_pct' not in validated_stage0
+                or se_provenance_by_mean.get('obs_b2m_null_pvr_cd226_nk_lysis_pct') != 'EXPLICIT_SE_SUPPLIED'
+                or _upper95('obs_b2m_null_pvr_cd226_nk_lysis_pct') > 8.0
+            ):
+                iip0022_hold_status = 'HOLD_B2M_NULL_TIGIT_LOW_CD226_HIGH_NK_LYSIS_EXCEEDS_8PCT_OR_MISSING_EXPLICIT_SE'
+        if iip0022_hold_status is None and (observations.get('lineage_necroptosis_time_resolved_viability_and_rescue_verified') is False or (_req_iip0022_full and observations.get('lineage_necroptosis_time_resolved_viability_and_rescue_verified') is not True)):
+            iip0022_hold_status = 'HOLD_LINEAGE_NECROPTOSIS_TIME_RESOLVED_VIABILITY_AND_RESCUE_UNVERIFIED'
+
+    iip0022_eval_summary: dict[str, object] | None = None
+    if _iip0022_active:
+        iip0022_eval_summary = {
+            'gate_pass': iip0022_hold_status is None,
+            'hold_status': iip0022_hold_status,
+            'track2_rescue_route': _t2_route,
+            'track2_route_status': iip0022_track2_status,
+            'deprecated_conflated_flag_supplied': _legacy_conflated_t2,
+        }
+
     # S8b TYK2 x inducible-promoter epistasis: support explicit enumerated scale {FRACTION_HALF_EFFECT, PP_HALF_EFFECT, PP_FULL_CONTRAST, DID_PP} with per-endpoint scale retention across batches, unified fractional half-effect threshold (point < -0.05 or lower95 < -0.10), and sign-independent underpowered SE hold (AUDIT-REF & AUDIT-REF; DEC-042/044):
     s8b_scale_enum = observations.get('s8b_epistasis_estimand_scale')
     if s8b_scale_enum is not None:
@@ -3978,6 +4124,10 @@ def evaluate_stage0_decision_tree(
             resolved_arch['rest_120h_ocr_coupon_status'] = iip0021_rest_status
         if iip0021_cond_status is not None:
             resolved_arch['conditioning_4arm_nqo1_gate_status'] = iip0021_cond_status
+    if iip0022_eval_summary is not None:
+        resolved_arch['track2_nk_split_and_pvr_necroptosis_evaluation'] = iip0022_eval_summary
+        if iip0022_track2_status is not None:
+            resolved_arch['track2_split_route_status'] = iip0022_track2_status
     if (
         _adj_arm_raw is not None
         or adjunct_depletion_mode is not None
@@ -4051,11 +4201,16 @@ def evaluate_stage0_decision_tree(
         resolved_arch['locus1_construct'] = 'HOLD_CATASTROPHIC_NKG2A_LYSIS_EXCEEDS_ARM1X_RESCUE_ENVELOPE'
     elif kir_nkg2a_neg_nk_failed:
         resolved_arch['locus1_construct'] = 'HOLD_KIR_NKG2A_NEG_NK_OR_IL12_IL18_SIRPA_LOW_LYSIS_FAILED_REQUIRES_TRACK2_B_SCT_OR_HLAG1_CHALLENGER'
+    elif track2_hlag1_route_attempted:
+        resolved_arch['locus1_construct'] = 'HOLD_TRACK2_HLAG1_CHALLENGER_PENDING_PRODUCT_REGISTRATION'
+        resolved_arch['locus2_construct'] = 'HOLD_TRACK2_HLAG1_CHALLENGER_PENDING_PRODUCT_REGISTRATION'
+        resolved_arch['track2_kir_subbank_construct'] = 'HOLD_HLAG1_C42S_LILRB1_CHALLENGER_UNREGISTERED_PRODUCT'
+        resolved_arch['track1_mhc_null_kir_escape_status'] = 'HOLD_HLAG1_LILRB1_ROUTE_PENDING_PRODUCT_REGISTRATION'
     elif track2_kir_or_hlag1_fallback_promoted:
-        resolved_arch['locus1_construct'] = 'PROMOTE_TRACK2_B_SCT_OR_HLAG1_LILRB1_RESCUE'
+        resolved_arch['locus1_construct'] = 'PROMOTE_TRACK2_B_SCT_KIR_RESCUE' if (_bsct_flag or _t2_route == 'TRACK2_HLAC_B_SCT_KIR_RESCUE') else 'PROMOTE_TRACK2_B_SCT_OR_HLAG1_LILRB1_RESCUE'
         resolved_arch['locus2_construct'] = 'ISLET1_B_SCT_C1_CIITA_OR_C2_CIITA_KIR_RESCUE'
-        resolved_arch['track2_kir_subbank_construct'] = 'ISLET1_B_SCT_C1_OR_C2_CIITA_OR_HLAG1_C42S_CHALLENGER'
-        resolved_arch['track1_mhc_null_kir_escape_status'] = 'PROMOTED_TO_TRACK2_B_SCT_OR_HLAG1_LILRB1_CHALLENGER'
+        resolved_arch['track2_kir_subbank_construct'] = 'ISLET1_B_SCT_C1_OR_C2_CIITA_KIR_RESCUE' if (_bsct_flag or _t2_route == 'TRACK2_HLAC_B_SCT_KIR_RESCUE') else 'ISLET1_B_SCT_C1_OR_C2_CIITA_OR_HLAG1_C42S_CHALLENGER'
+        resolved_arch['track1_mhc_null_kir_escape_status'] = 'PROMOTED_TO_TRACK2_HLAC_B_SCT_KIR_RESCUE' if (_bsct_flag or _t2_route == 'TRACK2_HLAC_B_SCT_KIR_RESCUE') else 'PROMOTED_TO_TRACK2_B_SCT_OR_HLAG1_LILRB1_CHALLENGER'
     elif s2_promoted:
         resolved_arch['locus1_construct'] = 'ISLET1_A4_X_MOL_RNLS_WT'
         if observations.get('s2_arm1x_clears_15k_resting_hlae_and_cd47_c15g_noninferior') is not True:
@@ -4234,6 +4389,8 @@ def evaluate_stage0_decision_tree(
         resolved_arch['lot_maturation_status'] = iip0020_hold_status
     elif iip0021_hold_status is not None:
         resolved_arch['lot_maturation_status'] = iip0021_hold_status
+    elif iip0022_hold_status is not None:
+        resolved_arch['lot_maturation_status'] = iip0022_hold_status
     elif challenger_hold_status is not None:
         resolved_arch['lot_maturation_status'] = challenger_hold_status
     elif avascular_outer_band_dropout and not omental_revascularization_cleared:
@@ -4769,6 +4926,7 @@ def evaluate_stage0_decision_tree(
         and not is_comp_r4_product
         and (not _req_iip0020_full or (iip0020_hold_status is None and (_dz_arm_val is not None or iip0020_p05_species_status == 'CLEARED_P05_HUMAN_P04040_SPECIES_ENDOTOXIN_AND_SHED_MASS_GATE') and iip0020_cuff_status == 'CLEARED_CUFF_HUMORAL_HYDROLYSIS_AND_HEPATOCYTE_SAFETY_GATE'))
         and (not _req_iip0021_full or (iip0021_hold_status is None and iip0021_rest_status is not None and iip0021_cond_status == 'CLEARED_CONDITIONING_4ARM_PELLET_LOQ_NQO1_AND_LINEAGE_GSIS_GATE'))
+        and (not _req_iip0022_full or iip0022_hold_status is None)
     )
     any_fallback_switch_triggered = bool(
         s1_promoted

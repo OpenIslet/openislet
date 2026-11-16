@@ -42,7 +42,8 @@
     "cuff_serum_challenge_stratum",
     "rest_ocr_coupon_arm",
     "conditioning_4arm_arm",
-    "conditioning_washout_analyte_scope"
+    "conditioning_washout_analyte_scope",
+    "track2_rescue_route"
   ],
   "boolean_policy_keys": [
     "require_full_5endpoint_s9_panel",
@@ -107,7 +108,11 @@
     "rest_120h_longitudinal_simultaneous_coverage_verified",
     "rest_120h_viable_lineage_yield_and_during_exposure_function_verified",
     "conditioning_pellet_loq_and_extraction_recovery_verified",
-    "conditioning_orthogonal_pathway_controls_verified"
+    "conditioning_orthogonal_pathway_controls_verified",
+    "track2_b_sct_kir_rescue_qualified",
+    "track2_hlag1_lilrb1_rescue_qualified",
+    "require_full_iip0022_track2_and_guardrail_panel",
+    "lineage_necroptosis_time_resolved_viability_and_rescue_verified"
   ],
   "endpoints": [
     {
@@ -2765,6 +2770,83 @@
       "default_se": 0.15,
       "minimum_se": 0.001,
       "unit": "post_conditioning_and_washout_dynamic_perifusion_gsis_stimulation_index"
+    },
+    {
+      "endpoint_id": "stage0_track2_bsct_kir_nkg2a_neg_nk_lysis_pct",
+      "meanKey": "obs_track2_bsct_kir_nkg2a_neg_nk_lysis_pct",
+      "seKey": "obs_track2_bsct_kir_nkg2a_neg_nk_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.75,
+      "minimum_se": 0.001,
+      "unit": "sorted_c1_c2_kir2dl_pos_nkg2a_neg_primary_nk_lysis_pct_on_track2_bsct"
+    },
+    {
+      "endpoint_id": "stage0_track2_bsct_donor_count",
+      "meanKey": "obs_track2_bsct_donor_count",
+      "seKey": "obs_track2_bsct_donor_count_se",
+      "min": 0.0,
+      "max": 500.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "independent_kir_typed_primary_nk_donor_count_for_track2_bsct"
+    },
+    {
+      "endpoint_id": "stage0_track2_bsct_failing_donor_count",
+      "meanKey": "obs_track2_bsct_failing_donor_count",
+      "seKey": "obs_track2_bsct_failing_donor_count_se",
+      "min": 0.0,
+      "max": 500.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "individual_donors_exceeding_8pct_lysis_on_track2_bsct"
+    },
+    {
+      "endpoint_id": "stage0_track2_hlag1_lilrb1_neg_kir_nk_lysis_pct",
+      "meanKey": "obs_track2_hlag1_lilrb1_neg_kir_nk_lysis_pct",
+      "seKey": "obs_track2_hlag1_lilrb1_neg_kir_nk_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.75,
+      "minimum_se": 0.001,
+      "unit": "sorted_lilrb1_neg_nkg2a_neg_kir_pos_primary_nk_lysis_pct_on_hlag1_challenger"
+    },
+    {
+      "endpoint_id": "stage0_track2_hlag1_donor_count",
+      "meanKey": "obs_track2_hlag1_donor_count",
+      "seKey": "obs_track2_hlag1_donor_count_se",
+      "min": 0.0,
+      "max": 500.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "independent_primary_nk_donor_count_for_hlag1_lilrb1_neg_subset"
+    },
+    {
+      "endpoint_id": "stage0_track2_hlag1_failing_donor_count",
+      "meanKey": "obs_track2_hlag1_failing_donor_count",
+      "seKey": "obs_track2_hlag1_failing_donor_count_se",
+      "min": 0.0,
+      "max": 500.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "individual_donors_exceeding_8pct_lysis_on_hlag1_lilrb1_neg_subset"
+    },
+    {
+      "endpoint_id": "stage0_b2m_null_pvr_cd226_nk_lysis_pct",
+      "meanKey": "obs_b2m_null_pvr_cd226_nk_lysis_pct",
+      "seKey": "obs_b2m_null_pvr_cd226_nk_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.75,
+      "minimum_se": 0.001,
+      "unit": "sorted_tigit_low_cd226_high_nkg2a_neg_kir_pos_nk_lysis_pct_on_b2m_null_sc_islets"
     }
   ]
 }

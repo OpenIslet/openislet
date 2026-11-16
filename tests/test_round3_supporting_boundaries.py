@@ -3070,10 +3070,10 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     )
 
     # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (49 persisted boolean flags, 53 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
-    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 59
+    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 63
     assert "require_full_5endpoint_s9_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
     assert "require_full_7metric_combined_stress_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
-    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 63
+    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 67
     assert "5.71 mmHg at 100 um clusters with matched D_caps = D_gel" in film_limit["surgical_mitigation"]
 
     batch1_r7s2 = {
@@ -3156,7 +3156,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     # - R7S3-F02: Both wetlab_contract.evaluate_stage0_decision_tree and ingest_wetlab_results.evaluate_stage0_decision_tree reject non-boolean policy values
     from scripts import wetlab_contract as wc_mod
 
-    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 63
+    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 67
     for bkey in wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS:
         for bad_val in ("false", "False", 0, "true", "True", 1):
             for eval_fn in (wc_mod.evaluate_stage0_decision_tree, wetlab.evaluate_stage0_decision_tree):
@@ -5244,6 +5244,52 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     assert wetlab.evaluate_stage0_decision_tree({**_iip21_valid, "rest_ocr_coupon_arm": "UNENCAPSULATED_FREE_DRUG_REJECTED"})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_REST_OCR_UNENCAPSULATED_FREE_DRUG_RAPID_SLAB_WASHOUT_BARRED"
     assert wetlab.evaluate_stage0_decision_tree({**_iip21_valid, "conditioning_4arm_arm": "NEC1_100UM_ANTIFERROPTOTIC_COMPARATOR"})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_CONDITIONING_BENCHMARK_OR_NEC1_ANTIFERROPTOTIC_COMPARATOR_NOT_RELEASE_ARM"
     assert wetlab.evaluate_stage0_decision_tree({**_iip21_valid, "obs_cond_endocrine_nqo1_activity_pct": 82.0})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_CONDITIONING_RESIDUAL_DRUG_OR_NQO1_INHIBITION_DETECTED"
+
+    # 47. IIP-0022 / DEC-101: Fail-closed Track-2 B'-SCT vs HLA-G1 split, upper95 KIR routing, off-grid Graveyard guardrails, Layer-3 PVR/HLA-G1 audit, and 2^12 common-shock generator:
+    from scripts import rank_islet1_stacks as rk_iip22
+    _tree_dec098 = rk_iip22.compute_common_shock_2pow12_portfolio_tree(
+        [0.88, 0.78, 0.56, 0.68],
+        [0.88, 0.79, 0.64, 0.70],
+        [0.88, 0.81, 0.70, 0.68],
+        [0.88, 0.87, 0.88, 0.85],
+    )
+    assert _tree_dec098["total_enumerated_states"] == 4096 and _tree_dec098["positive_mass_states"] == 1024
+    assert [round(x, 6) for x in _tree_dec098["surviving_portfolio_conditionals_exact"]] == [0.88, 0.869429, 0.847262, 0.794158]
+    assert round(_tree_dec098["locked_3slot_2pow12_exact"], 6) == 0.514804
+    assert round(_tree_dec098["legacy_modular_3slot_cell_x_pouch_exact"], 6) == 0.547113
+    assert round(_tree_dec098["modular_2route_shared_ax_pouch_exact"], 6) == 0.531555
+    assert round(_tree_dec098["locked_2route_shared_ax_pouch_exact"], 6) == 0.497144
+
+    _gy_iip22 = json.loads((ROOT / "data/graveyard/idea_graveyard_v0.5.json").read_text(encoding="utf-8"))
+    assert len(_gy_iip22["graveyard_entries"]) == 10
+    assert _gy_iip22["off_grid_molecular_dead_end_guardrails"]["decision_id"] == "DEC-101"
+
+    _l3_iip22 = json.loads((ROOT / "data/extracted/layer3_structural_verification_atlas.json").read_text(encoding="utf-8"))["pvr_tigit_cd226_cd96_and_hlag1_structural_audit_iip_0022"]
+    assert _l3_iip22["authenticated_rcsb_mmcif_records"]["3UDW"]["pvr_ala67_contacts_le_4p5A"] == 0
+
+    # Passing mean (7.0%) with failing upper95 (8.645%) on KIR+NKG2A- NK lysis must route to KIR hold rather than misrouting to S2 Arm 1X:
+    _kir_u95_fail = wetlab.evaluate_stage0_decision_tree({
+        "obs_hlae_hour0_molecules": 12000.0,
+        "obs_hlae_hour0_molecules_se": 500.0,
+        "obs_kir_nkg2a_neg_nk_lysis_pct": 7.0,
+        "obs_kir_nkg2a_neg_nk_lysis_se": 1.0,
+    })
+    assert _kir_u95_fail["resolved_architecture_assignments"]["locus1_construct"].startswith("HOLD_KIR_NKG2A_NEG_NK")
+
+    # HLA-G1 route remains HELD pending product registration and never receives B'-SCT locus2_construct:
+    _hlag1_attempt = wetlab.evaluate_stage0_decision_tree({
+        **_iip21_valid,
+        "track2_rescue_route": "TRACK2_HLAG1_LILRB1_CHALLENGER_HELD",
+        "track2_hlag1_lilrb1_rescue_qualified": True,
+        "obs_track2_hlag1_lilrb1_neg_kir_nk_lysis_pct": 4.0,
+        "obs_track2_hlag1_lilrb1_neg_kir_nk_lysis_se": 0.8,
+        "obs_track2_hlag1_donor_count": 6.0,
+        "obs_track2_hlag1_donor_count_se": 1e-12,
+        "obs_track2_hlag1_failing_donor_count": 0.0,
+        "obs_track2_hlag1_failing_donor_count_se": 1e-12,
+    })
+    assert _hlag1_attempt["resolved_architecture_assignments"]["locus2_construct"] == "HOLD_TRACK2_HLAG1_CHALLENGER_PENDING_PRODUCT_REGISTRATION"
+    assert _hlag1_attempt["lot_release_readiness_tier"] == "HOLD_FAILED_OR_INCOMPLETE_GATE"
 
 
 
