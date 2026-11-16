@@ -3070,10 +3070,10 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     )
 
     # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (49 persisted boolean flags, 53 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
-    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 63
+    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 68
     assert "require_full_5endpoint_s9_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
     assert "require_full_7metric_combined_stress_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
-    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 67
+    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 72
     assert "5.71 mmHg at 100 um clusters with matched D_caps = D_gel" in film_limit["surgical_mitigation"]
 
     batch1_r7s2 = {
@@ -3156,7 +3156,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     # - R7S3-F02: Both wetlab_contract.evaluate_stage0_decision_tree and ingest_wetlab_results.evaluate_stage0_decision_tree reject non-boolean policy values
     from scripts import wetlab_contract as wc_mod
 
-    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 67
+    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 72
     for bkey in wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS:
         for bad_val in ("false", "False", 0, "true", "True", 1):
             for eval_fn in (wc_mod.evaluate_stage0_decision_tree, wetlab.evaluate_stage0_decision_tree):
@@ -5290,6 +5290,77 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     })
     assert _hlag1_attempt["resolved_architecture_assignments"]["locus2_construct"] == "HOLD_TRACK2_HLAG1_CHALLENGER_PENDING_PRODUCT_REGISTRATION"
     assert _hlag1_attempt["lot_release_readiness_tier"] == "HOLD_FAILED_OR_INCOMPLETE_GATE"
+
+    # 48. IIP-0023 / DEC-102: Design Y wildcard comparator FASTA, Layer-2 CGI/TadCBEd/adenosine manifest, and fail-closed Y-01..Y-04 contract (with zero-event Poisson/SE floor check & unchanged A/B/X when absent):
+    assert "design_y_wildcard_status" not in _dt_iip21_ok["resolved_architecture_assignments"]
+    _l2_iip23 = json.loads((ROOT / "data/extracted/layer2_regulatory_and_perturbation_atlas.json").read_text(encoding="utf-8"))["stage0_design_y_wildcard_manifest_iip_0023"]
+    assert _l2_iip23["fasta_artifact"]["file_sha256"] == "c7f54b824a73cf9d40247d4fd251cb5c28a8eca4a1530b9661284200bb4cbabc"
+    assert [c["length_bp"] for c in _l2_iip23["fasta_artifact"]["constructs"]] == [11066, 11859, 12555]
+
+    _dy_valid = {
+        **_iip21_valid,
+        "obs_kir_nkg2a_neg_nk_lysis_pct": 3.5,
+        "obs_kir_nkg2a_neg_nk_lysis_se": 0.6,
+        "design_y_integrase_modality": "EEPASSIGE_B2M_ATTP_GENOME_ATTB_MINICIRCLE",
+        "design_y_silencing_modality": "TADCBED_CIITA_W334X_CXCL10_M1I",
+        "design_y_payload_arm": "DESIGN_Y_CORE_CD200_IEC_11066BP",
+        "design_y_attlr_outside_orf_5p3p_race_verified": True,
+        "design_y_zero_2a_scar_proteomics_verified": True,
+        "design_y_dpcpx_adora1_antagonist_control_run": True,
+        "design_y_anti_cd200_blockade_reversal_verified": True,
+        "design_y_y04_full_coculture_and_clonogenic_confirmed": True,
+        "obs_design_y01_max_lineage_escape_pct": 0.25,
+        "obs_design_y01_max_lineage_escape_se": 0.05,
+        "obs_design_y01_lineage_cells_scored": 15000.0,
+        "obs_design_y01_lineage_cells_scored_se": 10.0,
+        "obs_design_y01_cbe_offtarget_pct": 0.02,
+        "obs_design_y01_cbe_offtarget_se": 0.005,
+        "obs_design_y02_pre_enrichment_ki_pct": 5.2,
+        "obs_design_y02_pre_enrichment_ki_se": 0.3,
+        "obs_design_y02_clonal_ddpcr_cn": 2.00,
+        "obs_design_y02_clonal_ddpcr_cn_se": 0.02,
+        "obs_design_y02_wt_b2m_residual_allele_frac": 0.0,
+        "obs_design_y02_wt_b2m_residual_allele_se": 1e-5,
+        "obs_design_y02_backbone_kanr_vaf": 0.0,
+        "obs_design_y02_backbone_kanr_vaf_se": 1e-6,
+        "obs_design_y02_wgs_pseudosite_k": 0.0,
+        "obs_design_y02_wgs_pseudosite_k_se": 1e-12,
+        "obs_design_y03_iec_beta_selectivity_ratio": 85.0,
+        "obs_design_y03_iec_beta_selectivity_se": 4.0,
+        "obs_design_y03_beta_mir375_retention_pct": 97.0,
+        "obs_design_y03_beta_mir375_retention_se": 1.0,
+        "obs_design_y03_coculture_gsis_si": 3.4,
+        "obs_design_y03_coculture_gsis_se": 0.12,
+        "obs_design_y03_gsis_retention_pct": 96.0,
+        "obs_design_y03_gsis_retention_se": 1.2,
+        "obs_design_y03_supernatant_adenosine_nM": 8.0,
+        "obs_design_y03_supernatant_adenosine_se_nM": 1.0,
+        "obs_design_y03_dpcpx_gsis_delta_pct": 3.0,
+        "obs_design_y03_dpcpx_gsis_delta_se": 0.8,
+        "obs_design_y04_multicistron_retention_pct": 97.5,
+        "obs_design_y04_multicistron_retention_se": 0.5,
+        "obs_design_y04_nhs20_c5b9_mac_pct": 2.1,
+        "obs_design_y04_nhs20_c5b9_mac_se": 0.3,
+        "obs_design_y04_indirect_apc_cd4_si": 1.15,
+        "obs_design_y04_indirect_apc_cd4_se": 0.06,
+        "obs_design_y04_ap1903_clonogenic_survival_frac": 0.0,
+        "obs_design_y04_ap1903_clonogenic_survival_se": 1e-12,
+        "obs_design_y_sampling_age_days": 62.0,
+        "obs_design_y_sampling_age_days_se": 1e-12,
+        "obs_design_y02_ont_intact_homolog_pct": 99.6,
+        "obs_design_y02_ont_intact_homolog_se": 0.1,
+        "obs_design_y04_all4_lineages_scored_count": 4.0,
+        "obs_design_y04_all4_lineages_scored_se": 1e-12,
+        "obs_design_y04_ap1903_survivor_count_k": 0.0,
+        "obs_design_y04_ap1903_survivor_count_k_se": 1e-12,
+        "obs_design_y04_ap1903_effective_trials": 3.05e8,
+        "obs_design_y04_ap1903_effective_trials_se": 1.0,
+    }
+    _dy_res_ok = wetlab.evaluate_stage0_decision_tree(_dy_valid)
+    assert _dy_res_ok["resolved_architecture_assignments"]["design_y_wildcard_evaluation"]["gate_pass"] is True
+    assert wetlab.evaluate_stage0_decision_tree({**_dy_valid, "obs_design_y_sampling_age_days": 49.0})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_DESIGN_Y01_60D_4LINEAGE_SILENCE_OR_TADCBED_HAPLOTYPE_FAILED"
+    assert wetlab.evaluate_stage0_decision_tree({**_dy_valid, "design_y_integrase_modality": "LEGACY_ATTB_GENOME_ATTP_PLASMID_REJECTED"})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_DESIGN_Y02_LEGACY_ATTB_IN_GENOME_POLARITY_OT4_PSEUDOSITE_RISK_REJECTED"
+    assert wetlab.evaluate_stage0_decision_tree({**_dy_valid, "obs_design_y04_ap1903_effective_trials": 1.0e7})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_DESIGN_Y04_MULTICISTRON_COMPLEMENT_KIR_OR_3E8_CLONOGENIC_GATE_FAILED"
 
 
 

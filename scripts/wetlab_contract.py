@@ -279,6 +279,30 @@ STAGE0_DECISION_TREE_ENDPOINT_SPECS = [
     ('stage0_track2_hlag1_donor_count', 'obs_track2_hlag1_donor_count', 'obs_track2_hlag1_donor_count_se', 0.0, 500.0, 'independent_primary_nk_donor_count_for_hlag1_lilrb1_neg_subset'),
     ('stage0_track2_hlag1_failing_donor_count', 'obs_track2_hlag1_failing_donor_count', 'obs_track2_hlag1_failing_donor_count_se', 0.0, 500.0, 'individual_donors_exceeding_8pct_lysis_on_hlag1_lilrb1_neg_subset'),
     ('stage0_b2m_null_pvr_cd226_nk_lysis_pct', 'obs_b2m_null_pvr_cd226_nk_lysis_pct', 'obs_b2m_null_pvr_cd226_nk_lysis_se', 0.0, 100.0, 'sorted_tigit_low_cd226_high_nkg2a_neg_kir_pos_nk_lysis_pct_on_b2m_null_sc_islets'),
+    # Stage-0 Design Y wildcard (Y-01..Y-04) fail-closed endpoints + rare-event/age/lineage denominators (IIP-0023; DEC-102):
+    ('stage0_design_y01_max_lineage_escape_pct', 'obs_design_y01_max_lineage_escape_pct', 'obs_design_y01_max_lineage_escape_se', 0.0, 100.0, 'max_single_cell_classical_hla_abc_hla_ii_or_cxcl10_escape_pct_across_4_lineages_ge_60d'),
+    ('stage0_design_y01_lineage_cells_scored', 'obs_design_y01_lineage_cells_scored', 'obs_design_y01_lineage_cells_scored_se', 0.0, 10000000.0, 'min_single_cells_scored_per_lineage_across_beta_alpha_delta_iec'),
+    ('stage0_design_y01_cbe_offtarget_pct', 'obs_design_y01_cbe_offtarget_pct', 'obs_design_y01_cbe_offtarget_se', 0.0, 100.0, 'tadcbed_a_to_g_rescue_or_rhampseq_offtarget_editing_percentage'),
+    ('stage0_design_y02_pre_enrichment_ki_pct', 'obs_design_y02_pre_enrichment_ki_pct', 'obs_design_y02_pre_enrichment_ki_se', 0.0, 100.0, 'pre_enrichment_full_length_attb_minicircle_knockin_percentage_in_hpscs'),
+    ('stage0_design_y02_clonal_ddpcr_cn', 'obs_design_y02_clonal_ddpcr_cn', 'obs_design_y02_clonal_ddpcr_cn_se', 0.0, 10.0, 'selected_clone_biallelic_payload_ddpcr_copy_number'),
+    ('stage0_design_y02_wt_b2m_residual_allele_frac', 'obs_design_y02_wt_b2m_residual_allele_frac', 'obs_design_y02_wt_b2m_residual_allele_se', 0.0, 1.0, 'out_out_junction_pcr_and_phased_ont_residual_wt_b2m_allele_fraction'),
+    ('stage0_design_y02_backbone_kanr_vaf', 'obs_design_y02_backbone_kanr_vaf', 'obs_design_y02_backbone_kanr_vaf_se', 0.0, 1.0, 'bacterial_kanr_or_ori_plasmid_backbone_variant_allele_fraction'),
+    ('stage0_design_y02_wgs_pseudosite_k', 'obs_design_y02_wgs_pseudosite_k', 'obs_design_y02_wgs_pseudosite_k_se', 0.0, 1000.0, 'observed_non_target_bxb1_pseudosite_insertions_across_ot1_ot2_ot4_and_longread_wgs'),
+    ('stage0_design_y03_iec_beta_selectivity_ratio', 'obs_design_y03_iec_beta_selectivity_ratio', 'obs_design_y03_iec_beta_selectivity_se', 0.0, 10000.0, 'quantibrite_iec_to_sc_beta_cd200_or_cd39_expression_ratio'),
+    ('stage0_design_y03_beta_mir375_retention_pct', 'obs_design_y03_beta_mir375_retention_pct', 'obs_design_y03_beta_mir375_retention_se', 0.0, 200.0, 'ago2_rip_endogenous_beta_mir375_occupancy_retention_percentage'),
+    ('stage0_design_y03_coculture_gsis_si', 'obs_design_y03_coculture_gsis_si', 'obs_design_y03_coculture_gsis_se', 0.1, 50.0, 'dynamic_perifusion_gsis_stimulation_index_under_100uM_amp_atp_iec_coculture'),
+    ('stage0_design_y03_gsis_retention_pct', 'obs_design_y03_gsis_retention_pct', 'obs_design_y03_gsis_retention_se', 0.0, 200.0, 'perifusion_gsis_si_retention_percentage_vs_unarmed_iec_control'),
+    ('stage0_design_y03_supernatant_adenosine_nM', 'obs_design_y03_supernatant_adenosine_nM', 'obs_design_y03_supernatant_adenosine_se_nM', 0.0, 10000.0, 'perifusion_effluent_adenosine_concentration_nM_at_16p7mM_glucose'),
+    ('stage0_design_y03_dpcpx_gsis_delta_pct', 'obs_design_y03_dpcpx_gsis_delta_pct', 'obs_design_y03_dpcpx_gsis_delta_se', 0.0, 200.0, 'dpcpx_adora1_antagonist_gsis_unmasking_percentage_shift'),
+    ('stage0_design_y04_multicistron_retention_pct', 'obs_design_y04_multicistron_retention_pct', 'obs_design_y04_multicistron_retention_se', 0.0, 100.0, 'day60_single_cell_5cloak_beta_and_6cloak_iec_copositivity_percentage'),
+    ('stage0_design_y04_nhs20_c5b9_mac_pct', 'obs_design_y04_nhs20_c5b9_mac_pct', 'obs_design_y04_nhs20_c5b9_mac_se', 0.0, 100.0, 'twenty_pct_normal_human_serum_c5b9_mac_deposition_percentage'),
+    ('stage0_design_y04_indirect_apc_cd4_si', 'obs_design_y04_indirect_apc_cd4_si', 'obs_design_y04_indirect_apc_cd4_se', 0.1, 50.0, 'hla_dq2_dq8_host_apc_indirect_cd4_stimulation_index'),
+    ('stage0_design_y04_ap1903_clonogenic_survival_frac', 'obs_design_y04_ap1903_clonogenic_survival_frac', 'obs_design_y04_ap1903_clonogenic_survival_se', 0.0, 1.0, 'tier6b_ap1903_hypoxic_cytokine_clonogenic_survival_fraction'),
+    ('stage0_design_y_sampling_age_days', 'obs_design_y_sampling_age_days', 'obs_design_y_sampling_age_days_se', 0.0, 365.0, 'total_post_edit_differentiation_and_cytokine_rechallenge_age_days'),
+    ('stage0_design_y02_ont_intact_homolog_pct', 'obs_design_y02_ont_intact_homolog_pct', 'obs_design_y02_ont_intact_homolog_se', 0.0, 100.0, 'phased_15_25kb_ont_full_length_intact_homolog_percentage'),
+    ('stage0_design_y04_all4_lineages_scored_count', 'obs_design_y04_all4_lineages_scored_count', 'obs_design_y04_all4_lineages_scored_se', 0.0, 10.0, 'number_of_product_lineages_beta_alpha_delta_iec_passing_gy009_and_y01'),
+    ('stage0_design_y04_ap1903_survivor_count_k', 'obs_design_y04_ap1903_survivor_count_k', 'obs_design_y04_ap1903_survivor_count_k_se', 0.0, 1000000.0, 'observed_ap1903_clonogenic_survivor_colonies_k'),
+    ('stage0_design_y04_ap1903_effective_trials', 'obs_design_y04_ap1903_effective_trials', 'obs_design_y04_ap1903_effective_trials_se', 0.0, 1e12, 'effective_clonogenic_spike_adjusted_trials_n_times_f_clon_times_eta'),
 ]
 
 STAGE0_S10_V3_MEAN_KEYS: frozenset[str] = frozenset({
@@ -413,6 +437,22 @@ ALLOWED_TRACK2_RESCUE_ROUTES: frozenset[str] = frozenset({
     'TRACK1_MHC_NULL_NO_TRACK2_SWITCH',
     'TRACK2_HLAC_B_SCT_KIR_RESCUE',
     'TRACK2_HLAG1_LILRB1_CHALLENGER_HELD',
+})
+
+# Stage-0 Design Y wildcard (<= 20% firewall) integrase, silencing, and payload arm enums (IIP-0023; DEC-102):
+ALLOWED_DESIGN_Y_INTEGRASE_MODALITIES: frozenset[str] = frozenset({
+    'EEPASSIGE_B2M_ATTP_GENOME_ATTB_MINICIRCLE',
+    'LEGACY_ATTB_GENOME_ATTP_PLASMID_REJECTED',
+})
+ALLOWED_DESIGN_Y_SILENCING_MODALITIES: frozenset[str] = frozenset({
+    'TADCBED_CIITA_W334X_CXCL10_M1I',
+    'TADCBED_CIITA_Q53X_CXCL10_M1I_COMPARATOR',
+    'CRISPROFF_EPIGENETIC_COMPARATOR',
+})
+ALLOWED_DESIGN_Y_PAYLOAD_ARMS: frozenset[str] = frozenset({
+    'DESIGN_Y_CORE_CD200_IEC_11066BP',
+    'DESIGN_Y_CD59_PLUS_CD200_IEC_11859BP',
+    'DESIGN_Y_CD39_IEC_COMPARATOR_12555BP',
 })
 
 STAGE0_S10_V3_CONSTRUCT_REGISTRY: dict[str, dict[str, object]] = {
@@ -985,6 +1025,29 @@ STAGE0_CUSTOM_DEFAULT_SE: dict[str, float] = {
     'obs_track2_hlag1_donor_count': 1e-12,
     'obs_track2_hlag1_failing_donor_count': 1e-12,
     'obs_b2m_null_pvr_cd226_nk_lysis_pct': 0.75,
+    'obs_design_y01_max_lineage_escape_pct': 0.10,
+    'obs_design_y01_lineage_cells_scored': 1.0,
+    'obs_design_y01_cbe_offtarget_pct': 0.01,
+    'obs_design_y02_pre_enrichment_ki_pct': 0.25,
+    'obs_design_y02_clonal_ddpcr_cn': 0.02,
+    'obs_design_y02_wt_b2m_residual_allele_frac': 1e-12,
+    'obs_design_y02_backbone_kanr_vaf': 1e-12,
+    'obs_design_y02_wgs_pseudosite_k': 1e-12,
+    'obs_design_y03_iec_beta_selectivity_ratio': 2.0,
+    'obs_design_y03_beta_mir375_retention_pct': 1.5,
+    'obs_design_y03_coculture_gsis_si': 0.15,
+    'obs_design_y03_gsis_retention_pct': 1.5,
+    'obs_design_y03_supernatant_adenosine_nM': 1.0,
+    'obs_design_y03_dpcpx_gsis_delta_pct': 1.0,
+    'obs_design_y04_multicistron_retention_pct': 0.5,
+    'obs_design_y04_nhs20_c5b9_mac_pct': 0.4,
+    'obs_design_y04_indirect_apc_cd4_si': 0.10,
+    'obs_design_y04_ap1903_clonogenic_survival_frac': 1e-12,
+    'obs_design_y_sampling_age_days': 1e-12,
+    'obs_design_y02_ont_intact_homolog_pct': 0.2,
+    'obs_design_y04_all4_lineages_scored_count': 1e-12,
+    'obs_design_y04_ap1903_survivor_count_k': 1e-12,
+    'obs_design_y04_ap1903_effective_trials': 1.0,
 }
 
 STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
@@ -1021,6 +1084,14 @@ STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
     'obs_track2_bsct_failing_donor_count': 1e-12,
     'obs_track2_hlag1_donor_count': 1e-12,
     'obs_track2_hlag1_failing_donor_count': 1e-12,
+    'obs_design_y01_cbe_offtarget_pct': 1e-6,
+    'obs_design_y02_wt_b2m_residual_allele_frac': 1e-12,
+    'obs_design_y02_backbone_kanr_vaf': 1e-12,
+    'obs_design_y02_wgs_pseudosite_k': 1e-12,
+    'obs_design_y04_ap1903_clonogenic_survival_frac': 1e-12,
+    'obs_design_y_sampling_age_days': 1e-12,
+    'obs_design_y04_all4_lineages_scored_count': 1e-12,
+    'obs_design_y04_ap1903_survivor_count_k': 1e-12,
 }
 
 
@@ -1375,6 +1446,11 @@ STAGE0_DECISION_TREE_BOOLEAN_KEYS: tuple[str, ...] = (
     'track2_hlag1_lilrb1_rescue_qualified',
     'require_full_iip0022_track2_and_guardrail_panel',
     'lineage_necroptosis_time_resolved_viability_and_rescue_verified',
+    'design_y_attlr_outside_orf_5p3p_race_verified',
+    'design_y_zero_2a_scar_proteomics_verified',
+    'design_y_dpcpx_adora1_antagonist_control_run',
+    'design_y_anti_cd200_blockade_reversal_verified',
+    'design_y_y04_full_coculture_and_clonogenic_confirmed',
 )
 
 
@@ -1444,6 +1520,9 @@ def derive_contract(root: Path | str | None = None) -> dict:
                 'conditioning_4arm_arm',
                 'conditioning_washout_analyte_scope',
                 'track2_rescue_route',
+                'design_y_integrase_modality',
+                'design_y_silencing_modality',
+                'design_y_payload_arm',
             ],
             'boolean_policy_keys': list(STAGE0_DECISION_TREE_BOOLEAN_KEYS),
             'endpoints': endpoints,
@@ -1606,6 +1685,18 @@ def normalize_measurements(payload: dict, *, require_observation: bool = True,
         elif key == 'track2_rescue_route':
             if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_TRACK2_RESCUE_ROUTES:
                 raise ValueError(f'track2_rescue_route must be one of {sorted(ALLOWED_TRACK2_RESCUE_ROUTES)} (IIP-0022; DEC-101)')
+            result[key] = payload[key].strip()
+        elif key == 'design_y_integrase_modality':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_DESIGN_Y_INTEGRASE_MODALITIES:
+                raise ValueError(f'design_y_integrase_modality must be one of {sorted(ALLOWED_DESIGN_Y_INTEGRASE_MODALITIES)} (IIP-0023; DEC-102)')
+            result[key] = payload[key].strip()
+        elif key == 'design_y_silencing_modality':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_DESIGN_Y_SILENCING_MODALITIES:
+                raise ValueError(f'design_y_silencing_modality must be one of {sorted(ALLOWED_DESIGN_Y_SILENCING_MODALITIES)} (IIP-0023; DEC-102)')
+            result[key] = payload[key].strip()
+        elif key == 'design_y_payload_arm':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_DESIGN_Y_PAYLOAD_ARMS:
+                raise ValueError(f'design_y_payload_arm must be one of {sorted(ALLOWED_DESIGN_Y_PAYLOAD_ARMS)} (IIP-0023; DEC-102)')
             result[key] = payload[key].strip()
         else:
             if not isinstance(payload[key], str) or not payload[key].strip() or len(payload[key]) > 120:
@@ -2065,6 +2156,14 @@ def evaluate_stage0_decision_tree(
         'track2_hlag1_lilrb1_rescue_qualified',
         'require_full_iip0022_track2_and_guardrail_panel',
         'lineage_necroptosis_time_resolved_viability_and_rescue_verified',
+        'design_y_integrase_modality',
+        'design_y_silencing_modality',
+        'design_y_payload_arm',
+        'design_y_attlr_outside_orf_5p3p_race_verified',
+        'design_y_zero_2a_scar_proteomics_verified',
+        'design_y_dpcpx_adora1_antagonist_control_run',
+        'design_y_anti_cd200_blockade_reversal_verified',
+        'design_y_y04_full_coculture_and_clonogenic_confirmed',
     }
     unknown_keys = sorted(set(observations) - set(spec_by_mean) - set(spec_by_se) - allowed_boolean_and_meta_flags)
     if unknown_keys:
@@ -2095,6 +2194,9 @@ def evaluate_stage0_decision_tree(
         ('conditioning_4arm_arm', ALLOWED_CONDITIONING_4ARM_ARMS),
         ('conditioning_washout_analyte_scope', ALLOWED_CONDITIONING_WASHOUT_ANALYTE_SCOPES),
         ('track2_rescue_route', ALLOWED_TRACK2_RESCUE_ROUTES),
+        ('design_y_integrase_modality', ALLOWED_DESIGN_Y_INTEGRASE_MODALITIES),
+        ('design_y_silencing_modality', ALLOWED_DESIGN_Y_SILENCING_MODALITIES),
+        ('design_y_payload_arm', ALLOWED_DESIGN_Y_PAYLOAD_ARMS),
     ):
         if _adj_k in observations and observations[_adj_k] is not None:
             _adj_v = observations[_adj_k]
@@ -3965,6 +4067,132 @@ def evaluate_stage0_decision_tree(
             'deprecated_conflated_flag_supplied': _legacy_conflated_t2,
         }
 
+    # Stage-0 Design Y wildcard fail-closed Y-01..Y-04 evaluation (IIP-0023; DEC-102):
+    # Completely inactive when no design_y_* / obs_design_y* key is supplied so A/B/X behavior is 100% preserved.
+    _dy_int_mod = observations.get('design_y_integrase_modality')
+    if isinstance(_dy_int_mod, str):
+        _dy_int_mod = _dy_int_mod.strip()
+    _dy_sil_mod = observations.get('design_y_silencing_modality')
+    if isinstance(_dy_sil_mod, str):
+        _dy_sil_mod = _dy_sil_mod.strip()
+    _dy_pay_arm = observations.get('design_y_payload_arm')
+    if isinstance(_dy_pay_arm, str):
+        _dy_pay_arm = _dy_pay_arm.strip()
+    _dy_bool_keys = (
+        'design_y_attlr_outside_orf_5p3p_race_verified',
+        'design_y_zero_2a_scar_proteomics_verified',
+        'design_y_dpcpx_adora1_antagonist_control_run',
+        'design_y_anti_cd200_blockade_reversal_verified',
+        'design_y_y04_full_coculture_and_clonogenic_confirmed',
+    )
+    _dy_quant_keys = (
+        'obs_design_y01_max_lineage_escape_pct',
+        'obs_design_y01_lineage_cells_scored',
+        'obs_design_y01_cbe_offtarget_pct',
+        'obs_design_y02_pre_enrichment_ki_pct',
+        'obs_design_y02_clonal_ddpcr_cn',
+        'obs_design_y02_wt_b2m_residual_allele_frac',
+        'obs_design_y02_backbone_kanr_vaf',
+        'obs_design_y02_wgs_pseudosite_k',
+        'obs_design_y03_iec_beta_selectivity_ratio',
+        'obs_design_y03_beta_mir375_retention_pct',
+        'obs_design_y03_coculture_gsis_si',
+        'obs_design_y03_gsis_retention_pct',
+        'obs_design_y03_supernatant_adenosine_nM',
+        'obs_design_y03_dpcpx_gsis_delta_pct',
+        'obs_design_y04_multicistron_retention_pct',
+        'obs_design_y04_nhs20_c5b9_mac_pct',
+        'obs_design_y04_indirect_apc_cd4_si',
+        'obs_design_y04_ap1903_clonogenic_survival_frac',
+        'obs_design_y_sampling_age_days',
+        'obs_design_y02_ont_intact_homolog_pct',
+        'obs_design_y04_all4_lineages_scored_count',
+        'obs_design_y04_ap1903_survivor_count_k',
+        'obs_design_y04_ap1903_effective_trials',
+    )
+    _iip0023_dy_active = bool(
+        _dy_int_mod is not None
+        or _dy_sil_mod is not None
+        or _dy_pay_arm is not None
+        or any(observations.get(_bk) is not None for _bk in _dy_bool_keys)
+        or any(_qk in validated_stage0 for _qk in _dy_quant_keys)
+    )
+    iip0023_dy_status = 'NOT_TESTED'
+    iip0023_hold_status: str | None = None
+    if _iip0023_dy_active:
+        if _dy_int_mod == 'LEGACY_ATTB_GENOME_ATTP_PLASMID_REJECTED':
+            iip0023_dy_status = 'HOLD_DESIGN_Y02_LEGACY_ATTB_IN_GENOME_POLARITY_OT4_PSEUDOSITE_RISK_REJECTED'
+        elif _dy_pay_arm == 'DESIGN_Y_CD39_IEC_COMPARATOR_12555BP':
+            iip0023_dy_status = 'HOLD_DESIGN_Y03_CD39_ECTONUCLEOTIDASE_COMPARATOR_NOT_PRIMARY_PAYLOAD'
+        elif (
+            _dy_int_mod != 'EEPASSIGE_B2M_ATTP_GENOME_ATTB_MINICIRCLE'
+            or _dy_sil_mod is None
+            or _dy_pay_arm is None
+            or not all(observations.get(_bk) is True for _bk in _dy_bool_keys)
+            or not all(_qk in validated_stage0 and se_provenance_by_mean.get(_qk) == 'EXPLICIT_SE_SUPPLIED' for _qk in _dy_quant_keys)
+        ):
+            iip0023_dy_status = 'HOLD_DESIGN_Y_INCOMPLETE_OR_DEFAULT_SE_Y01_TO_Y04_PANEL'
+        elif (
+            validated_stage0['obs_design_y_sampling_age_days'] < 60.0
+            or abs(validated_stage0['obs_design_y04_all4_lineages_scored_count'] - 4.0) > 1e-9
+            or _lower95('obs_design_y01_lineage_cells_scored') < 10000.0
+            or _upper95('obs_design_y01_max_lineage_escape_pct') > 1.0
+            or _upper95('obs_design_y01_cbe_offtarget_pct') > 0.10
+        ):
+            iip0023_dy_status = 'HOLD_DESIGN_Y01_60D_4LINEAGE_SILENCE_OR_TADCBED_HAPLOTYPE_FAILED'
+        elif (
+            _lower95('obs_design_y02_pre_enrichment_ki_pct') < 3.0
+            or _lower95('obs_design_y02_clonal_ddpcr_cn') < 1.90
+            or _upper95('obs_design_y02_clonal_ddpcr_cn') > 2.10
+            or _lower95('obs_design_y02_ont_intact_homolog_pct') < 99.0
+            or _upper95('obs_design_y02_wt_b2m_residual_allele_frac') > 0.001
+            or _upper95('obs_design_y02_backbone_kanr_vaf') > 0.0001
+            or abs(validated_stage0['obs_design_y02_wgs_pseudosite_k']) > 1e-9
+        ):
+            iip0023_dy_status = 'HOLD_DESIGN_Y02_EEPASSIGE_HOMOZYGOUS_CN2_KANR_OR_PSEUDOSITE_GATE_FAILED'
+        elif (
+            _lower95('obs_design_y03_iec_beta_selectivity_ratio') < 50.0
+            or _lower95('obs_design_y03_beta_mir375_retention_pct') < 90.0
+            or _lower95('obs_design_y03_coculture_gsis_si') < 2.5
+            or _lower95('obs_design_y03_gsis_retention_pct') < 90.0
+            or _upper95('obs_design_y03_supernatant_adenosine_nM') > 25.0
+            or _upper95('obs_design_y03_dpcpx_gsis_delta_pct') > 10.0
+        ):
+            iip0023_dy_status = 'HOLD_DESIGN_Y03_ADORA1_PARACRINE_GSIS_OR_CD200_SELECTIVITY_FAILED'
+        else:
+            _dy_surv_k = validated_stage0['obs_design_y04_ap1903_survivor_count_k']
+            _dy_neff = validated_stage0['obs_design_y04_ap1903_effective_trials']
+            _dy_poisson_u95 = _poisson_exact_upper95_rate(_dy_surv_k, _dy_neff) if _dy_neff > 0.0 else 1.0
+            if (
+                _lower95('obs_design_y04_multicistron_retention_pct') < 95.0
+                or _upper95('obs_design_y04_nhs20_c5b9_mac_pct') > 5.0
+                or _upper95('obs_design_y04_indirect_apc_cd4_si') > 1.5
+                or 'obs_kir_nkg2a_neg_nk_lysis_pct' not in validated_stage0
+                or kir_nkg2a_neg_upper95 > 8.0
+                or _dy_neff < 299573228.0
+                or abs(_dy_surv_k) > 1e-9
+                or _dy_poisson_u95 > 1e-8
+                or _upper95('obs_design_y04_ap1903_clonogenic_survival_frac') > 1e-8
+                or ('obs_gsis_si' in validated_stage0 and _lower95('obs_gsis_si') < 3.0)
+            ):
+                iip0023_dy_status = 'HOLD_DESIGN_Y04_MULTICISTRON_COMPLEMENT_KIR_OR_3E8_CLONOGENIC_GATE_FAILED'
+            else:
+                iip0023_dy_status = 'CLEARED_DESIGN_Y_WILDCARD_COUPONS_ELIGIBLE_FOR_SEPARATE_D2_CHALLENGE_PROPOSAL_ONLY'
+        if iip0023_dy_status != 'CLEARED_DESIGN_Y_WILDCARD_COUPONS_ELIGIBLE_FOR_SEPARATE_D2_CHALLENGE_PROPOSAL_ONLY':
+            iip0023_hold_status = iip0023_dy_status
+
+    iip0023_eval_summary: dict[str, object] | None = None
+    if _iip0023_dy_active:
+        iip0023_eval_summary = {
+            'gate_pass': iip0023_hold_status is None,
+            'hold_status': iip0023_hold_status,
+            'wildcard_status': iip0023_dy_status,
+            'design_y_integrase_modality': _dy_int_mod,
+            'design_y_silencing_modality': _dy_sil_mod,
+            'design_y_payload_arm': _dy_pay_arm,
+            'auto_promotes_into_core_blueprints': False,
+        }
+
     # S8b TYK2 x inducible-promoter epistasis: support explicit enumerated scale {FRACTION_HALF_EFFECT, PP_HALF_EFFECT, PP_FULL_CONTRAST, DID_PP} with per-endpoint scale retention across batches, unified fractional half-effect threshold (point < -0.05 or lower95 < -0.10), and sign-independent underpowered SE hold (AUDIT-REF & AUDIT-REF; DEC-042/044):
     s8b_scale_enum = observations.get('s8b_epistasis_estimand_scale')
     if s8b_scale_enum is not None:
@@ -4128,6 +4356,9 @@ def evaluate_stage0_decision_tree(
         resolved_arch['track2_nk_split_and_pvr_necroptosis_evaluation'] = iip0022_eval_summary
         if iip0022_track2_status is not None:
             resolved_arch['track2_split_route_status'] = iip0022_track2_status
+    if iip0023_eval_summary is not None:
+        resolved_arch['design_y_wildcard_evaluation'] = iip0023_eval_summary
+        resolved_arch['design_y_wildcard_status'] = iip0023_dy_status
     if (
         _adj_arm_raw is not None
         or adjunct_depletion_mode is not None
@@ -4391,6 +4622,8 @@ def evaluate_stage0_decision_tree(
         resolved_arch['lot_maturation_status'] = iip0021_hold_status
     elif iip0022_hold_status is not None:
         resolved_arch['lot_maturation_status'] = iip0022_hold_status
+    elif iip0023_hold_status is not None:
+        resolved_arch['lot_maturation_status'] = iip0023_hold_status
     elif challenger_hold_status is not None:
         resolved_arch['lot_maturation_status'] = challenger_hold_status
     elif avascular_outer_band_dropout and not omental_revascularization_cleared:

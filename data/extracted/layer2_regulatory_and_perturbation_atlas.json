@@ -22449,6 +22449,106 @@
       }
     }
   },
+  "stage0_design_y_wildcard_manifest_iip_0023": {
+    "contribution_id": "IIP-0023",
+    "decision_id": "DEC-102",
+    "wildcard_firewall_scope": "Unscored Stage-0 Design Y wildcard within shared <= 20% Y/Z allocation cap; zero changes to core scored Blueprints A, B, or X.",
+    "fasta_artifact": {
+      "relative_path": "data/constructs/islet1_design_y_wildcard_comparators_v0.8.0.fasta",
+      "file_sha256": "c7f54b824a73cf9d40247d4fd251cb5c28a8eca4a1530b9661284200bb4cbabc",
+      "constructs": [
+        {
+          "header": "DESIGN_Y_CORE_CD200_IEC_11066bp length=11066 cistrons=7 2a_count=0 sha256=2ddd3f4e38b65800aef23a8fa0afcc56d1232dcbcfd41dacbe72f68cd74ddafb",
+          "construct_id": "DESIGN_Y_CORE_CD200_IEC_11066bp",
+          "length_bp": 11066,
+          "sha256": "2ddd3f4e38b65800aef23a8fa0afcc56d1232dcbcfd41dacbe72f68cd74ddafb",
+          "gc_fraction": 0.584674,
+          "gsg_p2a_motif_occurrences": 0,
+          "kanr_or_colE1_ori_motif_occurrences": 0
+        },
+        {
+          "header": "DESIGN_Y_CD59_PLUS_CD200_IEC_11859bp length=11859 cistrons=8 2a_count=0 sha256=26b5eecc8c41bfc011cac69e5cf4cd7a2be8caf54a91f1c59cb7d7b342d4d8a3",
+          "construct_id": "DESIGN_Y_CD59_PLUS_CD200_IEC_11859bp",
+          "length_bp": 11859,
+          "sha256": "26b5eecc8c41bfc011cac69e5cf4cd7a2be8caf54a91f1c59cb7d7b342d4d8a3",
+          "gc_fraction": 0.582595,
+          "gsg_p2a_motif_occurrences": 0,
+          "kanr_or_colE1_ori_motif_occurrences": 0
+        },
+        {
+          "header": "DESIGN_Y_CD39_IEC_COMPARATOR_12555bp length=12555 cistrons=8 2a_count=0 sha256=ac99fe807424b5b0cf4e8acbbde42ea29251d4fe632f1a4ddfa32d91deb6606c",
+          "construct_id": "DESIGN_Y_CD39_IEC_COMPARATOR_12555bp",
+          "length_bp": 12555,
+          "sha256": "ac99fe807424b5b0cf4e8acbbde42ea29251d4fe632f1a4ddfa32d91deb6606c",
+          "gc_fraction": 0.574034,
+          "gsg_p2a_motif_occurrences": 0,
+          "kanr_or_colE1_ori_motif_occurrences": 0
+        }
+      ]
+    },
+    "eepassige_attp_in_genome_polarity_and_context_separation": {
+      "b2m_exon1_twinpe_excision_grch38": "chr15:44711547-44711619 (73 bp removing native Met1, signal peptide, Gln22 and GTGAGT donor -> 52 bp Bxb1 attP)",
+      "attb_minicircle_recombination_products": "52 bp attP x 38 bp attB -> 45 bp attR (0 sense ATGs across 75 bp retained 5'-UTR + attR leader upstream of 154 bp SPA+MAZ4) + 45 bp attL (0 ATGs either strand)",
+      "dsb_and_nickase_caveat": "Uses paired Cas9n nickases without intended exposed nuclease DSBs while retaining CAST-Seq (< 1e-5) and long-read ONT checks for paired-nick staggered DSB intermediates (Levesque et al. 2026 PMID:42749803; Hanlon et al. 2019 PMID:31570731; Shy et al. 2023 PMID:36008610; Allen et al. 2024 PMID:37127662).",
+      "pandey_2025_pmid38858586_experimental_context_disclosure": "Pandey et al. 2025 (PMID:38858586) measured 3.8%/20.9%/24% OT4 capture after puromycin enrichment, 0.008%/0.004% OT1/OT2 in primary fibroblasts with IDLV donor, and 3.8% vs 0.52% hiPSC knock-in using homozygous CCR5 attB + 5.6-kb attP plasmid; >= 3.0% pre-enrichment knock-in of an 11.1-kb attB minicircle at B2M attP is therefore an explicit prospective Stage-0 hPSC target rather than an already-demonstrated yield (STRAIGHT-IN clonal hPSC precedent in Blanch-Asensio et al. 2026 PMID:39179886; ISCro4 RNA-guided recombinase context in Pelea et al. 2026 PMID:41642947)."
+    },
+    "ciita_and_cxcl10_cgi_tadcbed_and_isoform_reconciliation": {
+      "promoter_cgi_window_reconciliation": {
+        "cxcl10_601bp_chr4_76023197_76023797": {
+          "cpg_count": 3,
+          "obs_over_exp": 0.152,
+          "meets_gardiner_garden_cgi": false
+        },
+        "ciita_piv_601bp_broad_window": {
+          "cpg_count": 30,
+          "obs_over_exp": 0.5154,
+          "meets_gardiner_garden_cgi": false
+        },
+        "ciita_piv_201bp_tss_subwindow_chr16_10878900_10879100": {
+          "cpg_count": 16,
+          "gc_pct": 64.68,
+          "obs_over_exp": 0.7982,
+          "meets_gardiner_garden_cgi": true
+        },
+        "crisproff_comparison_note": "While CXCL10 lacks a CpG island, CIITA-pIV contains a 201-bp TSS-spanning CpG-dense subwindow (Obs/Exp = 0.7982) and CRISPRoff can silence non-CGI genes in several contexts (Nunez et al. 2021 PMID:33838111); TadCBEd vs CRISPRoff is therefore evaluated as a head-to-head 60-day differentiation + cytokine durability comparison rather than a promoter-CGI exclusion."
+      },
+      "tadcbed_editing_window_and_a_to_g_haplotype_gate": "TadCBEd exhibits C->T activity across protospacer positions 3-9 alongside residual A->G editing (Neugebauer et al. 2023 PMID:36357719): at CIITA Exon 2 (C7AG), joint C7>T + A8>G converts CAG -> TGG (Trp missense instead of TAG stop), and Exon 10 carries adjacent A6. Clonal hPSC qualification therefore requires full amplicon NGS haplotype distributions (quantifying C>T, A>G, and indels simultaneously) rather than C-only bystander scans.",
+      "ciita_isoform_accession_reconciliation": "Pinned GENCODE v46 ENST00000576601.1 (177 aa, 7 exons) and ENST00000637439.1 are truncated partial models; full-length RefSeq NM_001286402.1 (1,131 aa, pIII) maps chr16:10895386:C>T to p.Gln53*, NM_000246.4 (1,155 aa, pI) to p.Gln77*, and classical pIV (Muhlethaler-Mottet et al. 1997 PMID:9184229) to p.Gln29*. Because 147-bp Exon 2 (147 mod 3 = 0) permits in-frame exon skipping or downstream Met reinitiation, Exon 10 NACHT-domain stop (chr16:10904792, p.Trp334* on NM_001286402.1) is co-tested with protein-level IFN-gamma HLA-DR/DP/DQ flow verification."
+    },
+    "adenosine_source_flux_reaction_diffusion_and_cd200_scope": {
+      "human_receptor_and_hypoxia_context": "Human islets abundantly express Gi-coupled ADORA1 (inhibiting GSIS; reversed by 1 uM DPCPX in Mohammed Al-Amily et al. 2026 PMID:42660457, tested alongside 100 nM selective DPCPX in Y-03) and Gs-coupled ADORA2A (promoting alpha-cell glucagon release; Liu et al. 2024 PMID:38879678), with hypoxia-regulated adenosine transcript shifts reported in Brandhorst et al. 2026 (PMID:42791925).",
+      "source_flux_reaction_diffusion_scenarios": [
+        {
+          "scenario": "IEC_CD39_CD73_ModerateClearance_5umGap",
+          "ectonucleotidase_flux_pmol_cm2_s": 0.18,
+          "d_eff_cm2_s": 4.5e-06,
+          "ada1_ent1_clearance_k_s_inv": 0.15,
+          "decay_length_lambda_um": 54.77,
+          "iec_to_beta_gap_um": 5.0,
+          "predicted_beta_surface_adenosine_nM": 199.97
+        },
+        {
+          "scenario": "IEC_CD39_CD73_SlowClearance_5umGap",
+          "ectonucleotidase_flux_pmol_cm2_s": 0.25,
+          "d_eff_cm2_s": 7e-06,
+          "ada1_ent1_clearance_k_s_inv": 0.05,
+          "decay_length_lambda_um": 118.32,
+          "iec_to_beta_gap_um": 5.0,
+          "predicted_beta_surface_adenosine_nM": 405.09
+        },
+        {
+          "scenario": "PanLineage_CD39_CD73_ModerateClearance_0um",
+          "ectonucleotidase_flux_pmol_cm2_s": 0.45,
+          "d_eff_cm2_s": 4.5e-06,
+          "ada1_ent1_clearance_k_s_inv": 0.15,
+          "decay_length_lambda_um": 54.77,
+          "iec_to_beta_gap_um": 0.0,
+          "predicted_beta_surface_adenosine_nM": 547.72
+        }
+      ],
+      "cd200_and_mir375_detargeting_caveats": "Chai et al. 2022 (PMID:35297680) used alpha-cell-enriched miRNAs rather than miR-375 (which is abundant in both human alpha and beta cells), Hu et al. 2025 (PMID:40251154) co-tested CD99 + CD200 rather than iEC-only CD200 indirect-CD4 suppression alone, and packing 7 tandem units across 11.1 kb can introduce transcriptional supercoiling coupling (Naughton et al. 2013 PMID:23416946; Gilbert & Allan 2014 PMID:24584092), making direct Y-03/Y-04 empirical co-culture, AGO2-RIP miR-375, anti-CD200 reversal, and single-cell multi-cistron gates mandatory."
+    }
+  },
   "public_effects_provenance_rebinding": {
     "canonical_original_effects_sha256": "e56018562aaa99e9be32441aad998407529b839dce58f3f0fd91389a7fcfd9e5",
     "status": "REPLAYED_PUBLIC_BYTES_NUMERICAL_AND_SEMANTIC_OUTPUTS_IDENTICAL",

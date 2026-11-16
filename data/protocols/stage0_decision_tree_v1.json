@@ -613,5 +613,30 @@
       "track2_bsct_vs_hlag1_split": "Splits deprecated track2_b_sct_or_hlag1_lilrb1_rescue_qualified into track2_b_sct_kir_rescue_qualified (<=8.0% upper95 across n>=6 KIR-typed donors, 0 failing donors) and track2_hlag1_lilrb1_rescue_qualified (uniform <=8.0% upper95 on sorted LILRB1- NKG2A- KIR+ primary NK across n>=6 donors, held pending HLA-G1 product definition registration with distinct locus2_construct routing).",
       "pvr_and_lineage_necroptosis_guardrails": "Records possible B2M-/- CD155/CD226 synaptic sign-inversion (requiring matched TIGIT-low/CD226-high NK testing vs MHC-I-intact benefit) and lineage-separated SC-beta vs PLVAP+ iEC necroptosis testing with time-resolved viability and orthogonal rescue."
     }
+  },
+  "design_y_wildcard_eepassige_and_y01_to_y04_gate_iip_0023": {
+    "gate_id": "STAGE0_DESIGN_Y_WILDCARD_Y01_TO_Y04_GATE_IIP_0023",
+    "decision_id": "DEC-102",
+    "contribution_id": "IIP-0023",
+    "wildcard_firewall_note": "Strictly scoped to the <= 20% Stage-0 wildcard allocation; inactive when no design_y_* key is supplied, and never auto-promotes into Blueprints A, B, or X.",
+    "wildcard_comparator_fasta_sha256": "c7f54b824a73cf9d40247d4fd251cb5c28a8eca4a1530b9661284200bb4cbabc",
+    "primary_citations": [
+      "PMID:31570731",
+      "PMID:36008610",
+      "PMID:37127662",
+      "PMID:38858586",
+      "PMID:39179886",
+      "PMID:41642947",
+      "PMID:42749803",
+      "PMID:9184229",
+      "PMID:33838111",
+      "PMID:36357719",
+      "PMID:42660457",
+      "PMID:38879678",
+      "PMID:42791925",
+      "PMID:35297680",
+      "PMID:23416946",
+      "PMID:24584092"
+    ]
   }
 }

@@ -43,7 +43,10 @@
     "rest_ocr_coupon_arm",
     "conditioning_4arm_arm",
     "conditioning_washout_analyte_scope",
-    "track2_rescue_route"
+    "track2_rescue_route",
+    "design_y_integrase_modality",
+    "design_y_silencing_modality",
+    "design_y_payload_arm"
   ],
   "boolean_policy_keys": [
     "require_full_5endpoint_s9_panel",
@@ -112,7 +115,12 @@
     "track2_b_sct_kir_rescue_qualified",
     "track2_hlag1_lilrb1_rescue_qualified",
     "require_full_iip0022_track2_and_guardrail_panel",
-    "lineage_necroptosis_time_resolved_viability_and_rescue_verified"
+    "lineage_necroptosis_time_resolved_viability_and_rescue_verified",
+    "design_y_attlr_outside_orf_5p3p_race_verified",
+    "design_y_zero_2a_scar_proteomics_verified",
+    "design_y_dpcpx_adora1_antagonist_control_run",
+    "design_y_anti_cd200_blockade_reversal_verified",
+    "design_y_y04_full_coculture_and_clonogenic_confirmed"
   ],
   "endpoints": [
     {
@@ -2847,6 +2855,259 @@
       "default_se": 0.75,
       "minimum_se": 0.001,
       "unit": "sorted_tigit_low_cd226_high_nkg2a_neg_kir_pos_nk_lysis_pct_on_b2m_null_sc_islets"
+    },
+    {
+      "endpoint_id": "stage0_design_y01_max_lineage_escape_pct",
+      "meanKey": "obs_design_y01_max_lineage_escape_pct",
+      "seKey": "obs_design_y01_max_lineage_escape_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.1,
+      "minimum_se": 0.001,
+      "unit": "max_single_cell_classical_hla_abc_hla_ii_or_cxcl10_escape_pct_across_4_lineages_ge_60d"
+    },
+    {
+      "endpoint_id": "stage0_design_y01_lineage_cells_scored",
+      "meanKey": "obs_design_y01_lineage_cells_scored",
+      "seKey": "obs_design_y01_lineage_cells_scored_se",
+      "min": 0.0,
+      "max": 10000000.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 0.001,
+      "unit": "min_single_cells_scored_per_lineage_across_beta_alpha_delta_iec"
+    },
+    {
+      "endpoint_id": "stage0_design_y01_cbe_offtarget_pct",
+      "meanKey": "obs_design_y01_cbe_offtarget_pct",
+      "seKey": "obs_design_y01_cbe_offtarget_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.01,
+      "minimum_se": 1e-06,
+      "unit": "tadcbed_a_to_g_rescue_or_rhampseq_offtarget_editing_percentage"
+    },
+    {
+      "endpoint_id": "stage0_design_y02_pre_enrichment_ki_pct",
+      "meanKey": "obs_design_y02_pre_enrichment_ki_pct",
+      "seKey": "obs_design_y02_pre_enrichment_ki_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.25,
+      "minimum_se": 0.001,
+      "unit": "pre_enrichment_full_length_attb_minicircle_knockin_percentage_in_hpscs"
+    },
+    {
+      "endpoint_id": "stage0_design_y02_clonal_ddpcr_cn",
+      "meanKey": "obs_design_y02_clonal_ddpcr_cn",
+      "seKey": "obs_design_y02_clonal_ddpcr_cn_se",
+      "min": 0.0,
+      "max": 10.0,
+      "se_required": false,
+      "default_se": 0.02,
+      "minimum_se": 0.001,
+      "unit": "selected_clone_biallelic_payload_ddpcr_copy_number"
+    },
+    {
+      "endpoint_id": "stage0_design_y02_wt_b2m_residual_allele_frac",
+      "meanKey": "obs_design_y02_wt_b2m_residual_allele_frac",
+      "seKey": "obs_design_y02_wt_b2m_residual_allele_se",
+      "min": 0.0,
+      "max": 1.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "out_out_junction_pcr_and_phased_ont_residual_wt_b2m_allele_fraction"
+    },
+    {
+      "endpoint_id": "stage0_design_y02_backbone_kanr_vaf",
+      "meanKey": "obs_design_y02_backbone_kanr_vaf",
+      "seKey": "obs_design_y02_backbone_kanr_vaf_se",
+      "min": 0.0,
+      "max": 1.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "bacterial_kanr_or_ori_plasmid_backbone_variant_allele_fraction"
+    },
+    {
+      "endpoint_id": "stage0_design_y02_wgs_pseudosite_k",
+      "meanKey": "obs_design_y02_wgs_pseudosite_k",
+      "seKey": "obs_design_y02_wgs_pseudosite_k_se",
+      "min": 0.0,
+      "max": 1000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "observed_non_target_bxb1_pseudosite_insertions_across_ot1_ot2_ot4_and_longread_wgs"
+    },
+    {
+      "endpoint_id": "stage0_design_y03_iec_beta_selectivity_ratio",
+      "meanKey": "obs_design_y03_iec_beta_selectivity_ratio",
+      "seKey": "obs_design_y03_iec_beta_selectivity_se",
+      "min": 0.0,
+      "max": 10000.0,
+      "se_required": false,
+      "default_se": 2.0,
+      "minimum_se": 0.001,
+      "unit": "quantibrite_iec_to_sc_beta_cd200_or_cd39_expression_ratio"
+    },
+    {
+      "endpoint_id": "stage0_design_y03_beta_mir375_retention_pct",
+      "meanKey": "obs_design_y03_beta_mir375_retention_pct",
+      "seKey": "obs_design_y03_beta_mir375_retention_se",
+      "min": 0.0,
+      "max": 200.0,
+      "se_required": false,
+      "default_se": 1.5,
+      "minimum_se": 0.001,
+      "unit": "ago2_rip_endogenous_beta_mir375_occupancy_retention_percentage"
+    },
+    {
+      "endpoint_id": "stage0_design_y03_coculture_gsis_si",
+      "meanKey": "obs_design_y03_coculture_gsis_si",
+      "seKey": "obs_design_y03_coculture_gsis_se",
+      "min": 0.1,
+      "max": 50.0,
+      "se_required": false,
+      "default_se": 0.15,
+      "minimum_se": 0.001,
+      "unit": "dynamic_perifusion_gsis_stimulation_index_under_100uM_amp_atp_iec_coculture"
+    },
+    {
+      "endpoint_id": "stage0_design_y03_gsis_retention_pct",
+      "meanKey": "obs_design_y03_gsis_retention_pct",
+      "seKey": "obs_design_y03_gsis_retention_se",
+      "min": 0.0,
+      "max": 200.0,
+      "se_required": false,
+      "default_se": 1.5,
+      "minimum_se": 0.001,
+      "unit": "perifusion_gsis_si_retention_percentage_vs_unarmed_iec_control"
+    },
+    {
+      "endpoint_id": "stage0_design_y03_supernatant_adenosine_nM",
+      "meanKey": "obs_design_y03_supernatant_adenosine_nM",
+      "seKey": "obs_design_y03_supernatant_adenosine_se_nM",
+      "min": 0.0,
+      "max": 10000.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 0.001,
+      "unit": "perifusion_effluent_adenosine_concentration_nM_at_16p7mM_glucose"
+    },
+    {
+      "endpoint_id": "stage0_design_y03_dpcpx_gsis_delta_pct",
+      "meanKey": "obs_design_y03_dpcpx_gsis_delta_pct",
+      "seKey": "obs_design_y03_dpcpx_gsis_delta_se",
+      "min": 0.0,
+      "max": 200.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 0.001,
+      "unit": "dpcpx_adora1_antagonist_gsis_unmasking_percentage_shift"
+    },
+    {
+      "endpoint_id": "stage0_design_y04_multicistron_retention_pct",
+      "meanKey": "obs_design_y04_multicistron_retention_pct",
+      "seKey": "obs_design_y04_multicistron_retention_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.5,
+      "minimum_se": 0.001,
+      "unit": "day60_single_cell_5cloak_beta_and_6cloak_iec_copositivity_percentage"
+    },
+    {
+      "endpoint_id": "stage0_design_y04_nhs20_c5b9_mac_pct",
+      "meanKey": "obs_design_y04_nhs20_c5b9_mac_pct",
+      "seKey": "obs_design_y04_nhs20_c5b9_mac_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.4,
+      "minimum_se": 0.001,
+      "unit": "twenty_pct_normal_human_serum_c5b9_mac_deposition_percentage"
+    },
+    {
+      "endpoint_id": "stage0_design_y04_indirect_apc_cd4_si",
+      "meanKey": "obs_design_y04_indirect_apc_cd4_si",
+      "seKey": "obs_design_y04_indirect_apc_cd4_se",
+      "min": 0.1,
+      "max": 50.0,
+      "se_required": false,
+      "default_se": 0.1,
+      "minimum_se": 0.001,
+      "unit": "hla_dq2_dq8_host_apc_indirect_cd4_stimulation_index"
+    },
+    {
+      "endpoint_id": "stage0_design_y04_ap1903_clonogenic_survival_frac",
+      "meanKey": "obs_design_y04_ap1903_clonogenic_survival_frac",
+      "seKey": "obs_design_y04_ap1903_clonogenic_survival_se",
+      "min": 0.0,
+      "max": 1.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "tier6b_ap1903_hypoxic_cytokine_clonogenic_survival_fraction"
+    },
+    {
+      "endpoint_id": "stage0_design_y_sampling_age_days",
+      "meanKey": "obs_design_y_sampling_age_days",
+      "seKey": "obs_design_y_sampling_age_days_se",
+      "min": 0.0,
+      "max": 365.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "total_post_edit_differentiation_and_cytokine_rechallenge_age_days"
+    },
+    {
+      "endpoint_id": "stage0_design_y02_ont_intact_homolog_pct",
+      "meanKey": "obs_design_y02_ont_intact_homolog_pct",
+      "seKey": "obs_design_y02_ont_intact_homolog_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.2,
+      "minimum_se": 0.001,
+      "unit": "phased_15_25kb_ont_full_length_intact_homolog_percentage"
+    },
+    {
+      "endpoint_id": "stage0_design_y04_all4_lineages_scored_count",
+      "meanKey": "obs_design_y04_all4_lineages_scored_count",
+      "seKey": "obs_design_y04_all4_lineages_scored_se",
+      "min": 0.0,
+      "max": 10.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "number_of_product_lineages_beta_alpha_delta_iec_passing_gy009_and_y01"
+    },
+    {
+      "endpoint_id": "stage0_design_y04_ap1903_survivor_count_k",
+      "meanKey": "obs_design_y04_ap1903_survivor_count_k",
+      "seKey": "obs_design_y04_ap1903_survivor_count_k_se",
+      "min": 0.0,
+      "max": 1000000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "observed_ap1903_clonogenic_survivor_colonies_k"
+    },
+    {
+      "endpoint_id": "stage0_design_y04_ap1903_effective_trials",
+      "meanKey": "obs_design_y04_ap1903_effective_trials",
+      "seKey": "obs_design_y04_ap1903_effective_trials_se",
+      "min": 0.0,
+      "max": 1000000000000.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 0.001,
+      "unit": "effective_clonogenic_spike_adjusted_trials_n_times_f_clon_times_eta"
     }
   ]
 }

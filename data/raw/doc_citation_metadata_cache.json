@@ -689,6 +689,12 @@
    "pubdate_year": "2013",
    "title": "Perforin forms transient pores on the target cell plasma membrane to facilitate rapid access of granzymes during killer cell attack."
   },
+  "23416946": {
+   "first_author": "Naughton C",
+   "journal": "Nat Struct Mol Biol",
+   "pubdate_year": "2013",
+   "title": "Transcription forms and remodels supercoiling domains unfolding large-scale chromatin structures."
+  },
   "23417675": {
    "first_author": "Cheng X",
    "journal": "J Biol Chem",
@@ -784,6 +790,12 @@
    "journal": "Nat Genet",
    "pubdate_year": "2014",
    "title": "Loss-of-function mutations in SLC30A8 protect against type 2 diabetes."
+  },
+  "24584092": {
+   "first_author": "Gilbert N",
+   "journal": "Curr Opin Genet Dev",
+   "pubdate_year": "2014",
+   "title": "Supercoiling in DNA and chromatin."
   },
   "24598265": {
    "first_author": "Pham DD",
@@ -1589,6 +1601,12 @@
    "pubdate_year": "2021",
    "title": "Quantitative evaluation of chromosomal rearrangements in gene-edited human stem cells by CAST-Seq."
   },
+  "33838111": {
+   "first_author": "Nuñez JK",
+   "journal": "Cell",
+   "pubdate_year": "2021",
+   "title": "Genome-wide programmable transcriptional memory by CRISPR-based epigenome editing."
+  },
   "33846289": {
    "first_author": "Moradi S",
    "journal": "Nat Commun",
@@ -1666,6 +1684,12 @@
    "journal": "Nat Biotechnol",
    "pubdate_year": "2022",
    "title": "Functional, metabolic and transcriptional maturation of human pancreatic islets derived from stem cells."
+  },
+  "35297680": {
+   "first_author": "Chai S",
+   "journal": "Hum Gene Ther",
+   "pubdate_year": "2022",
+   "title": "Development of a Beta Cell-Specific Expression Control Element for Recombinant Adeno-Associated Virus."
   },
   "35323192": {
    "first_author": "Ravindranath MH",
@@ -1823,6 +1847,12 @@
    "pubdate_year": "2023",
    "title": "Engineering Modular, Oxygen-Generating Microbeads for the In Situ Mitigation of Cellular Hypoxia."
   },
+  "37127662": {
+   "first_author": "Allen AG",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2024",
+   "title": "A highly efficient transgene knock-in technology in clinically relevant cell types."
+  },
   "37156915": {
    "first_author": "Hu X",
    "journal": "Nat Biotechnol",
@@ -1943,11 +1973,23 @@
    "pubdate_year": "2024",
    "title": "Engineering Pancreatic Islets to Transiently Codisplay on Their Surface Thrombomodulin and CD47 Immunomodulatory Proteins as a Means of Mitigating Instant Blood-Mediated Inflammatory Reaction following Intraportal Transplantation."
   },
+  "38858586": {
+   "first_author": "Pandey S",
+   "journal": "Nat Biomed Eng",
+   "pubdate_year": "2025",
+   "title": "Efficient site-specific integration of large genes in mammalian cells via continuously evolved recombinases and prime editing."
+  },
   "38867450": {
    "first_author": "Sartori-Maldonado R",
    "journal": "Mol Ther",
    "pubdate_year": "2024",
    "title": "Thymidylate synthase disruption to limit cell proliferation in cell therapies."
+  },
+  "38879678": {
+   "first_author": "Liu L",
+   "journal": "Nat Commun",
+   "pubdate_year": "2024",
+   "title": "Intra-islet α-cell Gs signaling promotes glucagon release."
   },
   "38907368": {
    "first_author": "Zebrauskaite A",
@@ -1996,6 +2038,12 @@
    "journal": "Nat Metab",
    "pubdate_year": "2024",
    "title": "Regulated and adaptive in vivo insulin secretion from islets only containing β-cells."
+  },
+  "39179886": {
+   "first_author": "Blanch-Asensio A",
+   "journal": "Nat Protoc",
+   "pubdate_year": "2026",
+   "title": "STRAIGHT-IN: a platform for rapidly generating panels of genetically modified human pluripotent stem cell lines."
   },
   "39326417": {
    "first_author": "Wang S",
@@ -2056,6 +2104,12 @@
    "journal": "Diabetologia",
    "pubdate_year": "2025",
    "title": "Regulating islet stress responses through CD47 activation."
+  },
+  "40251154": {
+   "first_author": "Hu X",
+   "journal": "Nat Commun",
+   "pubdate_year": "2025",
+   "title": "Inhibition of polymorphonuclear cells averts cytotoxicity against hypoimmune cells in xenotransplantation."
   },
   "40320524": {
    "first_author": "Traini L",
@@ -2213,6 +2267,12 @@
    "pubdate_year": "2026",
    "title": "β-cell-targeted RNA activation of vascular endothelial growth factor-A improves islet transplantation."
   },
+  "42660457": {
+   "first_author": "Mohammed Al-Amily I",
+   "journal": "J Biol Chem",
+   "pubdate_year": "2026",
+   "title": "Increased ADORA1 expression in pancreatic islets coincides with insulin secretory defects in human type 2 diabetes."
+  },
   "42671571": {
    "first_author": "Luckett AM",
    "journal": "Diabetologia",
@@ -2225,11 +2285,23 @@
    "pubdate_year": "2026",
    "title": "Engineering the insulin signal peptide to protect human pancreatic beta cells from autoimmune destruction."
   },
+  "42749803": {
+   "first_author": "Levesque S",
+   "journal": "Nature",
+   "pubdate_year": "2026",
+   "title": "Targeted genomic integration and rearrangement using prime assembly."
+  },
   "42787837": {
    "first_author": "Veronese-Paniagua DA",
    "journal": "iScience",
    "pubdate_year": "2026",
    "title": "Protective IFIH1 variant reduces islet stress and dysfunction in a type 1 diabetes genetic background."
+  },
+  "42791925": {
+   "first_author": "Brandhorst H",
+   "journal": "Bioengineering (Basel)",
+   "pubdate_year": "2026",
+   "title": "Effect of Adenosine on the Morphological and Functional Integrity of Isolated Human Islets Exposed to Normoxic and Hypoxic Conditions."
   },
   "42808960": {
    "first_author": "Dogan F",
@@ -2308,6 +2380,12 @@
    "journal": "Proc Natl Acad Sci U S A",
    "pubdate_year": "1997",
    "title": "Characterization of the chicken beta-globin insulator."
+  },
+  "9184229": {
+   "first_author": "Muhlethaler-Mottet A",
+   "journal": "EMBO J",
+   "pubdate_year": "1997",
+   "title": "Expression of MHC class II molecules in different cellular and functional compartments is controlled by differential usage of multiple promoters of the transactivator CIITA."
   },
   "9486650": {
    "first_author": "Braud VM",

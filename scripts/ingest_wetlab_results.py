@@ -652,6 +652,11 @@ STAGE0_PERSISTED_BOOLEAN_FLAGS: tuple[str, ...] = (
     "track2_hlag1_lilrb1_rescue_qualified",
     "require_full_iip0022_track2_and_guardrail_panel",
     "lineage_necroptosis_time_resolved_viability_and_rescue_verified",
+    "design_y_attlr_outside_orf_5p3p_race_verified",
+    "design_y_zero_2a_scar_proteomics_verified",
+    "design_y_dpcpx_adora1_antagonist_control_run",
+    "design_y_anti_cd200_blockade_reversal_verified",
+    "design_y_y04_full_coculture_and_clonogenic_confirmed",
 )
 
 HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS: tuple[str, ...] = (
@@ -703,6 +708,9 @@ ALLOWED_ORDERED_BATCH_LEDGER_KEYS: frozenset[str] = frozenset({
     "conditioning_4arm_arm",
     "conditioning_washout_analyte_scope",
     "track2_rescue_route",
+    "design_y_integrase_modality",
+    "design_y_silencing_modality",
+    "design_y_payload_arm",
     *HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS,
 })
 
@@ -1056,6 +1064,9 @@ def _validate_prior_posterior_report(
                 "conditioning_4arm_arm",
                 "conditioning_washout_analyte_scope",
                 "track2_rescue_route",
+                "design_y_integrase_modality",
+                "design_y_silencing_modality",
+                "design_y_payload_arm",
             ):
                 if adj_meta_k in entry and entry[adj_meta_k] is not None:
                     merged_hist_payload_for_norm[adj_meta_k] = entry[adj_meta_k]
@@ -1275,6 +1286,9 @@ def _validate_prior_posterior_report(
                     "conditioning_4arm_arm",
                     "conditioning_washout_analyte_scope",
                     "track2_rescue_route",
+                    "design_y_integrase_modality",
+                    "design_y_silencing_modality",
+                    "design_y_payload_arm",
                 ):
                     if entry.get(meta_k) is not None:
                         pooled_hist_for_s0[meta_k] = entry[meta_k]
@@ -1863,6 +1877,9 @@ def run_calibration(
         "conditioning_4arm_arm",
         "conditioning_washout_analyte_scope",
         "track2_rescue_route",
+        "design_y_integrase_modality",
+        "design_y_silencing_modality",
+        "design_y_payload_arm",
         *stage0_persisted_boolean_flags,
     ):
         if qp_meta_k in input_payload and input_payload[qp_meta_k] is not None:
@@ -1970,6 +1987,9 @@ def run_calibration(
             "conditioning_4arm_arm",
             "conditioning_washout_analyte_scope",
             "track2_rescue_route",
+            "design_y_integrase_modality",
+            "design_y_silencing_modality",
+            "design_y_payload_arm",
         ):
             if hist_entry.get(meta_k) is not None:
                 pooled_stage0_payload[meta_k] = hist_entry[meta_k]
@@ -2334,6 +2354,14 @@ def run_calibration(
             seen_t2_routes.add(_t2r.strip())
     if len(seen_t2_routes) > 1:
         raise ValueError("Cannot pool distinct track2_rescue_route conditions across calibration batches (IIP-0022; DEC-101)")
+    for _dy_mk in ("design_y_integrase_modality", "design_y_silencing_modality", "design_y_payload_arm"):
+        _seen_dy = {
+            _e[_dy_mk].strip()
+            for _e in [*prev_obs_ledger, current_obs_entry]
+            if isinstance(_e.get(_dy_mk), str) and _e[_dy_mk].strip()
+        }
+        if len(_seen_dy) > 1:
+            raise ValueError(f"Cannot pool distinct {_dy_mk} conditions across calibration batches (IIP-0023; DEC-102)")
     pooled_stage0_payload["batch_id"] = batch_id
     pooled_stage0_payload["verified_ledger_passing_s9_batch_ids"] = list(post_stop_passing_s9_batch_ids)
     stage0_eval_report = evaluate_stage0_decision_tree(

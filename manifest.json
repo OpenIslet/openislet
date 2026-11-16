@@ -253,31 +253,31 @@
       "bytes": 1157
     },
     "ISLET-1-BLUEPRINT.md": {
-      "sha256": "f7557f445d31e6d7ff4d6845368c88b940326c15e19869d06bf9eeb581f5f7ac",
-      "bytes": 208991
+      "sha256": "e63f0e40a9774da7554f10b6169f57e972de8f46573696f49096354af779290a",
+      "bytes": 210884
     },
     "README.md": {
-      "sha256": "be8a8a707997064209acb55193f6c5f39335c7e245315470d06c117f4b31f0d0",
+      "sha256": "a2a19110305afa7bd5752174fcb52b04975ab3fcf7c8d1709720ff5ccaf59a43",
       "bytes": 7452
     },
     "docs/ISLET-1-DERIVATIONS-AND-AUDIT-TABLES.md": {
-      "sha256": "4faaa8c0b4fb9680a93f99b7b26ac7b430a3ee375dda6f5600dc408348600942",
+      "sha256": "7d7f291e8c147c7c623bccf86d7c44466a8c2919625e93a1f89fa4b23b806e1a",
       "bytes": 66019
     },
     "docs/ISLET-1-MASTER-SPEC-v0.1.md": {
-      "sha256": "3a723298e4b4cd6361dd653339cc3fce48ca6fa3a5bd52e0f2a679809b9dbd7b",
+      "sha256": "fca3a2a3a52d5ab83b83a2469a3b0c7bdb83e10974ac248d64ebf1623d9c3fa4",
       "bytes": 108468
     },
     "docs/ISLET-1-SYNTHESIS-REPORT-v0.4.md": {
-      "sha256": "f3fea4d551c1b14089cba6bfb667c844a48a78ac4d63833b31b457c265e948ba",
+      "sha256": "a173042ac0a27843b3b983e051abd2a5cfd75eae2728ce1a960631073d489d50",
       "bytes": 16410
     },
     "docs/ISLET-1-CANDIDATE-BLUEPRINTS-AND-OPTIMIZER-v0.2.md": {
-      "sha256": "1e5496e9320d2d9b986e16c4b23649cab49c0402ba866c36242fc69fab62f16f",
+      "sha256": "14234d93c928d71e157ff2643735851b20814f53897e2a4d25717be66cf39384",
       "bytes": 46208
     },
     "docs/PROJECT-ISLET-1-RING1-DISCOVERY-ATLAS-AND-STRATEGY.md": {
-      "sha256": "6f595e1afde5ae02ae773135d8286abdde7553d1ef0643de6c853788f7da3d75",
+      "sha256": "1e50665e17bee3e5735077ddd921df00ef6da72fbfb5ca51d1b6daf7fc59094a",
       "bytes": 20334
     },
     "docs/PROJECT-DECISIONS-LOG.md": {
@@ -289,8 +289,8 @@
       "bytes": 32751
     },
     "docs/STAGE-0-EXECUTION-PLAYBOOK.md": {
-      "sha256": "0d880ae953b14e9d93d1f4e70017a5a1e2f26059c0e19ec67de8198f9190edcc",
-      "bytes": 160531
+      "sha256": "119ae039a339ab72723fd5c7171399ea63ff5ded415ae68cc078267cb3bf13e5",
+      "bytes": 163498
     },
     "data/raw/corpus_manifest_all_sources.jsonl": {
       "sha256": "119ecbd3be2ccb79a2f38ac7feca8713ffb7c6c5e92165078e2722331b9e0536",
@@ -305,8 +305,8 @@
       "bytes": 11990
     },
     "data/raw/doc_citation_metadata_cache.json": {
-      "sha256": "da0dc1f7768858ef358fdc5600d5074bd386dc42833faa9c0416c5ed461664a0",
-      "bytes": 89223
+      "sha256": "2aa1a4f7accd0f5a10d2569ae3d8816bb1d833f7bbb05f1474694d5f855c39d0",
+      "bytes": 92159
     },
     "data/raw/layer2_genomic_and_jaspar_reference.json": {
       "sha256": "5a7d0da91936e5be815b5cf8844b087b8fcbe8d02f837db806eccadee882737d",
@@ -340,6 +340,10 @@
       "sha256": "22df54a27ef3f68b646b63dc036b11f5a66a9fcadb50378dfb8057e108c79ffa",
       "bytes": 27582
     },
+    "data/constructs/islet1_design_y_wildcard_comparators_v0.8.0.fasta": {
+      "sha256": "c7f54b824a73cf9d40247d4fd251cb5c28a8eca4a1530b9661284200bb4cbabc",
+      "bytes": 36355
+    },
     "data/graveyard/idea_graveyard_v0.5.json": {
       "sha256": "024d3f6a1e3f75cb1a38f191d0813018d226e53f8c53dd5b2091cc1a7089d79d",
       "bytes": 36537
@@ -370,12 +374,12 @@
       "bytes": 581846
     },
     "data/extracted/islet1_candidate_stack_rankings.json": {
-      "sha256": "b9581a2561edac10cc62c5f1e0280ad4f8f0d610ff2f2e5b03879d5d7575feab",
-      "bytes": 16876829
+      "sha256": "09b1a0c0e8df43c6e886b71ae957675e7fee2a95f73a6ec2756d2a5c48f8b738",
+      "bytes": 16878440
     },
     "data/extracted/islet1_stack_ranking_v0.5.json": {
-      "sha256": "b9581a2561edac10cc62c5f1e0280ad4f8f0d610ff2f2e5b03879d5d7575feab",
-      "bytes": 16876829
+      "sha256": "09b1a0c0e8df43c6e886b71ae957675e7fee2a95f73a6ec2756d2a5c48f8b738",
+      "bytes": 16878440
     },
     "data/extracted/ring1_study_dossiers_v0.5.jsonl": {
       "sha256": "ffb236e8eb273935af6d2436b4533ab4ee8f7ec0764037deae0b875e519689f3",
@@ -388,9 +392,9 @@
       "local_audit_tree_sha256": "e56018562aaa99e9be32441aad998407529b839dce58f3f0fd91389a7fcfd9e5"
     },
     "data/extracted/layer2_regulatory_and_perturbation_atlas.json": {
-      "sha256": "3b8ac1ade2ab9f341ad0a041aee65161375d0bc120a6c83bd17918c7a20dcbd1",
-      "bytes": 1336260,
-      "local_audit_tree_sha256": "1d5a91f472ed8f8ec9246a8f8e8638026a2b44a95d62445b1e9c81426416a15d"
+      "sha256": "a250127dcb18f9de760b664c04bd71f066c16e020d6e7487742dc1f7cfe2f18a",
+      "bytes": 1344094,
+      "local_audit_tree_sha256": "02f4689338608970c85661b28e1d76caeb71700f64010c8185465a3e54f7a50b"
     },
     "data/extracted/layer3_structural_verification_atlas.json": {
       "sha256": "0986a146f7a505f482e3f19dded05ad327de255e8c512472f5a3c7c1e8213388",
@@ -533,8 +537,8 @@
       "bytes": 4935
     },
     "scripts/wetlab_contract.py": {
-      "sha256": "52888f08a0162567068d0580a356decd533ec52d3a3986f4f70b6553a4fb3970",
-      "bytes": 330674
+      "sha256": "505386b99168c2f449a488e29198554f8b4f56c7d3e894b3a4a995fa78133324",
+      "bytes": 347089
     },
     "scripts/render_documentation.py": {
       "sha256": "78a215056730e6bc84839e4a2fc07ea11349e66706a989a3d8f0e72e8b47328e",
@@ -545,15 +549,15 @@
       "bytes": 57048
     },
     "data/protocols/wetlab_endpoint_contract_v0.8.0.json": {
-      "sha256": "92a15b079c58f726ba025cf0e8c143105a408cfd99d22c21b77b13bef5d27c44",
-      "bytes": 102761
+      "sha256": "a7d07cb999c565de753d2279a8ff2eb4a14a574c00cb7259bb8611d65ede13f5",
+      "bytes": 112089
     },
     "data/protocols/stage0_decision_tree_v1.json": {
-      "sha256": "7250c72e9a7711855d833d380a89537c5a187e93b5efba6e7a2112098549046e",
-      "bytes": 52941
+      "sha256": "a88389c3c67456929d301dff6dd0d425003bf3a249dfd49b9ac5cc10b7bfd673",
+      "bytes": 53839
     },
     "data/extracted/documentation_facts_v0.8.0.json": {
-      "sha256": "823d30d7c6f8c079f96f8c52a45575d21a6a8cdb9586b1a6e45a99e0ce10610e",
+      "sha256": "04ae2997b20e15dd5ca3268676e24ff9be1b8be25829d1ad67b79df7b7074ab0",
       "bytes": 1590129
     },
     "tests/test_preastra_layer1.py": {
@@ -629,8 +633,8 @@
       "bytes": 215433
     },
     "scripts/generate_release_manifest.py": {
-      "sha256": "ff83d1183a865bf1b8be9d358fdf8f62fb78c598cc54745b2c3f63d507daa2ee",
-      "bytes": 112915
+      "sha256": "963b2494d06c78a85707a23cc2612b342c6a9b4f0e5f6c7e3fb1720845a31a45",
+      "bytes": 112992
     },
     "scripts/harvest_corpus.py": {
       "sha256": "c61503b386f1f4860b56cc805ae139bf1a7b4f4ff7239a4b9dfa3a8740b14c1e",
@@ -641,16 +645,16 @@
       "bytes": 22891
     },
     "scripts/ingest_wetlab_results.py": {
-      "sha256": "81d346b0c88c52fd90b150089560ab3c57a4ae4a7e1c0f5f298f055b32b4c678",
-      "bytes": 156525
+      "sha256": "2330d1ad5445bd010d148f8781e6db064441ec8252df0654bb8ff16bfbe73822",
+      "bytes": 157852
     },
     "scripts/rank_islet1_stacks.py": {
-      "sha256": "8c9c067f2c295f70409e2b2f92796980fae7d93094047ff60a87105ab8eed50f",
-      "bytes": 519058
+      "sha256": "23717cedf58c5e739652c503fc1f432a3e9a9a58969829135eb02e6e19bdbd5c",
+      "bytes": 520728
     },
     "scripts/run_layer2_perturbation_and_regulatory_plane.py": {
-      "sha256": "7f073d08ebbe9fa225e4c5ecdd84313a33a96a1867693fd56819dd668663ac0c",
-      "bytes": 997091
+      "sha256": "80b04beddb036708fc6936ca84aaafd056a1be4d6ed0c3d6d2affc28763b8950",
+      "bytes": 1006920
     },
     "scripts/run_layer3_structural_binder_plane.py": {
       "sha256": "02907be609d1f4406ec529f3bc10fa2319fe16a298918dcf1d4576247f3fa349",
@@ -6131,8 +6135,8 @@
       "bytes": 40897
     },
     "tests/test_round3_supporting_boundaries.py": {
-      "sha256": "08d34e7eee037719ca545d09d6ca593631c4326cd951c50f409a495897101972",
-      "bytes": 372128
+      "sha256": "f935a1441a972dd2714b43587d435843547e359ac362c53ef38a8fa0c79a7acc",
+      "bytes": 376959
     }
   },
   "public_export_file_inventory": [
@@ -6167,6 +6171,7 @@
     "LICENSE-DATA",
     "README.md",
     "SECURITY.md",
+    "data/constructs/islet1_design_y_wildcard_comparators_v0.8.0.fasta",
     "data/constructs/islet1_locus1_s10_modeb_comparators_v0.8.0.fasta",
     "data/constructs/islet1_locus3_multimir_modeb_comparators_v0.8.0.fasta",
     "data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta",

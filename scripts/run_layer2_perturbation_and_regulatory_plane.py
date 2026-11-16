@@ -11317,6 +11317,147 @@ def _build_locus3_multimir_and_cbe_needle_manifest_iip_0018(
     }
 
 
+
+def _build_design_y_wildcard_manifest_iip_0023() -> Dict[str, Any]:
+    """
+    Sequence, promoter-CGI, TadCBEd haplotype, CIITA isoform, and source-flux adenosine reaction-diffusion
+    audit for Stage-0 Design Y wildcard comparators strictly inside the <= 20% wildcard firewall (IIP-0023; DEC-102).
+    """
+    dy_fasta = REPO_ROOT / "data/constructs/islet1_design_y_wildcard_comparators_v0.8.0.fasta"
+    raw_bytes = dy_fasta.read_bytes()
+    file_sha = hashlib.sha256(raw_bytes).hexdigest()
+    expected_file_sha = "c7f54b824a73cf9d40247d4fd251cb5c28a8eca4a1530b9661284200bb4cbabc"
+    if file_sha != expected_file_sha:
+        raise ValueError(f"Design Y wildcard FASTA SHA-256 {file_sha} != {expected_file_sha}")
+
+    records: List[Dict[str, Any]] = []
+    cur_hdr = None
+    cur_seq: List[str] = []
+    for ln in raw_bytes.decode("utf-8").splitlines():
+        s = ln.strip()
+        if not s:
+            continue
+        if s.startswith(">"):
+            if cur_hdr is not None:
+                seq_str = "".join(cur_seq).upper()
+                records.append({
+                    "header": cur_hdr,
+                    "construct_id": cur_hdr.split()[0],
+                    "length_bp": len(seq_str),
+                    "sha256": hashlib.sha256(seq_str.encode("utf-8")).hexdigest(),
+                    "gc_fraction": round((seq_str.count("G") + seq_str.count("C")) / len(seq_str), 6),
+                    "gsg_p2a_motif_occurrences": seq_str.count("GGAAGCGGAGCTACTAACTTCAGCCTGCTGAAGCAGGCTGGAGACGTGGAGGAGAACCCTGGACCT"),
+                    "kanr_or_colE1_ori_motif_occurrences": seq_str.count("ATGAGCCATATTCAACGGGAAACG") + seq_str.count("TTGAGATCCTTTTTTTCTGCGCGTAATCTG"),
+                })
+            cur_hdr = s[1:]
+            cur_seq = []
+        else:
+            cur_seq.append(s)
+    if cur_hdr is not None:
+        seq_str = "".join(cur_seq).upper()
+        records.append({
+            "header": cur_hdr,
+            "construct_id": cur_hdr.split()[0],
+            "length_bp": len(seq_str),
+            "sha256": hashlib.sha256(seq_str.encode("utf-8")).hexdigest(),
+            "gc_fraction": round((seq_str.count("G") + seq_str.count("C")) / len(seq_str), 6),
+            "gsg_p2a_motif_occurrences": seq_str.count("GGAAGCGGAGCTACTAACTTCAGCCTGCTGAAGCAGGCTGGAGACGTGGAGGAGAACCCTGGACCT"),
+            "kanr_or_colE1_ori_motif_occurrences": seq_str.count("ATGAGCCATATTCAACGGGAAACG") + seq_str.count("TTGAGATCCTTTTTTTCTGCGCGTAATCTG"),
+        })
+
+    if [r["length_bp"] for r in records] != [11066, 11859, 12555]:
+        raise ValueError(f"Unexpected Design Y comparator lengths: {[r['length_bp'] for r in records]}")
+
+    # Explicit steady-state peri-islet source-flux adenosine reaction-diffusion balance:
+    # C_surf(z=0) = J_ADO / sqrt(D_eff * k_clear) * exp(-gap / lambda_ADO), lambda_ADO = sqrt(D_eff / k_clear)
+    ado_models: List[Dict[str, Any]] = []
+    for label, j_pmol_cm2_s, d_cm2_s, k_s_inv, gap_um in (
+        ("IEC_CD39_CD73_ModerateClearance_5umGap", 0.18, 4.5e-6, 0.15, 5.0),
+        ("IEC_CD39_CD73_SlowClearance_5umGap", 0.25, 7.0e-6, 0.05, 5.0),
+        ("PanLineage_CD39_CD73_ModerateClearance_0um", 0.45, 4.5e-6, 0.15, 0.0),
+    ):
+        lam_cm = math.sqrt(d_cm2_s / k_s_inv)
+        lam_um = lam_cm * 1e4
+        # J in mol/(cm^2*s) = j_pmol_cm2_s * 1e-12; C in mol/cm^3 -> * 1e12 for nM
+        c0_nM = (j_pmol_cm2_s * 1e-12 / math.sqrt(d_cm2_s * k_s_inv)) * 1e12
+        c_gap_nM = c0_nM * math.exp(-(gap_um * 1e-4) / lam_cm)
+        ado_models.append({
+            "scenario": label,
+            "ectonucleotidase_flux_pmol_cm2_s": j_pmol_cm2_s,
+            "d_eff_cm2_s": d_cm2_s,
+            "ada1_ent1_clearance_k_s_inv": k_s_inv,
+            "decay_length_lambda_um": round(lam_um, 2),
+            "iec_to_beta_gap_um": gap_um,
+            "predicted_beta_surface_adenosine_nM": round(c_gap_nM, 2),
+        })
+
+    return {
+        "contribution_id": "IIP-0023",
+        "decision_id": "DEC-102",
+        "wildcard_firewall_scope": "Unscored Stage-0 Design Y wildcard within shared <= 20% Y/Z allocation cap; zero changes to core scored Blueprints A, B, or X.",
+        "fasta_artifact": {
+            "relative_path": "data/constructs/islet1_design_y_wildcard_comparators_v0.8.0.fasta",
+            "file_sha256": file_sha,
+            "constructs": records,
+        },
+        "eepassige_attp_in_genome_polarity_and_context_separation": {
+            "b2m_exon1_twinpe_excision_grch38": "chr15:44711547-44711619 (73 bp removing native Met1, signal peptide, Gln22 and GTGAGT donor -> 52 bp Bxb1 attP)",
+            "attb_minicircle_recombination_products": "52 bp attP x 38 bp attB -> 45 bp attR (0 sense ATGs across 75 bp retained 5'-UTR + attR leader upstream of 154 bp SPA+MAZ4) + 45 bp attL (0 ATGs either strand)",
+            "dsb_and_nickase_caveat": "Uses paired Cas9n nickases without intended exposed nuclease DSBs while retaining CAST-Seq (< 1e-5) and long-read ONT checks for paired-nick staggered DSB intermediates (Levesque et al. 2026 PMID:42749803; Hanlon et al. 2019 PMID:31570731; Shy et al. 2023 PMID:36008610; Allen et al. 2024 PMID:37127662).",
+            "pandey_2025_pmid38858586_experimental_context_disclosure": (
+                "Pandey et al. 2025 (PMID:38858586) measured 3.8%/20.9%/24% OT4 capture after puromycin enrichment, 0.008%/0.004% OT1/OT2 in primary fibroblasts "
+                "with IDLV donor, and 3.8% vs 0.52% hiPSC knock-in using homozygous CCR5 attB + 5.6-kb attP plasmid; >= 3.0% pre-enrichment knock-in of an 11.1-kb "
+                "attB minicircle at B2M attP is therefore an explicit prospective Stage-0 hPSC target rather than an already-demonstrated yield (STRAIGHT-IN clonal "
+                "hPSC precedent in Blanch-Asensio et al. 2026 PMID:39179886; ISCro4 RNA-guided recombinase context in Pelea et al. 2026 PMID:41642947)."
+            ),
+        },
+        "ciita_and_cxcl10_cgi_tadcbed_and_isoform_reconciliation": {
+            "promoter_cgi_window_reconciliation": {
+                "cxcl10_601bp_chr4_76023197_76023797": {"cpg_count": 3, "obs_over_exp": 0.1520, "meets_gardiner_garden_cgi": False},
+                "ciita_piv_601bp_broad_window": {"cpg_count": 30, "obs_over_exp": 0.5154, "meets_gardiner_garden_cgi": False},
+                "ciita_piv_201bp_tss_subwindow_chr16_10878900_10879100": {
+                    "cpg_count": 16,
+                    "gc_pct": 64.68,
+                    "obs_over_exp": 0.7982,
+                    "meets_gardiner_garden_cgi": True,
+                },
+                "crisproff_comparison_note": (
+                    "While CXCL10 lacks a CpG island, CIITA-pIV contains a 201-bp TSS-spanning CpG-dense subwindow (Obs/Exp = 0.7982) and CRISPRoff "
+                    "can silence non-CGI genes in several contexts (Nunez et al. 2021 PMID:33838111); TadCBEd vs CRISPRoff is therefore evaluated as a "
+                    "head-to-head 60-day differentiation + cytokine durability comparison rather than a promoter-CGI exclusion."
+                ),
+            },
+            "tadcbed_editing_window_and_a_to_g_haplotype_gate": (
+                "TadCBEd exhibits C->T activity across protospacer positions 3-9 alongside residual A->G editing (Neugebauer et al. 2023 PMID:36357719): "
+                "at CIITA Exon 2 (C7AG), joint C7>T + A8>G converts CAG -> TGG (Trp missense instead of TAG stop), and Exon 10 carries adjacent A6. "
+                "Clonal hPSC qualification therefore requires full amplicon NGS haplotype distributions (quantifying C>T, A>G, and indels simultaneously) "
+                "rather than C-only bystander scans."
+            ),
+            "ciita_isoform_accession_reconciliation": (
+                "Pinned GENCODE v46 ENST00000576601.1 (177 aa, 7 exons) and ENST00000637439.1 are truncated partial models; full-length RefSeq "
+                "NM_001286402.1 (1,131 aa, pIII) maps chr16:10895386:C>T to p.Gln53*, NM_000246.4 (1,155 aa, pI) to p.Gln77*, and classical pIV "
+                "(Muhlethaler-Mottet et al. 1997 PMID:9184229) to p.Gln29*. Because 147-bp Exon 2 (147 mod 3 = 0) permits in-frame exon skipping or "
+                "downstream Met reinitiation, Exon 10 NACHT-domain stop (chr16:10904792, p.Trp334* on NM_001286402.1) is co-tested with protein-level "
+                "IFN-gamma HLA-DR/DP/DQ flow verification."
+            ),
+        },
+        "adenosine_source_flux_reaction_diffusion_and_cd200_scope": {
+            "human_receptor_and_hypoxia_context": (
+                "Human islets abundantly express Gi-coupled ADORA1 (inhibiting GSIS; reversed by 1 uM DPCPX in Mohammed Al-Amily et al. 2026 PMID:42660457, "
+                "tested alongside 100 nM selective DPCPX in Y-03) and Gs-coupled ADORA2A (promoting alpha-cell glucagon release; Liu et al. 2024 PMID:38879678), "
+                "with hypoxia-regulated adenosine transcript shifts reported in Brandhorst et al. 2026 (PMID:42791925)."
+            ),
+            "source_flux_reaction_diffusion_scenarios": ado_models,
+            "cd200_and_mir375_detargeting_caveats": (
+                "Chai et al. 2022 (PMID:35297680) used alpha-cell-enriched miRNAs rather than miR-375 (which is abundant in both human alpha and beta cells), "
+                "Hu et al. 2025 (PMID:40251154) co-tested CD99 + CD200 rather than iEC-only CD200 indirect-CD4 suppression alone, and packing 7 tandem units "
+                "across 11.1 kb can introduce transcriptional supercoiling coupling (Naughton et al. 2013 PMID:23416946; Gilbert & Allan 2014 PMID:24584092), "
+                "making direct Y-03/Y-04 empirical co-culture, AGO2-RIP miR-375, anti-CD200 reversal, and single-cell multi-cistron gates mandatory."
+            ),
+        },
+    }
+
+
 def main() -> None:
     with REF_PATH.open("r", encoding="utf-8") as f:
         ref = json.load(f)
@@ -11605,6 +11746,7 @@ def main() -> None:
             iip_0015_manifest=_iip_0015_manifest,
         ),
         "extracellular_biomaterial_foreign_peptide_census_iip_0020": _build_extracellular_biomaterial_census_iip_0020(),
+        "stage0_design_y_wildcard_manifest_iip_0023": _build_design_y_wildcard_manifest_iip_0023(),
     }
 
     if (REPO_ROOT / ".openislet_public_bundle").is_file() and ATLAS_OUT.is_file():

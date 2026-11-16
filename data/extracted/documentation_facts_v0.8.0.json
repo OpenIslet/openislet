@@ -1,7 +1,7 @@
 {
   "schema_version": "0.8.0",
   "epistemic_status": "GENERATED_COMPUTATIONAL_FACTS_PHYSICAL_QUALIFICATION_PENDING",
-  "manifest_pin_count": 1360,
+  "manifest_pin_count": 1361,
   "discovery_manifest": {
     "jsonl_rows": 7703,
     "unique_pubmed_pmids": 7703,
@@ -11,9 +11,9 @@
   "source_sha256": {
     "data/raw/corpus_manifest_all_sources.jsonl": "119ecbd3be2ccb79a2f38ac7feca8713ffb7c6c5e92165078e2722331b9e0536",
     "data/extracted/cross_study_discovery_graph.json": "1eb6248877b1dacf11154f608515c092ed1db2fdb7efc34b9c5456a3aa1113f4",
-    "data/extracted/islet1_candidate_stack_rankings.json": "b9581a2561edac10cc62c5f1e0280ad4f8f0d610ff2f2e5b03879d5d7575feab",
+    "data/extracted/islet1_candidate_stack_rankings.json": "09b1a0c0e8df43c6e886b71ae957675e7fee2a95f73a6ec2756d2a5c48f8b738",
     "data/protocols/hip_core_fractional_factorial_v0.6.2.json": "7a3aead410a1c9a10ac4fb56b78a1775c73755aed90c1fff4861eb3b94595741",
-    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "1d5a91f472ed8f8ec9246a8f8e8638026a2b44a95d62445b1e9c81426416a15d",
+    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "02f4689338608970c85661b28e1d76caeb71700f64010c8185465a3e54f7a50b",
     "data/extracted/layer3_structural_verification_atlas.json": "0986a146f7a505f482e3f19dded05ad327de255e8c512472f5a3c7c1e8213388",
     "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": "6611914b90421d14ab84429648644f514682cff16c031be347e55b67568d7c60",
     "data/extracted/layer5_personalized_patient_and_crispr_atlas.json": "dd0da26878fd36d0f70afc140943a489e381f38e994510bd03996de3edeaed69",
