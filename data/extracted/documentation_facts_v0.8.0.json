@@ -15,7 +15,7 @@
     "data/protocols/hip_core_fractional_factorial_v0.6.2.json": "7a3aead410a1c9a10ac4fb56b78a1775c73755aed90c1fff4861eb3b94595741",
     "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "1d5a91f472ed8f8ec9246a8f8e8638026a2b44a95d62445b1e9c81426416a15d",
     "data/extracted/layer3_structural_verification_atlas.json": "3057babacb6c40fb126fd700cd9eb35d0c4af25cbc6968b7908e4ee7bf1a456a",
-    "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": "31ea6722281dfefeee7642a3b1792834da56faf19b248ed3b0166c335c39de50",
+    "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": "6611914b90421d14ab84429648644f514682cff16c031be347e55b67568d7c60",
     "data/extracted/layer5_personalized_patient_and_crispr_atlas.json": "dd0da26878fd36d0f70afc140943a489e381f38e994510bd03996de3edeaed69",
     "data/extracted/10202046.json": "b3d836e8c0fc8ed898592975e0f09c0154a0d4f887c2b6893e7c8194befd0a6a",
     "data/extracted/10728379.json": "b2efcc82101e33914aebc51e74ddc7650894d097c11841518f6e848916cae3dc",
@@ -16758,6 +16758,7 @@
       "regime_id": "LEAD_CENTRAL_LAMINA_PDMS_CAO2_F045_PLUS_CATALASE",
       "areal_loading_ieq_cm2": 2500.0,
       "cell_intrinsic_ocr_multiplier": 1.0,
+      "cluster_endocrine_ocr_multiplier": 1.0,
       "prescribed_cluster_diameter_um": 120.0,
       "spatial_control_volume_ledger": {
         "central_lamina_half_width_fraction": 0.34,
@@ -17171,6 +17172,7 @@
           "regime_id": "SENSITIVITY_NOMINAL_40MMHG_T50_36H_SHRINKING_CORE",
           "areal_loading_ieq_cm2": 2500.0,
           "cell_intrinsic_ocr_multiplier": 1.0,
+          "cluster_endocrine_ocr_multiplier": 1.0,
           "prescribed_cluster_diameter_um": 120.0,
           "spatial_control_volume_ledger": {
             "central_lamina_half_width_fraction": 0.34,
@@ -17363,6 +17365,7 @@
           "regime_id": "SENSITIVITY_BOUNDARY_PO2_30MMHG_LOWER_VASCULARIZED_BED_SHRINKING_CORE",
           "areal_loading_ieq_cm2": 2500.0,
           "cell_intrinsic_ocr_multiplier": 1.0,
+          "cluster_endocrine_ocr_multiplier": 1.0,
           "prescribed_cluster_diameter_um": 120.0,
           "spatial_control_volume_ledger": {
             "central_lamina_half_width_fraction": 0.34,
@@ -17555,6 +17558,7 @@
           "regime_id": "SENSITIVITY_DELAYED_INOSCULATION_MIDPOINT_T50_60H_SHRINKING_CORE",
           "areal_loading_ieq_cm2": 2500.0,
           "cell_intrinsic_ocr_multiplier": 1.0,
+          "cluster_endocrine_ocr_multiplier": 1.0,
           "prescribed_cluster_diameter_um": 120.0,
           "spatial_control_volume_ledger": {
             "central_lamina_half_width_fraction": 0.34,
@@ -17759,6 +17763,7 @@
           "regime_id": "SENSITIVITY_ELEVATED_METABOLIC_DEMAND_PLUS_25PCT_SHRINKING_CORE",
           "areal_loading_ieq_cm2": 2500.0,
           "cell_intrinsic_ocr_multiplier": 1.25,
+          "cluster_endocrine_ocr_multiplier": 1.25,
           "prescribed_cluster_diameter_um": 120.0,
           "spatial_control_volume_ledger": {
             "central_lamina_half_width_fraction": 0.34,

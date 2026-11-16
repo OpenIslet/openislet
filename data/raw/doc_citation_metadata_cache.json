@@ -1,7 +1,7 @@
 {
  "_meta": {
   "purpose": "offline snapshot for tests/test_citations_resolve.py; bibliographic facts only (first author, year, journal, title)",
-  "retrieved": "2026-11-16",
+  "retrieved": "2026-11-17",
   "source": "NCBI E-utilities esummary (db=pubmed)"
  },
  "pmids": {
@@ -299,6 +299,18 @@
    "pubdate_year": "2006",
    "title": "Fatality in mice due to oversaturation of cellular microRNA/short hairpin RNA pathways."
   },
+  "16897713": {
+   "first_author": "Rousselot M",
+   "journal": "Biotechnol J",
+   "pubdate_year": "2006",
+   "title": "Arenicola marina extracellular hemoglobin: a new promising blood substitute."
+  },
+  "17130499": {
+   "first_author": "Sweet IR",
+   "journal": "Diabetes",
+   "pubdate_year": "2006",
+   "title": "Contribution of calcium influx in mediating glucose-stimulated oxygen consumption in pancreatic islets."
+  },
   "17299038": {
    "first_author": "Schumann DM",
    "journal": "Proc Natl Acad Sci U S A",
@@ -316,6 +328,12 @@
    "journal": "Biotechnol Bioeng",
    "pubdate_year": "2007",
    "title": "A stirred microchamber for oxygen consumption rate measurements with pancreatic islets."
+  },
+  "17503968": {
+   "first_author": "MacDonald PE",
+   "journal": "PLoS Biol",
+   "pubdate_year": "2007",
+   "title": "A K ATP channel-dependent pathway within alpha cells regulates glucagon release from both rodent and human islets of Langerhans."
   },
   "17926672": {
    "first_author": "Dalla Man C",
@@ -641,6 +659,12 @@
    "pubdate_year": "2013",
    "title": "Upregulated NLRP3 inflammasome activation in patients with type 2 diabetes."
   },
+  "23190609": {
+   "first_author": "Takahashi N",
+   "journal": "Cell Death Dis",
+   "pubdate_year": "2012",
+   "title": "Necrostatin-1 analogues: critical issues on the specificity, activity and in vivo use in experimental disease models."
+  },
   "23307570": {
    "first_author": "Pfaff N",
    "journal": "Stem Cells",
@@ -700,6 +724,12 @@
    "journal": "PLoS Genet",
    "pubdate_year": "2013",
    "title": "GLIS3, a susceptibility gene for type 1 and type 2 diabetes, modulates pancreatic beta cell apoptosis via regulation of a splice variant of the BH3-only protein Bim."
+  },
+  "23935835": {
+   "first_author": "Ma Z",
+   "journal": "PLoS One",
+   "pubdate_year": "2013",
+   "title": "Preconditioning with associated blocking of Ca2+ inflow alleviates hypoxia-induced damage to pancreatic β-cells."
   },
   "23974921": {
    "first_author": "Laitinen OH",
@@ -1181,6 +1211,12 @@
    "pubdate_year": "2018",
    "title": "The Eukaryotic Proteome Is Shaped by E3 Ubiquitin Ligases Targeting C-Terminal Degrons."
   },
+  "29789532": {
+   "first_author": "Bruni A",
+   "journal": "Cell Death Dis",
+   "pubdate_year": "2018",
+   "title": "Ferroptosis-inducing agents compromise in vitro human islet viability and function."
+  },
   "29844327": {
    "first_author": "Osum KC",
    "journal": "Sci Rep",
@@ -1499,6 +1535,12 @@
    "pubdate_year": "2020",
    "title": "Single-Cell Transcriptome Profiling Reveals β Cell Maturation in Stem Cell-Derived Islets after Transplantation."
   },
+  "32893325": {
+   "first_author": "Li XY",
+   "journal": "Cell Regen",
+   "pubdate_year": "2020",
+   "title": "Erastin-induced ferroptosis is a regulator for the growth and function of human pancreatic islet-like cell clusters."
+  },
   "32923626": {
    "first_author": "Coronel MM",
    "journal": "Sci Adv",
@@ -1565,6 +1607,12 @@
    "pubdate_year": "2021",
    "title": "Fine-mapping, trans-ancestral and genomic analyses identify causal variants, cells, genes and drug targets for type 1 diabetes."
   },
+  "34252539": {
+   "first_author": "Yu J",
+   "journal": "Free Radic Biol Med",
+   "pubdate_year": "2021",
+   "title": "Receptor-interacting serine/threonine-protein kinase 1 (RIPK1) inhibitors Necrostatin-1 (Nec-1) and 7-Cl-O-Nec-1 (Nec-1s) are potent inhibitors of NAD(P)H: Quinone oxidoreductase 1 (NQO1)."
+  },
   "34380648": {
    "first_author": "Nilsson PH",
    "journal": "J Immunol",
@@ -1588,6 +1636,12 @@
    "journal": "Cell Stem Cell",
    "pubdate_year": "2021",
    "title": "Microvessels support engraftment and functionality of human islets and hESC-derived pancreatic progenitors in diabetes models."
+  },
+  "34572979": {
+   "first_author": "Yuk H",
+   "journal": "Antioxidants (Basel)",
+   "pubdate_year": "2021",
+   "title": "Necrostatin-1 Prevents Ferroptosis in a RIPK1- and IDO-Independent Manner in Hepatocellular Carcinoma."
   },
   "34954144": {
    "first_author": "Overway EM",
@@ -1780,6 +1834,12 @@
    "journal": "Nat Immunol",
    "pubdate_year": "2023",
    "title": "HLA class I signal peptide polymorphism determines the level of CD94/NKG2-HLA-E-mediated regulation of effector cell responses."
+  },
+  "37318185": {
+   "first_author": "Lemaire F",
+   "journal": "Cell Transplant",
+   "pubdate_year": "2023",
+   "title": "Beneficial Effects of Two Marine Oxygen Carriers, M101 and M201, on Human Islet Quality in Hypoxic Culture Conditions."
   },
   "37476069": {
    "first_author": "Chendke GS",
@@ -2075,6 +2135,12 @@
    "pubdate_year": "2026",
    "title": "Correction: Extracellular Matrix-Guided Islet Cell Transplantation Results in Improved Glycemic Control in a NOD-SCID Mouse Model."
   },
+  "41951603": {
+   "first_author": "Aggarwal S",
+   "journal": "Cell Death Dis",
+   "pubdate_year": "2026",
+   "title": "RIP kinase inhibition with Necrostatin-1 improves human marginal mass islet graft survival and function for the management of type 1 diabetes."
+  },
   "42078397": {
    "first_author": "Gasser M",
    "journal": "medRxiv",
@@ -2104,6 +2170,12 @@
    "journal": "bioRxiv",
    "pubdate_year": "2026",
    "title": "Generation of hypoimmunogenic gastric insulin-secreting organoids."
+  },
+  "42547502": {
+   "first_author": "Van Simaeys D",
+   "journal": "Signal Transduct Target Ther",
+   "pubdate_year": "2026",
+   "title": "β-cell-targeted RNA activation of vascular endothelial growth factor-A improves islet transplantation."
   },
   "42671571": {
    "first_author": "Luckett AM",

@@ -252,6 +252,7 @@
         "regime_id": "PASSIVE_NO_CAO2_CONTROL",
         "areal_loading_ieq_cm2": 2500.0,
         "cell_intrinsic_ocr_multiplier": 1.0,
+        "cluster_endocrine_ocr_multiplier": 1.0,
         "prescribed_cluster_diameter_um": 120.0,
         "spatial_control_volume_ledger": {
           "central_lamina_half_width_fraction": 0.34,
@@ -579,6 +580,7 @@
         "regime_id": "UNDERDOSED_CENTRAL_CAO2_F020_V70_12_TEST",
         "areal_loading_ieq_cm2": 2500.0,
         "cell_intrinsic_ocr_multiplier": 1.0,
+        "cluster_endocrine_ocr_multiplier": 1.0,
         "prescribed_cluster_diameter_um": 120.0,
         "spatial_control_volume_ledger": {
           "central_lamina_half_width_fraction": 0.34,
@@ -906,6 +908,7 @@
         "regime_id": "LEAD_CENTRAL_LAMINA_PDMS_CAO2_F045_PLUS_CATALASE",
         "areal_loading_ieq_cm2": 2500.0,
         "cell_intrinsic_ocr_multiplier": 1.0,
+        "cluster_endocrine_ocr_multiplier": 1.0,
         "prescribed_cluster_diameter_um": 120.0,
         "spatial_control_volume_ledger": {
           "central_lamina_half_width_fraction": 0.34,
@@ -1245,6 +1248,7 @@
         "regime_id": "PDMS_CAO2_F045_NO_CATALASE_ISOLATED_PEROXIDE_CONTROL",
         "areal_loading_ieq_cm2": 2500.0,
         "cell_intrinsic_ocr_multiplier": 1.0,
+        "cluster_endocrine_ocr_multiplier": 1.0,
         "prescribed_cluster_diameter_um": 120.0,
         "spatial_control_volume_ledger": {
           "central_lamina_half_width_fraction": 0.34,
@@ -1572,6 +1576,7 @@
         "regime_id": "RAW_UNCOATED_CAO2_NO_CATALASE_CHEMICAL_TOXICITY",
         "areal_loading_ieq_cm2": 2500.0,
         "cell_intrinsic_ocr_multiplier": 1.0,
+        "cluster_endocrine_ocr_multiplier": 1.0,
         "prescribed_cluster_diameter_um": 120.0,
         "spatial_control_volume_ledger": {
           "central_lamina_half_width_fraction": 0.34,
@@ -1899,6 +1904,7 @@
         "regime_id": "FULL_LENGTH_CD47_WT_IEC_ANGIOGENESIS_IMPAIRED",
         "areal_loading_ieq_cm2": 2500.0,
         "cell_intrinsic_ocr_multiplier": 1.0,
+        "cluster_endocrine_ocr_multiplier": 1.0,
         "prescribed_cluster_diameter_um": 120.0,
         "spatial_control_volume_ledger": {
           "central_lamina_half_width_fraction": 0.34,
@@ -2226,6 +2232,7 @@
         "regime_id": "DESIGN_X_100UM_LAMINA_EPS042_FO_201",
         "areal_loading_ieq_cm2": 2500.0,
         "cell_intrinsic_ocr_multiplier": 1.0,
+        "cluster_endocrine_ocr_multiplier": 1.0,
         "prescribed_cluster_diameter_um": 120.0,
         "spatial_control_volume_ledger": {
           "central_lamina_half_width_fraction": 0.2857142857142857,
@@ -2553,6 +2560,7 @@
         "regime_id": "DESIGN_X_100UM_LAMINA_EPS042_SC_201",
         "areal_loading_ieq_cm2": 2500.0,
         "cell_intrinsic_ocr_multiplier": 1.0,
+        "cluster_endocrine_ocr_multiplier": 1.0,
         "prescribed_cluster_diameter_um": 120.0,
         "spatial_control_volume_ledger": {
           "central_lamina_half_width_fraction": 0.2857142857142857,
@@ -2880,6 +2888,7 @@
         "regime_id": "DESIGN_X_100UM_LAMINA_EPS042_FO_201_LOCALIZED_CATALASE",
         "areal_loading_ieq_cm2": 2500.0,
         "cell_intrinsic_ocr_multiplier": 1.0,
+        "cluster_endocrine_ocr_multiplier": 1.0,
         "prescribed_cluster_diameter_um": 120.0,
         "spatial_control_volume_ledger": {
           "central_lamina_half_width_fraction": 0.2857142857142857,
@@ -3207,6 +3216,7 @@
         "regime_id": "DESIGN_X_100UM_LAMINA_EPS042_GB_201_LOCALIZED_CATALASE",
         "areal_loading_ieq_cm2": 2500.0,
         "cell_intrinsic_ocr_multiplier": 1.0,
+        "cluster_endocrine_ocr_multiplier": 1.0,
         "prescribed_cluster_diameter_um": 120.0,
         "spatial_control_volume_ledger": {
           "central_lamina_half_width_fraction": 0.2857142857142857,
@@ -16864,6 +16874,7 @@
           "regime_id": "SENSITIVITY_NOMINAL_40MMHG_T50_36H_SHRINKING_CORE",
           "areal_loading_ieq_cm2": 2500.0,
           "cell_intrinsic_ocr_multiplier": 1.0,
+          "cluster_endocrine_ocr_multiplier": 1.0,
           "prescribed_cluster_diameter_um": 120.0,
           "spatial_control_volume_ledger": {
             "central_lamina_half_width_fraction": 0.34,
@@ -17191,6 +17202,7 @@
           "regime_id": "SENSITIVITY_BOUNDARY_PO2_30MMHG_LOWER_VASCULARIZED_BED_SHRINKING_CORE",
           "areal_loading_ieq_cm2": 2500.0,
           "cell_intrinsic_ocr_multiplier": 1.0,
+          "cluster_endocrine_ocr_multiplier": 1.0,
           "prescribed_cluster_diameter_um": 120.0,
           "spatial_control_volume_ledger": {
             "central_lamina_half_width_fraction": 0.34,
@@ -17518,6 +17530,7 @@
           "regime_id": "SENSITIVITY_DELAYED_INOSCULATION_MIDPOINT_T50_60H_SHRINKING_CORE",
           "areal_loading_ieq_cm2": 2500.0,
           "cell_intrinsic_ocr_multiplier": 1.0,
+          "cluster_endocrine_ocr_multiplier": 1.0,
           "prescribed_cluster_diameter_um": 120.0,
           "spatial_control_volume_ledger": {
             "central_lamina_half_width_fraction": 0.34,
@@ -17857,6 +17870,7 @@
           "regime_id": "SENSITIVITY_ELEVATED_METABOLIC_DEMAND_PLUS_25PCT_SHRINKING_CORE",
           "areal_loading_ieq_cm2": 2500.0,
           "cell_intrinsic_ocr_multiplier": 1.25,
+          "cluster_endocrine_ocr_multiplier": 1.25,
           "prescribed_cluster_diameter_um": 120.0,
           "spatial_control_volume_ledger": {
             "central_lamina_half_width_fraction": 0.34,
@@ -20398,6 +20412,282 @@
           "PMID:20124731",
           "PMID:27872147"
         ]
+      }
+    },
+    "lineage_partitioned_metabolic_rest_and_m101_exclusion_audit": {
+      "contribution_id": "IIP-0021",
+      "decision_id": "DEC-100",
+      "baseline_cao2_mass_mg_preserved": 791.5,
+      "hurdle1_computational_judgement_preserved_pct": 88,
+      "inosculation_t50_bounds_preserved_h": [
+        36.0,
+        60.0
+      ],
+      "primary_citations": [
+        "PMID:23935835",
+        "PMID:17130499",
+        "PMID:17503968",
+        "PMID:42547502",
+        "PMID:37318185",
+        "PMID:16897713",
+        "PMID:41951603",
+        "PMID:23190609",
+        "PMID:34572979",
+        "PMID:29789532",
+        "PMID:32893325",
+        "PMID:34252539"
+      ],
+      "two_scale_lineage_ocr_verification": {
+        "legacy_dec064_loading_alias_at_0p70": {
+          "areal_loading_ieq_cm2": 1750.0,
+          "min_slab_po2_mmhg": 26.33985,
+          "gel_only_120um_core_po2_mmhg": 5.84
+        },
+        "uniform_cell_intrinsic_0p70_at_2500ieq": {
+          "areal_loading_ieq_cm2": 2500.0,
+          "min_slab_po2_mmhg": 26.33985,
+          "gel_only_120um_core_po2_mmhg": 13.2
+        },
+        "two_scale_endo0p55_vasc1p00_at_2500ieq": {
+          "slab_normalized_ocr_multiplier": 0.608696,
+          "cluster_endocrine_ocr_multiplier": 0.55,
+          "min_slab_po2_mmhg": 28.17953,
+          "gel_only_120um_core_po2_mmhg": 17.8
+        },
+        "two_scale_endo1p50_vasc1p00_at_2500ieq": {
+          "slab_normalized_ocr_multiplier": 1.434783,
+          "cluster_endocrine_ocr_multiplier": 1.5,
+          "min_slab_po2_mmhg": 3.32228,
+          "gel_only_120um_core_po2_mmhg": 0.0
+        },
+        "biological_scope_qualification": "14.30% vascular cell fraction (133.5M / 933.5M) and 13.04% modeled vascular OCR share (0.15 / 1.15) are distinct quantities; while Ma et al. 2013 (PMID:23935835) measured rat-islet OCR after washout/reoxygenation, Sweet & Gilbert 2006 (PMID:17130499) observed ~30% acute glucose-stimulated rat-islet OCR reduction under diazoxide/nimodipine and MacDonald et al. 2007 (PMID:17503968) showed human alpha-cell K_ATP sensitivity to diazoxide, making empirical 120-h assembled-organoid OCR + glucagon/GSIS measurement mandatory."
+      },
+      "slab_free_drug_washout_first_eigenmode_table": {
+        "eigenmodes": [
+          {
+            "slab_thickness_um": 140.0,
+            "d_eff_cm2_s": 2.8e-06,
+            "two_sink_first_mode_tau1_s": 7.0925,
+            "one_sink_one_reflecting_first_mode_tau1_s": 28.3699
+          },
+          {
+            "slab_thickness_um": 300.0,
+            "d_eff_cm2_s": 2.8e-06,
+            "two_sink_first_mode_tau1_s": 32.5675,
+            "one_sink_one_reflecting_first_mode_tau1_s": 130.2701
+          },
+          {
+            "slab_thickness_um": 350.0,
+            "d_eff_cm2_s": 2.8e-06,
+            "two_sink_first_mode_tau1_s": 44.328,
+            "one_sink_one_reflecting_first_mode_tau1_s": 177.3121
+          },
+          {
+            "slab_thickness_um": 140.0,
+            "d_eff_cm2_s": 4.5e-06,
+            "two_sink_first_mode_tau1_s": 4.4131,
+            "one_sink_one_reflecting_first_mode_tau1_s": 17.6524
+          },
+          {
+            "slab_thickness_um": 300.0,
+            "d_eff_cm2_s": 4.5e-06,
+            "two_sink_first_mode_tau1_s": 20.2642,
+            "one_sink_one_reflecting_first_mode_tau1_s": 81.0569
+          },
+          {
+            "slab_thickness_um": 350.0,
+            "d_eff_cm2_s": 4.5e-06,
+            "two_sink_first_mode_tau1_s": 27.5819,
+            "one_sink_one_reflecting_first_mode_tau1_s": 110.3275
+          }
+        ],
+        "boundary_and_diffusivity_note": "Two-sink tau_1 = H^2/(pi^2 * D) gives 7.09, 32.57, and 44.33 s at 140, 300, and 350 um for D = 2.8e-6 cm^2/s (4.41, 20.26, and 27.58 s correspond to faster aqueous D = 4.5e-6 cm^2/s), whereas one-sink/one-reflecting geometry is 4x longer (28.37, 130.26, and 177.30 s at D = 2.8e-6 cm^2/s); all remain <3 min e-folding times vs 120-h bridge duration."
+      },
+      "design_z_140um_parameterized_acute_chronic_and_pfc_matrix": {
+        "operative_gate_definition": "pericellular_interface_po2_mmhg >= 15.0 AND min_core_po2_mmhg >= 5.0 (coupled with Stage-2 loaded GSIS SI >= 3.0)",
+        "acute_vs_chronic_parameter_disclosure": "Acute unremodeled gel uses d_gel_cm2_s = 9.40254e-6 cm^2/s and k_perf = 0.097 s^-1, whereas chronic vascularized gel assumes d_gel_cm2_s = 1.5e-5 cm^2/s (+59.5%) and k_perf = 0.1358 s^-1; adverse unremodeled chronic OCR (1.097x at acute d_gel/k_perf) is tabulated explicitly alongside nominal chronic cases.",
+        "cases": {
+          "Acute_25mmHg_1p0xOCR_AcuteGel": {
+            "bed_po2_mmhg": 25.0,
+            "ocr_multiplier": 1.0,
+            "d_gel_cm2_s": 9.40254e-06,
+            "k_perf_s_inv": 0.097,
+            "pfc_vol_fraction": 0.0,
+            "maxwell_garnett_factor": 1.0,
+            "pericellular_interface_po2_mmhg": 8.0531,
+            "min_core_po2_mmhg": 1.1508,
+            "passes_15mmhg_interface_and_5mmhg_core_gate": false
+          },
+          "Acute_25mmHg_0p70xOCR_AcuteGel": {
+            "bed_po2_mmhg": 25.0,
+            "ocr_multiplier": 0.7,
+            "d_gel_cm2_s": 9.40254e-06,
+            "k_perf_s_inv": 0.097,
+            "pfc_vol_fraction": 0.0,
+            "maxwell_garnett_factor": 1.0,
+            "pericellular_interface_po2_mmhg": 12.5097,
+            "min_core_po2_mmhg": 7.0951,
+            "passes_15mmhg_interface_and_5mmhg_core_gate": false
+          },
+          "Acute_40mmHg_1p0xOCR_AcuteGel": {
+            "bed_po2_mmhg": 40.0,
+            "ocr_multiplier": 1.0,
+            "d_gel_cm2_s": 9.40254e-06,
+            "k_perf_s_inv": 0.097,
+            "pfc_vol_fraction": 0.0,
+            "maxwell_garnett_factor": 1.0,
+            "pericellular_interface_po2_mmhg": 21.8241,
+            "min_core_po2_mmhg": 13.9069,
+            "passes_15mmhg_interface_and_5mmhg_core_gate": true
+          },
+          "Chronic_25mmHg_1p097xOCR_ChronicGel": {
+            "bed_po2_mmhg": 25.0,
+            "ocr_multiplier": 1.097,
+            "d_gel_cm2_s": 1.5e-05,
+            "k_perf_s_inv": 0.1358,
+            "pfc_vol_fraction": 0.0,
+            "maxwell_garnett_factor": 1.0,
+            "pericellular_interface_po2_mmhg": 11.4374,
+            "min_core_po2_mmhg": 3.3297,
+            "passes_15mmhg_interface_and_5mmhg_core_gate": false
+          },
+          "Chronic_40mmHg_1p097xOCR_ChronicGel": {
+            "bed_po2_mmhg": 40.0,
+            "ocr_multiplier": 1.097,
+            "d_gel_cm2_s": 1.5e-05,
+            "k_perf_s_inv": 0.1358,
+            "pfc_vol_fraction": 0.0,
+            "maxwell_garnett_factor": 1.0,
+            "pericellular_interface_po2_mmhg": 25.944,
+            "min_core_po2_mmhg": 17.3403,
+            "passes_15mmhg_interface_and_5mmhg_core_gate": true
+          },
+          "Chronic_25mmHg_1p097xOCR_5volPctPFC_ChronicGel": {
+            "bed_po2_mmhg": 25.0,
+            "ocr_multiplier": 1.097,
+            "d_gel_cm2_s": 1.5e-05,
+            "k_perf_s_inv": 0.1358,
+            "pfc_vol_fraction": 0.05,
+            "maxwell_garnett_factor": 1.1353919,
+            "pericellular_interface_po2_mmhg": 12.3942,
+            "min_core_po2_mmhg": 4.2104,
+            "passes_15mmhg_interface_and_5mmhg_core_gate": false
+          },
+          "Adverse_40mmHg_1p097xOCR_UnremodeledAcuteGel_kperf0p097": {
+            "bed_po2_mmhg": 40.0,
+            "ocr_multiplier": 1.097,
+            "d_gel_cm2_s": 9.40254e-06,
+            "k_perf_s_inv": 0.097,
+            "pfc_vol_fraction": 0.0,
+            "maxwell_garnett_factor": 1.0,
+            "pericellular_interface_po2_mmhg": 20.1183,
+            "min_core_po2_mmhg": 11.4716,
+            "passes_15mmhg_interface_and_5mmhg_core_gate": true
+          }
+        }
+      },
+      "staged_portal_exercise_insulin_lag_bounds_and_qualifications": {
+        "v0p18_150k_total_90k_beta_eq_Tins5p17_tau8p0_preserved_paracrine_min_G_mM": 4.6372,
+        "v0p18_150k_total_90k_beta_eq_Tins5p17_tau8p0_scaled_paracrine_min_G_mM": 3.5296,
+        "v0p36_300k_total_180k_beta_eq_Tins3p64_tau8p0_min_G_mM": 3.5005,
+        "v0p60_500k_total_300k_beta_eq_Tins2p71_tau7p1429_min_G_mM": 3.5001,
+        "v0p60_500k_total_300k_beta_eq_Tins1p96_tau8p0_min_G_mM": 3.5004,
+        "qualification_note": "Deterministic ODE margins at T_ins = 3.64 / 2.71 / 1.96 min sit 0.0001-0.0005 mM above 3.50 mM without exogenous rescue/controller modeling, v = 0.18 drops from 4.6372 to 3.5296 mM (<3.90 mM) if local paracrine drive scales down with v, and the 150,000-IEQ omental cassette is distinct from Roadmap Stage-5A's 25,000-35,000 IEQ forearm sentinel; full-dose v = 0.60 clearance remains non-waivable."
+      },
+      "m101_closed_slab_standalone_reservoir_bounds": {
+        "scope_qualification": "Conditional standalone finite-reservoir bound in a closed 10 mL slab (5 g/L = 50 mg carrier, vs 5,490.58 umol O2 from 791.5 mg CaO2; Rousselot et al. 2006 PMID:16897713 reports P50 = 7.05 +/- 0.93 mmHg, n50 = 2.54 +/- 0.23; distinct from air-exposed 1 g/L 24-h culture in Lemaire et al. 2023 PMID:37318185 and not a general facilitated-diffusion proof under open external oxygen resupply).",
+        "bounds": {
+          "AirSaturated_100_to_15mmHg_n2p5": {
+            "carrier_mass_mg": 50.0,
+            "total_heme_capacity_umol_o2": 2.16667,
+            "p_start_mmhg": 100.0,
+            "p_floor_mmhg": 15.0,
+            "p50_mmhg": 7.05,
+            "hill_n": 2.5,
+            "bound_fraction_at_start": 0.998682,
+            "bound_fraction_at_floor": 0.868477,
+            "releasable_umol_above_floor": 0.28211,
+            "graft_500k_ieq_plus_15pct_vasc_demand_umol_min": 2.072862,
+            "standalone_bridge_duration_above_floor_s": 8.1659
+          },
+          "AirSaturated_100_to_15mmHg_n3p0": {
+            "carrier_mass_mg": 50.0,
+            "total_heme_capacity_umol_o2": 2.16667,
+            "p_start_mmhg": 100.0,
+            "p_floor_mmhg": 15.0,
+            "p50_mmhg": 7.05,
+            "hill_n": 3.0,
+            "bound_fraction_at_start": 0.99965,
+            "bound_fraction_at_floor": 0.905942,
+            "releasable_umol_above_floor": 0.20303,
+            "graft_500k_ieq_plus_15pct_vasc_demand_umol_min": 2.072862,
+            "standalone_bridge_duration_above_floor_s": 5.8769
+          },
+          "HostBed_40_to_15mmHg_n2p5": {
+            "carrier_mass_mg": 50.0,
+            "total_heme_capacity_umol_o2": 2.16667,
+            "p_start_mmhg": 40.0,
+            "p_floor_mmhg": 15.0,
+            "p50_mmhg": 7.05,
+            "hill_n": 2.5,
+            "bound_fraction_at_start": 0.987127,
+            "bound_fraction_at_floor": 0.868477,
+            "releasable_umol_above_floor": 0.25707,
+            "graft_500k_ieq_plus_15pct_vasc_demand_umol_min": 2.072862,
+            "standalone_bridge_duration_above_floor_s": 7.4412
+          },
+          "HostBed_40_to_15mmHg_n3p0": {
+            "carrier_mass_mg": 50.0,
+            "total_heme_capacity_umol_o2": 2.16667,
+            "p_start_mmhg": 40.0,
+            "p_floor_mmhg": 15.0,
+            "p50_mmhg": 7.05,
+            "hill_n": 3.0,
+            "bound_fraction_at_start": 0.994555,
+            "bound_fraction_at_floor": 0.905942,
+            "releasable_umol_above_floor": 0.19199,
+            "graft_500k_ieq_plus_15pct_vasc_demand_umol_min": 2.072862,
+            "standalone_bridge_duration_above_floor_s": 5.5573
+          }
+        }
+      },
+      "early_48h_washout_derated_462p6mg_t50_60h_cases": {
+        "first_order": {
+          "derated_cao2_mass_mg": 462.6,
+          "inosculation_t50_h": 60.0,
+          "washout_hour": 48.0,
+          "post_washout_min_slab_po2_mmhg": 17.1815,
+          "post_washout_100um_gel_only_surface_po2_mmhg": 13.8575,
+          "post_washout_100um_gel_only_core_po2_mmhg": 6.143
+        },
+        "ginstling_brounshtein": {
+          "derated_cao2_mass_mg": 462.6,
+          "inosculation_t50_h": 60.0,
+          "washout_hour": 48.0,
+          "post_washout_min_slab_po2_mmhg": 14.4929,
+          "post_washout_100um_gel_only_surface_po2_mmhg": 11.2136,
+          "post_washout_100um_gel_only_core_po2_mmhg": 3.684
+        }
+      },
+      "parameterized_2p5um_discrete_bead_catalase_cases": {
+        "Retained_73800IU_105429IU_PostCure_t24_FullCaO2": {
+          "retained_active_catalase_iu_333cm2": 73800.0,
+          "post_cure_t0_active_catalase_iu_at_70pct_day7_retention": 105428.6,
+          "islet_plane_24h_burst_max_h2o2_uM": 1.1324,
+          "passes_2p5uM_tier1_target": true
+        },
+        "Split_37800IU_ZeroAddedEnzyme_t24_FullCaO2": {
+          "retained_active_catalase_iu_333cm2": 37800.0,
+          "post_cure_t0_active_catalase_iu_at_70pct_day7_retention": 54000.0,
+          "islet_plane_24h_burst_max_h2o2_uM": 3.4204,
+          "passes_2p5uM_tier1_target": false
+        },
+        "BeadDensityDerated_56p3pct_41550IU_t24": {
+          "retained_active_catalase_iu_333cm2": 41549.4,
+          "post_cure_t0_active_catalase_iu_at_70pct_day7_retention": 59356.3,
+          "islet_plane_24h_burst_max_h2o2_uM": 1.6874,
+          "passes_2p5uM_tier1_target": true
+        }
       }
     }
   },

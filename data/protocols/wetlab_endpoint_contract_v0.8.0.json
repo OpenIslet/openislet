@@ -39,7 +39,10 @@
     "design_z_divider_arm",
     "p05_catalase_uniprot_accession",
     "cuff_bioconjugation_arm",
-    "cuff_serum_challenge_stratum"
+    "cuff_serum_challenge_stratum",
+    "rest_ocr_coupon_arm",
+    "conditioning_4arm_arm",
+    "conditioning_washout_analyte_scope"
   ],
   "boolean_policy_keys": [
     "require_full_5endpoint_s9_panel",
@@ -99,7 +102,12 @@
     "p05_recombinant_human_catalase_verified",
     "cuff_dpr_ring_hydrolysis_lcms_verified",
     "cuff_conjugate_disulfide_and_site_occupancy_lcms_verified",
-    "cuff_hexafasl_inventory_within_provisional_cap_verified"
+    "cuff_hexafasl_inventory_within_provisional_cap_verified",
+    "require_full_iip0021_ocr_and_conditioning_panel",
+    "rest_120h_longitudinal_simultaneous_coverage_verified",
+    "rest_120h_viable_lineage_yield_and_during_exposure_function_verified",
+    "conditioning_pellet_loq_and_extraction_recovery_verified",
+    "conditioning_orthogonal_pathway_controls_verified"
   ],
   "endpoints": [
     {
@@ -2614,6 +2622,149 @@
       "default_se": 1e-12,
       "minimum_se": 1e-12,
       "unit": "failing_individual_donor_count_in_humoral_or_hepatocyte_panel"
+    },
+    {
+      "endpoint_id": "stage0_rest_120h_graft_ocr_ratio",
+      "meanKey": "obs_rest_120h_graft_ocr_ratio",
+      "seKey": "obs_rest_120h_graft_ocr_ratio_se",
+      "min": 0.05,
+      "max": 3.0,
+      "se_required": false,
+      "default_se": 0.02,
+      "minimum_se": 0.001,
+      "unit": "assembled_60_30_10_plus_iec_0_to_120h_simultaneous_graft_ocr_ratio_vs_vehicle"
+    },
+    {
+      "endpoint_id": "stage0_rest_depot_release_half_life_h",
+      "meanKey": "obs_rest_depot_release_half_life_h",
+      "seKey": "obs_rest_depot_release_half_life_se_h",
+      "min": 0.001,
+      "max": 500.0,
+      "se_required": false,
+      "default_se": 2.0,
+      "minimum_se": 0.001,
+      "unit": "encapsulated_metabolic_rest_microdepot_release_half_life_hours_in_assembled_gel"
+    },
+    {
+      "endpoint_id": "stage0_rest_post_washout_gsis_si",
+      "meanKey": "obs_rest_post_washout_gsis_si",
+      "seKey": "obs_rest_post_washout_gsis_se",
+      "min": 0.1,
+      "max": 50.0,
+      "se_required": false,
+      "default_se": 0.15,
+      "minimum_se": 0.001,
+      "unit": "post_washout_dynamic_perifusion_gsis_stimulation_index"
+    },
+    {
+      "endpoint_id": "stage0_rest_post_washout_gsis_output_retention_pct",
+      "meanKey": "obs_rest_post_washout_gsis_output_retention_pct",
+      "seKey": "obs_rest_post_washout_gsis_output_retention_se",
+      "min": 0.0,
+      "max": 200.0,
+      "se_required": false,
+      "default_se": 1.5,
+      "minimum_se": 0.001,
+      "unit": "post_washout_absolute_gsis_insulin_output_retention_pct_of_unconditioned_control"
+    },
+    {
+      "endpoint_id": "stage0_rest_post_washout_alpha_glucagon_fold",
+      "meanKey": "obs_rest_post_washout_alpha_glucagon_fold",
+      "seKey": "obs_rest_post_washout_alpha_glucagon_se",
+      "min": 0.1,
+      "max": 30.0,
+      "se_required": false,
+      "default_se": 0.1,
+      "minimum_se": 0.001,
+      "unit": "post_washout_low_glucose_alpha_cell_glucagon_fold_induction"
+    },
+    {
+      "endpoint_id": "stage0_cond_sc_beta_viable_yield_pct",
+      "meanKey": "obs_cond_sc_beta_viable_yield_pct",
+      "seKey": "obs_cond_sc_beta_viable_yield_se",
+      "min": 0.0,
+      "max": 150.0,
+      "se_required": false,
+      "default_se": 1.5,
+      "minimum_se": 0.001,
+      "unit": "post_72h_35mmhg_h2o2_cytokine_cpeptide_sc_beta_absolute_viable_yield_pct"
+    },
+    {
+      "endpoint_id": "stage0_cond_iec_viable_yield_pct",
+      "meanKey": "obs_cond_iec_viable_yield_pct",
+      "seKey": "obs_cond_iec_viable_yield_se",
+      "min": 0.0,
+      "max": 150.0,
+      "se_required": false,
+      "default_se": 1.5,
+      "minimum_se": 0.001,
+      "unit": "post_72h_35mmhg_h2o2_cytokine_cdh5_plvap_iec_absolute_viable_yield_pct"
+    },
+    {
+      "endpoint_id": "stage0_cond_final_wash_supernatant_nM",
+      "meanKey": "obs_cond_final_wash_supernatant_nM",
+      "seKey": "obs_cond_final_wash_supernatant_se_nM",
+      "min": 0.0,
+      "max": 10000.0,
+      "se_required": false,
+      "default_se": 0.5,
+      "minimum_se": 0.001,
+      "unit": "pre_implant_final_wash_supernatant_lcms_residual_conditioning_agent_nM"
+    },
+    {
+      "endpoint_id": "stage0_cond_pellet_residual_over_loq_ratio",
+      "meanKey": "obs_cond_pellet_residual_over_loq_ratio",
+      "seKey": "obs_cond_pellet_residual_over_loq_se",
+      "min": 0.0,
+      "max": 1000.0,
+      "se_required": false,
+      "default_se": 0.05,
+      "minimum_se": 0.001,
+      "unit": "washed_cell_pellet_extract_lcms_residual_concentration_divided_by_validated_loq"
+    },
+    {
+      "endpoint_id": "stage0_cond_pellet_extraction_recovery_pct",
+      "meanKey": "obs_cond_pellet_extraction_recovery_pct",
+      "seKey": "obs_cond_pellet_extraction_recovery_se",
+      "min": 0.0,
+      "max": 150.0,
+      "se_required": false,
+      "default_se": 1.5,
+      "minimum_se": 0.001,
+      "unit": "matrix_spiked_washed_cell_pellet_lcms_extraction_recovery_percentage"
+    },
+    {
+      "endpoint_id": "stage0_cond_endocrine_nqo1_activity_pct",
+      "meanKey": "obs_cond_endocrine_nqo1_activity_pct",
+      "seKey": "obs_cond_endocrine_nqo1_activity_se",
+      "min": 0.0,
+      "max": 200.0,
+      "se_required": false,
+      "default_se": 1.5,
+      "minimum_se": 0.001,
+      "unit": "undiluted_endocrine_compartment_cellular_nqo1_enzymatic_activity_pct_of_vehicle"
+    },
+    {
+      "endpoint_id": "stage0_cond_vascular_nqo1_activity_pct",
+      "meanKey": "obs_cond_vascular_nqo1_activity_pct",
+      "seKey": "obs_cond_vascular_nqo1_activity_se",
+      "min": 0.0,
+      "max": 200.0,
+      "se_required": false,
+      "default_se": 1.5,
+      "minimum_se": 0.001,
+      "unit": "undiluted_vascular_iec_compartment_cellular_nqo1_enzymatic_activity_pct_of_vehicle"
+    },
+    {
+      "endpoint_id": "stage0_cond_post_washout_gsis_si",
+      "meanKey": "obs_cond_post_washout_gsis_si",
+      "seKey": "obs_cond_post_washout_gsis_se",
+      "min": 0.1,
+      "max": 50.0,
+      "se_required": false,
+      "default_se": 0.15,
+      "minimum_se": 0.001,
+      "unit": "post_conditioning_and_washout_dynamic_perifusion_gsis_stimulation_index"
     }
   ]
 }

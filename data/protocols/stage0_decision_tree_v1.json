@@ -568,5 +568,29 @@
       "gate_p05_recombinant_human_catalase_species_and_shed_mass_lock": "Requires p05_catalase_uniprot_accession == 'P04040', p05_recombinant_human_catalase_verified=True, obs_p05_catalase_endotoxin_eu_per_mg upper95 <= 0.10 EU/mg, obs_p05_total_implant_catalase_endotoxin_eu upper95 <= 0.50 EU, and obs_p05_day7_shed_catalase_mass_pct upper95 <= 30.0% by human CAT ELISA + protein mass balance across all active CaO2-bearing pouch runs.",
       "anti_peg_day28_anti_sa_humoral_and_dpr_maleimide_hepatocyte_gate": "Requires unpooled donor-stratified human serum testing (n >= 12 biological donors, 0 failing donors across NORMAL_DONOR_SERA, HIGH_ANTI_PEG_IGG_GT_500NG_ML, ANTI_SA_POSITIVE_HUMAN_SERA, and documented DAY28_SA_FASL_PRIMED_SERA) clearing separated surface C1q/C3b deposition upper95 <= 5.0% and fluid-phase sC5b-9 upper95 <= 5.0% of positive control, macrophage FcgammaR cytokine fold upper95 <= 1.5x, primed-serum FasL EC50 fold shift within [0.50, 2.00] with Emax >= 80.0% apoptosis and >= 80.0% THBD/CFH retention, LC-MS thiosuccinimide ring hydrolysis >= 98.0%, 14-day 50 mg/mL HSA free+polymer-fragment bioactive FasL shedding <= 5.0%, provisional total perimeter Hexa-FasL <= min(2.25 ug, 2.25 ug/m^2 x BSA), LC-MS post-conjugation disulfide/site-occupancy verification (SEC-MALS >= 90% hexamer on H1a, unreacted thiol <= 5.0%), and 72-h primary human hepatocyte Caspase-3/7 and ALT/LDH upper95 <= 1.20x vehicle across both leachates and complete MMP-2/9 digests."
     }
+  },
+  "metabolic_rest_ocr_and_conditioning_gate_iip_0021": {
+    "gate_id": "STAGE0_LINEAGE_OCR_AND_4ARM_CONDITIONING_GATE_IIP_0021",
+    "decision_id": "DEC-100",
+    "contribution_id": "IIP-0021",
+    "baseline_cao2_and_odds_invariant": "Keeps 791.5 mg CaO2, >=73,800 IU retained catalase (~105,429 IU post-cure), 36/60-h vascular timing, and 88% Hurdle-1 unchanged.",
+    "primary_citations": [
+      "PMID:23935835",
+      "PMID:17130499",
+      "PMID:17503968",
+      "PMID:42547502",
+      "PMID:37318185",
+      "PMID:16897713",
+      "PMID:41951603",
+      "PMID:23190609",
+      "PMID:34572979",
+      "PMID:29789532",
+      "PMID:32893325",
+      "PMID:34252539"
+    ],
+    "mandatory_qualification_guards": {
+      "rest_120h_ocr_coupon": "Bars unencapsulated free-drug washout (7.09-44.33 s two-sink / 28.37-177.30 s one-sink at D=2.8e-6 cm^2/s) and requires simultaneous 0-120 h longitudinal coverage of obs_rest_120h_graft_ocr_ratio upper95 <= 0.80 with preserved viable lineage yield and function during exposure, depot t_1/2 lower95 >= 72 h, post-washout GSIS SI lower95 >= 3.0, absolute insulin output retention lower95 >= 85.0%, and alpha-cell glucagon fold lower95 >= 2.0 before any coupled Stage-2 CaO2-reduction test.",
+      "conditioning_4arm_pellet_loq_and_nqo1_gate": "Evaluates Vehicle, Nec-1s (10 uM), Ferrostatin-1 (2 uM), and Nec-1s + Ferrostatin-1 (holding 100 uM benchmark and Nec-1 anti-ferroptotic comparator arms as non-release controls) with orthogonal pathway controls, supernatant LC-MS < 10 nM, matrix-spiked washed cell-pellet extraction recovery >= 80% and residual/LOQ <= 1.0, undiluted endocrine and vascular NQO1 activity >= 90% of vehicle, SC-beta and PLVAP+ iEC viable yields >= 85%, and post-washout GSIS SI >= 3.0."
+    }
   }
 }

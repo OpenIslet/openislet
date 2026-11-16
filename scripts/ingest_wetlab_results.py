@@ -643,6 +643,11 @@ STAGE0_PERSISTED_BOOLEAN_FLAGS: tuple[str, ...] = (
     "cuff_dpr_ring_hydrolysis_lcms_verified",
     "cuff_conjugate_disulfide_and_site_occupancy_lcms_verified",
     "cuff_hexafasl_inventory_within_provisional_cap_verified",
+    "require_full_iip0021_ocr_and_conditioning_panel",
+    "rest_120h_longitudinal_simultaneous_coverage_verified",
+    "rest_120h_viable_lineage_yield_and_during_exposure_function_verified",
+    "conditioning_pellet_loq_and_extraction_recovery_verified",
+    "conditioning_orthogonal_pathway_controls_verified",
 )
 
 HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS: tuple[str, ...] = (
@@ -690,6 +695,9 @@ ALLOWED_ORDERED_BATCH_LEDGER_KEYS: frozenset[str] = frozenset({
     "p05_catalase_uniprot_accession",
     "cuff_bioconjugation_arm",
     "cuff_serum_challenge_stratum",
+    "rest_ocr_coupon_arm",
+    "conditioning_4arm_arm",
+    "conditioning_washout_analyte_scope",
     *HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS,
 })
 
@@ -1039,6 +1047,9 @@ def _validate_prior_posterior_report(
                 "p05_catalase_uniprot_accession",
                 "cuff_bioconjugation_arm",
                 "cuff_serum_challenge_stratum",
+                "rest_ocr_coupon_arm",
+                "conditioning_4arm_arm",
+                "conditioning_washout_analyte_scope",
             ):
                 if adj_meta_k in entry and entry[adj_meta_k] is not None:
                     merged_hist_payload_for_norm[adj_meta_k] = entry[adj_meta_k]
@@ -1254,6 +1265,9 @@ def _validate_prior_posterior_report(
                     "p05_catalase_uniprot_accession",
                     "cuff_bioconjugation_arm",
                     "cuff_serum_challenge_stratum",
+                    "rest_ocr_coupon_arm",
+                    "conditioning_4arm_arm",
+                    "conditioning_washout_analyte_scope",
                 ):
                     if entry.get(meta_k) is not None:
                         pooled_hist_for_s0[meta_k] = entry[meta_k]
@@ -1838,6 +1852,9 @@ def run_calibration(
         "p05_catalase_uniprot_accession",
         "cuff_bioconjugation_arm",
         "cuff_serum_challenge_stratum",
+        "rest_ocr_coupon_arm",
+        "conditioning_4arm_arm",
+        "conditioning_washout_analyte_scope",
         *stage0_persisted_boolean_flags,
     ):
         if qp_meta_k in input_payload and input_payload[qp_meta_k] is not None:
@@ -1941,6 +1958,9 @@ def run_calibration(
             "p05_catalase_uniprot_accession",
             "cuff_bioconjugation_arm",
             "cuff_serum_challenge_stratum",
+            "rest_ocr_coupon_arm",
+            "conditioning_4arm_arm",
+            "conditioning_washout_analyte_scope",
         ):
             if hist_entry.get(meta_k) is not None:
                 pooled_stage0_payload[meta_k] = hist_entry[meta_k]
@@ -2279,6 +2299,25 @@ def run_calibration(
         raise ValueError(
             "Cannot pool distinct cuff_serum_challenge_stratum conditions across calibration batches (IIP-0020; DEC-099)"
         )
+    seen_rest_arms: set[str] = set()
+    seen_cond_arms: set[str] = set()
+    seen_cond_scopes: set[str] = set()
+    for _b21_entry in [*prev_obs_ledger, current_obs_entry]:
+        _ra = _b21_entry.get("rest_ocr_coupon_arm")
+        if isinstance(_ra, str) and _ra.strip():
+            seen_rest_arms.add(_ra.strip())
+        _cda = _b21_entry.get("conditioning_4arm_arm")
+        if isinstance(_cda, str) and _cda.strip():
+            seen_cond_arms.add(_cda.strip())
+        _cds = _b21_entry.get("conditioning_washout_analyte_scope")
+        if isinstance(_cds, str) and _cds.strip():
+            seen_cond_scopes.add(_cds.strip())
+    if len(seen_rest_arms) > 1:
+        raise ValueError("Cannot pool distinct rest_ocr_coupon_arm conditions across calibration batches (IIP-0021; DEC-100)")
+    if len(seen_cond_arms) > 1:
+        raise ValueError("Cannot pool distinct conditioning_4arm_arm conditions across calibration batches (IIP-0021; DEC-100)")
+    if len(seen_cond_scopes) > 1:
+        raise ValueError("Cannot pool distinct conditioning_washout_analyte_scope conditions across calibration batches (IIP-0021; DEC-100)")
     pooled_stage0_payload["batch_id"] = batch_id
     pooled_stage0_payload["verified_ledger_passing_s9_batch_ids"] = list(post_stop_passing_s9_batch_ids)
     stage0_eval_report = evaluate_stage0_decision_tree(

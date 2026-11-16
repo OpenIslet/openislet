@@ -257,6 +257,20 @@ STAGE0_DECISION_TREE_ENDPOINT_SPECS = [
     ('stage0_cuff_hepatocyte_72h_alt_ldh_fold', 'obs_cuff_hepatocyte_72h_alt_ldh_fold', 'obs_cuff_hepatocyte_72h_alt_ldh_se', 0.1, 50.0, 'primary_human_hepatocyte_72h_alt_ldh_release_fold_over_vehicle_leachate_and_mmp_digest'),
     ('stage0_cuff_serum_donor_count', 'obs_cuff_serum_donor_count', 'obs_cuff_serum_donor_count_se', 0.0, 500.0, 'unpooled_human_serum_biological_donor_count_across_humoral_panel'),
     ('stage0_cuff_serum_failing_donor_count', 'obs_cuff_serum_failing_donor_count', 'obs_cuff_serum_failing_donor_count_se', 0.0, 500.0, 'failing_individual_donor_count_in_humoral_or_hepatocyte_panel'),
+    # Stage-0 120-h lineage-resolved metabolic-rest OCR and 4-arm Nec-1s x Ferrostatin-1 conditioning, pellet-LOQ washout & NQO1 gates (IIP-0021; DEC-100):
+    ('stage0_rest_120h_graft_ocr_ratio', 'obs_rest_120h_graft_ocr_ratio', 'obs_rest_120h_graft_ocr_ratio_se', 0.05, 3.0, 'assembled_60_30_10_plus_iec_0_to_120h_simultaneous_graft_ocr_ratio_vs_vehicle'),
+    ('stage0_rest_depot_release_half_life_h', 'obs_rest_depot_release_half_life_h', 'obs_rest_depot_release_half_life_se_h', 0.001, 500.0, 'encapsulated_metabolic_rest_microdepot_release_half_life_hours_in_assembled_gel'),
+    ('stage0_rest_post_washout_gsis_si', 'obs_rest_post_washout_gsis_si', 'obs_rest_post_washout_gsis_se', 0.1, 50.0, 'post_washout_dynamic_perifusion_gsis_stimulation_index'),
+    ('stage0_rest_post_washout_gsis_output_retention_pct', 'obs_rest_post_washout_gsis_output_retention_pct', 'obs_rest_post_washout_gsis_output_retention_se', 0.0, 200.0, 'post_washout_absolute_gsis_insulin_output_retention_pct_of_unconditioned_control'),
+    ('stage0_rest_post_washout_alpha_glucagon_fold', 'obs_rest_post_washout_alpha_glucagon_fold', 'obs_rest_post_washout_alpha_glucagon_se', 0.1, 30.0, 'post_washout_low_glucose_alpha_cell_glucagon_fold_induction'),
+    ('stage0_cond_sc_beta_viable_yield_pct', 'obs_cond_sc_beta_viable_yield_pct', 'obs_cond_sc_beta_viable_yield_se', 0.0, 150.0, 'post_72h_35mmhg_h2o2_cytokine_cpeptide_sc_beta_absolute_viable_yield_pct'),
+    ('stage0_cond_iec_viable_yield_pct', 'obs_cond_iec_viable_yield_pct', 'obs_cond_iec_viable_yield_se', 0.0, 150.0, 'post_72h_35mmhg_h2o2_cytokine_cdh5_plvap_iec_absolute_viable_yield_pct'),
+    ('stage0_cond_final_wash_supernatant_nM', 'obs_cond_final_wash_supernatant_nM', 'obs_cond_final_wash_supernatant_se_nM', 0.0, 10000.0, 'pre_implant_final_wash_supernatant_lcms_residual_conditioning_agent_nM'),
+    ('stage0_cond_pellet_residual_over_loq_ratio', 'obs_cond_pellet_residual_over_loq_ratio', 'obs_cond_pellet_residual_over_loq_se', 0.0, 1000.0, 'washed_cell_pellet_extract_lcms_residual_concentration_divided_by_validated_loq'),
+    ('stage0_cond_pellet_extraction_recovery_pct', 'obs_cond_pellet_extraction_recovery_pct', 'obs_cond_pellet_extraction_recovery_se', 0.0, 150.0, 'matrix_spiked_washed_cell_pellet_lcms_extraction_recovery_percentage'),
+    ('stage0_cond_endocrine_nqo1_activity_pct', 'obs_cond_endocrine_nqo1_activity_pct', 'obs_cond_endocrine_nqo1_activity_se', 0.0, 200.0, 'undiluted_endocrine_compartment_cellular_nqo1_enzymatic_activity_pct_of_vehicle'),
+    ('stage0_cond_vascular_nqo1_activity_pct', 'obs_cond_vascular_nqo1_activity_pct', 'obs_cond_vascular_nqo1_activity_se', 0.0, 200.0, 'undiluted_vascular_iec_compartment_cellular_nqo1_enzymatic_activity_pct_of_vehicle'),
+    ('stage0_cond_post_washout_gsis_si', 'obs_cond_post_washout_gsis_si', 'obs_cond_post_washout_gsis_se', 0.1, 50.0, 'post_conditioning_and_washout_dynamic_perifusion_gsis_stimulation_index'),
 ]
 
 STAGE0_S10_V3_MEAN_KEYS: frozenset[str] = frozenset({
@@ -365,6 +379,25 @@ ALLOWED_CUFF_SERUM_CHALLENGE_STRATA: frozenset[str] = frozenset({
     'HIGH_ANTI_PEG_IGG_GT_500NG_ML',
     'ANTI_SA_POSITIVE_HUMAN_SERA',
     'DAY28_SA_FASL_PRIMED_SERA',
+})
+
+# Stage-0 120-h lineage-partitioned metabolic-rest OCR and 4-arm Nec-1s x Ferrostatin-1 conditioning / NQO1 / pellet-washout enums (IIP-0021; DEC-100):
+ALLOWED_REST_OCR_COUPON_ARMS: frozenset[str] = frozenset({
+    'VEHICLE_791P5MG_CAO2_BASELINE',
+    'ENCAPSULATED_KATP_MICRODEPOT_CHALLENGER',
+    'UNENCAPSULATED_FREE_DRUG_REJECTED',
+})
+ALLOWED_CONDITIONING_4ARM_ARMS: frozenset[str] = frozenset({
+    'VEHICLE_CONTROL',
+    'NEC1S_10UM_SELECTIVE',
+    'FERROSTATIN1_2UM',
+    'NEC1S_10UM_PLUS_FERROSTATIN1_2UM',
+    'NEC1S_100UM_BENCHMARK_COMPARATOR',
+    'NEC1_100UM_ANTIFERROPTOTIC_COMPARATOR',
+})
+ALLOWED_CONDITIONING_WASHOUT_ANALYTE_SCOPES: frozenset[str] = frozenset({
+    'SUPERNATANT_AND_CELL_PELLET_PARENT_PLUS_METABOLITES',
+    'AQUEOUS_SUPERNATANT_ONLY_INSUFFICIENT',
 })
 
 STAGE0_S10_V3_CONSTRUCT_REGISTRY: dict[str, dict[str, object]] = {
@@ -917,6 +950,19 @@ STAGE0_CUSTOM_DEFAULT_SE: dict[str, float] = {
     'obs_cuff_hepatocyte_72h_alt_ldh_fold': 0.03,
     'obs_cuff_serum_donor_count': 1e-12,
     'obs_cuff_serum_failing_donor_count': 1e-12,
+    'obs_rest_120h_graft_ocr_ratio': 0.02,
+    'obs_rest_depot_release_half_life_h': 2.0,
+    'obs_rest_post_washout_gsis_si': 0.15,
+    'obs_rest_post_washout_gsis_output_retention_pct': 1.5,
+    'obs_rest_post_washout_alpha_glucagon_fold': 0.10,
+    'obs_cond_sc_beta_viable_yield_pct': 1.5,
+    'obs_cond_iec_viable_yield_pct': 1.5,
+    'obs_cond_final_wash_supernatant_nM': 0.5,
+    'obs_cond_pellet_residual_over_loq_ratio': 0.05,
+    'obs_cond_pellet_extraction_recovery_pct': 1.5,
+    'obs_cond_endocrine_nqo1_activity_pct': 1.5,
+    'obs_cond_vascular_nqo1_activity_pct': 1.5,
+    'obs_cond_post_washout_gsis_si': 0.15,
 }
 
 STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
@@ -1294,6 +1340,11 @@ STAGE0_DECISION_TREE_BOOLEAN_KEYS: tuple[str, ...] = (
     'cuff_dpr_ring_hydrolysis_lcms_verified',
     'cuff_conjugate_disulfide_and_site_occupancy_lcms_verified',
     'cuff_hexafasl_inventory_within_provisional_cap_verified',
+    'require_full_iip0021_ocr_and_conditioning_panel',
+    'rest_120h_longitudinal_simultaneous_coverage_verified',
+    'rest_120h_viable_lineage_yield_and_during_exposure_function_verified',
+    'conditioning_pellet_loq_and_extraction_recovery_verified',
+    'conditioning_orthogonal_pathway_controls_verified',
 )
 
 
@@ -1359,6 +1410,9 @@ def derive_contract(root: Path | str | None = None) -> dict:
                 'p05_catalase_uniprot_accession',
                 'cuff_bioconjugation_arm',
                 'cuff_serum_challenge_stratum',
+                'rest_ocr_coupon_arm',
+                'conditioning_4arm_arm',
+                'conditioning_washout_analyte_scope',
             ],
             'boolean_policy_keys': list(STAGE0_DECISION_TREE_BOOLEAN_KEYS),
             'endpoints': endpoints,
@@ -1505,6 +1559,18 @@ def normalize_measurements(payload: dict, *, require_observation: bool = True,
         elif key == 'cuff_serum_challenge_stratum':
             if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_CUFF_SERUM_CHALLENGE_STRATA:
                 raise ValueError(f'cuff_serum_challenge_stratum must be one of {sorted(ALLOWED_CUFF_SERUM_CHALLENGE_STRATA)} (IIP-0020; DEC-099)')
+            result[key] = payload[key].strip()
+        elif key == 'rest_ocr_coupon_arm':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_REST_OCR_COUPON_ARMS:
+                raise ValueError(f'rest_ocr_coupon_arm must be one of {sorted(ALLOWED_REST_OCR_COUPON_ARMS)} (IIP-0021; DEC-100)')
+            result[key] = payload[key].strip()
+        elif key == 'conditioning_4arm_arm':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_CONDITIONING_4ARM_ARMS:
+                raise ValueError(f'conditioning_4arm_arm must be one of {sorted(ALLOWED_CONDITIONING_4ARM_ARMS)} (IIP-0021; DEC-100)')
+            result[key] = payload[key].strip()
+        elif key == 'conditioning_washout_analyte_scope':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_CONDITIONING_WASHOUT_ANALYTE_SCOPES:
+                raise ValueError(f'conditioning_washout_analyte_scope must be one of {sorted(ALLOWED_CONDITIONING_WASHOUT_ANALYTE_SCOPES)} (IIP-0021; DEC-100)')
             result[key] = payload[key].strip()
         else:
             if not isinstance(payload[key], str) or not payload[key].strip() or len(payload[key]) > 120:
@@ -1951,6 +2017,14 @@ def evaluate_stage0_decision_tree(
         'cuff_dpr_ring_hydrolysis_lcms_verified',
         'cuff_conjugate_disulfide_and_site_occupancy_lcms_verified',
         'cuff_hexafasl_inventory_within_provisional_cap_verified',
+        'rest_ocr_coupon_arm',
+        'conditioning_4arm_arm',
+        'conditioning_washout_analyte_scope',
+        'require_full_iip0021_ocr_and_conditioning_panel',
+        'rest_120h_longitudinal_simultaneous_coverage_verified',
+        'rest_120h_viable_lineage_yield_and_during_exposure_function_verified',
+        'conditioning_pellet_loq_and_extraction_recovery_verified',
+        'conditioning_orthogonal_pathway_controls_verified',
     }
     unknown_keys = sorted(set(observations) - set(spec_by_mean) - set(spec_by_se) - allowed_boolean_and_meta_flags)
     if unknown_keys:
@@ -1977,6 +2051,9 @@ def evaluate_stage0_decision_tree(
         ('p05_catalase_uniprot_accession', ALLOWED_P05_CATALASE_UNIPROT_ACCESSIONS),
         ('cuff_bioconjugation_arm', ALLOWED_CUFF_BIOCONJUGATION_ARMS),
         ('cuff_serum_challenge_stratum', ALLOWED_CUFF_SERUM_CHALLENGE_STRATA),
+        ('rest_ocr_coupon_arm', ALLOWED_REST_OCR_COUPON_ARMS),
+        ('conditioning_4arm_arm', ALLOWED_CONDITIONING_4ARM_ARMS),
+        ('conditioning_washout_analyte_scope', ALLOWED_CONDITIONING_WASHOUT_ANALYTE_SCOPES),
     ):
         if _adj_k in observations and observations[_adj_k] is not None:
             _adj_v = observations[_adj_k]
@@ -3613,6 +3690,135 @@ def evaluate_stage0_decision_tree(
             'cuff_humoral_and_safety_status': iip0020_cuff_status,
         }
 
+    # Stage-0 120-h lineage-resolved metabolic-rest OCR coupon and 4-arm Nec-1s x Ferrostatin-1 pellet-LOQ/NQO1 conditioning gate (IIP-0021; DEC-100):
+    _req_iip0021_full = observations.get('require_full_iip0021_ocr_and_conditioning_panel') is True
+    _rest_arm = observations.get('rest_ocr_coupon_arm')
+    if isinstance(_rest_arm, str):
+        _rest_arm = _rest_arm.strip()
+    _cond_arm = observations.get('conditioning_4arm_arm')
+    if isinstance(_cond_arm, str):
+        _cond_arm = _cond_arm.strip()
+    _cond_scope = observations.get('conditioning_washout_analyte_scope')
+    if isinstance(_cond_scope, str):
+        _cond_scope = _cond_scope.strip()
+
+    _iip0021_rest_keys = (
+        'obs_rest_120h_graft_ocr_ratio',
+        'obs_rest_depot_release_half_life_h',
+        'obs_rest_post_washout_gsis_si',
+        'obs_rest_post_washout_gsis_output_retention_pct',
+        'obs_rest_post_washout_alpha_glucagon_fold',
+    )
+    _iip0021_cond_keys = (
+        'obs_cond_sc_beta_viable_yield_pct',
+        'obs_cond_iec_viable_yield_pct',
+        'obs_cond_final_wash_supernatant_nM',
+        'obs_cond_pellet_residual_over_loq_ratio',
+        'obs_cond_pellet_extraction_recovery_pct',
+        'obs_cond_endocrine_nqo1_activity_pct',
+        'obs_cond_vascular_nqo1_activity_pct',
+        'obs_cond_post_washout_gsis_si',
+    )
+    _iip0021_rest_active = bool(
+        _req_iip0021_full
+        or _rest_arm is not None
+        or observations.get('rest_120h_longitudinal_simultaneous_coverage_verified') is not None
+        or observations.get('rest_120h_viable_lineage_yield_and_during_exposure_function_verified') is not None
+        or any(_mk in validated_stage0 for _mk in _iip0021_rest_keys)
+    )
+    _iip0021_cond_active = bool(
+        _req_iip0021_full
+        or _cond_arm is not None
+        or _cond_scope is not None
+        or observations.get('conditioning_pellet_loq_and_extraction_recovery_verified') is not None
+        or observations.get('conditioning_orthogonal_pathway_controls_verified') is not None
+        or any(_mk in validated_stage0 for _mk in _iip0021_cond_keys)
+    )
+    iip0021_rest_status: str | None = None
+    iip0021_cond_status: str | None = None
+    iip0021_hold_status: str | None = None
+
+    if _iip0021_rest_active:
+        if _rest_arm == 'VEHICLE_791P5MG_CAO2_BASELINE':
+            iip0021_rest_status = 'BASELINE_791P5MG_CAO2_RETAINED_NO_METABOLIC_REST_DERATING'
+        elif _rest_arm == 'UNENCAPSULATED_FREE_DRUG_REJECTED':
+            iip0021_rest_status = 'HOLD_REST_OCR_UNENCAPSULATED_FREE_DRUG_RAPID_SLAB_WASHOUT_BARRED'
+        else:
+            _rest_quant_ok = all(
+                _mk in validated_stage0 and se_provenance_by_mean.get(_mk) == 'EXPLICIT_SE_SUPPLIED'
+                for _mk in _iip0021_rest_keys
+            )
+            if _rest_arm != 'ENCAPSULATED_KATP_MICRODEPOT_CHALLENGER' or not _rest_quant_ok:
+                iip0021_rest_status = 'HOLD_REST_OCR_INCOMPLETE_OR_DEFAULT_SE_120H_COUPON_PANEL'
+            elif (
+                observations.get('rest_120h_longitudinal_simultaneous_coverage_verified') is not True
+                or observations.get('rest_120h_viable_lineage_yield_and_during_exposure_function_verified') is not True
+            ):
+                iip0021_rest_status = 'HOLD_REST_OCR_MISSING_LONGITUDINAL_COVERAGE_OR_VIABLE_LINEAGE_FUNCTION_CHECK'
+            elif _lower95('obs_rest_depot_release_half_life_h') < 72.0 or _upper95('obs_rest_120h_graft_ocr_ratio') > 0.80:
+                iip0021_rest_status = 'HOLD_REST_OCR_120H_RATIO_GT_0P80_OR_DEPOT_HALFLIFE_LT_72H_KEEP_791P5MG_CAO2'
+            elif (
+                _lower95('obs_rest_post_washout_gsis_si') < 3.0
+                or _lower95('obs_rest_post_washout_gsis_output_retention_pct') < 85.0
+                or _lower95('obs_rest_post_washout_alpha_glucagon_fold') < 2.0
+            ):
+                iip0021_rest_status = 'HOLD_REST_OCR_POST_WASHOUT_GSIS_ABSOLUTE_OUTPUT_OR_GLUCAGON_FAILED'
+            else:
+                iip0021_rest_status = 'CLEARED_REST_120H_OCR_COUPON_ELIGIBLE_FOR_STAGE2_COUPLED_CAO2_QUALIFICATION_ONLY'
+        if iip0021_rest_status not in (
+            'BASELINE_791P5MG_CAO2_RETAINED_NO_METABOLIC_REST_DERATING',
+            'CLEARED_REST_120H_OCR_COUPON_ELIGIBLE_FOR_STAGE2_COUPLED_CAO2_QUALIFICATION_ONLY',
+        ):
+            iip0021_hold_status = iip0021_rest_status
+
+    if _iip0021_cond_active:
+        if _cond_arm in ('NEC1S_100UM_BENCHMARK_COMPARATOR', 'NEC1_100UM_ANTIFERROPTOTIC_COMPARATOR'):
+            iip0021_cond_status = 'HOLD_CONDITIONING_BENCHMARK_OR_NEC1_ANTIFERROPTOTIC_COMPARATOR_NOT_RELEASE_ARM'
+        elif _cond_scope == 'AQUEOUS_SUPERNATANT_ONLY_INSUFFICIENT':
+            iip0021_cond_status = 'HOLD_CONDITIONING_AQUEOUS_SUPERNATANT_ONLY_REQUIRES_WASHED_CELL_PELLET_LCMS'
+        else:
+            _cond_quant_ok = all(
+                _mk in validated_stage0 and se_provenance_by_mean.get(_mk) == 'EXPLICIT_SE_SUPPLIED'
+                for _mk in _iip0021_cond_keys
+            )
+            if _cond_arm is None or _cond_scope != 'SUPERNATANT_AND_CELL_PELLET_PARENT_PLUS_METABOLITES' or not _cond_quant_ok:
+                iip0021_cond_status = 'HOLD_CONDITIONING_INCOMPLETE_OR_DEFAULT_SE_4ARM_PELLET_NQO1_PANEL'
+            elif (
+                observations.get('conditioning_pellet_loq_and_extraction_recovery_verified') is not True
+                or observations.get('conditioning_orthogonal_pathway_controls_verified') is not True
+                or _lower95('obs_cond_pellet_extraction_recovery_pct') < 80.0
+            ):
+                iip0021_cond_status = 'HOLD_CONDITIONING_PELLET_LOQ_EXTRACTION_RECOVERY_OR_PATHWAY_CONTROLS_UNVERIFIED'
+            elif (
+                _upper95('obs_cond_final_wash_supernatant_nM') >= 10.0
+                or _upper95('obs_cond_pellet_residual_over_loq_ratio') > 1.0
+                or _lower95('obs_cond_endocrine_nqo1_activity_pct') < 90.0
+                or _lower95('obs_cond_vascular_nqo1_activity_pct') < 90.0
+            ):
+                iip0021_cond_status = 'HOLD_CONDITIONING_RESIDUAL_DRUG_OR_NQO1_INHIBITION_DETECTED'
+            elif (
+                _lower95('obs_cond_sc_beta_viable_yield_pct') < 85.0
+                or _lower95('obs_cond_iec_viable_yield_pct') < 85.0
+                or _lower95('obs_cond_post_washout_gsis_si') < 3.0
+            ):
+                iip0021_cond_status = 'HOLD_CONDITIONING_LINEAGE_VIABLE_YIELD_OR_POST_WASHOUT_GSIS_SI3_FAILED'
+            else:
+                iip0021_cond_status = 'CLEARED_CONDITIONING_4ARM_PELLET_LOQ_NQO1_AND_LINEAGE_GSIS_GATE'
+        if iip0021_cond_status != 'CLEARED_CONDITIONING_4ARM_PELLET_LOQ_NQO1_AND_LINEAGE_GSIS_GATE' and iip0021_hold_status is None:
+            iip0021_hold_status = iip0021_cond_status
+
+    iip0021_eval_summary: dict[str, object] | None = None
+    if _iip0021_rest_active or _iip0021_cond_active:
+        iip0021_eval_summary = {
+            'gate_pass': iip0021_hold_status is None,
+            'hold_status': iip0021_hold_status,
+            'rest_ocr_coupon_arm': _rest_arm,
+            'rest_120h_ocr_status': iip0021_rest_status,
+            'conditioning_4arm_arm': _cond_arm,
+            'conditioning_washout_analyte_scope': _cond_scope,
+            'conditioning_pellet_nqo1_status': iip0021_cond_status,
+        }
+
     # S8b TYK2 x inducible-promoter epistasis: support explicit enumerated scale {FRACTION_HALF_EFFECT, PP_HALF_EFFECT, PP_FULL_CONTRAST, DID_PP} with per-endpoint scale retention across batches, unified fractional half-effect threshold (point < -0.05 or lower95 < -0.10), and sign-independent underpowered SE hold (AUDIT-REF & AUDIT-REF; DEC-042/044):
     s8b_scale_enum = observations.get('s8b_epistasis_estimand_scale')
     if s8b_scale_enum is not None:
@@ -3766,6 +3972,12 @@ def evaluate_stage0_decision_tree(
             resolved_arch['p05_catalase_species_gate_status'] = iip0020_p05_species_status
         if iip0020_cuff_status is not None:
             resolved_arch['cuff_humoral_and_hepatocyte_gate_status'] = iip0020_cuff_status
+    if iip0021_eval_summary is not None:
+        resolved_arch['metabolic_rest_ocr_and_conditioning_evaluation'] = iip0021_eval_summary
+        if iip0021_rest_status is not None:
+            resolved_arch['rest_120h_ocr_coupon_status'] = iip0021_rest_status
+        if iip0021_cond_status is not None:
+            resolved_arch['conditioning_4arm_nqo1_gate_status'] = iip0021_cond_status
     if (
         _adj_arm_raw is not None
         or adjunct_depletion_mode is not None
@@ -4020,6 +4232,8 @@ def evaluate_stage0_decision_tree(
         resolved_arch['lot_maturation_status'] = iip0019_transport_hold_status
     elif iip0020_hold_status is not None:
         resolved_arch['lot_maturation_status'] = iip0020_hold_status
+    elif iip0021_hold_status is not None:
+        resolved_arch['lot_maturation_status'] = iip0021_hold_status
     elif challenger_hold_status is not None:
         resolved_arch['lot_maturation_status'] = challenger_hold_status
     elif avascular_outer_band_dropout and not omental_revascularization_cleared:
@@ -4554,6 +4768,7 @@ def evaluate_stage0_decision_tree(
         and combined_stress_coupon_status == 'RETAIN_EMBODIMENT_A_STAR_4143BP'
         and not is_comp_r4_product
         and (not _req_iip0020_full or (iip0020_hold_status is None and (_dz_arm_val is not None or iip0020_p05_species_status == 'CLEARED_P05_HUMAN_P04040_SPECIES_ENDOTOXIN_AND_SHED_MASS_GATE') and iip0020_cuff_status == 'CLEARED_CUFF_HUMORAL_HYDROLYSIS_AND_HEPATOCYTE_SAFETY_GATE'))
+        and (not _req_iip0021_full or (iip0021_hold_status is None and iip0021_rest_status is not None and iip0021_cond_status == 'CLEARED_CONDITIONING_4ARM_PELLET_LOQ_NQO1_AND_LINEAGE_GSIS_GATE'))
     )
     any_fallback_switch_triggered = bool(
         s1_promoted

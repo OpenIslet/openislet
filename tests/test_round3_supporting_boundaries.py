@@ -3070,10 +3070,10 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     )
 
     # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (49 persisted boolean flags, 53 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
-    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 54
+    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 59
     assert "require_full_5endpoint_s9_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
     assert "require_full_7metric_combined_stress_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
-    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 58
+    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 63
     assert "5.71 mmHg at 100 um clusters with matched D_caps = D_gel" in film_limit["surgical_mitigation"]
 
     batch1_r7s2 = {
@@ -3156,7 +3156,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     # - R7S3-F02: Both wetlab_contract.evaluate_stage0_decision_tree and ingest_wetlab_results.evaluate_stage0_decision_tree reject non-boolean policy values
     from scripts import wetlab_contract as wc_mod
 
-    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 58
+    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 63
     for bkey in wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS:
         for bad_val in ("false", "False", 0, "true", "True", 1):
             for eval_fn in (wc_mod.evaluate_stage0_decision_tree, wetlab.evaluate_stage0_decision_tree):
@@ -5186,6 +5186,64 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     assert wetlab.evaluate_stage0_decision_tree({**full_ext_payload, "require_full_iip0020_biomaterial_and_humoral_panel": True})["lot_release_readiness_tier"] != "READY_FOR_ENCAPSULATION_COMPLETE_STAGE0_EVIDENCE"
     assert wetlab.evaluate_stage0_decision_tree({**_clean_iip20_valid, "obs_cuff_dpr_ring_hydrolysis_pct": 95.0})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_CUFF_THIOSUCCINIMIDE_RING_HYDROLYSIS_LT_98PCT_RETRO_MICHAEL_HAZARD"
     assert wetlab.evaluate_stage0_decision_tree({**_clean_iip20_valid, "obs_cuff_hepatocyte_72h_caspase37_fold": 1.35})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_CUFF_PRIMARY_HUMAN_HEPATOCYTE_LEACHATE_OR_DIGEST_TOXICITY_EXCEEDED"
+
+    # 46. IIP-0021 / DEC-100: Two-scale lineage OCR helper, parameterized Design Z / washout / M101 audit, and Stage-0 120-h OCR + 4-arm conditioning gates:
+    from scripts import run_layer4_tissue_and_metabolic_twin as l4_iip21
+    _l4_iip21 = json.loads((ROOT / "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json").read_text(encoding="utf-8"))["part_a_336h_spatial_reaction_diffusion_pouch_pde"]["lineage_partitioned_metabolic_rest_and_m101_exclusion_audit"]
+    assert _l4_iip21["decision_id"] == "DEC-100" and _l4_iip21["baseline_cao2_mass_mg_preserved"] == 791.5
+    _ts_res = l4_iip21.run_lineage_partitioned_intrinsic_ocr_regime(
+        regime_id="TEST_IIP21_TWO_SCALE",
+        areal_loading_ieq_cm2=2500.0,
+        endocrine_intrinsic_ocr_multiplier=0.55,
+        vascular_intrinsic_ocr_multiplier=1.0,
+    )
+    assert abs(_ts_res["slab_normalized_ocr_multiplier"] - (0.55 + 0.15) / 1.15) < 1e-6
+    assert abs(_ts_res["cluster_endocrine_ocr_multiplier"] - 0.55) < 1e-6
+    assert abs(_l4_iip21["m101_closed_slab_standalone_reservoir_bounds"]["bounds"]["HostBed_40_to_15mmHg_n2p5"]["releasable_umol_above_floor"] - 0.25707) < 1e-4
+
+    _iip21_valid = {
+        **_clean_iip20_valid,
+        "require_full_iip0021_ocr_and_conditioning_panel": True,
+        "rest_ocr_coupon_arm": "ENCAPSULATED_KATP_MICRODEPOT_CHALLENGER",
+        "rest_120h_longitudinal_simultaneous_coverage_verified": True,
+        "rest_120h_viable_lineage_yield_and_during_exposure_function_verified": True,
+        "obs_rest_120h_graft_ocr_ratio": 0.72,
+        "obs_rest_120h_graft_ocr_ratio_se": 0.02,
+        "obs_rest_depot_release_half_life_h": 84.0,
+        "obs_rest_depot_release_half_life_se_h": 2.0,
+        "obs_rest_post_washout_gsis_si": 3.5,
+        "obs_rest_post_washout_gsis_se": 0.12,
+        "obs_rest_post_washout_gsis_output_retention_pct": 92.0,
+        "obs_rest_post_washout_gsis_output_retention_se": 1.5,
+        "obs_rest_post_washout_alpha_glucagon_fold": 2.5,
+        "obs_rest_post_washout_alpha_glucagon_se": 0.10,
+        "conditioning_4arm_arm": "FERROSTATIN1_2UM",
+        "conditioning_washout_analyte_scope": "SUPERNATANT_AND_CELL_PELLET_PARENT_PLUS_METABOLITES",
+        "conditioning_pellet_loq_and_extraction_recovery_verified": True,
+        "conditioning_orthogonal_pathway_controls_verified": True,
+        "obs_cond_sc_beta_viable_yield_pct": 91.0,
+        "obs_cond_sc_beta_viable_yield_se": 1.2,
+        "obs_cond_iec_viable_yield_pct": 90.0,
+        "obs_cond_iec_viable_yield_se": 1.2,
+        "obs_cond_final_wash_supernatant_nM": 2.0,
+        "obs_cond_final_wash_supernatant_se_nM": 0.4,
+        "obs_cond_pellet_residual_over_loq_ratio": 0.45,
+        "obs_cond_pellet_residual_over_loq_se": 0.05,
+        "obs_cond_pellet_extraction_recovery_pct": 88.0,
+        "obs_cond_pellet_extraction_recovery_se": 1.5,
+        "obs_cond_endocrine_nqo1_activity_pct": 96.0,
+        "obs_cond_endocrine_nqo1_activity_se": 1.2,
+        "obs_cond_vascular_nqo1_activity_pct": 95.0,
+        "obs_cond_vascular_nqo1_activity_se": 1.2,
+        "obs_cond_post_washout_gsis_si": 3.4,
+        "obs_cond_post_washout_gsis_se": 0.12,
+    }
+    _dt_iip21_ok = wetlab.evaluate_stage0_decision_tree(_iip21_valid)
+    assert _dt_iip21_ok["resolved_architecture_assignments"]["metabolic_rest_ocr_and_conditioning_evaluation"]["gate_pass"] is True
+    assert _dt_iip21_ok["lot_release_readiness_tier"] == "READY_FOR_ENCAPSULATION_COMPLETE_STAGE0_EVIDENCE"
+    assert wetlab.evaluate_stage0_decision_tree({**_iip21_valid, "rest_ocr_coupon_arm": "UNENCAPSULATED_FREE_DRUG_REJECTED"})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_REST_OCR_UNENCAPSULATED_FREE_DRUG_RAPID_SLAB_WASHOUT_BARRED"
+    assert wetlab.evaluate_stage0_decision_tree({**_iip21_valid, "conditioning_4arm_arm": "NEC1_100UM_ANTIFERROPTOTIC_COMPARATOR"})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_CONDITIONING_BENCHMARK_OR_NEC1_ANTIFERROPTOTIC_COMPARATOR_NOT_RELEASE_ARM"
+    assert wetlab.evaluate_stage0_decision_tree({**_iip21_valid, "obs_cond_endocrine_nqo1_activity_pct": 82.0})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_CONDITIONING_RESIDUAL_DRUG_OR_NQO1_INHIBITION_DETECTED"
 
 
 

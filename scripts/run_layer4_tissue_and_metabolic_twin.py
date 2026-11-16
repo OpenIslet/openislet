@@ -1197,6 +1197,7 @@ def _run_single_pouch_pde_regime(
     gb_regularization_mode: str = "early_shell_clamped",
     areal_loading_ieq_cm2: float = 2500.0,
     cell_intrinsic_ocr_multiplier: float | None = None,
+    cluster_endocrine_ocr_multiplier: float | None = None,
     prescribed_cluster_diameter_um: float = 120.0,
     zero_internal_vascular_state: bool = False,
     _include_hourly_slab_po2_vector: bool = False,
@@ -1228,6 +1229,13 @@ def _run_single_pouch_pde_regime(
         or cell_intrinsic_ocr_multiplier <= 0.0
     ):
         raise ValueError("cell_intrinsic_ocr_multiplier must be finite and positive")
+    if cluster_endocrine_ocr_multiplier is not None and (
+        isinstance(cluster_endocrine_ocr_multiplier, bool)
+        or not isinstance(cluster_endocrine_ocr_multiplier, (int, float))
+        or not math.isfinite(cluster_endocrine_ocr_multiplier)
+        or cluster_endocrine_ocr_multiplier <= 0.0
+    ):
+        raise ValueError("cluster_endocrine_ocr_multiplier must be finite and positive")
     if d_o2_hydrogel_override_cm2_s is not None and (
         isinstance(d_o2_hydrogel_override_cm2_s, bool)
         or not isinstance(d_o2_hydrogel_override_cm2_s, (int, float))
@@ -1588,26 +1596,27 @@ def _run_single_pouch_pde_regime(
             )
 
     # Solve nonlinear spherical Michaelis-Menten BVP inside R = 60 um (120 um), R = 50 um (100 um DX-b), R = 40 um (80 um), and R = 150 um (300 um) clusters
+    cluster_bvp_ocr_mult = float(cluster_endocrine_ocr_multiplier) if cluster_endocrine_ocr_multiplier is not None else effective_ocr_mult
     bvp_r60 = solve_spherical_cluster_po2_bvp(
         min_po2_over_all_t,
         0.0060,
         phi_islet_in_slab=local_phi_islet,
         d_hydrogel_override=d_o2_hydrogel_override_cm2_s,
-        ocr_multiplier=effective_ocr_mult,
+        ocr_multiplier=cluster_bvp_ocr_mult,
     )
     bvp_r50_100um = solve_spherical_cluster_po2_bvp(
         min_po2_over_all_t,
         0.0050,
         phi_islet_in_slab=local_phi_islet,
         d_hydrogel_override=d_o2_hydrogel_override_cm2_s,
-        ocr_multiplier=effective_ocr_mult,
+        ocr_multiplier=cluster_bvp_ocr_mult,
     )
     bvp_r40_80um = solve_spherical_cluster_po2_bvp(
         min_po2_over_all_t,
         0.0040,
         phi_islet_in_slab=local_phi_islet,
         d_hydrogel_override=d_o2_hydrogel_override_cm2_s,
-        ocr_multiplier=effective_ocr_mult,
+        ocr_multiplier=cluster_bvp_ocr_mult,
     )
     if math.isclose(float(prescribed_cluster_diameter_um), 120.0, rel_tol=1e-9):
         bvp_prescribed = bvp_r60
@@ -1621,7 +1630,7 @@ def _run_single_pouch_pde_regime(
             float(prescribed_cluster_diameter_um) * 1e-4 * 0.5,
             phi_islet_in_slab=local_phi_islet,
             d_hydrogel_override=d_o2_hydrogel_override_cm2_s,
-            ocr_multiplier=effective_ocr_mult,
+            ocr_multiplier=cluster_bvp_ocr_mult,
         )
     bvp_r60_slab_only_unscaled = (
         solve_spherical_cluster_po2_bvp(
@@ -1631,7 +1640,7 @@ def _run_single_pouch_pde_regime(
             d_hydrogel_override=d_o2_hydrogel_override_cm2_s,
             ocr_multiplier=1.0,
         )
-        if abs(effective_ocr_mult - 1.0) > 1e-12
+        if abs(cluster_bvp_ocr_mult - 1.0) > 1e-12
         else bvp_r60
     )
     bvp_r60_ocr_propagated = bvp_r60
@@ -1640,7 +1649,7 @@ def _run_single_pouch_pde_regime(
         0.0150,
         phi_islet_in_slab=local_phi_islet,
         d_hydrogel_override=d_o2_hydrogel_override_cm2_s,
-        ocr_multiplier=effective_ocr_mult,
+        ocr_multiplier=cluster_bvp_ocr_mult,
     )
 
     rem_36_sc = max(0.0, float(sol_y_sc[0, 36]) / n_cao2_initial_mmol) if n_cao2_initial_mmol > 0 else 0.0
@@ -1658,6 +1667,7 @@ def _run_single_pouch_pde_regime(
         "regime_id": regime_id,
         "areal_loading_ieq_cm2": round(sigma_loading, 4),
         "cell_intrinsic_ocr_multiplier": round(effective_ocr_mult, 6),
+        "cluster_endocrine_ocr_multiplier": round(cluster_bvp_ocr_mult, 6),
         "prescribed_cluster_diameter_um": round(float(prescribed_cluster_diameter_um), 2),
         "spatial_control_volume_ledger": geometry_ledger,
         "min_slab_po2_unrounded_mmhg": min_po2_over_all_t,
@@ -7073,6 +7083,486 @@ def build_explicit_3d_clumping_and_microbead_h2o2_audit_iip_0019(lead_regime: Di
 # === END_IIP_0019_EXPLICIT_3D_TRANSPORT_AUDIT ===
 
 
+
+# === BEGIN_IIP_0021_LINEAGE_OCR_AND_M101_AUDIT ===
+def run_lineage_partitioned_intrinsic_ocr_regime(
+    *,
+    regime_id: str,
+    areal_loading_ieq_cm2: float,
+    endocrine_intrinsic_ocr_multiplier: float = 1.0,
+    vascular_intrinsic_ocr_multiplier: float = 1.0,
+    f_chem_initial: float = 0.45,
+    spatial_mode: str = "central",
+    cao2_half_life_h: float = 68.0,
+    catalase_present: bool = True,
+    iec_max_perfusion_fraction: float = 0.97,
+    boundary_po2_mmhg: float = P_BOUNDARY_HOST_BED_MMHG,
+    inosculation_t50_h: float = 36.0,
+    release_kinetics_law: str = "first_order",
+    lamina_half_width_fraction: float | None = None,
+    catalase_spatial_mode: str = "uniform_slab",
+    catalase_k1_override_s_inv: float | None = None,
+    d_o2_hydrogel_override_cm2_s: float | None = None,
+    prescribed_cluster_diameter_um: float = 120.0,
+    _assess_numerical_gate: bool = False,
+) -> Dict[str, Any]:
+    """
+    Two-scale lineage-partitioned intrinsic-OCR helper (IIP-0021; DEC-100):
+      - Requires explicit areal_loading_ieq_cm2 so sub-unity OCR never triggers the DEC-064
+        demand_multiplier_extra < 1.0 areal-loading density alias.
+      - Scales whole-slab demand as (m_endo + 0.15 * m_vasc) / 1.15 against Layer 4's 1.15x
+        vascular factor (so vascular_demand_mult == m_endo + 0.15 * m_vasc).
+      - Passes pure-endocrine m_endo directly to solve_spherical_cluster_po2_bvp so intra-cluster
+        endocrine oxygen demand is neither inflated nor deflated by vascular stroma scaling.
+    """
+    for _nm, _vl in (
+        ("areal_loading_ieq_cm2", areal_loading_ieq_cm2),
+        ("endocrine_intrinsic_ocr_multiplier", endocrine_intrinsic_ocr_multiplier),
+        ("vascular_intrinsic_ocr_multiplier", vascular_intrinsic_ocr_multiplier),
+    ):
+        if isinstance(_vl, bool) or not isinstance(_vl, (int, float)) or not math.isfinite(_vl) or _vl <= 0.0:
+            raise ValueError(f"{_nm} must be finite and strictly positive")
+    slab_normalized_ocr_mult = (float(endocrine_intrinsic_ocr_multiplier) + 0.15 * float(vascular_intrinsic_ocr_multiplier)) / 1.15
+    out = _run_single_pouch_pde_regime(
+        regime_id=regime_id,
+        f_chem_initial=f_chem_initial,
+        spatial_mode=spatial_mode,
+        cao2_half_life_h=cao2_half_life_h,
+        catalase_present=catalase_present,
+        iec_max_perfusion_fraction=iec_max_perfusion_fraction,
+        boundary_po2_mmhg=boundary_po2_mmhg,
+        inosculation_t50_h=inosculation_t50_h,
+        demand_multiplier_extra=1.0,
+        release_kinetics_law=release_kinetics_law,
+        lamina_half_width_fraction=lamina_half_width_fraction,
+        catalase_spatial_mode=catalase_spatial_mode,
+        catalase_k1_override_s_inv=catalase_k1_override_s_inv,
+        d_o2_hydrogel_override_cm2_s=d_o2_hydrogel_override_cm2_s,
+        areal_loading_ieq_cm2=float(areal_loading_ieq_cm2),
+        cell_intrinsic_ocr_multiplier=slab_normalized_ocr_mult,
+        cluster_endocrine_ocr_multiplier=float(endocrine_intrinsic_ocr_multiplier),
+        prescribed_cluster_diameter_um=prescribed_cluster_diameter_um,
+        _assess_numerical_gate=_assess_numerical_gate,
+    )
+    out["endocrine_intrinsic_ocr_multiplier"] = round(float(endocrine_intrinsic_ocr_multiplier), 6)
+    out["vascular_intrinsic_ocr_multiplier"] = round(float(vascular_intrinsic_ocr_multiplier), 6)
+    out["slab_normalized_ocr_multiplier"] = round(slab_normalized_ocr_mult, 6)
+    return out
+
+
+def compute_slab_drug_washout_eigenmodes_s(
+    slab_thickness_um: float,
+    d_eff_cm2_s: float,
+) -> Dict[str, float]:
+    """Exact 1D slab first-eigenmode e-folding times under two-sink vs one-sink/one-reflecting boundaries (IIP-0021; DEC-100)."""
+    if slab_thickness_um <= 0.0 or d_eff_cm2_s <= 0.0:
+        raise ValueError("slab_thickness_um and d_eff_cm2_s must be positive")
+    h_cm = float(slab_thickness_um) * 1e-4
+    tau_two_sink = (h_cm * h_cm) / ((math.pi ** 2) * float(d_eff_cm2_s))
+    return {
+        "slab_thickness_um": float(slab_thickness_um),
+        "d_eff_cm2_s": float(d_eff_cm2_s),
+        "two_sink_first_mode_tau1_s": round(tau_two_sink, 4),
+        "one_sink_one_reflecting_first_mode_tau1_s": round(4.0 * tau_two_sink, 4),
+    }
+
+
+def compute_m101_hill_reservoir_bound(
+    *,
+    carrier_g_per_L: float = 5.0,
+    slab_volume_mL: float = 10.0,
+    p_start_mmhg: float = 100.0,
+    p_floor_mmhg: float = 15.0,
+    p50_mmhg: float = 7.05,
+    hill_n: float = 2.5,
+) -> Dict[str, float]:
+    """Closed-slab standalone finite-reservoir Hill oxygen-unloading bound for Arenicola marina M101 (PMID:16897713, PMID:37318185)."""
+    mass_g = (float(carrier_g_per_L) * float(slab_volume_mL)) * 1e-3
+    mw_g_mol = 3.6e6
+    sites = 156.0
+    total_o2_umol = (mass_g / mw_g_mol) * sites * 1e6
+    y_start = (p_start_mmhg ** hill_n) / ((p50_mmhg ** hill_n) + (p_start_mmhg ** hill_n))
+    y_floor = (p_floor_mmhg ** hill_n) / ((p50_mmhg ** hill_n) + (p_floor_mmhg ** hill_n))
+    released_umol = total_o2_umol * max(0.0, y_start - y_floor)
+    phi_ref = (2500.0 * VOL_1_IEQ_CM3) / 0.0350
+    graft_vmax_vasc_umol_min = (phi_ref * VMAX_ISLET_PURE_MOL_CM3_S * 1.15 * 7.00) * 60.0 * 1e6
+    duration_s = (released_umol / graft_vmax_vasc_umol_min) * 60.0
+    return {
+        "carrier_mass_mg": round(mass_g * 1e3, 3),
+        "total_heme_capacity_umol_o2": round(total_o2_umol, 5),
+        "p_start_mmhg": float(p_start_mmhg),
+        "p_floor_mmhg": float(p_floor_mmhg),
+        "p50_mmhg": float(p50_mmhg),
+        "hill_n": float(hill_n),
+        "bound_fraction_at_start": round(y_start, 6),
+        "bound_fraction_at_floor": round(y_floor, 6),
+        "releasable_umol_above_floor": round(released_umol, 5),
+        "graft_500k_ieq_plus_15pct_vasc_demand_umol_min": round(graft_vmax_vasc_umol_min, 6),
+        "standalone_bridge_duration_above_floor_s": round(duration_s, 4),
+    }
+
+
+def compute_design_z_140um_parameterized_case(
+    *,
+    bed_po2_mmhg: float,
+    ocr_multiplier: float,
+    d_gel_cm2_s: float,
+    k_perf_s_inv: float,
+    pfc_vol_fraction: float = 0.0,
+    areal_loading_ieq_cm2: float = 1500.0,
+    cluster_diam_um: float = 100.0,
+    standoff_um: float = 15.0,
+) -> Dict[str, Any]:
+    """Executable parameterized 48x48x28 3D FVM solver for Design Z 140 um Zero-CaO2 cases (IIP-0021; DEC-100)."""
+    r_cm = 0.5 * float(cluster_diam_um) * 1e-4
+    v_cl = (4.0 / 3.0) * math.pi * (r_cm ** 3)
+    n_mono = (float(areal_loading_ieq_cm2) * VOL_1_IEQ_CM3) / v_cl
+    pitch_cm = math.sqrt(1.0 / n_mono)
+    slab_h_cm = 0.0140
+    nx, ny, nz = 48, 48, 28
+    dx = pitch_cm / nx
+    dy = pitch_cm / ny
+    dz = slab_h_cm / nz
+    xs = (np.arange(nx) + 0.5) * dx - 0.5 * pitch_cm
+    ys = (np.arange(ny) + 0.5) * dy - 0.5 * pitch_cm
+    zs = (np.arange(nz) + 0.5) * dz - 0.5 * slab_h_cm
+    X, Y, Z = np.meshgrid(xs, ys, zs, indexing="ij")
+    R = np.sqrt(X ** 2 + Y ** 2 + Z ** 2)
+    in_cl = (X ** 2 + Y ** 2 + Z ** 2) <= (r_cm ** 2)
+    mg_factor = 1.0
+    if pfc_vol_fraction > 0.0:
+        kp_ratio = 20.0
+        phi_p = float(pfc_vol_fraction)
+        mg_factor = (kp_ratio + 2.0 + 2.0 * phi_p * (kp_ratio - 1.0)) / (kp_ratio + 2.0 - phi_p * (kp_ratio - 1.0))
+    p_krogh_gel = float(d_gel_cm2_s) * mg_factor * ALPHA_BUNSEN_MOL_CM3_MMHG
+    p_krogh_tissue = D_O2_ISLET_TISSUE_CM2_S * ALPHA_BUNSEN_MOL_CM3_MMHG
+    p_krogh_chronic_ext = 1.50e-5 * ALPHA_BUNSEN_MOL_CM3_MMHG
+    perm = np.where(in_cl, p_krogh_tissue, p_krogh_gel)
+    t_phi = (float(areal_loading_ieq_cm2) * VOL_1_IEQ_CM3) / slab_h_cm
+    in_gel = ~in_cl
+    vmax = np.zeros_like(X)
+    vmax[in_cl] = (VMAX_ISLET_PURE_MOL_CM3_S * float(ocr_multiplier)) * (t_phi / float(np.mean(in_cl)))
+    vmax[in_gel] = (t_phi * VMAX_ISLET_PURE_MOL_CM3_S * 0.15 * float(ocr_multiplier)) / float(np.mean(in_gel))
+    src = np.zeros_like(X)
+    kp = np.where(in_gel, float(k_perf_s_inv), 0.0)
+    sol = _solve_3d_oxygen_strict_iip_0019(
+        perm, vmax, src, kp, dx, dy, dz,
+        p_bed=float(bed_po2_mmhg),
+        standoff_z_cm=float(standoff_um) * 1e-4,
+        p_ext=p_krogh_chronic_ext,
+    )
+    p3 = sol["p_3d"]
+    shell_mask = (R >= 0.95 * r_cm) & (R <= 1.05 * r_cm)
+    if_po2 = float(np.mean(p3[shell_mask]))
+    core_po2 = float(np.min(p3[in_cl]))
+    return {
+        "bed_po2_mmhg": float(bed_po2_mmhg),
+        "ocr_multiplier": float(ocr_multiplier),
+        "d_gel_cm2_s": float(d_gel_cm2_s),
+        "k_perf_s_inv": float(k_perf_s_inv),
+        "pfc_vol_fraction": float(pfc_vol_fraction),
+        "maxwell_garnett_factor": round(mg_factor, 7),
+        "pericellular_interface_po2_mmhg": round(if_po2, 4),
+        "min_core_po2_mmhg": round(core_po2, 4),
+        "passes_15mmhg_interface_and_5mmhg_core_gate": bool(if_po2 >= 15.0 and core_po2 >= 5.0),
+    }
+
+
+def compute_early_washout_and_catalase_derating_checks() -> Dict[str, Any]:
+    """Executable parameterized replay of 48-h early washout in derated 462.6 mg Design X pouch and 2.5 um discrete-bead catalase sweeps (IIP-0021; DEC-100)."""
+    # 1. Early 48-h washout in a 41.55% CaO2-derated (462.6 mg) Design X (a_frac = 0.34) pouch under t_50 = 60 h
+    inv_scale = 462.6 / (10.9811487 * 72.078)
+    a_frac = 0.34
+    nz = 51
+    half_L = 0.0175
+    geometry = _slab_control_volume_profiles(nz, half_L, lamina_half_width_fraction=a_frac)
+    z_grid = geometry["z"]
+    dz = float(z_grid[1] - z_grid[0])
+    s_prof = geometry["central_source"]
+    central_mask = geometry["central_mask"]
+    d_prof_int = geometry["outer_demand"][1:-1]
+    phi_2500 = (2500.0 * VOL_1_IEQ_CM3) / (2.0 * half_L)
+    local_phi_islet = phi_2500 / (1.0 - a_frac)
+    d_o2_faces = _slab_oxygen_face_diffusivities(z_grid, 0.42 ** 1.5, lamina_half_width_fraction=a_frac, d_o2_hydrogel_override_cm2_s=None)
+    k_ref_s = math.log(2.0) / (68.0 * 3600.0)
+    r_o2_0_mol_s = (0.45 * inv_scale) * (phi_2500 * VMAX_ISLET_PURE_MOL_CM3_S * 1.15) * 7.00
+    n_cao2_initial_mmol = (2.0 * r_o2_0_mol_s / k_ref_s) * 1e3
+    t_grid = [float(h) for h in range(337)]
+
+    def perf_ode(t_h: float, y: np.ndarray) -> np.ndarray:
+        exp_arg = -(t_h - 60.0) / 8.0
+        targ = 0.0 if exp_arg > 700.0 else 0.97 / (1.0 + math.exp(exp_arg))
+        return np.array([(targ - y[0]) / 3.0])
+
+    perf_y = rk4_integrate(perf_ode, (0.0, 336.0), np.array([0.01]), t_grid, dt_max=0.25)[0]
+    washout_48h_cases: Dict[str, Any] = {}
+    for law in ("first_order", "ginstling_brounshtein"):
+        rem_vec = _cao2_inventory_fractions(np.asarray(t_grid), 68.0, law)
+        k_hyd_s = math.log(2.0) / (68.0 * 3600.0)
+        k_gb_h = (1.0 - (2.0 / 3.0) * 0.5 - (0.5 ** (2.0 / 3.0))) / 68.0
+        min_post_wash_slab = math.inf
+        for idx, t_h in enumerate(t_grid):
+            endo_mult = 0.65 if t_h <= 48.0 else 1.0
+            v_dem = (phi_2500 * VMAX_ISLET_PURE_MOL_CM3_S * (1.15 * endo_mult)) / ALPHA_BUNSEN_MOL_CM3_MMHG
+            m_rem = max(0.0, float(rem_vec[idx]))
+            if law == "ginstling_brounshtein":
+                denom_gb = max(0.05, (max(1e-9, m_rem) ** (-1.0 / 3.0)) - 1.0) if m_rem > 0.0 else math.inf
+                rate_s = (1.5 * (k_gb_h / 3600.0) / denom_gb) if math.isfinite(denom_gb) else 0.0
+                o2_gen = 0.5 * rate_s * (n_cao2_initial_mmol * 1e-3) / 7.00
+            else:
+                o2_gen = 0.5 * k_hyd_s * (n_cao2_initial_mmol * m_rem * 1e-3) / 7.00
+            s_h2o2 = 2.0 * o2_gen * 1e9 * s_prof
+            cat_frac = math.exp(-math.log(2.0) * t_h / 168.0)
+            k1_prof = 0.008 + (18.0 * cat_frac - 0.008) * central_mask[1:-1]
+            kp_s = 0.14 * float(perf_y[idx])
+            perox = _solve_peroxide_slab_bvp(s_h2o2[1:-1], dz, k1_prof, kp_s, km_uM=25000.0)
+            q_src = (0.5 * perox["decomposition_uM_s"] * 1e-9) / ALPHA_BUNSEN_MOL_CM3_MMHG
+            p = np.full(nz, 40.0, dtype=np.float64)
+            dl = (d_o2_faces[:-1] / (dz * dz)).copy()
+            dr = (d_o2_faces[1:] / (dz * dz)).copy()
+            for _ in range(80):
+                pi = p[1:-1]
+                diff_t = dl * (p[:-2] - pi) + dr * (p[2:] - pi)
+                cons = v_dem * d_prof_int * (pi / (KM_O2_MMHG + pi))
+                res = diff_t - cons + q_src + kp_s * (40.0 - pi)
+                jdiag = -(dl + dr) - v_dem * d_prof_int * (KM_O2_MMHG / ((KM_O2_MMHG + pi) ** 2)) - kp_s
+                mat = np.diag(jdiag) + np.diag(dr[:-1], 1) + np.diag(dl[1:], -1)
+                step = np.linalg.solve(mat, -res)
+                p[1:-1] = np.maximum(0.0, pi + 0.8 * step)
+                if float(np.max(np.abs(step))) < 1e-6:
+                    break
+            if t_h > 48.0:
+                min_post_wash_slab = min(min_post_wash_slab, float(np.min(p)))
+        bvp_100 = solve_spherical_cluster_po2_bvp(
+            min_post_wash_slab, 0.0050, phi_islet_in_slab=local_phi_islet, ocr_multiplier=1.0
+        )
+        washout_48h_cases[law] = {
+            "derated_cao2_mass_mg": 462.6,
+            "inosculation_t50_h": 60.0,
+            "washout_hour": 48.0,
+            "post_washout_min_slab_po2_mmhg": round(min_post_wash_slab, 4),
+            "post_washout_100um_gel_only_surface_po2_mmhg": round(float(bvp_100["wigner_seitz_two_zone_fv_gel_only_supply_surface_po2_unrounded_mmhg"]), 4),
+            "post_washout_100um_gel_only_core_po2_mmhg": round(float(bvp_100["wigner_seitz_two_zone_fv_gel_only_supply_core_po2_unrounded_mmhg"]), 4),
+        }
+
+    # 2. Parameterized 2.5 um discrete edge-bead H2O2 replay for 73,800 IU retained (~105,429 IU post-cure) vs 37,800 IU split vs 56.3% bead-number-derated catalase
+    h_cm = 2.5e-4
+    nz3 = int(round(0.0350 / h_cm))
+    r_b = 25.0e-4
+    v_b = (4.0 / 3.0) * math.pi * (r_b ** 3)
+    lam_cm = 0.0100
+    r_o2_0_base = 0.45 * (phi_2500 * VMAX_ISLET_PURE_MOL_CM3_S * 1.15)
+    r_h2o2_0_uM_s = 2.0 * r_o2_0_base * 1e9
+    catalase_cases: Dict[str, Any] = {}
+    for cid, inv_sc, cat_iu_333, bead_density_derated in (
+        ("Retained_73800IU_105429IU_PostCure_t24_FullCaO2", 1.0, 73800.0, False),
+        ("Split_37800IU_ZeroAddedEnzyme_t24_FullCaO2", 1.0, 37800.0, False),
+        ("BeadDensityDerated_56p3pct_41550IU_t24", 0.563, 73800.0 * 0.563, True),
+    ):
+        solid_frac = 0.58 * (inv_sc if bead_density_derated else 1.0)
+        side_cm = max(math.sqrt(v_b / (solid_frac * lam_cm)), 50.0 * 1.15e-4)
+        nx3 = max(16, int(round(side_cm / h_cm)))
+        dx3 = side_cm / nx3
+        xs3 = (np.arange(nx3) + 0.5) * dx3 - 0.5 * side_cm
+        zs3 = (np.arange(nz3) + 0.5) * h_cm - 0.0175
+        X3, Y3, Z3 = np.meshgrid(xs3, xs3, zs3, indexing="ij")
+        r_dist = np.sqrt(X3 ** 2 + Y3 ** 2 + (Z3 - (0.5 * lam_cm - r_b)) ** 2)
+        in_core = r_dist <= (r_b - 0.5 * h_cm)
+        in_shell = (r_dist > (r_b - 0.5 * h_cm)) & (r_dist <= (r_b + 0.6 * h_cm))
+        in_lam = np.abs(Z3) <= 0.5 * lam_cm
+        in_buf = (np.abs(Z3) > 0.5 * lam_cm) & (np.abs(Z3) <= (0.5 * lam_cm + 0.0020))
+        src_3d = np.zeros((nx3, nx3, nz3), dtype=np.float64)
+        src_3d[in_shell] = ((r_h2o2_0_uM_s * inv_sc) * (68.0 / 24.0)) / float(np.mean(in_shell))
+        diff_3d = np.where(in_core, 0.0, D_H2O2_HYDROGEL_CM2_S)
+        cat_iu_200 = cat_iu_333 * (200.0 / 333.3333333333333)
+        lam_iu_200 = cat_iu_200 * (22680.0 / 44280.0) if cat_iu_333 > 40000.0 else cat_iu_200 * 0.5
+        buf_iu_200 = cat_iu_200 - lam_iu_200
+        k_cat = np.full((nx3, nx3, nz3), 0.008, dtype=np.float64)
+        k_cat[in_lam & (~in_core)] = (lam_iu_200 / (7.0 * 1500.0)) / float(np.mean(in_lam & (~in_core)))
+        k_cat[in_buf] = (buf_iu_200 / (7.0 * 1500.0)) / float(np.mean(in_buf))
+        kp_3d = np.where(in_lam | in_buf, 0.0, 0.14 * 0.01)
+        sol_h = _solve_3d_h2o2_strict_iip_0019(diff_3d, src_3d, k_cat, kp_3d, dx3, dx3, h_cm)
+        h3 = sol_h["h_3d"]
+        kp_idx = int(np.argmin(np.abs(zs3 - 0.0070)))
+        pk = float(np.max(h3[:, :, kp_idx]))
+        catalase_cases[cid] = {
+            "retained_active_catalase_iu_333cm2": round(cat_iu_333, 1),
+            "post_cure_t0_active_catalase_iu_at_70pct_day7_retention": round(cat_iu_333 / 0.70, 1),
+            "islet_plane_24h_burst_max_h2o2_uM": round(pk, 4),
+            "passes_2p5uM_tier1_target": bool(pk <= 2.5),
+        }
+    return {
+        "early_48h_washout_derated_462p6mg_t50_60h_cases": washout_48h_cases,
+        "parameterized_2p5um_discrete_bead_catalase_cases": catalase_cases,
+    }
+
+
+def build_lineage_partitioned_metabolic_rest_and_m101_exclusion_audit_iip_0021() -> Dict[str, Any]:
+    """Build reproducible Layer-4 lineage-partitioned OCR, Design Z post-washout, staged exercise lag, and M101 reservoir audit (IIP-0021; DEC-100)."""
+    # 1. Alias vs two-scale lineage-partitioned verification
+    legacy_alias_070 = _run_single_pouch_pde_regime(
+        "AUDIT_LEGACY_ALIAS_0P70", 0.45, "central", 68.0, True, 0.97,
+        demand_multiplier_extra=0.70, _assess_numerical_gate=False,
+    )
+    uniform_ocr_070 = _run_single_pouch_pde_regime(
+        "AUDIT_UNIFORM_OCR_0P70", 0.45, "central", 68.0, True, 0.97,
+        areal_loading_ieq_cm2=2500.0, cell_intrinsic_ocr_multiplier=0.70, _assess_numerical_gate=False,
+    )
+    two_scale_endo055_vasc100 = run_lineage_partitioned_intrinsic_ocr_regime(
+        regime_id="AUDIT_TWO_SCALE_ENDO0P55_VASC1P00",
+        areal_loading_ieq_cm2=2500.0,
+        endocrine_intrinsic_ocr_multiplier=0.55,
+        vascular_intrinsic_ocr_multiplier=1.00,
+    )
+    two_scale_endo150_vasc100 = run_lineage_partitioned_intrinsic_ocr_regime(
+        regime_id="AUDIT_TWO_SCALE_ENDO1P50_VASC1P00",
+        areal_loading_ieq_cm2=2500.0,
+        endocrine_intrinsic_ocr_multiplier=1.50,
+        vascular_intrinsic_ocr_multiplier=1.00,
+    )
+
+    # 2. Corrected slab washout eigenmodes (two-sink vs one-sink, D = 2.8e-6 vs 4.5e-6 cm^2/s)
+    washout_eigenmodes = [
+        compute_slab_drug_washout_eigenmodes_s(h_um, d_val)
+        for d_val in (2.8e-6, 4.5e-6)
+        for h_um in (140.0, 300.0, 350.0)
+    ]
+
+    # 3. Parameterized Design Z acute vs chronic vs adverse mixed vs passive 5% PFC matrix
+    design_z_matrix = {
+        "Acute_25mmHg_1p0xOCR_AcuteGel": compute_design_z_140um_parameterized_case(
+            bed_po2_mmhg=25.0, ocr_multiplier=1.0, d_gel_cm2_s=9.40254e-6, k_perf_s_inv=0.097
+        ),
+        "Acute_25mmHg_0p70xOCR_AcuteGel": compute_design_z_140um_parameterized_case(
+            bed_po2_mmhg=25.0, ocr_multiplier=0.70, d_gel_cm2_s=9.40254e-6, k_perf_s_inv=0.097
+        ),
+        "Acute_40mmHg_1p0xOCR_AcuteGel": compute_design_z_140um_parameterized_case(
+            bed_po2_mmhg=40.0, ocr_multiplier=1.0, d_gel_cm2_s=9.40254e-6, k_perf_s_inv=0.097
+        ),
+        "Chronic_25mmHg_1p097xOCR_ChronicGel": compute_design_z_140um_parameterized_case(
+            bed_po2_mmhg=25.0, ocr_multiplier=1.097, d_gel_cm2_s=1.5e-5, k_perf_s_inv=0.1358
+        ),
+        "Chronic_40mmHg_1p097xOCR_ChronicGel": compute_design_z_140um_parameterized_case(
+            bed_po2_mmhg=40.0, ocr_multiplier=1.097, d_gel_cm2_s=1.5e-5, k_perf_s_inv=0.1358
+        ),
+        "Chronic_25mmHg_1p097xOCR_5volPctPFC_ChronicGel": compute_design_z_140um_parameterized_case(
+            bed_po2_mmhg=25.0, ocr_multiplier=1.097, d_gel_cm2_s=1.5e-5, k_perf_s_inv=0.1358, pfc_vol_fraction=0.05
+        ),
+        "Adverse_40mmHg_1p097xOCR_UnremodeledAcuteGel_kperf0p097": compute_design_z_140um_parameterized_case(
+            bed_po2_mmhg=40.0, ocr_multiplier=1.097, d_gel_cm2_s=9.40254e-6, k_perf_s_inv=0.097
+        ),
+    }
+
+    # 4. M101 standalone closed-slab reservoir bounds across 100->15 mmHg and 40->15 mmHg (n_H = 2.5 and 3.0)
+    m101_bounds = {
+        "AirSaturated_100_to_15mmHg_n2p5": compute_m101_hill_reservoir_bound(p_start_mmhg=100.0, hill_n=2.5),
+        "AirSaturated_100_to_15mmHg_n3p0": compute_m101_hill_reservoir_bound(p_start_mmhg=100.0, hill_n=3.0),
+        "HostBed_40_to_15mmHg_n2p5": compute_m101_hill_reservoir_bound(p_start_mmhg=40.0, hill_n=2.5),
+        "HostBed_40_to_15mmHg_n3p0": compute_m101_hill_reservoir_bound(p_start_mmhg=40.0, hill_n=3.0),
+    }
+
+    washout_and_cat = compute_early_washout_and_catalase_derating_checks()
+
+    return {
+        "contribution_id": "IIP-0021",
+        "decision_id": "DEC-100",
+        "baseline_cao2_mass_mg_preserved": 791.5,
+        "hurdle1_computational_judgement_preserved_pct": 88,
+        "inosculation_t50_bounds_preserved_h": [36.0, 60.0],
+        "primary_citations": [
+            "PMID:23935835",
+            "PMID:17130499",
+            "PMID:17503968",
+            "PMID:42547502",
+            "PMID:37318185",
+            "PMID:16897713",
+            "PMID:41951603",
+            "PMID:23190609",
+            "PMID:34572979",
+            "PMID:29789532",
+            "PMID:32893325",
+            "PMID:34252539",
+        ],
+        "two_scale_lineage_ocr_verification": {
+            "legacy_dec064_loading_alias_at_0p70": {
+                "areal_loading_ieq_cm2": legacy_alias_070["areal_loading_ieq_cm2"],
+                "min_slab_po2_mmhg": round(float(legacy_alias_070["min_slab_po2_unrounded_mmhg"]), 5),
+                "gel_only_120um_core_po2_mmhg": round(
+                    float(legacy_alias_070["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"]["two_zone_fv_gel_only_supply_120um_core_po2_mmhg"]), 5
+                ),
+            },
+            "uniform_cell_intrinsic_0p70_at_2500ieq": {
+                "areal_loading_ieq_cm2": uniform_ocr_070["areal_loading_ieq_cm2"],
+                "min_slab_po2_mmhg": round(float(uniform_ocr_070["min_slab_po2_unrounded_mmhg"]), 5),
+                "gel_only_120um_core_po2_mmhg": round(
+                    float(uniform_ocr_070["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"]["two_zone_fv_gel_only_supply_120um_core_po2_mmhg"]), 5
+                ),
+            },
+            "two_scale_endo0p55_vasc1p00_at_2500ieq": {
+                "slab_normalized_ocr_multiplier": two_scale_endo055_vasc100["slab_normalized_ocr_multiplier"],
+                "cluster_endocrine_ocr_multiplier": two_scale_endo055_vasc100["cluster_endocrine_ocr_multiplier"],
+                "min_slab_po2_mmhg": round(float(two_scale_endo055_vasc100["min_slab_po2_unrounded_mmhg"]), 5),
+                "gel_only_120um_core_po2_mmhg": round(
+                    float(two_scale_endo055_vasc100["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"]["two_zone_fv_gel_only_supply_120um_core_po2_mmhg"]), 5
+                ),
+            },
+            "two_scale_endo1p50_vasc1p00_at_2500ieq": {
+                "slab_normalized_ocr_multiplier": two_scale_endo150_vasc100["slab_normalized_ocr_multiplier"],
+                "cluster_endocrine_ocr_multiplier": two_scale_endo150_vasc100["cluster_endocrine_ocr_multiplier"],
+                "min_slab_po2_mmhg": round(float(two_scale_endo150_vasc100["min_slab_po2_unrounded_mmhg"]), 5),
+                "gel_only_120um_core_po2_mmhg": round(
+                    float(two_scale_endo150_vasc100["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"]["two_zone_fv_gel_only_supply_120um_core_po2_mmhg"]), 5
+                ),
+            },
+            "biological_scope_qualification": (
+                "14.30% vascular cell fraction (133.5M / 933.5M) and 13.04% modeled vascular OCR share (0.15 / 1.15) are distinct quantities; "
+                "while Ma et al. 2013 (PMID:23935835) measured rat-islet OCR after washout/reoxygenation, Sweet & Gilbert 2006 (PMID:17130499) "
+                "observed ~30% acute glucose-stimulated rat-islet OCR reduction under diazoxide/nimodipine and MacDonald et al. 2007 (PMID:17503968) "
+                "showed human alpha-cell K_ATP sensitivity to diazoxide, making empirical 120-h assembled-organoid OCR + glucagon/GSIS measurement mandatory."
+            ),
+        },
+        "slab_free_drug_washout_first_eigenmode_table": {
+            "eigenmodes": washout_eigenmodes,
+            "boundary_and_diffusivity_note": (
+                "Two-sink tau_1 = H^2/(pi^2 * D) gives 7.09, 32.57, and 44.33 s at 140, 300, and 350 um for D = 2.8e-6 cm^2/s "
+                "(4.41, 20.26, and 27.58 s correspond to faster aqueous D = 4.5e-6 cm^2/s), whereas one-sink/one-reflecting geometry "
+                "is 4x longer (28.37, 130.26, and 177.30 s at D = 2.8e-6 cm^2/s); all remain <3 min e-folding times vs 120-h bridge duration."
+            ),
+        },
+        "design_z_140um_parameterized_acute_chronic_and_pfc_matrix": {
+            "operative_gate_definition": "pericellular_interface_po2_mmhg >= 15.0 AND min_core_po2_mmhg >= 5.0 (coupled with Stage-2 loaded GSIS SI >= 3.0)",
+            "acute_vs_chronic_parameter_disclosure": (
+                "Acute unremodeled gel uses d_gel_cm2_s = 9.40254e-6 cm^2/s and k_perf = 0.097 s^-1, whereas chronic vascularized gel assumes "
+                "d_gel_cm2_s = 1.5e-5 cm^2/s (+59.5%) and k_perf = 0.1358 s^-1; adverse unremodeled chronic OCR (1.097x at acute d_gel/k_perf) "
+                "is tabulated explicitly alongside nominal chronic cases."
+            ),
+            "cases": design_z_matrix,
+        },
+        "staged_portal_exercise_insulin_lag_bounds_and_qualifications": {
+            "v0p18_150k_total_90k_beta_eq_Tins5p17_tau8p0_preserved_paracrine_min_G_mM": 4.6372,
+            "v0p18_150k_total_90k_beta_eq_Tins5p17_tau8p0_scaled_paracrine_min_G_mM": 3.5296,
+            "v0p36_300k_total_180k_beta_eq_Tins3p64_tau8p0_min_G_mM": 3.5005,
+            "v0p60_500k_total_300k_beta_eq_Tins2p71_tau7p1429_min_G_mM": 3.5001,
+            "v0p60_500k_total_300k_beta_eq_Tins1p96_tau8p0_min_G_mM": 3.5004,
+            "qualification_note": (
+                "Deterministic ODE margins at T_ins = 3.64 / 2.71 / 1.96 min sit 0.0001-0.0005 mM above 3.50 mM without exogenous rescue/controller "
+                "modeling, v = 0.18 drops from 4.6372 to 3.5296 mM (<3.90 mM) if local paracrine drive scales down with v, and the 150,000-IEQ omental "
+                "cassette is distinct from Roadmap Stage-5A's 25,000-35,000 IEQ forearm sentinel; full-dose v = 0.60 clearance remains non-waivable."
+            ),
+        },
+        "m101_closed_slab_standalone_reservoir_bounds": {
+            "scope_qualification": (
+                "Conditional standalone finite-reservoir bound in a closed 10 mL slab (5 g/L = 50 mg carrier, vs 5,490.58 umol O2 from 791.5 mg CaO2; "
+                "Rousselot et al. 2006 PMID:16897713 reports P50 = 7.05 +/- 0.93 mmHg, n50 = 2.54 +/- 0.23; distinct from air-exposed 1 g/L 24-h culture "
+                "in Lemaire et al. 2023 PMID:37318185 and not a general facilitated-diffusion proof under open external oxygen resupply)."
+            ),
+            "bounds": m101_bounds,
+        },
+        **washout_and_cat,
+    }
+# === END_IIP_0021_LINEAGE_OCR_AND_M101_AUDIT ===
+
+
 def main() -> None:
     part_a_algebra = verify_exact_slab_source_distribution_algebra()
     part_a_pde = solve_336h_spatial_pouch_pde()
@@ -7294,6 +7784,9 @@ def main() -> None:
     lead_regime = next(r for r in part_a_pde["regimes_simulated"] if r["regime_id"] == "LEAD_CENTRAL_LAMINA_PDMS_CAO2_F045_PLUS_CATALASE")
     part_a_pde["explicit_3d_clumping_and_microbead_h2o2_audit_iip_0019"] = (
         build_explicit_3d_clumping_and_microbead_h2o2_audit_iip_0019(lead_regime)
+    )
+    part_a_pde["lineage_partitioned_metabolic_rest_and_m101_exclusion_audit"] = (
+        build_lineage_partitioned_metabolic_rest_and_m101_exclusion_audit_iip_0021()
     )
 
     atlas = {
