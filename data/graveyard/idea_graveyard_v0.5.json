@@ -285,18 +285,25 @@
     }
   ],
   "off_grid_molecular_dead_end_guardrails": {
-    "schema_role": "Non-grid Stage-0 molecular hypothesis guardrails (preserving exact 10 grid-firing graveyard_entries for CHK-05)",
+    "schema_role": "Non-grid Stage-0 molecular, bioconjugation, and oxygen-transport guardrails (preserving exact 10 grid-firing graveyard_entries for CHK-05 while indexing all shipped IIP-0017..IIP-0023 Stage-0 dead ends and context-dependent traps)",
     "decision_id": "DEC-101",
-    "contribution_id": "IIP-0022",
+    "contribution_id": "IIP-0017..IIP-0023",
     "consumed_by_validators": [
-      "scripts/wetlab_contract.py (evaluate_stage0_decision_tree iip0022_eval_summary)",
-      "tests/test_round3_supporting_boundaries.py (section 47)"
+      "scripts/wetlab_contract.py (evaluate_stage0_decision_tree Stage-0 hold gates)",
+      "tests/test_round3_supporting_boundaries.py (section 47)",
+      "tests/test_adversarial_acceptance.py (CHK-05B off-grid graveyard parity)"
     ],
     "guardrails": [
       {
         "guardrail_id": "OFFGRID_GUARD_001_PVR_ALA67THR_B2M_NULL_SIGN_INVERSION_HYPOTHESIS",
+        "graveyard_card_id": "GY-015",
+        "severity_level": "WARN",
+        "curation_status": "precautionary_mechanistic_hazard",
+        "evidence_basis_class": "mechanistic_precaution_or_non_islet_extrapolation",
+        "contribution_id": "IIP-0022",
         "status": "PROSPECTIVE_CONTEXT_DEPENDENT_RISK_REQUIRES_MATCHED_B2M_NULL_TESTING",
         "summary": "CD155 Ala67Thr (rs1058402) reduced primary NK lysis (0.34/0.41/0.41) on HLA-A2+ MHC-I-intact SC-beta cells (PMID:41202120) and improved bivalent CD155-Fc TIGIT/CD226 binding ratio (0.271 -> 0.804, PMID:35947095; monovalent SPR in PMID:37675979), so it is NOT an established universal dead end; however, in B2M-/- iPSC/iBeta targets CD155 mediates activating CD226 lysis (PMID:36170817), Thr67 introduces 38 variant 8-11mers (~88.55% global / ~91.16% NFE HWE Ala/Ala), and full-length PVR overflows Locus-1 AAV6 (5,581-5,750 bp > 4,700 bp). Requires direct sorted TIGIT-low/CD226-high NKG2A- KIR+ NK testing on B2M-/- SC-islets.",
+        "cheapest_falsification_assay": "Sorted TIGIT-low/CD226-high NKG2A- KIR+ primary human NK killing assay on matched B2M-/- SC-islets (upper95 <= 8.0% required).",
         "pmids": [
           "37675979",
           "35947095",
@@ -306,14 +313,117 @@
       },
       {
         "guardrail_id": "OFFGRID_GUARD_002_LINEAGE_SEPARATED_SC_BETA_VS_IEC_NECROPTOSIS_AND_TNFRSF1A_PACKAGING",
+        "graveyard_card_id": "GY-016",
+        "severity_level": "WARN",
+        "curation_status": "precautionary_mechanistic_hazard",
+        "evidence_basis_class": "mechanistic_precaution_or_non_islet_extrapolation",
+        "contribution_id": "IIP-0022",
         "status": "PROSPECTIVE_LINEAGE_ASYMMETRY_REQUIRES_TIME_RESOLVED_VIABILITY_AND_RESCUE",
         "summary": "Mouse islet and human EndoC-betaH1 models resist canonical RIPK1/RIPK3/MLKL necroptosis (PMID:36707047, PMID:39004142, PMID:25301392), including pMLKL phosphorylation without death, whereas vascular endothelial cells can undergo necroptosis and TNFRSF1A (gnomAD v4 pLI=0.9999) attenuates TNF-alpha NF-kB promoter drive and exceeds 4,700 bp on bGHpA L3-BF-B (4,810 bp). Requires lineage-gated C-peptide+ SC-beta vs CDH5+ PLVAP+ iEC time-resolved viability and orthogonal rescue alongside pMLKL/Cleaved Caspase-3.",
+        "cheapest_falsification_assay": "Lineage-separated C-peptide+ SC-beta vs CDH5+ PLVAP+ iEC time-resolved viability and Nec-1s/GSK'872 rescue assay alongside pMLKL and cleaved caspase-3.",
         "pmids": [
           "36707047",
           "39004142",
           "25301392",
           "40796566",
           "38981470"
+        ]
+      },
+      {
+        "guardrail_id": "OFFGRID_GUARD_003_TYK2_P1104A_HLAC_SAPTKFLEL_NEOANTIGEN_AND_UNTESTED_P2A_SCAR",
+        "graveyard_card_id": "GY-011",
+        "severity_level": "WARN",
+        "curation_status": "precautionary_mechanistic_hazard",
+        "evidence_basis_class": "mechanistic_precaution_or_non_islet_extrapolation",
+        "contribution_id": "IIP-0017",
+        "status": "STAGE0_FAIL_CLOSED_GENOTYPE_STRATIFIED_HOLD_GATE",
+        "summary": "Installing protective TYK2 p.Pro1104Ala (rs34536443; PMID:27807284) on HLA-C-retaining Design B2 converts internal SPPTKFLEL into SAPTKFLEL with a preferred P2-Ala HLA-C anchor (28.59-65.94 nM across HLA-C*12:03, C*16:01, and C*03:04; PMID:25311805, PMID:32711842, PMID:37207206) foreign to >90% WT G/G recipients, while porcine GSG-P2A scars lack human T-cell data (0 P2A records vs 12 T2A records in IEDB; PMID:23698740). Enforces fail-closed G/G, G/C, and C/C CD8+ priming and HLA-C immunopeptidomics holds.",
+        "cheapest_falsification_assay": "HLA-C allele-matched immunopeptidomics LC-MS/MS for SAPTKFLEL paired with recipient-genotype-stratified (TYK2 G/G, G/C, C/C) autologous CD8+ T-cell priming on SC-islets and iECs.",
+        "pmids": [
+          "27807284",
+          "25311805",
+          "32711842",
+          "37207206",
+          "23698740"
+        ]
+      },
+      {
+        "guardrail_id": "OFFGRID_GUARD_004_SOLUBLE_IL1R2_CIS_IL1RACP_FAILURE_AND_16P13_CLEC16A_CASP8_FADD_TRAPS",
+        "graveyard_card_id": "GY-012",
+        "severity_level": "BLOCK",
+        "curation_status": "corroborated",
+        "evidence_basis_class": "mechanistic_precaution_or_non_islet_extrapolation",
+        "contribution_id": "IIP-0018",
+        "status": "RETIRED_STAGE0_DEAD_END_AND_EXCLUDED_GENE_KNOCKOUT_TRAPS",
+        "summary": "Secreted soluble endothelial IL1R2 alone cannot outcompete membrane IL1R1 + cis IL1RAcP ternary assembly on adjacent beta cells without co-secreted soluble sIL1RAcP (PMID:22426547, PMID:20802483, PMID:12530978), and knocking out nearest-gene T1D GWAS mitophagy regulator CLEC16A at 16p13 (where risk SNPs loop to DEXI; PMID:24949970, PMID:30478640) or necroptosis brakes CASP8/FADD (PMID:21368762) impairs beta-cell survival.",
+        "cheapest_falsification_assay": "Isogenic SC-islet IL-1beta + FasL challenge comparing cell-intrinsic Multi-miR(IL1R1 + FAS) against trans-conditioned soluble IL1R2 supernatant without sIL1RAcP.",
+        "pmids": [
+          "22426547",
+          "20802483",
+          "12530978",
+          "24949970",
+          "30478640",
+          "21368762"
+        ]
+      },
+      {
+        "guardrail_id": "OFFGRID_GUARD_005_XENO_CATALASE_UNCOATED_CAO2_PLUMES_AND_UNHYDROLYZED_MALEIMIDE_CUFF",
+        "graveyard_card_id": "GY-013",
+        "severity_level": "BLOCK",
+        "curation_status": "corroborated",
+        "evidence_basis_class": "mechanistic_precaution_or_non_islet_extrapolation",
+        "contribution_id": "IIP-0020",
+        "status": "BARRED_BIOMATERIAL_REAGENTS_LOCKED_BY_GATE_P05_AND_CUFF_HYDROLYSIS",
+        "summary": "Commercial bovine (UniProt P00432; 50.58% foreign 8-11mers) or fungal Aspergillus niger (P55303; 99.93% foreign 8-11mers) catalase introduces foreign xeno-antigens into a drug-free graft, uncoated edge-touching CaO2 microbeads generate 6.88-19.49 uM local H2O2 plumes against catalase-poor beta cells (PMID:22371586, PMID:8720919, PMID:27729543), and unhydrolyzed thiosuccinimide maleimide linkers undergo retro-Michael deconjugation shedding soluble bioactive FasL (PMID:25194818, PMID:19276268) alongside pre-existing human anti-PEG and secondary anti-streptavidin humoral responses (PMID:27804292, PMID:29466233).",
+        "cheapest_falsification_assay": "Gate P05 UniProt P04040 recombinant human catalase peptide/ELISA verification, 20 um barrier-film 24h burst H2O2 assay (<= 2.5 uM), >= 98% DPR-maleimide LC-MS hydrolysis, and 72h primary human hepatocyte ALT/LDH/Caspase-3/7 leachate safety.",
+        "pmids": [
+          "22371586",
+          "8720919",
+          "27729543",
+          "25194818",
+          "19276268",
+          "29466233",
+          "27804292"
+        ]
+      },
+      {
+        "guardrail_id": "OFFGRID_GUARD_006_STANDALONE_M101_RESERVOIR_RAPID_DRUG_WASHOUT_AND_UNWASHED_NEC1_CONDITIONING",
+        "graveyard_card_id": "GY-014",
+        "severity_level": "BLOCK",
+        "curation_status": "corroborated",
+        "evidence_basis_class": "mechanistic_precaution_or_non_islet_extrapolation",
+        "contribution_id": "IIP-0021",
+        "status": "BARRED_OXYGEN_RESERVOIR_AND_UNENCAPSULATED_OR_UNWASHED_DRUG_SHORTCUTS",
+        "summary": "In a closed 10 mL avascular slab at 50,000 IEQ/mL, standalone 5 g/L M101 extracellular hemoglobin holds 2.17 umol O2 (vs 5,490.6 umol from 791.5 mg CaO2) and releases only 0.19-0.28 umol above 15 mmHg (< 9 seconds of 72h demand; PMID:16897713, PMID:37318185), unencapsulated K_ATP/Ca2+ channel blockers wash out of 140-350 um hydrogels in 7-177 seconds while risking alpha-cell glucagon suppression (PMID:23935835, PMID:17503968), and unwashed or 100 uM racemic Nec-1 pre-conditioning carries off-target ferroptotic/IDO1/NQO1 confounding (PMID:41951603, PMID:34252539).",
+        "cheapest_falsification_assay": "Closed-chamber respirometry depletion timing, 120h simultaneous assembled-organoid OCR coupon (upper95 <= 0.80), and washed cell-pellet LC-MS <= LOQ + >= 90% NQO1 activity.",
+        "pmids": [
+          "16897713",
+          "37318185",
+          "23935835",
+          "17503968",
+          "41951603",
+          "34252539"
+        ]
+      },
+      {
+        "guardrail_id": "OFFGRID_GUARD_007_CAS9_DSB_PLASMID_BACKBONE_CAPTURE_INVERTED_BXB1_AND_RODENT_ADENOSINE_EXTRAPOLATION",
+        "graveyard_card_id": "GY-017",
+        "severity_level": "WARN",
+        "curation_status": "precautionary_mechanistic_hazard",
+        "evidence_basis_class": "mechanistic_precaution_or_non_islet_extrapolation",
+        "contribution_id": "IIP-0023",
+        "status": "WILDCARD_DESIGN_Y_FAIL_CLOSED_INTEGRATION_AND_HUMAN_ADENOSINE_GATES",
+        "summary": "Using Cas9 double-strand breaks with large bacterial plasmids for >10 kb multigenic knock-in drives NHEJ vector-backbone capture, concatemers, and p53 selection (PMID:31570731, PMID:36008610), standard attB-in-genome Bxb1 polarity underperforms eePASSIGE 73-bp attP-in-genome + backbone-free attB-minicircle integration (PMID:38858586, PMID:39179886, PMID:42749803), TadCBEd carries residual A>G bystander activity requiring full haplotype NGS (PMID:36357719), and rodent A1/A3 adenosine receptor assumptions fail to reflect human beta-cell ADORA1 GSIS tonus vs alpha-cell/vascular ADORA2A stimulation (PMID:42660457, PMID:38879678).",
+        "cheapest_falsification_assay": "Stage-0 Y-01..Y-04 gates: KanR/ori backbone VAF = 0, ddPCR copy number = 2.00 +/- 0.10, full C>T + A>G + indel haplotype NGS, human islet + DPCPX ADORA1 perifusion (SI >= 3.0), and N_eff >= 299,573,228 AP1903 clonogenic kill.",
+        "pmids": [
+          "38858586",
+          "39179886",
+          "42749803",
+          "31570731",
+          "36008610",
+          "36357719",
+          "42660457",
+          "38879678"
         ]
       }
     ]

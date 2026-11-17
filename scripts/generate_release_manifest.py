@@ -301,6 +301,178 @@ def _publish_generation_artifacts(payloads,lock_path):
     _publication_support().publish_byte_artifacts(payloads,lock_path=lock_path,rollback_journal=_GENERATION_JOURNAL.get())
 
 
+def _build_public_combinatorial_pareto_and_ladder(ranking_payload: dict) -> dict:
+    """Build a clean, rights-safe, tag-scrubbed public summary of the 2,160-stack combinatorial search,
+    the controlled stepping-stone ladder from Sana UP421 (#246) through minimal HIP + niche + switch (#45) to Design A (#1),
+    the K = 0..7 edit-budget Pareto frontier, and one-way engineering-prior tornado swings."""
+    stacks = ranking_payload.get("all_evaluated_combinatorial_stacks") or []
+    by_id = {s["combination_id"]: s for s in stacks}
+    test_of = lambda gate: str(gate or "").split("_", 1)[0].replace("Gate", "")
+
+    vd = ranking_payload.get("direct_output_logit_sensitivity_and_variance_decomposition") or {}
+    ug = vd.get("uniform_grid_pooled_pediatric_gate_logit_variance_decomposition") or {}
+    feas_vd_key = next((k for k in vd if k.startswith("feasible_subset_and_within_top_tier_variance_decomposition")), "")
+    feas_vd = vd.get(feas_vd_key) or {}
+    assumptions_pct = round(float(ug.get("structural_share_of_total_variance", 0.0)) * 100.0, 2)
+    findings_pct = round(float(ug.get("empirical_gene_signal_share_of_total_variance", 0.0)) * 100.0, 2)
+    overlap_pct = round(100.0 - assumptions_pct - findings_pct, 2)
+
+    ladder_specs = [
+        (
+            "UP421_NAKED_REFERENCE",
+            "Sana UP421 reference (naked, no switch)",
+            "B2M-/- + CIITA-/- + lentiviral CD47 in naked avascular clusters, no safety switch",
+            "ALLO_B2M_CIITA_KO_CD47_LENTI__AUTO_NONE__CYTO_NONE__ER_NONE__NICHE_NAKED_AVASCULAR_TRANSPLANT__SAF_NONE",
+        ),
+        (
+            "MINIMAL_HIP_NAKED_PLUS_SWITCH",
+            "Minimal HIP + AAVS1 safety switch (naked)",
+            "Adds biallelic AAVS1-iCasp9 safety switch while keeping naked avascular clusters",
+            "ALLO_B2M_CIITA_KO_CD47_LENTI__AUTO_NONE__CYTO_NONE__ER_NONE__NICHE_NAKED_AVASCULAR_TRANSPLANT__SAF_AAVS1_CAG_ICASP9_BIALLELIC",
+        ),
+        (
+            "MINIMAL_HIP_NICHE_NO_SWITCH",
+            "Minimal HIP + oxygen/vessel niche (no switch)",
+            "Places minimal HIP into <=120 um tri-hormonal clusters + microvessels + 72h CaO2/catalase without a safety switch",
+            "ALLO_B2M_CIITA_KO_CD47_LENTI__AUTO_NONE__CYTO_NONE__ER_NONE__NICHE_TRIHORMONAL_120UM_MVF_CAO2__SAF_NONE",
+        ),
+        (
+            "MINIMAL_HIP_NICHE_PLUS_SWITCH",
+            "Minimal HIP + oxygen/vessel niche + AAVS1 switch",
+            "Niche- and switch-matched minimal HIP peer: isolates the cell-engineering gap vs Design A on the exact same setting",
+            "ALLO_B2M_CIITA_KO_CD47_LENTI__AUTO_NONE__CYTO_NONE__ER_NONE__NICHE_TRIHORMONAL_120UM_MVF_CAO2__SAF_AAVS1_CAG_ICASP9_BIALLELIC",
+        ),
+        (
+            "DESIGN_A_CLOAK_ONLY_3LOCUS",
+            "3-locus B2M(HLA-E+CD47) + CIITA-KO + AAVS1 switch in niche",
+            "Pareto-best safety-switched 3-edit design: Design A without the CXCL10 SERPINB9/PD-L1 shield",
+            "ALLO_B2M_HLAE_CD47_SWAP_CIITA_KO__AUTO_NONE__CYTO_NONE__ER_NONE__NICHE_TRIHORMONAL_120UM_MVF_CAO2__SAF_AAVS1_CAG_ICASP9_BIALLELIC",
+        ),
+        (
+            "MINIMAL_HIP_PLUS_CXCL10_5LOCUS",
+            "5-locus minimal HIP + CXCL10(SERPINB9+PD-L1) + AAVS1 switch in niche",
+            "Pareto-best 5-edit design: minimal HIP plus the inducible CXCL10 shield (1 extra viral/locus edit vs Design A)",
+            "ALLO_B2M_CIITA_KO_CD47_LENTI__AUTO_NONE__CYTO_CXCL10_SWAP_PDL1_SERPINB9__ER_NONE__NICHE_TRIHORMONAL_120UM_MVF_CAO2__SAF_AAVS1_CAG_ICASP9_BIALLELIC",
+        ),
+        (
+            "DESIGN_A_LEAD_4LOCUS",
+            "Design A (4-locus lead)",
+            "Single-locus B2M(HLA-E+CD47) knock-in + CIITA-KO + CXCL10(SERPINB9+PD-L1) + biallelic AAVS1-iCasp9 in niche",
+            "ALLO_B2M_HLAE_CD47_SWAP_CIITA_KO__AUTO_NONE__CYTO_CXCL10_SWAP_PDL1_SERPINB9__ER_NONE__NICHE_TRIHORMONAL_120UM_MVF_CAO2__SAF_AAVS1_CAG_ICASP9_BIALLELIC",
+        ),
+        (
+            "DESIGN_X_GRID_CHALLENGER",
+            "Design X (scored grid challenger)",
+            "Design A plus one INS leader/DRiP base edit on the shared baseline niche",
+            "ALLO_B2M_HLAE_CD47_SWAP_CIITA_KO__AUTO_DUAL_INS_LEADER_AND_DRIP_EDIT__CYTO_CXCL10_SWAP_PDL1_SERPINB9__ER_NONE__NICHE_TRIHORMONAL_120UM_MVF_CAO2__SAF_AAVS1_CAG_ICASP9_BIALLELIC",
+        ),
+        (
+            "DESIGN_B1_HLAC_COMPARATOR",
+            "Design B (HLA-C-retained 6-locus + INS base-edit comparator)",
+            "HLA-A/B-KO retaining matched HLA-C + CIITA-KO + TYK2-KO + INS base edit + CXCL10 + AAVS1-iCasp9 in niche",
+            "ALLO_HLA_C_RETAINED_SUPERDONOR_PLUS_TYK2_KO__AUTO_DUAL_INS_LEADER_AND_DRIP_EDIT__CYTO_CXCL10_SWAP_PDL1_SERPINB9__ER_NONE__NICHE_TRIHORMONAL_120UM_MVF_CAO2__SAF_AAVS1_CAG_ICASP9_BIALLELIC",
+        ),
+    ]
+
+    def _compact_stack(s: dict) -> dict:
+        ped = s["utility_pediatric_early_onset_t1d"]
+        adult = s["utility_adult_onset_lada"]
+        return {
+            "rank": int(s["global_rank_among_all_combinations"]),
+            "tie_group_size": int(s.get("rank_tie_group_size", 1)),
+            "combination_id": s["combination_id"],
+            "K": int(s["total_genomic_cuts_K"]),
+            "B": int(s["total_base_edits_B"]),
+            "is_feasible": bool(s["is_feasible_candidate"]),
+            "unswitched_clinical_hold": bool(s["unswitched_immune_evasive_clinical_hold"]),
+            "composite_score": float(s["composite_series_system_utility"]),
+            "child_score": float(ped["series_system_joint_survival_probability"]),
+            "adult_score": float(adult["series_system_joint_survival_probability"]),
+            "weakest_test_child": test_of(ped["limiting_bottleneck_gate"]),
+            "test_scores_child": {test_of(k): float(v) for k, v in ped["gate_scores"].items()},
+            "triggered_graveyard_ids": [r["graveyard_id"] for r in (s.get("triggered_graveyard_rules") or [])],
+        }
+
+    ladder_rows = []
+    for step_id, label, what_changed, cid in ladder_specs:
+        st = by_id.get(cid)
+        if st is None:
+            raise ValueError("Missing stepping-stone combination_id in evaluated stacks: " + cid)
+        ladder_rows.append({
+            "step_id": step_id,
+            "label": label,
+            "what_changed": what_changed,
+            **_compact_stack(st),
+        })
+
+    pareto_rows = []
+    for pf in ranking_payload.get("pareto_frontier_by_locus_budget_K") or []:
+        best_st = by_id[pf["best_combination_id"]]
+        sw_st = by_id[pf["clinical_switched_best_combination_id"]]
+        pareto_rows.append({
+            "K": int(pf["total_genomic_cuts_K"]),
+            "overall_best": _compact_stack(best_st),
+            "clinical_switched_best": _compact_stack(sw_st),
+        })
+
+    tornado_raw = vd.get("engineering_priors_plausible_range_tornado_diagnostics") or {}
+    tornado_clean = {}
+    for param_key, rec in tornado_raw.items():
+        if isinstance(rec, dict):
+            tornado_clean[param_key] = {
+                "plausible_range": list(rec["plausible_range"]),
+                "point_estimate": rec["point_estimate"],
+                "design_a_rank_at_low": int(rec["scenario_a_rank_at_low"]),
+                "design_a_rank_at_high": int(rec["scenario_a_rank_at_high"]),
+                "design_a_composite_at_low": float(rec["scenario_a_composite_at_low"]),
+                "design_a_composite_at_high": float(rec["scenario_a_composite_at_high"]),
+                "design_a_composite_swing": float(rec["scenario_a_composite_swing"]),
+                "design_b_rank_at_low": int(rec["scenario_b_rank_at_low"]),
+                "design_b_rank_at_high": int(rec["scenario_b_rank_at_high"]),
+                "design_b_composite_at_low": float(rec["scenario_b_composite_at_low"]),
+                "design_b_composite_at_high": float(rec["scenario_b_composite_at_high"]),
+                "design_b_composite_swing": float(rec["scenario_b_composite_swing"]),
+                "design_a_remains_rank1_at_both_bounds": bool(rec["scenario_a_remains_rank1_at_both_bounds"]),
+            }
+
+    return {
+        "schema_version": "openislet_combinatorial_pareto_and_ladder_v0.8.0",
+        "project": "OpenIslet.org (Project Islet-1) — Public Combinatorial Search Summary, Controlled Stepping-Stone Ladder & Edit-Budget Pareto Frontier",
+        "license": "CC-BY-4.0",
+        "caveat": (
+            "Prior-Anchored Scenario Outputs on a 0 to 1 comparative scale, NOT calibrated clinical survival probabilities. "
+            f"{assumptions_pct:.2f}% of the score variance across the 2,160-combination grid comes from declared starting assumptions, "
+            f"{overlap_pct:.2f}% from assumption-evidence covariance, and {findings_pct:.2f}% from empirical Ring-1/omics gene-signal deltas. "
+            "Empirical head-to-head dish experiments in data/protocols/hip_core_fractional_factorial_v0.6.2.json are required to test whether intermediate 3-locus designs match or beat 4-locus Design A."
+        ),
+        "grid_counts": {
+            "total_combinations_evaluated": int(ranking_payload["total_valid_combinatorial_stacks_evaluated"]),
+            "feasible_unblocked": int(ranking_payload["total_feasible_unblocked_stacks"]),
+            "graveyard_blocked": int(ranking_payload["total_graveyard_blocked_stacks"]),
+        },
+        "variance_decomposition": {
+            "starting_assumptions_pct": assumptions_pct,
+            "overlap_pct": overlap_pct,
+            "published_findings_pct": findings_pct,
+            "feasible_subset_n": int(feas_vd.get("feasible_subset_n_stacks", 480)),
+            "feasible_spearman_rho_loaded_vs_zero_gene_signal": float(feas_vd.get("feasible_spearman_rho_loaded_vs_zero_gene_signal", 0.0)),
+            "top25_overlap_loaded_vs_zero_gene_signal": str(feas_vd.get("top25_membership_overlap_loaded_vs_zero_gene_signal", "")),
+            "top50_overlap_loaded_vs_zero_gene_signal": str(feas_vd.get("top50_membership_overlap_loaded_vs_zero_gene_signal", "")),
+        },
+        "controlled_stepping_stone_ladder": ladder_rows,
+        "pareto_frontier_by_edit_count_K": pareto_rows,
+        "one_way_engineering_prior_sensitivity": tornado_clean,
+        "stage0_head_to_head_protocol_pointer": {
+            "protocol_path": "data/protocols/hip_core_fractional_factorial_v0.6.2.json",
+            "design_runs": 36,
+            "optional_quadratic_bridge_runs": 4,
+            "factors_tested": 6,
+            "summary": "Two-stage bridged 36-run fractional-factorial dish protocol crossing X1 (minimal HIP vs Design A B2M knock-in), X2 (TYK2), X3 (none vs CXCL10 SERPINB9/PD-L1), X4 (INS edit), X5 (cluster/niche), and X6 (AAVS1 iCasp9).",
+        },
+        "evaluated_stacks": [_compact_stack(s) for s in stacks],
+    }
+
+
 def _generate_release_manifest() -> None:
     from wetlab_contract import derive_contract, CONTRACT_RELATIVE_PATH
     from render_documentation import write_documentation
@@ -333,7 +505,14 @@ def _generate_release_manifest() -> None:
     }
     _require_generation_lease()
     ranking_bytes=(json.dumps(ranking_payload,indent=2,ensure_ascii=False,allow_nan=False)+'\n').encode('utf-8')
-    _publish_generation_artifacts({canonical_ranking:ranking_bytes,brief_ranking:ranking_bytes},EXTRACTED_DIR/'.ranking-publication.lock')
+    public_pareto_path = EXTRACTED_DIR / "islet1_combinatorial_pareto_and_ladder_v0.8.0.json"
+    public_pareto_bytes = (
+        json.dumps(_build_public_combinatorial_pareto_and_ladder(ranking_payload), indent=2, ensure_ascii=False, allow_nan=False) + "\n"
+    ).encode("utf-8")
+    _publish_generation_artifacts(
+        {canonical_ranking: ranking_bytes, brief_ranking: ranking_bytes, public_pareto_path: public_pareto_bytes},
+        EXTRACTED_DIR / '.ranking-publication.lock',
+    )
 
     # 4. Build root manifest.json (Layers 1-5 and Provenance Baseline)
     tracked_artifacts = [
@@ -400,6 +579,7 @@ def _generate_release_manifest() -> None:
         "data/extracted/layer1_context_evidence_graph_atlas.json",
         "data/extracted/islet1_candidate_stack_rankings.json",
         "data/extracted/islet1_stack_ranking_v0.5.json",
+        "data/extracted/islet1_combinatorial_pareto_and_ladder_v0.8.0.json",
         "data/extracted/ring1_study_dossiers_v0.5.jsonl",
         "data/extracted/ring1_atomic_effects_v0.5.jsonl",
         "data/extracted/layer2_regulatory_and_perturbation_atlas.json",
@@ -670,6 +850,11 @@ def _generate_release_manifest() -> None:
                 graph_data.get("residual_failure_and_complementary_lever_pairs", [])
             ),
             "graveyard_entries_total": len(graveyard_data.get("graveyard_entries", [])),
+            "graveyard_offgrid_guardrails_total": len(
+                (graveyard_data.get("off_grid_molecular_dead_end_guardrails") or {}).get("guardrails") or []
+            ),
+            "graveyard_public_cards_total": len(graveyard_data.get("graveyard_entries", []))
+            + len((graveyard_data.get("off_grid_molecular_dead_end_guardrails") or {}).get("guardrails") or []),
             "omics_gnomad_raw_files_total": len(gnomad_files),
             "candidate_stacks_evaluated": ranking_payload.get(
                 "total_valid_combinatorial_stacks_evaluated", 0

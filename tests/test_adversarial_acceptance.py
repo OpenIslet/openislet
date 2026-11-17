@@ -270,13 +270,29 @@ def run_acceptance_suite(out_path: Path) -> int:
     ]
     add_check("CHK-04", "attribution", "Target evidence profiles are strictly invariant to study input ordering", len(order_diffs) == 0, order_diffs)
 
-    # 5. Graveyard reachability across 1,620 stacks
-    gy_entries = json.loads((ROOT / "data" / "graveyard" / "idea_graveyard_v0.5.json").read_text(encoding="utf-8"))["graveyard_entries"]
+    # 5. Graveyard reachability across the combinatorial grid + off-grid Stage-0 guardrails parity
+    gy_doc = json.loads((ROOT / "data" / "graveyard" / "idea_graveyard_v0.5.json").read_text(encoding="utf-8"))
+    gy_entries = gy_doc["graveyard_entries"]
+    offgrid_guards = (gy_doc.get("off_grid_molecular_dead_end_guardrails") or {}).get("guardrails") or []
+    offgrid_card_ids = [g.get("graveyard_card_id") for g in offgrid_guards]
+    offgrid_ok = (
+        len(gy_entries) == 10
+        and len(offgrid_guards) >= 7
+        and len(set(offgrid_card_ids)) == len(offgrid_card_ids)
+        and {"GY-011", "GY-012", "GY-013", "GY-014", "GY-015", "GY-016", "GY-017"}.issubset(set(offgrid_card_ids))
+        and all(g.get("severity_level") in ("BLOCK", "WARN") and bool(g.get("pmids")) for g in offgrid_guards)
+    )
     fired_counts = Counter(
         r["graveyard_id"] for c in combos for r in (c.get("triggered_graveyard_rules") or [])
     )
     unreached = [e["graveyard_id"] for e in gy_entries if fired_counts[e["graveyard_id"]] == 0]
-    add_check("CHK-05", "graveyard", "Every Graveyard rule fires on at least one stack in the 1,620-stack grid", len(unreached) == 0, {"unreached": unreached, "fired": dict(fired_counts)})
+    add_check(
+        "CHK-05",
+        "graveyard",
+        "Every grid Graveyard rule fires on at least one stack and all off-grid Stage-0 guardrails (GY-011..GY-017) carry structured severity and PMIDs",
+        len(unreached) == 0 and offgrid_ok,
+        {"unreached": unreached, "offgrid_card_ids": offgrid_card_ids, "fired": dict(fired_counts)},
+    )
 
     # 6. Zero-evidence baseline
     empty_combos = rank.run_combinatorial_multi_gate_search(rank.build_target_evidence_profiles([], omics))
@@ -789,8 +805,22 @@ def run_acceptance_suite(out_path: Path) -> int:
                                 st_val = str(item.get("statement") or "")
                                 if " -> " not in st_val and not st_val.startswith("[REDACTED_NON_OA_EXCERPT:"):
                                     graph_unredacted_statements += 1
+    pareto_rel = "data/extracted/islet1_combinatorial_pareto_and_ladder_v0.8.0.json"
+    pareto_doc = json.loads((ROOT / pareto_rel).read_text(encoding="utf-8")) if (ROOT / pareto_rel).exists() else {}
+    pareto_raw = (ROOT / pareto_rel).read_text(encoding="utf-8") if (ROOT / pareto_rel).exists() else ""
+    step45 = next((r for r in pareto_doc.get("controlled_stepping_stone_ladder", []) if r.get("step_id") == "MINIMAL_HIP_NICHE_PLUS_SWITCH"), {})
+    pareto_ok = (
+        pareto_rel in included_paths
+        and len(pareto_doc.get("evaluated_stacks", [])) == len(combos)
+        and len(pareto_doc.get("pareto_frontier_by_edit_count_K", [])) == 8
+        and step45.get("rank") == 45
+        and step45.get("child_score") == 0.0526
+        and "[DEC-" not in pareto_raw
+        and re.search(r"_[a-z]+\d*_r\d+\b", pareto_raw) is None
+    )
     allow_ok = (
         not any("ranking" in k for k in included_paths)
+        and pareto_ok
         and not any(k.startswith("data/dossiers/") for k in included_paths)
         and not any(manifest_mod._forbidden_public_path(k) for k in included_paths)
         and all(k in included_paths for k in lic_files)
