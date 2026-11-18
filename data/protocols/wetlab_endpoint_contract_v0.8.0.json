@@ -58,7 +58,15 @@
     "contrast_b3_donor_iec_arm",
     "bound_c1_c5_pair_sha256",
     "tyk2_pe_modality",
-    "iip0026_schema_era"
+    "iip0026_schema_era",
+    "recipient_serum_pair_id",
+    "intact_serum_sample_id",
+    "igg_depleted_serum_sample_id",
+    "positive_adcc_control_id",
+    "isotype_adcc_control_id",
+    "arm2_depleted_sample_id",
+    "contemporaneous_arm3_control_sample_id",
+    "sister_assembly_id"
   ],
   "boolean_policy_keys": [
     "require_full_5endpoint_s9_panel",
@@ -153,7 +161,13 @@
     "design_b_hlae_3d12_positive",
     "design_b_hlac_allele_specific_surface_or_phased_mrna_verified",
     "b_sct_ciita_exon5_and_trimer_verified",
-    "tyk2_phased_haplotype_sap_verified"
+    "tyk2_phased_haplotype_sap_verified",
+    "require_full_iip0028_postdepletion_adcc_mixture_and_iapp_panel",
+    "washout_and_natural_decay_unpooled_verified",
+    "carrier_and_soluble_adjunct_below_lod_verified",
+    "fcr_effector_fcgr3a_158v_typed_verified",
+    "dec084_measured_starting_composition_and_fresh_equal_output_verified",
+    "iapp_sister_visit_lot_and_viable_beta_mass_concordance_verified"
   ],
   "endpoints": [
     {
@@ -3702,6 +3716,204 @@
       "default_se": 1e-12,
       "minimum_se": 1e-12,
       "unit": "tyk2_pe4max_coding_or_canonical_splice_de_novo_indels_count"
+    },
+    {
+      "endpoint_id": "stage0_gate0d_arm1_unconditioned_cd4_si",
+      "meanKey": "obs_arm1_unconditioned_cd4_si",
+      "seKey": "obs_arm1_unconditioned_cd4_si_se",
+      "min": 0.1,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.08,
+      "minimum_se": 0.001,
+      "unit": "arm1_never_conditioned_indirect_apc_dq2_dq8_cd4_stimulation_index"
+    },
+    {
+      "endpoint_id": "stage0_gate0d_arm1_unconditioned_annexin_v_pct",
+      "meanKey": "obs_arm1_unconditioned_annexin_v_pct",
+      "seKey": "obs_arm1_unconditioned_annexin_v_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 0.001,
+      "unit": "arm1_never_conditioned_transwell_beta_annexin_v_positive_percentage"
+    },
+    {
+      "endpoint_id": "stage0_gate0d_parallel_arm3_control_cd4_apoptosis_pct",
+      "meanKey": "obs_parallel_arm3_control_cd4_apoptosis_pct",
+      "seKey": "obs_parallel_arm3_control_cd4_apoptosis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 1.5,
+      "minimum_se": 0.001,
+      "unit": "contemporaneous_parallel_arm3_active_fasl_control_activated_cd4_apoptosis_percentage"
+    },
+    {
+      "endpoint_id": "stage0_gate0d_post_depletion_input_normalized_cpep_ratio",
+      "meanKey": "obs_post_depletion_input_normalized_cpep_ratio",
+      "seKey": "obs_post_depletion_input_normalized_cpep_ratio_se",
+      "min": 0.01,
+      "max": 5.0,
+      "se_required": false,
+      "default_se": 0.02,
+      "minimum_se": 0.001,
+      "unit": "arm2_post_depletion_input_normalized_stimulated_c_peptide_ratio_vs_sham"
+    },
+    {
+      "endpoint_id": "stage0_fcr_cd16_intact_serum_total_lysis_pct",
+      "meanKey": "obs_fcr_cd16_intact_serum_total_lysis_pct",
+      "seKey": "obs_fcr_cd16_intact_serum_total_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.4,
+      "minimum_se": 0.001,
+      "unit": "intact_recipient_serum_fcgr3a_cd16_total_cellular_lysis_percentage"
+    },
+    {
+      "endpoint_id": "stage0_fcr_cd16_net_adcc_lysis_vs_igg_depleted_pct",
+      "meanKey": "obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_pct",
+      "seKey": "obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_se",
+      "min": -20.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.35,
+      "minimum_se": 0.001,
+      "unit": "paired_igg_attributable_fcgr3a_cd16_net_adcc_lysis_increment_vs_igg_depleted_serum_percentage"
+    },
+    {
+      "endpoint_id": "stage0_adcc_isotype_background_lysis_pct",
+      "meanKey": "obs_adcc_isotype_background_lysis_pct",
+      "seKey": "obs_adcc_isotype_background_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.3,
+      "minimum_se": 0.001,
+      "unit": "matrix_matched_isotype_control_cd16_background_cellular_lysis_percentage"
+    },
+    {
+      "endpoint_id": "stage0_igg_depletion_efficiency_pct",
+      "meanKey": "obs_igg_depletion_efficiency_pct",
+      "seKey": "obs_igg_depletion_efficiency_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.25,
+      "minimum_se": 0.001,
+      "unit": "paired_recipient_serum_protein_g_igg_depletion_efficiency_percentage"
+    },
+    {
+      "endpoint_id": "stage0_dec084_starting_potency_ratio_out_b_over_out_a",
+      "meanKey": "obs_dec084_starting_potency_ratio_out_b_over_out_a",
+      "seKey": "obs_dec084_starting_potency_ratio_out_b_over_out_a_se",
+      "min": 0.1,
+      "max": 5.0,
+      "se_required": false,
+      "default_se": 0.02,
+      "minimum_se": 0.001,
+      "unit": "measured_starting_per_beta_stimulated_c_peptide_output_ratio_candidate_over_reference"
+    },
+    {
+      "endpoint_id": "stage0_dec084_ocr_ratio_b_over_a",
+      "meanKey": "obs_dec084_ocr_ratio_b_over_a",
+      "seKey": "obs_dec084_ocr_ratio_b_over_a_se",
+      "min": 0.1,
+      "max": 5.0,
+      "se_required": false,
+      "default_se": 0.01,
+      "minimum_se": 0.001,
+      "unit": "equal_output_loaded_whole_graft_ocr_ratio_candidate_over_60_30_10_reference"
+    },
+    {
+      "endpoint_id": "stage0_dec084_cpep_auc_ratio_b_over_a",
+      "meanKey": "obs_dec084_cpep_auc_ratio_b_over_a",
+      "seKey": "obs_dec084_cpep_auc_ratio_b_over_a_se",
+      "min": 0.1,
+      "max": 5.0,
+      "se_required": false,
+      "default_se": 0.02,
+      "minimum_se": 0.001,
+      "unit": "equal_output_loaded_stimulated_c_peptide_auc_ratio_candidate_over_60_30_10_reference"
+    },
+    {
+      "endpoint_id": "stage0_dec084_gcg_auc_ratio_b_over_a",
+      "meanKey": "obs_dec084_gcg_auc_ratio_b_over_a",
+      "seKey": "obs_dec084_gcg_auc_ratio_b_over_a_se",
+      "min": 0.1,
+      "max": 5.0,
+      "se_required": false,
+      "default_se": 0.02,
+      "minimum_se": 0.001,
+      "unit": "equal_output_loaded_glucopenic_glucagon_auc_ratio_candidate_over_60_30_10_reference"
+    },
+    {
+      "endpoint_id": "stage0_iapp_72h_immunocapture_oligomer_elisa_fold",
+      "meanKey": "obs_iapp_72h_immunocapture_oligomer_elisa_fold",
+      "seKey": "obs_iapp_72h_immunocapture_oligomer_elisa_se",
+      "min": 0.0,
+      "max": 50.0,
+      "se_required": false,
+      "default_se": 0.05,
+      "minimum_se": 0.001,
+      "unit": "lot_scope_72h_iapp_immunocapture_oligomer_elisa_fold_over_age_matched_ref"
+    },
+    {
+      "endpoint_id": "stage0_iapp_72h_colocalized_fibril_area_pct",
+      "meanKey": "obs_iapp_72h_colocalized_fibril_area_pct",
+      "seKey": "obs_iapp_72h_colocalized_fibril_area_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.04,
+      "minimum_se": 0.001,
+      "unit": "lot_scope_72h_anti_iapp_colocalized_fibril_area_percentage"
+    },
+    {
+      "endpoint_id": "stage0_iapp_d28_immunocapture_oligomer_elisa_fold",
+      "meanKey": "obs_iapp_d28_immunocapture_oligomer_elisa_fold",
+      "seKey": "obs_iapp_d28_immunocapture_oligomer_elisa_se",
+      "min": 0.0,
+      "max": 50.0,
+      "se_required": false,
+      "default_se": 0.05,
+      "minimum_se": 0.001,
+      "unit": "lot_scope_day28_iapp_immunocapture_oligomer_elisa_fold_over_age_matched_ref"
+    },
+    {
+      "endpoint_id": "stage0_iapp_d28_colocalized_fibril_area_pct",
+      "meanKey": "obs_iapp_d28_colocalized_fibril_area_pct",
+      "seKey": "obs_iapp_d28_colocalized_fibril_area_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.04,
+      "minimum_se": 0.001,
+      "unit": "lot_scope_day28_anti_iapp_colocalized_fibril_area_percentage"
+    },
+    {
+      "endpoint_id": "stage0_iapp_d84_immunocapture_oligomer_elisa_fold",
+      "meanKey": "obs_iapp_d84_immunocapture_oligomer_elisa_fold",
+      "seKey": "obs_iapp_d84_immunocapture_oligomer_elisa_se",
+      "min": 0.0,
+      "max": 50.0,
+      "se_required": false,
+      "default_se": 0.05,
+      "minimum_se": 0.001,
+      "unit": "terminal_sister_device_day84_iapp_immunocapture_oligomer_elisa_fold_over_age_matched_ref"
+    },
+    {
+      "endpoint_id": "stage0_iapp_d84_colocalized_fibril_area_pct",
+      "meanKey": "obs_iapp_d84_colocalized_fibril_area_pct",
+      "seKey": "obs_iapp_d84_colocalized_fibril_area_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.04,
+      "minimum_se": 0.001,
+      "unit": "terminal_sister_device_day84_anti_iapp_colocalized_fibril_area_percentage"
     }
   ]
 }

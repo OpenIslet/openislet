@@ -24535,6 +24535,203 @@
       }
     }
   },
+  "stage0_p2_itm2b_nm021999_reserve_and_brichos_audit_iip_0028": {
+    "contribution_id": "IIP-0028",
+    "decision_id": "DEC-106",
+    "graveyard_card_id": "GY-023",
+    "offgrid_guardrail_id": "OFFGRID_GUARD_013_STANDALONE_72H_A11_COMPLEMENT_ONLY_CROSSMATCH_AND_UNQUALIFIED_SP_BRICHOS_FUSIONS",
+    "active_weight_pct": 0.0,
+    "quarantine_status": "HELD_0PCT_WEIGHT_CONDITIONAL_P2_MODE_B_RESERVE_REQUIRING_CONCORDANT_OR_REPLICATED_CHRONIC_IAPP_BREACH",
+    "canonical_scenario_a_and_design_b_fastas_untouched": true,
+    "archival_mrna_provenance": {
+      "relative_path": "data/constructs/nm_021999_5_archival_mrna.fasta",
+      "accession": "NM_021999.5",
+      "rights_basis": "INSDC / NCBI RefSeq public archival sequence data",
+      "fasta_file_sha256": "4a4cb15d0544884a62d86ebf4137c5284edad8210b6e32e74c2eb0aff005d13e",
+      "unwrapped_mrna_length_nt": 10089,
+      "cds_1based_inclusive_coords": [
+        156,
+        956
+      ],
+      "cds_length_nt": 801,
+      "cds_ascii_sha256": "6fc8d3d7a9b4851a9b50c026d44f02e7d2539e122a0b727d2a5cc4ee93df8903",
+      "translated_uniprot_accession": "Q9Y287",
+      "translated_length_aa": 266,
+      "terminal_stop_codon": "TGA",
+      "pdb_domain_reference": {
+        "pdb_id": "8RNU",
+        "resolution_angstrom": 3.4,
+        "fragment_residues_q9y287": [
+          113,
+          231
+        ],
+        "fragment_length_aa": 119,
+        "rights_basis": "CC0-1.0 (wwPDB archive usage policy; Chen et al. 2024 PMID:38864729)"
+      }
+    },
+    "pinned_swissprot_reference": {
+      "reviewed_human_protein_count": 20429,
+      "gzip_sha256": "40a8856b4e3f3620b11635143b501ef701558ed97309b0cdb4423ef09e4618d0",
+      "uncompressed_sha256": "13852e174364bf1c705206c38eacae57210f5bca9955f05be6b4ff48f727d37b",
+      "license": "CC-BY-4.0"
+    },
+    "comparator_coordinate_and_functional_reconciliation": {
+      "oskarsson_2018_pmid_29507232_published_construct": "SFTPB[1-23] (MAESHLLQWLLLLLPTLCGPGTA) fused to Bri2[90-236] (170 aa precursor)",
+      "cen_2025_pmid_41212211_published_text_bound": "Reports Bri2 residues 90-263 while citing Oskarsson et al. 2018 (197 aa precursor if literal); high-titre Ad-BRICHOS failed to restore insulin content in Fig. 4c and provides no full-length ITM2B islet-graft efficacy result",
+      "junction_seam_insensitivity_note": "Both reported C-terminal coordinates (90-236 and 90-263) share the identical N-terminal SFTPB[1-23]|Bri2[90..] chimeric fusion seam, yielding 34 unmatched positional 8-11-mers and 14 unmatched 15-mers (identical to synthetic INS[1-24], IAPP[1-22], and B2M[1-20] leader fusions), whereas interpretation of the biological Ad-BRICHOS comparator requires keeping its original truncated sequence distinct from full-length native ITM2B.",
+      "chen_2024_pmid_38864729_bri23_occupancy_and_safety_caveat": "Full-length ITM2B co-generates membrane mBRI2[1-243] and the Bri23[244-266] peptide via Golgi FURIN cleavage (Arg243|Glu244; Kim et al. 1999 PMID:10526337) and ADAM10 ectodomain shedding (Martin et al. 2008 PMID:17965014). Chen et al. 2024 (PMID:38864729) reported reduced anti-amyloid activity in an Abeta system when native Bri23 occupies the BRICHOS client-binding surface, and 0 unmatched Swiss-Prot windows establish canonical sequence identity only — leaving HLA presentation, proteolytic processing, endocrine dose-response, and IAPP graft rescue empirically open."
+    },
+    "peptide_window_census": {
+      "Native_FullLength_ITM2B_Q9Y287_1_266": {
+        "length_aa": 266,
+        "sha256_aa": "4817b3c22eb996903cd75ed98f574d7db19562e7a51472c7c175c9199f772bfc",
+        "total_positional_8_11mers": 1030,
+        "unmatched_positional_8_11mers": 0,
+        "unmatched_unique_8_11mers": 0,
+        "total_positional_15mers": 252,
+        "unmatched_positional_15mers": 0,
+        "unmatched_unique_15mers": 0
+      },
+      "Cleaved_mBRI2_1_243_Furin_Arg243_Glu244": {
+        "length_aa": 243,
+        "sha256_aa": "beeeebf592ab5aba798121abe23b1a2ea90abe2cc32061f4a51ab6b5155acd4f",
+        "total_positional_8_11mers": 938,
+        "unmatched_positional_8_11mers": 0,
+        "unmatched_unique_8_11mers": 0,
+        "total_positional_15mers": 229,
+        "unmatched_positional_15mers": 0,
+        "unmatched_unique_15mers": 0
+      },
+      "Cleaved_Bri23_244_266": {
+        "length_aa": 23,
+        "sha256_aa": "bbf2f887be041963f6333b0405e80799bfe7b5c78bce48d7a4c76248bd75db1e",
+        "total_positional_8_11mers": 58,
+        "unmatched_positional_8_11mers": 0,
+        "unmatched_unique_8_11mers": 0,
+        "total_positional_15mers": 9,
+        "unmatched_positional_15mers": 0,
+        "unmatched_unique_15mers": 0
+      },
+      "Secreted_BRICHOS_Core_137_231": {
+        "length_aa": 95,
+        "sha256_aa": "e2beb9e5b9ec2e8db745e6e911af914e9e1812cf0f25a65b8729fbe55094ee59",
+        "total_positional_8_11mers": 346,
+        "unmatched_positional_8_11mers": 0,
+        "unmatched_unique_8_11mers": 0,
+        "total_positional_15mers": 81,
+        "unmatched_positional_15mers": 0,
+        "unmatched_unique_15mers": 0
+      },
+      "CryoEM_8RNU_RecombinantFragment_Bri2_113_231": {
+        "length_aa": 119,
+        "sha256_aa": "bfe00144a601ab7add4e801e904e722c6eb812a176d940a5c66645558cc3f55e",
+        "total_positional_8_11mers": 442,
+        "unmatched_positional_8_11mers": 0,
+        "unmatched_unique_8_11mers": 0,
+        "total_positional_15mers": 105,
+        "unmatched_positional_15mers": 0,
+        "unmatched_unique_15mers": 0
+      },
+      "Oskarsson2018_PublishedBound_SFTPB1_23_Bri2_90_236": {
+        "length_aa": 170,
+        "sha256_aa": "6bccef66b5cd9f64385e8deac1222ca33d0961e447a9dbe9c9ba6977930461da",
+        "total_positional_8_11mers": 646,
+        "unmatched_positional_8_11mers": 34,
+        "unmatched_unique_8_11mers": 34,
+        "total_positional_15mers": 156,
+        "unmatched_positional_15mers": 14,
+        "unmatched_unique_15mers": 14
+      },
+      "Cen2025_PublishedBound_SFTPB1_23_Bri2_90_263": {
+        "length_aa": 197,
+        "sha256_aa": "a471d5fae88cf186c2e53dfcb0ff16d497f0b43a34de0fa67f0a76d2966165e3",
+        "total_positional_8_11mers": 754,
+        "unmatched_positional_8_11mers": 34,
+        "unmatched_unique_8_11mers": 34,
+        "total_positional_15mers": 183,
+        "unmatched_positional_15mers": 14,
+        "unmatched_unique_15mers": 14
+      },
+      "Synthetic_INS_SP1_24_Bri2_113_231": {
+        "length_aa": 143,
+        "sha256_aa": "e34bd2b4c558becf0ef1e7b8558029b996da8967975ccff36cbc64f5199e0b7b",
+        "total_positional_8_11mers": 538,
+        "unmatched_positional_8_11mers": 34,
+        "unmatched_unique_8_11mers": 34,
+        "total_positional_15mers": 129,
+        "unmatched_positional_15mers": 14,
+        "unmatched_unique_15mers": 14
+      },
+      "Synthetic_IAPP_SP1_22_Bri2_137_231": {
+        "length_aa": 117,
+        "sha256_aa": "f557d236dad5e5631c79ced6fde9b8ba82a0189fdc195229343090d4a9b96aae",
+        "total_positional_8_11mers": 434,
+        "unmatched_positional_8_11mers": 34,
+        "unmatched_unique_8_11mers": 34,
+        "total_positional_15mers": 103,
+        "unmatched_positional_15mers": 14,
+        "unmatched_unique_15mers": 14
+      },
+      "Synthetic_B2M_SP1_20_Bri2_137_231": {
+        "length_aa": 115,
+        "sha256_aa": "e0387fc6f750397e1fdc02e9cca98462fd1dad15bd931cf11d26c6bf098996f2",
+        "total_positional_8_11mers": 426,
+        "unmatched_positional_8_11mers": 34,
+        "unmatched_unique_8_11mers": 34,
+        "total_positional_15mers": 101,
+        "unmatched_positional_15mers": 14,
+        "unmatched_unique_15mers": 14
+      }
+    },
+    "aav6_cassette_packaging_budget_ledger": {
+      "single_aav6_packaging_ceiling_bp": 4700,
+      "minimal_2afree_itm2b_cistron_components_bp": {
+        "spa_transcriptional_pause_bp": 49,
+        "syn_5xisre_minimal_promoter_bp": 148,
+        "kozak_consensus_bp": 9,
+        "itm2b_nm021999_5_cds_bp": 801,
+        "sv40_late_polya_bp": 122
+      },
+      "minimal_2afree_itm2b_cistron_total_bp": 1129,
+      "locus3_canonical_4090_plus_2x145_itrs_bp": 4380,
+      "locus3_canonical_plus_bare_801nt_cds_before_regulatory_elements_bp": 5181,
+      "locus3_scarfree_4089_plus_1129bp_2afree_cistron_bp": 5218,
+      "locus3_canonical_4380_plus_1129bp_2afree_cistron_bp": 5509,
+      "locus3_single_aav6_compatible": false,
+      "locus4_aavs1_3457_plus_2x145_itrs_bp": 3747,
+      "locus4_plus_bare_801nt_cds_before_regulatory_elements_bp": 4548,
+      "locus4_plus_1129bp_2afree_cistron_packaged_bp": 4876,
+      "locus4_single_aav6_compatible": false,
+      "dedicated_or_split_donor_components_bp": {
+        "left_homology_arm_bp": 600,
+        "syn_5xisre_minimal_promoter_bp": 148,
+        "kozak_consensus_bp": 9,
+        "itm2b_nm021999_5_cds_bp": 801,
+        "bgh_polya_bp": 225,
+        "maz4_insulator_pause_spacer_bp": 82,
+        "right_homology_arm_bp": 600,
+        "two_aav6_itrs_2x145_bp": 290
+      },
+      "dedicated_or_split_donor_packaged_bp": 2755,
+      "dedicated_or_split_donor_headroom_bp": 1945,
+      "dedicated_or_split_donor_single_aav6_compatible": true,
+      "design_y_minicircle_11066_plus_1129bp_cistron_bp": 12195,
+      "design_y_governed_by_gy017_and_iip0023": true
+    },
+    "primary_citations": [
+      "PMID:41212211",
+      "PMID:29507232",
+      "PMID:38864729",
+      "PMID:10526337",
+      "PMID:17965014",
+      "PMID:12702875",
+      "PMID:38603470",
+      "PMID:20160085",
+      "PMID:29288549",
+      "PMID:33210820",
+      "PMID:19904234"
+    ]
+  },
   "public_effects_provenance_rebinding": {
     "canonical_original_effects_sha256": "e56018562aaa99e9be32441aad998407529b839dce58f3f0fd91389a7fcfd9e5",
     "status": "REPLAYED_PUBLIC_BYTES_NUMERICAL_AND_SEMANTIC_OUTPUTS_IDENTICAL",

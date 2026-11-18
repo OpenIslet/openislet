@@ -3070,10 +3070,10 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     )
 
     # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (49 persisted boolean flags, 53 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
-    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 89
+    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 95
     assert "require_full_5endpoint_s9_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
     assert "require_full_7metric_combined_stress_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
-    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 93
+    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 99
     assert "5.71 mmHg at 100 um clusters with matched D_caps = D_gel" in film_limit["surgical_mitigation"]
 
     batch1_r7s2 = {
@@ -3156,7 +3156,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     # - R7S3-F02: Both wetlab_contract.evaluate_stage0_decision_tree and ingest_wetlab_results.evaluate_stage0_decision_tree reject non-boolean policy values
     from scripts import wetlab_contract as wc_mod
 
-    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 93
+    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 99
     for bkey in wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS:
         for bad_val in ("false", "False", 0, "true", "True", 1):
             for eval_fn in (wc_mod.evaluate_stage0_decision_tree, wetlab.evaluate_stage0_decision_tree):
@@ -6242,14 +6242,436 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     )
     assert _latched_msi_26["overall_status"] == "FAIL_MSI_DETECTED" and _latched_msi_26["effective_execution_permitted"] is False
 
-    # (e) Graveyard GY-021 & GY-022 (10 combinatorial grid + 12 off-grid = 22 total):
+    # (e) Graveyard GY-021 & GY-022 (10 combinatorial grid + >=12 off-grid):
     _gy_26 = json.loads((ROOT / "data/graveyard/idea_graveyard_v0.5.json").read_text(encoding="utf-8"))
     _og_26 = _gy_26["off_grid_molecular_dead_end_guardrails"]["guardrails"]
-    assert len(_gy_26["graveyard_entries"]) == 10 and len(_og_26) == 12
+    assert len(_gy_26["graveyard_entries"]) == 10 and len(_og_26) >= 12
     _gy21 = [g for g in _og_26 if g["graveyard_card_id"] == "GY-021"]
     _gy22 = [g for g in _og_26 if g["graveyard_card_id"] == "GY-022"]
     assert len(_gy21) == 1 and _gy21[0]["guardrail_id"].startswith("OFFGRID_GUARD_011_") and _gy21[0]["contribution_id"] == "IIP-0026"
     assert len(_gy22) == 1 and _gy22[0]["guardrail_id"].startswith("OFFGRID_GUARD_012_") and _gy22[0]["contribution_id"] == "IIP-0026"
+
+    # =========================================================================
+    # 52. DEC-106 / IIP-0028: POST-DEPLETION GATE 0D, INTACT-PLUS-INCREMENT
+    #     CD16+ ADCC, UPSTREAM B2 PAIRED MCNEMAR / PHI_AB CONCORDANCE,
+    #     MEASURED-POTENCY DEC-084 MIXTURE & 72H/D28/D84 DUAL-MODALITY IAPP
+    # =========================================================================
+    _nm_fasta_28 = ROOT / "data/constructs/nm_021999_5_archival_mrna.fasta"
+    assert _nm_fasta_28.is_file()
+    assert hashlib.sha256(_nm_fasta_28.read_bytes()).hexdigest() == wc_mod.ITM2B_NM021999_5_FASTA_SHA256
+    _nm_mrna_28 = "".join(ln.strip().upper() for ln in _nm_fasta_28.read_text(encoding="utf-8").splitlines()[1:] if ln.strip())
+    assert len(_nm_mrna_28) == 10089
+    assert hashlib.sha256(_nm_mrna_28[155:956].encode("ascii")).hexdigest() == wc_mod.ITM2B_NM021999_5_CDS_SHA256
+    assert hashlib.sha256((ROOT / "data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta").read_bytes()).hexdigest() == "b5ba4e2b4bbbcc7d6cf1138975c5fae5c6ab074dda43973f071c671cd8cd1d88"
+
+    _l2_28_doc = json.loads((ROOT / "data/extracted/layer2_regulatory_and_perturbation_atlas.json").read_text(encoding="utf-8"))
+    _itm2b_28 = _l2_28_doc["stage0_p2_itm2b_nm021999_reserve_and_brichos_audit_iip_0028"]
+    assert _itm2b_28["contribution_id"] == "IIP-0028" and _itm2b_28["decision_id"] == "DEC-106"
+    assert _itm2b_28["active_weight_pct"] == 0.0
+    assert _itm2b_28["archival_mrna_provenance"]["cds_ascii_sha256"] == wc_mod.ITM2B_NM021999_5_CDS_SHA256
+
+    # (a) Registry-bound Gate 0d + intact-and-increment CD16+ ADCC + upstream B2 responder contract:
+    _base_arm2_28 = {
+        "product_variant_id": "ISLET1_A4_ARM1B",
+        "mcb_id": "MCB-A4-001",
+        "lot_id": "LOT-A4-001",
+        "adjunct_conditioning_history_arm": "ARM2_CONDITIONED_DEPLETED",
+        "adjunct_depletion_mode": "NATURAL_AGING_DECAY",
+        "washout_and_natural_decay_unpooled_verified": True,
+        "carrier_and_soluble_adjunct_below_lod_verified": True,
+        "obs_arm2_bound_and_supernatant_fasl_bioactivity_depleted_verified": True,
+        "obs_arm2_sa_thbd_bioactivity_depleted_verified": True,
+        "obs_arm2_contemporaneous_sham_handling_matched": True,
+        "obs_arm3_ongoing_adjunct_bioactivity_verified": True,
+        "arm2_depleted_sample_id": "SMP-ARM2-DEP-01",
+        "contemporaneous_arm3_control_sample_id": "SMP-ARM3-POSCTRL-01",
+        "obs_parallel_arm3_control_cd4_apoptosis_pct": 88.5,
+        "se_parallel_arm3_cd4_apoptosis": 1.8,
+        "adjunct_immune_responder_history": "PAIRED_BOTH",
+        "adjunct_sa_fhl1_status": "DEPLETED_VERIFIED",
+        "n_independent_blocks": 6,
+        "recipient_serum_pair_id": "SERUM-PAIR-T1D-001",
+        "intact_serum_sample_id": "SERUM-INTACT-001",
+        "igg_depleted_serum_sample_id": "SERUM-IGGDEP-001",
+        "positive_adcc_control_id": "ADCC-POSCTRL-MAB-01",
+        "isotype_adcc_control_id": "ADCC-ISOCTRL-IGG1-01",
+        "obs_igg_depletion_efficiency_pct": 98.4,
+        "igg_depleted_matched_serum_control_verified": True,
+        "fcr_effector_fcgr3a_158v_typed_verified": True,
+        "obs_indirect_apc_dq2_dq8_cd4_stimulation_index": 1.18, "se_cd4_si": 0.08,
+        "obs_indirect_apc_cd4_ifng_si": 1.42, "se_ifng_si": 0.12,
+        "obs_gate0d_transwell_beta_annexin_v_pct": 7.5, "se_annexin_v": 1.2,
+        "obs_arm2_post_depletion_nhs_c5b9_mac_pct": 2.4, "se_c5b9": 0.5,
+        "obs_fcr_cd16_intact_serum_total_lysis_pct": 3.1, "se_intact_adcc": 0.6,
+        "obs_fcr_cd16_igg_depleted_serum_lysis_pct": 0.5,
+        "obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_pct": 2.6, "se_net_adcc": 0.7,
+        "obs_adcc_positive_control_lysis_pct": 42.0, "se_pos_adcc": 3.0,
+        "obs_adcc_isotype_background_lysis_pct": 1.4, "se_isotype_adcc": 0.4,
+        "obs_arm2_post_depletion_viable_beta_recovery_pct": 91.5, "se_beta_rec": 1.8,
+        "obs_arm2_post_depletion_perifusion_gsis_si": 3.2, "se_gsis_si": 0.2,
+        "obs_post_depletion_input_normalized_cpep_ratio": 0.94, "se_cpep_ratio": 0.03,
+    }
+    assert wc_mod.evaluate_paired_adcc_and_postdepletion_gate_iip_0028(_base_arm2_28, root=ROOT) == (
+        True,
+        "CLEARED_ARM2_COMPLETE_DEPLETION_GATE0D_AND_FCR_ADCC_OVERLAY",
+    )
+    _b2_auth_28 = wc_mod.build_valid_upstream_b2_record_iip_0028("MCB-B2-001", "LOT-B2-001")
+    _b2_arm2_28 = {**_base_arm2_28, "product_variant_id": "ISLET1_B2_5LOCUS_BASE", "mcb_id": "MCB-B2-001", "lot_id": "LOT-B2-001"}
+    _b2_rep_28 = wc_mod.evaluate_paired_adcc_and_postdepletion_report_iip_0028(
+        _b2_arm2_28, root=ROOT, upstream_b2_authorization_record=_b2_auth_28
+    )
+    assert _b2_rep_28["gate_pass"] is True
+    assert _b2_rep_28["status"] == "RESEARCH_ONLY_PAIRED_STUDY_ARM2_CLEARED_B2_EXECUTION_SUPPORTED_FALSE"
+    assert _b2_rep_28["execution_supported"] is False and _b2_rep_28["paired_study_research_only"] is True
+
+    # Negative counterexamples including 30% intact vs 29% depleted (1% delta) high background injury:
+    assert wc_mod.evaluate_paired_adcc_and_postdepletion_gate_iip_0028(
+        {k: v for k, v in _base_arm2_28.items() if k != "product_variant_id"}, root=ROOT
+    ) == (False, "HOLD_MISSING_PRODUCT_VARIANT_ID")
+    assert wc_mod.evaluate_paired_adcc_and_postdepletion_gate_iip_0028(
+        {**_base_arm2_28, "product_variant_id": " ISLET1_B2_5LOCUS_BASE "}, root=ROOT
+    ) == (False, "HOLD_WHITESPACE_PADDED_PRODUCT_VARIANT_ID")
+    assert wc_mod.evaluate_paired_adcc_and_postdepletion_gate_iip_0028(
+        {**_base_arm2_28, "product_variant_id": "BOGUS"}, root=ROOT
+    ) == (False, "HOLD_UNREGISTERED_PRODUCT_VARIANT_ID")
+    assert wc_mod.evaluate_paired_adcc_and_postdepletion_gate_iip_0028(
+        {**_base_arm2_28, "product_variant_id": "ISLET1_B_SCT_C1_CIITA"}, root=ROOT
+    ) == (False, "HOLD_UNSUPPORTED_TRACK2_BSCT_REQUIRES_SEPARATE_GATE0B_SCT")
+    assert wc_mod.evaluate_paired_adcc_and_postdepletion_gate_iip_0028(
+        {**_b2_arm2_28, "registered_and_qc_cleared": True}, root=ROOT
+    ) == (False, "HOLD_B2_CALLER_BOOLEAN_REJECTED_MISSING_UPSTREAM_REGISTRY_RECORD")
+    assert wc_mod.evaluate_paired_adcc_and_postdepletion_gate_iip_0028(
+        _b2_arm2_28, root=ROOT, upstream_b2_authorization_record={**_b2_auth_28, "execution_supported": True}
+    ) == (False, "HOLD_B2_EXECUTION_SUPPORTED_MUST_REMAIN_FALSE")
+    assert wc_mod.evaluate_paired_adcc_and_postdepletion_gate_iip_0028(
+        _b2_arm2_28, root=ROOT, upstream_b2_authorization_record={**_b2_auth_28, "bound_c1_c5_pair_sha256": "f" * 64}
+    ) == (False, "HOLD_B2_C1_C5_PAIR_DIGEST_MISMATCH")
+    assert wc_mod.evaluate_paired_adcc_and_postdepletion_gate_iip_0028(
+        {
+            **_base_arm2_28,
+            "obs_fcr_cd16_intact_serum_total_lysis_pct": 30.0,
+            "obs_fcr_cd16_igg_depleted_serum_lysis_pct": 29.0,
+            "obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_pct": 1.0,
+        },
+        root=ROOT,
+    ) == (False, "HOLD_EXCEEDED_UPPER95_obs_fcr_cd16_intact_serum_total_lysis_pct")
+    assert wc_mod.evaluate_paired_adcc_and_postdepletion_gate_iip_0028(
+        {**_base_arm2_28, "adjunct_sa_fhl1_status": "RETAINED_ACTIVE"}, root=ROOT
+    ) == (False, "HOLD_GATE0D_PARTIALLY_DEPLETED_SA_FHL1_RETAINED_ACTIVE_NOT_COMPLETE_DEPLETION")
+    assert wc_mod.evaluate_paired_adcc_and_postdepletion_gate_iip_0028(
+        {**_base_arm2_28, "obs_arm3_ongoing_adjunct_bioactivity_verified": False}, root=ROOT
+    ) == (False, "HOLD_GATE0D_PARALLEL_ARM3_BIOACTIVITY_CONTROL_UNVERIFIED")
+    with pytest.raises(ValueError, match="execution_supported"):
+        wc_mod.evaluate_stage0_decision_tree(
+            {"product_variant_id": "ISLET1_B2_5LOCUS_BASE"},
+            root=ROOT,
+            product_def={"product_variant_id": "ISLET1_B2_5LOCUS_BASE", "execution_supported": True},
+        )
+
+    # Cross-arm batch pooling block in run_calibration and replay_stage0_chronological_batches:
+    _cal_arm3_28 = wetlab.run_calibration(
+        {
+            "batch_id": "BATCH-IIP28-ARM3",
+            "mcb_clone_id": "CLONE-IIP28",
+            "product_variant_id": "ISLET1_A4_ARM1B_EMB_A_STAR_4143",
+            "adjunct_conditioning_history_arm": "ARM3_CONTINUOUSLY_ACTIVE",
+            "obs_stage7_yield_ratio": 0.92,
+            "obs_stage7_yield_se": 0.02,
+        },
+        is_dry_run=False,
+    )
+    with pytest.raises(ValueError, match="adjunct_conditioning_history_arm"):
+        wetlab.run_calibration(
+            {
+                "batch_id": "BATCH-IIP28-ARM2",
+                "mcb_clone_id": "CLONE-IIP28",
+                "product_variant_id": "ISLET1_A4_ARM1B_EMB_A_STAR_4143",
+                "adjunct_conditioning_history_arm": "ARM2_CONDITIONED_DEPLETED",
+                "obs_cd47_fold": 4.5,
+                "obs_cd47_fold_se": 0.2,
+            },
+            False,
+            _cal_arm3_28,
+        )
+    assert wetlab.replay_stage0_chronological_batches(
+        [
+            {"seq_index": 1, "utc_timestamp": "2026-11-18T08:00:00Z", "scope": {"product_variant_id": "ISLET1_A4_ARM1B", "lot_id": "L28", "campaign_id": "C28", "adjunct_conditioning_history_arm": "ARM3_CONTINUOUSLY_ACTIVE"}, "measurements": dict(_base_s9_26), "iip0026_molecular_observations": {}},
+            {"seq_index": 2, "utc_timestamp": "2026-11-18T09:00:00Z", "scope": {"product_variant_id": "ISLET1_A4_ARM1B", "lot_id": "L28", "campaign_id": "C28", "adjunct_conditioning_history_arm": "ARM2_CONDITIONED_DEPLETED"}, "measurements": {}, "iip0026_molecular_observations": {}},
+        ],
+        root=ROOT,
+    )["overall_status"] == "FAIL_CROSS_CONDITIONING_ARM_REPLAY_MIXING"
+
+    # (b) Stage-0 tree integration when require_full_iip0028_postdepletion_adcc_mixture_and_iapp_panel=True:
+    _s0_28_valid = {
+        **_clean_iip20_valid,
+        "product_variant_id": "ISLET1_A4_ARM1B_EMB_A_STAR_4143",
+        "device_assembly_id": "DEV-IMPLANT-28",
+        "sister_assembly_id": "DEV-SISTER-28",
+        "obs_stage0_independent_lot_replicates_n": 12,
+        "require_full_iip0028_postdepletion_adcc_mixture_and_iapp_panel": True,
+        "adjunct_conditioning_history_arm": "ARM2_CONDITIONED_DEPLETED",
+        "adjunct_depletion_mode": "NATURAL_AGING_DECAY",
+        "adjunct_sa_fhl1_status": "DEPLETED_VERIFIED",
+        "adjunct_immune_responder_history": "PAIRED_BOTH",
+        "washout_and_natural_decay_unpooled_verified": True,
+        "carrier_and_soluble_adjunct_below_lod_verified": True,
+        "obs_arm2_bound_and_supernatant_fasl_bioactivity_depleted_verified": True,
+        "obs_arm2_sa_thbd_bioactivity_depleted_verified": True,
+        "obs_arm2_contemporaneous_sham_handling_matched": True,
+        "obs_arm3_ongoing_adjunct_bioactivity_verified": True,
+        "arm2_depleted_sample_id": "SMP-ARM2-DEP-28",
+        "contemporaneous_arm3_control_sample_id": "SMP-ARM3-CTRL-28",
+        "obs_parallel_arm3_control_cd4_apoptosis_pct": 89.0,
+        "obs_parallel_arm3_control_cd4_apoptosis_se": 1.5,
+        "obs_indirect_apc_dq2_dq8_cd4_stimulation_index": 1.18,
+        "obs_indirect_apc_dq2_dq8_cd4_stimulation_index_se": 0.06,
+        "obs_indirect_apc_cd4_ifng_si": 1.42,
+        "obs_indirect_apc_cd4_ifng_si_se": 0.08,
+        "obs_gate0d_transwell_beta_annexin_v_pct": 7.5,
+        "obs_gate0d_transwell_beta_annexin_v_se": 0.9,
+        "obs_arm2_post_depletion_nhs_c5b9_mac_pct": 2.2,
+        "obs_arm2_post_depletion_nhs_c5b9_mac_se": 0.4,
+        "obs_arm2_post_depletion_viable_beta_recovery_pct": 92.0,
+        "obs_arm2_post_depletion_viable_beta_recovery_se": 1.2,
+        "obs_arm2_post_depletion_perifusion_gsis_si": 3.3,
+        "obs_arm2_post_depletion_perifusion_gsis_si_se": 0.15,
+        "obs_post_depletion_input_normalized_cpep_ratio": 0.94,
+        "obs_post_depletion_input_normalized_cpep_ratio_se": 0.02,
+        "dec084_measured_starting_composition_and_fresh_equal_output_verified": True,
+        "obs_dec084_starting_potency_ratio_out_b_over_out_a": 1.0,
+        "obs_dec084_starting_potency_ratio_out_b_over_out_a_se": 0.02,
+        "obs_dec084_ocr_ratio_b_over_a": 0.87,
+        "obs_dec084_ocr_ratio_b_over_a_se": 0.01,
+        "obs_dec084_cpep_auc_ratio_b_over_a": 0.96,
+        "obs_dec084_cpep_auc_ratio_b_over_a_se": 0.02,
+        "obs_dec084_gcg_auc_ratio_b_over_a": 0.92,
+        "obs_dec084_gcg_auc_ratio_b_over_a_se": 0.02,
+        "recipient_serum_pair_id": "SERUM-PAIR-28",
+        "intact_serum_sample_id": "SERUM-INTACT-28",
+        "igg_depleted_serum_sample_id": "SERUM-DEP-28",
+        "positive_adcc_control_id": "ADCC-POS-28",
+        "isotype_adcc_control_id": "ADCC-ISO-28",
+        "cd16_adcc_igg_depletion_paired_control_verified": True,
+        "fcr_effector_fcgr3a_158v_typed_verified": True,
+        "obs_igg_depletion_efficiency_pct": 98.5,
+        "obs_igg_depletion_efficiency_se": 0.3,
+        "obs_fcr_cd16_intact_serum_total_lysis_pct": 2.8,
+        "obs_fcr_cd16_intact_serum_total_lysis_se": 0.5,
+        "obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_pct": 2.3,
+        "obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_se": 0.5,
+        "obs_cd16_adcc_positive_control_lysis_pct": 41.0,
+        "obs_cd16_adcc_positive_control_lysis_se": 2.5,
+        "obs_adcc_isotype_background_lysis_pct": 1.3,
+        "obs_adcc_isotype_background_lysis_se": 0.3,
+        "iapp_age_matched_reference_above_loq_verified": True,
+        "iapp_sister_visit_lot_and_viable_beta_mass_concordance_verified": True,
+        "obs_iapp_72h_immunocapture_oligomer_elisa_fold": 1.04,
+        "obs_iapp_72h_immunocapture_oligomer_elisa_se": 0.05,
+        "obs_iapp_72h_colocalized_fibril_area_pct": 0.14,
+        "obs_iapp_72h_colocalized_fibril_area_se": 0.03,
+        "obs_iapp_d28_immunocapture_oligomer_elisa_fold": 1.13,
+        "obs_iapp_d28_immunocapture_oligomer_elisa_se": 0.06,
+        "obs_iapp_d28_colocalized_fibril_area_pct": 0.27,
+        "obs_iapp_d28_colocalized_fibril_area_se": 0.05,
+        "obs_iapp_d84_immunocapture_oligomer_elisa_fold": 1.21,
+        "obs_iapp_d84_immunocapture_oligomer_elisa_se": 0.07,
+        "obs_iapp_d84_colocalized_fibril_area_pct": 0.41,
+        "obs_iapp_d84_colocalized_fibril_area_se": 0.06,
+    }
+    _dt_28_ok = wc_mod.evaluate_stage0_decision_tree(_s0_28_valid, root=ROOT)
+    assert _dt_28_ok["lot_release_readiness_tier"] == "READY_FOR_ENCAPSULATION_COMPLETE_STAGE0_EVIDENCE"
+    assert _dt_28_ok["iip0028_postdepletion_adcc_mixture_and_iapp_evaluation"]["gate_pass"] is True
+    assert wc_mod.evaluate_stage0_decision_tree(
+        {k: v for k, v in _s0_28_valid.items() if k != "obs_arm2_post_depletion_viable_beta_recovery_se"}, root=ROOT
+    )["lot_release_readiness_tier"] == "HOLD_FAILED_OR_INCOMPLETE_GATE"
+    assert wc_mod.evaluate_stage0_decision_tree(
+        {**_s0_28_valid, "obs_fcr_cd16_intact_serum_total_lysis_pct": 30.0}, root=ROOT
+    )["lot_release_readiness_tier"] == "HOLD_FAILED_OR_INCOMPLETE_GATE"
+
+    # (c) Layer-1 paired McNemar + phi_AB audit & Layer-4 measured-potency DEC-084 mixture audit:
+    _rk_28_doc = json.loads((ROOT / "data/extracted/islet1_candidate_stack_rankings.json").read_text(encoding="utf-8"))
+    _mc_28 = _rk_28_doc["odds_composition_and_profile_scope_audit_iip_0003"]["multiplied_conditional_totals"]["iip_0028_paired_mcnemar_and_phi_ab_concordance_audit"]
+    assert _mc_28["proposal_id"] == "IIP-0028"
+    _nuis_28 = _mc_28["exact_conditional_mcnemar_summary"]["n24_global_nuisance_size_profile"]
+    assert abs(_nuis_28["global_worst_case_size_pct"] - 3.6699) < 1e-3
+    assert abs(_nuis_28["argmax_total_discordance_q"] - 0.96335) < 1e-3
+    assert abs(_nuis_28["size_at_total_discordance_q_1p0_pct"] - 3.1957) < 1e-3
+
+    _l4_28_doc = json.loads((ROOT / "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json").read_text(encoding="utf-8"))
+    _mix_28 = _l4_28_doc["part_a_336h_spatial_reaction_diffusion_pouch_pde"]["measured_potency_dec084_mixture_and_glucagon_audit_iip_0028"]
+    assert _mix_28["contribution_id"] == "IIP-0028" and _mix_28["decision_id"] == "DEC-106"
+    assert _mix_28["measured_potency_loading_and_ocr"]["ocr_ratio_0p95_rounded_5dec"] == [0.915, 0.90226]
+    assert _mix_28["dual_band_worst_face_3d_fvm_oxygen_sweep"]["boundary_po2_34mmhg_narrow_margin_80um_plus10_stress_mmhg"]["passes_15mmhg_floor_at_34mmhg_fixed_vascular"] is False
+    assert _mix_28["rk4_24h_exercise_ode_elapsed_tbr_and_glucagon_sensitivities"]["reference_60_30_10_preserved_paracrine"]["tbr_below_3p9_elapsed_pct"] == 1.1652
+
+    _dec84_in_28 = {
+        "selection_blocks_excluded_from_confirmation": True,
+        "measured_starting_composition_and_viable_counts_verified": True,
+        "n_confirmation_blocks": 8,
+        "obs_dec084_starting_potency_ratio_out_b_over_out_a": 1.0,
+        "se_starting_potency_ratio": 0.02,
+        "implanted_areal_loading_ieq_cm2": 1285.7143,
+        "dual_band_worst_face_po2_nx40_mmhg": 15.3699,
+        "dual_band_worst_face_po2_nx60_mmhg": 15.6504,
+        "obs_dec084_ocr_ratio_b_over_a": 0.8758, "se_ocr_ratio": 0.008,
+        "obs_dec084_cpep_auc_ratio_b_over_a": 0.96, "se_cpep_auc_ratio": 0.02,
+        "obs_dec084_gcg_auc_ratio_b_over_a": 0.92, "se_gcg_auc_ratio": 0.02,
+        "obs_day28_beta_recovery_ratio": 0.88, "se_day28_beta_recovery": 0.02,
+        "obs_readout2_perifusion_gsis_si": 3.4, "se_readout2_si": 0.12,
+        "obs_readout2_first_phase_peak_to_basal_ratio": 5.2, "se_readout2_peak_basal": 0.2,
+        "obs_readout2_first_phase_time_to_peak_min": 5.5, "se_readout2_tpeak": 0.3,
+        "obs_readout2_stepdown_shutoff_t50_min": 2.1, "se_readout2_t50": 0.15,
+        "obs_gate0m_glucagon_2mM_fold_increase": 2.4, "se_readout2_gcg_fold": 0.12,
+    }
+    assert wc_mod.evaluate_dec084_measured_potency_mixture_gate_iip_0028(_dec84_in_28)["gate_pass"] is True
+    assert wc_mod.evaluate_dec084_measured_potency_mixture_gate_iip_0028(
+        {**_dec84_in_28, "obs_dec084_starting_potency_ratio_out_b_over_out_a": 0.95, "implanted_areal_loading_ieq_cm2": 1353.3835, "obs_dec084_ocr_ratio_b_over_a": 0.915}
+    )["status"] == "HOLD_DEC084_EXCEEDED_UPPER95_obs_dec084_ocr_ratio_b_over_a"
+    assert wc_mod.evaluate_dec084_measured_potency_mixture_gate_iip_0028(
+        {**_dec84_in_28, "dual_band_worst_face_po2_nx40_mmhg": 14.7514, "dual_band_worst_face_po2_nx60_mmhg": 15.0465}
+    )["status"] == "HOLD_DEC084_NUMERICALLY_MESH_SENSITIVE_WORST_FACE_OXYGEN_BELOW_15MMHG"
+
+    # (d) Visit/lot/sister-bound 72h/d28/d84 dual-modality IAPP + viable beta mass + GY-023:
+    _lots_28 = [f"LOT-A4-28-{i:03d}" for i in range(1, 9)]
+    _rep_lots_28 = [f"LOT-A4-REP28-{i:03d}" for i in range(1, 7)]
+
+    def _mk_iapp_tp_28(tp: str, ef: float, es: float, ff: float, fs: float, ap: float, aps: float, **kw: object) -> dict:
+        rec = {
+            "product_variant_id": "ISLET1_A4_ARM1B",
+            "lot_id": "LOT-A4-28-001",
+            "sample_id": kw.get("sample_id", f"SMP-28-{tp.upper()}-01"),
+            "loq_signal": kw.get("loq_signal", 1.0),
+            "ko_blank_id": f"KO-28-{tp.upper()}",
+            "ko_blank_signal": 0.15,
+            "insulin_fibril_blank_signal": 0.20,
+            "age_matched_ref_control_id": f"REF-28-{tp.upper()}",
+            "ref_signal": kw.get("ref_signal", 12.0),
+            "spike_recovery_iapp_1_37_pct": 93.0,
+            "viable_beta_mass_pct": kw.get("viable_beta_mass_pct", 90.0),
+            "se_viable_beta_mass": 1.5,
+            "stimulated_gsis_si": kw.get("stimulated_gsis_si", 3.2),
+            "se_gsis_si": 0.15,
+            "elisa_oligomer_fold": ef, "se_elisa_fold": es,
+            "colocalized_fibril_fold": ff, "se_fibril_fold": fs,
+            "colocalized_amyloid_area_pct": ap, "se_area_pct": aps,
+        }
+        if "within_lot_dual_modality_coexceedance_verified" in kw:
+            rec["within_lot_dual_modality_coexceedance_verified"] = kw["within_lot_dual_modality_coexceedance_verified"]
+        if tp == "72h":
+            rec["scope"] = "LOT_SCOPE"
+            rec["timepoint_h"] = 72
+        elif tp == "d28":
+            rec["scope"] = "LOT_SCOPE"
+            rec["timepoint_d"] = 28
+        else:
+            rec["scope"] = "TERMINAL_SISTER_DEVICE_SCOPE"
+            rec["timepoint_d"] = 84
+            rec["sister_assembly_id"] = kw.get("sister_id", "DEV-SISTER-28-01")
+        return rec
+
+    _base_iapp_28 = {
+        "product_variant_id": "ISLET1_A4_ARM1B",
+        "primary_lot_id": "LOT-A4-28-001",
+        "contributing_lot_ids": _lots_28,
+        "n_independent_blocks": 8,
+        "implant_device_assembly_id": "DEV-IMPLANT-28-01",
+        "authorized_sister_assembly_ids": ["DEV-SISTER-28-01", "DEV-SISTER-28-02"],
+        "timepoint_records": {
+            "72h": _mk_iapp_tp_28("72h", 1.05, 0.06, 1.02, 0.05, 0.15, 0.04),
+            "d28": _mk_iapp_tp_28("d28", 1.14, 0.08, 1.12, 0.07, 0.28, 0.06),
+            "d84": _mk_iapp_tp_28("d84", 1.22, 0.09, 1.19, 0.08, 0.42, 0.08),
+        },
+    }
+    _ia_ok_28 = wc_mod.evaluate_orthogonal_iapp_3way_gate_iip_0028(_base_iapp_28, root=ROOT)
+    assert _ia_ok_28["core_cleared"] is True and _ia_ok_28["p2_itm2b_reserve_eligible"] is False and _ia_ok_28["p2_active_weight_pct"] == 0.0
+    # Reused raw measurement vector under a fresh sample_id must fail closed:
+    assert wc_mod.evaluate_orthogonal_iapp_3way_gate_iip_0028(
+        {
+            **_base_iapp_28,
+            "timepoint_records": {
+                **_base_iapp_28["timepoint_records"],
+                "d28": _mk_iapp_tp_28("d28", 1.05, 0.06, 1.02, 0.05, 0.15, 0.04, sample_id="SMP-FRESH-REUSED-RAW"),
+            },
+        },
+        root=ROOT,
+    )["disposition"] == "HOLD_DUPLICATE_OR_WRONG_TIMEPOINT_SAMPLE"
+    assert wc_mod.evaluate_orthogonal_iapp_3way_gate_iip_0028(
+        {
+            **_base_iapp_28,
+            "timepoint_records": {
+                **_base_iapp_28["timepoint_records"],
+                "d84": _mk_iapp_tp_28("d84", 1.22, 0.09, 1.19, 0.08, 0.42, 0.08, sister_id="DEV-IMPLANT-28-01"),
+            },
+        },
+        root=ROOT,
+    )["disposition"] == "HOLD_IAPP_D84_REQUIRES_AUTHORIZED_SISTER_ASSEMBLY"
+    # Beta-cell attrition confounding low amyloid signal must fail closed:
+    assert wc_mod.evaluate_orthogonal_iapp_3way_gate_iip_0028(
+        {
+            **_base_iapp_28,
+            "timepoint_records": {
+                **_base_iapp_28["timepoint_records"],
+                "d84": _mk_iapp_tp_28("d84", 1.08, 0.06, 1.05, 0.05, 0.20, 0.04, viable_beta_mass_pct=62.0),
+            },
+        },
+        root=ROOT,
+    )["disposition"] == "HOLD_IAPP_CONFOUNDED_BY_VIABLE_BETA_MASS_OR_SECRETION_LOSS"
+    # Disjoint-lot-only dual-modality breaches without within-lot co-exceedance require replication:
+    assert wc_mod.evaluate_orthogonal_iapp_3way_gate_iip_0028(
+        {
+            **_base_iapp_28,
+            "timepoint_records": {
+                **_base_iapp_28["timepoint_records"],
+                "d84": _mk_iapp_tp_28("d84", 1.85, 0.08, 1.72, 0.07, 1.35, 0.08, within_lot_dual_modality_coexceedance_verified=False),
+            },
+        },
+        root=ROOT,
+    )["disposition"] == "HOLD_DISCORDANT_CHRONIC_NEEDS_REPLICATION"
+    _ia_conc_28 = wc_mod.evaluate_orthogonal_iapp_3way_gate_iip_0028(
+        {
+            **_base_iapp_28,
+            "timepoint_records": {
+                **_base_iapp_28["timepoint_records"],
+                "d84": _mk_iapp_tp_28("d84", 1.85, 0.08, 1.72, 0.07, 1.35, 0.08),
+            },
+        },
+        root=ROOT,
+    )
+    assert _ia_conc_28["disposition"] == "CONFIRMED_CHRONIC_P2_ELIGIBLE" and _ia_conc_28["p2_active_weight_pct"] == 0.0
+    _ia_rep_28 = wc_mod.evaluate_orthogonal_iapp_3way_gate_iip_0028(
+        {
+            **_base_iapp_28,
+            "timepoint_records": {
+                **_base_iapp_28["timepoint_records"],
+                "d84": _mk_iapp_tp_28("d84", 1.85, 0.08, 1.19, 0.08, 0.42, 0.08),
+            },
+            "independent_repeat_confirmation": {
+                "preregistered_replication_protocol_id": "PROTO-REP-28",
+                "repeat_lot_ids": _rep_lots_28,
+                "repeat_sample_id": "SMP-REP-D84-28",
+                "repeat_sister_assembly_id": "DEV-SISTER-REP-28",
+                "timepoint": "d84",
+                "timepoint_d": 84,
+                "loq_signal": 1.0,
+                "ko_blank_id": "KO-REP-28",
+                "ko_blank_signal": 0.14,
+                "insulin_fibril_blank_signal": 0.19,
+                "age_matched_ref_control_id": "REF-REP-28",
+                "ref_signal": 12.2,
+                "spike_recovery_iapp_1_37_pct": 91.0,
+                "elisa_oligomer_fold": 1.84, "se_elisa_fold": 0.08,
+            },
+        },
+        root=ROOT,
+    )
+    assert _ia_rep_28["disposition"] == "CONFIRMED_CHRONIC_P2_ELIGIBLE" and _ia_rep_28["p2_active_weight_pct"] == 0.0
+
+    # (e) Graveyard GY-023 (10 combinatorial grid + 13 off-grid = 23 total):
+    _gy_28 = json.loads((ROOT / "data/graveyard/idea_graveyard_v0.5.json").read_text(encoding="utf-8"))
+    _og_28 = _gy_28["off_grid_molecular_dead_end_guardrails"]["guardrails"]
+    assert len(_gy_28["graveyard_entries"]) == 10 and len(_og_28) == 13
+    _gy23 = [g for g in _og_28 if g["graveyard_card_id"] == "GY-023"]
+    assert len(_gy23) == 1 and _gy23[0]["guardrail_id"].startswith("OFFGRID_GUARD_013_") and _gy23[0]["contribution_id"] == "IIP-0028"
 
 
 

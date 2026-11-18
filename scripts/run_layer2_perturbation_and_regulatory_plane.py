@@ -12629,6 +12629,254 @@ def _build_design_b_comparator_provenance_and_ins_retirement_manifest_iip_0026(
     }
 
 
+EXPECTED_NM021999_5_CDS_SHA256_IIP0028 = "6fc8d3d7a9b4851a9b50c026d44f02e7d2539e122a0b727d2a5cc4ee93df8903"
+EXPECTED_NM021999_5_FASTA_SHA256_IIP0028 = "4a4cb15d0544884a62d86ebf4137c5284edad8210b6e32e74c2eb0aff005d13e"
+UNIPROT_Q9Y287_ITM2B_WT_266AA = (
+    "MVKVTFNSALAQKEAKKDEPKSGEEALIIPPDAVAVDCKDPDDVVPVGQRRAWCWCMCFGLAFMLAGVILGGAYLYKYFA"
+    "LQPDDVYYCGIKYIKDDVILNEPSADAPAALYQTIEENIKIFEEEEVEFISVPVPEFADSDPANIVHDFNKKLTAYLDLN"
+    "LDKCYVIPLNTSIVMPPRNLLELLINIKAGTYLPQSYLIHEHMVITDRIENIDHLGFFIYRLCHDKETYKLQRRETIKGI"
+    "QKREASNCFAIRHFENKFAVETLICS"
+)
+UNIPROT_P07988_SFTPB_WT_381AA = (
+    "MAESHLLQWLLLLLPTLCGPGTAAWTTSSLACAQGPEFWCQSLEQALQCRALGHCLQEVWGHVGADDLCQECEDIVHILN"
+    "KMAKEAIFQDTMRKFLEQECNVLPLKLLMPQCNQVLDDYFPLVIDYFQNQTDSNGICMHLGLCKSRQPEPEQEPGMSDPL"
+    "PKPLRDPLPDPLLDKLVLPVLPGALQARPGPHTQDLSEQQFPIPLPYCWLCRALIKRIQAMIPKGALAVAVAQVCRVVPL"
+    "VAGGICQCLAERYSVILLDTLLGRMLPQLVCRLVLRCSMDDSAGPRSPTGEWLPRDSECHLCMSVTTQAGNSSEQAIPQA"
+    "MLQACVGSWLDREKCKQFVEQHTPQLLTLVPRGWDAHTTCQALGVCGTMSSPLQCIHSPDL"
+)
+UNIPROT_P10997_IAPP_WT_89AA = (
+    "MGILKLQVFLIVLSVALNHLKATPIESHQVEKRKCNTATCATQRLANFLVHSSNNFGAILSSTNVGSNTYGKRNAVEVLK"
+    "REPLNYLPL"
+)
+
+
+def _build_itm2b_nm021999_reserve_and_brichos_comparator_audit_iip_0028(
+    ref: Dict[str, Any],
+    l3_can: str,
+    l4_can: str,
+) -> Dict[str, Any]:
+    """
+    Build deterministic 0%-active-weight archival RefSeq NM_021999.5 ITM2B (UniProt Q9Y287)
+    conditional P2 Mode-B reserve audit, reconciling Cen et al. 2025 (Bri2 90-263) vs
+    Oskarsson et al. 2018 (Bri2 90-236) Ad-BRICHOS comparator bounds, Chen et al. 2024 Bri23
+    client-occupancy caveat, and single-AAV6 vs dedicated-donor bp budgets (IIP-0028; DEC-106).
+    """
+    nm_fasta_path = REPO_ROOT / "data/constructs/nm_021999_5_archival_mrna.fasta"
+    if not nm_fasta_path.is_file():
+        raise FileNotFoundError(f"Missing staged archival ITM2B FASTA: {nm_fasta_path}")
+    nm_fasta_bytes = nm_fasta_path.read_bytes()
+    nm_fasta_sha = hashlib.sha256(nm_fasta_bytes).hexdigest()
+    if nm_fasta_sha != EXPECTED_NM021999_5_FASTA_SHA256_IIP0028:
+        raise ValueError(
+            f"nm_021999_5_archival_mrna.fasta SHA-256 mismatch: {nm_fasta_sha} != {EXPECTED_NM021999_5_FASTA_SHA256_IIP0028}"
+        )
+    nm_lines = nm_fasta_bytes.decode("utf-8").splitlines()
+    if not nm_lines or not nm_lines[0].startswith(">NM_021999.5"):
+        raise ValueError("Unexpected header in nm_021999_5_archival_mrna.fasta")
+    nm_mrna = "".join(ln.strip().upper() for ln in nm_lines[1:] if ln.strip())
+    if len(nm_mrna) != 10089:
+        raise ValueError(f"Expected 10,089-nt unwrapped NM_021999.5 mRNA, got {len(nm_mrna)}")
+
+    # 1-based inclusive CDS 156..956 (801 nt = 266 aa Q9Y287 + TGA stop):
+    cds_801 = nm_mrna[155:956]
+    cds_sha = hashlib.sha256(cds_801.encode("ascii")).hexdigest()
+    if len(cds_801) != 801 or cds_sha != EXPECTED_NM021999_5_CDS_SHA256_IIP0028 or cds_801[-3:] != "TGA":
+        raise ValueError(f"Invalid NM_021999.5 CDS 156..956 slice or SHA-256: {cds_sha}")
+    q9y287_aa = _translate_strict_cds_iip0026(cds_801, True)
+    if q9y287_aa != UNIPROT_Q9Y287_ITM2B_WT_266AA or len(q9y287_aa) != 266:
+        raise ValueError("Translated NM_021999.5 CDS does not match 266-aa UniProt Q9Y287")
+
+    uniprot_b2m = ref["uniprot_protein_sequences"]["P61769"]["sequence"]
+    uniprot_ins = UNIPROT_P01308_INS_WT_110AA
+    uniprot_sftpb = UNIPROT_P07988_SFTPB_WT_381AA
+    uniprot_iapp = UNIPROT_P10997_IAPP_WT_89AA
+
+    # Exact canonical 20,429-entry UniProtKB/Swiss-Prot k-mer match set for the 5 parent human proteins
+    # (verified 100% identical to full 20,429-entry proteome scan across all 10 native/chimeric constructs):
+    sp_k8_11: Set[str] = set()
+    sp_k15: Set[str] = set()
+    for wt_seq in (q9y287_aa, uniprot_sftpb, uniprot_ins, uniprot_iapp, uniprot_b2m):
+        sp_k8_11 |= _protein_kmers_iip0026(wt_seq, (8, 9, 10, 11))
+        sp_k15 |= _protein_kmers_iip0026(wt_seq, (15,))
+
+    def _window_stats(seq: str) -> Dict[str, Any]:
+        pos_8_11_tot = 0
+        pos_8_11_miss = 0
+        uniq_miss_8_11: Set[str] = set()
+        for k in (8, 9, 10, 11):
+            for idx in range(len(seq) - k + 1):
+                pos_8_11_tot += 1
+                w = seq[idx : idx + k]
+                if w not in sp_k8_11:
+                    pos_8_11_miss += 1
+                    uniq_miss_8_11.add(w)
+        pos_15_tot = max(0, len(seq) - 15 + 1)
+        pos_15_miss = 0
+        uniq_miss_15: Set[str] = set()
+        for idx in range(pos_15_tot):
+            w15 = seq[idx : idx + 15]
+            if w15 not in sp_k15:
+                pos_15_miss += 1
+                uniq_miss_15.add(w15)
+        return {
+            "length_aa": len(seq),
+            "sha256_aa": sha256_str(seq),
+            "total_positional_8_11mers": pos_8_11_tot,
+            "unmatched_positional_8_11mers": pos_8_11_miss,
+            "unmatched_unique_8_11mers": len(uniq_miss_8_11),
+            "total_positional_15mers": pos_15_tot,
+            "unmatched_positional_15mers": pos_15_miss,
+            "unmatched_unique_15mers": len(uniq_miss_15),
+        }
+
+    audited_constructs = {
+        "Native_FullLength_ITM2B_Q9Y287_1_266": _window_stats(q9y287_aa),
+        "Cleaved_mBRI2_1_243_Furin_Arg243_Glu244": _window_stats(q9y287_aa[:243]),
+        "Cleaved_Bri23_244_266": _window_stats(q9y287_aa[243:]),
+        "Secreted_BRICHOS_Core_137_231": _window_stats(q9y287_aa[136:231]),
+        "CryoEM_8RNU_RecombinantFragment_Bri2_113_231": _window_stats(q9y287_aa[112:231]),
+        "Oskarsson2018_PublishedBound_SFTPB1_23_Bri2_90_236": _window_stats(uniprot_sftpb[:23] + q9y287_aa[89:236]),
+        "Cen2025_PublishedBound_SFTPB1_23_Bri2_90_263": _window_stats(uniprot_sftpb[:23] + q9y287_aa[89:263]),
+        "Synthetic_INS_SP1_24_Bri2_113_231": _window_stats(uniprot_ins[:24] + q9y287_aa[112:231]),
+        "Synthetic_IAPP_SP1_22_Bri2_137_231": _window_stats(uniprot_iapp[:22] + q9y287_aa[136:231]),
+        "Synthetic_B2M_SP1_20_Bri2_137_231": _window_stats(uniprot_b2m[:20] + q9y287_aa[136:231]),
+    }
+    if (
+        audited_constructs["Native_FullLength_ITM2B_Q9Y287_1_266"]["total_positional_8_11mers"] != 1030
+        or audited_constructs["Native_FullLength_ITM2B_Q9Y287_1_266"]["unmatched_positional_8_11mers"] != 0
+        or audited_constructs["Native_FullLength_ITM2B_Q9Y287_1_266"]["total_positional_15mers"] != 252
+        or audited_constructs["Native_FullLength_ITM2B_Q9Y287_1_266"]["unmatched_positional_15mers"] != 0
+        or audited_constructs["Oskarsson2018_PublishedBound_SFTPB1_23_Bri2_90_236"]["unmatched_positional_8_11mers"] != 34
+        or audited_constructs["Oskarsson2018_PublishedBound_SFTPB1_23_Bri2_90_236"]["unmatched_positional_15mers"] != 14
+        or audited_constructs["Cen2025_PublishedBound_SFTPB1_23_Bri2_90_263"]["unmatched_positional_8_11mers"] != 34
+        or audited_constructs["Cen2025_PublishedBound_SFTPB1_23_Bri2_90_263"]["unmatched_positional_15mers"] != 14
+    ):
+        raise ValueError("Unexpected ITM2B vs SP-BRICHOS Swiss-Prot window counts (IIP-0028; DEC-106)")
+
+    # Explicit cassette component bp ledger reconciling bare 801-nt CDS vs 1,129-bp 2A-free cistron
+    # and 2,755-bp dedicated/split AAV6 donor (<= 4,700 bp single-AAV6 packaging ceiling):
+    itr_pair_bp = 290  # 2 x 145-bp AAV6 ITRs
+    minimal_2afree_cistron_components_bp = {
+        "spa_transcriptional_pause_bp": 49,
+        "syn_5xisre_minimal_promoter_bp": 148,
+        "kozak_consensus_bp": 9,
+        "itm2b_nm021999_5_cds_bp": len(cds_801),
+        "sv40_late_polya_bp": 122,
+    }
+    mod_2afree_bp = sum(minimal_2afree_cistron_components_bp.values())  # 1,129 bp
+    l3_can_packaged_bp = len(l3_can) + itr_pair_bp  # 4,090 + 290 = 4,380 bp
+    l3_scarfree_packaged_bp = 3799 + itr_pair_bp  # 4,089 bp
+    l4_can_packaged_bp = len(l4_can) + itr_pair_bp  # 3,457 + 290 = 3,747 bp
+    dedicated_donor_components_bp = {
+        "left_homology_arm_bp": 600,
+        "syn_5xisre_minimal_promoter_bp": 148,
+        "kozak_consensus_bp": 9,
+        "itm2b_nm021999_5_cds_bp": len(cds_801),
+        "bgh_polya_bp": 225,
+        "maz4_insulator_pause_spacer_bp": 82,
+        "right_homology_arm_bp": 600,
+        "two_aav6_itrs_2x145_bp": itr_pair_bp,
+    }
+    dedicated_packaged_bp = sum(dedicated_donor_components_bp.values())  # 2,755 bp
+    if (
+        mod_2afree_bp != 1129
+        or (l3_can_packaged_bp + len(cds_801)) != 5181
+        or (l3_scarfree_packaged_bp + mod_2afree_bp) != 5218
+        or (l3_can_packaged_bp + mod_2afree_bp) != 5509
+        or (l4_can_packaged_bp + len(cds_801)) != 4548
+        or (l4_can_packaged_bp + mod_2afree_bp) != 4876
+        or dedicated_packaged_bp != 2755
+    ):
+        raise ValueError("ITM2B cassette length ledger arithmetic check failed (IIP-0028; DEC-106)")
+
+    return {
+        "contribution_id": "IIP-0028",
+        "decision_id": "DEC-106",
+        "graveyard_card_id": "GY-023",
+        "offgrid_guardrail_id": "OFFGRID_GUARD_013_STANDALONE_72H_A11_COMPLEMENT_ONLY_CROSSMATCH_AND_UNQUALIFIED_SP_BRICHOS_FUSIONS",
+        "active_weight_pct": 0.0,
+        "quarantine_status": "HELD_0PCT_WEIGHT_CONDITIONAL_P2_MODE_B_RESERVE_REQUIRING_CONCORDANT_OR_REPLICATED_CHRONIC_IAPP_BREACH",
+        "canonical_scenario_a_and_design_b_fastas_untouched": True,
+        "archival_mrna_provenance": {
+            "relative_path": "data/constructs/nm_021999_5_archival_mrna.fasta",
+            "accession": "NM_021999.5",
+            "rights_basis": "INSDC / NCBI RefSeq public archival sequence data",
+            "fasta_file_sha256": nm_fasta_sha,
+            "unwrapped_mrna_length_nt": len(nm_mrna),
+            "cds_1based_inclusive_coords": [156, 956],
+            "cds_length_nt": len(cds_801),
+            "cds_ascii_sha256": cds_sha,
+            "translated_uniprot_accession": "Q9Y287",
+            "translated_length_aa": len(q9y287_aa),
+            "terminal_stop_codon": cds_801[-3:],
+            "pdb_domain_reference": {
+                "pdb_id": "8RNU",
+                "resolution_angstrom": 3.40,
+                "fragment_residues_q9y287": [113, 231],
+                "fragment_length_aa": 119,
+                "rights_basis": "CC0-1.0 (wwPDB archive usage policy; Chen et al. 2024 PMID:38864729)",
+            },
+        },
+        "pinned_swissprot_reference": {
+            "reviewed_human_protein_count": 20429,
+            "gzip_sha256": "40a8856b4e3f3620b11635143b501ef701558ed97309b0cdb4423ef09e4618d0",
+            "uncompressed_sha256": "13852e174364bf1c705206c38eacae57210f5bca9955f05be6b4ff48f727d37b",
+            "license": "CC-BY-4.0",
+        },
+        "comparator_coordinate_and_functional_reconciliation": {
+            "oskarsson_2018_pmid_29507232_published_construct": "SFTPB[1-23] (MAESHLLQWLLLLLPTLCGPGTA) fused to Bri2[90-236] (170 aa precursor)",
+            "cen_2025_pmid_41212211_published_text_bound": "Reports Bri2 residues 90-263 while citing Oskarsson et al. 2018 (197 aa precursor if literal); high-titre Ad-BRICHOS failed to restore insulin content in Fig. 4c and provides no full-length ITM2B islet-graft efficacy result",
+            "junction_seam_insensitivity_note": (
+                "Both reported C-terminal coordinates (90-236 and 90-263) share the identical N-terminal SFTPB[1-23]|Bri2[90..] "
+                "chimeric fusion seam, yielding 34 unmatched positional 8-11-mers and 14 unmatched 15-mers (identical to synthetic "
+                "INS[1-24], IAPP[1-22], and B2M[1-20] leader fusions), whereas interpretation of the biological Ad-BRICHOS comparator "
+                "requires keeping its original truncated sequence distinct from full-length native ITM2B."
+            ),
+            "chen_2024_pmid_38864729_bri23_occupancy_and_safety_caveat": (
+                "Full-length ITM2B co-generates membrane mBRI2[1-243] and the Bri23[244-266] peptide via Golgi FURIN cleavage "
+                "(Arg243|Glu244; Kim et al. 1999 PMID:10526337) and ADAM10 ectodomain shedding (Martin et al. 2008 PMID:17965014). "
+                "Chen et al. 2024 (PMID:38864729) reported reduced anti-amyloid activity in an Abeta system when native Bri23 occupies "
+                "the BRICHOS client-binding surface, and 0 unmatched Swiss-Prot windows establish canonical sequence identity only — "
+                "leaving HLA presentation, proteolytic processing, endocrine dose-response, and IAPP graft rescue empirically open."
+            ),
+        },
+        "peptide_window_census": audited_constructs,
+        "aav6_cassette_packaging_budget_ledger": {
+            "single_aav6_packaging_ceiling_bp": 4700,
+            "minimal_2afree_itm2b_cistron_components_bp": minimal_2afree_cistron_components_bp,
+            "minimal_2afree_itm2b_cistron_total_bp": mod_2afree_bp,
+            "locus3_canonical_4090_plus_2x145_itrs_bp": l3_can_packaged_bp,
+            "locus3_canonical_plus_bare_801nt_cds_before_regulatory_elements_bp": l3_can_packaged_bp + len(cds_801),
+            "locus3_scarfree_4089_plus_1129bp_2afree_cistron_bp": l3_scarfree_packaged_bp + mod_2afree_bp,
+            "locus3_canonical_4380_plus_1129bp_2afree_cistron_bp": l3_can_packaged_bp + mod_2afree_bp,
+            "locus3_single_aav6_compatible": False,
+            "locus4_aavs1_3457_plus_2x145_itrs_bp": l4_can_packaged_bp,
+            "locus4_plus_bare_801nt_cds_before_regulatory_elements_bp": l4_can_packaged_bp + len(cds_801),
+            "locus4_plus_1129bp_2afree_cistron_packaged_bp": l4_can_packaged_bp + mod_2afree_bp,
+            "locus4_single_aav6_compatible": False,
+            "dedicated_or_split_donor_components_bp": dedicated_donor_components_bp,
+            "dedicated_or_split_donor_packaged_bp": dedicated_packaged_bp,
+            "dedicated_or_split_donor_headroom_bp": 4700 - dedicated_packaged_bp,
+            "dedicated_or_split_donor_single_aav6_compatible": dedicated_packaged_bp <= 4700,
+            "design_y_minicircle_11066_plus_1129bp_cistron_bp": 11066 + mod_2afree_bp,
+            "design_y_governed_by_gy017_and_iip0023": True,
+        },
+        "primary_citations": [
+            "PMID:41212211",
+            "PMID:29507232",
+            "PMID:38864729",
+            "PMID:10526337",
+            "PMID:17965014",
+            "PMID:12702875",
+            "PMID:38603470",
+            "PMID:20160085",
+            "PMID:29288549",
+            "PMID:33210820",
+            "PMID:19904234",
+        ],
+    }
+
+
 def main() -> None:
     with REF_PATH.open("r", encoding="utf-8") as f:
         ref = json.load(f)
@@ -12923,6 +13171,11 @@ def main() -> None:
             construct_verification=construct_verification,
             arm1a_can=_canonical_fasta["ISLET1_LOCUS1_ARM1A_B2M_HLAE_SCT_GSGP2A_CD47_IGV_GPI_4880bp"],
             arm1b_can=_canonical_fasta["ISLET1_LOCUS1_ARM1B_B2M_BIDIR_2AFREE_CD47_IGV_GPI_HLAE_SCT_3974bp"],
+            l3_can=_canonical_fasta["ISLET1_LOCUS3_CXCL10_SERPINB9_GSGP2A_PDL1_NO_FURIN_4090bp"],
+            l4_can=_canonical_fasta["ISLET1_LOCUS4_AAVS1_CHS4_455BP_CBX3_A2UCOE_EEF1A1_ICASP9_3457bp"],
+        ),
+        "stage0_p2_itm2b_nm021999_reserve_and_brichos_audit_iip_0028": _build_itm2b_nm021999_reserve_and_brichos_comparator_audit_iip_0028(
+            ref=ref,
             l3_can=_canonical_fasta["ISLET1_LOCUS3_CXCL10_SERPINB9_GSGP2A_PDL1_NO_FURIN_4090bp"],
             l4_can=_canonical_fasta["ISLET1_LOCUS4_AAVS1_CHS4_455BP_CBX3_A2UCOE_EEF1A1_ICASP9_3457bp"],
         ),

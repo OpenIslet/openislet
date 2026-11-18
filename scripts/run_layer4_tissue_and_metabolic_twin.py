@@ -8221,6 +8221,475 @@ def build_hurdle4_spatial_oxygen_catalase_and_route_challengers_iip_0025() -> Di
 # === END_IIP_0025_HURDLE4_SPATIAL_OXYGEN_CATALASE_AND_CHALLENGERS ===
 
 
+# === BEGIN_IIP_0028_MEASURED_POTENCY_DEC084_MIXTURE_AND_GLUCAGON_AUDIT ===
+def _betacf_l4_iip_0028(a: float, b: float, x: float) -> float:
+    max_it = 300
+    eps = 3.0e-15
+    fpmin = 1.0e-300
+    qab = a + b
+    qap = a + 1.0
+    qam = a - 1.0
+    c = 1.0
+    d = 1.0 - qab * x / qap
+    if abs(d) < fpmin:
+        d = fpmin
+    d = 1.0 / d
+    h = d
+    for m in range(1, max_it + 1):
+        m2 = 2 * m
+        aa = m * (b - m) * x / ((qam + m2) * (a + m2))
+        d = 1.0 + aa * d
+        if abs(d) < fpmin:
+            d = fpmin
+        c = 1.0 + aa / c
+        if abs(c) < fpmin:
+            c = fpmin
+        d = 1.0 / d
+        h *= d * c
+        aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2))
+        d = 1.0 + aa * d
+        if abs(d) < fpmin:
+            d = fpmin
+        c = 1.0 + aa / c
+        if abs(c) < fpmin:
+            c = fpmin
+        d = 1.0 / d
+        del_h = d * c
+        h *= del_h
+        if abs(del_h - 1.0) < eps:
+            break
+    return h
+
+
+def _reg_inc_beta_l4_iip_0028(a: float, b: float, x: float) -> float:
+    if x <= 0.0:
+        return 0.0
+    if x >= 1.0:
+        return 1.0
+    lbeta = math.lgamma(a) + math.lgamma(b) - math.lgamma(a + b)
+    bt = math.exp(a * math.log(x) + b * math.log(1.0 - x) - lbeta)
+    if x < (a + 1.0) / (a + b + 2.0):
+        return bt * _betacf_l4_iip_0028(a, b, x) / a
+    return 1.0 - bt * _betacf_l4_iip_0028(b, a, 1.0 - x) / b
+
+
+def _student_t_ppf_l4_iip_0028(p: float, df: float) -> float:
+    lo, hi = -40.0, 40.0
+    for _ in range(100):
+        mid = 0.5 * (lo + hi)
+        if mid == 0.0:
+            cdf_v = 0.5
+        else:
+            xv = df / (df + mid * mid)
+            ib = 0.5 * _reg_inc_beta_l4_iip_0028(0.5 * df, 0.5, xv)
+            cdf_v = 1.0 - ib if mid > 0.0 else ib
+        if cdf_v < p:
+            lo = mid
+        else:
+            hi = mid
+    return 0.5 * (lo + hi)
+
+
+def _one_sided_paired_t_power_l4_iip_0028(effect_over_sd: float, n_blocks: int, alpha: float = 0.05) -> float:
+    df = float(n_blocks - 1)
+    t_crit = _student_t_ppf_l4_iip_0028(1.0 - alpha, df)
+    ncp = effect_over_sd * math.sqrt(float(n_blocks))
+    v_max = max(df + 14.0 * math.sqrt(2.0 * df), 80.0)
+    n_steps = 800
+    h = v_max / n_steps
+
+    def _integrand(v: float) -> float:
+        if v <= 0.0:
+            return 0.0
+        log_f = (0.5 * df - 1.0) * math.log(v) - 0.5 * v - 0.5 * df * math.log(2.0) - math.lgamma(0.5 * df)
+        z = t_crit * math.sqrt(v / df) - ncp
+        return math.exp(log_f) * 0.5 * math.erfc(z / math.sqrt(2.0))
+
+    acc = _integrand(1e-12) + _integrand(v_max)
+    for k_i in range(1, n_steps):
+        acc += (4.0 if (k_i % 2 == 1) else 2.0) * _integrand(k_i * h)
+    return acc * h / 3.0
+
+
+def solve_dual_band_unit_cell_iip_0028(
+    load_ieq: float,
+    diam_um: float,
+    buf_um: float = 20.0,
+    endo_ocr_mult: float = 1.097,
+    vasc_load_equiv_ieq: float | None = None,
+    vasc_ocr_mult: float = 1.097,
+    standoff_phys_um: float = 15.0,
+    pb_mmhg: float = 35.0,
+    nx_c: int = 40,
+    nz_c: int = 70,
+) -> Dict[str, Any]:
+    """
+    Live 3D FVM dual-band worst-face unit-cell solver evaluating top and bottom harmonic
+    interface minima across measured-potency DEC-084 mixture loadings (IIP-0028; DEC-106).
+    """
+    if vasc_load_equiv_ieq is None:
+        vasc_load_equiv_ieq = load_ieq
+    slab_um, lam_um = 350.0, 100.0
+    p_krogh_chronic = ALPHA_BUNSEN_MOL_CM3_MMHG * 1.50e-5
+    p_krogh_islet = ALPHA_BUNSEN_MOL_CM3_MMHG * D_O2_ISLET_TISSUE_CM2_S
+    rad_cm = 0.5 * diam_um * 1e-4
+    vol_sph = (4.0 / 3.0) * math.pi * (rad_cm ** 3)
+    n_face = 0.5 * ((load_ieq * VOL_1_IEQ_CM3) / vol_sph)
+    side_cm = math.sqrt(1.0 / n_face)
+    hex_pitch_cm = math.sqrt(2.0 / (math.sqrt(3.0) * n_face))
+    slab_cm = slab_um * 1e-4
+    lam_half_cm = 0.5 * lam_um * 1e-4
+    buf_cm = buf_um * 1e-4
+    band_inner_z = lam_half_cm + buf_cm
+    band_outer_z = 0.5 * slab_cm
+    dx_c, dz_c = side_cm / nx_c, slab_cm / nz_c
+    xs = (np.arange(nx_c) + 0.5) * dx_c - 0.5 * side_cm
+    zs = (np.arange(nz_c) + 0.5) * dz_c - 0.5 * slab_cm
+    X, Y, Z = np.meshgrid(xs, xs, zs, indexing="ij")
+    z_mid = 0.5 * (band_inner_z + band_outer_z)
+    z_c = min(band_outer_z - rad_cm - min(0.0002, 0.5 * (band_outer_z - band_inner_z - 2.0 * rad_cm)), z_mid)
+    z_c = max(z_c, band_inner_z + rad_cm)
+    ddx = np.minimum(np.abs(X), side_cm - np.abs(X))
+    ddy = np.minimum(np.abs(Y), side_cm - np.abs(Y))
+    top_sph = (ddx ** 2 + ddy ** 2 + (Z - z_c) ** 2) <= (rad_cm ** 2)
+    bot_sph = (ddx ** 2 + ddy ** 2 + (Z + z_c) ** 2) <= (rad_cm ** 2)
+    in_sph = top_sph | bot_sph
+    in_lam = np.abs(Z) <= lam_half_cm
+    in_buf = (np.abs(Z) > lam_half_cm) & (np.abs(Z) <= band_inner_z)
+    perm = np.where(in_lam, p_krogh_chronic * (0.42 ** 1.5), p_krogh_chronic)
+    perm[in_sph] = p_krogh_islet
+    in_gel = (~in_sph) & (~in_lam) & (~in_buf)
+    t_phi_endo = (load_ieq * VOL_1_IEQ_CM3) / slab_cm
+    t_phi_vasc = (vasc_load_equiv_ieq * VOL_1_IEQ_CM3) / slab_cm
+    vmax = np.zeros_like(X)
+    vmax[in_sph] = (VMAX_ISLET_PURE_MOL_CM3_S * endo_ocr_mult) * (t_phi_endo / float(np.mean(in_sph)))
+    vmax[in_gel] = (t_phi_vasc * VMAX_ISLET_PURE_MOL_CM3_S * 0.15 * vasc_ocr_mult) / float(np.mean(in_gel))
+    kp = np.where(in_gel, 0.14 * 0.97, 0.0)
+    res_o2 = _solve_3d_oxygen_strict_iip_0019(
+        perm, vmax, np.zeros_like(X), kp, dx_c, dx_c, dz_c, pb_mmhg,
+        standoff_z_cm=standoff_phys_um * 1e-4, p_ext=p_krogh_chronic / 3.0,
+    )
+    p3 = res_o2["p_3d"]
+    fv_top = _compute_exact_fv_interface_stats_iip_0019(p3, perm, top_sph)
+    fv_bot = _compute_exact_fv_interface_stats_iip_0019(p3, perm, bot_sph)
+    worst_min_raw = float(min(fv_top["fv_harmonic_face_min_mmhg"], fv_bot["fv_harmonic_face_min_mmhg"]))
+    worst_mean_raw = float(min(fv_top["fv_harmonic_face_mean_mmhg"], fv_bot["fv_harmonic_face_mean_mmhg"]))
+    core_min_raw = float(np.min(p3[in_sph]))
+    return {
+        "mesh": f"{nx_c}x{nx_c}x{nz_c}",
+        "boundary_po2_mmhg": pb_mmhg,
+        "areal_loading_ieq_cm2": round(load_ieq, 4),
+        "cluster_diam_um": diam_um,
+        "barrier_film_each_um": buf_um,
+        "standoff_phys_um": standoff_phys_um,
+        "square_pitch_um": round(side_cm * 1e4, 2),
+        "hexagonal_pitch_um": round(hex_pitch_cm * 1e4, 2),
+        "dual_band_worst_face_min_unrounded_mmhg": worst_min_raw,
+        "dual_band_worst_face_min_mmhg": round(worst_min_raw, 4),
+        "dual_band_worst_face_mean_mmhg": round(worst_mean_raw, 4),
+        "top_band_face_min_mmhg": round(float(fv_top["fv_harmonic_face_min_mmhg"]), 4),
+        "bottom_band_face_min_mmhg": round(float(fv_bot["fv_harmonic_face_min_mmhg"]), 4),
+        "min_core_po2_unrounded_mmhg": core_min_raw,
+        "min_core_po2_mmhg": round(core_min_raw, 4),
+        "passes_unrounded_min15_and_core5": bool(worst_min_raw >= 15.0 and core_min_raw >= 5.0),
+    }
+
+
+def simulate_dec084_exercise_ode_sensitivity_iip_0028(
+    *,
+    v_beta: float = 0.60,
+    alpha_flux_ratio_vs_modeA: float = 1.0,
+    sst_drive_scale_vs_modeA: float = 1.0,
+    local_paracrine_preserved: bool = True,
+    t_ins_lag_min: float = 5.17,
+) -> Dict[str, Any]:
+    """
+    Evaluate 0.25-min RK4 24-h exercise ODE sensitivities for DEC-084 mixture glucagon/delta
+    coefficients through compute_exact_elapsed_glycemic_metrics_iip_0024 (IIP-0028; DEC-106).
+    """
+    k05, nh = 7.2, 4.2
+    k_ip_clear, k_x_decay = 0.14, 0.035
+    local_pf = 1.0 if local_paracrine_preserved else v_beta
+    meals = [(60.0, 60.0), (360.0, 60.0), (840.0, 80.0)]
+    ex_start, ex_end, ex_int = 448.0, 536.0, 1.51
+
+    def _meal_app(t_m: float) -> float:
+        r = 0.0
+        for t0, grams in meals:
+            if t_m > t0:
+                dt = t_m - t0
+                r += ((grams * 0.095) / (34.0 * 34.0)) * dt * math.exp(-dt / 34.0)
+        return r
+
+    def _sst_occ(s_val: float) -> float:
+        sp = max(0.0, s_val)
+        return (sp / (1e-4 + sp)) if sp > 0.0 else 0.0
+
+    def _compute_sec_ins(g_val: float, s_val: float, m_val: float) -> float:
+        gp = max(0.5, g_val)
+        gs = _sst_occ(s_val)
+        base_rate = 6.8 - 0.8 * gs
+        low_clamp = (1.0 - gs * (1.0 - ((gp / 4.20) ** 8))) if gp < 4.20 else 1.0
+        return v_beta * (base_rate * low_clamp + 88.0 * max(0.0, m_val) * low_clamp)
+
+    def _rhs(t: float, y: np.ndarray) -> np.ndarray:
+        G, Ip, X, U, S, Gcg, M_sec, I1, I2 = y
+        gp = max(0.5, G)
+        sp = max(0.0, S)
+        gs = _sst_occ(sp)
+        g_eff = max(0.0, gp - 3.5)
+        k_eff = k05 - 3.5
+        hill = (g_eff ** nh) / ((k_eff ** nh) + (g_eff ** nh))
+        m_target = hill / (1.0 + 1.50 * sp * gs)
+        if m_target < M_sec:
+            tau_sst = 1.85 / (1.0 + 0.8 * sp)
+            if gp < 4.20:
+                tau_sst = tau_sst * ((gp / 4.20) ** 4)
+            tau_m = 6.80 * (1.0 - gs) + tau_sst * gs
+        else:
+            tau_m = 2.00
+        dM = (m_target - M_sec) / tau_m
+        s_ins = _compute_sec_ins(gp, sp, M_sec)
+        tau_tr = 0.5 * t_ins_lag_min
+        dI1 = (s_ins - I1) / tau_tr
+        dI2 = (I1 - I2) / tau_tr
+        dIp = I2 - k_ip_clear * Ip
+        dX = k_x_decay * (max(0.0, Ip - 45.0) / 100.0 - X)
+        dU = (1.2 * local_pf * M_sec - U) / 2.5
+        sst_drive = sst_drive_scale_vs_modeA * local_pf * (0.65 * U + 0.45 * ((gp ** 4) / (5.8 ** 4 + gp ** 4)))
+        dS = (sst_drive - S) / 1.5
+        low_g_drive = 1.0 / (1.0 + ((gp / 4.45) ** 6))
+        ins_eff_block = Ip * (1.0 - gs * (1.0 - ((gp / 4.20) ** 8))) if gp < 4.20 else Ip
+        ins_block = 0.018 * max(0.0, ins_eff_block - 52.0)
+        gcg_sec = 11.4 + (56.0 * alpha_flux_ratio_vs_modeA * v_beta) * low_g_drive / (1.0 + ins_block + 0.35 * sp)
+        dGcg = gcg_sec - 0.20 * Gcg
+        ex = ex_int if ex_start <= t <= ex_end else 0.0
+        b_tone = min(1.0, (max(0.0, Ip) / 25.0) ** 2)
+        egp = max(0.010, 0.056 * (1.0 + 0.018 * (Gcg - 58.0)) / (1.0 + 0.26 * max(0.0, X)) + 0.068 * (1.0 - b_tone))
+        up_ind = 0.032 * (gp / (1.2 + gp)) * (1.0 + 0.48 * ex)
+        up_ins = (0.0052 * b_tone + 0.0135 * max(0.0, X)) * gp * (1.0 + 1.55 * ex)
+        renal = 0.0065 * max(0.0, gp - 10.0)
+        dG = egp + _meal_app(t) - up_ind - up_ins - renal
+        return np.array([dG, dIp, dX, dU, dS, dGcg, dM, dI1, dI2])
+
+    _rhs.integration_breakpoints = (ex_start, ex_end)  # type: ignore[attr-defined]
+    s0 = 0.12 * local_pf * sst_drive_scale_vs_modeA
+    g0 = 5.1
+    s_ins0 = _compute_sec_ins(g0, s0, 0.08 * local_pf)
+    y0 = np.array([g0, 48.0 * v_beta, 0.03 * v_beta, 0.08 * local_pf, s0, 60.0, 0.08 * local_pf, s_ins0, s_ins0], dtype=np.float64)
+    t_grid = np.linspace(0.0, 1440.0, 5761)
+    sol = rk4_integrate(_rhs, (0.0, 1440.0), y0, t_grid, dt_max=0.25)
+    g_025, s_025 = sol[0], sol[4]
+    elapsed = compute_exact_elapsed_glycemic_metrics_iip_0024(
+        [float(tv) for tv in t_grid],
+        [float(gv) for gv in g_025],
+    )
+    min_s = float(np.min(s_025))
+    min_sst_occ = min_s / (1e-4 + min_s)
+    nadir_mm = float(np.min(g_025))
+    tbr_el = float(elapsed["tbr39_elapsed_unrounded_pct"])
+    tir_el = float(elapsed["tir_elapsed_unrounded_pct"])
+    tbr30_el = float(elapsed["tbr30_elapsed_unrounded_pct"])
+    return {
+        "min_glucose_0p25min_mM": round(nadir_mm, 6),
+        "tir_3p9_to_10_elapsed_pct": round(tir_el, 4),
+        "tbr_below_3p9_elapsed_pct": round(tbr_el, 4),
+        "tbr_below_3p0_elapsed_pct": round(tbr30_el, 4),
+        "passes_layer4_model_gate": bool(tir_el >= 85.0 and tbr_el < 4.0 and tbr30_el == 0.0 and nadir_mm >= 3.5),
+        "tir_3p9_to_10_node_count_pct": round(100.0 * float(np.mean((g_025 >= 3.9) & (g_025 <= 10.0))), 4),
+        "tbr_below_3p9_node_count_pct": round(100.0 * float(np.mean(g_025 < 3.9)), 4),
+        "min_sst_receptor_occupancy": round(min_sst_occ, 6),
+    }
+
+
+def build_measured_potency_dec084_mixture_and_glucagon_audit_iip_0028() -> Dict[str, Any]:
+    """
+    Build reproducible measured-potency equal-output DEC-084 mixture (70:20:10 / 70:25:5 vs 60:30:10)
+    loading, whole-graft OCR algebra, 40x40x70 & 60x60x105 dual-band worst-face 3D oxygen solves
+    (including matched +10%-stress 100 um baselines and P_b = 34 mmHg sensitivity), linear-crossing
+    elapsed TBR + glucagon/SST sensitivities, 4/7 & 5/7 alpha-cell stoichiometry note, and n = 8
+    confirmation power profile (IIP-0028; DEC-106).
+    """
+    endo_ratio_1p00 = 6.0 / 7.0
+    load_1p00 = 1500.0 * endo_ratio_1p00  # 1,285.7143 IEQ/cm^2
+    load_0p95 = 1500.0 * endo_ratio_1p00 / 0.95  # 1,353.3835 IEQ/cm^2
+    load_0p90 = 1500.0 * endo_ratio_1p00 / 0.90  # 1,428.5714 IEQ/cm^2
+
+    ocr_fix_1p00 = (endo_ratio_1p00 + 0.15) / 1.15  # 141/161 = 0.875776
+    ocr_cos_1p00 = endo_ratio_1p00  # 6/7 = 0.857143
+    ocr_fix_0p95 = ((endo_ratio_1p00 / 0.95) + 0.15) / 1.15  # 0.915005 -> 0.91500
+    ocr_cos_0p95 = endo_ratio_1p00 / 0.95  # 0.902256 -> 0.90226
+    ocr_fix_0p90 = ((endo_ratio_1p00 / 0.90) + 0.15) / 1.15  # 463/483 = 0.958592
+    ocr_cos_0p90 = endo_ratio_1p00 / 0.90  # 20/21 = 0.952381
+
+    r_star_fix_015d = ((10.0 / 7.0) / 1.15 - 0.40) / 0.60  # 226/161 = 1.403727
+    r_star_fix_abs = ((10.0 / 7.0) - 0.55) / 0.60  # 41/28 = 1.464286
+    r_star_endo_only = ((10.0 / 7.0) - 0.40) / 0.60  # 12/7 = 1.714286
+    r_star_cos_015d = ((200.0 / 131.0) - 0.40) / 0.60  # 246/131 = 1.877863
+
+    stress_ocr = 1.097 * 1.10
+    fvm_cases = [
+        ("modeA_100um_350barrier_nominal_pb35", 1500.0, 100.0, 20.0, 1.097, 1500.0, 1.097, 15.0, 35.0),
+        ("modeB_1p00_100um_350barrier_nominal_fixedV_pb35", load_1p00, 100.0, 20.0, 1.097, 1500.0, 1.097, 15.0, 35.0),
+        ("modeB_1p00_100um_350barrier_nominal_coscV_pb35", load_1p00, 100.0, 20.0, 1.097, load_1p00, 1.097, 15.0, 35.0),
+        ("modeA_100um_350barrier_plus10stress_pb35", 1500.0, 100.0, 20.0, stress_ocr, 1500.0, stress_ocr, 16.5, 35.0),
+        ("modeB_1p00_100um_350barrier_plus10stress_fixedV_pb35", load_1p00, 100.0, 20.0, stress_ocr, 1500.0, stress_ocr, 16.5, 35.0),
+        ("modeB_1p00_100um_350barrier_plus10stress_coscV_pb35", load_1p00, 100.0, 20.0, stress_ocr, load_1p00, stress_ocr, 16.5, 35.0),
+        ("modeA_80um_350barrier_plus10stress_pb35", 1500.0, 80.0, 20.0, stress_ocr, 1500.0, stress_ocr, 16.5, 35.0),
+        ("modeB_1p00_80um_350barrier_plus10stress_fixedV_pb35", load_1p00, 80.0, 20.0, stress_ocr, 1500.0, stress_ocr, 16.5, 35.0),
+        ("modeB_1p00_80um_350barrier_plus10stress_coscV_pb35", load_1p00, 80.0, 20.0, stress_ocr, load_1p00, stress_ocr, 16.5, 35.0),
+        ("modeB_0p95_80um_350barrier_plus10stress_fixedV_pb35", load_0p95, 80.0, 20.0, stress_ocr, 1500.0, stress_ocr, 16.5, 35.0),
+        ("modeB_0p95_80um_350barrier_plus10stress_coscV_pb35", load_0p95, 80.0, 20.0, stress_ocr, load_0p95, stress_ocr, 16.5, 35.0),
+        ("modeB_0p90_80um_350barrier_plus10stress_fixedV_pb35", load_0p90, 80.0, 20.0, stress_ocr, 1500.0, stress_ocr, 16.5, 35.0),
+        ("modeB_0p90_80um_350barrier_plus10stress_coscV_pb35", load_0p90, 80.0, 20.0, stress_ocr, load_0p90, stress_ocr, 16.5, 35.0),
+        ("modeB_1p00_80um_350barrier_plus10stress_fixedV_pb34", load_1p00, 80.0, 20.0, stress_ocr, 1500.0, stress_ocr, 16.5, 34.0),
+        ("modeB_1p00_80um_350barrier_plus10stress_coscV_pb34", load_1p00, 80.0, 20.0, stress_ocr, load_1p00, stress_ocr, 16.5, 34.0),
+    ]
+    fvm_nx40 = {
+        cid: solve_dual_band_unit_cell_iip_0028(ld, dm, bf, eo, vl, vo, st, pb_mmhg=pb, nx_c=40, nz_c=70)
+        for cid, ld, dm, bf, eo, vl, vo, st, pb in fvm_cases
+    }
+    fvm_nx60 = {
+        cid: solve_dual_band_unit_cell_iip_0028(ld, dm, bf, eo, vl, vo, st, pb_mmhg=pb, nx_c=60, nz_c=105)
+        for cid, ld, dm, bf, eo, vl, vo, st, pb in fvm_cases
+    }
+
+    ode_cases = {
+        "reference_60_30_10_preserved_paracrine": simulate_dec084_exercise_ode_sensitivity_iip_0028(
+            alpha_flux_ratio_vs_modeA=1.0, sst_drive_scale_vs_modeA=1.0, local_paracrine_preserved=True
+        ),
+        "gate_floor_gcg_0p85_70_20_10_sst_1p0": simulate_dec084_exercise_ode_sensitivity_iip_0028(
+            alpha_flux_ratio_vs_modeA=0.85, sst_drive_scale_vs_modeA=1.0, local_paracrine_preserved=True
+        ),
+        "gate_floor_gcg_0p85_70_20_10_sst_6over7": simulate_dec084_exercise_ode_sensitivity_iip_0028(
+            alpha_flux_ratio_vs_modeA=0.85, sst_drive_scale_vs_modeA=6.0 / 7.0, local_paracrine_preserved=True
+        ),
+        "gate_floor_gcg_0p85_70_25_5_sst_0p50": simulate_dec084_exercise_ode_sensitivity_iip_0028(
+            alpha_flux_ratio_vs_modeA=0.85, sst_drive_scale_vs_modeA=0.50, local_paracrine_preserved=True
+        ),
+        "gate_floor_gcg_0p85_70_25_5_sst_3over7": simulate_dec084_exercise_ode_sensitivity_iip_0028(
+            alpha_flux_ratio_vs_modeA=0.85, sst_drive_scale_vs_modeA=3.0 / 7.0, local_paracrine_preserved=True
+        ),
+        "compensated_gcg_0p95_sst_1p0": simulate_dec084_exercise_ode_sensitivity_iip_0028(
+            alpha_flux_ratio_vs_modeA=0.95, sst_drive_scale_vs_modeA=1.0, local_paracrine_preserved=True
+        ),
+        "compensated_gcg_0p95_half_sst_0p50": simulate_dec084_exercise_ode_sensitivity_iip_0028(
+            alpha_flux_ratio_vs_modeA=0.95, sst_drive_scale_vs_modeA=0.50, local_paracrine_preserved=True
+        ),
+        "uncompensated_alpha_count_4over7_70_20_10": simulate_dec084_exercise_ode_sensitivity_iip_0028(
+            alpha_flux_ratio_vs_modeA=4.0 / 7.0, sst_drive_scale_vs_modeA=6.0 / 7.0, local_paracrine_preserved=True
+        ),
+        "uncompensated_alpha_count_5over7_70_25_5": simulate_dec084_exercise_ode_sensitivity_iip_0028(
+            alpha_flux_ratio_vs_modeA=5.0 / 7.0, sst_drive_scale_vs_modeA=3.0 / 7.0, local_paracrine_preserved=True
+        ),
+    }
+
+    t_5761 = [0.25 * i for i in range(5761)]
+    b231_4p22 = compute_exact_elapsed_glycemic_metrics_iip_0024(
+        t_5761, [4.22] * 1000 + [3.60] * 231 + [4.22] * (5761 - 1231)
+    )
+    b231_5p00 = compute_exact_elapsed_glycemic_metrics_iip_0024(
+        t_5761, [5.00] * 1000 + [3.60] * 231 + [5.00] * (5761 - 1231)
+    )
+
+    pwr_022 = round(_one_sided_paired_t_power_l4_iip_0028((math.log(0.90) - math.log(ocr_fix_1p00)) / 0.022, 8), 4)
+    pwr_035 = round(_one_sided_paired_t_power_l4_iip_0028((math.log(0.90) - math.log(ocr_fix_1p00)) / 0.035, 8), 4)
+    pwr_050 = round(_one_sided_paired_t_power_l4_iip_0028((math.log(0.90) - math.log(ocr_fix_1p00)) / 0.050, 8), 4)
+
+    return {
+        "contribution_id": "IIP-0028",
+        "decision_id": "DEC-106",
+        "graveyard_card_id": "GY-023",
+        "headline_single_design_and_portfolio_odds_unchanged": True,
+        "measured_potency_loading_and_ocr": {
+            "loading_formula": "(6/7) * (output_per_beta_A / output_per_beta_B) * 1500.0 IEQ/cm^2",
+            "measured_composition_and_dose_response_qualification_note": (
+                "The nominal 6/7 factor holds only when achieved post-aggregation beta fractions match 70% vs 60% at "
+                "equal viable endocrine cells per IEQ and linear output scaling; Stage-0 advancement requires measured "
+                "starting beta/alpha/delta fractions, viable cell counts, propagated potency uncertainty, and fresh-lot "
+                "equal-output verification across n = 8 confirmation blocks disjoint from n >= 3 fixed-input selection blocks."
+            ),
+            "alpha_cell_stoichiometry_note": {
+                "m1_70_20_10_vs_60_30_10_alpha_count_ratio_at_equal_beta_dose": round(4.0 / 7.0, 6),
+                "m1_70_20_10_alpha_fraction_label": "4/7 (57.14% of reference alpha-cell count)",
+                "m2_70_25_5_vs_60_30_10_alpha_count_ratio_at_equal_beta_dose": round(5.0 / 7.0, 6),
+                "m2_70_25_5_alpha_fraction_label": "5/7 (71.43% of reference alpha-cell count)",
+                "implication": "Retained insulin output at 1,285.71 IEQ/cm^2 can coexist with materially lower alpha-cell count, requiring empirical L95_t(GCG_AUC_B/A) >= 0.85, absolute low-glucose glucagon output, and Readout 2 >= 2.0x fold gates.",
+            },
+            "potency_1p00_areal_loading_ieq_cm2": round(load_1p00, 4),
+            "potency_0p95_areal_loading_ieq_cm2": round(load_0p95, 4),
+            "potency_0p90_areal_loading_ieq_cm2": round(load_0p90, 4),
+            "ocr_ratio_1p00_fixed_vs_coscaled": [round(ocr_fix_1p00, 6), round(ocr_cos_1p00, 6)],
+            "ocr_ratio_0p95_fixed_vs_coscaled": [round(ocr_fix_0p95, 6), round(ocr_cos_0p95, 6)],
+            "ocr_ratio_0p95_rounded_5dec": [round(ocr_fix_0p95, 5), round(ocr_cos_0p95, 5)],
+            "ocr_ratio_0p90_fixed_vs_coscaled": [round(ocr_fix_0p90, 6), round(ocr_cos_0p90, 6)],
+            "point_threshold_0p90_respiration_ratio_crossings_r_star": {
+                "fixed_vascular_0p15D_226_over_161": round(r_star_fix_015d, 6),
+                "fixed_vascular_absolute_41_over_28": round(r_star_fix_abs, 6),
+                "endocrine_only_12_over_7": round(r_star_endo_only, 6),
+                "whole_graft_coscaled_0p15D_246_over_131": round(r_star_cos_015d, 6),
+            },
+        },
+        "dual_band_worst_face_3d_fvm_oxygen_sweep": {
+            "stress_definition": "Joint +10% intrinsic OCR (1.097 * 1.10) and +10% physical vessel standoff (16.5 um vs 15.0 um nominal) on 350-um slab with 100-um central lamina and 2 x 20-um catalase barrier films",
+            "nx40_nz70": fvm_nx40,
+            "nx60_nz105": fvm_nx60,
+            "matched_plus10_stress_100um_summary_mmhg": {
+                "modeA_1500_nx40_nx60": [
+                    fvm_nx40["modeA_100um_350barrier_plus10stress_pb35"]["dual_band_worst_face_min_mmhg"],
+                    fvm_nx60["modeA_100um_350barrier_plus10stress_pb35"]["dual_band_worst_face_min_mmhg"],
+                ],
+                "modeB_1p00_fixed_vascular_nx40_nx60": [
+                    fvm_nx40["modeB_1p00_100um_350barrier_plus10stress_fixedV_pb35"]["dual_band_worst_face_min_mmhg"],
+                    fvm_nx60["modeB_1p00_100um_350barrier_plus10stress_fixedV_pb35"]["dual_band_worst_face_min_mmhg"],
+                ],
+                "modeB_1p00_coscaled_nx40_nx60": [
+                    fvm_nx40["modeB_1p00_100um_350barrier_plus10stress_coscV_pb35"]["dual_band_worst_face_min_mmhg"],
+                    fvm_nx60["modeB_1p00_100um_350barrier_plus10stress_coscV_pb35"]["dual_band_worst_face_min_mmhg"],
+                ],
+            },
+            "boundary_po2_34mmhg_narrow_margin_80um_plus10_stress_mmhg": {
+                "fixed_vascular_1p00_nx40_nx60": [
+                    fvm_nx40["modeB_1p00_80um_350barrier_plus10stress_fixedV_pb34"]["dual_band_worst_face_min_mmhg"],
+                    fvm_nx60["modeB_1p00_80um_350barrier_plus10stress_fixedV_pb34"]["dual_band_worst_face_min_mmhg"],
+                ],
+                "coscaled_1p00_nx40_nx60": [
+                    fvm_nx40["modeB_1p00_80um_350barrier_plus10stress_coscV_pb34"]["dual_band_worst_face_min_mmhg"],
+                    fvm_nx60["modeB_1p00_80um_350barrier_plus10stress_coscV_pb34"]["dual_band_worst_face_min_mmhg"],
+                ],
+                "passes_15mmhg_floor_at_34mmhg_fixed_vascular": False,
+            },
+        },
+        "rk4_24h_exercise_ode_elapsed_tbr_and_glucagon_sensitivities": ode_cases,
+        "boundary_231_reading_3p60mM_elapsed_tbr_checks": {
+            "background_4p22mM_elapsed_tbr_pct": round(float(b231_4p22["tbr39_elapsed_unrounded_pct"]), 6),
+            "background_5p00mM_elapsed_tbr_pct": round(float(b231_5p00["tbr39_elapsed_unrounded_pct"]), 6),
+            "both_exceed_4pct_tbr_cap": bool(
+                float(b231_4p22["tbr39_elapsed_unrounded_pct"]) >= 4.0 and float(b231_5p00["tbr39_elapsed_unrounded_pct"]) >= 4.0
+            ),
+        },
+        "n8_confirmation_single_endpoint_fixed_vascular_ocr_power": {
+            "paired_log_sd_0p022": pwr_022,
+            "paired_log_sd_0p035": pwr_035,
+            "paired_log_sd_0p050": pwr_050,
+            "scope_note": "Single-endpoint one-sided paired-t OCR power at alpha = 0.05 across n = 8 independent blocks; distinct from joint multi-endpoint advancement power",
+        },
+        "primary_citations": [
+            "PMID:39169271",
+            "PMID:40782792",
+            "PMID:31068696",
+            "PMID:8971076",
+            "PMID:30830873",
+            "PMID:26076035",
+            "PMID:40404627",
+            "PMID:37188763",
+            "PMID:35241836",
+            "PMID:31177185",
+        ],
+    }
+# === END_IIP_0028_MEASURED_POTENCY_DEC084_MIXTURE_AND_GLUCAGON_AUDIT ===
+
+
 def main() -> None:
     part_a_algebra = verify_exact_slab_source_distribution_algebra()
     part_a_pde = solve_336h_spatial_pouch_pde()
@@ -8448,6 +8917,9 @@ def main() -> None:
     )
     part_a_pde["hurdle4_spatial_oxygen_catalase_and_route_challengers_iip_0025"] = (
         build_hurdle4_spatial_oxygen_catalase_and_route_challengers_iip_0025()
+    )
+    part_a_pde["measured_potency_dec084_mixture_and_glucagon_audit_iip_0028"] = (
+        build_measured_potency_dec084_mixture_and_glucagon_audit_iip_0028()
     )
 
     atlas = {

@@ -692,6 +692,12 @@ STAGE0_PERSISTED_BOOLEAN_FLAGS: tuple[str, ...] = (
     "design_b_hlac_allele_specific_surface_or_phased_mrna_verified",
     "b_sct_ciita_exon5_and_trimer_verified",
     "tyk2_phased_haplotype_sap_verified",
+    "require_full_iip0028_postdepletion_adcc_mixture_and_iapp_panel",
+    "washout_and_natural_decay_unpooled_verified",
+    "carrier_and_soluble_adjunct_below_lod_verified",
+    "fcr_effector_fcgr3a_158v_typed_verified",
+    "dec084_measured_starting_composition_and_fresh_equal_output_verified",
+    "iapp_sister_visit_lot_and_viable_beta_mass_concordance_verified",
 )
 
 HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS: tuple[str, ...] = (
@@ -758,6 +764,14 @@ ALLOWED_ORDERED_BATCH_LEDGER_KEYS: frozenset[str] = frozenset({
     "bound_c1_c5_pair_sha256",
     "tyk2_pe_modality",
     "iip0026_schema_era",
+    "recipient_serum_pair_id",
+    "intact_serum_sample_id",
+    "igg_depleted_serum_sample_id",
+    "positive_adcc_control_id",
+    "isotype_adcc_control_id",
+    "arm2_depleted_sample_id",
+    "contemporaneous_arm3_control_sample_id",
+    "sister_assembly_id",
     *HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS,
 })
 
@@ -1319,6 +1333,14 @@ def _validate_prior_posterior_report(
                 "design_y_integrase_modality",
                 "design_y_silencing_modality",
                 "design_y_payload_arm",
+                "recipient_serum_pair_id",
+                "intact_serum_sample_id",
+                "igg_depleted_serum_sample_id",
+                "positive_adcc_control_id",
+                "isotype_adcc_control_id",
+                "arm2_depleted_sample_id",
+                "contemporaneous_arm3_control_sample_id",
+                "sister_assembly_id",
             ):
                 if adj_meta_k in entry and entry[adj_meta_k] is not None:
                     merged_hist_payload_for_norm[adj_meta_k] = entry[adj_meta_k]
@@ -1566,6 +1588,14 @@ def _validate_prior_posterior_report(
                     "bound_c1_c5_pair_sha256",
                     "tyk2_pe_modality",
                     "iip0026_schema_era",
+                    "recipient_serum_pair_id",
+                    "intact_serum_sample_id",
+                    "igg_depleted_serum_sample_id",
+                    "positive_adcc_control_id",
+                    "isotype_adcc_control_id",
+                    "arm2_depleted_sample_id",
+                    "contemporaneous_arm3_control_sample_id",
+                    "sister_assembly_id",
                 ):
                     if entry.get(meta_k) is not None:
                         pooled_hist_for_s0[meta_k] = entry[meta_k]
@@ -2176,6 +2206,14 @@ def run_calibration(
         "bound_c1_c5_pair_sha256",
         "tyk2_pe_modality",
         "iip0026_schema_era",
+        "recipient_serum_pair_id",
+        "intact_serum_sample_id",
+        "igg_depleted_serum_sample_id",
+        "positive_adcc_control_id",
+        "isotype_adcc_control_id",
+        "arm2_depleted_sample_id",
+        "contemporaneous_arm3_control_sample_id",
+        "sister_assembly_id",
         *stage0_persisted_boolean_flags,
     ):
         if qp_meta_k in input_payload and input_payload[qp_meta_k] is not None:
@@ -2312,6 +2350,14 @@ def run_calibration(
             "bound_c1_c5_pair_sha256",
             "tyk2_pe_modality",
             "iip0026_schema_era",
+            "recipient_serum_pair_id",
+            "intact_serum_sample_id",
+            "igg_depleted_serum_sample_id",
+            "positive_adcc_control_id",
+            "isotype_adcc_control_id",
+            "arm2_depleted_sample_id",
+            "contemporaneous_arm3_control_sample_id",
+            "sister_assembly_id",
         ):
             if hist_entry.get(meta_k) is not None:
                 pooled_stage0_payload[meta_k] = hist_entry[meta_k]
@@ -2567,11 +2613,19 @@ def run_calibration(
             pooled_stage0_payload.pop("obs_beta_x3_x4_epistasis_scale", None)
     elif saved_x34_scale is not None:
         pooled_stage0_payload["obs_beta_x3_x4_epistasis_scale"] = saved_x34_scale
+    seen_active_adjunct_history_arms: set[str] = set()
     seen_active_adjunct_depletion_modes: set[str] = set()
     for _dm_entry in [*prev_obs_ledger, current_obs_entry]:
+        _ha_val = _dm_entry.get("adjunct_conditioning_history_arm")
+        if isinstance(_ha_val, str) and _ha_val.strip():
+            seen_active_adjunct_history_arms.add(_ha_val.strip())
         _dm_val = _dm_entry.get("adjunct_depletion_mode")
         if isinstance(_dm_val, str) and _dm_val.strip() in ("NATURAL_AGING_DECAY", "PHYSICAL_WASHOUT"):
             seen_active_adjunct_depletion_modes.add(_dm_val.strip())
+    if len(seen_active_adjunct_history_arms) > 1:
+        raise ValueError(
+            "Cannot pool distinct adjunct_conditioning_history_arm conditioning histories across calibration batches (IIP-0028; DEC-106)"
+        )
     if len(seen_active_adjunct_depletion_modes) > 1:
         raise ValueError(
             "Cannot pool NATURAL_AGING_DECAY and PHYSICAL_WASHOUT adjunct_depletion_mode batches without separate comparability qualification (IIP-0012; DEC-091)"
@@ -3291,6 +3345,25 @@ def replay_stage0_chronological_batches(
         if str(s_pid) in prod_by_id
         else "UNREGISTERED"
     )
+
+    seen_replay_history_arms: set[str] = set()
+    for rec in ordered:
+        sc_a = rec.get("scope") or {}
+        mol_a = rec.get("iip0026_molecular_observations") or {}
+        r_arm = sc_a.get("adjunct_conditioning_history_arm", mol_a.get("adjunct_conditioning_history_arm", rec.get("adjunct_conditioning_history_arm")))
+        if isinstance(r_arm, str) and r_arm.strip():
+            seen_replay_history_arms.add(r_arm.strip())
+    if len(seen_replay_history_arms) > 1:
+        empty_s0 = wc_helper.evaluate_stage0_decision_tree({}, root=root)
+        return {
+            "overall_status": "FAIL_CROSS_CONDITIONING_ARM_REPLAY_MIXING",
+            "lot_release_readiness_tier": "FAIL_CROSS_CONDITIONING_ARM_REPLAY_MIXING",
+            "iip0026_reasons": ["FAIL_CROSS_CONDITIONING_ARM_REPLAY_MIXING"],
+            "lifecycle_state": reg_state,
+            "execution_supported": False,
+            "effective_execution_permitted": False,
+            "switch_decisions": empty_s0["switch_decisions"],
+        }
 
     for rec in ordered[1:]:
         sc = rec.get("scope") or {}

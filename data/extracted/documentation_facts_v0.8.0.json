@@ -1,7 +1,7 @@
 {
   "schema_version": "0.8.0",
   "epistemic_status": "GENERATED_COMPUTATIONAL_FACTS_PHYSICAL_QUALIFICATION_PENDING",
-  "manifest_pin_count": 1363,
+  "manifest_pin_count": 1364,
   "discovery_manifest": {
     "jsonl_rows": 7703,
     "unique_pubmed_pmids": 7703,
@@ -11,11 +11,11 @@
   "source_sha256": {
     "data/raw/corpus_manifest_all_sources.jsonl": "119ecbd3be2ccb79a2f38ac7feca8713ffb7c6c5e92165078e2722331b9e0536",
     "data/extracted/cross_study_discovery_graph.json": "1eb6248877b1dacf11154f608515c092ed1db2fdb7efc34b9c5456a3aa1113f4",
-    "data/extracted/islet1_candidate_stack_rankings.json": "c17e82c5e35f3202c0fa52e0184c34abb3a1f6439c63b0fe6fdb7d908f1a6e17",
+    "data/extracted/islet1_candidate_stack_rankings.json": "82989771f6aeab2791efca908cc009ba640588d57a09efe223d105e75f713e1f",
     "data/protocols/hip_core_fractional_factorial_v0.6.2.json": "7a3aead410a1c9a10ac4fb56b78a1775c73755aed90c1fff4861eb3b94595741",
-    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "d690d3f103704dd63320e4c7b26cfb4762c7c56eba6b25503c2c94ab7229b861",
+    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "bdaff267b9cec607120de1589c3a578e08a6ed84d913d76c6388e17d7e66b179",
     "data/extracted/layer3_structural_verification_atlas.json": "c19d83d87d057a334f45398de1b8ed3569585a2b0273be3a477295835678eab1",
-    "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": "cf34e3579e71eb0553f6f710b017de352bee20e5462ca9ac458c57949396e7e0",
+    "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": "3c4552d16bf93d84ad316f2c6326664634556e8ed07cb6c9b1427c67ea5e0d2f",
     "data/extracted/layer5_personalized_patient_and_crispr_atlas.json": "61c571785bbd22d95c24e92cc06f6040cefbfbe2c76a2adfe77f0de2a58677c6",
     "data/extracted/10202046.json": "b3d836e8c0fc8ed898592975e0f09c0154a0d4f887c2b6893e7c8194befd0a6a",
     "data/extracted/10728379.json": "b2efcc82101e33914aebc51e74ddc7650894d097c11841518f6e848916cae3dc",
@@ -1272,7 +1272,7 @@
             "CXCL10": "2A-free checkpoint cassette proposed; exact donor unresolved",
             "AAVS1": "biallelic iCasp9 proposed",
             "TYK2": "biallelic KO proposed",
-            "INS": "epitope-edit locus proposed; exact allele unresolved"
+            "INS": "epitope-edit locus proposed; exact allele unresolved (distinct from retired INS 3'-UTR EIF4G2 knock-in hypothesis OQ-011 / GY-022; IIP-0026; DEC-105)"
           },
           "cassette_topology": {
             "CXCL10": "2A-free dual-promoter SERPINB9 / PD-L1 proposed; sequence unresolved",

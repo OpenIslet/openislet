@@ -35,6 +35,12 @@
    "pubdate_year": "1999",
    "title": "A20 inhibits cytokine-induced apoptosis and nuclear factor kappaB-dependent gene activation in islets."
   },
+  "10526337": {
+   "first_author": "Kim SH",
+   "journal": "Nat Neurosci",
+   "pubdate_year": "1999",
+   "title": "Furin mediates enhanced production of fibrillogenic ABri peptides in familial British dementia."
+  },
   "10611228": {
    "first_author": "Henis-Korenblit S",
    "journal": "Mol Cell Biol",
@@ -389,6 +395,12 @@
    "pubdate_year": "2007",
    "title": "Meal simulation model of the glucose-insulin system."
   },
+  "17965014": {
+   "first_author": "Martin L",
+   "journal": "J Biol Chem",
+   "pubdate_year": "2008",
+   "title": "Regulated intramembrane proteolysis of Bri2 (Itm2b) by ADAM10 and SPPL2a/SPPL2b."
+  },
   "17982459": {
    "first_author": "Takenaka K",
    "journal": "Nat Immunol",
@@ -550,6 +562,12 @@
    "journal": "Mol Ther",
    "pubdate_year": "2010",
    "title": "Effect of genome size on AAV vector packaging."
+  },
+  "20086230": {
+   "first_author": "Vendrame F",
+   "journal": "Diabetes",
+   "pubdate_year": "2010",
+   "title": "Recurrence of type 1 diabetes after simultaneous pancreas-kidney transplantation, despite immunosuppression, is associated with autoantibodies and pathogenic autoreactive CD4 T-cells."
   },
   "20124731": {
    "first_author": "Matsuoka N",
@@ -772,6 +790,12 @@
    "journal": "Cell Death Dis",
    "pubdate_year": "2012",
    "title": "Necrostatin-1 analogues: critical issues on the specificity, activity and in vivo use in experimental disease models."
+  },
+  "23274902": {
+   "first_author": "Piemonti L",
+   "journal": "Diabetes",
+   "pubdate_year": "2013",
+   "title": "Alloantibody and autoantibody monitoring predicts islet transplantation outcome in human type 1 diabetes."
   },
   "23307570": {
    "first_author": "Pfaff N",
@@ -1385,6 +1409,12 @@
    "pubdate_year": "2018",
    "title": "Anti-streptavidin IgG antibody interference in anti-cyclic citrullinated peptide (CCP) IgG antibody assays is a rare but important cause of false-positive anti-CCP results."
   },
+  "29507232": {
+   "first_author": "Oskarsson ME",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "2018",
+   "title": "BRICHOS domain of Bri2 inhibits islet amyloid polypeptide (IAPP) fibril formation and toxicity in human beta cells."
+  },
   "29632329": {
    "first_author": "Hammer Q",
    "journal": "Nat Immunol",
@@ -1810,6 +1840,12 @@
    "journal": "N Engl J Med",
    "pubdate_year": "2020",
    "title": "Golimumab and Beta-Cell Function in Youth with New-Onset Type 1 Diabetes."
+  },
+  "33210820": {
+   "first_author": "van Gestel CA",
+   "journal": "Integr Environ Assess Manag",
+   "pubdate_year": "2021",
+   "title": "Soil Biodiversity: State-of-the-Art and Possible Implementation in Chemical Risk Assessment."
   },
   "33416832": {
    "first_author": "Deuse T",
@@ -2249,6 +2285,12 @@
    "pubdate_year": "2025",
    "title": "Efficient site-specific integration of large genes in mammalian cells via continuously evolved recombinases and prime editing."
   },
+  "38864729": {
+   "first_author": "Chen G",
+   "journal": "Protein Sci",
+   "pubdate_year": "2024",
+   "title": "Molecular basis for different substrate-binding sites and chaperone functions of the BRICHOS domain."
+  },
   "38867450": {
    "first_author": "Sartori-Maldonado R",
    "journal": "Mol Ther",
@@ -2476,6 +2518,12 @@
    "journal": "Sci Adv",
    "pubdate_year": "2025",
    "title": "Human stem cell-derived β cells expressing an optimized CD155 reduce cytotoxic immune cell function for application in type 1 diabetes."
+  },
+  "41212211": {
+   "first_author": "Cen J",
+   "journal": "Diabetologia",
+   "pubdate_year": "2026",
+   "title": "Bri2 BRICHOS domain inhibits IAPP amyloid formation and improves beta cell function in stem cell-derived islets under metabolic stress."
   },
   "41385368": {
    "first_author": "Preza S",

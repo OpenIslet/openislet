@@ -2344,6 +2344,554 @@ def compute_donor_bank_h1_sensitivity_iip_0024(phi_donor: float = 0.25) -> dict:
     }
 
 
+def _betacf_iip_0028(a: float, b: float, x: float) -> float:
+    max_it = 300
+    eps = 3.0e-15
+    fpmin = 1.0e-300
+    qab = a + b
+    qap = a + 1.0
+    qam = a - 1.0
+    c = 1.0
+    d = 1.0 - qab * x / qap
+    if abs(d) < fpmin:
+        d = fpmin
+    d = 1.0 / d
+    h = d
+    for m in range(1, max_it + 1):
+        m2 = 2 * m
+        aa = m * (b - m) * x / ((qam + m2) * (a + m2))
+        d = 1.0 + aa * d
+        if abs(d) < fpmin:
+            d = fpmin
+        c = 1.0 + aa / c
+        if abs(c) < fpmin:
+            c = fpmin
+        d = 1.0 / d
+        h *= d * c
+        aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2))
+        d = 1.0 + aa * d
+        if abs(d) < fpmin:
+            d = fpmin
+        c = 1.0 + aa / c
+        if abs(c) < fpmin:
+            c = fpmin
+        d = 1.0 / d
+        del_h = d * c
+        h *= del_h
+        if abs(del_h - 1.0) < eps:
+            break
+    return h
+
+
+def _reg_inc_beta_iip_0028(a: float, b: float, x: float) -> float:
+    if x <= 0.0:
+        return 0.0
+    if x >= 1.0:
+        return 1.0
+    lbeta = math.lgamma(a) + math.lgamma(b) - math.lgamma(a + b)
+    bt = math.exp(a * math.log(x) + b * math.log(1.0 - x) - lbeta)
+    if x < (a + 1.0) / (a + b + 2.0):
+        return bt * _betacf_iip_0028(a, b, x) / a
+    return 1.0 - bt * _betacf_iip_0028(b, a, 1.0 - x) / b
+
+
+def clopper_pearson_u95_iip_0028(k: int, n: int, alpha: float = 0.05) -> float:
+    """Exact one-sided Clopper-Pearson binomial upper bound for one prespecified donor-level event (IIP-0028; DEC-106)."""
+    if isinstance(k, bool) or isinstance(n, bool) or not isinstance(k, int) or not isinstance(n, int):
+        raise TypeError("Binomial counts must be strict non-boolean integers (IIP-0028; DEC-106)")
+    if k < 0 or n <= 0 or k > n:
+        raise ValueError("Invalid binomial counts (IIP-0028; DEC-106)")
+    alp = _strict_prob_float_iip0024(alpha, "alpha")
+    if not (0.0 < alp < 1.0):
+        raise ValueError("alpha must lie in (0, 1)")
+    if k == n:
+        return 1.0
+    if k == 0:
+        return 1.0 - (alp ** (1.0 / n))
+    lo, hi = 0.0, 1.0
+    for _ in range(100):
+        mid = 0.5 * (lo + hi)
+        if _reg_inc_beta_iip_0028(float(n - k), float(k + 1), 1.0 - mid) > alp:
+            lo = mid
+        else:
+            hi = mid
+    return 0.5 * (lo + hi)
+
+
+def exact_mcnemar_one_sided_pvalue_iip_0028(n01_b_rescues_a: int, n10_a_rescues_b: int) -> float:
+    """Exact conditional upper-tail McNemar p-value for H1: p01 > p10 where 01 = Design A fails, B2 Base clears (IIP-0028; DEC-106)."""
+    if isinstance(n01_b_rescues_a, bool) or isinstance(n10_a_rescues_b, bool) or not isinstance(n01_b_rescues_a, int) or not isinstance(n10_a_rescues_b, int):
+        raise TypeError("Discordant counts must be strict integers (IIP-0028; DEC-106)")
+    if n01_b_rescues_a < 0 or n10_a_rescues_b < 0:
+        raise ValueError("Discordant counts must be non-negative")
+    m = n01_b_rescues_a + n10_a_rescues_b
+    if m == 0 or n01_b_rescues_a <= 0:
+        return 1.0
+    return _reg_inc_beta_iip_0028(float(n01_b_rescues_a), float(m - n01_b_rescues_a + 1), 0.5)
+
+
+def exact_mcnemar_two_sided_pvalue_iip_0028(n01_b_rescues_a: int, n10_a_rescues_b: int) -> float:
+    if isinstance(n01_b_rescues_a, bool) or isinstance(n10_a_rescues_b, bool) or not isinstance(n01_b_rescues_a, int) or not isinstance(n10_a_rescues_b, int):
+        raise TypeError("Discordant counts must be strict integers (IIP-0028; DEC-106)")
+    if n01_b_rescues_a < 0 or n10_a_rescues_b < 0:
+        raise ValueError("Discordant counts must be non-negative")
+    m = n01_b_rescues_a + n10_a_rescues_b
+    if m == 0:
+        return 1.0
+    k = max(n01_b_rescues_a, n10_a_rescues_b)
+    return min(1.0, 2.0 * _reg_inc_beta_iip_0028(float(k), float(m - k + 1), 0.5))
+
+
+def exact_unconditional_mcnemar_power_iip_0028(
+    n_pairs: int,
+    p01_b_rescues_a: float,
+    p10_a_rescues_b: float,
+    alpha: float = 0.05,
+) -> dict:
+    """
+    Exact unconditional operating characteristics of the conditional McNemar test summed over
+    the trinomial distribution of discordant/concordant donor blocks (IIP-0028; DEC-106).
+    """
+    if isinstance(n_pairs, bool) or not isinstance(n_pairs, int) or n_pairs <= 0:
+        raise ValueError("n_pairs must be a positive integer (IIP-0028; DEC-106)")
+    p01 = _strict_prob_float_iip0024(p01_b_rescues_a, "p01_b_rescues_a")
+    p10 = _strict_prob_float_iip0024(p10_a_rescues_b, "p10_a_rescues_b")
+    alp = _strict_prob_float_iip0024(alpha, "alpha")
+    if p01 < 0.0 or p10 < 0.0 or (p01 + p10) > 1.0 or not (0.0 < alp < 1.0):
+        raise ValueError("Invalid discordant probability cell or alpha (IIP-0028; DEC-106)")
+    p_conc = max(0.0, 1.0 - p01 - p10)
+    lg_n = math.lgamma(n_pairs + 1)
+    power_one = 0.0
+    power_two = 0.0
+    type1_matched = 0.0
+    q_null = p01 + p10
+    for n01 in range(n_pairs + 1):
+        for n10 in range(n_pairs - n01 + 1):
+            n_c = n_pairs - n01 - n10
+            log_mult = lg_n - math.lgamma(n01 + 1) - math.lgamma(n10 + 1) - math.lgamma(n_c + 1)
+            t1 = n01 * math.log(p01) if n01 > 0 else 0.0
+            t2 = n10 * math.log(p10) if n10 > 0 else 0.0
+            t3 = n_c * math.log(p_conc) if n_c > 0 else 0.0
+            has_alt = (n01 == 0 or p01 > 0.0) and (n10 == 0 or p10 > 0.0) and (n_c == 0 or p_conc > 0.0)
+            p_cell = math.exp(log_mult + t1 + t2 + t3) if has_alt else 0.0
+            if exact_mcnemar_one_sided_pvalue_iip_0028(n01, n10) <= alp:
+                power_one += p_cell
+                p_half = 0.5 * q_null
+                p_c0 = 1.0 - q_null
+                if (n01 + n10 == 0 or p_half > 0.0) and (n_c == 0 or p_c0 > 0.0):
+                    tn12 = (n01 + n10) * math.log(p_half) if (n01 + n10) > 0 else 0.0
+                    tn3 = n_c * math.log(p_c0) if n_c > 0 else 0.0
+                    type1_matched += math.exp(log_mult + tn12 + tn3)
+            if exact_mcnemar_two_sided_pvalue_iip_0028(n01, n10) <= alp:
+                power_two += p_cell
+    psi = p01 + p10
+    diff = p01 - p10
+    z_alpha = 1.6448536269514722
+    asymp = (
+        0.5 * math.erfc(-((math.sqrt(n_pairs) * diff - z_alpha * math.sqrt(psi)) / math.sqrt(psi - diff * diff)) / math.sqrt(2.0))
+        if psi > diff * diff
+        else (1.0 if diff > 0.0 else 0.0)
+    )
+    return {
+        "n_pairs": n_pairs,
+        "p01_b_rescues_a": p01,
+        "p10_a_rescues_b": p10,
+        "exact_one_sided_power": round(power_one, 6),
+        "exact_two_sided_power": round(power_two, 6),
+        "connor_asymptotic_one_sided_power": round(asymp, 6),
+        "asymptotic_minus_exact_pp": round(100.0 * (asymp - power_one), 4),
+        "matched_null_exact_type1_rate": round(type1_matched, 6),
+    }
+
+
+def compute_mcnemar_nuisance_size_profile_iip_0028(n_pairs: int = 24, alpha: float = 0.05) -> dict:
+    """
+    Exact unconditional one-sided McNemar Type-I size over total discordance q = p01 + p10 in [0, 1]
+    (with symmetric null per-direction probability p01 = p10 = q / 2; IIP-0028; DEC-106).
+    Explicitly separates total discordance q = 0.96335 from per-direction 0.48167 at n = 24.
+    """
+    if isinstance(n_pairs, bool) or not isinstance(n_pairs, int) or n_pairs <= 0:
+        raise ValueError("n_pairs must be a positive integer (IIP-0028; DEC-106)")
+    alp = _strict_prob_float_iip0024(alpha, "alpha")
+    lg_n = math.lgamma(n_pairs + 1)
+    rej_by_m = [0.0] * (n_pairs + 1)
+    for m in range(1, n_pairs + 1):
+        lg_m = math.lgamma(m + 1)
+        rej_m = 0.0
+        for a in range(m + 1):
+            if exact_mcnemar_one_sided_pvalue_iip_0028(a, m - a) <= alp:
+                rej_m += math.exp(lg_m - math.lgamma(a + 1) - math.lgamma(m - a + 1) - m * math.log(2.0))
+        rej_by_m[m] = rej_m
+
+    def _size_at_q(q_total: float) -> float:
+        if q_total <= 0.0:
+            return 0.0
+        if q_total >= 1.0:
+            return rej_by_m[n_pairs]
+        tot = 0.0
+        for m in range(1, n_pairs + 1):
+            if rej_by_m[m] == 0.0:
+                continue
+            bm = math.exp(
+                lg_n
+                - math.lgamma(m + 1)
+                - math.lgamma(n_pairs - m + 1)
+                + m * math.log(q_total)
+                + ((n_pairs - m) * math.log(1.0 - q_total) if (n_pairs - m) > 0 else 0.0)
+            )
+            tot += bm * rej_by_m[m]
+        return tot
+
+    def _dsize_dq(q_total: float) -> float:
+        deriv = 0.0
+        for m in range(1, n_pairs + 1):
+            if rej_by_m[m] == 0.0:
+                continue
+            bm = math.exp(
+                lg_n
+                - math.lgamma(m + 1)
+                - math.lgamma(n_pairs - m + 1)
+                + m * math.log(q_total)
+                + ((n_pairs - m) * math.log(1.0 - q_total) if (n_pairs - m) > 0 else 0.0)
+            )
+            deriv += bm * rej_by_m[m] * ((m / q_total) - ((n_pairs - m) / (1.0 - q_total)))
+        return deriv
+
+    # Coarse 1,000-point bracket + exact golden-section / derivative refinement on [0, 1]:
+    best_q = 1.0
+    best_sz = rej_by_m[n_pairs]
+    for step in range(1, 1000):
+        qv = step / 1000.0
+        sv = _size_at_q(qv)
+        if sv > best_sz:
+            best_sz = sv
+            best_q = qv
+    if 0.0 < best_q < 1.0:
+        lo_q = max(1e-6, best_q - 0.002)
+        hi_q = min(1.0 - 1e-6, best_q + 0.002)
+        if _dsize_dq(lo_q) > 0.0 and _dsize_dq(hi_q) < 0.0:
+            for _ in range(70):
+                mid_q = 0.5 * (lo_q + hi_q)
+                if _dsize_dq(mid_q) > 0.0:
+                    lo_q = mid_q
+                else:
+                    hi_q = mid_q
+            best_q = 0.5 * (lo_q + hi_q)
+            best_sz = _size_at_q(best_q)
+
+    sz_q1 = rej_by_m[n_pairs]
+    return {
+        "n_pairs": n_pairs,
+        "alpha": alp,
+        "global_worst_case_size": round(best_sz, 6),
+        "global_worst_case_size_pct": round(100.0 * best_sz, 4),
+        "argmax_total_discordance_q": round(best_q, 5),
+        "argmax_per_direction_null_p01_eq_p10": round(0.5 * best_q, 5),
+        "size_at_total_discordance_q_1p0": round(sz_q1, 6),
+        "size_at_total_discordance_q_1p0_pct": round(100.0 * sz_q1, 4),
+    }
+
+
+def compute_ab_frechet_dependence_2pow12_iip_0028(
+    pa_vec: list[float] | tuple[float, ...],
+    pb_vec: list[float] | tuple[float, ...],
+    px_vec: list[float] | tuple[float, ...],
+    c_vec: list[float] | tuple[float, ...],
+    phi_ab: float = 0.0,
+) -> dict:
+    """
+    Evaluate H2/H3 conditional Design A-B Frechet upper-bound coupling weight phi_AB in [0, 1]
+    across the 4,096-state (2^12) common-shock tree while holding X conditionally independent
+    and verifying exact 12-marginal recovery (IIP-0028; DEC-106).
+    """
+    if not all(isinstance(v, (list, tuple)) and len(v) == 4 for v in (pa_vec, pb_vec, px_vec, c_vec)):
+        raise ValueError("All hurdle and ceiling vectors must be 4-element lists or tuples (IIP-0028; DEC-106)")
+    phi = _strict_prob_float_iip0024(phi_ab, "phi_ab")
+    if not (0.0 <= phi <= 1.0):
+        raise ValueError(f"phi_ab={phi} must lie in [0, 1] (IIP-0028; DEC-106)")
+    pa = [_strict_prob_float_iip0024(pa_vec[i], f"pa[{i}]") for i in range(4)]
+    pb = [_strict_prob_float_iip0024(pb_vec[i], f"pb[{i}]") for i in range(4)]
+    px = [_strict_prob_float_iip0024(px_vec[i], f"px[{i}]") for i in range(4)]
+    cc = [_strict_prob_float_iip0024(c_vec[i], f"c[{i}]") for i in range(4)]
+    # Validate marginals & ceilings via baseline generator first
+    compute_common_shock_2pow12_portfolio_tree(pa, pb, px, cc)
+
+    ua = [pa[i] / cc[i] for i in range(4)]
+    ub = [pb[i] / cc[i] for i in range(4)]
+    ux = [px[i] / cc[i] for i in range(4)]
+
+    def _eval_mode(shared_ax_h4: bool) -> tuple[float, float]:
+        dists: list[list[float]] = []
+        for h in range(4):
+            ch = cc[h]
+            if h == 0:
+                d = [0.0] * 8
+                d[0] = 1.0 - ch
+                d[7] = ch
+                dists.append(d)
+                continue
+            qa, qb, qx = ua[h], ub[h], ux[h]
+            d = [0.0] * 8
+            d[0] += 1.0 - ch
+            for ah in (0, 1):
+                for bh in (0, 1):
+                    for xh in (0, 1):
+                        mask = ah | (bh << 1) | (xh << 2)
+                        if h in (1, 2) and phi > 0.0:
+                            p11 = (1.0 - phi) * (qa * qb) + phi * min(qa, qb)
+                            pab = {(1, 1): p11, (1, 0): qa - p11, (0, 1): qb - p11, (0, 0): 1.0 - qa - qb + p11}[(ah, bh)]
+                            pg = pab * (qx if xh else 1.0 - qx)
+                        elif h == 3 and shared_ax_h4:
+                            p11 = min(qa, qx)
+                            pax = {(1, 1): p11, (1, 0): max(0.0, qa - qx), (0, 1): max(0.0, qx - qa), (0, 0): 1.0 - max(qa, qx)}[(ah, xh)]
+                            pg = pax * (qb if bh else 1.0 - qb)
+                        else:
+                            pg = (qa if ah else 1.0 - qa) * (qb if bh else 1.0 - qb) * (qx if xh else 1.0 - qx)
+                        d[mask] += ch * pg
+            dists.append(d)
+
+        locked = 0.0
+        any_h123 = 0.0
+        mass = 0.0
+        margs = [[0.0, 0.0, 0.0] for _ in range(4)]
+        for m0 in range(8):
+            for m1 in range(8):
+                for m2 in range(8):
+                    s2 = m0 & m1 & m2
+                    p012 = dists[0][m0] * dists[1][m1] * dists[2][m2]
+                    for m3 in range(8):
+                        w = p012 * dists[3][m3]
+                        mass += w
+                        if s2 != 0:
+                            any_h123 += w
+                            if (s2 & m3) != 0:
+                                locked += w
+                        for hi, mh in enumerate((m0, m1, m2, m3)):
+                            if mh & 1:
+                                margs[hi][0] += w
+                            if mh & 2:
+                                margs[hi][1] += w
+                            if mh & 4:
+                                margs[hi][2] += w
+        if abs(mass - 1.0) > 1e-12:
+            raise ValueError(f"2^12 phi_AB mass drift: {mass}")
+        for hi in range(4):
+            if (
+                abs(margs[hi][0] - pa[hi]) > 1e-12
+                or abs(margs[hi][1] - pb[hi]) > 1e-12
+                or abs(margs[hi][2] - px[hi]) > 1e-12
+            ):
+                raise ValueError("2^12 phi_AB marginal recovery drift")
+        pouch_union = (
+            cc[3] * (1.0 - (1.0 - max(ua[3], ux[3])) * (1.0 - ub[3]))
+            if shared_ax_h4
+            else cc[3] * (1.0 - (1.0 - ua[3]) * (1.0 - ub[3]) * (1.0 - ux[3]))
+        )
+        return locked, any_h123 * pouch_union
+
+    def _cond_corr_and_disc(h_idx: int) -> tuple[float, float]:
+        qa, qb = ua[h_idx], ub[h_idx]
+        p11 = (1.0 - phi) * (qa * qb) + phi * min(qa, qb)
+        denom = math.sqrt(qa * (1.0 - qa) * qb * (1.0 - qb))
+        r_val = (p11 - qa * qb) / denom if denom > 0.0 else 0.0
+        disc = (qa - p11) + (qb - p11)
+        return r_val, disc
+
+    sh_lock, sh_mod = _eval_mode(shared_ax_h4=True)
+    r3_lock, r3_mod = _eval_mode(shared_ax_h4=False)
+    r_h2, disc_h2 = _cond_corr_and_disc(1)
+    r_h3, disc_h3 = _cond_corr_and_disc(2)
+    return {
+        "phi_ab": round(phi, 4),
+        "single_A_pct": round(100.0 * pa[0] * pa[1] * pa[2] * pa[3], 6),
+        "single_B_pct": round(100.0 * pb[0] * pb[1] * pb[2] * pb[3], 6),
+        "single_X_pct": round(100.0 * px[0] * px[1] * px[2] * px[3], 6),
+        "conditional_pearson_r_h2": round(r_h2, 6),
+        "conditional_pearson_r_h3": round(r_h3, 6),
+        "conditional_ab_discordance_h2_pct": round(100.0 * disc_h2, 6),
+        "conditional_ab_discordance_h3_pct": round(100.0 * disc_h3, 6),
+        "shared_ax_locked_pct": round(100.0 * sh_lock, 6),
+        "shared_ax_modular_pct": round(100.0 * sh_mod, 6),
+        "three_route_locked_pct": round(100.0 * r3_lock, 6),
+        "three_route_modular_pct": round(100.0 * r3_mod, 6),
+    }
+
+
+def bridge_2x2_concordance_to_conditional_phi_ab_iip_0028(
+    n11_both_clear: int,
+    n10_a_only_clears: int,
+    n01_b2_only_clears: int,
+    n00_both_fail: int,
+    *,
+    common_shock_ceiling_c: float,
+    b2_to_scored_b_hurdle_bridge_verified: bool = False,
+) -> dict:
+    """
+    Bridge an observed Donor x (Design A vs ISLET1_B2_5LOCUS_BASE) 2x2 concordance table to
+    conditional Frechet dependence weight phi_AB (IIP-0028; DEC-106).
+    Explicitly separates (1) direct assay concordance & exact McNemar p-values from
+    (2) conditional hurdle coupling phi_AB, which requires BOTH a fixed/identified common-shock
+    ceiling c_h AND a verified biological bridge from B2 Base to scored Design B on H2/H3.
+    """
+    for lbl, val in (
+        ("n11_both_clear", n11_both_clear),
+        ("n10_a_only_clears", n10_a_only_clears),
+        ("n01_b2_only_clears", n01_b2_only_clears),
+        ("n00_both_fail", n00_both_fail),
+    ):
+        if isinstance(val, bool) or not isinstance(val, int) or val < 0:
+            raise ValueError(f"{lbl} must be a non-negative integer (IIP-0028; DEC-106)")
+    if type(b2_to_scored_b_hurdle_bridge_verified) is not bool:
+        raise TypeError("b2_to_scored_b_hurdle_bridge_verified must be a boolean")
+    n_tot = n11_both_clear + n10_a_only_clears + n01_b2_only_clears + n00_both_fail
+    if n_tot < 6:
+        raise ValueError("Paired 2x2 donor concordance table requires N >= 6 independent donor blocks (IIP-0028; DEC-106)")
+    ch = _strict_prob_float_iip0024(common_shock_ceiling_c, "common_shock_ceiling_c")
+    if not (0.0 < ch <= 1.0):
+        raise ValueError("common_shock_ceiling_c must lie in (0, 1]")
+
+    p11 = n11_both_clear / float(n_tot)
+    p10 = n10_a_only_clears / float(n_tot)
+    p01 = n01_b2_only_clears / float(n_tot)
+    p00 = n00_both_fail / float(n_tot)
+    pa_hat = p11 + p10
+    pb_hat = p11 + p01
+    p_one = exact_mcnemar_one_sided_pvalue_iip_0028(n01_b2_only_clears, n10_a_only_clears)
+    p_two = exact_mcnemar_two_sided_pvalue_iip_0028(n01_b2_only_clears, n10_a_only_clears)
+
+    if pa_hat > ch + 1e-12 or pb_hat > ch + 1e-12:
+        return {
+            "status": "INCOMPATIBLE_COMMON_SHOCK_CEILING_BELOW_OBSERVED_MARGINAL",
+            "n_total_blocks": n_tot,
+            "observed_2x2_proportions": {"p11": round(p11, 6), "p10": round(p10, 6), "p01": round(p01, 6), "p00": round(p00, 6)},
+            "exact_mcnemar_one_sided_p_01_gt_10": round(p_one, 6),
+            "exact_mcnemar_two_sided_p": round(p_two, 6),
+            "conditional_phi_ab_hat_clipped_0_1": None,
+        }
+
+    ua_hat = pa_hat / ch
+    ub_hat = pb_hat / ch
+    u11_hat = p11 / ch
+    frechet_span = min(ua_hat, ub_hat) - (ua_hat * ub_hat)
+    raw_phi = ((u11_hat - ua_hat * ub_hat) / frechet_span) if frechet_span > 1e-12 else 0.0
+    clipped_phi = min(1.0, max(0.0, raw_phi))
+    return {
+        "status": (
+            "BRIDGED_TO_CONDITIONAL_HURDLE_PHI_AB"
+            if b2_to_scored_b_hurdle_bridge_verified
+            else "ASSAY_CONCORDANCE_ONLY_BRIDGE_TO_SCORED_B_UNVERIFIED"
+        ),
+        "n_total_blocks": n_tot,
+        "observed_2x2_counts": {
+            "n11_both_clear": n11_both_clear,
+            "n10_a_only_clears": n10_a_only_clears,
+            "n01_b2_only_clears": n01_b2_only_clears,
+            "n00_both_fail": n00_both_fail,
+        },
+        "observed_2x2_proportions": {
+            "p11": round(p11, 6),
+            "p10": round(p10, 6),
+            "p01": round(p01, 6),
+            "p00": round(p00, 6),
+        },
+        "assay_concordance_fraction": round(p11 + p00, 6),
+        "assay_discordance_fraction": round(p10 + p01, 6),
+        "exact_mcnemar_one_sided_p_01_gt_10": round(p_one, 6),
+        "exact_mcnemar_two_sided_p": round(p_two, 6),
+        "assumed_common_shock_ceiling_c": ch,
+        "b2_to_scored_b_hurdle_bridge_verified": b2_to_scored_b_hurdle_bridge_verified,
+        "unclipped_conditional_phi_ab_plug_in": round(raw_phi, 6) if b2_to_scored_b_hurdle_bridge_verified else None,
+        "conditional_phi_ab_hat_clipped_0_1": round(clipped_phi, 6) if b2_to_scored_b_hurdle_bridge_verified else None,
+    }
+
+
+def compute_paired_mcnemar_and_phi_ab_concordance_audit_iip_0028() -> dict:
+    """
+    Deterministic operating-characteristic and 2^12 concordance-bridge audit for the crossed
+    Donor x (ISLET1_A4_ARM1B vs ISLET1_B2_5LOCUS_BASE) Stage-0 study (IIP-0028; DEC-106).
+    Leaves all 2,160 stack scores/ranks and 27% / 31% / 36% / 53% headline odds 100% invariant.
+    """
+    pa = [0.88, 0.78, 0.57, 0.69]
+    pb = [0.88, 0.79, 0.64, 0.70]
+    px = [0.88, 0.82, 0.73, 0.69]
+    cv = [0.88, 0.87, 0.89, 0.85]
+
+    corners = ((0.40, 0.05), (0.40, 0.02), (0.45, 0.02), (0.45, 0.05), (0.50, 0.02), (0.50, 0.05))
+    sample_sizes = (6, 16, 20, 24, 29)
+    grid_30 = [
+        exact_unconditional_mcnemar_power_iip_0028(n_p, p01, p10, alpha=0.05)
+        for n_p in sample_sizes
+        for (p01, p10) in corners
+    ]
+    by_key = {(r["n_pairs"], r["p01_b_rescues_a"], r["p10_a_rescues_b"]): r for r in grid_30}
+    n6_one = [by_key[(6, p01, p10)]["exact_one_sided_power"] for (p01, p10) in corners]
+    n16_one = [by_key[(16, p01, p10)]["exact_one_sided_power"] for (p01, p10) in corners]
+    n24_one = [by_key[(24, p01, p10)]["exact_one_sided_power"] for (p01, p10) in corners]
+    n24_null = [by_key[(24, p01, p10)]["matched_null_exact_type1_rate"] for (p01, p10) in corners]
+    n29_one = [by_key[(29, p01, p10)]["exact_one_sided_power"] for (p01, p10) in corners]
+    nuisance_24 = compute_mcnemar_nuisance_size_profile_iip_0028(24, alpha=0.05)
+    phi_sweep = [
+        compute_ab_frechet_dependence_2pow12_iip_0028(pa, pb, px, cv, phi_ab=w)
+        for w in (0.0, 0.25, 0.50, 0.75, 1.0)
+    ]
+    bridge_unverified_ex = bridge_2x2_concordance_to_conditional_phi_ab_iip_0028(
+        10, 1, 9, 4, common_shock_ceiling_c=0.87, b2_to_scored_b_hurdle_bridge_verified=False
+    )
+    bridge_verified_ex = bridge_2x2_concordance_to_conditional_phi_ab_iip_0028(
+        14, 1, 5, 4, common_shock_ceiling_c=0.89, b2_to_scored_b_hurdle_bridge_verified=True
+    )
+
+    return {
+        "proposal_id": "IIP-0028",
+        "decision_id": "DEC-106",
+        "headline_probabilities_invariant": True,
+        "estimand_and_clustering_specification": {
+            "discordance_01_direction": "Design A (ISLET1_A4_ARM1B) FAILS and staged ISLET1_B2_5LOCUS_BASE CLEARS on one prespecified primary donor-level composite immune outcome and conditioning history declared prior to enrollment",
+            "discordance_10_direction": "Design A CLEARS and staged ISLET1_B2_5LOCUS_BASE FAILS on the same prespecified donor-level outcome and conditioning history",
+            "feasibility_0_of_6_clopper_pearson_u95_pct": round(100.0 * clopper_pearson_u95_iip_0028(0, 6), 4),
+            "feasibility_0_of_6_scope_note": "39.3038% one-sided 95% binomial upper bound applies strictly to one prespecified independent donor-level event",
+            "crossed_design_clustering_rule": (
+                "Primary McNemar inference treats each independent typed T1D responder donor block (1:1 paired Design A vs B2 Base) "
+                "as the unit of analysis via prespecified within-donor aggregation; reusing donors, lots, sera, or wells across multiple "
+                "pairs without donor-level collapse is prohibited unless analyzed with a preregistered clustered variance/power model."
+            ),
+            "assay_vs_hurdle_effect_size_scope_note": (
+                "The 35-48 percentage-point discordant planning corners (p01 in [0.40, 0.50], p10 in [0.02, 0.05]) represent targeted "
+                "KIR+/NKG2A- or DSA-stratified ex-vivo assay rescue contrasts, distinct from the portfolio tree's population-averaged "
+                "hurdle marginal differences (+1 percentage point on H2: 0.79 vs 0.78; +7 percentage points on H3: 0.64 vs 0.57)."
+            ),
+        },
+        "exact_conditional_mcnemar_summary": {
+            "min_discordant_one_sided_pvalues": {
+                "4_vs_0": round(exact_mcnemar_one_sided_pvalue_iip_0028(4, 0), 6),
+                "5_vs_0": round(exact_mcnemar_one_sided_pvalue_iip_0028(5, 0), 6),
+                "7_vs_1": round(exact_mcnemar_one_sided_pvalue_iip_0028(7, 1), 6),
+            },
+            "n6_one_sided_power_range_pct": [round(100.0 * min(n6_one), 2), round(100.0 * max(n6_one), 2)],
+            "n16_one_sided_power_range_pct": [round(100.0 * min(n16_one), 2), round(100.0 * max(n16_one), 2)],
+            "n24_one_sided_power_range_pct": [round(100.0 * min(n24_one), 2), round(100.0 * max(n24_one), 2)],
+            "n24_matched_null_max_type1_pct": round(100.0 * max(n24_null), 2),
+            "n24_global_nuisance_size_profile": nuisance_24,
+            "n29_all_corners_ge_88pct": all(pw >= 0.88 for pw in n29_one),
+            "corner_0p40_0p05_operating_points": {
+                "n6_one_sided_pct": round(100.0 * by_key[(6, 0.40, 0.05)]["exact_one_sided_power"], 2),
+                "n16_one_sided_pct": round(100.0 * by_key[(16, 0.40, 0.05)]["exact_one_sided_power"], 2),
+                "n20_one_sided_pct": round(100.0 * by_key[(20, 0.40, 0.05)]["exact_one_sided_power"], 2),
+                "n24_one_sided_pct": round(100.0 * by_key[(24, 0.40, 0.05)]["exact_one_sided_power"], 2),
+                "n24_two_sided_pct": round(100.0 * by_key[(24, 0.40, 0.05)]["exact_two_sided_power"], 2),
+                "n29_one_sided_pct": round(100.0 * by_key[(29, 0.40, 0.05)]["exact_one_sided_power"], 2),
+                "n29_two_sided_pct": round(100.0 * by_key[(29, 0.40, 0.05)]["exact_two_sided_power"], 2),
+            },
+            "complete_30_cell_grid": grid_30,
+        },
+        "ab_frechet_conditional_dependence_2pow12_sweep": phi_sweep,
+        "concordance_2x2_to_phi_ab_bridge_examples": {
+            "assay_only_unbridged_example": bridge_unverified_ex,
+            "verified_hurdle_bridge_example": bridge_verified_ex,
+        },
+    }
+
+
 def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
     """Re-judged four-hurdle conditional scenario specification, score/rank measure labels, and OQ-016 (IIP-0003; reassessed 2026-11-16 after IIP-0016..IIP-0020)."""
     h1_a, h1_b, h1_x, h1_3 = 0.88, 0.88, 0.88, 0.88
@@ -2519,6 +3067,7 @@ def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
             "three_designs_2pow12_locked_exact": round(active_tree["locked_3slot_2pow12_exact"], 4),
             "three_designs_stage0_modular_cell_x_pouch_exact": round(active_tree["legacy_modular_3slot_cell_x_pouch_exact"], 4),
             "iip_0024_donor_bank_h1_sensitivity_audit": compute_donor_bank_h1_sensitivity_iip_0024(0.25),
+            "iip_0028_paired_mcnemar_and_phi_ab_concordance_audit": compute_paired_mcnemar_and_phi_ab_concordance_audit_iip_0028(),
             "iip_0020_sensitivity_and_calibration_notes": {
                 "uncalibrated_engineering_scenario": True,
                 "locked_2pow12_exact_6dp": round(active_tree["locked_3slot_2pow12_exact"], 6),
@@ -2529,10 +3078,12 @@ def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
                 "modular_cell_cuff_pouch_compatibility_required": True,
                 "programmatic_2pow12_generator_audit_iip_0022": active_tree,
                 "iip_0024_donor_bank_h1_sensitivity_audit": compute_donor_bank_h1_sensitivity_iip_0024(0.25),
+                "iip_0028_paired_mcnemar_and_phi_ab_concordance_audit": compute_paired_mcnemar_and_phi_ab_concordance_audit_iip_0028(),
                 "dependence_model_disclosure": (
                     "Common-shock ceiling vector c is an uncalibrated dependence assumption; legacy 3-slot pouch union "
                     "and shared-A/X 2-route CaO2+catalase pouch union are reported side by side with explicit labels, "
-                    "alongside conditional Hurdle-1 donor-bank failure-share sensitivity (phi_donor = 0.25; IIP-0024; DEC-103)."
+                    "alongside conditional Hurdle-1 donor-bank failure-share sensitivity (phi_donor = 0.25; IIP-0024; DEC-103) "
+                    "and conditional Hurdle-2/3 A-B Frechet dependence sensitivity (phi_AB in [0, 1]; IIP-0028; DEC-106)."
                 ),
             },
             "prior_2026_11_15_dec098_baseline": {

@@ -535,6 +535,30 @@
           "12370285",
           "22618870"
         ]
+      },
+      {
+        "guardrail_id": "OFFGRID_GUARD_013_STANDALONE_72H_A11_COMPLEMENT_ONLY_CROSSMATCH_AND_CHIMERIC_OR_OVERSIZED_BRICHOS",
+        "graveyard_card_id": "GY-023",
+        "severity_level": "BLOCK",
+        "curation_status": "corroborated",
+        "evidence_basis_class": "mechanistic_precaution_or_non_islet_extrapolation",
+        "contribution_id": "IIP-0028",
+        "status": "BARRED_STANDALONE_72H_A11_COMPLEMENT_ONLY_CROSSMATCH_UNQUALIFIED_MIXTURES_AND_CHIMERIC_SP_BRICHOS",
+        "summary": "Certifying longitudinal islet proteostasis from an optional standalone 72-h A11 dot-blot fails because A11 binds generic non-IAPP soluble oligomers (PMID:12702875) while IAPP amyloid accumulates over 4-24 weeks in human SC-islet/islet grafts and clinical betaAir explants (PMID:38603470, PMID:20160085, PMID:29288549). Clearing humoral safety on C5b-9 complement resistance alone omits FcgammaRIIIA (CD16+) cellular antibody killing (requiring both intact-serum total killing and paired IgG-attributable ADCC U95_t <= 5.0%; PMID:27787618, PMID:23274902, PMID:24804568) and borrowing active Arm-3 evidence or retained-active SA-FHL-1 into post-depletion Arm 2 masks rebound vulnerability. Lowering DEC-084 70:20:10 / 70:25:5 loading without measured starting per-beta potency (0.95x fails OCR > 0.90; 0.90x or P_b <= 34 mmHg fails 15.0 mmHg worst-face oxygen) or empirical glucagon gates (4/7 and 5/7 reference alpha-cell counts; PMID:39169271), and deploying synthetic heterologous SFTPB/INS/IAPP/B2M-leader BRICHOS fusions (34 unmatched 8-11-mer and 14 15-mer Swiss-Prot windows across both Bri2[90-263] PMID:41212211 and Bri2[90-236] PMID:29507232 comparators; Bri23 occupancy caveat PMID:38864729) or oversized single-AAV6 Locus 3 (5,181+ bp) / Locus 4 (4,876 bp) ITM2B knock-ins are permanently barred, holding native RefSeq NM_021999.5 ITM2B (801-nt CDS 156..956 SHA-256 6fc8d3d7..., 0 unmatched windows) at 0% active weight.",
+        "cheapest_falsification_assay": "Registry-bound arm-separated Gate 0d + paired intact-and-IgG-depleted CD16+ ADCC (U95_t <= 5.0%), measured-potency n = 8 DEC-084 confirmation blocks (U95_t OCR <= 0.90, L95_t C-peptide & glucagon AUC >= 0.85, Readout 2), and visit/lot/sister-bound 72-h / Day-28 / Day-84 dual-modality IAPP oligomer ELISA + anti-IAPP colocalized fibril area alongside viable beta mass across >= 6 distinct lots.",
+        "pmids": [
+          "12702875",
+          "38603470",
+          "20160085",
+          "29288549",
+          "27787618",
+          "23274902",
+          "24804568",
+          "41212211",
+          "29507232",
+          "38864729",
+          "39169271"
+        ]
       }
     ]
   }

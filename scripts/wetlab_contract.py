@@ -357,6 +357,25 @@ STAGE0_DECISION_TREE_ENDPOINT_SPECS = [
     ('stage0_tyk2_pe4max_wgs_repeat_indels_clone', 'obs_tyk2_pe4max_wgs_repeat_indels_clone', 'obs_tyk2_pe4max_wgs_repeat_indels_clone_se', 0.0, 1000000.0, 'tyk2_pe4max_clonal_wgs_callable_repeat_de_novo_indels_count'),
     ('stage0_tyk2_pe4max_wgs_repeat_indels_ctrl', 'obs_tyk2_pe4max_wgs_repeat_indels_ctrl', 'obs_tyk2_pe4max_wgs_repeat_indels_ctrl_se', 0.0, 1000000.0, 'tyk2_pe4max_matched_control_wgs_callable_repeat_de_novo_indels_count'),
     ('stage0_tyk2_pe4max_coding_or_splice_de_novo_indels', 'obs_tyk2_pe4max_coding_or_splice_de_novo_indels', 'obs_tyk2_pe4max_coding_or_splice_de_novo_indels_se', 0.0, 10000.0, 'tyk2_pe4max_coding_or_canonical_splice_de_novo_indels_count'),
+    # Stage-0 arm-separated Gate 0d, paired intact-plus-increment CD16+ ADCC, measured-potency DEC-084 mixture, and 72h/d28/d84 dual-modality IAPP endpoints (IIP-0028; DEC-106):
+    ('stage0_gate0d_arm1_unconditioned_cd4_si', 'obs_arm1_unconditioned_cd4_si', 'obs_arm1_unconditioned_cd4_si_se', 0.1, 100.0, 'arm1_never_conditioned_indirect_apc_dq2_dq8_cd4_stimulation_index'),
+    ('stage0_gate0d_arm1_unconditioned_annexin_v_pct', 'obs_arm1_unconditioned_annexin_v_pct', 'obs_arm1_unconditioned_annexin_v_se', 0.0, 100.0, 'arm1_never_conditioned_transwell_beta_annexin_v_positive_percentage'),
+    ('stage0_gate0d_parallel_arm3_control_cd4_apoptosis_pct', 'obs_parallel_arm3_control_cd4_apoptosis_pct', 'obs_parallel_arm3_control_cd4_apoptosis_se', 0.0, 100.0, 'contemporaneous_parallel_arm3_active_fasl_control_activated_cd4_apoptosis_percentage'),
+    ('stage0_gate0d_post_depletion_input_normalized_cpep_ratio', 'obs_post_depletion_input_normalized_cpep_ratio', 'obs_post_depletion_input_normalized_cpep_ratio_se', 0.01, 5.0, 'arm2_post_depletion_input_normalized_stimulated_c_peptide_ratio_vs_sham'),
+    ('stage0_fcr_cd16_intact_serum_total_lysis_pct', 'obs_fcr_cd16_intact_serum_total_lysis_pct', 'obs_fcr_cd16_intact_serum_total_lysis_se', 0.0, 100.0, 'intact_recipient_serum_fcgr3a_cd16_total_cellular_lysis_percentage'),
+    ('stage0_fcr_cd16_net_adcc_lysis_vs_igg_depleted_pct', 'obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_pct', 'obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_se', -20.0, 100.0, 'paired_igg_attributable_fcgr3a_cd16_net_adcc_lysis_increment_vs_igg_depleted_serum_percentage'),
+    ('stage0_adcc_isotype_background_lysis_pct', 'obs_adcc_isotype_background_lysis_pct', 'obs_adcc_isotype_background_lysis_se', 0.0, 100.0, 'matrix_matched_isotype_control_cd16_background_cellular_lysis_percentage'),
+    ('stage0_igg_depletion_efficiency_pct', 'obs_igg_depletion_efficiency_pct', 'obs_igg_depletion_efficiency_se', 0.0, 100.0, 'paired_recipient_serum_protein_g_igg_depletion_efficiency_percentage'),
+    ('stage0_dec084_starting_potency_ratio_out_b_over_out_a', 'obs_dec084_starting_potency_ratio_out_b_over_out_a', 'obs_dec084_starting_potency_ratio_out_b_over_out_a_se', 0.1, 5.0, 'measured_starting_per_beta_stimulated_c_peptide_output_ratio_candidate_over_reference'),
+    ('stage0_dec084_ocr_ratio_b_over_a', 'obs_dec084_ocr_ratio_b_over_a', 'obs_dec084_ocr_ratio_b_over_a_se', 0.1, 5.0, 'equal_output_loaded_whole_graft_ocr_ratio_candidate_over_60_30_10_reference'),
+    ('stage0_dec084_cpep_auc_ratio_b_over_a', 'obs_dec084_cpep_auc_ratio_b_over_a', 'obs_dec084_cpep_auc_ratio_b_over_a_se', 0.1, 5.0, 'equal_output_loaded_stimulated_c_peptide_auc_ratio_candidate_over_60_30_10_reference'),
+    ('stage0_dec084_gcg_auc_ratio_b_over_a', 'obs_dec084_gcg_auc_ratio_b_over_a', 'obs_dec084_gcg_auc_ratio_b_over_a_se', 0.1, 5.0, 'equal_output_loaded_glucopenic_glucagon_auc_ratio_candidate_over_60_30_10_reference'),
+    ('stage0_iapp_72h_immunocapture_oligomer_elisa_fold', 'obs_iapp_72h_immunocapture_oligomer_elisa_fold', 'obs_iapp_72h_immunocapture_oligomer_elisa_se', 0.0, 50.0, 'lot_scope_72h_iapp_immunocapture_oligomer_elisa_fold_over_age_matched_ref'),
+    ('stage0_iapp_72h_colocalized_fibril_area_pct', 'obs_iapp_72h_colocalized_fibril_area_pct', 'obs_iapp_72h_colocalized_fibril_area_se', 0.0, 100.0, 'lot_scope_72h_anti_iapp_colocalized_fibril_area_percentage'),
+    ('stage0_iapp_d28_immunocapture_oligomer_elisa_fold', 'obs_iapp_d28_immunocapture_oligomer_elisa_fold', 'obs_iapp_d28_immunocapture_oligomer_elisa_se', 0.0, 50.0, 'lot_scope_day28_iapp_immunocapture_oligomer_elisa_fold_over_age_matched_ref'),
+    ('stage0_iapp_d28_colocalized_fibril_area_pct', 'obs_iapp_d28_colocalized_fibril_area_pct', 'obs_iapp_d28_colocalized_fibril_area_se', 0.0, 100.0, 'lot_scope_day28_anti_iapp_colocalized_fibril_area_percentage'),
+    ('stage0_iapp_d84_immunocapture_oligomer_elisa_fold', 'obs_iapp_d84_immunocapture_oligomer_elisa_fold', 'obs_iapp_d84_immunocapture_oligomer_elisa_se', 0.0, 50.0, 'terminal_sister_device_day84_iapp_immunocapture_oligomer_elisa_fold_over_age_matched_ref'),
+    ('stage0_iapp_d84_colocalized_fibril_area_pct', 'obs_iapp_d84_colocalized_fibril_area_pct', 'obs_iapp_d84_colocalized_fibril_area_se', 0.0, 100.0, 'terminal_sister_device_day84_anti_iapp_colocalized_fibril_area_percentage'),
 ]
 
 STAGE0_S10_V3_MEAN_KEYS: frozenset[str] = frozenset({
@@ -1175,6 +1194,24 @@ STAGE0_CUSTOM_DEFAULT_SE: dict[str, float] = {
     'obs_tyk2_pe4max_wgs_repeat_indels_clone': 1e-12,
     'obs_tyk2_pe4max_wgs_repeat_indels_ctrl': 1e-12,
     'obs_tyk2_pe4max_coding_or_splice_de_novo_indels': 1e-12,
+    'obs_arm1_unconditioned_cd4_si': 0.08,
+    'obs_arm1_unconditioned_annexin_v_pct': 1.0,
+    'obs_parallel_arm3_control_cd4_apoptosis_pct': 1.5,
+    'obs_post_depletion_input_normalized_cpep_ratio': 0.02,
+    'obs_fcr_cd16_intact_serum_total_lysis_pct': 0.40,
+    'obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_pct': 0.35,
+    'obs_adcc_isotype_background_lysis_pct': 0.30,
+    'obs_igg_depletion_efficiency_pct': 0.25,
+    'obs_dec084_starting_potency_ratio_out_b_over_out_a': 0.02,
+    'obs_dec084_ocr_ratio_b_over_a': 0.01,
+    'obs_dec084_cpep_auc_ratio_b_over_a': 0.02,
+    'obs_dec084_gcg_auc_ratio_b_over_a': 0.02,
+    'obs_iapp_72h_immunocapture_oligomer_elisa_fold': 0.05,
+    'obs_iapp_72h_colocalized_fibril_area_pct': 0.04,
+    'obs_iapp_d28_immunocapture_oligomer_elisa_fold': 0.05,
+    'obs_iapp_d28_colocalized_fibril_area_pct': 0.04,
+    'obs_iapp_d84_immunocapture_oligomer_elisa_fold': 0.05,
+    'obs_iapp_d84_colocalized_fibril_area_pct': 0.04,
 }
 
 STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
@@ -1615,6 +1652,12 @@ STAGE0_DECISION_TREE_BOOLEAN_KEYS: tuple[str, ...] = (
     'design_b_hlac_allele_specific_surface_or_phased_mrna_verified',
     'b_sct_ciita_exon5_and_trimer_verified',
     'tyk2_phased_haplotype_sap_verified',
+    'require_full_iip0028_postdepletion_adcc_mixture_and_iapp_panel',
+    'washout_and_natural_decay_unpooled_verified',
+    'carrier_and_soluble_adjunct_below_lod_verified',
+    'fcr_effector_fcgr3a_158v_typed_verified',
+    'dec084_measured_starting_composition_and_fresh_equal_output_verified',
+    'iapp_sister_visit_lot_and_viable_beta_mass_concordance_verified',
 )
 
 
@@ -1699,6 +1742,14 @@ def derive_contract(root: Path | str | None = None) -> dict:
                 'bound_c1_c5_pair_sha256',
                 'tyk2_pe_modality',
                 'iip0026_schema_era',
+                'recipient_serum_pair_id',
+                'intact_serum_sample_id',
+                'igg_depleted_serum_sample_id',
+                'positive_adcc_control_id',
+                'isotype_adcc_control_id',
+                'arm2_depleted_sample_id',
+                'contemporaneous_arm3_control_sample_id',
+                'sister_assembly_id',
             ],
             'boolean_policy_keys': list(STAGE0_DECISION_TREE_BOOLEAN_KEYS),
             'endpoints': endpoints,
@@ -2404,7 +2455,7 @@ def evaluate_stage0_decision_tree(
     root_path = Path(root) if root is not None else Path(__file__).resolve().parents[1]
     tree_doc = json.loads((root_path / STAGE0_DECISION_TREE_RELATIVE_PATH).read_text(encoding='utf-8'))
     p_mod = _load_product_contract_module(root_path)
-    # Canonical product resolution (IIP-0024; DEC-103): reject whitespace-padded IDs and always re-resolve from registry so caller-supplied product_def dicts cannot override execution_supported!
+    # Canonical product resolution (IIP-0024 & IIP-0028; DEC-103 & DEC-106): reject whitespace-padded IDs and caller-overridden lifecycle/execution_supported fields!
     obs_pvid_raw = observations.get('product_variant_id')
     if obs_pvid_raw is not None:
         if not isinstance(obs_pvid_raw, str) or not obs_pvid_raw.strip() or obs_pvid_raw != obs_pvid_raw.strip():
@@ -2414,13 +2465,27 @@ def evaluate_stage0_decision_tree(
             if not isinstance(product_def, dict):
                 raise ValueError('product_def must be a dictionary when provided (IIP-0024; DEC-103)')
             kw_pvid = product_def.get('product_variant_id')
-            if not isinstance(kw_pvid, str) or p_mod.get_product_definition(kw_pvid, root=root_path)['product_variant_id'] != canon_from_obs['product_variant_id']:
-                raise ValueError('Conflicting product_def and observations product_variant_id (IIP-0024; DEC-103)')
+            if not isinstance(kw_pvid, str) or kw_pvid != kw_pvid.strip() or p_mod.get_product_definition(kw_pvid, root=root_path)['product_variant_id'] != canon_from_obs['product_variant_id']:
+                raise ValueError('Conflicting or whitespace-padded product_def and observations product_variant_id (IIP-0024 / IIP-0028; DEC-103 / DEC-106)')
+            if 'execution_supported' in product_def and product_def['execution_supported'] is not canon_from_obs['execution_supported']:
+                raise ValueError('Caller-overridden execution_supported in product_def rejected (IIP-0028; DEC-106)')
+            if 'lifecycle_state' in product_def and product_def.get('lifecycle_state') != canon_from_obs.get('lifecycle_state'):
+                raise ValueError('Caller-overridden lifecycle_state in product_def rejected (IIP-0028; DEC-106)')
         product_def = canon_from_obs
     elif product_def is not None:
-        if not isinstance(product_def, dict) or not isinstance(product_def.get('product_variant_id'), str):
-            raise ValueError('product_def must contain a canonical string product_variant_id (IIP-0024; DEC-103)')
-        product_def = p_mod.get_product_definition(product_def['product_variant_id'], root=root_path)
+        if (
+            not isinstance(product_def, dict)
+            or not isinstance(product_def.get('product_variant_id'), str)
+            or not product_def['product_variant_id'].strip()
+            or product_def['product_variant_id'] != product_def['product_variant_id'].strip()
+        ):
+            raise ValueError('product_def must contain a canonical unpadded string product_variant_id (IIP-0024 / IIP-0028; DEC-103 / DEC-106)')
+        canon_kw = p_mod.get_product_definition(product_def['product_variant_id'], root=root_path)
+        if 'execution_supported' in product_def and product_def['execution_supported'] is not canon_kw['execution_supported']:
+            raise ValueError('Caller-overridden execution_supported in product_def rejected (IIP-0028; DEC-106)')
+        if 'lifecycle_state' in product_def and product_def.get('lifecycle_state') != canon_kw.get('lifecycle_state'):
+            raise ValueError('Caller-overridden lifecycle_state in product_def rejected (IIP-0028; DEC-106)')
+        product_def = canon_kw
 
     contract = derive_contract(root_path)
     default_se_by_mean: dict[str, float] = {}
@@ -2584,15 +2649,44 @@ def evaluate_stage0_decision_tree(
         'bound_c1_c5_pair_sha256',
         'tyk2_pe_modality',
         'iip0026_schema_era',
+        'require_full_iip0028_postdepletion_adcc_mixture_and_iapp_panel',
+        'washout_and_natural_decay_unpooled_verified',
+        'carrier_and_soluble_adjunct_below_lod_verified',
+        'fcr_effector_fcgr3a_158v_typed_verified',
+        'dec084_measured_starting_composition_and_fresh_equal_output_verified',
+        'iapp_sister_visit_lot_and_viable_beta_mass_concordance_verified',
+        'recipient_serum_pair_id',
+        'intact_serum_sample_id',
+        'igg_depleted_serum_sample_id',
+        'positive_adcc_control_id',
+        'isotype_adcc_control_id',
+        'arm2_depleted_sample_id',
+        'contemporaneous_arm3_control_sample_id',
+        'sister_assembly_id',
     }
     unknown_keys = sorted(set(observations) - set(spec_by_mean) - set(spec_by_se) - allowed_boolean_and_meta_flags)
     if unknown_keys:
         raise ValueError(f'Unrecognized Stage-0 decision-tree observation keys: {unknown_keys}')
-    for _str_meta_k in ('donor_seedline_id', 'device_assembly_id', 'physical_route_id', 'assay_campaign_id', 'reset_prior_safety_stop_target_category', 'submitter_id'):
+    for _str_meta_k in (
+        'donor_seedline_id',
+        'device_assembly_id',
+        'physical_route_id',
+        'assay_campaign_id',
+        'reset_prior_safety_stop_target_category',
+        'submitter_id',
+        'recipient_serum_pair_id',
+        'intact_serum_sample_id',
+        'igg_depleted_serum_sample_id',
+        'positive_adcc_control_id',
+        'isotype_adcc_control_id',
+        'arm2_depleted_sample_id',
+        'contemporaneous_arm3_control_sample_id',
+        'sister_assembly_id',
+    ):
         if _str_meta_k in observations and observations[_str_meta_k] is not None:
             _sv = observations[_str_meta_k]
             if not isinstance(_sv, str) or not _sv.strip() or len(_sv) > 120:
-                raise ValueError(f'{_str_meta_k} must be a nonempty string of at most 120 characters (IIP-0024; DEC-103)')
+                raise ValueError(f'{_str_meta_k} must be a nonempty string of at most 120 characters (IIP-0024 / IIP-0028; DEC-103 / DEC-106)')
     if 'bound_c1_c5_pair_sha256' in observations and observations['bound_c1_c5_pair_sha256'] is not None:
         _bsha = observations['bound_c1_c5_pair_sha256']
         if not isinstance(_bsha, str) or not re.fullmatch(r'[0-9a-f]{64}', _bsha.strip()):
@@ -5023,11 +5117,22 @@ def evaluate_stage0_decision_tree(
         or 'obs_cd16_adcc_positive_control_lysis_pct' in validated_stage0
         or observations.get('cd16_adcc_igg_depletion_paired_control_verified') is not None
     ):
+        _has_any_net_adcc = (
+            'obs_exact_product_net_cd16_adcc_lysis_pct' in validated_stage0
+            or 'obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_pct' in validated_stage0
+        )
         if (
             observations.get('cd16_adcc_igg_depletion_paired_control_verified') is not True
-            or 'obs_exact_product_net_cd16_adcc_lysis_pct' not in validated_stage0
+            or not _has_any_net_adcc
             or 'obs_cd16_adcc_positive_control_lysis_pct' not in validated_stage0
-            or _upper95('obs_exact_product_net_cd16_adcc_lysis_pct') > 5.0
+            or (
+                'obs_exact_product_net_cd16_adcc_lysis_pct' in validated_stage0
+                and _upper95('obs_exact_product_net_cd16_adcc_lysis_pct') > 5.0
+            )
+            or (
+                'obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_pct' in validated_stage0
+                and _upper95('obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_pct') > 5.0
+            )
             or _lower95('obs_cd16_adcc_positive_control_lysis_pct') < 25.0
         ):
             iip0024_hold_status = 'HOLD_PAIRED_IGG_DEPLETED_CD16_ADCC_GATE_FAILED_OR_UNVERIFIED'
@@ -5095,7 +5200,20 @@ def evaluate_stage0_decision_tree(
                         iip0024_hold_status = 'HOLD_GATE0S_DUAL_SHEDDING_TRIALS_BELOW_2995731_BINOMIAL_1E6_FLOOR'
     if iip0024_hold_status is None and (
         any(_ik in validated_stage0 for _ik in ('obs_iapp_3metric_thioflavin_s_area_pct', 'obs_iapp_3metric_soluble_oligomer_fold', 'obs_iapp_3metric_insoluble_fibril_fold'))
-        or observations.get('iapp_age_matched_reference_above_loq_verified') is not None
+        or (
+            observations.get('iapp_age_matched_reference_above_loq_verified') is not None
+            and not any(
+                _ik28 in validated_stage0
+                for _ik28 in (
+                    'obs_iapp_72h_immunocapture_oligomer_elisa_fold',
+                    'obs_iapp_72h_colocalized_fibril_area_pct',
+                    'obs_iapp_d28_immunocapture_oligomer_elisa_fold',
+                    'obs_iapp_d28_colocalized_fibril_area_pct',
+                    'obs_iapp_d84_immunocapture_oligomer_elisa_fold',
+                    'obs_iapp_d84_colocalized_fibril_area_pct',
+                )
+            )
+        )
     ):
         if (
             observations.get('iapp_age_matched_reference_above_loq_verified') is not True
@@ -5554,6 +5672,298 @@ def evaluate_stage0_decision_tree(
             'status': iip0026_hold_status if iip0026_hold_status is not None else 'CLEARED_IIP0026_MOLECULAR_PROVENANCE_AND_DESIGNB_GUARDRAILS',
         }
 
+    # Stage-0 registry-bound arm-separated Gate 0d, paired intact-plus-increment CD16+ ADCC, measured-potency DEC-084 mixture, and visit/lot/sister-bound 72h/d28/d84 dual-modality IAPP gates (IIP-0028; DEC-106):
+    _iip0028_gate0d_adcc_obs_keys = (
+        'obs_arm1_unconditioned_cd4_si',
+        'obs_arm1_unconditioned_annexin_v_pct',
+        'obs_parallel_arm3_control_cd4_apoptosis_pct',
+        'obs_post_depletion_input_normalized_cpep_ratio',
+        'obs_fcr_cd16_intact_serum_total_lysis_pct',
+        'obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_pct',
+        'obs_adcc_isotype_background_lysis_pct',
+        'obs_igg_depletion_efficiency_pct',
+    )
+    _iip0028_dec084_obs_keys = (
+        'obs_dec084_starting_potency_ratio_out_b_over_out_a',
+        'obs_dec084_ocr_ratio_b_over_a',
+        'obs_dec084_cpep_auc_ratio_b_over_a',
+        'obs_dec084_gcg_auc_ratio_b_over_a',
+    )
+    _iip0028_iapp_obs_keys = (
+        'obs_iapp_72h_immunocapture_oligomer_elisa_fold',
+        'obs_iapp_72h_colocalized_fibril_area_pct',
+        'obs_iapp_d28_immunocapture_oligomer_elisa_fold',
+        'obs_iapp_d28_colocalized_fibril_area_pct',
+        'obs_iapp_d84_immunocapture_oligomer_elisa_fold',
+        'obs_iapp_d84_colocalized_fibril_area_pct',
+    )
+    _iip0028_meta_or_bool_keys = (
+        'require_full_iip0028_postdepletion_adcc_mixture_and_iapp_panel',
+        'washout_and_natural_decay_unpooled_verified',
+        'carrier_and_soluble_adjunct_below_lod_verified',
+        'fcr_effector_fcgr3a_158v_typed_verified',
+        'dec084_measured_starting_composition_and_fresh_equal_output_verified',
+        'iapp_sister_visit_lot_and_viable_beta_mass_concordance_verified',
+        'recipient_serum_pair_id',
+        'intact_serum_sample_id',
+        'igg_depleted_serum_sample_id',
+        'positive_adcc_control_id',
+        'isotype_adcc_control_id',
+        'arm2_depleted_sample_id',
+        'contemporaneous_arm3_control_sample_id',
+        'sister_assembly_id',
+    )
+    _req_iip0028_full = bool(observations.get('require_full_iip0028_postdepletion_adcc_mixture_and_iapp_panel') is True)
+    _iip0028_gate0d_adcc_active = bool(
+        _req_iip0028_full
+        or any(_k in validated_stage0 for _k in _iip0028_gate0d_adcc_obs_keys)
+        or any(
+            observations.get(_k) is not None
+            for _k in (
+                'washout_and_natural_decay_unpooled_verified',
+                'carrier_and_soluble_adjunct_below_lod_verified',
+                'fcr_effector_fcgr3a_158v_typed_verified',
+                'recipient_serum_pair_id',
+                'intact_serum_sample_id',
+                'igg_depleted_serum_sample_id',
+                'positive_adcc_control_id',
+                'isotype_adcc_control_id',
+                'arm2_depleted_sample_id',
+                'contemporaneous_arm3_control_sample_id',
+            )
+        )
+    )
+    _iip0028_dec084_active = bool(
+        any(_k in validated_stage0 for _k in _iip0028_dec084_obs_keys)
+        or observations.get('dec084_measured_starting_composition_and_fresh_equal_output_verified') is not None
+    )
+    _iip0028_iapp_active = bool(
+        _req_iip0028_full
+        or any(_k in validated_stage0 for _k in _iip0028_iapp_obs_keys)
+        or observations.get('iapp_sister_visit_lot_and_viable_beta_mass_concordance_verified') is not None
+        or observations.get('sister_assembly_id') is not None
+    )
+    _iip0028_active = bool(
+        _req_iip0028_full
+        or _iip0028_gate0d_adcc_active
+        or _iip0028_dec084_active
+        or _iip0028_iapp_active
+    )
+    iip0028_hold_status: str | None = None
+    iip0028_gate0d_adcc_status: str | None = None
+    iip0028_dec084_status: str | None = None
+    iip0028_iapp_status: str | None = None
+    if _iip0028_active:
+        def _explicit_se_ok_28(mk_28: str) -> bool:
+            return mk_28 in validated_stage0 and se_provenance_by_mean.get(mk_28) == 'EXPLICIT_SE_SUPPLIED'
+
+        def _unpadded_id_28(raw_id_28: object) -> bool:
+            return isinstance(raw_id_28, str) and raw_id_28 == raw_id_28.strip() and len(raw_id_28) >= 4
+
+        if product_def is None:
+            iip0028_hold_status = 'HOLD_MISSING_PRODUCT_VARIANT_ID'
+        elif str(product_def.get('product_variant_id', '')).startswith('ISLET1_B_SCT_'):
+            iip0028_hold_status = 'HOLD_UNSUPPORTED_TRACK2_BSCT_REQUIRES_SEPARATE_GATE0B_SCT'
+
+        if iip0028_hold_status is None and _iip0028_gate0d_adcc_active:
+            if not isinstance(_adj_arm_raw, str) or _adj_arm_raw != _adj_arm_raw.strip() or _adj_arm_raw not in ALLOWED_ADJUNCT_CONDITIONING_HISTORY_ARMS:
+                iip0028_gate0d_adcc_status = 'HOLD_GATE0D_MISSING_EXPLICIT_HISTORY_ARM'
+            elif _adj_arm_raw == 'ARM1_NEVER_CONDITIONED':
+                if not (_explicit_se_ok_28('obs_arm1_unconditioned_cd4_si') and _explicit_se_ok_28('obs_arm1_unconditioned_annexin_v_pct')):
+                    iip0028_gate0d_adcc_status = 'HOLD_GATE0D_ARM1_INVALID_OR_MISSING_CONTROL'
+                else:
+                    iip0028_gate0d_adcc_status = 'HOLD_GATE0D_ARM1_NEVER_CONDITIONED_REFERENCE_CONTROL'
+            else:
+                _sp_id = observations.get('recipient_serum_pair_id')
+                _in_sid = observations.get('intact_serum_sample_id')
+                _dp_sid = observations.get('igg_depleted_serum_sample_id')
+                _pos_cid = observations.get('positive_adcc_control_id')
+                _iso_cid = observations.get('isotype_adcc_control_id')
+                if not _unpadded_id_28(_sp_id):
+                    iip0028_gate0d_adcc_status = 'HOLD_ADCC_MISSING_OR_INVALID_RECIPIENT_SERUM_PAIR_ID'
+                elif not (_unpadded_id_28(_in_sid) and _unpadded_id_28(_dp_sid)) or _in_sid == _dp_sid:
+                    iip0028_gate0d_adcc_status = 'HOLD_ADCC_MISSING_OR_DUPLICATE_PAIRED_SERUM_SAMPLE_IDS'
+                elif not (_unpadded_id_28(_pos_cid) and _unpadded_id_28(_iso_cid)) or _pos_cid == _iso_cid:
+                    iip0028_gate0d_adcc_status = 'HOLD_ADCC_MISSING_OR_DUPLICATE_POSITIVE_ISOTYPE_CONTROL_IDS'
+                elif observations.get('cd16_adcc_igg_depletion_paired_control_verified') is not True:
+                    iip0028_gate0d_adcc_status = 'HOLD_ADCC_MISSING_IGG_DEPLETED_MATCHED_SERUM_CONTROL'
+                elif observations.get('fcr_effector_fcgr3a_158v_typed_verified') is not True:
+                    iip0028_gate0d_adcc_status = 'HOLD_ADCC_UNVERIFIED_CD16_FCGR3A_EFFECTOR_COMPETENCE'
+                elif not _explicit_se_ok_28('obs_igg_depletion_efficiency_pct') or validated_stage0['obs_igg_depletion_efficiency_pct'] < 95.0:
+                    iip0028_gate0d_adcc_status = 'HOLD_ADCC_IGG_DEPLETION_EFFICIENCY_BELOW_95PCT'
+                elif not (
+                    _explicit_se_ok_28('obs_fcr_cd16_intact_serum_total_lysis_pct')
+                    and _explicit_se_ok_28('obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_pct')
+                    and _explicit_se_ok_28('obs_cd16_adcc_positive_control_lysis_pct')
+                    and _explicit_se_ok_28('obs_adcc_isotype_background_lysis_pct')
+                ):
+                    iip0028_gate0d_adcc_status = 'HOLD_ADCC_INCOMPLETE_OR_DEFAULT_SE_INTACT_AND_INCREMENT_PANEL'
+                elif _upper95('obs_fcr_cd16_intact_serum_total_lysis_pct') > 5.0:
+                    iip0028_gate0d_adcc_status = 'HOLD_EXCEEDED_UPPER95_obs_fcr_cd16_intact_serum_total_lysis_pct'
+                elif _upper95('obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_pct') > 5.0:
+                    iip0028_gate0d_adcc_status = 'HOLD_EXCEEDED_UPPER95_obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_pct'
+                elif _lower95('obs_cd16_adcc_positive_control_lysis_pct') < 25.0:
+                    iip0028_gate0d_adcc_status = 'HOLD_BELOW_LOWER95_obs_cd16_adcc_positive_control_lysis_pct'
+                elif _upper95('obs_adcc_isotype_background_lysis_pct') > 5.0:
+                    iip0028_gate0d_adcc_status = 'HOLD_EXCEEDED_UPPER95_obs_adcc_isotype_background_lysis_pct'
+                elif _adj_arm_raw == 'ARM3_CONTINUOUSLY_ACTIVE':
+                    if observations.get('obs_arm3_ongoing_adjunct_bioactivity_verified') is not True:
+                        iip0028_gate0d_adcc_status = 'HOLD_GATE0D_ARM3_ONGOING_BIOACTIVITY_UNVERIFIED'
+                    elif not all(
+                        _explicit_se_ok_28(_mk3)
+                        for _mk3 in (
+                            'obs_gate0d_activated_cd4_fasl_apoptosis_pct',
+                            'obs_indirect_apc_dq2_dq8_cd4_stimulation_index',
+                            'obs_indirect_apc_cd4_ifng_si',
+                            'obs_gate0d_transwell_beta_annexin_v_pct',
+                        )
+                    ):
+                        iip0028_gate0d_adcc_status = 'HOLD_GATE0D_ARM3_INCOMPLETE_OR_DEFAULT_SE_PANEL'
+                    elif (
+                        _lower95('obs_gate0d_activated_cd4_fasl_apoptosis_pct') < 80.0
+                        or _upper95('obs_indirect_apc_dq2_dq8_cd4_stimulation_index') > 1.5
+                        or _upper95('obs_indirect_apc_cd4_ifng_si') > 2.0
+                        or _upper95('obs_gate0d_transwell_beta_annexin_v_pct') > 15.0
+                    ):
+                        iip0028_gate0d_adcc_status = 'HOLD_GATE0D_ARM3_ACTIVE_ADJUNCT_BOUND_FAILED'
+                    else:
+                        iip0028_gate0d_adcc_status = 'CLEARED_ARM3_ACTIVE_ADJUNCT_AND_FCR_ADCC_PROFILE'
+                else:  # ARM2_CONDITIONED_DEPLETED
+                    _a2_sid = observations.get('arm2_depleted_sample_id')
+                    _a3_cid = observations.get('contemporaneous_arm3_control_sample_id')
+                    if adjunct_depletion_mode not in ('NATURAL_AGING_DECAY', 'PHYSICAL_WASHOUT'):
+                        iip0028_gate0d_adcc_status = 'HOLD_GATE0D_POOLED_OR_UNSPECIFIED_DEPLETION_MODE'
+                    elif observations.get('washout_and_natural_decay_unpooled_verified') is not True:
+                        iip0028_gate0d_adcc_status = 'HOLD_GATE0D_POOLED_WASHOUT_AND_AGING_ALIQUOTS'
+                    elif observations.get('carrier_and_soluble_adjunct_below_lod_verified') is not True:
+                        iip0028_gate0d_adcc_status = 'HOLD_GATE0D_RESIDUAL_ADJUNCT_ABOVE_LOD'
+                    elif observations.get('obs_arm2_bound_and_supernatant_fasl_bioactivity_depleted_verified') is not True:
+                        iip0028_gate0d_adcc_status = 'HOLD_GATE0D_FASL_DEPLETION_UNVERIFIED'
+                    elif observations.get('obs_arm2_sa_thbd_bioactivity_depleted_verified') is not True:
+                        iip0028_gate0d_adcc_status = 'HOLD_GATE0D_SA_THBD_DEPLETION_UNVERIFIED'
+                    elif observations.get('obs_arm2_contemporaneous_sham_handling_matched') is not True:
+                        iip0028_gate0d_adcc_status = 'HOLD_GATE0D_CONTEMPORANEOUS_SHAM_UNMATCHED'
+                    elif observations.get('obs_arm3_ongoing_adjunct_bioactivity_verified') is not True:
+                        iip0028_gate0d_adcc_status = 'HOLD_GATE0D_PARALLEL_ARM3_BIOACTIVITY_CONTROL_UNVERIFIED'
+                    elif not (_unpadded_id_28(_a2_sid) and _unpadded_id_28(_a3_cid)) or _a2_sid == _a3_cid:
+                        iip0028_gate0d_adcc_status = 'HOLD_GATE0D_MISSING_OR_DUPLICATE_CONTEMPORANEOUS_ARM3_CONTROL_SAMPLE_ID'
+                    elif adjunct_immune_responder_history not in ALLOWED_ADJUNCT_IMMUNE_RESPONDER_HISTORIES:
+                        iip0028_gate0d_adcc_status = 'HOLD_GATE0D_MISSING_IMMUNE_RESPONDER_HISTORY'
+                    elif adjunct_sa_fhl1_status == 'RETAINED_ACTIVE':
+                        iip0028_gate0d_adcc_status = 'HOLD_GATE0D_PARTIALLY_DEPLETED_SA_FHL1_RETAINED_ACTIVE_NOT_COMPLETE_DEPLETION'
+                    elif adjunct_sa_fhl1_status not in ('DEPLETED_VERIFIED', 'ABSENT_FROM_LOT'):
+                        iip0028_gate0d_adcc_status = 'HOLD_GATE0D_INVALID_OR_MISSING_SA_FHL1_STATUS'
+                    elif not all(
+                        _explicit_se_ok_28(_mk2)
+                        for _mk2 in (
+                            'obs_parallel_arm3_control_cd4_apoptosis_pct',
+                            'obs_indirect_apc_dq2_dq8_cd4_stimulation_index',
+                            'obs_indirect_apc_cd4_ifng_si',
+                            'obs_gate0d_transwell_beta_annexin_v_pct',
+                            'obs_arm2_post_depletion_nhs_c5b9_mac_pct',
+                            'obs_arm2_post_depletion_viable_beta_recovery_pct',
+                            'obs_arm2_post_depletion_perifusion_gsis_si',
+                            'obs_post_depletion_input_normalized_cpep_ratio',
+                        )
+                    ):
+                        iip0028_gate0d_adcc_status = 'HOLD_GATE0D_ARM2_INCOMPLETE_OR_DEFAULT_SE_POST_DEPLETION_PANEL'
+                    elif (
+                        _lower95('obs_parallel_arm3_control_cd4_apoptosis_pct') < 80.0
+                        or _upper95('obs_indirect_apc_dq2_dq8_cd4_stimulation_index') > 1.5
+                        or _upper95('obs_indirect_apc_cd4_ifng_si') > 2.0
+                        or _upper95('obs_gate0d_transwell_beta_annexin_v_pct') > 15.0
+                        or _upper95('obs_arm2_post_depletion_nhs_c5b9_mac_pct') > 5.0
+                        or _lower95('obs_arm2_post_depletion_viable_beta_recovery_pct') < 85.0
+                        or _lower95('obs_arm2_post_depletion_perifusion_gsis_si') < 2.5
+                        or _lower95('obs_post_depletion_input_normalized_cpep_ratio') < 0.85
+                    ):
+                        iip0028_gate0d_adcc_status = 'HOLD_GATE0D_ARM2_POST_DEPLETION_STUDENT_T_BOUND_FAILED'
+                    else:
+                        iip0028_gate0d_adcc_status = 'CLEARED_ARM2_COMPLETE_DEPLETION_GATE0D_AND_FCR_ADCC_OVERLAY'
+            if not str(iip0028_gate0d_adcc_status).startswith('CLEARED_'):
+                iip0028_hold_status = iip0028_gate0d_adcc_status
+
+        if iip0028_hold_status is None and _iip0028_dec084_active:
+            if observations.get('dec084_measured_starting_composition_and_fresh_equal_output_verified') is not True:
+                iip0028_dec084_status = 'HOLD_DEC084_UNVERIFIED_STARTING_COMPOSITION_OR_EQUAL_OUTPUT_DOSE_RESPONSE'
+            elif not all(_explicit_se_ok_28(_dk) for _dk in _iip0028_dec084_obs_keys):
+                iip0028_dec084_status = 'HOLD_DEC084_INCOMPLETE_OR_DEFAULT_SE_CONFIRMATION_PANEL'
+            elif _upper95('obs_dec084_ocr_ratio_b_over_a') > 0.90:
+                iip0028_dec084_status = 'HOLD_DEC084_OCR_RATIO_UPPER95_EXCEEDS_0P90'
+            elif _lower95('obs_dec084_cpep_auc_ratio_b_over_a') < 0.85 or _lower95('obs_dec084_gcg_auc_ratio_b_over_a') < 0.85:
+                iip0028_dec084_status = 'HOLD_DEC084_CPEP_OR_GLUCAGON_AUC_LOWER95_BELOW_0P85'
+            else:
+                iip0028_dec084_status = 'CLEARED_DEC084_MEASURED_POTENCY_OCR_AND_GLUCAGON_GATE'
+            if not str(iip0028_dec084_status).startswith('CLEARED_'):
+                iip0028_hold_status = iip0028_dec084_status
+
+        if iip0028_hold_status is None and _iip0028_iapp_active:
+            _sis_id_28 = observations.get('sister_assembly_id')
+            _dev_id_28 = observations.get('device_assembly_id')
+            _n_lots_28 = validated_stage0.get('obs_stage0_independent_lot_replicates_n')
+            if observations.get('iapp_age_matched_reference_above_loq_verified') is not True or observations.get('iapp_sister_visit_lot_and_viable_beta_mass_concordance_verified') is not True:
+                iip0028_iapp_status = 'HOLD_INCONCLUSIVE_IAPP_REFERENCE_LOQ_OR_VIABLE_BETA_CONCORDANCE_UNVERIFIED'
+            elif _n_lots_28 is None or int(round(_n_lots_28)) < 6:
+                iip0028_iapp_status = 'HOLD_IAPP_UNVERIFIED_INDEPENDENT_LOTS_LT_6'
+            elif not _unpadded_id_28(_sis_id_28) or (_dev_id_28 is not None and _sis_id_28 == _dev_id_28):
+                iip0028_iapp_status = 'HOLD_IAPP_D84_REQUIRES_AUTHORIZED_SISTER_ASSEMBLY'
+            elif not all(_explicit_se_ok_28(_ik) for _ik in _iip0028_iapp_obs_keys):
+                iip0028_iapp_status = 'HOLD_INCONCLUSIVE_IAPP_INCOMPLETE_OR_DEFAULT_SE_72H_D28_D84_PANEL'
+            else:
+                _tp_pairs_28 = [
+                    (validated_stage0['obs_iapp_72h_immunocapture_oligomer_elisa_fold'], validated_stage0['obs_iapp_72h_colocalized_fibril_area_pct']),
+                    (validated_stage0['obs_iapp_d28_immunocapture_oligomer_elisa_fold'], validated_stage0['obs_iapp_d28_colocalized_fibril_area_pct']),
+                    (validated_stage0['obs_iapp_d84_immunocapture_oligomer_elisa_fold'], validated_stage0['obs_iapp_d84_colocalized_fibril_area_pct']),
+                ]
+                if len(set(_tp_pairs_28)) != 3:
+                    iip0028_iapp_status = 'HOLD_DUPLICATE_OR_WRONG_TIMEPOINT_SAMPLE'
+                elif (
+                    _lower95('obs_iapp_72h_immunocapture_oligomer_elisa_fold') > 1.5
+                    or _lower95('obs_iapp_72h_colocalized_fibril_area_pct') > 1.0
+                ):
+                    iip0028_iapp_status = 'HOLD_FAIL_ACUTE_PROTEOSTASIS_72H'
+                elif (
+                    _upper95('obs_iapp_72h_immunocapture_oligomer_elisa_fold') > 1.5
+                    or _upper95('obs_iapp_72h_colocalized_fibril_area_pct') > 1.0
+                ):
+                    iip0028_iapp_status = 'HOLD_INCONCLUSIVE_IAPP_EVIDENCE_72H_UPPER_BOUND'
+                else:
+                    _d28_e_l = _lower95('obs_iapp_d28_immunocapture_oligomer_elisa_fold') > 1.5
+                    _d28_f_l = _lower95('obs_iapp_d28_colocalized_fibril_area_pct') > 1.0
+                    _d84_e_l = _lower95('obs_iapp_d84_immunocapture_oligomer_elisa_fold') > 1.5
+                    _d84_f_l = _lower95('obs_iapp_d84_colocalized_fibril_area_pct') > 1.0
+                    if (_d28_e_l and _d28_f_l) or (_d84_e_l and _d84_f_l):
+                        iip0028_iapp_status = 'HOLD_CONFIRMED_CHRONIC_IAPP_BREACH_P2_ITM2B_RESERVE_ELIGIBLE'
+                    elif _d28_e_l or _d28_f_l or _d84_e_l or _d84_f_l:
+                        iip0028_iapp_status = 'HOLD_DISCORDANT_CHRONIC_NEEDS_REPLICATION'
+                    elif (
+                        _upper95('obs_iapp_d28_immunocapture_oligomer_elisa_fold') > 1.5
+                        or _upper95('obs_iapp_d28_colocalized_fibril_area_pct') > 1.0
+                        or _upper95('obs_iapp_d84_immunocapture_oligomer_elisa_fold') > 1.5
+                        or _upper95('obs_iapp_d84_colocalized_fibril_area_pct') > 1.0
+                    ):
+                        iip0028_iapp_status = 'HOLD_INCONCLUSIVE_IAPP_EVIDENCE'
+                    else:
+                        iip0028_iapp_status = 'CLEARED_DUAL_ORTHOGONAL_IAPP_72H_D28_D84'
+            if not str(iip0028_iapp_status).startswith('CLEARED_'):
+                iip0028_hold_status = iip0028_iapp_status
+
+    iip0028_eval_summary: dict[str, object] | None = None
+    if _iip0028_active:
+        iip0028_eval_summary = {
+            'gate_pass': iip0028_hold_status is None,
+            'hold_status': iip0028_hold_status,
+            'gate0d_and_adcc_status': iip0028_gate0d_adcc_status,
+            'dec084_mixture_status': iip0028_dec084_status,
+            'iapp_3way_status': iip0028_iapp_status,
+            'p2_itm2b_active_weight_pct': 0.0,
+            'status': (
+                iip0028_hold_status
+                if iip0028_hold_status is not None
+                else 'CLEARED_IIP0028_POSTDEPLETION_ADCC_MIXTURE_AND_IAPP_GATES'
+            ),
+        }
+
     resolved_arch = dict(tree_doc.get('default_architecture_assignments', {}))
     if product_def is not None:
         _pvid_canon = str(product_def['product_variant_id'])
@@ -5892,6 +6302,8 @@ def evaluate_stage0_decision_tree(
         resolved_arch['lot_maturation_status'] = iip0025_hold_status
     elif iip0026_hold_status is not None:
         resolved_arch['lot_maturation_status'] = iip0026_hold_status
+    elif iip0028_hold_status is not None:
+        resolved_arch['lot_maturation_status'] = iip0028_hold_status
     elif challenger_hold_status is not None:
         resolved_arch['lot_maturation_status'] = challenger_hold_status
     elif avascular_outer_band_dropout and not omental_revascularization_cleared:
@@ -6648,6 +7060,11 @@ def evaluate_stage0_decision_tree(
         **(
             {'iip0026_molecular_provenance_evaluation': iip0026_eval_summary}
             if iip0026_eval_summary is not None
+            else {}
+        ),
+        **(
+            {'iip0028_postdepletion_adcc_mixture_and_iapp_evaluation': iip0028_eval_summary}
+            if iip0028_eval_summary is not None
             else {}
         ),
     }
@@ -7979,6 +8396,19 @@ IIP0026_ALLOWED_MOLECULAR_OBS_KEYS: frozenset[str] = frozenset({
     'obs_tyk2_pe4max_coding_or_splice_de_novo_indels',
     'schema_era',
     'iip0026_schema_era',
+    'adjunct_conditioning_history_arm',
+    'adjunct_depletion_mode',
+    'adjunct_sa_fhl1_status',
+    'adjunct_immune_responder_history',
+    'device_assembly_id',
+    'recipient_serum_pair_id',
+    'intact_serum_sample_id',
+    'igg_depleted_serum_sample_id',
+    'positive_adcc_control_id',
+    'isotype_adcc_control_id',
+    'arm2_depleted_sample_id',
+    'contemporaneous_arm3_control_sample_id',
+    'sister_assembly_id',
 })
 
 
@@ -8100,6 +8530,29 @@ def _build_safe_stage0_tree_obs_iip0026(
         out['iip0026_schema_era'] = 'LEGACY_PRE_IIP0026'
     elif sera == 'IIP0026_V1':
         out['iip0026_schema_era'] = 'IIP0026_V1'
+    for enum_k, enum_allowed in (
+        ('adjunct_conditioning_history_arm', ALLOWED_ADJUNCT_CONDITIONING_HISTORY_ARMS),
+        ('adjunct_depletion_mode', ALLOWED_ADJUNCT_DEPLETION_MODES),
+        ('adjunct_sa_fhl1_status', ALLOWED_ADJUNCT_SA_FHL1_STATUSES),
+        ('adjunct_immune_responder_history', ALLOWED_ADJUNCT_IMMUNE_RESPONDER_HISTORIES),
+    ):
+        ev = payload.get(enum_k)
+        if isinstance(ev, str) and ev == ev.strip() and ev in enum_allowed:
+            out[enum_k] = ev
+    for str_id_k in (
+        'device_assembly_id',
+        'recipient_serum_pair_id',
+        'intact_serum_sample_id',
+        'igg_depleted_serum_sample_id',
+        'positive_adcc_control_id',
+        'isotype_adcc_control_id',
+        'arm2_depleted_sample_id',
+        'contemporaneous_arm3_control_sample_id',
+        'sister_assembly_id',
+    ):
+        sv = payload.get(str_id_k)
+        if isinstance(sv, str) and sv == sv.strip() and 4 <= len(sv) <= 120:
+            out[str_id_k] = sv
     for bkey in STAGE0_DECISION_TREE_BOOLEAN_KEYS:
         if type(payload.get(bkey)) is bool:
             out[bkey] = payload[bkey]
@@ -8413,4 +8866,756 @@ def evaluate_stage0_research_and_molecular_guardrails(
         'endogenous_hlac_gate_applied': reg['requires_endogenous_hlac_and_locus5_gates'],
         'b_sct_route_separated': reg['requires_b_sct_gates'],
         'switch_decisions': switch_decisions,
+    }
+
+
+# ============================================================================
+# Post-Depletion Gate 0d, Paired Intact-Plus-Increment CD16+ ADCC, Upstream B2
+# Research-Comparator Authorization, Measured-Potency DEC-084 Mixture, and
+# Visit/Lot/Sister-Bound 72h/d28/d84 Dual-Modality IAPP Evaluators
+# (IIP-0028; DEC-106)
+# ============================================================================
+ITM2B_NM021999_5_CDS_SHA256 = '6fc8d3d7a9b4851a9b50c026d44f02e7d2539e122a0b727d2a5cc4ee93df8903'
+ITM2B_NM021999_5_FASTA_SHA256 = '4a4cb15d0544884a62d86ebf4137c5284edad8210b6e32e74c2eb0aff005d13e'
+
+
+def _valid_domain_scalar_iip0028(val: Any, lo: float, hi: float) -> bool:
+    return _is_strict_finite_number_iip0024(val) and (lo <= float(val) <= hi)
+
+
+def _valid_positive_se_iip0028(se: Any) -> bool:
+    return _is_strict_finite_number_iip0024(se) and (float(se) > 0.0)
+
+
+def _valid_strict_unpadded_id_iip0028(val: Any, min_len: int = 4) -> bool:
+    return isinstance(val, str) and (val == val.strip()) and (len(val) >= min_len)
+
+
+def build_valid_upstream_b2_record_iip_0028(
+    mcb_id: str = 'MCB-B2-001',
+    lot_id: str = 'LOT-B2-001',
+) -> dict[str, Any]:
+    """Build canonical upstream ISLET1_B2_5LOCUS_BASE research-comparator authorization record (IIP-0028; DEC-106)."""
+    return {
+        'product_variant_id': 'ISLET1_B2_5LOCUS_BASE',
+        'mcb_id': mcb_id,
+        'lot_id': lot_id,
+        'lifecycle_state': 'STAGE0_RESEARCH_COMPARATOR_AUTHORIZED_FOR_PAIRED_STUDY',
+        'execution_supported': False,
+        'design_b_fasta_sha256': DESIGN_B_FASTA_SHA256,
+        'bound_c1_c5_pair_sha256': DESIGN_B_C1_C5_PAIR_SHA256,
+        'verified_qc_atoms': {
+            'mcb_hlac_phased_allele_and_ab_ko_qc': {
+                'atom_id': f'QCATOM-MCB-HLAC-{mcb_id}',
+                'mcb_id': mcb_id,
+                'status': 'PASS',
+                'biallelic_hla_ab_ciita_ko_pct': 99.4,
+                'phased_hlac_allele': 'HLA-C*03:04:01',
+            },
+            'mcb_c1_c5_junction_and_5p3p_race_qc': {
+                'atom_id': f'QCATOM-MCB-C1C5-{mcb_id}',
+                'mcb_id': mcb_id,
+                'status': 'PASS',
+                'c1_sha256_prefix': '3392af83',
+                'c5_sha256_prefix': 'ba264b14',
+                'five_prime_three_prime_race_exact': True,
+                'biallelic_c1_c5_hdr_pct': 99.1,
+            },
+            'lot_hlac_dt9_and_hlae_3d12_specificity_qc': {
+                'atom_id': f'QCATOM-LOT-DT9-3D12-{lot_id}',
+                'lot_id': lot_id,
+                'status': 'PASS',
+                'dt9_hlac_fold_over_hlae_only_ctrl': 8.5,
+                'hlae_3d12_molecules': 28500.0,
+            },
+        },
+    }
+
+
+def verify_upstream_b2_paired_study_authorization_iip_0028(
+    auth_rec: Any,
+    *,
+    expected_mcb_id: str,
+    expected_lot_id: str,
+) -> tuple[bool, str]:
+    """
+    Strict upstream registry and QC-atom verifier for ISLET1_B2_5LOCUS_BASE (IIP-0028; DEC-106):
+      - Never trusts a caller boolean;
+      - Binds DESIGN_B_FASTA_SHA256 (4bb20389...) and DESIGN_B_C1_C5_PAIR_SHA256 (82c351af...);
+      - Enforces execution_supported is False while authorizing paired Stage-0 ex-vivo responder
+        comparisons only when all three MCB/lot allele, c1+c5 RACE/junction, and DT9+3D12
+        HLA-E-controlled surface specificity QC atoms pass.
+    """
+    if not isinstance(auth_rec, dict):
+        return (False, 'HOLD_B2_MISSING_UPSTREAM_AUTHORIZATION_RECORD')
+    if auth_rec.get('product_variant_id') != 'ISLET1_B2_5LOCUS_BASE':
+        return (False, 'HOLD_B2_UPSTREAM_PRODUCT_MISMATCH')
+    if auth_rec.get('mcb_id') != expected_mcb_id or auth_rec.get('lot_id') != expected_lot_id:
+        return (False, 'HOLD_B2_UPSTREAM_MCB_OR_LOT_MISMATCH')
+    if auth_rec.get('lifecycle_state') != 'STAGE0_RESEARCH_COMPARATOR_AUTHORIZED_FOR_PAIRED_STUDY':
+        return (False, 'HOLD_B2_LIFECYCLE_NOT_AUTHORIZED_FOR_PAIRED_STUDY')
+    if auth_rec.get('execution_supported') is not False:
+        return (False, 'HOLD_B2_EXECUTION_SUPPORTED_MUST_REMAIN_FALSE')
+    if auth_rec.get('design_b_fasta_sha256') != DESIGN_B_FASTA_SHA256:
+        return (False, 'HOLD_B2_FASTA_DIGEST_MISMATCH')
+    if auth_rec.get('bound_c1_c5_pair_sha256') != DESIGN_B_C1_C5_PAIR_SHA256:
+        return (False, 'HOLD_B2_C1_C5_PAIR_DIGEST_MISMATCH')
+
+    qc_atoms = auth_rec.get('verified_qc_atoms')
+    if not isinstance(qc_atoms, dict):
+        return (False, 'HOLD_B2_MISSING_UPSTREAM_QC_ATOMS')
+
+    a1 = qc_atoms.get('mcb_hlac_phased_allele_and_ab_ko_qc')
+    if (
+        not isinstance(a1, dict)
+        or not _valid_strict_unpadded_id_iip0028(a1.get('atom_id'))
+        or a1.get('mcb_id') != expected_mcb_id
+        or a1.get('status') != 'PASS'
+        or not _valid_domain_scalar_iip0028(a1.get('biallelic_hla_ab_ciita_ko_pct'), 98.0, 100.0)
+        or not _valid_strict_unpadded_id_iip0028(a1.get('phased_hlac_allele'), min_len=6)
+    ):
+        return (False, 'HOLD_B2_UNVERIFIED_MCB_HLAC_ALLELE_AND_AB_KO_QC_ATOM')
+
+    a2 = qc_atoms.get('mcb_c1_c5_junction_and_5p3p_race_qc')
+    if (
+        not isinstance(a2, dict)
+        or not _valid_strict_unpadded_id_iip0028(a2.get('atom_id'))
+        or a2.get('mcb_id') != expected_mcb_id
+        or a2.get('status') != 'PASS'
+        or a2.get('c1_sha256_prefix') != '3392af83'
+        or a2.get('c5_sha256_prefix') != 'ba264b14'
+        or a2.get('five_prime_three_prime_race_exact') is not True
+        or not _valid_domain_scalar_iip0028(a2.get('biallelic_c1_c5_hdr_pct'), 98.0, 100.0)
+    ):
+        return (False, 'HOLD_B2_UNVERIFIED_MCB_C1_C5_JUNCTION_AND_RACE_QC_ATOM')
+
+    a3 = qc_atoms.get('lot_hlac_dt9_and_hlae_3d12_specificity_qc')
+    if (
+        not isinstance(a3, dict)
+        or not _valid_strict_unpadded_id_iip0028(a3.get('atom_id'))
+        or a3.get('lot_id') != expected_lot_id
+        or a3.get('status') != 'PASS'
+        or not _valid_domain_scalar_iip0028(a3.get('dt9_hlac_fold_over_hlae_only_ctrl'), 2.0, 1000.0)
+        or not _valid_domain_scalar_iip0028(a3.get('hlae_3d12_molecules'), 15000.0, 1000000.0)
+    ):
+        return (False, 'HOLD_B2_UNVERIFIED_LOT_HLAC_DT9_HLAE_3D12_SPECIFICITY_QC_ATOM')
+
+    return (True, 'AUTHORIZED_B2_STAGE0_PAIRED_STUDY_EXECUTION_SUPPORTED_FALSE')
+
+
+def _read_se_alias_iip0028(obs: dict[str, Any], primary_se_key: str, *alias_se_keys: str) -> Any:
+    if primary_se_key in obs and obs[primary_se_key] is not None:
+        return obs[primary_se_key]
+    for ak in alias_se_keys:
+        if ak in obs and obs[ak] is not None:
+            return obs[ak]
+    return None
+
+
+def evaluate_paired_adcc_and_postdepletion_gate_iip_0028(
+    obs: dict[str, Any],
+    *,
+    root: Path | str | None = None,
+    upstream_b2_authorization_record: dict[str, Any] | None = None,
+) -> tuple[bool, str]:
+    """
+    Fail-closed registry-bound Gate 0d + intact-and-increment CD16+ ADCC evaluator (IIP-0028; DEC-106):
+      - Rejects omitted, None, empty, whitespace-padded, unregistered, caller-overridden, or Track-2 B'-SCT IDs;
+      - Gates ISLET1_B2_5LOCUS_BASE on verified upstream 82c351af... c1+c5 authorization + QC atoms (execution_supported=False);
+      - Separates Arm 1 reference, Arm 2 post-depletion (preserving all 6 Arm-2 explicit-SE endpoints + contemporaneous
+        Arm-3 active-FasL control + unpooled washout/aging + segregated RETAINED_ACTIVE SA-FHL-1), and Arm 3 profiles;
+      - Caps BOTH intact-serum total cellular killing AND paired IgG-attributable CD16+ ADCC increment at U95_t <= 5.0%
+        (preventing high Fc-independent background injury such as 30% intact vs 29% depleted from clearing on a 1% delta),
+        alongside positive control L95_t >= 25.0% and isotype background U95_t <= 5.0%.
+    """
+    if not isinstance(obs, dict):
+        return (False, 'HOLD_INVALID_OBSERVATION_PAYLOAD')
+    if any(k in obs for k in ('product_defs', 'override_product_defs', 'execution_supported', 'override_execution_supported')):
+        return (False, 'HOLD_CALLER_PRODUCT_DEF_OR_EXECUTION_OVERRIDE_REJECTED')
+    if 'product_variant_id' not in obs or obs['product_variant_id'] is None:
+        return (False, 'HOLD_MISSING_PRODUCT_VARIANT_ID')
+    prod_id = obs['product_variant_id']
+    if not isinstance(prod_id, str) or prod_id == '':
+        return (False, 'HOLD_MISSING_PRODUCT_VARIANT_ID')
+    if prod_id != prod_id.strip():
+        return (False, 'HOLD_WHITESPACE_PADDED_PRODUCT_VARIANT_ID')
+    if prod_id.startswith('ISLET1_B_SCT_'):
+        return (False, 'HOLD_UNSUPPORTED_TRACK2_BSCT_REQUIRES_SEPARATE_GATE0B_SCT')
+
+    root_path = Path(root) if root is not None else Path(__file__).resolve().parents[1]
+    p_mod = _load_product_contract_module(root_path)
+    prod_doc = p_mod.load_product_contracts(root_path)
+    reg_by_id = {str(p['product_variant_id']): p for p in prod_doc['products']}
+    reg_entry = reg_by_id.get(prod_id)
+    if reg_entry is None:
+        return (False, 'HOLD_UNREGISTERED_PRODUCT_VARIANT_ID')
+
+    mcb_id = obs.get('mcb_id', obs.get('mcb_clone_id'))
+    lot_id = obs.get('lot_id', obs.get('current_lot_id'))
+    if not _valid_strict_unpadded_id_iip0028(mcb_id) or not _valid_strict_unpadded_id_iip0028(lot_id):
+        return (False, 'HOLD_GATE0D_MISSING_OR_PADDED_MCB_OR_LOT_ID')
+
+    if prod_id == 'ISLET1_B2_5LOCUS_BASE':
+        if upstream_b2_authorization_record is None:
+            if (
+                obs.get('registered_and_qc_cleared') is True
+                or obs.get('comparator_registered_and_qc_cleared') is True
+                or any(str(k).endswith('_registered_and_qc_cleared') and obs.get(k) is True for k in obs)
+            ):
+                return (False, 'HOLD_B2_CALLER_BOOLEAN_REJECTED_MISSING_UPSTREAM_REGISTRY_RECORD')
+            return (False, 'HOLD_B2_PENDING_UPSTREAM_COMPARATOR_REGISTRATION')
+        b2_ok, b2_code = verify_upstream_b2_paired_study_authorization_iip_0028(
+            upstream_b2_authorization_record,
+            expected_mcb_id=str(mcb_id),
+            expected_lot_id=str(lot_id),
+        )
+        if not b2_ok:
+            return (False, b2_code)
+    elif reg_entry.get('execution_supported') is False:
+        return (False, 'HOLD_NON_EXECUTABLE_RESEARCH_COMPARATOR_VARIANT')
+
+    arm = obs.get('adjunct_conditioning_history_arm')
+    if arm not in ('ARM1_NEVER_CONDITIONED', 'ARM2_CONDITIONED_DEPLETED', 'ARM3_CONTINUOUSLY_ACTIVE'):
+        return (False, 'HOLD_GATE0D_MISSING_EXPLICIT_HISTORY_ARM')
+
+    n_rep = obs.get('n_independent_blocks', obs.get('obs_stage0_independent_lot_replicates_n'))
+    if not _is_strict_int_iip0024(n_rep) or n_rep < 6:
+        return (False, 'HOLD_GATE0D_INSUFFICIENT_INDEPENDENT_BLOCKS_LT_6')
+    t_crit = student_t_ppf(0.95, n_rep - 1)
+
+    if arm == 'ARM1_NEVER_CONDITIONED':
+        for mk, sk1, sk2, lo, hi in (
+            ('obs_arm1_unconditioned_cd4_si', 'obs_arm1_unconditioned_cd4_si_se', 'se_arm1_cd4_si', 0.1, 100.0),
+            ('obs_arm1_unconditioned_annexin_v_pct', 'obs_arm1_unconditioned_annexin_v_se', 'se_arm1_annexin_v', 0.0, 100.0),
+        ):
+            s_v = _read_se_alias_iip0028(obs, sk1, sk2)
+            if not _valid_domain_scalar_iip0028(obs.get(mk), lo, hi) or not _valid_positive_se_iip0028(s_v):
+                return (False, f'HOLD_GATE0D_ARM1_INVALID_OR_MISSING_CONTROL_{mk}')
+        return (False, 'HOLD_GATE0D_ARM1_NEVER_CONDITIONED_REFERENCE_CONTROL')
+
+    if not _valid_strict_unpadded_id_iip0028(obs.get('recipient_serum_pair_id')):
+        return (False, 'HOLD_ADCC_MISSING_OR_INVALID_RECIPIENT_SERUM_PAIR_ID')
+    intact_sid = obs.get('intact_serum_sample_id')
+    dep_sid = obs.get('igg_depleted_serum_sample_id')
+    if not _valid_strict_unpadded_id_iip0028(intact_sid) or not _valid_strict_unpadded_id_iip0028(dep_sid) or intact_sid == dep_sid:
+        return (False, 'HOLD_ADCC_MISSING_OR_DUPLICATE_PAIRED_SERUM_SAMPLE_IDS')
+    pos_cid = obs.get('positive_adcc_control_id')
+    iso_cid = obs.get('isotype_adcc_control_id')
+    if not _valid_strict_unpadded_id_iip0028(pos_cid) or not _valid_strict_unpadded_id_iip0028(iso_cid) or pos_cid == iso_cid:
+        return (False, 'HOLD_ADCC_MISSING_OR_DUPLICATE_POSITIVE_ISOTYPE_CONTROL_IDS')
+    if obs.get('igg_depleted_matched_serum_control_verified', obs.get('cd16_adcc_igg_depletion_paired_control_verified')) is not True:
+        return (False, 'HOLD_ADCC_MISSING_IGG_DEPLETED_MATCHED_SERUM_CONTROL')
+    if not _valid_domain_scalar_iip0028(obs.get('obs_igg_depletion_efficiency_pct'), 95.0, 100.0):
+        return (False, 'HOLD_ADCC_IGG_DEPLETION_EFFICIENCY_BELOW_95PCT')
+    if obs.get('fcr_effector_fcgr3a_158v_typed_verified') is not True:
+        return (False, 'HOLD_ADCC_UNVERIFIED_CD16_FCGR3A_EFFECTOR_COMPETENCE')
+
+    # Enforce BOTH intact-serum total cellular killing U95_t <= 5.0% AND paired IgG-attributable increment U95_t <= 5.0%:
+    intact_m = obs.get('obs_fcr_cd16_intact_serum_total_lysis_pct')
+    intact_s = _read_se_alias_iip0028(obs, 'obs_fcr_cd16_intact_serum_total_lysis_se', 'se_intact_adcc')
+    dep_m = obs.get('obs_fcr_cd16_igg_depleted_serum_lysis_pct')
+    if not _valid_domain_scalar_iip0028(intact_m, 0.0, 100.0) or not _valid_positive_se_iip0028(intact_s):
+        return (False, 'HOLD_MISSING_OR_INVALID_obs_fcr_cd16_intact_serum_total_lysis_pct')
+    if dep_m is not None:
+        if not _valid_domain_scalar_iip0028(dep_m, 0.0, 100.0):
+            return (False, 'HOLD_MISSING_OR_INVALID_obs_fcr_cd16_igg_depleted_serum_lysis_pct')
+        net_check = obs.get('obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_pct')
+        if _is_strict_finite_number_iip0024(net_check) and abs((float(intact_m) - float(dep_m)) - float(net_check)) > 1e-4:
+            return (False, 'HOLD_ADCC_INTACT_MINUS_DEPLETED_ARITHMETIC_MISMATCH')
+    if float(intact_m) + t_crit * float(intact_s) > 5.0:
+        return (False, 'HOLD_EXCEEDED_UPPER95_obs_fcr_cd16_intact_serum_total_lysis_pct')
+
+    pos_adcc_m = obs.get('obs_adcc_positive_control_lysis_pct', obs.get('obs_cd16_adcc_positive_control_lysis_pct'))
+    pos_adcc_s = _read_se_alias_iip0028(obs, 'obs_cd16_adcc_positive_control_lysis_se', 'se_pos_adcc')
+    if not _valid_domain_scalar_iip0028(pos_adcc_m, 0.0, 100.0) or not _valid_positive_se_iip0028(pos_adcc_s):
+        return (False, 'HOLD_MISSING_OR_INVALID_obs_adcc_positive_control_lysis_pct')
+    if float(pos_adcc_m) - t_crit * float(pos_adcc_s) < 25.0:
+        return (False, 'HOLD_BELOW_LOWER95_obs_adcc_positive_control_lysis_pct')
+
+    if arm == 'ARM3_CONTINUOUSLY_ACTIVE':
+        if obs.get('obs_arm3_ongoing_adjunct_bioactivity_verified') is not True:
+            return (False, 'HOLD_GATE0D_ARM3_ONGOING_BIOACTIVITY_UNVERIFIED')
+        arm3_bounds = [
+            ('obs_gate0d_activated_cd4_fasl_apoptosis_pct', ('obs_gate0d_activated_cd4_fasl_apoptosis_se', 'se_arm3_cd4_apoptosis'), 'lower', 80.0, 0.0, 100.0),
+            ('obs_indirect_apc_dq2_dq8_cd4_stimulation_index', ('obs_indirect_apc_dq2_dq8_cd4_stimulation_index_se', 'obs_indirect_apc_dq2_dq8_cd4_stimulation_se', 'se_cd4_si'), 'upper', 1.5, 0.1, 100.0),
+            ('obs_indirect_apc_cd4_ifng_si', ('obs_indirect_apc_cd4_ifng_si_se', 'obs_indirect_apc_cd4_ifng_se', 'se_ifng_si'), 'upper', 2.0, 0.1, 100.0),
+            ('obs_gate0d_transwell_beta_annexin_v_pct', ('obs_gate0d_transwell_beta_annexin_v_se', 'se_annexin_v'), 'upper', 15.0, 0.0, 100.0),
+            ('obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_pct', ('obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_se', 'se_net_adcc'), 'upper', 5.0, -20.0, 100.0),
+            ('obs_adcc_isotype_background_lysis_pct', ('obs_adcc_isotype_background_lysis_se', 'se_isotype_adcc'), 'upper', 5.0, 0.0, 100.0),
+        ]
+        for mk, sks, direction, thresh, lo, hi in arm3_bounds:
+            m = obs.get(mk)
+            s = _read_se_alias_iip0028(obs, sks[0], *sks[1:])
+            if not _valid_domain_scalar_iip0028(m, lo, hi) or not _valid_positive_se_iip0028(s):
+                return (False, f'HOLD_ARM3_INVALID_OR_MISSING_{mk}')
+            mf, sf = float(m), float(s)
+            if direction == 'upper' and (mf + t_crit * sf) > thresh:
+                return (False, f'HOLD_ARM3_EXCEEDED_UPPER95_{mk}')
+            if direction == 'lower' and (mf - t_crit * sf) < thresh:
+                return (False, f'HOLD_ARM3_BELOW_LOWER95_{mk}')
+        if prod_id == 'ISLET1_B2_5LOCUS_BASE':
+            return (True, 'RESEARCH_ONLY_PAIRED_STUDY_ARM3_CLEARED_B2_EXECUTION_SUPPORTED_FALSE')
+        return (True, 'CLEARED_ARM3_ACTIVE_ADJUNCT_AND_FCR_ADCC_PROFILE')
+
+    dep_mode = obs.get('adjunct_depletion_mode')
+    if dep_mode not in ('PHYSICAL_WASHOUT', 'NATURAL_AGING_DECAY'):
+        return (False, 'HOLD_GATE0D_POOLED_OR_UNSPECIFIED_DEPLETION_MODE')
+    if obs.get('washout_and_natural_decay_unpooled_verified') is not True:
+        return (False, 'HOLD_GATE0D_POOLED_WASHOUT_AND_AGING_ALIQUOTS')
+    if obs.get('carrier_and_soluble_adjunct_below_lod_verified') is not True:
+        return (False, 'HOLD_GATE0D_RESIDUAL_ADJUNCT_ABOVE_LOD')
+    if obs.get('obs_arm2_bound_and_supernatant_fasl_bioactivity_depleted_verified') is not True:
+        return (False, 'HOLD_GATE0D_FASL_DEPLETION_UNVERIFIED')
+    if obs.get('obs_arm2_sa_thbd_bioactivity_depleted_verified') is not True:
+        return (False, 'HOLD_GATE0D_SA_THBD_DEPLETION_UNVERIFIED')
+    if obs.get('obs_arm2_contemporaneous_sham_handling_matched') is not True:
+        return (False, 'HOLD_GATE0D_CONTEMPORANEOUS_SHAM_UNMATCHED')
+    if obs.get('obs_arm3_ongoing_adjunct_bioactivity_verified') is not True:
+        return (False, 'HOLD_GATE0D_PARALLEL_ARM3_BIOACTIVITY_CONTROL_UNVERIFIED')
+    arm2_sid = obs.get('arm2_depleted_sample_id')
+    arm3_ctrl_sid = obs.get('contemporaneous_arm3_control_sample_id')
+    if not _valid_strict_unpadded_id_iip0028(arm2_sid) or not _valid_strict_unpadded_id_iip0028(arm3_ctrl_sid) or arm2_sid == arm3_ctrl_sid:
+        return (False, 'HOLD_GATE0D_MISSING_OR_DUPLICATE_CONTEMPORANEOUS_ARM3_CONTROL_SAMPLE_ID')
+    resp_hist = obs.get('adjunct_immune_responder_history')
+    if resp_hist not in ('RETAINED_CONDITIONED_RESPONDERS', 'FRESH_RECIPIENT_RESPONDERS', 'PAIRED_BOTH'):
+        return (False, 'HOLD_GATE0D_MISSING_IMMUNE_RESPONDER_HISTORY')
+    fhl1_status = obs.get('adjunct_sa_fhl1_status')
+    if fhl1_status == 'RETAINED_ACTIVE':
+        return (False, 'HOLD_GATE0D_PARTIALLY_DEPLETED_SA_FHL1_RETAINED_ACTIVE_NOT_COMPLETE_DEPLETION')
+    if fhl1_status not in ('DEPLETED_VERIFIED', 'ABSENT_FROM_LOT'):
+        return (False, 'HOLD_GATE0D_INVALID_OR_MISSING_SA_FHL1_STATUS')
+
+    arm2_bounds = [
+        ('obs_parallel_arm3_control_cd4_apoptosis_pct', ('obs_parallel_arm3_control_cd4_apoptosis_se', 'se_parallel_arm3_cd4_apoptosis'), 'lower', 80.0, 0.0, 100.0),
+        ('obs_indirect_apc_dq2_dq8_cd4_stimulation_index', ('obs_indirect_apc_dq2_dq8_cd4_stimulation_index_se', 'obs_indirect_apc_dq2_dq8_cd4_stimulation_se', 'se_cd4_si'), 'upper', 1.5, 0.1, 100.0),
+        ('obs_indirect_apc_cd4_ifng_si', ('obs_indirect_apc_cd4_ifng_si_se', 'obs_indirect_apc_cd4_ifng_se', 'se_ifng_si'), 'upper', 2.0, 0.1, 100.0),
+        ('obs_gate0d_transwell_beta_annexin_v_pct', ('obs_gate0d_transwell_beta_annexin_v_se', 'se_annexin_v'), 'upper', 15.0, 0.0, 100.0),
+        ('obs_arm2_post_depletion_nhs_c5b9_mac_pct', ('obs_arm2_post_depletion_nhs_c5b9_mac_se', 'se_c5b9'), 'upper', 5.0, 0.0, 100.0),
+        ('obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_pct', ('obs_fcr_cd16_net_adcc_lysis_vs_igg_depleted_se', 'se_net_adcc'), 'upper', 5.0, -20.0, 100.0),
+        ('obs_adcc_isotype_background_lysis_pct', ('obs_adcc_isotype_background_lysis_se', 'se_isotype_adcc'), 'upper', 5.0, 0.0, 100.0),
+        ('obs_arm2_post_depletion_viable_beta_recovery_pct', ('obs_arm2_post_depletion_viable_beta_recovery_se', 'se_beta_rec'), 'lower', 85.0, 0.0, 150.0),
+        ('obs_arm2_post_depletion_perifusion_gsis_si', ('obs_arm2_post_depletion_perifusion_gsis_si_se', 'se_gsis_si'), 'lower', 2.5, 0.1, 100.0),
+        ('obs_post_depletion_input_normalized_cpep_ratio', ('obs_post_depletion_input_normalized_cpep_ratio_se', 'se_cpep_ratio'), 'lower', 0.85, 0.01, 5.0),
+    ]
+    for mk, sks, direction, thresh, lo, hi in arm2_bounds:
+        m = obs.get(mk)
+        s = _read_se_alias_iip0028(obs, sks[0], *sks[1:])
+        if not _valid_domain_scalar_iip0028(m, lo, hi) or not _valid_positive_se_iip0028(s):
+            return (False, f'HOLD_MISSING_OR_INVALID_{mk}')
+        mf, sf = float(m), float(s)
+        if direction == 'upper' and (mf + t_crit * sf) > thresh:
+            return (False, f'HOLD_EXCEEDED_UPPER95_{mk}')
+        if direction == 'lower' and (mf - t_crit * sf) < thresh:
+            return (False, f'HOLD_BELOW_LOWER95_{mk}')
+    if prod_id == 'ISLET1_B2_5LOCUS_BASE':
+        return (True, 'RESEARCH_ONLY_PAIRED_STUDY_ARM2_CLEARED_B2_EXECUTION_SUPPORTED_FALSE')
+    return (True, 'CLEARED_ARM2_COMPLETE_DEPLETION_GATE0D_AND_FCR_ADCC_OVERLAY')
+
+
+def evaluate_paired_adcc_and_postdepletion_report_iip_0028(
+    obs: dict[str, Any],
+    *,
+    root: Path | str | None = None,
+    upstream_b2_authorization_record: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Structured report wrapper around `evaluate_paired_adcc_and_postdepletion_gate_iip_0028` preserving `execution_supported` (IIP-0028; DEC-106)."""
+    ok, code = evaluate_paired_adcc_and_postdepletion_gate_iip_0028(
+        obs,
+        root=root,
+        upstream_b2_authorization_record=upstream_b2_authorization_record,
+    )
+    prod_id = obs.get('product_variant_id') if isinstance(obs, dict) else None
+    is_b2 = prod_id == 'ISLET1_B2_5LOCUS_BASE'
+    return {
+        'gate_pass': ok,
+        'status': code,
+        'product_variant_id': prod_id if isinstance(prod_id, str) else None,
+        'execution_supported': False if (not ok or is_b2) else True,
+        'paired_study_research_only': bool(ok and is_b2),
+    }
+
+
+def evaluate_dec084_measured_potency_mixture_gate_iip_0028(
+    obs: dict[str, Any],
+) -> dict[str, Any]:
+    """
+    Measured-potency equal-output DEC-084 mixture (70:20:10 / 70:25:5 vs 60:30:10) evaluator (IIP-0028; DEC-106):
+      - Requires n >= 8 independent confirmation blocks disjoint from n >= 3 fixed-input selection blocks;
+      - Requires measured starting lineage fractions, viable counts, and fresh-lot equal-output dose-response;
+      - Enforces implanted loading == (6/7) * (out_A / out_B) * 1500.0 IEQ/cm^2, U95_t(OCR_B/A) <= 0.90,
+        dual-mesh (40x40x70 & 60x60x105) worst-face pO2 >= 15.0 mmHg, L95_t(Cpep_AUC_B/A) >= 0.85,
+        L95_t(GCG_AUC_B/A) >= 0.85, Day-28 L95_t(beta_recovery) >= 0.80, and Readout 2 insulin/glucagon bounds.
+    """
+    if not isinstance(obs, dict):
+        return {'gate_pass': False, 'status': 'HOLD_DEC084_INVALID_PAYLOAD'}
+    if obs.get('selection_blocks_excluded_from_confirmation') is not True:
+        return {'gate_pass': False, 'status': 'HOLD_DEC084_SELECTION_BLOCKS_NOT_EXCLUDED'}
+    if obs.get('measured_starting_composition_and_viable_counts_verified') is not True:
+        return {'gate_pass': False, 'status': 'HOLD_DEC084_UNVERIFIED_STARTING_COMPOSITION_OR_VIABLE_COUNTS'}
+    n_conf = obs.get('n_confirmation_blocks')
+    if not _is_strict_int_iip0024(n_conf) or n_conf < 8:
+        return {'gate_pass': False, 'status': 'HOLD_DEC084_CONFIRMATION_BLOCKS_LT_8'}
+    t_crit = student_t_ppf(0.95, n_conf - 1)
+
+    pot = obs.get('obs_dec084_starting_potency_ratio_out_b_over_out_a')
+    pot_se = _read_se_alias_iip0028(obs, 'obs_dec084_starting_potency_ratio_out_b_over_out_a_se', 'se_starting_potency_ratio')
+    load = obs.get('implanted_areal_loading_ieq_cm2')
+    if not _valid_domain_scalar_iip0028(pot, 0.2, 5.0) or not _valid_positive_se_iip0028(pot_se) or not _valid_domain_scalar_iip0028(load, 100.0, 5000.0):
+        return {'gate_pass': False, 'status': 'HOLD_DEC084_MISSING_OR_INVALID_POTENCY_OR_LOADING'}
+    expected_load = (6.0 / 7.0) * (1.0 / float(pot)) * 1500.0
+    if abs(float(load) - expected_load) > 0.25:
+        return {'gate_pass': False, 'status': 'HOLD_DEC084_LOADING_DOES_NOT_MATCH_MEASURED_POTENCY_FORMULA'}
+
+    po2_nx40 = obs.get('dual_band_worst_face_po2_nx40_mmhg')
+    po2_nx60 = obs.get('dual_band_worst_face_po2_nx60_mmhg')
+    if not _valid_domain_scalar_iip0028(po2_nx40, 0.0, 120.0) or not _valid_domain_scalar_iip0028(po2_nx60, 0.0, 120.0):
+        return {'gate_pass': False, 'status': 'HOLD_DEC084_MISSING_MULTIMESH_WORST_FACE_OXYGEN'}
+    if min(float(po2_nx40), float(po2_nx60)) < 15.0:
+        if max(float(po2_nx40), float(po2_nx60)) >= 15.0:
+            return {'gate_pass': False, 'status': 'HOLD_DEC084_NUMERICALLY_MESH_SENSITIVE_WORST_FACE_OXYGEN_BELOW_15MMHG'}
+        return {'gate_pass': False, 'status': 'HOLD_DEC084_WORST_FACE_OXYGEN_BELOW_15MMHG'}
+
+    bounds = [
+        ('obs_dec084_ocr_ratio_b_over_a', ('obs_dec084_ocr_ratio_b_over_a_se', 'se_ocr_ratio'), 'upper', 0.90, 0.1, 5.0),
+        ('obs_dec084_cpep_auc_ratio_b_over_a', ('obs_dec084_cpep_auc_ratio_b_over_a_se', 'se_cpep_auc_ratio'), 'lower', 0.85, 0.1, 5.0),
+        ('obs_dec084_gcg_auc_ratio_b_over_a', ('obs_dec084_gcg_auc_ratio_b_over_a_se', 'se_gcg_auc_ratio'), 'lower', 0.85, 0.1, 5.0),
+        ('obs_day28_beta_recovery_ratio', ('obs_day28_beta_recovery_se', 'se_day28_beta_recovery'), 'lower', 0.80, 0.0, 2.0),
+        ('obs_readout2_perifusion_gsis_si', ('obs_readout2_perifusion_gsis_se', 'se_readout2_si'), 'lower', 3.0, 0.1, 50.0),
+        ('obs_readout2_first_phase_peak_to_basal_ratio', ('obs_readout2_first_phase_peak_to_basal_se', 'se_readout2_peak_basal'), 'lower', 4.5, 0.1, 100.0),
+        ('obs_readout2_first_phase_time_to_peak_min', ('obs_readout2_first_phase_time_to_peak_se', 'se_readout2_tpeak'), 'upper', 8.0, 0.1, 60.0),
+        ('obs_readout2_stepdown_shutoff_t50_min', ('obs_readout2_stepdown_shutoff_t50_se', 'se_readout2_t50'), 'upper', 3.0, 0.05, 60.0),
+        ('obs_gate0m_glucagon_2mM_fold_increase', ('obs_gate0m_glucagon_2mM_fold_se', 'se_readout2_gcg_fold'), 'lower', 2.0, 0.1, 50.0),
+    ]
+    for mk, sks, direction, thresh, lo, hi in bounds:
+        m = obs.get(mk)
+        s = _read_se_alias_iip0028(obs, sks[0], *sks[1:])
+        if not _valid_domain_scalar_iip0028(m, lo, hi) or not _valid_positive_se_iip0028(s):
+            return {'gate_pass': False, 'status': f'HOLD_DEC084_MISSING_OR_INVALID_{mk}'}
+        mf, sf = float(m), float(s)
+        if direction == 'upper' and (mf + t_crit * sf) > thresh:
+            return {'gate_pass': False, 'status': f'HOLD_DEC084_EXCEEDED_UPPER95_{mk}'}
+        if direction == 'lower' and (mf - t_crit * sf) < thresh:
+            return {'gate_pass': False, 'status': f'HOLD_DEC084_BELOW_LOWER95_{mk}'}
+
+    return {
+        'gate_pass': True,
+        'status': 'CLEARED_DEC084_MEASURED_POTENCY_LOW_OCR_AND_GLUCAGON_CONFIRMATION',
+        'computed_equal_output_loading_ieq_cm2': round(expected_load, 4),
+    }
+
+
+def _validate_iapp_control_block_iip0028(rec: dict[str, Any], sample_id: str, tp_label: str) -> tuple[bool, str]:
+    loq = rec.get('loq_signal')
+    if not _is_strict_finite_number_iip0024(loq) or float(loq) <= 0.0:
+        return (False, f'HOLD_INCONCLUSIVE_IAPP_INVALID_LOQ_{tp_label}')
+    loq_f = float(loq)
+
+    ko_id = rec.get('ko_blank_id')
+    ko_sig = rec.get('ko_blank_signal')
+    ins_sig = rec.get('insulin_fibril_blank_signal')
+    if not _valid_strict_unpadded_id_iip0028(ko_id):
+        return (False, f'HOLD_INCONCLUSIVE_IAPP_MISSING_KO_BLANK_ID_{tp_label}')
+    if not _is_strict_finite_number_iip0024(ko_sig) or not (0.0 <= float(ko_sig) < loq_f):
+        return (False, f'HOLD_INCONCLUSIVE_IAPP_BLANK_ABOVE_LOQ_{tp_label}')
+    if not _is_strict_finite_number_iip0024(ins_sig) or not (0.0 <= float(ins_sig) < loq_f):
+        return (False, f'HOLD_INCONCLUSIVE_IAPP_INSULIN_FIBRIL_BLANK_ABOVE_LOQ_{tp_label}')
+
+    ref_id = rec.get('age_matched_ref_control_id')
+    ref_sig = rec.get('ref_signal')
+    if not _valid_strict_unpadded_id_iip0028(ref_id) or ref_id in (ko_id, sample_id):
+        return (False, f'HOLD_INCONCLUSIVE_IAPP_INVALID_OR_KO_REUSED_REF_ID_{tp_label}')
+    if not _is_strict_finite_number_iip0024(ref_sig) or not (float(ref_sig) > loq_f > 0.0):
+        return (False, f'HOLD_INCONCLUSIVE_IAPP_REFERENCE_NOT_ABOVE_LOQ_{tp_label}')
+
+    spike_pct = rec.get('spike_recovery_iapp_1_37_pct')
+    if not _valid_domain_scalar_iip0028(spike_pct, 80.0, 120.0):
+        return (False, f'HOLD_INCONCLUSIVE_IAPP_SPIKE_RECOVERY_OUT_OF_RANGE_{tp_label}')
+
+    return (True, 'OK')
+
+
+def evaluate_orthogonal_iapp_3way_gate_iip_0028(
+    obs: dict[str, Any],
+    *,
+    root: Path | str | None = None,
+) -> dict[str, Any]:
+    """
+    Visit/lot/sister-bound & concordance/replication-gated 72-h / Day-28 / Day-84 dual-modality IAPP evaluator (IIP-0028; DEC-106):
+      - Validates product_variant_id against the versioned product registry;
+      - Derives n >= 6 strictly from distinct verified contributing_lot_ids (rejecting free integer n);
+      - Binds 72h (timepoint_h == 72) and d28 (timepoint_d == 28) to LOT_SCOPE and destructive d84 (timepoint_d == 84)
+        to TERMINAL_SISTER_DEVICE_SCOPE on an authorized_sister_assembly_id != implant_device_assembly_id, rejecting
+        duplicate sample_ids OR copied raw measurement vectors across visits as HOLD_DUPLICATE_OR_WRONG_TIMEPOINT_SAMPLE;
+      - Evaluates viable beta mass (>= 80.0% L95_t) and stimulated GSIS SI (>= 2.5 L95_t) alongside IAPP so a falling
+        amyloid signal caused by beta-cell attrition cannot clear as clean proteostasis;
+      - Requires within-lot dual-modality L95_t co-exceedance OR disjoint >= 6-lot repeat confirmation before emitting
+        CONFIRMED_CHRONIC_P2_ELIGIBLE, holding archival NM_021999.5 ITM2B at 0% active weight.
+    """
+    def _fail(disp: str, **extra: Any) -> dict[str, Any]:
+        return {
+            'core_cleared': False,
+            'disposition': disp,
+            'p2_itm2b_reserve_eligible': False,
+            'p2_active_weight_pct': 0.0,
+            **extra,
+        }
+
+    if not isinstance(obs, dict):
+        return _fail('HOLD_INCONCLUSIVE_IAPP_INVALID_PAYLOAD')
+
+    root_path = Path(root) if root is not None else Path(__file__).resolve().parents[1]
+    p_mod = _load_product_contract_module(root_path)
+    prod_doc = p_mod.load_product_contracts(root_path)
+    reg_ids = {str(p['product_variant_id']) for p in prod_doc['products']}
+
+    prod_id = obs.get('product_variant_id')
+    if not _valid_strict_unpadded_id_iip0028(prod_id) or prod_id not in reg_ids:
+        return _fail('HOLD_INCONCLUSIVE_IAPP_UNREGISTERED_OR_MISSING_PRODUCT_ID')
+
+    lot_list = obs.get('contributing_lot_ids')
+    if not isinstance(lot_list, (list, tuple)) or len(lot_list) < 6:
+        return _fail('HOLD_IAPP_UNVERIFIED_INDEPENDENT_LOTS_LT_6')
+    if not all(_valid_strict_unpadded_id_iip0028(x) for x in lot_list) or len(set(lot_list)) != len(lot_list):
+        return _fail('HOLD_IAPP_DUPLICATE_OR_INVALID_LOT_IDS')
+    n_rep = len(lot_list)
+    if 'n_independent_blocks' in obs:
+        nb = obs['n_independent_blocks']
+        if not _is_strict_int_iip0024(nb) or nb != n_rep:
+            return _fail('HOLD_IAPP_DECLARED_N_MISMATCH_WITH_UNIQUE_LOTS')
+
+    primary_lot_id = obs.get('primary_lot_id')
+    if not _valid_strict_unpadded_id_iip0028(primary_lot_id) or primary_lot_id not in lot_list:
+        return _fail('HOLD_INCONCLUSIVE_IAPP_MISSING_OR_UNLINKED_PRIMARY_LOT_ID')
+
+    implant_dev_id = obs.get('implant_device_assembly_id')
+    if not _valid_strict_unpadded_id_iip0028(implant_dev_id):
+        return _fail('HOLD_INCONCLUSIVE_IAPP_MISSING_IMPLANT_ASSEMBLY_ID')
+
+    sister_ids = obs.get('authorized_sister_assembly_ids')
+    if (
+        not isinstance(sister_ids, (list, tuple))
+        or len(sister_ids) == 0
+        or not all(_valid_strict_unpadded_id_iip0028(s) for s in sister_ids)
+        or implant_dev_id in sister_ids
+    ):
+        return _fail('HOLD_IAPP_MISSING_OR_SELF_REFERENTIAL_SISTER_ASSEMBLIES')
+
+    tp_records = obs.get('timepoint_records')
+    if not isinstance(tp_records, dict):
+        return _fail('HOLD_INCONCLUSIVE_IAPP_MISSING_TIMEPOINT_RECORDS')
+
+    seen_sample_ids: set[str] = set()
+    seen_raw_vectors: set[tuple[float, ...]] = set()
+    t_crit = student_t_ppf(0.95, n_rep - 1)
+    inconclusive_flags: list[str] = []
+    beta_attrition_confounded = False
+    chronic_tp_modality_breaches: dict[str, dict[str, list[str]]] = {
+        'd28': {'mod1_elisa': [], 'mod2_fibril': []},
+        'd84': {'mod1_elisa': [], 'mod2_fibril': []},
+    }
+
+    for tp in ('72h', 'd28', 'd84'):
+        rec = tp_records.get(tp)
+        if not isinstance(rec, dict):
+            return _fail(f'HOLD_INCONCLUSIVE_IAPP_MISSING_TIMEPOINT_{tp}')
+        if rec.get('product_variant_id') != prod_id or rec.get('lot_id') != primary_lot_id:
+            return _fail(f'HOLD_INCONCLUSIVE_IAPP_PROVENANCE_MISMATCH_{tp}')
+
+        sid = rec.get('sample_id')
+        if not _valid_strict_unpadded_id_iip0028(sid) or sid in seen_sample_ids:
+            return _fail('HOLD_DUPLICATE_OR_WRONG_TIMEPOINT_SAMPLE')
+        seen_sample_ids.add(str(sid))
+
+        if tp == '72h':
+            tph = rec.get('timepoint_h')
+            if rec.get('scope') != 'LOT_SCOPE' or not _is_strict_int_iip0024(tph) or tph != 72 or ('timepoint_d' in rec) or ('sister_assembly_id' in rec):
+                return _fail('HOLD_DUPLICATE_OR_WRONG_TIMEPOINT_SAMPLE')
+        elif tp == 'd28':
+            tpd = rec.get('timepoint_d')
+            tph = rec.get('timepoint_h')
+            if (
+                rec.get('scope') != 'LOT_SCOPE'
+                or not _is_strict_int_iip0024(tpd)
+                or tpd != 28
+                or (tph is not None and (not _is_strict_int_iip0024(tph) or tph != 672))
+                or ('sister_assembly_id' in rec)
+            ):
+                return _fail('HOLD_DUPLICATE_OR_WRONG_TIMEPOINT_SAMPLE')
+        else:
+            tpd = rec.get('timepoint_d')
+            tph = rec.get('timepoint_h')
+            sis_id = rec.get('sister_assembly_id')
+            if rec.get('scope') != 'TERMINAL_SISTER_DEVICE_SCOPE':
+                return _fail('HOLD_DUPLICATE_OR_WRONG_TIMEPOINT_SAMPLE')
+            if not _is_strict_int_iip0024(tpd) or tpd != 84 or (tph is not None and (not _is_strict_int_iip0024(tph) or tph != 2016)):
+                return _fail('HOLD_DUPLICATE_OR_WRONG_TIMEPOINT_SAMPLE')
+            if not _valid_strict_unpadded_id_iip0028(sis_id) or sis_id == implant_dev_id or sis_id not in sister_ids:
+                return _fail('HOLD_IAPP_D84_REQUIRES_AUTHORIZED_SISTER_ASSEMBLY')
+
+        ctrl_ok, ctrl_code = _validate_iapp_control_block_iip0028(rec, str(sid), tp)
+        if not ctrl_ok:
+            return _fail(ctrl_code)
+
+        # Require viable beta mass (>= 80% L95_t) & stimulated secretion (>= 2.5 SI L95_t) alongside IAPP:
+        vbm = rec.get('viable_beta_mass_pct')
+        vbms = rec.get('se_viable_beta_mass')
+        gsi = rec.get('stimulated_gsis_si')
+        gsis = rec.get('se_gsis_si')
+        if not _valid_domain_scalar_iip0028(vbm, 0.0, 150.0) or not _valid_positive_se_iip0028(vbms):
+            return _fail(f'HOLD_INCONCLUSIVE_IAPP_MISSING_VIABLE_BETA_MASS_{tp}')
+        if not _valid_domain_scalar_iip0028(gsi, 0.1, 100.0) or not _valid_positive_se_iip0028(gsis):
+            return _fail(f'HOLD_INCONCLUSIVE_IAPP_MISSING_STIMULATED_SECRETION_{tp}')
+        if (float(vbm) - t_crit * float(vbms)) < 80.0 or (float(gsi) - t_crit * float(gsis)) < 2.5:
+            beta_attrition_confounded = True
+
+        metrics = [
+            ('elisa_oligomer_fold', 'se_elisa_fold', 1.5, 0.0, 100.0, 'mod1_elisa'),
+            ('colocalized_fibril_fold', 'se_fibril_fold', 1.5, 0.0, 100.0, 'mod2_fibril'),
+            ('colocalized_amyloid_area_pct', 'se_area_pct', 1.0, 0.0, 100.0, 'mod2_fibril'),
+        ]
+        vec_vals: list[float] = []
+        for mk, sk, cap, lo, hi, mod_group in metrics:
+            m, s = rec.get(mk), rec.get(sk)
+            if not _valid_domain_scalar_iip0028(m, lo, hi) or not _valid_positive_se_iip0028(s):
+                return _fail(f'HOLD_INCONCLUSIVE_IAPP_INVALID_METRIC_{tp}_{mk}')
+            mf, sf = float(m), float(s)
+            vec_vals.extend([round(mf, 9), round(sf, 9)])
+            l95 = mf - t_crit * sf
+            u95 = mf + t_crit * sf
+            if l95 > cap:
+                if tp == '72h':
+                    return _fail(f'FAIL_ACUTE_PROTEOSTASIS_72H_{mk}')
+                chronic_tp_modality_breaches[tp][mod_group].append(f'{tp}_{mk}')
+            elif u95 > cap:
+                inconclusive_flags.append(f'{tp}_{mk}')
+
+        raw_vec = tuple(vec_vals)
+        if raw_vec in seen_raw_vectors:
+            return _fail('HOLD_DUPLICATE_OR_WRONG_TIMEPOINT_SAMPLE')
+        seen_raw_vectors.add(raw_vec)
+
+    if any(f.startswith('72h_') for f in inconclusive_flags):
+        return _fail('HOLD_INCONCLUSIVE_IAPP_EVIDENCE_72H_UPPER_BOUND', inconclusive_upper_bounds=inconclusive_flags)
+
+    concordant_chronic_tps: list[str] = []
+    discordant_chronic_tps: list[tuple[str, str, list[str]]] = []
+    all_chronic_breaches: list[str] = []
+    for tp in ('d28', 'd84'):
+        m1 = chronic_tp_modality_breaches[tp]['mod1_elisa']
+        m2 = chronic_tp_modality_breaches[tp]['mod2_fibril']
+        all_chronic_breaches.extend(m1 + m2)
+        if m1 and m2:
+            if tp_records[tp].get('within_lot_dual_modality_coexceedance_verified', True) is True:
+                concordant_chronic_tps.append(tp)
+            else:
+                discordant_chronic_tps.append((tp, 'mod1_elisa', m1 + m2))
+        elif m1 or m2:
+            which_mod = 'mod1_elisa' if m1 else 'mod2_fibril'
+            discordant_chronic_tps.append((tp, which_mod, m1 if m1 else m2))
+
+    if concordant_chronic_tps:
+        return {
+            'core_cleared': False,
+            'disposition': 'CONFIRMED_CHRONIC_P2_ELIGIBLE',
+            'confirmation_route': 'CONCORDANT_WITHIN_LOT_DUAL_MODALITY_L95_BREACH',
+            'concordant_timepoints': concordant_chronic_tps,
+            'confirmed_chronic_breaches': all_chronic_breaches,
+            'p2_itm2b_reserve_eligible': True,
+            'p2_active_weight_pct': 0.0,
+            'p2_b2_branch_hold_pending_b2_registry_qc': True,
+        }
+
+    if discordant_chronic_tps:
+        rep = obs.get('independent_repeat_confirmation')
+        if not isinstance(rep, dict):
+            return _fail(
+                'HOLD_DISCORDANT_CHRONIC_NEEDS_REPLICATION',
+                discordant_chronic_breaches=[b for _, _, bs in discordant_chronic_tps for b in bs],
+            )
+        rep_proto = rep.get('preregistered_replication_protocol_id')
+        rep_lots = rep.get('repeat_lot_ids')
+        rep_sid = rep.get('repeat_sample_id')
+        rep_tp = rep.get('timepoint')
+        if (
+            not _valid_strict_unpadded_id_iip0028(rep_proto)
+            or not isinstance(rep_lots, (list, tuple))
+            or len(rep_lots) < 6
+            or not all(_valid_strict_unpadded_id_iip0028(x) for x in rep_lots)
+            or len(set(rep_lots)) != len(rep_lots)
+            or not set(rep_lots).isdisjoint(set(lot_list))
+            or not _valid_strict_unpadded_id_iip0028(rep_sid)
+            or rep_sid in seen_sample_ids
+        ):
+            return _fail(
+                'HOLD_DISCORDANT_CHRONIC_NEEDS_REPLICATION',
+                discordant_chronic_breaches=[b for _, _, bs in discordant_chronic_tps for b in bs],
+                replication_rejection_reason='MISSING_OR_NON_DISJOINT_REPEAT_LOTS_OR_SAMPLE',
+            )
+        target_tp, target_mod, target_breaches = discordant_chronic_tps[-1]
+        expected_tp_d = 28 if target_tp == 'd28' else 84
+        if rep_tp != target_tp or rep.get('timepoint_d') != expected_tp_d:
+            return _fail(
+                'HOLD_DISCORDANT_CHRONIC_NEEDS_REPLICATION',
+                discordant_chronic_breaches=target_breaches,
+                replication_rejection_reason='REPEAT_TIMEPOINT_MISMATCH',
+            )
+        if target_tp == 'd84':
+            rep_sis = rep.get('repeat_sister_assembly_id')
+            if not _valid_strict_unpadded_id_iip0028(rep_sis) or rep_sis == implant_dev_id or rep_sis in sister_ids:
+                return _fail(
+                    'HOLD_DISCORDANT_CHRONIC_NEEDS_REPLICATION',
+                    discordant_chronic_breaches=target_breaches,
+                    replication_rejection_reason='REPEAT_D84_REQUIRES_INDEPENDENT_SISTER_ASSEMBLY',
+                )
+        rep_ctrl_ok, _ = _validate_iapp_control_block_iip0028(rep, str(rep_sid), f'repeat_{target_tp}')
+        if not rep_ctrl_ok:
+            return _fail(
+                'HOLD_DISCORDANT_CHRONIC_NEEDS_REPLICATION',
+                discordant_chronic_breaches=target_breaches,
+                replication_rejection_reason='REPEAT_CONTROL_BLOCK_INVALID',
+            )
+        t_rep = student_t_ppf(0.95, len(rep_lots) - 1)
+        rep_confirmed = False
+        if target_mod == 'mod1_elisa':
+            rm, rs = rep.get('elisa_oligomer_fold'), rep.get('se_elisa_fold')
+            if _valid_domain_scalar_iip0028(rm, 0.0, 100.0) and _valid_positive_se_iip0028(rs) and (float(rm) - t_rep * float(rs)) > 1.5:
+                rep_confirmed = True
+        else:
+            rfm, rfs = rep.get('colocalized_fibril_fold'), rep.get('se_fibril_fold')
+            ram, ras = rep.get('colocalized_amyloid_area_pct'), rep.get('se_area_pct')
+            if _valid_domain_scalar_iip0028(rfm, 0.0, 100.0) and _valid_positive_se_iip0028(rfs) and (float(rfm) - t_rep * float(rfs)) > 1.5:
+                rep_confirmed = True
+            if _valid_domain_scalar_iip0028(ram, 0.0, 100.0) and _valid_positive_se_iip0028(ras) and (float(ram) - t_rep * float(ras)) > 1.0:
+                rep_confirmed = True
+
+        if not rep_confirmed:
+            return _fail(
+                'HOLD_DISCORDANT_CHRONIC_NEEDS_REPLICATION',
+                discordant_chronic_breaches=target_breaches,
+                replication_rejection_reason='REPEAT_L95_DID_NOT_CONFIRM_BREACH',
+            )
+
+        return {
+            'core_cleared': False,
+            'disposition': 'CONFIRMED_CHRONIC_P2_ELIGIBLE',
+            'confirmation_route': 'INDEPENDENT_DISJOINT_REPEAT_LOT_BATCH',
+            'confirmed_chronic_breaches': target_breaches,
+            'repeat_lot_count': len(rep_lots),
+            'p2_itm2b_reserve_eligible': True,
+            'p2_active_weight_pct': 0.0,
+            'p2_b2_branch_hold_pending_b2_registry_qc': True,
+        }
+
+    if beta_attrition_confounded:
+        return _fail('HOLD_IAPP_CONFOUNDED_BY_VIABLE_BETA_MASS_OR_SECRETION_LOSS')
+
+    if inconclusive_flags:
+        return _fail('HOLD_INCONCLUSIVE_IAPP_EVIDENCE', inconclusive_upper_bounds=inconclusive_flags)
+
+    return {
+        'core_cleared': True,
+        'disposition': 'CLEARED_DUAL_ORTHOGONAL_IAPP_72H_D28_D84',
+        'verified_unique_lots': n_rep,
+        'p2_itm2b_reserve_eligible': False,
+        'p2_active_weight_pct': 0.0,
     }

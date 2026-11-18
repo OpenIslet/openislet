@@ -767,5 +767,53 @@
       "per_locus_segmented_baf_and_locus5_race_umi_3689": "Enforces per-locus phased segmented BAF max_abs_locus_baf_shift <= 0.05 across >= 50 SNPs per locus (chr19q, chr11p15.5, and chr6p21.3 on endogenous-HLA-C Design B) paired with reciprocal-mosaic SV/clonal checks (Damaj et al. 2008 PMID:18796520), plus positive-integer 5'/3'-RACE coordinates (holding upstream c1 2308-3282 / c2 2029-3003 starts as HOLD_PENDING_5PRIME_RACE_TSS until mature TSS > 2308 / > 2029 is confirmed) and N_UMI_eff >= 3,689 with k == 0 aberrant UMIs (U95_CP < 0.000812).",
       "tyk2_pe4max_msi_piecewise_cap_design_y_lod_and_ins_retirement": "Holds TYK2 PE4max behind distinct FAIL_MSI_DETECTED vs HOLD_MISSING_MSI plus piecewise clonal WGS repeat-indel caps (0 coding/splice indels; <= C_ctrl + 5 at C_ctrl <= 25, <= floor(1.2 * C_ctrl) above), scopes Design Y eeBxb1 GT-preserving 163/142/142/167/135/142 bp ddPCR to >= 63,000 single-unit (95.02%) / >= 90,000 pooled (99.38%) GE ideal Poisson bounds with blank/recovery controls and unbiased insertion capture, and retires chr11p15.5 INS 3'-UTR EIF4G2 knock-ins (OQ-011) into GY-022 alongside GY-021."
     }
+  },
+  "postdepletion_adcc_measured_mixture_and_iapp_iip_0028": {
+    "gate_id": "STAGE0_POSTDEPLETION_GATE0D_INTACT_AND_INCREMENT_ADCC_MEASURED_MIXTURE_AND_IAPP_IIP_0028",
+    "decision_id": "DEC-106",
+    "contribution_id": "IIP-0028",
+    "applies_to_designs_a_b_and_x": "Registry-bound arm-separated Gate 0d (Arm 1 / Arm 2 6 explicit-SE endpoints + contemporaneous Arm 3 control + unpooled washout/aging + segregated RETAINED_ACTIVE SA-FHL-1), paired recipient_serum_pair_id intact-serum AND IgG-attributable CD16+ ADCC (U95_t <= 5.0%, positive L95_t >= 25.0%, isotype U95_t <= 5.0%), crossed Donor x Design A vs upstream-gated ISLET1_B2_5LOCUS_BASE (82c351af... c1+c5 pair, execution_supported=false) McNemar & phi_AB concordance contract, measured-potency equal-output DEC-084 mixture (70:20:10 / 70:25:5 at (6/7)*(out_A/out_B)*1,500 IEQ/cm^2 + glucagon gates), and visit/lot/sister-bound 72-h / Day-28 / Day-84 dual-modality IAPP concordance/replication gates with 0%-weight RefSeq NM_021999.5 ITM2B reserve (6fc8d3d7...) and GY-023",
+    "primary_citations": [
+      "PMID:27787618",
+      "PMID:23274902",
+      "PMID:24804568",
+      "PMID:20086230",
+      "PMID:32668238",
+      "PMID:31900242",
+      "PMID:27942611",
+      "PMID:37264229",
+      "PMID:28867344",
+      "PMID:37156915",
+      "PMID:40757665",
+      "PMID:29867165",
+      "PMID:38709159",
+      "PMID:39169271",
+      "PMID:40782792",
+      "PMID:31068696",
+      "PMID:8971076",
+      "PMID:30830873",
+      "PMID:26076035",
+      "PMID:40404627",
+      "PMID:37188763",
+      "PMID:35241836",
+      "PMID:12702875",
+      "PMID:38603470",
+      "PMID:20160085",
+      "PMID:29288549",
+      "PMID:41212211",
+      "PMID:29507232",
+      "PMID:38864729",
+      "PMID:10526337",
+      "PMID:17965014",
+      "PMID:35795779",
+      "PMID:32569842",
+      "PMID:39988068"
+    ],
+    "rules": {
+      "registry_bound_gate0d_and_intact_plus_increment_cd16_adcc": "Rejects omitted, unregistered, whitespace-padded, or caller-overridden product definitions, enforces explicit Arm 1 / Arm 2 / Arm 3 Gate 0d conditioning profiles (blocking cross-arm batch pooling in ingest_wetlab_results.py, preserving all 6 Arm-2 explicit-SE endpoints + contemporaneous parallel Arm-3 active-FasL control + unpooled washout vs natural decay + segregated RETAINED_ACTIVE SA-FHL-1 partial-depletion hold), and requires linked recipient_serum_pair_id intact-serum total killing U95_t <= 5.0% AND paired IgG-attributable CD16+ ADCC increment U95_t <= 5.0% (positive control L95_t >= 25.0%, isotype U95_t <= 5.0%).",
+      "upstream_gated_b2_paired_mcnemar_and_phi_ab_concordance": "Pre-registers crossed Donor x (ISLET1_A4_ARM1B vs ISLET1_B2_5LOCUS_BASE [82c351af... c1+c5 pair, execution_supported=false, gated on verified MCB/lot allele, RACE/junction, and DT9+3D12 HLA-E-controlled surface QC atoms]) responder blocks (n = 6 feasibility U95 = 39.30%, one-sided exact discrete McNemar power 56.53-88.03% at n = 16, 80.08-98.28% at n = 24 with 3.6699% null max at total discordance q = 0.96335 [0.48167 per direction] and 3.1957% at q = 1.0, and >= 88.0% at n = 29 on (0.40, 0.05)) plus full 2x2 concordance tables informing conditional H2/H3 Frechet dependence phi_AB (50.778% -> 49.028% shared-A/X at phi_AB = 1.0).",
+      "measured_potency_dec084_mixture_and_glucagon_gates": "Conditions equal-output 70:20:10 / 70:25:5 loading on measured starting per-beta potency (6/7) * (out_A / out_B) * 1,500 IEQ/cm^2 across n = 8 confirmation blocks disjoint from n >= 3 fixed-input selection blocks (1,285.71 IEQ/cm^2 rescuing 80-um +10%-stress dual-band worst-face O2 from 13.45/13.71 to 15.37-15.96 mmHg at 1.00x vs matched-stress 100-um 10.19/10.47 -> 11.84/12.10 mmHg, failing OCR at 0.95x [0.91500/0.90226 > 0.90] and failing O2 at 0.90x or P_b <= 34 mmHg [14.41/14.69 mmHg], while requiring U95_t(OCR_B/A) <= 0.90, L95_t(Cpep_AUC_B/A) >= 0.85, L95_t(GCG_AUC_B/A) >= 0.85, Day-28 L95_t(beta_recovery) >= 0.80, and Readout 2 including low-glucose glucagon >= 2.0x).",
+      "visit_lot_sister_bound_iapp_and_dormant_itm2b_reserve": "Binds LOT_SCOPE 72-h and Day-28 plus TERMINAL_SISTER_DEVICE_SCOPE Day-84 dual-orthogonal IAPP oligomer ELISA (U95_t <= 1.5x) and anti-IAPP colocalized fibril fold/area (<= 1.5x / <= 1.0%, ref > LoQ > 0, rejecting copied or wrong-timepoint observations) across >= 6 distinct lots alongside viable beta mass and secretion, requiring within-lot dual-modality L95_t co-exceedance or disjoint >= 6-lot replication before unlocking 0%-active archival RefSeq NM_021999.5 ITM2B (801-nt CDS 156..956 SHA-256 6fc8d3d7..., Q9Y287, 0 unmatched Swiss-Prot windows vs 34 in SP-BRICHOS chimeras across Cen 90-263 and Oskarsson 90-236; GY-023)."
+    }
   }
 }
