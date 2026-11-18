@@ -285,13 +285,13 @@
     }
   ],
   "off_grid_molecular_dead_end_guardrails": {
-    "schema_role": "Non-grid Stage-0 molecular, bioconjugation, oxygen-transport, and statistical/epigenetic provenance guardrails (preserving exact 10 grid-firing graveyard_entries for CHK-05 while indexing all shipped IIP-0017..IIP-0024 Stage-0 dead ends and context-dependent traps)",
+    "schema_role": "Non-grid Stage-0 molecular, bioconjugation, oxygen-transport, and statistical/epigenetic provenance guardrails (preserving exact 10 grid-firing graveyard_entries for CHK-05 while indexing all shipped IIP-0017..IIP-0025 Stage-0 dead ends and context-dependent traps)",
     "decision_id": "DEC-101",
-    "latest_update_decision_id": "DEC-103",
-    "contribution_id": "IIP-0017..IIP-0024",
+    "latest_update_decision_id": "DEC-104",
+    "contribution_id": "IIP-0017..IIP-0025",
     "consumed_by_validators": [
       "scripts/wetlab_contract.py (evaluate_stage0_decision_tree Stage-0 hold gates)",
-      "tests/test_round3_supporting_boundaries.py (sections 47 and 49)",
+      "tests/test_round3_supporting_boundaries.py (sections 47, 49, and 50)",
       "tests/test_adversarial_acceptance.py (CHK-05B off-grid graveyard parity)"
     ],
     "guardrails": [
@@ -464,6 +464,26 @@
           "27989715",
           "27436875",
           "27151456"
+        ]
+      },
+      {
+        "guardrail_id": "OFFGRID_GUARD_010_SPATIAL_MEAN_OXYGEN_MASKING_SINGLE_TIMEPOINT_CATALASE_SIZING_AND_PITCH_HELD_DOSE_HALVING",
+        "graveyard_card_id": "GY-020",
+        "severity_level": "BLOCK",
+        "curation_status": "corroborated",
+        "evidence_basis_class": "mechanistic_precaution_or_non_islet_extrapolation",
+        "contribution_id": "IIP-0025",
+        "status": "BARRED_SPATIAL_MEAN_OXYGEN_MASKING_SINGLE_TIMEPOINT_CATALASE_AND_PITCH_HELD_DOSE_DERATING",
+        "summary": "Gating 3D encapsulated islet oxygen competence on spatial-mean harmonic-face or shell-mean pO2 masks focal boundary hypoxia below the 15.0 mmHg GSIS floor (ordered 100-um clusters at 1,500 IEQ/cm^2 report 17.0804 mmHg spatial mean while worst-face pO2 drops to 12.6776-13.0542 mmHg no-film and 12.6447-12.8978 mmHg with 20-um barrier films across 40x40x70, 60x60x105, and 80x80x140 meshes, and Design Z 140-um Zero-CaO2 at 30 mmHg reports 16.1510 mmHg shell mean while worst-face pO2 is 14.2854 mmHg; PMID:21788575, PMID:21693022, PMID:38993891, PMID:37476069). Likewise, shrinking cluster diameter from 100 um to 80 um at unchanged 198.76/213.58 um pitch halves single-pouch functional beta-cell dose by 48.8% (768 vs 1,500 IEQ/cm^2; 3.296M vs 1.688M clusters at 500,000 IEQ; PMID:35241836), and sizing Gate P05 human catalase (UniProt P04040) from Day-7 70% retention (~105,429 IU post-cure) while allowing 50% Day-14 retention drops 336-h activity to 52,714 IU < 73,800 IU or breaches the 158,300 U pre-cure ceiling unless cure yield exceeds 93.24% (whereas 65% cure yield requires >= 71.724% Day-14 retention; PMID:35743287, PMID:27729543).",
+        "cheapest_falsification_assay": "Multi-mesh 3D finite-volume unrounded dual-band worst-face oxygen verification across nx in {40, 60, 80} paired with dose-matched 142.22 um square / 152.83 um hex 80-um Contrast B1 coupons and same-lot two-timepoint (Day-7 L95_t >= 70.0% and 336-h L95_t >= 73,800 IU) human P04040 catalase mass/endotoxin/z=70.0 um H2O2 verification.",
+        "pmids": [
+          "21788575",
+          "21693022",
+          "35241836",
+          "38993891",
+          "37476069",
+          "35743287",
+          "27729543"
         ]
       }
     ]

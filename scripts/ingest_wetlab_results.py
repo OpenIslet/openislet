@@ -678,6 +678,10 @@ STAGE0_PERSISTED_BOOLEAN_FLAGS: tuple[str, ...] = (
     "stage7_lot_imprinting_ic1_ic2_igdmr_conjunctive_cleared",
     "mcb_and_lot_xci_46xx_3axis_cleared_or_46xy",
     "mcb_and_lot_mtdna_1000x_numt_filtered_cleared",
+    "require_full_iip0025_hurdle4_transport_and_challenger_panel",
+    "p05_two_timepoint_same_lot_envelope_verified",
+    "contrast_b2_route_qualification_distinct_from_portfolio_credit_verified",
+    "contrast_b3_zero_primate_host_ingrowth_verified",
 )
 
 HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS: tuple[str, ...] = (
@@ -738,6 +742,9 @@ ALLOWED_ORDERED_BATCH_LEDGER_KEYS: frozenset[str] = frozenset({
     "design_y_integrase_modality",
     "design_y_silencing_modality",
     "design_y_payload_arm",
+    "contrast_b1_geometry_arm",
+    "contrast_b2_perfusion_and_retrieval_arm",
+    "contrast_b3_donor_iec_arm",
     *HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS,
 })
 
@@ -773,6 +780,8 @@ DEVICE_SCOPED_POOLED_PREFIXES: tuple[str, ...] = (
     "obs_vascularized_explant_",
     "s9_",
     "obs_masked_perfusion_confirmed",
+    "contrast_b",
+    "obs_contrast_b",
 )
 
 
@@ -862,6 +871,38 @@ def _merge_batch_measurements_atomic_mean_se(
                 pooled_def_se.discard(se_to_mean[k])
 
 
+def _explant_recovery_clears_student_t_0p99(meas_dict: Dict[str, Any]) -> bool:
+    """
+    Enforce exact one-sided 95% Student-t (df = n - 1, n >= 6, defaulting to df = 5 when n is omitted)
+    lower95 >= 0.99 across explant en-bloc recovery endpoints so raw mean >= 0.99 with wide SE
+    never clears EXPLANT_RECOVERY (IIP-0025; DEC-104).
+    """
+    _get_stage0_decision_tree_specs()
+    t_ppf = getattr(_MEASUREMENT_CONTRACT_MODULE, "student_t_ppf_one_sided_95")
+    n_raw = meas_dict.get("obs_stage0_independent_lot_replicates_n")
+    if n_raw not in ("UNAVAILABLE", None):
+        n_f = float(n_raw)
+        if abs(n_f - round(n_f)) > 1e-9 or int(round(n_f)) < 6:
+            return False
+        t_mult = float(t_ppf(float(int(round(n_f)) - 1)))
+    else:
+        t_mult = float(t_ppf(5.0))
+    any_present = False
+    for mk, sk, def_se in (
+        ("obs_explant_en_bloc_recovery_fraction", "obs_explant_en_bloc_recovery_se", 0.01),
+        ("obs_gate0s_day30_en_bloc_recovery_fraction", "obs_gate0s_day30_en_bloc_recovery_se", 0.002),
+        ("obs_gate0s_day90_en_bloc_recovery_fraction", "obs_gate0s_day90_en_bloc_recovery_se", 0.002),
+    ):
+        mv = meas_dict.get(mk)
+        if mv not in ("UNAVAILABLE", None):
+            any_present = True
+            sv_raw = meas_dict.get(sk)
+            sv = float(sv_raw) if sv_raw not in ("UNAVAILABLE", None) else def_se
+            if float(mv) - t_mult * sv < 0.99:
+                return False
+    return any_present
+
+
 def _extra_iip0024_stop_categories_cleared(
     stop_cats: set[str],
     meas_dict: Dict[str, Any],
@@ -896,6 +937,18 @@ def _extra_iip0024_stop_categories_cleared(
             or meas_dict.get("obs_gate0s_shedding_viable_events_k") != 0.0
             or float(meas_dict.get("obs_gate0s_shedding_viable_trials_n") or 0.0) < 2995731.0
         ):
+            return False
+    if "P05_Z70_INTERFACE_H2O2_GT_5UM" in stop_cats:
+        z70_m = meas_dict.get("obs_p05_z70_gel_interface_h2o2_max_uM")
+        if z70_m in ("UNAVAILABLE", None):
+            return False
+        _get_stage0_decision_tree_specs()
+        t_ppf = getattr(_MEASUREMENT_CONTRACT_MODULE, "student_t_ppf_one_sided_95")
+        n_r = meas_dict.get("obs_stage0_independent_lot_replicates_n")
+        df_z = max(5.0, float(int(round(float(n_r))) - 1)) if n_r not in ("UNAVAILABLE", None) and float(n_r) >= 6.0 else 5.0
+        z70_se_raw = meas_dict.get("obs_p05_z70_gel_interface_h2o2_max_se")
+        z70_se = float(z70_se_raw) if z70_se_raw not in ("UNAVAILABLE", None) else 0.10
+        if float(z70_m) > 5.0 or (float(z70_m) + float(t_ppf(df_z)) * z70_se) > 5.0:
             return False
     return True
 
@@ -1493,6 +1546,9 @@ def _validate_prior_posterior_report(
                     "design_y_integrase_modality",
                     "design_y_silencing_modality",
                     "design_y_payload_arm",
+                    "contrast_b1_geometry_arm",
+                    "contrast_b2_perfusion_and_retrieval_arm",
+                    "contrast_b3_donor_iec_arm",
                 ):
                     if entry.get(meta_k) is not None:
                         pooled_hist_for_s0[meta_k] = entry[meta_k]
@@ -1617,7 +1673,7 @@ def _validate_prior_posterior_report(
                         "EXPLANT_RECOVERY" not in stop_required_s9_categories
                         or (
                             entry.get("obs_vascularized_explant_en_bloc_recovery_verified") is True
-                            and float(hist_meas_for_s0.get("obs_explant_en_bloc_recovery_fraction") or 0.0) >= 0.99
+                            and _explant_recovery_clears_student_t_0p99(hist_meas_for_s0)
                         )
                     )
                     and _extra_iip0024_stop_categories_cleared(stop_required_s9_categories, hist_meas_for_s0)
@@ -2097,6 +2153,9 @@ def run_calibration(
         "design_y_integrase_modality",
         "design_y_silencing_modality",
         "design_y_payload_arm",
+        "contrast_b1_geometry_arm",
+        "contrast_b2_perfusion_and_retrieval_arm",
+        "contrast_b3_donor_iec_arm",
         *stage0_persisted_boolean_flags,
     ):
         if qp_meta_k in input_payload and input_payload[qp_meta_k] is not None:
@@ -2227,6 +2286,9 @@ def run_calibration(
             "design_y_integrase_modality",
             "design_y_silencing_modality",
             "design_y_payload_arm",
+            "contrast_b1_geometry_arm",
+            "contrast_b2_perfusion_and_retrieval_arm",
+            "contrast_b3_donor_iec_arm",
         ):
             if hist_entry.get(meta_k) is not None:
                 pooled_stage0_payload[meta_k] = hist_entry[meta_k]
@@ -2365,7 +2427,7 @@ def run_calibration(
                 "EXPLANT_RECOVERY" not in stop_required_s9_categories
                 or (
                     hist_entry.get("obs_vascularized_explant_en_bloc_recovery_verified") is True
-                    and float(hist_meas.get("obs_explant_en_bloc_recovery_fraction") or 0.0) >= 0.99
+                    and _explant_recovery_clears_student_t_0p99(hist_meas)
                 )
             )
             and _extra_iip0024_stop_categories_cleared(stop_required_s9_categories, hist_meas)
@@ -2618,6 +2680,14 @@ def run_calibration(
         }
         if len(_seen_dy) > 1:
             raise ValueError(f"Cannot pool distinct {_dy_mk} conditions across calibration batches (IIP-0023; DEC-102)")
+    for _cb_mk in ("contrast_b1_geometry_arm", "contrast_b2_perfusion_and_retrieval_arm", "contrast_b3_donor_iec_arm"):
+        _seen_cb = {
+            _e[_cb_mk].strip()
+            for _e in [*prev_obs_ledger, current_obs_entry]
+            if isinstance(_e.get(_cb_mk), str) and _e[_cb_mk].strip()
+        }
+        if len(_seen_cb) > 1:
+            raise ValueError(f"Cannot pool distinct {_cb_mk} conditions across calibration batches (IIP-0025; DEC-104)")
     seen_donor_seedline_ids: set[str] = {
         _e["donor_seedline_id"].strip()
         for _e in [*prev_obs_ledger, current_obs_entry]

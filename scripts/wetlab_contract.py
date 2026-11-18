@@ -326,6 +326,23 @@ STAGE0_DECISION_TREE_ENDPOINT_SPECS = [
     ('stage0_iapp_3metric_thioflavin_s_area_pct', 'obs_iapp_3metric_thioflavin_s_area_pct', 'obs_iapp_3metric_thioflavin_s_area_se', 0.0, 100.0, 'colocalized_thioflavin_s_positive_amyloid_fibril_area_percentage'),
     ('stage0_iapp_3metric_soluble_oligomer_fold', 'obs_iapp_3metric_soluble_oligomer_fold', 'obs_iapp_3metric_soluble_oligomer_se', 0.0, 50.0, 'soluble_iapp_oligomer_elisa_fold_over_quantifiable_age_matched_reference'),
     ('stage0_iapp_3metric_insoluble_fibril_fold', 'obs_iapp_3metric_insoluble_fibril_fold', 'obs_iapp_3metric_insoluble_fibril_se', 0.0, 50.0, 'formic_acid_extracted_insoluble_iapp_fold_over_quantifiable_age_matched_reference'),
+    # Stage-0 Hurdle-4 two-timepoint human P04040 catalase envelope, exact z=70.0 um gel-interface H2O2, separated Day-30 vs Day-90 Gate 0S en-bloc retrieval, and zero-primate Contrasts B1, B2, B3 endpoints (IIP-0025; DEC-104):
+    ('stage0_p05_precure_active_catalase_input_u_333cm2', 'obs_p05_precure_active_catalase_input_u_333cm2', 'obs_p05_precure_active_catalase_input_se_u', 0.0, 1000000.0, 'precure_input_recombinant_human_p04040_catalase_units_across_333p33cm2'),
+    ('stage0_p05_postcure_t0_active_catalase_iu_333cm2', 'obs_p05_postcure_t0_active_catalase_iu_333cm2', 'obs_p05_postcure_t0_active_catalase_se_iu', 0.0, 1000000.0, 'postcure_t0_immobilized_active_catalase_iu_across_333p33cm2'),
+    ('stage0_p05_cure_immobilization_yield_pct', 'obs_p05_cure_immobilization_yield_pct', 'obs_p05_cure_immobilization_yield_se', 0.0, 100.0, 'postcure_t0_over_precure_input_catalase_immobilization_yield_percentage'),
+    ('stage0_p05_336h_catalase_retention_pct', 'obs_p05_336h_catalase_retention_pct', 'obs_p05_336h_catalase_retention_se', 0.0, 150.0, 'hour336_day14_dynamic_washout_active_film_catalase_retention_percentage_of_postcure_t0'),
+    ('stage0_p05_z70_gel_interface_h2o2_max_uM', 'obs_p05_z70_gel_interface_h2o2_max_uM', 'obs_p05_z70_gel_interface_h2o2_max_se', 0.0, 200.0, 'exact_z70um_catalase_film_to_gel_interface_peak_24h_repeat_burst_h2o2_micromolar'),
+    ('stage0_gate0s_day30_en_bloc_recovery_fraction', 'obs_gate0s_day30_en_bloc_recovery_fraction', 'obs_gate0s_day30_en_bloc_recovery_se', 0.0, 1.0, 'gate0s_day30_en_bloc_vascularized_pouch_recovery_fraction'),
+    ('stage0_gate0s_day90_en_bloc_recovery_fraction', 'obs_gate0s_day90_en_bloc_recovery_fraction', 'obs_gate0s_day90_en_bloc_recovery_se', 0.0, 1.0, 'gate0s_day90_en_bloc_vascularized_pouch_recovery_fraction'),
+    ('stage0_contrast_b1_paired_min_face_po2_gain_mmhg', 'obs_contrast_b1_paired_min_face_po2_gain_mmhg', 'obs_contrast_b1_paired_min_face_po2_gain_se', -20.0, 40.0, 'contrast_b1_paired_80um_minus_100um_dose_matched_worst_face_po2_gain_mmhg'),
+    ('stage0_contrast_b1_80um_worst_face_po2_mmhg', 'obs_contrast_b1_80um_worst_face_po2_mmhg', 'obs_contrast_b1_80um_worst_face_po2_se', 0.0, 120.0, 'contrast_b1_dose_matched_80um_worst_face_pericellular_po2_mmhg'),
+    ('stage0_contrast_b1_80um_perifusion_gsis_si', 'obs_contrast_b1_80um_perifusion_gsis_si', 'obs_contrast_b1_80um_perifusion_gsis_se', 0.1, 50.0, 'contrast_b1_dose_matched_80um_post_hypoxia_perifusion_gsis_stimulation_index'),
+    ('stage0_contrast_b2_human_exvivo_viable_window_h', 'obs_contrast_b2_human_exvivo_viable_window_h', 'obs_contrast_b2_human_exvivo_viable_window_se_h', 0.0, 336.0, 'contrast_b2_paired_declined_human_omental_suprafascial_viable_perfusion_window_hours'),
+    ('stage0_contrast_b2_omental_vs_suprafascial_po2_gain_mmhg', 'obs_contrast_b2_omental_vs_suprafascial_po2_gain_mmhg', 'obs_contrast_b2_omental_vs_suprafascial_po2_gain_se', -30.0, 60.0, 'contrast_b2_paired_omental_minus_suprafascial_pericellular_po2_gain_mmhg'),
+    ('stage0_contrast_b2_porcine_day90_en_bloc_recovery_fraction', 'obs_contrast_b2_porcine_day90_en_bloc_recovery_fraction', 'obs_contrast_b2_porcine_day90_en_bloc_recovery_se', 0.0, 1.0, 'contrast_b2_chronic_porcine_day90_en_bloc_surgical_retrieval_fraction'),
+    ('stage0_contrast_b3_iec_omitted_surface_po2_mmhg', 'obs_contrast_b3_iec_omitted_surface_po2_mmhg', 'obs_contrast_b3_iec_omitted_surface_po2_se', 0.0, 120.0, 'contrast_b3_design_z_140um_donor_iec_omitted_loaded_worst_face_po2_mmhg'),
+    ('stage0_contrast_b3_iec_omitted_outer_kperf_s_inv', 'obs_contrast_b3_iec_omitted_outer_kperf_s_inv', 'obs_contrast_b3_iec_omitted_outer_kperf_se', 0.0, 1.0, 'contrast_b3_design_z_140um_donor_iec_omitted_host_ingrowth_kperf_s_inv'),
+    ('stage0_contrast_b3_iec_omitted_perifusion_gsis_si', 'obs_contrast_b3_iec_omitted_perifusion_gsis_si', 'obs_contrast_b3_iec_omitted_perifusion_gsis_se', 0.1, 50.0, 'contrast_b3_design_z_140um_donor_iec_omitted_loaded_perifusion_gsis_si'),
 ]
 
 STAGE0_S10_V3_MEAN_KEYS: frozenset[str] = frozenset({
@@ -415,12 +432,26 @@ ALLOWED_DESIGN_Z_DIVIDER_ARMS: frozenset[str] = frozenset({
     'EXPLORATORY_18PCT_DIVIDER_140UM',
 })
 
-# Stage-0 Gate P05 human catalase species lock and Mode-B streptavidin-free / DPR-maleimide humoral cuff qualification enums (IIP-0020; DEC-099):
+# Stage-0 Gate P05 human catalase species lock and Mode-B streptavidin-free / DPR-maleimide humoral cuff qualification enums (IIP-0020; DEC-099; IIP-0025; DEC-104):
 ALLOWED_P05_CATALASE_UNIPROT_ACCESSIONS: frozenset[str] = frozenset({
     'P04040',
+    'P00432',
     'P00432_BOVINE_DISQUALIFIED',
     'P55303_FUNGAL_DISQUALIFIED',
     'UNSPECIFIED_XENO_DISQUALIFIED',
+})
+ALLOWED_CONTRAST_B1_GEOMETRY_ARMS: frozenset[str] = frozenset({
+    'PRIMARY_EXPANDED_390UM_2X125UM',
+    'SECONDARY_FIXED_350UM_2X105UM',
+})
+ALLOWED_CONTRAST_B2_ARMS: frozenset[str] = frozenset({
+    'PAIRED_HUMAN_EXVIVO_AND_PORCINE_DAY30_90',
+    'HUMAN_EXVIVO_ONLY_INCOMPLETE',
+    'PORCINE_RETRIEVAL_ONLY_INCOMPLETE',
+})
+ALLOWED_CONTRAST_B3_DONOR_IEC_ARMS: frozenset[str] = frozenset({
+    'WITH_DONOR_IEC_9E8',
+    'OMIT_DONOR_IEC_8E8_CHALLENGER',
 })
 ALLOWED_CUFF_BIOCONJUGATION_ARMS: frozenset[str] = frozenset({
     'CANONICAL_SA_BIOTIN_PEG4MAL_BASELINE',
@@ -1093,6 +1124,22 @@ STAGE0_CUSTOM_DEFAULT_SE: dict[str, float] = {
     'obs_iapp_3metric_thioflavin_s_area_pct': 0.04,
     'obs_iapp_3metric_soluble_oligomer_fold': 0.05,
     'obs_iapp_3metric_insoluble_fibril_fold': 0.05,
+    'obs_p05_precure_active_catalase_input_u_333cm2': 500.0,
+    'obs_p05_postcure_t0_active_catalase_iu_333cm2': 500.0,
+    'obs_p05_cure_immobilization_yield_pct': 1.0,
+    'obs_p05_336h_catalase_retention_pct': 1.5,
+    'obs_p05_z70_gel_interface_h2o2_max_uM': 0.10,
+    'obs_gate0s_day30_en_bloc_recovery_fraction': 0.002,
+    'obs_gate0s_day90_en_bloc_recovery_fraction': 0.002,
+    'obs_contrast_b1_paired_min_face_po2_gain_mmhg': 0.25,
+    'obs_contrast_b1_80um_worst_face_po2_mmhg': 0.40,
+    'obs_contrast_b1_80um_perifusion_gsis_si': 0.15,
+    'obs_contrast_b2_human_exvivo_viable_window_h': 1.0,
+    'obs_contrast_b2_omental_vs_suprafascial_po2_gain_mmhg': 0.50,
+    'obs_contrast_b2_porcine_day90_en_bloc_recovery_fraction': 0.002,
+    'obs_contrast_b3_iec_omitted_surface_po2_mmhg': 0.40,
+    'obs_contrast_b3_iec_omitted_outer_kperf_s_inv': 0.005,
+    'obs_contrast_b3_iec_omitted_perifusion_gsis_si': 0.15,
 }
 
 STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
@@ -1510,6 +1557,10 @@ STAGE0_DECISION_TREE_BOOLEAN_KEYS: tuple[str, ...] = (
     'stage7_lot_imprinting_ic1_ic2_igdmr_conjunctive_cleared',
     'mcb_and_lot_xci_46xx_3axis_cleared_or_46xy',
     'mcb_and_lot_mtdna_1000x_numt_filtered_cleared',
+    'require_full_iip0025_hurdle4_transport_and_challenger_panel',
+    'p05_two_timepoint_same_lot_envelope_verified',
+    'contrast_b2_route_qualification_distinct_from_portfolio_credit_verified',
+    'contrast_b3_zero_primate_host_ingrowth_verified',
 )
 
 
@@ -1588,6 +1639,9 @@ def derive_contract(root: Path | str | None = None) -> dict:
                 'assay_campaign_id',
                 'reset_prior_safety_stop_target_category',
                 'submitter_id',
+                'contrast_b1_geometry_arm',
+                'contrast_b2_perfusion_and_retrieval_arm',
+                'contrast_b3_donor_iec_arm',
             ],
             'boolean_policy_keys': list(STAGE0_DECISION_TREE_BOOLEAN_KEYS),
             'endpoints': endpoints,
@@ -1762,6 +1816,18 @@ def normalize_measurements(payload: dict, *, require_observation: bool = True,
         elif key == 'design_y_payload_arm':
             if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_DESIGN_Y_PAYLOAD_ARMS:
                 raise ValueError(f'design_y_payload_arm must be one of {sorted(ALLOWED_DESIGN_Y_PAYLOAD_ARMS)} (IIP-0023; DEC-102)')
+            result[key] = payload[key].strip()
+        elif key == 'contrast_b1_geometry_arm':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_CONTRAST_B1_GEOMETRY_ARMS:
+                raise ValueError(f'contrast_b1_geometry_arm must be one of {sorted(ALLOWED_CONTRAST_B1_GEOMETRY_ARMS)} (IIP-0025; DEC-104)')
+            result[key] = payload[key].strip()
+        elif key == 'contrast_b2_perfusion_and_retrieval_arm':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_CONTRAST_B2_ARMS:
+                raise ValueError(f'contrast_b2_perfusion_and_retrieval_arm must be one of {sorted(ALLOWED_CONTRAST_B2_ARMS)} (IIP-0025; DEC-104)')
+            result[key] = payload[key].strip()
+        elif key == 'contrast_b3_donor_iec_arm':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_CONTRAST_B3_DONOR_IEC_ARMS:
+                raise ValueError(f'contrast_b3_donor_iec_arm must be one of {sorted(ALLOWED_CONTRAST_B3_DONOR_IEC_ARMS)} (IIP-0025; DEC-104)')
             result[key] = payload[key].strip()
         elif key == 'product_variant_id':
             if not isinstance(payload[key], str) or not payload[key].strip() or payload[key] != payload[key].strip() or len(payload[key]) > 120:
@@ -2421,6 +2487,13 @@ def evaluate_stage0_decision_tree(
         'stage7_lot_imprinting_ic1_ic2_igdmr_conjunctive_cleared',
         'mcb_and_lot_xci_46xx_3axis_cleared_or_46xy',
         'mcb_and_lot_mtdna_1000x_numt_filtered_cleared',
+        'require_full_iip0025_hurdle4_transport_and_challenger_panel',
+        'p05_two_timepoint_same_lot_envelope_verified',
+        'contrast_b2_route_qualification_distinct_from_portfolio_credit_verified',
+        'contrast_b3_zero_primate_host_ingrowth_verified',
+        'contrast_b1_geometry_arm',
+        'contrast_b2_perfusion_and_retrieval_arm',
+        'contrast_b3_donor_iec_arm',
     }
     unknown_keys = sorted(set(observations) - set(spec_by_mean) - set(spec_by_se) - allowed_boolean_and_meta_flags)
     if unknown_keys:
@@ -2470,6 +2543,9 @@ def evaluate_stage0_decision_tree(
         ('design_y_integrase_modality', ALLOWED_DESIGN_Y_INTEGRASE_MODALITIES),
         ('design_y_silencing_modality', ALLOWED_DESIGN_Y_SILENCING_MODALITIES),
         ('design_y_payload_arm', ALLOWED_DESIGN_Y_PAYLOAD_ARMS),
+        ('contrast_b1_geometry_arm', ALLOWED_CONTRAST_B1_GEOMETRY_ARMS),
+        ('contrast_b2_perfusion_and_retrieval_arm', ALLOWED_CONTRAST_B2_ARMS),
+        ('contrast_b3_donor_iec_arm', ALLOWED_CONTRAST_B3_DONOR_IEC_ARMS),
     ):
         if _adj_k in observations and observations[_adj_k] is not None:
             _adj_v = observations[_adj_k]
@@ -2553,6 +2629,23 @@ def evaluate_stage0_decision_tree(
         if mean_key not in validated_stage0:
             return default
         return float(validated_stage0[mean_key]) - crit_95_mult * _validated_se(mean_key)
+
+    # Exact one-sided 95% Student-t multiplier defaulting to df = 5 (n = 6 minimum lot replicates) when replicate count is omitted (IIP-0025; DEC-104):
+    _student_t_mult_df5_default = (
+        crit_95_mult
+        if ('obs_stage0_independent_lot_replicates_n' in validated_stage0 and not stage0_replicates_below_6_hold)
+        else student_t_ppf_one_sided_95(5.0)
+    )
+
+    def _upper95_student_t(mean_key: str, default: float = 0.0) -> float:
+        if mean_key not in validated_stage0:
+            return default
+        return float(validated_stage0[mean_key]) + _student_t_mult_df5_default * _validated_se(mean_key)
+
+    def _lower95_student_t(mean_key: str, default: float = 0.0) -> float:
+        if mean_key not in validated_stage0:
+            return default
+        return float(validated_stage0[mean_key]) - _student_t_mult_df5_default * _validated_se(mean_key)
 
     serpinb9_h0 = validated_stage0.get('obs_serpinb9_hour0_uM', validated_stage0.get('obs_gate0c_hour0_serpinb9_uM', 0.35))
     serpinb9_h0_lower95 = (
@@ -2908,7 +3001,9 @@ def evaluate_stage0_decision_tree(
         observations.get('obs_vascularized_explant_en_bloc_recovery_verified') is False
     )
     explant_retrieval_failed = bool(
-        ('obs_explant_en_bloc_recovery_fraction' in validated_stage0 and _lower95('obs_explant_en_bloc_recovery_fraction') < 0.99)
+        ('obs_explant_en_bloc_recovery_fraction' in validated_stage0 and _lower95_student_t('obs_explant_en_bloc_recovery_fraction') < 0.99)
+        or ('obs_gate0s_day30_en_bloc_recovery_fraction' in validated_stage0 and _lower95_student_t('obs_gate0s_day30_en_bloc_recovery_fraction') < 0.99)
+        or ('obs_gate0s_day90_en_bloc_recovery_fraction' in validated_stage0 and _lower95_student_t('obs_gate0s_day90_en_bloc_recovery_fraction') < 0.99)
         or vascularized_explant_recovery_failed_s9
     )
     post_stress_20q11_outgrowth_failed = bool(
@@ -3000,6 +3095,13 @@ def evaluate_stage0_decision_tree(
         ('obs_gate0s_shedding_ddpcr_events_k' in validated_stage0 and validated_stage0['obs_gate0s_shedding_ddpcr_events_k'] > 0.0)
         or ('obs_gate0s_shedding_viable_events_k' in validated_stage0 and validated_stage0['obs_gate0s_shedding_viable_events_k'] > 0.0)
     )
+    p05_z70_interface_h2o2_hard_stop_veto = bool(
+        'obs_p05_z70_gel_interface_h2o2_max_uM' in validated_stage0
+        and (
+            validated_stage0['obs_p05_z70_gel_interface_h2o2_max_uM'] > 5.0
+            or _upper95_student_t('obs_p05_z70_gel_interface_h2o2_max_uM') > 5.0
+        )
+    )
     if ap1903_mono_pk_failed:
         s9_causal_failed_categories.append('MONOTHERAPY_PULSED_PK_KILL')
     if ap1903_step1_sublethal_survivor_detected:
@@ -3014,6 +3116,8 @@ def evaluate_stage0_decision_tree(
         s9_causal_failed_categories.append('GATE0V_PERSISTENT_VIRAL_POSITIVE')
     if gate0s_shedding_observed_positive_veto:
         s9_causal_failed_categories.append('GATE0S_DUAL_SHEDDING_POSITIVE')
+    if p05_z70_interface_h2o2_hard_stop_veto:
+        s9_causal_failed_categories.append('P05_Z70_INTERFACE_H2O2_GT_5UM')
 
     current_batch_s9_endpoint_failed = bool(s9_causal_failed_categories)
     safety_kill_s9_triggered = bool(
@@ -3920,7 +4024,12 @@ def evaluate_stage0_decision_tree(
             'arm6_c341s_peptide_screen_required': _l3_is_arm6,
         }
 
-    # Stage-0 explicit-3D transport qualification gates for Rule S6 lateral spacing / dose-matched 80 um sizing, Readout 5 (Gate P05) wet-sieved microbeads + co-cast catalase barrier films, and Design Z two-stage empty-lumen + loaded closed-state confirmation (IIP-0019; DEC-097):
+    # Stage-0 explicit-3D transport qualification gates for Rule S6 lateral spacing / dose-matched 80 um sizing, Readout 5 (Gate P05) wet-sieved microbeads + co-cast catalase barrier films, and Design Z two-stage empty-lumen + loaded closed-state confirmation (IIP-0019; DEC-097; product-bound Gate P05 fix IIP-0025; DEC-104):
+    _is_design_z_product = bool(
+        product_def is not None
+        and str(product_def.get('product_variant_id', '')) == 'ISLET1_Z_X_MOL_140UM_ZERO_CAO2'
+    )
+    _req_iip0025_full = observations.get('require_full_iip0025_hurdle4_transport_and_challenger_panel') is True
     _s6_arm_val = observations.get('s6_cluster_size_arm')
     if isinstance(_s6_arm_val, str):
         _s6_arm_val = _s6_arm_val.strip()
@@ -3983,10 +4092,13 @@ def evaluate_stage0_decision_tree(
         or any(_mk in validated_stage0 for _mk in _p05_mean_keys)
     )
     _dz_active = bool(
-        _dz_arm_val is not None
-        or observations.get('design_z_empty_lumen_14d_persistence_verified') is not None
-        or observations.get('design_z_loaded_closed_state_confirmed') is not None
-        or any(_mk in validated_stage0 for _mk in (*_dz_empty_mean_keys, *_dz_loaded_mean_keys))
+        (product_def is None or _is_design_z_product)
+        and (
+            _dz_arm_val is not None
+            or observations.get('design_z_empty_lumen_14d_persistence_verified') is not None
+            or observations.get('design_z_loaded_closed_state_confirmed') is not None
+            or any(_mk in validated_stage0 for _mk in (*_dz_empty_mean_keys, *_dz_loaded_mean_keys))
+        )
     )
 
     iip0019_s6_status: str | None = None
@@ -4129,6 +4241,8 @@ def evaluate_stage0_decision_tree(
     )
     _iip0020_p05_species_active = bool(
         _req_iip0020_full
+        or (_req_iip0025_full and not _is_design_z_product)
+        or (product_def is not None and not _is_design_z_product and _p05_active)
         or _p05_cat_acc is not None
         or observations.get('p05_recombinant_human_catalase_verified') is not None
         or any(_mk in validated_stage0 for _mk in _iip0020_p05_mean_keys)
@@ -4146,7 +4260,8 @@ def evaluate_stage0_decision_tree(
     iip0020_cuff_status: str | None = None
     iip0020_hold_status: str | None = None
 
-    if _iip0020_p05_species_active and _dz_arm_val is None:
+    # Product-bind Gate P05 strictly to CaO2-containing routes (not _is_design_z_product) so extra Design Z fields never suppress species/barrier holds (IIP-0025; DEC-104):
+    if _iip0020_p05_species_active and not _is_design_z_product:
         _iip20_p05_quant_ok = all(
             _mk in validated_stage0 and se_provenance_by_mean.get(_mk) == 'EXPLICIT_SE_SUPPLIED'
             for _mk in _iip0020_p05_mean_keys
@@ -4631,7 +4746,9 @@ def evaluate_stage0_decision_tree(
         or periimplant_fluid_film_50_to_80_unmitigated
     )
     explant_retrieval_failed = bool(
-        ('obs_explant_en_bloc_recovery_fraction' in validated_stage0 and _lower95('obs_explant_en_bloc_recovery_fraction') < 0.99)
+        ('obs_explant_en_bloc_recovery_fraction' in validated_stage0 and _lower95_student_t('obs_explant_en_bloc_recovery_fraction') < 0.99)
+        or ('obs_gate0s_day30_en_bloc_recovery_fraction' in validated_stage0 and _lower95_student_t('obs_gate0s_day30_en_bloc_recovery_fraction') < 0.99)
+        or ('obs_gate0s_day90_en_bloc_recovery_fraction' in validated_stage0 and _lower95_student_t('obs_gate0s_day90_en_bloc_recovery_fraction') < 0.99)
         or observations.get('obs_vascularized_explant_en_bloc_recovery_verified') is False
     )
     ap1903_insulin_dump_failed = bool(
@@ -4792,8 +4909,15 @@ def evaluate_stage0_decision_tree(
             iip0024_hold_status = 'HOLD_P05_TOTAL_LOADED_CATALASE_MASS_NONPOSITIVE'
         elif 'obs_p05_catalase_endotoxin_eu_per_mg' in validated_stage0:
             _coupled_eu_cap = min(0.10, 0.50 / _m_cat)
-            if _upper95('obs_p05_catalase_endotoxin_eu_per_mg') > _coupled_eu_cap:
+            if _upper95_student_t('obs_p05_catalase_endotoxin_eu_per_mg') > _coupled_eu_cap:
                 iip0024_hold_status = 'HOLD_P05_MASS_COUPLED_CATALASE_ENDOTOXIN_CAP_EXCEEDED'
+            elif 'obs_p05_total_implant_catalase_endotoxin_eu' in validated_stage0:
+                if _upper95_student_t('obs_p05_total_implant_catalase_endotoxin_eu') > 0.50:
+                    iip0024_hold_status = 'HOLD_P05_TOTAL_IMPLANT_CATALASE_ENDOTOXIN_GT_0P50EU'
+                else:
+                    _exp_tot_eu = _m_cat * validated_stage0['obs_p05_catalase_endotoxin_eu_per_mg']
+                    if abs(validated_stage0['obs_p05_total_implant_catalase_endotoxin_eu'] - _exp_tot_eu) > max(0.015, 0.05 * _exp_tot_eu):
+                        iip0024_hold_status = 'HOLD_P05_COUPLED_TOTAL_ENDOTOXIN_MASS_PRODUCT_INCONSISTENT'
     if iip0024_hold_status is None and any(
         _sk in validated_stage0
         for _sk in (
@@ -4814,15 +4938,33 @@ def evaluate_stage0_decision_tree(
         ):
             iip0024_hold_status = 'HOLD_GATE0S_DUAL_SHEDDING_PANEL_INCOMPLETE'
         else:
-            _n_dd = int(round(validated_stage0['obs_gate0s_shedding_ddpcr_trials_n']))
-            _n_vi = int(round(validated_stage0['obs_gate0s_shedding_viable_trials_n']))
-            if (
-                _n_dd < 2995731
-                or _n_vi < 2995731
-                or clopper_pearson_upper95_independent(0, _n_dd) >= 1e-6
-                or clopper_pearson_upper95_independent(0, _n_vi) >= 1e-6
-            ):
-                iip0024_hold_status = 'HOLD_GATE0S_DUAL_SHEDDING_TRIALS_BELOW_2995731_BINOMIAL_1E6_FLOOR'
+            _k_dd_f = validated_stage0['obs_gate0s_shedding_ddpcr_events_k']
+            _n_dd_f = validated_stage0['obs_gate0s_shedding_ddpcr_trials_n']
+            _k_vi_f = validated_stage0['obs_gate0s_shedding_viable_events_k']
+            _n_vi_f = validated_stage0['obs_gate0s_shedding_viable_trials_n']
+            if any(abs(_vf - round(_vf)) > 1e-9 for _vf in (_k_dd_f, _n_dd_f, _k_vi_f, _n_vi_f)):
+                non_integer_scored_cell_or_trial_denominator = True
+                iip0024_hold_status = 'HOLD_NON_INTEGER_SCORED_CELL_OR_TRIAL_DENOMINATOR'
+            else:
+                _spec_map_s0 = observations.get('specimen_or_clone_ids')
+                if (
+                    isinstance(_spec_map_s0, dict)
+                    and 'obs_gate0s_shedding_ddpcr_events_k' in _spec_map_s0
+                    and 'obs_gate0s_shedding_viable_events_k' in _spec_map_s0
+                    and str(_spec_map_s0['obs_gate0s_shedding_ddpcr_events_k']).strip()
+                    == str(_spec_map_s0['obs_gate0s_shedding_viable_events_k']).strip()
+                ):
+                    iip0024_hold_status = 'HOLD_GATE0S_DUAL_SHEDDING_REQUIRES_INDEPENDENT_SPECIMEN_UNITS'
+                else:
+                    _n_dd = int(round(_n_dd_f))
+                    _n_vi = int(round(_n_vi_f))
+                    if (
+                        _n_dd < 2995731
+                        or _n_vi < 2995731
+                        or clopper_pearson_upper95_independent(0, _n_dd) >= 1e-6
+                        or clopper_pearson_upper95_independent(0, _n_vi) >= 1e-6
+                    ):
+                        iip0024_hold_status = 'HOLD_GATE0S_DUAL_SHEDDING_TRIALS_BELOW_2995731_BINOMIAL_1E6_FLOOR'
     if iip0024_hold_status is None and (
         any(_ik in validated_stage0 for _ik in ('obs_iapp_3metric_thioflavin_s_area_pct', 'obs_iapp_3metric_soluble_oligomer_fold', 'obs_iapp_3metric_insoluble_fibril_fold'))
         or observations.get('iapp_age_matched_reference_above_loq_verified') is not None
@@ -4881,6 +5023,231 @@ def evaluate_stage0_decision_tree(
             'student_t_critical_multiplier_used': round(crit_95_mult, 8),
         }
 
+    # Stage-0 Hurdle-4 two-timepoint human P04040 catalase envelope hold, exact z=70.0 um gel-interface H2O2, separated Day-30/Day-90 Gate 0S retrieval, and zero-primate Contrasts B1, B2, B3 (IIP-0025; DEC-104):
+    _b1_arm = observations.get('contrast_b1_geometry_arm')
+    if isinstance(_b1_arm, str):
+        _b1_arm = _b1_arm.strip()
+    _b2_arm = observations.get('contrast_b2_perfusion_and_retrieval_arm')
+    if isinstance(_b2_arm, str):
+        _b2_arm = _b2_arm.strip()
+    _b3_arm = observations.get('contrast_b3_donor_iec_arm')
+    if isinstance(_b3_arm, str):
+        _b3_arm = _b3_arm.strip()
+
+    _iip0025_p05_new_keys = (
+        'obs_p05_precure_active_catalase_input_u_333cm2',
+        'obs_p05_postcure_t0_active_catalase_iu_333cm2',
+        'obs_p05_cure_immobilization_yield_pct',
+        'obs_p05_336h_catalase_retention_pct',
+        'obs_p05_z70_gel_interface_h2o2_max_uM',
+    )
+    _iip0025_p05_all_req_keys = (
+        *_iip0025_p05_new_keys,
+        'obs_p05_day7_catalase_retention_pct',
+        'obs_p05_day7_shed_catalase_mass_pct',
+        'obs_p05_336h_retained_catalase_iu_333cm2',
+        'obs_p05_total_loaded_catalase_protein_mg',
+        'obs_p05_catalase_endotoxin_eu_per_mg',
+        'obs_p05_total_implant_catalase_endotoxin_eu',
+    )
+    _iip0025_b1_keys = (
+        'obs_contrast_b1_paired_min_face_po2_gain_mmhg',
+        'obs_contrast_b1_80um_worst_face_po2_mmhg',
+        'obs_contrast_b1_80um_perifusion_gsis_si',
+    )
+    _iip0025_b2_keys = (
+        'obs_contrast_b2_human_exvivo_viable_window_h',
+        'obs_contrast_b2_omental_vs_suprafascial_po2_gain_mmhg',
+        'obs_contrast_b2_porcine_day90_en_bloc_recovery_fraction',
+    )
+    _iip0025_b3_keys = (
+        'obs_contrast_b3_iec_omitted_surface_po2_mmhg',
+        'obs_contrast_b3_iec_omitted_outer_kperf_s_inv',
+        'obs_contrast_b3_iec_omitted_perifusion_gsis_si',
+    )
+    _iip0025_p05_env_active = bool(
+        not _is_design_z_product
+        and (
+            _req_iip0025_full
+            or observations.get('p05_two_timepoint_same_lot_envelope_verified') is not None
+            or any(_k in validated_stage0 for _k in _iip0025_p05_new_keys)
+        )
+    )
+    _iip0025_b1_active = bool(
+        _b1_arm is not None
+        or any(_k in validated_stage0 for _k in _iip0025_b1_keys)
+    )
+    _iip0025_b2_active = bool(
+        _b2_arm is not None
+        or observations.get('contrast_b2_route_qualification_distinct_from_portfolio_credit_verified') is not None
+        or any(_k in validated_stage0 for _k in _iip0025_b2_keys)
+    )
+    _iip0025_b3_active = bool(
+        _b3_arm is not None
+        or observations.get('contrast_b3_zero_primate_host_ingrowth_verified') is not None
+        or any(_k in validated_stage0 for _k in _iip0025_b3_keys)
+    )
+    _iip0025_day30_90_active = bool(
+        'obs_gate0s_day30_en_bloc_recovery_fraction' in validated_stage0
+        or 'obs_gate0s_day90_en_bloc_recovery_fraction' in validated_stage0
+    )
+
+    iip0025_p05_env_status: str | None = None
+    iip0025_b1_status: str | None = None
+    iip0025_b2_status: str | None = None
+    iip0025_b3_status: str | None = None
+    iip0025_hold_status: str | None = None
+
+    if _is_design_z_product and (
+        observations.get('p05_two_timepoint_same_lot_envelope_verified') is not None
+        or any(_k in validated_stage0 for _k in _iip0025_p05_new_keys)
+    ):
+        iip0025_hold_status = 'HOLD_BIDIRECTIONAL_PRODUCT_PHYSICAL_ROUTE_MISMATCH'
+
+    if _iip0025_p05_env_active and iip0025_hold_status is None:
+        _p05_25_quant_ok = all(
+            _mk in validated_stage0 and se_provenance_by_mean.get(_mk) == 'EXPLICIT_SE_SUPPLIED'
+            for _mk in _iip0025_p05_all_req_keys
+        )
+        if _p05_cat_acc != 'P04040' or observations.get('p05_recombinant_human_catalase_verified') is not True:
+            iip0025_p05_env_status = 'HOLD_P05_XENO_OR_UNVERIFIED_CATALASE_SPECIES_REQUIRES_HUMAN_P04040'
+        elif stage0_replicates_below_6_hold:
+            iip0025_p05_env_status = 'HOLD_STAGE0_INDEPENDENT_LOT_REPLICATES_BELOW_6_STUDENT_T_MINIMUM'
+        elif p05_z70_interface_h2o2_hard_stop_veto:
+            iip0025_p05_env_status = 'HOLD_P05_Z70_GEL_INTERFACE_H2O2_EXCEEDS_5P0UM_HARD_STOP'
+        elif 'obs_p05_z70_gel_interface_h2o2_max_uM' in validated_stage0 and _upper95_student_t('obs_p05_z70_gel_interface_h2o2_max_uM') > 2.5:
+            iip0025_p05_env_status = 'HOLD_P05_Z70_GEL_INTERFACE_H2O2_EXCEEDS_2P5UM_TIER1_TARGET'
+        elif observations.get('p05_two_timepoint_same_lot_envelope_verified') is not True or not _p05_25_quant_ok:
+            iip0025_p05_env_status = 'HOLD_P05_TWO_TIMEPOINT_ENVELOPE_INCOMPLETE_OR_DEFAULT_SE'
+        else:
+            _u_pre = validated_stage0['obs_p05_precure_active_catalase_input_u_333cm2']
+            _u_post0 = validated_stage0['obs_p05_postcure_t0_active_catalase_iu_333cm2']
+            _y_cure = validated_stage0['obs_p05_cure_immobilization_yield_pct']
+            _r_d7 = validated_stage0['obs_p05_day7_catalase_retention_pct']
+            _s_d7 = validated_stage0['obs_p05_day7_shed_catalase_mass_pct']
+            _r_336 = validated_stage0['obs_p05_336h_catalase_retention_pct']
+            _u_336 = validated_stage0['obs_p05_336h_retained_catalase_iu_333cm2']
+            _m_cat_25 = validated_stage0['obs_p05_total_loaded_catalase_protein_mg']
+            if _u_pre > 158300.0 or _upper95_student_t('obs_p05_precure_active_catalase_input_u_333cm2') > 158300.0:
+                iip0025_p05_env_status = 'HOLD_P05_PRECURE_CATALASE_INPUT_EXCEEDS_158300U_CAP'
+            elif (
+                _u_pre <= 0.0
+                or _u_post0 <= 0.0
+                or _m_cat_25 <= 0.0
+                or abs(_u_post0 - _u_pre * (_y_cure / 100.0)) > max(150.0, 0.02 * _u_post0)
+                or abs(_u_336 - _u_post0 * (_r_336 / 100.0)) > max(150.0, 0.02 * max(1.0, _u_336))
+                or _r_336 > _r_d7 + 1e-6
+                or (_r_d7 + _s_d7) > 102.0
+            ):
+                iip0025_p05_env_status = 'HOLD_P05_TWO_TIMEPOINT_ALGEBRAIC_YIELD_OR_RETENTION_INCONSISTENT'
+            elif (
+                _lower95_student_t('obs_p05_day7_catalase_retention_pct') < 70.0
+                or _upper95_student_t('obs_p05_day7_shed_catalase_mass_pct') > 30.0
+                or _lower95_student_t('obs_p05_336h_retained_catalase_iu_333cm2') < 73800.0
+            ):
+                iip0025_p05_env_status = 'HOLD_P05_TWO_TIMEPOINT_DAY7_70PCT_OR_336H_73800IU_FAILED'
+            else:
+                _unrounded_eu_cap = min(0.10, 0.50 / _m_cat_25)
+                _exp_tot_eu_25 = _m_cat_25 * validated_stage0['obs_p05_catalase_endotoxin_eu_per_mg']
+                if _upper95_student_t('obs_p05_catalase_endotoxin_eu_per_mg') > _unrounded_eu_cap:
+                    iip0025_p05_env_status = 'HOLD_P05_MASS_COUPLED_CATALASE_ENDOTOXIN_CAP_EXCEEDED'
+                elif _upper95_student_t('obs_p05_total_implant_catalase_endotoxin_eu') > 0.50:
+                    iip0025_p05_env_status = 'HOLD_P05_TOTAL_IMPLANT_CATALASE_ENDOTOXIN_GT_0P50EU'
+                elif abs(validated_stage0['obs_p05_total_implant_catalase_endotoxin_eu'] - _exp_tot_eu_25) > max(0.015, 0.05 * _exp_tot_eu_25):
+                    iip0025_p05_env_status = 'HOLD_P05_COUPLED_TOTAL_ENDOTOXIN_MASS_PRODUCT_INCONSISTENT'
+                else:
+                    iip0025_p05_env_status = 'CLEARED_P05_TWO_TIMEPOINT_P04040_ENVELOPE_AND_Z70_H2O2_GATE'
+        if iip0025_p05_env_status != 'CLEARED_P05_TWO_TIMEPOINT_P04040_ENVELOPE_AND_Z70_H2O2_GATE':
+            iip0025_hold_status = iip0025_p05_env_status
+
+    if _iip0025_b1_active:
+        _b1_quant_ok = all(
+            _mk in validated_stage0 and se_provenance_by_mean.get(_mk) == 'EXPLICIT_SE_SUPPLIED'
+            for _mk in _iip0025_b1_keys
+        )
+        if _b1_arm not in ALLOWED_CONTRAST_B1_GEOMETRY_ARMS or not _b1_quant_ok:
+            iip0025_b1_status = 'HOLD_CONTRAST_B1_INCOMPLETE_OR_DEFAULT_SE_PANEL'
+        elif observations.get('s6_dose_matched_1500_ieq_verified') is not True:
+            iip0025_b1_status = 'HOLD_CONTRAST_B1_REQUIRES_DOSE_MATCHED_1500IEQ_PITCH'
+        elif (
+            _lower95_student_t('obs_contrast_b1_80um_worst_face_po2_mmhg') < 15.0
+            or _lower95_student_t('obs_contrast_b1_paired_min_face_po2_gain_mmhg') <= 0.0
+            or _lower95_student_t('obs_contrast_b1_80um_perifusion_gsis_si') < 3.0
+        ):
+            iip0025_b1_status = 'HOLD_CONTRAST_B1_DOSE_MATCHED_80UM_MIN_FACE_OR_GSIS_FAILED'
+        else:
+            iip0025_b1_status = 'CLEARED_CONTRAST_B1_DOSE_MATCHED_80UM_VS_100UM_CHALLENGER'
+        if iip0025_b1_status != 'CLEARED_CONTRAST_B1_DOSE_MATCHED_80UM_VS_100UM_CHALLENGER' and iip0025_hold_status is None:
+            iip0025_hold_status = iip0025_b1_status
+
+    if _iip0025_b2_active:
+        _b2_quant_ok = all(
+            _mk in validated_stage0 and se_provenance_by_mean.get(_mk) == 'EXPLICIT_SE_SUPPLIED'
+            for _mk in _iip0025_b2_keys
+        )
+        if _b2_arm != 'PAIRED_HUMAN_EXVIVO_AND_PORCINE_DAY30_90':
+            iip0025_b2_status = 'HOLD_CONTRAST_B2_INCOMPLETE_EXVIVO_PERFUSION_OR_PORCINE_RETRIEVAL_ARM'
+        elif observations.get('contrast_b2_route_qualification_distinct_from_portfolio_credit_verified') is not True:
+            iip0025_b2_status = 'HOLD_CONTRAST_B2_ROUTE_QUALIFICATION_CONFLATED_WITH_PORTFOLIO_CREDIT'
+        elif not _b2_quant_ok:
+            iip0025_b2_status = 'HOLD_CONTRAST_B2_INCOMPLETE_OR_DEFAULT_SE_PANEL'
+        elif (
+            _lower95_student_t('obs_contrast_b2_human_exvivo_viable_window_h') < 24.0
+            or _lower95_student_t('obs_contrast_b2_omental_vs_suprafascial_po2_gain_mmhg') <= 0.0
+            or _lower95_student_t('obs_contrast_b2_porcine_day90_en_bloc_recovery_fraction') < 0.99
+        ):
+            iip0025_b2_status = 'HOLD_CONTRAST_B2_PERFUSION_WINDOW_PO2_GAIN_OR_PORCINE_RETRIEVAL_FAILED'
+        else:
+            iip0025_b2_status = 'CLEARED_CONTRAST_B2_OMENTAL_VS_SUPRAFASCIAL_ZERO_PRIMATE_ROUTE_GATE'
+        if iip0025_b2_status != 'CLEARED_CONTRAST_B2_OMENTAL_VS_SUPRAFASCIAL_ZERO_PRIMATE_ROUTE_GATE' and iip0025_hold_status is None:
+            iip0025_hold_status = iip0025_b2_status
+
+    if _iip0025_b3_active:
+        if _b3_arm not in ALLOWED_CONTRAST_B3_DONOR_IEC_ARMS:
+            iip0025_b3_status = 'HOLD_CONTRAST_B3_MISSING_OR_INVALID_DONOR_IEC_ARM'
+        elif observations.get('contrast_b3_zero_primate_host_ingrowth_verified') is not True:
+            iip0025_b3_status = 'HOLD_CONTRAST_B3_HOST_VESSEL_INGROWTH_UNVERIFIED'
+        elif _b3_arm == 'OMIT_DONOR_IEC_8E8_CHALLENGER':
+            _b3_quant_ok = all(
+                _mk in validated_stage0 and se_provenance_by_mean.get(_mk) == 'EXPLICIT_SE_SUPPLIED'
+                for _mk in _iip0025_b3_keys
+            )
+            if not _b3_quant_ok:
+                iip0025_b3_status = 'HOLD_CONTRAST_B3_INCOMPLETE_OR_DEFAULT_SE_PANEL'
+            elif (
+                _lower95_student_t('obs_contrast_b3_iec_omitted_surface_po2_mmhg') < 15.0
+                or _lower95_student_t('obs_contrast_b3_iec_omitted_outer_kperf_s_inv') < 0.10
+                or _lower95_student_t('obs_contrast_b3_iec_omitted_perifusion_gsis_si') < 3.0
+            ):
+                iip0025_b3_status = 'HOLD_CONTRAST_B3_DONOR_IEC_OMITTED_INGROWTH_PO2_OR_GSIS_FAILED'
+            else:
+                iip0025_b3_status = 'CLEARED_CONTRAST_B3_OMIT_DONOR_IEC_8E8_CHALLENGER'
+        else:
+            iip0025_b3_status = 'CLEARED_CONTRAST_B3_BASELINE_WITH_DONOR_IEC_9E8_REFERENCE'
+        if not str(iip0025_b3_status).startswith('CLEARED_') and iip0025_hold_status is None:
+            iip0025_hold_status = iip0025_b3_status
+
+    iip0025_eval_summary: dict[str, object] | None = None
+    if _iip0025_p05_env_active or _iip0025_b1_active or _iip0025_b2_active or _iip0025_b3_active or _iip0025_day30_90_active:
+        iip0025_eval_summary = {
+            'gate_pass': iip0025_hold_status is None and not explant_retrieval_failed,
+            'hold_status': iip0025_hold_status,
+            'status': (
+                iip0025_hold_status
+                if iip0025_hold_status is not None
+                else (
+                    'HOLD_S9_EXPLANT_EN_BLOC_RECOVERY_BELOW_99PCT'
+                    if explant_retrieval_failed
+                    else 'CLEARED_IIP0025_HURDLE4_SPATIAL_OXYGEN_CATALASE_AND_CHALLENGERS'
+                )
+            ),
+            'p05_two_timepoint_envelope_status': iip0025_p05_env_status,
+            'contrast_b1_status': iip0025_b1_status,
+            'contrast_b2_status': iip0025_b2_status,
+            'contrast_b3_status': iip0025_b3_status,
+            'student_t_critical_multiplier_used': round(_student_t_mult_df5_default, 8),
+        }
+
     resolved_arch = dict(tree_doc.get('default_architecture_assignments', {}))
     if product_def is not None:
         _pvid_canon = str(product_def['product_variant_id'])
@@ -4898,6 +5265,11 @@ def evaluate_stage0_decision_tree(
         resolved_arch['stage0_atomic_provenance_and_bank_evaluation_iip_0024'] = iip0024_eval_summary
     else:
         resolved_arch['stage0_atomic_provenance_and_bank_guardrails_iip_0024'] = 'NOT_TESTED'
+    if iip0025_eval_summary is not None:
+        resolved_arch['hurdle4_spatial_oxygen_catalase_and_route_challengers_iip_0025'] = iip0025_eval_summary['status']
+        resolved_arch['hurdle4_spatial_oxygen_catalase_and_route_evaluation_iip_0025'] = iip0025_eval_summary
+    else:
+        resolved_arch['hurdle4_spatial_oxygen_catalase_and_route_challengers_iip_0025'] = 'NOT_TESTED'
     if knockin_splice_challenger_arm != 'PARENTAL_REFERENCE' or _chall_any_input:
         resolved_arch['knockin_splice_challenger_arm'] = knockin_splice_challenger_arm
         if knockin_locus4_orientation is not None:
@@ -5210,6 +5582,8 @@ def evaluate_stage0_decision_tree(
         resolved_arch['lot_maturation_status'] = iip0023_hold_status
     elif iip0024_hold_status is not None:
         resolved_arch['lot_maturation_status'] = iip0024_hold_status
+    elif iip0025_hold_status is not None:
+        resolved_arch['lot_maturation_status'] = iip0025_hold_status
     elif challenger_hold_status is not None:
         resolved_arch['lot_maturation_status'] = challenger_hold_status
     elif avascular_outer_band_dropout and not omental_revascularization_cleared:
@@ -7066,4 +7440,142 @@ def evaluate_iip0024_atomic_stage0_ledger(
         'execution_supported': True,
         'transferred_mcb_count': len(mcb_store),
         'retained_reset_audit_log': retained_reset_audit_log,
+    }
+
+
+def evaluate_coupled_catalase_endotoxin_gate_iip0025(
+    *,
+    m_total_cat_mg: Any,
+    eu_per_mg_mean: Any,
+    eu_per_mg_se: Any,
+    total_implant_eu_mean: Any,
+    total_implant_eu_se: Any,
+    replicates_n: Any = 6,
+) -> dict[str, Any]:
+    """
+    Fail-closed unrounded mass-coupled human P04040 catalase endotoxin validator enforcing BOTH
+    U95_t(EU/mg) <= min(0.10, 0.50 / m_total_CAT_mg) (rejecting 0.05505 at 9.0830769 mg where
+    exact cap is 0.0550474255) AND canonical total implant endotoxin U95_t <= 0.50 EU (IIP-0025; DEC-104).
+    """
+    if not _is_strict_int_iip0024(replicates_n) or replicates_n < 6:
+        return {'gate_pass': False, 'status': 'HOLD_STAGE0_INDEPENDENT_LOT_REPLICATES_BELOW_6_STUDENT_T_MINIMUM'}
+    for v_num in (m_total_cat_mg, eu_per_mg_mean, eu_per_mg_se, total_implant_eu_mean, total_implant_eu_se):
+        if not _is_strict_finite_number_iip0024(v_num):
+            return {'gate_pass': False, 'status': 'HOLD_NONFINITE_CATALASE_ENDOTOXIN_INPUT'}
+    m_mg = float(m_total_cat_mg)
+    c_mean, c_se = float(eu_per_mg_mean), float(eu_per_mg_se)
+    tot_mean, tot_se = float(total_implant_eu_mean), float(total_implant_eu_se)
+    if m_mg <= 0.0 or c_mean < 0.0 or c_se <= 0.0 or tot_mean < 0.0 or tot_se <= 0.0:
+        return {'gate_pass': False, 'status': 'HOLD_INVALID_CATALASE_MASS_OR_SE_BOUNDS'}
+    t95 = student_t_ppf_one_sided_95(float(replicates_n - 1))
+    u95_eu_per_mg = c_mean + t95 * c_se
+    u95_tot_eu = tot_mean + t95 * tot_se
+    exact_cap = min(0.10, 0.50 / m_mg)
+    expected_tot = m_mg * c_mean
+    if u95_eu_per_mg > exact_cap:
+        return {
+            'gate_pass': False,
+            'status': 'HOLD_P05_MASS_COUPLED_CATALASE_ENDOTOXIN_CAP_EXCEEDED',
+            'exact_unrounded_cap_eu_per_mg': exact_cap,
+            'u95_eu_per_mg': u95_eu_per_mg,
+        }
+    if u95_tot_eu > 0.50:
+        return {
+            'gate_pass': False,
+            'status': 'HOLD_P05_TOTAL_IMPLANT_CATALASE_ENDOTOXIN_GT_0P50EU',
+            'u95_total_implant_eu': u95_tot_eu,
+        }
+    if abs(tot_mean - expected_tot) > max(0.015, 0.05 * expected_tot):
+        return {
+            'gate_pass': False,
+            'status': 'HOLD_P05_COUPLED_TOTAL_ENDOTOXIN_MASS_PRODUCT_INCONSISTENT',
+            'expected_total_eu': expected_tot,
+            'reported_total_eu': tot_mean,
+        }
+    return {
+        'gate_pass': True,
+        'status': 'CLEARED_COUPLED_UNROUNDED_CATALASE_ENDOTOXIN_GATE',
+        'exact_unrounded_cap_eu_per_mg': exact_cap,
+        'u95_eu_per_mg': u95_eu_per_mg,
+        'u95_total_implant_eu': u95_tot_eu,
+    }
+
+
+def evaluate_dual_assay_gate0s_shedding_iip0025(
+    *,
+    ddpcr_k: Any,
+    ddpcr_n: Any,
+    ddpcr_eta_l95: Any = 1.0,
+    ddpcr_specimen_unit_id: str,
+    viable_k: Any,
+    viable_n: Any,
+    viable_eta_l95: Any = 1.0,
+    viable_f_clonogenic: Any = 1.0,
+    viable_specimen_unit_id: str,
+    day90_recovery_mean: Any = None,
+    day90_recovery_se: Any = None,
+    day90_replicates_n: Any = 6,
+    **forbidden_kwargs: Any,
+) -> dict[str, Any]:
+    """
+    Fail-closed Day-90 Gate 0S dual-assay shedding & separated en-bloc recovery validator:
+    forbids caller cap overrides (fixed 1e-6), requires distinct specimen units, strict integer
+    observed k == 0 with exact independent sensitivity U95 < 1e-6 (N_eff >= 2,995,731), and keeps
+    Student-t L95 >= 0.99 physical retrieval distinct from cellular shedding (IIP-0025; DEC-104).
+    """
+    if forbidden_kwargs:
+        return {'gate_pass': False, 'status': 'HOLD_CALLER_CAP_OR_PARAMETER_OVERRIDE_FORBIDDEN'}
+    if (
+        not isinstance(ddpcr_specimen_unit_id, str)
+        or not isinstance(viable_specimen_unit_id, str)
+        or not ddpcr_specimen_unit_id.strip()
+        or not viable_specimen_unit_id.strip()
+        or ddpcr_specimen_unit_id.strip() == viable_specimen_unit_id.strip()
+    ):
+        return {'gate_pass': False, 'status': 'HOLD_GATE0S_DUAL_SHEDDING_REQUIRES_INDEPENDENT_SPECIMEN_UNITS'}
+    dd_res = evaluate_rare_event_count_iip0024(
+        gate_id='GATE0S_SHEDDING_DDPCR',
+        k=ddpcr_k,
+        n=ddpcr_n,
+        max_u95_fraction=1e-6,
+        require_observed_zero=True,
+        eta_spike_recovery_l95=ddpcr_eta_l95,
+    )
+    if dd_res['status'] != 'PASS':
+        return {'gate_pass': False, 'status': dd_res['status'], 'failed_assay': 'ddPCR', 'detail': dd_res}
+    vi_res = evaluate_rare_event_count_iip0024(
+        gate_id='GATE0S_SHEDDING_VIABLE_OUTGROWTH',
+        k=viable_k,
+        n=viable_n,
+        max_u95_fraction=1e-6,
+        require_observed_zero=True,
+        eta_spike_recovery_l95=viable_eta_l95,
+        f_clonogenic=viable_f_clonogenic,
+    )
+    if vi_res['status'] != 'PASS':
+        return {'gate_pass': False, 'status': vi_res['status'], 'failed_assay': 'viable_outgrowth', 'detail': vi_res}
+    rec_l95: float | None = None
+    if day90_recovery_mean is not None or day90_recovery_se is not None:
+        if (
+            not _is_strict_int_iip0024(day90_replicates_n)
+            or day90_replicates_n < 6
+            or not _is_strict_finite_number_iip0024(day90_recovery_mean)
+            or not _is_strict_finite_number_iip0024(day90_recovery_se)
+            or float(day90_recovery_se) <= 0.0
+        ):
+            return {'gate_pass': False, 'status': 'HOLD_INVALID_DAY90_EN_BLOC_RECOVERY_INPUT'}
+        t95_r = student_t_ppf_one_sided_95(float(day90_replicates_n - 1))
+        rec_l95 = float(day90_recovery_mean) - t95_r * float(day90_recovery_se)
+        if rec_l95 < 0.99:
+            return {
+                'gate_pass': False,
+                'status': 'HOLD_S9_EXPLANT_EN_BLOC_RECOVERY_BELOW_99PCT',
+                'day90_recovery_lower95': rec_l95,
+            }
+    return {
+        'gate_pass': True,
+        'status': 'CLEARED_GATE0S_DUAL_SHEDDING_AND_SEPARATED_RECOVERY',
+        'ddpcr_u95': dd_res['u95_binomial'],
+        'viable_u95': vi_res['u95_binomial'],
+        'day90_recovery_lower95': rec_l95,
     }

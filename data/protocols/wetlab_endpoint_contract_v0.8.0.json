@@ -52,7 +52,10 @@
     "physical_route_id",
     "assay_campaign_id",
     "reset_prior_safety_stop_target_category",
-    "submitter_id"
+    "submitter_id",
+    "contrast_b1_geometry_arm",
+    "contrast_b2_perfusion_and_retrieval_arm",
+    "contrast_b3_donor_iec_arm"
   ],
   "boolean_policy_keys": [
     "require_full_5endpoint_s9_panel",
@@ -133,7 +136,11 @@
     "mcb_imprinting_ic1_ic2_igdmr_conjunctive_cleared",
     "stage7_lot_imprinting_ic1_ic2_igdmr_conjunctive_cleared",
     "mcb_and_lot_xci_46xx_3axis_cleared_or_46xy",
-    "mcb_and_lot_mtdna_1000x_numt_filtered_cleared"
+    "mcb_and_lot_mtdna_1000x_numt_filtered_cleared",
+    "require_full_iip0025_hurdle4_transport_and_challenger_panel",
+    "p05_two_timepoint_same_lot_envelope_verified",
+    "contrast_b2_route_qualification_distinct_from_portfolio_credit_verified",
+    "contrast_b3_zero_primate_host_ingrowth_verified"
   ],
   "endpoints": [
     {
@@ -3363,6 +3370,182 @@
       "default_se": 0.05,
       "minimum_se": 0.001,
       "unit": "formic_acid_extracted_insoluble_iapp_fold_over_quantifiable_age_matched_reference"
+    },
+    {
+      "endpoint_id": "stage0_p05_precure_active_catalase_input_u_333cm2",
+      "meanKey": "obs_p05_precure_active_catalase_input_u_333cm2",
+      "seKey": "obs_p05_precure_active_catalase_input_se_u",
+      "min": 0.0,
+      "max": 1000000.0,
+      "se_required": false,
+      "default_se": 500.0,
+      "minimum_se": 0.001,
+      "unit": "precure_input_recombinant_human_p04040_catalase_units_across_333p33cm2"
+    },
+    {
+      "endpoint_id": "stage0_p05_postcure_t0_active_catalase_iu_333cm2",
+      "meanKey": "obs_p05_postcure_t0_active_catalase_iu_333cm2",
+      "seKey": "obs_p05_postcure_t0_active_catalase_se_iu",
+      "min": 0.0,
+      "max": 1000000.0,
+      "se_required": false,
+      "default_se": 500.0,
+      "minimum_se": 0.001,
+      "unit": "postcure_t0_immobilized_active_catalase_iu_across_333p33cm2"
+    },
+    {
+      "endpoint_id": "stage0_p05_cure_immobilization_yield_pct",
+      "meanKey": "obs_p05_cure_immobilization_yield_pct",
+      "seKey": "obs_p05_cure_immobilization_yield_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 0.001,
+      "unit": "postcure_t0_over_precure_input_catalase_immobilization_yield_percentage"
+    },
+    {
+      "endpoint_id": "stage0_p05_336h_catalase_retention_pct",
+      "meanKey": "obs_p05_336h_catalase_retention_pct",
+      "seKey": "obs_p05_336h_catalase_retention_se",
+      "min": 0.0,
+      "max": 150.0,
+      "se_required": false,
+      "default_se": 1.5,
+      "minimum_se": 0.001,
+      "unit": "hour336_day14_dynamic_washout_active_film_catalase_retention_percentage_of_postcure_t0"
+    },
+    {
+      "endpoint_id": "stage0_p05_z70_gel_interface_h2o2_max_uM",
+      "meanKey": "obs_p05_z70_gel_interface_h2o2_max_uM",
+      "seKey": "obs_p05_z70_gel_interface_h2o2_max_se",
+      "min": 0.0,
+      "max": 200.0,
+      "se_required": false,
+      "default_se": 0.1,
+      "minimum_se": 0.001,
+      "unit": "exact_z70um_catalase_film_to_gel_interface_peak_24h_repeat_burst_h2o2_micromolar"
+    },
+    {
+      "endpoint_id": "stage0_gate0s_day30_en_bloc_recovery_fraction",
+      "meanKey": "obs_gate0s_day30_en_bloc_recovery_fraction",
+      "seKey": "obs_gate0s_day30_en_bloc_recovery_se",
+      "min": 0.0,
+      "max": 1.0,
+      "se_required": false,
+      "default_se": 0.002,
+      "minimum_se": 0.001,
+      "unit": "gate0s_day30_en_bloc_vascularized_pouch_recovery_fraction"
+    },
+    {
+      "endpoint_id": "stage0_gate0s_day90_en_bloc_recovery_fraction",
+      "meanKey": "obs_gate0s_day90_en_bloc_recovery_fraction",
+      "seKey": "obs_gate0s_day90_en_bloc_recovery_se",
+      "min": 0.0,
+      "max": 1.0,
+      "se_required": false,
+      "default_se": 0.002,
+      "minimum_se": 0.001,
+      "unit": "gate0s_day90_en_bloc_vascularized_pouch_recovery_fraction"
+    },
+    {
+      "endpoint_id": "stage0_contrast_b1_paired_min_face_po2_gain_mmhg",
+      "meanKey": "obs_contrast_b1_paired_min_face_po2_gain_mmhg",
+      "seKey": "obs_contrast_b1_paired_min_face_po2_gain_se",
+      "min": -20.0,
+      "max": 40.0,
+      "se_required": false,
+      "default_se": 0.25,
+      "minimum_se": 0.001,
+      "unit": "contrast_b1_paired_80um_minus_100um_dose_matched_worst_face_po2_gain_mmhg"
+    },
+    {
+      "endpoint_id": "stage0_contrast_b1_80um_worst_face_po2_mmhg",
+      "meanKey": "obs_contrast_b1_80um_worst_face_po2_mmhg",
+      "seKey": "obs_contrast_b1_80um_worst_face_po2_se",
+      "min": 0.0,
+      "max": 120.0,
+      "se_required": false,
+      "default_se": 0.4,
+      "minimum_se": 0.001,
+      "unit": "contrast_b1_dose_matched_80um_worst_face_pericellular_po2_mmhg"
+    },
+    {
+      "endpoint_id": "stage0_contrast_b1_80um_perifusion_gsis_si",
+      "meanKey": "obs_contrast_b1_80um_perifusion_gsis_si",
+      "seKey": "obs_contrast_b1_80um_perifusion_gsis_se",
+      "min": 0.1,
+      "max": 50.0,
+      "se_required": false,
+      "default_se": 0.15,
+      "minimum_se": 0.001,
+      "unit": "contrast_b1_dose_matched_80um_post_hypoxia_perifusion_gsis_stimulation_index"
+    },
+    {
+      "endpoint_id": "stage0_contrast_b2_human_exvivo_viable_window_h",
+      "meanKey": "obs_contrast_b2_human_exvivo_viable_window_h",
+      "seKey": "obs_contrast_b2_human_exvivo_viable_window_se_h",
+      "min": 0.0,
+      "max": 336.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 0.001,
+      "unit": "contrast_b2_paired_declined_human_omental_suprafascial_viable_perfusion_window_hours"
+    },
+    {
+      "endpoint_id": "stage0_contrast_b2_omental_vs_suprafascial_po2_gain_mmhg",
+      "meanKey": "obs_contrast_b2_omental_vs_suprafascial_po2_gain_mmhg",
+      "seKey": "obs_contrast_b2_omental_vs_suprafascial_po2_gain_se",
+      "min": -30.0,
+      "max": 60.0,
+      "se_required": false,
+      "default_se": 0.5,
+      "minimum_se": 0.001,
+      "unit": "contrast_b2_paired_omental_minus_suprafascial_pericellular_po2_gain_mmhg"
+    },
+    {
+      "endpoint_id": "stage0_contrast_b2_porcine_day90_en_bloc_recovery_fraction",
+      "meanKey": "obs_contrast_b2_porcine_day90_en_bloc_recovery_fraction",
+      "seKey": "obs_contrast_b2_porcine_day90_en_bloc_recovery_se",
+      "min": 0.0,
+      "max": 1.0,
+      "se_required": false,
+      "default_se": 0.002,
+      "minimum_se": 0.001,
+      "unit": "contrast_b2_chronic_porcine_day90_en_bloc_surgical_retrieval_fraction"
+    },
+    {
+      "endpoint_id": "stage0_contrast_b3_iec_omitted_surface_po2_mmhg",
+      "meanKey": "obs_contrast_b3_iec_omitted_surface_po2_mmhg",
+      "seKey": "obs_contrast_b3_iec_omitted_surface_po2_se",
+      "min": 0.0,
+      "max": 120.0,
+      "se_required": false,
+      "default_se": 0.4,
+      "minimum_se": 0.001,
+      "unit": "contrast_b3_design_z_140um_donor_iec_omitted_loaded_worst_face_po2_mmhg"
+    },
+    {
+      "endpoint_id": "stage0_contrast_b3_iec_omitted_outer_kperf_s_inv",
+      "meanKey": "obs_contrast_b3_iec_omitted_outer_kperf_s_inv",
+      "seKey": "obs_contrast_b3_iec_omitted_outer_kperf_se",
+      "min": 0.0,
+      "max": 1.0,
+      "se_required": false,
+      "default_se": 0.005,
+      "minimum_se": 0.001,
+      "unit": "contrast_b3_design_z_140um_donor_iec_omitted_host_ingrowth_kperf_s_inv"
+    },
+    {
+      "endpoint_id": "stage0_contrast_b3_iec_omitted_perifusion_gsis_si",
+      "meanKey": "obs_contrast_b3_iec_omitted_perifusion_gsis_si",
+      "seKey": "obs_contrast_b3_iec_omitted_perifusion_gsis_se",
+      "min": 0.1,
+      "max": 50.0,
+      "se_required": false,
+      "default_se": 0.15,
+      "minimum_se": 0.001,
+      "unit": "contrast_b3_design_z_140um_donor_iec_omitted_loaded_perifusion_gsis_si"
     }
   ]
 }

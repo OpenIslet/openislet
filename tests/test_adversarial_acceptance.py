@@ -277,9 +277,9 @@ def run_acceptance_suite(out_path: Path) -> int:
     offgrid_card_ids = [g.get("graveyard_card_id") for g in offgrid_guards]
     offgrid_ok = (
         len(gy_entries) == 10
-        and len(offgrid_guards) >= 9
+        and len(offgrid_guards) >= 10
         and len(set(offgrid_card_ids)) == len(offgrid_card_ids)
-        and {"GY-011", "GY-012", "GY-013", "GY-014", "GY-015", "GY-016", "GY-017", "GY-018", "GY-019"}.issubset(set(offgrid_card_ids))
+        and {"GY-011", "GY-012", "GY-013", "GY-014", "GY-015", "GY-016", "GY-017", "GY-018", "GY-019", "GY-020"}.issubset(set(offgrid_card_ids))
         and all(g.get("severity_level") in ("BLOCK", "WARN") and bool(g.get("pmids")) for g in offgrid_guards)
     )
     fired_counts = Counter(

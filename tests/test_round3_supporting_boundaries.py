@@ -3070,10 +3070,10 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     )
 
     # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (49 persisted boolean flags, 53 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
-    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 75
+    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 79
     assert "require_full_5endpoint_s9_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
     assert "require_full_7metric_combined_stress_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
-    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 79
+    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 83
     assert "5.71 mmHg at 100 um clusters with matched D_caps = D_gel" in film_limit["surgical_mitigation"]
 
     batch1_r7s2 = {
@@ -3156,7 +3156,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     # - R7S3-F02: Both wetlab_contract.evaluate_stage0_decision_tree and ingest_wetlab_results.evaluate_stage0_decision_tree reject non-boolean policy values
     from scripts import wetlab_contract as wc_mod
 
-    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 79
+    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 83
     for bkey in wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS:
         for bad_val in ("false", "False", 0, "true", "True", 1):
             for eval_fn in (wc_mod.evaluate_stage0_decision_tree, wetlab.evaluate_stage0_decision_tree):
@@ -5683,6 +5683,213 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
         target_product_def=pc_iip24.get_product_definition("ISLET1_A4_ARM1B", root=ROOT),
     )
     assert _eval_unk["independent_stealth_axes"]["cd47_sirpa_axis"] == "UNKNOWN"
+
+    # =========================================================================
+    # 50. Hurdle-4 Spatial-Minimum Oxygen Gates, Product-Bound Two-Timepoint
+    #     Human P04040 Catalase Envelope Hold, Unified Student-t Retrieval,
+    #     Dual-Assay Shedding & Contrasts B1-B3 (IIP-0025; DEC-104)
+    # =========================================================================
+    from scripts import wetlab_contract as wc_mod
+    _l4_full_25 = json.loads((ROOT / "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json").read_text(encoding="utf-8"))
+    _h4_25 = _l4_full_25["part_a_336h_spatial_reaction_diffusion_pouch_pde"]["hurdle4_spatial_oxygen_catalase_and_route_challengers_iip_0025"]
+    assert _h4_25["contribution_id"] == "IIP-0025" and _h4_25["decision_id"] == "DEC-104"
+    assert _h4_25["graveyard_card_id"] == "GY-020"
+    assert "PMID:21788575" in _h4_25["primary_citations"] and "PMID:21788581" not in _h4_25["primary_citations"]
+
+    _uc_25 = _h4_25["ordered_unit_cell_multimesh_dual_band_gate"]
+    assert _uc_25["nominal_100um_350um_no_film"]["passes_unrounded_multimesh_dual_band_iip_0025"] is False
+    assert _uc_25["nominal_100um_350um_no_film"]["fv_face_min_by_nx_40_60_80_mmhg"] == [12.7988, 12.6776, 13.0542]
+    assert _uc_25["layout_a_350um_barrier_100um"]["passes_unrounded_multimesh_dual_band_iip_0025"] is False
+    assert _uc_25["layout_a_350um_barrier_100um"]["fv_face_min_by_nx_40_60_80_mmhg"] == [12.6447, 12.8978, 12.8766]
+    assert _uc_25["nominal_80um_350um_no_film"]["passes_unrounded_multimesh_dual_band_iip_0025"] is True
+    assert _uc_25["nominal_80um_350um_no_film"]["fv_face_min_by_nx_40_60_80_mmhg"] == [16.1611, 16.1164, 16.3162]
+    assert _uc_25["layout_a_350um_barrier_80um"]["passes_unrounded_multimesh_dual_band_iip_0025"] is True
+    assert _uc_25["layout_a_350um_barrier_80um"]["fv_face_min_by_nx_40_60_80_mmhg"] == [15.7101, 15.9496, 15.8598]
+    assert _uc_25["plus10pct_joint_stress_80um_layout_a_350um_barrier"]["passes_unrounded_multimesh_dual_band_iip_0025"] is False
+    assert _uc_25["nx60_nz105_boundary_plane_symmetry_diagnostics"]["lamina_boundary_asymmetry_voxels"] == 7200
+    assert _uc_25["wigner_seitz_unrounded_0p497_boundary_check"]["passes_unrounded_0p5mmhg_gate"] is False
+    assert _uc_25["contrast_b1_paired_effect_390um_primary_nx40_mmhg"] == 2.6781
+    assert _uc_25["contrast_b1_paired_effect_350um_sensitivity_nx40_mmhg"] == 3.0654
+
+    _dz_25 = _h4_25["design_z_and_contrast_b3_unrounded_min_face_audit"]
+    assert _dz_25["pb30_100um_d_chronic"]["passes_unrounded_min_face_iip_0025"] is False
+    assert _dz_25["pb30_100um_d_chronic"]["fv_harmonic_face_min_mmhg"] == 14.2854
+    assert 30.70 <= _dz_25["unrounded_bed_po2_cutoffs_mmhg"]["mode_a_mixed_100um_d_chronic_72x72x42"] <= 30.75
+    assert 35.55 <= _dz_25["unrounded_bed_po2_cutoffs_mmhg"]["mode_a_mixed_100um_d_chronic_div3_collagen_48x48x28"] <= 35.65
+    assert _dz_25["pfc_5volpct_conditional_20x_solubility_reservoir"]["standalone_buffer_seconds"] == 4.525
+    assert _dz_25["contrast_b3_donor_iec_omitted_pb30_intact_kperf_0p1358"]["100um"]["passes_unrounded_min_face_iip_0025"] is True
+    assert _dz_25["contrast_b3_donor_iec_omitted_pb30_halved_kperf_0p0679"]["100um"]["passes_unrounded_min_face_iip_0025"] is False
+
+    _p05_25 = _h4_25["gate_p05_two_timepoint_p04040_and_dual_basis_h2o2_audit"]
+    assert [
+        _p05_25["stationary_aged_repeat_burst_dual_basis_h2o2"]["basis_1500_ieq_cm2"][k]["gel_interface_z70p0um_max_h2o2_uM"]
+        for k in ("retained_73800_iu", "undersized_51660_iu", "half_36900_iu", "undersized_26357_iu")
+    ] == [0.7019, 1.297, 2.2076, 3.5984]
+    assert [
+        _p05_25["stationary_aged_repeat_burst_dual_basis_h2o2"]["basis_2500_ieq_cm2"][k]["gel_interface_z70p0um_max_h2o2_uM"]
+        for k in ("retained_73800_iu", "undersized_51660_iu", "half_36900_iu", "undersized_26357_iu")
+    ] == [1.17, 2.162, 3.68, 5.9989]
+
+    # Gate P05 subgate bypass fix: adding design_z_divider_arm to a Design A/X payload NEVER suppresses bovine P00432 species hold:
+    _bovine_bypass_attempt = wc_mod.evaluate_stage0_decision_tree({
+        "product_variant_id": "ISLET1_A4_ARM1B",
+        "p05_catalase_uniprot_accession": "P00432",
+        "p05_recombinant_human_catalase_verified": False,
+        "design_z_divider_arm": "PLAIN_HYDROGEL_140UM",
+    })
+    assert _bovine_bypass_attempt["resolved_architecture_assignments"]["p05_catalase_species_gate_status"] == "HOLD_P05_XENO_OR_UNVERIFIED_CATALASE_SPECIES_REQUIRES_HUMAN_P04040"
+    assert _bovine_bypass_attempt["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_P05_XENO_OR_UNVERIFIED_CATALASE_SPECIES_REQUIRES_HUMAN_P04040"
+
+    # Registered CaO2 product running P05 barrier panel without P04040 species panel cannot clear P05 subgate:
+    _omit_species_attempt = wc_mod.evaluate_stage0_decision_tree({
+        "product_variant_id": "ISLET1_A4_X_MOL_RNLS_WT",
+        "p05_barrier_slab_geometry_mode": "FIXED_350UM_2X105UM_BANDS",
+        "p05_full_336h_coupled_o2_h2o2_ca_ph_qualified": True,
+        "obs_p05_microbead_volume_d99_um": 42.0,
+        "obs_p05_microbead_volume_d99_se": 1.0,
+        "obs_p05_catalase_barrier_film_um": 24.0,
+        "obs_p05_catalase_barrier_film_se": 0.5,
+        "obs_p05_islet_plane_h2o2_max_uM": 1.1,
+        "obs_p05_islet_plane_h2o2_max_se": 0.05,
+        "obs_p05_day7_catalase_retention_pct": 80.0,
+        "obs_p05_day7_catalase_retention_se": 1.0,
+        "obs_p05_336h_retained_catalase_iu_333cm2": 77171.25,
+        "obs_p05_336h_retained_catalase_iu_333cm2_se": 300.0,
+    })
+    assert _omit_species_attempt["resolved_architecture_assignments"]["p05_catalase_species_gate_status"] == "HOLD_P05_XENO_OR_UNVERIFIED_CATALASE_SPECIES_REQUIRES_HUMAN_P04040"
+
+    # Two-timepoint human P04040 catalase envelope + unrounded endotoxin (0.0550474255 vs 0.05505) + z=70.0 um H2O2:
+    _m_9083 = 158300.0 / 17428.015  # 9.0830769... mg
+    _t95_df5 = wc_mod.student_t_ppf_one_sided_95(5.0)
+    _eu_fail_se = 0.001
+    _eu_fail_mean = 0.05505 - _t95_df5 * _eu_fail_se  # U95_t == 0.05505 > 0.0550474255!
+    assert wc_mod.evaluate_coupled_catalase_endotoxin_gate_iip0025(
+        m_total_cat_mg=_m_9083,
+        eu_per_mg_mean=_eu_fail_mean,
+        eu_per_mg_se=_eu_fail_se,
+        total_implant_eu_mean=_m_9083 * _eu_fail_mean,
+        total_implant_eu_se=0.005,
+        replicates_n=6,
+    )["status"] == "HOLD_P05_MASS_COUPLED_CATALASE_ENDOTOXIN_CAP_EXCEEDED"
+    assert wc_mod.evaluate_coupled_catalase_endotoxin_gate_iip0025(
+        m_total_cat_mg=_m_9083,
+        eu_per_mg_mean=0.040,
+        eu_per_mg_se=0.002,
+        total_implant_eu_mean=_m_9083 * 0.040,
+        total_implant_eu_se=0.010,
+        replicates_n=6,
+    )["gate_pass"] is True
+
+    _valid_p05_25 = {
+        "product_variant_id": "ISLET1_A4_ARM1B",
+        "obs_stage0_independent_lot_replicates_n": 6.0,
+        "obs_stage0_independent_lot_replicates_n_se": 1e-12,
+        "p05_catalase_uniprot_accession": "P04040",
+        "p05_recombinant_human_catalase_verified": True,
+        "p05_two_timepoint_same_lot_envelope_verified": True,
+        "obs_p05_precure_active_catalase_input_u_333cm2": 156000.0,
+        "obs_p05_precure_active_catalase_input_se_u": 200.0,
+        "obs_p05_cure_immobilization_yield_pct": 65.0,
+        "obs_p05_cure_immobilization_yield_se": 0.5,
+        "obs_p05_postcure_t0_active_catalase_iu_333cm2": 101400.0,
+        "obs_p05_postcure_t0_active_catalase_se_iu": 200.0,
+        "obs_p05_day7_catalase_retention_pct": 80.0,
+        "obs_p05_day7_catalase_retention_se": 1.0,
+        "obs_p05_day7_shed_catalase_mass_pct": 18.0,
+        "obs_p05_day7_shed_catalase_mass_se": 1.0,
+        "obs_p05_336h_catalase_retention_pct": 76.0,
+        "obs_p05_336h_catalase_retention_se": 1.0,
+        "obs_p05_336h_retained_catalase_iu_333cm2": 77064.0,
+        "obs_p05_336h_retained_catalase_iu_333cm2_se": 300.0,
+        "obs_p05_z70_gel_interface_h2o2_max_uM": 1.17,
+        "obs_p05_z70_gel_interface_h2o2_max_se": 0.05,
+        "obs_p05_total_loaded_catalase_protein_mg": 8.95,
+        "obs_p05_total_loaded_catalase_protein_mg_se": 0.05,
+        "obs_p05_catalase_endotoxin_eu_per_mg": 0.040,
+        "obs_p05_catalase_endotoxin_eu_per_mg_se": 0.002,
+        "obs_p05_total_implant_catalase_endotoxin_eu": 0.358,
+        "obs_p05_total_implant_catalase_endotoxin_eu_se": 0.010,
+    }
+    _ev_p05_ok = wc_mod.evaluate_stage0_decision_tree(_valid_p05_25)
+    assert _ev_p05_ok["resolved_architecture_assignments"]["hurdle4_spatial_oxygen_catalase_and_route_evaluation_iip_0025"]["gate_pass"] is True
+    assert wc_mod.evaluate_stage0_decision_tree({
+        **_valid_p05_25,
+        "obs_p05_precure_active_catalase_input_u_333cm2": 295200.0,
+        "obs_p05_postcure_t0_active_catalase_iu_333cm2": 191880.0,
+        "obs_p05_336h_retained_catalase_iu_333cm2": 145828.8,
+    })["resolved_architecture_assignments"]["hurdle4_spatial_oxygen_catalase_and_route_challengers_iip_0025"] == "HOLD_P05_PRECURE_CATALASE_INPUT_EXCEEDS_158300U_CAP"
+    assert wc_mod.evaluate_stage0_decision_tree({
+        **_valid_p05_25,
+        "obs_p05_z70_gel_interface_h2o2_max_uM": 5.9989,
+    })["safety_kill_s9_triggered"] is True
+
+    # Unified Student-t Day-90 Gate 0S retrieval across wetlab_contract.py AND ingest_wetlab_results.py + dual-assay shedding:
+    assert wetlab._explant_recovery_clears_student_t_0p99({
+        "obs_explant_en_bloc_recovery_fraction": 0.995,
+        "obs_explant_en_bloc_recovery_se": 0.0028,
+    }) is False
+    assert wetlab._explant_recovery_clears_student_t_0p99({
+        "obs_explant_en_bloc_recovery_fraction": 0.995,
+        "obs_explant_en_bloc_recovery_se": 0.001,
+    }) is True
+    assert wc_mod.evaluate_stage0_decision_tree({
+        "obs_explant_en_bloc_recovery_fraction": 0.995,
+        "obs_explant_en_bloc_recovery_se": 0.0028,
+    })["safety_kill_s9_triggered"] is True
+    assert wc_mod.evaluate_dual_assay_gate0s_shedding_iip0025(
+        ddpcr_k=0,
+        ddpcr_n=2995731,
+        ddpcr_specimen_unit_id="SISTER-DDPCR-01",
+        viable_k=0,
+        viable_n=2995731,
+        viable_specimen_unit_id="SISTER-VIABLE-02",
+        day90_recovery_mean=0.995,
+        day90_recovery_se=0.001,
+        day90_replicates_n=6,
+    )["gate_pass"] is True
+    assert wc_mod.evaluate_dual_assay_gate0s_shedding_iip0025(
+        ddpcr_k=1,
+        ddpcr_n=5000000,
+        ddpcr_specimen_unit_id="SISTER-DDPCR-01",
+        viable_k=0,
+        viable_n=5000000,
+        viable_specimen_unit_id="SISTER-VIABLE-02",
+    )["status"] == "FAIL_HARD_STOP"
+    assert wc_mod.evaluate_dual_assay_gate0s_shedding_iip0025(
+        ddpcr_k=0,
+        ddpcr_n=2995731,
+        ddpcr_specimen_unit_id="SAME-UNIT",
+        viable_k=0,
+        viable_n=2995731,
+        viable_specimen_unit_id="SAME-UNIT",
+    )["status"] == "HOLD_GATE0S_DUAL_SHEDDING_REQUIRES_INDEPENDENT_SPECIMEN_UNITS"
+    assert wc_mod.evaluate_dual_assay_gate0s_shedding_iip0025(
+        ddpcr_k=0,
+        ddpcr_n=2995731,
+        ddpcr_specimen_unit_id="SISTER-DDPCR-01",
+        viable_k=0,
+        viable_n=2995731,
+        viable_specimen_unit_id="SISTER-VIABLE-02",
+        max_u95_fraction=1e-4,
+    )["status"] == "HOLD_CALLER_CAP_OR_PARAMETER_OVERRIDE_FORBIDDEN"
+
+    # Contrasts B1, B2, B3 & GY-020:
+    assert wc_mod.evaluate_stage0_decision_tree({
+        "contrast_b2_perfusion_and_retrieval_arm": "PAIRED_HUMAN_EXVIVO_AND_PORCINE_DAY30_90",
+        "contrast_b2_route_qualification_distinct_from_portfolio_credit_verified": False,
+        "obs_contrast_b2_human_exvivo_viable_window_h": 36.0,
+        "obs_contrast_b2_human_exvivo_viable_window_se_h": 1.0,
+        "obs_contrast_b2_omental_vs_suprafascial_po2_gain_mmhg": 8.0,
+        "obs_contrast_b2_omental_vs_suprafascial_po2_gain_se": 0.5,
+        "obs_contrast_b2_porcine_day90_en_bloc_recovery_fraction": 0.996,
+        "obs_contrast_b2_porcine_day90_en_bloc_recovery_se": 0.001,
+    })["resolved_architecture_assignments"]["hurdle4_spatial_oxygen_catalase_and_route_challengers_iip_0025"] == "HOLD_CONTRAST_B2_ROUTE_QUALIFICATION_CONFLATED_WITH_PORTFOLIO_CREDIT"
+
+    _gy_25 = json.loads((ROOT / "data/graveyard/idea_graveyard_v0.5.json").read_text(encoding="utf-8"))
+    assert len(_gy_25["graveyard_entries"]) == 10
+    _g20 = [g for g in _gy_25["off_grid_molecular_dead_end_guardrails"]["guardrails"] if g["graveyard_card_id"] == "GY-020"]
+    assert len(_g20) == 1 and _g20[0]["severity_level"] == "BLOCK" and _g20[0]["contribution_id"] == "IIP-0025"
+
 
 
 

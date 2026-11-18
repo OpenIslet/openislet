@@ -847,22 +847,22 @@ def solve_spherical_cluster_po2_bvp(
             "shell_closure_residual_mmhg": ewald_residual,
             "method": "BRACKETED_SELF_CONSISTENT_SHELL_DIAGNOSTIC",
         },
-        "wigner_seitz_two_zone_fv_uniform_supply_surface_po2_mmhg": round(fv_uniform["surface_po2_mmhg"], 2),
+        "wigner_seitz_two_zone_fv_uniform_supply_surface_po2_mmhg": round(fv_uniform["surface_po2_unrounded_mmhg"], 2),
         "wigner_seitz_two_zone_fv_uniform_supply_surface_po2_unrounded_mmhg": fv_uniform["surface_po2_unrounded_mmhg"],
-        "wigner_seitz_two_zone_fv_uniform_supply_core_po2_mmhg": round(fv_uniform["core_po2_mmhg"], 2),
+        "wigner_seitz_two_zone_fv_uniform_supply_core_po2_mmhg": round(fv_uniform["core_po2_unrounded_mmhg"], 2),
         "wigner_seitz_two_zone_fv_uniform_supply_exact": fv_uniform,
         "wigner_seitz_two_zone_fv_uniform_supply_core_po2_unrounded_mmhg": fv_uniform["core_po2_unrounded_mmhg"],
-        "wigner_seitz_two_zone_fv_gel_only_supply_surface_po2_mmhg": round(fv_gel_only["surface_po2_mmhg"], 2),
+        "wigner_seitz_two_zone_fv_gel_only_supply_surface_po2_mmhg": round(fv_gel_only["surface_po2_unrounded_mmhg"], 2),
         "wigner_seitz_two_zone_fv_gel_only_supply_surface_po2_unrounded_mmhg": fv_gel_only["surface_po2_unrounded_mmhg"],
-        "wigner_seitz_two_zone_fv_gel_only_supply_core_po2_mmhg": round(fv_gel_only["core_po2_mmhg"], 2),
+        "wigner_seitz_two_zone_fv_gel_only_supply_core_po2_mmhg": round(fv_gel_only["core_po2_unrounded_mmhg"], 2),
         "wigner_seitz_two_zone_fv_gel_only_supply_exact": fv_gel_only,
         "wigner_seitz_two_zone_fv_gel_only_supply_core_po2_unrounded_mmhg": fv_gel_only["core_po2_unrounded_mmhg"],
         # Map legacy keys to the conservative two-zone FV closures (gel-only lower bound and uniform supply)
         # so all gates use solved two-zone FV closures rather than an ad-hoc 0.45 capillary shell multiplier:
-        "wigner_seitz_fluctuation_corrected_surface_po2_mmhg": round(fv_gel_only["surface_po2_mmhg"], 2),
-        "wigner_seitz_fluctuation_corrected_core_po2_mmhg": round(fv_gel_only["core_po2_mmhg"], 2),
-        "wigner_seitz_unsubtracted_shell_surface_po2_mmhg": round(fv_uniform["surface_po2_mmhg"], 2),
-        "wigner_seitz_unsubtracted_shell_core_po2_mmhg": round(fv_uniform["core_po2_mmhg"], 2),
+        "wigner_seitz_fluctuation_corrected_surface_po2_mmhg": round(fv_gel_only["surface_po2_unrounded_mmhg"], 2),
+        "wigner_seitz_fluctuation_corrected_core_po2_mmhg": round(fv_gel_only["core_po2_unrounded_mmhg"], 2),
+        "wigner_seitz_unsubtracted_shell_surface_po2_mmhg": round(fv_uniform["surface_po2_unrounded_mmhg"], 2),
+        "wigner_seitz_unsubtracted_shell_core_po2_mmhg": round(fv_uniform["core_po2_unrounded_mmhg"], 2),
         "spherical_bvp_solver_diagnostics": sph_diag,
     }
 
@@ -2808,29 +2808,35 @@ def solve_336h_spatial_pouch_pde() -> Dict[str, Any]:
                 "two_zone_fv_uniform_supply_core_po2_mmhg": r_sens_fo["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"][
                     "two_zone_fv_uniform_supply_120um_core_po2_mmhg"
                 ],
+                "two_zone_fv_uniform_supply_core_po2_unrounded_mmhg": r_sens_fo["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"][
+                    "two_zone_fv_uniform_supply_120um_core_po2_unrounded_mmhg"
+                ],
                 "two_zone_fv_gel_only_supply_core_po2_mmhg": r_sens_fo["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"][
                     "two_zone_fv_gel_only_supply_120um_core_po2_mmhg"
+                ],
+                "two_zone_fv_gel_only_supply_core_po2_unrounded_mmhg": r_sens_fo["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"][
+                    "two_zone_fv_gel_only_supply_120um_core_po2_unrounded_mmhg"
                 ],
                 "passes_15mmHg_gsis_gate_at_2500_ieq_cm2": bool(r_sens_fo["required_120um_oxygen_solvers_converged"] and r_sens_fo["min_slab_po2_unrounded_mmhg"] >= 15.0),
                 "passes_0p5mmHg_anoxic_necrosis_gate": bool(r_sens_fo["required_120um_oxygen_solvers_converged"] and r_sens_fo["min_120um_cluster_core_po2_unrounded_mmhg"] >= 0.5),
                 "passes_2p0mmHg_combined_core_safety_gate": bool(r_sens_fo["required_120um_oxygen_solvers_converged"] and r_sens_fo["min_120um_cluster_core_po2_unrounded_mmhg"] >= 2.0),
                 "passes_0p5mmHg_two_zone_uniform_core_gate": bool(
                     r_sens_fo["required_120um_oxygen_solvers_converged"]
-                    and r_sens_fo["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"]["two_zone_fv_uniform_supply_120um_core_po2_mmhg"] >= 0.5
+                    and r_sens_fo["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"]["two_zone_fv_uniform_supply_120um_core_po2_unrounded_mmhg"] >= 0.5
                 ),
                 "passes_2p0mmHg_two_zone_uniform_core_gate": bool(
                     r_sens_fo["required_120um_oxygen_solvers_converged"]
-                    and r_sens_fo["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"]["two_zone_fv_uniform_supply_120um_core_po2_mmhg"] >= 2.0
+                    and r_sens_fo["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"]["two_zone_fv_uniform_supply_120um_core_po2_unrounded_mmhg"] >= 2.0
                 ),
                 "passes_0p5mmHg_two_zone_fv_gel_only_gate": bool(
                     r_sens_fo["required_120um_oxygen_solvers_converged"]
-                    and r_sens_fo["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"]["two_zone_fv_gel_only_supply_120um_core_po2_mmhg"] >= 0.5
+                    and r_sens_fo["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"]["two_zone_fv_gel_only_supply_120um_core_po2_unrounded_mmhg"] >= 0.5
                 ),
                 "passes_2p0mmHg_two_zone_fv_gel_only_gate": r_sens_fo["passes_strict_gel_only_two_zone_fv_2p0mmHg_core_gate"],
                 "core_gate_basis_note": (
                     "passes_0p5mmHg_anoxic_necrosis_gate and passes_2p0mmHg_combined_core_safety_gate evaluate the optimistic Dirichlet boundary screen "
                     "(min_120um_cluster_core_po2_mmhg, p(R) = p_slab without pericellular shell depletion), whereas passes_2p0mmHg_two_zone_fv_gel_only_gate "
-                    "and passes_0p5mmHg_two_zone_fv_gel_only_gate evaluate the operative conservative Wigner-Seitz two-zone gel-only pericellular-shell core pO2 (DEC-078)."
+                    "and passes_0p5mmHg_two_zone_fv_gel_only_gate evaluate the operative conservative unrounded Wigner-Seitz two-zone gel-only pericellular-shell core pO2 (DEC-078; IIP-0025; DEC-104)."
                 ),
                 "shrinking_core_coupled_bvp_ultracode_v80_09": {
                     "time_of_min_slab_po2_hours": r_sens_sc["time_of_min_slab_po2_hours"],
@@ -2839,9 +2845,15 @@ def solve_336h_spatial_pouch_pde() -> Dict[str, Any]:
                     "two_zone_fv_uniform_supply_core_po2_mmhg": r_sens_sc[
                         "wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"
                     ]["two_zone_fv_uniform_supply_120um_core_po2_mmhg"],
+                    "two_zone_fv_uniform_supply_core_po2_unrounded_mmhg": r_sens_sc[
+                        "wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"
+                    ]["two_zone_fv_uniform_supply_120um_core_po2_unrounded_mmhg"],
                     "two_zone_fv_gel_only_supply_core_po2_mmhg": r_sens_sc[
                         "wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"
                     ]["two_zone_fv_gel_only_supply_120um_core_po2_mmhg"],
+                    "two_zone_fv_gel_only_supply_core_po2_unrounded_mmhg": r_sens_sc[
+                        "wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"
+                    ]["two_zone_fv_gel_only_supply_120um_core_po2_unrounded_mmhg"],
                     "max_interstitial_h2o2_uM": r_sens_sc["max_interstitial_h2o2_uM"],
                     "max_interstitial_ph": r_sens_sc["max_interstitial_ph"],
                     "passes_15mmHg_gsis_gate_at_2500_ieq_cm2": bool(r_sens_sc["required_120um_oxygen_solvers_converged"] and r_sens_sc["min_slab_po2_unrounded_mmhg"] >= 15.0),
@@ -2849,15 +2861,15 @@ def solve_336h_spatial_pouch_pde() -> Dict[str, Any]:
                     "passes_all_oxygen_peroxide_and_ph_gates": r_sens_sc["passes_all_oxygen_peroxide_and_ph_gates"],
                     "passes_0p5mmHg_two_zone_uniform_core_gate": bool(
                         r_sens_sc["required_120um_oxygen_solvers_converged"]
-                        and r_sens_sc["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"]["two_zone_fv_uniform_supply_120um_core_po2_mmhg"] >= 0.5
+                        and r_sens_sc["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"]["two_zone_fv_uniform_supply_120um_core_po2_unrounded_mmhg"] >= 0.5
                     ),
                     "passes_2p0mmHg_two_zone_uniform_core_gate": bool(
                         r_sens_sc["required_120um_oxygen_solvers_converged"]
-                        and r_sens_sc["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"]["two_zone_fv_uniform_supply_120um_core_po2_mmhg"] >= 2.0
+                        and r_sens_sc["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"]["two_zone_fv_uniform_supply_120um_core_po2_unrounded_mmhg"] >= 2.0
                     ),
                     "passes_0p5mmHg_two_zone_fv_gel_only_gate": bool(
                         r_sens_sc["required_120um_oxygen_solvers_converged"]
-                        and r_sens_sc["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"]["two_zone_fv_gel_only_supply_120um_core_po2_mmhg"] >= 0.5
+                        and r_sens_sc["wigner_seitz_120um_cluster_pericellular_shell_audit_v80_001"]["two_zone_fv_gel_only_supply_120um_core_po2_unrounded_mmhg"] >= 0.5
                     ),
                     "passes_2p0mmHg_two_zone_fv_gel_only_gate": r_sens_sc["passes_strict_gel_only_two_zone_fv_2p0mmHg_core_gate"],
                 },
@@ -6842,7 +6854,12 @@ def build_explicit_3d_clumping_and_microbead_h2o2_audit_iip_0019(lead_regime: Di
             standoff_z_cm=standoff_phys_um * 1e-4, p_ext=p_ext_val
         )
         p3 = res_o2["p_3d"]
+        bot_sph = r_bot <= rad_cm
         fv_stats = _compute_exact_fv_interface_stats_iip_0019(p3, perm, top_sph)
+        fv_stats_bot = _compute_exact_fv_interface_stats_iip_0019(p3, perm, bot_sph)
+        dual_min_raw = float(min(fv_stats["fv_harmonic_face_min_mmhg"], fv_stats_bot["fv_harmonic_face_min_mmhg"]))
+        dual_mean_raw = float(min(fv_stats["fv_harmonic_face_mean_mmhg"], fv_stats_bot["fv_harmonic_face_mean_mmhg"]))
+        core_min_raw = float(np.min(p3[in_sph]))
         sh_095_105 = (r_top >= 0.95 * rad_cm) & (r_top <= 1.05 * rad_cm)
         sh_095_106 = (r_top >= 0.95 * rad_cm) & (r_top <= 1.06 * rad_cm)
         sh_085_104 = (r_top >= 0.85 * rad_cm) & (r_top <= 1.04 * rad_cm)
@@ -6865,13 +6882,19 @@ def build_explicit_3d_clumping_and_microbead_h2o2_audit_iip_0019(lead_regime: Di
             "nz_vertical": nz_c,
             "shift_half_voxel": shift_half_voxel,
             "fv_harmonic_face_mean_mmhg": round(fv_stats["fv_harmonic_face_mean_mmhg"], 4),
-            "fv_harmonic_face_min_mmhg": round(fv_stats["fv_harmonic_face_min_mmhg"], 4),
+            "fv_harmonic_face_min_mmhg": round(dual_min_raw, 4),
+            "fv_harmonic_face_min_unrounded_mmhg": dual_min_raw,
+            "fv_dual_band_worst_face_mean_mmhg": round(dual_mean_raw, 4),
+            "fv_dual_band_worst_face_min_mmhg": round(dual_min_raw, 4),
             "inner_surface_voxel_mean_mmhg": round(fv_stats["inner_surface_voxel_mean_mmhg"], 4),
             "shell_0p95_to_1p05R_mmhg": round(float(np.mean(p3[sh_095_105])), 4),
             "shell_0p95_to_1p06R_mmhg": round(float(np.mean(p3[sh_095_106])), 4),
             "shell_0p85_to_1p04R_mmhg": round(float(np.mean(p3[sh_085_104])), 4),
             "shell_0p85_to_1p06R_mmhg": round(float(np.mean(p3[sh_085_106])), 4),
-            "min_core_po2_mmhg": round(float(np.min(p3[in_sph])), 4),
+            "min_core_po2_mmhg": round(core_min_raw, 4),
+            "min_core_po2_unrounded_mmhg": core_min_raw,
+            "passes_spatial_mean_diagnostic_15_and_5": bool(dual_mean_raw >= 15.0 and core_min_raw >= 5.0),
+            "passes_unrounded_dual_band_min_face_15_and_core_5_iip_0025": bool(dual_min_raw >= 15.0 and core_min_raw >= 5.0),
             "voxel_frac_below_0p5mmhg_pct": round(100.0 * float(np.mean(p3[in_sph] < 0.5)), 4),
             "rel_mass_balance_error": res_o2["rel_mass_balance_error"],
         }
@@ -7076,7 +7099,10 @@ def build_explicit_3d_clumping_and_microbead_h2o2_audit_iip_0019(lead_regime: Di
                 "80um_1500ieq_45um_physical_collagen_135um_hydrogel_equiv": c_80_45phys,
                 "provenance_note": (
                     "Rule S6 baseline models 15.0 um physical fibrous collagen at D_capsule = D_gel_chronic / 3 "
-                    "(equivalent to 45.0 um chronic hydrogel resistance; 17.0804 mmHg harmonic-face / 8.1635 mmHg core PASS). "
+                    "(equivalent to 45.0 um chronic hydrogel resistance; 17.0804 mmHg harmonic-face spatial mean / 8.1635 mmHg core, "
+                    "while unrounded dual-band worst-face fv_harmonic_face_min_mmhg across nx in {40, 60, 80} is 12.7988 / 12.6776 / 13.0542 mmHg < 15.0 mmHg FAIL, "
+                    "reconciled by dose-matched 80 um clusters at 142.22 um square / 152.83 um hex pitch clearing 16.1611 / 16.1164 / 16.3162 mmHg no-film "
+                    "and 15.7101 / 15.9496 / 15.8598 mmHg 350-um barrier; IIP-0025; DEC-104). "
                     "A true 45.0 um physical fibrous collagen capsule equals 135.0 um chronic-hydrogel-equivalent standoff "
                     "(12.4414 mmHg harmonic-face / 4.0062 mmHg core FAIL on 100 um clusters), consistent with Playbook chronic "
                     "capsule escalation (>30 um enforcing 80 um clusters [14.2371 / 8.6253 mmHg] or >50 um requiring omental "
@@ -7103,7 +7129,8 @@ def build_explicit_3d_clumping_and_microbead_h2o2_audit_iip_0019(lead_regime: Di
                 ),
             },
             "ordered_2cluster_periodic_unit_cell_note": (
-                "Ordered lattice baseline solves a 2-cluster periodic unit cell (100% pass; never reported as 0/160)."
+                "Ordered lattice baseline solves a 2-cluster periodic unit cell (spatial mean diagnostic only, never reported as 0/160; "
+                "operative IIP-0025 / DEC-104 gate requires unrounded min over nx in {40, 60, 80} dual-band worst-face >= 15.0 mmHg and core >= 5.0 mmHg)."
             ),
             "stochastic_3d_rsa_10_tile_160_cluster_ensemble": {
                 "rng_seed": 20261115,
@@ -7182,8 +7209,9 @@ def build_explicit_3d_clumping_and_microbead_h2o2_audit_iip_0019(lead_regime: Di
         "conservative_engineering_margin_vs_empirical_injury_framing": {
             "cluster_core_5mmhg_margin_note": (
                 "Core pO2 >= 5.0 mmHg and interface >= 15.0 mmHg are conservative product engineering gates above classical "
-                "anoxic necrosis (~0.07 mmHg, PMID:21693022; Layer-4 0.5 mmHg floor; 0/160 RSA clusters < 0.5 mmHg) and "
-                "within viable low-oxygen graft staining regimes (<10 mmHg pimonidazole in experimental islet grafts per Olsson et al. 2011 PMID:21788575; review context Olsson & Carlsson 2011 PMID:21788581; IIP-0024; DEC-103)."
+                "anoxic necrosis (~0.07 mmHg, PMID:21693022, which also does not validate the separate 0.5 mmHg Layer-4 floor; 0/160 RSA clusters < 0.5 mmHg) and "
+                "within viable low-oxygen graft staining regimes (<10 mmHg pimonidazole in syngeneic mouse intraportal/renal islet grafts per Olsson et al. 2011 PMID:21788575; "
+                "neither paper sets exact 15.0 / 5.0 mmHg device floors; IIP-0025; DEC-104)."
             ),
             "extracellular_h2o2_2p5_and_5p0uM_margin_note": (
                 "Extracellular H2O2 <= 2.5 uM (Tier-1 target) and <= 5.0 uM (Tier-2 ceiling) are conservative chronic "
@@ -7206,7 +7234,6 @@ def build_explicit_3d_clumping_and_microbead_h2o2_audit_iip_0019(lead_regime: Di
                 "PMID:38993891",
                 "PMID:25893782",
                 "PMID:21788575",
-                "PMID:21788581",
                 "PMID:24065585",
                 "PMID:20124731",
                 "PMID:27872147",
@@ -7345,14 +7372,18 @@ def compute_design_z_140um_parameterized_case(
     areal_loading_ieq_cm2: float = 1500.0,
     cluster_diam_um: float = 100.0,
     standoff_um: float = 15.0,
+    standoff_ext_diffusivity_factor: float = 1.0,
+    stromal_ocr_fraction: float = 0.15,
+    nx_override: int = 48,
+    nz_override: int = 28,
 ) -> Dict[str, Any]:
-    """Executable parameterized 48x48x28 3D FVM solver for Design Z 140 um Zero-CaO2 cases (IIP-0021; DEC-100)."""
+    """Executable parameterized 3D FVM solver for Design Z 140 um Zero-CaO2 cases gated on unrounded min-face pO2 (IIP-0021; DEC-100; IIP-0025; DEC-104)."""
     r_cm = 0.5 * float(cluster_diam_um) * 1e-4
     v_cl = (4.0 / 3.0) * math.pi * (r_cm ** 3)
     n_mono = (float(areal_loading_ieq_cm2) * VOL_1_IEQ_CM3) / v_cl
     pitch_cm = math.sqrt(1.0 / n_mono)
     slab_h_cm = 0.0140
-    nx, ny, nz = 48, 48, 28
+    nx, ny, nz = int(nx_override), int(nx_override), int(nz_override)
     dx = pitch_cm / nx
     dy = pitch_cm / ny
     dz = slab_h_cm / nz
@@ -7369,35 +7400,48 @@ def compute_design_z_140um_parameterized_case(
         mg_factor = (kp_ratio + 2.0 + 2.0 * phi_p * (kp_ratio - 1.0)) / (kp_ratio + 2.0 - phi_p * (kp_ratio - 1.0))
     p_krogh_gel = float(d_gel_cm2_s) * mg_factor * ALPHA_BUNSEN_MOL_CM3_MMHG
     p_krogh_tissue = D_O2_ISLET_TISSUE_CM2_S * ALPHA_BUNSEN_MOL_CM3_MMHG
-    p_krogh_chronic_ext = 1.50e-5 * ALPHA_BUNSEN_MOL_CM3_MMHG
+    p_krogh_chronic_ext = 1.50e-5 * float(standoff_ext_diffusivity_factor) * ALPHA_BUNSEN_MOL_CM3_MMHG
     perm = np.where(in_cl, p_krogh_tissue, p_krogh_gel)
     t_phi = (float(areal_loading_ieq_cm2) * VOL_1_IEQ_CM3) / slab_h_cm
     in_gel = ~in_cl
     vmax = np.zeros_like(X)
     vmax[in_cl] = (VMAX_ISLET_PURE_MOL_CM3_S * float(ocr_multiplier)) * (t_phi / float(np.mean(in_cl)))
-    vmax[in_gel] = (t_phi * VMAX_ISLET_PURE_MOL_CM3_S * 0.15 * float(ocr_multiplier)) / float(np.mean(in_gel))
+    vmax[in_gel] = (t_phi * VMAX_ISLET_PURE_MOL_CM3_S * float(stromal_ocr_fraction) * float(ocr_multiplier)) / float(np.mean(in_gel))
     src = np.zeros_like(X)
     kp = np.where(in_gel, float(k_perf_s_inv), 0.0)
-    sol = _solve_3d_oxygen_strict_iip_0019(
+    fvm_res = _solve_3d_oxygen_strict_iip_0019(
         perm, vmax, src, kp, dx, dy, dz,
         p_bed=float(bed_po2_mmhg),
         standoff_z_cm=float(standoff_um) * 1e-4,
         p_ext=p_krogh_chronic_ext,
     )
-    p3 = sol["p_3d"]
+    p3 = fvm_res["p_3d"]
+    fv_z = _compute_exact_fv_interface_stats_iip_0019(p3, perm, in_cl)
+    fv_min_raw = float(fv_z["fv_harmonic_face_min_mmhg"])
     shell_mask = (R >= 0.95 * r_cm) & (R <= 1.05 * r_cm)
     if_po2 = float(np.mean(p3[shell_mask]))
     core_po2 = float(np.min(p3[in_cl]))
+    passes_unrounded_min_face = bool(fv_min_raw >= 15.0 and core_po2 >= 5.0)
     return {
+        "mesh": f"{nx}x{ny}x{nz}",
         "bed_po2_mmhg": float(bed_po2_mmhg),
+        "cluster_diam_um": float(cluster_diam_um),
         "ocr_multiplier": float(ocr_multiplier),
+        "stromal_ocr_fraction": float(stromal_ocr_fraction),
         "d_gel_cm2_s": float(d_gel_cm2_s),
         "k_perf_s_inv": float(k_perf_s_inv),
+        "standoff_ext_diffusivity_factor": round(float(standoff_ext_diffusivity_factor), 6),
         "pfc_vol_fraction": float(pfc_vol_fraction),
         "maxwell_garnett_factor": round(mg_factor, 7),
         "pericellular_interface_po2_mmhg": round(if_po2, 4),
+        "pericellular_shell_mean_po2_unrounded_mmhg": if_po2,
+        "fv_harmonic_face_min_mmhg": round(fv_min_raw, 4),
+        "fv_harmonic_face_min_unrounded_mmhg": fv_min_raw,
         "min_core_po2_mmhg": round(core_po2, 4),
-        "passes_15mmhg_interface_and_5mmhg_core_gate": bool(if_po2 >= 15.0 and core_po2 >= 5.0),
+        "min_core_po2_unrounded_mmhg": core_po2,
+        "passes_shell_mean_diagnostic_15_and_5": bool(if_po2 >= 15.0 and core_po2 >= 5.0),
+        "passes_unrounded_min_face_iip_0025": passes_unrounded_min_face,
+        "passes_15mmhg_interface_and_5mmhg_core_gate": passes_unrounded_min_face,
     }
 
 
@@ -7663,7 +7707,7 @@ def build_lineage_partitioned_metabolic_rest_and_m101_exclusion_audit_iip_0021()
             ),
         },
         "design_z_140um_parameterized_acute_chronic_and_pfc_matrix": {
-            "operative_gate_definition": "pericellular_interface_po2_mmhg >= 15.0 AND min_core_po2_mmhg >= 5.0 (coupled with Stage-2 loaded GSIS SI >= 3.0)",
+            "operative_gate_definition": "fv_harmonic_face_min_unrounded_mmhg >= 15.0 AND min_core_po2_unrounded_mmhg >= 5.0 (coupled with Stage-2 loaded Readout 2 perifusion kinetics; IIP-0025; DEC-104)",
             "acute_vs_chronic_parameter_disclosure": (
                 "Acute unremodeled gel uses d_gel_cm2_s = 9.40254e-6 cm^2/s and k_perf = 0.097 s^-1, whereas chronic vascularized gel assumes "
                 "d_gel_cm2_s = 1.5e-5 cm^2/s (+59.5%) and k_perf = 0.1358 s^-1; adverse unremodeled chronic OCR (1.097x at acute d_gel/k_perf) "
@@ -7694,6 +7738,487 @@ def build_lineage_partitioned_metabolic_rest_and_m101_exclusion_audit_iip_0021()
         **washout_and_cat,
     }
 # === END_IIP_0021_LINEAGE_OCR_AND_M101_AUDIT ===
+
+
+# === BEGIN_IIP_0025_HURDLE4_SPATIAL_OXYGEN_CATALASE_AND_CHALLENGERS ===
+def build_hurdle4_spatial_oxygen_catalase_and_route_challengers_iip_0025() -> Dict[str, Any]:
+    """
+    Build reproducible Hurdle-4 unrounded multi-mesh dual-band worst-face oxygen, two-timepoint
+    recombinant human catalase (UniProt P04040) sizing/peroxide/endotoxin reconciliation, Design Z
+    standoff/cutoff sensitivity, and zero-primate Contrasts B1-B3 audit (IIP-0025; DEC-104).
+    """
+    p_krogh_ch = 1.50e-5 * ALPHA_BUNSEN_MOL_CM3_MMHG
+    p_krogh_is = D_O2_ISLET_TISSUE_CM2_S * ALPHA_BUNSEN_MOL_CM3_MMHG
+    p_ext_col = p_krogh_ch / 3.0
+    curative_ieq = 500_000.0
+
+    def _solve_uc_iip25(
+        load_ieq: float,
+        diam_um: float,
+        slab_um: float = 350.0,
+        lam_um: float = 100.0,
+        buf_um: float = 0.0,
+        p_bed_mmhg: float = 35.0,
+        standoff_phys_um: float = 15.0,
+        ocr_mult: float = 1.097,
+        k_perf_val: float = 0.14 * 0.97,
+        nx_c: int = 40,
+        nz_c: int | None = None,
+        shift_half_voxel: bool = False,
+        eps_lam_cm: float = 0.0,
+        gel_ref_load_ieq: float | None = None,
+    ) -> Dict[str, Any]:
+        if nz_c is None:
+            nz_c = int(round((slab_um / 5.0) * (nx_c / 40.0)))
+        rad_cm = 0.5 * diam_um * 1e-4
+        vol_sph = (4.0 / 3.0) * math.pi * (rad_cm ** 3)
+        n_face = 0.5 * ((load_ieq * VOL_1_IEQ_CM3) / vol_sph)
+        side_cm = math.sqrt(1.0 / n_face)
+        slab_cm = slab_um * 1e-4
+        lam_half_cm = 0.5 * lam_um * 1e-4
+        buf_cm = buf_um * 1e-4
+        band_in = lam_half_cm + buf_cm
+        band_out = 0.5 * slab_cm
+        band_thick_um = (band_out - band_in) * 1e4
+        if band_thick_um < diam_um:
+            raise RuntimeError(f"Cell band {band_thick_um:.1f} um < cluster diameter {diam_um:.1f} um")
+        dx_c, dz_c = side_cm / nx_c, slab_cm / nz_c
+        xs = (np.arange(nx_c) + 0.5) * dx_c - 0.5 * side_cm
+        zs = (np.arange(nz_c) + 0.5) * dz_c - 0.5 * slab_cm
+        X, Y, Z = np.meshgrid(xs, xs, zs, indexing="ij")
+        x0 = 0.5 * dx_c if shift_half_voxel else 0.0
+        z_mid = 0.5 * (band_in + band_out)
+        z_c = min(band_out - rad_cm - min(0.0002, 0.5 * (band_out - band_in - 2.0 * rad_cm)), z_mid)
+        z_c = max(z_c, band_in + rad_cm)
+        ddx = np.minimum(np.abs(X - x0), side_cm - np.abs(X - x0))
+        ddy = np.minimum(np.abs(Y - x0), side_cm - np.abs(Y - x0))
+        top_sph = (ddx ** 2 + ddy ** 2 + (Z - z_c) ** 2) <= (rad_cm ** 2)
+        bot_sph = (ddx ** 2 + ddy ** 2 + (Z + z_c) ** 2) <= (rad_cm ** 2)
+        in_sph = top_sph | bot_sph
+        in_lam = np.abs(Z) <= (lam_half_cm + eps_lam_cm)
+        in_buf = (np.abs(Z) > (lam_half_cm + eps_lam_cm)) & (np.abs(Z) <= (band_in + eps_lam_cm))
+        sph_asym = int(np.sum(top_sph != bot_sph[:, :, ::-1]))
+        lam_asym = int(np.sum(in_lam != in_lam[:, :, ::-1]))
+        buf_asym = int(np.sum(in_buf != in_buf[:, :, ::-1]))
+        perm = np.where(in_lam, p_krogh_ch * (0.42 ** 1.5), p_krogh_ch)
+        perm[in_sph] = p_krogh_is
+        in_gel = (~in_sph) & (~in_lam) & (~in_buf)
+        t_phi = (load_ieq * VOL_1_IEQ_CM3) / slab_cm
+        t_phi_gel = ((gel_ref_load_ieq if gel_ref_load_ieq is not None else load_ieq) * VOL_1_IEQ_CM3) / slab_cm
+        vmax = np.zeros_like(X)
+        vmax[in_sph] = (VMAX_ISLET_PURE_MOL_CM3_S * ocr_mult) * (t_phi / float(np.mean(in_sph)))
+        vmax[in_gel] = (t_phi_gel * VMAX_ISLET_PURE_MOL_CM3_S * 0.15 * ocr_mult) / float(np.mean(in_gel))
+        kp = np.where(in_gel, float(k_perf_val), 0.0)
+        fvm_out = _solve_3d_oxygen_strict_iip_0019(
+            perm, vmax, np.zeros_like(X), kp, dx_c, dx_c, dz_c, p_bed_mmhg,
+            standoff_z_cm=standoff_phys_um * 1e-4, p_ext=p_ext_col,
+        )
+        p3 = fvm_out["p_3d"]
+        st_t = _compute_exact_fv_interface_stats_iip_0019(p3, perm, top_sph)
+        st_b = _compute_exact_fv_interface_stats_iip_0019(p3, perm, bot_sph)
+        dual_min_raw = float(min(st_t["fv_harmonic_face_min_mmhg"], st_b["fv_harmonic_face_min_mmhg"]))
+        dual_mean_raw = float(min(st_t["fv_harmonic_face_mean_mmhg"], st_b["fv_harmonic_face_mean_mmhg"]))
+        core_min_raw = float(np.min(p3[in_sph]))
+        return {
+            "mesh": f"{nx_c}x{nx_c}x{nz_c}",
+            "fv_harmonic_face_mean_mmhg": round(dual_mean_raw, 4),
+            "fv_harmonic_face_min_unrounded_mmhg": dual_min_raw,
+            "fv_harmonic_face_min_mmhg": round(dual_min_raw, 4),
+            "top_band_face_min_mmhg": round(float(st_t["fv_harmonic_face_min_mmhg"]), 4),
+            "bottom_band_face_min_mmhg": round(float(st_b["fv_harmonic_face_min_mmhg"]), 4),
+            "min_core_po2_unrounded_mmhg": core_min_raw,
+            "min_core_po2_mmhg": round(core_min_raw, 4),
+            "sphere_mask_asymmetry_voxels": sph_asym,
+            "lamina_mask_asymmetry_voxels": lam_asym,
+            "film_mask_asymmetry_voxels": buf_asym,
+            "passes_unrounded_dual_band": bool(dual_min_raw >= 15.0 and core_min_raw >= 5.0),
+        }
+
+    def _multimesh_pack(
+        load_ieq: float,
+        diam_um: float,
+        slab_um: float = 350.0,
+        buf_um: float = 0.0,
+        standoff_phys_um: float = 15.0,
+        ocr_mult: float = 1.097,
+    ) -> Dict[str, Any]:
+        r40 = _solve_uc_iip25(load_ieq, diam_um, slab_um=slab_um, buf_um=buf_um, standoff_phys_um=standoff_phys_um, ocr_mult=ocr_mult, nx_c=40)
+        r60 = _solve_uc_iip25(load_ieq, diam_um, slab_um=slab_um, buf_um=buf_um, standoff_phys_um=standoff_phys_um, ocr_mult=ocr_mult, nx_c=60)
+        r80 = _solve_uc_iip25(load_ieq, diam_um, slab_um=slab_um, buf_um=buf_um, standoff_phys_um=standoff_phys_um, ocr_mult=ocr_mult, nx_c=80)
+        mins = [r40["fv_harmonic_face_min_unrounded_mmhg"], r60["fv_harmonic_face_min_unrounded_mmhg"], r80["fv_harmonic_face_min_unrounded_mmhg"]]
+        cores = [r40["min_core_po2_unrounded_mmhg"], r60["min_core_po2_unrounded_mmhg"], r80["min_core_po2_unrounded_mmhg"]]
+        min_all = min(mins)
+        core_all = min(cores)
+        return {
+            "nx40": r40,
+            "nx60": r60,
+            "nx80": r80,
+            "fv_face_min_by_nx_40_60_80_mmhg": [round(v, 4) for v in mins],
+            "min_over_nx_40_60_80_unrounded_mmhg": min_all,
+            "min_over_nx_40_60_80_mmhg": round(min_all, 4),
+            "mesh_spread_mmhg": round(max(mins) - min_all, 4),
+            "min_core_over_nx_40_60_80_mmhg": round(core_all, 4),
+            "passes_unrounded_multimesh_dual_band_iip_0025": bool(min_all >= 15.0 and core_all >= 5.0),
+        }
+
+    mm_100_nofilm = _multimesh_pack(1500.0, 100.0, slab_um=350.0, buf_um=0.0)
+    mm_100_350bar = _multimesh_pack(1500.0, 100.0, slab_um=350.0, buf_um=20.0)
+    mm_100_390bar = _multimesh_pack(1500.0, 100.0, slab_um=390.0, buf_um=20.0)
+    mm_80_nofilm = _multimesh_pack(1500.0, 80.0, slab_um=350.0, buf_um=0.0)
+    mm_80_350bar = _multimesh_pack(1500.0, 80.0, slab_um=350.0, buf_um=20.0)
+    mm_80_390bar = _multimesh_pack(1500.0, 80.0, slab_um=390.0, buf_um=20.0)
+    mm_80_plus10_350bar = _multimesh_pack(1500.0, 80.0, slab_um=350.0, buf_um=20.0, standoff_phys_um=16.5, ocr_mult=1.097 * 1.10)
+    uc_80_plus10_nofilm_nx40 = _solve_uc_iip25(1500.0, 80.0, slab_um=350.0, buf_um=0.0, standoff_phys_um=16.5, ocr_mult=1.097 * 1.10, nx_c=40)
+    uc_80_350bar_shift_nx40 = _solve_uc_iip25(1500.0, 80.0, slab_um=350.0, buf_um=20.0, nx_c=40, shift_half_voxel=True)
+
+    # 60x60x105 7,200-voxel boundary-plane reflection-symmetry diagnostics
+    load_095 = (6.0 / 7.0) * 1500.0 / 0.95
+    sym_095_inc_fv = _solve_uc_iip25(load_095, 80.0, 350.0, 100.0, 20.0, standoff_phys_um=16.5, ocr_mult=1.097 * 1.10, nx_c=60, nz_c=105, eps_lam_cm=+1e-12, gel_ref_load_ieq=1500.0)
+    sym_095_exc_fv = _solve_uc_iip25(load_095, 80.0, 350.0, 100.0, 20.0, standoff_phys_um=16.5, ocr_mult=1.097 * 1.10, nx_c=60, nz_c=105, eps_lam_cm=-1e-12, gel_ref_load_ieq=1500.0)
+    sym_095_inc_co = _solve_uc_iip25(load_095, 80.0, 350.0, 100.0, 20.0, standoff_phys_um=16.5, ocr_mult=1.097 * 1.10, nx_c=60, nz_c=105, eps_lam_cm=+1e-12)
+    sym_095_exc_co = _solve_uc_iip25(load_095, 80.0, 350.0, 100.0, 20.0, standoff_phys_um=16.5, ocr_mult=1.097 * 1.10, nx_c=60, nz_c=105, eps_lam_cm=-1e-12)
+    sym_nom80_inc = _solve_uc_iip25(1500.0, 80.0, 350.0, 100.0, 20.0, nx_c=60, nz_c=105, eps_lam_cm=+1e-12)
+    sym_nom80_exc = _solve_uc_iip25(1500.0, 80.0, 350.0, 100.0, 20.0, nx_c=60, nz_c=105, eps_lam_cm=-1e-12)
+
+    layout_b_119um_caught = False
+    try:
+        _solve_uc_iip25(1500.0, 100.0, slab_um=350.0, lam_um=119.0, buf_um=20.0, nx_c=40)
+    except RuntimeError:
+        layout_b_119um_caught = True
+
+    # Unrounded Wigner-Seitz BVP 0.497 mmHg boundary check (preventing 0.497 -> 0.50 false pass)
+    lo_ws, hi_ws = 5.0, 20.0
+    for _ in range(70):
+        mid_ws = 0.5 * (lo_ws + hi_ws)
+        if solve_spherical_cluster_po2_bvp(mid_ws, 0.0060)["wigner_seitz_two_zone_fv_gel_only_supply_core_po2_unrounded_mmhg"] < 0.497:
+            lo_ws = mid_ws
+        else:
+            hi_ws = mid_ws
+    bvp_0497 = solve_spherical_cluster_po2_bvp(0.5 * (lo_ws + hi_ws), 0.0060)
+
+    # Design Z & Contrast B3 unrounded fv_harmonic_face_min_mmhg cases & root solves
+    def _find_z_cutoff(diam_um: float, strom: float, kp_v: float, nx_z: int, nz_z: int, lo_init: float, hi_init: float, ext_f: float = 1.0) -> float:
+        a, b = lo_init, hi_init
+
+        def _margin(pb_v: float) -> float:
+            rz = compute_design_z_140um_parameterized_case(
+                bed_po2_mmhg=pb_v,
+                ocr_multiplier=1.097,
+                d_gel_cm2_s=1.5e-5,
+                k_perf_s_inv=kp_v,
+                cluster_diam_um=diam_um,
+                standoff_ext_diffusivity_factor=ext_f,
+                stromal_ocr_fraction=strom,
+                nx_override=nx_z,
+                nz_override=nz_z,
+            )
+            return min(rz["fv_harmonic_face_min_unrounded_mmhg"] - 15.0, rz["min_core_po2_unrounded_mmhg"] - 5.0)
+
+        fa, fb = _margin(a), _margin(b)
+        while fa >= 0.0:
+            a -= 1.0
+            fa = _margin(a)
+        while fb < 0.0:
+            b += 1.0
+            fb = _margin(b)
+        side_flag = 0
+        for _ in range(14):
+            c = (fa * b - fb * a) / (fa - fb)
+            fc = _margin(c)
+            if abs(fc) < 1e-9 or abs(b - a) < 1e-7:
+                return c
+            if fc >= 0.0:
+                b, fb = c, fc
+                if side_flag == 1:
+                    fa *= 0.5
+                side_flag = 1
+            else:
+                a, fa = c, fc
+                if side_flag == -1:
+                    fb *= 0.5
+                side_flag = -1
+        return (fa * b - fb * a) / (fa - fb)
+
+    z_pb30_100 = compute_design_z_140um_parameterized_case(bed_po2_mmhg=30.0, ocr_multiplier=1.097, d_gel_cm2_s=1.5e-5, k_perf_s_inv=0.1358, cluster_diam_um=100.0)
+    z_pb30_80 = compute_design_z_140um_parameterized_case(bed_po2_mmhg=30.0, ocr_multiplier=1.097, d_gel_cm2_s=1.5e-5, k_perf_s_inv=0.1358, cluster_diam_um=80.0)
+    z_pb30_100_div3 = compute_design_z_140um_parameterized_case(
+        bed_po2_mmhg=30.0, ocr_multiplier=1.097, d_gel_cm2_s=1.5e-5, k_perf_s_inv=0.1358, cluster_diam_um=100.0, standoff_ext_diffusivity_factor=1.0 / 3.0
+    )
+    z_pfc5_25_100 = compute_design_z_140um_parameterized_case(
+        bed_po2_mmhg=25.0, ocr_multiplier=1.097, d_gel_cm2_s=1.5e-5, k_perf_s_inv=0.1358, pfc_vol_fraction=0.05, cluster_diam_um=100.0
+    )
+    z_pfc5_25_80 = compute_design_z_140um_parameterized_case(
+        bed_po2_mmhg=25.0, ocr_multiplier=1.097, d_gel_cm2_s=1.5e-5, k_perf_s_inv=0.1358, pfc_vol_fraction=0.05, cluster_diam_um=80.0
+    )
+    b3_pb30_intact_100 = compute_design_z_140um_parameterized_case(
+        bed_po2_mmhg=30.0, ocr_multiplier=1.097, d_gel_cm2_s=1.5e-5, k_perf_s_inv=0.1358, cluster_diam_um=100.0, stromal_ocr_fraction=0.0
+    )
+    b3_pb30_intact_80 = compute_design_z_140um_parameterized_case(
+        bed_po2_mmhg=30.0, ocr_multiplier=1.097, d_gel_cm2_s=1.5e-5, k_perf_s_inv=0.1358, cluster_diam_um=80.0, stromal_ocr_fraction=0.0
+    )
+    b3_pb30_halved_100 = compute_design_z_140um_parameterized_case(
+        bed_po2_mmhg=30.0, ocr_multiplier=1.097, d_gel_cm2_s=1.5e-5, k_perf_s_inv=0.0679, cluster_diam_um=100.0, stromal_ocr_fraction=0.0
+    )
+    b3_pb30_halved_80 = compute_design_z_140um_parameterized_case(
+        bed_po2_mmhg=30.0, ocr_multiplier=1.097, d_gel_cm2_s=1.5e-5, k_perf_s_inv=0.0679, cluster_diam_um=80.0, stromal_ocr_fraction=0.0
+    )
+
+    cut_100_48 = _find_z_cutoff(100.0, 0.15, 0.1358, 48, 28, 30.0, 31.5, 1.0)
+    cut_100_72 = _find_z_cutoff(100.0, 0.15, 0.1358, 72, 42, cut_100_48 - 0.15, cut_100_48 + 0.15, 1.0)
+    cut_80_48 = _find_z_cutoff(80.0, 0.15, 0.1358, 48, 28, 30.0, 31.5, 1.0)
+    cut_80_72 = _find_z_cutoff(80.0, 0.15, 0.1358, 72, 42, cut_80_48 - 0.15, cut_80_48 + 0.15, 1.0)
+    cut_100_div3 = _find_z_cutoff(100.0, 0.15, 0.1358, 48, 28, 34.5, 36.5, 1.0 / 3.0)
+    cut_b3_intact_100 = _find_z_cutoff(100.0, 0.0, 0.1358, 48, 28, 28.5, 30.5, 1.0)
+    cut_b3_intact_80 = _find_z_cutoff(80.0, 0.0, 0.1358, 48, 28, 28.5, 30.5, 1.0)
+    cut_b3_halved_100 = _find_z_cutoff(100.0, 0.0, 0.0679, 48, 28, 29.5, 31.5, 1.0)
+    cut_b3_halved_80 = _find_z_cutoff(80.0, 0.0, 0.0679, 48, 28, 29.5, 31.5, 1.0)
+
+    z_ribbon_vol_cm3 = 0.0140 * (1000.0 / 3.0)
+    pfc_5pct_vol_cm3 = 0.05 * z_ribbon_vol_cm3
+    pfc_5pct_o2_umol = pfc_5pct_vol_cm3 * (20.0 * ALPHA_BUNSEN_MOL_CM3_MMHG) * (40.0 - 15.0) * 1e6
+    graft_500k_demand_umol_s = (curative_ieq * VOL_1_IEQ_CM3 * VMAX_ISLET_PURE_MOL_CM3_S * 1.15) * 1e6
+    pfc_5pct_bridge_s = pfc_5pct_o2_umol / graft_500k_demand_umol_s
+
+    # Gate P05 two-timepoint (Day-7 >= 70.0% + 336-h >= 73,800 IU P04040) sizing & dual-basis H2O2 profiles
+    target_336h_iu = 73_800.0
+    precure_cap_iu = 158_300.0
+    cure_yield_assumed = 0.65
+    postcure_at_cap_iu = precure_cap_iu * cure_yield_assumed  # 102,895.0 IU
+    spec_act_iu_mg = 50_000.0
+    k2_total_mass_mg = ((target_336h_iu / 0.25) / cure_yield_assumed) / spec_act_iu_mg  # 9.083076923076924 mg
+
+    p05_sizing_scenarios = []
+    for sid, d7_pct, r14_frac, t0_iu in (
+        ("Live_Undersized_Day7_Basis_105429IU", 70.0, 0.49, target_336h_iu / 0.70),
+        ("Ref_50pct_14d_Retention_147600IU", round(100.0 * math.sqrt(0.50), 4), 0.50, target_336h_iu / 0.50),
+        ("K1_0p70sq_49pct_14d_Retention_150612IU", 70.0, 0.49, target_336h_iu / (0.70 ** 2)),
+        ("Reconciled_65pctYield_80pctDay7_75pctDay14_102895IU", 80.0, 0.75, postcure_at_cap_iu),
+        ("Adverse_K2_tHalf168h_295200IU_Failed_Day7", 50.0, 0.25, target_336h_iu / 0.25),
+    ):
+        precure_iu = t0_iu / cure_yield_assumed
+        tot_mg = precure_iu / spec_act_iu_mg
+        rem_336_iu = t0_iu * r14_frac
+        exact_eu_cap = min(0.10, 0.50 / tot_mg)
+        d7_ok = d7_pct >= 70.0
+        d14_ok = rem_336_iu >= target_336h_iu - 1e-6
+        cap_ok = precure_iu <= precure_cap_iu + 1e-6
+        p05_sizing_scenarios.append({
+            "scenario_id": sid,
+            "assumed_day7_retention_pct": d7_pct,
+            "passes_day7_70pct_gate": bool(d7_ok),
+            "assumed_336h_retention_fraction": r14_frac,
+            "retained_336h_active_iu_333cm2": round(rem_336_iu, 2),
+            "passes_336h_73800iu_gate": bool(d14_ok),
+            "post_cure_t0_active_iu_333cm2": round(t0_iu, 2),
+            "precure_input_iu_at_assumed_65pct_yield": round(precure_iu, 1),
+            "within_158300u_precure_ceiling": bool(cap_ok),
+            "reconciles_day7_336h_and_158300u_cap": bool(d7_ok and d14_ok and cap_ok),
+            "total_p04040_protein_mass_unrounded_mg": tot_mg,
+            "total_p04040_protein_mass_mg": round(tot_mg, 4),
+            "exact_unrounded_endotoxin_cap_eu_per_mg": exact_eu_cap,
+            "display_5dec_endotoxin_cap_eu_per_mg": round(exact_eu_cap, 5),
+        })
+
+    h_cm = 2.5e-4
+    nz3 = int(round(0.0350 / h_cm))
+    r_b = 25.0e-4
+    v_b = (4.0 / 3.0) * math.pi * (r_b ** 3)
+    lam_cm = 0.0100
+    side_cm = max(math.sqrt(v_b / (0.58 * lam_cm)), 50.0 * 1.15e-4)
+    nx3 = max(16, int(round(side_cm / h_cm)))
+    dx3 = side_cm / nx3
+    xs3 = (np.arange(nx3) + 0.5) * dx3 - 0.5 * side_cm
+    zs3 = (np.arange(nz3) + 0.5) * h_cm - 0.0175
+    X3, Y3, Z3 = np.meshgrid(xs3, xs3, zs3, indexing="ij")
+    r_dist = np.sqrt(X3 ** 2 + Y3 ** 2 + (Z3 - (0.5 * lam_cm - r_b)) ** 2)
+    in_core = r_dist <= (r_b - 0.5 * h_cm)
+    in_shell = (r_dist > (r_b - 0.5 * h_cm)) & (r_dist <= (r_b + 0.6 * h_cm))
+    in_lam = np.abs(Z3) <= 0.5 * lam_cm
+    in_buf = (np.abs(Z3) > 0.5 * lam_cm) & (np.abs(Z3) <= (0.5 * lam_cm + 0.0020))
+    diff_3d = np.where(in_core, 0.0, D_H2O2_HYDROGEL_CM2_S)
+    kp_3d = np.where(in_lam | in_buf, 0.0, 0.14 * 0.01)
+    kp_idx = int(np.argmin(np.abs(zs3 - 0.0070)))
+
+    iu_sweep = [
+        ("t0_105429_iu", target_336h_iu / 0.70),
+        ("retained_73800_iu", 73_800.0),
+        ("undersized_51660_iu", (target_336h_iu / 0.70) * 0.49),
+        ("half_36900_iu", 36_900.0),
+        ("undersized_26357_iu", (target_336h_iu / 0.70) * 0.25),
+    ]
+    dual_basis_h2o2: Dict[str, Any] = {}
+    for basis_ieq in (1500.0, 2500.0):
+        phi_b = (basis_ieq * VOL_1_IEQ_CM3) / 0.0350
+        r_h2o2 = 2.0 * (0.45 * (phi_b * VMAX_ISLET_PURE_MOL_CM3_S * 1.15)) * 1e9
+        basis_rows: Dict[str, Any] = {}
+        for lbl_iu, iu_val in iu_sweep:
+            src_3d = np.zeros((nx3, nx3, nz3), dtype=np.float64)
+            src_3d[in_shell] = (r_h2o2 * (68.0 / 24.0)) / float(np.mean(in_shell))
+            cat_200 = iu_val * 0.60
+            lam_200 = cat_200 * (22_680.0 / 44_280.0)
+            buf_200 = cat_200 - lam_200
+            k_cat = np.full((nx3, nx3, nz3), 0.008, dtype=np.float64)
+            k_cat[in_lam & (~in_core)] = (lam_200 / (7.0 * 1500.0)) / float(np.mean(in_lam & (~in_core)))
+            k_cat[in_buf] = (buf_200 / (7.0 * 1500.0)) / float(np.mean(in_buf))
+            h_res = _solve_3d_h2o2_strict_iip_0019(diff_3d, src_3d, k_cat, kp_3d, dx3, dx3, h_cm)
+            h3 = h_res["h_3d"]
+            cc_uM = float(np.max(h3[:, :, kp_idx]))
+            iface_uM = float(np.max(0.5 * (h3[:, :, kp_idx - 1] + h3[:, :, kp_idx])))
+            basis_rows[lbl_iu] = {
+                "active_catalase_iu_333cm2": round(iu_val, 2),
+                "gel_interface_z70p0um_max_h2o2_uM": round(iface_uM, 4),
+                "gel_interface_z70p0um_unrounded_uM": iface_uM,
+                "cell_center_z71p25um_max_h2o2_uM": round(cc_uM, 4),
+                "cell_center_z71p25um_unrounded_uM": cc_uM,
+                "passes_2p5uM_tier1_at_z70_interface": bool(iface_uM <= 2.5),
+                "passes_5p0uM_tier2_at_z70_interface": bool(iface_uM <= 5.0),
+            }
+        dual_basis_h2o2[f"basis_{int(basis_ieq)}_ieq_cm2"] = basis_rows
+
+    r_cl_100 = 0.5 * 100.0e-4
+    r_cl_80 = 0.5 * 80.0e-4
+    n_cl_100 = curative_ieq / (((4.0 / 3.0) * math.pi * (r_cl_100 ** 3)) / VOL_1_IEQ_CM3)
+    n_cl_80 = curative_ieq / (((4.0 / 3.0) * math.pi * (r_cl_80 ** 3)) / VOL_1_IEQ_CM3)
+
+    return {
+        "contribution_id": "IIP-0025",
+        "decision_id": "DEC-104",
+        "offgrid_guardrail_id": "OFFGRID_GUARD_010_SPATIAL_MEAN_OXYGEN_MASKING_SINGLE_TIMEPOINT_CATALASE_SIZING_AND_PITCH_HELD_DOSE_HALVING",
+        "graveyard_card_id": "GY-020",
+        "zero_pre_wetlab_prior_inflation": True,
+        "headline_single_design_and_portfolio_odds_unchanged": True,
+        "primary_citations": [
+            "PMID:21788575",
+            "PMID:21693022",
+            "PMID:35241836",
+            "PMID:38993891",
+            "PMID:37476069",
+            "PMID:35743287",
+            "PMID:27729543",
+            "PMID:8720919",
+            "PMID:10656833",
+            "PMID:22371586",
+            "PMID:36971050",
+            "PMID:26970510",
+            "PMID:29288549",
+            "PMID:12702875",
+            "PMID:40404627",
+            "PMID:19074987",
+            "PMID:28489987",
+            "PMID:40757665",
+            "PMID:35152257",
+            "PMID:24065585",
+            "PMID:16897713",
+            "PMID:37318185",
+            "PMID:36707047",
+            "PMID:35795779",
+            "PMID:38603470",
+            "PMID:34480863",
+            "PMID:25893782",
+            "PMID:31900242",
+            "PMID:31177185",
+        ],
+        "ordered_unit_cell_multimesh_dual_band_gate": {
+            "rule_definition": "min over nx in {40, 60, 80} of unrounded dual-band worst-face fv_harmonic_face_min_mmhg >= 15.0 AND min_core_po2_mmhg >= 5.0",
+            "conserved_500k_ieq_cluster_count_100um": round(n_cl_100, 2),
+            "conserved_500k_ieq_cluster_count_80um": round(n_cl_80, 2),
+            "cluster_count_ratio_80_over_100_exact": round(n_cl_80 / n_cl_100, 6),
+            "pitch_held_80um_768ieq_dose_reduction_pct": 48.8,
+            "nominal_100um_350um_no_film": mm_100_nofilm,
+            "layout_a_350um_barrier_100um": mm_100_350bar,
+            "expanded_390um_barrier_100um": mm_100_390bar,
+            "nominal_80um_350um_no_film": mm_80_nofilm,
+            "layout_a_350um_barrier_80um": mm_80_350bar,
+            "expanded_390um_barrier_80um": mm_80_390bar,
+            "plus10pct_joint_stress_80um_no_film_nx40": uc_80_plus10_nofilm_nx40,
+            "plus10pct_joint_stress_80um_layout_a_350um_barrier": mm_80_plus10_350bar,
+            "lateral_half_voxel_shift_80um_layout_a_350um_nx40_mmhg": uc_80_350bar_shift_nx40["fv_harmonic_face_min_mmhg"],
+            "contrast_b1_paired_effect_390um_primary_nx40_mmhg": round(
+                mm_80_390bar["nx40"]["fv_harmonic_face_min_unrounded_mmhg"] - mm_100_390bar["nx40"]["fv_harmonic_face_min_unrounded_mmhg"], 4
+            ),
+            "contrast_b1_paired_effect_350um_sensitivity_nx40_mmhg": round(
+                mm_80_350bar["nx40"]["fv_harmonic_face_min_unrounded_mmhg"] - mm_100_350bar["nx40"]["fv_harmonic_face_min_unrounded_mmhg"], 4
+            ),
+            "nx60_nz105_boundary_plane_symmetry_diagnostics": {
+                "sphere_mask_asymmetry_voxels": mm_80_350bar["nx60"]["sphere_mask_asymmetry_voxels"],
+                "lamina_boundary_asymmetry_voxels": mm_80_350bar["nx60"]["lamina_mask_asymmetry_voxels"],
+                "film_boundary_asymmetry_voxels": mm_80_350bar["nx60"]["film_mask_asymmetry_voxels"],
+                "near_threshold_0p95x_potency_fixed_vascular_symmetric_brackets_mmhg": [
+                    sym_095_inc_fv["fv_harmonic_face_min_mmhg"],
+                    sym_095_exc_fv["fv_harmonic_face_min_mmhg"],
+                ],
+                "near_threshold_0p95x_potency_coscaled_symmetric_brackets_mmhg": [
+                    sym_095_inc_co["fv_harmonic_face_min_mmhg"],
+                    sym_095_exc_co["fv_harmonic_face_min_mmhg"],
+                ],
+                "near_threshold_straddling_classification": "NUMERICALLY_KNIFE_EDGE_UNRESOLVED",
+                "nominal_80um_layout_a_symmetric_brackets_mmhg": [
+                    sym_nom80_inc["fv_harmonic_face_min_mmhg"],
+                    sym_nom80_exc["fv_harmonic_face_min_mmhg"],
+                ],
+            },
+            "layout_b_119um_lamina_95p5um_band_excluded": layout_b_119um_caught,
+            "wigner_seitz_unrounded_0p497_boundary_check": {
+                "unrounded_gel_only_120um_core_mmhg": round(float(bvp_0497["wigner_seitz_two_zone_fv_gel_only_supply_core_po2_unrounded_mmhg"]), 6),
+                "display_rounded_2dec_mmhg": float(bvp_0497["wigner_seitz_two_zone_fv_gel_only_supply_core_po2_mmhg"]),
+                "passes_unrounded_0p5mmhg_gate": bool(float(bvp_0497["wigner_seitz_two_zone_fv_gel_only_supply_core_po2_unrounded_mmhg"]) >= 0.5),
+            },
+        },
+        "design_z_and_contrast_b3_unrounded_min_face_audit": {
+            "pb30_100um_d_chronic": z_pb30_100,
+            "pb30_80um_d_chronic": z_pb30_80,
+            "pb30_100um_d_chronic_div3_collagen": z_pb30_100_div3,
+            "pfc_5volpct_pb25_100um": z_pfc5_25_100,
+            "pfc_5volpct_pb25_80um": z_pfc5_25_80,
+            "pfc_5volpct_conditional_20x_solubility_reservoir": {
+                "pfc_droplet_volume_cm3_in_4p6667cm3": round(pfc_5pct_vol_cm3, 4),
+                "releasable_o2_40_to_15mmhg_umol": round(pfc_5pct_o2_umol, 5),
+                "graft_demand_umol_s": round(graft_500k_demand_umol_s, 5),
+                "standalone_buffer_seconds": round(pfc_5pct_bridge_s, 3),
+            },
+            "contrast_b3_donor_iec_omitted_pb30_intact_kperf_0p1358": {
+                "100um": b3_pb30_intact_100,
+                "80um": b3_pb30_intact_80,
+            },
+            "contrast_b3_donor_iec_omitted_pb30_halved_kperf_0p0679": {
+                "100um": b3_pb30_halved_100,
+                "80um": b3_pb30_halved_80,
+            },
+            "unrounded_bed_po2_cutoffs_mmhg": {
+                "mode_a_mixed_100um_d_chronic_48x48x28": round(cut_100_48, 6),
+                "mode_a_mixed_100um_d_chronic_72x72x42": round(cut_100_72, 6),
+                "mode_a_mixed_80um_d_chronic_48x48x28": round(cut_80_48, 6),
+                "mode_a_mixed_80um_d_chronic_72x72x42": round(cut_80_72, 6),
+                "mode_a_mixed_100um_d_chronic_div3_collagen_48x48x28": round(cut_100_div3, 4),
+                "contrast_b3_intact_kperf_0p1358_100um_48x48x28": round(cut_b3_intact_100, 6),
+                "contrast_b3_intact_kperf_0p1358_80um_48x48x28": round(cut_b3_intact_80, 6),
+                "contrast_b3_halved_kperf_0p0679_100um_48x48x28": round(cut_b3_halved_100, 6),
+                "contrast_b3_halved_kperf_0p0679_80um_48x48x28": round(cut_b3_halved_80, 6),
+            },
+        },
+        "gate_p05_two_timepoint_p04040_and_dual_basis_h2o2_audit": {
+            "precure_ceiling_iu_333cm2": precure_cap_iu,
+            "assumed_cure_yield": cure_yield_assumed,
+            "postcure_t0_at_65pct_yield_under_158300u_cap_iu": postcure_at_cap_iu,
+            "conditional_min_yield_pct_if_day14_retention_le_50pct": round(100.0 * (target_336h_iu / 0.50) / precure_cap_iu, 4),
+            "conditional_min_yield_pct_if_day14_retention_le_49pct": round(100.0 * (target_336h_iu / 0.49) / precure_cap_iu, 4),
+            "min_day14_retention_pct_at_65pct_cure_yield": round(100.0 * target_336h_iu / postcure_at_cap_iu, 4),
+            "conditional_yield_qualification_note": (
+                "The <93.2407% (<95.1436% at 0.70^2) cure-yield incompatibility with the 158,300 U pre-cure ceiling is "
+                "conditional on assuming <=50% (<=49%) Day-14 retention; at 65% cure yield (102,895 IU post-cure), any "
+                "formulation achieving >=71.7236% Day-14 retention (for example 80.0% Day-7 and 75.0% Day-14 = 77,171.25 IU) "
+                "reconciles both canonical timepoints under the 158,300 U cap, whereas t_1/2 = 168 h (K2, 50.0% Day-7) fails Day 7."
+            ),
+            "k2_unrounded_total_mass_mg": k2_total_mass_mg,
+            "k2_exact_unrounded_endotoxin_cap_eu_per_mg": min(0.10, 0.50 / k2_total_mass_mg),
+            "k2_rounded_0p05505_implied_burden_eu_exceeds_0p50": round(0.05505 * k2_total_mass_mg, 7),
+            "sizing_scenarios": p05_sizing_scenarios,
+            "single_50um_bead_cell_pitch_um": round(side_cm * 1e4, 2),
+            "single_50um_bead_lamina_volume_fraction_pct": round(100.0 * v_b / ((side_cm ** 2) * lam_cm), 4),
+            "stationary_aged_repeat_burst_dual_basis_h2o2": dual_basis_h2o2,
+        },
+    }
+# === END_IIP_0025_HURDLE4_SPATIAL_OXYGEN_CATALASE_AND_CHALLENGERS ===
 
 
 def main() -> None:
@@ -7920,6 +8445,9 @@ def main() -> None:
     )
     part_a_pde["lineage_partitioned_metabolic_rest_and_m101_exclusion_audit"] = (
         build_lineage_partitioned_metabolic_rest_and_m101_exclusion_audit_iip_0021()
+    )
+    part_a_pde["hurdle4_spatial_oxygen_catalase_and_route_challengers_iip_0025"] = (
+        build_hurdle4_spatial_oxygen_catalase_and_route_challengers_iip_0025()
     )
 
     atlas = {
