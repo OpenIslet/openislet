@@ -1,7 +1,7 @@
 {
  "_meta": {
   "purpose": "offline snapshot for tests/test_citations_resolve.py; bibliographic facts only (first author, year, journal, title)",
-  "retrieved": "2026-11-18",
+  "retrieved": "2026-11-19",
   "source": "NCBI E-utilities esummary (db=pubmed)"
  },
  "pmids": {
@@ -34,6 +34,12 @@
    "journal": "J Exp Med",
    "pubdate_year": "1999",
    "title": "A20 inhibits cytokine-induced apoptosis and nuclear factor kappaB-dependent gene activation in islets."
+  },
+  "10611228": {
+   "first_author": "Henis-Korenblit S",
+   "journal": "Mol Cell Biol",
+   "pubdate_year": "2000",
+   "title": "A novel form of DAP5 protein accumulates in apoptotic cells as a result of caspase cleavage and internal ribosome entry site-mediated translation."
   },
   "10647616": {
    "first_author": "Breitz HB",
@@ -113,6 +119,12 @@
    "pubdate_year": "2001",
    "title": "Bidirectional negative regulation of human T and dendritic cells by CD47 and its cognate receptor signal-regulator protein-alpha: down-regulation of IL-12 responsiveness and inhibition of dendritic cell activation."
   },
+  "11696543": {
+   "first_author": "Tillmar L",
+   "journal": "J Biol Chem",
+   "pubdate_year": "2002",
+   "title": "Control of insulin mRNA stability in rat pancreatic islets. Regulatory role of a 3'-untranslated region pyrimidine-rich sequence."
+  },
   "11734640": {
    "first_author": "Renatus M",
    "journal": "Proc Natl Acad Sci U S A",
@@ -124,6 +136,12 @@
    "journal": "J Immunol",
    "pubdate_year": "2002",
    "title": "Cutting edge: single-chain trimers of MHC class I molecules form stable structures that potently stimulate antigen-specific T cells and B cells."
+  },
+  "11943866": {
+   "first_author": "Henis-Korenblit S",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "2002",
+   "title": "The caspase-cleaved DAP5 protein supports internal ribosome entry site-mediated translation of death proteins."
   },
   "12006653": {
    "first_author": "Spiliotis ET",
@@ -209,6 +227,12 @@
    "pubdate_year": "2004",
    "title": "Rapid perfusion and network remodeling in a microvascular construct after implantation."
   },
+  "15039777": {
+   "first_author": "Knoch KP",
+   "journal": "Nat Cell Biol",
+   "pubdate_year": "2004",
+   "title": "Polypyrimidine tract-binding protein promotes insulin secretory granule biogenesis."
+  },
   "15064769": {
    "first_author": "Szymczak AL",
    "journal": "Nat Biotechnol",
@@ -220,6 +244,12 @@
    "journal": "J Exp Med",
    "pubdate_year": "1992",
    "title": "Functionally conformed free class I heavy chains exist on the surface of beta 2 microglobulin negative cells."
+  },
+  "15228089": {
+   "first_author": "Tillmar L",
+   "journal": "Mol Cell Biochem",
+   "pubdate_year": "2004",
+   "title": "Glucose-induced binding of the polypyrimidine tract-binding protein (PTB) to the 3'-untranslated region of the insulin mRNA (ins-PRS) is inhibited by rapamycin."
   },
   "15285897": {
    "first_author": "Yeo G",
@@ -431,6 +461,12 @@
    "pubdate_year": "2008",
    "title": "Widespread amyloid deposition in transplanted human pancreatic islets."
   },
+  "18796520": {
+   "first_author": "Damaj L",
+   "journal": "J Clin Endocrinol Metab",
+   "pubdate_year": "2008",
+   "title": "Chromosome 11p15 paternal isodisomy in focal forms of neonatal hyperinsulinism."
+  },
   "19047627": {
    "first_author": "Lu L",
    "journal": "Proc Natl Acad Sci U S A",
@@ -575,6 +611,12 @@
    "pubdate_year": "2010",
    "title": "Reduced expression of IFIH1 is protective for type 1 diabetes."
   },
+  "21029861": {
+   "first_author": "Hogg JR",
+   "journal": "Cell",
+   "pubdate_year": "2010",
+   "title": "Upf1 senses 3'UTR length to potentiate mRNA decay."
+  },
   "21183510": {
    "first_author": "Eisele G",
    "journal": "Neuro Oncol",
@@ -586,6 +628,12 @@
    "journal": "Science",
    "pubdate_year": "1990",
    "title": "The role of beta 2-microglobulin in peptide binding by class I molecules."
+  },
+  "21248048": {
+   "first_author": "Corrah TW",
+   "journal": "J Virol",
+   "pubdate_year": "2011",
+   "title": "Reappraisal of the relationship between the HIV-1-protective single-nucleotide polymorphism 35 kilobases upstream of the HLA-C gene and surface HLA-C expression."
   },
   "21368762": {
    "first_author": "Kaiser WJ",
@@ -689,6 +737,12 @@
    "pubdate_year": "2012",
    "title": "Recurrent variations in DNA methylation in human pluripotent stem cells and their differentiated derivatives."
   },
+  "22618870": {
+   "first_author": "Lemp NA",
+   "journal": "Nucleic Acids Res",
+   "pubdate_year": "2012",
+   "title": "Cryptic transcripts from a ubiquitous plasmid origin of replication confound tests for cis-regulatory function."
+  },
   "22696657": {
    "first_author": "Knight S",
    "journal": "J Virol",
@@ -784,6 +838,12 @@
    "journal": "PLoS Genet",
    "pubdate_year": "2013",
    "title": "GLIS3, a susceptibility gene for type 1 and type 2 diabetes, modulates pancreatic beta cell apoptosis via regulation of a splice variant of the BH3-only protein Bim."
+  },
+  "23873081": {
+   "first_author": "Hsu PD",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2013",
+   "title": "DNA targeting specificity of RNA-guided Cas9 nucleases."
   },
   "23935835": {
    "first_author": "Ma Z",
@@ -983,6 +1043,12 @@
    "pubdate_year": "2015",
    "title": "A minimal ubiquitous chromatin opening element (UCOE) effectively prevents silencing of juxtaposed heterologous promoters by epigenetic remodeling in multipotent and pluripotent stem cells."
   },
+  "25701572": {
+   "first_author": "Tan A",
+   "journal": "Bioinformatics",
+   "pubdate_year": "2015",
+   "title": "Unified representation of genetic variants."
+  },
   "2570734": {
    "first_author": "Levitt N",
    "journal": "Genes Dev",
@@ -1072,6 +1138,18 @@
    "journal": "J Biol Chem",
    "pubdate_year": "2016",
    "title": "A Novel Serpin Regulatory Mechanism: SerpinB9 IS REVERSIBLY INHIBITED BY VICINAL DISULFIDE BOND FORMATION IN THE REACTIVE CENTER LOOP."
+  },
+  "26780180": {
+   "first_author": "Doench JG",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2016",
+   "title": "Optimized sgRNA design to maximize activity and minimize off-target effects of CRISPR-Cas9."
+  },
+  "26816383": {
+   "first_author": "Weingarten-Gabbay S",
+   "journal": "Science",
+   "pubdate_year": "2016",
+   "title": "Comparative genetics. Systematic discovery of cap-independent translation sequences in human and viral genomes."
   },
   "26823435": {
    "first_author": "Starck SR",
@@ -1379,6 +1457,12 @@
    "pubdate_year": "2018",
    "title": "Unexpected subcellular distribution of a specific isoform of the Coxsackie and adenovirus receptor, CAR-SIV, in human pancreatic beta cells."
   },
+  "30082871": {
+   "first_author": "Vakulskas CA",
+   "journal": "Nat Med",
+   "pubdate_year": "2018",
+   "title": "A high-fidelity Cas9 mutant delivered as a ribonucleoprotein complex enables efficient gene editing in human hematopoietic stem and progenitor cells."
+  },
   "30087334": {
    "first_author": "Walters LC",
    "journal": "Nat Commun",
@@ -1462,6 +1546,12 @@
    "journal": "J Biol Chem",
    "pubdate_year": "2019",
    "title": "MERTK tyrosine kinase receptor together with TIM4 phosphatidylserine receptor mediates distinct signal transduction pathways for efferocytosis and cell proliferation."
+  },
+  "30850590": {
+   "first_author": "Cullot G",
+   "journal": "Nat Commun",
+   "pubdate_year": "2019",
+   "title": "CRISPR-Cas9 genome editing induces megabase-scale chromosomal truncations."
   },
   "30853558": {
    "first_author": "Xu H",
@@ -1547,6 +1637,12 @@
    "pubdate_year": "2019",
    "title": "A20 as an immune tolerance factor can determine islet transplant outcomes."
   },
+  "31634902": {
+   "first_author": "Anzalone AV",
+   "journal": "Nature",
+   "pubdate_year": "2019",
+   "title": "Search-and-replace genome editing without double-strand breaks or donor DNA."
+  },
   "31676859": {
    "first_author": "Dwivedi OP",
    "journal": "Nat Genet",
@@ -1607,6 +1703,12 @@
    "pubdate_year": "2020",
    "title": "Studies of insulin and proinsulin in pancreas and serum support the existence of aetiopathological endotypes of type 1 diabetes associated with age at diagnosis."
   },
+  "32217751": {
+   "first_author": "Walton RT",
+   "journal": "Science",
+   "pubdate_year": "2020",
+   "title": "Unconstrained genome targeting with near-PAMless engineered CRISPR-Cas9 variants."
+  },
   "32432213": {
    "first_author": "Menegaz D",
    "journal": "Nat Metab",
@@ -1618,6 +1720,12 @@
    "journal": "Nat Commun",
    "pubdate_year": "2020",
    "title": "An integrated multi-omics approach identifies the landscape of interferon-α-mediated responses of human pancreatic beta cells."
+  },
+  "32460021": {
+   "first_author": "Weisheit I",
+   "journal": "Cell Rep",
+   "pubdate_year": "2020",
+   "title": "Detection of Deleterious On-Target Effects after HDR-Mediated CRISPR Editing."
   },
   "32569842": {
    "first_author": "Bosma KJ",
@@ -1636,6 +1744,12 @@
    "journal": "Cell Rep",
    "pubdate_year": "2020",
    "title": "Modeling Type 1 Diabetes In Vitro Using Human Pluripotent Stem Cells."
+  },
+  "32690971": {
+   "first_author": "Kurt IC",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2021",
+   "title": "CRISPR C-to-G base editors for inducing targeted DNA transversions in human cells."
   },
   "32711842": {
    "first_author": "O'Donnell TJ",
@@ -1745,6 +1859,12 @@
    "pubdate_year": "2021",
    "title": "Decreased GLUT2 and glucose uptake contribute to insulin secretion defects in MODY3/HNF1A hiPSC-derived mutant β cells."
   },
+  "34050011": {
+   "first_author": "Alanis-Lobato G",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "2021",
+   "title": "Frequent loss of heterozygosity in CRISPR-Cas9-edited early human embryos."
+  },
   "34127860": {
    "first_author": "Robertson CC",
    "journal": "Nat Genet",
@@ -1787,6 +1907,12 @@
    "pubdate_year": "2021",
    "title": "Necrostatin-1 Prevents Ferroptosis in a RIPK1- and IDO-Independent Manner in Hepatocellular Carcinoma."
   },
+  "34653350": {
+   "first_author": "Chen PJ",
+   "journal": "Cell",
+   "pubdate_year": "2021",
+   "title": "Enhanced prime editing systems by manipulating cellular determinants of editing outcomes."
+  },
   "34954144": {
    "first_author": "Overway EM",
    "journal": "J Biol Chem",
@@ -1798,6 +1924,12 @@
    "journal": "Cell Death Dis",
    "pubdate_year": "2022",
    "title": "Cell-to-cell variability in inducible Caspase9-mediated cell death."
+  },
+  "35140211": {
+   "first_author": "Ferreira da Silva J",
+   "journal": "Nat Commun",
+   "pubdate_year": "2022",
+   "title": "Prime editing efficiency and fidelity are enhanced in the absence of mismatch repair."
   },
   "35152257": {
    "first_author": "Rezaei M",
@@ -1942,6 +2074,12 @@
    "journal": "Nat Biotechnol",
    "pubdate_year": "2023",
    "title": "Evolution of an adenine base editor into a small, efficient cytosine base editor with low off-target activity."
+  },
+  "36522432": {
+   "first_author": "Cancellieri S",
+   "journal": "Nat Genet",
+   "pubdate_year": "2023",
+   "title": "Human genetic diversity alters off-target outcomes of therapeutic gene editing."
   },
   "3658675": {
    "first_author": "Shapiro MB",
@@ -2098,6 +2236,12 @@
    "journal": "J Immunol",
    "pubdate_year": "2024",
    "title": "Engineering Pancreatic Islets to Transiently Codisplay on Their Surface Thrombomodulin and CD47 Immunomodulatory Proteins as a Means of Mitigating Instant Blood-Mediated Inflammatory Reaction following Intraportal Transplantation."
+  },
+  "38786078": {
+   "first_author": "Daliri K",
+   "journal": "Cells",
+   "pubdate_year": "2024",
+   "title": "Prime Editing and DNA Repair System: Balancing Efficiency with Safety."
   },
   "38858586": {
    "first_author": "Pandey S",
@@ -2284,6 +2428,12 @@
    "journal": "N Engl J Med",
    "pubdate_year": "2025",
    "title": "Survival of Transplanted Allogeneic Beta Cells with No Immunosuppression."
+  },
+  "40769155": {
+   "first_author": "Park JC",
+   "journal": "Cell",
+   "pubdate_year": "2025",
+   "title": "AI-generated MLH1 small binder improves prime editing efficiency."
   },
   "40782792": {
    "first_author": "Meng G",

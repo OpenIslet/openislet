@@ -343,6 +343,20 @@ STAGE0_DECISION_TREE_ENDPOINT_SPECS = [
     ('stage0_contrast_b3_iec_omitted_surface_po2_mmhg', 'obs_contrast_b3_iec_omitted_surface_po2_mmhg', 'obs_contrast_b3_iec_omitted_surface_po2_se', 0.0, 120.0, 'contrast_b3_design_z_140um_donor_iec_omitted_loaded_worst_face_po2_mmhg'),
     ('stage0_contrast_b3_iec_omitted_outer_kperf_s_inv', 'obs_contrast_b3_iec_omitted_outer_kperf_s_inv', 'obs_contrast_b3_iec_omitted_outer_kperf_se', 0.0, 1.0, 'contrast_b3_design_z_140um_donor_iec_omitted_host_ingrowth_kperf_s_inv'),
     ('stage0_contrast_b3_iec_omitted_perifusion_gsis_si', 'obs_contrast_b3_iec_omitted_perifusion_gsis_si', 'obs_contrast_b3_iec_omitted_perifusion_gsis_se', 0.1, 50.0, 'contrast_b3_design_z_140um_donor_iec_omitted_loaded_perifusion_gsis_si'),
+    # Stage-0 Design B endogenous HLA-C phased CFD + Corrah 2011 DT9/HLA-E specificity control, per-locus segmented BAF, Locus-5 RACE/UMI (>=3,689), and TYK2 PE4max MSI + piecewise repeat-indel endpoints (IIP-0026; DEC-105):
+    ('stage0_design_b_hlac_phased_guide_cfd_max', 'obs_design_b_hlac_phased_guide_cfd_max', 'obs_design_b_hlac_phased_guide_cfd_max_se', 0.0, 1.0, 'phased_donor_hlac_exons2_3_max_wt_cfd_across_hla_ab_guides'),
+    ('stage0_design_b_hlac_dt9_matched_hlae_only_control_delta_ratio', 'obs_design_b_hlac_dt9_matched_hlae_only_control_delta_ratio', 'obs_design_b_hlac_dt9_matched_hlae_only_control_delta_se', 0.0, 100.0, 'dt9_mfi_fold_over_matched_hlae_only_control_corrah_pmid_21248048'),
+    ('stage0_post_edit_segmented_baf_chr19q', 'obs_post_edit_segmented_baf_chr19q', 'obs_post_edit_segmented_baf_chr19q_se', 0.0, 1.0, 'post_edit_phased_50snp_segmented_baf_chr19q_aavs1'),
+    ('stage0_post_edit_segmented_baf_chr11p15', 'obs_post_edit_segmented_baf_chr11p15', 'obs_post_edit_segmented_baf_chr11p15_se', 0.0, 1.0, 'post_edit_phased_50snp_segmented_baf_chr11p15_imprinting_region'),
+    ('stage0_post_edit_segmented_baf_chr6p21', 'obs_post_edit_segmented_baf_chr6p21', 'obs_post_edit_segmented_baf_chr6p21_se', 0.0, 1.0, 'post_edit_phased_50snp_segmented_baf_chr6p21_mhc_region'),
+    ('stage0_design_b_locus5_5prime_race_coord_bp', 'obs_design_b_locus5_5prime_race_coord_bp', 'obs_design_b_locus5_5prime_race_coord_bp_se', 1.0, 10000.0, 'design_b_locus5_mature_5prime_race_donor_coordinate_bp_1based'),
+    ('stage0_design_b_locus5_3prime_race_coord_bp', 'obs_design_b_locus5_3prime_race_coord_bp', 'obs_design_b_locus5_3prime_race_coord_bp_se', 1.0, 10000.0, 'design_b_locus5_mature_3prime_race_donor_coordinate_bp_1based'),
+    ('stage0_design_b_locus5_race_umi_n_eff', 'obs_design_b_locus5_race_umi_n_eff', 'obs_design_b_locus5_race_umi_n_eff_se', 1.0, 1000000000.0, 'design_b_locus5_race_effective_independent_umi_trials_n_eff_min_3689'),
+    ('stage0_design_b_locus5_aberrant_umi_k', 'obs_design_b_locus5_aberrant_umi_k', 'obs_design_b_locus5_aberrant_umi_k_se', 0.0, 1000000.0, 'design_b_locus5_aberrant_chimeric_or_upstream_kozak_umi_count_k'),
+    ('stage0_tyk2_pe4max_pentaplex_msi_shifts_k', 'obs_tyk2_pe4max_pentaplex_msi_shifts_k', 'obs_tyk2_pe4max_pentaplex_msi_shifts_k_se', 0.0, 100.0, 'tyk2_pe4max_pentaplex_microsatellite_instability_shifted_markers_k'),
+    ('stage0_tyk2_pe4max_wgs_repeat_indels_clone', 'obs_tyk2_pe4max_wgs_repeat_indels_clone', 'obs_tyk2_pe4max_wgs_repeat_indels_clone_se', 0.0, 1000000.0, 'tyk2_pe4max_clonal_wgs_callable_repeat_de_novo_indels_count'),
+    ('stage0_tyk2_pe4max_wgs_repeat_indels_ctrl', 'obs_tyk2_pe4max_wgs_repeat_indels_ctrl', 'obs_tyk2_pe4max_wgs_repeat_indels_ctrl_se', 0.0, 1000000.0, 'tyk2_pe4max_matched_control_wgs_callable_repeat_de_novo_indels_count'),
+    ('stage0_tyk2_pe4max_coding_or_splice_de_novo_indels', 'obs_tyk2_pe4max_coding_or_splice_de_novo_indels', 'obs_tyk2_pe4max_coding_or_splice_de_novo_indels_se', 0.0, 10000.0, 'tyk2_pe4max_coding_or_canonical_splice_de_novo_indels_count'),
 ]
 
 STAGE0_S10_V3_MEAN_KEYS: frozenset[str] = frozenset({
@@ -452,6 +466,14 @@ ALLOWED_CONTRAST_B2_ARMS: frozenset[str] = frozenset({
 ALLOWED_CONTRAST_B3_DONOR_IEC_ARMS: frozenset[str] = frozenset({
     'WITH_DONOR_IEC_9E8',
     'OMIT_DONOR_IEC_8E8_CHALLENGER',
+})
+ALLOWED_TYK2_PE_MODALITIES: frozenset[str] = frozenset({
+    'PE2MAX_LEAD',
+    'PE4MAX_MSI_GATED',
+})
+ALLOWED_IIP0026_SCHEMA_ERAS: frozenset[str] = frozenset({
+    'IIP0026_V1',
+    'LEGACY_PRE_IIP0026',
 })
 ALLOWED_CUFF_BIOCONJUGATION_ARMS: frozenset[str] = frozenset({
     'CANONICAL_SA_BIOTIN_PEG4MAL_BASELINE',
@@ -1140,6 +1162,19 @@ STAGE0_CUSTOM_DEFAULT_SE: dict[str, float] = {
     'obs_contrast_b3_iec_omitted_surface_po2_mmhg': 0.40,
     'obs_contrast_b3_iec_omitted_outer_kperf_s_inv': 0.005,
     'obs_contrast_b3_iec_omitted_perifusion_gsis_si': 0.15,
+    'obs_design_b_hlac_phased_guide_cfd_max': 1e-6,
+    'obs_design_b_hlac_dt9_matched_hlae_only_control_delta_ratio': 0.10,
+    'obs_post_edit_segmented_baf_chr19q': 0.008,
+    'obs_post_edit_segmented_baf_chr11p15': 0.008,
+    'obs_post_edit_segmented_baf_chr6p21': 0.008,
+    'obs_design_b_locus5_5prime_race_coord_bp': 1e-12,
+    'obs_design_b_locus5_3prime_race_coord_bp': 1e-12,
+    'obs_design_b_locus5_race_umi_n_eff': 1.0,
+    'obs_design_b_locus5_aberrant_umi_k': 1e-12,
+    'obs_tyk2_pe4max_pentaplex_msi_shifts_k': 1e-12,
+    'obs_tyk2_pe4max_wgs_repeat_indels_clone': 1e-12,
+    'obs_tyk2_pe4max_wgs_repeat_indels_ctrl': 1e-12,
+    'obs_tyk2_pe4max_coding_or_splice_de_novo_indels': 1e-12,
 }
 
 STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
@@ -1190,6 +1225,15 @@ STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
     'obs_design_y_sampling_age_days': 1e-12,
     'obs_design_y04_all4_lineages_scored_count': 1e-12,
     'obs_design_y04_ap1903_survivor_count_k': 1e-12,
+    'obs_design_b_hlac_phased_guide_cfd_max': 1e-12,
+    'obs_design_b_locus5_5prime_race_coord_bp': 1e-12,
+    'obs_design_b_locus5_3prime_race_coord_bp': 1e-12,
+    'obs_design_b_locus5_race_umi_n_eff': 1e-12,
+    'obs_design_b_locus5_aberrant_umi_k': 1e-12,
+    'obs_tyk2_pe4max_pentaplex_msi_shifts_k': 1e-12,
+    'obs_tyk2_pe4max_wgs_repeat_indels_clone': 1e-12,
+    'obs_tyk2_pe4max_wgs_repeat_indels_ctrl': 1e-12,
+    'obs_tyk2_pe4max_coding_or_splice_de_novo_indels': 1e-12,
 }
 
 
@@ -1561,6 +1605,16 @@ STAGE0_DECISION_TREE_BOOLEAN_KEYS: tuple[str, ...] = (
     'p05_two_timepoint_same_lot_envelope_verified',
     'contrast_b2_route_qualification_distinct_from_portfolio_credit_verified',
     'contrast_b3_zero_primate_host_ingrowth_verified',
+    'require_full_iip0026_molecular_provenance_panel',
+    'donor_seed_gnomad_target_site_wgs_verified',
+    'post_edit_reciprocal_mosaic_sv_or_clonal_zygosity_verified',
+    'design_b_hla_ab_separated_pass_delivery_verified',
+    'design_b_chr6p21_1p41mb_loh_sv_cleared',
+    'design_b_hlac_dt9_positive',
+    'design_b_hlae_3d12_positive',
+    'design_b_hlac_allele_specific_surface_or_phased_mrna_verified',
+    'b_sct_ciita_exon5_and_trimer_verified',
+    'tyk2_phased_haplotype_sap_verified',
 )
 
 
@@ -1642,6 +1696,9 @@ def derive_contract(root: Path | str | None = None) -> dict:
                 'contrast_b1_geometry_arm',
                 'contrast_b2_perfusion_and_retrieval_arm',
                 'contrast_b3_donor_iec_arm',
+                'bound_c1_c5_pair_sha256',
+                'tyk2_pe_modality',
+                'iip0026_schema_era',
             ],
             'boolean_policy_keys': list(STAGE0_DECISION_TREE_BOOLEAN_KEYS),
             'endpoints': endpoints,
@@ -1828,6 +1885,18 @@ def normalize_measurements(payload: dict, *, require_observation: bool = True,
         elif key == 'contrast_b3_donor_iec_arm':
             if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_CONTRAST_B3_DONOR_IEC_ARMS:
                 raise ValueError(f'contrast_b3_donor_iec_arm must be one of {sorted(ALLOWED_CONTRAST_B3_DONOR_IEC_ARMS)} (IIP-0025; DEC-104)')
+            result[key] = payload[key].strip()
+        elif key == 'tyk2_pe_modality':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_TYK2_PE_MODALITIES:
+                raise ValueError(f'tyk2_pe_modality must be one of {sorted(ALLOWED_TYK2_PE_MODALITIES)} (IIP-0026; DEC-105)')
+            result[key] = payload[key].strip()
+        elif key == 'iip0026_schema_era':
+            if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_IIP0026_SCHEMA_ERAS:
+                raise ValueError(f'iip0026_schema_era must be one of {sorted(ALLOWED_IIP0026_SCHEMA_ERAS)} (IIP-0026; DEC-105)')
+            result[key] = payload[key].strip()
+        elif key == 'bound_c1_c5_pair_sha256':
+            if not isinstance(payload[key], str) or not re.fullmatch(r'[0-9a-f]{64}', payload[key].strip()):
+                raise ValueError('bound_c1_c5_pair_sha256 must be a lowercase 64-character SHA-256 hex digest (IIP-0026; DEC-105)')
             result[key] = payload[key].strip()
         elif key == 'product_variant_id':
             if not isinstance(payload[key], str) or not payload[key].strip() or payload[key] != payload[key].strip() or len(payload[key]) > 120:
@@ -2298,6 +2367,14 @@ STAGE0_STRICT_INTEGER_COUNT_AND_DENOMINATOR_KEYS: frozenset[str] = frozenset({
     'obs_design_y02_wgs_pseudosite_k',
     'obs_design_y04_all4_lineages_scored_count',
     'obs_design_y04_ap1903_survivor_count_k',
+    'obs_design_b_locus5_5prime_race_coord_bp',
+    'obs_design_b_locus5_3prime_race_coord_bp',
+    'obs_design_b_locus5_race_umi_n_eff',
+    'obs_design_b_locus5_aberrant_umi_k',
+    'obs_tyk2_pe4max_pentaplex_msi_shifts_k',
+    'obs_tyk2_pe4max_wgs_repeat_indels_clone',
+    'obs_tyk2_pe4max_wgs_repeat_indels_ctrl',
+    'obs_tyk2_pe4max_coding_or_splice_de_novo_indels',
 })
 
 
@@ -2494,6 +2571,19 @@ def evaluate_stage0_decision_tree(
         'contrast_b1_geometry_arm',
         'contrast_b2_perfusion_and_retrieval_arm',
         'contrast_b3_donor_iec_arm',
+        'require_full_iip0026_molecular_provenance_panel',
+        'donor_seed_gnomad_target_site_wgs_verified',
+        'post_edit_reciprocal_mosaic_sv_or_clonal_zygosity_verified',
+        'design_b_hla_ab_separated_pass_delivery_verified',
+        'design_b_chr6p21_1p41mb_loh_sv_cleared',
+        'design_b_hlac_dt9_positive',
+        'design_b_hlae_3d12_positive',
+        'design_b_hlac_allele_specific_surface_or_phased_mrna_verified',
+        'b_sct_ciita_exon5_and_trimer_verified',
+        'tyk2_phased_haplotype_sap_verified',
+        'bound_c1_c5_pair_sha256',
+        'tyk2_pe_modality',
+        'iip0026_schema_era',
     }
     unknown_keys = sorted(set(observations) - set(spec_by_mean) - set(spec_by_se) - allowed_boolean_and_meta_flags)
     if unknown_keys:
@@ -2503,6 +2593,10 @@ def evaluate_stage0_decision_tree(
             _sv = observations[_str_meta_k]
             if not isinstance(_sv, str) or not _sv.strip() or len(_sv) > 120:
                 raise ValueError(f'{_str_meta_k} must be a nonempty string of at most 120 characters (IIP-0024; DEC-103)')
+    if 'bound_c1_c5_pair_sha256' in observations and observations['bound_c1_c5_pair_sha256'] is not None:
+        _bsha = observations['bound_c1_c5_pair_sha256']
+        if not isinstance(_bsha, str) or not re.fullmatch(r'[0-9a-f]{64}', _bsha.strip()):
+            raise ValueError('bound_c1_c5_pair_sha256 must be a lowercase 64-character SHA-256 hex digest (IIP-0026; DEC-105)')
 
     # Pre-normalization strict integer check on count, scored-cell, donor, trial, and replicate denominators (IIP-0024; DEC-103):
     non_integer_scored_cell_or_trial_denominator = False
@@ -2546,6 +2640,8 @@ def evaluate_stage0_decision_tree(
         ('contrast_b1_geometry_arm', ALLOWED_CONTRAST_B1_GEOMETRY_ARMS),
         ('contrast_b2_perfusion_and_retrieval_arm', ALLOWED_CONTRAST_B2_ARMS),
         ('contrast_b3_donor_iec_arm', ALLOWED_CONTRAST_B3_DONOR_IEC_ARMS),
+        ('tyk2_pe_modality', ALLOWED_TYK2_PE_MODALITIES),
+        ('iip0026_schema_era', ALLOWED_IIP0026_SCHEMA_ERAS),
     ):
         if _adj_k in observations and observations[_adj_k] is not None:
             _adj_v = observations[_adj_k]
@@ -3629,7 +3725,32 @@ def evaluate_stage0_decision_tree(
             or ('obs_b_prime_sct_cd8_lysis_pct' in validated_stage0 and validated_stage0['obs_b_prime_sct_cd8_lysis_pct'] <= 5.0 and b_prime_sct_cd8_upper95 <= 10.0)
         )
     )
-    s7_promoted = bool(s7_allo_triggered and sct_density_explicitly_qualified and not b_prime_sct_direct_cd8_failed)
+    _strict_s7_mlc_and_se_required = bool(
+        product_def is not None
+        or observations.get('b_prime_sct_recipient_cd8_mlc_cleared') is False
+        or observations.get('require_full_iip0026_molecular_provenance_panel') is True
+    )
+    _sct_density_se_explicit = bool(
+        se_provenance_by_mean.get('obs_gate0b_hlac_sct_molecules_per_cell') == 'EXPLICIT_SE_SUPPLIED'
+    )
+    _has_explicit_s7_hlac_obs = bool(
+        any(
+            _sk in validated_stage0
+            for _sk in (
+                'obs_gate0b_hlac_cd8_elispot_sfw',
+                'obs_foreign_hlac_cd8_lysis_pct',
+                'obs_gate0b_hlac_sct_molecules_per_cell',
+                'obs_b_prime_sct_cd8_lysis_pct',
+            )
+        )
+        or observations.get('b_prime_sct_recipient_cd8_mlc_cleared') is not None
+    )
+    s7_promoted = bool(
+        s7_allo_triggered
+        and sct_density_explicitly_qualified
+        and not b_prime_sct_direct_cd8_failed
+        and (not _strict_s7_mlc_and_se_required or (sct_cd8_mlc_explicitly_cleared and _sct_density_se_explicit))
+    )
     # Design B2 (ISLET1_B2_5LOCUS_TYK2_PE) retained-HLA-C TYK2 p.Pro1104Ala (SAPTKFLEL) empirical OR-hold gate (IIP-0017; DEC-095):
     _b2_tyk2_product_selected = bool(
         product_def is not None
@@ -3728,7 +3849,14 @@ def evaluate_stage0_decision_tree(
             'hlac_blockade_abrogation_verified': _b2_block_ok,
         }
     s7_hold_unqualified_sct = bool(s7_allo_triggered and not sct_density_explicitly_qualified)
-    s7_hold_unverified_sct_allo = bool((s7_allo_triggered and sct_density_explicitly_qualified and not sct_cd8_mlc_explicitly_cleared) or b_prime_sct_direct_cd8_failed)
+    s7_hold_unverified_sct_allo = bool(
+        (
+            s7_allo_triggered
+            and sct_density_explicitly_qualified
+            and (not sct_cd8_mlc_explicitly_cleared or (_strict_s7_mlc_and_se_required and not _sct_density_se_explicit))
+        )
+        or b_prime_sct_direct_cd8_failed
+    )
     glucagon_2mM_lower95 = _lower95('obs_gate0m_glucagon_2mM_fold_increase', 2.5)
     prolonged_insulin_clearance_failed = bool(
         'obs_recipient_insulin_clearance_tau_min' in validated_stage0
@@ -5248,6 +5376,184 @@ def evaluate_stage0_decision_tree(
             'student_t_critical_multiplier_used': round(_student_t_mult_df5_default, 8),
         }
 
+    # Stage-0 molecular provenance, 4-state Design B c1+c5 registry binding, Corrah 2011 DT9/HLA-E control, per-locus segmented BAF, Locus-5 RACE/UMI >=3,689, & TYK2 PE4max MSI/piecewise guardrails (IIP-0026; DEC-105):
+    _iip0026_obs_keys = (
+        'obs_design_b_hlac_phased_guide_cfd_max',
+        'obs_design_b_hlac_dt9_matched_hlae_only_control_delta_ratio',
+        'obs_post_edit_segmented_baf_chr19q',
+        'obs_post_edit_segmented_baf_chr11p15',
+        'obs_post_edit_segmented_baf_chr6p21',
+        'obs_design_b_locus5_5prime_race_coord_bp',
+        'obs_design_b_locus5_3prime_race_coord_bp',
+        'obs_design_b_locus5_race_umi_n_eff',
+        'obs_design_b_locus5_aberrant_umi_k',
+        'obs_tyk2_pe4max_pentaplex_msi_shifts_k',
+        'obs_tyk2_pe4max_wgs_repeat_indels_clone',
+        'obs_tyk2_pe4max_wgs_repeat_indels_ctrl',
+        'obs_tyk2_pe4max_coding_or_splice_de_novo_indels',
+    )
+    _iip0026_bool_or_meta_keys = (
+        'require_full_iip0026_molecular_provenance_panel',
+        'donor_seed_gnomad_target_site_wgs_verified',
+        'post_edit_reciprocal_mosaic_sv_or_clonal_zygosity_verified',
+        'design_b_hla_ab_separated_pass_delivery_verified',
+        'design_b_chr6p21_1p41mb_loh_sv_cleared',
+        'design_b_hlac_dt9_positive',
+        'design_b_hlae_3d12_positive',
+        'design_b_hlac_allele_specific_surface_or_phased_mrna_verified',
+        'b_sct_ciita_exon5_and_trimer_verified',
+        'tyk2_phased_haplotype_sap_verified',
+        'bound_c1_c5_pair_sha256',
+        'tyk2_pe_modality',
+        'iip0026_schema_era',
+    )
+    _req_iip0026_full = bool(observations.get('require_full_iip0026_molecular_provenance_panel') is True)
+    _iip0026_active = bool(
+        _req_iip0026_full
+        or any(_k in validated_stage0 for _k in _iip0026_obs_keys)
+        or any(observations.get(_k) is not None for _k in _iip0026_bool_or_meta_keys)
+    )
+    _pvid_s0_26 = str(product_def['product_variant_id']) if product_def is not None else ''
+    _is_endogenous_hlac_b_26 = _pvid_s0_26 in ('ISLET1_B2_5LOCUS_BASE', 'ISLET1_B2_5LOCUS_TYK2_PE', 'ISLET1_B1_6LOCUS_TYK2_KO_INS')
+    _is_bsct_26 = _pvid_s0_26.startswith('ISLET1_B_SCT_')
+    _is_tyk2_pe_26 = (_pvid_s0_26 == 'ISLET1_B2_5LOCUS_TYK2_PE') or ('TYK2_PE' in _pvid_s0_26)
+    iip0026_hold_status: str | None = None
+    iip0026_hlac_status: str | None = None
+    if _iip0026_active:
+        _expected_b2_sha = (
+            str(product_def.get('staged_design_b_donor_reference_binding', {}).get('bound_c1_c5_pair_sha256', '')).strip()
+            if isinstance(product_def, dict) and isinstance(product_def.get('staged_design_b_donor_reference_binding'), dict)
+            else ''
+        )
+        if observations.get('iip0026_schema_era') == 'LEGACY_PRE_IIP0026':
+            iip0026_hold_status = 'HOLD_PROVISIONAL_LEGACY_SCHEMA_MISSING_IIP0026_EVIDENCE'
+        elif _expected_b2_sha:
+            _sup_sha = observations.get('bound_c1_c5_pair_sha256')
+            if _sup_sha is None:
+                if _req_iip0026_full:
+                    iip0026_hold_status = 'HOLD_MISSING_BOUND_C1_C5_DONOR_PAIR_DIGEST'
+            elif _sup_sha.strip() != _expected_b2_sha:
+                iip0026_hold_status = 'HOLD_DONOR_REGISTRY_DIGEST_MISMATCH'
+        if iip0026_hold_status is None and (
+            _req_iip0026_full or observations.get('donor_seed_gnomad_target_site_wgs_verified') is False
+        ):
+            if observations.get('donor_seed_gnomad_target_site_wgs_verified') is not True:
+                iip0026_hold_status = 'HOLD_MISSING_DONOR_TARGET_WGS'
+        if iip0026_hold_status is None and (
+            _req_iip0026_full
+            or any(_bk in validated_stage0 for _bk in ('obs_post_edit_segmented_baf_chr19q', 'obs_post_edit_segmented_baf_chr11p15', 'obs_post_edit_segmented_baf_chr6p21'))
+            or observations.get('post_edit_reciprocal_mosaic_sv_or_clonal_zygosity_verified') is not None
+        ):
+            _req_baf_keys = (
+                ('obs_post_edit_segmented_baf_chr19q', 'obs_post_edit_segmented_baf_chr11p15', 'obs_post_edit_segmented_baf_chr6p21')
+                if _is_endogenous_hlac_b_26
+                else ('obs_post_edit_segmented_baf_chr19q', 'obs_post_edit_segmented_baf_chr11p15')
+            )
+            if (
+                any(_bk not in validated_stage0 for _bk in _req_baf_keys)
+                or observations.get('post_edit_reciprocal_mosaic_sv_or_clonal_zygosity_verified') is not True
+            ):
+                iip0026_hold_status = 'HOLD_MISSING_SEGMENTED_PHASED_BAF_SURVEILLANCE'
+            elif max(abs(validated_stage0[_bk] - 0.50) for _bk in _req_baf_keys) > 0.05:
+                iip0026_hold_status = 'HOLD_DISCORDANT_PER_LOCUS_SEGMENTED_BAF'
+        if _is_endogenous_hlac_b_26:
+            _cfd_26 = validated_stage0.get('obs_design_b_hlac_phased_guide_cfd_max')
+            _dt9_26 = validated_stage0.get('obs_design_b_hlac_dt9_matched_hlae_only_control_delta_ratio')
+            _orth_26 = observations.get('design_b_hlac_allele_specific_surface_or_phased_mrna_verified')
+            if (
+                _cfd_26 is None
+                or not (0.0 <= _cfd_26 < 0.05)
+                or observations.get('design_b_hla_ab_separated_pass_delivery_verified') is not True
+                or observations.get('design_b_chr6p21_1p41mb_loh_sv_cleared') is not True
+                or observations.get('design_b_hlac_dt9_positive') is not True
+                or observations.get('design_b_hlae_3d12_positive') is not True
+            ):
+                iip0026_hlac_status = 'HOLD_MISSING_ENDOGENOUS_DESIGNB_HLAC_PHASED_CLEARANCE'
+            elif _dt9_26 is None and _orth_26 is not True:
+                iip0026_hlac_status = 'HOLD_MISSING_HLAC_SPECIFICITY_CONTROL_FOR_DT9_HLAE_CROSSREACTIVITY'
+            elif _dt9_26 is not None and _dt9_26 <= 0.0 and _orth_26 is not True:
+                iip0026_hlac_status = 'HOLD_MISSING_HLAC_SPECIFICITY_CONTROL_FOR_DT9_HLAE_CROSSREACTIVITY'
+            elif _dt9_26 is not None and _dt9_26 < 2.0 and _orth_26 is not True:
+                iip0026_hlac_status = 'HOLD_HLAC_SURFACE_LOSS_MASKED_BY_DT9_HLAE_CROSSREACTIVITY'
+            else:
+                iip0026_hlac_status = 'CLEARED_ENDOGENOUS_DESIGNB_HLAC_PHASED_AND_DT9_HLAE_CONTROL'
+            if iip0026_hold_status is None and not str(iip0026_hlac_status).startswith('CLEARED_'):
+                iip0026_hold_status = iip0026_hlac_status
+            if iip0026_hold_status is None and (
+                _req_iip0026_full
+                or any(
+                    _rk in validated_stage0
+                    for _rk in (
+                        'obs_design_b_locus5_5prime_race_coord_bp',
+                        'obs_design_b_locus5_3prime_race_coord_bp',
+                        'obs_design_b_locus5_race_umi_n_eff',
+                        'obs_design_b_locus5_aberrant_umi_k',
+                    )
+                )
+            ):
+                _r5_26 = validated_stage0.get('obs_design_b_locus5_5prime_race_coord_bp')
+                _r3_26 = validated_stage0.get('obs_design_b_locus5_3prime_race_coord_bp')
+                _un_26 = validated_stage0.get('obs_design_b_locus5_race_umi_n_eff')
+                _uk_26 = validated_stage0.get('obs_design_b_locus5_aberrant_umi_k')
+                if _r5_26 is None or _r3_26 is None:
+                    iip0026_hold_status = 'HOLD_MISSING_DESIGNB_LOCUS5_RACE_COORDINATES'
+                elif int(round(_r5_26)) <= 0 or int(round(_r3_26)) <= 0 or int(round(_r5_26)) >= int(round(_r3_26)):
+                    iip0026_hold_status = 'HOLD_INVALID_RACE_COORDINATES'
+                elif _un_26 is None or int(round(_un_26)) < 3689 or _uk_26 is None:
+                    iip0026_hold_status = 'HOLD_MISSING_DESIGNB_LOCUS5_TRANSCRIPT_UMI_3689'
+                elif int(round(_uk_26)) > 0:
+                    iip0026_hold_status = 'HOLD_DESIGNB_LOCUS5_CHIMERIC_TRANSCRIPT_DETECTED'
+        elif _is_bsct_26 and (_req_iip0026_full or observations.get('b_sct_ciita_exon5_and_trimer_verified') is not None):
+            if observations.get('b_sct_ciita_exon5_and_trimer_verified') is not True and iip0026_hold_status is None:
+                iip0026_hold_status = 'HOLD_MISSING_BSCT_CIITA_EXON5_AND_TRIMER_EVIDENCE'
+        if iip0026_hold_status is None and (
+            _is_tyk2_pe_26
+            and (
+                _req_iip0026_full
+                or observations.get('tyk2_pe_modality') is not None
+                or observations.get('tyk2_phased_haplotype_sap_verified') is not None
+                or any(
+                    _tk in validated_stage0
+                    for _tk in (
+                        'obs_tyk2_pe4max_pentaplex_msi_shifts_k',
+                        'obs_tyk2_pe4max_wgs_repeat_indels_clone',
+                        'obs_tyk2_pe4max_wgs_repeat_indels_ctrl',
+                        'obs_tyk2_pe4max_coding_or_splice_de_novo_indels',
+                    )
+                )
+            )
+        ):
+            _pem_26 = observations.get('tyk2_pe_modality')
+            _pem_str = _pem_26.strip() if isinstance(_pem_26, str) else None
+            if _pem_str not in ALLOWED_TYK2_PE_MODALITIES or observations.get('tyk2_phased_haplotype_sap_verified') is not True:
+                iip0026_hold_status = 'HOLD_MISSING_TYK2_PE_MODALITY_OR_PHASED_HAPLOTYPE'
+            elif _pem_str == 'PE4MAX_MSI_GATED':
+                _msi_26 = validated_stage0.get('obs_tyk2_pe4max_pentaplex_msi_shifts_k')
+                _cc_26 = validated_stage0.get('obs_tyk2_pe4max_wgs_repeat_indels_clone')
+                _ct_26 = validated_stage0.get('obs_tyk2_pe4max_wgs_repeat_indels_ctrl')
+                _cd_26 = validated_stage0.get('obs_tyk2_pe4max_coding_or_splice_de_novo_indels')
+                if _msi_26 is None:
+                    iip0026_hold_status = 'HOLD_MISSING_MSI'
+                elif int(round(_msi_26)) > 0:
+                    iip0026_hold_status = 'HOLD_MSI_DETECTED_PE4MAX_REJECTED'
+                elif _cc_26 is None or _ct_26 is None or _cd_26 is None:
+                    iip0026_hold_status = 'HOLD_MISSING_PE4MAX_REPEAT_INDEL_EVIDENCE'
+                elif int(round(_cd_26)) > 0:
+                    iip0026_hold_status = 'HOLD_PE4MAX_CODING_OR_SPLICE_DE_NOVO_INDEL_DETECTED'
+                else:
+                    _ct_i = int(round(_ct_26))
+                    _cap_26 = (_ct_i + 5) if _ct_i <= 25 else int(math.floor(1.2 * _ct_i))
+                    if int(round(_cc_26)) > _cap_26:
+                        iip0026_hold_status = 'HOLD_PE4MAX_REPEAT_INDEL_CAP_EXCEEDED'
+    iip0026_eval_summary: dict[str, object] | None = None
+    if _iip0026_active:
+        iip0026_eval_summary = {
+            'gate_pass': iip0026_hold_status is None,
+            'hold_status': iip0026_hold_status,
+            'endogenous_hlac_status': iip0026_hlac_status,
+            'status': iip0026_hold_status if iip0026_hold_status is not None else 'CLEARED_IIP0026_MOLECULAR_PROVENANCE_AND_DESIGNB_GUARDRAILS',
+        }
+
     resolved_arch = dict(tree_doc.get('default_architecture_assignments', {}))
     if product_def is not None:
         _pvid_canon = str(product_def['product_variant_id'])
@@ -5584,6 +5890,8 @@ def evaluate_stage0_decision_tree(
         resolved_arch['lot_maturation_status'] = iip0024_hold_status
     elif iip0025_hold_status is not None:
         resolved_arch['lot_maturation_status'] = iip0025_hold_status
+    elif iip0026_hold_status is not None:
+        resolved_arch['lot_maturation_status'] = iip0026_hold_status
     elif challenger_hold_status is not None:
         resolved_arch['lot_maturation_status'] = challenger_hold_status
     elif avascular_outer_band_dropout and not omental_revascularization_cleared:
@@ -6235,9 +6543,25 @@ def evaluate_stage0_decision_tree(
                     'HOLD_B_PRIME_ALLO_FAILED_PENDING_B_SCT_DENSITY_QUALIFICATION'
                     if s7_hold_unqualified_sct
                     else (
-                        b2_tyk2_gate_status
-                        if b2_tyk2_gate_status is not None
-                        else 'RETAIN_4DIGIT_MATCHED_HLAC'
+                        'HOLD_B_PRIME_ALLO_FAILED_REQUIRES_4DIGIT_MATCH_OR_SCT_CD8_MLC_CLEARANCE'
+                        if s7_hold_unverified_sct_allo
+                        else (
+                            b2_tyk2_gate_status
+                            if b2_tyk2_gate_status is not None
+                            else (
+                                (
+                                    iip0026_hlac_status
+                                    if iip0026_hlac_status is not None
+                                    else 'HOLD_MISSING_ENDOGENOUS_DESIGNB_HLAC_PHASED_CLEARANCE'
+                                )
+                                if _is_endogenous_hlac_b_26
+                                else (
+                                    'UNMEASURED_EXTENDED_S7_GATE0B_HLAC_PANEL'
+                                    if not _has_explicit_s7_hlac_obs
+                                    else 'RETAIN_4DIGIT_MATCHED_HLAC'
+                                )
+                            )
+                        )
                     )
                 )
             )
@@ -6321,6 +6645,11 @@ def evaluate_stage0_decision_tree(
         'switch_decisions': decisions,
         'canonical_json_switch_id_map': canonical_json_switch_id_map,
         'pivotal_combined_stress_coupon_gate': combined_stress_spec,
+        **(
+            {'iip0026_molecular_provenance_evaluation': iip0026_eval_summary}
+            if iip0026_eval_summary is not None
+            else {}
+        ),
     }
 
 
@@ -7578,4 +7907,510 @@ def evaluate_dual_assay_gate0s_shedding_iip0025(
         'ddpcr_u95': dd_res['u95_binomial'],
         'viable_u95': vi_res['u95_binomial'],
         'day90_recovery_lower95': rec_l95,
+    }
+
+
+# ============================================================================
+# Shared Registry-Bound Stage-0 Research & Molecular Guardrail Evaluator
+# Decoupled from Bayesian Calibration Admission (IIP-0026; DEC-105)
+# ============================================================================
+DESIGN_B_FASTA_SHA256 = '4bb20389773c76b2705031ba675487825dfbd94d920a692cde75b7d56af22aa4'
+DESIGN_B_C1_C5_PAIR_SHA256 = '82c351af082e0f97361e715c36e2ab5872b8d097efa1c9f59dfda53ea60496ea'
+
+IIP0026_REQUIRED_CORE_S9_OBS_KEYS: tuple[str, ...] = (
+    'obs_icasp9_log10_kill',
+    'obs_icasp9_log10_kill_se',
+    'obs_tp53_ppm1d_bcor_vaf',
+    'obs_tp53_ppm1d_bcor_vaf_se',
+    'obs_tp53_ppm1d_bcor_duplex_depth',
+    'obs_castseq_translocation_freq',
+    'obs_castseq_translocation_se',
+    'obs_castseq_duplex_or_amplicon_depth',
+    'obs_mcb_clonogenic_survivor_count_k',
+    'obs_mcb_effective_clonogenic_trials',
+)
+
+IIP0026_FORBIDDEN_CALLER_OVERRIDE_KEYS: frozenset[str] = frozenset({
+    'lifecycle_state',
+    'iip0026_lifecycle_state',
+    'execution_supported',
+    'override_execution_supported',
+    'force_state4_promotion',
+    'bypass_hlac_phased_gate',
+    'bypass_pe4max_msi_gate',
+})
+
+IIP0026_ALLOWED_MOLECULAR_OBS_KEYS: frozenset[str] = frozenset({
+    'bound_c1_c5_pair_sha256',
+    'donor_seed_gnomad_target_site_wgs_verified',
+    'post_edit_per_locus_segmented_baf',
+    'obs_post_edit_segmented_baf_chr19q',
+    'obs_post_edit_segmented_baf_chr11p15',
+    'obs_post_edit_segmented_baf_chr6p21',
+    'post_edit_reciprocal_mosaic_sv_or_clonal_zygosity_verified',
+    'design_b_hlac_phased_guide_cfd_max',
+    'obs_design_b_hlac_phased_guide_cfd_max',
+    'design_b_hla_ab_separated_pass_delivery_verified',
+    'design_b_chr6p21_1p41mb_loh_sv_cleared',
+    'design_b_hlac_dt9_positive',
+    'design_b_hlae_3d12_positive',
+    'design_b_hlac_dt9_matched_hlae_only_control_delta_ratio',
+    'obs_design_b_hlac_dt9_matched_hlae_only_control_delta_ratio',
+    'design_b_hlac_allele_specific_surface_or_phased_mrna_verified',
+    'design_b_locus5_5prime_race_coord_bp',
+    'obs_design_b_locus5_5prime_race_coord_bp',
+    'design_b_locus5_3prime_race_coord_bp',
+    'obs_design_b_locus5_3prime_race_coord_bp',
+    'design_b_locus5_pdl1_5prime_race_coord_bp',
+    'design_b_locus5_race_umi_n_eff',
+    'obs_design_b_locus5_race_umi_n_eff',
+    'design_b_locus5_aberrant_umi_k',
+    'obs_design_b_locus5_aberrant_umi_k',
+    'b_sct_ciita_exon5_and_trimer_verified',
+    'tyk2_pe_modality',
+    'tyk2_phased_haplotype_sap_verified',
+    'tyk2_pe4max_pentaplex_msi_shifts_k',
+    'obs_tyk2_pe4max_pentaplex_msi_shifts_k',
+    'tyk2_pe4max_wgs_repeat_indels_clone',
+    'obs_tyk2_pe4max_wgs_repeat_indels_clone',
+    'tyk2_pe4max_wgs_repeat_indels_ctrl',
+    'obs_tyk2_pe4max_wgs_repeat_indels_ctrl',
+    'tyk2_pe4max_coding_or_splice_de_novo_indels',
+    'obs_tyk2_pe4max_coding_or_splice_de_novo_indels',
+    'schema_era',
+    'iip0026_schema_era',
+})
+
+
+def evaluate_pe4max_piecewise_repeat_indel_cap_iip0026(
+    c_clone: Any,
+    c_ctrl: Any,
+    coding_or_splice_de_novo_indels: Any,
+) -> str:
+    """
+    Evaluate held PE4max clonal WGS repeat-indel cap:
+      - 0 coding/splice de novo indels,
+      - C_clone <= C_ctrl + 5 for C_ctrl <= 25,
+      - C_clone <= floor(1.2 * C_ctrl) for C_ctrl > 25 (IIP-0026; DEC-105).
+    """
+    for v in (c_clone, c_ctrl, coding_or_splice_de_novo_indels):
+        if not _is_strict_int_iip0024(v) or v < 0:
+            return 'HOLD_MISSING_PE4MAX_REPEAT_INDEL_EVIDENCE'
+    if coding_or_splice_de_novo_indels != 0:
+        return 'FAIL_PE4MAX_CODING_OR_SPLICE_DE_NOVO_INDEL_DETECTED'
+    cap = (c_ctrl + 5) if c_ctrl <= 25 else int(math.floor(1.2 * c_ctrl))
+    return 'PASS' if c_clone <= cap else 'FAIL_PE4MAX_REPEAT_INDEL_CAP_EXCEEDED'
+
+
+def _is_integral_count_iip0026(val: Any) -> bool:
+    return _is_strict_int_iip0024(val) or (
+        isinstance(val, float) and math.isfinite(val) and val.is_integer()
+    )
+
+
+def _derive_versioned_product_registry_entry_iip0026(
+    pdef: dict[str, Any],
+) -> dict[str, Any]:
+    pid = str(pdef['product_variant_id'])
+    exec_sup = bool(pdef.get('execution_supported', False))
+    lifecycle_state = str(
+        pdef.get(
+            'product_lifecycle_state',
+            (
+                'EXECUTION_SUPPORTED_QUALIFIED_PRODUCT'
+                if exec_sup
+                else (
+                    'STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC'
+                    if pid in ('ISLET1_B2_5LOCUS_BASE', 'ISLET1_B2_5LOCUS_TYK2_PE')
+                    else 'RESEARCH_COMPARATOR_UNSUPPORTED_VARIANT_HOLD'
+                )
+            ),
+        )
+    )
+    bound_sha: str | None = None
+    binding_block = pdef.get('staged_design_b_donor_reference_binding')
+    if isinstance(binding_block, dict) and isinstance(binding_block.get('bound_c1_c5_pair_sha256'), str):
+        bound_sha = binding_block['bound_c1_c5_pair_sha256'].strip()
+    elif pid in ('ISLET1_B2_5LOCUS_BASE', 'ISLET1_B2_5LOCUS_TYK2_PE'):
+        bound_sha = DESIGN_B_C1_C5_PAIR_SHA256
+    is_b_sct = pid.startswith('ISLET1_B_SCT_')
+    is_endogenous_hlac_b = (pdef.get('family') == 'B') and (not is_b_sct)
+    is_tyk2_pe = ('TYK2_PE' in pid) or ('Pro1104Ala' in json.dumps(pdef.get('alleles', {})))
+    is_design_y = pid.startswith('ISLET1_Y_') or (pdef.get('family') == 'Y')
+    return {
+        'product_variant_id': pid,
+        'family': pdef.get('family'),
+        'execution_supported': exec_sup,
+        'lifecycle_state': lifecycle_state,
+        'bound_c1_c5_pair_sha256': bound_sha,
+        'requires_endogenous_hlac_and_locus5_gates': is_endogenous_hlac_b,
+        'requires_b_sct_gates': is_b_sct,
+        'requires_tyk2_pe_gates': is_tyk2_pe,
+        'is_held_design_y': is_design_y,
+        'required_baf_loci': ('chr19q', 'chr11p15', 'chr6p21') if is_endogenous_hlac_b else ('chr19q', 'chr11p15'),
+    }
+
+
+def _extract_per_locus_baf_dict_iip0026(payload: dict[str, Any]) -> dict[str, Any] | None:
+    raw_dict = payload.get('post_edit_per_locus_segmented_baf')
+    if isinstance(raw_dict, dict):
+        return dict(raw_dict)
+    if raw_dict is not None:
+        return None
+    assembled: dict[str, Any] = {}
+    for loc, ok in (
+        ('chr19q', 'obs_post_edit_segmented_baf_chr19q'),
+        ('chr11p15', 'obs_post_edit_segmented_baf_chr11p15'),
+        ('chr6p21', 'obs_post_edit_segmented_baf_chr6p21'),
+    ):
+        if ok in payload and payload[ok] is not None and payload[ok] != 'UNAVAILABLE':
+            assembled[loc] = payload[ok]
+    return assembled if assembled else None
+
+
+def _build_safe_stage0_tree_obs_iip0026(
+    payload: dict[str, Any],
+    *,
+    root_path: Path,
+) -> dict[str, Any]:
+    """Project valid Stage-0 scalar, boolean, and metadata keys onto evaluate_stage0_decision_tree for branch parity."""
+    contract = derive_contract(root_path)
+    valid_mean_se: dict[str, tuple[float, float]] = {}
+    for e in list(contract['endpoints']) + list(contract.get('stage0_decision_tree_endpoints', [])):
+        valid_mean_se[e['meanKey']] = (float(e['min']), float(e['max']))
+        valid_mean_se[e['seKey']] = (float(e.get('minimum_se') or contract['minimum_se']), 1e12)
+    out: dict[str, Any] = {}
+    pid = payload.get('product_variant_id')
+    if isinstance(pid, str) and pid.strip() and pid == pid.strip():
+        out['product_variant_id'] = pid
+    lot_v = payload.get('current_lot_id', payload.get('lot_id'))
+    if isinstance(lot_v, str) and lot_v.strip() and len(lot_v.strip()) <= 120:
+        out['current_lot_id'] = lot_v.strip()
+    camp_v = payload.get('assay_campaign_id', payload.get('campaign_id'))
+    if isinstance(camp_v, str) and camp_v.strip() and len(camp_v.strip()) <= 120:
+        out['assay_campaign_id'] = camp_v.strip()
+    bsha = payload.get('bound_c1_c5_pair_sha256')
+    if isinstance(bsha, str) and re.fullmatch(r'[0-9a-f]{64}', bsha.strip()):
+        out['bound_c1_c5_pair_sha256'] = bsha.strip()
+    pem = payload.get('tyk2_pe_modality')
+    if isinstance(pem, str) and pem.strip() in ALLOWED_TYK2_PE_MODALITIES:
+        out['tyk2_pe_modality'] = pem.strip()
+    sera = payload.get('iip0026_schema_era', payload.get('schema_era'))
+    if sera == 'LEGACY_PRE_IIP0026':
+        out['iip0026_schema_era'] = 'LEGACY_PRE_IIP0026'
+    elif sera == 'IIP0026_V1':
+        out['iip0026_schema_era'] = 'IIP0026_V1'
+    for bkey in STAGE0_DECISION_TREE_BOOLEAN_KEYS:
+        if type(payload.get(bkey)) is bool:
+            out[bkey] = payload[bkey]
+    baf_map = _extract_per_locus_baf_dict_iip0026(payload)
+    if isinstance(baf_map, dict):
+        for loc, ok in (
+            ('chr19q', 'obs_post_edit_segmented_baf_chr19q'),
+            ('chr11p15', 'obs_post_edit_segmented_baf_chr11p15'),
+            ('chr6p21', 'obs_post_edit_segmented_baf_chr6p21'),
+        ):
+            v = baf_map.get(loc)
+            if _is_strict_finite_number_iip0024(v) and 0.0 <= float(v) <= 1.0:
+                out[ok] = float(v)
+    alias_pairs = (
+        ('design_b_hlac_phased_guide_cfd_max', 'obs_design_b_hlac_phased_guide_cfd_max', False),
+        ('design_b_hlac_dt9_matched_hlae_only_control_delta_ratio', 'obs_design_b_hlac_dt9_matched_hlae_only_control_delta_ratio', False),
+        ('design_b_locus5_5prime_race_coord_bp', 'obs_design_b_locus5_5prime_race_coord_bp', True),
+        ('design_b_locus5_3prime_race_coord_bp', 'obs_design_b_locus5_3prime_race_coord_bp', True),
+        ('design_b_locus5_race_umi_n_eff', 'obs_design_b_locus5_race_umi_n_eff', True),
+        ('design_b_locus5_aberrant_umi_k', 'obs_design_b_locus5_aberrant_umi_k', True),
+        ('tyk2_pe4max_pentaplex_msi_shifts_k', 'obs_tyk2_pe4max_pentaplex_msi_shifts_k', True),
+        ('tyk2_pe4max_wgs_repeat_indels_clone', 'obs_tyk2_pe4max_wgs_repeat_indels_clone', True),
+        ('tyk2_pe4max_wgs_repeat_indels_ctrl', 'obs_tyk2_pe4max_wgs_repeat_indels_ctrl', True),
+        ('tyk2_pe4max_coding_or_splice_de_novo_indels', 'obs_tyk2_pe4max_coding_or_splice_de_novo_indels', True),
+    )
+    for short_k, obs_k, req_int in alias_pairs:
+        raw_v = payload.get(obs_k, payload.get(short_k))
+        if raw_v is None:
+            continue
+        if req_int:
+            if not _is_strict_int_iip0024(raw_v):
+                continue
+        elif not _is_strict_finite_number_iip0024(raw_v):
+            continue
+        lo, hi = valid_mean_se[obs_k]
+        fv = float(raw_v)
+        if lo <= fv <= hi:
+            out[obs_k] = int(raw_v) if req_int else fv
+    for k, v in payload.items():
+        if k in valid_mean_se and k not in out and _is_strict_finite_number_iip0024(v):
+            if k in STAGE0_STRICT_INTEGER_COUNT_AND_DENOMINATOR_KEYS and not _is_integral_count_iip0026(v):
+                continue
+            lo, hi = valid_mean_se[k]
+            fv = float(v)
+            if lo <= fv <= hi:
+                out[k] = fv
+    return out
+
+
+def evaluate_stage0_research_and_molecular_guardrails(
+    payload: dict[str, Any],
+    *,
+    root: Path | str | None = None,
+) -> dict[str, Any]:
+    """
+    Single authoritative registry-bound Stage-0 research & molecular guardrail evaluator (IIP-0026; DEC-105).
+    Decoupled from Bayesian calibration admission (`validate_product_and_estimand_compatibility`),
+    derives `lifecycle_state` and `execution_supported` strictly from the versioned product registry
+    (rejecting caller override keys fail-closed), and produces identical branch (`switch_decisions`)
+    and lot decisions across Direct evaluation, Serialized JSON Ingestion, and Chronological Replay.
+    """
+    if not isinstance(payload, dict):
+        raise ValueError('Stage-0 research guardrail payload must be a dictionary (IIP-0026; DEC-105)')
+    root_path = Path(root) if root is not None else Path(__file__).resolve().parents[1]
+    p_mod = _load_product_contract_module(root_path)
+    prod_doc = p_mod.load_product_contracts(root_path)
+    reg_by_id = {
+        str(p['product_variant_id']): _derive_versioned_product_registry_entry_iip0026(p)
+        for p in prod_doc['products']
+    }
+
+    pid = payload.get('product_variant_id')
+    if not isinstance(pid, str) or not pid.strip() or pid != pid.strip() or pid not in reg_by_id:
+        empty_s0 = evaluate_stage0_decision_tree({}, root=root_path)
+        return {
+            'overall_status': 'HOLD_UNREGISTERED_OR_MISSING_PRODUCT_VARIANT_ID',
+            'lot_release_readiness_tier': 'HOLD_UNREGISTERED_OR_MISSING_PRODUCT_VARIANT_ID',
+            'iip0026_reasons': ['HOLD_UNREGISTERED_OR_MISSING_PRODUCT_VARIANT_ID'],
+            'lifecycle_state': 'UNREGISTERED',
+            'execution_supported': False,
+            'effective_execution_permitted': False,
+            'switch_decisions': empty_s0['switch_decisions'],
+        }
+
+    reg = reg_by_id[pid]
+    lifecycle_state = reg['lifecycle_state']
+    registry_exec_supported = bool(reg['execution_supported'])
+    safe_s0_obs = _build_safe_stage0_tree_obs_iip0026(payload, root_path=root_path)
+    tree_eval = evaluate_stage0_decision_tree(safe_s0_obs, root=root_path)
+    switch_decisions = dict(tree_eval['switch_decisions'])
+
+    # Reject any caller attempt to supply or override lifecycle_state or execution_supported:
+    if any(
+        (k in IIP0026_FORBIDDEN_CALLER_OVERRIDE_KEYS) or str(k).endswith('_lifecycle_state') or str(k).endswith('_execution_supported')
+        for k in payload
+    ):
+        return {
+            'overall_status': 'FAIL_CALLER_LIFECYCLE_OR_EXECUTION_OVERRIDE_REJECTED',
+            'lot_release_readiness_tier': 'FAIL_CALLER_LIFECYCLE_OR_EXECUTION_OVERRIDE_REJECTED',
+            'iip0026_reasons': ['FAIL_CALLER_LIFECYCLE_OR_EXECUTION_OVERRIDE_REJECTED'],
+            'lifecycle_state': lifecycle_state,
+            'execution_supported': False,
+            'effective_execution_permitted': False,
+            'switch_decisions': switch_decisions,
+        }
+
+    lot_id = payload.get('lot_id', payload.get('current_lot_id'))
+    campaign_id = payload.get('campaign_id', payload.get('assay_campaign_id'))
+    if (
+        not isinstance(lot_id, str)
+        or not lot_id.strip()
+        or not isinstance(campaign_id, str)
+        or not campaign_id.strip()
+    ):
+        return {
+            'overall_status': 'HOLD_MISSING_LOT_OR_CAMPAIGN_SCOPE',
+            'lot_release_readiness_tier': 'HOLD_MISSING_LOT_OR_CAMPAIGN_SCOPE',
+            'iip0026_reasons': ['HOLD_MISSING_LOT_OR_CAMPAIGN_SCOPE'],
+            'lifecycle_state': lifecycle_state,
+            'execution_supported': False,
+            'effective_execution_permitted': False,
+            'switch_decisions': switch_decisions,
+        }
+
+    if reg['bound_c1_c5_pair_sha256'] is not None:
+        supplied_sha = payload.get('bound_c1_c5_pair_sha256')
+        if supplied_sha != reg['bound_c1_c5_pair_sha256']:
+            reason_sha = (
+                'HOLD_MISSING_BOUND_C1_C5_DONOR_PAIR_DIGEST'
+                if supplied_sha is None
+                else 'FAIL_DONOR_REGISTRY_DIGEST_MISMATCH'
+            )
+            return {
+                'overall_status': reason_sha,
+                'lot_release_readiness_tier': reason_sha,
+                'iip0026_reasons': [reason_sha],
+                'lifecycle_state': lifecycle_state,
+                'execution_supported': False,
+                'effective_execution_permitted': False,
+                'switch_decisions': switch_decisions,
+            }
+
+    missing_obs = [k for k in IIP0026_REQUIRED_CORE_S9_OBS_KEYS if not _is_strict_finite_number_iip0024(payload.get(k))]
+    if (
+        missing_obs
+        or float(payload['obs_tp53_ppm1d_bcor_duplex_depth']) <= 0.0
+        or float(payload['obs_castseq_duplex_or_amplicon_depth']) <= 0.0
+        or not _is_integral_count_iip0026(payload['obs_mcb_clonogenic_survivor_count_k'])
+        or not _is_integral_count_iip0026(payload['obs_mcb_effective_clonogenic_trials'])
+        or int(payload['obs_mcb_effective_clonogenic_trials']) <= 0
+    ):
+        return {
+            'overall_status': 'HOLD_MISSING_CORE_S9_MOLECULAR_OBSERVATIONS',
+            'lot_release_readiness_tier': 'HOLD_MISSING_CORE_S9_MOLECULAR_OBSERVATIONS',
+            'iip0026_reasons': ['HOLD_MISSING_CORE_S9_MOLECULAR_OBSERVATIONS'],
+            'lifecycle_state': lifecycle_state,
+            'execution_supported': False,
+            'effective_execution_permitted': False,
+            'switch_decisions': switch_decisions,
+        }
+
+    if tree_eval['safety_kill_s9_triggered']:
+        return {
+            'overall_status': 'HARD_SAFETY_STOP_REJECTED',
+            'lot_release_readiness_tier': 'HARD_SAFETY_STOP_REJECTED',
+            'iip0026_reasons': ['HARD_SAFETY_STOP_S9'],
+            'lifecycle_state': lifecycle_state,
+            'execution_supported': False,
+            'effective_execution_permitted': False,
+            'switch_decisions': switch_decisions,
+        }
+
+    reasons: list[str] = []
+    sera_val = payload.get('iip0026_schema_era', payload.get('schema_era'))
+    if isinstance(sera_val, str) and sera_val.startswith('LEGACY_PRE_'):
+        reasons.append('HOLD_PROVISIONAL_LEGACY_SCHEMA_MISSING_IIP0026_EVIDENCE')
+
+    if payload.get('donor_seed_gnomad_target_site_wgs_verified') is not True:
+        reasons.append('HOLD_MISSING_DONOR_TARGET_WGS')
+
+    per_locus_baf = _extract_per_locus_baf_dict_iip0026(payload)
+    sv_recip = payload.get('post_edit_reciprocal_mosaic_sv_or_clonal_zygosity_verified')
+    req_loci = reg['required_baf_loci']
+    if (
+        not isinstance(per_locus_baf, dict)
+        or any(loc not in per_locus_baf or not _is_strict_finite_number_iip0024(per_locus_baf[loc]) for loc in req_loci)
+        or sv_recip is not True
+    ):
+        reasons.append('HOLD_MISSING_SEGMENTED_PHASED_BAF_SURVEILLANCE')
+    else:
+        max_abs_locus_baf_shift = max(abs(float(per_locus_baf[loc]) - 0.50) for loc in req_loci)
+        if max_abs_locus_baf_shift > 0.05:
+            reasons.append('FAIL_DISCORDANT_PER_LOCUS_SEGMENTED_BAF')
+
+    if reg['requires_endogenous_hlac_and_locus5_gates']:
+        cfd_max = payload.get('obs_design_b_hlac_phased_guide_cfd_max', payload.get('design_b_hlac_phased_guide_cfd_max'))
+        sep_pass = payload.get('design_b_hla_ab_separated_pass_delivery_verified')
+        chr6_loh = payload.get('design_b_chr6p21_1p41mb_loh_sv_cleared')
+        if (
+            not _is_strict_finite_number_iip0024(cfd_max)
+            or not (0.0 <= float(cfd_max) < 0.05)
+            or sep_pass is not True
+            or chr6_loh is not True
+        ):
+            reasons.append('HOLD_MISSING_ENDOGENOUS_DESIGNB_HLAC_PHASED_CLEARANCE')
+
+        dt9_pos = payload.get('design_b_hlac_dt9_positive')
+        hlae_3d12_pos = payload.get('design_b_hlae_3d12_positive')
+        dt9_delta = payload.get(
+            'obs_design_b_hlac_dt9_matched_hlae_only_control_delta_ratio',
+            payload.get('design_b_hlac_dt9_matched_hlae_only_control_delta_ratio'),
+        )
+        hlac_orth = payload.get('design_b_hlac_allele_specific_surface_or_phased_mrna_verified')
+        if dt9_pos is not True or hlae_3d12_pos is not True:
+            if 'HOLD_MISSING_ENDOGENOUS_DESIGNB_HLAC_PHASED_CLEARANCE' not in reasons:
+                reasons.append('HOLD_MISSING_ENDOGENOUS_DESIGNB_HLAC_PHASED_CLEARANCE')
+        elif dt9_delta is None and hlac_orth is not True:
+            reasons.append('HOLD_MISSING_HLAC_SPECIFICITY_CONTROL_FOR_DT9_HLAE_CROSSREACTIVITY')
+        elif dt9_delta is not None:
+            if not _is_strict_finite_number_iip0024(dt9_delta) or float(dt9_delta) <= 0.0:
+                reasons.append('HOLD_MISSING_HLAC_SPECIFICITY_CONTROL_FOR_DT9_HLAE_CROSSREACTIVITY')
+            elif float(dt9_delta) < 2.0 and hlac_orth is not True:
+                reasons.append('FAIL_HLAC_SURFACE_LOSS_MASKED_BY_DT9_HLAE_CROSSREACTIVITY')
+
+        r5_bp = payload.get('obs_design_b_locus5_5prime_race_coord_bp', payload.get('design_b_locus5_5prime_race_coord_bp'))
+        r3_bp = payload.get('obs_design_b_locus5_3prime_race_coord_bp', payload.get('design_b_locus5_3prime_race_coord_bp'))
+        max_donor_bp = 4078 if reg['bound_c1_c5_pair_sha256'] == DESIGN_B_C1_C5_PAIR_SHA256 else 10000
+        if r5_bp is None or r3_bp is None:
+            reasons.append('HOLD_MISSING_DESIGNB_LOCUS5_RACE_COORDINATES')
+        elif not (
+            _is_strict_int_iip0024(r5_bp)
+            and _is_strict_int_iip0024(r3_bp)
+            and 0 < r5_bp < r3_bp <= max_donor_bp
+        ):
+            reasons.append('FAIL_INVALID_RACE_COORDINATES')
+
+        pdl1_r5 = payload.get('design_b_locus5_pdl1_5prime_race_coord_bp')
+        if pdl1_r5 == 'UNRESOLVED':
+            reasons.append('HOLD_PENDING_5PRIME_RACE_TSS')
+        elif pdl1_r5 is not None:
+            if not _is_strict_int_iip0024(pdl1_r5) or pdl1_r5 <= 0 or pdl1_r5 > 2381:
+                reasons.append('FAIL_INVALID_RACE_COORDINATES')
+            elif pdl1_r5 <= 2308:
+                reasons.append('FAIL_MATURE_TRANSCRIPT_INCLUDES_UPSTREAM_OUT_OF_FRAME_KOZAK_ORF')
+
+        b_umi_n = payload.get('obs_design_b_locus5_race_umi_n_eff', payload.get('design_b_locus5_race_umi_n_eff'))
+        b_umi_k = payload.get('obs_design_b_locus5_aberrant_umi_k', payload.get('design_b_locus5_aberrant_umi_k'))
+        if not _is_strict_int_iip0024(b_umi_n) or b_umi_n < 3689 or not _is_strict_int_iip0024(b_umi_k) or b_umi_k < 0:
+            reasons.append('HOLD_MISSING_DESIGNB_LOCUS5_TRANSCRIPT_UMI_3689')
+        elif b_umi_k > 0:
+            reasons.append('FAIL_DESIGNB_LOCUS5_CHIMERIC_TRANSCRIPT_DETECTED')
+    elif reg['requires_b_sct_gates']:
+        if payload.get('b_sct_ciita_exon5_and_trimer_verified') is not True:
+            reasons.append('HOLD_MISSING_BSCT_CIITA_EXON5_AND_TRIMER_EVIDENCE')
+
+    if reg['requires_tyk2_pe_gates']:
+        pe_mod = payload.get('tyk2_pe_modality')
+        if pe_mod not in ALLOWED_TYK2_PE_MODALITIES or payload.get('tyk2_phased_haplotype_sap_verified') is not True:
+            reasons.append('HOLD_MISSING_TYK2_PE_MODALITY_OR_PHASED_HAPLOTYPE')
+        elif pe_mod == 'PE4MAX_MSI_GATED':
+            msi_k = payload.get('obs_tyk2_pe4max_pentaplex_msi_shifts_k', payload.get('tyk2_pe4max_pentaplex_msi_shifts_k'))
+            if msi_k is None or not _is_strict_int_iip0024(msi_k) or msi_k < 0:
+                reasons.append('HOLD_MISSING_MSI')
+            elif msi_k > 0:
+                reasons.append('FAIL_MSI_DETECTED')
+            pe_st = evaluate_pe4max_piecewise_repeat_indel_cap_iip0026(
+                payload.get('obs_tyk2_pe4max_wgs_repeat_indels_clone', payload.get('tyk2_pe4max_wgs_repeat_indels_clone')),
+                payload.get('obs_tyk2_pe4max_wgs_repeat_indels_ctrl', payload.get('tyk2_pe4max_wgs_repeat_indels_ctrl')),
+                payload.get('obs_tyk2_pe4max_coding_or_splice_de_novo_indels', payload.get('tyk2_pe4max_coding_or_splice_de_novo_indels')),
+            )
+            if pe_st != 'PASS':
+                if not (msi_k is None and pe_st == 'HOLD_MISSING_PE4MAX_REPEAT_INDEL_EVIDENCE'):
+                    reasons.append(pe_st)
+
+    if reg['is_held_design_y']:
+        reasons.append('HOLD_DESIGNY_EXPLORATORY_UNBIASED_CAPTURE_AND_63K_OR_90K_LOD_REQUIRED')
+
+    # Preserve stricter applicable Stage-0 tree holds on non-research-comparator executable variants:
+    tree_tier = str(tree_eval['lot_release_readiness_tier'])
+    if (
+        not reasons
+        and lifecycle_state != 'STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC'
+        and registry_exec_supported
+        and tree_tier.startswith(('HOLD_', 'NO_GO_', 'HARD_SAFETY_STOP'))
+    ):
+        reasons.append(str(tree_eval['resolved_architecture_assignments'].get('lot_maturation_status', tree_tier)))
+
+    fails = [r for r in reasons if r.startswith('FAIL_')]
+    if fails:
+        status = fails[0]
+    elif reasons:
+        status = reasons[0]
+    else:
+        status = (
+            'RESEARCH_COMPARATOR_STAGE0_PANEL_CLEARED_PENDING_STATE4_PROMOTION'
+            if lifecycle_state == 'STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC'
+            else 'STAGE0_IIP0026_MOLECULAR_GUARDRAILS_CLEARED'
+        )
+    effective_exec = bool(
+        registry_exec_supported
+        and len(reasons) == 0
+        and lifecycle_state != 'STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC'
+    )
+    return {
+        'overall_status': status,
+        'lot_release_readiness_tier': tree_tier if status.startswith('STAGE0_') else status,
+        'iip0026_reasons': reasons,
+        'lifecycle_state': lifecycle_state,
+        'execution_supported': registry_exec_supported if len(reasons) == 0 else False,
+        'effective_execution_permitted': effective_exec,
+        'endogenous_hlac_gate_applied': reg['requires_endogenous_hlac_and_locus5_gates'],
+        'b_sct_route_separated': reg['requires_b_sct_gates'],
+        'switch_decisions': switch_decisions,
     }

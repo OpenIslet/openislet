@@ -682,6 +682,16 @@ STAGE0_PERSISTED_BOOLEAN_FLAGS: tuple[str, ...] = (
     "p05_two_timepoint_same_lot_envelope_verified",
     "contrast_b2_route_qualification_distinct_from_portfolio_credit_verified",
     "contrast_b3_zero_primate_host_ingrowth_verified",
+    "require_full_iip0026_molecular_provenance_panel",
+    "donor_seed_gnomad_target_site_wgs_verified",
+    "post_edit_reciprocal_mosaic_sv_or_clonal_zygosity_verified",
+    "design_b_hla_ab_separated_pass_delivery_verified",
+    "design_b_chr6p21_1p41mb_loh_sv_cleared",
+    "design_b_hlac_dt9_positive",
+    "design_b_hlae_3d12_positive",
+    "design_b_hlac_allele_specific_surface_or_phased_mrna_verified",
+    "b_sct_ciita_exon5_and_trimer_verified",
+    "tyk2_phased_haplotype_sap_verified",
 )
 
 HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS: tuple[str, ...] = (
@@ -745,6 +755,9 @@ ALLOWED_ORDERED_BATCH_LEDGER_KEYS: frozenset[str] = frozenset({
     "contrast_b1_geometry_arm",
     "contrast_b2_perfusion_and_retrieval_arm",
     "contrast_b3_donor_iec_arm",
+    "bound_c1_c5_pair_sha256",
+    "tyk2_pe_modality",
+    "iip0026_schema_era",
     *HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS,
 })
 
@@ -755,6 +768,7 @@ MCB_SCOPED_POOLED_KEYS: frozenset[str] = frozenset({
     "donor_seedline_id",
     "s10_construct_id",
     "s10_construct_donor_sha256",
+    "bound_c1_c5_pair_sha256",
     "mcb_imprinting_ic1_ic2_igdmr_conjunctive_cleared",
 })
 
@@ -1549,11 +1563,14 @@ def _validate_prior_posterior_report(
                     "contrast_b1_geometry_arm",
                     "contrast_b2_perfusion_and_retrieval_arm",
                     "contrast_b3_donor_iec_arm",
+                    "bound_c1_c5_pair_sha256",
+                    "tyk2_pe_modality",
+                    "iip0026_schema_era",
                 ):
                     if entry.get(meta_k) is not None:
                         pooled_hist_for_s0[meta_k] = entry[meta_k]
-                        if meta_k not in ("product_variant_id", "estimand_scale"):
-                            hist_meas_for_s0[meta_k] = entry[meta_k]
+                        # Preserve product_variant_id and estimand_scale in per-batch historical Stage-0 replay (IIP-0026; DEC-105):
+                        hist_meas_for_s0[meta_k] = entry[meta_k]
                 if entry.get("s8b_epistasis_estimand_scale") is not None:
                     pooled_hist_for_s0["s8b_epistasis_estimand_scale"] = entry["s8b_epistasis_estimand_scale"]
                 else:
@@ -2156,6 +2173,9 @@ def run_calibration(
         "contrast_b1_geometry_arm",
         "contrast_b2_perfusion_and_retrieval_arm",
         "contrast_b3_donor_iec_arm",
+        "bound_c1_c5_pair_sha256",
+        "tyk2_pe_modality",
+        "iip0026_schema_era",
         *stage0_persisted_boolean_flags,
     ):
         if qp_meta_k in input_payload and input_payload[qp_meta_k] is not None:
@@ -2289,11 +2309,14 @@ def run_calibration(
             "contrast_b1_geometry_arm",
             "contrast_b2_perfusion_and_retrieval_arm",
             "contrast_b3_donor_iec_arm",
+            "bound_c1_c5_pair_sha256",
+            "tyk2_pe_modality",
+            "iip0026_schema_era",
         ):
             if hist_entry.get(meta_k) is not None:
                 pooled_stage0_payload[meta_k] = hist_entry[meta_k]
-                if meta_k != "product_variant_id" and meta_k != "estimand_scale":
-                    hist_meas[meta_k] = hist_entry[meta_k]
+                # Preserve product_variant_id and estimand_scale in per-batch historical Stage-0 replay (IIP-0026; DEC-105):
+                hist_meas[meta_k] = hist_entry[meta_k]
         if hist_entry.get("s8b_epistasis_estimand_scale") is not None:
             pooled_stage0_payload["s8b_epistasis_estimand_scale"] = hist_entry["s8b_epistasis_estimand_scale"]
         else:
@@ -2688,6 +2711,14 @@ def run_calibration(
         }
         if len(_seen_cb) > 1:
             raise ValueError(f"Cannot pool distinct {_cb_mk} conditions across calibration batches (IIP-0025; DEC-104)")
+    for _m26_mk in ("bound_c1_c5_pair_sha256", "tyk2_pe_modality"):
+        _seen_m26 = {
+            _e[_m26_mk].strip()
+            for _e in [*prev_obs_ledger, current_obs_entry]
+            if isinstance(_e.get(_m26_mk), str) and _e[_m26_mk].strip()
+        }
+        if len(_seen_m26) > 1:
+            raise ValueError(f"Cannot pool distinct {_m26_mk} conditions across calibration batches (IIP-0026; DEC-105)")
     seen_donor_seedline_ids: set[str] = {
         _e["donor_seedline_id"].strip()
         for _e in [*prev_obs_ledger, current_obs_entry]
@@ -3111,6 +3142,223 @@ def _publish_calibration_report(
                 raise RuntimeError("Calibration publication failed and rollback requires manual recovery: "
                                    + "; ".join(rollback_errors)) from original
             raise
+
+
+def _load_contract_helper_iip0026(root: Path | str | None = None) -> Any:
+    global _MEASUREMENT_CONTRACT_MODULE
+    if root is not None:
+        root_p = Path(root)
+        if root_p.resolve() != REPO_ROOT.resolve():
+            spec = importlib.util.spec_from_file_location("openislet_measurement_contract_custom", root_p / "scripts/wetlab_contract.py")
+            helper = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(helper)
+            return helper
+    if _MEASUREMENT_CONTRACT_MODULE is None:
+        spec = importlib.util.spec_from_file_location("openislet_measurement_contract", REPO_ROOT / "scripts/wetlab_contract.py")
+        helper = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(helper)
+        _MEASUREMENT_CONTRACT_MODULE = helper
+    return _MEASUREMENT_CONTRACT_MODULE
+
+
+def _extract_stage0_batch_measurements_preserving_explicit_se_iip0026(
+    raw_meas: Dict[str, Any],
+    wc_helper: Any,
+) -> Dict[str, Any]:
+    """Extract canonical measurements via `_extract_canonical_measurements` without fabricating explicit SE provenance or erasing strict int types (IIP-0026; DEC-105)."""
+    extracted = _extract_canonical_measurements(raw_meas)
+    strict_int_keys = getattr(wc_helper, "STAGE0_STRICT_INTEGER_COUNT_AND_DENOMINATOR_KEYS", frozenset())
+    out: Dict[str, Any] = {}
+    for k, v in extracted.items():
+        if v == "UNAVAILABLE":
+            continue
+        if k.endswith("_se") and k not in raw_meas:
+            continue
+        if k in strict_int_keys and k in raw_meas:
+            orig = raw_meas[k]
+            if type(orig) is bool:
+                out[k] = orig
+            elif type(orig) is int:
+                out[k] = orig
+            else:
+                out[k] = v
+        else:
+            out[k] = v
+    # Preserve any invalid/boolean measurement attempts so downstream guardrail evaluation fails closed identically to direct calls:
+    for k, orig in raw_meas.items():
+        if k not in out and orig is not None:
+            out[k] = orig
+    return out
+
+
+def ingest_stage0_research_or_wetlab_batch(
+    raw_json_or_dict: str | Dict[str, Any],
+    *,
+    root: Path | str | None = None,
+) -> Dict[str, Any]:
+    """
+    Path 2 Stage-0 Research & Wet-Lab Batch Ingestion Evaluator (IIP-0026; DEC-105).
+    Parses a serialized JSON document or dictionary strictly through `_extract_canonical_measurements`
+    plus typed `scope` and `iip0026_molecular_observations` blocks — decoupled from Bayesian
+    calibration admission (`validate_product_and_estimand_compatibility`) so Family A, Family B
+    (`ISLET1_B2_5LOCUS_BASE`, `ISLET1_B2_5LOCUS_TYK2_PE`, `ISLET1_B_SCT_*`), Design X, Design Y,
+    and Design Z produce 100% identical branch and lot decisions to direct evaluation and replay.
+    """
+    doc = json.loads(raw_json_or_dict) if isinstance(raw_json_or_dict, str) else dict(raw_json_or_dict)
+    if not isinstance(doc, dict):
+        raise ValueError("Stage-0 ingest batch document must decode to a JSON object (IIP-0026; DEC-105)")
+    wc_helper = _load_contract_helper_iip0026(root)
+    allowed_mol = getattr(wc_helper, "IIP0026_ALLOWED_MOLECULAR_OBS_KEYS")
+    forbidden_ovr = getattr(wc_helper, "IIP0026_FORBIDDEN_CALLER_OVERRIDE_KEYS")
+    bool_flags = set(getattr(wc_helper, "STAGE0_DECISION_TREE_BOOLEAN_KEYS", ()))
+
+    # Support flat payloads OR structured {"scope": ..., "measurements": ..., "iip0026_molecular_observations": ...}:
+    if "scope" in doc or "measurements" in doc or "iip0026_molecular_observations" in doc:
+        scope = doc.get("scope") or {}
+        mol_obs = doc.get("iip0026_molecular_observations") or {}
+        raw_meas = doc.get("measurements")
+        extracted_meas: Dict[str, Any] = {}
+        if isinstance(raw_meas, dict) and len(raw_meas) > 0:
+            extracted_meas = _extract_stage0_batch_measurements_preserving_explicit_se_iip0026(raw_meas, wc_helper)
+        filtered_mol = {
+            k: v
+            for k, v in mol_obs.items()
+            if (k in allowed_mol or k in bool_flags) and v is not None
+        }
+        override_attempt = {
+            k: v
+            for k, v in {**doc, **scope, **mol_obs}.items()
+            if (k in forbidden_ovr) or str(k).endswith("_lifecycle_state") or str(k).endswith("_execution_supported")
+        }
+        assembled: Dict[str, Any] = {
+            "product_variant_id": scope.get("product_variant_id"),
+            "lot_id": scope.get("lot_id", scope.get("current_lot_id")),
+            "campaign_id": scope.get("campaign_id", scope.get("assay_campaign_id")),
+            **({"schema_era": scope["schema_era"]} if "schema_era" in scope else {}),
+            **({"iip0026_schema_era": scope["iip0026_schema_era"]} if "iip0026_schema_era" in scope else {}),
+            **extracted_meas,
+            **filtered_mol,
+            **override_attempt,
+        }
+    else:
+        raw_obs_subset = {k: v for k, v in doc.items() if str(k).startswith("obs_") and v is not None}
+        extracted_meas = (
+            _extract_stage0_batch_measurements_preserving_explicit_se_iip0026(raw_obs_subset, wc_helper)
+            if raw_obs_subset
+            else {}
+        )
+        assembled = {k: v for k, v in doc.items() if not str(k).startswith("obs_")}
+        assembled.update(extracted_meas)
+
+    return wc_helper.evaluate_stage0_research_and_molecular_guardrails(assembled, root=root)
+
+
+def replay_stage0_chronological_batches(
+    records: list[Dict[str, Any]],
+    *,
+    root: Path | str | None = None,
+) -> Dict[str, Any]:
+    """
+    Path 3 Chronological Multi-Record Stage-0 Replay Evaluator (IIP-0026; DEC-105).
+    Enforces:
+      - Non-empty record sequence with identical `(product_variant_id, lot_id, campaign_id)` across all records
+        (`FAIL_CROSS_LOT_OR_CAMPAIGN_REPLAY_MIXING` on any scope mismatch), preserving `product_variant_id` at every step.
+      - Deterministic chronological sort by `(utc_timestamp, seq_index)`.
+      - Monotonic adverse-event latching (`HARD_SAFETY_STOP_REJECTED` or `FAIL_*` in any earlier record cannot be
+        erased by a subsequent clean record in the same lot/campaign).
+      - Exact branch (`switch_decisions`) and lot parity with Direct evaluation and Serialized JSON Ingestion.
+    """
+    wc_helper = _load_contract_helper_iip0026(root)
+    if not records:
+        return wc_helper.evaluate_stage0_research_and_molecular_guardrails({}, root=root)
+    allowed_mol = getattr(wc_helper, "IIP0026_ALLOWED_MOLECULAR_OBS_KEYS")
+    forbidden_ovr = getattr(wc_helper, "IIP0026_FORBIDDEN_CALLER_OVERRIDE_KEYS")
+    bool_flags = set(getattr(wc_helper, "STAGE0_DECISION_TREE_BOOLEAN_KEYS", ()))
+
+    ordered = sorted(
+        records,
+        key=lambda r: (str(r.get("utc_timestamp", "")), int(r.get("seq_index", 0))),
+    )
+    first_scope = ordered[0].get("scope") or {}
+    s_pid = first_scope.get("product_variant_id", ordered[0].get("product_variant_id"))
+    s_lot = first_scope.get("lot_id", first_scope.get("current_lot_id", ordered[0].get("lot_id", ordered[0].get("current_lot_id"))))
+    s_camp = first_scope.get("campaign_id", first_scope.get("assay_campaign_id", ordered[0].get("campaign_id", ordered[0].get("assay_campaign_id"))))
+
+    p_mod = wc_helper._load_product_contract_module(Path(root) if root is not None else REPO_ROOT)
+    prod_by_id = {str(p["product_variant_id"]): p for p in p_mod.load_product_contracts(Path(root) if root is not None else REPO_ROOT)["products"]}
+    reg_state = (
+        wc_helper._derive_versioned_product_registry_entry_iip0026(prod_by_id[str(s_pid)])["lifecycle_state"]
+        if str(s_pid) in prod_by_id
+        else "UNREGISTERED"
+    )
+
+    for rec in ordered[1:]:
+        sc = rec.get("scope") or {}
+        r_pid = sc.get("product_variant_id", rec.get("product_variant_id"))
+        r_lot = sc.get("lot_id", sc.get("current_lot_id", rec.get("lot_id", rec.get("current_lot_id"))))
+        r_camp = sc.get("campaign_id", sc.get("assay_campaign_id", rec.get("campaign_id", rec.get("assay_campaign_id"))))
+        if (r_pid, r_lot, r_camp) != (s_pid, s_lot, s_camp):
+            empty_s0 = wc_helper.evaluate_stage0_decision_tree({}, root=root)
+            return {
+                "overall_status": "FAIL_CROSS_LOT_OR_CAMPAIGN_REPLAY_MIXING",
+                "lot_release_readiness_tier": "FAIL_CROSS_LOT_OR_CAMPAIGN_REPLAY_MIXING",
+                "iip0026_reasons": ["FAIL_CROSS_LOT_OR_CAMPAIGN_REPLAY_MIXING"],
+                "lifecycle_state": reg_state,
+                "execution_supported": False,
+                "effective_execution_permitted": False,
+                "switch_decisions": empty_s0["switch_decisions"],
+            }
+
+    accum: Dict[str, Any] = {
+        "product_variant_id": s_pid,
+        "lot_id": s_lot,
+        "campaign_id": s_camp,
+        **({"schema_era": first_scope["schema_era"]} if "schema_era" in first_scope else {}),
+        **({"iip0026_schema_era": first_scope["iip0026_schema_era"]} if "iip0026_schema_era" in first_scope else {}),
+    }
+    latched_adverse_reasons: list[str] = []
+    latched_hard_stop = False
+    latched_switch_decisions: Dict[str, Any] | None = None
+
+    for rec in ordered:
+        sc = rec.get("scope") or {}
+        mol = rec.get("iip0026_molecular_observations") or {}
+        for k, v in {**rec, **sc, **mol}.items():
+            if (k in forbidden_ovr) or str(k).endswith("_lifecycle_state") or str(k).endswith("_execution_supported"):
+                accum[k] = v
+        raw_m = rec.get("measurements")
+        if isinstance(raw_m, dict) and len(raw_m) > 0:
+            accum.update(_extract_stage0_batch_measurements_preserving_explicit_se_iip0026(raw_m, wc_helper))
+        for mk, mv in mol.items():
+            if (mk in allowed_mol or mk in bool_flags) and mv is not None:
+                accum[mk] = mv
+        step_eval = wc_helper.evaluate_stage0_research_and_molecular_guardrails(dict(accum), root=root)
+        if step_eval["overall_status"] == "HARD_SAFETY_STOP_REJECTED":
+            latched_hard_stop = True
+            latched_switch_decisions = dict(step_eval["switch_decisions"])
+        for r in step_eval["iip0026_reasons"]:
+            if r.startswith("FAIL_") and r not in latched_adverse_reasons:
+                latched_adverse_reasons.append(r)
+
+    final_eval = wc_helper.evaluate_stage0_research_and_molecular_guardrails(dict(accum), root=root)
+    if latched_hard_stop:
+        final_eval["overall_status"] = "HARD_SAFETY_STOP_REJECTED"
+        final_eval["lot_release_readiness_tier"] = "HARD_SAFETY_STOP_REJECTED"
+        final_eval["iip0026_reasons"] = ["HARD_SAFETY_STOP_S9"]
+        final_eval["execution_supported"] = False
+        final_eval["effective_execution_permitted"] = False
+        if latched_switch_decisions is not None:
+            final_eval["switch_decisions"] = latched_switch_decisions
+    elif latched_adverse_reasons:
+        merged_reasons = list(latched_adverse_reasons) + [
+            r for r in final_eval["iip0026_reasons"] if r not in latched_adverse_reasons
+        ]
+        final_eval["iip0026_reasons"] = merged_reasons
+        final_eval["overall_status"] = latched_adverse_reasons[0]
+        final_eval["lot_release_readiness_tier"] = latched_adverse_reasons[0]
+        final_eval["execution_supported"] = False
+        final_eval["effective_execution_permitted"] = False
+    return final_eval
 
 
 def main() -> None:

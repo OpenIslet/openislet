@@ -285,13 +285,13 @@
     }
   ],
   "off_grid_molecular_dead_end_guardrails": {
-    "schema_role": "Non-grid Stage-0 molecular, bioconjugation, oxygen-transport, and statistical/epigenetic provenance guardrails (preserving exact 10 grid-firing graveyard_entries for CHK-05 while indexing all shipped IIP-0017..IIP-0025 Stage-0 dead ends and context-dependent traps)",
+    "schema_role": "Non-grid Stage-0 molecular, bioconjugation, oxygen-transport, and statistical/epigenetic provenance guardrails (preserving exact 10 grid-firing graveyard_entries for CHK-05 while indexing all shipped IIP-0017..IIP-0026 Stage-0 dead ends and context-dependent traps)",
     "decision_id": "DEC-101",
-    "latest_update_decision_id": "DEC-104",
-    "contribution_id": "IIP-0017..IIP-0025",
+    "latest_update_decision_id": "DEC-105",
+    "contribution_id": "IIP-0017..IIP-0026",
     "consumed_by_validators": [
-      "scripts/wetlab_contract.py (evaluate_stage0_decision_tree Stage-0 hold gates)",
-      "tests/test_round3_supporting_boundaries.py (sections 47, 49, and 50)",
+      "scripts/wetlab_contract.py (evaluate_stage0_decision_tree & evaluate_stage0_research_and_molecular_guardrails)",
+      "tests/test_round3_supporting_boundaries.py (sections 47, 49, 50, and 51)",
       "tests/test_adversarial_acceptance.py (CHK-05B off-grid graveyard parity)"
     ],
     "guardrails": [
@@ -484,6 +484,56 @@
           "37476069",
           "35743287",
           "27729543"
+        ]
+      },
+      {
+        "guardrail_id": "OFFGRID_GUARD_011_UNNORMALIZED_RSID_GNOMAD_GRCH38_ONLY_HLAC_AND_UNSCOPED_PE4MAX_CLAIMS",
+        "graveyard_card_id": "GY-021",
+        "severity_level": "BLOCK",
+        "curation_status": "corroborated",
+        "evidence_basis_class": "mechanistic_precaution_or_non_islet_extrapolation",
+        "contribution_id": "IIP-0026",
+        "status": "BARRED_FIXED_PRIOR_DBSNP_GRCH38_ONLY_HLAC_UNCONTROLLED_DT9_AND_UNGATED_PE4MAX_OR_30K_DDPCR",
+        "summary": "Substituting fixed dbSnp155 screening priors across 56 target-window loci misses three PASS gnomAD v4.1 WGS variants >= 0.1% in AFR/SAS/ASJ (rs142469968 CIITA 0.212% AFR, rs946359931 AAVS1 0.290% SAS with exome absent, and rs373614901 TYK2 0.115% ASJ; PMID:36522432), while GRCh38-only HLA-A/B guide screening admits 6/17 HLA-A and 4/10 HLA-B guides scoring 0.0500-1.0000 across 17 non-reference HLA-C Exon 2-3 records (PMID:26780180) and DT9 flow without a matched HLA-E-only specificity control confounds retained HLA-C with HLA-E cross-reactivity (PMID:21248048). Likewise, averaging post-edit BAF across loci hides discordant clonal LOH/isodisomy (PMID:18796520, PMID:32460021, PMID:30850590), treating lookup CFD = 0.000000 on Mode-B ACC shields as proof against HiFi-SpCas9 R691A cleavage (PMID:23873081), pooling ungated TYK2 PE4max MLH1dn without distinct FAIL_MSI_DETECTED + piecewise repeat-indel caps (PMID:34653350, PMID:35140211), or claiming 95% Design Y ddPCR LoD at 30,000 GE (57.68% Poisson power vs >= 63,000 single-unit 95.02% / >= 90,000 pooled 99.38%; PMID:38858586) are permanently barred.",
+        "cheapest_falsification_assay": "Phased >= 30x donor WGS across all target windows + HLA-A/B/C/E, separated chr6p21.3 HLA-A/B passes with DT9 + 3D12 flow paired with matched HLA-E-only controls (>= 2.0x delta), per-locus >= 50-SNP segmented BAF (<= 0.05 shift) + reciprocal-mosaic SV checks, 48-clone PE2max vs PE4max pentaplex MSI + piecewise WGS repeat-indel counting, and >= 63,000/90,000 GE Design Y ddPCR + UDiTaS capture.",
+        "pmids": [
+          "36522432",
+          "26780180",
+          "21248048",
+          "23873081",
+          "18796520",
+          "32460021",
+          "30850590",
+          "34653350",
+          "35140211",
+          "38858586"
+        ]
+      },
+      {
+        "guardrail_id": "OFFGRID_GUARD_012_CHR11P15_INS_3UTR_EIF4G2_BICISTRONIC_KNOCKIN_RETIRED",
+        "graveyard_card_id": "GY-022",
+        "severity_level": "BLOCK",
+        "curation_status": "corroborated",
+        "evidence_basis_class": "mechanistic_precaution_or_non_islet_extrapolation",
+        "contribution_id": "IIP-0026",
+        "status": "RETIRED_CHR11P15_INS_3UTR_PROTECTIVE_CARGO_KNOCKIN_OQ011_PRESERVING_SEPARATE_B1_EPITOPE_RECORD",
+        "summary": "Knocking protective transgenes (CD47-IgV-GPI, SERPINB9, or PD-L1) into the endogenous chr11p15.5 INS 3'-UTR behind a 2,638-nt EIF4G2 (DAP5) non-canonical translation element (OQ-011) leaves the 48.58% non-beta graft compartment (alpha, delta, iEC, iPericyte; 4.535e8 of 9.335e8 cells) with zero INS-driven protection (PMID:27667365, PMID:35241836; GY-001, GY-002), expands the compact 73-nt human INS 3'-UTR 37.14-fold to 2,711 nt where UPF1 length-dependent decay and 8/15 guide cuts across PTBP1 insPRS (nt 18..41) threaten insulin mRNA stability (PMID:11696543, PMID:15228089, PMID:15039777, PMID:21029861), introduces a targeted Cas9 DSB 1,183 bp from imprinted IGF2 and 155,227 bp from H19 at 11p15.5 (PMID:18796520, PMID:30010673, PMID:34050011), and relies on GUG + uATG cap-independent initiation (~5-15% single-step; PMID:10611228, PMID:11943866, PMID:26816383) confounded in EIF4G1 reporter literature by cryptic Pol II promoters (PMID:12370285, PMID:22618870). Retires INS 3'-UTR protective knock-ins in favor of pan-lineage chr19 AAVS1 divergent 2A-free CD47-IgV-GPI + iCasp9 (c5/c6) and chr4 CXCL10 SERPINB9 + PD-L1 (c1..c3), while keeping scored B1's separate unresolved INS leader/DRiP epitope base-edit record distinct.",
+        "cheapest_falsification_assay": "Keep chr11 INS wild-type (verified by 90% TOST insulin mRNA/secretion equivalence and bank/lot 11p15.5 IC1/IC2 + per-locus segmented BAF surveillance) and qualify pan-lineage AAVS1 divergent CD47-IgV-GPI + iCasp9 (c5 4,172 bp / c6 4,394 bp) plus CXCL10 SERPINB9 + PD-L1 (c1..c3) across endocrine and vascular lineages.",
+        "pmids": [
+          "27667365",
+          "35241836",
+          "11696543",
+          "15228089",
+          "15039777",
+          "21029861",
+          "18796520",
+          "30010673",
+          "34050011",
+          "10611228",
+          "11943866",
+          "26816383",
+          "12370285",
+          "22618870"
         ]
       }
     ]

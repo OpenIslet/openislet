@@ -570,6 +570,7 @@ def _generate_release_manifest() -> None:
         "data/constructs/islet1_locus1_s10_modeb_comparators_v0.8.0.fasta",
         "data/constructs/islet1_locus3_multimir_modeb_comparators_v0.8.0.fasta",
         "data/constructs/islet1_design_y_wildcard_comparators_v0.8.0.fasta",
+        "data/constructs/islet1_design_b_complete_constructs_v0.8.0.fasta",
         "data/graveyard/idea_graveyard_v0.5.json",
         "data/omics/target_prior_table.json",
         "data/omics/t1d_associated_targets_top100.json",

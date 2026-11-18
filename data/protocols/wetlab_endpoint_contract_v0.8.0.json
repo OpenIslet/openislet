@@ -55,7 +55,10 @@
     "submitter_id",
     "contrast_b1_geometry_arm",
     "contrast_b2_perfusion_and_retrieval_arm",
-    "contrast_b3_donor_iec_arm"
+    "contrast_b3_donor_iec_arm",
+    "bound_c1_c5_pair_sha256",
+    "tyk2_pe_modality",
+    "iip0026_schema_era"
   ],
   "boolean_policy_keys": [
     "require_full_5endpoint_s9_panel",
@@ -140,7 +143,17 @@
     "require_full_iip0025_hurdle4_transport_and_challenger_panel",
     "p05_two_timepoint_same_lot_envelope_verified",
     "contrast_b2_route_qualification_distinct_from_portfolio_credit_verified",
-    "contrast_b3_zero_primate_host_ingrowth_verified"
+    "contrast_b3_zero_primate_host_ingrowth_verified",
+    "require_full_iip0026_molecular_provenance_panel",
+    "donor_seed_gnomad_target_site_wgs_verified",
+    "post_edit_reciprocal_mosaic_sv_or_clonal_zygosity_verified",
+    "design_b_hla_ab_separated_pass_delivery_verified",
+    "design_b_chr6p21_1p41mb_loh_sv_cleared",
+    "design_b_hlac_dt9_positive",
+    "design_b_hlae_3d12_positive",
+    "design_b_hlac_allele_specific_surface_or_phased_mrna_verified",
+    "b_sct_ciita_exon5_and_trimer_verified",
+    "tyk2_phased_haplotype_sap_verified"
   ],
   "endpoints": [
     {
@@ -3546,6 +3559,149 @@
       "default_se": 0.15,
       "minimum_se": 0.001,
       "unit": "contrast_b3_design_z_140um_donor_iec_omitted_loaded_perifusion_gsis_si"
+    },
+    {
+      "endpoint_id": "stage0_design_b_hlac_phased_guide_cfd_max",
+      "meanKey": "obs_design_b_hlac_phased_guide_cfd_max",
+      "seKey": "obs_design_b_hlac_phased_guide_cfd_max_se",
+      "min": 0.0,
+      "max": 1.0,
+      "se_required": false,
+      "default_se": 1e-06,
+      "minimum_se": 1e-12,
+      "unit": "phased_donor_hlac_exons2_3_max_wt_cfd_across_hla_ab_guides"
+    },
+    {
+      "endpoint_id": "stage0_design_b_hlac_dt9_matched_hlae_only_control_delta_ratio",
+      "meanKey": "obs_design_b_hlac_dt9_matched_hlae_only_control_delta_ratio",
+      "seKey": "obs_design_b_hlac_dt9_matched_hlae_only_control_delta_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.1,
+      "minimum_se": 0.001,
+      "unit": "dt9_mfi_fold_over_matched_hlae_only_control_corrah_pmid_21248048"
+    },
+    {
+      "endpoint_id": "stage0_post_edit_segmented_baf_chr19q",
+      "meanKey": "obs_post_edit_segmented_baf_chr19q",
+      "seKey": "obs_post_edit_segmented_baf_chr19q_se",
+      "min": 0.0,
+      "max": 1.0,
+      "se_required": false,
+      "default_se": 0.008,
+      "minimum_se": 0.001,
+      "unit": "post_edit_phased_50snp_segmented_baf_chr19q_aavs1"
+    },
+    {
+      "endpoint_id": "stage0_post_edit_segmented_baf_chr11p15",
+      "meanKey": "obs_post_edit_segmented_baf_chr11p15",
+      "seKey": "obs_post_edit_segmented_baf_chr11p15_se",
+      "min": 0.0,
+      "max": 1.0,
+      "se_required": false,
+      "default_se": 0.008,
+      "minimum_se": 0.001,
+      "unit": "post_edit_phased_50snp_segmented_baf_chr11p15_imprinting_region"
+    },
+    {
+      "endpoint_id": "stage0_post_edit_segmented_baf_chr6p21",
+      "meanKey": "obs_post_edit_segmented_baf_chr6p21",
+      "seKey": "obs_post_edit_segmented_baf_chr6p21_se",
+      "min": 0.0,
+      "max": 1.0,
+      "se_required": false,
+      "default_se": 0.008,
+      "minimum_se": 0.001,
+      "unit": "post_edit_phased_50snp_segmented_baf_chr6p21_mhc_region"
+    },
+    {
+      "endpoint_id": "stage0_design_b_locus5_5prime_race_coord_bp",
+      "meanKey": "obs_design_b_locus5_5prime_race_coord_bp",
+      "seKey": "obs_design_b_locus5_5prime_race_coord_bp_se",
+      "min": 1.0,
+      "max": 10000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "design_b_locus5_mature_5prime_race_donor_coordinate_bp_1based"
+    },
+    {
+      "endpoint_id": "stage0_design_b_locus5_3prime_race_coord_bp",
+      "meanKey": "obs_design_b_locus5_3prime_race_coord_bp",
+      "seKey": "obs_design_b_locus5_3prime_race_coord_bp_se",
+      "min": 1.0,
+      "max": 10000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "design_b_locus5_mature_3prime_race_donor_coordinate_bp_1based"
+    },
+    {
+      "endpoint_id": "stage0_design_b_locus5_race_umi_n_eff",
+      "meanKey": "obs_design_b_locus5_race_umi_n_eff",
+      "seKey": "obs_design_b_locus5_race_umi_n_eff_se",
+      "min": 1.0,
+      "max": 1000000000.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 1e-12,
+      "unit": "design_b_locus5_race_effective_independent_umi_trials_n_eff_min_3689"
+    },
+    {
+      "endpoint_id": "stage0_design_b_locus5_aberrant_umi_k",
+      "meanKey": "obs_design_b_locus5_aberrant_umi_k",
+      "seKey": "obs_design_b_locus5_aberrant_umi_k_se",
+      "min": 0.0,
+      "max": 1000000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "design_b_locus5_aberrant_chimeric_or_upstream_kozak_umi_count_k"
+    },
+    {
+      "endpoint_id": "stage0_tyk2_pe4max_pentaplex_msi_shifts_k",
+      "meanKey": "obs_tyk2_pe4max_pentaplex_msi_shifts_k",
+      "seKey": "obs_tyk2_pe4max_pentaplex_msi_shifts_k_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "tyk2_pe4max_pentaplex_microsatellite_instability_shifted_markers_k"
+    },
+    {
+      "endpoint_id": "stage0_tyk2_pe4max_wgs_repeat_indels_clone",
+      "meanKey": "obs_tyk2_pe4max_wgs_repeat_indels_clone",
+      "seKey": "obs_tyk2_pe4max_wgs_repeat_indels_clone_se",
+      "min": 0.0,
+      "max": 1000000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "tyk2_pe4max_clonal_wgs_callable_repeat_de_novo_indels_count"
+    },
+    {
+      "endpoint_id": "stage0_tyk2_pe4max_wgs_repeat_indels_ctrl",
+      "meanKey": "obs_tyk2_pe4max_wgs_repeat_indels_ctrl",
+      "seKey": "obs_tyk2_pe4max_wgs_repeat_indels_ctrl_se",
+      "min": 0.0,
+      "max": 1000000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "tyk2_pe4max_matched_control_wgs_callable_repeat_de_novo_indels_count"
+    },
+    {
+      "endpoint_id": "stage0_tyk2_pe4max_coding_or_splice_de_novo_indels",
+      "meanKey": "obs_tyk2_pe4max_coding_or_splice_de_novo_indels",
+      "seKey": "obs_tyk2_pe4max_coding_or_splice_de_novo_indels_se",
+      "min": 0.0,
+      "max": 10000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "tyk2_pe4max_coding_or_canonical_splice_de_novo_indels_count"
     }
   ]
 }

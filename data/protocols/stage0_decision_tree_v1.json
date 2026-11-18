@@ -205,8 +205,8 @@
       "switch_id": "S5",
       "contract_decision_key": "S7_Design_B_Prime_4Digit_Allo_vs_B_SCT_Gate_0B",
       "precedence_tier": "2_HOUR0_IMMUNITY_S1_S2_S3_S4_S5",
-      "trigger": "obs_foreign_hlac_cd8_lysis_pct > (obs_plan_a_star_cd8_lysis_pct or obs_astar_control_cd8_lysis_pct) + 5.0 or obs_b_prime_sct_cd8_lysis_pct > (obs_plan_a_star_cd8_lysis_pct or obs_astar_control_cd8_lysis_pct) + 5.0 or obs_b_prime_sct_21d_primed_cd8_elispot_sfu_per_1e6 > 50.0",
-      "action": "Permanently demote endogenous chr6 HLA-C retention B-prime (ISLET1_B1/B2) to exploratory status (or halt B'-SCT on recipient CD8+ alloreactivity > A* + 5% or 21-day DC-primed IFN-gamma ELISpot > 50 SFU/10^6); restrict Plan B routing exclusively to cleared fixed-peptide B'-SCT at CIITA (ISLET1_B_SCT_C1_CIITA, ISLET1_B_SCT_C2_CIITA, ISLET1_B_SCT_C1C2_CIITA, ISLET1_B_SCT_C1_CIITA_TYK2_PE, ISLET1_B_SCT_C2_CIITA_TYK2_PE, ISLET1_B_SCT_C1C2_CIITA_TYK2_PE; AUDIT-REF, R4S5-04 & AUDIT-REF).",
+      "trigger": "Unmeasured Gate-0B HLA-C observations -> UNMEASURED_EXTENDED_S7_GATE0B_HLAC_PANEL (or HOLD_MISSING_ENDOGENOUS_DESIGNB_HLAC_PHASED_CLEARANCE on endogenous-HLA-C ISLET1_B1_*/B2_*; never RETAIN_4DIGIT_MATCHED_HLAC on missing evidence; IIP-0026; DEC-105); otherwise obs_foreign_hlac_cd8_lysis_pct > (obs_plan_a_star_cd8_lysis_pct or obs_astar_control_cd8_lysis_pct) + 5.0 or obs_b_prime_sct_cd8_lysis_pct > (obs_plan_a_star_cd8_lysis_pct or obs_astar_control_cd8_lysis_pct) + 5.0 or obs_b_prime_sct_21d_primed_cd8_elispot_sfu_per_1e6 > 50.0",
+      "action": "Permanently demote endogenous chr6 HLA-C retention B-prime (ISLET1_B1/B2) to exploratory status (or halt B'-SCT on recipient CD8+ alloreactivity > A* + 5% or 21-day DC-primed IFN-gamma ELISpot > 50 SFU/10^6; product-scoped B'-SCT promotion requires explicit SE on obs_gate0b_hlac_sct_molecules_per_cell AND cleared recipient CD8+ MLC); restrict Plan B routing exclusively to cleared fixed-peptide B'-SCT at CIITA (ISLET1_B_SCT_C1_CIITA, ISLET1_B_SCT_C2_CIITA, ISLET1_B_SCT_C1C2_CIITA, ISLET1_B_SCT_C1_CIITA_TYK2_PE, ISLET1_B_SCT_C2_CIITA_TYK2_PE, ISLET1_B_SCT_C1C2_CIITA_TYK2_PE; AUDIT-REF, R4S5-04, AUDIT-REF & IIP-0026 / DEC-105).",
       "promoted_product_variant_id": "ISLET1_B_SCT_C1_CIITA",
       "promoted_product_variant_roster": [
         "ISLET1_B_SCT_C1_CIITA",
@@ -715,6 +715,57 @@
       "product_bound_gate_p05_two_timepoint_p04040_envelope_hold": "Binds Gate P05 strictly to CaO2-containing product variants (blocking Design Z divider fields from suppressing species/barrier holds on Design A/X payloads), enforces same-lot/same-assembly Day-7 L95_t >= 70.0% (shed mass U95_t <= 30.0%), 336-h L95_t >= 73,800 IU human CAT (UniProt P04040), reconciled pre-cure input <= 158,300 U (flagging <= 50% Day-14 retention < 93.24% yield incompatibility vs >= 71.724% Day-14 retention at 65% cure yield), z = 70.0 um gel-interface H2O2 U95_t <= 2.5 uM (> 5.0 uM hard stop), unrounded min(0.10, 0.50 / m_total_CAT_mg) EU/mg (0.0550474255 EU/mg at 9.0830769 mg), and canonical obs_p05_total_implant_catalase_endotoxin_eu U95_t <= 0.50 EU.",
       "day30_day90_retrieval_student_t_and_dual_shedding_separation": "Separates Day-30 vs Day-90 Gate 0S en-bloc retrieval endpoints and enforces Student-t (df = n - 1, n >= 6) lower95 >= 0.99 across both wetlab_contract.py and ingest_wetlab_results.py (never conflating 99% physical retrieval with fixed-cap 1e-6 observed k == 0, N_eff >= 2,995,731 dual-assay ddPCR + viable-outgrowth cellular shedding).",
       "zero_primate_contrasts_b1_b2_b3": "Pre-registers Contrast B1 (dose-matched 80-um vs 100-um at 1,500 IEQ/cm^2 across primary 390-um +2.68 mmHg and secondary 350-um +3.07 mmHg geometries), Contrast B2 (paired declined human omental vs suprafascial ex-vivo normothermic perfusion + chronic porcine Day-30/90 surgical retrieval, keeping route qualification distinct from 52.594% portfolio backup credit), and Contrast B3 (140-um Zero-CaO2 Design Z +/- donor iEC testing host-vessel ingrowth vs 8.00e8 endocrine + stromal cell floor)."
+    }
+  },
+  "variant_offtarget_designb_comparator_and_ins_retirement_iip_0026": {
+    "gate_id": "STAGE0_VARIANT_OFFTARGET_4STATE_DESIGNB_COMPARATOR_PE4MAX_AND_INS_RETIREMENT_IIP_0026",
+    "decision_id": "DEC-105",
+    "contribution_id": "IIP-0026",
+    "applies_to_shared_molecular_provenance_and_design_b_stage0_research": "69-key iterative left-boundary-guarded gnomAD v4.1 (gnomad_r4, CC0-1.0) join, 17-record coordinate-preserved HLA-C WT-CFD screen (nominal-cut-in-exon 114/115 vs full-23mer-in-exon 106/108 boundary convention; 0 Doench weight tables bundled) + Corrah 2011 PMID:21248048 DT9/HLA-E specificity control, 4-state Design B lifecycle staging 2A-free c1..c6 (4bb20389...; bound c1+c5 82c351af... at State 3, execution_supported=false; c6 cHS4 C72T/C73A = U78775.2 C79T/C80A), strand-specific Layer-2 transcribed-interval ORF scanner (HOLD_PENDING_5PRIME_RACE_TSS on upstream c1 2308-3282 / c2 2029-3003 starts), 3-path Stage-0 Direct/Ingest/Replay parity, held PE4max/Design Y specs, and chr11p15.5 INS 3'-UTR EIF4G2 retirement (OQ-011 -> GY-022 alongside GY-021)",
+    "primary_citations": [
+      "PMID:36522432",
+      "PMID:26780180",
+      "PMID:23873081",
+      "PMID:21248048",
+      "PMID:30853558",
+      "PMID:38508139",
+      "PMID:37156915",
+      "PMID:35795779",
+      "PMID:26455413",
+      "PMID:25605798",
+      "PMID:19904234",
+      "PMID:28723575",
+      "PMID:34653350",
+      "PMID:35140211",
+      "PMID:38786078",
+      "PMID:40769155",
+      "PMID:32690971",
+      "PMID:32217751",
+      "PMID:37733863",
+      "PMID:31634902",
+      "PMID:38858586",
+      "PMID:18796520",
+      "PMID:32460021",
+      "PMID:30850590",
+      "PMID:35241836",
+      "PMID:11696543",
+      "PMID:15228089",
+      "PMID:15039777",
+      "PMID:21029861",
+      "PMID:30010673",
+      "PMID:34050011",
+      "PMID:10611228",
+      "PMID:11943866",
+      "PMID:26816383",
+      "PMID:12370285",
+      "PMID:22618870",
+      "PMID:22101854"
+    ],
+    "rules": {
+      "registry_bound_three_path_stage0_parity": "Decouples Stage-0 research/molecular evaluation from Bayesian calibration admission (wetlab_contract.py:1409) across evaluate_stage0_research_and_molecular_guardrails, ingest_stage0_research_or_wetlab_batch (_extract_canonical_measurements), and replay_stage0_chronological_batches (preserving product_variant_id in historical per-batch replay and latching earlier HARD_SAFETY_STOP_REJECTED / FAIL_* events monotonically), producing identical switch_decisions and lot decisions across all three entry points.",
+      "four_state_design_b_lifecycle_and_hlac_dt9_control": "Binds c1+c5 (SHA-256 82c351af082e0f97361e715c36e2ab5872b8d097efa1c9f59dfda53ea60496ea) to ISLET1_B2_5LOCUS_BASE and ISLET1_B2_5LOCUS_TYK2_PE at State 3 (STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC, execution_supported=false), separates B2M-null ISLET1_B_SCT_* from endogenous-HLA-C ISLET1_B1_*/B2_*, and requires phased donor HLA-A/B/C/E WT-CFD < 0.05, separated ~1.41 Mb chr6p21.3 passes, and DT9+ / 3D12+ flow paired with matched HLA-E-only specificity controls (>= 2.0x delta ratio per Corrah et al. 2011 PMID:21248048) or allele-specific surface/mRNA verification.",
+      "per_locus_segmented_baf_and_locus5_race_umi_3689": "Enforces per-locus phased segmented BAF max_abs_locus_baf_shift <= 0.05 across >= 50 SNPs per locus (chr19q, chr11p15.5, and chr6p21.3 on endogenous-HLA-C Design B) paired with reciprocal-mosaic SV/clonal checks (Damaj et al. 2008 PMID:18796520), plus positive-integer 5'/3'-RACE coordinates (holding upstream c1 2308-3282 / c2 2029-3003 starts as HOLD_PENDING_5PRIME_RACE_TSS until mature TSS > 2308 / > 2029 is confirmed) and N_UMI_eff >= 3,689 with k == 0 aberrant UMIs (U95_CP < 0.000812).",
+      "tyk2_pe4max_msi_piecewise_cap_design_y_lod_and_ins_retirement": "Holds TYK2 PE4max behind distinct FAIL_MSI_DETECTED vs HOLD_MISSING_MSI plus piecewise clonal WGS repeat-indel caps (0 coding/splice indels; <= C_ctrl + 5 at C_ctrl <= 25, <= floor(1.2 * C_ctrl) above), scopes Design Y eeBxb1 GT-preserving 163/142/142/167/135/142 bp ddPCR to >= 63,000 single-unit (95.02%) / >= 90,000 pooled (99.38%) GE ideal Poisson bounds with blank/recovery controls and unbiased insertion capture, and retires chr11p15.5 INS 3'-UTR EIF4G2 knock-ins (OQ-011) into GY-022 alongside GY-021."
     }
   }
 }

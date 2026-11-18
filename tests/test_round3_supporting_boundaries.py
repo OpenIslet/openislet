@@ -3070,10 +3070,10 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     )
 
     # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (49 persisted boolean flags, 53 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
-    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 79
+    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 89
     assert "require_full_5endpoint_s9_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
     assert "require_full_7metric_combined_stress_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
-    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 83
+    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 93
     assert "5.71 mmHg at 100 um clusters with matched D_caps = D_gel" in film_limit["surgical_mitigation"]
 
     batch1_r7s2 = {
@@ -3156,7 +3156,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     # - R7S3-F02: Both wetlab_contract.evaluate_stage0_decision_tree and ingest_wetlab_results.evaluate_stage0_decision_tree reject non-boolean policy values
     from scripts import wetlab_contract as wc_mod
 
-    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 83
+    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 93
     for bkey in wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS:
         for bad_val in ("false", "False", 0, "true", "True", 1):
             for eval_fn in (wc_mod.evaluate_stage0_decision_tree, wetlab.evaluate_stage0_decision_tree):
@@ -5889,6 +5889,368 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     assert len(_gy_25["graveyard_entries"]) == 10
     _g20 = [g for g in _gy_25["off_grid_molecular_dead_end_guardrails"]["guardrails"] if g["graveyard_card_id"] == "GY-020"]
     assert len(_g20) == 1 and _g20[0]["severity_level"] == "BLOCK" and _g20[0]["contribution_id"] == "IIP-0025"
+
+    # =========================================================================
+    # 51. 69-Key gnomAD v4.1 Join, 17-Record HLA-C Scoping (114/115 vs 106/108),
+    #     4-State 2A-Free Design B Comparator FASTA, Transcribed-Interval Layer-2
+    #     ORF Scanner, 3-Path Stage-0 Parity & INS 3'-UTR Retirement (IIP-0026; DEC-105)
+    # =========================================================================
+    from scripts import run_layer2_perturbation_and_regulatory_plane as l2_mod_26
+    from scripts import run_layer5_personalized_patient_compiler as l5_mod_26
+
+    # (a) Staged Design B FASTA bytes, 4-state registry binding, & canonical Scenario A FASTA invariance:
+    _db_fasta_path = ROOT / "data/constructs/islet1_design_b_complete_constructs_v0.8.0.fasta"
+    _db_fasta_bytes = _db_fasta_path.read_bytes()
+    assert len(_db_fasta_bytes) == 25802
+    assert hashlib.sha256(_db_fasta_bytes).hexdigest() == "4bb20389773c76b2705031ba675487825dfbd94d920a692cde75b7d56af22aa4"
+    assert hashlib.sha256((ROOT / "data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta").read_bytes()).hexdigest() == "b5ba4e2b4bbbcc7d6cf1138975c5fae5c6ab074dda43973f071c671cd8cd1d88"
+    _pdefs_26 = pc.load_product_contracts(ROOT)
+    _fam_b_26 = [p for p in _pdefs_26["products"] if p.get("family") == "B"]
+    assert len(_fam_b_26) == 9 and all(p["execution_supported"] is False for p in _fam_b_26)
+    for _b2_id in ("ISLET1_B2_5LOCUS_BASE", "ISLET1_B2_5LOCUS_TYK2_PE"):
+        _b2_def = pc.get_product_definition(_b2_id, root=ROOT)
+        assert _b2_def["lifecycle_state"] == "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC"
+        assert _b2_def["staged_design_b_donor_reference_binding"]["bound_c1_c5_pair_sha256"] == "82c351af082e0f97361e715c36e2ab5872b8d097efa1c9f59dfda53ea60496ea"
+
+    # (b) Layer-2 24-segment provenance (c6 C72T/C73A = U78775.2 C79T/C80A), 975-nt c1/c2 counterexample, & OQ-011 retirement:
+    _l2_full_26 = json.loads((ROOT / "data/extracted/layer2_regulatory_and_perturbation_atlas.json").read_text(encoding="utf-8"))
+    _m26_l2 = _l2_full_26["stage0_design_b_comparator_provenance_and_ins_retirement_manifest_iip_0026"]
+    assert _m26_l2["contribution_id"] == "IIP-0026" and _m26_l2["decision_id"] == "DEC-105"
+    assert len(_m26_l2["per_segment_provenance_ledger_24"]) == 24
+    _c6_chs4_seg = next(s for s in _m26_l2["per_segment_provenance_ledger_24"] if s["segment_id"] == "chs4_c72t_c73a_250")
+    assert "c6" in _c6_chs4_seg["used_in"] and "C79T/C80A" in _c6_chs4_seg["transformations"]
+    assert _m26_l2["c6_two_factor_comparator_audit"]["exact_two_factor_length_identity"] is True
+    _sp_rec_26 = _m26_l2["swissprot_unique_string_vs_positional_reconciliation"]
+    assert _sp_rec_26["arm6_serpinb9_c341s_missense_benchmark"] == {
+        "legacy_integer_count_delta_8_11mer": 0,
+        "unique_8_11mers_added_absent_from_swissprot": 38,
+        "unique_8_11mers_removed_vs_wt": 38,
+        "unique_15mers_added_absent_from_swissprot": 15,
+    }
+    assert _sp_rec_26["complete_islet1_b2_5locus_base_mature_8_11_and_15"] == [108, 39]
+    assert _sp_rec_26["complete_islet1_b2_5locus_base_precursor_8_11_and_15"] == [109, 44]
+    assert _sp_rec_26["complete_islet1_b2_5locus_tyk2_pe_mature_8_11_and_15"] == [146, 54]
+    assert _sp_rec_26["complete_islet1_b2_5locus_tyk2_pe_precursor_8_11_and_15"] == [147, 59]
+    assert len(_m26_l2["iip0015_pdl1_syn2_syn4_versioned_disclosure_note"]["iip0018_multimir_6_descendants_minus_orfs_ge_300nt"]) == 6
+    _oq11_26 = _m26_l2["oq011_ins_3utr_eif4g2_knockin_retirement_audit"]
+    assert _oq11_26["graveyard_card_id"] == "GY-022" and _oq11_26["expansion_fold_vs_73nt"] == 37.14
+    assert abs(_oq11_26["curative_500k_ieq_non_beta_unshielded_cell_fraction"] - 0.485806) < 1e-5
+
+    _c1_rec = next(r for r in _m26_l2["design_b_construct_audits"] if r["short_id"] == "c1")
+    assert _c1_rec["p1_to_p4"]["gate_P2"]["upstream_regulatory_kozak_gate_status"] == "HOLD_PENDING_5PRIME_RACE_TSS"
+    assert _c1_rec["p1_to_p4"]["gate_P2"]["upstream_regulatory_kozak_runs_gated_on_5prime_race"][0]["coords_1based"] == [2308, 3282]
+    assert _c1_rec["p1_to_p4"]["gate_P2"]["upstream_regulatory_kozak_runs_gated_on_5prime_race"][0]["span_nt"] == 975
+
+    # Direct Layer-2 validator probes on c1 DNA (wrong SHA, upstream TSS <= 2308 FAIL vs > 2308 PASS, internal 357-nt +1 ORF FAIL):
+    _c1_dna = next(
+        seq for hdr, seq in l2_mod_26._parse_fasta_records_iip0026(_db_fasta_path)
+        if hdr.startswith("DESIGNB_L5A_CXCL10_BFB_SYN6_ACC_4078bp")
+    )
+    _c1_sha = hashlib.sha256(_c1_dna.encode("ascii")).hexdigest()
+    _l2_ref_raw = json.loads(l2_mod_26.REF_PATH.read_text(encoding="utf-8"))
+    _sb9_aa = _l2_ref_raw["uniprot_protein_sequences"]["P50453"]["sequence"]
+    _pdl1_aa = _l2_ref_raw["uniprot_protein_sequences"]["Q9NZQ7"]["sequence"]
+    _c1_orfs = [
+        {"name": "SERPINB9_P50453", "start_0based": 888, "end_0based": 2019, "strand": "+", "has_stop": True, "expected_precursor_aa": _sb9_aa, "mature_slice_0based": (0, 376), "reference_key": "P50453_SERPINB9"},
+        {"name": "CD274_PDL1_Q9NZQ7", "start_0based": 2380, "end_0based": 3253, "strand": "+", "has_stop": True, "expected_precursor_aa": _pdl1_aa, "mature_slice_0based": (18, 290), "reference_key": "Q9NZQ7_PDL1"},
+    ]
+    _c1_ti = _c1_rec["p1_to_p4"]["gate_P1"]["transcribed_intervals"]
+    _c1_pin = {"P50453_SERPINB9": _sb9_aa, "Q9NZQ7_PDL1": _pdl1_aa}
+    with pytest.raises(ValueError, match="FAIL_CONSTRUCT_SHA256_MISMATCH"):
+        l2_mod_26.validate_design_b_transcribed_construct_iip_0026(
+            design_id="C1_BAD_SHA",
+            donor_seq=_c1_dna,
+            cargo_bounds_0based=(600, len(_c1_dna) - 600),
+            orf_specs=_c1_orfs,
+            parent_mature_proteins=[_sb9_aa, _pdl1_aa[18:]],
+            swissprot_k8_11=set(),
+            swissprot_k15=set(),
+            pinned_layer3_sequences=_c1_pin,
+            expected_donor_sha256="0" * 64,
+            transcribed_intervals=_c1_ti,
+        )
+    with pytest.raises(ValueError, match="FAIL_TRANSCRIBED_UPSTREAM_KOZAK_ORF_BY_5PRIME_RACE"):
+        l2_mod_26.validate_design_b_transcribed_construct_iip_0026(
+            design_id="C1_RACE_UPSTREAM_2300",
+            donor_seq=_c1_dna,
+            cargo_bounds_0based=(600, len(_c1_dna) - 600),
+            orf_specs=_c1_orfs,
+            parent_mature_proteins=[_sb9_aa, _pdl1_aa[18:]],
+            swissprot_k8_11=set(),
+            swissprot_k15=set(),
+            pinned_layer3_sequences=_c1_pin,
+            expected_donor_sha256=_c1_sha,
+            transcribed_intervals=_c1_ti,
+            observed_5prime_race_end_bp=2300,
+            observed_3prime_race_end_bp=3478,
+            readthrough_umi_n_eff=3689,
+            readthrough_umi_k=0,
+        )
+    _c1_race_ok = l2_mod_26.validate_design_b_transcribed_construct_iip_0026(
+        design_id="C1_RACE_DOWNSTREAM_2350",
+        donor_seq=_c1_dna,
+        cargo_bounds_0based=(600, len(_c1_dna) - 600),
+        orf_specs=_c1_orfs,
+        parent_mature_proteins=[_sb9_aa, _pdl1_aa[18:]],
+        swissprot_k8_11=set(),
+        swissprot_k15=set(),
+        pinned_layer3_sequences=_c1_pin,
+        expected_donor_sha256=_c1_sha,
+        transcribed_intervals=_c1_ti,
+        observed_5prime_race_end_bp=2350,
+        observed_3prime_race_end_bp=3478,
+        readthrough_umi_n_eff=3689,
+        readthrough_umi_k=0,
+    )
+    assert _c1_race_ok["gate_P2"]["upstream_regulatory_kozak_gate_status"] == "CLEARED_DOWNSTREAM_5PRIME_RACE_TSS_VERIFIED"
+    assert _c1_race_ok["gate_P1"]["transcript_boundary_gate_status"] == "VERIFIED_OBSERVED_ENDS"
+    # Synthetic internal out-of-frame 357-nt +1 [AG]NNATGG ORF wholly inside a 600-nt CDS must fail closed:
+    _syn_cds_600 = "ATG" + ("GCT" * 3) + "GAGAATGGG" + ("CTG" * 116) + "GTAACT" + ("GCT" * 74) + "TAA"
+    assert len(_syn_cds_600) == 600
+    _syn_donor = ("A" * 600) + _syn_cds_600 + ("A" * 600)
+    _syn_aa = l2_mod_26._translate_strict_cds_iip0026(_syn_cds_600, True)
+    with pytest.raises(ValueError, match="FAIL_UNDECLARED_KOZAK_ORF"):
+        l2_mod_26.validate_design_b_transcribed_construct_iip_0026(
+            design_id="SYN_INTERNAL_PLUS1_357NT",
+            donor_seq=_syn_donor,
+            cargo_bounds_0based=(600, 1200),
+            orf_specs=[{"name": "SYN_CDS", "start_0based": 600, "end_0based": 1200, "strand": "+", "has_stop": True, "expected_precursor_aa": _syn_aa, "mature_slice_0based": (0, len(_syn_aa)), "reference_key": "SYN_REF"}],
+            parent_mature_proteins=[_syn_aa],
+            swissprot_k8_11=set(),
+            swissprot_k15=set(),
+            pinned_layer3_sequences={"SYN_REF": _syn_aa},
+            expected_donor_sha256=hashlib.sha256(_syn_donor.encode("ascii")).hexdigest(),
+        )
+
+    # (c) Layer-5 69-key gnomAD v4.1 join, 17-record HLA-C (114/115 vs 106/108), typed CIITA Exon-5 routing, & outward odds invariance:
+    _l5_full_26 = json.loads((ROOT / "data/extracted/layer5_personalized_patient_and_crispr_atlas.json").read_text(encoding="utf-8"))
+    _a26_l5 = _l5_full_26["variant_aware_gnomad_hlac_pe4max_and_designy_audit_iip_0026"]
+    assert _a26_l5["contribution_id"] == "IIP-0026" and _a26_l5["decision_id"] == "DEC-105"
+    assert _a26_l5["quarantined_doench2016_weight_table_entries_bundled"] == 0
+    _g69 = _a26_l5["gnomad_v4_1_69key_normalized_join"]
+    assert _g69["total_dbsnp155_loci_audited"] == 56 and _g69["total_normalized_alleles_audited"] == 69
+    assert _g69["either_modality_denominators"] == {"resolved_in_either_wgs_or_exome_alleles": 49, "unresolved_absent_in_both_modalities_alleles": 20}
+    assert _g69["wgs_only_denominators"] == {"pass_wgs_alleles": 26, "flagged_wgs_alleles": 1, "unresolved_wgs_alleles": 42}
+    assert _g69["exome_only_denominators"] == {"pass_exome_alleles": 43, "flagged_exome_alleles": 2, "unresolved_exome_alleles": 24}
+
+    assert l5_mod_26.left_normalize_vcf_allele_iip_0026("chr1", 104, 106, "AA", "A", 101, "CAAAAACT")[2] == 101
+    assert l5_mod_26.left_normalize_vcf_allele_iip_0026("chr1", 104, 106, "AA", "A", 101, "AAAAAACT")[0] == "UNRESOLVED_BOUNDARY"
+    _m_lt_1e4 = l5_mod_26.summarize_gnomad_modality_iip_0026({"ac": 1, "an": 10001, "filters": []})
+    _m_gt_1e4 = l5_mod_26.summarize_gnomad_modality_iip_0026({"ac": 1, "an": 9999, "filters": []})
+    assert _m_lt_1e4["global_af"] == 0.0001 and (_m_lt_1e4["ac"] * 10000 >= _m_lt_1e4["an"]) is False
+    assert _m_gt_1e4["global_af"] == 0.0001 and (_m_gt_1e4["ac"] * 10000 >= _m_gt_1e4["an"]) is True
+    assert l5_mod_26.summarize_gnomad_modality_iip_0026({"ac": 5, "an": 10000})["resolution_status"] == "UNRESOLVED"
+
+    _hlac_17 = _a26_l5["hlac_17_record_and_hla_ab_exon23_candidate_audit"]
+    assert _hlac_17["total_sequence_records_evaluated"] == 17
+    assert _hlac_17["exon_boundary_counting_conventions"]["HLA_A"] == {"nominal_spcas9_cut_in_exon23_count": 114, "full_23mer_wholly_inside_exon23_count": 106}
+    assert _hlac_17["exon_boundary_counting_conventions"]["HLA_B"] == {"nominal_spcas9_cut_in_exon23_count": 115, "full_23mer_wholly_inside_exon23_count": 108}
+    assert _hlac_17["hla_a_exon23_all_nnn_audit"]["exon23_window_lt005_across_17_sampled_records_count"] == 11
+    assert _hlac_17["hla_b_exon23_all_nnn_audit"]["exon23_window_lt005_across_17_sampled_records_count"] == 6
+    assert len(_hlac_17["full_record_10_to_11_mismatch_non_exon_hits"]) == 3
+    assert "21248048" in _hlac_17["dt9_hlae_crossreactivity_specificity_control_rule"]
+    assert _a26_l5["mode_a_vs_held_mode_b_pam_shields_and_12_alignments"]["nominated_grch38_alignments_12_across_11_windows"]["total_alignments"] == 12
+    assert _a26_l5["mode_a_vs_held_mode_b_pam_shields_and_12_alignments"]["nominated_grch38_alignments_12_across_11_windows"]["unique_genomic_windows"] == 11
+    assert round(_a26_l5["oq016_2pow12_portfolio_invariance"]["design_a_standalone_pct"]) == 27
+    assert round(_a26_l5["oq016_2pow12_portfolio_invariance"]["design_b_standalone_pct"]) == 31
+    assert round(_a26_l5["oq016_2pow12_portfolio_invariance"]["design_x_standalone_pct"]) == 36
+    assert round(_a26_l5["oq016_2pow12_portfolio_invariance"]["three_slot_locked_pct"]) == 53
+
+    _comp_b_26 = l5_mod_26.compile_personalized_patient_blueprint(
+        {
+            "patient_id": "PT-IIP0026-PLANB",
+            "ancestry": "EUR",
+            "nkg2a_neg_kir_educated_nk_fraction": 0.55,
+            "pre_existing_gad65_ia2_znt8_t_cell_zscore": 1.0,
+            "ifn1_ish_genetic_risk_percentile": 40.0,
+            "sirpa_genotype": "v1/v1",
+            "recipient_kir_ligand_group": "C1/C1",
+            "hlac_4digit_relation": "SELF_4DIGIT_MATCH",
+        },
+        track2_subbank_mode="ENDOGENOUS_HLAC_EXPLORATORY",
+    )
+    assert "OI-GRNA-02_CIITA_EXON5_ASCAS12A" in _comp_b_26["compiled_grna_panel"]
+    assert "OI-GRNA-02_CIITA_EXON1_ASCAS12A" not in _comp_b_26["compiled_grna_panel"]
+    assert _comp_b_26["mhc_locus_routing_contract_iip_0026"]["ciita_target_locus_id"] == "OI-GRNA-02_CIITA_EXON5_ASCAS12A"
+    assert _l5_full_26["part_b_personalized_patient_compiler_and_10k_population_trial"]["global_5yr_survival_personalized_dna_compiled_openislet_pct"] == 97.4
+
+    # (d) S7 missing-evidence & SCT-without-MLC fixes + 19-case 3-Path Direct/Ingest/Replay branch & lot parity:
+    assert wc_mod.evaluate_stage0_decision_tree({})["switch_decisions"]["S7_Design_B_Prime_4Digit_Allo_vs_B_SCT_Gate_0B"] == "UNMEASURED_EXTENDED_S7_GATE0B_HLAC_PANEL"
+    assert wc_mod.evaluate_stage0_decision_tree({"product_variant_id": "ISLET1_B2_5LOCUS_BASE"})["switch_decisions"]["S7_Design_B_Prime_4Digit_Allo_vs_B_SCT_Gate_0B"] == "HOLD_MISSING_ENDOGENOUS_DESIGNB_HLAC_PHASED_CLEARANCE"
+    _sct_no_mlc = wc_mod.evaluate_stage0_decision_tree({
+        "product_variant_id": "ISLET1_B_SCT_C1_CIITA",
+        "obs_gate0b_hlac_cd8_elispot_sfw": 150.0,
+        "obs_gate0b_hlac_cd8_elispot_se": 5.0,
+        "obs_gate0b_hlac_sct_molecules_per_cell": 25000.0,
+        "obs_gate0b_hlac_sct_molecules_se": 500.0,
+        "b_prime_sct_recipient_cd8_mlc_cleared": False,
+    })
+    assert _sct_no_mlc["switch_decisions"]["S7_Design_B_Prime_4Digit_Allo_vs_B_SCT_Gate_0B"] == "HOLD_B_PRIME_ALLO_FAILED_REQUIRES_4DIGIT_MATCH_OR_SCT_CD8_MLC_CLEARANCE"
+
+    _base_s9_26 = {
+        "obs_icasp9_log10_kill": 4.6,
+        "obs_icasp9_log10_kill_se": 0.08,
+        "obs_tp53_ppm1d_bcor_vaf": 0.0,
+        "obs_tp53_ppm1d_bcor_vaf_se": 1e-6,
+        "obs_tp53_ppm1d_bcor_duplex_depth": 70000.0,
+        "obs_castseq_translocation_freq": 0.0,
+        "obs_castseq_translocation_se": 1e-6,
+        "obs_castseq_duplex_or_amplicon_depth": 70000.0,
+        "obs_mcb_clonogenic_survivor_count_k": 0,
+        "obs_mcb_effective_clonogenic_trials": 300000000,
+    }
+    _complete_b2_26 = {
+        **_base_s9_26,
+        "product_variant_id": "ISLET1_B2_5LOCUS_BASE",
+        "lot_id": "LOT_B2_IIP0026",
+        "campaign_id": "CAMP_S0_IIP0026",
+        "bound_c1_c5_pair_sha256": wc_mod.DESIGN_B_C1_C5_PAIR_SHA256,
+        "donor_seed_gnomad_target_site_wgs_verified": True,
+        "post_edit_per_locus_segmented_baf": {"chr19q": 0.502, "chr11p15": 0.499, "chr6p21": 0.504},
+        "post_edit_reciprocal_mosaic_sv_or_clonal_zygosity_verified": True,
+        "design_b_hlac_phased_guide_cfd_max": 0.0188,
+        "design_b_hla_ab_separated_pass_delivery_verified": True,
+        "design_b_chr6p21_1p41mb_loh_sv_cleared": True,
+        "design_b_hlac_dt9_positive": True,
+        "design_b_hlae_3d12_positive": True,
+        "design_b_hlac_dt9_matched_hlae_only_control_delta_ratio": 4.25,
+        "design_b_hlac_allele_specific_surface_or_phased_mrna_verified": True,
+        "design_b_locus5_5prime_race_coord_bp": 880,
+        "design_b_locus5_3prime_race_coord_bp": 3478,
+        "design_b_locus5_pdl1_5prime_race_coord_bp": 2350,
+        "design_b_locus5_race_umi_n_eff": 3689,
+        "design_b_locus5_aberrant_umi_k": 0,
+    }
+
+    def _assert_3path_parity_26(case_payload: dict) -> dict:
+        d_out = wc_mod.evaluate_stage0_research_and_molecular_guardrails(dict(case_payload), root=ROOT)
+        scope_26 = {
+            "product_variant_id": case_payload.get("product_variant_id"),
+            "lot_id": case_payload.get("lot_id"),
+            "campaign_id": case_payload.get("campaign_id"),
+            **({"iip0026_schema_era": case_payload["iip0026_schema_era"]} if "iip0026_schema_era" in case_payload else {}),
+        }
+        meas_26 = {k: v for k, v in case_payload.items() if str(k).startswith("obs_") and v is not None}
+        mol_26 = {
+            k: v for k, v in case_payload.items()
+            if k not in ("product_variant_id", "lot_id", "campaign_id", "iip0026_schema_era") and not str(k).startswith("obs_")
+        }
+        i_out = wetlab.ingest_stage0_research_or_wetlab_batch(
+            json.dumps({"scope": scope_26, "measurements": meas_26, "iip0026_molecular_observations": mol_26}),
+            root=ROOT,
+        )
+        mol_items = list(mol_26.items())
+        mid_i = len(mol_items) // 2
+        r_out = wetlab.replay_stage0_chronological_batches(
+            [
+                {"seq_index": 3, "utc_timestamp": "2026-11-18T10:00:00Z", "scope": dict(scope_26), "measurements": {}, "iip0026_molecular_observations": dict(mol_items[mid_i:])},
+                {"seq_index": 1, "utc_timestamp": "2026-11-18T08:00:00Z", "scope": dict(scope_26), "measurements": dict(meas_26), "iip0026_molecular_observations": {}},
+                {"seq_index": 2, "utc_timestamp": "2026-11-18T09:00:00Z", "scope": dict(scope_26), "measurements": {}, "iip0026_molecular_observations": dict(mol_items[:mid_i])},
+            ],
+            root=ROOT,
+        )
+        assert d_out["overall_status"] == i_out["overall_status"] == r_out["overall_status"]
+        assert d_out["lot_release_readiness_tier"] == i_out["lot_release_readiness_tier"] == r_out["lot_release_readiness_tier"]
+        assert d_out["iip0026_reasons"] == i_out["iip0026_reasons"] == r_out["iip0026_reasons"]
+        assert d_out["lifecycle_state"] == i_out["lifecycle_state"] == r_out["lifecycle_state"]
+        assert d_out["execution_supported"] == i_out["execution_supported"] == r_out["execution_supported"]
+        assert d_out["effective_execution_permitted"] == i_out["effective_execution_permitted"] == r_out["effective_execution_permitted"]
+        assert d_out["switch_decisions"] == i_out["switch_decisions"] == r_out["switch_decisions"]
+        return d_out
+
+    _res_b2_ok = _assert_3path_parity_26(_complete_b2_26)
+    assert _res_b2_ok["overall_status"] == "RESEARCH_COMPARATOR_STAGE0_PANEL_CLEARED_PENDING_STATE4_PROMOTION"
+    assert _res_b2_ok["execution_supported"] is False and _res_b2_ok["effective_execution_permitted"] is False
+    assert _assert_3path_parity_26({**_complete_b2_26, "design_b_locus5_pdl1_5prime_race_coord_bp": 2300})["overall_status"] == "FAIL_MATURE_TRANSCRIPT_INCLUDES_UPSTREAM_OUT_OF_FRAME_KOZAK_ORF"
+    assert _assert_3path_parity_26({k: v for k, v in _complete_b2_26.items() if k != "donor_seed_gnomad_target_site_wgs_verified"})["overall_status"] == "HOLD_MISSING_DONOR_TARGET_WGS"
+    assert _assert_3path_parity_26({k: v for k, v in _complete_b2_26.items() if k != "design_b_hlac_phased_guide_cfd_max"})["overall_status"] == "HOLD_MISSING_ENDOGENOUS_DESIGNB_HLAC_PHASED_CLEARANCE"
+    assert _assert_3path_parity_26({**_complete_b2_26, "post_edit_per_locus_segmented_baf": {"chr19q": 0.30, "chr11p15": 0.70, "chr6p21": 0.50}})["overall_status"] == "FAIL_DISCORDANT_PER_LOCUS_SEGMENTED_BAF"
+    assert _assert_3path_parity_26({**_complete_b2_26, "design_b_locus5_race_umi_n_eff": 3687})["overall_status"] == "HOLD_MISSING_DESIGNB_LOCUS5_TRANSCRIPT_UMI_3689"
+    assert _assert_3path_parity_26({**_complete_b2_26, "design_b_locus5_5prime_race_coord_bp": True, "design_b_locus5_3prime_race_coord_bp": -2})["overall_status"] == "FAIL_INVALID_RACE_COORDINATES"
+    assert _assert_3path_parity_26({k: v for k, v in _complete_b2_26.items() if k not in ("design_b_hlac_dt9_matched_hlae_only_control_delta_ratio", "design_b_hlac_allele_specific_surface_or_phased_mrna_verified")})["overall_status"] == "HOLD_MISSING_HLAC_SPECIFICITY_CONTROL_FOR_DT9_HLAE_CROSSREACTIVITY"
+    assert _assert_3path_parity_26({**_complete_b2_26, "design_b_hlac_dt9_matched_hlae_only_control_delta_ratio": 1.04, "design_b_hlac_allele_specific_surface_or_phased_mrna_verified": False})["overall_status"] == "FAIL_HLAC_SURFACE_LOSS_MASKED_BY_DT9_HLAE_CROSSREACTIVITY"
+    assert _assert_3path_parity_26({**_complete_b2_26, "bound_c1_c5_pair_sha256": "0" * 64})["overall_status"] == "FAIL_DONOR_REGISTRY_DIGEST_MISMATCH"
+    assert _assert_3path_parity_26({**_complete_b2_26, "iip0026_lifecycle_state": "State 4"})["overall_status"] == "FAIL_CALLER_LIFECYCLE_OR_EXECUTION_OVERRIDE_REJECTED"
+    assert _assert_3path_parity_26({**_complete_b2_26, "lot_id": "  "})["overall_status"] == "HOLD_MISSING_LOT_OR_CAMPAIGN_SCOPE"
+    assert _assert_3path_parity_26({**_complete_b2_26, "product_variant_id": "ISLET1_B2_5LOCUS_TYK2_PE", "tyk2_pe_modality": "PE4MAX_MSI_GATED", "tyk2_phased_haplotype_sap_verified": True})["overall_status"] == "HOLD_MISSING_MSI"
+    _pe4_msi_fail = _assert_3path_parity_26({
+        **_complete_b2_26,
+        "product_variant_id": "ISLET1_B2_5LOCUS_TYK2_PE",
+        "tyk2_pe_modality": "PE4MAX_MSI_GATED",
+        "tyk2_phased_haplotype_sap_verified": True,
+        "tyk2_pe4max_pentaplex_msi_shifts_k": 2,
+        "tyk2_pe4max_wgs_repeat_indels_clone": 121,
+        "tyk2_pe4max_wgs_repeat_indels_ctrl": 100,
+        "tyk2_pe4max_coding_or_splice_de_novo_indels": 0,
+    })
+    assert _pe4_msi_fail["overall_status"] == "FAIL_MSI_DETECTED" and "FAIL_PE4MAX_REPEAT_INDEL_CAP_EXCEEDED" in _pe4_msi_fail["iip0026_reasons"]
+    assert _assert_3path_parity_26({
+        **_complete_b2_26,
+        "product_variant_id": "ISLET1_B2_5LOCUS_TYK2_PE",
+        "tyk2_pe_modality": "PE4MAX_MSI_GATED",
+        "tyk2_phased_haplotype_sap_verified": True,
+        "tyk2_pe4max_pentaplex_msi_shifts_k": 0,
+        "tyk2_pe4max_wgs_repeat_indels_clone": 121,
+        "tyk2_pe4max_wgs_repeat_indels_ctrl": 100,
+        "tyk2_pe4max_coding_or_splice_de_novo_indels": 0,
+    })["overall_status"] == "FAIL_PE4MAX_REPEAT_INDEL_CAP_EXCEEDED"
+    assert _assert_3path_parity_26({
+        **_base_s9_26,
+        "product_variant_id": "ISLET1_B_SCT_C1_CIITA",
+        "lot_id": "LOT_BSCT_26",
+        "campaign_id": "CAMP_S0_26",
+        "donor_seed_gnomad_target_site_wgs_verified": True,
+        "post_edit_per_locus_segmented_baf": {"chr19q": 0.498, "chr11p15": 0.503},
+        "post_edit_reciprocal_mosaic_sv_or_clonal_zygosity_verified": True,
+        "b_sct_ciita_exon5_and_trimer_verified": True,
+    })["overall_status"] == "STAGE0_IIP0026_MOLECULAR_GUARDRAILS_CLEARED"
+
+    # Cross-lot mixing rejection & monotonic adverse MSI latching in replay_stage0_chronological_batches:
+    assert wetlab.replay_stage0_chronological_batches(
+        [
+            {"seq_index": 1, "utc_timestamp": "2026-11-18T08:00:00Z", "scope": {"product_variant_id": "ISLET1_B2_5LOCUS_BASE", "lot_id": "LOT_1", "campaign_id": "C1"}, "measurements": dict(_base_s9_26), "iip0026_molecular_observations": {}},
+            {"seq_index": 2, "utc_timestamp": "2026-11-18T09:00:00Z", "scope": {"product_variant_id": "ISLET1_B2_5LOCUS_BASE", "lot_id": "LOT_2", "campaign_id": "C1"}, "measurements": {}, "iip0026_molecular_observations": {}},
+        ],
+        root=ROOT,
+    )["overall_status"] == "FAIL_CROSS_LOT_OR_CAMPAIGN_REPLAY_MIXING"
+    _latched_msi_26 = wetlab.replay_stage0_chronological_batches(
+        [
+            {
+                "seq_index": 1,
+                "utc_timestamp": "2026-11-18T08:00:00Z",
+                "scope": {"product_variant_id": "ISLET1_B2_5LOCUS_TYK2_PE", "lot_id": "LOT_PE_LATCH", "campaign_id": "CAMP_PE"},
+                "measurements": dict(_base_s9_26),
+                "iip0026_molecular_observations": {
+                    **{k: v for k, v in _complete_b2_26.items() if not str(k).startswith("obs_") and k not in ("product_variant_id", "lot_id", "campaign_id")},
+                    "tyk2_pe_modality": "PE4MAX_MSI_GATED",
+                    "tyk2_phased_haplotype_sap_verified": True,
+                    "tyk2_pe4max_pentaplex_msi_shifts_k": 2,
+                    "tyk2_pe4max_wgs_repeat_indels_clone": 12,
+                    "tyk2_pe4max_wgs_repeat_indels_ctrl": 10,
+                    "tyk2_pe4max_coding_or_splice_de_novo_indels": 0,
+                },
+            },
+            {
+                "seq_index": 2,
+                "utc_timestamp": "2026-11-18T11:00:00Z",
+                "scope": {"product_variant_id": "ISLET1_B2_5LOCUS_TYK2_PE", "lot_id": "LOT_PE_LATCH", "campaign_id": "CAMP_PE"},
+                "measurements": {},
+                "iip0026_molecular_observations": {"tyk2_pe4max_pentaplex_msi_shifts_k": 0},
+            },
+        ],
+        root=ROOT,
+    )
+    assert _latched_msi_26["overall_status"] == "FAIL_MSI_DETECTED" and _latched_msi_26["effective_execution_permitted"] is False
+
+    # (e) Graveyard GY-021 & GY-022 (10 combinatorial grid + 12 off-grid = 22 total):
+    _gy_26 = json.loads((ROOT / "data/graveyard/idea_graveyard_v0.5.json").read_text(encoding="utf-8"))
+    _og_26 = _gy_26["off_grid_molecular_dead_end_guardrails"]["guardrails"]
+    assert len(_gy_26["graveyard_entries"]) == 10 and len(_og_26) == 12
+    _gy21 = [g for g in _og_26 if g["graveyard_card_id"] == "GY-021"]
+    _gy22 = [g for g in _og_26 if g["graveyard_card_id"] == "GY-022"]
+    assert len(_gy21) == 1 and _gy21[0]["guardrail_id"].startswith("OFFGRID_GUARD_011_") and _gy21[0]["contribution_id"] == "IIP-0026"
+    assert len(_gy22) == 1 and _gy22[0]["guardrail_id"].startswith("OFFGRID_GUARD_012_") and _gy22[0]["contribution_id"] == "IIP-0026"
+
 
 
 

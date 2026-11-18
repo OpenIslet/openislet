@@ -9081,25 +9081,38 @@
           "K": 5,
           "B": 1,
           "alleles": {
-            "HLA-A": "biallelic LOF proposed",
-            "HLA-B": "biallelic LOF proposed",
+            "HLA-A": "biallelic LOF proposed across phased donor HLA-A/B/C/E screen",
+            "HLA-B": "biallelic LOF proposed across separated ~1.41 Mb chr6p21.3 passes",
             "HLA-C": "retained KIR-matched donor allele(s), separately parameterized",
             "B2M": "retained WT",
-            "CIITA": "biallelic LOF proposed",
-            "CXCL10": "2A-free checkpoint cassette proposed; exact donor unresolved",
-            "AAVS1": "biallelic iCasp9 proposed",
-            "TYK2": "P1104A intended via prime editing",
-            "INS": "WT"
+            "CIITA": "biallelic Exon 5 LOF proposed",
+            "CXCL10": "staged 2A-free L3-BF-B SYN6 Mode-B ACC-shielded SERPINB9 + PD-L1 comparator c1 (DESIGNB_L5A_CXCL10_BFB_SYN6_ACC_4078bp; held pending 5'-RACE TSS N_UMI_eff >= 3,689 and HiFi re-cutting QC)",
+            "AAVS1": "staged 2A-free divergent CD47(1-138)-CD55(345-381) GPI + iCasp9 Mode-B ACC-shielded comparator c5 (DESIGNB_L6_AAVS1_CD47_ICASP9_2AFREE_HUMAN_ACC_4172bp; held pending 30d/84d Tier-6B joint retention and HiFi re-cutting QC)",
+            "TYK2": "P1104A intended via PE2max primary comparator (PE4max held behind pentaplex MSI=0 and piecewise repeat-indel cap; SAPTKFLEL HLA-C immunopeptidomics + G/G,G/C,C/C CD8+ holds active)",
+            "INS": "WT (INS 3'-UTR EIF4G2 knock-ins retired per OQ-011 / GY-022)"
           },
           "cassette_topology": {
-            "CXCL10": "2A-free dual-promoter SERPINB9 / PD-L1 proposed; sequence unresolved",
-            "CD47_HLAE": "separate HLA-C-compatible donor design unresolved",
-            "AAVS1": "candidate HNRNPA2B1-proximal455bp/EEF1A1-iCasp9 proposed"
+            "CXCL10": "staged research comparator c1 DESIGNB_L5A_CXCL10_BFB_SYN6_ACC_4078bp (2A-free sPA + BasalFloor-SERPINB9 + SV40pA + MAZ4 + Syn5xISRE-PD-L1[SYN6] + bGHpA, Mode-B ACC shield; c2 3,799 bp and c3 3,772 bp all-human comparators co-staged)",
+            "CD47_HLAE": "AAVS1 divergent (-) CD47-IgV-GPI in c5 paired with WT B2M + endogenous donor HLA-C/HLA-E (endogenous HLA-E genotype/surface sufficiency unresolved pending per-lot QC)",
+            "AAVS1": "staged research comparator c5 DESIGNB_L6_AAVS1_CD47_ICASP9_2AFREE_HUMAN_ACC_4172bp (divergent (-) EEF1A1-CD47-IgV-GPI-HBBpA + A2UCOE + (+) UBC-iCasp9-UBCpA, Mode-B ACC shield; c4 3,457 bp iCasp9-only and two-factor c6 4,394 bp +cHS4[C72T/C73A]+SV40pA co-staged)"
           },
-          "sequence_materialization_status": "NOT_MATERIALIZED_SEPARATE_DONOR_LEDGER_REQUIRED",
+          "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+          "staged_design_b_donor_reference_binding": {
+            "proposal_id": "IIP-0026",
+            "decision_id": "DEC-105",
+            "fasta_path": "data/constructs/islet1_design_b_complete_constructs_v0.8.0.fasta",
+            "fasta_sha256": "4bb20389773c76b2705031ba675487825dfbd94d920a692cde75b7d56af22aa4",
+            "cxcl10_locus5_primary_donor_id": "DESIGNB_L5A_CXCL10_BFB_SYN6_ACC_4078bp",
+            "cxcl10_locus5_primary_donor_sha256": "3392af83d0b37b63c7db2094e88ae3b7034811e3a7b64f678f45ffd56194bf56",
+            "aavs1_locus6_primary_donor_id": "DESIGNB_L6_AAVS1_CD47_ICASP9_2AFREE_HUMAN_ACC_4172bp",
+            "aavs1_locus6_primary_donor_sha256": "ba264b14b5cf81b191a8e2126cf5f2c9949559a3782f6ff69bb206690d705882",
+            "bound_c1_c5_pair_sha256": "82c351af082e0f97361e715c36e2ab5872b8d097efa1c9f59dfda53ea60496ea",
+            "mode_b_acc_shield_status": "EMBEDDED_HELD_PENDING_HIFI_R691A_RECUT_AND_HOST_SPLICING_RTPCR"
+          },
+          "sequence_materialization_status": "STAGED_RESEARCH_COMPARATOR_DONORS_BOUND_PENDING_ALLELE_QC",
           "physical_qualification_status": "PREREGISTERED_PENDING",
           "execution_supported": false,
-          "execution_scope": "explicit unmaterialized research comparator; assigned-rule scenario scores are not complete-product benefits",
+          "execution_scope": "State-3 Stage-0 research comparator (c1+c5 donor pair 82c351af... bound; HLA-A/B, CIITA, TYK2 PE2max/PE4max, endogenous HLA-C/HLA-E, and edited-allele states remain pending per-lot QC; decoupled from Bayesian calibration admission; IIP-0026; DEC-105)",
           "physical_manufacturing_yield": null,
           "donor_lineage": {
             "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
@@ -9121,9 +9134,12 @@
           },
           "pending_assay_gates": [
             "edited-allele and genome integrity QC",
+            "phased donor HLA-A/B/C/E WGS, separated chr6p21.3 passes, and DT9+3D12 with matched HLA-E-only specificity control",
+            "5'/3'-RACE (N_UMI_eff >= 3,689, k=0) resolving c1 upstream regulatory start, ART3-201/PPP1R12C/CXCL9/11/INS 90% TOST, and HiFi R691A ACC re-cutting test",
+            "phased TYK2 P1104A SAP haplotype, SAPTKFLEL HLA-C immunopeptidomics + G/G,G/C,C/C CD8+ priming, and PE4max pentaplex MSI=0 + piecewise repeat-indel cap",
             "lineage-specific surface density and immune challenge",
-            "dynamic insulin secretion and differentiation yield",
-            "safety-switch depletion",
+            "dynamic insulin secretion and differentiation yield (canonical Readout 2 t50 <= 3.0 min)",
+            "30d/84d AAVS1 CD47 x AP1903 Tier-6B (N_eff >= 299,573,228) safety-switch depletion",
             "exact-product molecular and delivery qualification"
           ]
         },
@@ -9344,7 +9360,7 @@
             "CXCL10": "2A-free checkpoint cassette proposed; exact donor unresolved",
             "AAVS1": "biallelic iCasp9 proposed",
             "TYK2": "biallelic KO proposed",
-            "INS": "epitope-edit locus proposed; exact allele unresolved"
+            "INS": "epitope-edit locus proposed; exact allele unresolved (distinct from retired INS 3'-UTR EIF4G2 knock-in hypothesis OQ-011 / GY-022; IIP-0026; DEC-105)"
           },
           "cassette_topology": {
             "CXCL10": "2A-free dual-promoter SERPINB9 / PD-L1 proposed; sequence unresolved",
@@ -22555,6 +22571,1968 @@
         }
       ],
       "cd200_and_mir375_detargeting_caveats": "Chai et al. 2022 (PMID:35297680) used alpha-cell-enriched miRNAs rather than miR-375 (which is abundant in both human alpha and beta cells), Hu et al. 2025 (PMID:40251154) co-tested CD99 + CD200 rather than iEC-only CD200 indirect-CD4 suppression alone, and packing 7 tandem units across 11.1 kb can introduce transcriptional supercoiling coupling (Naughton et al. 2013 PMID:23416946; Gilbert & Allan 2014 PMID:24584092), making direct Y-03/Y-04 empirical co-culture, AGO2-RIP miR-375, anti-CD200 reversal, and single-cell multi-cistron gates mandatory."
+    }
+  },
+  "stage0_design_b_comparator_provenance_and_ins_retirement_manifest_iip_0026": {
+    "contribution_id": "IIP-0026",
+    "decision_id": "DEC-105",
+    "fasta_artifact": {
+      "relative_path": "data/constructs/islet1_design_b_complete_constructs_v0.8.0.fasta",
+      "file_sha256": "4bb20389773c76b2705031ba675487825dfbd94d920a692cde75b7d56af22aa4",
+      "bound_c1_c5_pair_sha256": "82c351af082e0f97361e715c36e2ab5872b8d097efa1c9f59dfda53ea60496ea",
+      "record_count": 6,
+      "canonical_scenario_a_fasta_untouched": true
+    },
+    "explicit_four_state_product_lifecycle": {
+      "state_1_staged_reference_fasta_artifact": {
+        "state_id": "STAGED_REFERENCE_FASTA_ARTIFACT",
+        "fasta_sha256": "4bb20389773c76b2705031ba675487825dfbd94d920a692cde75b7d56af22aa4",
+        "bound_c1_c5_pair_sha256": "82c351af082e0f97361e715c36e2ab5872b8d097efa1c9f59dfda53ea60496ea",
+        "achieved": true
+      },
+      "state_2_registry_donor_reference_bound": {
+        "state_id": "REGISTRY_DONOR_REFERENCE_BOUND",
+        "bound_products": [
+          "ISLET1_B2_5LOCUS_BASE",
+          "ISLET1_B2_5LOCUS_TYK2_PE"
+        ],
+        "selected_primary_donor_pair": [
+          "DESIGNB_L5A_CXCL10_BFB_SYN6_ACC_4078bp",
+          "DESIGNB_L6_AAVS1_CD47_ICASP9_2AFREE_HUMAN_ACC_4172bp"
+        ],
+        "bound_c1_c5_pair_sha256": "82c351af082e0f97361e715c36e2ab5872b8d097efa1c9f59dfda53ea60496ea",
+        "achieved": true
+      },
+      "state_3_stage0_research_comparator_pending_allele_qc": {
+        "state_id": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+        "execution_supported": false,
+        "achieved": true,
+        "note": "Current post-fold-in state for ISLET1_B2_5LOCUS_BASE and ISLET1_B2_5LOCUS_TYK2_PE; decoupled from Bayesian calibration admission."
+      },
+      "state_4_execution_supported_qualified_product": {
+        "state_id": "EXECUTION_SUPPORTED_QUALIFIED_PRODUCT",
+        "execution_supported": true,
+        "achieved": false
+      }
+    },
+    "c6_two_factor_comparator_audit": {
+      "c5_bp": 4172,
+      "c6_bp": 4394,
+      "delta_bp": 222,
+      "factor_1_added_chs4_c72t_c73a_bp": 250,
+      "factor_2_replaced_c5_ubc_polya_150bp_with_sv40_polya_122bp_delta": -28,
+      "exact_two_factor_length_identity": true,
+      "chs4_reference_base_reconciliation": "C72T/C73A in 1-based 250-bp insert coordinates (= C79T/C80A in ENA/GenBank U78775.2:10-244 (+1))"
+    },
+    "per_segment_provenance_ledger_24": [
+      {
+        "segment_id": "cxcl10_ha_l_600",
+        "length_bp": 600,
+        "sha256": "102e7c05b31c6ef6984954905c3f615a5e2b70009732394616c27d041b790bcf",
+        "used_in": [
+          "c1",
+          "c2",
+          "c3"
+        ],
+        "source_accession_or_build": "GRCh38.p14 chr4:76023468-76024067 (-1)",
+        "rights_basis": "INSDC/GRC human reference assembly",
+        "transformations": "NONE (exact 600-bp reverse-complement slice of GRCh38.p14 chr4:76023468-76024067)",
+        "occurrence_sha256": {
+          "c1:1-600(+)": "102e7c05b31c6ef6984954905c3f615a5e2b70009732394616c27d041b790bcf",
+          "c2:1-600(+)": "102e7c05b31c6ef6984954905c3f615a5e2b70009732394616c27d041b790bcf",
+          "c3:1-600(+)": "102e7c05b31c6ef6984954905c3f615a5e2b70009732394616c27d041b790bcf"
+        },
+        "occurrences": [
+          {
+            "construct": "c1",
+            "start_1based": 1,
+            "end_1based": 600,
+            "strand": "+",
+            "occurrence_sha256": "102e7c05b31c6ef6984954905c3f615a5e2b70009732394616c27d041b790bcf"
+          },
+          {
+            "construct": "c2",
+            "start_1based": 1,
+            "end_1based": 600,
+            "strand": "+",
+            "occurrence_sha256": "102e7c05b31c6ef6984954905c3f615a5e2b70009732394616c27d041b790bcf"
+          },
+          {
+            "construct": "c3",
+            "start_1based": 1,
+            "end_1based": 600,
+            "strand": "+",
+            "occurrence_sha256": "102e7c05b31c6ef6984954905c3f615a5e2b70009732394616c27d041b790bcf"
+          }
+        ]
+      },
+      {
+        "segment_id": "cxcl10_ha_r_acc_600",
+        "length_bp": 600,
+        "sha256": "d9230df0eb99d50318be047f337327a3eb5ea392560a312a01435e2b1434b7af",
+        "used_in": [
+          "c1",
+          "c2",
+          "c3"
+        ],
+        "source_accession_or_build": "GRCh38.p14 chr4:76022868-76023467 (-1)",
+        "rights_basis": "INSDC/GRC human reference assembly + OpenIslet CC-BY-4.0 Mode-B PAM-shield derivative",
+        "transformations": "2-bp Mode-B PAM shield chr4:76023451_76023452CC>GG (right-arm nt 16..17 GG>CC, converting -1 AGG PAM to ACC; held pending empirical HiFi re-cutting & ART3 RT-PCR)",
+        "occurrence_sha256": {
+          "c1:3479-4078(+)": "d9230df0eb99d50318be047f337327a3eb5ea392560a312a01435e2b1434b7af",
+          "c2:3200-3799(+)": "d9230df0eb99d50318be047f337327a3eb5ea392560a312a01435e2b1434b7af",
+          "c3:3173-3772(+)": "d9230df0eb99d50318be047f337327a3eb5ea392560a312a01435e2b1434b7af"
+        },
+        "occurrences": [
+          {
+            "construct": "c1",
+            "start_1based": 3479,
+            "end_1based": 4078,
+            "strand": "+",
+            "occurrence_sha256": "d9230df0eb99d50318be047f337327a3eb5ea392560a312a01435e2b1434b7af"
+          },
+          {
+            "construct": "c2",
+            "start_1based": 3200,
+            "end_1based": 3799,
+            "strand": "+",
+            "occurrence_sha256": "d9230df0eb99d50318be047f337327a3eb5ea392560a312a01435e2b1434b7af"
+          },
+          {
+            "construct": "c3",
+            "start_1based": 3173,
+            "end_1based": 3772,
+            "strand": "+",
+            "occurrence_sha256": "d9230df0eb99d50318be047f337327a3eb5ea392560a312a01435e2b1434b7af"
+          }
+        ]
+      },
+      {
+        "segment_id": "aavs1_ha_l_600",
+        "length_bp": 600,
+        "sha256": "0e5379a1a42810c93fce46d540f6d4fb07ec93be53de210cb9d191f4f51f626f",
+        "used_in": [
+          "c4",
+          "c5",
+          "c6"
+        ],
+        "source_accession_or_build": "GRCh38.p14 chr19:55115768-55116367 (-1)",
+        "rights_basis": "INSDC/GRC human reference assembly",
+        "transformations": "NONE (exact 600-bp reverse-complement slice of GRCh38.p14 chr19:55115768-55116367)",
+        "occurrence_sha256": {
+          "c4:1-600(+)": "0e5379a1a42810c93fce46d540f6d4fb07ec93be53de210cb9d191f4f51f626f",
+          "c5:1-600(+)": "0e5379a1a42810c93fce46d540f6d4fb07ec93be53de210cb9d191f4f51f626f",
+          "c6:1-600(+)": "0e5379a1a42810c93fce46d540f6d4fb07ec93be53de210cb9d191f4f51f626f"
+        },
+        "occurrences": [
+          {
+            "construct": "c4",
+            "start_1based": 1,
+            "end_1based": 600,
+            "strand": "+",
+            "occurrence_sha256": "0e5379a1a42810c93fce46d540f6d4fb07ec93be53de210cb9d191f4f51f626f"
+          },
+          {
+            "construct": "c5",
+            "start_1based": 1,
+            "end_1based": 600,
+            "strand": "+",
+            "occurrence_sha256": "0e5379a1a42810c93fce46d540f6d4fb07ec93be53de210cb9d191f4f51f626f"
+          },
+          {
+            "construct": "c6",
+            "start_1based": 1,
+            "end_1based": 600,
+            "strand": "+",
+            "occurrence_sha256": "0e5379a1a42810c93fce46d540f6d4fb07ec93be53de210cb9d191f4f51f626f"
+          }
+        ]
+      },
+      {
+        "segment_id": "aavs1_ha_r_acc_600",
+        "length_bp": 600,
+        "sha256": "18f152fcd098dd2a54e43527dd22ed34bd3d8a136dcaf59e32796459714c616c",
+        "used_in": [
+          "c4",
+          "c5",
+          "c6"
+        ],
+        "source_accession_or_build": "GRCh38.p14 chr19:55115168-55115767 (-1)",
+        "rights_basis": "INSDC/GRC human reference assembly + OpenIslet CC-BY-4.0 Mode-B PAM-shield derivative",
+        "transformations": "2-bp Mode-B PAM shield chr19:55115754_55115755CC>GG (right-arm nt 13..14 GG>CC, converting -1 AGG PAM to ACC; held pending empirical HiFi re-cutting & PPP1R12C RT-PCR)",
+        "occurrence_sha256": {
+          "c4:2858-3457(+)": "18f152fcd098dd2a54e43527dd22ed34bd3d8a136dcaf59e32796459714c616c",
+          "c5:3573-4172(+)": "18f152fcd098dd2a54e43527dd22ed34bd3d8a136dcaf59e32796459714c616c",
+          "c6:3795-4394(+)": "18f152fcd098dd2a54e43527dd22ed34bd3d8a136dcaf59e32796459714c616c"
+        },
+        "occurrences": [
+          {
+            "construct": "c4",
+            "start_1based": 2858,
+            "end_1based": 3457,
+            "strand": "+",
+            "occurrence_sha256": "18f152fcd098dd2a54e43527dd22ed34bd3d8a136dcaf59e32796459714c616c"
+          },
+          {
+            "construct": "c5",
+            "start_1based": 3573,
+            "end_1based": 4172,
+            "strand": "+",
+            "occurrence_sha256": "18f152fcd098dd2a54e43527dd22ed34bd3d8a136dcaf59e32796459714c616c"
+          },
+          {
+            "construct": "c6",
+            "start_1based": 3795,
+            "end_1based": 4394,
+            "strand": "+",
+            "occurrence_sha256": "18f152fcd098dd2a54e43527dd22ed34bd3d8a136dcaf59e32796459714c616c"
+          }
+        ]
+      },
+      {
+        "segment_id": "spa_pause_49",
+        "length_bp": 49,
+        "sha256": "7dd61ab0487c4eb24cab431f7c774a9c194fe26c6bcb49a8fd1405888e44b053",
+        "used_in": [
+          "c1"
+        ],
+        "source_accession_or_build": "Synthetic Levitt 1989 sPA pause (49 bp; OpenIslet v0.8.0 Locus3_BasalFloor_ScarFree_SERPINB9_PDL1:601-649)",
+        "rights_basis": "CC-BY-4.0 (OpenIslet v0.8.0)",
+        "transformations": "NONE (exact 49-bp synthetic poly(A) transcriptional pause)",
+        "occurrence_sha256": {
+          "c1:601-649(+)": "7dd61ab0487c4eb24cab431f7c774a9c194fe26c6bcb49a8fd1405888e44b053"
+        },
+        "occurrences": [
+          {
+            "construct": "c1",
+            "start_1based": 601,
+            "end_1based": 649,
+            "strand": "+",
+            "occurrence_sha256": "7dd61ab0487c4eb24cab431f7c774a9c194fe26c6bcb49a8fd1405888e44b053"
+          }
+        ]
+      },
+      {
+        "segment_id": "syn_3xisre_2xnfkb_hpgk1_basalfloor_230",
+        "length_bp": 230,
+        "sha256": "0bd5eef4c698cb00fbc4a0ecf00f55693f996b01d047cc301cdfc2cbe103b953",
+        "used_in": [
+          "c1"
+        ],
+        "source_accession_or_build": "Synthetic 3xISRE-2xNFkB + GRCh38.p14 chrX:78104169-78104288 (+1) minimal hPGK1 core (230 bp; OpenIslet v0.8.0:650-879)",
+        "rights_basis": "CC-BY-4.0 (OpenIslet v0.8.0) + INSDC/GRC human hPGK1 minimal core",
+        "transformations": "Composite synthetic 3xISRE-2xNFkB enhancer fused upstream of human minimal PGK1 basal core",
+        "occurrence_sha256": {
+          "c1:650-879(+)": "0bd5eef4c698cb00fbc4a0ecf00f55693f996b01d047cc301cdfc2cbe103b953"
+        },
+        "occurrences": [
+          {
+            "construct": "c1",
+            "start_1based": 650,
+            "end_1based": 879,
+            "strand": "+",
+            "occurrence_sha256": "0bd5eef4c698cb00fbc4a0ecf00f55693f996b01d047cc301cdfc2cbe103b953"
+          }
+        ]
+      },
+      {
+        "segment_id": "kozak_9",
+        "length_bp": 9,
+        "sha256": "cf9f348bff321c0460f13f1a1fc4a193a633bd5532ab1676b2c2b77f01c0927f",
+        "used_in": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5 (-/+)",
+          "c6 (-/+)"
+        ],
+        "source_accession_or_build": "Consensus vertebrate Kozak 9-mer GCCGCCACC",
+        "rights_basis": "Unrestricted 9-bp functional consensus motif / OpenIslet CC-BY-4.0",
+        "transformations": "Inserted (+) upstream of SERPINB9/PD-L1/iCasp9 CDSs and reverse-complemented (-) upstream of divergent CD47-IgV-GPI in c5/c6",
+        "occurrence_sha256": {
+          "c1:880-888(+)": "cf9f348bff321c0460f13f1a1fc4a193a633bd5532ab1676b2c2b77f01c0927f",
+          "c1:2372-2380(+)": "cf9f348bff321c0460f13f1a1fc4a193a633bd5532ab1676b2c2b77f01c0927f",
+          "c2:601-609(+)": "cf9f348bff321c0460f13f1a1fc4a193a633bd5532ab1676b2c2b77f01c0927f",
+          "c2:2093-2101(+)": "cf9f348bff321c0460f13f1a1fc4a193a633bd5532ab1676b2c2b77f01c0927f",
+          "c3:601-609(+)": "cf9f348bff321c0460f13f1a1fc4a193a633bd5532ab1676b2c2b77f01c0927f",
+          "c3:2141-2149(+)": "cf9f348bff321c0460f13f1a1fc4a193a633bd5532ab1676b2c2b77f01c0927f",
+          "c4:1536-1544(+)": "cf9f348bff321c0460f13f1a1fc4a193a633bd5532ab1676b2c2b77f01c0927f",
+          "c5:1279-1287(-)": "af1f38a376b2eadf7e730edd35940b6f843bd455fd23420d396675f8daec7185",
+          "c5:2223-2231(+)": "cf9f348bff321c0460f13f1a1fc4a193a633bd5532ab1676b2c2b77f01c0927f",
+          "c6:1279-1287(-)": "af1f38a376b2eadf7e730edd35940b6f843bd455fd23420d396675f8daec7185",
+          "c6:2473-2481(+)": "cf9f348bff321c0460f13f1a1fc4a193a633bd5532ab1676b2c2b77f01c0927f"
+        },
+        "occurrences": [
+          {
+            "construct": "c1",
+            "start_1based": 880,
+            "end_1based": 888,
+            "strand": "+",
+            "occurrence_sha256": "cf9f348bff321c0460f13f1a1fc4a193a633bd5532ab1676b2c2b77f01c0927f"
+          },
+          {
+            "construct": "c1",
+            "start_1based": 2372,
+            "end_1based": 2380,
+            "strand": "+",
+            "occurrence_sha256": "cf9f348bff321c0460f13f1a1fc4a193a633bd5532ab1676b2c2b77f01c0927f"
+          },
+          {
+            "construct": "c2",
+            "start_1based": 601,
+            "end_1based": 609,
+            "strand": "+",
+            "occurrence_sha256": "cf9f348bff321c0460f13f1a1fc4a193a633bd5532ab1676b2c2b77f01c0927f"
+          },
+          {
+            "construct": "c2",
+            "start_1based": 2093,
+            "end_1based": 2101,
+            "strand": "+",
+            "occurrence_sha256": "cf9f348bff321c0460f13f1a1fc4a193a633bd5532ab1676b2c2b77f01c0927f"
+          },
+          {
+            "construct": "c3",
+            "start_1based": 601,
+            "end_1based": 609,
+            "strand": "+",
+            "occurrence_sha256": "cf9f348bff321c0460f13f1a1fc4a193a633bd5532ab1676b2c2b77f01c0927f"
+          },
+          {
+            "construct": "c3",
+            "start_1based": 2141,
+            "end_1based": 2149,
+            "strand": "+",
+            "occurrence_sha256": "cf9f348bff321c0460f13f1a1fc4a193a633bd5532ab1676b2c2b77f01c0927f"
+          },
+          {
+            "construct": "c4",
+            "start_1based": 1536,
+            "end_1based": 1544,
+            "strand": "+",
+            "occurrence_sha256": "cf9f348bff321c0460f13f1a1fc4a193a633bd5532ab1676b2c2b77f01c0927f"
+          },
+          {
+            "construct": "c5",
+            "start_1based": 1279,
+            "end_1based": 1287,
+            "strand": "-",
+            "occurrence_sha256": "af1f38a376b2eadf7e730edd35940b6f843bd455fd23420d396675f8daec7185"
+          },
+          {
+            "construct": "c5",
+            "start_1based": 2223,
+            "end_1based": 2231,
+            "strand": "+",
+            "occurrence_sha256": "cf9f348bff321c0460f13f1a1fc4a193a633bd5532ab1676b2c2b77f01c0927f"
+          },
+          {
+            "construct": "c6",
+            "start_1based": 1279,
+            "end_1based": 1287,
+            "strand": "-",
+            "occurrence_sha256": "af1f38a376b2eadf7e730edd35940b6f843bd455fd23420d396675f8daec7185"
+          },
+          {
+            "construct": "c6",
+            "start_1based": 2473,
+            "end_1based": 2481,
+            "strand": "+",
+            "occurrence_sha256": "cf9f348bff321c0460f13f1a1fc4a193a633bd5532ab1676b2c2b77f01c0927f"
+          }
+        ]
+      },
+      {
+        "segment_id": "serpinb9_stop_1131",
+        "length_bp": 1131,
+        "sha256": "5889ad24ca0f305e7fcf12922fb8c748c0e6a5c2f49522304b28686c5972e4d2",
+        "used_in": [
+          "c1",
+          "c2",
+          "c3"
+        ],
+        "source_accession_or_build": "UniProtKB:P50453 (SERPINB9, 1-376 aa) / OpenIslet v0.8.0 Locus3_ScarFree_Dual_Promoter:610-1740",
+        "rights_basis": "UniProtKB CC-BY-4.0 polypeptide + OpenIslet v0.8.0 CC-BY-4.0 codon sequence",
+        "transformations": "2A-free human SERPINB9 CDS terminated with native-length TGA stop codon (removes 21-aa GSG-P2A C-terminal tail)",
+        "occurrence_sha256": {
+          "c1:889-2019(+)": "5889ad24ca0f305e7fcf12922fb8c748c0e6a5c2f49522304b28686c5972e4d2",
+          "c2:610-1740(+)": "5889ad24ca0f305e7fcf12922fb8c748c0e6a5c2f49522304b28686c5972e4d2",
+          "c3:610-1740(+)": "5889ad24ca0f305e7fcf12922fb8c748c0e6a5c2f49522304b28686c5972e4d2"
+        },
+        "occurrences": [
+          {
+            "construct": "c1",
+            "start_1based": 889,
+            "end_1based": 2019,
+            "strand": "+",
+            "occurrence_sha256": "5889ad24ca0f305e7fcf12922fb8c748c0e6a5c2f49522304b28686c5972e4d2"
+          },
+          {
+            "construct": "c2",
+            "start_1based": 610,
+            "end_1based": 1740,
+            "strand": "+",
+            "occurrence_sha256": "5889ad24ca0f305e7fcf12922fb8c748c0e6a5c2f49522304b28686c5972e4d2"
+          },
+          {
+            "construct": "c3",
+            "start_1based": 610,
+            "end_1based": 1740,
+            "strand": "+",
+            "occurrence_sha256": "5889ad24ca0f305e7fcf12922fb8c748c0e6a5c2f49522304b28686c5972e4d2"
+          }
+        ]
+      },
+      {
+        "segment_id": "sv40_late_polya_122",
+        "length_bp": 122,
+        "sha256": "1e40252e8e5ff79ec2bbb84173ff4ff7e91623f30aef1666051ee98f6c8bc104",
+        "used_in": [
+          "c1",
+          "c2",
+          "c4",
+          "c6"
+        ],
+        "source_accession_or_build": "GenBank:J02400.1:2580-2701 (+1)",
+        "rights_basis": "INSDC archival sequence J02400.1 (non-coding poly(A) terminator; non-IRES) + OpenIslet v0.7.0 CC-BY-4.0",
+        "transformations": "NONE (122/122 bp exact match to GenBank J02400.1:2580-2701 (+1))",
+        "occurrence_sha256": {
+          "c1:2020-2141(+)": "1e40252e8e5ff79ec2bbb84173ff4ff7e91623f30aef1666051ee98f6c8bc104",
+          "c2:1741-1862(+)": "1e40252e8e5ff79ec2bbb84173ff4ff7e91623f30aef1666051ee98f6c8bc104",
+          "c4:2736-2857(+)": "1e40252e8e5ff79ec2bbb84173ff4ff7e91623f30aef1666051ee98f6c8bc104",
+          "c6:3673-3794(+)": "1e40252e8e5ff79ec2bbb84173ff4ff7e91623f30aef1666051ee98f6c8bc104"
+        },
+        "occurrences": [
+          {
+            "construct": "c1",
+            "start_1based": 2020,
+            "end_1based": 2141,
+            "strand": "+",
+            "occurrence_sha256": "1e40252e8e5ff79ec2bbb84173ff4ff7e91623f30aef1666051ee98f6c8bc104"
+          },
+          {
+            "construct": "c2",
+            "start_1based": 1741,
+            "end_1based": 1862,
+            "strand": "+",
+            "occurrence_sha256": "1e40252e8e5ff79ec2bbb84173ff4ff7e91623f30aef1666051ee98f6c8bc104"
+          },
+          {
+            "construct": "c4",
+            "start_1based": 2736,
+            "end_1based": 2857,
+            "strand": "+",
+            "occurrence_sha256": "1e40252e8e5ff79ec2bbb84173ff4ff7e91623f30aef1666051ee98f6c8bc104"
+          },
+          {
+            "construct": "c6",
+            "start_1based": 3673,
+            "end_1based": 3794,
+            "strand": "+",
+            "occurrence_sha256": "1e40252e8e5ff79ec2bbb84173ff4ff7e91623f30aef1666051ee98f6c8bc104"
+          }
+        ]
+      },
+      {
+        "segment_id": "maz4_pause_82",
+        "length_bp": 82,
+        "sha256": "26a8416d35033c1fa802785d3b8f22288a1687323a3c50e8dfcdb62be1a93c20",
+        "used_in": [
+          "c1",
+          "c2"
+        ],
+        "source_accession_or_build": "Synthetic G-rich MAZ4 Pol II pause spacer (82 bp; OpenIslet v0.8.0 Locus3_ScarFree_Dual_Promoter:1863-1944)",
+        "rights_basis": "CC-BY-4.0 (OpenIslet v0.8.0)",
+        "transformations": "NONE (exact 82-bp synthetic transcriptional pause spacer)",
+        "occurrence_sha256": {
+          "c1:2142-2223(+)": "26a8416d35033c1fa802785d3b8f22288a1687323a3c50e8dfcdb62be1a93c20",
+          "c2:1863-1944(+)": "26a8416d35033c1fa802785d3b8f22288a1687323a3c50e8dfcdb62be1a93c20"
+        },
+        "occurrences": [
+          {
+            "construct": "c1",
+            "start_1based": 2142,
+            "end_1based": 2223,
+            "strand": "+",
+            "occurrence_sha256": "26a8416d35033c1fa802785d3b8f22288a1687323a3c50e8dfcdb62be1a93c20"
+          },
+          {
+            "construct": "c2",
+            "start_1based": 1863,
+            "end_1based": 1944,
+            "strand": "+",
+            "occurrence_sha256": "26a8416d35033c1fa802785d3b8f22288a1687323a3c50e8dfcdb62be1a93c20"
+          }
+        ]
+      },
+      {
+        "segment_id": "syn_5xisre_minprom_148",
+        "length_bp": 148,
+        "sha256": "03ec65848c93e23b8f5e830507c03a955b7e3c2fdce6c5e6c49ad06ad1afa759",
+        "used_in": [
+          "c1",
+          "c2"
+        ],
+        "source_accession_or_build": "Synthetic 5xISRE + TATA minimal inducible promoter (148 bp; OpenIslet v0.7.0 ISLET1_LOCUS1_ARM1B:1490-1637)",
+        "rights_basis": "CC-BY-4.0 (OpenIslet v0.7.0)",
+        "transformations": "NONE (exact 148-bp synthetic 5xISRE minimal promoter; upstream TATATAATGG motif gated as HOLD_PENDING_5PRIME_RACE_TSS until mature TSS is established by N_UMI_eff >= 3,689 5'-RACE)",
+        "occurrence_sha256": {
+          "c1:2224-2371(+)": "03ec65848c93e23b8f5e830507c03a955b7e3c2fdce6c5e6c49ad06ad1afa759",
+          "c2:1945-2092(+)": "03ec65848c93e23b8f5e830507c03a955b7e3c2fdce6c5e6c49ad06ad1afa759"
+        },
+        "occurrences": [
+          {
+            "construct": "c1",
+            "start_1based": 2224,
+            "end_1based": 2371,
+            "strand": "+",
+            "occurrence_sha256": "03ec65848c93e23b8f5e830507c03a955b7e3c2fdce6c5e6c49ad06ad1afa759"
+          },
+          {
+            "construct": "c2",
+            "start_1based": 1945,
+            "end_1based": 2092,
+            "strand": "+",
+            "occurrence_sha256": "03ec65848c93e23b8f5e830507c03a955b7e3c2fdce6c5e6c49ad06ad1afa759"
+          }
+        ]
+      },
+      {
+        "segment_id": "pdl1_syn6_873",
+        "length_bp": 873,
+        "sha256": "fbec2bfc9e94d717583a30445e334f7eca5abf80318bbbcb81d633ca662d3bfe",
+        "used_in": [
+          "c1",
+          "c2",
+          "c3"
+        ],
+        "source_accession_or_build": "UniProtKB:Q9NZQ7 (CD274/PD-L1, 1-290 aa) / OpenIslet v0.7.0 ISLET1_LOCUS3:1804-2676 + SYN6",
+        "rights_basis": "UniProtKB CC-BY-4.0 polypeptide + OpenIslet CC-BY-4.0 synonymous codon derivative",
+        "transformations": "6 synonymous substitutions G693A/C720T/G723A/G783A/C858T/G861A (SYN6: Leu231/241/261/287 CTA, His240/286 CAT; 100% identical Q9NZQ7 aa; reduces antisense splice donors 7->5 & eliminates SYN2/SYN4 834/972/873/1011-nt antisense [AG]NNATGG ORFs)",
+        "occurrence_sha256": {
+          "c1:2381-3253(+)": "fbec2bfc9e94d717583a30445e334f7eca5abf80318bbbcb81d633ca662d3bfe",
+          "c2:2102-2974(+)": "fbec2bfc9e94d717583a30445e334f7eca5abf80318bbbcb81d633ca662d3bfe",
+          "c3:2150-3022(+)": "fbec2bfc9e94d717583a30445e334f7eca5abf80318bbbcb81d633ca662d3bfe"
+        },
+        "occurrences": [
+          {
+            "construct": "c1",
+            "start_1based": 2381,
+            "end_1based": 3253,
+            "strand": "+",
+            "occurrence_sha256": "fbec2bfc9e94d717583a30445e334f7eca5abf80318bbbcb81d633ca662d3bfe"
+          },
+          {
+            "construct": "c2",
+            "start_1based": 2102,
+            "end_1based": 2974,
+            "strand": "+",
+            "occurrence_sha256": "fbec2bfc9e94d717583a30445e334f7eca5abf80318bbbcb81d633ca662d3bfe"
+          },
+          {
+            "construct": "c3",
+            "start_1based": 2150,
+            "end_1based": 3022,
+            "strand": "+",
+            "occurrence_sha256": "fbec2bfc9e94d717583a30445e334f7eca5abf80318bbbcb81d633ca662d3bfe"
+          }
+        ]
+      },
+      {
+        "segment_id": "bgh_polya_225",
+        "length_bp": 225,
+        "sha256": "b63940ada3015ada7b956ccad4248b484fdd4a9ab43f6573d9bd6a76a5a492d7",
+        "used_in": [
+          "c1",
+          "c2"
+        ],
+        "source_accession_or_build": "GenBank:M57764.1:2310-2534 (+1)",
+        "rights_basis": "INSDC archival sequence M57764.1 + OpenIslet v0.7.0 CC-BY-4.0",
+        "transformations": "NONE (225/225 bp exact match to GenBank M57764.1:2310-2534 (+1))",
+        "occurrence_sha256": {
+          "c1:3254-3478(+)": "b63940ada3015ada7b956ccad4248b484fdd4a9ab43f6573d9bd6a76a5a492d7",
+          "c2:2975-3199(+)": "b63940ada3015ada7b956ccad4248b484fdd4a9ab43f6573d9bd6a76a5a492d7"
+        },
+        "occurrences": [
+          {
+            "construct": "c1",
+            "start_1based": 3254,
+            "end_1based": 3478,
+            "strand": "+",
+            "occurrence_sha256": "b63940ada3015ada7b956ccad4248b484fdd4a9ab43f6573d9bd6a76a5a492d7"
+          },
+          {
+            "construct": "c2",
+            "start_1based": 2975,
+            "end_1based": 3199,
+            "strand": "+",
+            "occurrence_sha256": "b63940ada3015ada7b956ccad4248b484fdd4a9ab43f6573d9bd6a76a5a492d7"
+          }
+        ]
+      },
+      {
+        "segment_id": "human_actb_polya_150",
+        "length_bp": 150,
+        "sha256": "4276422befce2f4f430f94c2b02c7b76b42bc89420fe7ec51cdfeaa790a06d31",
+        "used_in": [
+          "c3"
+        ],
+        "source_accession_or_build": "GRCh38.p14 chr7:5527089-5527238 (-1)",
+        "rights_basis": "INSDC/GRC human reference assembly + OpenIslet v0.8.0 CC-BY-4.0",
+        "transformations": "NONE (150/150 bp exact reverse-complement genomic slice of GRCh38.p14 chr7:5527089-5527238)",
+        "occurrence_sha256": {
+          "c3:1741-1890(+)": "4276422befce2f4f430f94c2b02c7b76b42bc89420fe7ec51cdfeaa790a06d31"
+        },
+        "occurrences": [
+          {
+            "construct": "c3",
+            "start_1based": 1741,
+            "end_1based": 1890,
+            "strand": "+",
+            "occurrence_sha256": "4276422befce2f4f430f94c2b02c7b76b42bc89420fe7ec51cdfeaa790a06d31"
+          }
+        ]
+      },
+      {
+        "segment_id": "human_cd274_prom_250",
+        "length_bp": 250,
+        "sha256": "bcaca97699a4923966ae7713def1398c5e2f76adc3546d3462963d363d0e98ff",
+        "used_in": [
+          "c3"
+        ],
+        "source_accession_or_build": "GRCh38.p14 chr9:5450312-5450561 (+1)",
+        "rights_basis": "INSDC/GRC human reference assembly + OpenIslet v0.8.0 CC-BY-4.0",
+        "transformations": "NONE (250/250 bp exact forward genomic slice of GRCh38.p14 chr9:5450312-5450561)",
+        "occurrence_sha256": {
+          "c3:1891-2140(+)": "bcaca97699a4923966ae7713def1398c5e2f76adc3546d3462963d363d0e98ff"
+        },
+        "occurrences": [
+          {
+            "construct": "c3",
+            "start_1based": 1891,
+            "end_1based": 2140,
+            "strand": "+",
+            "occurrence_sha256": "bcaca97699a4923966ae7713def1398c5e2f76adc3546d3462963d363d0e98ff"
+          }
+        ]
+      },
+      {
+        "segment_id": "human_gapdh_polya_150",
+        "length_bp": 150,
+        "sha256": "edd9cd73e123f6c8098e5a9054dbdbfa10839a99618ed4530f14768a75f7bb0b",
+        "used_in": [
+          "c3"
+        ],
+        "source_accession_or_build": "GRCh38.p14 chr12:6538281-6538430 (+1)",
+        "rights_basis": "INSDC/GRC human reference assembly + OpenIslet v0.8.0 CC-BY-4.0",
+        "transformations": "NONE (150/150 bp exact forward genomic slice of GRCh38.p14 chr12:6538281-6538430)",
+        "occurrence_sha256": {
+          "c3:3023-3172(+)": "edd9cd73e123f6c8098e5a9054dbdbfa10839a99618ed4530f14768a75f7bb0b"
+        },
+        "occurrences": [
+          {
+            "construct": "c3",
+            "start_1based": 3023,
+            "end_1based": 3172,
+            "strand": "+",
+            "occurrence_sha256": "edd9cd73e123f6c8098e5a9054dbdbfa10839a99618ed4530f14768a75f7bb0b"
+          }
+        ]
+      },
+      {
+        "segment_id": "chs4_c72t_c73a_250",
+        "length_bp": 250,
+        "sha256": "9473a468a3f0b80ed7e372f5ec2562202a18b6126027878b7fccfed521b634dc",
+        "used_in": [
+          "c4",
+          "c6"
+        ],
+        "source_accession_or_build": "GenBank:U78775.2:10-244 (+1)",
+        "rights_basis": "INSDC archival sequence U78775.2 + OpenIslet v0.8.0 CC-BY-4.0 splice-hardened derivative",
+        "transformations": "235-bp U78775.2:10-244 (+1) core at insert nt 3..237 flanked by 5' 2-bp GA + 3' 13-bp AGGCTGCCGCGGG plus IIP-0015 two-strand splice-hardening C72T/C73A in 1-based 250-bp insert coordinates (= C79T/C80A in U78775.2)",
+        "occurrence_sha256": {
+          "c4:601-850(+)": "9473a468a3f0b80ed7e372f5ec2562202a18b6126027878b7fccfed521b634dc",
+          "c6:1518-1767(+)": "9473a468a3f0b80ed7e372f5ec2562202a18b6126027878b7fccfed521b634dc"
+        },
+        "occurrences": [
+          {
+            "construct": "c4",
+            "start_1based": 601,
+            "end_1based": 850,
+            "strand": "+",
+            "occurrence_sha256": "9473a468a3f0b80ed7e372f5ec2562202a18b6126027878b7fccfed521b634dc"
+          },
+          {
+            "construct": "c6",
+            "start_1based": 1518,
+            "end_1based": 1767,
+            "strand": "+",
+            "occurrence_sha256": "9473a468a3f0b80ed7e372f5ec2562202a18b6126027878b7fccfed521b634dc"
+          }
+        ]
+      },
+      {
+        "segment_id": "hnrnpa2b1_cbx3_ucoe_2strand_455",
+        "length_bp": 455,
+        "sha256": "ebd59ce87b7c3f7b18c8cb40551c2cfdaa597e0e7000f41bbb542672dbe3b944",
+        "used_in": [
+          "c4",
+          "c5",
+          "c6"
+        ],
+        "source_accession_or_build": "GRCh38.p14 chr7:26200580-26201034 (+1)",
+        "rights_basis": "INSDC/GRC human reference assembly + OpenIslet v0.8.0 CC-BY-4.0 splice-hardened derivative",
+        "transformations": "IIP-0015 two-strand cryptic-splice hardening edits at segment nt 32..33->TC, 72..73->TA, and 444..446->TCC",
+        "occurrence_sha256": {
+          "c4:851-1305(+)": "ebd59ce87b7c3f7b18c8cb40551c2cfdaa597e0e7000f41bbb542672dbe3b944",
+          "c5:1518-1972(+)": "ebd59ce87b7c3f7b18c8cb40551c2cfdaa597e0e7000f41bbb542672dbe3b944",
+          "c6:1768-2222(+)": "ebd59ce87b7c3f7b18c8cb40551c2cfdaa597e0e7000f41bbb542672dbe3b944"
+        },
+        "occurrences": [
+          {
+            "construct": "c4",
+            "start_1based": 851,
+            "end_1based": 1305,
+            "strand": "+",
+            "occurrence_sha256": "ebd59ce87b7c3f7b18c8cb40551c2cfdaa597e0e7000f41bbb542672dbe3b944"
+          },
+          {
+            "construct": "c5",
+            "start_1based": 1518,
+            "end_1based": 1972,
+            "strand": "+",
+            "occurrence_sha256": "ebd59ce87b7c3f7b18c8cb40551c2cfdaa597e0e7000f41bbb542672dbe3b944"
+          },
+          {
+            "construct": "c6",
+            "start_1based": 1768,
+            "end_1based": 2222,
+            "strand": "+",
+            "occurrence_sha256": "ebd59ce87b7c3f7b18c8cb40551c2cfdaa597e0e7000f41bbb542672dbe3b944"
+          }
+        ]
+      },
+      {
+        "segment_id": "eef1a1_core_230c",
+        "length_bp": 230,
+        "sha256": "f253e9f2b780af4ec8e0adcfdbc2b3ed2899e9a71fe0b7189a9c1206f7747104",
+        "used_in": [
+          "c4",
+          "c5 (-)",
+          "c6 (-)"
+        ],
+        "source_accession_or_build": "GRCh38.p14 chr6:73521000-73521229 (-1)",
+        "rights_basis": "INSDC/GRC human reference assembly + OpenIslet v0.8.0 CC-BY-4.0 splice-hardened derivative",
+        "transformations": "IIP-0015 cryptic-donor hardening at segment nt 223->C and 229..230->CC; inserted (+) in c4 and divergently (-) in c5/c6",
+        "occurrence_sha256": {
+          "c4:1306-1535(+)": "f253e9f2b780af4ec8e0adcfdbc2b3ed2899e9a71fe0b7189a9c1206f7747104",
+          "c5:1288-1517(-)": "708db0e126b49c09705b5a186562dc0d6442a39314c5b808971a9439bd58b613",
+          "c6:1288-1517(-)": "708db0e126b49c09705b5a186562dc0d6442a39314c5b808971a9439bd58b613"
+        },
+        "occurrences": [
+          {
+            "construct": "c4",
+            "start_1based": 1306,
+            "end_1based": 1535,
+            "strand": "+",
+            "occurrence_sha256": "f253e9f2b780af4ec8e0adcfdbc2b3ed2899e9a71fe0b7189a9c1206f7747104"
+          },
+          {
+            "construct": "c5",
+            "start_1based": 1288,
+            "end_1based": 1517,
+            "strand": "-",
+            "occurrence_sha256": "708db0e126b49c09705b5a186562dc0d6442a39314c5b808971a9439bd58b613"
+          },
+          {
+            "construct": "c6",
+            "start_1based": 1288,
+            "end_1based": 1517,
+            "strand": "-",
+            "occurrence_sha256": "708db0e126b49c09705b5a186562dc0d6442a39314c5b808971a9439bd58b613"
+          }
+        ]
+      },
+      {
+        "segment_id": "icasp9_cds_1191",
+        "length_bp": 1191,
+        "sha256": "4bdd7eb9dabb370d6345d830bfaec126ad471f5c71d1ef326aeeafe7a0c1cd6c",
+        "used_in": [
+          "c4",
+          "c5",
+          "c6"
+        ],
+        "source_accession_or_build": "UniProtKB:P62942 (FKBP1A F36V) + UniProtKB:P55211 (CASP9 delta-CARD) / OpenIslet v0.7.0 ISLET1_LOCUS4:1545-2735",
+        "rights_basis": "UniProtKB CC-BY-4.0 polypeptides + OpenIslet v0.7.0 CC-BY-4.0 codon sequence",
+        "transformations": "NONE vs OpenIslet v0.7.0 Locus-4 iCasp9 CDS (FKBP12 F36V fused via SGGGSG to CARD-deleted human CASP9 + TGA)",
+        "occurrence_sha256": {
+          "c4:1545-2735(+)": "4bdd7eb9dabb370d6345d830bfaec126ad471f5c71d1ef326aeeafe7a0c1cd6c",
+          "c5:2232-3422(+)": "4bdd7eb9dabb370d6345d830bfaec126ad471f5c71d1ef326aeeafe7a0c1cd6c",
+          "c6:2482-3672(+)": "4bdd7eb9dabb370d6345d830bfaec126ad471f5c71d1ef326aeeafe7a0c1cd6c"
+        },
+        "occurrences": [
+          {
+            "construct": "c4",
+            "start_1based": 1545,
+            "end_1based": 2735,
+            "strand": "+",
+            "occurrence_sha256": "4bdd7eb9dabb370d6345d830bfaec126ad471f5c71d1ef326aeeafe7a0c1cd6c"
+          },
+          {
+            "construct": "c5",
+            "start_1based": 2232,
+            "end_1based": 3422,
+            "strand": "+",
+            "occurrence_sha256": "4bdd7eb9dabb370d6345d830bfaec126ad471f5c71d1ef326aeeafe7a0c1cd6c"
+          },
+          {
+            "construct": "c6",
+            "start_1based": 2482,
+            "end_1based": 3672,
+            "strand": "+",
+            "occurrence_sha256": "4bdd7eb9dabb370d6345d830bfaec126ad471f5c71d1ef326aeeafe7a0c1cd6c"
+          }
+        ]
+      },
+      {
+        "segment_id": "cd47_igv_cd55_gpi_528",
+        "length_bp": 528,
+        "sha256": "f1253ff386bcb83d6aa9bb87dde4a80b6971a7da155edf6744ac46955b160718",
+        "used_in": [
+          "c5 (-)",
+          "c6 (-)"
+        ],
+        "source_accession_or_build": "UniProtKB:Q08722 (CD47 1-138, matching 1-140 via shared PN) + UniProtKB:P08174 (CD55 GPI 345-381) / OpenIslet v0.7.0 ARM1A:2739-3266",
+        "rights_basis": "UniProtKB CC-BY-4.0 polypeptides + OpenIslet v0.7.0 CC-BY-4.0 codon sequence",
+        "transformations": "Inserted divergently on (-) strand opposite (+)-strand iCasp9 in c5/c6 (exact reverse-complement match to ARM1B[723..1250])",
+        "occurrence_sha256": {
+          "c5:751-1278(-)": "f8db26b29c9e145e5ccdb0a451e064ba5194f080cf8b521a46128acc2d107fcd",
+          "c6:751-1278(-)": "f8db26b29c9e145e5ccdb0a451e064ba5194f080cf8b521a46128acc2d107fcd"
+        },
+        "occurrences": [
+          {
+            "construct": "c5",
+            "start_1based": 751,
+            "end_1based": 1278,
+            "strand": "-",
+            "occurrence_sha256": "f8db26b29c9e145e5ccdb0a451e064ba5194f080cf8b521a46128acc2d107fcd"
+          },
+          {
+            "construct": "c6",
+            "start_1based": 751,
+            "end_1based": 1278,
+            "strand": "-",
+            "occurrence_sha256": "f8db26b29c9e145e5ccdb0a451e064ba5194f080cf8b521a46128acc2d107fcd"
+          }
+        ]
+      },
+      {
+        "segment_id": "human_hbb_polya_150",
+        "length_bp": 150,
+        "sha256": "5e92bc049663325f981ba2ca86c748decf5f993fd0ee804562d16e7feea71f8c",
+        "used_in": [
+          "c5 (-)",
+          "c6 (-)"
+        ],
+        "source_accession_or_build": "GRCh38.p14 chr11:5225405-5225554 (-1)",
+        "rights_basis": "INSDC/GRC human reference assembly + OpenIslet v0.8.0 CC-BY-4.0",
+        "transformations": "Inserted divergently on (-) strand terminating (-) CD47-IgV-GPI transcription unit in c5/c6",
+        "occurrence_sha256": {
+          "c5:601-750(-)": "3f55eeaccd019d5dd52c67d045c25f5a768b4db30155bc43d663d49cfca388b4",
+          "c6:601-750(-)": "3f55eeaccd019d5dd52c67d045c25f5a768b4db30155bc43d663d49cfca388b4"
+        },
+        "occurrences": [
+          {
+            "construct": "c5",
+            "start_1based": 601,
+            "end_1based": 750,
+            "strand": "-",
+            "occurrence_sha256": "3f55eeaccd019d5dd52c67d045c25f5a768b4db30155bc43d663d49cfca388b4"
+          },
+          {
+            "construct": "c6",
+            "start_1based": 601,
+            "end_1based": 750,
+            "strand": "-",
+            "occurrence_sha256": "3f55eeaccd019d5dd52c67d045c25f5a768b4db30155bc43d663d49cfca388b4"
+          }
+        ]
+      },
+      {
+        "segment_id": "human_ubc_prom_250",
+        "length_bp": 250,
+        "sha256": "a9ea01b74a2194869f32d8fe885f568c95849919da86229a14d22dc0e9c1386c",
+        "used_in": [
+          "c5",
+          "c6"
+        ],
+        "source_accession_or_build": "GRCh38.p14 chr12:124914631-124914880 (-1)",
+        "rights_basis": "INSDC/GRC human reference assembly + OpenIslet v0.8.0 CC-BY-4.0",
+        "transformations": "NONE (250/250 bp exact reverse-complement genomic slice of GRCh38.p14 chr12:124914631-124914880)",
+        "occurrence_sha256": {
+          "c5:1973-2222(+)": "a9ea01b74a2194869f32d8fe885f568c95849919da86229a14d22dc0e9c1386c",
+          "c6:2223-2472(+)": "a9ea01b74a2194869f32d8fe885f568c95849919da86229a14d22dc0e9c1386c"
+        },
+        "occurrences": [
+          {
+            "construct": "c5",
+            "start_1based": 1973,
+            "end_1based": 2222,
+            "strand": "+",
+            "occurrence_sha256": "a9ea01b74a2194869f32d8fe885f568c95849919da86229a14d22dc0e9c1386c"
+          },
+          {
+            "construct": "c6",
+            "start_1based": 2223,
+            "end_1based": 2472,
+            "strand": "+",
+            "occurrence_sha256": "a9ea01b74a2194869f32d8fe885f568c95849919da86229a14d22dc0e9c1386c"
+          }
+        ]
+      },
+      {
+        "segment_id": "human_ubc_polya_150",
+        "length_bp": 150,
+        "sha256": "ca34de717c2e52be22e3feb577bebc6429cb4fbe6083cd20bcfe9c09d5f2c72c",
+        "used_in": [
+          "c5"
+        ],
+        "source_accession_or_build": "GRCh38.p14 chr12:124911587-124911736 (-1)",
+        "rights_basis": "INSDC/GRC human reference assembly + OpenIslet v0.8.0 CC-BY-4.0",
+        "transformations": "NONE (150/150 bp exact reverse-complement genomic slice of GRCh38.p14 chr12:124911587-124911736)",
+        "occurrence_sha256": {
+          "c5:3423-3572(+)": "ca34de717c2e52be22e3feb577bebc6429cb4fbe6083cd20bcfe9c09d5f2c72c"
+        },
+        "occurrences": [
+          {
+            "construct": "c5",
+            "start_1based": 3423,
+            "end_1based": 3572,
+            "strand": "+",
+            "occurrence_sha256": "ca34de717c2e52be22e3feb577bebc6429cb4fbe6083cd20bcfe9c09d5f2c72c"
+          }
+        ]
+      }
+    ],
+    "design_b_construct_audits": [
+      {
+        "construct_id": "DESIGNB_L5A_CXCL10_BFB_SYN6_ACC_4078bp",
+        "short_id": "c1",
+        "role": "STAGED_RESEARCH_COMPARATOR_CXCL10_BASALFLOOR_INDUCIBLE_PRIMARY",
+        "mode_b_acc_shield": true,
+        "locus": "chr4_CXCL10",
+        "p1_to_p4": {
+          "design_id": "DESIGNB_L5A_CXCL10_BFB_SYN6_ACC_4078bp",
+          "gate_P1": {
+            "donor_length_bp": 4078,
+            "packaged_aav6_bp": 4368,
+            "headroom_below_4700_bp": 332,
+            "within_4700_bp_cap": true,
+            "donor_sha256": "3392af83d0b37b63c7db2094e88ae3b7034811e3a7b64f678f45ffd56194bf56",
+            "provenance_mode": "COMPUTED_FROM_DNA",
+            "sha256_gate_status": "VERIFIED_DNA_SHA256_MATCH",
+            "orf_verifications": [
+              {
+                "name": "SERPINB9_P50453",
+                "strand": "+",
+                "coords_1based": [
+                  889,
+                  2019
+                ],
+                "declared_cds_frame": 0,
+                "precursor_aa_len": 376,
+                "mature_aa_len": 376,
+                "precursor_sha256": "5941182405e96639c6b0faccdeee7b72d773cd2ab67405bb49143592bebc6567",
+                "identical_to_pinned_reference": true
+              },
+              {
+                "name": "CD274_PDL1_Q9NZQ7",
+                "strand": "+",
+                "coords_1based": [
+                  2381,
+                  3253
+                ],
+                "declared_cds_frame": 1,
+                "precursor_aa_len": 290,
+                "mature_aa_len": 272,
+                "precursor_sha256": "b1b17c7fca3cbab15bc66b90bd4c07f73617cb5a03db105b0a38084fe7bca48b",
+                "identical_to_pinned_reference": true
+              }
+            ],
+            "transcribed_intervals": [
+              {
+                "unit_id": "TU1_SERPINB9_BFB",
+                "strand": "+",
+                "putative_transcribed_1based": [
+                  855,
+                  2141
+                ],
+                "promoter_upstream_1based": [
+                  650,
+                  854
+                ],
+                "declared_cds_1based": [
+                  889,
+                  2019
+                ],
+                "declared_cds_frame": 0
+              },
+              {
+                "unit_id": "TU2_PDL1_SYN5XISRE",
+                "strand": "+",
+                "putative_transcribed_1based": [
+                  2333,
+                  3478
+                ],
+                "promoter_upstream_1based": [
+                  2224,
+                  2332
+                ],
+                "declared_cds_1based": [
+                  2381,
+                  3253
+                ],
+                "declared_cds_frame": 1
+              }
+            ],
+            "empirical_5prime_race_end_bp": "UNRESOLVED",
+            "empirical_3prime_race_end_bp": "UNRESOLVED",
+            "readthrough_umi_n_eff": "UNRESOLVED",
+            "readthrough_umi_k": "UNRESOLVED",
+            "transcript_boundary_gate_status": "HOLD_TRANSCRIPT_BOUNDARIES_UNRESOLVED_PENDING_RACE"
+          },
+          "gate_P2": {
+            "encoded_2a_peptides": 0,
+            "open_boundary_kozak_orfs": 0,
+            "undeclared_transcribed_kozak_orfs_ge_300nt": 0,
+            "upstream_regulatory_kozak_gate_status": "HOLD_PENDING_5PRIME_RACE_TSS",
+            "upstream_regulatory_kozak_runs_gated_on_5prime_race": [
+              {
+                "unit_id": "TU2_PDL1_SYN5XISRE",
+                "strand": "+",
+                "coords_1based": [
+                  2308,
+                  3282
+                ],
+                "span_nt": 975,
+                "offset_vs_declared_cds_nt": -73,
+                "run_frame": 0,
+                "declared_cds_frame": 1,
+                "out_of_frame_vs_declared_cds": true,
+                "declared_cds_overlap_pct": 100.0,
+                "kozak_9mer": "ATAATGGAA",
+                "status": "HOLD_PENDING_5PRIME_RACE_TSS"
+              }
+            ]
+          },
+          "gate_P3_peptide_set_exact": {
+            "accounting_scope": "UNIQUE_STRING_SET_DIFFERENCE_AND_POSITIONAL_WINDOW_COUNTS_NOT_PRESENTATION_PROOF",
+            "mature_positional_8_11mer_window_count": 2524,
+            "mature_positional_15mer_window_count": 620,
+            "legacy_integer_count_delta_8_11mer_vs_parent": -84,
+            "legacy_positional_count_delta_8_11mer_vs_parent": -84,
+            "mature_unique_8_11mer_count": 2524,
+            "mature_unique_15mer_count": 620,
+            "new_8_11mers_vs_parent_count": 0,
+            "lost_8_11mers_vs_parent_count": 84,
+            "new_15mers_vs_parent_count": 0,
+            "lost_15mers_vs_parent_count": 21,
+            "non_human_swissprot_mature_8_11mer_count": 0,
+            "non_human_swissprot_mature_15mer_count": 0,
+            "non_human_swissprot_precursor_8_11mer_count": 0,
+            "non_human_swissprot_precursor_15mer_count": 0,
+            "non_human_swissprot_mature_8_11mer_examples": []
+          },
+          "gate_P4": {
+            "per_orf_identical_to_pinned_reference": {
+              "SERPINB9_P50453": true,
+              "CD274_PDL1_Q9NZQ7": true
+            },
+            "intended_polypeptide_identical_to_layer3_entry": true
+          }
+        },
+        "two_strand_splice_summary": {
+          "cargo_donors_plus_strand": 10,
+          "cargo_donors_minus_strand": 12,
+          "cargo_acceptors": 81
+        }
+      },
+      {
+        "construct_id": "DESIGNB_L5A_CXCL10_ENDO_SYN6_ACC_3799bp",
+        "short_id": "c2",
+        "role": "STAGED_RESEARCH_COMPARATOR_PURE_ENDOGENOUS_CXCL10_PROMOTER",
+        "mode_b_acc_shield": true,
+        "locus": "chr4_CXCL10",
+        "p1_to_p4": {
+          "design_id": "DESIGNB_L5A_CXCL10_ENDO_SYN6_ACC_3799bp",
+          "gate_P1": {
+            "donor_length_bp": 3799,
+            "packaged_aav6_bp": 4089,
+            "headroom_below_4700_bp": 611,
+            "within_4700_bp_cap": true,
+            "donor_sha256": "a8714715e1ebe11049aa22e283bfc2adad341f79fb38a9f2845ac834f2ad4d9b",
+            "provenance_mode": "COMPUTED_FROM_DNA",
+            "sha256_gate_status": "VERIFIED_DNA_SHA256_MATCH",
+            "orf_verifications": [
+              {
+                "name": "SERPINB9_P50453",
+                "strand": "+",
+                "coords_1based": [
+                  610,
+                  1740
+                ],
+                "declared_cds_frame": 0,
+                "precursor_aa_len": 376,
+                "mature_aa_len": 376,
+                "precursor_sha256": "5941182405e96639c6b0faccdeee7b72d773cd2ab67405bb49143592bebc6567",
+                "identical_to_pinned_reference": true
+              },
+              {
+                "name": "CD274_PDL1_Q9NZQ7",
+                "strand": "+",
+                "coords_1based": [
+                  2102,
+                  2974
+                ],
+                "declared_cds_frame": 1,
+                "precursor_aa_len": 290,
+                "mature_aa_len": 272,
+                "precursor_sha256": "b1b17c7fca3cbab15bc66b90bd4c07f73617cb5a03db105b0a38084fe7bca48b",
+                "identical_to_pinned_reference": true
+              }
+            ],
+            "transcribed_intervals": [
+              {
+                "unit_id": "TU1_SERPINB9_ENDO",
+                "strand": "+",
+                "putative_transcribed_1based": [
+                  601,
+                  1862
+                ],
+                "promoter_upstream_1based": null,
+                "declared_cds_1based": [
+                  610,
+                  1740
+                ],
+                "declared_cds_frame": 0
+              },
+              {
+                "unit_id": "TU2_PDL1_SYN5XISRE",
+                "strand": "+",
+                "putative_transcribed_1based": [
+                  2054,
+                  3199
+                ],
+                "promoter_upstream_1based": [
+                  1945,
+                  2053
+                ],
+                "declared_cds_1based": [
+                  2102,
+                  2974
+                ],
+                "declared_cds_frame": 1
+              }
+            ],
+            "empirical_5prime_race_end_bp": "UNRESOLVED",
+            "empirical_3prime_race_end_bp": "UNRESOLVED",
+            "readthrough_umi_n_eff": "UNRESOLVED",
+            "readthrough_umi_k": "UNRESOLVED",
+            "transcript_boundary_gate_status": "HOLD_TRANSCRIPT_BOUNDARIES_UNRESOLVED_PENDING_RACE"
+          },
+          "gate_P2": {
+            "encoded_2a_peptides": 0,
+            "open_boundary_kozak_orfs": 0,
+            "undeclared_transcribed_kozak_orfs_ge_300nt": 0,
+            "upstream_regulatory_kozak_gate_status": "HOLD_PENDING_5PRIME_RACE_TSS",
+            "upstream_regulatory_kozak_runs_gated_on_5prime_race": [
+              {
+                "unit_id": "TU2_PDL1_SYN5XISRE",
+                "strand": "+",
+                "coords_1based": [
+                  2029,
+                  3003
+                ],
+                "span_nt": 975,
+                "offset_vs_declared_cds_nt": -73,
+                "run_frame": 0,
+                "declared_cds_frame": 1,
+                "out_of_frame_vs_declared_cds": true,
+                "declared_cds_overlap_pct": 100.0,
+                "kozak_9mer": "ATAATGGAA",
+                "status": "HOLD_PENDING_5PRIME_RACE_TSS"
+              }
+            ]
+          },
+          "gate_P3_peptide_set_exact": {
+            "accounting_scope": "UNIQUE_STRING_SET_DIFFERENCE_AND_POSITIONAL_WINDOW_COUNTS_NOT_PRESENTATION_PROOF",
+            "mature_positional_8_11mer_window_count": 2524,
+            "mature_positional_15mer_window_count": 620,
+            "legacy_integer_count_delta_8_11mer_vs_parent": -84,
+            "legacy_positional_count_delta_8_11mer_vs_parent": -84,
+            "mature_unique_8_11mer_count": 2524,
+            "mature_unique_15mer_count": 620,
+            "new_8_11mers_vs_parent_count": 0,
+            "lost_8_11mers_vs_parent_count": 84,
+            "new_15mers_vs_parent_count": 0,
+            "lost_15mers_vs_parent_count": 21,
+            "non_human_swissprot_mature_8_11mer_count": 0,
+            "non_human_swissprot_mature_15mer_count": 0,
+            "non_human_swissprot_precursor_8_11mer_count": 0,
+            "non_human_swissprot_precursor_15mer_count": 0,
+            "non_human_swissprot_mature_8_11mer_examples": []
+          },
+          "gate_P4": {
+            "per_orf_identical_to_pinned_reference": {
+              "SERPINB9_P50453": true,
+              "CD274_PDL1_Q9NZQ7": true
+            },
+            "intended_polypeptide_identical_to_layer3_entry": true
+          }
+        },
+        "two_strand_splice_summary": {
+          "cargo_donors_plus_strand": 9,
+          "cargo_donors_minus_strand": 12,
+          "cargo_acceptors": 76
+        }
+      },
+      {
+        "construct_id": "DESIGNB_L5A_CXCL10_HUMAN_DUAL_SYN6_ACC_3772bp",
+        "short_id": "c3",
+        "role": "STAGED_RESEARCH_COMPARATOR_ALL_HUMAN_REGULATORY_2AFREE_CXCL10",
+        "mode_b_acc_shield": true,
+        "locus": "chr4_CXCL10",
+        "p1_to_p4": {
+          "design_id": "DESIGNB_L5A_CXCL10_HUMAN_DUAL_SYN6_ACC_3772bp",
+          "gate_P1": {
+            "donor_length_bp": 3772,
+            "packaged_aav6_bp": 4062,
+            "headroom_below_4700_bp": 638,
+            "within_4700_bp_cap": true,
+            "donor_sha256": "fdc690acef0f359ee3022b36259b6d938ed5b911025711681616b408760d2d46",
+            "provenance_mode": "COMPUTED_FROM_DNA",
+            "sha256_gate_status": "VERIFIED_DNA_SHA256_MATCH",
+            "orf_verifications": [
+              {
+                "name": "SERPINB9_P50453",
+                "strand": "+",
+                "coords_1based": [
+                  610,
+                  1740
+                ],
+                "declared_cds_frame": 0,
+                "precursor_aa_len": 376,
+                "mature_aa_len": 376,
+                "precursor_sha256": "5941182405e96639c6b0faccdeee7b72d773cd2ab67405bb49143592bebc6567",
+                "identical_to_pinned_reference": true
+              },
+              {
+                "name": "CD274_PDL1_Q9NZQ7",
+                "strand": "+",
+                "coords_1based": [
+                  2150,
+                  3022
+                ],
+                "declared_cds_frame": 1,
+                "precursor_aa_len": 290,
+                "mature_aa_len": 272,
+                "precursor_sha256": "b1b17c7fca3cbab15bc66b90bd4c07f73617cb5a03db105b0a38084fe7bca48b",
+                "identical_to_pinned_reference": true
+              }
+            ],
+            "transcribed_intervals": [
+              {
+                "unit_id": "TU1_SERPINB9_ENDO",
+                "strand": "+",
+                "putative_transcribed_1based": [
+                  601,
+                  1890
+                ],
+                "promoter_upstream_1based": null,
+                "declared_cds_1based": [
+                  610,
+                  1740
+                ],
+                "declared_cds_frame": 0
+              },
+              {
+                "unit_id": "TU2_PDL1_HUMAN_CD274P",
+                "strand": "+",
+                "putative_transcribed_1based": [
+                  2116,
+                  3172
+                ],
+                "promoter_upstream_1based": [
+                  1891,
+                  2115
+                ],
+                "declared_cds_1based": [
+                  2150,
+                  3022
+                ],
+                "declared_cds_frame": 1
+              }
+            ],
+            "empirical_5prime_race_end_bp": "UNRESOLVED",
+            "empirical_3prime_race_end_bp": "UNRESOLVED",
+            "readthrough_umi_n_eff": "UNRESOLVED",
+            "readthrough_umi_k": "UNRESOLVED",
+            "transcript_boundary_gate_status": "HOLD_TRANSCRIPT_BOUNDARIES_UNRESOLVED_PENDING_RACE"
+          },
+          "gate_P2": {
+            "encoded_2a_peptides": 0,
+            "open_boundary_kozak_orfs": 0,
+            "undeclared_transcribed_kozak_orfs_ge_300nt": 0,
+            "upstream_regulatory_kozak_gate_status": "CLEAR_NO_UPSTREAM_REGULATORY_KOZAK_RUN",
+            "upstream_regulatory_kozak_runs_gated_on_5prime_race": []
+          },
+          "gate_P3_peptide_set_exact": {
+            "accounting_scope": "UNIQUE_STRING_SET_DIFFERENCE_AND_POSITIONAL_WINDOW_COUNTS_NOT_PRESENTATION_PROOF",
+            "mature_positional_8_11mer_window_count": 2524,
+            "mature_positional_15mer_window_count": 620,
+            "legacy_integer_count_delta_8_11mer_vs_parent": -84,
+            "legacy_positional_count_delta_8_11mer_vs_parent": -84,
+            "mature_unique_8_11mer_count": 2524,
+            "mature_unique_15mer_count": 620,
+            "new_8_11mers_vs_parent_count": 0,
+            "lost_8_11mers_vs_parent_count": 84,
+            "new_15mers_vs_parent_count": 0,
+            "lost_15mers_vs_parent_count": 21,
+            "non_human_swissprot_mature_8_11mer_count": 0,
+            "non_human_swissprot_mature_15mer_count": 0,
+            "non_human_swissprot_precursor_8_11mer_count": 0,
+            "non_human_swissprot_precursor_15mer_count": 0,
+            "non_human_swissprot_mature_8_11mer_examples": []
+          },
+          "gate_P4": {
+            "per_orf_identical_to_pinned_reference": {
+              "SERPINB9_P50453": true,
+              "CD274_PDL1_Q9NZQ7": true
+            },
+            "intended_polypeptide_identical_to_layer3_entry": true
+          }
+        },
+        "two_strand_splice_summary": {
+          "cargo_donors_plus_strand": 12,
+          "cargo_donors_minus_strand": 18,
+          "cargo_acceptors": 73
+        }
+      },
+      {
+        "construct_id": "DESIGNB_L6_AAVS1_ICASP9_CANONICAL_ACC_3457bp",
+        "short_id": "c4",
+        "role": "STAGED_RESEARCH_COMPARATOR_AAVS1_ICASP9_ONLY_SPLICE_HARDENED_CONTROL",
+        "mode_b_acc_shield": true,
+        "locus": "chr19_AAVS1",
+        "p1_to_p4": {
+          "design_id": "DESIGNB_L6_AAVS1_ICASP9_CANONICAL_ACC_3457bp",
+          "gate_P1": {
+            "donor_length_bp": 3457,
+            "packaged_aav6_bp": 3747,
+            "headroom_below_4700_bp": 953,
+            "within_4700_bp_cap": true,
+            "donor_sha256": "cd6f4b2b8e76108bb683540a0b7626843a47aacf48ccb26a57ddbc8f6ae22b21",
+            "provenance_mode": "COMPUTED_FROM_DNA",
+            "sha256_gate_status": "VERIFIED_DNA_SHA256_MATCH",
+            "orf_verifications": [
+              {
+                "name": "iCasp9_FKBP12F36V_dCasp9",
+                "strand": "+",
+                "coords_1based": [
+                  1545,
+                  2735
+                ],
+                "declared_cds_frame": 2,
+                "precursor_aa_len": 396,
+                "mature_aa_len": 396,
+                "precursor_sha256": "9c658142531fb4fbad7b80d7c94d412118e2a878122ab6795bbac88035e836de",
+                "identical_to_pinned_reference": true
+              }
+            ],
+            "transcribed_intervals": [
+              {
+                "unit_id": "TU1_ICASP9_EEF1A1",
+                "strand": "+",
+                "putative_transcribed_1based": [
+                  1503,
+                  2857
+                ],
+                "promoter_upstream_1based": [
+                  1306,
+                  1502
+                ],
+                "declared_cds_1based": [
+                  1545,
+                  2735
+                ],
+                "declared_cds_frame": 2
+              }
+            ],
+            "empirical_5prime_race_end_bp": "UNRESOLVED",
+            "empirical_3prime_race_end_bp": "UNRESOLVED",
+            "readthrough_umi_n_eff": "UNRESOLVED",
+            "readthrough_umi_k": "UNRESOLVED",
+            "transcript_boundary_gate_status": "HOLD_TRANSCRIPT_BOUNDARIES_UNRESOLVED_PENDING_RACE"
+          },
+          "gate_P2": {
+            "encoded_2a_peptides": 0,
+            "open_boundary_kozak_orfs": 0,
+            "undeclared_transcribed_kozak_orfs_ge_300nt": 0,
+            "upstream_regulatory_kozak_gate_status": "CLEAR_NO_UPSTREAM_REGULATORY_KOZAK_RUN",
+            "upstream_regulatory_kozak_runs_gated_on_5prime_race": []
+          },
+          "gate_P3_peptide_set_exact": {
+            "accounting_scope": "UNIQUE_STRING_SET_DIFFERENCE_AND_POSITIONAL_WINDOW_COUNTS_NOT_PRESENTATION_PROOF",
+            "mature_positional_8_11mer_window_count": 1550,
+            "mature_positional_15mer_window_count": 382,
+            "legacy_integer_count_delta_8_11mer_vs_parent": 0,
+            "legacy_positional_count_delta_8_11mer_vs_parent": 0,
+            "mature_unique_8_11mer_count": 1550,
+            "mature_unique_15mer_count": 382,
+            "new_8_11mers_vs_parent_count": 0,
+            "lost_8_11mers_vs_parent_count": 0,
+            "new_15mers_vs_parent_count": 0,
+            "lost_15mers_vs_parent_count": 0,
+            "non_human_swissprot_mature_8_11mer_count": 83,
+            "non_human_swissprot_mature_15mer_count": 32,
+            "non_human_swissprot_precursor_8_11mer_count": 83,
+            "non_human_swissprot_precursor_15mer_count": 32,
+            "non_human_swissprot_mature_8_11mer_examples": [
+              "DGKKVDSS",
+              "DGKKVDSSR",
+              "DGKKVDSSRD",
+              "DGKKVDSSRDR",
+              "DVELLKLES",
+              "DVELLKLESG",
+              "DVELLKLESGG",
+              "EDGKKVDS",
+              "EDGKKVDSS",
+              "EDGKKVDSSR",
+              "EDGKKVDSSRD",
+              "ELLKLESG"
+            ]
+          },
+          "gate_P4": {
+            "per_orf_identical_to_pinned_reference": {
+              "iCasp9_FKBP12F36V_dCasp9": true
+            },
+            "intended_polypeptide_identical_to_layer3_entry": true
+          }
+        },
+        "two_strand_splice_summary": {
+          "cargo_donors_plus_strand": 4,
+          "cargo_donors_minus_strand": 10,
+          "cargo_acceptors": 57
+        }
+      },
+      {
+        "construct_id": "DESIGNB_L6_AAVS1_CD47_ICASP9_2AFREE_HUMAN_ACC_4172bp",
+        "short_id": "c5",
+        "role": "STAGED_RESEARCH_COMPARATOR_B2M_WT_AAVS1_CD47_ICASP9_2AFREE_PRIMARY",
+        "mode_b_acc_shield": true,
+        "locus": "chr19_AAVS1",
+        "p1_to_p4": {
+          "design_id": "DESIGNB_L6_AAVS1_CD47_ICASP9_2AFREE_HUMAN_ACC_4172bp",
+          "gate_P1": {
+            "donor_length_bp": 4172,
+            "packaged_aav6_bp": 4462,
+            "headroom_below_4700_bp": 238,
+            "within_4700_bp_cap": true,
+            "donor_sha256": "ba264b14b5cf81b191a8e2126cf5f2c9949559a3782f6ff69bb206690d705882",
+            "provenance_mode": "COMPUTED_FROM_DNA",
+            "sha256_gate_status": "VERIFIED_DNA_SHA256_MATCH",
+            "orf_verifications": [
+              {
+                "name": "CD47_IgV_CD55_GPI_Q08722_P08174",
+                "strand": "-",
+                "coords_1based": [
+                  751,
+                  1278
+                ],
+                "declared_cds_frame": 2,
+                "precursor_aa_len": 175,
+                "mature_aa_len": 129,
+                "precursor_sha256": "14c634833d8775819193419862c3950d6f54395c0e696d75748a0d06c3f767b3",
+                "identical_to_pinned_reference": true
+              },
+              {
+                "name": "iCasp9_FKBP12F36V_dCasp9",
+                "strand": "+",
+                "coords_1based": [
+                  2232,
+                  3422
+                ],
+                "declared_cds_frame": 2,
+                "precursor_aa_len": 396,
+                "mature_aa_len": 396,
+                "precursor_sha256": "9c658142531fb4fbad7b80d7c94d412118e2a878122ab6795bbac88035e836de",
+                "identical_to_pinned_reference": true
+              }
+            ],
+            "transcribed_intervals": [
+              {
+                "unit_id": "TU1_CD47_ANTISENSE_EEF1A1",
+                "strand": "-",
+                "putative_transcribed_1based": [
+                  601,
+                  1320
+                ],
+                "promoter_upstream_1based": null,
+                "declared_cds_1based": [
+                  751,
+                  1278
+                ],
+                "declared_cds_frame": 2
+              },
+              {
+                "unit_id": "TU2_ICASP9_SENSE_UBC",
+                "strand": "+",
+                "putative_transcribed_1based": [
+                  2196,
+                  3572
+                ],
+                "promoter_upstream_1based": [
+                  1973,
+                  2195
+                ],
+                "declared_cds_1based": [
+                  2232,
+                  3422
+                ],
+                "declared_cds_frame": 2
+              }
+            ],
+            "empirical_5prime_race_end_bp": "UNRESOLVED",
+            "empirical_3prime_race_end_bp": "UNRESOLVED",
+            "readthrough_umi_n_eff": "UNRESOLVED",
+            "readthrough_umi_k": "UNRESOLVED",
+            "transcript_boundary_gate_status": "HOLD_TRANSCRIPT_BOUNDARIES_UNRESOLVED_PENDING_RACE"
+          },
+          "gate_P2": {
+            "encoded_2a_peptides": 0,
+            "open_boundary_kozak_orfs": 0,
+            "undeclared_transcribed_kozak_orfs_ge_300nt": 0,
+            "upstream_regulatory_kozak_gate_status": "CLEAR_NO_UPSTREAM_REGULATORY_KOZAK_RUN",
+            "upstream_regulatory_kozak_runs_gated_on_5prime_race": []
+          },
+          "gate_P3_peptide_set_exact": {
+            "accounting_scope": "UNIQUE_STRING_SET_DIFFERENCE_AND_POSITIONAL_WINDOW_COUNTS_NOT_PRESENTATION_PROOF",
+            "mature_positional_8_11mer_window_count": 2032,
+            "mature_positional_15mer_window_count": 497,
+            "legacy_integer_count_delta_8_11mer_vs_parent": -84,
+            "legacy_positional_count_delta_8_11mer_vs_parent": -84,
+            "mature_unique_8_11mer_count": 2032,
+            "mature_unique_15mer_count": 497,
+            "new_8_11mers_vs_parent_count": 0,
+            "lost_8_11mers_vs_parent_count": 84,
+            "new_15mers_vs_parent_count": 0,
+            "lost_15mers_vs_parent_count": 21,
+            "non_human_swissprot_mature_8_11mer_count": 108,
+            "non_human_swissprot_mature_15mer_count": 39,
+            "non_human_swissprot_precursor_8_11mer_count": 109,
+            "non_human_swissprot_precursor_15mer_count": 44,
+            "non_human_swissprot_mature_8_11mer_examples": [
+              "DGKKVDSS",
+              "DGKKVDSSR",
+              "DGKKVDSSRD",
+              "DGKKVDSSRDR",
+              "DVELLKLES",
+              "DVELLKLESG",
+              "DVELLKLESGG",
+              "EDGKKVDS",
+              "EDGKKVDSS",
+              "EDGKKVDSSR",
+              "EDGKKVDSSRD",
+              "ELLKLESG"
+            ]
+          },
+          "gate_P4": {
+            "per_orf_identical_to_pinned_reference": {
+              "CD47_IgV_CD55_GPI_Q08722_P08174": true,
+              "iCasp9_FKBP12F36V_dCasp9": true
+            },
+            "intended_polypeptide_identical_to_layer3_entry": true
+          }
+        },
+        "two_strand_splice_summary": {
+          "cargo_donors_plus_strand": 13,
+          "cargo_donors_minus_strand": 13,
+          "cargo_acceptors": 69
+        }
+      },
+      {
+        "construct_id": "DESIGNB_L6_AAVS1_CD47_ICASP9_2AFREE_CHS4_ACC_4394bp",
+        "short_id": "c6",
+        "role": "STAGED_RESEARCH_COMPARATOR_TWO_FACTOR_CHS4_PLUS_SV40PA_AAVS1_CD47_ICASP9",
+        "mode_b_acc_shield": true,
+        "locus": "chr19_AAVS1",
+        "p1_to_p4": {
+          "design_id": "DESIGNB_L6_AAVS1_CD47_ICASP9_2AFREE_CHS4_ACC_4394bp",
+          "gate_P1": {
+            "donor_length_bp": 4394,
+            "packaged_aav6_bp": 4684,
+            "headroom_below_4700_bp": 16,
+            "within_4700_bp_cap": true,
+            "donor_sha256": "bf2b2c6bab277cb96941ba13958ecf8ce3eccb28947d0f5422ce07a28e260f94",
+            "provenance_mode": "COMPUTED_FROM_DNA",
+            "sha256_gate_status": "VERIFIED_DNA_SHA256_MATCH",
+            "orf_verifications": [
+              {
+                "name": "CD47_IgV_CD55_GPI_Q08722_P08174",
+                "strand": "-",
+                "coords_1based": [
+                  751,
+                  1278
+                ],
+                "declared_cds_frame": 2,
+                "precursor_aa_len": 175,
+                "mature_aa_len": 129,
+                "precursor_sha256": "14c634833d8775819193419862c3950d6f54395c0e696d75748a0d06c3f767b3",
+                "identical_to_pinned_reference": true
+              },
+              {
+                "name": "iCasp9_FKBP12F36V_dCasp9",
+                "strand": "+",
+                "coords_1based": [
+                  2482,
+                  3672
+                ],
+                "declared_cds_frame": 0,
+                "precursor_aa_len": 396,
+                "mature_aa_len": 396,
+                "precursor_sha256": "9c658142531fb4fbad7b80d7c94d412118e2a878122ab6795bbac88035e836de",
+                "identical_to_pinned_reference": true
+              }
+            ],
+            "transcribed_intervals": [
+              {
+                "unit_id": "TU1_CD47_ANTISENSE_EEF1A1",
+                "strand": "-",
+                "putative_transcribed_1based": [
+                  601,
+                  1320
+                ],
+                "promoter_upstream_1based": null,
+                "declared_cds_1based": [
+                  751,
+                  1278
+                ],
+                "declared_cds_frame": 2
+              },
+              {
+                "unit_id": "TU2_ICASP9_SENSE_UBC",
+                "strand": "+",
+                "putative_transcribed_1based": [
+                  2446,
+                  3794
+                ],
+                "promoter_upstream_1based": [
+                  2223,
+                  2445
+                ],
+                "declared_cds_1based": [
+                  2482,
+                  3672
+                ],
+                "declared_cds_frame": 0
+              }
+            ],
+            "empirical_5prime_race_end_bp": "UNRESOLVED",
+            "empirical_3prime_race_end_bp": "UNRESOLVED",
+            "readthrough_umi_n_eff": "UNRESOLVED",
+            "readthrough_umi_k": "UNRESOLVED",
+            "transcript_boundary_gate_status": "HOLD_TRANSCRIPT_BOUNDARIES_UNRESOLVED_PENDING_RACE"
+          },
+          "gate_P2": {
+            "encoded_2a_peptides": 0,
+            "open_boundary_kozak_orfs": 0,
+            "undeclared_transcribed_kozak_orfs_ge_300nt": 0,
+            "upstream_regulatory_kozak_gate_status": "CLEAR_NO_UPSTREAM_REGULATORY_KOZAK_RUN",
+            "upstream_regulatory_kozak_runs_gated_on_5prime_race": []
+          },
+          "gate_P3_peptide_set_exact": {
+            "accounting_scope": "UNIQUE_STRING_SET_DIFFERENCE_AND_POSITIONAL_WINDOW_COUNTS_NOT_PRESENTATION_PROOF",
+            "mature_positional_8_11mer_window_count": 2032,
+            "mature_positional_15mer_window_count": 497,
+            "legacy_integer_count_delta_8_11mer_vs_parent": -84,
+            "legacy_positional_count_delta_8_11mer_vs_parent": -84,
+            "mature_unique_8_11mer_count": 2032,
+            "mature_unique_15mer_count": 497,
+            "new_8_11mers_vs_parent_count": 0,
+            "lost_8_11mers_vs_parent_count": 84,
+            "new_15mers_vs_parent_count": 0,
+            "lost_15mers_vs_parent_count": 21,
+            "non_human_swissprot_mature_8_11mer_count": 108,
+            "non_human_swissprot_mature_15mer_count": 39,
+            "non_human_swissprot_precursor_8_11mer_count": 109,
+            "non_human_swissprot_precursor_15mer_count": 44,
+            "non_human_swissprot_mature_8_11mer_examples": [
+              "DGKKVDSS",
+              "DGKKVDSSR",
+              "DGKKVDSSRD",
+              "DGKKVDSSRDR",
+              "DVELLKLES",
+              "DVELLKLESG",
+              "DVELLKLESGG",
+              "EDGKKVDS",
+              "EDGKKVDSS",
+              "EDGKKVDSSR",
+              "EDGKKVDSSRD",
+              "ELLKLESG"
+            ]
+          },
+          "gate_P4": {
+            "per_orf_identical_to_pinned_reference": {
+              "CD47_IgV_CD55_GPI_Q08722_P08174": true,
+              "iCasp9_FKBP12F36V_dCasp9": true
+            },
+            "intended_polypeptide_identical_to_layer3_entry": true
+          }
+        },
+        "two_strand_splice_summary": {
+          "cargo_donors_plus_strand": 12,
+          "cargo_donors_minus_strand": 14,
+          "cargo_acceptors": 75
+        }
+      }
+    ],
+    "swissprot_unique_string_vs_positional_reconciliation": {
+      "pinned_human_swissprot_protein_count": 20429,
+      "pinned_human_swissprot_uncompressed_sha256": "13852e174364bf1c705206c38eacae57210f5bca9955f05be6b4ff48f727d37b",
+      "pinned_human_swissprot_gzip_sha256": "40a8856b4e3f3620b11635143b501ef701558ed97309b0cdb4423ef09e4618d0",
+      "license": "CC-BY-4.0 (UniProt Consortium)",
+      "arm6_serpinb9_c341s_missense_benchmark": {
+        "legacy_integer_count_delta_8_11mer": 0,
+        "unique_8_11mers_added_absent_from_swissprot": 38,
+        "unique_8_11mers_removed_vs_wt": 38,
+        "unique_15mers_added_absent_from_swissprot": 15
+      },
+      "complete_islet1_b2_5locus_base_mature_8_11_and_15": [
+        108,
+        39
+      ],
+      "complete_islet1_b2_5locus_base_precursor_8_11_and_15": [
+        109,
+        44
+      ],
+      "complete_islet1_b2_5locus_tyk2_pe_mature_8_11_and_15": [
+        146,
+        54
+      ],
+      "complete_islet1_b2_5locus_tyk2_pe_precursor_8_11_and_15": [
+        147,
+        59
+      ],
+      "untouched_wt_ins_unmatched_8_11_and_15": [
+        0,
+        0
+      ]
+    },
+    "iip0015_pdl1_syn2_syn4_versioned_disclosure_note": {
+      "audit_disposition": "DISCLOSED_VERSIONED_RE_EVALUATION_NOTE_NO_IN_PLACE_SCENARIO_A_OR_IIP0018_MUTATION",
+      "canonical_v070_wt_pdl1_minus_orfs_ge_300nt": [],
+      "syn2_c720t_g723c_minus_orfs_ge_300nt": [
+        {
+          "donor_coords_1based": [
+            2267,
+            3100
+          ],
+          "length_nt": 834,
+          "minus_kozak_9mer": "GAGATGGGT"
+        }
+      ],
+      "syn4_c720t_g723c_c858t_g861c_c1_minus_orfs_ge_300nt": [
+        {
+          "donor_coords_1based": [
+            2267,
+            3238
+          ],
+          "length_nt": 972,
+          "minus_kozak_9mer": "GAGATGGGT"
+        },
+        {
+          "donor_coords_1based": [
+            2267,
+            3100
+          ],
+          "length_nt": 834,
+          "minus_kozak_9mer": "GAGATGGGT"
+        }
+      ],
+      "scenario_a_syn4_l3_minus_orfs_ge_300nt": [
+        {
+          "donor_coords_1based": [
+            589,
+            2661
+          ],
+          "length_nt": 2073,
+          "minus_kozak_9mer": "GAGATGGGT"
+        },
+        {
+          "donor_coords_1based": [
+            589,
+            2523
+          ],
+          "length_nt": 1935,
+          "minus_kozak_9mer": "GAGATGGGT"
+        }
+      ],
+      "iip0018_multimir_6_descendants_minus_orfs_ge_300nt": {
+        "ARM1_L3_WT_PARENT_4078": [
+          {
+            "donor_coords_1based": [
+              2267,
+              3238
+            ],
+            "length_nt": 972,
+            "minus_kozak_9mer": "GAGATGGGT"
+          },
+          {
+            "donor_coords_1based": [
+              2267,
+              3100
+            ],
+            "length_nt": 834,
+            "minus_kozak_9mer": "GAGATGGGT"
+          }
+        ],
+        "ARM2_L3_V2_INTRON_NT_SCRAMBLE_4398": [
+          {
+            "donor_coords_1based": [
+              2587,
+              3558
+            ],
+            "length_nt": 972,
+            "minus_kozak_9mer": "GAGATGGGT"
+          },
+          {
+            "donor_coords_1based": [
+              2587,
+              3420
+            ],
+            "length_nt": 834,
+            "minus_kozak_9mer": "GAGATGGGT"
+          }
+        ],
+        "ARM3_L3_V2_INTRON_SINGLE_IL1R1_4398": [
+          {
+            "donor_coords_1based": [
+              2587,
+              3558
+            ],
+            "length_nt": 972,
+            "minus_kozak_9mer": "GAGATGGGT"
+          },
+          {
+            "donor_coords_1based": [
+              2587,
+              3420
+            ],
+            "length_nt": 834,
+            "minus_kozak_9mer": "GAGATGGGT"
+          }
+        ],
+        "ARM4_L3_V2_INTRON_SINGLE_FAS_4398": [
+          {
+            "donor_coords_1based": [
+              2587,
+              3558
+            ],
+            "length_nt": 972,
+            "minus_kozak_9mer": "GAGATGGGT"
+          },
+          {
+            "donor_coords_1based": [
+              2587,
+              3420
+            ],
+            "length_nt": 834,
+            "minus_kozak_9mer": "GAGATGGGT"
+          }
+        ],
+        "ARM5_L3_V2_INTRON_DUPLEX_IL1R1_FAS_WT_SB9_4398": [
+          {
+            "donor_coords_1based": [
+              2587,
+              3558
+            ],
+            "length_nt": 972,
+            "minus_kozak_9mer": "GAGATGGGT"
+          },
+          {
+            "donor_coords_1based": [
+              2587,
+              3420
+            ],
+            "length_nt": 834,
+            "minus_kozak_9mer": "GAGATGGGT"
+          }
+        ],
+        "ARM6_L3_V2_INTRON_DUPLEX_IL1R1_FAS_C341S_TCA_4398": [
+          {
+            "donor_coords_1based": [
+              2587,
+              3558
+            ],
+            "length_nt": 972,
+            "minus_kozak_9mer": "GAGATGGGT"
+          },
+          {
+            "donor_coords_1based": [
+              2587,
+              3420
+            ],
+            "length_nt": 834,
+            "minus_kozak_9mer": "GAGATGGGT"
+          }
+        ]
+      },
+      "designb_pdl1_syn6_c1_c2_c3_minus_orfs_ge_300nt": {
+        "DESIGNB_L5A_CXCL10_BFB_SYN6_ACC_4078bp": [],
+        "DESIGNB_L5A_CXCL10_ENDO_SYN6_ACC_3799bp": [],
+        "DESIGNB_L5A_CXCL10_HUMAN_DUAL_SYN6_ACC_3772bp": []
+      },
+      "pdl1_cds_antisense_donor_reduction_wt_to_syn6": [
+        7,
+        5
+      ],
+      "disclosure_note": "Historical IIP-0015 / IIP-0018 Mode-B comparators carrying PD-L1 SYN2 (C720T/G723C) or SYN4 (C720T/G723C/C858T/G861C, including ARM1 at 2267..3238/2267..3100 and ARM2..ARM6 at 2587..3558/2587..3420 in islet1_locus3_multimir_modeb_comparators_v0.8.0.fasta) contain 834-nt and 972-nt (873-nt and 1,011-nt in Scenario-A SYN4 c3) minus-strand GAGATGGGT closed ORFs missed by Layer-2's literal CCACCATG scan; Design B c1..c3 use PD-L1 SYN6 (G693A/C720T/G723A/G783A/C858T/G861A -> 0 antisense [AG]NNATGG runs >= 300 nt, 7->5 antisense splice donors) while canonical Scenario A and IIP-0018 FASTAs remain untouched."
+    },
+    "oq011_ins_3utr_eif4g2_knockin_retirement_audit": {
+      "retired_open_question": "OQ-011",
+      "graveyard_card_id": "GY-022",
+      "offgrid_guardrail_id": "OFFGRID_GUARD_012_CHR11P15_INS_3UTR_EIF4G2_BICISTRONIC_KNOCKIN_RETIRED",
+      "disposition": "RETIRED_TO_OFFGRID_IDEA_GRAVEYARD_GUARDRAIL",
+      "nm000207_3_stop_codon": "TAG (amber stop at mRNA 390..392 / chr11:2,159,852..2,159,854 [-1])",
+      "native_3utr_nt": 73,
+      "minimal_2afree_eif4g2_serpinb9_pdl1_insert_nt": 2638,
+      "expanded_3utr_nt": 2711,
+      "expansion_fold_vs_73nt": 37.14,
+      "spcas9_guides_in_73nt_3utr_hitting_ptbp1_insprs": [
+        8,
+        15
+      ],
+      "curative_500k_ieq_non_beta_unshielded_cell_fraction": 0.485806,
+      "consistent_ensembl_grch38_gene_boundary_distances_bp": {
+        "INS_to_IGF2_bp": 1183,
+        "INS_to_H19_bp": 155227,
+        "INS_to_CDKN1C_bp": 721992
+      },
+      "eif4g2_nm001418_4_leader_uatg_1based": [
+        23
+      ],
+      "eif4g1_ay082886_1_leader_uatg_count": 3,
+      "rare_event_exact_denominators": {
+        "umi_threshold": 0.000812,
+        "u95_cp_at_3687_fails": 0.0008121821450175764,
+        "u95_cp_at_3688_exact_min": 0.000811962011523758,
+        "u95_cp_at_3689_protocol_floor": 0.0008117419973273707,
+        "ap1903_poisson_at_299573227_fails": 1.0000000011863512e-08,
+        "ap1903_poisson_at_299573228_passes": 9.999999978482693e-09,
+        "ap1903_binomial_cp_at_299573225_fails": 1.0000000028625153e-08,
+        "ap1903_binomial_cp_at_299573226_passes": 9.999999995244332e-09
+      }
     }
   },
   "public_effects_provenance_rebinding": {

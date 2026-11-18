@@ -1836,7 +1836,7 @@ def compile_personalized_patient_blueprint(
         grna_set = [
             "PLAN_B_HLAA_EXON2_KO_GUIDE_INVESTIGATIONAL",
             "PLAN_B_HLAB_EXON2_KO_GUIDE_INVESTIGATIONAL",
-            "OI-GRNA-02_CIITA_EXON1_ASCAS12A",
+            "OI-GRNA-02_CIITA_EXON5_ASCAS12A",
             "OI-GRNA-03_CXCL10_EXON1_HIFI_SPCAS9",
             "OI-GRNA-04_AAVS1_PPP1R12C_HIFI_SPCAS9",
         ]
@@ -1851,7 +1851,7 @@ def compile_personalized_patient_blueprint(
         )
         grna_set = [
             "OI-GRNA-01_B2M_EXON1_ASCAS12A",
-            "OI-GRNA-02_CIITA_EXON1_ASCAS12A",
+            "OI-GRNA-02_CIITA_EXON5_ASCAS12A",
             "OI-GRNA-03_CXCL10_EXON1_HIFI_SPCAS9",
             "OI-GRNA-04_AAVS1_PPP1R12C_HIFI_SPCAS9",
         ]
@@ -2123,6 +2123,26 @@ def compile_personalized_patient_blueprint(
             "or CBER draft/nonbinding Individualized Plausible-Mechanism guidance (Feb 2026) requires formal FDA CBER INTERACT/pre-IND assessment (closing AUDIT-REF)."
         ),
         "locus1_construct_prescribed": locus1_arm,
+        "mhc_locus_routing_contract_iip_0026": {
+            "class_i_routing_mode": (
+                "B2M_NULL_CIITA_EXON5_HLA_C_SCT"
+                if use_b_prime_sct_k4
+                else (
+                    "ENDOGENOUS_HLA_C_RETAINED_SELECTIVE_HLA_AB_KO_PENDING_PHASED_DONOR_QC"
+                    if use_plan_b_hla_c_retained
+                    else "B2M_NULL_HLA_E_SCT_CD47_IGV_GPI"
+                )
+            ),
+            "ciita_target_locus_id": "OI-GRNA-02_CIITA_EXON5_ASCAS12A",
+            "b2m_retained_wt": bool(use_plan_b_hla_c_retained and not use_b_prime_sct_k4),
+            "selective_hla_ab_ko_required": bool(use_plan_b_hla_c_retained and not use_b_prime_sct_k4),
+            "hla_ab_guide_qualification_state": (
+                "SCOPED_EXON23_CANDIDATE_POOL_11_HLAA_6_HLAB_REQUIRES_PHASED_DONOR_HLA_ABCE_QC"
+                if (use_plan_b_hla_c_retained and not use_b_prime_sct_k4)
+                else "NOT_APPLICABLE"
+            ),
+            "intended_routing_decoupled_from_wetlab_release_supported": True,
+        },
         "plan_architecture_prescribed": (
             "Plan B-SCT (B2M::Arm1B + CIITA::HLA-C*03:04/04:01 Fixed-Peptide SCT)"
             if use_b_prime_sct_k4
@@ -2641,6 +2661,34 @@ def evaluate_regimen_survival_probability(
             kir_subbank_matched = False
         elif raw_recip_kir == "C1/C2" and (has_c1_sct or has_c2_sct):
             kir_subbank_matched = False
+    mhc_routing_obj = compiled_regimen.get("mhc_locus_routing_contract_iip_0026")
+    if mhc_routing_obj is not None:
+        if not isinstance(mhc_routing_obj, dict):
+            raise ValueError("mhc_locus_routing_contract_iip_0026 must be a dictionary when provided (IIP-0026; DEC-105)")
+        expected_mode = (
+            "B2M_NULL_CIITA_EXON5_HLA_C_SCT"
+            if is_b_prime_sct
+            else (
+                "ENDOGENOUS_HLA_C_RETAINED_SELECTIVE_HLA_AB_KO_PENDING_PHASED_DONOR_QC"
+                if is_plan_b_arch
+                else "B2M_NULL_HLA_E_SCT_CD47_IGV_GPI"
+            )
+        )
+        if mhc_routing_obj.get("class_i_routing_mode") != expected_mode:
+            raise ValueError(
+                f"mhc_locus_routing_contract_iip_0026 class_i_routing_mode={mhc_routing_obj.get('class_i_routing_mode')!r} "
+                f"conflicts with prescribed regimen ({expected_mode!r}) (IIP-0026; DEC-105)"
+            )
+    has_selective_hla_ab_panel_targets = (
+        any(
+            g == "PLAN_B_HLAA_EXON2_KO_GUIDE_INVESTIGATIONAL" or g.startswith("SCOPED_HLAA_EXON23_CANDIDATE_")
+            for g in panel
+        )
+        and any(
+            g == "PLAN_B_HLAB_EXON2_KO_GUIDE_INVESTIGATIONAL" or g.startswith("SCOPED_HLAB_EXON23_CANDIDATE_")
+            for g in panel
+        )
+    )
     has_plan_b_hlac = (
         is_plan_b_arch
         and prod_def_hlac_ok
@@ -2649,13 +2697,13 @@ def evaluate_regimen_survival_probability(
             (
                 is_b_prime_sct
                 and "OI-GRNA-01_B2M_EXON1_ASCAS12A" in panel
-                and "OI-GRNA-02_CIITA_EXON5_ASCAS12A" in panel
+                and has_ciita_guide
             )
             or (
                 (not is_b_prime_sct)
                 and is_plan_b_loc1
-                and "PLAN_B_HLAA_EXON2_KO_GUIDE_INVESTIGATIONAL" in panel
-                and "PLAN_B_HLAB_EXON2_KO_GUIDE_INVESTIGATIONAL" in panel
+                and has_selective_hla_ab_panel_targets
+                and has_ciita_guide
                 and "OI-GRNA-01_B2M_EXON1_ASCAS12A" not in panel
             )
         )
@@ -3007,7 +3055,7 @@ def simulate_10000_patient_global_population_trial(
             "include_tyk2_p1104a_rs34536443_shield": False,
             "compiled_grna_panel": [
                 "OI-GRNA-01_B2M_EXON1_ASCAS12A",
-                "OI-GRNA-02_CIITA_EXON1_ASCAS12A",
+                "OI-GRNA-02_CIITA_EXON5_ASCAS12A",
                 "OI-GRNA-03_CXCL10_EXON1_HIFI_SPCAS9",
                 "OI-GRNA-04_AAVS1_PPP1R12C_HIFI_SPCAS9",
             ],
@@ -3022,7 +3070,7 @@ def simulate_10000_patient_global_population_trial(
             "include_tyk2_p1104a_rs34536443_shield": False,
             "compiled_grna_panel": [
                 "OI-GRNA-01_B2M_EXON1_ASCAS12A",
-                "OI-GRNA-02_CIITA_EXON1_ASCAS12A",
+                "OI-GRNA-02_CIITA_EXON5_ASCAS12A",
                 "OI-GRNA-03_CXCL10_EXON1_HIFI_SPCAS9",
                 "OI-GRNA-04_AAVS1_PPP1R12C_HIFI_SPCAS9",
             ],
@@ -3266,7 +3314,7 @@ def simulate_10000_patient_global_population_trial(
         "include_tyk2_p1104a_rs34536443_shield": False,
         "compiled_grna_panel": [
             "OI-GRNA-01_B2M_EXON1_ASCAS12A",
-            "OI-GRNA-02_CIITA_EXON1_ASCAS12A",
+            "OI-GRNA-02_CIITA_EXON5_ASCAS12A",
             "OI-GRNA-03_CXCL10_EXON1_HIFI_SPCAS9",
             "OI-GRNA-04_AAVS1_PPP1R12C_HIFI_SPCAS9",
         ],
@@ -5303,6 +5351,1417 @@ def _build_product_scoped_precedence_audit_iip_0024() -> Dict[str, Any]:
     }
 
 
+
+_IIP_0026_RIGHTS_CLEAN_PINNED_JSON = (
+    '{"license_manifest":{"GRCh38_p14_and_NCBI_RefSeq_INSDC":{"rights_statement":"INSDC unrestricted public archival access a'
+    'nd redistribution policy (https://www.insdc.org/policy/) with explicit NCBI/GenBank third-party depositor rights caveat '
+    '(https://www.ncbi.nlm.nih.gov/genbank/about/); not claimed under a bl'
+    'anket CC0-1.0 dedication.","sources":["https://api.genome.ucsc.edu/getData/sequence?genome=hg38","https://eutils.ncbi.nl'
+    'm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore"],"ipd_imgt_hla_cc_by_nd_content_included":false,"ucsc_crispr_all_targets'
+    '_or_crispor_dumps_included":false},"GENCODE_v46_and_Ensembl_REST":{"rights_statement":"GENCODE v46 open genomic annotati'
+    'ons under EMBL-EBI open data-use policy (https://www.ebi.ac.uk/about/terms-of-use/, https://www.gencodegenes.org/pages/d'
+    'ata_access.html; GENCODE v46 file headers identify the release without asserting a file-specific CC-BY-4.0 grant) and En'
+    'sembl REST VEP lookup subject to the Ensembl content disclaimer (https://www.ensembl.org/about/articles/ensembl-content-'
+    'disclaimer; underlying third-party datasets keep their own source licenses and are not converted to CC0 by Ensembl)."},"'
+    'gnomAD_v4_1":{"release_version":"gnomAD v4.1 (gnomad_r4, April 2024 release, GRCh38)","license":"CC0-1.0 Public Domain D'
+    'edication (gnomAD primary allele/filter data; third-party annotations carry their own source terms)","pinned_export_arti'
+    'fact":"embedded_iip0026_rights_clean_pinned_snapshot (immutable SHA-256-pinned offline snapshot; never relies on moving '
+    'live API aliases)","source":"https://gnomad.broadinstitute.org/news/2024-04-gnomad-v4-1/"},"AlphaMissense_v3":{"license"'
+    ':"CC-BY-4.0 on Zenodo v3 predictions dataset (https://doi.org/10.5281/zenodo.10813168, record 10813168) & AlphaFold DB m'
+    'irror; Cheng et al. 2023 Science article (PMID:37733863, DOI:10.1126/science.adg7492) carries separate publisher copyrig'
+    'ht and is cited factually only","zenodo_v3_record_url":"https://doi.org/10.5281/zenodo.10813168","zenodo_v3_doi":"10.528'
+    '1/zenodo.10813168","legacy_v1_non_commercial_record_cited_or_used":false,"zenodo_v3_file_checksums":{"AlphaMissense_gene'
+    '_hg38.tsv.gz":{"size":253636,"checksum":"md5:529e3b51cec079272c571affde6f0376"},"AlphaMissense_isoforms_hg38.tsv.gz":{"s'
+    'ize":1177361934,"checksum":"md5:018771baa0dcc7ef79772448f8b8c354"},"AlphaMissense_isoforms_aa_substitutions.tsv.gz":{"si'
+    'ze":2461351945,"checksum":"md5:112b1921cfcdb3a1047532abe449ad59"},"AlphaMissense_hg38.tsv.gz":{"size":642961469,"checksu'
+    'm":"md5:9fd167735f16a1b87da6eb3e4c25fcb5"},"AlphaMissense_hg19.tsv.gz":{"size":622293310,"checksum":"md5:3f14fba08c60b09'
+    'a90a2ae14b7802e4c"},"AlphaMissense_gene_hg19.tsv.gz":{"size":243943,"checksum":"md5:9a52a23bac9e4c8cfcf0f66688888e5e"},"'
+    'AlphaMissense_aa_substitutions.tsv.gz":{"size":1207278510,"checksum":"md5:b9ccb339e0de6cb0a8d1973ad2026576"}},"zenodo_v3'
+    '_p29597_bgzf_direct_verification":{"file_key":"AlphaMissense_aa_substitutions.tsv.gz","file_size_bytes":1207278510,"file'
+    '_zenodo_checksum":"md5:b9ccb339e0de6cb0a8d1973ad2026576","bgzf_range_bytes_inclusive":[279144564,279285119],"bgzf_range_'
+    'length_bytes":140556,"bgzf_range_sha256":"b67adc094983f7a4a628b9711c697db49df6314806d7dd7d3f9a55b41a273620","bgzf_block_'
+    'count":11,"bgzf_blocks":[{"byte_start":279144564,"byte_end_inclusive":279157646,"bsize":13083,"bgzf_block_sha256":"0976d'
+    '42686d3caf202a710b75b9e5db9d95c2356d4c29c62bf31a702d099d63f"},{"byte_start":279157647,"byte_end_inclusive":279170829,"bs'
+    'ize":13183,"bgzf_block_sha256":"5be29c6085968f6f44ce315b0de3bf44e8ae036c2bb44bfbf16a628cd857b8ec"},{"byte_start":2791708'
+    '30,"byte_end_inclusive":279183875,"bsize":13046,"bgzf_block_sha256":"ae7a0aa17e93a874b0dfa7383cd32088d71b65b5211dda15500'
+    'c94eadc3f0e6b"},{"byte_start":279183876,"byte_end_inclusive":279196722,"bsize":12847,"bgzf_block_sha256":"bf517cca4dbe7d'
+    'd57322ba88fa735eeb8336210f912522b93c19d61a21b4943b"},{"byte_start":279196723,"byte_end_inclusive":279209671,"bsize":1294'
+    '9,"bgzf_block_sha256":"f55ae2a83d2880f6531589cc2c68d6caf054909c20afd0ee22b8b45914e9f59e"},{"byte_start":279209672,"byte_'
+    'end_inclusive":279222595,"bsize":12924,"bgzf_block_sha256":"38574e40be2a0db8d6df31138250f8507893979ada9f4270eb51526e62c7'
+    '3156"},{"byte_start":279222596,"byte_end_inclusive":279235358,"bsize":12763,"bgzf_block_sha256":"1087b92a87559211eb8f475'
+    '01c6c20c1c1e323c95b1a28a925df14e08a1722dc"},{"byte_start":279235359,"byte_end_inclusive":279248347,"bsize":12989,"bgzf_b'
+    'lock_sha256":"e840d2d08a1f9c7f5b994a0909b89240e7560a4bf063e6e9f6ae35c0a813335f"},{"byte_start":279248348,"byte_end_inclu'
+    'sive":279260802,"bsize":12455,"bgzf_block_sha256":"8609bd0b5e30a9f1f99e8e6427a887765a87e6987297d4b6e100b926130c8b98"},{"'
+    'byte_start":279260803,"byte_end_inclusive":279272411,"bsize":11609,"bgzf_block_sha256":"5fa7255115ea04adb05069150b4501d2'
+    'afdf96359e387b3058c056aef373d284"},{"byte_start":279272412,"byte_end_inclusive":279285119,"bsize":12708,"bgzf_block_sha2'
+    '56":"e8c860f72f1b86a9970d366134c31916675dd093a4bce8be1fa69edbc35391d3"}],"total_p29597_rows_verified":22553,"printed_7_t'
+    'yk2_c_to_g_substitutions_direct_zenodo_tsv":{"S1103R":{"am_pathogenicity":0.9745,"am_class_zenodo_tsv":"pathogenic"},"P1'
+    '104A":{"am_pathogenicity":0.8292,"am_class_zenodo_tsv":"pathogenic"},"P1104R":{"am_pathogenicity":0.988,"am_class_zenodo'
+    '_tsv":"pathogenic"},"P1104G":{"am_pathogenicity":0.9926,"am_class_zenodo_tsv":"pathogenic"},"P1105A":{"am_pathogenicity"'
+    ':0.2464,"am_class_zenodo_tsv":"benign"},"P1105R":{"am_pathogenicity":0.5841,"am_class_zenodo_tsv":"pathogenic"},"P1105G"'
+    ':{"am_pathogenicity":0.7682,"am_class_zenodo_tsv":"pathogenic"}}},"alphafold_ebi_mirror_license":"CC-BY-4.0 (AlphaFold P'
+    'rotein Structure Database terms of use)"},"Pandey_et_al_2025_PMC11754103":{"license":"CC-BY-4.0 (Nat Biomed Eng 2025, DO'
+    'I 10.1038/s41551-024-01227-1)","moesm4_xlsx_url":"https://static-content.springer.com/esm/art%3A10.1038%2Fs41551-024-012'
+    '27-1/MediaObjects/41551_2024_1227_MOESM4_ESM.xlsx","moesm4_xlsx_sha256":"0e3b5a772727bc3208f97b69be8e7652acb736b352f9909'
+    '88c6b760dbe001f1e"},"Doench_2016_CFD_Weight_Matrix":{"origin_and_version":"Doench et al. 2016 (Nat Biotechnol 34:184-191'
+    ', PMID:26780180, DOI:10.1038/nbt.3437) WT-SpCas9 specificity model (cited factually via locus-level summary scalars only'
+    ')","quarantined_table_entries_bundled":0,"source_rights_status":"Springer Nature 2016 supplementary material (academic r'
+    'esearch terms; NOT CC0 or CC-BY-4.0; CRISPOR redistribution is GPL-3.0)","public_openislet_export_rule_c3_disposition":"'
+    'QUARANTINED_AND_PURGED_FROM_STAGED_INPUTS: Zero entries of the 240-cell mismatch matrix or 16-cell PAM table exist in em'
+    'bedded_iip0026_rights_clean_pinned_snapshot or any public/staged export; only attributed locus-specific WT-CFD summary s'
+    'calars (locus_wt_cfd_precomputed_summaries) plus parameter-free sequence/PAM checks and empirical cleavage gates are ret'
+    'ained."},"Literature_Citation_and_Verbatim_Quote_Audit":{"explicit_cc_by_4_0_articles_eligible_for_attributed_quotes":["'
+    'Chen et al. 2021 Cell (PMID:34653350 / PMC8584034, CC-BY-4.0)","Ferreira da Silva et al. 2022 Nat Commun (PMID:35140211 '
+    '/ PMC8828784, CC-BY-4.0 \\u2014 exact en-dash \'2\\u201317 fold\' preserved)","Pandey et al. 2025 Nat Biomed Eng (PMID:38858'
+    '586 / PMC11754103, CC-BY-4.0)","Daliri et al. 2024 Cells (PMID:38786078 / PMC11120019, CC-BY-4.0 \\u2014 REVIEW article, '
+    'not primary experimental evidence)"],"non_cc_by_4_0_articles_restricted_to_factual_paraphrase_only":["Cancellieri et al.'
+    ' 2023 Nat Genet / author manuscript (PMID:36522432 / PMC10272994 \\u2014 PMC text-mining/fair-use notice, no CC-BY-4.0 li'
+    'cense displayed -> paraphrased)","Damaj et al. 2008 J Clin Endocrinol Metab (PMID:18796520 \\u2014 Endocrine Society copy'
+    'right -> paraphrased)","Cheng et al. 2023 Science (PMID:37733863 \\u2014 Science article text is publisher copyright; Zen'
+    'odo 10813168 v3 dataset is CC-BY-4.0)"]}},"grch38_pseudosite_windows":{"OT1_pseudo_attP_chr3":{"chrom":"chr3","start_1ba'
+    'sed":9447025,"end_1based":9447375,"reported_pos_1based":9447175,"dna":"CTACACCAGTACTATCTCTTTCTAGACCAGGGAAGATAGAAAGGTAGAA'
+    'GCCATCATGCATGCTTTTGAAAACTTAGAGAAAAGAAAGAAGCGGCGGGATCAGCCCTTGGAACAGAGCAACTCTGATGTAGAGATTACTACAACCACCTCAGAGACTCCTGTTGGTGAA'
+    'GAGACAAAAACTGAAGCCCCTGAATCTGAAGTTAGCAACTCTGTTTCAAATGTTACCATCCCAAGCACCCCACAGAGTGTTGGTGTGAATACCCGGAGGTCTTCCCAAGCAGGGGTAAGA'
+    'GTTGAAAAGACTTCAGCACTTAGACATCCTCACCTTTGCTAATGTCAATACCTAACTTTTGG"},"OT2_pseudo_attP_chr10":{"chrom":"chr10","start_1based"'
+    ':93073892,"end_1based":93074242,"reported_pos_1based":93074042,"dna":"CGCTGGCGGCGGCGGCAGGTGGCGCGGGAGGTCGCGGCGCGCCATGGGGC'
+    'TCCCGGCGCTGCTGGCCAGTGCGCTCTGCACCTTCGTGCTGCCGCTGCTGCTCTTCCTGGCTGCGATCAAGCTCTGGGACCTGTACTGCGTGAGCGGCCGCGACCGCAGTTGTGCCCTCC'
+    'CATTGCCCCCCGGGACTATGGGCTTCCCCTTCTTTGGGGAAACCTTGCAGATGGTACTGCAGGTAAGGGAGGGTGGGGCGGGACAGGCTGCTTCCCCGGAGCCCGGCGCGGCTCTGGGCT'
+    'TCTGCTGAAGTCGGGGTAGGCGCCCCCGGGAGGCATGCTATTGCGGCTAGGAGCAGGGCTG"},"OT1_pseudo_attB_chr1":{"chrom":"chr1","start_1based":43'
+    '298781,"end_1based":43299131,"reported_pos_1based":43298931,"dna":"CTCTATCATTATCAATTCAGTTTGTTTTGGGTTTGGAGGTTAACCCTCCAATG'
+    'TGTAGAACTTCATATTTGCATTATTTTTGGCCTATAACTTTCGAGTGACTGAGACTTCAAGATGTGCATTATGGCTTAAGTCGTCTTATACATCTGCAACAGCAGATGTATACACAACCC'
+    'ACTCAAAATTTGTGTGTGCAGTAATATTTCATTTGGGACATATTGTTTGTAAACTGATGCTATTTAAATTACTTGCAGCATAATCTCAACACATGTAAAAATACTTTTACACTTGTAGGA'
+    'TATTGTTTTATAATACAAATTCTTGTGTACAAACTCCATTAACATTTTATTTATGTAC"},"OT2_st10_chr6_pseudo_attB":{"chrom":"chr6","start_1based":'
+    '14806125,"end_1based":14806475,"reported_pos_1based":14806275,"dna":"CAAATACGGACTGAGGATGCTACATGCCAGGTACAGGCAGGTACCAAAGAT'
+    'GCCAAGGTGAGAGAGTTGGTCCCCACCCTCCAAGGAGCTCATAGTTTTATAGATGATCACATAAGGAGAAAAACAAAAGCTCTATGTCTAGACCACAGACACCTCAGGGGCAGAAACACT'
+    'GTCTCATTTATTCTTGTACTGCCGTCATCTAGCCAGGGTCTAAGCAGAGTAGGCAATTATTAAATGTCTGTTGAATGAATACAGGGTGAAAAATGTGTGCCTCCACACATACAGTGGTGC'
+    'AGCAAAGCAGGGCAGGATCAACCCTGCTTGGTGGGGTAGACCCAGATGACAGTTTCCTGG"},"OT3_st10_chr13_pseudo_attB":{"chrom":"chr13","start_1bas'
+    'ed":91867032,"end_1based":91867382,"reported_pos_1based":91867182,"dna":"ATGGAGAAACCCTGTCTCTACTAAAAATACAAAGTTAGCTGGGCATG'
+    'GTGGCACATGCCTGTAATCCCAGCTAGTCGGGAGGCTGAGGCAGGAGAATCACTTGAACTGGGGAGGCAGAGGTTGTGGCAAGCCGAGGTCACGCCATTGTGCTCCAGCCTGGGAAACAA'
+    'GAGTGAAACTCTGTCTCAAAAAAAGAAAAAAGTATCATCATTGAGTCTCTACTGCTGAGGTAACTGTTGTCTAATTTCCCTTCAGTTCTACTGCTGTCCCAGTGGAAACAGGGAATCTTC'
+    'ACCACTTACATGACATGTTTGCCTGAACTCTAATCTTCTACACCTTTTGCAGAAAAGAGAGTAA"},"OT4_st10_chr20_pseudo_attB":{"chrom":"chr20","start_'
+    '1based":32457124,"end_1based":32457474,"reported_pos_1based":32457274,"dna":"GAGGGCGCCCCCTGCCGCAAAGAGCGCGGCACCGCCAGCCTGC'
+    'GGGCGCGGGGGAGGAAACTTTAACCAGGGGACCAGACAGTTCCAGATACATTCCAGGCCTCTCTGCCCACCCAGCCCCAGCCCCAGCCCCGGCCTCCTGCTTGCTCAGCTGAGACGGCAG'
+    'AGGCTGAAGCTGCACGGGAACTCCCGGGGTCACTGTCAGGTGAGCACCCGCGAGGGTCCCGGGGAGGTACGGGTGACCCTGGCGGCTCCACACCTGCACCCAGAGTGGGTGGGGGAGGGG'
+    'TGGTCACAGCGGGCCCTGCCGCCCCTTCCCCCAGGCCAGGGTCACGCCGGACCCCACCCCCACCCTCC"},"OT5_st10_chr22_pseudo_attB":{"chrom":"chr22","st'
+    'art_1based":28857025,"end_1based":28857375,"reported_pos_1based":28857175,"dna":"TCTCAAACTCCTGGCCTCAAGTGATCCACCCACCTCAGA'
+    'CTCCCAAAGTGCTGGGATTACAAGCGTGAGCCACTGAGCCCAGGCTGACCTTAGATTATTTCTAAAAATCCTTTCAACACCAGCATTGTATGGTAATGGGGCTTTAATAGCAGAGACCTC'
+    'TCTGTTATTGATCAACTTTGGCTGGTTCTGGATGGTTTGGGGTCAATATTTCAATGACTTTGTACATTGGGTAGAGACAGACAAGTTTATTGCTTTACTTGATTATAATGCTTATCAAGG'
+    'GTGGAAGAACATGACACTCTAGCCCACTGGTTTAGCAAAAAGGAGTTACTTTTGTGGCGAGGTTGGTAGTCA"}},"chr22_28857175_refseq_gene_distances":[{"ge'
+    'ne":"ZNRF3","refseq":"NM_001206998.2","strand":"+","txStart_0based":28883571,"txEnd_1based":29057488,"distance_bp":26396'
+    '},{"gene":"XBP1","refseq":"NM_005080.4","strand":"-","txStart_0based":28794559,"txEnd_1based":28800569,"distance_bp":566'
+    '06},{"gene":"CCDC117","refseq":"NM_001284265.1","strand":"+","txStart_0based":28773136,"txEnd_1based":28789301,"distance'
+    '_bp":67874},{"gene":"HSCB","refseq":"NM_001318314.2","strand":"+","txStart_0based":28742038,"txEnd_1based":28757510,"dis'
+    'tance_bp":99665},{"gene":"CHEK2","refseq":"NM_001005735.3","strand":"-","txStart_0based":28687741,"txEnd_1based":2874182'
+    '0,"distance_bp":115355},{"gene":"ZNRF3-AS1","refseq":"NR_046851.1","strand":"-","txStart_0based":29024998,"txEnd_1based"'
+    ':29031476,"distance_bp":167823},{"gene":"C22orf31","refseq":"NM_015370.2","strand":"-","txStart_0based":29058671,"txEnd_'
+    '1based":29061831,"distance_bp":201496}],"grch38_mhc_exons":{"HLA-A":{"refseq_transcript":"NM_002116.8","strand":"+","exo'
+    'n2_1based":[29942757,29943026],"exon2_padded30_1based":[29942727,29943056],"exon2_padded30_plus_dna":"GGGCAGGTCTCAGCCACT'
+    'GCTCGCCCCCAGGCTCCCACTCCATGAGGTATTTCTTCACATCCGTGTCCCGGCCCGGCCGCGGGGAGCCCCGCTTCATCGCCGTGGGCTACGTGGACGACACGCAGTTCGTGCGGTTCG'
+    'ACAGCGACGCCGCGAGCCAGAGGATGGAGCCGCGGGCGCCGTGGATAGAGCAGGAGGGGCCGGAGTATTGGGACCAGGAGACACGGAATGTGAAGGCCCAGTCACAGACTGACCGAGTGG'
+    'ACCTGGGGACCCTGCGCGGCTACTACAACCAGAGCGAGGCCGGTGAGTGACCCCGGCCGGGGGCGCAGGTCA","exon3_1based":[29943268,29943543],"exon3_padd'
+    'ed30_1based":[29943238,29943573],"exon3_padded30_plus_dna":"GGACTGGGCTGACCGCGGGGTCGGGGCCAGGTTCTCACACCATCCAGATAATGTATGGCT'
+    'GCGACGTGGGGTCGGACGGGCGCTTCCTCCGCGGGTACCGGCAGGACGCCTACGACGGCAAGGATTACATCGCCCTGAACGAGGACCTGCGCTCTTGGACCGCGGCGGACATGGCGGCTC'
+    'AGATCACCAAGCGCAAGTGGGAGGCGGCCCATGAGGCGGAGCAGTTGAGAGCCTACCTGGATGGCACGTGCGTGGAGTGGCTCCGCAGATACCTGGAGAACGGGAAGGAGACGCTGCAGC'
+    'GCACGGGTACCAGGGGCCACGGGGCGCCTCCCTGAT"},"HLA-B":{"refseq_transcript":"NM_005514.8","strand":"-","exon2_1based":[31356688,'
+    '31356957],"exon2_padded30_1based":[31356658,31356987],"exon2_padded30_plus_dna":"TGACCTGCGCCCCGGGCCGGGGTCACTCACCGGCCTCGC'
+    'TCTGGTTGTAGTAGCCGCGCAGGTTCCGCAGGCTCTCTCGGTCAGTCTGTGCCTGGGCCTTGTAGATCTGTGTGTTCCGGTCCCAATACTCCGGCCCCTCCTGCTCTATCCACGGCGCCC'
+    'GCGGCTCCTCTCTCGGACTCGCGGCGTCGCTGTCGAACCTCACGAACTGGGTGTCGTCCACGTAGCCCACTGAGATGAAGCGGGGCTCCCCGCGGCCGGGCCGGGACACGGAGGTGTAGA'
+    'AATACCTCATGGAGTGGGAGCCTGGGGGTGAGGAGGGGCTGAGACCCGCCC","exon3_1based":[31356167,31356442],"exon3_padded30_1based":[3135613'
+    '7,31356472],"exon3_padded30_plus_dna":"ATGGGGAAGGCTCCCCACTGCCCCTGGTACCAGCGCGCTCCAGCTTGTCCTTCCCGTTCTCCAGGTATCTGCGGAGCCACT'
+    'CCACGCACTCGCCCTCCAGGTAGGCTCTCCGCTGCTCCGCCTCACGGGCCGCCTCCCACTTGCGCTGGGTGATCTGAGCCGCCGTGTCCGCGGCGGTCCAGGAGCGCAGGTCCTCGTTCA'
+    'GGGCGATGTAATCCTTGCCGTCGTAGGCGTACTGGTCATGCCCGCGGAGGAGGCGCCCGTCCGGCCCCACGTCGCAGCCGTACATGCTCTGGAGGGTGTGAGACCCTGGCCCCGGCCCCG'
+    'CGGTCAGCCCAGTCC"},"HLA-C":{"refseq_transcript":"NM_002117.6","strand":"-","exon2_1based":[31271599,31271868],"exon2_padd'
+    'ed30_1based":[31271569,31271898],"exon2_padded30_plus_dna":"TGACCTGCGCCCCGGGCCGGGGTCACTCACCGTCCTCGCTCTGGTTGTAGTAGCCGCGCA'
+    'GGTTCCGCAGGCTCACTCGGTCAGCCTGTGCCTGGCGCTTGTACTTCTGTGTCTCCCGGTCCCAATACTCCGGCCCCTCCTGCTCCACCCACGGCGCCCGCGGCTCCCCTCTCGGACTCG'
+    'CGGCGTCGCTGTCGAACCGCACGAACTGCGTGTCGTCCACGTAGCCCACTGAGATGAAGCGGGGCTCTCCGCGGCCGGGCCGGGACACGGCGGTGTCGAAATACCTCATGGAGTGGGAGC'
+    'CTGGGGGCGAGGAGGGGCTGAGACCCGCCC","exon3_1based":[31271073,31271348],"exon3_padded30_1based":[31271043,31271378],"exon3_pa'
+    'dded30_plus_dna":"ATGGGGAAGGCTCCCCACTGCCCCTGGTACCTGCGCGCTGCAGCGTCTCCTTCCCGTTCTCCAGGTATCTGCGGAGCCACTCCACGCACGTGCCCTCCAGGT'
+    'AGGCTCTCAGCTGCTCCGCCGCACGGGCCGCCTCCAACTTGCGCTGGGTGATCTGAGCCGCGGTGTCCGCGGCGGTCCAGGAGCGCAGGTCCTCGTTCAGGGCGATGTAATCCTTGCCGT'
+    'CGTAGGCGGACTGGTCATACCCGCGGAGGAGGCGCCCGTCGGGCCCCAGGTCGCAGCCAGACATCCTCTGGAGGGTGTGAGACCCTGGCCCCGCCCCCGCGGTCAGCCCAGTCC"},"HL'
+    'A-E":{"refseq_transcript":"NM_005516.6","strand":"+","exon2_1based":[30489726,30489995],"exon2_padded30_1based":[3048969'
+    '6,30490025],"exon2_padded30_plus_dna":"GGGCCGATCTCAGCCCCTCCTCGCCCCCAGGCTCCCACTCCTTGAAGTATTTCCACACTTCCGTGTCCCGGCCCGGCCGCG'
+    'GGGAGCCCCGCTTCATCTCTGTGGGCTACGTGGACGACACCCAGTTCGTGCGCTTCGACAACGACGCCGCGAGTCCGAGGATGGTGCCGCGGGCGCCGTGGATGGAGCAGGAGGGGTCAG'
+    'AGTATTGGGACCGGGAGACACGGAGCGCCAGGGACACCGCACAGATTTTCCGAGTGAATCTGCGGACGCTGCGCGGCTACTACAATCAGAGCGAGGCCGGTGAGTGACCCCGGCCAGGGG'
+    'AGCAGGTCA","exon3_1based":[30490240,30490515],"exon3_padded30_1based":[30490210,30490545],"exon3_padded30_plus_dna":"TGG'
+    'GCGGGACTGACTAAGGGGCGGGGCCAGGGTCTCACACCCTGCAGTGGATGCATGGCTGCGAGCTGGGGCCCGACGGGCGCTTCCTCCGCGGGTATGAACAGTTCGCCTACGACGGCAAGG'
+    'ATTATCTCACCCTGAATGAGGACCTGCGCTCCTGGACCGCGGTGGACACGGCGGCTCAGATCTCCGAGCAAAAGTCAAATGATGCCTCTGAGGCGGAGCACCAGAGAGCCTACCTGGAAG'
+    'ACACATGCGTGGAGTGGCTCCACAAATACCTGGAGAAGGGGAAGGAGACGCTGCTTCACCTGGGTAAGAGGGTCCACAGGGCTACTCTCCCAT"}},"sampled_insdc_hlac_pan'
+    'el_16_coordinate_preserved":{"MN815924.1":{"insdc_accession":"MN815924.1","genbank_allele_qualifier_exact":"HLA-C*01:02"'
+    ',"allele_typing_field_resolution":"2-field","two_field_suballele_established_by_record":true,"rights_and_provenance":"IN'
+    'SDC archival nucleotide record (unrestricted database redistribution per https://www.insdc.org/policy/, subject to NCBI/'
+    'GenBank third-party depositor rights caveat at https://www.ncbi.nlm.nih.gov/genbank/about/; not claimed as US-Gov CC0; z'
+    'ero IPD-IMGT/HLA CC-BY-ND content)","definition":"Homo sapiens isolate 7125436 MHC class I antigen (HLA-C) gene, HLA-C*0'
+    '1:02 allele, complete cds.","coordinate_preserved_record_length_bp":3062,"non_acgt_iupac_counts":{},"coordinate_preserve'
+    'd_record_sha256":"03b76c8b81291ecb70553c02fe1d992ced5b455c7fa203a36803ee93cd22713a","exon2_coords_1based":[298,567],"exo'
+    'n3_coords_1based":[814,1089],"exon2_core_acgt_callable_bp":270,"exon3_core_acgt_callable_bp":276,"exon23_coding_exons_co'
+    'mplete_acgt":true,"intronic_30bp_flank_callable_acgt_counts":{"exon2_5prime_intron1_callable_acgt_of_30":30,"exon2_3prim'
+    'e_intron2_callable_acgt_of_30":30,"exon3_5prime_intron2_callable_acgt_of_30":30,"exon3_3prime_intron3_callable_acgt_of_3'
+    '0":30},"all_four_30bp_intronic_flanks_complete":true,"incomplete_intronic_flank_coverage_flag":false},"PP273452.1":{"ins'
+    'dc_accession":"PP273452.1","genbank_allele_qualifier_exact":"HLA-C*02:02","allele_typing_field_resolution":"2-field","tw'
+    'o_field_suballele_established_by_record":true,"rights_and_provenance":"INSDC archival nucleotide record (unrestricted da'
+    'tabase redistribution per https://www.insdc.org/policy/, subject to NCBI/GenBank third-party depositor rights caveat at '
+    'https://www.ncbi.nlm.nih.gov/genbank/about/; not claimed as US-Gov CC0; zero IPD-IMGT/HLA CC-BY-ND content)","definition'
+    '":"Homo sapiens MHC class I antigen (HLA-C) gene, HLA-C*02:02 allele, complete cds.","coordinate_preserved_record_length'
+    '_bp":2893,"non_acgt_iupac_counts":{},"coordinate_preserved_record_sha256":"7ad30407a3ced6daf7b8cc69dc9773705da1ec4b8f0cf'
+    'fe9e43e6226e1d8caa5","exon2_coords_1based":[204,473],"exon3_coords_1based":[719,994],"exon2_core_acgt_callable_bp":270,"'
+    'exon3_core_acgt_callable_bp":276,"exon23_coding_exons_complete_acgt":true,"intronic_30bp_flank_callable_acgt_counts":{"e'
+    'xon2_5prime_intron1_callable_acgt_of_30":30,"exon2_3prime_intron2_callable_acgt_of_30":30,"exon3_5prime_intron2_callable'
+    '_acgt_of_30":30,"exon3_3prime_intron3_callable_acgt_of_30":30},"all_four_30bp_intronic_flanks_complete":true,"incomplete'
+    '_intronic_flank_coverage_flag":false},"QB230404.1":{"insdc_accession":"QB230404.1","genbank_allele_qualifier_exact":"HLA'
+    '-C*03","allele_typing_field_resolution":"1-field","two_field_suballele_established_by_record":false,"rights_and_provenan'
+    'ce":"INSDC archival nucleotide record (unrestricted database redistribution per https://www.insdc.org/policy/, subject t'
+    'o NCBI/GenBank third-party depositor rights caveat at https://www.ncbi.nlm.nih.gov/genbank/about/; not claimed as US-Gov'
+    ' CC0; zero IPD-IMGT/HLA CC-BY-ND content)","definition":"Homo sapiens isolate KSR331904 HLA class I antigen (HLA-C) gene'
+    ', HLA-C*03 allele, complete cds.","coordinate_preserved_record_length_bp":2894,"non_acgt_iupac_counts":{},"coordinate_pr'
+    'eserved_record_sha256":"d6e5fb723a2d3f7093aa0aae10873956ddc54438afcbe0bcfe382fce56939bb3","exon2_coords_1based":[204,473'
+    '],"exon3_coords_1based":[719,994],"exon2_core_acgt_callable_bp":270,"exon3_core_acgt_callable_bp":276,"exon23_coding_exo'
+    'ns_complete_acgt":true,"intronic_30bp_flank_callable_acgt_counts":{"exon2_5prime_intron1_callable_acgt_of_30":30,"exon2_'
+    '3prime_intron2_callable_acgt_of_30":30,"exon3_5prime_intron2_callable_acgt_of_30":30,"exon3_3prime_intron3_callable_acgt'
+    '_of_30":30},"all_four_30bp_intronic_flanks_complete":true,"incomplete_intronic_flank_coverage_flag":false},"PP273453.1":'
+    '{"insdc_accession":"PP273453.1","genbank_allele_qualifier_exact":"HLA-C*03:04","allele_typing_field_resolution":"2-field'
+    '","two_field_suballele_established_by_record":true,"rights_and_provenance":"INSDC archival nucleotide record (unrestrict'
+    'ed database redistribution per https://www.insdc.org/policy/, subject to NCBI/GenBank third-party depositor rights cavea'
+    't at https://www.ncbi.nlm.nih.gov/genbank/about/; not claimed as US-Gov CC0; zero IPD-IMGT/HLA CC-BY-ND content)","defin'
+    'ition":"Homo sapiens MHC class I antigen (HLA-C) gene, HLA-C*03:04 allele, complete cds.","coordinate_preserved_record_l'
+    'ength_bp":2894,"non_acgt_iupac_counts":{},"coordinate_preserved_record_sha256":"31aa6b13ba1b3013191a8c10df92573c45357245'
+    '3735c9c071c88c56e66bfcd2","exon2_coords_1based":[204,473],"exon3_coords_1based":[719,994],"exon2_core_acgt_callable_bp":'
+    '270,"exon3_core_acgt_callable_bp":276,"exon23_coding_exons_complete_acgt":true,"intronic_30bp_flank_callable_acgt_counts'
+    '":{"exon2_5prime_intron1_callable_acgt_of_30":30,"exon2_3prime_intron2_callable_acgt_of_30":30,"exon3_5prime_intron2_cal'
+    'lable_acgt_of_30":30,"exon3_3prime_intron3_callable_acgt_of_30":30},"all_four_30bp_intronic_flanks_complete":true,"incom'
+    'plete_intronic_flank_coverage_flag":false},"MK953667.1":{"insdc_accession":"MK953667.1","genbank_allele_qualifier_exact"'
+    ':"HLA-C*04:01","allele_typing_field_resolution":"2-field","two_field_suballele_established_by_record":true,"rights_and_p'
+    'rovenance":"INSDC archival nucleotide record (unrestricted database redistribution per https://www.insdc.org/policy/, su'
+    'bject to NCBI/GenBank third-party depositor rights caveat at https://www.ncbi.nlm.nih.gov/genbank/about/; not claimed as'
+    ' US-Gov CC0; zero IPD-IMGT/HLA CC-BY-ND content)","definition":"Homo sapiens isolate 65190472989 MHC class I antigen (HL'
+    'A-C) gene, HLA-C*04:01 allele, complete cds.","coordinate_preserved_record_length_bp":2895,"non_acgt_iupac_counts":{},"c'
+    'oordinate_preserved_record_sha256":"5819485552fa9b134f8d712ef655d256027f127e37c41730850853972b2db5ba","exon2_coords_1bas'
+    'ed":[204,473],"exon3_coords_1based":[720,995],"exon2_core_acgt_callable_bp":270,"exon3_core_acgt_callable_bp":276,"exon2'
+    '3_coding_exons_complete_acgt":true,"intronic_30bp_flank_callable_acgt_counts":{"exon2_5prime_intron1_callable_acgt_of_30'
+    '":30,"exon2_3prime_intron2_callable_acgt_of_30":30,"exon3_5prime_intron2_callable_acgt_of_30":30,"exon3_3prime_intron3_c'
+    'allable_acgt_of_30":30},"all_four_30bp_intronic_flanks_complete":true,"incomplete_intronic_flank_coverage_flag":false},"'
+    'MN515311.1":{"insdc_accession":"MN515311.1","genbank_allele_qualifier_exact":"HLA-C*05:01","allele_typing_field_resoluti'
+    'on":"2-field","two_field_suballele_established_by_record":true,"rights_and_provenance":"INSDC archival nucleotide record'
+    ' (unrestricted database redistribution per https://www.insdc.org/policy/, subject to NCBI/GenBank third-party depositor '
+    'rights caveat at https://www.ncbi.nlm.nih.gov/genbank/about/; not claimed as US-Gov CC0; zero IPD-IMGT/HLA CC-BY-ND cont'
+    'ent)","definition":"Homo sapiens isolate 1123223 MHC class I antigen (HLA-C) gene, HLA-C*05:01 allele, complete cds.","c'
+    'oordinate_preserved_record_length_bp":3350,"non_acgt_iupac_counts":{},"coordinate_preserved_record_sha256":"25d889cbeb75'
+    '28c2a8bc0aab2d17744523578f2be0a2115fed0ca5258494dc45","exon2_coords_1based":[498,767],"exon3_coords_1based":[1014,1289],'
+    '"exon2_core_acgt_callable_bp":270,"exon3_core_acgt_callable_bp":276,"exon23_coding_exons_complete_acgt":true,"intronic_3'
+    '0bp_flank_callable_acgt_counts":{"exon2_5prime_intron1_callable_acgt_of_30":30,"exon2_3prime_intron2_callable_acgt_of_30'
+    '":30,"exon3_5prime_intron2_callable_acgt_of_30":30,"exon3_3prime_intron3_callable_acgt_of_30":30},"all_four_30bp_introni'
+    'c_flanks_complete":true,"incomplete_intronic_flank_coverage_flag":false},"OQ087128.1":{"insdc_accession":"OQ087128.1","g'
+    'enbank_allele_qualifier_exact":"HLA-C*06:02","allele_typing_field_resolution":"2-field","two_field_suballele_established'
+    '_by_record":true,"rights_and_provenance":"INSDC archival nucleotide record (unrestricted database redistribution per htt'
+    'ps://www.insdc.org/policy/, subject to NCBI/GenBank third-party depositor rights caveat at https://www.ncbi.nlm.nih.gov/'
+    'genbank/about/; not claimed as US-Gov CC0; zero IPD-IMGT/HLA CC-BY-ND content)","definition":"Homo sapiens MHC class I a'
+    'ntigen (HLA-C) gene, HLA-C*06:02 allele, complete cds.","coordinate_preserved_record_length_bp":2895,"non_acgt_iupac_cou'
+    'nts":{},"coordinate_preserved_record_sha256":"dbe03f4314e3c0c063a3fec71ed835fca3be1093046af091c7d88c0dc9762034","exon2_c'
+    'oords_1based":[204,473],"exon3_coords_1based":[720,995],"exon2_core_acgt_callable_bp":270,"exon3_core_acgt_callable_bp":'
+    '276,"exon23_coding_exons_complete_acgt":true,"intronic_30bp_flank_callable_acgt_counts":{"exon2_5prime_intron1_callable_'
+    'acgt_of_30":30,"exon2_3prime_intron2_callable_acgt_of_30":30,"exon3_5prime_intron2_callable_acgt_of_30":30,"exon3_3prime'
+    '_intron3_callable_acgt_of_30":30},"all_four_30bp_intronic_flanks_complete":true,"incomplete_intronic_flank_coverage_flag'
+    '":false},"MK953608.1":{"insdc_accession":"MK953608.1","genbank_allele_qualifier_exact":"HLA-C*07:01","allele_typing_fiel'
+    'd_resolution":"2-field","two_field_suballele_established_by_record":true,"rights_and_provenance":"INSDC archival nucleot'
+    'ide record (unrestricted database redistribution per https://www.insdc.org/policy/, subject to NCBI/GenBank third-party '
+    'depositor rights caveat at https://www.ncbi.nlm.nih.gov/genbank/about/; not claimed as US-Gov CC0; zero IPD-IMGT/HLA CC-'
+    'BY-ND content)","definition":"Homo sapiens isolate 1117032522 MHC class I antigen (HLA-C) gene, HLA-C*07:01 allele, comp'
+    'lete cds.","coordinate_preserved_record_length_bp":2903,"non_acgt_iupac_counts":{},"coordinate_preserved_record_sha256":'
+    '"df1305c00135d647b998e77a5071e8a84ee8b8cb1833996aa3b86a1463720975","exon2_coords_1based":[204,473],"exon3_coords_1based"'
+    ':[724,999],"exon2_core_acgt_callable_bp":270,"exon3_core_acgt_callable_bp":276,"exon23_coding_exons_complete_acgt":true,'
+    '"intronic_30bp_flank_callable_acgt_counts":{"exon2_5prime_intron1_callable_acgt_of_30":30,"exon2_3prime_intron2_callable'
+    '_acgt_of_30":30,"exon3_5prime_intron2_callable_acgt_of_30":30,"exon3_3prime_intron3_callable_acgt_of_30":30},"all_four_3'
+    '0bp_intronic_flanks_complete":true,"incomplete_intronic_flank_coverage_flag":false},"KU257977.1":{"insdc_accession":"KU2'
+    '57977.1","genbank_allele_qualifier_exact":"HLA-C*08:01","allele_typing_field_resolution":"2-field","two_field_suballele_'
+    'established_by_record":true,"rights_and_provenance":"INSDC archival nucleotide record (unrestricted database redistribut'
+    'ion per https://www.insdc.org/policy/, subject to NCBI/GenBank third-party depositor rights caveat at https://www.ncbi.n'
+    'lm.nih.gov/genbank/about/; not claimed as US-Gov CC0; zero IPD-IMGT/HLA CC-BY-ND content)","definition":"Homo sapiens MH'
+    'C class I antigen (HLA-C) gene, HLA-C*08:01 allele, partial cds.","coordinate_preserved_record_length_bp":1195,"non_acgt'
+    '_iupac_counts":{"N":300},"coordinate_preserved_record_sha256":"c7cfa857b3b5cb35f40b2d634ba6ba8b7a02fae0e73b601740a6e67bf'
+    'b726c20","exon2_coords_1based":[174,443],"exon3_coords_1based":[544,819],"exon2_core_acgt_callable_bp":270,"exon3_core_a'
+    'cgt_callable_bp":276,"exon23_coding_exons_complete_acgt":true,"intronic_30bp_flank_callable_acgt_counts":{"exon2_5prime_'
+    'intron1_callable_acgt_of_30":0,"exon2_3prime_intron2_callable_acgt_of_30":0,"exon3_5prime_intron2_callable_acgt_of_30":0'
+    ',"exon3_3prime_intron3_callable_acgt_of_30":0},"all_four_30bp_intronic_flanks_complete":false,"incomplete_intronic_flank'
+    '_coverage_flag":true},"PZ629022.1":{"insdc_accession":"PZ629022.1","genbank_allele_qualifier_exact":"HLA-C*08:02","allel'
+    'e_typing_field_resolution":"2-field","two_field_suballele_established_by_record":true,"rights_and_provenance":"INSDC arc'
+    'hival nucleotide record (unrestricted database redistribution per https://www.insdc.org/policy/, subject to NCBI/GenBank'
+    ' third-party depositor rights caveat at https://www.ncbi.nlm.nih.gov/genbank/about/; not claimed as US-Gov CC0; zero IPD'
+    '-IMGT/HLA CC-BY-ND content)","definition":"Homo sapiens isolate scu23613tu MHC class I antigen (HLA-C) gene, HLA-C*08:02'
+    ' allele, complete cds.","coordinate_preserved_record_length_bp":4206,"non_acgt_iupac_counts":{},"coordinate_preserved_re'
+    'cord_sha256":"4cdf0467d450b8193ea63201c06d326bb3aa5b02e109d60996635a5b262e950f","exon2_coords_1based":[699,968],"exon3_c'
+    'oords_1based":[1215,1490],"exon2_core_acgt_callable_bp":270,"exon3_core_acgt_callable_bp":276,"exon23_coding_exons_compl'
+    'ete_acgt":true,"intronic_30bp_flank_callable_acgt_counts":{"exon2_5prime_intron1_callable_acgt_of_30":30,"exon2_3prime_i'
+    'ntron2_callable_acgt_of_30":30,"exon3_5prime_intron2_callable_acgt_of_30":30,"exon3_3prime_intron3_callable_acgt_of_30":'
+    '30},"all_four_30bp_intronic_flanks_complete":true,"incomplete_intronic_flank_coverage_flag":false},"KY906102.1":{"insdc_'
+    'accession":"KY906102.1","genbank_allele_qualifier_exact":"HLA-C*12:02","allele_typing_field_resolution":"2-field","two_f'
+    'ield_suballele_established_by_record":true,"rights_and_provenance":"INSDC archival nucleotide record (unrestricted datab'
+    'ase redistribution per https://www.insdc.org/policy/, subject to NCBI/GenBank third-party depositor rights caveat at htt'
+    'ps://www.ncbi.nlm.nih.gov/genbank/about/; not claimed as US-Gov CC0; zero IPD-IMGT/HLA CC-BY-ND content)","definition":"'
+    'Homo sapiens MHC class I antigen (HLA-C) gene, HLA-C*12:02 allele, exons 2 and 3 and partial cds.","coordinate_preserved'
+    '_record_length_bp":1340,"non_acgt_iupac_counts":{"N":794},"coordinate_preserved_record_sha256":"d318ea072a480e579e6828bf'
+    '805cb8f944e5cb7cee5797ae01e7112d8fe7bd5e","exon2_coords_1based":[1,270],"exon3_coords_1based":[1065,1340],"exon2_core_ac'
+    'gt_callable_bp":270,"exon3_core_acgt_callable_bp":276,"exon23_coding_exons_complete_acgt":true,"intronic_30bp_flank_call'
+    'able_acgt_counts":{"exon2_5prime_intron1_callable_acgt_of_30":0,"exon2_3prime_intron2_callable_acgt_of_30":0,"exon3_5pri'
+    'me_intron2_callable_acgt_of_30":0,"exon3_3prime_intron3_callable_acgt_of_30":0},"all_four_30bp_intronic_flanks_complete"'
+    ':false,"incomplete_intronic_flank_coverage_flag":true},"PQ845335.1":{"insdc_accession":"PQ845335.1","genbank_allele_qual'
+    'ifier_exact":"HLA-C*12:03","allele_typing_field_resolution":"2-field","two_field_suballele_established_by_record":true,"'
+    'rights_and_provenance":"INSDC archival nucleotide record (unrestricted database redistribution per https://www.insdc.org'
+    '/policy/, subject to NCBI/GenBank third-party depositor rights caveat at https://www.ncbi.nlm.nih.gov/genbank/about/; no'
+    't claimed as US-Gov CC0; zero IPD-IMGT/HLA CC-BY-ND content)","definition":"Homo sapiens isolate 104231 MHC class I anti'
+    'gen (HLA-C) gene, HLA-C*12:03 allele, complete cds.","coordinate_preserved_record_length_bp":2895,"non_acgt_iupac_counts'
+    '":{},"coordinate_preserved_record_sha256":"0d0163e7600c5c424139e2f3b6664885692e3fb12a2ebe2056e4e8293a129278","exon2_coor'
+    'ds_1based":[204,473],"exon3_coords_1based":[720,995],"exon2_core_acgt_callable_bp":270,"exon3_core_acgt_callable_bp":276'
+    ',"exon23_coding_exons_complete_acgt":true,"intronic_30bp_flank_callable_acgt_counts":{"exon2_5prime_intron1_callable_acg'
+    't_of_30":30,"exon2_3prime_intron2_callable_acgt_of_30":30,"exon3_5prime_intron2_callable_acgt_of_30":30,"exon3_3prime_in'
+    'tron3_callable_acgt_of_30":30},"all_four_30bp_intronic_flanks_complete":true,"incomplete_intronic_flank_coverage_flag":f'
+    'alse},"MN515310.1":{"insdc_accession":"MN515310.1","genbank_allele_qualifier_exact":"HLA-C*14:02","allele_typing_field_r'
+    'esolution":"2-field","two_field_suballele_established_by_record":true,"rights_and_provenance":"INSDC archival nucleotide'
+    ' record (unrestricted database redistribution per https://www.insdc.org/policy/, subject to NCBI/GenBank third-party dep'
+    'ositor rights caveat at https://www.ncbi.nlm.nih.gov/genbank/about/; not claimed as US-Gov CC0; zero IPD-IMGT/HLA CC-BY-'
+    'ND content)","definition":"Homo sapiens isolate 3123060 MHC class I antigen (HLA-C) gene, HLA-C*14:02 allele, complete c'
+    'ds.","coordinate_preserved_record_length_bp":3290,"non_acgt_iupac_counts":{},"coordinate_preserved_record_sha256":"e9ddf'
+    'a30b7d4431d44f6f0d0e989e5d992ab03e1dbcb0e33392511b6866bbc07","exon2_coords_1based":[498,767],"exon3_coords_1based":[1014'
+    ',1289],"exon2_core_acgt_callable_bp":270,"exon3_core_acgt_callable_bp":276,"exon23_coding_exons_complete_acgt":true,"int'
+    'ronic_30bp_flank_callable_acgt_counts":{"exon2_5prime_intron1_callable_acgt_of_30":30,"exon2_3prime_intron2_callable_acg'
+    't_of_30":30,"exon3_5prime_intron2_callable_acgt_of_30":30,"exon3_3prime_intron3_callable_acgt_of_30":30},"all_four_30bp_'
+    'intronic_flanks_complete":true,"incomplete_intronic_flank_coverage_flag":false},"MZ466365.1":{"insdc_accession":"MZ46636'
+    '5.1","genbank_allele_qualifier_exact":"HLA-C*15:02","allele_typing_field_resolution":"2-field","two_field_suballele_esta'
+    'blished_by_record":true,"rights_and_provenance":"INSDC archival nucleotide record (unrestricted database redistribution '
+    'per https://www.insdc.org/policy/, subject to NCBI/GenBank third-party depositor rights caveat at https://www.ncbi.nlm.n'
+    'ih.gov/genbank/about/; not claimed as US-Gov CC0; zero IPD-IMGT/HLA CC-BY-ND content)","definition":"Homo sapiens MHC cl'
+    'ass I antigen (HLA-C) gene, HLA-C*15:02 allele, complete cds.","coordinate_preserved_record_length_bp":2895,"non_acgt_iu'
+    'pac_counts":{},"coordinate_preserved_record_sha256":"9ad6582da8501102ea63c2a5bf2f9da7ddb617163c12c0aef561a29a5b5ddedd","'
+    'exon2_coords_1based":[204,473],"exon3_coords_1based":[720,995],"exon2_core_acgt_callable_bp":270,"exon3_core_acgt_callab'
+    'le_bp":276,"exon23_coding_exons_complete_acgt":true,"intronic_30bp_flank_callable_acgt_counts":{"exon2_5prime_intron1_ca'
+    'llable_acgt_of_30":30,"exon2_3prime_intron2_callable_acgt_of_30":30,"exon3_5prime_intron2_callable_acgt_of_30":30,"exon3'
+    '_3prime_intron3_callable_acgt_of_30":30},"all_four_30bp_intronic_flanks_complete":true,"incomplete_intronic_flank_covera'
+    'ge_flag":false},"MK953663.1":{"insdc_accession":"MK953663.1","genbank_allele_qualifier_exact":"HLA-C*16:01","allele_typi'
+    'ng_field_resolution":"2-field","two_field_suballele_established_by_record":true,"rights_and_provenance":"INSDC archival '
+    'nucleotide record (unrestricted database redistribution per https://www.insdc.org/policy/, subject to NCBI/GenBank third'
+    '-party depositor rights caveat at https://www.ncbi.nlm.nih.gov/genbank/about/; not claimed as US-Gov CC0; zero IPD-IMGT/'
+    'HLA CC-BY-ND content)","definition":"Homo sapiens isolate 65190473332 MHC class I antigen (HLA-C) gene, HLA-C*16:01 alle'
+    'le, complete cds.","coordinate_preserved_record_length_bp":2895,"non_acgt_iupac_counts":{},"coordinate_preserved_record_'
+    'sha256":"c5ed8f7a5e3cc0ffbf1edce44bef040c1ebba980e28c266d4b6d71f4b41f1c1f","exon2_coords_1based":[204,473],"exon3_coords'
+    '_1based":[720,995],"exon2_core_acgt_callable_bp":270,"exon3_core_acgt_callable_bp":276,"exon23_coding_exons_complete_acg'
+    't":true,"intronic_30bp_flank_callable_acgt_counts":{"exon2_5prime_intron1_callable_acgt_of_30":30,"exon2_3prime_intron2_'
+    'callable_acgt_of_30":30,"exon3_5prime_intron2_callable_acgt_of_30":30,"exon3_3prime_intron3_callable_acgt_of_30":30},"al'
+    'l_four_30bp_intronic_flanks_complete":true,"incomplete_intronic_flank_coverage_flag":false},"OP689694.1":{"insdc_accessi'
+    'on":"OP689694.1","genbank_allele_qualifier_exact":"HLA-C*17","allele_typing_field_resolution":"1-field","two_field_subal'
+    'lele_established_by_record":false,"rights_and_provenance":"INSDC archival nucleotide record (unrestricted database redis'
+    'tribution per https://www.insdc.org/policy/, subject to NCBI/GenBank third-party depositor rights caveat at https://www.'
+    'ncbi.nlm.nih.gov/genbank/about/; not claimed as US-Gov CC0; zero IPD-IMGT/HLA CC-BY-ND content)","definition":"Homo sapi'
+    'ens isolate 2022028495 MHC class I antigen (HLA-C) gene, HLA-C*17 allele, complete cds.","coordinate_preserved_record_le'
+    'ngth_bp":4227,"non_acgt_iupac_counts":{},"coordinate_preserved_record_sha256":"192f5b5e1acf928601e5e06b6385513f584fe0fb8'
+    '79cf892d0091d7cdf141fda","exon2_coords_1based":[701,970],"exon3_coords_1based":[1217,1492],"exon2_core_acgt_callable_bp"'
+    ':270,"exon3_core_acgt_callable_bp":276,"exon23_coding_exons_complete_acgt":true,"intronic_30bp_flank_callable_acgt_count'
+    's":{"exon2_5prime_intron1_callable_acgt_of_30":30,"exon2_3prime_intron2_callable_acgt_of_30":30,"exon3_5prime_intron2_ca'
+    'llable_acgt_of_30":30,"exon3_3prime_intron3_callable_acgt_of_30":30},"all_four_30bp_intronic_flanks_complete":true,"inco'
+    'mplete_intronic_flank_coverage_flag":false}},"grch38_pam_shield_reference_windows":{"CXCL10_Locus3_HA_R_chr4":{"chrom":"'
+    'chr4","start_1based":76023446,"end_1based":76023458,"plus_dna":"AGGTTCCTCTGCT"},"AAVS1_Locus4_HA_R_chr19":{"chrom":"chr1'
+    '9","start_1based":55115749,"end_1based":55115761,"plus_dna":"CCAATCCTGTCCC"}},"grch38_layer5_target_reference_slices":{"'
+    'OI-GRNA-01_B2M_EXON1_ASCAS12A":{"chrom":"chr15","start_1based":44711580,"end_1based":44711625,"plus_dna":"CTACTCTCTCTTTC'
+    'TGGCCTGGAGGCTATCCAGCGTGAGTCTCTCC"},"OI-GRNA-02_CIITA_EXON1_ASCAS12A":{"chrom":"chr16","start_1based":10898955,"end_1base'
+    'd":10898995,"plus_dna":"AGAGTATGGAGATGCCAGCAGAAGTTGGGCAGAAAAGTCAG"},"OI-GRNA-03_CXCL10_EXON1_HIFI_SPCAS9":{"chrom":"chr4'
+    '","start_1based":76023445,"end_1based":76023480,"plus_dna":"GAGGTTCCTCTGCTGTAGGCTCAGAATATGTCTAAG"},"OI-GRNA-04_AAVS1_PPP'
+    '1R12C_HIFI_SPCAS9":{"chrom":"chr19","start_1based":55115748,"end_1based":55115785,"plus_dna":"ACCAATCCTGTCCCTAGTGGCCCCAC'
+    'TGTGGGGTGGAG"},"OI-GRNA-05_TYK2_P1104A_PEMAX_EPEGRNA_OPTIONAL":{"chrom":"chr19","start_1based":10352415,"end_1based":103'
+    '52455,"plus_dna":"CTGCGGGCCTGGCTCTCACCGTGGGGGGGCTCTGGCTGGAG"}},"gnomad_v4_1_layer5_target_regions":{"OI-GRNA-01_B2M":[{"'
+    'variant_id":"15-44711593-C-G","rsids":["rs1435611656"],"flags":[],"genome":{"ac":3,"an":152200,"filters":[],"populations'
+    '":[{"id":"amr","ac":0,"an":15278},{"id":"fin","ac":0,"an":10620},{"id":"eas","ac":0,"an":5192},{"id":"mid","ac":0,"an":3'
+    '16},{"id":"sas","ac":0,"an":4838},{"id":"asj","ac":0,"an":3472},{"id":"afr","ac":3,"an":41460},{"id":"nfe","ac":0,"an":6'
+    '8024}]},"exome":{"ac":3,"an":1461600,"filters":[],"populations":[{"id":"amr","ac":0,"an":44724},{"id":"fin","ac":0,"an":'
+    '53162},{"id":"mid","ac":0,"an":5768},{"id":"nfe","ac":0,"an":1111986},{"id":"sas","ac":0,"an":86256},{"id":"asj","ac":0,'
+    '"an":26136},{"id":"eas","ac":0,"an":39700},{"id":"afr","ac":3,"an":33480}]},"joint":{"filters":[]}},{"variant_id":"15-44'
+    '711596-G-A","rsids":["rs1196771735"],"flags":[],"genome":{"ac":1,"an":152124,"filters":[],"populations":[{"id":"amr","ac'
+    '":1,"an":15284},{"id":"fin","ac":0,"an":10614},{"id":"eas","ac":0,"an":5184},{"id":"mid","ac":0,"an":316},{"id":"sas","a'
+    'c":0,"an":4826},{"id":"asj","ac":0,"an":3468},{"id":"afr","ac":0,"an":41414},{"id":"nfe","ac":0,"an":68020}]},"exome":{"'
+    'ac":4,"an":1461546,"filters":[],"populations":[{"id":"amr","ac":3,"an":44724},{"id":"fin","ac":0,"an":53128},{"id":"mid"'
+    ',"ac":0,"an":5768},{"id":"nfe","ac":1,"an":1111964},{"id":"sas","ac":0,"an":86258},{"id":"asj","ac":0,"an":26136},{"id":'
+    '"eas","ac":0,"an":39700},{"id":"afr","ac":0,"an":33480}]},"joint":{"filters":[]}},{"variant_id":"15-44711607-A-G","rsids'
+    '":["rs757230673"],"flags":[],"genome":null,"exome":{"ac":1,"an":1461382,"filters":[],"populations":[{"id":"amr","ac":0,"'
+    'an":44724},{"id":"fin","ac":0,"an":53086},{"id":"mid","ac":0,"an":5768},{"id":"nfe","ac":1,"an":1111858},{"id":"sas","ac'
+    '":0,"an":86256},{"id":"asj","ac":0,"an":26132},{"id":"eas","ac":0,"an":39698},{"id":"afr","ac":0,"an":33478}]},"joint":{'
+    '"filters":[]}},{"variant_id":"15-44711607-A-C","rsids":["rs757230673"],"flags":[],"genome":{"ac":6,"an":152092,"filters"'
+    ':[],"populations":[{"id":"amr","ac":0,"an":15280},{"id":"fin","ac":0,"an":10606},{"id":"eas","ac":0,"an":5184},{"id":"mi'
+    'd","ac":0,"an":316},{"id":"sas","ac":0,"an":4830},{"id":"asj","ac":0,"an":3472},{"id":"afr","ac":5,"an":41416},{"id":"nf'
+    'e","ac":1,"an":67988}]},"exome":{"ac":1,"an":1461382,"filters":[],"populations":[{"id":"amr","ac":0,"an":44724},{"id":"f'
+    'in","ac":0,"an":53086},{"id":"mid","ac":0,"an":5768},{"id":"nfe","ac":0,"an":1111858},{"id":"sas","ac":0,"an":86256},{"i'
+    'd":"asj","ac":0,"an":26132},{"id":"eas","ac":0,"an":39698},{"id":"afr","ac":1,"an":33478}]},"joint":{"filters":[]}},{"va'
+    'riant_id":"15-44711609-C-A","rsids":["rs572886094"],"flags":[],"genome":{"ac":1,"an":152328,"filters":[],"populations":['
+    '{"id":"amr","ac":0,"an":15304},{"id":"fin","ac":0,"an":10624},{"id":"eas","ac":0,"an":5188},{"id":"mid","ac":0,"an":294}'
+    ',{"id":"sas","ac":1,"an":4828},{"id":"asj","ac":0,"an":3470},{"id":"afr","ac":0,"an":41570},{"id":"nfe","ac":0,"an":6802'
+    '6}]},"exome":null,"joint":{"filters":[]}},{"variant_id":"15-44711611-A-G","rsids":["rs1213728428"],"flags":[],"genome":n'
+    'ull,"exome":{"ac":1,"an":1461262,"filters":[],"populations":[{"id":"amr","ac":0,"an":44722},{"id":"fin","ac":0,"an":5305'
+    '4},{"id":"mid","ac":0,"an":5766},{"id":"nfe","ac":1,"an":1111786},{"id":"sas","ac":0,"an":86256},{"id":"asj","ac":0,"an"'
+    ':26130},{"id":"eas","ac":0,"an":39698},{"id":"afr","ac":0,"an":33474}]},"joint":{"filters":[]}},{"variant_id":"15-447116'
+    '12-G-A","rsids":["rs745772508"],"flags":[],"genome":null,"exome":{"ac":7,"an":1461170,"filters":[],"populations":[{"id":'
+    '"amr","ac":0,"an":44722},{"id":"fin","ac":0,"an":52992},{"id":"mid","ac":0,"an":5764},{"id":"nfe","ac":0,"an":1111762},{'
+    '"id":"sas","ac":7,"an":86254},{"id":"asj","ac":0,"an":26130},{"id":"eas","ac":0,"an":39698},{"id":"afr","ac":0,"an":3347'
+    '2}]},"joint":{"filters":[]}}],"OI-GRNA-02_CIITA":[{"variant_id":"16-10898963-G-C","rsids":["rs1398227497"],"flags":[],"g'
+    'enome":null,"exome":{"ac":4,"an":1461886,"filters":[],"populations":[{"id":"amr","ac":0,"an":44724},{"id":"fin","ac":0,"'
+    'an":53418},{"id":"mid","ac":0,"an":5768},{"id":"nfe","ac":3,"an":1112006},{"id":"sas","ac":0,"an":86258},{"id":"asj","ac'
+    '":0,"an":26136},{"id":"eas","ac":0,"an":39700},{"id":"afr","ac":0,"an":33480}]},"joint":{"filters":[]}},{"variant_id":"1'
+    '6-10898967-T-C","rsids":["rs2038426868"],"flags":[],"genome":null,"exome":{"ac":10,"an":1461888,"filters":[],"population'
+    's":[{"id":"amr","ac":0,"an":44724},{"id":"fin","ac":0,"an":53418},{"id":"mid","ac":0,"an":5766},{"id":"nfe","ac":9,"an":'
+    '1112010},{"id":"sas","ac":0,"an":86258},{"id":"asj","ac":0,"an":26136},{"id":"eas","ac":0,"an":39700},{"id":"afr","ac":0'
+    ',"an":33480}]},"joint":{"filters":[]}},{"variant_id":"16-10898969-C-A","rsids":["rs749136255"],"flags":[],"genome":null,'
+    '"exome":{"ac":2,"an":1461876,"filters":[],"populations":[{"id":"amr","ac":0,"an":44724},{"id":"fin","ac":0,"an":53418},{'
+    '"id":"mid","ac":0,"an":5766},{"id":"nfe","ac":1,"an":1111998},{"id":"sas","ac":0,"an":86258},{"id":"asj","ac":0,"an":261'
+    '36},{"id":"eas","ac":0,"an":39700},{"id":"afr","ac":0,"an":33480}]},"joint":{"filters":[]}},{"variant_id":"16-10898970-C'
+    '-T","rsids":["rs757017931"],"flags":[],"genome":{"ac":1,"an":151972,"filters":[],"populations":[{"id":"amr","ac":0,"an":'
+    '15256},{"id":"fin","ac":0,"an":10592},{"id":"eas","ac":0,"an":5164},{"id":"mid","ac":0,"an":316},{"id":"sas","ac":0,"an"'
+    ':4818},{"id":"asj","ac":0,"an":3470},{"id":"afr","ac":0,"an":41364},{"id":"nfe","ac":1,"an":67992}]},"exome":{"ac":7,"an'
+    '":1461888,"filters":[],"populations":[{"id":"amr","ac":0,"an":44724},{"id":"fin","ac":0,"an":53418},{"id":"mid","ac":0,"'
+    'an":5768},{"id":"nfe","ac":3,"an":1112010},{"id":"sas","ac":4,"an":86258},{"id":"asj","ac":0,"an":26136},{"id":"eas","ac'
+    '":0,"an":39700},{"id":"afr","ac":0,"an":33480}]},"joint":{"filters":[]}},{"variant_id":"16-10898979-T-C","rsids":["rs142'
+    '469968"],"flags":[],"genome":{"ac":100,"an":152110,"filters":[],"populations":[{"id":"amr","ac":10,"an":15280},{"id":"fi'
+    'n","ac":0,"an":10602},{"id":"eas","ac":0,"an":5144},{"id":"mid","ac":0,"an":292},{"id":"sas","ac":0,"an":4820},{"id":"as'
+    'j","ac":0,"an":3472},{"id":"afr","ac":88,"an":41506},{"id":"nfe","ac":0,"an":67976}]},"exome":{"ac":106,"an":1461888,"fi'
+    'lters":[],"populations":[{"id":"amr","ac":5,"an":44724},{"id":"fin","ac":0,"an":53420},{"id":"mid","ac":0,"an":5768},{"i'
+    'd":"nfe","ac":2,"an":1112008},{"id":"sas","ac":4,"an":86258},{"id":"asj","ac":0,"an":26134},{"id":"eas","ac":0,"an":3970'
+    '0},{"id":"afr","ac":80,"an":33480}]},"joint":{"filters":[]}},{"variant_id":"16-10898979-T-A","rsids":["rs142469968"],"fl'
+    'ags":[],"genome":null,"exome":{"ac":1,"an":1461888,"filters":[],"populations":[{"id":"amr","ac":0,"an":44724},{"id":"fin'
+    '","ac":0,"an":53420},{"id":"mid","ac":0,"an":5768},{"id":"nfe","ac":0,"an":1112008},{"id":"sas","ac":0,"an":86258},{"id"'
+    ':"asj","ac":0,"an":26134},{"id":"eas","ac":0,"an":39700},{"id":"afr","ac":1,"an":33480}]},"joint":{"filters":[]}},{"vari'
+    'ant_id":"16-10898980-T-C","rsids":["rs745772598"],"flags":[],"genome":null,"exome":{"ac":5,"an":1461884,"filters":[],"po'
+    'pulations":[{"id":"amr","ac":0,"an":44724},{"id":"fin","ac":0,"an":53418},{"id":"mid","ac":0,"an":5766},{"id":"nfe","ac"'
+    ':0,"an":1112008},{"id":"sas","ac":5,"an":86258},{"id":"asj","ac":0,"an":26134},{"id":"eas","ac":0,"an":39700},{"id":"afr'
+    '","ac":0,"an":33480}]},"joint":{"filters":[]}},{"variant_id":"16-10898983-G-A","rsids":["rs1310154158"],"flags":[],"geno'
+    'me":{"ac":1,"an":152080,"filters":[],"populations":[{"id":"amr","ac":0,"an":15278},{"id":"fin","ac":0,"an":10608},{"id":'
+    '"eas","ac":0,"an":5166},{"id":"mid","ac":0,"an":316},{"id":"sas","ac":0,"an":4822},{"id":"asj","ac":0,"an":3472},{"id":"'
+    'afr","ac":0,"an":41398},{"id":"nfe","ac":1,"an":68018}]},"exome":{"ac":4,"an":1461868,"filters":[],"populations":[{"id":'
+    '"amr","ac":2,"an":44724},{"id":"fin","ac":0,"an":53418},{"id":"mid","ac":0,"an":5766},{"id":"nfe","ac":2,"an":1111996},{'
+    '"id":"sas","ac":0,"an":86256},{"id":"asj","ac":0,"an":26134},{"id":"eas","ac":0,"an":39700},{"id":"afr","ac":0,"an":3348'
+    '0}]},"joint":{"filters":[]}},{"variant_id":"16-10898987-A-G","rsids":["rs2038428751"],"flags":[],"genome":{"ac":1,"an":1'
+    '52138,"filters":[],"populations":[{"id":"amr","ac":0,"an":15284},{"id":"fin","ac":0,"an":10616},{"id":"eas","ac":0,"an":'
+    '5162},{"id":"mid","ac":0,"an":316},{"id":"sas","ac":0,"an":4832},{"id":"asj","ac":0,"an":3470},{"id":"afr","ac":0,"an":4'
+    '1434},{"id":"nfe","ac":1,"an":68020}]},"exome":{"ac":11,"an":1461872,"filters":[],"populations":[{"id":"amr","ac":0,"an"'
+    ':44724},{"id":"fin","ac":0,"an":53420},{"id":"mid","ac":0,"an":5768},{"id":"nfe","ac":11,"an":1111998},{"id":"sas","ac":'
+    '0,"an":86258},{"id":"asj","ac":0,"an":26134},{"id":"eas","ac":0,"an":39700},{"id":"afr","ac":0,"an":33480}]},"joint":{"f'
+    'ilters":[]}},{"variant_id":"16-10898988-A-G","rsids":["rs774999334"],"flags":[],"genome":{"ac":1,"an":152086,"filters":['
+    '],"populations":[{"id":"amr","ac":0,"an":15284},{"id":"fin","ac":0,"an":10612},{"id":"eas","ac":0,"an":5166},{"id":"mid"'
+    ',"ac":0,"an":316},{"id":"sas","ac":0,"an":4826},{"id":"asj","ac":0,"an":3472},{"id":"afr","ac":1,"an":41394},{"id":"nfe"'
+    ',"ac":0,"an":68010}]},"exome":{"ac":2,"an":1461872,"filters":[],"populations":[{"id":"amr","ac":0,"an":44724},{"id":"fin'
+    '","ac":0,"an":53420},{"id":"mid","ac":0,"an":5768},{"id":"nfe","ac":2,"an":1112002},{"id":"sas","ac":0,"an":86256},{"id"'
+    ':"asj","ac":0,"an":26132},{"id":"eas","ac":0,"an":39700},{"id":"afr","ac":0,"an":33480}]},"joint":{"filters":[]}},{"vari'
+    'ant_id":"16-10898988-A-C","rsids":["rs774999334"],"flags":[],"genome":{"ac":1,"an":152086,"filters":[],"populations":[{"'
+    'id":"amr","ac":0,"an":15284},{"id":"fin","ac":0,"an":10612},{"id":"eas","ac":0,"an":5166},{"id":"mid","ac":0,"an":316},{'
+    '"id":"sas","ac":0,"an":4826},{"id":"asj","ac":0,"an":3472},{"id":"afr","ac":0,"an":41394},{"id":"nfe","ac":1,"an":68010}'
+    ']},"exome":{"ac":30,"an":1461872,"filters":[],"populations":[{"id":"amr","ac":0,"an":44724},{"id":"fin","ac":0,"an":5342'
+    '0},{"id":"mid","ac":0,"an":5768},{"id":"nfe","ac":28,"an":1112002},{"id":"sas","ac":0,"an":86256},{"id":"asj","ac":0,"an'
+    '":26132},{"id":"eas","ac":0,"an":39700},{"id":"afr","ac":0,"an":33480}]},"joint":{"filters":[]}}],"OI-GRNA-03_CXCL10":[{'
+    '"variant_id":"4-76023451-C-A","rsids":["rs377480085"],"flags":[],"genome":null,"exome":{"ac":21,"an":1458672,"filters":['
+    '],"populations":[{"id":"amr","ac":0,"an":44724},{"id":"fin","ac":0,"an":53392},{"id":"mid","ac":0,"an":5758},{"id":"nfe"'
+    ',"ac":21,"an":1109118},{"id":"sas","ac":0,"an":86200},{"id":"asj","ac":0,"an":26102},{"id":"eas","ac":0,"an":39678},{"id'
+    '":"afr","ac":0,"an":33406}]},"joint":{"filters":[]}},{"variant_id":"4-76023451-C-T","rsids":["rs377480085"],"flags":[],"'
+    'genome":{"ac":2,"an":152132,"filters":[],"populations":[{"id":"amr","ac":0,"an":15268},{"id":"fin","ac":0,"an":10606},{"'
+    'id":"eas","ac":0,"an":5196},{"id":"mid","ac":0,"an":316},{"id":"sas","ac":0,"an":4830},{"id":"asj","ac":0,"an":3470},{"i'
+    'd":"afr","ac":2,"an":41424},{"id":"nfe","ac":0,"an":68022}]},"exome":{"ac":1,"an":1458672,"filters":[],"populations":[{"'
+    'id":"amr","ac":0,"an":44724},{"id":"fin","ac":0,"an":53392},{"id":"mid","ac":0,"an":5758},{"id":"nfe","ac":0,"an":110911'
+    '8},{"id":"sas","ac":0,"an":86200},{"id":"asj","ac":0,"an":26102},{"id":"eas","ac":0,"an":39678},{"id":"afr","ac":0,"an":'
+    '33406}]},"joint":{"filters":[]}},{"variant_id":"4-76023454-C-T","rsids":["rs1733076691"],"flags":[],"genome":null,"exome'
+    '":{"ac":7,"an":1454832,"filters":[],"populations":[{"id":"amr","ac":0,"an":44718},{"id":"fin","ac":0,"an":53382},{"id":"'
+    'mid","ac":0,"an":5750},{"id":"nfe","ac":7,"an":1105662},{"id":"sas","ac":0,"an":86120},{"id":"asj","ac":0,"an":26070},{"'
+    'id":"eas","ac":0,"an":39668},{"id":"afr","ac":0,"an":33340}]},"joint":{"filters":[]}},{"variant_id":"4-76023460-T-C","rs'
+    'ids":["rs1733076954"],"flags":[],"genome":null,"exome":{"ac":9,"an":1448930,"filters":[],"populations":[{"id":"amr","ac"'
+    ':0,"an":44712},{"id":"fin","ac":0,"an":53380},{"id":"mid","ac":0,"an":5742},{"id":"nfe","ac":9,"an":1100296},{"id":"sas"'
+    ',"ac":0,"an":86000},{"id":"asj","ac":0,"an":26040},{"id":"eas","ac":0,"an":39640},{"id":"afr","ac":0,"an":33212}]},"join'
+    't":{"filters":[]}},{"variant_id":"4-76023463-G-A","rsids":["rs767339215"],"flags":[],"genome":{"ac":1,"an":152144,"filte'
+    'rs":[],"populations":[{"id":"amr","ac":0,"an":15280},{"id":"fin","ac":0,"an":10614},{"id":"eas","ac":0,"an":5186},{"id":'
+    '"mid","ac":0,"an":316},{"id":"sas","ac":0,"an":4826},{"id":"asj","ac":0,"an":3472},{"id":"afr","ac":0,"an":41434},{"id":'
+    '"nfe","ac":1,"an":68018}]},"exome":{"ac":1,"an":1442592,"filters":[],"populations":[{"id":"amr","ac":0,"an":44694},{"id"'
+    ':"fin","ac":0,"an":53360},{"id":"mid","ac":0,"an":5724},{"id":"nfe","ac":1,"an":1094542},{"id":"sas","ac":0,"an":85838},'
+    '{"id":"asj","ac":0,"an":26000},{"id":"eas","ac":0,"an":39616},{"id":"afr","ac":0,"an":33112}]},"joint":{"filters":[]}},{'
+    '"variant_id":"4-76023466-C-T","rsids":["rs554892214"],"flags":[],"genome":{"ac":1,"an":152252,"filters":[],"populations"'
+    ':[{"id":"amr","ac":0,"an":15296},{"id":"fin","ac":0,"an":10604},{"id":"eas","ac":0,"an":5182},{"id":"mid","ac":0,"an":29'
+    '4},{"id":"sas","ac":0,"an":4824},{"id":"asj","ac":0,"an":3472},{"id":"afr","ac":1,"an":41558},{"id":"nfe","ac":0,"an":68'
+    '002}]},"exome":{"ac":1,"an":1428054,"filters":[],"populations":[{"id":"amr","ac":0,"an":44664},{"id":"fin","ac":0,"an":5'
+    '3354},{"id":"mid","ac":0,"an":5698},{"id":"nfe","ac":0,"an":1081358},{"id":"sas","ac":0,"an":85514},{"id":"asj","ac":0,"'
+    'an":25910},{"id":"eas","ac":0,"an":39548},{"id":"afr","ac":0,"an":32810}]},"joint":{"filters":[]}},{"variant_id":"4-7602'
+    '3469-A-T","rsids":["rs1733078194"],"flags":[],"genome":null,"exome":{"ac":1,"an":1424132,"filters":[],"populations":[{"i'
+    'd":"amr","ac":0,"an":44672},{"id":"fin","ac":0,"an":53340},{"id":"mid","ac":0,"an":5700},{"id":"nfe","ac":1,"an":1077852'
+    '},{"id":"sas","ac":0,"an":85444},{"id":"asj","ac":0,"an":25884},{"id":"eas","ac":0,"an":39500},{"id":"afr","ac":0,"an":3'
+    '2706}]},"joint":{"filters":[]}},{"variant_id":"4-76023470-A-G","rsids":["rs1172405793"],"flags":[],"genome":null,"exome"'
+    ':{"ac":2,"an":1421928,"filters":[],"populations":[{"id":"amr","ac":0,"an":44678},{"id":"fin","ac":0,"an":53344},{"id":"m'
+    'id","ac":0,"an":5696},{"id":"nfe","ac":2,"an":1075804},{"id":"sas","ac":0,"an":85414},{"id":"asj","ac":0,"an":25872},{"i'
+    'd":"eas","ac":0,"an":39488},{"id":"afr","ac":0,"an":32664}]},"joint":{"filters":[]}}],"OI-GRNA-04_AAVS1":[{"variant_id":'
+    '"19-55115758-T-C","rsids":["rs946359931"],"flags":[],"genome":{"ac":16,"an":152242,"filters":[],"populations":[{"id":"am'
+    'r","ac":0,"an":15294},{"id":"fin","ac":0,"an":10618},{"id":"eas","ac":0,"an":5174},{"id":"mid","ac":0,"an":294},{"id":"s'
+    'as","ac":14,"an":4824},{"id":"asj","ac":0,"an":3472},{"id":"afr","ac":1,"an":41538},{"id":"nfe","ac":1,"an":68002}]},"ex'
+    'ome":null,"joint":{"filters":[]}},{"variant_id":"19-55115768-C-T","rsids":["rs1037294362"],"flags":[],"genome":{"ac":1,"'
+    'an":152208,"filters":[],"populations":[{"id":"amr","ac":0,"an":15282},{"id":"fin","ac":0,"an":10622},{"id":"eas","ac":0,'
+    '"an":5200},{"id":"mid","ac":0,"an":316},{"id":"sas","ac":0,"an":4828},{"id":"asj","ac":0,"an":3472},{"id":"afr","ac":0,"'
+    'an":41448},{"id":"nfe","ac":1,"an":68038}]},"exome":null,"joint":{"filters":[]}},{"variant_id":"19-55115769-C-G","rsids"'
+    ':["rs920266081"],"flags":[],"genome":{"ac":1,"an":152162,"filters":[],"populations":[{"id":"amr","ac":0,"an":15280},{"id'
+    '":"fin","ac":0,"an":10614},{"id":"eas","ac":0,"an":5194},{"id":"mid","ac":0,"an":316},{"id":"sas","ac":0,"an":4822},{"id'
+    '":"asj","ac":0,"an":3472},{"id":"afr","ac":0,"an":41438},{"id":"nfe","ac":1,"an":68022}]},"exome":null,"joint":{"filters'
+    '":[]}}],"OI-GRNA-05_TYK2":[{"variant_id":"19-10352422-C-G","rsids":["rs2040856964"],"flags":[],"genome":null,"exome":{"a'
+    'c":1,"an":1422392,"filters":[],"populations":[{"id":"amr","ac":0,"an":44514},{"id":"fin","ac":0,"an":53122},{"id":"mid",'
+    '"ac":0,"an":5572},{"id":"nfe","ac":0,"an":1076676},{"id":"sas","ac":0,"an":85394},{"id":"asj","ac":0,"an":25820},{"id":"'
+    'eas","ac":0,"an":39506},{"id":"afr","ac":0,"an":32734}]},"joint":{"filters":[]}},{"variant_id":"19-10352423-C-CT","rsids'
+    '":["rs751482411"],"flags":[],"genome":{"ac":4,"an":152198,"filters":[],"populations":[{"id":"amr","ac":0,"an":15268},{"i'
+    'd":"fin","ac":2,"an":10622},{"id":"eas","ac":0,"an":5192},{"id":"mid","ac":0,"an":316},{"id":"sas","ac":0,"an":4830},{"i'
+    'd":"asj","ac":0,"an":3470},{"id":"afr","ac":0,"an":41462},{"id":"nfe","ac":2,"an":68040}]},"exome":{"ac":27,"an":1429674'
+    ',"filters":[],"populations":[{"id":"amr","ac":0,"an":44514},{"id":"fin","ac":1,"an":53138},{"id":"mid","ac":0,"an":5602}'
+    ',{"id":"nfe","ac":23,"an":1083272},{"id":"sas","ac":0,"an":85576},{"id":"asj","ac":0,"an":25888},{"id":"eas","ac":0,"an"'
+    ':39548},{"id":"afr","ac":0,"an":32868}]},"joint":{"filters":[]}},{"variant_id":"19-10352426-G-C","rsids":["rs1241130648"'
+    '],"flags":[],"genome":{"ac":1,"an":152178,"filters":[],"populations":[{"id":"amr","ac":0,"an":15266},{"id":"fin","ac":0,'
+    '"an":10618},{"id":"eas","ac":0,"an":5190},{"id":"mid","ac":0,"an":316},{"id":"sas","ac":0,"an":4826},{"id":"asj","ac":0,'
+    '"an":3472},{"id":"afr","ac":0,"an":41454},{"id":"nfe","ac":1,"an":68038}]},"exome":{"ac":1,"an":1430614,"filters":[],"po'
+    'pulations":[{"id":"amr","ac":0,"an":44422},{"id":"fin","ac":0,"an":53138},{"id":"mid","ac":0,"an":5602},{"id":"nfe","ac"'
+    ':1,"an":1084286},{"id":"sas","ac":0,"an":85522},{"id":"asj","ac":0,"an":25872},{"id":"eas","ac":0,"an":39532},{"id":"afr'
+    '","ac":0,"an":32882}]},"joint":{"filters":[]}},{"variant_id":"19-10352427-C-T","rsids":["rs772835445"],"flags":[],"genom'
+    'e":null,"exome":{"ac":1,"an":1439206,"filters":[],"populations":[{"id":"amr","ac":0,"an":44450},{"id":"fin","ac":0,"an":'
+    '53136},{"id":"mid","ac":0,"an":5626},{"id":"nfe","ac":1,"an":1092184},{"id":"sas","ac":0,"an":85648},{"id":"asj","ac":0,'
+    '"an":25922},{"id":"eas","ac":0,"an":39578},{"id":"afr","ac":0,"an":33050}]},"joint":{"filters":[]}},{"variant_id":"19-10'
+    '352427-C-A","rsids":["rs772835445"],"flags":[],"genome":{"ac":3,"an":152192,"filters":[],"populations":[{"id":"amr","ac"'
+    ':0,"an":15268},{"id":"fin","ac":0,"an":10620},{"id":"eas","ac":0,"an":5188},{"id":"mid","ac":0,"an":316},{"id":"sas","ac'
+    '":0,"an":4826},{"id":"asj","ac":0,"an":3472},{"id":"afr","ac":0,"an":41454},{"id":"nfe","ac":3,"an":68046}]},"exome":{"a'
+    'c":2,"an":1439204,"filters":[],"populations":[{"id":"amr","ac":0,"an":44450},{"id":"fin","ac":0,"an":53136},{"id":"mid",'
+    '"ac":0,"an":5626},{"id":"nfe","ac":2,"an":1092182},{"id":"sas","ac":0,"an":85648},{"id":"asj","ac":0,"an":25922},{"id":"'
+    'eas","ac":0,"an":39578},{"id":"afr","ac":0,"an":33050}]},"joint":{"filters":[]}},{"variant_id":"19-10352429-C-T","rsids"'
+    ':["rs762508451"],"flags":[],"genome":{"ac":1,"an":152162,"filters":[],"populations":[{"id":"amr","ac":0,"an":15264},{"id'
+    '":"fin","ac":0,"an":10612},{"id":"eas","ac":0,"an":5194},{"id":"mid","ac":0,"an":316},{"id":"sas","ac":0,"an":4824},{"id'
+    '":"asj","ac":0,"an":3470},{"id":"afr","ac":0,"an":41442},{"id":"nfe","ac":1,"an":68040}]},"exome":{"ac":21,"an":1447482,'
+    '"filters":[],"populations":[{"id":"amr","ac":0,"an":44458},{"id":"fin","ac":0,"an":53158},{"id":"mid","ac":0,"an":5646},'
+    '{"id":"nfe","ac":20,"an":1099708},{"id":"sas","ac":0,"an":85834},{"id":"asj","ac":0,"an":25986},{"id":"eas","ac":0,"an":'
+    '39608},{"id":"afr","ac":0,"an":33202}]},"joint":{"filters":[]}},{"variant_id":"19-10352434-C-A","rsids":["rs140324156"],'
+    '"flags":[],"genome":{"ac":1,"an":152174,"filters":[],"populations":[{"id":"amr","ac":0,"an":15260},{"id":"fin","ac":0,"a'
+    'n":10616},{"id":"eas","ac":0,"an":5190},{"id":"mid","ac":0,"an":316},{"id":"sas","ac":0,"an":4830},{"id":"asj","ac":0,"a'
+    'n":3470},{"id":"afr","ac":0,"an":41454},{"id":"nfe","ac":1,"an":68038}]},"exome":{"ac":23,"an":1453120,"filters":[],"pop'
+    'ulations":[{"id":"amr","ac":1,"an":44314},{"id":"fin","ac":0,"an":53184},{"id":"mid","ac":0,"an":5676},{"id":"nfe","ac":'
+    '21,"an":1105144},{"id":"sas","ac":0,"an":85870},{"id":"asj","ac":0,"an":25988},{"id":"eas","ac":0,"an":39612},{"id":"afr'
+    '","ac":0,"an":33264}]},"joint":{"filters":[]}},{"variant_id":"19-10352435-G-T","rsids":["rs368830574"],"flags":[],"genom'
+    'e":{"ac":1,"an":152170,"filters":[],"populations":[{"id":"amr","ac":0,"an":15270},{"id":"fin","ac":0,"an":10608},{"id":"'
+    'eas","ac":0,"an":5190},{"id":"mid","ac":0,"an":316},{"id":"sas","ac":0,"an":4826},{"id":"asj","ac":0,"an":3472},{"id":"a'
+    'fr","ac":0,"an":41442},{"id":"nfe","ac":1,"an":68042}]},"exome":{"ac":0,"an":1453110,"filters":["AC0"],"populations":[{"'
+    'id":"amr","ac":0,"an":44332},{"id":"fin","ac":0,"an":53168},{"id":"mid","ac":0,"an":5682},{"id":"nfe","ac":0,"an":110519'
+    '8},{"id":"sas","ac":0,"an":85864},{"id":"asj","ac":0,"an":25956},{"id":"eas","ac":0,"an":39594},{"id":"afr","ac":0,"an":'
+    '33250}]},"joint":{"filters":["AC0"]}},{"variant_id":"19-10352436-T-TG","rsids":["rs757101286"],"flags":[],"genome":{"ac"'
+    ':1,"an":151998,"filters":["AS_VQSR"],"populations":[{"id":"amr","ac":0,"an":15242},{"id":"fin","ac":0,"an":10586},{"id":'
+    '"eas","ac":0,"an":5186},{"id":"mid","ac":0,"an":316},{"id":"sas","ac":1,"an":4812},{"id":"asj","ac":0,"an":3468},{"id":"'
+    'afr","ac":0,"an":41374},{"id":"nfe","ac":0,"an":68020}]},"exome":{"ac":40,"an":1451356,"filters":[],"populations":[{"id"'
+    ':"amr","ac":1,"an":44344},{"id":"fin","ac":19,"an":53074},{"id":"mid","ac":0,"an":5660},{"id":"nfe","ac":12,"an":1103642'
+    '},{"id":"sas","ac":7,"an":85872},{"id":"asj","ac":0,"an":25954},{"id":"eas","ac":0,"an":39598},{"id":"afr","ac":0,"an":3'
+    '3230}]},"joint":{"filters":[]}},{"variant_id":"19-10352437-G-C","rsids":["rs373614901"],"flags":[],"genome":{"ac":22,"an'
+    '":152132,"filters":[],"populations":[{"id":"amr","ac":5,"an":15260},{"id":"fin","ac":0,"an":10608},{"id":"eas","ac":0,"a'
+    'n":5194},{"id":"mid","ac":0,"an":316},{"id":"sas","ac":0,"an":4818},{"id":"asj","ac":4,"an":3470},{"id":"afr","ac":2,"an'
+    '":41444},{"id":"nfe","ac":7,"an":68024}]},"exome":{"ac":100,"an":1450758,"filters":[],"populations":[{"id":"amr","ac":11'
+    ',"an":44268},{"id":"fin","ac":0,"an":53200},{"id":"mid","ac":0,"an":5674},{"id":"nfe","ac":36,"an":1103150},{"id":"sas",'
+    '"ac":0,"an":85784},{"id":"asj","ac":39,"an":25904},{"id":"eas","ac":0,"an":39580},{"id":"afr","ac":1,"an":33216}]},"join'
+    't":{"filters":[]}},{"variant_id":"19-10352437-G-A","rsids":["rs373614901"],"flags":[],"genome":{"ac":1,"an":152132,"filt'
+    'ers":[],"populations":[{"id":"amr","ac":0,"an":15260},{"id":"fin","ac":0,"an":10608},{"id":"eas","ac":0,"an":5194},{"id"'
+    ':"mid","ac":0,"an":316},{"id":"sas","ac":0,"an":4818},{"id":"asj","ac":0,"an":3470},{"id":"afr","ac":0,"an":41444},{"id"'
+    ':"nfe","ac":1,"an":68024}]},"exome":{"ac":2,"an":1450758,"filters":[],"populations":[{"id":"amr","ac":0,"an":44268},{"id'
+    '":"fin","ac":0,"an":53200},{"id":"mid","ac":0,"an":5674},{"id":"nfe","ac":2,"an":1103150},{"id":"sas","ac":0,"an":85784}'
+    ',{"id":"asj","ac":0,"an":25904},{"id":"eas","ac":0,"an":39580},{"id":"afr","ac":0,"an":33216}]},"joint":{"filters":[]}},'
+    '{"variant_id":"19-10352437-G-T","rsids":["rs373614901"],"flags":[],"genome":{"ac":12,"an":152132,"filters":[],"populatio'
+    'ns":[{"id":"amr","ac":0,"an":15260},{"id":"fin","ac":0,"an":10608},{"id":"eas","ac":0,"an":5194},{"id":"mid","ac":0,"an"'
+    ':316},{"id":"sas","ac":0,"an":4818},{"id":"asj","ac":0,"an":3470},{"id":"afr","ac":1,"an":41444},{"id":"nfe","ac":11,"an'
+    '":68024}]},"exome":{"ac":136,"an":1450756,"filters":[],"populations":[{"id":"amr","ac":0,"an":44268},{"id":"fin","ac":0,'
+    '"an":53200},{"id":"mid","ac":0,"an":5674},{"id":"nfe","ac":130,"an":1103148},{"id":"sas","ac":0,"an":85784},{"id":"asj",'
+    '"ac":0,"an":25904},{"id":"eas","ac":0,"an":39580},{"id":"afr","ac":2,"an":33216}]},"joint":{"filters":[]}},{"variant_id"'
+    ':"19-10352438-G-T","rsids":["rs2040858677"],"flags":[],"genome":null,"exome":{"ac":0,"an":1454552,"filters":["AC0"],"pop'
+    'ulations":[{"id":"amr","ac":0,"an":44234},{"id":"fin","ac":0,"an":53218},{"id":"mid","ac":0,"an":5682},{"id":"nfe","ac":'
+    '0,"an":1106550},{"id":"sas","ac":0,"an":85912},{"id":"asj","ac":0,"an":25968},{"id":"eas","ac":0,"an":39614},{"id":"afr"'
+    ',"ac":0,"an":33282}]},"joint":{"filters":["AC0"]}},{"variant_id":"19-10352438-G-C","rsids":["rs2040858677"],"flags":[],"'
+    'genome":null,"exome":{"ac":6,"an":1454554,"filters":[],"populations":[{"id":"amr","ac":0,"an":44234},{"id":"fin","ac":0,'
+    '"an":53218},{"id":"mid","ac":0,"an":5682},{"id":"nfe","ac":1,"an":1106552},{"id":"sas","ac":0,"an":85912},{"id":"asj","a'
+    'c":0,"an":25968},{"id":"eas","ac":5,"an":39614},{"id":"afr","ac":0,"an":33282}]},"joint":{"filters":[]}},{"variant_id":"'
+    '19-10352439-G-C","rsids":["rs764595468"],"flags":[],"genome":null,"exome":{"ac":1,"an":1455256,"filters":[],"populations'
+    '":[{"id":"amr","ac":0,"an":44212},{"id":"fin","ac":0,"an":53226},{"id":"mid","ac":0,"an":5704},{"id":"nfe","ac":1,"an":1'
+    '107258},{"id":"sas","ac":0,"an":85908},{"id":"asj","ac":0,"an":25956},{"id":"eas","ac":0,"an":39622},{"id":"afr","ac":0,'
+    '"an":33262}]},"joint":{"filters":[]}},{"variant_id":"19-10352439-G-T","rsids":["rs764595468"],"flags":[],"genome":null,"'
+    'exome":{"ac":2,"an":1455256,"filters":[],"populations":[{"id":"amr","ac":0,"an":44212},{"id":"fin","ac":0,"an":53226},{"'
+    'id":"mid","ac":0,"an":5704},{"id":"nfe","ac":0,"an":1107258},{"id":"sas","ac":0,"an":85908},{"id":"asj","ac":0,"an":2595'
+    '6},{"id":"eas","ac":2,"an":39622},{"id":"afr","ac":0,"an":33262}]},"joint":{"filters":[]}},{"variant_id":"19-10352439-G-'
+    'A","rsids":["rs764595468"],"flags":[],"genome":null,"exome":{"ac":1,"an":1455256,"filters":[],"populations":[{"id":"amr"'
+    ',"ac":0,"an":44212},{"id":"fin","ac":0,"an":53226},{"id":"mid","ac":0,"an":5704},{"id":"nfe","ac":1,"an":1107258},{"id":'
+    '"sas","ac":0,"an":85908},{"id":"asj","ac":0,"an":25956},{"id":"eas","ac":0,"an":39622},{"id":"afr","ac":0,"an":33262}]},'
+    '"joint":{"filters":[]}},{"variant_id":"19-10352441-G-A","rsids":["rs1273045901"],"flags":[],"genome":null,"exome":{"ac":'
+    '4,"an":1455788,"filters":[],"populations":[{"id":"amr","ac":0,"an":44216},{"id":"fin","ac":0,"an":53228},{"id":"mid","ac'
+    '":0,"an":5702},{"id":"nfe","ac":4,"an":1107778},{"id":"sas","ac":0,"an":85908},{"id":"asj","ac":0,"an":25960},{"id":"eas'
+    '","ac":0,"an":39596},{"id":"afr","ac":0,"an":33282}]},"joint":{"filters":[]}},{"variant_id":"19-10352442-G-C","rsids":["'
+    'rs34536443"],"flags":[],"genome":{"ac":4238,"an":152278,"filters":[],"populations":[{"id":"amr","ac":327,"an":15294},{"i'
+    'd":"fin","ac":305,"an":10612},{"id":"eas","ac":0,"an":5180},{"id":"mid","ac":9,"an":294},{"id":"sas","ac":57,"an":4816},'
+    '{"id":"asj","ac":115,"an":3468},{"id":"afr","ac":379,"an":41572},{"id":"nfe","ac":2990,"an":68018}]},"exome":{"ac":55360'
+    ',"an":1454820,"filters":[],"populations":[{"id":"amr","ac":544,"an":44110},{"id":"fin","ac":1596,"an":53222},{"id":"mid"'
+    ',"ac":112,"an":5690},{"id":"nfe","ac":49298,"an":1106976},{"id":"sas","ac":988,"an":85890},{"id":"asj","ac":792,"an":259'
+    '30},{"id":"eas","ac":1,"an":39628},{"id":"afr","ac":234,"an":33284}]},"joint":{"filters":[]}},{"variant_id":"19-10352443'
+    '-G-A","rsids":["rs894692852"],"flags":[],"genome":null,"exome":{"ac":2,"an":1455524,"filters":[],"populations":[{"id":"a'
+    'mr","ac":0,"an":44102},{"id":"fin","ac":0,"an":53210},{"id":"mid","ac":0,"an":5710},{"id":"nfe","ac":1,"an":1107682},{"i'
+    'd":"sas","ac":1,"an":85874},{"id":"asj","ac":0,"an":25926},{"id":"eas","ac":0,"an":39624},{"id":"afr","ac":0,"an":33286}'
+    ']},"joint":{"filters":[]}}]},"gnomad_v4_1_sentinel_variants":{"rs1050366":{"variant_id":"6-31271180-A-C","rsids":["rs105'
+    '0366"],"flags":[],"genome":{"ac":3517,"an":52564,"filters":[],"populations":[{"id":"amr","ac":379,"an":4896},{"id":"fin"'
+    ',"ac":90,"an":3690},{"id":"eas","ac":66,"an":1150},{"id":"mid","ac":7,"an":80},{"id":"sas","ac":74,"an":1378},{"id":"asj'
+    '","ac":46,"an":674},{"id":"afr","ac":1245,"an":10874},{"id":"nfe","ac":1551,"an":28802}]},"exome":{"ac":200449,"an":8862'
+    '18,"filters":[],"populations":[{"id":"amr","ac":10375,"an":25682},{"id":"fin","ac":5059,"an":26954},{"id":"mid","ac":761'
+    ',"an":2328},{"id":"nfe","ac":131197,"an":694792},{"id":"sas","ac":23806,"an":54738},{"id":"asj","ac":4987,"an":10904},{"'
+    'id":"eas","ac":8395,"an":17510},{"id":"afr","ac":6885,"an":17584}]},"joint":{"filters":["discrepant_frequencies"]}},"rs2'
+    '308585_G_C":{"variant_id":"6-31271206-G-C","rsids":["rs2308585"],"flags":[],"genome":{"ac":3094,"an":55864,"filters":[],'
+    '"populations":[{"id":"amr","ac":352,"an":5268},{"id":"fin","ac":31,"an":4090},{"id":"eas","ac":35,"an":1384},{"id":"mid"'
+    ',"ac":5,"an":80},{"id":"sas","ac":64,"an":1460},{"id":"asj","ac":39,"an":668},{"id":"afr","ac":1209,"an":11024},{"id":"n'
+    'fe","ac":1305,"an":30848}]},"exome":{"ac":123817,"an":917202,"filters":[],"populations":[{"id":"amr","ac":5842,"an":2608'
+    '0},{"id":"fin","ac":2173,"an":29698},{"id":"mid","ac":680,"an":2468},{"id":"nfe","ac":74103,"an":718146},{"id":"sas","ac'
+    '":19917,"an":55568},{"id":"asj","ac":4289,"an":12042},{"id":"eas","ac":5051,"an":19352},{"id":"afr","ac":5880,"an":17156'
+    '}]},"joint":{"filters":["discrepant_frequencies"]}},"rs2308585_G_T":{"variant_id":"6-31271206-G-T","rsids":["rs2308585"]'
+    ',"flags":[],"genome":{"ac":559,"an":58060,"filters":[],"populations":[{"id":"amr","ac":31,"an":5506},{"id":"fin","ac":60'
+    ',"an":4112},{"id":"eas","ac":3,"an":1478},{"id":"mid","ac":1,"an":86},{"id":"sas","ac":8,"an":1574},{"id":"asj","ac":4,"'
+    'an":762},{"id":"afr","ac":50,"an":11766},{"id":"nfe","ac":390,"an":31676}]},"exome":{"ac":36572,"an":947240,"filters":["'
+    'AS_VQSR"],"populations":[{"id":"amr","ac":851,"an":27760},{"id":"fin","ac":2573,"an":30096},{"id":"mid","ac":86,"an":260'
+    '4},{"id":"nfe","ac":29918,"an":737430},{"id":"sas","ac":751,"an":59332},{"id":"asj","ac":566,"an":12786},{"id":"eas","ac'
+    '":50,"an":20774},{"id":"afr","ac":384,"an":18280}]},"joint":{"filters":["discrepant_frequencies"]}},"rs707911":{"variant'
+    '_id":"6-31271800-A-C","rsids":["rs707911"],"flags":[],"genome":{"ac":7472,"an":58224,"filters":[],"populations":[{"id":"'
+    'amr","ac":629,"an":5142},{"id":"fin","ac":219,"an":3990},{"id":"eas","ac":298,"an":1848},{"id":"mid","ac":20,"an":112},{'
+    '"id":"sas","ac":292,"an":1742},{"id":"asj","ac":385,"an":1110},{"id":"afr","ac":2285,"an":13082},{"id":"nfe","ac":3201,"'
+    'an":30020}]},"exome":{"ac":301411,"an":985786,"filters":["AS_VQSR"],"populations":[{"id":"amr","ac":15586,"an":29668},{"'
+    'id":"fin","ac":10431,"an":32112},{"id":"mid","ac":1455,"an":3178},{"id":"nfe","ac":195759,"an":756790},{"id":"sas","ac":'
+    '30720,"an":60576},{"id":"asj","ac":10982,"an":17340},{"id":"eas","ac":13651,"an":25332},{"id":"afr","ac":10095,"an":2108'
+    '4}]},"joint":{"filters":["discrepant_frequencies"]}},"rs45609431":{"variant_id":"6-31271664-C-G","rsids":["rs45609431"],'
+    '"flags":[],"genome":{"ac":776,"an":78454,"filters":[],"populations":[{"id":"amr","ac":82,"an":6718},{"id":"fin","ac":6,"'
+    'an":5354},{"id":"eas","ac":35,"an":2364},{"id":"mid","ac":3,"an":160},{"id":"sas","ac":25,"an":2318},{"id":"asj","ac":39'
+    ',"an":2060},{"id":"afr","ac":375,"an":15746},{"id":"nfe","ac":197,"an":42122}]},"exome":{"ac":3019,"an":1266714,"filters'
+    '":["AS_VQSR"],"populations":[{"id":"amr","ac":254,"an":39408},{"id":"fin","ac":56,"an":46768},{"id":"mid","ac":11,"an":4'
+    '364},{"id":"nfe","ac":1029,"an":965316},{"id":"sas","ac":379,"an":78038},{"id":"asj","ac":132,"an":23216},{"id":"eas","a'
+    'c":739,"an":30912},{"id":"afr","ac":232,"an":26820}]},"joint":{"filters":["discrepant_frequencies"]}},"rs2308592":{"vari'
+    'ant_id":"6-31271153-A-C","rsids":["rs2308592"],"flags":[],"genome":{"ac":197,"an":55088,"filters":[],"populations":[{"id'
+    '":"amr","ac":17,"an":5180},{"id":"fin","ac":9,"an":3836},{"id":"eas","ac":13,"an":1316},{"id":"mid","ac":0,"an":94},{"id'
+    '":"sas","ac":7,"an":1570},{"id":"asj","ac":3,"an":678},{"id":"afr","ac":38,"an":11598},{"id":"nfe","ac":104,"an":29734}]'
+    '},"exome":{"ac":48545,"an":845214,"filters":["AS_VQSR"],"populations":[{"id":"amr","ac":2752,"an":25798},{"id":"fin","ac'
+    '":1470,"an":24428},{"id":"mid","ac":225,"an":2360},{"id":"nfe","ac":27739,"an":660820},{"id":"sas","ac":8564,"an":53880}'
+    ',{"id":"asj","ac":1934,"an":10496},{"id":"eas","ac":2597,"an":15616},{"id":"afr","ac":1156,"an":17650}]},"joint":{"filte'
+    'rs":["discrepant_frequencies"]}}},"alphamissense_v3_zenodo_10813168_verification":{"zenodo_v3_record_id":"10813168","zen'
+    'odo_v3_doi":"10.5281/zenodo.10813168","zenodo_v3_license_id":"cc-by-4.0","zenodo_v3_file_checksums":{"AlphaMissense_gene'
+    '_hg38.tsv.gz":{"size":253636,"checksum":"md5:529e3b51cec079272c571affde6f0376"},"AlphaMissense_isoforms_hg38.tsv.gz":{"s'
+    'ize":1177361934,"checksum":"md5:018771baa0dcc7ef79772448f8b8c354"},"AlphaMissense_isoforms_aa_substitutions.tsv.gz":{"si'
+    'ze":2461351945,"checksum":"md5:112b1921cfcdb3a1047532abe449ad59"},"AlphaMissense_hg38.tsv.gz":{"size":642961469,"checksu'
+    'm":"md5:9fd167735f16a1b87da6eb3e4c25fcb5"},"AlphaMissense_hg19.tsv.gz":{"size":622293310,"checksum":"md5:3f14fba08c60b09'
+    'a90a2ae14b7802e4c"},"AlphaMissense_gene_hg19.tsv.gz":{"size":243943,"checksum":"md5:9a52a23bac9e4c8cfcf0f66688888e5e"},"'
+    'AlphaMissense_aa_substitutions.tsv.gz":{"size":1207278510,"checksum":"md5:b9ccb339e0de6cb0a8d1973ad2026576"}},"zenodo_v3'
+    '_p29597_bgzf_direct_verification":{"file_key":"AlphaMissense_aa_substitutions.tsv.gz","file_size_bytes":1207278510,"file'
+    '_zenodo_checksum":"md5:b9ccb339e0de6cb0a8d1973ad2026576","bgzf_range_bytes_inclusive":[279144564,279285119],"bgzf_range_'
+    'length_bytes":140556,"bgzf_range_sha256":"b67adc094983f7a4a628b9711c697db49df6314806d7dd7d3f9a55b41a273620","bgzf_block_'
+    'count":11,"bgzf_blocks":[{"byte_start":279144564,"byte_end_inclusive":279157646,"bsize":13083,"bgzf_block_sha256":"0976d'
+    '42686d3caf202a710b75b9e5db9d95c2356d4c29c62bf31a702d099d63f"},{"byte_start":279157647,"byte_end_inclusive":279170829,"bs'
+    'ize":13183,"bgzf_block_sha256":"5be29c6085968f6f44ce315b0de3bf44e8ae036c2bb44bfbf16a628cd857b8ec"},{"byte_start":2791708'
+    '30,"byte_end_inclusive":279183875,"bsize":13046,"bgzf_block_sha256":"ae7a0aa17e93a874b0dfa7383cd32088d71b65b5211dda15500'
+    'c94eadc3f0e6b"},{"byte_start":279183876,"byte_end_inclusive":279196722,"bsize":12847,"bgzf_block_sha256":"bf517cca4dbe7d'
+    'd57322ba88fa735eeb8336210f912522b93c19d61a21b4943b"},{"byte_start":279196723,"byte_end_inclusive":279209671,"bsize":1294'
+    '9,"bgzf_block_sha256":"f55ae2a83d2880f6531589cc2c68d6caf054909c20afd0ee22b8b45914e9f59e"},{"byte_start":279209672,"byte_'
+    'end_inclusive":279222595,"bsize":12924,"bgzf_block_sha256":"38574e40be2a0db8d6df31138250f8507893979ada9f4270eb51526e62c7'
+    '3156"},{"byte_start":279222596,"byte_end_inclusive":279235358,"bsize":12763,"bgzf_block_sha256":"1087b92a87559211eb8f475'
+    '01c6c20c1c1e323c95b1a28a925df14e08a1722dc"},{"byte_start":279235359,"byte_end_inclusive":279248347,"bsize":12989,"bgzf_b'
+    'lock_sha256":"e840d2d08a1f9c7f5b994a0909b89240e7560a4bf063e6e9f6ae35c0a813335f"},{"byte_start":279248348,"byte_end_inclu'
+    'sive":279260802,"bsize":12455,"bgzf_block_sha256":"8609bd0b5e30a9f1f99e8e6427a887765a87e6987297d4b6e100b926130c8b98"},{"'
+    'byte_start":279260803,"byte_end_inclusive":279272411,"bsize":11609,"bgzf_block_sha256":"5fa7255115ea04adb05069150b4501d2'
+    'afdf96359e387b3058c056aef373d284"},{"byte_start":279272412,"byte_end_inclusive":279285119,"bsize":12708,"bgzf_block_sha2'
+    '56":"e8c860f72f1b86a9970d366134c31916675dd093a4bce8be1fa69edbc35391d3"}],"total_p29597_rows_verified":22553,"printed_7_t'
+    'yk2_c_to_g_substitutions_direct_zenodo_tsv":{"S1103R":{"am_pathogenicity":0.9745,"am_class_zenodo_tsv":"pathogenic"},"P1'
+    '104A":{"am_pathogenicity":0.8292,"am_class_zenodo_tsv":"pathogenic"},"P1104R":{"am_pathogenicity":0.988,"am_class_zenodo'
+    '_tsv":"pathogenic"},"P1104G":{"am_pathogenicity":0.9926,"am_class_zenodo_tsv":"pathogenic"},"P1105A":{"am_pathogenicity"'
+    ':0.2464,"am_class_zenodo_tsv":"benign"},"P1105R":{"am_pathogenicity":0.5841,"am_class_zenodo_tsv":"pathogenic"},"P1105G"'
+    ':{"am_pathogenicity":0.7682,"am_class_zenodo_tsv":"pathogenic"}}},"ensembl_vep_hg38_v3_tyk2_verification":{"S1103R":{"gr'
+    'ch38_input":"19 10352443 . G C . . .","transcript_id":"ENST00000525621","am_pathogenicity":0.9745,"am_class":"likely_pat'
+    'hogenic"},"P1104A":{"grch38_input":"19 10352442 . G C . . .","transcript_id":"ENST00000525621","am_pathogenicity":0.8292'
+    ',"am_class":"likely_pathogenic"},"P1104R":{"grch38_input":"19 10352441 . G C . . .","transcript_id":"ENST00000525621","a'
+    'm_pathogenicity":0.988,"am_class":"likely_pathogenic"},"P1105A":{"grch38_input":"19 10352439 . G C . . .","transcript_id'
+    '":"ENST00000525621","am_pathogenicity":0.2464,"am_class":"likely_benign"},"P1105R":{"grch38_input":"19 10352438 . G C . '
+    '. .","transcript_id":"ENST00000525621","am_pathogenicity":0.5841,"am_class":"likely_pathogenic"}}},"alphamissense_tyk2_s'
+    'ubstitutions":{"uniprot_accession":"P29597","retrieval_url":"https://alphafold.ebi.ac.uk/files/AF-P29597-F1-aa-substitut'
+    'ions.csv","license":"CC-BY-4.0 (Cheng et al. 2023 PMID:37733863; Zenodo v3 10813168 & AlphaFold DB)","csv_bytes":433261,'
+    '"csv_sha256":"9e37dbb487094ebbc86ad25247c2e4303c893674c1630cd581f598fea48a5507","substitutions":{"S1100C":{"am_pathogeni'
+    'city":0.0803,"am_class":"LBen"},"S1100F":{"am_pathogenicity":0.1668,"am_class":"LBen"},"S1101R":{"am_pathogenicity":0.11'
+    '15,"am_class":"LBen"},"Q1102E":{"am_pathogenicity":0.107,"am_class":"LBen"},"Q1102R":{"am_pathogenicity":0.0828,"am_clas'
+    's":"LBen"},"S1103C":{"am_pathogenicity":0.235,"am_class":"LBen"},"S1103G":{"am_pathogenicity":0.3462,"am_class":"Amb"},"'
+    'S1103N":{"am_pathogenicity":0.5278,"am_class":"Amb"},"S1103R":{"am_pathogenicity":0.9745,"am_class":"LPath"},"P1104A":{"'
+    'am_pathogenicity":0.8292,"am_class":"LPath"},"P1104F":{"am_pathogenicity":0.9978,"am_class":"LPath"},"P1104G":{"am_patho'
+    'genicity":0.9926,"am_class":"LPath"},"P1104L":{"am_pathogenicity":0.9027,"am_class":"LPath"},"P1104R":{"am_pathogenicity'
+    '":0.988,"am_class":"LPath"},"P1104S":{"am_pathogenicity":0.9672,"am_class":"LPath"},"P1104T":{"am_pathogenicity":0.9509,'
+    '"am_class":"LPath"},"P1104V":{"am_pathogenicity":0.9076,"am_class":"LPath"},"P1105A":{"am_pathogenicity":0.2464,"am_clas'
+    's":"LBen"},"P1105G":{"am_pathogenicity":0.7682,"am_class":"LPath"},"P1105L":{"am_pathogenicity":0.4039,"am_class":"Amb"}'
+    ',"P1105R":{"am_pathogenicity":0.5841,"am_class":"LPath"},"P1105S":{"am_pathogenicity":0.4612,"am_class":"Amb"},"T1106A":'
+    '{"am_pathogenicity":0.0528,"am_class":"LBen"},"T1106M":{"am_pathogenicity":0.0734,"am_class":"LBen"},"T1106R":{"am_patho'
+    'genicity":0.1012,"am_class":"LBen"}},"zenodo_v3_canonical_doi":"10.5281/zenodo.10813168","zenodo_v3_record_url":"https:/'
+    '/zenodo.org/records/10813168"},"grch38_nominated_offtarget_and_target_slices":{"OI_GRNA_03_AFM_cis_chr4":{"chrom":"chr4"'
+    ',"start_1based":73495430,"end_1based":73495470,"dna":"GCGGTAGGTTCCATTGTTGTAGGTTCAGAAAATCAAAAAAG"},"OI_GRNA_03_TANK_chr2"'
+    ':{"chrom":"chr2","start_1based":162402505,"end_1based":162402545,"dna":"CCTCCCTGAAGCCCACTGCTGTGGTCTCTGAATAATTCTAA"},"OI_'
+    'GRNA_04_ZNF710_Ex5_chr15":{"chrom":"chr15","start_1based":90080105,"end_1based":90080150,"dna":"GGAGTGGGAGAAGTGGGGCCACTG'
+    'GGGACAGGTCACAAGGGCACCG"},"OI_GRNA_04_chrX":{"chrom":"chrX","start_1based":56487070,"end_1based":56487115,"dna":"AGGTTCTG'
+    'CTCCAGTCTCTAGTTGCCTCAGTGTTTTACGTACCTGA"},"OI_GRNA_05_chr12":{"chrom":"chr12","start_1based":120937745,"end_1based":12093'
+    '7790,"dna":"TCCAGTGCACACCCTCCCCATGGTGTGGGTCAGGCCAAGAATAGAC"},"OI_GRNA_05_GRIK5_cis_chr19":{"chrom":"chr19","start_1based'
+    '":42053520,"end_1based":42053565,"dna":"ATGCATCCCTCCACCTCACGGTGGGAGCTAGGACTGGGCTCAGGGC"},"CBE08_TET1_Ex4_bulge_chr10":{"'
+    'chrom":"chr10","start_1based":68646800,"end_1based":68646845,"dna":"TGTAGTGTGTTCAGGTGGAATTACAGTGGTTTCTACCAAAAGTGAA"},"DY'
+    '_TAD01_chr20_OT":{"chrom":"chr20","start_1based":5347960,"end_1based":5348005,"dna":"CCCGACAAACCTGCCAGGTTTTTCTGGTCATAACA'
+    'ATTTTGTTTTG"},"DY_TAD03_chr7_OT":{"chrom":"chr7","start_1based":16576720,"end_1based":16576765,"dna":"TAAAATACCAACAAGCTT'
+    'TTAAAATGTCCATTAGTGGTCCAAAAGT"},"CBE01_chr3_OT":{"chrom":"chr3","start_1based":129749255,"end_1based":129749300,"dna":"CT'
+    'CAGATACCAATTACGAATCATTTAAACTCTGATATCATATAAAA"},"CBE04_chr4_OT":{"chrom":"chr4","start_1based":111138435,"end_1based":111'
+    '138480,"dna":"CTCCGTGGTCCAGCATCGGGTAGTTTGTTCTGGTTTTTCTTTTTGC"},"B2M_Ex1_TwinPE_chr15":{"chrom":"chr15","start_1based":44'
+    '711470,"end_1based":44711670,"dna":"TGGCTGGGCACGCGTTTAATATAAGTGGAGGCGTCGCGCTGGCGGGCATTCCTGAAGCTGACAGCATTCGGGCCGAGATGTCTC'
+    'GCTCCGTGGCCTTAGCTGTGCTCGCGCTACTCTCTCTTTCTGGCCTGGAGGCTATCCAGCGTGAGTCTCTCCTACCCTCCCGCTCTGGTCCTTCCTCTCCCGCTCTGCACCCTCTGT"},'
+    '"TYK2_Ex23_PE_chr19":{"chrom":"chr19","start_1based":10352400,"end_1based":10352475,"dna":"AAACTCCCGGTGGGGCTGCGGGCCTGGCT'
+    'CTCACCGTGGGGGGGCTCTGGCTGGAGTCACAGTGCGTCAGCAGCTC"},"CIITA_Ex10_DY_TAD03_chr16":{"chrom":"chr16","start_1based":10904780,"'
+    'end_1based":10904830,"dna":"GAGAGGTCTCCAACAAGCTTCCAAAATGGCCTGGTGAGTGATGCGGGATCT"}},"locus_wt_cfd_precomputed_summaries":'
+    '{"attribution_and_rights_scope":"Precomputed locus-specific WT-SpCas9 CFD summary scalars attributed to Doench et al. 20'
+    '16 (Nat Biotechnol 34:184-191, PMID:26780180). Zero entries of the 240-cell mismatch matrix or 16-cell PAM weight table '
+    'are bundled in this file or any staged export (Rule C3 quarantine).","quarantined_table_entries_bundled":0,"r2_b2m_twinp'
+    'e_local_200bp_window":{"twinpe_79bp_F":7.5e-05,"twinpe_79bp_R":0.009056,"twinpe_109bp_direct_attp":[0.002522,0.009056],"'
+    'twinpe_109bp_utr25":[0.002522,0.009056]},"r3_hla_ab_exon23_and_17record_summaries":{"hla_a_exon23_all_nnn_audit":{"total'
+    '_exon23_ngg_guides":114,"ref_clean_lt005_ngg_only_count":21,"ref_clean_lt005_all_nnn_pam_count":17,"dropped_non_ngg_pam_'
+    'false_clean_guides":[{"spacer":"CGTGTCGTCCACGTAGCCCA","ref_ngg_cfd":0.001693,"ref_all_nnn_cfd":0.038961},{"spacer":"GCGC'
+    'CCGCGGCTCCATCCTC","ref_ngg_cfd":0.015543,"ref_all_nnn_cfd":0.015543},{"spacer":"CTGGTTGTAGTAGCCGCGCA","ref_ngg_cfd":0.00'
+    '4424,"ref_all_nnn_cfd":0.016129},{"spacer":"GAAGGAGACGCTGCAGCGCA","ref_ngg_cfd":0.00414,"ref_all_nnn_cfd":0.198257}],"ex'
+    'on23_window_lt005_across_17_sampled_records_count":11,"exon23_window_lt005_candidate_spacers":["CGGCTCCATCCTCTGGCTCG","C'
+    'ACTCGGTCAGTCTGTGACT","CCAGTCACAGACTGACCGAG","ACAGACTGACCGAGTGGACC","AGTAGCCGCGCAGGGTCCCC","CACACCATCCAGATAATGTA","GTATGG'
+    'CTGCGACGTGGGGT","GGCGCTTCCTCCGCGGGTAC","CTTCCTCCGCGGGTACCGGC","AGGCGTCCTGCCGGTACCCG","TGCCGTCGTAGGCGTCCTGC"],"ref_clean_'
+    'all_nnn_per_record_matrix":[{"spacer":"GAGCCCCGCTTCATCGCCGT","pam":"GGG","exon":"Exon2","grch38_pos1":29942810,"strand":'
+    '"+","grch38_ref_hlac_all_nnn_cfd":0.002602,"grch38_ref_hlae_all_nnn_cfd":0.005825,"max_exon23_window_cfd_across_17_recor'
+    'ds":0.538462,"records_with_exon23_window_cfd_ge_005":{"PP273452.1 (HLA-C*02:02)":0.538462,"QB230404.1 (HLA-C*03)":0.5384'
+    '62,"PP273453.1 (HLA-C*03:04)":0.538462,"MK953667.1 (HLA-C*04:01)":0.538462,"MN515311.1 (HLA-C*05:01)":0.538462,"KU257977'
+    '.1 (HLA-C*08:01)":0.538462,"PZ629022.1 (HLA-C*08:02)":0.538462,"KY906102.1 (HLA-C*12:02)":0.538462,"PQ845335.1 (HLA-C*12'
+    ':03)":0.538462,"MN515310.1 (HLA-C*14:02)":0.538462,"MZ466365.1 (HLA-C*15:02)":0.538462,"MK953663.1 (HLA-C*16:01)":0.5384'
+    '62,"OP689694.1 (HLA-C*17)":0.538462},"passes_exon23_window_lt_005_across_17_sampled_records":false},{"spacer":"CGGCTCCAT'
+    'CCTCTGGCTCG","pam":"CGG","exon":"Exon2","grch38_pos1":29942874,"strand":"-","grch38_ref_hlac_all_nnn_cfd":0.009275,"grch'
+    '38_ref_hlae_all_nnn_cfd":0.006492,"max_exon23_window_cfd_across_17_records":0.009275,"records_with_exon23_window_cfd_ge_'
+    '005":{},"passes_exon23_window_lt_005_across_17_sampled_records":true},{"spacer":"CACTCGGTCAGTCTGTGACT","pam":"GGG","exon'
+    '":"Exon2","grch38_pos1":29942961,"strand":"-","grch38_ref_hlac_all_nnn_cfd":0.007589,"grch38_ref_hlae_all_nnn_cfd":0.007'
+    '589,"max_exon23_window_cfd_across_17_records":0.01366,"records_with_exon23_window_cfd_ge_005":{},"passes_exon23_window_l'
+    't_005_across_17_sampled_records":true},{"spacer":"CCAGTCACAGACTGACCGAG","pam":"TGG","exon":"Exon2","grch38_pos1":2994296'
+    '2,"strand":"+","grch38_ref_hlac_all_nnn_cfd":0.028889,"grch38_ref_hlae_all_nnn_cfd":0.006082,"max_exon23_window_cfd_acro'
+    'ss_17_records":0.044444,"records_with_exon23_window_cfd_ge_005":{},"passes_exon23_window_lt_005_across_17_sampled_record'
+    's":true},{"spacer":"ACAGACTGACCGAGTGGACC","pam":"TGG","exon":"Exon2","grch38_pos1":29942968,"strand":"+","grch38_ref_hla'
+    'c_all_nnn_cfd":0.005973,"grch38_ref_hlae_all_nnn_cfd":0.003333,"max_exon23_window_cfd_across_17_records":0.020741,"recor'
+    'ds_with_exon23_window_cfd_ge_005":{},"passes_exon23_window_lt_005_across_17_sampled_records":true},{"spacer":"CAGACTGACC'
+    'GAGTGGACCT","pam":"GGG","exon":"Exon2","grch38_pos1":29942969,"strand":"+","grch38_ref_hlac_all_nnn_cfd":0.011817,"grch3'
+    '8_ref_hlae_all_nnn_cfd":0.010734,"max_exon23_window_cfd_across_17_records":0.107143,"records_with_exon23_window_cfd_ge_0'
+    '05":{"PP273452.1 (HLA-C*02:02)":0.107143,"MK953667.1 (HLA-C*04:01)":0.066964,"MN515311.1 (HLA-C*05:01)":0.107143,"OQ0871'
+    '28.1 (HLA-C*06:02)":0.066964,"MZ466365.1 (HLA-C*15:02)":0.107143,"OP689694.1 (HLA-C*17)":0.066964},"passes_exon23_window'
+    '_lt_005_across_17_sampled_records":false},{"spacer":"AGTAGCCGCGCAGGGTCCCC","pam":"AGG","exon":"Exon2","grch38_pos1":2994'
+    '2986,"strand":"-","grch38_ref_hlac_all_nnn_cfd":0.017857,"grch38_ref_hlae_all_nnn_cfd":0.003925,"max_exon23_window_cfd_a'
+    'cross_17_records":0.019448,"records_with_exon23_window_cfd_ge_005":{},"passes_exon23_window_lt_005_across_17_sampled_rec'
+    'ords":true},{"spacer":"CACACCATCCAGATAATGTA","pam":"TGG","exon":"Exon3","grch38_pos1":29943273,"strand":"+","grch38_ref_'
+    'hlac_all_nnn_cfd":0.004391,"grch38_ref_hlae_all_nnn_cfd":0.004302,"max_exon23_window_cfd_across_17_records":0.006368,"re'
+    'cords_with_exon23_window_cfd_ge_005":{},"passes_exon23_window_lt_005_across_17_sampled_records":true},{"spacer":"GTATGGC'
+    'TGCGACGTGGGGT","pam":"CGG","exon":"Exon3","grch38_pos1":29943290,"strand":"+","grch38_ref_hlac_all_nnn_cfd":0.008302,"gr'
+    'ch38_ref_hlae_all_nnn_cfd":0.008801,"max_exon23_window_cfd_across_17_records":0.027502,"records_with_exon23_window_cfd_g'
+    'e_005":{},"passes_exon23_window_lt_005_across_17_sampled_records":true},{"spacer":"GCTGCGACGTGGGGTCGGAC","pam":"GGG","ex'
+    'on":"Exon3","grch38_pos1":29943295,"strand":"+","grch38_ref_hlac_all_nnn_cfd":0.034554,"grch38_ref_hlae_all_nnn_cfd":0.0'
+    '22213,"max_exon23_window_cfd_across_17_records":0.146853,"records_with_exon23_window_cfd_ge_005":{"QB230404.1 (HLA-C*03)'
+    '":0.064171,"PP273453.1 (HLA-C*03:04)":0.064171,"MK953667.1 (HLA-C*04:01)":0.146853},"passes_exon23_window_lt_005_across_'
+    '17_sampled_records":false},{"spacer":"GGCGCTTCCTCCGCGGGTAC","pam":"CGG","exon":"Exon3","grch38_pos1":29943316,"strand":"'
+    '+","grch38_ref_hlac_all_nnn_cfd":0.00586,"grch38_ref_hlae_all_nnn_cfd":0.004057,"max_exon23_window_cfd_across_17_records'
+    '":0.010685,"records_with_exon23_window_cfd_ge_005":{},"passes_exon23_window_lt_005_across_17_sampled_records":true},{"sp'
+    'acer":"CTTCCTCCGCGGGTACCGGC","pam":"AGG","exon":"Exon3","grch38_pos1":29943320,"strand":"+","grch38_ref_hlac_all_nnn_cfd'
+    '":0.005602,"grch38_ref_hlae_all_nnn_cfd":0.003655,"max_exon23_window_cfd_across_17_records":0.007743,"records_with_exon2'
+    '3_window_cfd_ge_005":{},"passes_exon23_window_lt_005_across_17_sampled_records":true},{"spacer":"AGGCGTCCTGCCGGTACCCG","'
+    'pam":"CGG","exon":"Exon3","grch38_pos1":29943326,"strand":"-","grch38_ref_hlac_all_nnn_cfd":0.04907,"grch38_ref_hlae_all'
+    '_nnn_cfd":0.034008,"max_exon23_window_cfd_across_17_records":0.04907,"records_with_exon23_window_cfd_ge_005":{},"passes_'
+    'exon23_window_lt_005_across_17_sampled_records":true},{"spacer":"TGCCGTCGTAGGCGTCCTGC","pam":"CGG","exon":"Exon3","grch3'
+    '8_pos1":29943335,"strand":"-","grch38_ref_hlac_all_nnn_cfd":0.010973,"grch38_ref_hlae_all_nnn_cfd":0.01685,"max_exon23_w'
+    'indow_cfd_across_17_records":0.010973,"records_with_exon23_window_cfd_ge_005":{},"passes_exon23_window_lt_005_across_17_'
+    'sampled_records":true},{"spacer":"CTCTTGGACCGCGGCGGACA","pam":"TGG","exon":"Exon3","grch38_pos1":29943389,"strand":"+","'
+    'grch38_ref_hlac_all_nnn_cfd":0.029191,"grch38_ref_hlae_all_nnn_cfd":0.043137,"max_exon23_window_cfd_across_17_records":0'
+    '.647059,"records_with_exon23_window_cfd_ge_005":{"PP273452.1 (HLA-C*02:02)":0.070634,"QB230404.1 (HLA-C*03)":0.272446,"P'
+    'P273453.1 (HLA-C*03:04)":0.272446,"MK953667.1 (HLA-C*04:01)":0.272446,"MN515311.1 (HLA-C*05:01)":0.272446,"OQ087128.1 (H'
+    'LA-C*06:02)":0.272446,"KU257977.1 (HLA-C*08:01)":0.272446,"PZ629022.1 (HLA-C*08:02)":0.272446,"KY906102.1 (HLA-C*12:02)"'
+    ':0.194118,"PQ845335.1 (HLA-C*12:03)":0.25642,"MN515310.1 (HLA-C*14:02)":0.272446,"MZ466365.1 (HLA-C*15:02)":0.272446,"OP'
+    '689694.1 (HLA-C*17)":0.647059},"passes_exon23_window_lt_005_across_17_sampled_records":false},{"spacer":"CTCAGATCACCAAGC'
+    'GCAAG","pam":"TGG","exon":"Exon3","grch38_pos1":29943415,"strand":"+","grch38_ref_hlac_all_nnn_cfd":0.010253,"grch38_ref'
+    '_hlae_all_nnn_cfd":0.001176,"max_exon23_window_cfd_across_17_records":0.263158,"records_with_exon23_window_cfd_ge_005":{'
+    '"MN815924.1 (HLA-C*01:02)":0.263158,"PP273452.1 (HLA-C*02:02)":0.263158,"QB230404.1 (HLA-C*03)":0.263158,"PP273453.1 (HL'
+    'A-C*03:04)":0.263158,"MK953667.1 (HLA-C*04:01)":0.263158,"MN515311.1 (HLA-C*05:01)":0.263158,"OQ087128.1 (HLA-C*06:02)":'
+    '0.263158,"KU257977.1 (HLA-C*08:01)":0.263158,"PZ629022.1 (HLA-C*08:02)":0.263158,"KY906102.1 (HLA-C*12:02)":0.230263,"PQ'
+    '845335.1 (HLA-C*12:03)":0.263158,"MN515310.1 (HLA-C*14:02)":0.263158,"MZ466365.1 (HLA-C*15:02)":0.263158,"MK953663.1 (HL'
+    'A-C*16:01)":0.263158},"passes_exon23_window_lt_005_across_17_sampled_records":false},{"spacer":"TCTCAACTGCTCCGCCTCAT","p'
+    'am":"GGG","exon":"Exon3","grch38_pos1":29943445,"strand":"-","grch38_ref_hlac_all_nnn_cfd":0.007639,"grch38_ref_hlae_all'
+    '_nnn_cfd":0.02157,"max_exon23_window_cfd_across_17_records":0.064935,"records_with_exon23_window_cfd_ge_005":{"QB230404.'
+    '1 (HLA-C*03)":0.064935,"PP273453.1 (HLA-C*03:04)":0.064935,"MZ466365.1 (HLA-C*15:02)":0.064935,"OP689694.1 (HLA-C*17)":0'
+    '.064935},"passes_exon23_window_lt_005_across_17_sampled_records":false}]},"hla_b_exon23_all_nnn_audit":{"total_exon23_ng'
+    'g_guides":115,"ref_clean_lt005_ngg_only_count":11,"ref_clean_lt005_all_nnn_pam_count":10,"dropped_non_ngg_pam_false_clea'
+    'n_guides":[{"spacer":"CTCCTGGACCGCCGCGGACA","ref_ngg_cfd":0.006523,"ref_all_nnn_cfd":0.107143}],"exon23_window_lt005_acr'
+    'oss_17_sampled_records_count":6,"exon23_window_lt005_candidate_spacers":["CTCTCGGTCAGTCTGTGCCT","CACACAGATCTACAAGGCCC","'
+    'CCTTGTAGATCTGTGTGTTC","CCGGAACACACAGATCTACA","CGCTGTCGAACCTCACGAAC","GGAGAACGGGAAGGACAAGC"],"ref_clean_all_nnn_per_recor'
+    'd_matrix":[{"spacer":"CTCTCGGTCAGTCTGTGCCT","pam":"GGG","exon":"Exon2","grch38_pos1":31356731,"strand":"+","grch38_ref_h'
+    'lac_all_nnn_cfd":0.017814,"grch38_ref_hlae_all_nnn_cfd":0.009385,"max_exon23_window_cfd_across_17_records":0.018803,"rec'
+    'ords_with_exon23_window_cfd_ge_005":{},"passes_exon23_window_lt_005_across_17_sampled_records":true},{"spacer":"CACACAGA'
+    'TCTACAAGGCCC","pam":"AGG","exon":"Exon2","grch38_pos1":31356748,"strand":"-","grch38_ref_hlac_all_nnn_cfd":0.010344,"grc'
+    'h38_ref_hlae_all_nnn_cfd":0.006917,"max_exon23_window_cfd_across_17_records":0.026598,"records_with_exon23_window_cfd_ge'
+    '_005":{},"passes_exon23_window_lt_005_across_17_sampled_records":true},{"spacer":"CCTTGTAGATCTGTGTGTTC","pam":"CGG","exo'
+    'n":"Exon2","grch38_pos1":31356754,"strand":"+","grch38_ref_hlac_all_nnn_cfd":0.021882,"grch38_ref_hlae_all_nnn_cfd":0.00'
+    '3765,"max_exon23_window_cfd_across_17_records":0.035559,"records_with_exon23_window_cfd_ge_005":{},"passes_exon23_window'
+    '_lt_005_across_17_sampled_records":true},{"spacer":"CCGGAACACACAGATCTACA","pam":"AGG","exon":"Exon2","grch38_pos1":31356'
+    '754,"strand":"-","grch38_ref_hlac_all_nnn_cfd":0.00288,"grch38_ref_hlae_all_nnn_cfd":0.017752,"max_exon23_window_cfd_acr'
+    'oss_17_records":0.004359,"records_with_exon23_window_cfd_ge_005":{},"passes_exon23_window_lt_005_across_17_sampled_recor'
+    'ds":true},{"spacer":"CGCTGTCGAACCTCACGAAC","pam":"TGG","exon":"Exon2","grch38_pos1":31356844,"strand":"+","grch38_ref_hl'
+    'ac_all_nnn_cfd":0.005797,"grch38_ref_hlae_all_nnn_cfd":0.044837,"max_exon23_window_cfd_across_17_records":0.013051,"reco'
+    'rds_with_exon23_window_cfd_ge_005":{},"passes_exon23_window_lt_005_across_17_sampled_records":true},{"spacer":"GGAGAACGG'
+    'GAAGGACAAGC","pam":"TGG","exon":"Exon3","grch38_pos1":31356176,"strand":"-","grch38_ref_hlac_all_nnn_cfd":0.00356,"grch3'
+    '8_ref_hlae_all_nnn_cfd":0.00215,"max_exon23_window_cfd_across_17_records":0.004985,"records_with_exon23_window_cfd_ge_00'
+    '5":{},"passes_exon23_window_lt_005_across_17_sampled_records":true},{"spacer":"CGGCCCGTGAGGCGGAGCAG","pam":"CGG","exon":'
+    '"Exon3","grch38_pos1":31356246,"strand":"-","grch38_ref_hlac_all_nnn_cfd":0.014852,"grch38_ref_hlae_all_nnn_cfd":0.04513'
+    '9,"max_exon23_window_cfd_across_17_records":1.0,"records_with_exon23_window_cfd_ge_005":{"MN815924.1 (HLA-C*01:02)":1.0,'
+    '"PP273452.1 (HLA-C*02:02)":1.0,"MK953667.1 (HLA-C*04:01)":1.0,"MN515311.1 (HLA-C*05:01)":1.0,"OQ087128.1 (HLA-C*06:02)":'
+    '1.0,"PZ629022.1 (HLA-C*08:02)":1.0,"KY906102.1 (HLA-C*12:02)":1.0,"PQ845335.1 (HLA-C*12:03)":1.0,"MN515310.1 (HLA-C*14:0'
+    '2)":1.0,"MK953663.1 (HLA-C*16:01)":0.08642},"passes_exon23_window_lt_005_across_17_sampled_records":false},{"spacer":"CT'
+    'CAGATCACCCAGCGCAAG","pam":"TGG","exon":"Exon3","grch38_pos1":31356273,"strand":"-","grch38_ref_hlac_all_nnn_cfd":0.03896'
+    '1,"grch38_ref_hlae_all_nnn_cfd":0.00161,"max_exon23_window_cfd_across_17_records":1.0,"records_with_exon23_window_cfd_ge'
+    '_005":{"MN815924.1 (HLA-C*01:02)":1.0,"PP273452.1 (HLA-C*02:02)":1.0,"QB230404.1 (HLA-C*03)":1.0,"PP273453.1 (HLA-C*03:0'
+    '4)":1.0,"MK953667.1 (HLA-C*04:01)":1.0,"MN515311.1 (HLA-C*05:01)":1.0,"OQ087128.1 (HLA-C*06:02)":1.0,"KU257977.1 (HLA-C*'
+    '08:01)":1.0,"PZ629022.1 (HLA-C*08:02)":1.0,"KY906102.1 (HLA-C*12:02)":0.875,"PQ845335.1 (HLA-C*12:03)":1.0,"MN515310.1 ('
+    'HLA-C*14:02)":1.0,"MZ466365.1 (HLA-C*15:02)":1.0,"MK953663.1 (HLA-C*16:01)":1.0},"passes_exon23_window_lt_005_across_17_'
+    'sampled_records":false},{"spacer":"GTACGGCTGCGACGTGGGGC","pam":"CGG","exon":"Exon3","grch38_pos1":31356398,"strand":"-",'
+    '"grch38_ref_hlac_all_nnn_cfd":0.015743,"grch38_ref_hlae_all_nnn_cfd":0.01209,"max_exon23_window_cfd_across_17_records":0'
+    '.242017,"records_with_exon23_window_cfd_ge_005":{"QB230404.1 (HLA-C*03)":0.085714,"PP273453.1 (HLA-C*03:04)":0.085714,"M'
+    'K953667.1 (HLA-C*04:01)":0.242017},"passes_exon23_window_lt_005_across_17_sampled_records":false},{"spacer":"CACACCCTCCA'
+    'GAGCATGTA","pam":"CGG","exon":"Exon3","grch38_pos1":31356415,"strand":"-","grch38_ref_hlac_all_nnn_cfd":0.011364,"grch38'
+    '_ref_hlae_all_nnn_cfd":0.002562,"max_exon23_window_cfd_across_17_records":0.05,"records_with_exon23_window_cfd_ge_005":{'
+    '"PP273452.1 (HLA-C*02:02)":0.05,"MN515311.1 (HLA-C*05:01)":0.05,"MK953608.1 (HLA-C*07:01)":0.05,"KU257977.1 (HLA-C*08:01'
+    ')":0.05,"PZ629022.1 (HLA-C*08:02)":0.05,"KY906102.1 (HLA-C*12:02)":0.05},"passes_exon23_window_lt_005_across_17_sampled_'
+    'records":false}]},"full_record_non_exon_hits":[{"gene":"HLA-A","spacer":"ACAGACTGACCGAGTGGACC","max_full_record_wt_cfd_u'
+    'nrestricted_mm":0.152878,"max_full_record_wt_cfd_within_le4_mm":0.020741,"records_ge_005_outside_exon23_window":[{"insdc'
+    '_accession":"MN815924.1","allele_label_exact":"HLA-C*01:02","wt_cfd_lookup_score":0.152878,"strand":"-","strand_pos_1bas'
+    'ed":296,"matched_23mer":"GTAGAACAAAAAAAAAGACCTGG","spacer_mismatches":11},{"insdc_accession":"PP273452.1","allele_label_'
+    'exact":"HLA-C*02:02","wt_cfd_lookup_score":0.152878,"strand":"-","strand_pos_1based":222,"matched_23mer":"GTAGAACAAAAAAA'
+    'AAGACCTGG","spacer_mismatches":11},{"insdc_accession":"QB230404.1","allele_label_exact":"HLA-C*03","wt_cfd_lookup_score"'
+    ':0.152878,"strand":"-","strand_pos_1based":223,"matched_23mer":"GTAGAACAAAAAAAAAGACCTGG","spacer_mismatches":11},{"insdc'
+    '_accession":"PP273453.1","allele_label_exact":"HLA-C*03:04","wt_cfd_lookup_score":0.152878,"strand":"-","strand_pos_1bas'
+    'ed":223,"matched_23mer":"GTAGAACAAAAAAAAAGACCTGG","spacer_mismatches":11},{"insdc_accession":"MK953667.1","allele_label_'
+    'exact":"HLA-C*04:01","wt_cfd_lookup_score":0.152878,"strand":"-","strand_pos_1based":223,"matched_23mer":"GTAGAACAAAAAAA'
+    'AAGACCTGG","spacer_mismatches":11},{"insdc_accession":"MN515311.1","allele_label_exact":"HLA-C*05:01","wt_cfd_lookup_sco'
+    're":0.152878,"strand":"-","strand_pos_1based":384,"matched_23mer":"GTAGAACAAAAAAAAAGACCTGG","spacer_mismatches":11},{"in'
+    'sdc_accession":"OQ087128.1","allele_label_exact":"HLA-C*06:02","wt_cfd_lookup_score":0.152878,"strand":"-","strand_pos_1'
+    'based":223,"matched_23mer":"GTAGAACAAAAAAAAAGACCTGG","spacer_mismatches":11},{"insdc_accession":"MK953608.1","allele_lab'
+    'el_exact":"HLA-C*07:01","wt_cfd_lookup_score":0.152878,"strand":"-","strand_pos_1based":223,"matched_23mer":"GTAGAACAAAA'
+    'AAAAAGACCTGG","spacer_mismatches":11},{"insdc_accession":"PZ629022.1","allele_label_exact":"HLA-C*08:02","wt_cfd_lookup_'
+    'score":0.152878,"strand":"-","strand_pos_1based":1039,"matched_23mer":"GTAGAACAAAAAAAAAGACCTGG","spacer_mismatches":11},'
+    '{"insdc_accession":"PQ845335.1","allele_label_exact":"HLA-C*12:03","wt_cfd_lookup_score":0.152878,"strand":"-","strand_p'
+    'os_1based":223,"matched_23mer":"GTAGAACAAAAAAAAAGACCTGG","spacer_mismatches":11},{"insdc_accession":"MN515310.1","allele'
+    '_label_exact":"HLA-C*14:02","wt_cfd_lookup_score":0.152878,"strand":"-","strand_pos_1based":324,"matched_23mer":"GTAGAAC'
+    'AAAAAAAAAGACCTGG","spacer_mismatches":11},{"insdc_accession":"MZ466365.1","allele_label_exact":"HLA-C*15:02","wt_cfd_loo'
+    'kup_score":0.152878,"strand":"-","strand_pos_1based":223,"matched_23mer":"GTAGAACAAAAAAAAAGACCTGG","spacer_mismatches":1'
+    '1},{"insdc_accession":"MK953663.1","allele_label_exact":"HLA-C*16:01","wt_cfd_lookup_score":0.152878,"strand":"-","stran'
+    'd_pos_1based":223,"matched_23mer":"GTAGAACAAAAAAAAAGACCTGG","spacer_mismatches":11},{"insdc_accession":"OP689694.1","all'
+    'ele_label_exact":"HLA-C*17","wt_cfd_lookup_score":0.152878,"strand":"-","strand_pos_1based":1038,"matched_23mer":"GTAGAA'
+    'CAAAAAAAAAGACCTGG","spacer_mismatches":11}]},{"gene":"HLA-A","spacer":"AGTAGCCGCGCAGGGTCCCC","max_full_record_wt_cfd_unr'
+    'estricted_mm":0.069171,"max_full_record_wt_cfd_within_le4_mm":0.017857,"records_ge_005_outside_exon23_window":[{"insdc_a'
+    'ccession":"PZ629022.1","allele_label_exact":"HLA-C*08:02","wt_cfd_lookup_score":0.069171,"strand":"-","strand_pos_1based'
+    '":4063,"matched_23mer":"GAAACCAGGGAGAGACCCCCAGG","spacer_mismatches":11},{"insdc_accession":"OP689694.1","allele_label_e'
+    'xact":"HLA-C*17","wt_cfd_lookup_score":0.069171,"strand":"-","strand_pos_1based":4081,"matched_23mer":"GAAACCAGGGAGAGACC'
+    'CCCAGG","spacer_mismatches":11}]},{"gene":"HLA-A","spacer":"TGCCGTCGTAGGCGTCCTGC","max_full_record_wt_cfd_unrestricted_m'
+    'm":0.053926,"max_full_record_wt_cfd_within_le4_mm":0.0,"records_ge_005_outside_exon23_window":[{"insdc_accession":"MK953'
+    '608.1","allele_label_exact":"HLA-C*07:01","wt_cfd_lookup_score":0.053926,"strand":"+","strand_pos_1based":1897,"matched_'
+    '23mer":"AGAGAAAGCAGAAGTCCTTCTGG","spacer_mismatches":10}]}]},"r4_tyk2_pe3_overlapping_ngg_wt_cfd_by_spacer":{"GCGCCCCCAC'
+    'GGTGAGAGCC":0.384615,"CTCCAGCCAGAGCGCCCCCA":0.428571},"r5_pam_shields_and_12_alignments_wt_cfd":{"cxcl10_locus3_ha_r":{"'
+    'split_site_23mer_wt_agg_cfd":0.148958,"split_site_23mer_mode_a_agc_cfd":0.00331,"split_site_23mer_mode_b_acc_cfd":0.0,"n'
+    'on_zero_acg_control_excluded_from_zero_claim_cfd":0.01596,"full_80bp_3prime_junction_sliding_max_mode_b":{"max_wt_cfd":0'
+    '.000208,"strand":"donor_sense","pos1":40,"kmer_23":"AGCAGACCAACCTCCAGTCTCAG"},"full_80bp_5prime_junction_sliding_max_mod'
+    'e_b":{"max_wt_cfd":0.001753,"strand":"donor_antisense","pos1":40,"kmer_23":"CGAATATGTCTAAGCAATTGAGG"}},"aavs1_locus4_ha_'
+    'r":{"split_site_23mer_wt_agg_cfd":0.092593,"split_site_23mer_mode_a_agc_cfd":0.002058,"split_site_23mer_mode_b_acc_cfd":'
+    '0.0,"non_zero_acg_control_excluded_from_zero_claim_cfd":0.009921,"full_80bp_3prime_junction_sliding_max_mode_b":{"max_wt'
+    '_cfd":0.001558,"strand":"donor_sense","pos1":34,"kmer_23":"CTAGGGACACCATTGGTGACAGA"},"full_80bp_5prime_junction_sliding_'
+    'max_mode_b":{"max_wt_cfd":0.000295,"strand":"donor_antisense","pos1":9,"kmer_23":"TCCCTGGGGGCTTTGGGGGGGGG"}},"alignments'
+    '_doench2016_cfd":{"OI_GRNA_03_AFM_cis_2p53Mb":0.576471,"OI_GRNA_03_TANK_intron":0.518092,"OI_GRNA_04_ZNF710_Ex5_ungapped'
+    '3mm":0.472727,"OI_GRNA_04_ZNF710_Ex5_1bp_RNA_bulge_22mer":null,"OI_GRNA_04_chrX":0.370588,"OI_GRNA_05_chr12":0.806723,"O'
+    'I_GRNA_05_GRIK5_cis_chr19":0.32,"CBE08_TET1_Ex4_1bp_RNA_bulge_SpG_GGT":null,"DY_TAD01_chr20":0.646154,"DY_TAD03_chr7":0.'
+    '785965,"CBE01_chr3":0.568513,"CBE04_chr4":0.262474}}}}'
+)
+
+
+def _is_strict_int_iip_0026(val: Any) -> bool:
+    return isinstance(val, int) and not isinstance(val, bool)
+
+
+def left_normalize_vcf_allele_iip_0026(
+    chrom: str,
+    chrom_start_0based: int,
+    chrom_end_1based: int,
+    ucsc_ref: str,
+    ucsc_alt: str,
+    ref_slice_start_1based: int,
+    ref_slice_plus_dna: str,
+) -> tuple[str, str, int, str, str]:
+    """
+    Iterative left-aligned parsimonious VCF normalization on GRCh38 (Tan et al. 2015 PMID:25701572; IIP-0026; DEC-105).
+    Enforces strict left-boundary guards (never wrapping negative Python indices and never emitting REF == ALT),
+    emitting UNRESOLVED_BOUNDARY when an indel repeat run reaches the left slice boundary or chromosome start.
+    """
+    ch_num = chrom.replace("chr", "")
+    pos1 = chrom_start_0based + 1
+    r = ucsc_ref.upper()
+    a = ucsc_alt.upper()
+    if r == a:
+        return "UNRESOLVED_IDENTICAL_ALLELES", "UNRESOLVED_IDENTICAL_ALLELES", pos1, r, a
+
+    s_idx = pos1 - ref_slice_start_1based
+    e_idx = chrom_end_1based - ref_slice_start_1based + 1
+    if s_idx < 0 or e_idx < s_idx or e_idx > len(ref_slice_plus_dna) or pos1 < 1:
+        return "UNRESOLVED_BOUNDARY", "UNRESOLVED_BOUNDARY", pos1, r, a
+
+    expected_ref = ref_slice_plus_dna[s_idx:e_idx]
+    if r != expected_ref:
+        raise ValueError(f"Reference mismatch at {chrom}:{pos1}: UCSC {r} vs GRCh38 {expected_ref}")
+
+    while (not r or not a) or (r[-1] == a[-1]):
+        if r and a and r[-1] == a[-1]:
+            r = r[:-1]
+            a = a[:-1]
+        while not r or not a:
+            if pos1 <= ref_slice_start_1based or pos1 <= 1:
+                return "UNRESOLVED_BOUNDARY", "UNRESOLVED_BOUNDARY", pos1, ucsc_ref.upper(), ucsc_alt.upper()
+            pos1 -= 1
+            pad_idx = pos1 - ref_slice_start_1based
+            if pad_idx < 0:
+                return "UNRESOLVED_BOUNDARY", "UNRESOLVED_BOUNDARY", pos1, ucsc_ref.upper(), ucsc_alt.upper()
+            pad_b = ref_slice_plus_dna[pad_idx]
+            r = pad_b + r
+            a = pad_b + a
+    while len(r) > 1 and len(a) > 1 and r[0] == a[0]:
+        r = r[1:]
+        a = a[1:]
+        pos1 += 1
+
+    if not r or not a or r == a:
+        return "UNRESOLVED_IDENTICAL_ALLELES", "UNRESOLVED_IDENTICAL_ALLELES", pos1, r, a
+
+    gnomad_id = f"{ch_num}-{pos1}-{r}-{a}"
+    colon_id = f"chr{ch_num}:{pos1}:{r}:{a}"
+    return gnomad_id, colon_id, pos1, r, a
+
+
+_IIP_0026_MAJOR_POPS = ("afr", "amr", "asj", "eas", "fin", "mid", "nfe", "sas")
+
+
+def summarize_gnomad_modality_iip_0026(block: Dict[str, Any] | None) -> Dict[str, Any]:
+    """
+    Summarize a single gnomAD v4.1 (gnomad_r4) modality block (IIP-0026; DEC-105):
+      - Requires observed list `filters` and strict integer `0 <= ac <= an` with `an > 0`;
+        never coerces absent/None filters to PASS and never coerces AN=0 to AF=0.0.
+      - Preserves exact unrounded `raw_af = ac / an` for threshold comparisons alongside
+        6-decimal `global_af`, and preserves missing ancestry blocks as `"UNRESOLVED"`.
+    """
+    unresolved_pops = {pid: "UNRESOLVED" for pid in _IIP_0026_MAJOR_POPS}
+    if (
+        block is None
+        or "filters" not in block
+        or not isinstance(block.get("filters"), list)
+        or not _is_strict_int_iip_0026(block.get("ac"))
+        or not _is_strict_int_iip_0026(block.get("an"))
+        or int(block["ac"]) < 0
+        or int(block["an"]) <= 0
+        or int(block["ac"]) > int(block["an"])
+    ):
+        return {
+            "resolution_status": "UNRESOLVED",
+            "filter_status": "UNRESOLVED",
+            "ac": None,
+            "an": None,
+            "raw_af": "UNRESOLVED",
+            "global_af": "UNRESOLVED",
+            "max_major_pop": "UNRESOLVED",
+            "major_pop_afs": unresolved_pops,
+        }
+    flts = list(block["filters"])
+    ac_int = int(block["ac"])
+    an_int = int(block["an"])
+    raw_global_af = ac_int / an_int
+
+    pops: Dict[str, Any] = {pid: "UNRESOLVED" for pid in _IIP_0026_MAJOR_POPS}
+    valid_pops: Dict[str, Dict[str, Any]] = {}
+    for p in block.get("populations") or []:
+        pid = p.get("id")
+        if (
+            pid in _IIP_0026_MAJOR_POPS
+            and _is_strict_int_iip_0026(p.get("ac"))
+            and _is_strict_int_iip_0026(p.get("an"))
+            and 0 <= int(p["ac"]) <= int(p["an"])
+            and int(p["an"]) > 0
+        ):
+            p_ac = int(p["ac"])
+            p_an = int(p["an"])
+            p_raw = p_ac / p_an
+            p_rec = {"ac": p_ac, "an": p_an, "raw_af": p_raw, "af": round(p_raw, 6)}
+            pops[pid] = p_rec
+            valid_pops[pid] = p_rec
+    max_pop: Any = "UNRESOLVED"
+    if valid_pops:
+        best_pid, best_d = max(valid_pops.items(), key=lambda kv: kv[1]["raw_af"])
+        max_pop = {"pop": best_pid, **best_d}
+    return {
+        "resolution_status": "RESOLVED",
+        "filter_status": "PASS" if len(flts) == 0 else f"FLAGGED:{flts}",
+        "filters": flts,
+        "ac": ac_int,
+        "an": an_int,
+        "raw_af": raw_global_af,
+        "global_af": round(raw_global_af, 6),
+        "max_major_pop": max_pop,
+        "major_pop_afs": pops,
+    }
+
+
+def classify_gnomad_either_and_wgs_resolution_iip_0026(gv: Dict[str, Any] | None) -> Dict[str, Any]:
+    if gv is None:
+        return {
+            "either_modality_resolved": False,
+            "gnomad_r4_status": "UNRESOLVED_ABSENT_FROM_GNOMAD_V4_1",
+            "summary": None,
+        }
+    sm = {
+        "variant_id": gv["variant_id"],
+        "normalized_grch38": "chr" + gv["variant_id"].replace("-", ":"),
+        "rsids": gv.get("rsids") or [],
+        "flags": gv.get("flags") or [],
+        "genome_wgs": summarize_gnomad_modality_iip_0026(gv.get("genome")),
+        "exome": summarize_gnomad_modality_iip_0026(gv.get("exome")),
+        "joint_filters": (gv.get("joint") or {}).get("filters"),
+    }
+    either_ok = (sm["genome_wgs"]["resolution_status"] == "RESOLVED") or (
+        sm["exome"]["resolution_status"] == "RESOLVED"
+    )
+    return {
+        "either_modality_resolved": either_ok,
+        "gnomad_r4_status": (
+            "RESOLVED_BY_NORMALIZED_CHR_POS_REF_ALT"
+            if either_ok
+            else "UNRESOLVED_ZERO_AN_IN_BOTH_MODALITIES"
+        ),
+        "summary": sm,
+    }
+
+
+def evaluate_pe4max_piecewise_repeat_indel_cap_iip_0026(
+    c_clone: Any,
+    c_ctrl: Any,
+    coding_or_splice_indels: Any,
+) -> tuple[str, int | None]:
+    """
+    Piecewise repeat-indel qualification cap for held TYK2 PE4max (IIP-0026; DEC-105):
+      - Requires coding_or_splice_indels == 0 unconditionally;
+      - 0 <= C_ctrl <= 25: C_clone <= C_ctrl + 5 (continuous at C_ctrl = 25 -> cap 30);
+      - C_ctrl > 25:       C_clone <= floor(1.2 * C_ctrl) (e.g. C_ctrl = 100 -> cap 120).
+    """
+    for v in (c_clone, c_ctrl, coding_or_splice_indels):
+        if not _is_strict_int_iip_0026(v) or v < 0:
+            return ("HOLD_INVALID_OR_MISSING_PE4MAX_INDEL_COUNTS", None)
+    if coding_or_splice_indels != 0:
+        return ("FAIL_PE4MAX_CODING_OR_SPLICE_DE_NOVO_INDEL_DETECTED", 0)
+    cap = (c_ctrl + 5) if c_ctrl <= 25 else int(math.floor(1.2 * c_ctrl))
+    if c_clone <= cap:
+        return ("PASS_PE4MAX_PIECEWISE_REPEAT_INDEL_CAP", cap)
+    return ("FAIL_PE4MAX_REPEAT_INDEL_CAP_EXCEEDED", cap)
+
+
+def _build_variant_aware_gnomad_hlac_pe4max_and_designy_audit_iip_0026() -> Dict[str, Any]:
+    """
+    Build deterministic 69-key gnomAD v4.1 normalized join, 17-record coordinate-preserved HLA-C
+    audit (recording both 114/115 nominal-cut-in-exon and 106/108 full-23mer-in-exon conventions),
+    held TYK2 PE4max piecewise gate, held Design Y 63k/90k-GE ddPCR + TwinPE-79bp specs, and
+    2^12 portfolio invariance replay (IIP-0026; DEC-105).
+    """
+    from itertools import product as _iter_product
+
+    pinned = json.loads(_IIP_0026_RIGHTS_CLEAN_PINNED_JSON)
+    raw_bundle_txt = _IIP_0026_RIGHTS_CLEAN_PINNED_JSON
+    if ("doench2016_mismatch_scores" in raw_bundle_txt) or ("doench2016_pam_scores" in raw_bundle_txt):
+        raise ValueError("Forbidden external CFD weight table detected in pinned bundle")
+
+    comp_tbl = str.maketrans("ACGTNacgtn", "TGCANtgcan")
+
+    def _rc(s: str) -> str:
+        return s.upper().translate(comp_tbl)[::-1]
+
+    # 1. Reconcile all 56 UCSC dbSnp155 loci -> 69 normalized GRCh38 chr:pos:ref:alt keys
+    raw_l5 = json.loads((REPO_ROOT / "data/raw/layer5_dbsnp_clinvar_reference.json").read_text(encoding="utf-8"))
+    ucsc_56 = raw_l5["ucsc_dbsnp155_primary_interval_responses"]
+    ref_slices_l5 = pinned["grch38_layer5_target_reference_slices"]
+    map_l5_to_reg = {
+        "OI-GRNA-01_B2M_EXON1_ASCAS12A": "OI-GRNA-01_B2M",
+        "OI-GRNA-02_CIITA_EXON1_ASCAS12A": "OI-GRNA-02_CIITA",
+        "OI-GRNA-03_CXCL10_EXON1_HIFI_SPCAS9": "OI-GRNA-03_CXCL10",
+        "OI-GRNA-04_AAVS1_PPP1R12C_HIFI_SPCAS9": "OI-GRNA-04_AAVS1",
+        "OI-GRNA-05_TYK2_P1104A_PEMAX_EPEGRNA_OPTIONAL": "OI-GRNA-05_TYK2",
+    }
+
+    per_guide_69: Dict[str, Any] = {}
+    total_norm_alleles = 0
+    either_resolved = 0
+    either_unresolved = 0
+    wgs_pass = 0
+    wgs_flagged = 0
+    wgs_unresolved = 0
+    exome_pass = 0
+    exome_flagged = 0
+    exome_unresolved = 0
+    guides_with_pass_wgs_non_target_ge_1e4 = 0
+
+    for gid, rkey in map_l5_to_reg.items():
+        reg_vars_by_vid = {gv["variant_id"]: gv for gv in pinned["gnomad_v4_1_layer5_target_regions"][rkey]}
+        rslice = ref_slices_l5[gid]
+        allele_rows: List[Dict[str, Any]] = []
+        pass_wgs_non_target_ge_1e4: List[Dict[str, Any]] = []
+        pass_wgs_non_target_pop_ge_1e3: List[Dict[str, Any]] = []
+
+        for item in ucsc_56[gid]["items"]:
+            raw_alts = item.get("alts") or []
+            alts_to_norm = raw_alts if raw_alts else [""]
+            for raw_alt in alts_to_norm:
+                total_norm_alleles += 1
+                g_vid, c_vid, _np1, _nr, _na = left_normalize_vcf_allele_iip_0026(
+                    item["chrom"],
+                    int(item["chromStart"]),
+                    int(item["chromEnd"]),
+                    item["ref"],
+                    raw_alt,
+                    int(rslice["start_1based"]),
+                    rslice["plus_dna"],
+                )
+                if g_vid.startswith("UNRESOLVED"):
+                    raise ValueError(f"Unexpected unresolved VCF boundary on {gid}: {g_vid}")
+                gv = reg_vars_by_vid.get(g_vid)
+                is_intended_tyk2_p1104a = (c_vid == "chr19:10352442:G:C")
+                cls_res = classify_gnomad_either_and_wgs_resolution_iip_0026(gv)
+                sm = cls_res["summary"]
+                wgs = sm["genome_wgs"] if sm else summarize_gnomad_modality_iip_0026(None)
+                exm = sm["exome"] if sm else summarize_gnomad_modality_iip_0026(None)
+
+                if cls_res["either_modality_resolved"]:
+                    either_resolved += 1
+                else:
+                    either_unresolved += 1
+
+                if wgs["filter_status"] == "PASS":
+                    wgs_pass += 1
+                    if not is_intended_tyk2_p1104a:
+                        if int(wgs["ac"]) * 10000 >= int(wgs["an"]):
+                            pass_wgs_non_target_ge_1e4.append(sm)
+                        max_p = wgs["max_major_pop"]
+                        if isinstance(max_p, dict) and int(max_p["ac"]) * 1000 >= int(max_p["an"]):
+                            pass_wgs_non_target_pop_ge_1e3.append(sm)
+                elif str(wgs["filter_status"]).startswith("FLAGGED:"):
+                    wgs_flagged += 1
+                else:
+                    wgs_unresolved += 1
+
+                if exm["filter_status"] == "PASS":
+                    exome_pass += 1
+                elif str(exm["filter_status"]).startswith("FLAGGED:"):
+                    exome_flagged += 1
+                else:
+                    exome_unresolved += 1
+
+                allele_rows.append({
+                    "normalized_grch38": c_vid,
+                    "gnomad_variant_id": g_vid,
+                    "ucsc_rsid_annotation": item["rsid"],
+                    "ucsc_varType": item["varType"],
+                    "is_intended_edit_allele": is_intended_tyk2_p1104a,
+                    "gnomad_r4_status": cls_res["gnomad_r4_status"],
+                    "genome_wgs": wgs,
+                    "exome": exm,
+                })
+
+        if pass_wgs_non_target_ge_1e4:
+            guides_with_pass_wgs_non_target_ge_1e4 += 1
+
+        per_guide_69[gid] = {
+            "ucsc_dbsnp155_locus_count": ucsc_56[gid]["count"],
+            "normalized_allele_count": len(allele_rows),
+            "resolved_in_either_modality_allele_count": sum(1 for r in allele_rows if r["gnomad_r4_status"].startswith("RESOLVED")),
+            "unresolved_absent_in_both_modalities_allele_count": sum(1 for r in allele_rows if r["gnomad_r4_status"].startswith("UNRESOLVED")),
+            "wgs_only_pass_allele_count": sum(1 for r in allele_rows if r["genome_wgs"]["filter_status"] == "PASS"),
+            "wgs_only_flagged_allele_count": sum(1 for r in allele_rows if str(r["genome_wgs"]["filter_status"]).startswith("FLAGGED:")),
+            "wgs_only_unresolved_allele_count": sum(1 for r in allele_rows if r["genome_wgs"]["filter_status"] == "UNRESOLVED"),
+            "pass_wgs_non_target_variants_global_af_ge_0_0001": pass_wgs_non_target_ge_1e4,
+            "pass_wgs_non_target_variants_any_pop_af_ge_0_001": pass_wgs_non_target_pop_ge_1e3,
+            "normalized_alleles": allele_rows,
+        }
+
+    _check(
+        total_norm_alleles == 69
+        and (either_resolved, either_unresolved) == (49, 20)
+        and (wgs_pass, wgs_flagged, wgs_unresolved) == (26, 1, 42)
+        and (exome_pass, exome_flagged, exome_unresolved) == (43, 2, 24),
+        f"Unexpected 69-key gnomAD v4.1 denominators: total={total_norm_alleles}, either={(either_resolved, either_unresolved)}, wgs={(wgs_pass, wgs_flagged, wgs_unresolved)}, exome={(exome_pass, exome_flagged, exome_unresolved)}",
+    )
+
+    hlac_sentinels = {
+        k: classify_gnomad_either_and_wgs_resolution_iip_0026(v)["summary"]
+        for k, v in pinned["gnomad_v4_1_sentinel_variants"].items()
+    }
+    _check(
+        hlac_sentinels["rs707911"]["genome_wgs"]["ac"] == 7472
+        and hlac_sentinels["rs707911"]["genome_wgs"]["an"] == 58224,
+        "Expected HLA-C rs707911 PASS WGS 7472/58224",
+    )
+
+    # 2. 17-record coordinate-preserved HLA-C ledger + explicit 114/115 vs 106/108 exon-boundary conventions
+    mhc = pinned["grch38_mhc_exons"]
+    insdc_16 = pinned["sampled_insdc_hlac_panel_16_coordinate_preserved"]
+    r3_cfd = pinned["locus_wt_cfd_precomputed_summaries"]["r3_hla_ab_exon23_and_17record_summaries"]
+
+    def _count_exon_ngg_conventions(gene_info: Dict[str, Any]) -> Dict[str, int]:
+        cut_in_ex = 0
+        full_23_in_ex = 0
+        for span_k, dna_k in (("exon2_1based", "exon2_padded30_plus_dna"), ("exon3_1based", "exon3_padded30_plus_dna")):
+            s1, e1 = gene_info[span_k]
+            ps1 = s1 - 30
+            seq = gene_info[dna_k]
+            for i in range(len(seq) - 22):
+                gs1 = ps1 + i
+                ge1 = gs1 + 22
+                if seq[i + 21 : i + 23] == "GG":
+                    if s1 <= gs1 + 17 <= e1:
+                        cut_in_ex += 1
+                    if s1 <= gs1 and ge1 <= e1:
+                        full_23_in_ex += 1
+                if seq[i : i + 2] == "CC":
+                    if s1 <= gs1 + 6 <= e1:
+                        cut_in_ex += 1
+                    if s1 <= gs1 and ge1 <= e1:
+                        full_23_in_ex += 1
+        return {
+            "nominal_spcas9_cut_in_exon23_count": cut_in_ex,
+            "full_23mer_wholly_inside_exon23_count": full_23_in_ex,
+        }
+
+    hla_a_conv = _count_exon_ngg_conventions(mhc["HLA-A"])
+    hla_b_conv = _count_exon_ngg_conventions(mhc["HLA-B"])
+    _check(
+        hla_a_conv == {"nominal_spcas9_cut_in_exon23_count": 114, "full_23mer_wholly_inside_exon23_count": 106}
+        and hla_b_conv == {"nominal_spcas9_cut_in_exon23_count": 115, "full_23mer_wholly_inside_exon23_count": 108},
+        f"Unexpected HLA-A/B exon boundary counts: A={hla_a_conv}, B={hla_b_conv}",
+    )
+
+    coverage_ledger_17: List[Dict[str, Any]] = [
+        {
+            "record_id": "NC_000006.12",
+            "source_type": "GRCh38_reference",
+            "allele_label_exact": "HLA-C*07:02",
+            "typing_resolution": "2-field",
+            "exon2_core_acgt_bp": 270,
+            "exon3_core_acgt_bp": 276,
+            "all_four_30bp_intronic_flanks_complete": True,
+            "non_acgt_iupac_counts": {},
+        }
+    ]
+    for acc, ainfo in insdc_16.items():
+        coverage_ledger_17.append({
+            "record_id": acc,
+            "source_type": "INSDC_sampled_genomic_record",
+            "allele_label_exact": ainfo["genbank_allele_qualifier_exact"],
+            "typing_resolution": ainfo["allele_typing_field_resolution"],
+            "record_length_bp": ainfo["coordinate_preserved_record_length_bp"],
+            "exon2_core_acgt_bp": ainfo["exon2_core_acgt_callable_bp"],
+            "exon3_core_acgt_bp": ainfo["exon3_core_acgt_callable_bp"],
+            "intronic_30bp_flank_callable_acgt_counts": ainfo["intronic_30bp_flank_callable_acgt_counts"],
+            "all_four_30bp_intronic_flanks_complete": ainfo["all_four_30bp_intronic_flanks_complete"],
+            "non_acgt_iupac_counts": ainfo["non_acgt_iupac_counts"],
+        })
+    _check(len(coverage_ledger_17) == 17, f"Expected 17 HLA-C records, got {len(coverage_ledger_17)}")
+
+    # 3. TYK2 7-C combinatorial classes (127 = 120 / 3 / 4; 60 + 4 given C7), PE3 -NGG CFD, AlphaMissense v3 Zenodo 10813168, & PE4max piecewise cap
+    wt_9nt = "AGCCCCCCC"
+    cod_map = {"AGC": "S", "AGG": "R", "CCC": "P", "GCC": "A", "CGC": "R", "GGC": "G", "CCG": "P", "GCG": "A", "CGG": "R", "GGG": "G"}
+    desired_sap: List[str] = []
+    unchanged_spp: List[str] = []
+    other_missense_cnt = 0
+    cond_c7_sap = 0
+    cond_c7_other = 0
+    for bits in _iter_product([0, 1], repeat=7):
+        if sum(bits) == 0:
+            continue
+        arr = list(wt_9nt)
+        names = []
+        for j, b in enumerate(bits):
+            if b:
+                arr[2 + j] = "G"
+                names.append(f"C{6 + j}")
+        tri = "".join(cod_map["".join(arr[k : k + 3])] for k in (0, 3, 6))
+        lbl = "+".join(names)
+        if tri == "SAP":
+            desired_sap.append(lbl)
+            if bits[1] == 1:
+                cond_c7_sap += 1
+        elif tri == "SPP":
+            unchanged_spp.append(lbl)
+        else:
+            other_missense_cnt += 1
+            if bits[1] == 1:
+                cond_c7_other += 1
+    _check(
+        (other_missense_cnt, len(unchanged_spp), len(desired_sap), cond_c7_other, cond_c7_sap) == (120, 3, 4, 60, 4),
+        "Unexpected TYK2 7-C subset counts",
+    )
+
+    r4_cfd = pinned["locus_wt_cfd_precomputed_summaries"]["r4_tyk2_pe3_overlapping_ngg_wt_cfd_by_spacer"]
+    am_bgzf = pinned["alphamissense_v3_zenodo_10813168_verification"]["zenodo_v3_p29597_bgzf_direct_verification"]
+
+    # 4. Held Design Y 6-site GT-preserving ddPCR (163/142/142/167/135/142 bp), 63k single / 90k pooled GE Poisson LoD, & TwinPE-79bp
+    def _poisson_ge3(lam: float) -> float:
+        return 1.0 - math.exp(-lam) * (1.0 + lam + 0.5 * lam * lam)
+
+    r2_cfd = pinned["locus_wt_cfd_precomputed_summaries"]["r2_b2m_twinpe_local_200bp_window"]
+    r5_cfd = pinned["locus_wt_cfd_precomputed_summaries"]["r5_pam_shields_and_12_alignments_wt_cfd"]
+
+    # 5. Verify 100% outward 2^12 portfolio invariance + single-arm pb1 = 0.55 hypothetical downside
+    pa_vec = [0.88, 0.78, 0.57, 0.69]
+    pb_vec = [0.88, 0.79, 0.64, 0.70]
+    px_vec = [0.88, 0.82, 0.73, 0.69]
+    c_vec = [0.88, 0.87, 0.89, 0.85]
+    pb_eroded = [0.55, 0.79, 0.64, 0.70]
+
+    def _dist_h(h: int, pa_v: List[float], pb_v: List[float], px_v: List[float]) -> List[float]:
+        ch = c_vec[h]
+        ua, ub, ux = pa_v[h] / ch, pb_v[h] / ch, px_v[h] / ch
+        d = [0.0] * 8
+        d[0] += 1.0 - ch
+        for m in range(8):
+            d[m] += ch * (ua if (m & 1) else (1.0 - ua)) * (ub if (m & 2) else (1.0 - ub)) * (ux if (m & 4) else (1.0 - ux))
+        return d
+
+    def _eval_2pow12(pa_v: List[float], pb_v: List[float], px_v: List[float]) -> tuple[float, float]:
+        ds = [_dist_h(h, pa_v, pb_v, px_v) for h in range(4)]
+        c4 = c_vec[3]
+        u_ax = max(pa_v[3] / c4, px_v[3] / c4)
+        ub4 = pb_v[3] / c4
+        d4_ax = [0.0] * 8
+        d4_ax[0] += 1.0 - c4 + c4 * (1.0 - u_ax) * (1.0 - ub4)
+        d4_ax[2] += c4 * (1.0 - u_ax) * ub4
+        d4_ax[5] += c4 * u_ax * (1.0 - ub4)
+        d4_ax[7] += c4 * u_ax * ub4
+        lock_ax = 0.0
+        lock_3 = 0.0
+        for m0 in range(8):
+            for m1 in range(8):
+                for m2 in range(8):
+                    s2 = m0 & m1 & m2
+                    if not s2:
+                        continue
+                    p012 = ds[0][m0] * ds[1][m1] * ds[2][m2]
+                    for m3 in range(8):
+                        if s2 & m3:
+                            lock_3 += p012 * ds[3][m3]
+                            lock_ax += p012 * d4_ax[m3]
+        return round(100.0 * lock_ax, 4), round(100.0 * lock_3, 4)
+
+    base_ax_pct, base_3_pct = _eval_2pow12(pa_vec, pb_vec, px_vec)
+    erod_ax_pct, erod_3_pct = _eval_2pow12(pa_vec, pb_eroded, px_vec)
+
+    return {
+        "contribution_id": "IIP-0026",
+        "decision_id": "DEC-105",
+        "license_and_rights_manifest": pinned["license_manifest"],
+        "quarantined_doench2016_weight_table_entries_bundled": 0,
+        "gnomad_v4_1_69key_normalized_join": {
+            "join_key_policy": "VCF_NORMALIZED_GRCH38_CHR_POS_REF_ALT_NEVER_RSID",
+            "threshold_comparison_policy": "EXACT_UNROUNDED_AC_OVER_AN_RATIO_COMPARISON",
+            "total_dbsnp155_loci_audited": 56,
+            "total_normalized_alleles_audited": total_norm_alleles,
+            "per_guide_normalized_allele_counts": [v["normalized_allele_count"] for v in per_guide_69.values()],
+            "either_modality_denominators": {
+                "resolved_in_either_wgs_or_exome_alleles": either_resolved,
+                "unresolved_absent_in_both_modalities_alleles": either_unresolved,
+            },
+            "wgs_only_denominators": {
+                "pass_wgs_alleles": wgs_pass,
+                "flagged_wgs_alleles": wgs_flagged,
+                "unresolved_wgs_alleles": wgs_unresolved,
+            },
+            "exome_only_denominators": {
+                "pass_exome_alleles": exome_pass,
+                "flagged_exome_alleles": exome_flagged,
+                "unresolved_exome_alleles": exome_unresolved,
+            },
+            "guides_with_pass_wgs_non_target_global_af_ge_0_0001": guides_with_pass_wgs_non_target_ge_1e4,
+            "hlac_sentinel_variants": hlac_sentinels,
+            "per_guide_receipts": per_guide_69,
+        },
+        "hlac_17_record_and_hla_ab_exon23_candidate_audit": {
+            "total_sequence_records_evaluated": 17,
+            "grch38_reference_records_count": 1,
+            "insdc_sampled_records_count": 16,
+            "zero_ipd_imgt_hla_cc_by_nd_used": True,
+            "exon_boundary_counting_conventions": {
+                "HLA_A": hla_a_conv,
+                "HLA_B": hla_b_conv,
+                "convention_note": (
+                    "Nominal SpCas9 cut inside canonical Ensembl Exon 2 or 3 yields 114 HLA-A and 115 HLA-B NGG guides "
+                    "(used for the 17->11 HLA-A and 10->6 HLA-B < 0.05 WT-CFD screen across 17 HLA-C records and 64 NNN PAMs), "
+                    "whereas requiring the entire 23-mer (20-nt spacer + 3-nt PAM) wholly inside Exon 2 or 3 yields 106 HLA-A and 108 HLA-B guides."
+                ),
+            },
+            "hla_a_exon23_all_nnn_audit": r3_cfd["hla_a_exon23_all_nnn_audit"],
+            "hla_b_exon23_all_nnn_audit": r3_cfd["hla_b_exon23_all_nnn_audit"],
+            "full_record_10_to_11_mismatch_non_exon_hits": r3_cfd["full_record_non_exon_hits"],
+            "dt9_hlae_crossreactivity_specificity_control_rule": (
+                "Per Corrah et al. 2011 (PMID:21248048), mAb DT9 cross-reacts with HLA-E; therefore DT9 + 3D12 co-staining "
+                "requires a matched HLA-E-only (HLA-C-null) specificity control (delta ratio >= 2.0x) or orthogonal allele-specific "
+                "HLA-C surface/phased mRNA verification before clearing endogenous HLA-C retention."
+            ),
+            "per_record_callable_coverage_ledger": coverage_ledger_17,
+        },
+        "mode_a_vs_held_mode_b_pam_shields_and_12_alignments": {
+            "cxcl10_locus3_ha_r": r5_cfd["cxcl10_locus3_ha_r"],
+            "aavs1_locus4_ha_r": r5_cfd["aavs1_locus4_ha_r"],
+            "nominated_grch38_alignments_12_across_11_windows": {
+                "total_alignments": 12,
+                "unique_genomic_windows": 11,
+                "cbe08_tet1_pam_reconciliation": "19-bp 1-bp-RNA-bulged + 1-mm target + 3' GGT SpG PAM followed by TTC (NOT GGG)",
+                "alignments_doench2016_cfd": r5_cfd["alignments_doench2016_cfd"],
+            },
+            "segmented_phased_haplotype_baf_rule": {
+                "segment_mean_interval": [0.45, 0.55],
+                "min_phased_het_snps": 50,
+                "per_snp_50_independent_100x_false_pass_prob": round((sum(math.comb(100, k) for k in range(45, 56)) / (2 ** 100)) ** 50, 12),
+                "phased_50snp_100x_segment_mean_sd": round(0.5 / math.sqrt(5000.0), 6),
+            },
+        },
+        "tyk2_pe2max_lead_vs_held_pe4max_and_7c_classes": {
+            "combinatorial_7c_subsets_total": 127,
+            "other_missense_classes_count": other_missense_cnt,
+            "unchanged_synonymous_wt_spp_classes": unchanged_spp,
+            "desired_sap_classes": desired_sap,
+            "conditioned_on_c7_other_missense_and_sap": [cond_c7_other, cond_c7_sap],
+            "pam_creating_pe3b_guides_count": 0,
+            "overlapping_minus_ngg_wt_cfd": r4_cfd,
+            "alphamissense_v3_zenodo_10813168_p29597_bgzf_verification": am_bgzf,
+            "pe4max_fail_msi_distinct_from_hold_missing_msi": True,
+            "pe4max_piecewise_repeat_indel_cap": {
+                "c_ctrl_le_25_additive_allowance": 5,
+                "c_ctrl_gt_25_relative_multiplier": 1.2,
+                "coding_or_splice_de_novo_indels_allowed": 0,
+            },
+        },
+        "held_design_y_gt_preserving_ddpcr_and_twinpe_comparators": {
+            "deployment_status": "HELD_EXPLORATORY_TEMPLATE_SPECIFICATION_NOT_ACTIVE_RELEASE_GATE",
+            "gt_preserving_6site_amplicon_lengths_bp": [163, 142, 142, 167, 135, 142],
+            "active_attb_donor_pseudo_attp_sites_count": 2,
+            "inverted_attp_donor_pseudo_attb_nominations_count": 4,
+            "ddpcr_poisson_lod_sizing": {
+                "single_30000_ge_well_prob_k_ge_3": round(_poisson_ge3(3.0), 6),
+                "single_30000_ge_is_95pct_lod": False,
+                "single_analytical_unit_exact_min_ge_for_95pct": 62958,
+                "single_analytical_unit_protocol_floor_ge": 63000,
+                "single_analytical_unit_63000_ge_prob_k_ge_3": round(_poisson_ge3(6.3), 6),
+                "pooled_3x30000_ge_total_ge": 90000,
+                "pooled_90000_ge_prob_k_total_ge_3": round(_poisson_ge3(9.0), 6),
+            },
+            "b2m_twinpe_local_200bp_window_wt_cfd": r2_cfd,
+        },
+        "oq016_2pow12_portfolio_invariance": {
+            "design_a_standalone_pct": round(100.0 * math.prod(pa_vec), 4),
+            "design_b_standalone_pct": round(100.0 * math.prod(pb_vec), 4),
+            "design_x_standalone_pct": round(100.0 * math.prod(px_vec), 4),
+            "shared_ax_locked_pct": base_ax_pct,
+            "three_slot_locked_pct": base_3_pct,
+            "single_arm_pb1_0p55_hypothetical_downside": {
+                "scope_note": "Single-arm pb1 = 0.55 sensitivity outside shared-H1 (A and X held at 0.88; active baseline unchanged)",
+                "design_b_standalone_pct": round(100.0 * math.prod(pb_eroded), 3),
+                "shared_ax_locked_pct": round(erod_ax_pct, 3),
+                "three_slot_locked_pct": round(erod_3_pct, 3),
+            },
+        },
+    }
+
+
 def build_layer5_atlas() -> Dict[str, Any]:
     """Build the complete report from the same current objects used for every numeric summary."""
     part_a = build_part_a_crispr_grna_and_polymorphism_atlas()
@@ -5310,6 +6769,14 @@ def build_layer5_atlas() -> Dict[str, Any]:
     part_a["alphamissense_v3_ccby4_provenance_iip_0017"] = _build_alphamissense_v3_ccby4_provenance_iip_0017()
     part_b["design_b2_tyk2_p1104a_hlac_neoantigen_qualification_note_iip_0017"] = _build_design_b2_tyk2_hlac_qualification_note_iip_0017()
     part_b["product_scoped_precedence_and_stealth_axes_audit_iip_0024"] = _build_product_scoped_precedence_audit_iip_0024()
+    iip0026_audit = _build_variant_aware_gnomad_hlac_pe4max_and_designy_audit_iip_0026()
+    part_a["variant_aware_gnomad_hlac_pe4max_and_designy_audit_iip_0026"] = iip0026_audit
+    _g_ov_block = next((v for k, v in part_a.items() if k.startswith("gnomad_v4_1_and_dbsnp_guide_overlap_audit")), {})
+    for _gid_k, _g_rec in iip0026_audit["gnomad_v4_1_69key_normalized_join"]["per_guide_receipts"].items():
+        if _gid_k in _g_ov_block.get("per_guide_interval_polymorphism_summary", {}):
+            _g_ov_block["per_guide_interval_polymorphism_summary"][_gid_k][
+                "normalized_69key_gnomad_r4_receipt_iip_0026"
+            ] = _g_rec
 
     atlas = {
         "schema_version": "0.8.0",
@@ -5360,6 +6827,7 @@ def build_layer5_atlas() -> Dict[str, Any]:
         "part_a_crispr_grna_compiler_and_polymorphism_audit": part_a,
         "part_b_personalized_patient_compiler_and_10k_population_trial": part_b,
         "alphamissense_v3_ccby4_provenance_iip_0017": part_a["alphamissense_v3_ccby4_provenance_iip_0017"],
+        "variant_aware_gnomad_hlac_pe4max_and_designy_audit_iip_0026": iip0026_audit,
     }
 
     return atlas

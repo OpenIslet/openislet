@@ -20,6 +20,44 @@
       "isogenic_iPericytes"
     ]
   },
+  "design_b_four_state_lifecycle_policy": {
+    "proposal_id": "IIP-0026",
+    "decision_id": "DEC-105",
+    "states": {
+      "STATE_1_STAGED_REFERENCE_FASTA_ARTIFACT": {
+        "state_id": "STAGED_REFERENCE_FASTA_ARTIFACT",
+        "fasta_path": "data/constructs/islet1_design_b_complete_constructs_v0.8.0.fasta",
+        "fasta_sha256": "4bb20389773c76b2705031ba675487825dfbd94d920a692cde75b7d56af22aa4",
+        "construct_count": 6,
+        "mode_b_acc_shield_embedded": true,
+        "scope": "Six staged 2A-free HDR donor research comparators (c1..c3 at chr4 CXCL10, c4..c6 at chr19 AAVS1; role=STAGED_RESEARCH_COMPARATOR_*), held pending empirical HiFi-SpCas9 R691A re-cutting and ART3/PPP1R12C RT-PCR"
+      },
+      "STATE_2_REGISTRY_DONOR_REFERENCE_BOUND": {
+        "state_id": "REGISTRY_DONOR_REFERENCE_BOUND",
+        "bound_products": [
+          "ISLET1_B2_5LOCUS_BASE",
+          "ISLET1_B2_5LOCUS_TYK2_PE"
+        ],
+        "bound_construct_pair": [
+          "DESIGNB_L5A_CXCL10_BFB_SYN6_ACC_4078bp",
+          "DESIGNB_L6_AAVS1_CD47_ICASP9_2AFREE_HUMAN_ACC_4172bp"
+        ],
+        "bound_c1_c5_pair_sha256": "82c351af082e0f97361e715c36e2ab5872b8d097efa1c9f59dfda53ea60496ea"
+      },
+      "STATE_3_STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC": {
+        "state_id": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+        "execution_supported": false,
+        "stage0_research_evaluation_decoupled_from_bayesian_admission": true,
+        "scope": "Permits shared Stage-0 research evaluation, ingestion, and chronological replay on (product_variant_id, lot_id, campaign_id) while keeping execution_supported=false and blocking Bayesian prior updates"
+      },
+      "STATE_4_EXECUTION_SUPPORTED_QUALIFIED_PRODUCT": {
+        "state_id": "EXECUTION_SUPPORTED_QUALIFIED_PRODUCT",
+        "execution_supported": true,
+        "currently_achieved_family_b_count": 0,
+        "family_a_reference_compiler_note": "Family A retains its existing reference-DNA-compiler meaning of execution_supported=true with physical_qualification_status=PREREGISTERED_PENDING"
+      }
+    }
+  },
   "products": [
     {
       "product_variant_id": "ISLET1_A4_ARM1A",
@@ -334,7 +372,7 @@
         "CXCL10": "2A-free checkpoint cassette proposed; exact donor unresolved",
         "AAVS1": "biallelic iCasp9 proposed",
         "TYK2": "biallelic KO proposed",
-        "INS": "epitope-edit locus proposed; exact allele unresolved"
+        "INS": "epitope-edit locus proposed; exact allele unresolved (distinct from retired INS 3'-UTR EIF4G2 knock-in hypothesis OQ-011 / GY-022; IIP-0026; DEC-105)"
       },
       "cassette_topology": {
         "CXCL10": "2A-free dual-promoter SERPINB9 / PD-L1 proposed; sequence unresolved",
@@ -387,25 +425,38 @@
       "K": 5,
       "B": 0,
       "alleles": {
-        "HLA-A": "biallelic LOF proposed",
-        "HLA-B": "biallelic LOF proposed",
+        "HLA-A": "biallelic LOF proposed across phased donor HLA-A/B/C/E screen",
+        "HLA-B": "biallelic LOF proposed across separated ~1.41 Mb chr6p21.3 passes",
         "HLA-C": "retained KIR-matched donor allele(s), separately parameterized",
         "B2M": "retained WT",
-        "CIITA": "biallelic LOF proposed",
-        "CXCL10": "2A-free checkpoint cassette proposed; exact donor unresolved",
-        "AAVS1": "biallelic iCasp9 proposed",
+        "CIITA": "biallelic Exon 5 LOF proposed",
+        "CXCL10": "staged 2A-free L3-BF-B SYN6 Mode-B ACC-shielded SERPINB9 + PD-L1 comparator c1 (DESIGNB_L5A_CXCL10_BFB_SYN6_ACC_4078bp; held pending 5'-RACE TSS N_UMI_eff >= 3,689 and HiFi re-cutting QC)",
+        "AAVS1": "staged 2A-free divergent CD47(1-138)-CD55(345-381) GPI + iCasp9 Mode-B ACC-shielded comparator c5 (DESIGNB_L6_AAVS1_CD47_ICASP9_2AFREE_HUMAN_ACC_4172bp; held pending 30d/84d Tier-6B joint retention and HiFi re-cutting QC)",
         "TYK2": "unedited starting donor genotype; natural P1104A separately declared",
-        "INS": "WT"
+        "INS": "WT (INS 3'-UTR EIF4G2 knock-ins retired per OQ-011 / GY-022)"
       },
       "cassette_topology": {
-        "CXCL10": "2A-free dual-promoter SERPINB9 / PD-L1 proposed; sequence unresolved",
-        "CD47_HLAE": "separate HLA-C-compatible donor design unresolved",
-        "AAVS1": "candidate HNRNPA2B1-proximal455bp/EEF1A1-iCasp9 proposed"
+        "CXCL10": "staged research comparator c1 DESIGNB_L5A_CXCL10_BFB_SYN6_ACC_4078bp (2A-free sPA + BasalFloor-SERPINB9 + SV40pA + MAZ4 + Syn5xISRE-PD-L1[SYN6] + bGHpA, Mode-B ACC shield; c2 3,799 bp and c3 3,772 bp all-human comparators co-staged)",
+        "CD47_HLAE": "AAVS1 divergent (-) CD47-IgV-GPI in c5 paired with WT B2M + endogenous donor HLA-C/HLA-E (endogenous HLA-E genotype/surface sufficiency unresolved pending per-lot QC)",
+        "AAVS1": "staged research comparator c5 DESIGNB_L6_AAVS1_CD47_ICASP9_2AFREE_HUMAN_ACC_4172bp (divergent (-) EEF1A1-CD47-IgV-GPI-HBBpA + A2UCOE + (+) UBC-iCasp9-UBCpA, Mode-B ACC shield; c4 3,457 bp iCasp9-only and two-factor c6 4,394 bp +cHS4[C72T/C73A]+SV40pA co-staged)"
       },
-      "sequence_materialization_status": "NOT_MATERIALIZED_SEPARATE_DONOR_LEDGER_REQUIRED",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "staged_design_b_donor_reference_binding": {
+        "proposal_id": "IIP-0026",
+        "decision_id": "DEC-105",
+        "fasta_path": "data/constructs/islet1_design_b_complete_constructs_v0.8.0.fasta",
+        "fasta_sha256": "4bb20389773c76b2705031ba675487825dfbd94d920a692cde75b7d56af22aa4",
+        "cxcl10_locus5_primary_donor_id": "DESIGNB_L5A_CXCL10_BFB_SYN6_ACC_4078bp",
+        "cxcl10_locus5_primary_donor_sha256": "3392af83d0b37b63c7db2094e88ae3b7034811e3a7b64f678f45ffd56194bf56",
+        "aavs1_locus6_primary_donor_id": "DESIGNB_L6_AAVS1_CD47_ICASP9_2AFREE_HUMAN_ACC_4172bp",
+        "aavs1_locus6_primary_donor_sha256": "ba264b14b5cf81b191a8e2126cf5f2c9949559a3782f6ff69bb206690d705882",
+        "bound_c1_c5_pair_sha256": "82c351af082e0f97361e715c36e2ab5872b8d097efa1c9f59dfda53ea60496ea",
+        "mode_b_acc_shield_status": "EMBEDDED_HELD_PENDING_HIFI_R691A_RECUT_AND_HOST_SPLICING_RTPCR"
+      },
+      "sequence_materialization_status": "STAGED_RESEARCH_COMPARATOR_DONORS_BOUND_PENDING_ALLELE_QC",
       "physical_qualification_status": "PREREGISTERED_PENDING",
       "execution_supported": false,
-      "execution_scope": "explicit unmaterialized research comparator; assigned-rule scenario scores are not complete-product benefits",
+      "execution_scope": "State-3 Stage-0 research comparator (c1+c5 donor pair 82c351af... bound; HLA-A/B, CIITA, endogenous HLA-C/HLA-E, and edited-allele states remain pending per-lot QC; decoupled from Bayesian calibration admission; IIP-0026; DEC-105)",
       "physical_manufacturing_yield": null,
       "donor_lineage": {
         "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
@@ -427,9 +478,11 @@
       },
       "pending_assay_gates": [
         "edited-allele and genome integrity QC",
+        "phased donor HLA-A/B/C/E WGS, separated chr6p21.3 passes, and DT9+3D12 with matched HLA-E-only specificity control",
+        "5'/3'-RACE (N_UMI_eff >= 3,689, k=0) resolving c1 upstream regulatory start, ART3-201/PPP1R12C/CXCL9/11/INS 90% TOST, and HiFi R691A ACC re-cutting test",
         "lineage-specific surface density and immune challenge",
-        "dynamic insulin secretion and differentiation yield",
-        "safety-switch depletion",
+        "dynamic insulin secretion and differentiation yield (canonical Readout 2 t50 <= 3.0 min)",
+        "30d/84d AAVS1 CD47 x AP1903 Tier-6B (N_eff >= 299,573,228) safety-switch depletion",
         "exact-product molecular and delivery qualification"
       ]
     },
@@ -453,25 +506,38 @@
       "K": 5,
       "B": 1,
       "alleles": {
-        "HLA-A": "biallelic LOF proposed",
-        "HLA-B": "biallelic LOF proposed",
+        "HLA-A": "biallelic LOF proposed across phased donor HLA-A/B/C/E screen",
+        "HLA-B": "biallelic LOF proposed across separated ~1.41 Mb chr6p21.3 passes",
         "HLA-C": "retained KIR-matched donor allele(s), separately parameterized",
         "B2M": "retained WT",
-        "CIITA": "biallelic LOF proposed",
-        "CXCL10": "2A-free checkpoint cassette proposed; exact donor unresolved",
-        "AAVS1": "biallelic iCasp9 proposed",
-        "TYK2": "P1104A intended via prime editing",
-        "INS": "WT"
+        "CIITA": "biallelic Exon 5 LOF proposed",
+        "CXCL10": "staged 2A-free L3-BF-B SYN6 Mode-B ACC-shielded SERPINB9 + PD-L1 comparator c1 (DESIGNB_L5A_CXCL10_BFB_SYN6_ACC_4078bp; held pending 5'-RACE TSS N_UMI_eff >= 3,689 and HiFi re-cutting QC)",
+        "AAVS1": "staged 2A-free divergent CD47(1-138)-CD55(345-381) GPI + iCasp9 Mode-B ACC-shielded comparator c5 (DESIGNB_L6_AAVS1_CD47_ICASP9_2AFREE_HUMAN_ACC_4172bp; held pending 30d/84d Tier-6B joint retention and HiFi re-cutting QC)",
+        "TYK2": "P1104A intended via PE2max primary comparator (PE4max held behind pentaplex MSI=0 and piecewise repeat-indel cap; SAPTKFLEL HLA-C immunopeptidomics + G/G,G/C,C/C CD8+ holds active)",
+        "INS": "WT (INS 3'-UTR EIF4G2 knock-ins retired per OQ-011 / GY-022)"
       },
       "cassette_topology": {
-        "CXCL10": "2A-free dual-promoter SERPINB9 / PD-L1 proposed; sequence unresolved",
-        "CD47_HLAE": "separate HLA-C-compatible donor design unresolved",
-        "AAVS1": "candidate HNRNPA2B1-proximal455bp/EEF1A1-iCasp9 proposed"
+        "CXCL10": "staged research comparator c1 DESIGNB_L5A_CXCL10_BFB_SYN6_ACC_4078bp (2A-free sPA + BasalFloor-SERPINB9 + SV40pA + MAZ4 + Syn5xISRE-PD-L1[SYN6] + bGHpA, Mode-B ACC shield; c2 3,799 bp and c3 3,772 bp all-human comparators co-staged)",
+        "CD47_HLAE": "AAVS1 divergent (-) CD47-IgV-GPI in c5 paired with WT B2M + endogenous donor HLA-C/HLA-E (endogenous HLA-E genotype/surface sufficiency unresolved pending per-lot QC)",
+        "AAVS1": "staged research comparator c5 DESIGNB_L6_AAVS1_CD47_ICASP9_2AFREE_HUMAN_ACC_4172bp (divergent (-) EEF1A1-CD47-IgV-GPI-HBBpA + A2UCOE + (+) UBC-iCasp9-UBCpA, Mode-B ACC shield; c4 3,457 bp iCasp9-only and two-factor c6 4,394 bp +cHS4[C72T/C73A]+SV40pA co-staged)"
       },
-      "sequence_materialization_status": "NOT_MATERIALIZED_SEPARATE_DONOR_LEDGER_REQUIRED",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "staged_design_b_donor_reference_binding": {
+        "proposal_id": "IIP-0026",
+        "decision_id": "DEC-105",
+        "fasta_path": "data/constructs/islet1_design_b_complete_constructs_v0.8.0.fasta",
+        "fasta_sha256": "4bb20389773c76b2705031ba675487825dfbd94d920a692cde75b7d56af22aa4",
+        "cxcl10_locus5_primary_donor_id": "DESIGNB_L5A_CXCL10_BFB_SYN6_ACC_4078bp",
+        "cxcl10_locus5_primary_donor_sha256": "3392af83d0b37b63c7db2094e88ae3b7034811e3a7b64f678f45ffd56194bf56",
+        "aavs1_locus6_primary_donor_id": "DESIGNB_L6_AAVS1_CD47_ICASP9_2AFREE_HUMAN_ACC_4172bp",
+        "aavs1_locus6_primary_donor_sha256": "ba264b14b5cf81b191a8e2126cf5f2c9949559a3782f6ff69bb206690d705882",
+        "bound_c1_c5_pair_sha256": "82c351af082e0f97361e715c36e2ab5872b8d097efa1c9f59dfda53ea60496ea",
+        "mode_b_acc_shield_status": "EMBEDDED_HELD_PENDING_HIFI_R691A_RECUT_AND_HOST_SPLICING_RTPCR"
+      },
+      "sequence_materialization_status": "STAGED_RESEARCH_COMPARATOR_DONORS_BOUND_PENDING_ALLELE_QC",
       "physical_qualification_status": "PREREGISTERED_PENDING",
       "execution_supported": false,
-      "execution_scope": "explicit unmaterialized research comparator; assigned-rule scenario scores are not complete-product benefits",
+      "execution_scope": "State-3 Stage-0 research comparator (c1+c5 donor pair 82c351af... bound; HLA-A/B, CIITA, TYK2 PE2max/PE4max, endogenous HLA-C/HLA-E, and edited-allele states remain pending per-lot QC; decoupled from Bayesian calibration admission; IIP-0026; DEC-105)",
       "physical_manufacturing_yield": null,
       "donor_lineage": {
         "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
@@ -493,9 +559,12 @@
       },
       "pending_assay_gates": [
         "edited-allele and genome integrity QC",
+        "phased donor HLA-A/B/C/E WGS, separated chr6p21.3 passes, and DT9+3D12 with matched HLA-E-only specificity control",
+        "5'/3'-RACE (N_UMI_eff >= 3,689, k=0) resolving c1 upstream regulatory start, ART3-201/PPP1R12C/CXCL9/11/INS 90% TOST, and HiFi R691A ACC re-cutting test",
+        "phased TYK2 P1104A SAP haplotype, SAPTKFLEL HLA-C immunopeptidomics + G/G,G/C,C/C CD8+ priming, and PE4max pentaplex MSI=0 + piecewise repeat-indel cap",
         "lineage-specific surface density and immune challenge",
-        "dynamic insulin secretion and differentiation yield",
-        "safety-switch depletion",
+        "dynamic insulin secretion and differentiation yield (canonical Readout 2 t50 <= 3.0 min)",
+        "30d/84d AAVS1 CD47 x AP1903 Tier-6B (N_eff >= 299,573,228) safety-switch depletion",
         "exact-product molecular and delivery qualification"
       ]
     },
