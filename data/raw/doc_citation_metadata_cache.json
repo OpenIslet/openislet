@@ -65,6 +65,12 @@
    "pubdate_year": "2000",
    "title": "Crystal structure of an NK cell immunoglobulin-like receptor in complex with its class I MHC ligand."
   },
+  "10954575": {
+   "first_author": "Haberman RP",
+   "journal": "J Virol",
+   "pubdate_year": "2000",
+   "title": "Novel transcriptional regulatory signals in the adeno-associated virus terminal repeat A/D junction element."
+  },
   "11024144": {
    "first_author": "Chehadeh W",
    "journal": "J Virol",
@@ -185,6 +191,12 @@
    "pubdate_year": "2003",
    "title": "HLA-E allelic variants. Correlating differential expression, peptide affinities, crystal structures, and thermal stabilities."
   },
+  "12449375": {
+   "first_author": "Hall MC",
+   "journal": "Biotechniques",
+   "pubdate_year": "2002",
+   "title": "Cryptic promoter activity of pBLCAT3 induced by overexpression of AP1 factors."
+  },
   "12461076": {
    "first_author": "Michaëlsson J",
    "journal": "J Exp Med",
@@ -220,6 +232,12 @@
    "journal": "J Immunol",
    "pubdate_year": "2003",
    "title": "Analysis of HLA-E peptide-binding specificity and contact residues in bound peptide required for recognition by CD94/NKG2."
+  },
+  "12951775": {
+   "first_author": "Giannakis G",
+   "journal": "Biotechniques",
+   "pubdate_year": "2003",
+   "title": "Aberrant cryptic responsiveness of the pCAT 3- and pGL3-promoter reporter vectors."
   },
   "14566337": {
    "first_author": "Lizée G",
@@ -316,6 +334,12 @@
    "journal": "J Mol Biol",
    "pubdate_year": "2006",
    "title": "Entropically driven MHC class I recognition by human inhibitory receptor leukocyte Ig-like receptor B1 (LILRB1/ILT2/CD85j)."
+  },
+  "16377218": {
+   "first_author": "Seong K",
+   "journal": "Fungal Genet Biol",
+   "pubdate_year": "2006",
+   "title": "Cryptic promoter activity in the coding region of the HMG-CoA reductase gene in Fusarium graminearum."
   },
   "1644817": {
    "first_author": "Goodwin EC",
@@ -478,6 +502,12 @@
    "journal": "J Clin Endocrinol Metab",
    "pubdate_year": "2008",
    "title": "Chromosome 11p15 paternal isodisomy in focal forms of neonatal hyperinsulinism."
+  },
+  "19009237": {
+   "first_author": "Chauhan SS",
+   "journal": "Mol Cell Biochem",
+   "pubdate_year": "2009",
+   "title": "Expression of cloned cDNAs in mammalian cells from a cryptic promoter upstream to T7 in pGEM-4Z cloning vector."
   },
   "19047627": {
    "first_author": "Lu L",
@@ -1541,6 +1571,12 @@
    "pubdate_year": "2018",
    "title": "Tuberculosis and impaired IL-23-dependent IFN-γ immunity in humans homozygous for a common TYK2 missense variant."
   },
+  "30593266": {
+   "first_author": "Zhang C",
+   "journal": "BMC Biol",
+   "pubdate_year": "2018",
+   "title": "Homology-independent multiallelic disruption via CRISPR/Cas9-based knock-in yields distinct functional outcomes in human cells."
+  },
   "30651639": {
    "first_author": "Wimmer RA",
    "journal": "Nature",
@@ -1708,6 +1744,12 @@
    "journal": "Stem Cell Res Ther",
    "pubdate_year": "2020",
    "title": "Pro-inflammatory cytokines induce cell death, inflammatory responses, and endoplasmic reticulum stress in human iPSC-derived beta cells."
+  },
+  "31914802": {
+   "first_author": "Earley LF",
+   "journal": "Hum Gene Ther",
+   "pubdate_year": "2020",
+   "title": "Adeno-Associated Virus Serotype-Specific Inverted Terminal Repeat Sequence Role in Vector Transgene Expression."
   },
   "32053646": {
    "first_author": "Forrest ME",
@@ -2537,6 +2579,12 @@
    "pubdate_year": "2026",
    "title": "Programmable genome editing in human cells using RNA-guided bridge recombinases."
   },
+  "41840058": {
+   "first_author": "Anderson R",
+   "journal": "EMBO J",
+   "pubdate_year": "2026",
+   "title": "When RNA goes off script: ensuring transcript fidelity in transgene expression."
+  },
   "41842939": {
    "first_author": "Kazmi S",
    "journal": "JCI Insight",
@@ -2668,6 +2716,12 @@
    "journal": "J Immunol",
    "pubdate_year": "1995",
    "title": "Structure and expression of a divergent canine class I gene."
+  },
+  "7679117": {
+   "first_author": "Flotte TR",
+   "journal": "J Biol Chem",
+   "pubdate_year": "1993",
+   "title": "Expression of the cystic fibrosis transmembrane conductance regulator from a novel adeno-associated virus promoter."
   },
   "7988563": {
    "first_author": "Ashfield R",

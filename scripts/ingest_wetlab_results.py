@@ -698,6 +698,10 @@ STAGE0_PERSISTED_BOOLEAN_FLAGS: tuple[str, ...] = (
     "fcr_effector_fcgr3a_158v_typed_verified",
     "dec084_measured_starting_composition_and_fresh_equal_output_verified",
     "iapp_sister_visit_lot_and_viable_beta_mass_concordance_verified",
+    "require_full_iip0027_promoter_origin_and_itr_panel",
+    "cxcl10_insert_matched_comparator_control_verified",
+    "cxcl10_resting_expression_below_loq_confirmed",
+    "bio06_itr_rna_origin_attribution_verified",
 )
 
 HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS: tuple[str, ...] = (
@@ -772,6 +776,8 @@ ALLOWED_ORDERED_BATCH_LEDGER_KEYS: frozenset[str] = frozenset({
     "arm2_depleted_sample_id",
     "contemporaneous_arm3_control_sample_id",
     "sister_assembly_id",
+    "cxcl10_tss_donor_id",
+    "cxcl10_tss_transcription_unit_id",
     *HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS,
 })
 
@@ -1341,6 +1347,8 @@ def _validate_prior_posterior_report(
                 "arm2_depleted_sample_id",
                 "contemporaneous_arm3_control_sample_id",
                 "sister_assembly_id",
+                "cxcl10_tss_donor_id",
+                "cxcl10_tss_transcription_unit_id",
             ):
                 if adj_meta_k in entry and entry[adj_meta_k] is not None:
                     merged_hist_payload_for_norm[adj_meta_k] = entry[adj_meta_k]
@@ -1596,6 +1604,8 @@ def _validate_prior_posterior_report(
                     "arm2_depleted_sample_id",
                     "contemporaneous_arm3_control_sample_id",
                     "sister_assembly_id",
+                    "cxcl10_tss_donor_id",
+                    "cxcl10_tss_transcription_unit_id",
                 ):
                     if entry.get(meta_k) is not None:
                         pooled_hist_for_s0[meta_k] = entry[meta_k]
@@ -2214,6 +2224,8 @@ def run_calibration(
         "arm2_depleted_sample_id",
         "contemporaneous_arm3_control_sample_id",
         "sister_assembly_id",
+        "cxcl10_tss_donor_id",
+        "cxcl10_tss_transcription_unit_id",
         *stage0_persisted_boolean_flags,
     ):
         if qp_meta_k in input_payload and input_payload[qp_meta_k] is not None:
@@ -2358,6 +2370,8 @@ def run_calibration(
             "arm2_depleted_sample_id",
             "contemporaneous_arm3_control_sample_id",
             "sister_assembly_id",
+            "cxcl10_tss_donor_id",
+            "cxcl10_tss_transcription_unit_id",
         ):
             if hist_entry.get(meta_k) is not None:
                 pooled_stage0_payload[meta_k] = hist_entry[meta_k]

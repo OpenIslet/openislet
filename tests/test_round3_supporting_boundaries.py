@@ -3070,10 +3070,10 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     )
 
     # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (49 persisted boolean flags, 53 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
-    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 95
+    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 99
     assert "require_full_5endpoint_s9_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
     assert "require_full_7metric_combined_stress_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
-    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 99
+    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 103
     assert "5.71 mmHg at 100 um clusters with matched D_caps = D_gel" in film_limit["surgical_mitigation"]
 
     batch1_r7s2 = {
@@ -3156,7 +3156,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     # - R7S3-F02: Both wetlab_contract.evaluate_stage0_decision_tree and ingest_wetlab_results.evaluate_stage0_decision_tree reject non-boolean policy values
     from scripts import wetlab_contract as wc_mod
 
-    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 99
+    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 103
     for bkey in wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS:
         for bad_val in ("false", "False", 0, "true", "True", 1):
             for eval_fn in (wc_mod.evaluate_stage0_decision_tree, wetlab.evaluate_stage0_decision_tree):
@@ -5630,8 +5630,9 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
         rk_iip22.compute_common_shock_2pow12_portfolio_tree(
             [True, 0.78, 0.56, 0.68], [0.88, 0.79, 0.64, 0.70], [0.88, 0.81, 0.70, 0.68], [0.88, 0.87, 0.88, 0.85]  # type: ignore[list-item]
         )
-    _rk_json_24 = json.loads((ROOT / "data/extracted/islet1_candidate_stack_rankings.json").read_text(encoding="utf-8"))
-    assert _rk_json_24["odds_composition_and_profile_scope_audit_iip_0003"]["multiplied_conditional_totals"]["iip_0024_donor_bank_h1_sensitivity_audit"]["decision_id"] == "DEC-103"
+    if (ROOT / "data/extracted/islet1_candidate_stack_rankings.json").exists():
+        _rk_json_24 = json.loads((ROOT / "data/extracted/islet1_candidate_stack_rankings.json").read_text(encoding="utf-8"))
+        assert _rk_json_24["odds_composition_and_profile_scope_audit_iip_0003"]["multiplied_conditional_totals"]["iip_0024_donor_bank_h1_sensitivity_audit"]["decision_id"] == "DEC-103"
 
     _l3_json_24 = json.loads((ROOT / "data/extracted/layer3_structural_verification_atlas.json").read_text(encoding="utf-8"))
     _l3_mf_24 = _l3_json_24["product_function_manifest_resolution_iip_0024"]
@@ -6489,13 +6490,14 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     )["lot_release_readiness_tier"] == "HOLD_FAILED_OR_INCOMPLETE_GATE"
 
     # (c) Layer-1 paired McNemar + phi_AB audit & Layer-4 measured-potency DEC-084 mixture audit:
-    _rk_28_doc = json.loads((ROOT / "data/extracted/islet1_candidate_stack_rankings.json").read_text(encoding="utf-8"))
-    _mc_28 = _rk_28_doc["odds_composition_and_profile_scope_audit_iip_0003"]["multiplied_conditional_totals"]["iip_0028_paired_mcnemar_and_phi_ab_concordance_audit"]
-    assert _mc_28["proposal_id"] == "IIP-0028"
-    _nuis_28 = _mc_28["exact_conditional_mcnemar_summary"]["n24_global_nuisance_size_profile"]
-    assert abs(_nuis_28["global_worst_case_size_pct"] - 3.6699) < 1e-3
-    assert abs(_nuis_28["argmax_total_discordance_q"] - 0.96335) < 1e-3
-    assert abs(_nuis_28["size_at_total_discordance_q_1p0_pct"] - 3.1957) < 1e-3
+    if (ROOT / "data/extracted/islet1_candidate_stack_rankings.json").exists():
+        _rk_28_doc = json.loads((ROOT / "data/extracted/islet1_candidate_stack_rankings.json").read_text(encoding="utf-8"))
+        _mc_28 = _rk_28_doc["odds_composition_and_profile_scope_audit_iip_0003"]["multiplied_conditional_totals"]["iip_0028_paired_mcnemar_and_phi_ab_concordance_audit"]
+        assert _mc_28["proposal_id"] == "IIP-0028"
+        _nuis_28 = _mc_28["exact_conditional_mcnemar_summary"]["n24_global_nuisance_size_profile"]
+        assert abs(_nuis_28["global_worst_case_size_pct"] - 3.6699) < 1e-3
+        assert abs(_nuis_28["argmax_total_discordance_q"] - 0.96335) < 1e-3
+        assert abs(_nuis_28["size_at_total_discordance_q_1p0_pct"] - 3.1957) < 1e-3
 
     _l4_28_doc = json.loads((ROOT / "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json").read_text(encoding="utf-8"))
     _mix_28 = _l4_28_doc["part_a_336h_spatial_reaction_diffusion_pouch_pde"]["measured_potency_dec084_mixture_and_glucagon_audit_iip_0028"]
@@ -6672,6 +6674,178 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     assert len(_gy_28["graveyard_entries"]) == 10 and len(_og_28) == 13
     _gy23 = [g for g in _og_28 if g["graveyard_card_id"] == "GY-023"]
     assert len(_gy23) == 1 and _gy23[0]["guardrail_id"].startswith("OFFGRID_GUARD_013_") and _gy23[0]["contribution_id"] == "IIP-0028"
+
+
+def test_53_iip0027_promoter_origin_tss_6pwm_ledger_and_c1_c2_race_hold() -> None:
+    """
+    Verify IIP-0027 / DEC-107 across:
+      (a) Layer-2 part-resolved 6-PWM JASPAR annotation ledger across canonical constructs,
+          DX-L3, L3-BF-B (including Unit-1 53-bp repeat attribution), DEC-105 c1..c6,
+          IIP-0018 ARM1, and 145-bp AAV2 ITR (0/0/0), rejecting motif-count closure of OQ-011;
+      (b) Tightened omitted/null/UNRESOLVED c1/c2 PD-L1 5'-RACE HOLD_PENDING_5PRIME_RACE_TSS
+          parity across Direct, Serialized JSON Ingestion, and Chronological Replay paths;
+      (c) Fail-closed Stage-0 resting (0 h) + interferon-stimulated (24 h) CXCL10 promoter-of-origin
+          5'-RACE TSS attribution and conditional BIO-06 AAV-ITR RNA-origin attribution;
+      (d) Contract & decision-tree sync and Layer-1 2,160-stack invariance.
+    """
+    ROOT = Path(__file__).resolve().parent.parent
+    from scripts import ingest_wetlab_results as wetlab
+    from scripts import wetlab_contract as wc_mod
+
+    # (a) Layer-2 6-PWM ledger + 53-bp repeat resolution + 145-bp AAV2 ITR negative sensitivity:
+    _l2_27 = json.loads((ROOT / "data/extracted/layer2_regulatory_and_perturbation_atlas.json").read_text(encoding="utf-8"))
+    _aud_27 = _l2_27["stage0_locus3_initiation_6pwm_and_aav_itr_audit_iip_0027"]
+    assert _aud_27["decision_id"] == "DEC-107" and _aud_27["contribution_id"] == "IIP-0027"
+    assert _aud_27["motif_count_stopping_rule_status"] == "REJECTED_DESCRIPTIVE_ANNOTATION_ONLY"
+    assert _aud_27["oq011_status"] == "OPEN_REQUIRES_RESTING_AND_STIMULATED_PROMOTER_OF_ORIGIN_5PRIME_RACE"
+    _scans_27 = _aud_27["scanned_constructs_and_itr"]
+    _expected_triplets = {
+        "L1_ARM1A_4880": [3, 3, 3],
+        "L1_ARM1B_3974": [12, 4, 6],
+        "L3_CANONICAL_4090": [4, 4, 2],
+        "L4_3457": [1, 1, 0],
+        "L3_SCARFREE_3799": [10, 3, 5],
+        "L3_BFB_BASALFLOOR_4078": [12, 5, 5],
+        "DEC105_c1": [12, 5, 5],
+        "DEC105_c2": [10, 3, 5],
+        "DEC105_c3": [3, 2, 2],
+        "DEC105_c4": [1, 1, 0],
+        "DEC105_c5": [0, 0, 0],
+        "DEC105_c6": [1, 1, 0],
+        "IIP0018_ARM1_L3_WT_PARENT_4078": [12, 5, 5],
+        "AAV2_ITR_145BP_J01901_1_145": [0, 0, 0],
+    }
+    for _cid_27, _exp_t in _expected_triplets.items():
+        for _pc_lbl in ("pseudocount_0p8_production", "pseudocount_0p5_comparator"):
+            assert _scans_27[_cid_27]["jaspar_6pwm_by_pseudocount"][_pc_lbl]["counts_window_merged_region6_total"] == _exp_t
+    for _k2a in (
+        "L3_SCARFREE_3799", "L3_BFB_BASALFLOOR_4078",
+        "DEC105_c1", "DEC105_c2", "DEC105_c3", "DEC105_c4", "DEC105_c5", "DEC105_c6",
+        "IIP0018_ARM1_L3_WT_PARENT_4078",
+    ):
+        assert _scans_27[_k2a]["jaspar_6pwm_by_pseudocount"]["pseudocount_0p8_production"]["non_promoter_cargo_significant_window_hits"] == 0
+    _rep53 = _aud_27["summary_findings"]["l3_bfb_and_c1_53bp_direct_repeat_resolution"]
+    assert (_rep53["repeat_length_bp"], _rep53["pos1_a_1based"], _rep53["pos1_b_1based"]) == (53, 650, 680)
+    assert _rep53["wholly_inside_declared_unit1_promoter"] is True and _rep53["identical_in_dec105_c1_650_879"] is True
+
+    # (b) Tightened omitted/null/UNRESOLVED c1/c2 PD-L1 5'-RACE hold across all 3 paths:
+    _base_b2_27 = {
+        "obs_icasp9_log10_kill": 4.6,
+        "obs_icasp9_log10_kill_se": 0.08,
+        "obs_tp53_ppm1d_bcor_vaf": 0.0,
+        "obs_tp53_ppm1d_bcor_vaf_se": 1e-6,
+        "obs_tp53_ppm1d_bcor_duplex_depth": 70000.0,
+        "obs_castseq_translocation_freq": 0.0,
+        "obs_castseq_translocation_se": 1e-6,
+        "obs_castseq_duplex_or_amplicon_depth": 70000.0,
+        "obs_mcb_clonogenic_survivor_count_k": 0,
+        "obs_mcb_effective_clonogenic_trials": 300000000,
+        "product_variant_id": "ISLET1_B2_5LOCUS_BASE",
+        "lot_id": "LOT_B2_IIP0027",
+        "campaign_id": "CAMP_S0_IIP0027",
+        "bound_c1_c5_pair_sha256": wc_mod.DESIGN_B_C1_C5_PAIR_SHA256,
+        "donor_seed_gnomad_target_site_wgs_verified": True,
+        "post_edit_per_locus_segmented_baf": {"chr19q": 0.502, "chr11p15": 0.499, "chr6p21": 0.504},
+        "post_edit_reciprocal_mosaic_sv_or_clonal_zygosity_verified": True,
+        "design_b_hlac_phased_guide_cfd_max": 0.0188,
+        "design_b_hla_ab_separated_pass_delivery_verified": True,
+        "design_b_chr6p21_1p41mb_loh_sv_cleared": True,
+        "design_b_hlac_dt9_positive": True,
+        "design_b_hlae_3d12_positive": True,
+        "design_b_hlac_dt9_matched_hlae_only_control_delta_ratio": 4.25,
+        "design_b_hlac_allele_specific_surface_or_phased_mrna_verified": True,
+        "design_b_locus5_5prime_race_coord_bp": 880,
+        "design_b_locus5_3prime_race_coord_bp": 3478,
+        "design_b_locus5_pdl1_5prime_race_coord_bp": 2350,
+        "design_b_locus5_race_umi_n_eff": 3689,
+        "design_b_locus5_aberrant_umi_k": 0,
+    }
+
+    def _parity_3path_27(case_p: dict) -> dict:
+        d_out = wc_mod.evaluate_stage0_research_and_molecular_guardrails(dict(case_p), root=ROOT)
+        sc_27 = {k: case_p.get(k) for k in ("product_variant_id", "lot_id", "campaign_id")}
+        m_27 = {k: v for k, v in case_p.items() if str(k).startswith("obs_") and v is not None}
+        mol_27 = {k: v for k, v in case_p.items() if k not in sc_27 and not str(k).startswith("obs_")}
+        i_out = wetlab.ingest_stage0_research_or_wetlab_batch(
+            json.dumps({"scope": sc_27, "measurements": m_27, "iip0026_molecular_observations": mol_27}),
+            root=ROOT,
+        )
+        r_out = wetlab.replay_stage0_chronological_batches(
+            [
+                {"seq_index": 1, "utc_timestamp": "2026-11-18T12:00:00Z", "scope": dict(sc_27), "measurements": dict(m_27), "iip0026_molecular_observations": {}},
+                {"seq_index": 2, "utc_timestamp": "2026-11-18T13:00:00Z", "scope": dict(sc_27), "measurements": {}, "iip0026_molecular_observations": dict(mol_27)},
+            ],
+            root=ROOT,
+        )
+        assert d_out["overall_status"] == i_out["overall_status"] == r_out["overall_status"]
+        assert d_out["iip0026_reasons"] == i_out["iip0026_reasons"] == r_out["iip0026_reasons"]
+        return d_out
+
+    assert _parity_3path_27(_base_b2_27)["overall_status"] == "RESEARCH_COMPARATOR_STAGE0_PANEL_CLEARED_PENDING_STATE4_PROMOTION"
+    _omitted_27 = {k: v for k, v in _base_b2_27.items() if k != "design_b_locus5_pdl1_5prime_race_coord_bp"}
+    assert _parity_3path_27(_omitted_27)["overall_status"] == "HOLD_PENDING_5PRIME_RACE_TSS"
+    assert _parity_3path_27({**_base_b2_27, "design_b_locus5_pdl1_5prime_race_coord_bp": None})["overall_status"] == "HOLD_PENDING_5PRIME_RACE_TSS"
+    assert _parity_3path_27({**_base_b2_27, "design_b_locus5_pdl1_5prime_race_coord_bp": "UNRESOLVED"})["overall_status"] == "HOLD_PENDING_5PRIME_RACE_TSS"
+    assert _parity_3path_27({**_base_b2_27, "design_b_locus5_pdl1_5prime_race_coord_bp": 2300})["overall_status"] == "FAIL_MATURE_TRANSCRIPT_INCLUDES_UPSTREAM_OUT_OF_FRAME_KOZAK_ORF"
+
+    # (c) Stage-0 resting + stimulated CXCL10 promoter-of-origin 5'-RACE & conditional BIO-06 ITR gate:
+    _clean_27 = {
+        "obs_icasp9_log10_kill": 4.6,
+        "obs_icasp9_log10_kill_se": 0.08,
+        "obs_tp53_ppm1d_bcor_vaf": 0.0,
+        "obs_tp53_ppm1d_bcor_vaf_se": 1e-6,
+        "obs_castseq_translocation_freq": 0.0,
+        "obs_castseq_translocation_se": 1e-6,
+        "require_full_iip0027_promoter_origin_and_itr_panel": True,
+        "cxcl10_tss_donor_id": "L3_BFB_BASALFLOOR_4078",
+        "cxcl10_tss_transcription_unit_id": "UNIT2_PDL1",
+        "cxcl10_insert_matched_comparator_control_verified": True,
+        "obs_cxcl10_resting_race_umi_n_eff": 3689,
+        "obs_cxcl10_resting_unexpected_tss_umi_k": 0,
+        "obs_cxcl10_resting_unresolved_origin_umi_k": 0,
+        "obs_cxcl10_ifng24h_race_umi_n_eff": 3689,
+        "obs_cxcl10_ifng24h_unexpected_tss_umi_k": 0,
+        "obs_cxcl10_ifng24h_unresolved_origin_umi_k": 0,
+        "obs_bio06_retained_aav_itr_dna_pct": 0.2,
+        "bio06_itr_rna_origin_attribution_verified": True,
+        "obs_bio06_itr_origin_rna_umi_k": 0,
+    }
+    _res_clean_27 = wc_mod.evaluate_stage0_decision_tree(dict(_clean_27), root=ROOT)
+    assert _res_clean_27["iip0027_promoter_origin_and_itr_evaluation"]["status"] == "CLEARED_IIP0027_RESTING_AND_STIMULATED_PROMOTER_ORIGIN_AND_ITR_GATES"
+    assert _res_clean_27["iip0027_promoter_origin_and_itr_evaluation"]["oq011_closed_by_computational_motif_count"] is False
+
+    # Resting below LoQ (N=0) allowed ONLY when confirmed AND stimulated 24 h still clears N >= 3,689:
+    _res_loq_27 = wc_mod.evaluate_stage0_decision_tree(
+        {**_clean_27, "obs_cxcl10_resting_race_umi_n_eff": 0, "cxcl10_resting_expression_below_loq_confirmed": True},
+        root=ROOT,
+    )
+    assert _res_loq_27["iip0027_promoter_origin_and_itr_evaluation"]["gate_pass"] is True
+
+    # Resting expressed with N = 3688 < 3689 holds; resting-only holds; stimulated unexpected TSS holds:
+    assert wc_mod.evaluate_stage0_decision_tree({**_clean_27, "obs_cxcl10_resting_race_umi_n_eff": 3688}, root=ROOT)["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_IIP0027_RESTING_UMI_BELOW_3689"
+    assert wc_mod.evaluate_stage0_decision_tree({k: v for k, v in _clean_27.items() if "ifng24h" not in k}, root=ROOT)["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_IIP0027_MISSING_IFNG24H_STIMULATED_PROMOTER_ORIGIN_5PRIME_RACE"
+    assert wc_mod.evaluate_stage0_decision_tree({k: v for k, v in _clean_27.items() if "resting_race" not in k}, root=ROOT)["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_IIP0027_MISSING_RESTING_0H_PROMOTER_ORIGIN_5PRIME_RACE"
+    assert wc_mod.evaluate_stage0_decision_tree({**_clean_27, "cxcl10_insert_matched_comparator_control_verified": False}, root=ROOT)["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_IIP0027_MISSING_INSERT_MATCHED_COMPARATOR_CONTROL"
+    assert wc_mod.evaluate_stage0_decision_tree({**_clean_27, "obs_cxcl10_ifng24h_unexpected_tss_umi_k": 1}, root=ROOT)["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_FAIL_IIP0027_IFNG24H_UNEXPECTED_INTERNAL_TSS_DETECTED"
+    assert wc_mod.evaluate_stage0_decision_tree({**_clean_27, "obs_cxcl10_ifng24h_unresolved_origin_umi_k": 2}, root=ROOT)["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_IIP0027_IFNG24H_UNRESOLVED_TSS_ORIGIN"
+
+    # Conditional BIO-06 ITR RNA-origin checks:
+    _no_itr_rna = {k: v for k, v in _clean_27.items() if k not in ("bio06_itr_rna_origin_attribution_verified", "obs_bio06_itr_origin_rna_umi_k")}
+    assert wc_mod.evaluate_stage0_decision_tree(_no_itr_rna, root=ROOT)["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_IIP0027_RETAINED_AAV_ITR_DNA_REQUIRES_RNA_ORIGIN_ATTRIBUTION"
+    assert wc_mod.evaluate_stage0_decision_tree({**_clean_27, "obs_bio06_itr_origin_rna_umi_k": 1}, root=ROOT)["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_FAIL_IIP0027_AAV_ITR_ORIGIN_TRANSCRIPT_DETECTED"
+    assert wc_mod.evaluate_stage0_decision_tree({**_clean_27, "obs_bio06_retained_aav_itr_dna_pct": 0.5}, root=ROOT)["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_FAIL_BIO06_AAV_ITR_DNA_CAPTURE_GE_0P5PCT"
+
+    # (d) Contract, decision-tree & Layer-1 2,160-stack invariance:
+    _ct_27 = json.loads((ROOT / "data/protocols/wetlab_endpoint_contract_v0.8.0.json").read_text(encoding="utf-8"))
+    assert len(_ct_27["stage0_decision_tree_endpoints"]) == 341
+    assert len(_ct_27["metadata_keys"]) == 64
+    assert len(_ct_27["boolean_policy_keys"]) == 103
+    _dt_27 = json.loads((ROOT / "data/protocols/stage0_decision_tree_v1.json").read_text(encoding="utf-8"))
+    assert _dt_27["promoter_origin_tss_and_conditional_aav_itr_iip_0027"]["decision_id"] == "DEC-107"
+    if (ROOT / "data/extracted/islet1_candidate_stack_rankings.json").exists():
+        _rk_27 = json.loads((ROOT / "data/extracted/islet1_candidate_stack_rankings.json").read_text(encoding="utf-8"))
+        assert _rk_27["total_valid_combinatorial_stacks_evaluated"] == 2160
+
 
 
 

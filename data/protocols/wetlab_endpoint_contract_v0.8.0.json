@@ -66,7 +66,9 @@
     "isotype_adcc_control_id",
     "arm2_depleted_sample_id",
     "contemporaneous_arm3_control_sample_id",
-    "sister_assembly_id"
+    "sister_assembly_id",
+    "cxcl10_tss_donor_id",
+    "cxcl10_tss_transcription_unit_id"
   ],
   "boolean_policy_keys": [
     "require_full_5endpoint_s9_panel",
@@ -167,7 +169,11 @@
     "carrier_and_soluble_adjunct_below_lod_verified",
     "fcr_effector_fcgr3a_158v_typed_verified",
     "dec084_measured_starting_composition_and_fresh_equal_output_verified",
-    "iapp_sister_visit_lot_and_viable_beta_mass_concordance_verified"
+    "iapp_sister_visit_lot_and_viable_beta_mass_concordance_verified",
+    "require_full_iip0027_promoter_origin_and_itr_panel",
+    "cxcl10_insert_matched_comparator_control_verified",
+    "cxcl10_resting_expression_below_loq_confirmed",
+    "bio06_itr_rna_origin_attribution_verified"
   ],
   "endpoints": [
     {
@@ -3914,6 +3920,94 @@
       "default_se": 0.04,
       "minimum_se": 0.001,
       "unit": "terminal_sister_device_day84_anti_iapp_colocalized_fibril_area_percentage"
+    },
+    {
+      "endpoint_id": "stage0_cxcl10_resting_race_umi_n_eff",
+      "meanKey": "obs_cxcl10_resting_race_umi_n_eff",
+      "seKey": "obs_cxcl10_resting_race_umi_n_eff_se",
+      "min": 0.0,
+      "max": 1000000000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "cxcl10_resting_0h_5prime_race_recovery_adjusted_effective_umi_n_eff"
+    },
+    {
+      "endpoint_id": "stage0_cxcl10_resting_unexpected_tss_umi_k",
+      "meanKey": "obs_cxcl10_resting_unexpected_tss_umi_k",
+      "seKey": "obs_cxcl10_resting_unexpected_tss_umi_k_se",
+      "min": 0.0,
+      "max": 1000000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "cxcl10_resting_0h_unexpected_internal_promoter_tss_umi_count_k"
+    },
+    {
+      "endpoint_id": "stage0_cxcl10_resting_unresolved_origin_umi_k",
+      "meanKey": "obs_cxcl10_resting_unresolved_origin_umi_k",
+      "seKey": "obs_cxcl10_resting_unresolved_origin_umi_k_se",
+      "min": 0.0,
+      "max": 1000000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "cxcl10_resting_0h_unresolved_tss_origin_umi_count_k"
+    },
+    {
+      "endpoint_id": "stage0_cxcl10_ifng24h_race_umi_n_eff",
+      "meanKey": "obs_cxcl10_ifng24h_race_umi_n_eff",
+      "seKey": "obs_cxcl10_ifng24h_race_umi_n_eff_se",
+      "min": 0.0,
+      "max": 1000000000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "cxcl10_ifng24h_5prime_race_recovery_adjusted_effective_umi_n_eff"
+    },
+    {
+      "endpoint_id": "stage0_cxcl10_ifng24h_unexpected_tss_umi_k",
+      "meanKey": "obs_cxcl10_ifng24h_unexpected_tss_umi_k",
+      "seKey": "obs_cxcl10_ifng24h_unexpected_tss_umi_k_se",
+      "min": 0.0,
+      "max": 1000000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "cxcl10_ifng24h_unexpected_internal_promoter_tss_umi_count_k"
+    },
+    {
+      "endpoint_id": "stage0_cxcl10_ifng24h_unresolved_origin_umi_k",
+      "meanKey": "obs_cxcl10_ifng24h_unresolved_origin_umi_k",
+      "seKey": "obs_cxcl10_ifng24h_unresolved_origin_umi_k_se",
+      "min": 0.0,
+      "max": 1000000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "cxcl10_ifng24h_unresolved_tss_origin_umi_count_k"
+    },
+    {
+      "endpoint_id": "stage0_bio06_retained_aav_itr_dna_pct",
+      "meanKey": "obs_bio06_retained_aav_itr_dna_pct",
+      "seKey": "obs_bio06_retained_aav_itr_dna_pct_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.02,
+      "minimum_se": 1e-06,
+      "unit": "bio06_locus_junction_retained_aav_itr_dna_allele_percentage"
+    },
+    {
+      "endpoint_id": "stage0_bio06_itr_origin_rna_umi_k",
+      "meanKey": "obs_bio06_itr_origin_rna_umi_k",
+      "seKey": "obs_bio06_itr_origin_rna_umi_k_se",
+      "min": 0.0,
+      "max": 1000000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "bio06_conditional_aav_itr_origin_transcript_5prime_race_umi_count_k"
     }
   ]
 }

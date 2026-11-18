@@ -376,6 +376,15 @@ STAGE0_DECISION_TREE_ENDPOINT_SPECS = [
     ('stage0_iapp_d28_colocalized_fibril_area_pct', 'obs_iapp_d28_colocalized_fibril_area_pct', 'obs_iapp_d28_colocalized_fibril_area_se', 0.0, 100.0, 'lot_scope_day28_anti_iapp_colocalized_fibril_area_percentage'),
     ('stage0_iapp_d84_immunocapture_oligomer_elisa_fold', 'obs_iapp_d84_immunocapture_oligomer_elisa_fold', 'obs_iapp_d84_immunocapture_oligomer_elisa_se', 0.0, 50.0, 'terminal_sister_device_day84_iapp_immunocapture_oligomer_elisa_fold_over_age_matched_ref'),
     ('stage0_iapp_d84_colocalized_fibril_area_pct', 'obs_iapp_d84_colocalized_fibril_area_pct', 'obs_iapp_d84_colocalized_fibril_area_se', 0.0, 100.0, 'terminal_sister_device_day84_anti_iapp_colocalized_fibril_area_percentage'),
+    # Stage-0 resting (0 h) + interferon-stimulated (24 h) CXCL10 promoter-of-origin 5'-RACE TSS attribution & conditional BIO-06 AAV-ITR RNA-origin endpoints (IIP-0027; DEC-107):
+    ('stage0_cxcl10_resting_race_umi_n_eff', 'obs_cxcl10_resting_race_umi_n_eff', 'obs_cxcl10_resting_race_umi_n_eff_se', 0.0, 1000000000.0, 'cxcl10_resting_0h_5prime_race_recovery_adjusted_effective_umi_n_eff'),
+    ('stage0_cxcl10_resting_unexpected_tss_umi_k', 'obs_cxcl10_resting_unexpected_tss_umi_k', 'obs_cxcl10_resting_unexpected_tss_umi_k_se', 0.0, 1000000.0, 'cxcl10_resting_0h_unexpected_internal_promoter_tss_umi_count_k'),
+    ('stage0_cxcl10_resting_unresolved_origin_umi_k', 'obs_cxcl10_resting_unresolved_origin_umi_k', 'obs_cxcl10_resting_unresolved_origin_umi_k_se', 0.0, 1000000.0, 'cxcl10_resting_0h_unresolved_tss_origin_umi_count_k'),
+    ('stage0_cxcl10_ifng24h_race_umi_n_eff', 'obs_cxcl10_ifng24h_race_umi_n_eff', 'obs_cxcl10_ifng24h_race_umi_n_eff_se', 0.0, 1000000000.0, 'cxcl10_ifng24h_5prime_race_recovery_adjusted_effective_umi_n_eff'),
+    ('stage0_cxcl10_ifng24h_unexpected_tss_umi_k', 'obs_cxcl10_ifng24h_unexpected_tss_umi_k', 'obs_cxcl10_ifng24h_unexpected_tss_umi_k_se', 0.0, 1000000.0, 'cxcl10_ifng24h_unexpected_internal_promoter_tss_umi_count_k'),
+    ('stage0_cxcl10_ifng24h_unresolved_origin_umi_k', 'obs_cxcl10_ifng24h_unresolved_origin_umi_k', 'obs_cxcl10_ifng24h_unresolved_origin_umi_k_se', 0.0, 1000000.0, 'cxcl10_ifng24h_unresolved_tss_origin_umi_count_k'),
+    ('stage0_bio06_retained_aav_itr_dna_pct', 'obs_bio06_retained_aav_itr_dna_pct', 'obs_bio06_retained_aav_itr_dna_pct_se', 0.0, 100.0, 'bio06_locus_junction_retained_aav_itr_dna_allele_percentage'),
+    ('stage0_bio06_itr_origin_rna_umi_k', 'obs_bio06_itr_origin_rna_umi_k', 'obs_bio06_itr_origin_rna_umi_k_se', 0.0, 1000000.0, 'bio06_conditional_aav_itr_origin_transcript_5prime_race_umi_count_k'),
 ]
 
 STAGE0_S10_V3_MEAN_KEYS: frozenset[str] = frozenset({
@@ -1212,6 +1221,14 @@ STAGE0_CUSTOM_DEFAULT_SE: dict[str, float] = {
     'obs_iapp_d28_colocalized_fibril_area_pct': 0.04,
     'obs_iapp_d84_immunocapture_oligomer_elisa_fold': 0.05,
     'obs_iapp_d84_colocalized_fibril_area_pct': 0.04,
+    'obs_cxcl10_resting_race_umi_n_eff': 1e-12,
+    'obs_cxcl10_resting_unexpected_tss_umi_k': 1e-12,
+    'obs_cxcl10_resting_unresolved_origin_umi_k': 1e-12,
+    'obs_cxcl10_ifng24h_race_umi_n_eff': 1e-12,
+    'obs_cxcl10_ifng24h_unexpected_tss_umi_k': 1e-12,
+    'obs_cxcl10_ifng24h_unresolved_origin_umi_k': 1e-12,
+    'obs_bio06_retained_aav_itr_dna_pct': 0.02,
+    'obs_bio06_itr_origin_rna_umi_k': 1e-12,
 }
 
 STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
@@ -1271,6 +1288,14 @@ STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
     'obs_tyk2_pe4max_wgs_repeat_indels_clone': 1e-12,
     'obs_tyk2_pe4max_wgs_repeat_indels_ctrl': 1e-12,
     'obs_tyk2_pe4max_coding_or_splice_de_novo_indels': 1e-12,
+    'obs_cxcl10_resting_race_umi_n_eff': 1e-12,
+    'obs_cxcl10_resting_unexpected_tss_umi_k': 1e-12,
+    'obs_cxcl10_resting_unresolved_origin_umi_k': 1e-12,
+    'obs_cxcl10_ifng24h_race_umi_n_eff': 1e-12,
+    'obs_cxcl10_ifng24h_unexpected_tss_umi_k': 1e-12,
+    'obs_cxcl10_ifng24h_unresolved_origin_umi_k': 1e-12,
+    'obs_bio06_retained_aav_itr_dna_pct': 1e-6,
+    'obs_bio06_itr_origin_rna_umi_k': 1e-12,
 }
 
 
@@ -1658,6 +1683,10 @@ STAGE0_DECISION_TREE_BOOLEAN_KEYS: tuple[str, ...] = (
     'fcr_effector_fcgr3a_158v_typed_verified',
     'dec084_measured_starting_composition_and_fresh_equal_output_verified',
     'iapp_sister_visit_lot_and_viable_beta_mass_concordance_verified',
+    'require_full_iip0027_promoter_origin_and_itr_panel',
+    'cxcl10_insert_matched_comparator_control_verified',
+    'cxcl10_resting_expression_below_loq_confirmed',
+    'bio06_itr_rna_origin_attribution_verified',
 )
 
 
@@ -1750,6 +1779,8 @@ def derive_contract(root: Path | str | None = None) -> dict:
                 'arm2_depleted_sample_id',
                 'contemporaneous_arm3_control_sample_id',
                 'sister_assembly_id',
+                'cxcl10_tss_donor_id',
+                'cxcl10_tss_transcription_unit_id',
             ],
             'boolean_policy_keys': list(STAGE0_DECISION_TREE_BOOLEAN_KEYS),
             'endpoints': endpoints,
@@ -2426,6 +2457,13 @@ STAGE0_STRICT_INTEGER_COUNT_AND_DENOMINATOR_KEYS: frozenset[str] = frozenset({
     'obs_tyk2_pe4max_wgs_repeat_indels_clone',
     'obs_tyk2_pe4max_wgs_repeat_indels_ctrl',
     'obs_tyk2_pe4max_coding_or_splice_de_novo_indels',
+    'obs_cxcl10_resting_race_umi_n_eff',
+    'obs_cxcl10_resting_unexpected_tss_umi_k',
+    'obs_cxcl10_resting_unresolved_origin_umi_k',
+    'obs_cxcl10_ifng24h_race_umi_n_eff',
+    'obs_cxcl10_ifng24h_unexpected_tss_umi_k',
+    'obs_cxcl10_ifng24h_unresolved_origin_umi_k',
+    'obs_bio06_itr_origin_rna_umi_k',
 })
 
 
@@ -2663,6 +2701,12 @@ def evaluate_stage0_decision_tree(
         'arm2_depleted_sample_id',
         'contemporaneous_arm3_control_sample_id',
         'sister_assembly_id',
+        'require_full_iip0027_promoter_origin_and_itr_panel',
+        'cxcl10_insert_matched_comparator_control_verified',
+        'cxcl10_resting_expression_below_loq_confirmed',
+        'bio06_itr_rna_origin_attribution_verified',
+        'cxcl10_tss_donor_id',
+        'cxcl10_tss_transcription_unit_id',
     }
     unknown_keys = sorted(set(observations) - set(spec_by_mean) - set(spec_by_se) - allowed_boolean_and_meta_flags)
     if unknown_keys:
@@ -2682,6 +2726,8 @@ def evaluate_stage0_decision_tree(
         'arm2_depleted_sample_id',
         'contemporaneous_arm3_control_sample_id',
         'sister_assembly_id',
+        'cxcl10_tss_donor_id',
+        'cxcl10_tss_transcription_unit_id',
     ):
         if _str_meta_k in observations and observations[_str_meta_k] is not None:
             _sv = observations[_str_meta_k]
@@ -5964,6 +6010,40 @@ def evaluate_stage0_decision_tree(
             ),
         }
 
+    # Stage-0 resting (0 h) + interferon-stimulated (24 h) CXCL10 promoter-of-origin 5'-RACE TSS attribution & conditional BIO-06 AAV-ITR RNA-origin gate (IIP-0027; DEC-107):
+    _iip0027_obs_keys = (
+        'obs_cxcl10_resting_race_umi_n_eff',
+        'obs_cxcl10_resting_unexpected_tss_umi_k',
+        'obs_cxcl10_resting_unresolved_origin_umi_k',
+        'obs_cxcl10_ifng24h_race_umi_n_eff',
+        'obs_cxcl10_ifng24h_unexpected_tss_umi_k',
+        'obs_cxcl10_ifng24h_unresolved_origin_umi_k',
+        'obs_bio06_retained_aav_itr_dna_pct',
+        'obs_bio06_itr_origin_rna_umi_k',
+    )
+    _iip0027_meta_or_bool_keys = (
+        'require_full_iip0027_promoter_origin_and_itr_panel',
+        'cxcl10_insert_matched_comparator_control_verified',
+        'cxcl10_resting_expression_below_loq_confirmed',
+        'bio06_itr_rna_origin_attribution_verified',
+        'cxcl10_tss_donor_id',
+        'cxcl10_tss_transcription_unit_id',
+    )
+    _iip0027_active = bool(
+        any(_k in validated_stage0 for _k in _iip0027_obs_keys)
+        or any(observations.get(_k) is not None for _k in _iip0027_meta_or_bool_keys)
+    )
+    iip0027_eval_summary: dict[str, object] | None = None
+    iip0027_hold_status: str | None = None
+    if _iip0027_active:
+        iip0027_eval_summary = evaluate_cxcl10_promoter_origin_and_itr_gate_iip_0027(
+            observations,
+            validated_stage0=validated_stage0,
+            non_integer_denominator_flagged=non_integer_scored_cell_or_trial_denominator,
+        )
+        if iip0027_eval_summary['gate_pass'] is not True:
+            iip0027_hold_status = str(iip0027_eval_summary['status'])
+
     resolved_arch = dict(tree_doc.get('default_architecture_assignments', {}))
     if product_def is not None:
         _pvid_canon = str(product_def['product_variant_id'])
@@ -6304,6 +6384,8 @@ def evaluate_stage0_decision_tree(
         resolved_arch['lot_maturation_status'] = iip0026_hold_status
     elif iip0028_hold_status is not None:
         resolved_arch['lot_maturation_status'] = iip0028_hold_status
+    elif iip0027_hold_status is not None:
+        resolved_arch['lot_maturation_status'] = iip0027_hold_status
     elif challenger_hold_status is not None:
         resolved_arch['lot_maturation_status'] = challenger_hold_status
     elif avascular_outer_band_dropout and not omental_revascularization_cleared:
@@ -7065,6 +7147,11 @@ def evaluate_stage0_decision_tree(
         **(
             {'iip0028_postdepletion_adcc_mixture_and_iapp_evaluation': iip0028_eval_summary}
             if iip0028_eval_summary is not None
+            else {}
+        ),
+        **(
+            {'iip0027_promoter_origin_and_itr_evaluation': iip0027_eval_summary}
+            if iip0027_eval_summary is not None
             else {}
         ),
     }
@@ -8790,7 +8877,9 @@ def evaluate_stage0_research_and_molecular_guardrails(
             reasons.append('FAIL_INVALID_RACE_COORDINATES')
 
         pdl1_r5 = payload.get('design_b_locus5_pdl1_5prime_race_coord_bp')
-        if pdl1_r5 == 'UNRESOLVED':
+        if reg['bound_c1_c5_pair_sha256'] == DESIGN_B_C1_C5_PAIR_SHA256 and (pdl1_r5 is None or pdl1_r5 == 'UNRESOLVED'):
+            reasons.append('HOLD_PENDING_5PRIME_RACE_TSS')
+        elif pdl1_r5 == 'UNRESOLVED':
             reasons.append('HOLD_PENDING_5PRIME_RACE_TSS')
         elif pdl1_r5 is not None:
             if not _is_strict_int_iip0024(pdl1_r5) or pdl1_r5 <= 0 or pdl1_r5 > 2381:
@@ -9619,3 +9708,160 @@ def evaluate_orthogonal_iapp_3way_gate_iip_0028(
         'p2_itm2b_reserve_eligible': False,
         'p2_active_weight_pct': 0.0,
     }
+
+
+# ============================================================================
+# Separate Resting (0 h) & Interferon-Stimulated (24 h) CXCL10 Promoter-of-
+# Origin 5'-RACE TSS Attribution & Conditional BIO-06 AAV-ITR Origin Gate
+# (IIP-0027; DEC-107)
+# ============================================================================
+def evaluate_cxcl10_promoter_origin_and_itr_gate_iip_0027(
+    observations: dict[str, Any],
+    *,
+    validated_stage0: dict[str, float] | None = None,
+    non_integer_denominator_flagged: bool = False,
+) -> dict[str, Any]:
+    """
+    Fail-closed Stage-0 resting (0 h) + interferon-stimulated (24 h) CXCL10 promoter-of-origin
+    5'-RACE TSS attribution and conditional BIO-06 AAV-ITR RNA-origin evaluator (IIP-0027; DEC-107).
+
+    Enforces:
+      - Named donor (cxcl10_tss_donor_id) and transcription unit (cxcl10_tss_transcription_unit_id);
+      - Insert-matched comparator control verification (Giannakis et al. 2003 PMID:12951775);
+      - Separate resting (0 h) AND interferon-stimulated (24 h) 5'-RACE TSS attribution classifying
+        expected host / designed internal vs unexpected internal (k == 0) and unresolved (k == 0)
+        origins, with recovery-adjusted N_UMI_eff >= 3,689 wherever expressed (3,688 exact two-sided
+        95% Clopper-Pearson minimum for < 0.10% at k = 0; Kivioja et al. 2011 PMID:22101854);
+      - Conditional Readout 1 BIO-06 AAV-ITR RNA-origin attribution (Earley et al. 2020 PMID:31914802;
+        Haberman et al. 2000 PMID:10954575; Flotte et al. 1993 PMID:7679117) whenever locus-specific
+        junction sequencing documents retained ITR DNA (obs_bio06_retained_aav_itr_dna_pct > 0%,
+        alongside the < 0.5% DNA capture ceiling from Hanlon et al. 2019 PMID:31570731).
+    """
+    if not isinstance(observations, dict):
+        raise ValueError('IIP-0027 promoter-origin observations must be a dictionary (IIP-0027; DEC-107)')
+
+    def _get_num(key: str) -> float | None:
+        if validated_stage0 is not None and key in validated_stage0:
+            return float(validated_stage0[key])
+        raw = observations.get(key)
+        if raw is None or raw == 'UNAVAILABLE':
+            return None
+        if isinstance(raw, bool) or not isinstance(raw, (int, float)):
+            return None
+        val = float(raw)
+        return val if math.isfinite(val) else None
+
+    def _get_nonneg_int(key: str) -> tuple[bool, int | None]:
+        raw = observations.get(key)
+        if raw is None or raw == 'UNAVAILABLE':
+            if validated_stage0 is not None and key in validated_stage0:
+                vf = float(validated_stage0[key])
+                if vf >= 0.0 and abs(vf - round(vf)) <= 1e-9:
+                    return True, int(round(vf))
+                return False, None
+            return True, None
+        if isinstance(raw, bool):
+            return False, None
+        if isinstance(raw, int):
+            return (raw >= 0), (raw if raw >= 0 else None)
+        if isinstance(raw, float) and math.isfinite(raw) and raw >= 0.0 and abs(raw - round(raw)) <= 1e-9:
+            return True, int(round(raw))
+        return False, None
+
+    def _unpadded_id(val: object) -> bool:
+        return isinstance(val, str) and val == val.strip() and 3 <= len(val) <= 120
+
+    def _result(status: str, gate_pass: bool, **extra: Any) -> dict[str, Any]:
+        return {
+            'gate_pass': gate_pass,
+            'hold_status': None if gate_pass else status,
+            'status': status,
+            'cxcl10_tss_donor_id': observations.get('cxcl10_tss_donor_id'),
+            'cxcl10_tss_transcription_unit_id': observations.get('cxcl10_tss_transcription_unit_id'),
+            'oq011_closed_by_computational_motif_count': False,
+            'requires_empirical_race_per_condition_and_unit': True,
+            **extra,
+        }
+
+    # Conditional BIO-06 ITR checks can also fire independently if retained ITR DNA or ITR RNA is observed:
+    itr_dna_pct = _get_num('obs_bio06_retained_aav_itr_dna_pct')
+    itr_rna_ok, itr_rna_k = _get_nonneg_int('obs_bio06_itr_origin_rna_umi_k')
+    if not itr_rna_ok:
+        return _result('HOLD_IIP0027_INVALID_NON_INTEGER_UMI_COUNT', False)
+    if itr_dna_pct is not None and itr_dna_pct >= 0.5:
+        return _result('HOLD_FAIL_BIO06_AAV_ITR_DNA_CAPTURE_GE_0P5PCT', False, retained_itr_dna_pct=itr_dna_pct)
+    if itr_rna_k is not None and itr_rna_k > 0:
+        return _result('HOLD_FAIL_IIP0027_AAV_ITR_ORIGIN_TRANSCRIPT_DETECTED', False, itr_origin_rna_umi_k=itr_rna_k)
+    if itr_dna_pct is not None and itr_dna_pct > 0.0:
+        if observations.get('bio06_itr_rna_origin_attribution_verified') is not True or itr_rna_k is None:
+            return _result(
+                'HOLD_IIP0027_RETAINED_AAV_ITR_DNA_REQUIRES_RNA_ORIGIN_ATTRIBUTION',
+                False,
+                retained_itr_dna_pct=itr_dna_pct,
+            )
+
+    # Check if only clean BIO-06 ITR check (0% DNA or verified 0 ITR RNA) was supplied without CXCL10 promoter-origin fields:
+    cxcl10_keys_present = any(
+        observations.get(k) is not None or (validated_stage0 is not None and k in validated_stage0)
+        for k in (
+            'require_full_iip0027_promoter_origin_and_itr_panel',
+            'cxcl10_insert_matched_comparator_control_verified',
+            'cxcl10_resting_expression_below_loq_confirmed',
+            'cxcl10_tss_donor_id',
+            'cxcl10_tss_transcription_unit_id',
+            'obs_cxcl10_resting_race_umi_n_eff',
+            'obs_cxcl10_resting_unexpected_tss_umi_k',
+            'obs_cxcl10_resting_unresolved_origin_umi_k',
+            'obs_cxcl10_ifng24h_race_umi_n_eff',
+            'obs_cxcl10_ifng24h_unexpected_tss_umi_k',
+            'obs_cxcl10_ifng24h_unresolved_origin_umi_k',
+        )
+    )
+    if not cxcl10_keys_present:
+        return _result('CLEARED_IIP0027_BIO06_CONDITIONAL_AAV_ITR_ORIGIN_CHECK', True, retained_itr_dna_pct=itr_dna_pct, itr_origin_rna_umi_k=itr_rna_k)
+
+    if non_integer_denominator_flagged:
+        return _result('HOLD_IIP0027_INVALID_NON_INTEGER_UMI_COUNT', False)
+    if not (_unpadded_id(observations.get('cxcl10_tss_donor_id')) and _unpadded_id(observations.get('cxcl10_tss_transcription_unit_id'))):
+        return _result('HOLD_IIP0027_MISSING_NAMED_DONOR_OR_TRANSCRIPTION_UNIT', False)
+    if observations.get('cxcl10_insert_matched_comparator_control_verified') is not True:
+        return _result('HOLD_IIP0027_MISSING_INSERT_MATCHED_COMPARATOR_CONTROL', False)
+
+    r_n_ok, r_n = _get_nonneg_int('obs_cxcl10_resting_race_umi_n_eff')
+    r_u_ok, r_u = _get_nonneg_int('obs_cxcl10_resting_unexpected_tss_umi_k')
+    r_q_ok, r_q = _get_nonneg_int('obs_cxcl10_resting_unresolved_origin_umi_k')
+    s_n_ok, s_n = _get_nonneg_int('obs_cxcl10_ifng24h_race_umi_n_eff')
+    s_u_ok, s_u = _get_nonneg_int('obs_cxcl10_ifng24h_unexpected_tss_umi_k')
+    s_q_ok, s_q = _get_nonneg_int('obs_cxcl10_ifng24h_unresolved_origin_umi_k')
+    if not (r_n_ok and r_u_ok and r_q_ok and s_n_ok and s_u_ok and s_q_ok):
+        return _result('HOLD_IIP0027_INVALID_NON_INTEGER_UMI_COUNT', False)
+
+    if r_n is None or r_u is None or r_q is None:
+        return _result('HOLD_IIP0027_MISSING_RESTING_0H_PROMOTER_ORIGIN_5PRIME_RACE', False)
+    if s_n is None or s_u is None or s_q is None:
+        return _result('HOLD_IIP0027_MISSING_IFNG24H_STIMULATED_PROMOTER_ORIGIN_5PRIME_RACE', False)
+
+    if r_u > 0:
+        return _result('HOLD_FAIL_IIP0027_RESTING_UNEXPECTED_INTERNAL_TSS_DETECTED', False, resting_unexpected_tss_umi_k=r_u)
+    if s_u > 0:
+        return _result('HOLD_FAIL_IIP0027_IFNG24H_UNEXPECTED_INTERNAL_TSS_DETECTED', False, ifng24h_unexpected_tss_umi_k=s_u)
+    if r_q > 0:
+        return _result('HOLD_IIP0027_RESTING_UNRESOLVED_TSS_ORIGIN', False, resting_unresolved_origin_umi_k=r_q)
+    if s_q > 0:
+        return _result('HOLD_IIP0027_IFNG24H_UNRESOLVED_TSS_ORIGIN', False, ifng24h_unresolved_origin_umi_k=s_q)
+
+    resting_below_loq = observations.get('cxcl10_resting_expression_below_loq_confirmed') is True
+    if not resting_below_loq and r_n < 3689:
+        return _result('HOLD_IIP0027_RESTING_UMI_BELOW_3689', False, resting_race_umi_n_eff=r_n)
+    if s_n < 3689:
+        return _result('HOLD_IIP0027_IFNG24H_UMI_BELOW_3689', False, ifng24h_race_umi_n_eff=s_n)
+
+    return _result(
+        'CLEARED_IIP0027_RESTING_AND_STIMULATED_PROMOTER_ORIGIN_AND_ITR_GATES',
+        True,
+        resting_race_umi_n_eff=r_n,
+        resting_below_loq_confirmed=resting_below_loq,
+        ifng24h_race_umi_n_eff=s_n,
+        retained_itr_dna_pct=itr_dna_pct,
+        itr_origin_rna_umi_k=itr_rna_k,
+    )

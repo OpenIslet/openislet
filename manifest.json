@@ -255,8 +255,8 @@
       "bytes": 1157
     },
     "ISLET-1-BLUEPRINT.md": {
-      "sha256": "8a7bff91663b3c45262ac8d752600e0257903e297d3c164529dda321262c828d",
-      "bytes": 223891
+      "sha256": "594f409177eecbb213f1005f9c31c6f1d03cf47e2b150d85360e59c66ca8c769",
+      "bytes": 226278
     },
     "README.md": {
       "sha256": "91fbca4540ecc81dcaebaed2a67a7fac723bd6ea0e6aa87b5761a094c4c37073",
@@ -283,16 +283,16 @@
       "bytes": 20334
     },
     "docs/PROJECT-DECISIONS-LOG.md": {
-      "sha256": "a08319e045c4328372b8dda243a091add06f21497ab20e2ce4a871e444a34bac",
-      "bytes": 566356
+      "sha256": "2530e77e936b352811da57e6f90ee56462c893fcc069207a1c7e7430f07cc9f4",
+      "bytes": 571966
     },
     "docs/OPENISLET-2026-2030-MASTER-TIMELINE.md": {
       "sha256": "9c42a296f5aab5cf8d75361505cf8cfc42ebd3e5ac1fc83816a9d5a4ca395305",
       "bytes": 32751
     },
     "docs/STAGE-0-EXECUTION-PLAYBOOK.md": {
-      "sha256": "04912e07ae9166f7883f3190065db3c0ce83fa00a2776907aea0cf1f17153e80",
-      "bytes": 192233
+      "sha256": "421459aa432b6ea1c82d0ee9259b5dcb2cf2ee3c0a8d7589895f1f1d23508240",
+      "bytes": 196779
     },
     "data/raw/corpus_manifest_all_sources.jsonl": {
       "sha256": "119ecbd3be2ccb79a2f38ac7feca8713ffb7c6c5e92165078e2722331b9e0536",
@@ -307,8 +307,8 @@
       "bytes": 11990
     },
     "data/raw/doc_citation_metadata_cache.json": {
-      "sha256": "9c07cfe7df2dddd832b2851787f39186b35ec50c2872608224e0fe238113ae66",
-      "bytes": 104649
+      "sha256": "24302b48d9aab392cd34ea233f3f68889cc857d90a6acf8b57c3c2901cfac1cc",
+      "bytes": 106681
     },
     "data/raw/layer2_genomic_and_jaspar_reference.json": {
       "sha256": "5a7d0da91936e5be815b5cf8844b087b8fcbe8d02f837db806eccadee882737d",
@@ -406,9 +406,9 @@
       "local_audit_tree_sha256": "e56018562aaa99e9be32441aad998407529b839dce58f3f0fd91389a7fcfd9e5"
     },
     "data/extracted/layer2_regulatory_and_perturbation_atlas.json": {
-      "sha256": "946a83524b86a3fdd658cf7d9509682f596c176f29057519ac42f7f0c781848d",
-      "bytes": 1434705,
-      "local_audit_tree_sha256": "bdaff267b9cec607120de1589c3a578e08a6ed84d913d76c6388e17d7e66b179"
+      "sha256": "0bdb51165762d472693ed9600d8cbdfdfd727fa2bb9340f47cdaddd5de81470a",
+      "bytes": 1680589,
+      "local_audit_tree_sha256": "482579078fb9b961f7e3dce5dadf4b3fabae98271dfab769793c1157da769ac9"
     },
     "data/extracted/layer3_structural_verification_atlas.json": {
       "sha256": "c19d83d87d057a334f45398de1b8ed3569585a2b0273be3a477295835678eab1",
@@ -551,8 +551,8 @@
       "bytes": 4935
     },
     "scripts/wetlab_contract.py": {
-      "sha256": "31f141c317cf42b32200e32ad4fe66e3b728aad24e5a156ea177e0a005a3e964",
-      "bytes": 589723
+      "sha256": "4f9765dc4a627ba47ae7cf9d57abbd27def3cd0000b856a9511fd57d3cdfdaa2",
+      "bytes": 604144
     },
     "scripts/render_documentation.py": {
       "sha256": "78a215056730e6bc84839e4a2fc07ea11349e66706a989a3d8f0e72e8b47328e",
@@ -563,15 +563,15 @@
       "bytes": 70520
     },
     "data/protocols/wetlab_endpoint_contract_v0.8.0.json": {
-      "sha256": "09b72424125cba60b4ebd2e5b6f71e1d7a1c6aec1742a0ae3fafceca32d32a74",
-      "bytes": 142223
+      "sha256": "a7783dc72b8c58b45fb3a0b91d26cb548dc2d9ee7e58cf0348757c9443081989",
+      "bytes": 145661
     },
     "data/protocols/stage0_decision_tree_v1.json": {
-      "sha256": "5a340aab9fe65901f6a35a605bb57242062efd4d29c4b75b5f9db5a04689d953",
-      "bytes": 70393
+      "sha256": "0d483f7dd59f533034b759c52b168ea3bf1f67744388838bf2f0034819c7bc78",
+      "bytes": 73713
     },
     "data/extracted/documentation_facts_v0.8.0.json": {
-      "sha256": "40f93635b2390b69d1124865cfa0be44f1ae525ae880a99c71305d188591d90a",
+      "sha256": "3cb486cfbb5cdaa2382435e58a1861520e5fc30d2762fc270e98b7fe85c25e39",
       "bytes": 1600143
     },
     "tests/test_preastra_layer1.py": {
@@ -659,16 +659,16 @@
       "bytes": 22891
     },
     "scripts/ingest_wetlab_results.py": {
-      "sha256": "0399f697cd552624e52e3f47407333549b1547dd5ec7863db026697aee00ab84",
-      "bytes": 191494
+      "sha256": "bb1e0da22b6b0efa317c75aa6af98e4deeb1ae0f480340ab3ce0219aeb4e7d5b",
+      "bytes": 192126
     },
     "scripts/rank_islet1_stacks.py": {
       "sha256": "27a98dc48e14517ce139ada59f068d3d8ce4d08f64544100ac4409780eac9d9d",
       "bytes": 552895
     },
     "scripts/run_layer2_perturbation_and_regulatory_plane.py": {
-      "sha256": "536d60ea7f38faeddf6943ec7fa64a0b2a029f87f8ed076201e360ead3c2db67",
-      "bytes": 1091307
+      "sha256": "e33621e8014c951452b7f1ef28980c2df25a3cc897359481cc3233b3106af501",
+      "bytes": 1110387
     },
     "scripts/run_layer3_structural_binder_plane.py": {
       "sha256": "4997d95d18b870552167d4f69daf5644a4edbab94eb50de8b1bb832b7dd76235",
@@ -6149,8 +6149,8 @@
       "bytes": 40897
     },
     "tests/test_round3_supporting_boundaries.py": {
-      "sha256": "3d1bde29c29a620c83dd51e683b31d8c507c34afedb749b1436e0e4643d52ac1",
-      "bytes": 458808
+      "sha256": "54e0be05162f9bfe8da57af1fac9c0c5700a953ec1db3e2f3e8796b4c54c5a4f",
+      "bytes": 471132
     }
   },
   "public_export_file_inventory": [

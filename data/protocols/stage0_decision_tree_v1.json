@@ -815,5 +815,29 @@
       "measured_potency_dec084_mixture_and_glucagon_gates": "Conditions equal-output 70:20:10 / 70:25:5 loading on measured starting per-beta potency (6/7) * (out_A / out_B) * 1,500 IEQ/cm^2 across n = 8 confirmation blocks disjoint from n >= 3 fixed-input selection blocks (1,285.71 IEQ/cm^2 rescuing 80-um +10%-stress dual-band worst-face O2 from 13.45/13.71 to 15.37-15.96 mmHg at 1.00x vs matched-stress 100-um 10.19/10.47 -> 11.84/12.10 mmHg, failing OCR at 0.95x [0.91500/0.90226 > 0.90] and failing O2 at 0.90x or P_b <= 34 mmHg [14.41/14.69 mmHg], while requiring U95_t(OCR_B/A) <= 0.90, L95_t(Cpep_AUC_B/A) >= 0.85, L95_t(GCG_AUC_B/A) >= 0.85, Day-28 L95_t(beta_recovery) >= 0.80, and Readout 2 including low-glucose glucagon >= 2.0x).",
       "visit_lot_sister_bound_iapp_and_dormant_itm2b_reserve": "Binds LOT_SCOPE 72-h and Day-28 plus TERMINAL_SISTER_DEVICE_SCOPE Day-84 dual-orthogonal IAPP oligomer ELISA (U95_t <= 1.5x) and anti-IAPP colocalized fibril fold/area (<= 1.5x / <= 1.0%, ref > LoQ > 0, rejecting copied or wrong-timepoint observations) across >= 6 distinct lots alongside viable beta mass and secretion, requiring within-lot dual-modality L95_t co-exceedance or disjoint >= 6-lot replication before unlocking 0%-active archival RefSeq NM_021999.5 ITM2B (801-nt CDS 156..956 SHA-256 6fc8d3d7..., Q9Y287, 0 unmatched Swiss-Prot windows vs 34 in SP-BRICHOS chimeras across Cen 90-263 and Oskarsson 90-236; GY-023)."
     }
+  },
+  "promoter_origin_tss_and_conditional_aav_itr_iip_0027": {
+    "gate_id": "STAGE0_CXCL10_RESTING_AND_STIMULATED_PROMOTER_ORIGIN_5PRIME_RACE_AND_CONDITIONAL_BIO06_ITR_IIP_0027",
+    "decision_id": "DEC-107",
+    "contribution_id": "IIP-0027",
+    "applies_to_designs_a_b_and_x": "Separate resting (0 h) and interferon-stimulated (24 h) promoter-of-origin 5'-RACE TSS attribution per named CXCL10 donor and transcription unit with insert-matched comparator controls (keeping OQ-011 open; rejecting motif-count closure rules), tightened omitted/null c1/c2 PD-L1 5'-RACE HOLD_PENDING_5PRIME_RACE_TSS across all three evaluation paths, descriptive part-resolved 6-PWM JASPAR ledger across 2A-free comparators plus 145-bp AAV2 ITR (0/0/0), and conditional Readout 1 BIO-06 AAV-ITR RNA-origin attribution (Earley et al. 2020 PMID:31914802)",
+    "primary_citations": [
+      "PMID:31914802",
+      "PMID:31570731",
+      "PMID:10954575",
+      "PMID:7679117",
+      "PMID:12370285",
+      "PMID:22618870",
+      "PMID:12951775",
+      "PMID:12449375",
+      "PMID:41840058",
+      "PMID:22101854"
+    ],
+    "rules": {
+      "resting_and_stimulated_promoter_of_origin_5prime_race": "Requires promoter-of-origin 5'-RACE TSS attribution separately in resting (0 h) and interferon-stimulated (24 h) cells for each named CXCL10 donor (cxcl10_tss_donor_id) and transcription unit (cxcl10_tss_transcription_unit_id), classifying expected host CXCL10 starts, designed internal promoter starts, unexpected internal starts (k_unexpected == 0), and unresolved origins (k_unresolved == 0), with recovery-adjusted N_UMI_eff >= 3,689 wherever expressed (3,688 exact two-sided 95% Clopper-Pearson minimum for < 0.10% at k = 0) and insert-matched comparator controls (Giannakis et al. 2003 PMID:12951775; Hall et al. 2002 PMID:12449375; Lemp et al. 2012 PMID:22618870 paired with Han & Zhang 2002 PMID:12370285; Anderson et al. 2026 PMID:41840058).",
+      "descriptive_6pwm_ledger_and_oq011_open": "Archives whole-donor 6-PWM JASPAR scans (pseudocounts 0.8 and 0.5, both strands) across DX-L3 (10/3/5), L3-BF-B (12/5/5; 53-bp repeat at 650-702 / 680-732 resolved wholly inside Unit-1 230-bp basal-floor promoter), DEC-105 c1..c6 (12/5/5, 10/3/5, 3/2/2, 1/1/0, 0/0/0, 1/1/0), IIP-0018 ARM1 (12/5/5), and 145-bp AAV2 ITR (0/0/0) strictly as part-resolved annotation; rejects motif-count stopping rules and keeps OQ-011 open until origin-resolved RNA is measured.",
+      "tightened_c1_c2_pdl1_5prime_race_omitted_or_null_hold": "Closes the omitted/null skip on design_b_locus5_pdl1_5prime_race_coord_bp for c1/c2 bound to DESIGN_B_C1_C5_PAIR_SHA256 (82c351af...) so omitted, null, and 'UNRESOLVED' values all emit HOLD_PENDING_5PRIME_RACE_TSS consistently across Direct, Serialized JSON Ingestion, and Chronological Replay paths.",
+      "conditional_bio06_aav_itr_rna_origin_attribution": "Pairs Earley et al. 2020 (PMID:31914802; alongside Haberman et al. 2000 PMID:10954575 and Flotte et al. 1993 PMID:7679117) with Hanlon et al. 2019 (PMID:31570731) in Readout 1 BIO-06: whenever locus-specific junction sequencing documents retained AAV ITR DNA (> 0%, even below the < 0.5% BIO-06 DNA cap), RNA-origin 5'-RACE attribution must verify k_itr_origin_rna == 0 rather than assuming ITR silence or activity from DNA capture alone."
+    }
   }
 }

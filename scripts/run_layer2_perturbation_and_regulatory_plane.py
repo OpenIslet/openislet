@@ -12877,6 +12877,361 @@ def _build_itm2b_nm021999_reserve_and_brichos_comparator_audit_iip_0028(
     }
 
 
+AAV2_ITR_145BP_J01901_1_145_IIP0027 = (
+    "TTGGCCACTCCCTCTCTGCGCGCTCGCTCGCTCACTGAGGCCGGGCGACCAAAGGTCGCC"
+    "CGACGCCCGGGCTTTGCCCGGGCGGCCTCAGTGAGCGAGCGAGCGCGCAGAGAGGGAGTG"
+    "GCCAACTCCATCACTAGGGGTTCCT"
+)
+
+
+def _build_locus3_initiation_6pwm_and_aav_itr_audit_iip_0027(
+    ref: Dict[str, Any],
+    construct_verification: Dict[str, Any],
+    iip_0015_manifest: Dict[str, Any],
+    iip_0026_manifest: Dict[str, Any],
+) -> Dict[str, Any]:
+    """
+    Build deterministic whole-donor 6-PWM JASPAR part-resolved annotation ledger across
+    canonical references, historical 2A-free Locus-3 comparators (DX-L3, L3-BF-B),
+    staged DEC-105 Design-B comparators (c1..c6), IIP-0018 ARM1, and the 145-bp AAV2 ITR
+    (GenBank J01901.1 nt 1..145) (IIP-0027; DEC-107).
+
+    Explicitly archives 6-PWM motif counts strictly as descriptive part-resolved annotation
+    (rejecting motif-count closure of OQ-011) and anchors resting (0 h) + interferon-stimulated
+    (24 h) promoter-of-origin 5'-RACE TSS attribution plus conditional BIO-06 AAV-ITR RNA-origin
+    attribution.
+    """
+    pwms = ref["jaspar_pwms"]
+    n_pwms = len(pwms)
+    constructs = construct_verification["constructs"]
+    parents = iip_0015_manifest["parental_open_grammar_scans"]
+
+    def _read_fasta_records(path: Path) -> List[Tuple[str, str, str]]:
+        recs: List[Tuple[str, str, str]] = []
+        for blk in path.read_text(encoding="utf-8").strip().split(">")[1:]:
+            lines = blk.splitlines()
+            cid = lines[0].split()[0]
+            seq = "".join(lines[1:]).strip().upper()
+            recs.append((cid, seq, sha256_str(seq)))
+        return recs
+
+    def _parse_part_breakdown(breakdown: str) -> List[Tuple[str, int, int, str]]:
+        out: List[Tuple[str, int, int, str]] = []
+        cursor = 1
+        for length_txt, pname in re.findall(r"(\d+) \(([^)]+)\)", breakdown.split(" = ")[0]):
+            end_bp = cursor + int(length_txt) - 1
+            low = pname.lower()
+            if "ha_l" in low or "ha_r" in low or "homology" in low:
+                role = "homology_arm"
+            elif any(tok in low for tok in ("prom", "isre", "basalfloor", "chs4", "ucoe", "eef1a1", "rpl13a", "hpgk")):
+                role = "declared_promoter_or_insulator"
+            else:
+                role = "non_promoter_cargo"
+            out.append((pname, cursor, end_bp, role))
+            cursor = end_bp + 1
+        return out
+
+    def _classify_part_role(pname: str) -> str:
+        low = pname.lower()
+        if "ha_l" in low or "ha_r" in low or "homology" in low:
+            return "homology_arm"
+        if any(tok in low for tok in ("prom", "isre", "basalfloor", "chs4", "ucoe", "eef1a1", "rpl13a", "hpgk", "minp", "bidir")):
+            return "declared_promoter_or_insulator"
+        if "aav2_itr" in low:
+            return "aav_itr"
+        return "non_promoter_cargo"
+
+    def _hit_parts(start_bp: int, end_bp: int, parts: List[Tuple[str, int, int, str]]) -> Tuple[List[str], List[str]]:
+        names: List[str] = []
+        roles: List[str] = []
+        for pname, p_lo, p_hi, prole in parts:
+            if p_lo <= end_bp and p_hi >= start_bp:
+                names.append(pname)
+                if prole not in roles:
+                    roles.append(prole)
+        return names, roles
+
+    def _scan_record(
+        record_id: str,
+        source_label: str,
+        seq: str,
+        parts: List[Tuple[str, int, int, str]],
+        canonical_stored: Optional[Dict[str, Any]] = None,
+    ) -> Dict[str, Any]:
+        packaged_bp = len(seq) + AAV2_TWO_ITRS_LENGTH_BP if record_id != "AAV2_ITR_145BP_J01901_1_145" else len(seq)
+        headroom_bp = (AAV6_PACKAGING_LIMIT_BP - packaged_bp) if record_id != "AAV2_ITR_145BP_J01901_1_145" else None
+        by_pc: Dict[str, Any] = {}
+        for pc_label, pc_val in (("pseudocount_0p8_production", 0.8), ("pseudocount_0p5_comparator", 0.5)):
+            total_win = 0
+            total_merged = 0
+            total_reg6 = 0
+            non_promoter_cargo_win_hits = 0
+            reverse_strand_win_hits = 0
+            per_matrix: Dict[str, Any] = {}
+            for mid, pwm_entry in pwms.items():
+                mkey = f"{mid}_{pwm_entry['tf_name']}"
+                sc = scan_jaspar_pwm(seq, pwm_entry, top_k=20, n_matrices_in_scan=n_pwms, pseudocount=pc_val)
+                if canonical_stored is not None:
+                    ref_m = canonical_stored[pc_label]["per_matrix_summary"][mkey]
+                    if (
+                        sc["significant_window_hits_rel0p80_bonferroni_0p05"]
+                        != ref_m["significant_window_hits_rel0p80_bonferroni_0p05"]
+                        or sc["distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05"]
+                        != ref_m["distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05"]
+                        or sc["significant_hits_rel0p80_region_wide_bonferroni_0p05"]
+                        != ref_m["significant_hits_rel0p80_region_wide_bonferroni_0p05"]
+                    ):
+                        raise ValueError(f"IIP-0027 canonical 6-PWM replay mismatch on {record_id} {mkey}")
+                w_cnt = int(sc["significant_window_hits_rel0p80_bonferroni_0p05"])
+                m_cnt = int(sc["distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05"])
+                r_cnt = int(sc["significant_hits_rel0p80_region_wide_bonferroni_0p05"])
+                total_win += w_cnt
+                total_merged += m_cnt
+                total_reg6 += r_cnt
+                passing_hits: List[Dict[str, Any]] = []
+                for hit in sc["top_hits"]:
+                    if hit["passes_rel_score_0p80_and_p_le_0p05"]:
+                        pnames, proles = _hit_parts(
+                            int(hit["start_1based_in_window"]),
+                            int(hit["end_1based_in_window"]),
+                            parts,
+                        )
+                        if hit["strand"] == "-":
+                            reverse_strand_win_hits += 1
+                        if proles and all(r == "non_promoter_cargo" for r in proles):
+                            non_promoter_cargo_win_hits += 1
+                        passing_hits.append({
+                            "strand": hit["strand"],
+                            "start_1based": int(hit["start_1based_in_window"]),
+                            "end_1based": int(hit["end_1based_in_window"]),
+                            "relative_score_0_to_1": hit["relative_score_0_to_1"],
+                            "bonferroni_window_p_value": hit["bonferroni_window_p_value"],
+                            "bonferroni_region_6pwm_p_value": hit["bonferroni_region_across_all_matrices_p_value"],
+                            "passes_region_6pwm_0p05": bool(hit["passes_region_wide_bonferroni_0p05"]),
+                            "overlapping_parts": pnames,
+                            "part_roles": proles,
+                        })
+                top0 = sc["top_hits"][0]
+                top0_parts, top0_roles = _hit_parts(
+                    int(top0["start_1based_in_window"]),
+                    int(top0["end_1based_in_window"]),
+                    parts,
+                )
+                per_matrix[mkey] = {
+                    "counts_window_merged_region6": [w_cnt, m_cnt, r_cnt],
+                    "top_hit": {
+                        "strand": top0["strand"],
+                        "start_1based": int(top0["start_1based_in_window"]),
+                        "end_1based": int(top0["end_1based_in_window"]),
+                        "relative_score_0_to_1": top0["relative_score_0_to_1"],
+                        "bonferroni_window_p_value": top0["bonferroni_window_p_value"],
+                        "bonferroni_region_6pwm_p_value": top0["bonferroni_region_across_all_matrices_p_value"],
+                        "overlapping_parts": top0_parts,
+                        "part_roles": top0_roles,
+                    },
+                    "passing_hits": passing_hits,
+                }
+            by_pc[pc_label] = {
+                "pseudocount": pc_val,
+                "counts_window_merged_region6_total": [total_win, total_merged, total_reg6],
+                "non_promoter_cargo_significant_window_hits": non_promoter_cargo_win_hits,
+                "reverse_strand_significant_window_hits": reverse_strand_win_hits,
+                "per_matrix": per_matrix,
+            }
+        return {
+            "record_id": record_id,
+            "source": source_label,
+            "length_bp": len(seq),
+            "sha256": sha256_str(seq),
+            "packaged_with_2x145bp_itrs_bp": packaged_bp,
+            "aav6_headroom_bp": headroom_bp,
+            "jaspar_6pwm_by_pseudocount": by_pc,
+        }
+
+    # 1. Canonical 4 constructs (replaying against frozen whole_donor_jaspar_6pwm_scans_by_pseudocount)
+    canonical_fasta_recs = _read_fasta_records(FASTA_OUT)
+    canonical_short = {
+        4880: "L1_ARM1A_4880",
+        3974: "L1_ARM1B_3974",
+        4090: "L3_CANONICAL_4090",
+        3457: "L4_3457",
+    }
+    scanned_records: Dict[str, Any] = {}
+    for (fname, fseq, fsha), c_obj in zip(canonical_fasta_recs, constructs):
+        if fsha != c_obj["donor_sha256"]:
+            raise ValueError(f"Canonical FASTA SHA-256 mismatch for {fname}")
+        sname = canonical_short[len(fseq)]
+        c_parts = [
+            (p["part_name"], int(p["start_1based"]), int(p["end_1based"]), _classify_part_role(p["part_name"]))
+            for p in c_obj["part_ledger"]
+        ]
+        scanned_records[sname] = _scan_record(
+            sname, fname, fseq, c_parts, canonical_stored=c_obj["whole_donor_jaspar_6pwm_scans_by_pseudocount"]
+        )
+
+    # 2. Historical 2A-free Locus-3 comparators (DX-L3 3799 bp and L3-BF-B 4078 bp)
+    arm1b_tbl = constructs[1]["arm1b_vs_arm1x_codon_coordinate_table"]
+    challengers = next(v for k, v in arm1b_tbl.items() if k.startswith("single_variable_challenger_arms_"))
+    sf_obj = next(v for k, v in challengers.items() if k.startswith("Locus3_ScarFree_"))
+    bf_obj = next(v for k, v in challengers.items() if k.startswith("Locus3_BasalFloor_"))
+    sf_seq = str(sf_obj["assembled_3799bp_spaced_donor_sequence"]).upper()
+    bf_seq = str(bf_obj["l3_bfb_assembled_4078bp_pam_shielded_donor_sequence"]).upper()
+    if sha256_str(sf_seq) != parents["L3_SCARFREE_3799"]["donor_sha256"]:
+        raise ValueError("L3_SCARFREE_3799 SHA-256 mismatch in IIP-0027 6-PWM ledger")
+    if sha256_str(bf_seq) != parents["L3_BFB_BASALFLOOR_4078"]["donor_sha256"]:
+        raise ValueError("L3_BFB_BASALFLOOR_4078 SHA-256 mismatch in IIP-0027 6-PWM ledger")
+    sf_parts = [
+        ("CXCL10_HA_L_600bp", 1, 600, "homology_arm"),
+        ("SERPINB9_TU_1262bp", 601, 1862, "non_promoter_cargo"),
+        ("Pause_Spacer_82bp", 1863, 1944, "non_promoter_cargo"),
+        ("Syn_5xISRE_minP_148bp", 1945, 2092, "declared_promoter_or_insulator"),
+        ("PDL1_TU_1107bp", 2093, 3199, "non_promoter_cargo"),
+        ("CXCL10_HA_R_600bp", 3200, 3799, "homology_arm"),
+    ]
+    bf_parts = _parse_part_breakdown(str(bf_obj["part_breakdown_l3_bfb_4078bp"]))
+    scanned_records["L3_SCARFREE_3799"] = _scan_record(
+        "L3_SCARFREE_3799", "Layer-2 materialized DX-L3 (3,799 bp)", sf_seq, sf_parts
+    )
+    scanned_records["L3_BFB_BASALFLOOR_4078"] = _scan_record(
+        "L3_BFB_BASALFLOOR_4078", "Layer-2 materialized L3-BF-B (4,078 bp)", bf_seq, bf_parts
+    )
+
+    # Resolve the 53-bp direct repeat at 650-702 / 680-732 in L3-BF-B & c1 to Unit-1 declared promoter
+    bf_repeats = longest_repeats(bf_seq)
+    bf_longest_direct = bf_repeats["longest_direct_repeat_ge_12bp"]
+    bf_unit1_prom = str(bf_obj["l3_bfb_hybrid_230bp_basalfloor_isre_nfkb_hpgk1_promoter_sequence"]).upper()
+    if bf_seq[649:879] != bf_unit1_prom or (
+        bf_longest_direct["length_bp"],
+        bf_longest_direct["pos1_a"],
+        bf_longest_direct["pos1_b"],
+    ) != (53, 650, 680):
+        raise ValueError("L3-BF-B 53-bp repeat attribution mismatch inside Unit-1 promoter")
+
+    # 3. Staged DEC-105 Design-B comparators c1..c6
+    dec105_fasta = REPO_ROOT / "data/constructs/islet1_design_b_complete_constructs_v0.8.0.fasta"
+    dec105_recs = _read_fasta_records(dec105_fasta)
+    c1_seq_check = ""
+    for idx, (fname, fseq, _fsha) in enumerate(dec105_recs, start=1):
+        cid_short = f"DEC105_c{idx}"
+        if idx == 1:
+            c1_seq_check = fseq
+        c_parts = sorted(
+            [
+                (
+                    str(seg["segment_id"]),
+                    int(occ["start_1based"]),
+                    int(occ["end_1based"]),
+                    _classify_part_role(str(seg["segment_id"])),
+                )
+                for seg in iip_0026_manifest["per_segment_provenance_ledger_24"]
+                for occ in seg["occurrences"]
+                if occ["construct"] == f"c{idx}"
+            ],
+            key=lambda x: x[1],
+        )
+        scanned_records[cid_short] = _scan_record(cid_short, fname, fseq, c_parts)
+
+    # 4. IIP-0018 ARM1_L3_WT_PARENT_4078
+    multimir_fasta = REPO_ROOT / "data/constructs/islet1_locus3_multimir_modeb_comparators_v0.8.0.fasta"
+    arm1_name, arm1_seq, _arm1_sha = _read_fasta_records(multimir_fasta)[0]
+    scanned_records["IIP0018_ARM1_L3_WT_PARENT_4078"] = _scan_record(
+        "IIP0018_ARM1_L3_WT_PARENT_4078", arm1_name, arm1_seq, bf_parts
+    )
+
+    # 5. Canonical 145-bp AAV2 ITR (GenBank J01901.1 nt 1..145)
+    scanned_records["AAV2_ITR_145BP_J01901_1_145"] = _scan_record(
+        "AAV2_ITR_145BP_J01901_1_145",
+        "GenBank J01901.1 nt 1..145 canonical 145-bp AAV2 ITR",
+        AAV2_ITR_145BP_J01901_1_145_IIP0027,
+        [("AAV2_ITR_145bp", 1, 145, "aav_itr")],
+    )
+
+    # Sanity invariants verified at build time
+    two_a_free_keys = (
+        "L3_SCARFREE_3799",
+        "L3_BFB_BASALFLOOR_4078",
+        "DEC105_c1",
+        "DEC105_c2",
+        "DEC105_c3",
+        "DEC105_c4",
+        "DEC105_c5",
+        "DEC105_c6",
+        "IIP0018_ARM1_L3_WT_PARENT_4078",
+    )
+    for k2a in two_a_free_keys:
+        for pc_lbl in ("pseudocount_0p8_production", "pseudocount_0p5_comparator"):
+            if scanned_records[k2a]["jaspar_6pwm_by_pseudocount"][pc_lbl]["non_promoter_cargo_significant_window_hits"] != 0:
+                raise ValueError(f"Unexpected non-promoter cargo 6-PWM hit in 2A-free comparator {k2a} ({pc_lbl})")
+    if scanned_records["AAV2_ITR_145BP_J01901_1_145"]["jaspar_6pwm_by_pseudocount"]["pseudocount_0p8_production"][
+        "counts_window_merged_region6_total"
+    ] != [0, 0, 0]:
+        raise ValueError("Expected 0/0/0 6-PWM hits on 145-bp AAV2 ITR negative-sensitivity demonstration")
+
+    return {
+        "decision_id": "DEC-107",
+        "contribution_id": "IIP-0027",
+        "core_scoring_impact": "ZERO_LAYER1_SCORE_CHANGE_AND_ZERO_DONOR_SEQUENCE_CHANGE",
+        "motif_count_stopping_rule_status": "REJECTED_DESCRIPTIVE_ANNOTATION_ONLY",
+        "oq011_status": "OPEN_REQUIRES_RESTING_AND_STIMULATED_PROMOTER_OF_ORIGIN_5PRIME_RACE",
+        "summary_findings": {
+            "all_2a_free_cargo_hits_inside_declared_promoters_or_insulators": True,
+            "aav2_itr_145bp_6pwm_counts_pc0p8": [0, 0, 0],
+            "aav2_itr_145bp_proves_pwm_blind_to_rbe_initiation": True,
+            "l3_canonical_4090_rela_minus_395_404_location": "CXCL10_HA_L_600bp (left homology arm, not inserted cargo)",
+            "l3_canonical_4090_top_irf1_2796_2816_location": "WPREmut6_589bp (rel=0.9086, p_reg6=0.008588)",
+            "l3_bfb_and_c1_53bp_direct_repeat_resolution": {
+                "repeat_length_bp": 53,
+                "pos1_a_1based": 650,
+                "pos1_b_1based": 680,
+                "end_a_1based": 702,
+                "end_b_1based": 732,
+                "overlap_bp": 23,
+                "unit1_declared_promoter_bounds_1based": [650, 879],
+                "unit1_declared_promoter_part_id": "Syn_3xISRE_2xNFkB_hPGK1_Sp1_basalfloor_230",
+                "wholly_inside_declared_unit1_promoter": True,
+                "identical_in_dec105_c1_650_879": c1_seq_check[649:879] == bf_unit1_prom,
+            },
+            "umi_statistical_floor_reconciliation": {
+                "two_sided_95pct_cp_lt_0p10pct_exact_min_n_eff": 3688,
+                "two_sided_95pct_cp_u95_at_3687_pct": round((1.0 - 0.025 ** (1.0 / 3687)) * 100.0, 6),
+                "two_sided_95pct_cp_u95_at_3688_pct": round((1.0 - 0.025 ** (1.0 / 3688)) * 100.0, 6),
+                "openislet_protocol_recovery_adjusted_floor_n_eff": 3689,
+                "nominal_3700_at_90pct_recovery_effective_n": 3330,
+                "nominal_3700_at_90pct_recovery_two_sided_u95_pct": round((1.0 - 0.025 ** (1.0 / 3330)) * 100.0, 5),
+                "host_exon_90pct_tost_0p80_1p25_sets_cryptic_promoter_cap": False,
+            },
+        },
+        "scanned_constructs_and_itr": scanned_records,
+        "conditional_bio06_aav_itr_origin_rule": (
+            "Whenever Readout 1 BIO-06 locus-specific junction sequencing documents retained AAV ITR DNA "
+            "(Hanlon et al. 2019 PMID:31570731), promoter-of-origin 5'-RACE transcript attribution must test "
+            "explicitly whether transcripts originate inside retained ITR sequence (Earley et al. 2020 PMID:31914802; "
+            "Haberman et al. 2000 PMID:10954575; Flotte et al. 1993 PMID:7679117) rather than inferring silence or activity from DNA capture alone."
+        ),
+        "bibliographic_verification_notes": (
+            "Pairs Han & Zhang 2002 (PMID:12370285, eIF4G cryptic promoter) with Lemp et al. 2012 (PMID:22618870, "
+            "plasmid-origin cryptic transcription), Giannakis et al. 2003 (PMID:12951775, insert-matched negative control "
+            "requirement for cryptic responsiveness), Hall et al. 2002 (PMID:12449375, AP-1-inducible cryptic promoter), "
+            "Earley et al. 2020 (PMID:31914802, AAV ITR transcriptional start sites), Haberman et al. 2000 (PMID:10954575), "
+            "Flotte et al. 1993 (PMID:7679117), and Anderson et al. 2026 (first author Anderson R, EMBO J 45(8):2420-2432, PMID:41840058). "
+            "Archival indexing notes: Zhang et al. 2018 (first author Zhang C, BMC Biol 16(1):151, PMID:30593266), and print "
+            "publication years are Chauhan et al. 2009 (PMID:19009237) and Seong et al. 2006 (PMID:16377218)."
+        ),
+        "primary_citations": [
+            "PMID:31914802",
+            "PMID:31570731",
+            "PMID:10954575",
+            "PMID:7679117",
+            "PMID:12370285",
+            "PMID:22618870",
+            "PMID:12951775",
+            "PMID:12449375",
+            "PMID:41840058",
+            "PMID:22101854",
+        ],
+    }
+
+
 def main() -> None:
     with REF_PATH.open("r", encoding="utf-8") as f:
         ref = json.load(f)
@@ -13166,13 +13521,21 @@ def main() -> None:
         ),
         "extracellular_biomaterial_foreign_peptide_census_iip_0020": _build_extracellular_biomaterial_census_iip_0020(),
         "stage0_design_y_wildcard_manifest_iip_0023": _build_design_y_wildcard_manifest_iip_0023(),
-        "stage0_design_b_comparator_provenance_and_ins_retirement_manifest_iip_0026": _build_design_b_comparator_provenance_and_ins_retirement_manifest_iip_0026(
+        "stage0_design_b_comparator_provenance_and_ins_retirement_manifest_iip_0026": (
+            _iip_0026_manifest := _build_design_b_comparator_provenance_and_ins_retirement_manifest_iip_0026(
+                ref=ref,
+                construct_verification=construct_verification,
+                arm1a_can=_canonical_fasta["ISLET1_LOCUS1_ARM1A_B2M_HLAE_SCT_GSGP2A_CD47_IGV_GPI_4880bp"],
+                arm1b_can=_canonical_fasta["ISLET1_LOCUS1_ARM1B_B2M_BIDIR_2AFREE_CD47_IGV_GPI_HLAE_SCT_3974bp"],
+                l3_can=_canonical_fasta["ISLET1_LOCUS3_CXCL10_SERPINB9_GSGP2A_PDL1_NO_FURIN_4090bp"],
+                l4_can=_canonical_fasta["ISLET1_LOCUS4_AAVS1_CHS4_455BP_CBX3_A2UCOE_EEF1A1_ICASP9_3457bp"],
+            )
+        ),
+        "stage0_locus3_initiation_6pwm_and_aav_itr_audit_iip_0027": _build_locus3_initiation_6pwm_and_aav_itr_audit_iip_0027(
             ref=ref,
             construct_verification=construct_verification,
-            arm1a_can=_canonical_fasta["ISLET1_LOCUS1_ARM1A_B2M_HLAE_SCT_GSGP2A_CD47_IGV_GPI_4880bp"],
-            arm1b_can=_canonical_fasta["ISLET1_LOCUS1_ARM1B_B2M_BIDIR_2AFREE_CD47_IGV_GPI_HLAE_SCT_3974bp"],
-            l3_can=_canonical_fasta["ISLET1_LOCUS3_CXCL10_SERPINB9_GSGP2A_PDL1_NO_FURIN_4090bp"],
-            l4_can=_canonical_fasta["ISLET1_LOCUS4_AAVS1_CHS4_455BP_CBX3_A2UCOE_EEF1A1_ICASP9_3457bp"],
+            iip_0015_manifest=_iip_0015_manifest,
+            iip_0026_manifest=_iip_0026_manifest,
         ),
         "stage0_p2_itm2b_nm021999_reserve_and_brichos_audit_iip_0028": _build_itm2b_nm021999_reserve_and_brichos_comparator_audit_iip_0028(
             ref=ref,
