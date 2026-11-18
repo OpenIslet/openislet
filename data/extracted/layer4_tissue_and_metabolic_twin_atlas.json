@@ -18577,7 +18577,7 @@
             "shell_0p85_to_1p06R_mmhg": 16.4613,
             "min_core_po2_mmhg": 8.1635,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 4.3491948526483256e-16
+            "rel_mass_balance_error": 7.248658087747211e-16
           },
           "100um_1500ieq_45um_physical_collagen_135um_hydrogel_equiv": {
             "areal_loading_ieq_cm2": 1500.0,
@@ -18605,7 +18605,7 @@
             "shell_0p85_to_1p06R_mmhg": 11.8242,
             "min_core_po2_mmhg": 4.0062,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 1.3659683211466926e-13
+            "rel_mass_balance_error": 1.3674418576312092e-13
           },
           "80um_1500ieq_45um_physical_collagen_135um_hydrogel_equiv": {
             "areal_loading_ieq_cm2": 1500.0,
@@ -18633,7 +18633,7 @@
             "shell_0p85_to_1p06R_mmhg": 13.8346,
             "min_core_po2_mmhg": 8.6253,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 1.4210717472028242e-15
+            "rel_mass_balance_error": 1.2789645724825419e-15
           },
           "provenance_note": "Rule S6 baseline models 15.0 um physical fibrous collagen at D_capsule = D_gel_chronic / 3 (equivalent to 45.0 um chronic hydrogel resistance; 17.0804 mmHg harmonic-face / 8.1635 mmHg core PASS). A true 45.0 um physical fibrous collagen capsule equals 135.0 um chronic-hydrogel-equivalent standoff (12.4414 mmHg harmonic-face / 4.0062 mmHg core FAIL on 100 um clusters), consistent with Playbook chronic capsule escalation (>30 um enforcing 80 um clusters [14.2371 / 8.6253 mmHg] or >50 um requiring omental revascularization). Montazeri 2016 (PMID:26970510) tested PVP/H2O2-PLGA microparticles with fibrin in diabetic mouse omentum and does not supply a fixed 45 um pouch capsule parameter."
         },
@@ -18664,7 +18664,7 @@
             "shell_0p85_to_1p06R_mmhg": 18.3606,
             "min_core_po2_mmhg": 12.9217,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 1.3867202987629922e-13
+            "rel_mass_balance_error": 1.388128136629757e-13
           },
           "dose_matched_80um_1500ieq_plus10pct_ocr_and_standoff": {
             "areal_loading_ieq_cm2": 1500.0,
@@ -18692,7 +18692,7 @@
             "shell_0p85_to_1p06R_mmhg": 16.3899,
             "min_core_po2_mmhg": 10.4593,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 3.72567303613142e-15
+            "rel_mass_balance_error": 3.8541445201359514e-15
           },
           "pitch_held_80um_768ieq_198p76um_square_213p58um_hex_pitch_48p8pct_dose_reduction": {
             "areal_loading_ieq_cm2": 768.0,
@@ -18720,7 +18720,7 @@
             "shell_0p85_to_1p06R_mmhg": 23.7777,
             "min_core_po2_mmhg": 18.551,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 2.5179928713629497e-15
+            "rel_mass_balance_error": 2.378104378509452e-15
           }
         },
         "joint_plus10pct_100um_knife_edge_discretization_audit": {
@@ -18751,7 +18751,7 @@
             "shell_0p85_to_1p06R_mmhg": 14.3575,
             "min_core_po2_mmhg": 5.3853,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 7.964362164539071e-16
+            "rel_mass_balance_error": 6.636968470449225e-16
           },
           "half_voxel_shifted_nx40_nz70": {
             "areal_loading_ieq_cm2": 1500.0,
@@ -18779,7 +18779,7 @@
             "shell_0p85_to_1p06R_mmhg": 14.2821,
             "min_core_po2_mmhg": 5.3598,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 0.0
+            "rel_mass_balance_error": 1.3273034274973586e-16
           },
           "finer_nx60_nz105_reference": {
             "areal_loading_ieq_cm2": 1500.0,
@@ -19708,7 +19708,7 @@
             "shell_0p85_to_1p06R_mmhg": 16.4613,
             "min_core_po2_mmhg": 8.1635,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 4.3491948526483256e-16
+            "rel_mass_balance_error": 7.248658087747211e-16
           },
           "expanded_390um_2x20um_film_2x125um_bands_100um_cluster": {
             "areal_loading_ieq_cm2": 1500.0,
@@ -19736,7 +19736,7 @@
             "shell_0p85_to_1p06R_mmhg": 16.6069,
             "min_core_po2_mmhg": 8.3638,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 1.4491995995597093e-15
+            "rel_mass_balance_error": 1.59411955951568e-15
           },
           "fixed_350um_2x20um_film_compressed_2x105um_bands_100um_cluster": {
             "areal_loading_ieq_cm2": 1500.0,
@@ -19764,7 +19764,7 @@
             "shell_0p85_to_1p06R_mmhg": 16.3986,
             "min_core_po2_mmhg": 8.0395,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 1.3050768151966031e-15
+            "rel_mass_balance_error": 1.3050768151966033e-15
           },
           "fixed_350um_2x20um_film_compressed_2x105um_bands_80um_cluster": {
             "areal_loading_ieq_cm2": 1500.0,
@@ -19792,7 +19792,7 @@
             "shell_0p85_to_1p06R_mmhg": 18.263,
             "min_core_po2_mmhg": 12.7202,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 1.806661719570814e-13
+            "rel_mass_balance_error": 1.8066617195708138e-13
           },
           "layout_b_119um_lamina_geometry_exclusion_note": "Inserting 2 x 20 um barrier films inside a fixed 350 um slab around Layout B's 119 um lamina leaves only 95.5 um per cell band, physically excluding undeformed 100 um spheres."
         },
@@ -20391,7 +20391,7 @@
         ]
       },
       "conservative_engineering_margin_vs_empirical_injury_framing": {
-        "cluster_core_5mmhg_margin_note": "Core pO2 >= 5.0 mmHg and interface >= 15.0 mmHg are conservative product engineering gates above classical anoxic necrosis (~0.07 mmHg, PMID:21693022; Layer-4 0.5 mmHg floor; 0/160 RSA clusters < 0.5 mmHg) and within viable low-oxygen graft staining regimes (<10 mmHg pimonidazole, PMID:21788581).",
+        "cluster_core_5mmhg_margin_note": "Core pO2 >= 5.0 mmHg and interface >= 15.0 mmHg are conservative product engineering gates above classical anoxic necrosis (~0.07 mmHg, PMID:21693022; Layer-4 0.5 mmHg floor; 0/160 RSA clusters < 0.5 mmHg) and within viable low-oxygen graft staining regimes (<10 mmHg pimonidazole in experimental islet grafts per Olsson et al. 2011 PMID:21788575; review context Olsson & Carlsson 2011 PMID:21788581; IIP-0024; DEC-103).",
         "extracellular_h2o2_2p5_and_5p0uM_margin_note": "Extracellular H2O2 <= 2.5 uM (Tier-1 target) and <= 5.0 uM (Tier-2 ceiling) are conservative chronic redox/maturation engineering gates well below acute intact-islet cell-death thresholds (<50 uM bolus non-lethal short-term, PMID:27729543; low beta catalase vulnerability, PMID:8720919; SC-islet maturity and oxidative-stress context, PMID:35241836, PMID:20124731, PMID:27872147).",
         "supporting_transport_and_biomaterial_pmids": [
           "PMID:24582600",
@@ -20407,6 +20407,7 @@
           "PMID:36971050",
           "PMID:38993891",
           "PMID:25893782",
+          "PMID:21788575",
           "PMID:21788581",
           "PMID:24065585",
           "PMID:20124731",
@@ -21798,7 +21799,11 @@
           "max_glucose_0p25min_mM": 7.044,
           "mean_glucose_0p25min_mM": 5.7145,
           "time_in_tight_range_0p25min_pct": 100.0,
-          "time_below_3p9mM_0p25min_pct": 0.0
+          "time_below_3p9mM_0p25min_pct": 0.0,
+          "tbr39_elapsed_0p25min_pct": 0.0,
+          "tbr30_elapsed_0p25min_pct": 0.0,
+          "tir_3p9_to_10_elapsed_0p25min_pct": 100.0,
+          "passes_fragile_tbr_lt_1pct": true
         },
         "passes_clinical_glycemic_safety_targets": true,
         "sampled_hourly_trajectory": [
@@ -21937,7 +21942,11 @@
           "max_glucose_0p25min_mM": 6.8773,
           "mean_glucose_0p25min_mM": 4.9363,
           "time_in_tight_range_0p25min_pct": 95.07,
-          "time_below_3p9mM_0p25min_pct": 4.93
+          "time_below_3p9mM_0p25min_pct": 4.93,
+          "tbr39_elapsed_0p25min_pct": 4.925931,
+          "tbr30_elapsed_0p25min_pct": 0.0,
+          "tir_3p9_to_10_elapsed_0p25min_pct": 95.074069,
+          "passes_fragile_tbr_lt_1pct": false
         },
         "passes_clinical_glycemic_safety_targets": false,
         "sampled_hourly_trajectory": [
@@ -22076,7 +22085,11 @@
           "max_glucose_0p25min_mM": 5.2124,
           "mean_glucose_0p25min_mM": 3.7815,
           "time_in_tight_range_0p25min_pct": 14.67,
-          "time_below_3p9mM_0p25min_pct": 85.33
+          "time_below_3p9mM_0p25min_pct": 85.33,
+          "tbr39_elapsed_0p25min_pct": 85.348149,
+          "tbr30_elapsed_0p25min_pct": 1.907741,
+          "tir_3p9_to_10_elapsed_0p25min_pct": 14.651851,
+          "passes_fragile_tbr_lt_1pct": false
         },
         "passes_clinical_glycemic_safety_targets": false,
         "sampled_hourly_trajectory": [
@@ -22217,7 +22230,11 @@
           "max_glucose_0p25min_mM": 7.044,
           "mean_glucose_0p25min_mM": 5.7145,
           "time_in_tight_range_0p25min_pct": 100.0,
-          "time_below_3p9mM_0p25min_pct": 0.0
+          "time_below_3p9mM_0p25min_pct": 0.0,
+          "tbr39_elapsed_0p25min_pct": 0.0,
+          "tbr30_elapsed_0p25min_pct": 0.0,
+          "tir_3p9_to_10_elapsed_0p25min_pct": 100.0,
+          "passes_fragile_tbr_lt_1pct": true
         },
         "passes_clinical_glycemic_safety_targets": true
       },
@@ -22276,7 +22293,11 @@
           "max_glucose_0p25min_mM": 7.044,
           "mean_glucose_0p25min_mM": 5.7145,
           "time_in_tight_range_0p25min_pct": 100.0,
-          "time_below_3p9mM_0p25min_pct": 0.0
+          "time_below_3p9mM_0p25min_pct": 0.0,
+          "tbr39_elapsed_0p25min_pct": 0.0,
+          "tbr30_elapsed_0p25min_pct": 0.0,
+          "tir_3p9_to_10_elapsed_0p25min_pct": 100.0,
+          "passes_fragile_tbr_lt_1pct": true
         },
         "passes_clinical_glycemic_safety_targets": true
       },
@@ -22335,7 +22356,11 @@
           "max_glucose_0p25min_mM": 6.9841,
           "mean_glucose_0p25min_mM": 5.6538,
           "time_in_tight_range_0p25min_pct": 100.0,
-          "time_below_3p9mM_0p25min_pct": 0.0
+          "time_below_3p9mM_0p25min_pct": 0.0,
+          "tbr39_elapsed_0p25min_pct": 0.0,
+          "tbr30_elapsed_0p25min_pct": 0.0,
+          "tir_3p9_to_10_elapsed_0p25min_pct": 100.0,
+          "passes_fragile_tbr_lt_1pct": true
         },
         "passes_clinical_glycemic_safety_targets": true
       },
@@ -22394,7 +22419,11 @@
           "max_glucose_0p25min_mM": 6.7198,
           "mean_glucose_0p25min_mM": 5.555,
           "time_in_tight_range_0p25min_pct": 100.0,
-          "time_below_3p9mM_0p25min_pct": 0.0
+          "time_below_3p9mM_0p25min_pct": 0.0,
+          "tbr39_elapsed_0p25min_pct": 0.0,
+          "tbr30_elapsed_0p25min_pct": 0.0,
+          "tir_3p9_to_10_elapsed_0p25min_pct": 100.0,
+          "passes_fragile_tbr_lt_1pct": true
         },
         "passes_clinical_glycemic_safety_targets": true
       },
@@ -22453,7 +22482,11 @@
           "max_glucose_0p25min_mM": 7.0439,
           "mean_glucose_0p25min_mM": 5.6964,
           "time_in_tight_range_0p25min_pct": 100.0,
-          "time_below_3p9mM_0p25min_pct": 0.0
+          "time_below_3p9mM_0p25min_pct": 0.0,
+          "tbr39_elapsed_0p25min_pct": 0.0,
+          "tbr30_elapsed_0p25min_pct": 0.0,
+          "tir_3p9_to_10_elapsed_0p25min_pct": 100.0,
+          "passes_fragile_tbr_lt_1pct": true
         },
         "passes_clinical_glycemic_safety_targets": true
       },
@@ -22512,7 +22545,11 @@
           "max_glucose_0p25min_mM": 7.1893,
           "mean_glucose_0p25min_mM": 5.2472,
           "time_in_tight_range_0p25min_pct": 98.11,
-          "time_below_3p9mM_0p25min_pct": 1.89
+          "time_below_3p9mM_0p25min_pct": 1.89,
+          "tbr39_elapsed_0p25min_pct": 1.888889,
+          "tbr30_elapsed_0p25min_pct": 0.0,
+          "tir_3p9_to_10_elapsed_0p25min_pct": 98.111111,
+          "passes_fragile_tbr_lt_1pct": false
         },
         "passes_clinical_glycemic_safety_targets": true
       },
@@ -22571,7 +22608,11 @@
           "max_glucose_0p25min_mM": 6.6707,
           "mean_glucose_0p25min_mM": 5.4934,
           "time_in_tight_range_0p25min_pct": 100.0,
-          "time_below_3p9mM_0p25min_pct": 0.0
+          "time_below_3p9mM_0p25min_pct": 0.0,
+          "tbr39_elapsed_0p25min_pct": 0.0,
+          "tbr30_elapsed_0p25min_pct": 0.0,
+          "tir_3p9_to_10_elapsed_0p25min_pct": 100.0,
+          "passes_fragile_tbr_lt_1pct": true
         },
         "passes_clinical_glycemic_safety_targets": true
       }

@@ -1,6 +1,25 @@
 {
   "schema_version": "0.8.0",
   "status": "COMPUTATIONAL_VARIANT_CONTRACT_PHYSICAL_GATES_PENDING",
+  "mcb_donor_blocking_policy": {
+    "proposal_id": "IIP-0024",
+    "decision_id": "DEC-103",
+    "min_independent_abo_oo_seedlines": 2,
+    "kinship_pi_hat_lt": 0.05,
+    "donor1_paired_lot_blocks_min": 6,
+    "confirmatory_welch_tost_lots_per_bank": 6,
+    "welch_tost_equivalence_bounds_ratio": [
+      0.75,
+      1.333333333333
+    ],
+    "five_lineage_differentiation_lock_required": [
+      "beta",
+      "alpha",
+      "delta",
+      "isogenic_iEC",
+      "isogenic_iPericytes"
+    ]
+  },
   "products": [
     {
       "product_variant_id": "ISLET1_A4_ARM1A",
@@ -45,7 +64,9 @@
           "isogenic_iEC",
           "isogenic_iPericytes"
         ],
-        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
       },
       "hla_retention": {
         "classical_MHC_I": "B2M disruption intended",
@@ -102,7 +123,9 @@
           "isogenic_iEC",
           "isogenic_iPericytes"
         ],
-        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
       },
       "hla_retention": {
         "classical_MHC_I": "B2M disruption intended",
@@ -183,7 +206,9 @@
           "isogenic_iEC",
           "isogenic_iPericytes"
         ],
-        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
       },
       "hla_retention": {
         "classical_MHC_I": "B2M disruption intended",
@@ -261,7 +286,9 @@
           "isogenic_iEC",
           "isogenic_iPericytes"
         ],
-        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
       },
       "hla_retention": {
         "classical_MHC_I": "B2M disruption intended",
@@ -328,7 +355,9 @@
           "isogenic_iEC",
           "isogenic_iPericytes"
         ],
-        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
       },
       "hla_retention": {
         "classical_MHC_I": "HLA-A/HLA-B disruption; HLA-C donor allele(s) retained and separately matched",
@@ -387,7 +416,9 @@
           "isogenic_iEC",
           "isogenic_iPericytes"
         ],
-        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
       },
       "hla_retention": {
         "classical_MHC_I": "HLA-A/HLA-B disruption; HLA-C donor allele(s) retained and separately matched",
@@ -451,7 +482,9 @@
           "isogenic_iEC",
           "isogenic_iPericytes"
         ],
-        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
       },
       "hla_retention": {
         "classical_MHC_I": "HLA-A/HLA-B disruption; HLA-C donor allele(s) retained and separately matched",
@@ -511,7 +544,9 @@
           "isogenic_iEC",
           "isogenic_iPericytes"
         ],
-        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
       },
       "hla_retention": {
         "classical_MHC_I": "B2M disruption intended",
@@ -577,7 +612,9 @@
           "isogenic_iEC",
           "isogenic_iPericytes"
         ],
-        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
       },
       "hla_retention": {
         "classical_MHC_I": "B2M disruption intended",
@@ -639,7 +676,9 @@
           "isogenic_iEC",
           "isogenic_iPericytes"
         ],
-        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
       },
       "hla_retention": {
         "classical_MHC_I": "B2M disruption intended",
@@ -700,7 +739,9 @@
           "isogenic_iEC",
           "isogenic_iPericytes"
         ],
-        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
       },
       "hla_retention": {
         "classical_MHC_I": "B2M disruption intended",
@@ -769,7 +810,9 @@
           "isogenic_iEC",
           "isogenic_iPericytes"
         ],
-        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
       },
       "hla_retention": {
         "classical_MHC_I": "B2M disruption; C1 KIR2DL2/3 ligand provided by fixed-peptide CIITA::HLA-C*03:04(GAVDPLLAL) SCT without endogenous peptidome presentation",
@@ -838,7 +881,9 @@
           "isogenic_iEC",
           "isogenic_iPericytes"
         ],
-        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
       },
       "hla_retention": {
         "classical_MHC_I": "B2M disruption; C2 KIR2DL1 ligand provided by fixed-peptide CIITA::HLA-C*04:01(QYDDAVYKL) SCT without endogenous peptidome presentation",
@@ -892,8 +937,16 @@
       "physical_manufacturing_yield": null,
       "donor_lineage": {
         "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
-        "derivative_lineages": ["beta", "alpha", "delta", "isogenic_iEC", "isogenic_iPericytes"],
-        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
       },
       "hla_retention": {
         "classical_MHC_I": "B2M disruption; C1 KIR2DL2/3 ligand provided by fixed-peptide CIITA::HLA-C*03:04(GAVDPLLAL) SCT",
@@ -947,8 +1000,16 @@
       "physical_manufacturing_yield": null,
       "donor_lineage": {
         "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
-        "derivative_lineages": ["beta", "alpha", "delta", "isogenic_iEC", "isogenic_iPericytes"],
-        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
       },
       "hla_retention": {
         "classical_MHC_I": "B2M disruption; C2 KIR2DL1 ligand provided by fixed-consensus-peptide CIITA::HLA-C*04:01(QYDDAVYKL) SCT",
@@ -1000,8 +1061,16 @@
       "physical_manufacturing_yield": null,
       "donor_lineage": {
         "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
-        "derivative_lineages": ["beta", "alpha", "delta", "isogenic_iEC", "isogenic_iPericytes"],
-        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
       },
       "hla_retention": {
         "classical_MHC_I": "B2M disruption; dual C1+C2 KIR2DL1/2/3 ligands provided by fixed-peptide CIITA::HLA-C*03:04(GAVDPLLAL) + HLA-C*04:01(QYDDAVYKL) SCTs",
@@ -1055,8 +1124,16 @@
       "physical_manufacturing_yield": null,
       "donor_lineage": {
         "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
-        "derivative_lineages": ["beta", "alpha", "delta", "isogenic_iEC", "isogenic_iPericytes"],
-        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
       },
       "hla_retention": {
         "classical_MHC_I": "B2M disruption; dual C1+C2 KIR2DL1/2/3 ligands provided by fixed-peptide CIITA::HLA-C*03:04(GAVDPLLAL) + HLA-C*04:01(QYDDAVYKL) SCTs",
@@ -1104,8 +1181,16 @@
       "physical_manufacturing_yield": null,
       "donor_lineage": {
         "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
-        "derivative_lineages": ["beta", "alpha", "delta", "isogenic_iEC", "isogenic_iPericytes"],
-        "actual_donor_identity_status": "PREREGISTERED_PENDING"
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
       },
       "hla_retention": {
         "classical_MHC_I": "B2M disruption intended",
@@ -1119,6 +1204,71 @@
         "Gate 0C L3-BF-B Hour-0 SERPINB9 >= 0.30 uM and 12-pulse serial GzmB survival",
         "safety-switch depletion"
       ]
+    },
+    {
+      "product_variant_id": "ISLET1_Z_X_MOL_140UM_ZERO_CAO2",
+      "family": "A",
+      "aliases": [
+        "DESIGN_Z_140UM_ZERO_CAO2_X_MOL"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 4,
+      "B": 0,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with Embodiment A* 4143bp cassette (materialized W_P=-1 baseline for Stage-0 RNLS+/+ lock; unmaterialized W_P=+1 Arm 1X challenger uses Syn_3xISRE_CpGminP_230bp_sense at 4,225 bp)",
+        "CIITA": "biallelic LOF intended",
+        "CXCL10": "biallelic endogenous checkpoint swap intended",
+        "AAVS1": "biallelic inducible-caspase9 intended",
+        "TYK2": "unedited starting donor genotype; actual genotype separately declared",
+        "RNLS": "unedited WT retained (RNLS+/+ subtracted per MacDonald 2025 PMID:39988068)"
+      },
+      "cassette_topology": {
+        "B2M": "antisense EEF1A1-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible5xISRE-HLA-E-SCT 20aa L1 (4,143 bp materialized baseline; or W_P=+1 Syn_3xISRE_CpGminP_230bp_sense 4,225 bp in Arm 1X)",
+        "CD47_HLAE": "antisense EEF1A1(native CTTTTT 5'TOP in canonical pinned 0995f8e3...; optional 5'TOP-CAGAGA in challenger 28b6882c...)-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible5xISRE-HLA-E-SCT 20aa L1 (4,143 bp)",
+        "CXCL10": "SERPINB9-GSG-P2A-PD-L1 (or scar-free / L3-BF-B basal-floor challenger per Gate 0C-kinetic)",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Stage-0 cell x route wildcard comparator entry (IIP-0024; DEC-103): pairs ISLET1_A4_X_MOL_RNLS_WT molecular edits with physical_route_id Z_OMENTAL_140UM_ZERO_CAO2 inside the shared <= 20% Y/Z Stage-0 wildcard firewall; exempted strictly from CaO2 and UniProt P04040 chemical oxygen carrier gates while requiring two-stage 140-um Zero-CaO2 >= 15.0 / 5.0 mmHg spatial oxygen and loaded closed-state perifusion GSIS SI >= 3.0 qualification; non-executable comparator",
+      "stage0_construct_selection_status": "PREREGISTERED_PENDING",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption intended",
+        "classical_MHC_II": "CIITA LOF intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "pending_assay_gates": [
+        "edited-allele and genome integrity QC",
+        "lineage-specific surface density and immune challenge",
+        "dynamic insulin secretion and differentiation yield",
+        "safety-switch depletion",
+        "exact-product molecular and delivery qualification",
+        "Two-stage 140-um Zero-CaO2 empty-lumen (>= 40.0 mmHg, <= 15.0 um standoff) and loaded closed-state (>= 15.0 mmHg surface, >= 5.0 mmHg core, perifusion GSIS SI >= 3.0) qualification inside the shared <= 20% Y/Z Stage-0 wildcard firewall (IIP-0024; DEC-103)"
+      ],
+      "physical_route_id": "Z_OMENTAL_140UM_ZERO_CAO2",
+      "cao2_and_p04040_catalase_exempt": true,
+      "wildcard_budget_cap_fraction": 0.2
     }
   ]
 }

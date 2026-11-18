@@ -7115,5 +7115,182 @@
         }
       }
     }
+  },
+  "product_function_manifest_resolution_iip_0024": {
+    "proposal_id": "IIP-0024",
+    "decision_id": "DEC-103",
+    "staged_design_b2_c1_c5_pair_sha256_reference": "82c351af082e0f97361e715c36e2ab5872b8d097efa1c9f59dfda53ea60496ea",
+    "staged_design_b2_materialization_note": "ISLET1_B2_5LOCUS_BASE remains held at execution_supported=False (STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC) pending edited-allele QC; its 5/5 required functional manifest replaces HLA-E SCT with HLA-C_endogenous_KIR.",
+    "function_counts_by_route": {
+      "ISLET1_A4_ARM1B": 5,
+      "ISLET1_Z_X_MOL_140UM_ZERO_CAO2": 5,
+      "ISLET1_B2_5LOCUS_BASE": 5,
+      "ISLET1_B_SCT_C1_CIITA": 6
+    },
+    "baseline_uncalibrated_product_profiles": {
+      "ISLET1_A4_ARM1B": {
+        "product_variant_id": "ISLET1_A4_ARM1B",
+        "family": "A",
+        "execution_supported": true,
+        "required_product_function_count": 5,
+        "required_product_functions": [
+          "HLA-E",
+          "CD47",
+          "SERPINB9",
+          "PD-L1",
+          "iCasp9"
+        ],
+        "resolved_product_function_count": 0,
+        "unresolved_product_functions": [
+          "HLA-E",
+          "CD47",
+          "SERPINB9",
+          "PD-L1",
+          "iCasp9"
+        ],
+        "structural_coordinate_geometry_status": "PASS",
+        "functional_qualification_status": "HOLD_UNRESOLVED_EXPERIMENTAL_PRODUCT_FUNCTIONS",
+        "all_applicable_product_functions_resolved": false
+      },
+      "ISLET1_A4_X_MOL_RNLS_WT": {
+        "product_variant_id": "ISLET1_A4_X_MOL_RNLS_WT",
+        "family": "A",
+        "execution_supported": true,
+        "required_product_function_count": 5,
+        "required_product_functions": [
+          "HLA-E",
+          "CD47",
+          "SERPINB9",
+          "PD-L1",
+          "iCasp9"
+        ],
+        "resolved_product_function_count": 0,
+        "unresolved_product_functions": [
+          "HLA-E",
+          "CD47",
+          "SERPINB9",
+          "PD-L1",
+          "iCasp9"
+        ],
+        "structural_coordinate_geometry_status": "PASS",
+        "functional_qualification_status": "HOLD_UNRESOLVED_EXPERIMENTAL_PRODUCT_FUNCTIONS",
+        "all_applicable_product_functions_resolved": false
+      },
+      "ISLET1_Z_X_MOL_140UM_ZERO_CAO2": {
+        "product_variant_id": "ISLET1_Z_X_MOL_140UM_ZERO_CAO2",
+        "family": "A",
+        "execution_supported": false,
+        "required_product_function_count": 5,
+        "required_product_functions": [
+          "HLA-E",
+          "CD47",
+          "SERPINB9",
+          "PD-L1",
+          "iCasp9"
+        ],
+        "resolved_product_function_count": 0,
+        "unresolved_product_functions": [
+          "HLA-E",
+          "CD47",
+          "SERPINB9",
+          "PD-L1",
+          "iCasp9"
+        ],
+        "structural_coordinate_geometry_status": "PASS",
+        "functional_qualification_status": "HOLD_UNRESOLVED_EXPERIMENTAL_PRODUCT_FUNCTIONS",
+        "all_applicable_product_functions_resolved": false
+      },
+      "ISLET1_B2_5LOCUS_BASE": {
+        "product_variant_id": "ISLET1_B2_5LOCUS_BASE",
+        "family": "B",
+        "execution_supported": false,
+        "required_product_function_count": 5,
+        "required_product_functions": [
+          "HLA-C_endogenous_KIR",
+          "CD47",
+          "SERPINB9",
+          "PD-L1",
+          "iCasp9"
+        ],
+        "resolved_product_function_count": 0,
+        "unresolved_product_functions": [
+          "HLA-C_endogenous_KIR",
+          "CD47",
+          "SERPINB9",
+          "PD-L1",
+          "iCasp9"
+        ],
+        "structural_coordinate_geometry_status": "PASS",
+        "functional_qualification_status": "HOLD_UNRESOLVED_EXPERIMENTAL_PRODUCT_FUNCTIONS",
+        "all_applicable_product_functions_resolved": false
+      },
+      "ISLET1_B_SCT_C1_CIITA": {
+        "product_variant_id": "ISLET1_B_SCT_C1_CIITA",
+        "family": "B",
+        "execution_supported": false,
+        "required_product_function_count": 6,
+        "required_product_functions": [
+          "HLA-E",
+          "HLA-C_SCT",
+          "CD47",
+          "SERPINB9",
+          "PD-L1",
+          "iCasp9"
+        ],
+        "resolved_product_function_count": 0,
+        "unresolved_product_functions": [
+          "HLA-E",
+          "HLA-C_SCT",
+          "CD47",
+          "SERPINB9",
+          "PD-L1",
+          "iCasp9"
+        ],
+        "structural_coordinate_geometry_status": "PASS",
+        "functional_qualification_status": "HOLD_UNRESOLVED_EXPERIMENTAL_PRODUCT_FUNCTIONS",
+        "all_applicable_product_functions_resolved": false
+      }
+    }
+  },
+  "icasp9_1nw9_1jxq_insertion_code_audit_iip_0024": {
+    "proposal_id": "IIP-0024",
+    "decision_id": "DEC-103",
+    "primary_citations": [
+      "PMID:12620238",
+      "PMID:11734640",
+      "PMID:22047558"
+    ],
+    "policies": {
+      "default_exclude_insertion_codes": {
+        "keep_insertion_codes": false,
+        "allowed_alt_ids": [
+          ".",
+          "?",
+          "A"
+        ],
+        "include_zero_occupancy": false,
+        "aligned_ca_residues": 220,
+        "ca_rmsd_angstrom": 3.9474,
+        "xiap_bir3_heavy_atoms_total": 746,
+        "xiap_bir3_heavy_atoms_lt_2p2A": 565,
+        "heavy_atom_clash_pairs_lt_2p2A": 1478,
+        "role": "SUBORDINATE_NON_BLOCKING_DIAGNOSTIC_ONLY"
+      },
+      "retain_insertion_codes": {
+        "keep_insertion_codes": true,
+        "allowed_alt_ids": [
+          ".",
+          "?",
+          "A"
+        ],
+        "include_zero_occupancy": false,
+        "aligned_ca_residues": 232,
+        "ca_rmsd_angstrom": 3.8651,
+        "xiap_bir3_heavy_atoms_total": 746,
+        "xiap_bir3_heavy_atoms_lt_2p2A": 562,
+        "heavy_atom_clash_pairs_lt_2p2A": 1484,
+        "role": "SUBORDINATE_NON_BLOCKING_DIAGNOSTIC_ONLY"
+      }
+    }
   }
 }

@@ -307,6 +307,8 @@ def regenerate_layer3_from_current_inputs(root: Path = REPO_ROOT) -> Dict[str, A
         shutil.copy2(root / "data/extracted/layer2_regulatory_and_perturbation_atlas.json", scratch / "data/extracted")
         (scratch / "data/constructs").mkdir()
         shutil.copy2(root / "data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta", scratch / "data/constructs")
+        (scratch / "data/protocols").mkdir()
+        shutil.copy2(root / "data/protocols/islet1_product_definitions_v0.8.0.json", scratch / "data/protocols")
         result = subprocess.run([sys.executable, "-B", str(scratch / "scripts/run_layer3_structural_binder_plane.py")],
                                 cwd=scratch, capture_output=True, text=True)
         _check(result.returncode == 0, f"Fresh Layer 3 replay failed: {result.stderr[-3000:]}")

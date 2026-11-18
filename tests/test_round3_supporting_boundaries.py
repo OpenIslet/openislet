@@ -3070,10 +3070,10 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     )
 
     # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (49 persisted boolean flags, 53 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
-    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 68
+    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 75
     assert "require_full_5endpoint_s9_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
     assert "require_full_7metric_combined_stress_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
-    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 72
+    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 79
     assert "5.71 mmHg at 100 um clusters with matched D_caps = D_gel" in film_limit["surgical_mitigation"]
 
     batch1_r7s2 = {
@@ -3156,7 +3156,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     # - R7S3-F02: Both wetlab_contract.evaluate_stage0_decision_tree and ingest_wetlab_results.evaluate_stage0_decision_tree reject non-boolean policy values
     from scripts import wetlab_contract as wc_mod
 
-    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 72
+    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 79
     for bkey in wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS:
         for bad_val in ("false", "False", 0, "true", "True", 1):
             for eval_fn in (wc_mod.evaluate_stage0_decision_tree, wetlab.evaluate_stage0_decision_tree):
@@ -5361,6 +5361,329 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     assert wetlab.evaluate_stage0_decision_tree({**_dy_valid, "obs_design_y_sampling_age_days": 49.0})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_DESIGN_Y01_60D_4LINEAGE_SILENCE_OR_TADCBED_HAPLOTYPE_FAILED"
     assert wetlab.evaluate_stage0_decision_tree({**_dy_valid, "design_y_integrase_modality": "LEGACY_ATTB_GENOME_ATTP_PLASMID_REJECTED"})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_DESIGN_Y02_LEGACY_ATTB_IN_GENOME_POLARITY_OT4_PSEUDOSITE_RISK_REJECTED"
     assert wetlab.evaluate_stage0_decision_tree({**_dy_valid, "obs_design_y04_ap1903_effective_trials": 1.0e7})["resolved_architecture_assignments"]["lot_maturation_status"] == "HOLD_DESIGN_Y04_MULTICISTRON_COMPLEMENT_KIR_OR_3E8_CLONOGENIC_GATE_FAILED"
+
+    # 49. IIP-0024 / DEC-103: Atomic provenance scopes, cross-lot & mean-only SE isolation, integer (k, n) & k==0 vetoes,
+    # non-executable comparator holds (ISLET1_Z_X_MOL_140UM_ZERO_CAO2 / B2_BASE / B'-SCT), Student-t & 6+6 Welch TOST,
+    # conjunctive DMR/XCI/MDM4/mtDNA guardrails, and Layers 1, 3, 4 & 5 hardening:
+    from scripts import product_contract as pc_iip24
+    from scripts import wetlab_contract as wc_iip24
+    from scripts import run_layer3_structural_binder_plane as l3_iip24
+    from scripts import run_layer5_personalized_patient_compiler as l5_iip24
+
+    # (a) Product catalog registration & whitespace rejection:
+    _prod_z = pc_iip24.get_product_definition("ISLET1_Z_X_MOL_140UM_ZERO_CAO2", root=ROOT)
+    assert _prod_z["execution_supported"] is False and _prod_z["physical_route_id"] == "Z_OMENTAL_140UM_ZERO_CAO2"
+    assert _prod_z["cao2_and_p04040_catalase_exempt"] is True
+    with pytest.raises(ValueError):
+        pc_iip24.get_product_definition(" ISLET1_A4_ARM1B_EMB_A_STAR_4143 ", root=ROOT)
+
+    # (b) Deep-immutable AtomicObservation & typed 4/5/7-key scope envelopes:
+    _c_sha = "b5ba4e2b4bbbcc7d6cf1138975c5fae5c6ab074dda43973f071c671cd8cd1d88"
+    _mcb_sc = wc_iip24.MCBScopeKey("ISLET1_A4_ARM1B_EMB_A_STAR_4143", _c_sha, "SEED-OO-01", "MCB-01")
+    _lot_sc = wc_iip24.LotScopeKey("ISLET1_A4_ARM1B_EMB_A_STAR_4143", _c_sha, "SEED-OO-01", "MCB-01", "LOT-01")
+    _dev_sc = wc_iip24.AssembledDeviceLotScopeKey(
+        "ISLET1_A4_ARM1B_EMB_A_STAR_4143", _c_sha, "SEED-OO-01", "MCB-01", "LOT-01", "DEV-01", "A_STAR_350UM_CAO2_P04040"
+    )
+    assert len(_mcb_sc.as_tuple()) == 4 and len(_lot_sc.as_tuple()) == 5 and len(_dev_sc.as_tuple()) == 7
+    _atom = wc_iip24.AtomicObservation(
+        endpoint_id="stage0_sc_beta_yield_ratio",
+        scope_type="LOT_SCOPE",
+        scope_key=_lot_sc,
+        kind="CONTINUOUS_STUDENT_T",
+        value_or_k=0.97,
+        se_or_n=0.01,
+        sample_n=6,
+        controls={"batch_id": "B-ATOM-1"},
+    )
+    with pytest.raises(TypeError):
+        _atom.controls["batch_id"] = "TAMPERED"  # type: ignore[index]
+    with pytest.raises(ValueError):
+        wc_iip24.AtomicObservation(
+            endpoint_id="stage0_sc_beta_yield_ratio",
+            scope_type="LOT_SCOPE",
+            scope_key=_lot_sc,
+            kind="CONTINUOUS_STUDENT_T",
+            value_or_k=0.97,
+            se_or_n=0.01,
+            sample_n=6,
+            canonical_projection={"spoof": True},
+        )
+
+    # (c) Cross-lot evidence borrowing block & mean-only SE inheritance block in ingest_wetlab_results:
+    _b_lot1 = wetlab.run_calibration(
+        {
+            **_v3_valid_payload,
+            "batch_id": "BATCH-IIP24-LOT1",
+            "mcb_clone_id": "MCB-IIP24-01",
+            "product_variant_id": "ISLET1_A4_ARM1B_EMB_A_STAR_4143",
+            "current_lot_id": "LOT-SP6B-01",
+        },
+        is_dry_run=False,
+    )
+    assert _b_lot1["stage0_decision_tree_evaluation"]["lot_release_readiness_tier"] == "READY_FOR_ENCAPSULATION_COMPLETE_STAGE0_EVIDENCE"
+    _b_lot_untested = wetlab.run_calibration(
+        {
+            "batch_id": "BATCH-IIP24-LOT-UNTESTED",
+            "mcb_clone_id": "MCB-IIP24-01",
+            "product_variant_id": "ISLET1_A4_ARM1B_EMB_A_STAR_4143",
+            "s10_construct_id": "S10_CHAL1_SP6B_VMAPRTVLL_ASTAR_4143",
+            "current_lot_id": "LOT-UNTESTED",
+            "obs_stage7_yield_ratio": 0.98,
+            "obs_stage7_yield_se": 0.01,
+        },
+        False,
+        _b_lot1,
+    )
+    assert _b_lot_untested["stage0_decision_tree_evaluation"]["lot_release_readiness_tier"] != "READY_FOR_ENCAPSULATION_COMPLETE_STAGE0_EVIDENCE"
+    assert _b_lot_untested["stage0_decision_tree_evaluation"]["mandatory_s9_safety_panel_complete"] is False
+
+    _b_mean_only_se = wetlab.run_calibration(
+        {
+            "batch_id": "BATCH-IIP24-MEAN-ONLY",
+            "mcb_clone_id": "MCB-IIP24-01",
+            "product_variant_id": "ISLET1_A4_ARM1B_EMB_A_STAR_4143",
+            "s10_construct_id": "S10_CHAL1_SP6B_VMAPRTVLL_ASTAR_4143",
+            "current_lot_id": "LOT-SP6B-01",
+            "s10_qualified_lot_id": "LOT-SP6B-01",
+            "obs_hlae_hour0_molecules": 27500.0,
+        },
+        False,
+        _b_lot1,
+    )
+    assert _b_mean_only_se["stage0_decision_tree_evaluation"]["stage0_se_provenance"]["obs_hlae_hour0_molecules"] == "DEFAULT_SE_IMPUTED_NOT_EXPLICIT"
+    assert _b_mean_only_se["stage0_decision_tree_evaluation"]["lot_release_readiness_tier"] != "READY_FOR_ENCAPSULATION_COMPLETE_STAGE0_EVIDENCE"
+
+    # (d) Execution-disabled product variants & bidirectional route-mismatch holds:
+    _dz_fields = {
+        "design_z_divider_arm": "PLAIN_HYDROGEL_140UM",
+        "design_z_empty_lumen_14d_persistence_verified": True,
+        "design_z_loaded_closed_state_confirmed": True,
+        "obs_design_z_empty_lumen_5site_min_po2_mmhg": 44.0,
+        "obs_design_z_empty_lumen_5site_min_po2_se": 0.5,
+        "obs_design_z_vessel_standoff_p90_um": 11.0,
+        "obs_design_z_vessel_standoff_p90_se": 0.5,
+        "obs_design_z_loaded_surface_po2_mmhg": 18.5,
+        "obs_design_z_loaded_surface_po2_se": 0.5,
+        "obs_design_z_loaded_core_po2_mmhg": 8.2,
+        "obs_design_z_loaded_core_po2_se": 0.3,
+        "obs_design_z_loaded_perifusion_gsis_si": 3.5,
+        "obs_design_z_loaded_perifusion_gsis_se": 0.1,
+    }
+    _dz_only_base = {
+        k: v
+        for k, v in _clean_iip20_valid.items()
+        if not k.startswith("p05_")
+        and not k.startswith("obs_p05_")
+        and k != "require_full_iip0020_biomaterial_and_humoral_panel"
+    }
+    _dt_z_ok = wetlab.evaluate_stage0_decision_tree({**_dz_only_base, **_dz_fields, "product_variant_id": "ISLET1_Z_X_MOL_140UM_ZERO_CAO2"})
+    assert _dt_z_ok["lot_release_readiness_tier"] == "WILDCARD_COUPON_QUALIFIED_NON_EXECUTABLE"
+    assert wetlab.evaluate_stage0_decision_tree({**_dz_only_base, "product_variant_id": "ISLET1_Z_X_MOL_140UM_ZERO_CAO2"})["lot_release_readiness_tier"] == "HOLD_FAILED_OR_INCOMPLETE_GATE"
+    assert wetlab.evaluate_stage0_decision_tree({**_clean_iip20_valid, **_dz_fields, "product_variant_id": "ISLET1_A4_ARM1B_EMB_A_STAR_4143"})["lot_release_readiness_tier"] == "HOLD_FAILED_OR_INCOMPLETE_GATE"
+    assert wetlab.evaluate_stage0_decision_tree({**full_ext_payload, "product_variant_id": "ISLET1_B2_5LOCUS_BASE"})["lot_release_readiness_tier"] == "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC"
+    _dt_bsct = wetlab.evaluate_stage0_decision_tree(
+        {
+            **full_ext_payload,
+            "product_variant_id": "ISLET1_B_SCT_C1_CIITA",
+            "obs_gate0b_hlac_sct_molecules_per_cell": 25000.0,
+            "obs_gate0b_hlac_sct_molecules_se": 1000.0,
+            "b_prime_sct_recipient_cd8_mlc_cleared": True,
+        }
+    )
+    assert _dt_bsct["lot_release_readiness_tier"] == "RESEARCH_COMPARATOR_UNSUPPORTED_VARIANT_HOLD"
+    assert _dt_bsct["resolved_architecture_assignments"]["locus1_construct"] != "ISLET1_A4_ARM1B"
+
+    # (e) Strict integer (k, n) counts, sensitivity U95 = (1 - 0.05**(1/n))/eta, k==0 Gate 0V veto, & monotonic S9 latching:
+    assert wetlab.evaluate_stage0_decision_tree({**full_ext_payload, "obs_20q11_bcl2l1_single_cell_mosaic_cells_scored": 298.9})["lot_release_readiness_tier"] in ("HOLD_FAILED_OR_INCOMPLETE_GATE", "HARD_SAFETY_STOP_REJECTED")
+    _no_20q_denom = {k: v for k, v in full_ext_payload.items() if k != "obs_20q11_bcl2l1_single_cell_mosaic_cells_scored"}
+    assert wetlab.evaluate_stage0_decision_tree({**_no_20q_denom, "obs_20q11_bcl2l1_single_cell_mosaic_fraction": 0.005, "obs_20q11_bcl2l1_single_cell_mosaic_se": 0.001})["lot_release_readiness_tier"] == "HOLD_FAILED_OR_INCOMPLETE_GATE"
+    assert wc_iip24.evaluate_rare_event_count_iip0024(gate_id="G", k=0, n=298, max_u95_fraction=0.01)["status"] == "HOLD_INCONCLUSIVE_INSUFFICIENT_INDEPENDENT_DENOMINATOR"
+    assert wc_iip24.evaluate_rare_event_count_iip0024(gate_id="G", k=0, n=299, max_u95_fraction=0.01)["status"] == "PASS"
+    _re_920 = wc_iip24.evaluate_rare_event_count_iip0024(gate_id="G", k=0, n=920, max_u95_fraction=0.01, eta_spike_recovery_l95=0.325)
+    assert _re_920["status"].startswith("HOLD") and abs(_re_920["u95_binomial"] - 0.01000288) < 1e-6
+    assert wc_iip24.evaluate_rare_event_count_iip0024(
+        gate_id="G", k=0, n=1200, max_u95_fraction=0.01, clustered_sampling=True, validated_clustered_estimator_id="UNREGISTERED_DEFF_SHORTCUT"
+    )["status"].startswith("HOLD")
+    _dt_0v_veto = wetlab.evaluate_stage0_decision_tree(
+        {
+            **_clean_iip20_valid,
+            "obs_gate0v_day28_persistent_vp1_ie1_positive_cell_pct": 0.01,
+            "obs_gate0v_day28_persistent_vp1_ie1_cells_scored": 10000,
+        }
+    )
+    assert _dt_0v_veto["lot_release_readiness_tier"] == "HARD_SAFETY_STOP_REJECTED"
+
+    _s9_stop_batch = wetlab.run_calibration(
+        {
+            **_clean_iip20_valid,
+            "batch_id": "BATCH-IIP24-0V-STOP",
+            "mcb_clone_id": "MCB-IIP24-LATCH",
+            "product_variant_id": "ISLET1_A4_ARM1B_EMB_A_STAR_4143",
+            "current_lot_id": "LOT-LATCH-01",
+            "obs_gate0v_day28_persistent_vp1_ie1_positive_cell_pct": 0.01,
+            "obs_gate0v_day28_persistent_vp1_ie1_cells_scored": 10000,
+        },
+        is_dry_run=False,
+    )
+    assert _s9_stop_batch["stage0_decision_tree_evaluation"]["lot_release_readiness_tier"] == "HARD_SAFETY_STOP_REJECTED"
+    _s9_pass1 = wetlab.run_calibration(
+        {
+            **_clean_iip20_valid,
+            "batch_id": "BATCH-IIP24-0V-PASS1",
+            "mcb_clone_id": "MCB-IIP24-LATCH",
+            "product_variant_id": "ISLET1_A4_ARM1B_EMB_A_STAR_4143",
+            "current_lot_id": "LOT-LATCH-01",
+            "obs_gate0v_day28_persistent_vp1_ie1_positive_cell_pct": 0.0,
+            "obs_gate0v_day28_persistent_vp1_ie1_cells_scored": 10000,
+        },
+        False,
+        _s9_stop_batch,
+    )
+    assert _s9_pass1["stage0_decision_tree_evaluation"]["safety_kill_s9_triggered"] is True
+    with pytest.raises(ValueError):
+        wetlab.run_calibration(
+            {
+                **_clean_iip20_valid,
+                "batch_id": "BATCH-IIP24-0V-BADCAT",
+                "mcb_clone_id": "MCB-IIP24-LATCH",
+                "product_variant_id": "ISLET1_A4_ARM1B_EMB_A_STAR_4143",
+                "current_lot_id": "LOT-LATCH-01",
+                "obs_gate0v_day28_persistent_vp1_ie1_positive_cell_pct": 0.0,
+                "obs_gate0v_day28_persistent_vp1_ie1_cells_scored": 10000,
+                "reset_prior_safety_stop_after_investigation": True,
+                "reset_prior_safety_stop_justification": "ROOT_CAUSE_WASHOUT_VERIFIED_WRONG_CATEGORY",
+                "reset_prior_safety_stop_approver_id": "QP-INDEPENDENT-01",
+                "reset_prior_safety_stop_target_category": "DUPLEX_DRIVER_VAF",
+            },
+            False,
+            _s9_pass1,
+        )
+
+    # (f) Exact one-sided Student-t (df=5, n=6) vs normal z, and 6+6 vs 6+3 Welch 90% TOST:
+    assert abs(wc_iip24.student_t_ppf_one_sided_95(5) - 2.01504837) < 1e-6
+    _dt_t_borderline = wetlab.evaluate_stage0_decision_tree(
+        {
+            **_clean_iip20_valid,
+            "obs_hlae_hour0_molecules": 15850.0,
+            "obs_hlae_hour0_molecules_se": 450.0,
+            "obs_stage0_independent_lot_replicates_n": 6.0,
+            "obs_stage0_independent_lot_replicates_n_se": 1e-12,
+        }
+    )
+    assert _dt_t_borderline["lot_release_readiness_tier"] != "READY_FOR_ENCAPSULATION_COMPLETE_STAGE0_EVIDENCE"
+    _tost_res = wc_iip24.evaluate_donor_blocked_contrast_and_welch_tost_iip0024(n_pts=80)
+    assert _tost_res["welch_90pct_tost_power_on_0p75_1p3333_pct"]["lots_6_plus_3"]["drift_plus15pct"] < 50.0
+    assert _tost_res["welch_90pct_tost_power_on_0p75_1p3333_pct"]["lots_6_plus_6"]["drift_0pct"] >= 96.0
+    assert _tost_res["welch_90pct_tost_power_on_0p75_1p3333_pct"]["lots_6_plus_6"]["boundary_type1_sd_0p06_vs_0p15_pct"] <= 5.2
+
+    # (g) Conjunctive DMR, 46,XX XCI (278/300 vs 279/300), MDM4 stop, and >=1,000x mtDNA validators:
+    assert wc_iip24.evaluate_conjunctive_imprinting_dmr_iip0024(
+        endpoint_scope="LOT_SCOPE",
+        dmr_id="MEG3_DMR",
+        panel_version_id="MEG3_DMR_SOMATIC_STAGE7_V1",
+        per_cpg_callable_verified=True,
+        assay_controls_valid=True,
+        bulk_beta=0.18,
+        phased=False,
+        mosaic_discordant_epiallele_frac=0.02,
+    )["status"].startswith("HOLD")
+    assert wc_iip24.evaluate_conjunctive_xci_46xx_iip0024(
+        endpoint_scope="MCB_SCOPE",
+        donor_sex_karyotype="46,XX",
+        assay_controls_valid=True,
+        xci_promoter_panel_id="XCI_SUBJECT_PROMOTER_CPG_PANEL_V1",
+        xist_pos_k=278,
+        xist_nuclei_n=300,
+        xci_subject_promoter_cpg_retention=0.95,
+        allele_specific_x_rna_informative_genes=12,
+        allele_specific_x_rna_monoallelic_fraction=0.96,
+    )["status"].startswith("FAIL")
+    assert wc_iip24.evaluate_conjunctive_xci_46xx_iip0024(
+        endpoint_scope="MCB_SCOPE",
+        donor_sex_karyotype="46,XX",
+        assay_controls_valid=True,
+        xci_promoter_panel_id="XCI_SUBJECT_PROMOTER_CPG_PANEL_V1",
+        xist_pos_k=279,
+        xist_nuclei_n=300,
+        xci_subject_promoter_cpg_retention=0.95,
+        allele_specific_x_rna_informative_genes=12,
+        allele_specific_x_rna_monoallelic_fraction=0.96,
+    )["status"] == "PASS"
+    assert wc_iip24.evaluate_scoped_mtdna_gate_iip0024(
+        endpoint_scope="MCB_SCOPE",
+        min_unique_chrm_molecule_depth=1500,
+        numt_filter_and_snv_del_spikes_validated=True,
+        variants=[],
+        deletion_vaf_max=None,
+        seahorse_coupled_respiration_pass=True,
+    )["status"].startswith("HOLD")
+    assert wetlab.evaluate_stage0_decision_tree(
+        {**_clean_iip20_valid, "obs_1q32_mdm4_cnv_ratio": 2.35, "obs_1q32_mdm4_cnv_se": 0.02}
+    )["lot_release_readiness_tier"] == "HARD_SAFETY_STOP_REJECTED"
+
+    # (h) Shared Layers 1, 3, 4 & 5 hardening checks:
+    with pytest.raises(ValueError):
+        rk_iip22.compute_common_shock_2pow12_portfolio_tree(
+            [0.88, 0.87 + 0.5e-12, 0.56, 0.68], [0.88, 0.79, 0.64, 0.70], [0.88, 0.81, 0.70, 0.68], [0.88, 0.87, 0.88, 0.85]
+        )
+    with pytest.raises(ValueError):
+        rk_iip22.compute_common_shock_2pow12_portfolio_tree(
+            [True, 0.78, 0.56, 0.68], [0.88, 0.79, 0.64, 0.70], [0.88, 0.81, 0.70, 0.68], [0.88, 0.87, 0.88, 0.85]  # type: ignore[list-item]
+        )
+    _rk_json_24 = json.loads((ROOT / "data/extracted/islet1_candidate_stack_rankings.json").read_text(encoding="utf-8"))
+    assert _rk_json_24["odds_composition_and_profile_scope_audit_iip_0003"]["multiplied_conditional_totals"]["iip_0024_donor_bank_h1_sensitivity_audit"]["decision_id"] == "DEC-103"
+
+    _l3_json_24 = json.loads((ROOT / "data/extracted/layer3_structural_verification_atlas.json").read_text(encoding="utf-8"))
+    _l3_mf_24 = _l3_json_24["product_function_manifest_resolution_iip_0024"]
+    assert _l3_mf_24["staged_design_b2_c1_c5_pair_sha256_reference"] == "82c351af082e0f97361e715c36e2ab5872b8d097efa1c9f59dfda53ea60496ea"
+    assert _l3_mf_24["function_counts_by_route"]["ISLET1_A4_ARM1B"] == 5
+    assert _l3_mf_24["function_counts_by_route"]["ISLET1_B_SCT_C1_CIITA"] == 6
+    _l3_ic_24 = _l3_json_24["icasp9_1nw9_1jxq_insertion_code_audit_iip_0024"]["policies"]
+    assert _l3_ic_24["default_exclude_insertion_codes"]["xiap_bir3_heavy_atoms_lt_2p2A"] == 565
+    assert _l3_ic_24["default_exclude_insertion_codes"]["xiap_bir3_heavy_atoms_total"] == 746
+    assert _l3_ic_24["retain_insertion_codes"]["xiap_bir3_heavy_atoms_lt_2p2A"] == 562
+    assert _l3_ic_24["retain_insertion_codes"]["xiap_bir3_heavy_atoms_total"] == 746
+    assert len(l3_iip24.derive_required_product_functions_iip_0024(_prod_z)) == 5
+
+    # Exact linear threshold-crossing elapsed TBR catching <4.0% sample vs >4.0% elapsed failure:
+    _ts_grid = [i * (1440.0 / 600.0) for i in range(601)]
+    _gl_grid = [3.80 if 10 <= i < 34 else (3.91 if i in (9, 34) else 5.5) for i in range(601)]
+    _el_m = l4_iip21.compute_exact_elapsed_glycemic_metrics_iip_0024(_ts_grid, _gl_grid)
+    assert _el_m["sample_fraction_lt_3p9_pct"] < 4.0 and _el_m["tbr_lt_3p9_pct"] > 4.0 and _el_m["passes_layer4_model_gate"] is False
+    with pytest.raises(ValueError):
+        l4_iip21.compute_exact_elapsed_glycemic_metrics_iip_0024([0.0, 20.0] + [20.0 + i * 5.0 for i in range(1, 290)], [5.5] * 291)
+
+    # Layer 5 explicit-false B'-SCT component overriding summary True while Design A ignores B'-SCT flags:
+    _pt_bsct = {
+        "patient_id": "PT-IIP24-BSCT",
+        "ancestry": "EUR",
+        "nkg2a_neg_kir_educated_nk_fraction": 0.55,
+        "pre_existing_gad65_ia2_znt8_t_cell_zscore": 1.0,
+        "ifn1_ish_genetic_risk_percentile": 40.0,
+        "sirpa_genotype": "v1/v1",
+        "recipient_kir_ligand_group": "C1/C1",
+        "hlac_4digit_relation": "KIR_MATCH_FOREIGN_4DIGIT_ALLO",
+        "b_prime_sct_recipient_crossmatch_and_mlc_cleared": True,
+        "b_prime_sct_recipient_cd8_mlc_negative": False,
+        "b_prime_sct_exact_product_serum_cdc_adcc_crossmatch_negative": True,
+    }
+    _bp_bsct = l5_iip24.compile_personalized_patient_blueprint(_pt_bsct, track2_subbank_mode="B_PRIME_SCT")
+    assert _bp_bsct["routing_holds_cleared"] is False
+    _eval_a = l5_iip24.evaluate_product_scoped_routing_and_stealth_axes_iip_0024(
+        {**_pt_bsct, "exact_hlae_sct_serum_crossmatch_negative": True, "exact_product_non_hla_and_sct_flow_crossmatch_negative": True},
+        target_product_def=pc_iip24.get_product_definition("ISLET1_A4_ARM1B", root=ROOT),
+    )
+    _eval_bsct = l5_iip24.evaluate_product_scoped_routing_and_stealth_axes_iip_0024(
+        {**_pt_bsct, "exact_hlae_sct_serum_crossmatch_negative": True, "exact_product_non_hla_and_sct_flow_crossmatch_negative": True},
+        target_product_def=pc_iip24.get_product_definition("ISLET1_B_SCT_C1_CIITA", root=ROOT),
+    )
+    assert _eval_a["scheduler_routing_eligible"] is True and _eval_bsct["scheduler_routing_eligible"] is False
+    _eval_unk = l5_iip24.evaluate_product_scoped_routing_and_stealth_axes_iip_0024(
+        {"sirpa_genotype": None},
+        target_product_def=pc_iip24.get_product_definition("ISLET1_A4_ARM1B", root=ROOT),
+    )
+    assert _eval_unk["independent_stealth_axes"]["cd47_sirpa_axis"] == "UNKNOWN"
+
 
 
 

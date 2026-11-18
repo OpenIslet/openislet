@@ -46,7 +46,13 @@
     "track2_rescue_route",
     "design_y_integrase_modality",
     "design_y_silencing_modality",
-    "design_y_payload_arm"
+    "design_y_payload_arm",
+    "donor_seedline_id",
+    "device_assembly_id",
+    "physical_route_id",
+    "assay_campaign_id",
+    "reset_prior_safety_stop_target_category",
+    "submitter_id"
   ],
   "boolean_policy_keys": [
     "require_full_5endpoint_s9_panel",
@@ -120,7 +126,14 @@
     "design_y_zero_2a_scar_proteomics_verified",
     "design_y_dpcpx_adora1_antagonist_control_run",
     "design_y_anti_cd200_blockade_reversal_verified",
-    "design_y_y04_full_coculture_and_clonogenic_confirmed"
+    "design_y_y04_full_coculture_and_clonogenic_confirmed",
+    "require_full_iip0024_atomic_provenance_and_bank_panel",
+    "cd16_adcc_igg_depletion_paired_control_verified",
+    "iapp_age_matched_reference_above_loq_verified",
+    "mcb_imprinting_ic1_ic2_igdmr_conjunctive_cleared",
+    "stage7_lot_imprinting_ic1_ic2_igdmr_conjunctive_cleared",
+    "mcb_and_lot_xci_46xx_3axis_cleared_or_46xy",
+    "mcb_and_lot_mtdna_1000x_numt_filtered_cleared"
   ],
   "endpoints": [
     {
@@ -3108,6 +3121,248 @@
       "default_se": 1.0,
       "minimum_se": 0.001,
       "unit": "effective_clonogenic_spike_adjusted_trials_n_times_f_clon_times_eta"
+    },
+    {
+      "endpoint_id": "stage0_mcb_donor_pairwise_ibd_pi_hat",
+      "meanKey": "obs_mcb_donor_pairwise_ibd_pi_hat",
+      "seKey": "obs_mcb_donor_pairwise_ibd_pi_hat_se",
+      "min": 0.0,
+      "max": 1.0,
+      "se_required": false,
+      "default_se": 0.001,
+      "minimum_se": 1e-06,
+      "unit": "genome_wide_pairwise_ibd_pi_hat_between_independent_abo_oo_donor_seedlines"
+    },
+    {
+      "endpoint_id": "stage0_mcb_1q32_mdm4_cnv_ratio",
+      "meanKey": "obs_mcb_1q32_mdm4_cnv_ratio",
+      "seKey": "obs_mcb_1q32_mdm4_cnv_se",
+      "min": 0.0,
+      "max": 10.0,
+      "se_required": false,
+      "default_se": 0.01,
+      "minimum_se": 0.001,
+      "unit": "mcb_bulk_ddpcr_diploid_copy_number_at_1q32p1_mdm4_normal_2p0"
+    },
+    {
+      "endpoint_id": "stage0_mcb_1q32_mdm4_single_cell_mosaic_fraction",
+      "meanKey": "obs_mcb_1q32_mdm4_single_cell_mosaic_fraction",
+      "seKey": "obs_mcb_1q32_mdm4_single_cell_mosaic_se",
+      "min": 0.0,
+      "max": 1.0,
+      "se_required": false,
+      "default_se": 0.001,
+      "minimum_se": 1e-06,
+      "unit": "mcb_single_cell_dna_fish_1q32p1_mdm4_gain_mosaic_proportion"
+    },
+    {
+      "endpoint_id": "stage0_mcb_1q32_mdm4_single_cell_mosaic_cells_scored",
+      "meanKey": "obs_mcb_1q32_mdm4_single_cell_mosaic_cells_scored",
+      "seKey": "obs_mcb_1q32_mdm4_single_cell_mosaic_cells_scored_se",
+      "min": 1.0,
+      "max": 100000000.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 0.001,
+      "unit": "mcb_single_cells_scored_for_1q32p1_mdm4_mosaicism"
+    },
+    {
+      "endpoint_id": "stage0_lot_1q32_mdm4_cnv_ratio",
+      "meanKey": "obs_1q32_mdm4_cnv_ratio",
+      "seKey": "obs_1q32_mdm4_cnv_se",
+      "min": 0.0,
+      "max": 10.0,
+      "se_required": false,
+      "default_se": 0.01,
+      "minimum_se": 0.001,
+      "unit": "stage7_lot_bulk_ddpcr_diploid_copy_number_at_1q32p1_mdm4_normal_2p0"
+    },
+    {
+      "endpoint_id": "stage0_lot_1q32_mdm4_single_cell_mosaic_fraction",
+      "meanKey": "obs_1q32_mdm4_single_cell_mosaic_fraction",
+      "seKey": "obs_1q32_mdm4_single_cell_mosaic_se",
+      "min": 0.0,
+      "max": 1.0,
+      "se_required": false,
+      "default_se": 0.001,
+      "minimum_se": 1e-06,
+      "unit": "stage7_lot_single_cell_dna_fish_1q32p1_mdm4_gain_mosaic_proportion"
+    },
+    {
+      "endpoint_id": "stage0_lot_1q32_mdm4_single_cell_mosaic_cells_scored",
+      "meanKey": "obs_1q32_mdm4_single_cell_mosaic_cells_scored",
+      "seKey": "obs_1q32_mdm4_single_cell_mosaic_cells_scored_se",
+      "min": 1.0,
+      "max": 100000000.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 0.001,
+      "unit": "stage7_lot_single_cells_scored_for_1q32p1_mdm4_mosaicism"
+    },
+    {
+      "endpoint_id": "stage0_readout2_perifusion_gsis_si",
+      "meanKey": "obs_readout2_perifusion_gsis_si",
+      "seKey": "obs_readout2_perifusion_gsis_si_se",
+      "min": 0.1,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.15,
+      "minimum_se": 0.001,
+      "unit": "readout2_dynamic_perifusion_gsis_stimulation_index"
+    },
+    {
+      "endpoint_id": "stage0_readout2_first_phase_peak_to_basal_ratio",
+      "meanKey": "obs_readout2_first_phase_peak_to_basal_ratio",
+      "seKey": "obs_readout2_first_phase_peak_to_basal_se",
+      "min": 0.1,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.2,
+      "minimum_se": 0.001,
+      "unit": "readout2_first_phase_peak_to_basal_secretion_ratio"
+    },
+    {
+      "endpoint_id": "stage0_readout2_first_phase_time_to_peak_min",
+      "meanKey": "obs_readout2_first_phase_time_to_peak_min",
+      "seKey": "obs_readout2_first_phase_time_to_peak_se",
+      "min": 0.0,
+      "max": 60.0,
+      "se_required": false,
+      "default_se": 0.25,
+      "minimum_se": 0.001,
+      "unit": "readout2_minutes_from_high_glucose_step_to_first_phase_peak"
+    },
+    {
+      "endpoint_id": "stage0_readout2_stepdown_shutoff_t50_min",
+      "meanKey": "obs_readout2_stepdown_shutoff_t50_min",
+      "seKey": "obs_readout2_stepdown_shutoff_t50_se",
+      "min": 0.0,
+      "max": 60.0,
+      "se_required": false,
+      "default_se": 0.1,
+      "minimum_se": 0.001,
+      "unit": "readout2_stepdown_secretion_arrest_half_time_t50_minutes_distinct_from_gate0m_t90"
+    },
+    {
+      "endpoint_id": "stage0_exact_product_net_cd16_adcc_lysis_pct",
+      "meanKey": "obs_exact_product_net_cd16_adcc_lysis_pct",
+      "seKey": "obs_exact_product_net_cd16_adcc_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.35,
+      "minimum_se": 0.001,
+      "unit": "paired_igg_depleted_cd16_pos_nk_net_adcc_specific_lysis_percentage"
+    },
+    {
+      "endpoint_id": "stage0_cd16_adcc_positive_control_lysis_pct",
+      "meanKey": "obs_cd16_adcc_positive_control_lysis_pct",
+      "seKey": "obs_cd16_adcc_positive_control_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 2.0,
+      "minimum_se": 0.001,
+      "unit": "opsonized_positive_control_cd16_pos_nk_adcc_specific_lysis_percentage"
+    },
+    {
+      "endpoint_id": "stage0_p05_total_loaded_catalase_protein_mg",
+      "meanKey": "obs_p05_total_loaded_catalase_protein_mg",
+      "seKey": "obs_p05_total_loaded_catalase_protein_mg_se",
+      "min": 0.0,
+      "max": 1000.0,
+      "se_required": false,
+      "default_se": 0.05,
+      "minimum_se": 0.001,
+      "unit": "total_loaded_recombinant_human_p04040_catalase_protein_mass_mg_across_333p33cm2"
+    },
+    {
+      "endpoint_id": "stage0_gate0s_shedding_ddpcr_events_k",
+      "meanKey": "obs_gate0s_shedding_ddpcr_events_k",
+      "seKey": "obs_gate0s_shedding_ddpcr_events_k_se",
+      "min": 0.0,
+      "max": 1000000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "day90_sister_unit_ex_vivo_ddpcr_extra_device_shedding_positive_events_k"
+    },
+    {
+      "endpoint_id": "stage0_gate0s_shedding_ddpcr_trials_n",
+      "meanKey": "obs_gate0s_shedding_ddpcr_trials_n",
+      "seKey": "obs_gate0s_shedding_ddpcr_trials_n_se",
+      "min": 1.0,
+      "max": 10000000000.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 0.001,
+      "unit": "day90_sister_unit_ex_vivo_ddpcr_qualified_genome_equivalents_n"
+    },
+    {
+      "endpoint_id": "stage0_gate0s_shedding_viable_events_k",
+      "meanKey": "obs_gate0s_shedding_viable_events_k",
+      "seKey": "obs_gate0s_shedding_viable_events_k_se",
+      "min": 0.0,
+      "max": 1000000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "day90_sister_unit_viable_outgrowth_extra_device_shedding_positive_events_k"
+    },
+    {
+      "endpoint_id": "stage0_gate0s_shedding_viable_trials_n",
+      "meanKey": "obs_gate0s_shedding_viable_trials_n",
+      "seKey": "obs_gate0s_shedding_viable_trials_n_se",
+      "min": 1.0,
+      "max": 10000000000.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 0.001,
+      "unit": "day90_sister_unit_viable_outgrowth_qualified_plated_equivalents_n"
+    },
+    {
+      "endpoint_id": "stage0_independent_lot_replicates_n",
+      "meanKey": "obs_stage0_independent_lot_replicates_n",
+      "seKey": "obs_stage0_independent_lot_replicates_n_se",
+      "min": 1.0,
+      "max": 10000.0,
+      "se_required": false,
+      "default_se": 1e-12,
+      "minimum_se": 1e-12,
+      "unit": "independent_differentiation_lot_replicates_n_for_exact_student_t_bounds"
+    },
+    {
+      "endpoint_id": "stage0_iapp_3metric_thioflavin_s_area_pct",
+      "meanKey": "obs_iapp_3metric_thioflavin_s_area_pct",
+      "seKey": "obs_iapp_3metric_thioflavin_s_area_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.04,
+      "minimum_se": 0.001,
+      "unit": "colocalized_thioflavin_s_positive_amyloid_fibril_area_percentage"
+    },
+    {
+      "endpoint_id": "stage0_iapp_3metric_soluble_oligomer_fold",
+      "meanKey": "obs_iapp_3metric_soluble_oligomer_fold",
+      "seKey": "obs_iapp_3metric_soluble_oligomer_se",
+      "min": 0.0,
+      "max": 50.0,
+      "se_required": false,
+      "default_se": 0.05,
+      "minimum_se": 0.001,
+      "unit": "soluble_iapp_oligomer_elisa_fold_over_quantifiable_age_matched_reference"
+    },
+    {
+      "endpoint_id": "stage0_iapp_3metric_insoluble_fibril_fold",
+      "meanKey": "obs_iapp_3metric_insoluble_fibril_fold",
+      "seKey": "obs_iapp_3metric_insoluble_fibril_se",
+      "min": 0.0,
+      "max": 50.0,
+      "se_required": false,
+      "default_se": 0.05,
+      "minimum_se": 0.001,
+      "unit": "formic_acid_extracted_insoluble_iapp_fold_over_quantifiable_age_matched_reference"
     }
   ]
 }

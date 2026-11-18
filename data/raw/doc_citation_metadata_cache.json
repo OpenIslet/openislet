@@ -1,7 +1,7 @@
 {
  "_meta": {
   "purpose": "offline snapshot for tests/test_citations_resolve.py; bibliographic facts only (first author, year, journal, title)",
-  "retrieved": "2026-11-17",
+  "retrieved": "2026-11-18",
   "source": "NCBI E-utilities esummary (db=pubmed)"
  },
  "pmids": {
@@ -41,11 +41,23 @@
    "pubdate_year": "2000",
    "title": "Clinical optimization of pretargeted radioimmunotherapy with antibody-streptavidin conjugate and 90Y-DOTA-biotin."
   },
+  "10656833": {
+   "first_author": "Putnam CD",
+   "journal": "J Mol Biol",
+   "pubdate_year": "2000",
+   "title": "Active and inhibited human catalase structures: ligand and NADPH binding and catalytic mechanism."
+  },
   "10850706": {
    "first_author": "Boyington JC",
    "journal": "Nature",
    "pubdate_year": "2000",
    "title": "Crystal structure of an NK cell immunoglobulin-like receptor in complex with its class I MHC ligand."
+  },
+  "11024144": {
+   "first_author": "Chehadeh W",
+   "journal": "J Virol",
+   "pubdate_year": "2000",
+   "title": "Persistent infection of human pancreatic islets by coxsackievirus B is associated with alpha interferon synthesis in beta cells."
   },
   "11106749": {
    "first_author": "Harding HP",
@@ -166,6 +178,12 @@
    "journal": "Mol Cell",
    "pubdate_year": "2003",
    "title": "Mechanism of XIAP-mediated inhibition of caspase-9."
+  },
+  "12702875": {
+   "first_author": "Kayed R",
+   "journal": "Science",
+   "pubdate_year": "2003",
+   "title": "Common structure of soluble amyloid oligomers implies common mechanism of pathogenesis."
   },
   "12853576": {
    "first_author": "Shiroishi M",
@@ -509,6 +527,12 @@
    "pubdate_year": "2010",
    "title": "Assessing the immunopotency of Toll-like receptor agonists in an in vitro tissue-engineered immunological model."
   },
+  "20585555": {
+   "first_author": "Kagami M",
+   "journal": "PLoS Genet",
+   "pubdate_year": "2010",
+   "title": "The IG-DMR and the MEG3-DMR at human chromosome 14q32.2: hierarchical interaction and distinct functional properties as imprinting control centers."
+  },
   "20699420": {
    "first_author": "Keenan HA",
    "journal": "Diabetes",
@@ -581,6 +605,12 @@
    "pubdate_year": "2011",
    "title": "Deleterious impact of mismatching for human leukocyte antigen-C in presensitized recipients of kidney transplants."
   },
+  "21788575": {
+   "first_author": "Olsson R",
+   "journal": "Diabetes",
+   "pubdate_year": "2011",
+   "title": "Increased numbers of low-oxygenated pancreatic islets after intraportal islet transplantation."
+  },
   "21788581": {
    "first_author": "Olsson R",
    "journal": "Diabetes",
@@ -641,11 +671,29 @@
    "pubdate_year": "2012",
    "title": "Preventing β-cell loss and diabetes with calcium channel blockers."
   },
+  "22560080": {
+   "first_author": "Mekhoubad S",
+   "journal": "Cell Stem Cell",
+   "pubdate_year": "2012",
+   "title": "Erosion of dosage compensation impacts human iPSC disease modeling."
+  },
+  "22560082": {
+   "first_author": "Nazor KL",
+   "journal": "Cell Stem Cell",
+   "pubdate_year": "2012",
+   "title": "Recurrent variations in DNA methylation in human pluripotent stem cells and their differentiated derivatives."
+  },
   "22696657": {
    "first_author": "Knight S",
    "journal": "J Virol",
    "pubdate_year": "2012",
    "title": "Safer, silencing-resistant lentiviral vectors: optimization of the ubiquitous chromatin-opening element through elimination of aberrant splicing."
+  },
+  "22862941": {
+   "first_author": "Taylor CJ",
+   "journal": "Cell Stem Cell",
+   "pubdate_year": "2012",
+   "title": "Generating an iPSC bank for HLA-matched tissue transplantation based on known donor and recipient HLA types."
   },
   "22934097": {
    "first_author": "Rajagopalan S",
@@ -772,6 +820,18 @@
    "journal": "Nat Methods",
    "pubdate_year": "2014",
    "title": "Quantitative single-cell RNA-seq with unique molecular identifiers."
+  },
+  "24374217": {
+   "first_author": "Kameswaran V",
+   "journal": "Cell Metab",
+   "pubdate_year": "2014",
+   "title": "Epigenetic regulation of the DLK1-MEG3 microRNA cluster in human type 2 diabetic islets."
+  },
+  "24402520": {
+   "first_author": "Court F",
+   "journal": "Genome Res",
+   "pubdate_year": "2014",
+   "title": "Genome-wide parent-of-origin DNA methylation analysis reveals the intricacies of human imprinting and suggests a germline methylation-independent mechanism of establishment."
   },
   "24550402": {
    "first_author": "Hatherley D",
@@ -1031,11 +1091,23 @@
    "pubdate_year": "2016",
    "title": "Improvement of islet engrafts by enhanced angiogenesis and microparticle-mediated oxygenation."
   },
+  "27151456": {
+   "first_author": "Kang E",
+   "journal": "Cell Stem Cell",
+   "pubdate_year": "2016",
+   "title": "Age-Related Accumulation of Somatic Mitochondrial DNA Mutations in Adult-Derived Human iPSCs."
+  },
   "27183617": {
    "first_author": "Polukort SH",
    "journal": "J Immunol",
    "pubdate_year": "2016",
    "title": "IL-10 Enhances IgE-Mediated Mast Cell Responses and Is Essential for the Development of Experimental Food Allergy in IL-10-Deficient Mice."
+  },
+  "27436875": {
+   "first_author": "Perales-Clemente E",
+   "journal": "EMBO J",
+   "pubdate_year": "2016",
+   "title": "Natural underlying mtDNA heteroplasmy as a potential source of intra-person hiPSC variability."
   },
   "27626039": {
    "first_author": "Yagyu S",
@@ -1103,6 +1175,12 @@
    "pubdate_year": "2016",
    "title": "Donor exosomes rather than passenger leukocytes initiate alloreactive T cell responses after transplantation."
   },
+  "27989715": {
+   "first_author": "Patel S",
+   "journal": "Cell Rep",
+   "pubdate_year": "2017",
+   "title": "Human Embryonic Stem Cells Do Not Change Their X Inactivation Status during Differentiation."
+  },
   "28092375": {
    "first_author": "Dror E",
    "journal": "Nat Immunol",
@@ -1132,6 +1210,18 @@
    "journal": "Mol Ther",
    "pubdate_year": "2017",
    "title": "Short DNA Hairpins Compromise Recombinant Adeno-Associated Virus Genome Homogeneity."
+  },
+  "28467909": {
+   "first_author": "Bar S",
+   "journal": "Cell Rep",
+   "pubdate_year": "2017",
+   "title": "Large-Scale Analysis of Loss of Imprinting in Human Pluripotent Stem Cells."
+  },
+  "28489815": {
+   "first_author": "Kilpinen H",
+   "journal": "Nature",
+   "pubdate_year": "2017",
+   "title": "Common genetic variation drives molecular heterogeneity in human iPSCs."
   },
   "28489987": {
    "first_author": "Baidal DA",
@@ -1174,6 +1264,18 @@
    "journal": "Sci Rep",
    "pubdate_year": "2017",
    "title": "Characterization of a core region in the A2UCOE that confers effective anti-silencing activity."
+  },
+  "28867344": {
+   "first_author": "Ichise H",
+   "journal": "Stem Cell Reports",
+   "pubdate_year": "2017",
+   "title": "NK Cell Alloreactivity against KIR-Ligand-Mismatched HLA-Haploidentical Tissue Derived from HLA Haplotype-Homozygous iPSCs."
+  },
+  "29288549": {
+   "first_author": "Carlsson PO",
+   "journal": "Am J Transplant",
+   "pubdate_year": "2018",
+   "title": "Transplantation of macroencapsulated human islets within the bioartificial pancreas βAir to patients with type 1 diabetes mellitus."
   },
   "29302013": {
    "first_author": "Ramsuran V",
@@ -1397,6 +1499,12 @@
    "pubdate_year": "2019",
    "title": "Charting cellular identity during human in vitro β-cell differentiation."
   },
+  "31177185": {
+   "first_author": "Battelino T",
+   "journal": "Diabetes Care",
+   "pubdate_year": "2019",
+   "title": "Clinical Targets for Continuous Glucose Monitoring Data Interpretation: Recommendations From the International Consensus on Time in Range."
+  },
   "31332326": {
    "first_author": "Thuronyi BW",
    "journal": "Nat Biotechnol",
@@ -1601,6 +1709,12 @@
    "pubdate_year": "2021",
    "title": "Quantitative evaluation of chromosomal rearrangements in gene-edited human stem cells by CAST-Seq."
   },
+  "33757297": {
+   "first_author": "Halliwell JA",
+   "journal": "Stem Cells Dev",
+   "pubdate_year": "2021",
+   "title": "Nanopore Sequencing Indicates That Tandem Amplification of Chromosome 20q11.21 in Human Pluripotent Stem Cells Is Driven by Break-Induced Replication."
+  },
   "33838111": {
    "first_author": "Nuñez JK",
    "journal": "Cell",
@@ -1678,6 +1792,12 @@
    "journal": "Cell Death Dis",
    "pubdate_year": "2022",
    "title": "Cell-to-cell variability in inducible Caspase9-mediated cell death."
+  },
+  "35152257": {
+   "first_author": "Rezaei M",
+   "journal": "Transplantation",
+   "pubdate_year": "2022",
+   "title": "Ex Vivo Normothermic Perfusion of Human Upper Limbs."
   },
   "35241836": {
    "first_author": "Balboa D",
@@ -2008,6 +2128,12 @@
    "journal": "Nature",
    "pubdate_year": "2024",
    "title": "Bridge RNAs direct programmable recombination of target and donor DNA."
+  },
+  "38964325": {
+   "first_author": "Stavish D",
+   "journal": "Stem Cell Reports",
+   "pubdate_year": "2024",
+   "title": "Feeder-free culture of human pluripotent stem cells drives MDM4-mediated gain of chromosome 1q."
   },
   "38975343": {
    "first_author": "Bode K",

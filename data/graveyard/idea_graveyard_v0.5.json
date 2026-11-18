@@ -285,12 +285,13 @@
     }
   ],
   "off_grid_molecular_dead_end_guardrails": {
-    "schema_role": "Non-grid Stage-0 molecular, bioconjugation, and oxygen-transport guardrails (preserving exact 10 grid-firing graveyard_entries for CHK-05 while indexing all shipped IIP-0017..IIP-0023 Stage-0 dead ends and context-dependent traps)",
+    "schema_role": "Non-grid Stage-0 molecular, bioconjugation, oxygen-transport, and statistical/epigenetic provenance guardrails (preserving exact 10 grid-firing graveyard_entries for CHK-05 while indexing all shipped IIP-0017..IIP-0024 Stage-0 dead ends and context-dependent traps)",
     "decision_id": "DEC-101",
-    "contribution_id": "IIP-0017..IIP-0023",
+    "latest_update_decision_id": "DEC-103",
+    "contribution_id": "IIP-0017..IIP-0024",
     "consumed_by_validators": [
       "scripts/wetlab_contract.py (evaluate_stage0_decision_tree Stage-0 hold gates)",
-      "tests/test_round3_supporting_boundaries.py (section 47)",
+      "tests/test_round3_supporting_boundaries.py (sections 47 and 49)",
       "tests/test_adversarial_acceptance.py (CHK-05B off-grid graveyard parity)"
     ],
     "guardrails": [
@@ -424,6 +425,45 @@
           "36357719",
           "42660457",
           "38879678"
+        ]
+      },
+      {
+        "guardrail_id": "OFFGRID_GUARD_008_CROSS_LOT_EVIDENCE_INHERITANCE_OPT_IN_OMISSIONS_AND_NAIVE_DEFF_SUBSTITUTION",
+        "graveyard_card_id": "GY-018",
+        "severity_level": "BLOCK",
+        "curation_status": "corroborated",
+        "evidence_basis_class": "mechanistic_precaution_or_non_islet_extrapolation",
+        "contribution_id": "IIP-0024",
+        "status": "BARRED_CROSS_LOT_BORROWING_MISSING_DENOMINATORS_AND_NAIVE_DEFF_SHORTCUTS",
+        "summary": "Carrying LOT_SCOPE or ASSEMBLED_DEVICE_LOT_SCOPE measurements forward across distinct differentiation lots or device assemblies lets an untested Stage-7 lot inherit prior clonal/functional clearance despite differentiation-emergent 1q32.1 MDM4 or 20q11.21 BCL2L1 subclonal takeover (PMID:38964325, PMID:24286026) and dynamic GSIS maturation drift (PMID:35241836). Likewise, omitting integer (k, n) denominators on zero-event rare-event gates, dropping k == 0 observed-zero hard vetoes, substituting floor(n * eta) or naive floor(n * eta / DEFF) on clustered rare events (where ICC = 0 can still carry P(K = 0) = 14.14% > 5.0%), omitting Gate P05 P04040 mass-coupled endotoxin or IgG-depleted CD16+ ADCC controls (PMID:27787618, PMID:35743287), or resetting safety stops without same-scope independent-unit washout QP verification (PMID:22047558) are permanently barred.",
+        "cheapest_falsification_assay": "Differential Stage-0 replay across 4/5/7-key MCB_SCOPE, LOT_SCOPE, and ASSEMBLED_DEVICE_LOT_SCOPE tuples with strict integer (k, n), k == 0 observed-zero vetoes, exact (1 - 0.05**(1/n)) / eta bounds, and latched adverse stop-reset audits.",
+        "pmids": [
+          "38964325",
+          "24286026",
+          "35241836",
+          "27787618",
+          "35743287",
+          "22047558"
+        ]
+      },
+      {
+        "guardrail_id": "OFFGRID_GUARD_009_UNBLOCKED_CROSS_DONOR_CONTRASTS_AND_UNSCREENED_IMPRINTING_XCI_MDM4_MTDNA_BANKS",
+        "graveyard_card_id": "GY-019",
+        "severity_level": "WARN",
+        "curation_status": "precautionary_mechanistic_hazard",
+        "evidence_basis_class": "mechanistic_precaution_or_non_islet_extrapolation",
+        "contribution_id": "IIP-0024",
+        "status": "MANDATORY_DONOR_BLOCKED_STUDENT_T_WELCH_TOST_AND_EPIGENETIC_MTDNA_SURVEILLANCE",
+        "summary": "Comparing engineered construct arms across unblocked hPSC donor backgrounds confounds construct attribution with 5-46% inter-donor iPSC trait variance (44.35% false >25% shifts at sigma_donor = 0.20 vs 0.13% under Donor-1 paired lot blocking; PMID:28489815), while asymptotic z = 1.644854 inflates 6-lot Type-I error to 8.05% (12.09% at 3 lots) and unbalanced 6 + 3 Welch TOST drops +15%-drift equivalence power to 41.38% vs 97.00% on balanced 6 + 6 lots. Unscreened hPSC banks and Stage-7 lots also carry persistent germline imprinting loss at IC1, IC2/KvDMR1, and primary IG-DMR vs secondary somatic MEG3-DMR (PMID:20585555, PMID:24402520), irreversible 46,XX XCI erosion (PMID:22560080, PMID:27989715), and clonal chrM heteroplasmy expansion during reprogramming/culture (PMID:27436875, PMID:27151456).",
+        "cheapest_falsification_assay": "Screen >= 2 unrelated ABO O/O hPSC seed lines (pi_hat < 0.05) with phased 5mC IC1/IC2/IG-DMR panels, >= 300-nucleus 46,XX XIST + promoter-CpG/X-RNA assays, diploid MDM4/20q11.21 ddPCR + >= 299-cell DNA-FISH, and >= 1,000x NUMT-filtered chrM sequencing, followed by m >= 6 Donor-1 paired differentiation blocks and 6 + 6 unpooled Welch 90% TOST.",
+        "pmids": [
+          "28489815",
+          "20585555",
+          "24402520",
+          "22560080",
+          "27989715",
+          "27436875",
+          "27151456"
         ]
       }
     ]

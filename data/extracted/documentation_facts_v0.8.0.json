@@ -11,12 +11,12 @@
   "source_sha256": {
     "data/raw/corpus_manifest_all_sources.jsonl": "119ecbd3be2ccb79a2f38ac7feca8713ffb7c6c5e92165078e2722331b9e0536",
     "data/extracted/cross_study_discovery_graph.json": "1eb6248877b1dacf11154f608515c092ed1db2fdb7efc34b9c5456a3aa1113f4",
-    "data/extracted/islet1_candidate_stack_rankings.json": "09b1a0c0e8df43c6e886b71ae957675e7fee2a95f73a6ec2756d2a5c48f8b738",
+    "data/extracted/islet1_candidate_stack_rankings.json": "c17e82c5e35f3202c0fa52e0184c34abb3a1f6439c63b0fe6fdb7d908f1a6e17",
     "data/protocols/hip_core_fractional_factorial_v0.6.2.json": "7a3aead410a1c9a10ac4fb56b78a1775c73755aed90c1fff4861eb3b94595741",
-    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "02f4689338608970c85661b28e1d76caeb71700f64010c8185465a3e54f7a50b",
-    "data/extracted/layer3_structural_verification_atlas.json": "0986a146f7a505f482e3f19dded05ad327de255e8c512472f5a3c7c1e8213388",
-    "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": "6611914b90421d14ab84429648644f514682cff16c031be347e55b67568d7c60",
-    "data/extracted/layer5_personalized_patient_and_crispr_atlas.json": "dd0da26878fd36d0f70afc140943a489e381f38e994510bd03996de3edeaed69",
+    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "a3875de5720eaa4db8b863a8ce82ced82c4880242772885a9dcf8c2434fcf6e8",
+    "data/extracted/layer3_structural_verification_atlas.json": "c19d83d87d057a334f45398de1b8ed3569585a2b0273be3a477295835678eab1",
+    "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": "0d3a34c2f4036270664a79e4cdd4599309a43422a5563192b69d6d44698d4e63",
+    "data/extracted/layer5_personalized_patient_and_crispr_atlas.json": "fce5c98cb02cd8d85c1e1a1fb42c5dd7ac3716431eab1c14fe0987ff2ade8b5a",
     "data/extracted/10202046.json": "b3d836e8c0fc8ed898592975e0f09c0154a0d4f887c2b6893e7c8194befd0a6a",
     "data/extracted/10728379.json": "b2efcc82101e33914aebc51e74ddc7650894d097c11841518f6e848916cae3dc",
     "data/extracted/10798768.json": "8fc4cdd4b8d420e666e0cab534c990fc545705c7563fc54d98a80197b9fa0082",
@@ -1088,7 +1088,9 @@
               "isogenic_iEC",
               "isogenic_iPericytes"
             ],
-            "actual_donor_identity_status": "PREREGISTERED_PENDING"
+            "actual_donor_identity_status": "PREREGISTERED_PENDING",
+            "donor_seedline_id_required": true,
+            "kinship_pi_hat_lt": 0.05
           },
           "hla_retention": {
             "classical_MHC_I": "B2M disruption intended",
@@ -1291,7 +1293,9 @@
               "isogenic_iEC",
               "isogenic_iPericytes"
             ],
-            "actual_donor_identity_status": "PREREGISTERED_PENDING"
+            "actual_donor_identity_status": "PREREGISTERED_PENDING",
+            "donor_seedline_id_required": true,
+            "kinship_pi_hat_lt": 0.05
           },
           "hla_retention": {
             "classical_MHC_I": "HLA-A/HLA-B disruption; HLA-C donor allele(s) retained and separately matched",
@@ -10618,7 +10622,9 @@
               "isogenic_iEC",
               "isogenic_iPericytes"
             ],
-            "actual_donor_identity_status": "PREREGISTERED_PENDING"
+            "actual_donor_identity_status": "PREREGISTERED_PENDING",
+            "donor_seedline_id_required": true,
+            "kinship_pi_hat_lt": 0.05
           },
           "hla_retention": {
             "classical_MHC_I": "B2M disruption intended",
@@ -10830,7 +10836,9 @@
               "isogenic_iEC",
               "isogenic_iPericytes"
             ],
-            "actual_donor_identity_status": "PREREGISTERED_PENDING"
+            "actual_donor_identity_status": "PREREGISTERED_PENDING",
+            "donor_seedline_id_required": true,
+            "kinship_pi_hat_lt": 0.05
           },
           "hla_retention": {
             "classical_MHC_I": "B2M disruption intended",
@@ -11721,7 +11729,9 @@
               "isogenic_iEC",
               "isogenic_iPericytes"
             ],
-            "actual_donor_identity_status": "PREREGISTERED_PENDING"
+            "actual_donor_identity_status": "PREREGISTERED_PENDING",
+            "donor_seedline_id_required": true,
+            "kinship_pi_hat_lt": 0.05
           },
           "hla_retention": {
             "classical_MHC_I": "HLA-A/HLA-B disruption; HLA-C donor allele(s) retained and separately matched",
@@ -11974,7 +11984,9 @@
               "isogenic_iEC",
               "isogenic_iPericytes"
             ],
-            "actual_donor_identity_status": "PREREGISTERED_PENDING"
+            "actual_donor_identity_status": "PREREGISTERED_PENDING",
+            "donor_seedline_id_required": true,
+            "kinship_pi_hat_lt": 0.05
           },
           "hla_retention": {
             "classical_MHC_I": "HLA-A/HLA-B disruption; HLA-C donor allele(s) retained and separately matched",
@@ -22760,7 +22772,11 @@
           "max_glucose_0p25min_mM": 7.044,
           "mean_glucose_0p25min_mM": 5.7145,
           "time_in_tight_range_0p25min_pct": 100.0,
-          "time_below_3p9mM_0p25min_pct": 0.0
+          "time_below_3p9mM_0p25min_pct": 0.0,
+          "tbr39_elapsed_0p25min_pct": 0.0,
+          "tbr30_elapsed_0p25min_pct": 0.0,
+          "tir_3p9_to_10_elapsed_0p25min_pct": 100.0,
+          "passes_fragile_tbr_lt_1pct": true
         },
         "passes_clinical_glycemic_safety_targets": true
       },
@@ -22819,7 +22835,11 @@
           "max_glucose_0p25min_mM": 6.8773,
           "mean_glucose_0p25min_mM": 4.9363,
           "time_in_tight_range_0p25min_pct": 95.07,
-          "time_below_3p9mM_0p25min_pct": 4.93
+          "time_below_3p9mM_0p25min_pct": 4.93,
+          "tbr39_elapsed_0p25min_pct": 4.925931,
+          "tbr30_elapsed_0p25min_pct": 0.0,
+          "tir_3p9_to_10_elapsed_0p25min_pct": 95.074069,
+          "passes_fragile_tbr_lt_1pct": false
         },
         "passes_clinical_glycemic_safety_targets": false
       },
@@ -22878,7 +22898,11 @@
           "max_glucose_0p25min_mM": 5.2124,
           "mean_glucose_0p25min_mM": 3.7815,
           "time_in_tight_range_0p25min_pct": 14.67,
-          "time_below_3p9mM_0p25min_pct": 85.33
+          "time_below_3p9mM_0p25min_pct": 85.33,
+          "tbr39_elapsed_0p25min_pct": 85.348149,
+          "tbr30_elapsed_0p25min_pct": 1.907741,
+          "tir_3p9_to_10_elapsed_0p25min_pct": 14.651851,
+          "passes_fragile_tbr_lt_1pct": false
         },
         "passes_clinical_glycemic_safety_targets": false
       }
@@ -24029,7 +24053,9 @@
                 "isogenic_iEC",
                 "isogenic_iPericytes"
               ],
-              "actual_donor_identity_status": "PREREGISTERED_PENDING"
+              "actual_donor_identity_status": "PREREGISTERED_PENDING",
+              "donor_seedline_id_required": true,
+              "kinship_pi_hat_lt": 0.05
             },
             "hla_retention": {
               "classical_MHC_I": "B2M disruption intended",
@@ -24044,6 +24070,7 @@
               "exact-product molecular and delivery qualification"
             ]
           },
+          "product_execution_release_status": "ELIGIBLE_CANDIDATE_PENDING_STAGE0_LOT_RELEASE",
           "score_qualification": "ASSIGNED_RULE_SCENARIO_NOT_COMPLETE_PRODUCT",
           "selected_fda_deployment_track": "TRACK_1_UNIVERSAL_OFF_THE_SHELF_ALLOGENEIC",
           "clinical_override_warnings": [],
@@ -24230,7 +24257,9 @@
                 "isogenic_iEC",
                 "isogenic_iPericytes"
               ],
-              "actual_donor_identity_status": "PREREGISTERED_PENDING"
+              "actual_donor_identity_status": "PREREGISTERED_PENDING",
+              "donor_seedline_id_required": true,
+              "kinship_pi_hat_lt": 0.05
             },
             "hla_retention": {
               "classical_MHC_I": "HLA-A/HLA-B disruption; HLA-C donor allele(s) retained and separately matched",
@@ -24245,6 +24274,7 @@
               "exact-product molecular and delivery qualification"
             ]
           },
+          "product_execution_release_status": "HOLD_NON_EXECUTABLE_RESEARCH_OR_COMPARATOR_PRODUCT",
           "score_qualification": "ASSIGNED_RULE_SCENARIO_NOT_COMPLETE_PRODUCT",
           "selected_fda_deployment_track": "TRACK_2_PATIENT_DNA_STRATIFIED_ALLOGENEIC_SUBLINE",
           "clinical_override_warnings": [],
@@ -24451,7 +24481,9 @@
                 "isogenic_iEC",
                 "isogenic_iPericytes"
               ],
-              "actual_donor_identity_status": "PREREGISTERED_PENDING"
+              "actual_donor_identity_status": "PREREGISTERED_PENDING",
+              "donor_seedline_id_required": true,
+              "kinship_pi_hat_lt": 0.05
             },
             "hla_retention": {
               "classical_MHC_I": "B2M disruption intended",
@@ -24468,6 +24500,7 @@
               "Stage-0 Rule S8b co-primary X1:X4 / X3:X4 epistasis and 3x2 TYK2 x L3-BF-B satellite check"
             ]
           },
+          "product_execution_release_status": "ELIGIBLE_CANDIDATE_PENDING_STAGE0_LOT_RELEASE",
           "score_qualification": "ASSIGNED_RULE_SCENARIO_NOT_COMPLETE_PRODUCT",
           "selected_fda_deployment_track": "TRACK_2_PATIENT_DNA_STRATIFIED_ALLOGENEIC_SUBLINE",
           "clinical_override_warnings": [
@@ -24679,7 +24712,9 @@
                 "isogenic_iEC",
                 "isogenic_iPericytes"
               ],
-              "actual_donor_identity_status": "PREREGISTERED_PENDING"
+              "actual_donor_identity_status": "PREREGISTERED_PENDING",
+              "donor_seedline_id_required": true,
+              "kinship_pi_hat_lt": 0.05
             },
             "hla_retention": {
               "classical_MHC_I": "B2M disruption intended",
@@ -24694,6 +24729,7 @@
               "exact-product molecular and delivery qualification"
             ]
           },
+          "product_execution_release_status": "ELIGIBLE_CANDIDATE_PENDING_STAGE0_LOT_RELEASE",
           "score_qualification": "ASSIGNED_RULE_SCENARIO_NOT_COMPLETE_PRODUCT",
           "selected_fda_deployment_track": "TRACK_3_PERSONALIZED_AUTOLOGOUS_PATIENT_IPSC",
           "clinical_override_warnings": [],
@@ -24842,6 +24878,25 @@
           "ISLET1_B_SCT_C1_CIITA / ISLET1_B_SCT_C2_CIITA / ISLET1_B_SCT_C1C2_CIITA (Track-2 B'-SCT with B2M-/-)"
         ],
         "routing_restriction": "Population rs34536443 allele frequencies (2.7-4.2% C -> ~91.8-94.7% G/G) cannot classify individual recipients, natural C/C or G/C genotype does not establish peripheral tolerance to SAPTKFLEL across endocrine and vascular iEC/pericyte compartments, and an in-silico MHCflurry affinity cutoff (e.g., HLA-C*04:01 448.93 nM) never auto-authorizes clinical routing. Any evaluation of Design B2 (ISLET1_B2_5LOCUS_TYK2_PE) requires clearing the Stage-0 Gate 0B empirical OR-hold presentation and CD8+ killing gate across unpooled recipient TYK2 genotype strata (G_G, G_C, C_C) alongside preserved Rule S8 5xISRE/CXCL10 promoter-induction and Stage 0->7 yield checks (Boisson-Dupuis et al. 2018 PMID:30578352; Chandra et al. 2022 PMID:36289205; GY-001)."
+      },
+      "product_scoped_precedence_and_stealth_axes_audit_iip_0024": {
+        "proposal_id": "IIP-0024",
+        "decision_id": "DEC-103",
+        "primary_citations": [
+          "PMID:16034111",
+          "PMID:24804568",
+          "PMID:35323192",
+          "PMID:10850706",
+          "PMID:37264229",
+          "PMID:28867344",
+          "PMID:22862941"
+        ],
+        "design_a_eligible_when_bsct_mlc_fails": true,
+        "bsct_blocked_when_explicit_cd8_mlc_false_despite_composite_true": true,
+        "bsct_active_holds": [
+          "HOLD_TARGET_BSCT_CD8_MLC_FAILED_OVERRIDES_COMPOSITE"
+        ],
+        "design_z_wildcard_clinical_release_eligible": false
       }
     }
   }

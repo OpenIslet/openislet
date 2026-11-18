@@ -638,5 +638,37 @@
       "PMID:23416946",
       "PMID:24584092"
     ]
+  },
+  "stage0_atomic_provenance_and_bank_guardrails_iip_0024": {
+    "gate_id": "STAGE0_ATOMIC_PROVENANCE_AND_BANK_GUARDRAILS_IIP_0024",
+    "decision_id": "DEC-103",
+    "contribution_id": "IIP-0024",
+    "primary_citations": [
+      "PMID:38964325",
+      "PMID:24286026",
+      "PMID:33757297",
+      "PMID:28489815",
+      "PMID:20585555",
+      "PMID:24402520",
+      "PMID:22560082",
+      "PMID:28467909",
+      "PMID:24374217",
+      "PMID:22560080",
+      "PMID:27989715",
+      "PMID:27436875",
+      "PMID:27151456",
+      "PMID:35241836",
+      "PMID:27787618",
+      "PMID:35743287",
+      "PMID:22047558",
+      "PMID:31177185",
+      "PMID:21788575"
+    ],
+    "rules": {
+      "named_scope_provenance_and_cross_lot_isolation": "Binds Stage-0 observations under MCB_SCOPE (4-key product_variant_id, construct_sha256, donor_seedline_id, mcb_id with pairwise IBD pi_hat < 0.05), LOT_SCOPE (5-key adding lot_id with separate bank vs Stage-7 clonal/epigenetic endpoint IDs and zero cross-lot LOT_SCOPE/DEVICE_SCOPE evidence inheritance or stale SE pairing), and ASSEMBLED_DEVICE_LOT_SCOPE (7-key adding device_assembly_id + bidirectionally bound physical_route_id, distinguishing pre-implant qualification from sister-unit Day-84/Day-90 terminal readouts).",
+      "strict_integer_counts_observed_zero_vetoes_and_adverse_latching": "Requires strict integer (k, n) rare-event counts pre-normalization (holding fractional denominators such as 298.9 and missing cell denominators on zero-event mosaic fractions), enforces k == 0 observed-zero hard vetoes on Day-28 Gate 0V (n >= 5,990) and dual Day-90 Gate 0S ddPCR + viable shedding across independent specimen units (n >= 2,995,731), computes exact independent sensitivity U95 = (1 - 0.05**(1/n)) / eta (holding unregistered cluster estimators), and latches adverse observations across batch merges until an authorized same-scope, category-specific, measured-washout, independent-QP reset.",
+      "donor_blocked_student_t_and_6plus6_welch_tost": "Replaces asymptotic z = 1.644854 with exact one-sided Student-t (df = n - 1, n >= 6 independent differentiation lots) when replicate count is supplied and specifies Donor-1 head-to-head paired lot blocking across m >= 6 blocks plus balanced 6 + 6 unpooled Welch 90% TOST seed-line equivalence on [0.75, 1.3333].",
+      "conjunctive_epigenetic_mdm4_mtdna_and_non_executable_holds": "Adds NaN-safe conjunctive validators for GRCh38.p14 primary germline imprinting DMRs (IC1, IC2/KvDMR1, IG-DMR CG4/CG6; Stage-7 MEG3-DMR diagnostic HOLD), 46,XX 3-axis XCI (k >= 279 / 300 nuclei, promoter CpG >= 0.85, X-RNA >= 0.90 across >= 10 genes), bank + Stage-7 1q32.1 MDM4 + 20q11.21 diploid CN [1.85, 2.15] + >= 299-cell mosaicism, >= 1,000x NUMT-filtered chrM heteroplasmy/deletion/respiration controls, Readout-2 perifusion kinetics, paired IgG-depleted CD16+ ADCC, mass-coupled P04040 catalase endotoxin, 3-metric IAPP, and non-executable holds for ISLET1_Z_X_MOL_140UM_ZERO_CAO2, ISLET1_B2_5LOCUS_BASE, and ISLET1_B_SCT_*."
+    }
   }
 }

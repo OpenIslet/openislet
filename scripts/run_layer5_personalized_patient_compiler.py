@@ -1725,9 +1725,22 @@ def compile_personalized_patient_blueprint(
     use_b_prime_sct_k4 = bool(
         use_plan_b_hla_c_retained and track2_subbank_mode_eff == "B_PRIME_SCT"
     )
-    anti_hlac_dsa_cleared_input = bool(use_b_prime_sct_k4 and sct_serum_crossmatch_neg_input)
+    sct_cd8_mlc_explicit_false_input = (
+        "b_prime_sct_recipient_cd8_mlc_negative" in patient
+        and patient.get("b_prime_sct_recipient_cd8_mlc_negative") is False
+    )
+    sct_serum_xm_explicit_false_input = (
+        "b_prime_sct_exact_product_serum_cdc_adcc_crossmatch_negative" in patient
+        and patient.get("b_prime_sct_exact_product_serum_cdc_adcc_crossmatch_negative") is False
+    )
+    anti_hlac_dsa_cleared_input = bool(
+        use_b_prime_sct_k4 and sct_serum_crossmatch_neg_input and not sct_serum_xm_explicit_false_input
+    )
     cd8_mlc_cleared_input = bool(
-        use_b_prime_sct_k4 and (sct_cd8_mlc_neg_input or sct_crossmatch_cleared_input)
+        use_b_prime_sct_k4
+        and not sct_cd8_mlc_explicit_false_input
+        and not sct_serum_xm_explicit_false_input
+        and (sct_cd8_mlc_neg_input or sct_crossmatch_cleared_input)
     )
     if use_plan_b_hla_c_retained and has_anti_hlac_dsa_input and not anti_hlac_dsa_cleared_input:
         clinical_override_warnings.append(
@@ -1915,6 +1928,10 @@ def compile_personalized_patient_blueprint(
         and not exact_product_non_hla_and_sct_flow_crossmatch_neg_input
     ):
         active_qualification_holds.append("HOLD_HIGH_CPRA_SENSITIZED_EXACT_PRODUCT_CROSSMATCH_REQUIRED")
+    if use_b_prime_sct_k4 and sct_cd8_mlc_explicit_false_input:
+        active_qualification_holds.append("HOLD_TARGET_BSCT_CD8_MLC_FAILED_OVERRIDES_COMPOSITE")
+    if use_b_prime_sct_k4 and sct_serum_xm_explicit_false_input:
+        active_qualification_holds.append("HOLD_TARGET_BSCT_SERUM_CROSSMATCH_FAILED")
     if use_plan_b_hla_c_retained and hlac_4digit_rel_input == "KIR_MATCH_FOREIGN_4DIGIT_ALLO" and not cd8_mlc_cleared_input:
         active_qualification_holds.append("HOLD_FOREIGN_4DIGIT_HLAC_REQUIRES_EXACT_PRODUCT_SERUM_AND_MLC_CROSSMATCH")
     if (
@@ -2027,7 +2044,11 @@ def compile_personalized_patient_blueprint(
         prod_qual_status = "SEQUENCE_COMPLETE_IN_SILICO_CANDIDATE_REQUIRING_WETLAB_RELEASE_QC"
 
     routing_holds_cleared = len(active_qualification_holds) == 0
-    in_silico_candidate_routing_cleared = bool(routing_holds_cleared and product.get("execution_supported", False))
+    product_exec_ok = bool(
+        product.get("execution_supported") is True
+        and not str(product.get("physical_qualification_status", "")).upper().startswith("RESEARCH")
+    )
+    in_silico_candidate_routing_cleared = bool(routing_holds_cleared and product_exec_ok)
     required_recipient_hazard_keys = {
         "recipient_anti_hla_e_dsa",
         "cmv_nkg2c_adaptive_nk_fraction",
@@ -2059,9 +2080,15 @@ def compile_personalized_patient_blueprint(
     )
     lot_release_cleared = bool(
         in_silico_candidate_routing_cleared
+        and product.get("execution_supported") is True
         and product.get("physical_qualification_status") == "QUALIFIED"
         and recipient_immune_hazard_panel_explicitly_measured
         and wetlab_stage0_complete_lot_release_verified
+    )
+    product_execution_release_status = (
+        "ELIGIBLE_CANDIDATE_PENDING_STAGE0_LOT_RELEASE"
+        if product_exec_ok
+        else "HOLD_NON_EXECUTABLE_RESEARCH_OR_COMPARATOR_PRODUCT"
     )
 
     return {
@@ -2071,6 +2098,7 @@ def compile_personalized_patient_blueprint(
         "selected_product_id": variant_id,
         "default_promoted_track2_subbank_product_id": default_promoted_track2_subbank_product_id,
         "product_definition": product,
+        "product_execution_release_status": product_execution_release_status,
         "score_qualification": "ASSIGNED_RULE_SCENARIO_NOT_COMPLETE_PRODUCT",
         "selected_fda_deployment_track": selected_track,
         "clinical_override_warnings": clinical_override_warnings,
@@ -2742,8 +2770,23 @@ def evaluate_regimen_survival_probability(
     cmv_nkg2c_adaptive_nk_fraction = _validate_finite_float(
         _get_opt(patient, "cmv_nkg2c_adaptive_nk_fraction", 0.0), "cmv_nkg2c_adaptive_nk_fraction", 0.0, 1.0
     )
-    anti_hlac_dsa_cleared = bool(is_b_prime_sct and sct_serum_crossmatch_neg)
-    cd8_mlc_cleared = bool(is_b_prime_sct and (sct_cd8_mlc_neg or sct_crossmatch_cleared))
+    sct_cd8_mlc_explicit_false_eval = (
+        "b_prime_sct_recipient_cd8_mlc_negative" in patient
+        and patient.get("b_prime_sct_recipient_cd8_mlc_negative") is False
+    )
+    sct_serum_xm_explicit_false_eval = (
+        "b_prime_sct_exact_product_serum_cdc_adcc_crossmatch_negative" in patient
+        and patient.get("b_prime_sct_exact_product_serum_cdc_adcc_crossmatch_negative") is False
+    )
+    anti_hlac_dsa_cleared = bool(
+        is_b_prime_sct and sct_serum_crossmatch_neg and not sct_serum_xm_explicit_false_eval
+    )
+    cd8_mlc_cleared = bool(
+        is_b_prime_sct
+        and not sct_cd8_mlc_explicit_false_eval
+        and not sct_serum_xm_explicit_false_eval
+        and (sct_cd8_mlc_neg or sct_crossmatch_cleared)
+    )
     _c2_bearing_sct_ids = {
         "ISLET1_B_SCT_C2_CIITA",
         "ISLET1_B_SCT_C2_CIITA_TYK2_PE",
@@ -2764,6 +2807,7 @@ def evaluate_regimen_survival_probability(
         elif (
             hlac_4digit_rel in {"KIR_MATCH_FOREIGN_4DIGIT_ALLO", "UNSPECIFIED_ASSUMED_4DIGIT_OR_B_PRIME_SCT", "UNSPECIFIED"}
             or is_c2_b_prime_sct
+            or (is_b_prime_sct and (sct_cd8_mlc_explicit_false_eval or sct_serum_xm_explicit_false_eval))
         ) and not cd8_mlc_cleared:
             p_surv -= (0.08 if is_b_prime_sct else 0.25)
         if (
@@ -5115,12 +5159,157 @@ def _build_design_b2_tyk2_hlac_qualification_note_iip_0017() -> Dict[str, Any]:
                         'PMID:36289205; GY-001).'}
 
 
+def evaluate_product_scoped_routing_and_stealth_axes_iip_0024(
+    patient: Dict[str, Any],
+    *,
+    target_product_def: Dict[str, Any] | None = None,
+) -> Dict[str, Any]:
+    """
+    Evaluate target-product-scoped component-failure precedence and 3-valued
+    (True / False / 'UNKNOWN') independent stealth axes (CD47-SIRPA, HLA-E-NKG2A,
+    HLA-C-KIR) without allowing composite B'-SCT flags to override explicit
+    component failures or cross-contaminate inapplicable products (IIP-0024; DEC-103).
+    """
+    from scripts.product_contract import get_product_definition
+
+    if target_product_def is not None:
+        prod = dict(target_product_def)
+    else:
+        raw_pvid = patient.get("product_variant_id")
+        if isinstance(raw_pvid, str) and raw_pvid.strip():
+            prod = get_product_definition(raw_pvid, root=REPO_ROOT)
+        else:
+            prod = get_product_definition("ISLET1_A4_ARM1B", root=REPO_ROOT)
+
+    pvid = str(prod["product_variant_id"])
+    is_b_sct = pvid.startswith("ISLET1_B_SCT_")
+    is_endo_b = pvid.startswith(("ISLET1_B1_", "ISLET1_B2_"))
+    is_plan_b = is_b_sct or is_endo_b
+    carries_exogenous_hlae_sct = pvid.startswith("ISLET1_A") or is_b_sct or pvid.startswith("ISLET1_Z_")
+
+    holds: List[str] = []
+    if is_b_sct:
+        if patient.get("b_prime_sct_recipient_cd8_mlc_negative") is False:
+            holds.append("HOLD_TARGET_BSCT_CD8_MLC_FAILED_OVERRIDES_COMPOSITE")
+        if patient.get("b_prime_sct_exact_product_serum_cdc_adcc_crossmatch_negative") is False:
+            holds.append("HOLD_TARGET_BSCT_SERUM_CROSSMATCH_FAILED")
+        if ("C2" in pvid or "C1C2" in pvid) and patient.get("b_prime_sct_kir2ds1_non_activation_cleared") is False:
+            holds.append("HOLD_TARGET_BSCT_KIR2DS1_NON_ACTIVATION_FAILED")
+    if carries_exogenous_hlae_sct:
+        if patient.get("exact_hlae_sct_serum_crossmatch_negative") is False:
+            holds.append("HOLD_TARGET_EXACT_HLAE_SCT_SERUM_CROSSMATCH_FAILED")
+        if patient.get("gate0a_nkg2c_adaptive_nk_cleared") is False:
+            holds.append("HOLD_TARGET_GATE0A_NKG2C_ADAPTIVE_NK_FAILED")
+    if patient.get("exact_product_non_hla_and_sct_flow_crossmatch_negative") is False:
+        holds.append("HOLD_TARGET_NON_HLA_FLOW_CROSSMATCH_FAILED")
+
+    raw_rel = patient.get("hlac_4digit_relation")
+    eff_rel = raw_rel.strip().upper() if isinstance(raw_rel, str) and raw_rel.strip() else ("UNSPECIFIED" if is_endo_b else "NOT_APPLICABLE")
+    if is_endo_b and eff_rel == "UNSPECIFIED":
+        holds.append("HOLD_ENDOGENOUS_HLAC_UNSPECIFIED_4DIGIT_ALLOTYPE_REQUIRES_TYPING_AND_MLC")
+
+    sirpa_raw = patient.get("sirpa_genotype")
+    cd47_comp = patient.get("cd47_sirpa_binding_compromised")
+    if cd47_comp is True:
+        cd47_axis: Any = False
+    elif sirpa_raw is None or "v8" in str(sirpa_raw).lower():
+        cd47_axis = "UNKNOWN"
+        holds.append("HOLD_UNMEASURED_STEALTH_AXIS:CD47_SIRPA")
+    else:
+        cd47_axis = True
+
+    if not carries_exogenous_hlae_sct:
+        if not is_endo_b:
+            hlae_axis: Any = False
+        elif patient.get("endogenous_sp1c_hlae_stabilization_verified") is None:
+            hlae_axis = "UNKNOWN"
+            holds.append("HOLD_UNMEASURED_STEALTH_AXIS:ENDOGENOUS_SP1C_HLAE_NKG2A")
+        else:
+            hlae_axis = bool(patient["endogenous_sp1c_hlae_stabilization_verified"])
+    else:
+        xm_val = patient.get("exact_hlae_sct_serum_crossmatch_negative")
+        if xm_val is False:
+            hlae_axis = False
+        elif xm_val is None:
+            hlae_axis = "UNKNOWN"
+            holds.append("HOLD_UNMEASURED_STEALTH_AXIS:HLAE_SCT_CROSSMATCH")
+        else:
+            hlae_axis = True
+
+    if not is_plan_b:
+        hlac_axis: Any = False
+    else:
+        rkir = patient.get("recipient_kir_ligand_group")
+        if rkir is None or (is_endo_b and eff_rel == "UNSPECIFIED"):
+            hlac_axis = "UNKNOWN"
+            holds.append("HOLD_UNMEASURED_STEALTH_AXIS:HLAC_KIR")
+        elif eff_rel == "KIR_LIGAND_MISMATCH":
+            hlac_axis = False
+        elif "C1C2" in pvid:
+            hlac_axis = True
+        elif "C1" in pvid and str(rkir).upper() == "C1/C1":
+            hlac_axis = True
+        elif "C2" in pvid and str(rkir).upper() == "C2/C2":
+            hlac_axis = True
+        elif is_endo_b and eff_rel in ("SELF_4DIGIT_MATCH", "KIR_MATCH_FOREIGN_4DIGIT_ALLO"):
+            hlac_axis = True
+        else:
+            hlac_axis = False
+
+    exec_ok = bool(
+        prod.get("execution_supported") is True
+        and not str(prod.get("physical_qualification_status", "")).upper().startswith("RESEARCH")
+    )
+    return {
+        "target_product_variant_id": pvid,
+        "execution_supported": exec_ok,
+        "independent_stealth_axes": {
+            "cd47_sirpa_axis": cd47_axis,
+            "hlae_nkg2a_axis": hlae_axis,
+            "hlac_kir_axis": hlac_axis,
+        },
+        "active_holds": holds,
+        "scheduler_routing_eligible": len(holds) == 0,
+        "clinical_release_eligible": bool(len(holds) == 0 and exec_ok and prod.get("physical_qualification_status") == "QUALIFIED"),
+    }
+
+
+def _build_product_scoped_precedence_audit_iip_0024() -> Dict[str, Any]:
+    from scripts.product_contract import get_product_definition
+
+    prod_a = get_product_definition("ISLET1_A4_ARM1B", root=REPO_ROOT)
+    prod_bsct = get_product_definition("ISLET1_B_SCT_C1_CIITA", root=REPO_ROOT)
+    prod_z = get_product_definition("ISLET1_Z_X_MOL_140UM_ZERO_CAO2", root=REPO_ROOT)
+    sample_pt = {
+        "sirpa_genotype": "V1/V1",
+        "exact_hlae_sct_serum_crossmatch_negative": True,
+        "exact_product_non_hla_and_sct_flow_crossmatch_negative": True,
+        "recipient_kir_ligand_group": "C1/C1",
+        "hlac_4digit_relation": "KIR_MATCH_FOREIGN_4DIGIT_ALLO",
+        "b_prime_sct_recipient_crossmatch_and_mlc_cleared": True,
+        "b_prime_sct_recipient_cd8_mlc_negative": False,
+    }
+    res_a = evaluate_product_scoped_routing_and_stealth_axes_iip_0024(sample_pt, target_product_def=prod_a)
+    res_bsct = evaluate_product_scoped_routing_and_stealth_axes_iip_0024(sample_pt, target_product_def=prod_bsct)
+    res_z = evaluate_product_scoped_routing_and_stealth_axes_iip_0024(sample_pt, target_product_def=prod_z)
+    return {
+        "proposal_id": "IIP-0024",
+        "decision_id": "DEC-103",
+        "primary_citations": ["PMID:16034111", "PMID:24804568", "PMID:35323192", "PMID:10850706", "PMID:37264229", "PMID:28867344", "PMID:22862941"],
+        "design_a_eligible_when_bsct_mlc_fails": res_a["scheduler_routing_eligible"],
+        "bsct_blocked_when_explicit_cd8_mlc_false_despite_composite_true": not res_bsct["scheduler_routing_eligible"],
+        "bsct_active_holds": res_bsct["active_holds"],
+        "design_z_wildcard_clinical_release_eligible": res_z["clinical_release_eligible"],
+    }
+
+
 def build_layer5_atlas() -> Dict[str, Any]:
     """Build the complete report from the same current objects used for every numeric summary."""
     part_a = build_part_a_crispr_grna_and_polymorphism_atlas()
     part_b = simulate_10000_patient_global_population_trial()
     part_a["alphamissense_v3_ccby4_provenance_iip_0017"] = _build_alphamissense_v3_ccby4_provenance_iip_0017()
     part_b["design_b2_tyk2_p1104a_hlac_neoantigen_qualification_note_iip_0017"] = _build_design_b2_tyk2_hlac_qualification_note_iip_0017()
+    part_b["product_scoped_precedence_and_stealth_axes_audit_iip_0024"] = _build_product_scoped_precedence_audit_iip_0024()
 
     atlas = {
         "schema_version": "0.8.0",

@@ -301,6 +301,20 @@ RARE_EVENT_ASSAY_GROUPS: tuple[tuple[str, ...], ...] = (
         "obs_challenger_umi_molecules_profiled",
         "obs_challenger_aberrant_splice_umi_count_k",
     ),
+    (
+        "obs_mcb_1q32_mdm4_single_cell_mosaic_fraction",
+        "obs_mcb_1q32_mdm4_single_cell_mosaic_cells_scored",
+    ),
+    (
+        "obs_1q32_mdm4_single_cell_mosaic_fraction",
+        "obs_1q32_mdm4_single_cell_mosaic_cells_scored",
+    ),
+    (
+        "obs_gate0s_shedding_ddpcr_events_k",
+        "obs_gate0s_shedding_ddpcr_trials_n",
+        "obs_gate0s_shedding_viable_events_k",
+        "obs_gate0s_shedding_viable_trials_n",
+    ),
 )
 
 
@@ -657,6 +671,13 @@ STAGE0_PERSISTED_BOOLEAN_FLAGS: tuple[str, ...] = (
     "design_y_dpcpx_adora1_antagonist_control_run",
     "design_y_anti_cd200_blockade_reversal_verified",
     "design_y_y04_full_coculture_and_clonogenic_confirmed",
+    "require_full_iip0024_atomic_provenance_and_bank_panel",
+    "cd16_adcc_igg_depletion_paired_control_verified",
+    "iapp_age_matched_reference_above_loq_verified",
+    "mcb_imprinting_ic1_ic2_igdmr_conjunctive_cleared",
+    "stage7_lot_imprinting_ic1_ic2_igdmr_conjunctive_cleared",
+    "mcb_and_lot_xci_46xx_3axis_cleared_or_46xy",
+    "mcb_and_lot_mtdna_1000x_numt_filtered_cleared",
 )
 
 HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS: tuple[str, ...] = (
@@ -683,7 +704,13 @@ ALLOWED_ORDERED_BATCH_LEDGER_KEYS: frozenset[str] = frozenset({
     "reset_prior_safety_stop_reason_code",
     "reset_prior_safety_stop_repeat_batch_ids",
     "reset_prior_safety_stop_independent_qp_approver_id",
+    "reset_prior_safety_stop_target_category",
+    "submitter_id",
     "mcb_clone_id",
+    "donor_seedline_id",
+    "device_assembly_id",
+    "physical_route_id",
+    "assay_campaign_id",
     "oos_retest_assignable_cause_code",
     "adjunct_conditioning_history_arm",
     "adjunct_depletion_mode",
@@ -713,6 +740,164 @@ ALLOWED_ORDERED_BATCH_LEDGER_KEYS: frozenset[str] = frozenset({
     "design_y_payload_arm",
     *HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS,
 })
+
+MCB_SCOPED_POOLED_KEYS: frozenset[str] = frozenset({
+    "product_variant_id",
+    "estimand_scale",
+    "mcb_clone_id",
+    "donor_seedline_id",
+    "s10_construct_id",
+    "s10_construct_donor_sha256",
+    "mcb_imprinting_ic1_ic2_igdmr_conjunctive_cleared",
+})
+
+DEVICE_SCOPED_POOLED_PREFIXES: tuple[str, ...] = (
+    "p05_",
+    "obs_p05_",
+    "design_z_",
+    "obs_design_z_",
+    "cuff_",
+    "obs_cuff_",
+    "s6_",
+    "obs_s6_",
+    "obs_pouch_",
+    "obs_chronic_capsule_",
+    "obs_capsule_",
+    "obs_d_o2_gel_",
+    "obs_outer_band_",
+    "obs_periimplant_",
+    "periimplant_",
+    "obs_assembled_cassette_chandler_",
+    "obs_gate0s_",
+    "obs_explant_",
+    "obs_vascularized_explant_",
+    "s9_",
+    "obs_masked_perfusion_confirmed",
+)
+
+
+def _clean_optional_id_str(raw_v: Any) -> str | None:
+    if isinstance(raw_v, str) and raw_v.strip():
+        return raw_v.strip()
+    return None
+
+
+def _apply_provenance_scope_isolation(
+    pooled: Dict[str, Any],
+    pooled_def_se: set[str],
+    *,
+    prev_lot_id: str | None,
+    new_lot_id: str | None,
+    prev_device_id: str | None,
+    new_device_id: str | None,
+    is_subsequent_batch: bool,
+    invalidated_keys: set[str],
+    prior_failed_noncore_keys: set[str] | None = None,
+) -> tuple[str | None, str | None]:
+    """
+    Prevent cross-lot LOT_SCOPE/DEVICE_SCOPE evidence borrowing and cross-device
+    ASSEMBLED_DEVICE_LOT_SCOPE evidence borrowing across sequential batches (IIP-0024; DEC-103).
+    """
+    if is_subsequent_batch:
+        if (prev_lot_id is not None or new_lot_id is not None) and new_lot_id != prev_lot_id:
+            for k in list(pooled.keys()):
+                if k not in MCB_SCOPED_POOLED_KEYS and not k.startswith("obs_mcb_"):
+                    pooled.pop(k, None)
+                    pooled_def_se.discard(k)
+                    if k.startswith("obs_") and not k.endswith("_se"):
+                        invalidated_keys.add(k)
+            pooled_def_se.difference_update({sk for sk in list(pooled_def_se) if not sk.startswith("obs_mcb_")})
+            if prior_failed_noncore_keys is not None:
+                prior_failed_noncore_keys.clear()
+            return new_lot_id, new_device_id
+        if (prev_device_id is not None or new_device_id is not None) and new_device_id != prev_device_id:
+            for k in list(pooled.keys()):
+                if k.startswith(DEVICE_SCOPED_POOLED_PREFIXES) or k == "device_assembly_id":
+                    pooled.pop(k, None)
+                    pooled_def_se.discard(k)
+                    if k.startswith("obs_") and not k.endswith("_se"):
+                        invalidated_keys.add(k)
+            return new_lot_id, new_device_id
+    return new_lot_id, new_device_id
+
+
+def _merge_batch_measurements_atomic_mean_se(
+    pooled: Dict[str, Any],
+    pooled_def_se: set[str],
+    batch_meas: Dict[str, Any],
+    batch_def_se: set[str],
+    se_to_mean: Dict[str, str],
+    *,
+    skip_keys: tuple[str, ...] = (),
+) -> None:
+    """
+    Merge batch observations into pooled Stage-0 state while strictly binding each meanKey
+    to its same-batch seKey so a newer batch mean can NEVER silently inherit a prior batch's
+    explicit SE (IIP-0024; DEC-103).
+    """
+    mean_to_se = {mk: sk for sk, mk in se_to_mean.items()}
+    skip_set = set(skip_keys)
+    for k, v in batch_meas.items():
+        if k in skip_set or v in ("UNAVAILABLE", None):
+            continue
+        if k in se_to_mean:
+            paired_mk = se_to_mean[k]
+            if batch_meas.get(paired_mk) in ("UNAVAILABLE", None):
+                continue
+        pooled[k] = v
+        if k in mean_to_se:
+            paired_sk = mean_to_se[k]
+            if batch_meas.get(paired_sk) in ("UNAVAILABLE", None) or paired_sk in batch_def_se or k in batch_def_se:
+                if batch_meas.get(paired_sk) in ("UNAVAILABLE", None):
+                    pooled.pop(paired_sk, None)
+                pooled_def_se.add(paired_sk)
+            else:
+                pooled_def_se.discard(paired_sk)
+                pooled_def_se.discard(k)
+        elif k in se_to_mean:
+            if k in batch_def_se or se_to_mean[k] in batch_def_se:
+                pooled_def_se.add(k)
+            else:
+                pooled_def_se.discard(k)
+                pooled_def_se.discard(se_to_mean[k])
+
+
+def _extra_iip0024_stop_categories_cleared(
+    stop_cats: set[str],
+    meas_dict: Dict[str, Any],
+) -> bool:
+    if "CNV_1Q32_MDM4" in stop_cats:
+        if (
+            meas_dict.get("obs_mcb_1q32_mdm4_cnv_ratio") in ("UNAVAILABLE", None)
+            and meas_dict.get("obs_1q32_mdm4_cnv_ratio") in ("UNAVAILABLE", None)
+        ):
+            return False
+    if "SINGLE_CELL_MOSAIC_1Q32_MDM4" in stop_cats:
+        has_mcb_mdm4 = (
+            meas_dict.get("obs_mcb_1q32_mdm4_single_cell_mosaic_fraction") not in ("UNAVAILABLE", None)
+            and float(meas_dict.get("obs_mcb_1q32_mdm4_single_cell_mosaic_cells_scored") or 0.0) >= 299.0
+        )
+        has_lot_mdm4 = (
+            meas_dict.get("obs_1q32_mdm4_single_cell_mosaic_fraction") not in ("UNAVAILABLE", None)
+            and float(meas_dict.get("obs_1q32_mdm4_single_cell_mosaic_cells_scored") or 0.0) >= 299.0
+        )
+        if not (has_mcb_mdm4 or has_lot_mdm4):
+            return False
+    if "GATE0V_PERSISTENT_VIRAL_POSITIVE" in stop_cats:
+        if (
+            meas_dict.get("obs_gate0v_day28_persistent_vp1_ie1_positive_cell_pct") != 0.0
+            or float(meas_dict.get("obs_gate0v_day28_persistent_vp1_ie1_cells_scored") or 0.0) < 5990.0
+        ):
+            return False
+    if "GATE0S_DUAL_SHEDDING_POSITIVE" in stop_cats:
+        if (
+            meas_dict.get("obs_gate0s_shedding_ddpcr_events_k") != 0.0
+            or float(meas_dict.get("obs_gate0s_shedding_ddpcr_trials_n") or 0.0) < 2995731.0
+            or meas_dict.get("obs_gate0s_shedding_viable_events_k") != 0.0
+            or float(meas_dict.get("obs_gate0s_shedding_viable_trials_n") or 0.0) < 2995731.0
+        ):
+            return False
+    return True
 
 
 def _validate_prior_posterior_report(
@@ -1240,7 +1425,24 @@ def _validate_prior_posterior_report(
                 },
             }
             helper_persisted_boolean_flags = STAGE0_PERSISTED_BOOLEAN_FLAGS
-            for entry in obs_ledger:
+            helper_active_lot_id: str | None = None
+            helper_active_device_id: str | None = None
+            helper_invalidated_keys: set[str] = set()
+            for h_idx, entry in enumerate(obs_ledger):
+                entry_lot_id = _clean_optional_id_str(entry.get("current_lot_id"))
+                entry_dev_id = _clean_optional_id_str(entry.get("device_assembly_id"))
+                if h_idx > 0 and (helper_active_lot_id is not None or entry_lot_id is not None) and entry_lot_id != helper_active_lot_id:
+                    post_stop_passing_s9_batch_ids.clear()
+                helper_active_lot_id, helper_active_device_id = _apply_provenance_scope_isolation(
+                    pooled_hist_for_s0,
+                    pooled_hist_def_se,
+                    prev_lot_id=helper_active_lot_id,
+                    new_lot_id=entry_lot_id,
+                    prev_device_id=helper_active_device_id,
+                    new_device_id=entry_dev_id,
+                    is_subsequent_batch=(h_idx > 0),
+                    invalidated_keys=helper_invalidated_keys,
+                )
                 hist_meas_for_s0 = dict(entry["measurements"])
                 for bf_k in helper_persisted_boolean_flags:
                     if bf_k in entry and entry[bf_k] is not None:
@@ -1251,18 +1453,20 @@ def _validate_prior_posterior_report(
                         hist_meas_for_s0[bf_k] = entry[bf_k]
                 hist_def_se = set(entry.get("defaulted_se_keys") or [])
                 _drop_unpaired_rare_event_members(pooled_hist_for_s0, hist_meas_for_s0)
-                for k, v in hist_meas_for_s0.items():
-                    if v not in ("UNAVAILABLE", None):
-                        pooled_hist_for_s0[k] = v
-                        if k in se_to_mean_hist:
-                            if k in hist_def_se or se_to_mean_hist[k] in hist_def_se:
-                                pooled_hist_def_se.add(k)
-                            else:
-                                pooled_hist_def_se.discard(k)
-                                pooled_hist_def_se.discard(se_to_mean_hist[k])
+                _merge_batch_measurements_atomic_mean_se(
+                    pooled_hist_for_s0,
+                    pooled_hist_def_se,
+                    hist_meas_for_s0,
+                    hist_def_se,
+                    se_to_mean_hist,
+                )
                 for meta_k in (
                     "product_variant_id",
                     "estimand_scale",
+                    "donor_seedline_id",
+                    "device_assembly_id",
+                    "physical_route_id",
+                    "assay_campaign_id",
                     "adjunct_conditioning_history_arm",
                     "adjunct_depletion_mode",
                     "adjunct_sa_fhl1_status",
@@ -1416,6 +1620,7 @@ def _validate_prior_posterior_report(
                             and float(hist_meas_for_s0.get("obs_explant_en_bloc_recovery_fraction") or 0.0) >= 0.99
                         )
                     )
+                    and _extra_iip0024_stop_categories_cleared(stop_required_s9_categories, hist_meas_for_s0)
                     and isinstance(entry.get("batch_id"), str)
                     and entry["batch_id"].strip()
                 ):
@@ -1423,7 +1628,11 @@ def _validate_prior_posterior_report(
                 step_s0_input = dict(pooled_hist_for_s0)
                 if isinstance(entry.get("batch_id"), str) and entry["batch_id"].strip():
                     step_s0_input["batch_id"] = entry["batch_id"].strip()
-                step_s0_input["verified_ledger_passing_s9_batch_ids"] = list(post_stop_passing_s9_batch_ids)
+                _req_tcat_h = _clean_optional_id_str(entry.get("reset_prior_safety_stop_target_category"))
+                if _req_tcat_h is not None and stop_required_s9_categories and stop_required_s9_categories != {_req_tcat_h}:
+                    step_s0_input["verified_ledger_passing_s9_batch_ids"] = []
+                else:
+                    step_s0_input["verified_ledger_passing_s9_batch_ids"] = list(post_stop_passing_s9_batch_ids)
                 for qp_k in (
                     "prior_batch_sticky_s9_safety_stop",
                     "prior_variant_safety_status",
@@ -1432,6 +1641,8 @@ def _validate_prior_posterior_report(
                     "reset_prior_safety_stop_reason_code",
                     "reset_prior_safety_stop_repeat_batch_ids",
                     "reset_prior_safety_stop_independent_qp_approver_id",
+                    "reset_prior_safety_stop_target_category",
+                    "submitter_id",
                 ):
                     if entry.get(qp_k) is not None:
                         step_s0_input[qp_k] = entry[qp_k]
@@ -1773,8 +1984,8 @@ def run_calibration(
                     f"but current batch omitted product_variant_id (AUDIT-REF)"
                 )
             from scripts.product_contract import get_product_definition
-            prev_canon_pvid = get_product_definition(str(prev_entry["product_variant_id"]).strip())["product_variant_id"]
-            curr_canon_pvid = get_product_definition(str(input_payload["product_variant_id"]).strip())["product_variant_id"]
+            prev_canon_pvid = get_product_definition(prev_entry["product_variant_id"])["product_variant_id"]
+            curr_canon_pvid = get_product_definition(input_payload["product_variant_id"])["product_variant_id"]
             if prev_canon_pvid != curr_canon_pvid:
                 raise ValueError(
                     f"Cross-batch product_variant_id mismatch: prior batch used {prev_entry['product_variant_id']!r} "
@@ -1850,7 +2061,13 @@ def run_calibration(
         "reset_prior_safety_stop_reason_code",
         "reset_prior_safety_stop_repeat_batch_ids",
         "reset_prior_safety_stop_independent_qp_approver_id",
+        "reset_prior_safety_stop_target_category",
+        "submitter_id",
         "mcb_clone_id",
+        "donor_seedline_id",
+        "device_assembly_id",
+        "physical_route_id",
+        "assay_campaign_id",
         "allow_cross_clone_pooling_for_exploratory_research",
         "oos_retest_investigation_approved",
         "oos_retest_assignable_cause_code",
@@ -1889,7 +2106,7 @@ def run_calibration(
     if batch_specimen_map:
         current_obs_entry["specimen_or_clone_ids"] = batch_specimen_map
 
-    # Pool historical Stage-0 endpoint observations across chained batches and latch any prior S9 hard safety stop, cross-clone pooling mismatch, or uninvestigated non-S9 OOS overwrite (AUDIT-REF, AUDIT-REF, AUDIT-REF, AUDIT-REF, AUDIT-REF & AUDIT-REF; DEC-041/043/044/047/050):
+    # Pool historical Stage-0 endpoint observations across chained batches and latch any prior S9 hard safety stop, cross-clone pooling mismatch, cross-lot/device provenance isolation, or uninvestigated non-S9 OOS overwrite (AUDIT-REF & IIP-0024; DEC-041/043/044/047/050/103):
     pooled_stage0_payload: Dict[str, Any] = {}
     pooled_defaulted_se_set: set[str] = set()
     prior_sticky_s9 = False
@@ -1902,6 +2119,9 @@ def run_calibration(
     any_batch_omitted_mcb_clone_id = False
     prior_failed_stage0_gate_keys: set[str] = set()
     uninvestigated_non_s9_oos_overwrite_hold = False
+    active_pooled_lot_id: str | None = None
+    active_pooled_device_id: str | None = None
+    cross_lot_invalidated_keys: set[str] = set()
     s9_3_endpoint_keys = {
         "obs_icasp9_log10_kill",
         "obs_icasp9_log10_kill_se",
@@ -1924,11 +2144,26 @@ def run_calibration(
             for _eid, mean_k, se_k, _lo, _hi, _u in _get_stage0_decision_tree_specs()
         },
     }
-    for hist_entry in prev_obs_ledger:
+    for hist_idx, hist_entry in enumerate(prev_obs_ledger):
         if isinstance(hist_entry.get("mcb_clone_id"), str) and hist_entry["mcb_clone_id"].strip():
             seen_mcb_clone_ids.add(hist_entry["mcb_clone_id"].strip())
         else:
             any_batch_omitted_mcb_clone_id = True
+        hist_lot_id = _clean_optional_id_str(hist_entry.get("current_lot_id"))
+        hist_dev_id = _clean_optional_id_str(hist_entry.get("device_assembly_id"))
+        if hist_idx > 0 and (active_pooled_lot_id is not None or hist_lot_id is not None) and hist_lot_id != active_pooled_lot_id:
+            post_stop_passing_s9_batch_ids.clear()
+        active_pooled_lot_id, active_pooled_device_id = _apply_provenance_scope_isolation(
+            pooled_stage0_payload,
+            pooled_defaulted_se_set,
+            prev_lot_id=active_pooled_lot_id,
+            new_lot_id=hist_lot_id,
+            prev_device_id=active_pooled_device_id,
+            new_device_id=hist_dev_id,
+            is_subsequent_batch=(hist_idx > 0),
+            invalidated_keys=cross_lot_invalidated_keys,
+            prior_failed_noncore_keys=prior_failed_stage0_gate_keys,
+        )
         hist_meas = dict(hist_entry.get("measurements") or {})
         for bf_k in stage0_persisted_boolean_flags:
             if bf_k in hist_entry and hist_entry[bf_k] is not None:
@@ -1952,18 +2187,20 @@ def run_calibration(
             else:
                 prior_failed_stage0_gate_keys -= hist_stage0_noncore_keys
         _drop_unpaired_rare_event_members(pooled_stage0_payload, hist_meas)
-        for k, v in hist_meas.items():
-            if v not in ("UNAVAILABLE", None):
-                pooled_stage0_payload[k] = v
-                if k in se_to_mean_lookup:
-                    if k in hist_def_se or se_to_mean_lookup[k] in hist_def_se:
-                        pooled_defaulted_se_set.add(k)
-                    else:
-                        pooled_defaulted_se_set.discard(k)
-                        pooled_defaulted_se_set.discard(se_to_mean_lookup[k])
+        _merge_batch_measurements_atomic_mean_se(
+            pooled_stage0_payload,
+            pooled_defaulted_se_set,
+            hist_meas,
+            hist_def_se,
+            se_to_mean_lookup,
+        )
         for meta_k in (
             "product_variant_id",
             "estimand_scale",
+            "donor_seedline_id",
+            "device_assembly_id",
+            "physical_route_id",
+            "assay_campaign_id",
             "adjunct_conditioning_history_arm",
             "adjunct_depletion_mode",
             "adjunct_sa_fhl1_status",
@@ -2131,6 +2368,7 @@ def run_calibration(
                     and float(hist_meas.get("obs_explant_en_bloc_recovery_fraction") or 0.0) >= 0.99
                 )
             )
+            and _extra_iip0024_stop_categories_cleared(stop_required_s9_categories, hist_meas)
             and isinstance(hist_entry.get("batch_id"), str)
             and hist_entry["batch_id"].strip()
         ):
@@ -2138,7 +2376,11 @@ def run_calibration(
         step_hist_payload = dict(pooled_stage0_payload)
         if isinstance(hist_entry.get("batch_id"), str) and hist_entry["batch_id"].strip():
             step_hist_payload["batch_id"] = hist_entry["batch_id"].strip()
-        step_hist_payload["verified_ledger_passing_s9_batch_ids"] = list(post_stop_passing_s9_batch_ids)
+        _req_tcat_p = _clean_optional_id_str(hist_entry.get("reset_prior_safety_stop_target_category"))
+        if _req_tcat_p is not None and stop_required_s9_categories and stop_required_s9_categories != {_req_tcat_p}:
+            step_hist_payload["verified_ledger_passing_s9_batch_ids"] = []
+        else:
+            step_hist_payload["verified_ledger_passing_s9_batch_ids"] = list(post_stop_passing_s9_batch_ids)
         for qp_k in (
             "prior_batch_sticky_s9_safety_stop",
             "prior_variant_safety_status",
@@ -2147,6 +2389,8 @@ def run_calibration(
             "reset_prior_safety_stop_reason_code",
             "reset_prior_safety_stop_repeat_batch_ids",
             "reset_prior_safety_stop_independent_qp_approver_id",
+            "reset_prior_safety_stop_target_category",
+            "submitter_id",
         ):
             if hist_entry.get(qp_k) is not None:
                 step_hist_payload[qp_k] = hist_entry[qp_k]
@@ -2171,6 +2415,21 @@ def run_calibration(
         seen_mcb_clone_ids.add(input_payload["mcb_clone_id"].strip())
     elif prev_obs_ledger:
         any_batch_omitted_mcb_clone_id = True
+    curr_lot_id = _clean_optional_id_str(input_payload.get("current_lot_id"))
+    curr_dev_id = _clean_optional_id_str(input_payload.get("device_assembly_id"))
+    if prev_obs_ledger and (active_pooled_lot_id is not None or curr_lot_id is not None) and curr_lot_id != active_pooled_lot_id:
+        post_stop_passing_s9_batch_ids.clear()
+    active_pooled_lot_id, active_pooled_device_id = _apply_provenance_scope_isolation(
+        pooled_stage0_payload,
+        pooled_defaulted_se_set,
+        prev_lot_id=active_pooled_lot_id,
+        new_lot_id=curr_lot_id,
+        prev_device_id=active_pooled_device_id,
+        new_device_id=curr_dev_id,
+        is_subsequent_batch=bool(prev_obs_ledger),
+        invalidated_keys=cross_lot_invalidated_keys,
+        prior_failed_noncore_keys=prior_failed_stage0_gate_keys,
+    )
     curr_meas_for_oos = dict(current_obs_entry.get("measurements") or {})
     for bf_k in stage0_persisted_boolean_flags:
         if bf_k in input_payload and input_payload[bf_k] is not None:
@@ -2199,17 +2458,14 @@ def run_calibration(
     saved_x14_scale = pooled_stage0_payload.get("obs_beta_x1_x4_epistasis_scale")
     saved_x34_scale = pooled_stage0_payload.get("obs_beta_x3_x4_epistasis_scale")
     pooled_stage0_payload.pop("s8b_epistasis_estimand_scale", None)
-    for k, v in input_payload.items():
-        if k in ("obs_beta_x1_x4_epistasis_scale", "obs_beta_x3_x4_epistasis_scale"):
-            continue
-        if v not in ("UNAVAILABLE", None):
-            pooled_stage0_payload[k] = v
-            if k in se_to_mean_lookup:
-                if k in curr_def_se or se_to_mean_lookup[k] in curr_def_se:
-                    pooled_defaulted_se_set.add(k)
-                else:
-                    pooled_defaulted_se_set.discard(k)
-                    pooled_defaulted_se_set.discard(se_to_mean_lookup[k])
+    _merge_batch_measurements_atomic_mean_se(
+        pooled_stage0_payload,
+        pooled_defaulted_se_set,
+        input_payload,
+        curr_def_se,
+        se_to_mean_lookup,
+        skip_keys=("obs_beta_x1_x4_epistasis_scale", "obs_beta_x3_x4_epistasis_scale"),
+    )
     if "obs_beta_x1_x4_epistasis" in input_payload and input_payload.get("obs_beta_x1_x4_epistasis") not in ("UNAVAILABLE", None):
         curr_sc_14 = input_payload.get("obs_beta_x1_x4_epistasis_scale") or input_payload.get("s8b_epistasis_estimand_scale")
         if curr_sc_14 is not None:
@@ -2362,8 +2618,40 @@ def run_calibration(
         }
         if len(_seen_dy) > 1:
             raise ValueError(f"Cannot pool distinct {_dy_mk} conditions across calibration batches (IIP-0023; DEC-102)")
+    seen_donor_seedline_ids: set[str] = {
+        _e["donor_seedline_id"].strip()
+        for _e in [*prev_obs_ledger, current_obs_entry]
+        if isinstance(_e.get("donor_seedline_id"), str) and _e["donor_seedline_id"].strip()
+    }
+    if len(seen_donor_seedline_ids) > 1 and input_payload.get("allow_cross_clone_pooling_for_exploratory_research") is not True:
+        raise ValueError("Cannot pool distinct donor_seedline_id lineages across calibration batches (IIP-0024; DEC-103)")
+    seen_physical_route_ids: set[str] = {
+        _e["physical_route_id"].strip()
+        for _e in [*prev_obs_ledger, current_obs_entry]
+        if isinstance(_e.get("physical_route_id"), str) and _e["physical_route_id"].strip()
+    }
+    if len(seen_physical_route_ids) > 1:
+        raise ValueError("Cannot pool distinct physical_route_id routes across calibration batches (IIP-0024; DEC-103)")
+    same_lot_campaign_ids: set[str] = {
+        _e["assay_campaign_id"].strip()
+        for _e in [*prev_obs_ledger, current_obs_entry]
+        if (
+            _clean_optional_id_str(_e.get("current_lot_id")) == active_pooled_lot_id
+            and isinstance(_e.get("assay_campaign_id"), str)
+            and _e["assay_campaign_id"].strip()
+        )
+    }
+    unlinked_campaign_hold = bool(
+        len(same_lot_campaign_ids) > 1
+        and input_payload.get("oos_retest_investigation_approved") is not True
+        and input_payload.get("reset_prior_safety_stop_after_investigation") is not True
+    )
     pooled_stage0_payload["batch_id"] = batch_id
-    pooled_stage0_payload["verified_ledger_passing_s9_batch_ids"] = list(post_stop_passing_s9_batch_ids)
+    _req_tcat_curr = _clean_optional_id_str(input_payload.get("reset_prior_safety_stop_target_category"))
+    if _req_tcat_curr is not None and stop_required_s9_categories and stop_required_s9_categories != {_req_tcat_curr}:
+        pooled_stage0_payload["verified_ledger_passing_s9_batch_ids"] = []
+    else:
+        pooled_stage0_payload["verified_ledger_passing_s9_batch_ids"] = list(post_stop_passing_s9_batch_ids)
     stage0_eval_report = evaluate_stage0_decision_tree(
         pooled_stage0_payload,
         require_full_5endpoint_s9_panel=require_full_5endpoint_s9_panel,
@@ -2400,6 +2688,23 @@ def run_calibration(
             stage0_eval_report["resolved_architecture_assignments"]["lot_release_readiness_tier"] = (
                 "PROVISIONAL_CORE_S9_CLEARED_WITH_RETAINED_PRIOR_S9_HISTORY"
             )
+    if cross_lot_invalidated_keys and isinstance(stage0_eval_report.get("resolved_architecture_assignments"), dict):
+        stage0_eval_report["resolved_architecture_assignments"]["invalidated_prior_lot_or_device_keys"] = sorted(cross_lot_invalidated_keys)
+        stage0_eval_report["resolved_architecture_assignments"]["cross_lot_evidence_isolation_status"] = (
+            "CLEARED_INDEPENDENT_LOT_EVIDENCE_COMPLETE"
+            if stage0_eval_report.get("lot_release_readiness_tier") == "READY_FOR_ENCAPSULATION_COMPLETE_STAGE0_EVIDENCE"
+            else "HOLD_LOT_OR_DEVICE_SCOPED_EVIDENCE_MISSING_AFTER_PROVENANCE_CHANGE"
+        )
+    if unlinked_campaign_hold and isinstance(stage0_eval_report.get("resolved_architecture_assignments"), dict):
+        stage0_eval_report["resolved_architecture_assignments"]["assay_campaign_isolation_status"] = (
+            "HOLD_UNLINKED_ASSAY_CAMPAIGN_ACROSS_POOLED_BATCHES"
+        )
+        if not stage0_eval_report.get("safety_kill_s9_triggered"):
+            stage0_eval_report["resolved_architecture_assignments"]["lot_maturation_status"] = (
+                "HOLD_UNLINKED_ASSAY_CAMPAIGN_ACROSS_POOLED_BATCHES"
+            )
+            stage0_eval_report["lot_release_readiness_tier"] = "HOLD_FAILED_OR_INCOMPLETE_GATE"
+            stage0_eval_report["resolved_architecture_assignments"]["lot_release_readiness_tier"] = "HOLD_FAILED_OR_INCOMPLETE_GATE"
     if cross_clone_pooling_hold and isinstance(stage0_eval_report.get("resolved_architecture_assignments"), dict):
         stage0_eval_report["resolved_architecture_assignments"]["cross_clone_pooled_evidence_status"] = (
             "HOLD_CROSS_CLONE_POOLED_EVIDENCE_REQUIRES_SINGLE_CLONE_LOT_QUALIFICATION"

@@ -2716,7 +2716,7 @@
           "null_probability_mass_reverse_strand": 1.0,
           "null_background_mean_log2_odds": -41.135,
           "null_background_sd_log2_odds": 14.053,
-          "empirical_markov0_p95_score": -19.834,
+          "empirical_markov0_p95_score": -19.833,
           "empirical_markov0_reverse_strand_p95_score": -19.73,
           "empirical_markov0_strand_background": "Forward windows use observed mononucleotide frequencies; reverse windows use complemented frequencies, matching the exact lattice model",
           "mc_2000_window_min_achievable_bonferroni_p": 1.0,
@@ -3199,7 +3199,7 @@
           "null_background_mean_log2_odds": -41.135,
           "null_background_sd_log2_odds": 14.053,
           "empirical_markov0_p95_score": -17.948,
-          "empirical_markov0_reverse_strand_p95_score": -21.768,
+          "empirical_markov0_reverse_strand_p95_score": -21.767,
           "empirical_markov0_strand_background": "Forward windows use observed mononucleotide frequencies; reverse windows use complemented frequencies, matching the exact lattice model",
           "mc_2000_window_min_achievable_bonferroni_p": 0.990505,
           "mc_2000_window_gate_resolution_limited": true,
@@ -6628,7 +6628,7 @@
       },
       "raw_reference_object_sha256": "78077eda5efca4972fb28a439eba279d959acf9c921611c804a250958fab194a",
       "construct_verification_object_sha256": "4c9727d0c259ea17ae95f9643d0e422bd50ce8374517d45914da73fd0469283c",
-      "motif_scan_object_sha256": "114c5a8f35a47eccab3c1896a592db35687b7685a8f0f3bd2fba8239221a9a20",
+      "motif_scan_object_sha256": "4443258d04a35e61d495a6e7ae0a4a9d15a07ea073114b19374d02ff631c6784",
       "scope": "Hashes bind the actual consumed bytes/objects, not an authenticated biological prediction."
     },
     "calibration_inputs_consumed": {
@@ -8003,7 +8003,9 @@
               "isogenic_iEC",
               "isogenic_iPericytes"
             ],
-            "actual_donor_identity_status": "PREREGISTERED_PENDING"
+            "actual_donor_identity_status": "PREREGISTERED_PENDING",
+            "donor_seedline_id_required": true,
+            "kinship_pi_hat_lt": 0.05
           },
           "hla_retention": {
             "classical_MHC_I": "B2M disruption intended",
@@ -8215,7 +8217,9 @@
               "isogenic_iEC",
               "isogenic_iPericytes"
             ],
-            "actual_donor_identity_status": "PREREGISTERED_PENDING"
+            "actual_donor_identity_status": "PREREGISTERED_PENDING",
+            "donor_seedline_id_required": true,
+            "kinship_pi_hat_lt": 0.05
           },
           "hla_retention": {
             "classical_MHC_I": "B2M disruption intended",
@@ -9106,7 +9110,9 @@
               "isogenic_iEC",
               "isogenic_iPericytes"
             ],
-            "actual_donor_identity_status": "PREREGISTERED_PENDING"
+            "actual_donor_identity_status": "PREREGISTERED_PENDING",
+            "donor_seedline_id_required": true,
+            "kinship_pi_hat_lt": 0.05
           },
           "hla_retention": {
             "classical_MHC_I": "HLA-A/HLA-B disruption; HLA-C donor allele(s) retained and separately matched",
@@ -9359,7 +9365,9 @@
               "isogenic_iEC",
               "isogenic_iPericytes"
             ],
-            "actual_donor_identity_status": "PREREGISTERED_PENDING"
+            "actual_donor_identity_status": "PREREGISTERED_PENDING",
+            "donor_seedline_id_required": true,
+            "kinship_pi_hat_lt": 0.05
           },
           "hla_retention": {
             "classical_MHC_I": "HLA-A/HLA-B disruption; HLA-C donor allele(s) retained and separately matched",

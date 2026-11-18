@@ -8340,7 +8340,9 @@
               "isogenic_iEC",
               "isogenic_iPericytes"
             ],
-            "actual_donor_identity_status": "PREREGISTERED_PENDING"
+            "actual_donor_identity_status": "PREREGISTERED_PENDING",
+            "donor_seedline_id_required": true,
+            "kinship_pi_hat_lt": 0.05
           },
           "hla_retention": {
             "classical_MHC_I": "B2M disruption intended",
@@ -8355,6 +8357,7 @@
             "exact-product molecular and delivery qualification"
           ]
         },
+        "product_execution_release_status": "ELIGIBLE_CANDIDATE_PENDING_STAGE0_LOT_RELEASE",
         "score_qualification": "ASSIGNED_RULE_SCENARIO_NOT_COMPLETE_PRODUCT",
         "selected_fda_deployment_track": "TRACK_1_UNIVERSAL_OFF_THE_SHELF_ALLOGENEIC",
         "clinical_override_warnings": [],
@@ -8541,7 +8544,9 @@
               "isogenic_iEC",
               "isogenic_iPericytes"
             ],
-            "actual_donor_identity_status": "PREREGISTERED_PENDING"
+            "actual_donor_identity_status": "PREREGISTERED_PENDING",
+            "donor_seedline_id_required": true,
+            "kinship_pi_hat_lt": 0.05
           },
           "hla_retention": {
             "classical_MHC_I": "HLA-A/HLA-B disruption; HLA-C donor allele(s) retained and separately matched",
@@ -8556,6 +8561,7 @@
             "exact-product molecular and delivery qualification"
           ]
         },
+        "product_execution_release_status": "HOLD_NON_EXECUTABLE_RESEARCH_OR_COMPARATOR_PRODUCT",
         "score_qualification": "ASSIGNED_RULE_SCENARIO_NOT_COMPLETE_PRODUCT",
         "selected_fda_deployment_track": "TRACK_2_PATIENT_DNA_STRATIFIED_ALLOGENEIC_SUBLINE",
         "clinical_override_warnings": [],
@@ -8762,7 +8768,9 @@
               "isogenic_iEC",
               "isogenic_iPericytes"
             ],
-            "actual_donor_identity_status": "PREREGISTERED_PENDING"
+            "actual_donor_identity_status": "PREREGISTERED_PENDING",
+            "donor_seedline_id_required": true,
+            "kinship_pi_hat_lt": 0.05
           },
           "hla_retention": {
             "classical_MHC_I": "B2M disruption intended",
@@ -8779,6 +8787,7 @@
             "Stage-0 Rule S8b co-primary X1:X4 / X3:X4 epistasis and 3x2 TYK2 x L3-BF-B satellite check"
           ]
         },
+        "product_execution_release_status": "ELIGIBLE_CANDIDATE_PENDING_STAGE0_LOT_RELEASE",
         "score_qualification": "ASSIGNED_RULE_SCENARIO_NOT_COMPLETE_PRODUCT",
         "selected_fda_deployment_track": "TRACK_2_PATIENT_DNA_STRATIFIED_ALLOGENEIC_SUBLINE",
         "clinical_override_warnings": [
@@ -8990,7 +8999,9 @@
               "isogenic_iEC",
               "isogenic_iPericytes"
             ],
-            "actual_donor_identity_status": "PREREGISTERED_PENDING"
+            "actual_donor_identity_status": "PREREGISTERED_PENDING",
+            "donor_seedline_id_required": true,
+            "kinship_pi_hat_lt": 0.05
           },
           "hla_retention": {
             "classical_MHC_I": "B2M disruption intended",
@@ -9005,6 +9016,7 @@
             "exact-product molecular and delivery qualification"
           ]
         },
+        "product_execution_release_status": "ELIGIBLE_CANDIDATE_PENDING_STAGE0_LOT_RELEASE",
         "score_qualification": "ASSIGNED_RULE_SCENARIO_NOT_COMPLETE_PRODUCT",
         "selected_fda_deployment_track": "TRACK_3_PERSONALIZED_AUTOLOGOUS_PATIENT_IPSC",
         "clinical_override_warnings": [],
@@ -9153,6 +9165,25 @@
         "ISLET1_B_SCT_C1_CIITA / ISLET1_B_SCT_C2_CIITA / ISLET1_B_SCT_C1C2_CIITA (Track-2 B'-SCT with B2M-/-)"
       ],
       "routing_restriction": "Population rs34536443 allele frequencies (2.7-4.2% C -> ~91.8-94.7% G/G) cannot classify individual recipients, natural C/C or G/C genotype does not establish peripheral tolerance to SAPTKFLEL across endocrine and vascular iEC/pericyte compartments, and an in-silico MHCflurry affinity cutoff (e.g., HLA-C*04:01 448.93 nM) never auto-authorizes clinical routing. Any evaluation of Design B2 (ISLET1_B2_5LOCUS_TYK2_PE) requires clearing the Stage-0 Gate 0B empirical OR-hold presentation and CD8+ killing gate across unpooled recipient TYK2 genotype strata (G_G, G_C, C_C) alongside preserved Rule S8 5xISRE/CXCL10 promoter-induction and Stage 0->7 yield checks (Boisson-Dupuis et al. 2018 PMID:30578352; Chandra et al. 2022 PMID:36289205; GY-001)."
+    },
+    "product_scoped_precedence_and_stealth_axes_audit_iip_0024": {
+      "proposal_id": "IIP-0024",
+      "decision_id": "DEC-103",
+      "primary_citations": [
+        "PMID:16034111",
+        "PMID:24804568",
+        "PMID:35323192",
+        "PMID:10850706",
+        "PMID:37264229",
+        "PMID:28867344",
+        "PMID:22862941"
+      ],
+      "design_a_eligible_when_bsct_mlc_fails": true,
+      "bsct_blocked_when_explicit_cd8_mlc_false_despite_composite_true": true,
+      "bsct_active_holds": [
+        "HOLD_TARGET_BSCT_CD8_MLC_FAILED_OVERRIDES_COMPOSITE"
+      ],
+      "design_z_wildcard_clinical_release_eligible": false
     }
   },
   "alphamissense_v3_ccby4_provenance_iip_0017": {

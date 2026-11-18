@@ -2069,6 +2069,15 @@ def run_combinatorial_multi_gate_search(target_profiles: dict) -> list[dict]:
     return results
 
 
+def _strict_prob_float_iip0024(val: object, label: str) -> float:
+    if isinstance(val, bool) or not isinstance(val, (int, float)):
+        raise ValueError(f"{label} must be an explicit finite int or float (not bool/str), got {val!r} (IIP-0024; DEC-103)")
+    fv = float(val)
+    if not math.isfinite(fv):
+        raise ValueError(f"{label} must be finite (not NaN/Inf), got {val!r} (IIP-0024; DEC-103)")
+    return fv
+
+
 def compute_common_shock_2pow12_portfolio_tree(
     pa_vec: list[float] | tuple[float, ...],
     pb_vec: list[float] | tuple[float, ...],
@@ -2077,36 +2086,40 @@ def compute_common_shock_2pow12_portfolio_tree(
 ) -> dict:
     """
     Exact 4,096-state (2^12; 1,024 positive-mass states) common-shock portfolio probability generator
-    (IIP-0022; DEC-101). Validates 0 <= p_{h,d} <= c_h <= 1, shared Hurdle-1 equality, and positive
-    surviving-portfolio denominators, and returns both legacy 3-slot and shared-A/X 2-route pouch unions.
+    (IIP-0022 & IIP-0024; DEC-101/103). Strictly validates finite non-bool 0 <= p_{h,d} <= c_h <= 1
+    with zero slack above c_h, shared Hurdle-1 equality, 12-marginal recovery within 1e-12, and positive
+    surviving-portfolio denominators, returning both legacy 3-slot and shared-A/X 2-route pouch unions.
     """
-    if len(pa_vec) != 4 or len(pb_vec) != 4 or len(px_vec) != 4 or len(c_vec) != 4:
-        raise ValueError("All hurdle and common-shock vectors must have length 4 (IIP-0022; DEC-101)")
+    if not all(isinstance(v, (list, tuple)) and len(v) == 4 for v in (pa_vec, pb_vec, px_vec, c_vec)):
+        raise ValueError("All hurdle and common-shock vectors must be 4-element lists or tuples (IIP-0024; DEC-103)")
+    pa_clean = [_strict_prob_float_iip0024(pa_vec[i], f"pa[{i}]") for i in range(4)]
+    pb_clean = [_strict_prob_float_iip0024(pb_vec[i], f"pb[{i}]") for i in range(4)]
+    px_clean = [_strict_prob_float_iip0024(px_vec[i], f"px[{i}]") for i in range(4)]
+    c_clean = [_strict_prob_float_iip0024(c_vec[i], f"c[{i}]") for i in range(4)]
     for h_idx in range(4):
-        ch = float(c_vec[h_idx])
+        ch = c_clean[h_idx]
         if not (0.0 < ch <= 1.0):
-            raise ValueError(f"Common-shock ceiling c[{h_idx}]={ch} must lie in (0, 1]")
-        for d_lbl, pv in (("A", pa_vec[h_idx]), ("B", pb_vec[h_idx]), ("X", px_vec[h_idx])):
-            pvf = float(pv)
-            if pvf < 0.0 or pvf > ch + 1e-12:
-                raise ValueError(f"Hurdle {h_idx+1} design {d_lbl} probability {pvf} outside [0, c_h={ch}]")
-    if not (abs(float(pa_vec[0]) - float(c_vec[0])) < 1e-12 and abs(float(pb_vec[0]) - float(c_vec[0])) < 1e-12 and abs(float(px_vec[0]) - float(c_vec[0])) < 1e-12):
+            raise ValueError(f"Common-shock ceiling c[{h_idx}]={ch} must lie in (0, 1] (IIP-0024; DEC-103)")
+        for d_lbl, pvf in (("A", pa_clean[h_idx]), ("B", pb_clean[h_idx]), ("X", px_clean[h_idx])):
+            if pvf < 0.0 or pvf > ch:
+                raise ValueError(f"Hurdle {h_idx+1} design {d_lbl} probability {pvf} outside [0, c_h={ch}] (IIP-0024; DEC-103)")
+    if not (abs(pa_clean[0] - c_clean[0]) < 1e-12 and abs(pb_clean[0] - c_clean[0]) < 1e-12 and abs(px_clean[0] - c_clean[0]) < 1e-12):
         raise ValueError("Hurdle 1 is a 100% shared class step: pa[0], pb[0], px[0] must equal c[0]")
 
     # Build 8-outcome single-hurdle distributions under:
     # (1) 3 conditionally independent design slots on H2..H4 (legacy 3-slot pouch on H4), and
     # (2) shared A/X CaO2+catalase pouch route on H4 (where A and X share common pouch shock or paired outcome).
     def _hurdle_dist_independent(h_idx: int) -> list[float]:
-        ch = float(c_vec[h_idx])
+        ch = c_clean[h_idx]
         if h_idx == 0:
             # 8 states indexed by 3-bit mask (bit0=A, bit1=B, bit2=X): only 000 (1-c1) and 111 (c1) have positive mass
             d = [0.0] * 8
             d[0] = 1.0 - ch
             d[7] = ch
             return d
-        ua = min(1.0, max(0.0, float(pa_vec[h_idx]) / ch))
-        ub = min(1.0, max(0.0, float(pb_vec[h_idx]) / ch))
-        ux = min(1.0, max(0.0, float(px_vec[h_idx]) / ch))
+        ua = pa_clean[h_idx] / ch
+        ub = pb_clean[h_idx] / ch
+        ux = px_clean[h_idx] / ch
         d = [0.0] * 8
         d[0] += 1.0 - ch
         for mask in range(8):
@@ -2117,10 +2130,10 @@ def compute_common_shock_2pow12_portfolio_tree(
         return d
 
     def _hurdle4_dist_shared_ax() -> list[float]:
-        c4 = float(c_vec[3])
-        ua = min(1.0, max(0.0, float(pa_vec[3]) / c4))
-        ub = min(1.0, max(0.0, float(pb_vec[3]) / c4))
-        ux = min(1.0, max(0.0, float(px_vec[3]) / c4))
+        c4 = c_clean[3]
+        ua = pa_clean[3] / c4
+        ub = pb_clean[3] / c4
+        ux = px_clean[3] / c4
         # Comonotonic shared A/X CaO2+catalase pouch route coupled independently with orthogonal Design B (140 um Zero-CaO2):
         # P(A=1, X=1 | c4) = min(ua, ux), P(A=1, X=0 | c4) = max(0, ua - ux), P(A=0, X=1 | c4) = max(0, ux - ua), P(A=0, X=0 | c4) = 1 - max(ua, ux)
         p11 = min(ua, ux)
@@ -2179,6 +2192,10 @@ def compute_common_shock_2pow12_portfolio_tree(
         raise ValueError(f"2^12 tree mass/state check failed: states={total_states}, mass={total_mass}")
     if any(sp <= 0.0 for sp in surv_prefix[:3]):
         raise ValueError("Zero surviving-portfolio denominator encountered in 2^12 tree")
+    for h_i in range(4):
+        for d_i, (d_lbl, orig_p) in enumerate((("A", pa_clean[h_i]), ("B", pb_clean[h_i]), ("X", px_clean[h_i]))):
+            if abs(marg_counts[h_i][d_i] - orig_p) > 1e-12:
+                raise ValueError(f"2^12 marginal recovery error on H{h_i+1} {d_lbl}: {marg_counts[h_i][d_i]} vs {orig_p}")
 
     cond_h1 = surv_prefix[0]
     cond_h2 = surv_prefix[1] / surv_prefix[0]
@@ -2188,6 +2205,16 @@ def compute_common_shock_2pow12_portfolio_tree(
 
     # Locked shared-A/X pouch tree (comonotonic A/X pouch on H4):
     d4_shared = _hurdle4_dist_shared_ax()
+    if abs(sum(d4_shared) - 1.0) > 1e-12:
+        raise ValueError("Shared-A/X Hurdle-4 distribution failed unit-mass check")
+    h4_sh_margs = [
+        sum(d4_shared[m] for m in range(8) if m & 1),
+        sum(d4_shared[m] for m in range(8) if m & 2),
+        sum(d4_shared[m] for m in range(8) if m & 4),
+    ]
+    for d_i, orig_p4 in enumerate((pa_clean[3], pb_clean[3], px_clean[3])):
+        if abs(h4_sh_margs[d_i] - orig_p4) > 1e-12:
+            raise ValueError("Shared-A/X Hurdle-4 marginal recovery drift")
     locked_shared_ax = 0.0
     for m0 in range(8):
         for m1 in range(8):
@@ -2202,8 +2229,8 @@ def compute_common_shock_2pow12_portfolio_tree(
 
     # Modular Stage-0 cell x pouch unions:
     # Legacy 3-slot pouch union vs true 2-route shared-A/X pouch union (where A/X share CaO2+catalase route max(pa4, px4) vs B's Design Z pb4):
-    c4 = float(c_vec[3])
-    ua4, ub4, ux4 = float(pa_vec[3]) / c4, float(pb_vec[3]) / c4, float(px_vec[3]) / c4
+    c4 = c_clean[3]
+    ua4, ub4, ux4 = pa_clean[3] / c4, pb_clean[3] / c4, px_clean[3] / c4
     pouch_union_legacy_3slot = c4 * (1.0 - (1.0 - ua4) * (1.0 - ub4) * (1.0 - ux4))
     u_ax_shared = max(ua4, ux4)
     pouch_union_2route_shared_ax = c4 * (1.0 - (1.0 - u_ax_shared) * (1.0 - ub4))
@@ -2212,7 +2239,7 @@ def compute_common_shock_2pow12_portfolio_tree(
         "total_enumerated_states": total_states,
         "positive_mass_states": pos_states,
         "total_probability_mass": round(total_mass, 12),
-        "common_shock_ceiling_vector": [round(float(x), 6) for x in c_vec],
+        "common_shock_ceiling_vector": [round(x, 6) for x in c_clean],
         "recovered_marginals_check": {
             "design_a": [round(marg_counts[h][0], 8) for h in range(4)],
             "design_b": [round(marg_counts[h][1], 8) for h in range(4)],
@@ -2230,6 +2257,90 @@ def compute_common_shock_2pow12_portfolio_tree(
         "locked_2route_shared_ax_pouch_exact": round(locked_shared_ax, 9),
         "pouch_union_legacy_3slot_exact": round(pouch_union_legacy_3slot, 9),
         "pouch_union_2route_shared_ax_exact": round(pouch_union_2route_shared_ax, 9),
+    }
+
+
+def compute_donor_bank_h1_sensitivity_iip_0024(phi_donor: float = 0.25) -> dict:
+    """
+    Evaluate conditional Hurdle-1 donor-bank failure-share sensitivity (phi_donor = 0.25; IIP-0024; DEC-103)
+    across 2-bank pairings ({A,X}+B, {B,X}+A, {A,B}+X), keeping marginal p_{1,d} = 0.88 and all headline
+    single-design / portfolio numbers invariant.
+    """
+    phi_d = _strict_prob_float_iip0024(phi_donor, "phi_donor")
+    if not (0.0 <= phi_d <= 1.0):
+        raise ValueError("phi_donor must lie in [0, 1] (IIP-0024; DEC-103)")
+    pa = [0.88, 0.78, 0.57, 0.69]
+    pb = [0.88, 0.79, 0.64, 0.70]
+    px = [0.88, 0.82, 0.73, 0.69]
+    cv = [0.88, 0.87, 0.89, 0.85]
+    base_tree = compute_common_shock_2pow12_portfolio_tree(pa, pb, px, cv)
+    c1_class = 1.0 - (1.0 - cv[0]) * (1.0 - phi_d)
+    u1_bank = cv[0] / c1_class
+
+    def _eval_pairing(shared_pair: str) -> tuple[float, float]:
+        d0 = [0.0] * 8
+        d0[0] += 1.0 - c1_class
+        for b1, p1 in ((0, 1.0 - u1_bank), (1, u1_bank)):
+            for b2, p2 in ((0, 1.0 - u1_bank), (1, u1_bank)):
+                if shared_pair == "AX_plus_B":
+                    mask = b1 | (b2 << 1) | (b1 << 2)
+                elif shared_pair == "BX_plus_A":
+                    mask = b2 | (b1 << 1) | (b1 << 2)
+                else:
+                    mask = b1 | (b1 << 1) | (b2 << 2)
+                d0[mask] += c1_class * p1 * p2
+        dists = [d0]
+        for h in (1, 2, 3):
+            ch = cv[h]
+            ua, ub, ux = pa[h] / ch, pb[h] / ch, px[h] / ch
+            d = [0.0] * 8
+            d[0] += 1.0 - ch
+            for mask in range(8):
+                d[mask] += ch * (ua if (mask & 1) else 1.0 - ua) * (ub if (mask & 2) else 1.0 - ub) * (ux if (mask & 4) else 1.0 - ux)
+            dists.append(d)
+        c4 = cv[3]
+        ua4, ub4, ux4 = pa[3] / c4, pb[3] / c4, px[3] / c4
+        d4_sh = [0.0] * 8
+        d4_sh[0] += 1.0 - c4
+        for axb, pax in (((0, 0), 1.0 - max(ua4, ux4)), ((1, 0), max(0.0, ua4 - ux4)), ((0, 1), max(0.0, ux4 - ua4)), ((1, 1), min(ua4, ux4))):
+            for bb, pbp in ((0, 1.0 - ub4), (1, ub4)):
+                d4_sh[axb[0] | (bb << 1) | (axb[1] << 2)] += c4 * pax * pbp
+        l3, lsh = 0.0, 0.0
+        for m0 in range(8):
+            for m1 in range(8):
+                for m2 in range(8):
+                    s2 = m0 & m1 & m2
+                    if s2 == 0:
+                        continue
+                    p012 = dists[0][m0] * dists[1][m1] * dists[2][m2]
+                    for m3 in range(8):
+                        if s2 & m3:
+                            l3 += p012 * dists[3][m3]
+                            lsh += p012 * d4_sh[m3]
+        return lsh, l3
+
+    pair_results = {
+        k: _eval_pairing(k)
+        for k in ("AX_plus_B", "BX_plus_A", "AB_plus_X")
+    }
+    sh_vals = [v[0] for v in pair_results.values()]
+    s3_vals = [v[1] for v in pair_results.values()]
+    return {
+        "proposal_id": "IIP-0024",
+        "decision_id": "DEC-103",
+        "phi_donor": round(phi_d, 4),
+        "baseline_phi_donor_0_shared_ax_locked_pct": round(100.0 * base_tree["locked_2route_shared_ax_pouch_exact"], 3),
+        "baseline_phi_donor_0_three_slot_locked_pct": round(100.0 * base_tree["locked_3slot_2pow12_exact"], 3),
+        "two_bank_shared_ax_locked_range_pct": [round(100.0 * min(sh_vals), 2), round(100.0 * max(sh_vals), 2)],
+        "two_bank_three_slot_locked_range_pct": [round(100.0 * min(s3_vals), 2), round(100.0 * max(s3_vals), 2)],
+        "two_bank_pairings_exact": {
+            k: {
+                "shared_ax_locked_pct": round(100.0 * v[0], 3),
+                "three_slot_locked_pct": round(100.0 * v[1], 3),
+            }
+            for k, v in pair_results.items()
+        },
+        "headline_probabilities_invariant": True,
     }
 
 
@@ -2403,9 +2514,11 @@ def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
             "design_x_exact": px_exact,
             "design_x_rounded_pct": 36,
             "three_designs_exact": p3_exact,
+            "rounded_hurdle_factor_product_label": "DEPRECATED_ROUNDED_HURDLE_FACTOR_PRODUCT_USE_EXACT_2POW12_TREE",
             "three_designs_rounded_pct": 53,
             "three_designs_2pow12_locked_exact": round(active_tree["locked_3slot_2pow12_exact"], 4),
             "three_designs_stage0_modular_cell_x_pouch_exact": round(active_tree["legacy_modular_3slot_cell_x_pouch_exact"], 4),
+            "iip_0024_donor_bank_h1_sensitivity_audit": compute_donor_bank_h1_sensitivity_iip_0024(0.25),
             "iip_0020_sensitivity_and_calibration_notes": {
                 "uncalibrated_engineering_scenario": True,
                 "locked_2pow12_exact_6dp": round(active_tree["locked_3slot_2pow12_exact"], 6),
@@ -2415,9 +2528,11 @@ def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
                 "locked_shared_ax_pouch_exact_6dp": round(active_tree["locked_2route_shared_ax_pouch_exact"], 6),
                 "modular_cell_cuff_pouch_compatibility_required": True,
                 "programmatic_2pow12_generator_audit_iip_0022": active_tree,
+                "iip_0024_donor_bank_h1_sensitivity_audit": compute_donor_bank_h1_sensitivity_iip_0024(0.25),
                 "dependence_model_disclosure": (
                     "Common-shock ceiling vector c is an uncalibrated dependence assumption; legacy 3-slot pouch union "
-                    "and shared-A/X 2-route CaO2+catalase pouch union are reported side by side with explicit labels."
+                    "and shared-A/X 2-route CaO2+catalase pouch union are reported side by side with explicit labels, "
+                    "alongside conditional Hurdle-1 donor-bank failure-share sensitivity (phi_donor = 0.25; IIP-0024; DEC-103)."
                 ),
             },
             "prior_2026_11_15_dec098_baseline": {
@@ -2472,16 +2587,17 @@ def _build_odds_composition_and_profile_scope_audit_iip_0003() -> dict:
             "id": "OQ-016",
             "title": "Which assumptions and definition of success sit behind the four-hurdle odds estimate?",
             "plain": (
-                "The 26%, 31% and 34% single-design figures (Designs A, B and X) and the 51% three-design figure are computational "
+                "The 27%, 31% and 36% single-design figures (Designs A, B and X) and the 53% three-design figure are computational "
                 "team judgements for clearing four in-body hurdles in sequence, assuming the edited cells work as designed and pass lab safety "
                 "checks before any trial. Layering new untested edits together can shift earlier human-anchored hurdles too, moving from one "
                 "design to three depends on how much the designs overlap at each hurdle, and the estimate depends on which clinical outcome counts as success."
             ),
             "detail": (
-                "Raised in IIP-0003 (issue #3) and reassessed on 2026-11-15 after IIP-0016..IIP-0019. Each step in the four-hurdle estimate is "
+                "Raised in IIP-0003 (issue #3) and reassessed on 2026-11-16 after IIP-0016..IIP-0024. Each step in the four-hurdle estimate is "
                 "judged for a design still in the running after the earlier hurdles, with three-design conditional pass rates derived from an "
-                "explicit 4,096-state (2^12) common-shock tree across Designs A (26%), B (31%) and X (34%) giving 51.4% (about 51%) for three "
-                "locked products or 54.7% under Stage-0 cell-line x pouch modularity (up from 21% and 37% on 2026-11-05). Lab release gates "
+                "explicit 4,096-state (2^12) common-shock tree across Designs A (27%), B (31%) and X (36%) giving 52.59% (about 53%) for three "
+                "locked slots or 50.78% when Designs A and X share one CaO2+catalase pouch route (55.63% / 54.12% under Stage-0 cell-line x pouch "
+                "modularity; up from 21% and 37% on 2026-11-05). Lab release gates "
                 "(OQ-012 safety-switch escape, OQ-006 DNA rearrangements, and product-specific Gate 1 insulin and glucagon function plus Stage-0 "
                 "construct gates) sit outside the four hurdles as pre-trial pass/fail conditions, and a single clinical endpoint (such as one-year "
                 "insulin independence without anti-rejection drugs and without severe hypoglycaemia) must be fixed before replacing starting judgements with data."

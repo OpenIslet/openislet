@@ -57,6 +57,128 @@ from typing import Any, Dict, List
 import numpy as np
 
 
+def _strict_numeric_float_iip0024(val: object, name: str) -> float:
+    if isinstance(val, (bool, np.bool_)) or not isinstance(val, (int, float, np.integer, np.floating)):
+        raise ValueError(f"{name} must be a strict numeric int/float (not bool/str), got {val!r} (IIP-0024; DEC-103)")
+    fv = float(val)
+    if not math.isfinite(fv):
+        raise ValueError(f"{name} must be finite (not NaN/Inf), got {val!r} (IIP-0024; DEC-103)")
+    return fv
+
+
+def _segment_duration_below_iip0024(dt: float, g0: float, g1: float, thresh: float) -> float:
+    if g0 < thresh and g1 < thresh:
+        return dt
+    if g0 >= thresh and g1 >= thresh:
+        return 0.0
+    if g0 < thresh and g1 >= thresh:
+        return dt * ((thresh - g0) / (g1 - g0))
+    return dt * ((thresh - g1) / (g0 - g1))
+
+
+def _segment_duration_in_closed_band_iip0024(dt: float, g0: float, g1: float, lo: float, hi: float) -> float:
+    if abs(g1 - g0) <= 1e-15:
+        return dt if (lo <= g0 <= hi) else 0.0
+    dg = g1 - g0
+    s_lo = (lo - g0) / dg
+    s_hi = (hi - g0) / dg
+    s_min = max(0.0, min(s_lo, s_hi))
+    s_max = min(1.0, max(s_lo, s_hi))
+    return dt * max(0.0, s_max - s_min)
+
+
+def compute_exact_elapsed_glycemic_metrics_iip_0024(
+    times_min: Any,
+    glucose_mM: Any,
+    *,
+    min_duration_min: float = 1440.0,
+    min_points: int = 289,
+    max_interval_gap_min: float = 15.0,
+) -> Dict[str, Any]:
+    """
+    Exact continuous linear-crossing elapsed-duration glycaemic classifier (Battelino et al. 2019
+    PMID:31177185; IIP-0024; DEC-103):
+      - Rejects raw summary dicts, strings, booleans, NaN/Inf, or non-positive glucose.
+      - Enforces >= min_points (default 289 -> <=5-min 24-h cadence), strictly increasing timestamps
+        (0 < dt <= max_interval_gap_min, default 15.0 min), and elapsed span >= min_duration_min (1440.0 min).
+      - Computes exact linear threshold-crossing elapsed duration for TBR < 3.9 mM, severe TBR < 3.0 mM,
+        and TIR [3.9, 10.0] mM, comparing unrounded thresholds (< 4.0%, < 1.0% fragile, == 0.0% < 3.0 mM).
+    """
+    if not isinstance(times_min, (list, tuple, np.ndarray)) or not isinstance(glucose_mM, (list, tuple, np.ndarray)):
+        raise ValueError("times_min and glucose_mM must be explicit numeric sequence trajectories (IIP-0024; DEC-103)")
+    if isinstance(times_min, np.ndarray) and times_min.ndim != 1:
+        raise ValueError("times_min ndarray must be 1-dimensional (IIP-0024; DEC-103)")
+    if isinstance(glucose_mM, np.ndarray) and glucose_mM.ndim != 1:
+        raise ValueError("glucose_mM ndarray must be 1-dimensional (IIP-0024; DEC-103)")
+    if len(times_min) != len(glucose_mM):
+        raise ValueError(f"Trajectory length mismatch: len(times_min)={len(times_min)} != len(glucose_mM)={len(glucose_mM)} (IIP-0024; DEC-103)")
+    if len(times_min) < min_points:
+        raise ValueError(f"Trajectory has {len(times_min)} points; requires >= {min_points} points (IIP-0024; DEC-103)")
+    max_gap = _strict_numeric_float_iip0024(max_interval_gap_min, "max_interval_gap_min")
+    if max_gap <= 0.0:
+        raise ValueError("max_interval_gap_min must be > 0 (IIP-0024; DEC-103)")
+    t_vals = [_strict_numeric_float_iip0024(v, f"times_min[{i}]") for i, v in enumerate(times_min)]
+    g_vals = [_strict_numeric_float_iip0024(v, f"glucose_mM[{i}]") for i, v in enumerate(glucose_mM)]
+    for i, gv in enumerate(g_vals):
+        if gv <= 0.0:
+            raise ValueError(f"glucose_mM[{i}]={gv} must be > 0.0 mM (IIP-0024; DEC-103)")
+
+    total_dt = 0.0
+    max_obs_dt = 0.0
+    below_3p9 = 0.0
+    below_3p0 = 0.0
+    in_band = 0.0
+    for i in range(len(t_vals) - 1):
+        dt = t_vals[i + 1] - t_vals[i]
+        if dt <= 0.0:
+            raise ValueError(f"Non-monotonic timestamp step at interval {i}: {t_vals[i]} -> {t_vals[i + 1]} (IIP-0024; DEC-103)")
+        if dt > max_gap + 1e-12:
+            raise ValueError(f"Timestamp interval gap {dt} min exceeds max_interval_gap_min={max_gap} min at interval {i} (IIP-0024; DEC-103)")
+        if dt > max_obs_dt:
+            max_obs_dt = dt
+        g0, g1 = g_vals[i], g_vals[i + 1]
+        total_dt += dt
+        below_3p9 += _segment_duration_below_iip0024(dt, g0, g1, 3.9)
+        below_3p0 += _segment_duration_below_iip0024(dt, g0, g1, 3.0)
+        in_band += _segment_duration_in_closed_band_iip0024(dt, g0, g1, 3.9, 10.0)
+
+    if total_dt + 1e-9 < min_duration_min:
+        raise ValueError(f"Elapsed trajectory span {total_dt:.6f} min < required {min_duration_min:.1f} min (IIP-0024; DEC-103)")
+
+    tbr39_pct = 100.0 * below_3p9 / total_dt
+    tbr30_pct = 100.0 * below_3p0 / total_dt
+    tir_pct = 100.0 * in_band / total_dt
+    sample_tbr39_pct = 100.0 * sum(1 for gv in g_vals if gv < 3.9) / float(len(g_vals))
+    nadir_mM = min(g_vals)
+
+    passes_layer4_model_gate = bool(
+        tir_pct >= 85.0 and tbr39_pct < 4.0 and tbr30_pct == 0.0 and nadir_mM >= 3.5
+    )
+    passes_adult_consensus = bool(
+        tir_pct >= 70.0 and tbr39_pct < 4.0 and tbr30_pct == 0.0 and nadir_mM >= 3.0
+    )
+    passes_fragile_tbr_lt_1pct = bool(
+        tbr39_pct < 1.0 and tbr30_pct == 0.0 and nadir_mM >= 3.5
+    )
+    return {
+        "n_points": len(t_vals),
+        "n_intervals": len(t_vals) - 1,
+        "elapsed_duration_min": round(total_dt, 9),
+        "max_interval_gap_min": round(max_obs_dt, 9),
+        "tir_3p9_10p0_pct": round(tir_pct, 6),
+        "tbr_lt_3p9_pct": round(tbr39_pct, 6),
+        "tbr_lt_3p0_pct": round(tbr30_pct, 6),
+        "sample_fraction_lt_3p9_pct": round(sample_tbr39_pct, 6),
+        "tbr39_elapsed_unrounded_pct": tbr39_pct,
+        "tbr30_elapsed_unrounded_pct": tbr30_pct,
+        "tir_elapsed_unrounded_pct": tir_pct,
+        "nadir_mM": round(nadir_mM, 6),
+        "passes_layer4_model_gate": passes_layer4_model_gate,
+        "passes_adult_consensus_context": passes_adult_consensus,
+        "passes_fragile_tbr_lt_1pct": passes_fragile_tbr_lt_1pct,
+    }
+
+
 def rk4_integrate(
     rhs_fn,
     t_span: tuple[float, float],
@@ -4798,8 +4920,10 @@ def solve_24h_paracrine_and_whole_body_metabolic_ode(
         hbgi = float(np.mean(np.where(f_bg > 0.0, r_bg, 0.0)))
         bgri = lbgi + hbgi
 
-        # Full 5,761-step 0.25-min resolution verification (AUDIT-REF):
+        # Full 5,761-step 0.25-min resolution verification (AUDIT-REF & IIP-0024; DEC-103):
         G_0p25 = sol_y[0, :]
+        t_0p25 = [0.25 * idx for idx in range(len(G_0p25))]
+        elapsed_gly_0p25 = compute_exact_elapsed_glycemic_metrics_iip_0024(t_0p25, G_0p25)
         min_g_0p25_mM = float(np.min(G_0p25))
         max_g_0p25_mM = float(np.max(G_0p25))
         mean_g_0p25_mM = float(np.mean(G_0p25))
@@ -4857,9 +4981,17 @@ def solve_24h_paracrine_and_whole_body_metabolic_ode(
                 "mean_glucose_0p25min_mM": round(mean_g_0p25_mM, 4),
                 "time_in_tight_range_0p25min_pct": round(tir_0p25_pct, 2),
                 "time_below_3p9mM_0p25min_pct": round(tbr39_0p25_pct, 2),
+                "tbr39_elapsed_0p25min_pct": elapsed_gly_0p25["tbr_lt_3p9_pct"],
+                "tbr30_elapsed_0p25min_pct": elapsed_gly_0p25["tbr_lt_3p0_pct"],
+                "tir_3p9_to_10_elapsed_0p25min_pct": elapsed_gly_0p25["tir_3p9_10p0_pct"],
+                "passes_fragile_tbr_lt_1pct": elapsed_gly_0p25["passes_fragile_tbr_lt_1pct"],
             },
             "passes_clinical_glycemic_safety_targets": bool(
-                tir_0p25_pct >= 85.0 and not np.any(G_0p25 < 3.0) and min_g_0p25_mM >= 3.5
+                tir_0p25_pct >= 85.0
+                and elapsed_gly_0p25["tbr39_elapsed_unrounded_pct"] < 4.0
+                and elapsed_gly_0p25["tbr30_elapsed_unrounded_pct"] == 0.0
+                and not np.any(G_0p25 < 3.0)
+                and min_g_0p25_mM >= 3.5
             ),
         }
         if include_trajectory:
@@ -7051,7 +7183,7 @@ def build_explicit_3d_clumping_and_microbead_h2o2_audit_iip_0019(lead_regime: Di
             "cluster_core_5mmhg_margin_note": (
                 "Core pO2 >= 5.0 mmHg and interface >= 15.0 mmHg are conservative product engineering gates above classical "
                 "anoxic necrosis (~0.07 mmHg, PMID:21693022; Layer-4 0.5 mmHg floor; 0/160 RSA clusters < 0.5 mmHg) and "
-                "within viable low-oxygen graft staining regimes (<10 mmHg pimonidazole, PMID:21788581)."
+                "within viable low-oxygen graft staining regimes (<10 mmHg pimonidazole in experimental islet grafts per Olsson et al. 2011 PMID:21788575; review context Olsson & Carlsson 2011 PMID:21788581; IIP-0024; DEC-103)."
             ),
             "extracellular_h2o2_2p5_and_5p0uM_margin_note": (
                 "Extracellular H2O2 <= 2.5 uM (Tier-1 target) and <= 5.0 uM (Tier-2 ceiling) are conservative chronic "
@@ -7073,6 +7205,7 @@ def build_explicit_3d_clumping_and_microbead_h2o2_audit_iip_0019(lead_regime: Di
                 "PMID:36971050",
                 "PMID:38993891",
                 "PMID:25893782",
+                "PMID:21788575",
                 "PMID:21788581",
                 "PMID:24065585",
                 "PMID:20124731",

@@ -303,6 +303,29 @@ STAGE0_DECISION_TREE_ENDPOINT_SPECS = [
     ('stage0_design_y04_all4_lineages_scored_count', 'obs_design_y04_all4_lineages_scored_count', 'obs_design_y04_all4_lineages_scored_se', 0.0, 10.0, 'number_of_product_lineages_beta_alpha_delta_iec_passing_gy009_and_y01'),
     ('stage0_design_y04_ap1903_survivor_count_k', 'obs_design_y04_ap1903_survivor_count_k', 'obs_design_y04_ap1903_survivor_count_k_se', 0.0, 1000000.0, 'observed_ap1903_clonogenic_survivor_colonies_k'),
     ('stage0_design_y04_ap1903_effective_trials', 'obs_design_y04_ap1903_effective_trials', 'obs_design_y04_ap1903_effective_trials_se', 0.0, 1e12, 'effective_clonogenic_spike_adjusted_trials_n_times_f_clon_times_eta'),
+    # Stage-0 atomic provenance, donor-bank kinship, bank/lot 1q32.1 MDM4, Readout 2 perifusion kinetics, CD16+ ADCC, catalase mass, Gate 0S dual shedding, Student-t replicates & 3-metric IAPP gates (IIP-0024; DEC-103):
+    ('stage0_mcb_donor_pairwise_ibd_pi_hat', 'obs_mcb_donor_pairwise_ibd_pi_hat', 'obs_mcb_donor_pairwise_ibd_pi_hat_se', 0.0, 1.0, 'genome_wide_pairwise_ibd_pi_hat_between_independent_abo_oo_donor_seedlines'),
+    ('stage0_mcb_1q32_mdm4_cnv_ratio', 'obs_mcb_1q32_mdm4_cnv_ratio', 'obs_mcb_1q32_mdm4_cnv_se', 0.0, 10.0, 'mcb_bulk_ddpcr_diploid_copy_number_at_1q32p1_mdm4_normal_2p0'),
+    ('stage0_mcb_1q32_mdm4_single_cell_mosaic_fraction', 'obs_mcb_1q32_mdm4_single_cell_mosaic_fraction', 'obs_mcb_1q32_mdm4_single_cell_mosaic_se', 0.0, 1.0, 'mcb_single_cell_dna_fish_1q32p1_mdm4_gain_mosaic_proportion'),
+    ('stage0_mcb_1q32_mdm4_single_cell_mosaic_cells_scored', 'obs_mcb_1q32_mdm4_single_cell_mosaic_cells_scored', 'obs_mcb_1q32_mdm4_single_cell_mosaic_cells_scored_se', 1.0, 100000000.0, 'mcb_single_cells_scored_for_1q32p1_mdm4_mosaicism'),
+    ('stage0_lot_1q32_mdm4_cnv_ratio', 'obs_1q32_mdm4_cnv_ratio', 'obs_1q32_mdm4_cnv_se', 0.0, 10.0, 'stage7_lot_bulk_ddpcr_diploid_copy_number_at_1q32p1_mdm4_normal_2p0'),
+    ('stage0_lot_1q32_mdm4_single_cell_mosaic_fraction', 'obs_1q32_mdm4_single_cell_mosaic_fraction', 'obs_1q32_mdm4_single_cell_mosaic_se', 0.0, 1.0, 'stage7_lot_single_cell_dna_fish_1q32p1_mdm4_gain_mosaic_proportion'),
+    ('stage0_lot_1q32_mdm4_single_cell_mosaic_cells_scored', 'obs_1q32_mdm4_single_cell_mosaic_cells_scored', 'obs_1q32_mdm4_single_cell_mosaic_cells_scored_se', 1.0, 100000000.0, 'stage7_lot_single_cells_scored_for_1q32p1_mdm4_mosaicism'),
+    ('stage0_readout2_perifusion_gsis_si', 'obs_readout2_perifusion_gsis_si', 'obs_readout2_perifusion_gsis_si_se', 0.1, 100.0, 'readout2_dynamic_perifusion_gsis_stimulation_index'),
+    ('stage0_readout2_first_phase_peak_to_basal_ratio', 'obs_readout2_first_phase_peak_to_basal_ratio', 'obs_readout2_first_phase_peak_to_basal_se', 0.1, 100.0, 'readout2_first_phase_peak_to_basal_secretion_ratio'),
+    ('stage0_readout2_first_phase_time_to_peak_min', 'obs_readout2_first_phase_time_to_peak_min', 'obs_readout2_first_phase_time_to_peak_se', 0.0, 60.0, 'readout2_minutes_from_high_glucose_step_to_first_phase_peak'),
+    ('stage0_readout2_stepdown_shutoff_t50_min', 'obs_readout2_stepdown_shutoff_t50_min', 'obs_readout2_stepdown_shutoff_t50_se', 0.0, 60.0, 'readout2_stepdown_secretion_arrest_half_time_t50_minutes_distinct_from_gate0m_t90'),
+    ('stage0_exact_product_net_cd16_adcc_lysis_pct', 'obs_exact_product_net_cd16_adcc_lysis_pct', 'obs_exact_product_net_cd16_adcc_lysis_se', 0.0, 100.0, 'paired_igg_depleted_cd16_pos_nk_net_adcc_specific_lysis_percentage'),
+    ('stage0_cd16_adcc_positive_control_lysis_pct', 'obs_cd16_adcc_positive_control_lysis_pct', 'obs_cd16_adcc_positive_control_lysis_se', 0.0, 100.0, 'opsonized_positive_control_cd16_pos_nk_adcc_specific_lysis_percentage'),
+    ('stage0_p05_total_loaded_catalase_protein_mg', 'obs_p05_total_loaded_catalase_protein_mg', 'obs_p05_total_loaded_catalase_protein_mg_se', 0.0, 1000.0, 'total_loaded_recombinant_human_p04040_catalase_protein_mass_mg_across_333p33cm2'),
+    ('stage0_gate0s_shedding_ddpcr_events_k', 'obs_gate0s_shedding_ddpcr_events_k', 'obs_gate0s_shedding_ddpcr_events_k_se', 0.0, 1000000.0, 'day90_sister_unit_ex_vivo_ddpcr_extra_device_shedding_positive_events_k'),
+    ('stage0_gate0s_shedding_ddpcr_trials_n', 'obs_gate0s_shedding_ddpcr_trials_n', 'obs_gate0s_shedding_ddpcr_trials_n_se', 1.0, 10000000000.0, 'day90_sister_unit_ex_vivo_ddpcr_qualified_genome_equivalents_n'),
+    ('stage0_gate0s_shedding_viable_events_k', 'obs_gate0s_shedding_viable_events_k', 'obs_gate0s_shedding_viable_events_k_se', 0.0, 1000000.0, 'day90_sister_unit_viable_outgrowth_extra_device_shedding_positive_events_k'),
+    ('stage0_gate0s_shedding_viable_trials_n', 'obs_gate0s_shedding_viable_trials_n', 'obs_gate0s_shedding_viable_trials_n_se', 1.0, 10000000000.0, 'day90_sister_unit_viable_outgrowth_qualified_plated_equivalents_n'),
+    ('stage0_independent_lot_replicates_n', 'obs_stage0_independent_lot_replicates_n', 'obs_stage0_independent_lot_replicates_n_se', 1.0, 10000.0, 'independent_differentiation_lot_replicates_n_for_exact_student_t_bounds'),
+    ('stage0_iapp_3metric_thioflavin_s_area_pct', 'obs_iapp_3metric_thioflavin_s_area_pct', 'obs_iapp_3metric_thioflavin_s_area_se', 0.0, 100.0, 'colocalized_thioflavin_s_positive_amyloid_fibril_area_percentage'),
+    ('stage0_iapp_3metric_soluble_oligomer_fold', 'obs_iapp_3metric_soluble_oligomer_fold', 'obs_iapp_3metric_soluble_oligomer_se', 0.0, 50.0, 'soluble_iapp_oligomer_elisa_fold_over_quantifiable_age_matched_reference'),
+    ('stage0_iapp_3metric_insoluble_fibril_fold', 'obs_iapp_3metric_insoluble_fibril_fold', 'obs_iapp_3metric_insoluble_fibril_se', 0.0, 50.0, 'formic_acid_extracted_insoluble_iapp_fold_over_quantifiable_age_matched_reference'),
 ]
 
 STAGE0_S10_V3_MEAN_KEYS: frozenset[str] = frozenset({
@@ -1048,6 +1071,28 @@ STAGE0_CUSTOM_DEFAULT_SE: dict[str, float] = {
     'obs_design_y04_all4_lineages_scored_count': 1e-12,
     'obs_design_y04_ap1903_survivor_count_k': 1e-12,
     'obs_design_y04_ap1903_effective_trials': 1.0,
+    'obs_mcb_donor_pairwise_ibd_pi_hat': 0.001,
+    'obs_mcb_1q32_mdm4_cnv_ratio': 0.01,
+    'obs_mcb_1q32_mdm4_single_cell_mosaic_fraction': 0.001,
+    'obs_mcb_1q32_mdm4_single_cell_mosaic_cells_scored': 1.0,
+    'obs_1q32_mdm4_cnv_ratio': 0.01,
+    'obs_1q32_mdm4_single_cell_mosaic_fraction': 0.001,
+    'obs_1q32_mdm4_single_cell_mosaic_cells_scored': 1.0,
+    'obs_readout2_perifusion_gsis_si': 0.15,
+    'obs_readout2_first_phase_peak_to_basal_ratio': 0.20,
+    'obs_readout2_first_phase_time_to_peak_min': 0.25,
+    'obs_readout2_stepdown_shutoff_t50_min': 0.10,
+    'obs_exact_product_net_cd16_adcc_lysis_pct': 0.35,
+    'obs_cd16_adcc_positive_control_lysis_pct': 2.0,
+    'obs_p05_total_loaded_catalase_protein_mg': 0.05,
+    'obs_gate0s_shedding_ddpcr_events_k': 1e-12,
+    'obs_gate0s_shedding_ddpcr_trials_n': 1.0,
+    'obs_gate0s_shedding_viable_events_k': 1e-12,
+    'obs_gate0s_shedding_viable_trials_n': 1.0,
+    'obs_stage0_independent_lot_replicates_n': 1e-12,
+    'obs_iapp_3metric_thioflavin_s_area_pct': 0.04,
+    'obs_iapp_3metric_soluble_oligomer_fold': 0.05,
+    'obs_iapp_3metric_insoluble_fibril_fold': 0.05,
 }
 
 STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
@@ -1060,6 +1105,12 @@ STAGE0_CUSTOM_MINIMUM_SE: dict[str, float] = {
     'obs_d_o2_gel_aged_cm2_s': 1e-12,
     'obs_residual_psc_effective_fraction': 1e-12,
     'obs_20q11_bcl2l1_single_cell_mosaic_fraction': 1e-6,
+    'obs_mcb_1q32_mdm4_single_cell_mosaic_fraction': 1e-6,
+    'obs_1q32_mdm4_single_cell_mosaic_fraction': 1e-6,
+    'obs_mcb_donor_pairwise_ibd_pi_hat': 1e-6,
+    'obs_gate0s_shedding_ddpcr_events_k': 1e-12,
+    'obs_gate0s_shedding_viable_events_k': 1e-12,
+    'obs_stage0_independent_lot_replicates_n': 1e-12,
     'obs_gate0v_day28_persistent_vp1_ie1_positive_cell_pct': 1e-12,
     'obs_cd47_hour0_molecules': 1.0,
     'obs_hlae_hour0_molecules': 1.0,
@@ -1233,6 +1284,7 @@ ARM1B_LOCUS1_COMPATIBLE_FAMILY_A_IDS = frozenset({
     'ISLET1_A4_ARM1B',
     'ISLET1_A4_ARM1B_TYK2_PE',
     'ISLET1_A4_X_MOL_RNLS_WT',
+    'ISLET1_Z_X_MOL_140UM_ZERO_CAO2',
     'ISLET1_A4_L3_SCARFREE_3799',
     'ISLET1_A4_L3_BFB_BASALFLOOR',
     'ISLET1_COMP_R4_X_BFB_DXB_LOWLOAD1500',
@@ -1318,10 +1370,10 @@ def validate_product_and_estimand_compatibility(
     root_path = Path(root) if root is not None else Path(__file__).resolve().parents[1]
     obs_set = set(observed_mean_keys)
     if product_variant_id is not None:
-        if not isinstance(product_variant_id, str) or not product_variant_id.strip():
-            raise ValueError('product_variant_id must be a nonempty string')
+        if not isinstance(product_variant_id, str) or not product_variant_id.strip() or product_variant_id != product_variant_id.strip():
+            raise ValueError('product_variant_id must be a canonical non-whitespace-padded nonempty string (IIP-0024; DEC-103)')
         p_mod = _load_product_contract_module(root_path)
-        product_def = p_mod.get_product_definition(product_variant_id.strip(), root=root_path)
+        product_def = p_mod.get_product_definition(product_variant_id, root=root_path)
         canon_id = product_def['product_variant_id']
         is_track2_b_sct = canon_id.startswith('ISLET1_B_SCT_')
         if (product_def.get('family') != 'A' and not is_track2_b_sct) or (
@@ -1451,6 +1503,13 @@ STAGE0_DECISION_TREE_BOOLEAN_KEYS: tuple[str, ...] = (
     'design_y_dpcpx_adora1_antagonist_control_run',
     'design_y_anti_cd200_blockade_reversal_verified',
     'design_y_y04_full_coculture_and_clonogenic_confirmed',
+    'require_full_iip0024_atomic_provenance_and_bank_panel',
+    'cd16_adcc_igg_depletion_paired_control_verified',
+    'iapp_age_matched_reference_above_loq_verified',
+    'mcb_imprinting_ic1_ic2_igdmr_conjunctive_cleared',
+    'stage7_lot_imprinting_ic1_ic2_igdmr_conjunctive_cleared',
+    'mcb_and_lot_xci_46xx_3axis_cleared_or_46xy',
+    'mcb_and_lot_mtdna_1000x_numt_filtered_cleared',
 )
 
 
@@ -1523,6 +1582,12 @@ def derive_contract(root: Path | str | None = None) -> dict:
                 'design_y_integrase_modality',
                 'design_y_silencing_modality',
                 'design_y_payload_arm',
+                'donor_seedline_id',
+                'device_assembly_id',
+                'physical_route_id',
+                'assay_campaign_id',
+                'reset_prior_safety_stop_target_category',
+                'submitter_id',
             ],
             'boolean_policy_keys': list(STAGE0_DECISION_TREE_BOOLEAN_KEYS),
             'endpoints': endpoints,
@@ -1698,6 +1763,10 @@ def normalize_measurements(payload: dict, *, require_observation: bool = True,
             if not isinstance(payload[key], str) or payload[key].strip() not in ALLOWED_DESIGN_Y_PAYLOAD_ARMS:
                 raise ValueError(f'design_y_payload_arm must be one of {sorted(ALLOWED_DESIGN_Y_PAYLOAD_ARMS)} (IIP-0023; DEC-102)')
             result[key] = payload[key].strip()
+        elif key == 'product_variant_id':
+            if not isinstance(payload[key], str) or not payload[key].strip() or payload[key] != payload[key].strip() or len(payload[key]) > 120:
+                raise ValueError('product_variant_id must be a canonical non-whitespace-padded nonempty string of at most 120 characters (IIP-0024; DEC-103)')
+            result[key] = payload[key]
         else:
             if not isinstance(payload[key], str) or not payload[key].strip() or len(payload[key]) > 120:
                 raise ValueError(f'{key} must be a nonempty string of at most 120 characters')
@@ -2006,6 +2075,166 @@ def evaluate_s10_functional_and_replacement_gate_v3(
     }
 
 
+def _betacf_iip0024(a: float, b: float, x: float) -> float:
+    max_it = 240
+    eps = 3.0e-15
+    fpmin = 1.0e-300
+    qab = a + b
+    qap = a + 1.0
+    qam = a - 1.0
+    c = 1.0
+    d = 1.0 - qab * x / qap
+    if abs(d) < fpmin:
+        d = fpmin
+    d = 1.0 / d
+    h = d
+    for m in range(1, max_it + 1):
+        m2 = 2 * m
+        aa = m * (b - m) * x / ((qam + m2) * (a + m2))
+        d = 1.0 + aa * d
+        if abs(d) < fpmin:
+            d = fpmin
+        c = 1.0 + aa / c
+        if abs(c) < fpmin:
+            c = fpmin
+        d = 1.0 / d
+        h *= d * c
+        aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2))
+        d = 1.0 + aa * d
+        if abs(d) < fpmin:
+            d = fpmin
+        c = 1.0 + aa / c
+        if abs(c) < fpmin:
+            c = fpmin
+        d = 1.0 / d
+        del_v = d * c
+        h *= del_v
+        if abs(del_v - 1.0) < eps:
+            break
+    return h
+
+
+def _reg_inc_beta_iip0024(a: float, b: float, x: float) -> float:
+    if x <= 0.0:
+        return 0.0
+    if x >= 1.0:
+        return 1.0
+    bt = math.exp(
+        math.lgamma(a + b) - math.lgamma(a) - math.lgamma(b)
+        + a * math.log(x) + b * math.log(1.0 - x)
+    )
+    if x < (a + 1.0) / (a + b + 2.0):
+        return bt * _betacf_iip0024(a, b, x) / a
+    return 1.0 - bt * _betacf_iip0024(b, a, 1.0 - x) / b
+
+
+def student_t_cdf(t_val: float, df: float) -> float:
+    if df <= 0.0 or not math.isfinite(df) or not math.isfinite(t_val):
+        raise ValueError('student_t_cdf requires finite positive df and finite t_val (IIP-0024; DEC-103)')
+    x = df / (df + t_val * t_val)
+    ib = _reg_inc_beta_iip0024(0.5 * df, 0.5, x)
+    return 1.0 - 0.5 * ib if t_val >= 0.0 else 0.5 * ib
+
+
+def student_t_ppf(p: float, df: float) -> float:
+    if not (0.0 < p < 1.0) or not math.isfinite(df) or df <= 0.0:
+        raise ValueError('student_t_ppf requires p in (0, 1) and finite df > 0 (IIP-0024; DEC-103)')
+    if abs(p - 0.5) < 1e-15:
+        return 0.0
+    if p < 0.5:
+        return -student_t_ppf(1.0 - p, df)
+    lo, hi = 0.0, 200.0
+    while student_t_cdf(hi, df) < p:
+        hi *= 2.0
+    for _ in range(96):
+        mid = 0.5 * (lo + hi)
+        if student_t_cdf(mid, df) < p:
+            lo = mid
+        else:
+            hi = mid
+    return 0.5 * (lo + hi)
+
+
+def student_t_ppf_one_sided_95(df: float) -> float:
+    """Exact one-sided 95% Student-t critical value t_{0.95, df} (IIP-0024; DEC-103)."""
+    return student_t_ppf(0.95, df)
+
+
+def student_t_q95(n_independent_units: int) -> float:
+    """Exact one-sided 95% Student-t critical value for n >= 2 independent units (df = n - 1; IIP-0024; DEC-103)."""
+    if type(n_independent_units) is not int or n_independent_units < 2:
+        raise ValueError('student_t_q95 requires strict integer n_independent_units >= 2 (IIP-0024; DEC-103)')
+    return student_t_ppf(0.95, float(n_independent_units - 1))
+
+
+def clopper_pearson_upper95_independent(k: int, n: int, alpha: float = 0.05) -> float:
+    """Exact Clopper-Pearson one-sided (1 - alpha) upper bound for independent (k, n) counts (IIP-0024; DEC-103)."""
+    if type(k) is not int or type(n) is not int or n <= 0 or k < 0 or k > n:
+        raise ValueError('clopper_pearson_upper95_independent requires integer 0 <= k <= n, n > 0 (IIP-0024; DEC-103)')
+    if k == n:
+        return 1.0
+    if k == 0:
+        return -math.expm1(math.log(alpha) / float(n))
+    lo, hi = 0.0, 1.0
+    for _ in range(95):
+        mid = 0.5 * (lo + hi)
+        if _reg_inc_beta_iip0024(float(k + 1), float(n - k), mid) < (1.0 - alpha):
+            lo = mid
+        else:
+            hi = mid
+    return 0.5 * (lo + hi)
+
+
+def clopper_pearson_lower95_independent(k: int, n: int, alpha: float = 0.05) -> float:
+    if type(k) is not int or type(n) is not int or n <= 0 or k < 0 or k > n:
+        raise ValueError('clopper_pearson_lower95_independent requires integer 0 <= k <= n, n > 0 (IIP-0024; DEC-103)')
+    if k == 0:
+        return 0.0
+    return 1.0 - clopper_pearson_upper95_independent(n - k, n, alpha=alpha)
+
+
+STAGE0_STRICT_INTEGER_COUNT_AND_DENOMINATOR_KEYS: frozenset[str] = frozenset({
+    'obs_20q11_bcl2l1_single_cell_mosaic_cells_scored',
+    'obs_17q_birc5_survivin_single_cell_mosaic_cells_scored',
+    'obs_gate0v_day28_persistent_vp1_ie1_cells_scored',
+    'obs_cd24_sox2_oct4_3d_escapee_cells_scored',
+    'obs_off_target_gp2_amylase_acinar_cells_scored',
+    'obs_off_target_krt19_cftr_ductal_cells_scored',
+    'obs_assembled_cluster_ki67_progenitor_cells_scored',
+    'obs_ductal_sox9_krt19_double_pos_cells_scored',
+    'obs_assembled_cluster_slc18a1_enterochromaffin_cells_scored',
+    'obs_senescent_p16_sasp_cells_scored',
+    'obs_mcb_1q32_mdm4_single_cell_mosaic_cells_scored',
+    'obs_1q32_mdm4_single_cell_mosaic_cells_scored',
+    'obs_mcb_effective_clonogenic_trials',
+    'obs_mcb_clonogenic_survivor_count_k',
+    'obs_residual_psc_effective_trials',
+    'obs_hazard_state_prolif_effective_trials',
+    'obs_hazard_state_prolif_survivor_count_k',
+    'obs_ap1903_step1_sublethal_survivor_count_k',
+    'obs_dxs_screened_cell_count',
+    'obs_gate0s_shedding_ddpcr_events_k',
+    'obs_gate0s_shedding_ddpcr_trials_n',
+    'obs_gate0s_shedding_viable_events_k',
+    'obs_gate0s_shedding_viable_trials_n',
+    'obs_stage0_independent_lot_replicates_n',
+    'obs_cuff_serum_donor_count',
+    'obs_cuff_serum_failing_donor_count',
+    'obs_hcmv_pos_donor_count',
+    'obs_s10_nk_failing_donor_count',
+    'obs_ul40_reactive_donor_count',
+    'obs_ul40_ctl_failing_donor_count',
+    'obs_track2_bsct_donor_count',
+    'obs_track2_bsct_failing_donor_count',
+    'obs_track2_hlag1_donor_count',
+    'obs_track2_hlag1_failing_donor_count',
+    'obs_challenger_aberrant_splice_umi_count_k',
+    'obs_design_y02_wgs_pseudosite_k',
+    'obs_design_y04_all4_lineages_scored_count',
+    'obs_design_y04_ap1903_survivor_count_k',
+})
+
+
 def evaluate_stage0_decision_tree(
     observations: dict,
     *,
@@ -2015,7 +2244,7 @@ def evaluate_stage0_decision_tree(
     prior_batch_sticky_s9_safety_stop: bool = False,
     product_def: dict | None = None,
 ) -> dict:
-    """Deterministically evaluate the machine-readable Stage-0 promotion/fallback decision tree (S1..S9; AUDIT-REF, AUDIT-REF, AUDIT-REF, AUDIT-REF, AUDIT-REF, & R7S3-F01/F02; DEC-058)."""
+    """Deterministically evaluate the machine-readable Stage-0 promotion/fallback decision tree (S1..S9; AUDIT-REF, AUDIT-REF, AUDIT-REF, AUDIT-REF, AUDIT-REF, & R7S3-F01/F02; DEC-058; IIP-0024; DEC-103)."""
     if not isinstance(observations, dict):
         raise ValueError('Stage-0 decision-tree observations must be a dictionary')
     if type(require_full_5endpoint_s9_panel) is not bool:
@@ -2032,8 +2261,23 @@ def evaluate_stage0_decision_tree(
     root_path = Path(root) if root is not None else Path(__file__).resolve().parents[1]
     tree_doc = json.loads((root_path / STAGE0_DECISION_TREE_RELATIVE_PATH).read_text(encoding='utf-8'))
     p_mod = _load_product_contract_module(root_path)
-    if product_def is None and 'product_variant_id' in observations and observations['product_variant_id'] is not None:
-        product_def = p_mod.get_product_definition(str(observations['product_variant_id']).strip(), root=root_path)
+    # Canonical product resolution (IIP-0024; DEC-103): reject whitespace-padded IDs and always re-resolve from registry so caller-supplied product_def dicts cannot override execution_supported!
+    obs_pvid_raw = observations.get('product_variant_id')
+    if obs_pvid_raw is not None:
+        if not isinstance(obs_pvid_raw, str) or not obs_pvid_raw.strip() or obs_pvid_raw != obs_pvid_raw.strip():
+            raise ValueError(f'Invalid or whitespace-padded product_variant_id: {obs_pvid_raw!r} (IIP-0024; DEC-103)')
+        canon_from_obs = p_mod.get_product_definition(obs_pvid_raw, root=root_path)
+        if product_def is not None:
+            if not isinstance(product_def, dict):
+                raise ValueError('product_def must be a dictionary when provided (IIP-0024; DEC-103)')
+            kw_pvid = product_def.get('product_variant_id')
+            if not isinstance(kw_pvid, str) or p_mod.get_product_definition(kw_pvid, root=root_path)['product_variant_id'] != canon_from_obs['product_variant_id']:
+                raise ValueError('Conflicting product_def and observations product_variant_id (IIP-0024; DEC-103)')
+        product_def = canon_from_obs
+    elif product_def is not None:
+        if not isinstance(product_def, dict) or not isinstance(product_def.get('product_variant_id'), str):
+            raise ValueError('product_def must contain a canonical string product_variant_id (IIP-0024; DEC-103)')
+        product_def = p_mod.get_product_definition(product_def['product_variant_id'], root=root_path)
 
     contract = derive_contract(root_path)
     default_se_by_mean: dict[str, float] = {}
@@ -2164,10 +2408,39 @@ def evaluate_stage0_decision_tree(
         'design_y_dpcpx_adora1_antagonist_control_run',
         'design_y_anti_cd200_blockade_reversal_verified',
         'design_y_y04_full_coculture_and_clonogenic_confirmed',
+        'donor_seedline_id',
+        'device_assembly_id',
+        'physical_route_id',
+        'assay_campaign_id',
+        'reset_prior_safety_stop_target_category',
+        'submitter_id',
+        'require_full_iip0024_atomic_provenance_and_bank_panel',
+        'cd16_adcc_igg_depletion_paired_control_verified',
+        'iapp_age_matched_reference_above_loq_verified',
+        'mcb_imprinting_ic1_ic2_igdmr_conjunctive_cleared',
+        'stage7_lot_imprinting_ic1_ic2_igdmr_conjunctive_cleared',
+        'mcb_and_lot_xci_46xx_3axis_cleared_or_46xy',
+        'mcb_and_lot_mtdna_1000x_numt_filtered_cleared',
     }
     unknown_keys = sorted(set(observations) - set(spec_by_mean) - set(spec_by_se) - allowed_boolean_and_meta_flags)
     if unknown_keys:
         raise ValueError(f'Unrecognized Stage-0 decision-tree observation keys: {unknown_keys}')
+    for _str_meta_k in ('donor_seedline_id', 'device_assembly_id', 'physical_route_id', 'assay_campaign_id', 'reset_prior_safety_stop_target_category', 'submitter_id'):
+        if _str_meta_k in observations and observations[_str_meta_k] is not None:
+            _sv = observations[_str_meta_k]
+            if not isinstance(_sv, str) or not _sv.strip() or len(_sv) > 120:
+                raise ValueError(f'{_str_meta_k} must be a nonempty string of at most 120 characters (IIP-0024; DEC-103)')
+
+    # Pre-normalization strict integer check on count, scored-cell, donor, trial, and replicate denominators (IIP-0024; DEC-103):
+    non_integer_scored_cell_or_trial_denominator = False
+    for _int_k in STAGE0_STRICT_INTEGER_COUNT_AND_DENOMINATOR_KEYS:
+        if _int_k in observations and observations[_int_k] not in ('UNAVAILABLE', None):
+            _raw_iv = observations[_int_k]
+            if isinstance(_raw_iv, bool):
+                raise ValueError(f'{_int_k} must be an integer count, not boolean (IIP-0024; DEC-103)')
+            _dec_iv = finite_decimal(_raw_iv, _int_k)
+            if abs(_dec_iv - round(_dec_iv)) > 1e-9 or _dec_iv < 0.0:
+                non_integer_scored_cell_or_trial_denominator = True
     if 'prior_variant_safety_status' in observations and observations['prior_variant_safety_status'] is not None:
         pvs_val = observations['prior_variant_safety_status']
         if not isinstance(pvs_val, str) or pvs_val.strip() not in ALLOWED_PRIOR_VARIANT_SAFETY_STATUSES:
@@ -2262,15 +2535,24 @@ def evaluate_stage0_decision_tree(
             return 0.0
         return float(validated_stage0_se.get(row[2], 0.0))
 
+    stage0_replicates_below_6_hold = False
+    crit_95_mult = 1.644854
+    if 'obs_stage0_independent_lot_replicates_n' in validated_stage0:
+        _n_rep_raw = validated_stage0['obs_stage0_independent_lot_replicates_n']
+        if abs(_n_rep_raw - round(_n_rep_raw)) > 1e-9 or int(round(_n_rep_raw)) < 6:
+            stage0_replicates_below_6_hold = True
+        else:
+            crit_95_mult = student_t_ppf_one_sided_95(float(int(round(_n_rep_raw)) - 1))
+
     def _upper95(mean_key: str, default: float = 0.0) -> float:
         if mean_key not in validated_stage0:
             return default
-        return float(validated_stage0[mean_key]) + 1.644854 * _validated_se(mean_key)
+        return float(validated_stage0[mean_key]) + crit_95_mult * _validated_se(mean_key)
 
     def _lower95(mean_key: str, default: float = 0.0) -> float:
         if mean_key not in validated_stage0:
             return default
-        return float(validated_stage0[mean_key]) - 1.644854 * _validated_se(mean_key)
+        return float(validated_stage0[mean_key]) - crit_95_mult * _validated_se(mean_key)
 
     serpinb9_h0 = validated_stage0.get('obs_serpinb9_hour0_uM', validated_stage0.get('obs_gate0c_hour0_serpinb9_uM', 0.35))
     serpinb9_h0_lower95 = (
@@ -2432,37 +2714,66 @@ def evaluate_stage0_decision_tree(
         and (not cur_batch_id_str or cur_batch_id_str not in {x.strip() for x in repeat_batch_ids})
         and isinstance(observations.get('reset_prior_safety_stop_independent_qp_approver_id'), str)
         and len(observations['reset_prior_safety_stop_independent_qp_approver_id'].strip()) >= 3
+        and (
+            not observations.get('submitter_id')
+            or str(observations.get('submitter_id')).strip() != observations['reset_prior_safety_stop_independent_qp_approver_id'].strip()
+        )
         and isinstance(verified_ledger_passing, (list, tuple, set))
         and {x.strip() for x in repeat_batch_ids}.issubset({str(b).strip() for b in verified_ledger_passing if str(b).strip()})
     )
     sticky_prior_s9_stop = bool(prior_s9_flag and not structured_s9_reset_valid)
     prior_s9_reset_history_retained = bool(prior_s9_flag and structured_s9_reset_valid)
 
-    # Rare-event trial denominators & exact Poisson/Clopper-Pearson upper95 bounds for residual PSC, hazard-state proliferative survivor, Step-1 10 nM AP1903 survivor, and 6 proportion/percentage gates (AUDIT-REF, AUDIT-REF, AUDIT-REF, AUDIT-REF; DEC-050/051/071):
+    # Rare-event trial denominators & exact Poisson/Clopper-Pearson upper95 bounds for residual PSC, hazard-state proliferative survivor, Step-1 10 nM AP1903 survivor, and proportion/percentage gates (AUDIT-REF, DEC-050/051/071; IIP-0024; DEC-103):
     def _prop_or_pct_u95(mean_key: str, n_key: str, is_pct: bool = True) -> float:
+        nonlocal non_integer_scored_cell_or_trial_denominator
         w_u95 = _upper95(mean_key)
         if mean_key in validated_stage0 and n_key in validated_stage0 and validated_stage0[n_key] > 0.0:
             n_c = validated_stage0[n_key]
+            if abs(n_c - round(n_c)) > 1e-9 or round(n_c) <= 0:
+                non_integer_scored_cell_or_trial_denominator = True
+                return 100.0 if is_pct else 1.0
+            n_int = int(round(n_c))
             scale = 100.0 if is_pct else 1.0
-            k_ev = (validated_stage0[mean_key] / scale) * n_c
-            cp_rate = (
-                (1.0 - (0.05 ** (1.0 / n_c)))
-                if round(k_ev) <= 0
-                else min(1.0, _poisson_exact_upper95_rate(k_ev, n_c))
-            )
+            k_ev = (validated_stage0[mean_key] / scale) * float(n_int)
+            if abs(k_ev - round(k_ev)) > 1e-6 or round(k_ev) < 0 or round(k_ev) > n_int:
+                non_integer_scored_cell_or_trial_denominator = True
+                return 100.0 if is_pct else 1.0
+            k_int = int(round(k_ev))
+            cp_rate = clopper_pearson_upper95_independent(k_int, n_int)
             return max(w_u95, cp_rate * scale)
         return w_u95
 
+    # Clonal mosaicism and Day-28 Gate 0V zero-event counts NEVER accept an explicit SE without an integer cells_scored denominator (IIP-0024; DEC-103):
+    strict_scored_cell_zero_keys = frozenset({
+        'obs_20q11_bcl2l1_single_cell_mosaic_fraction',
+        'obs_mcb_1q32_mdm4_single_cell_mosaic_fraction',
+        'obs_1q32_mdm4_single_cell_mosaic_fraction',
+        'obs_gate0v_day28_persistent_vp1_ie1_positive_cell_pct',
+    })
+    mosaic_explicit_se_missing_scored_cell_denominator = any(
+        mk in validated_stage0
+        and nk not in validated_stage0
+        and se_provenance_by_mean.get(mk) == 'EXPLICIT_SE_SUPPLIED'
+        for mk, nk in (
+            ('obs_20q11_bcl2l1_single_cell_mosaic_fraction', 'obs_20q11_bcl2l1_single_cell_mosaic_cells_scored'),
+            ('obs_mcb_1q32_mdm4_single_cell_mosaic_fraction', 'obs_mcb_1q32_mdm4_single_cell_mosaic_cells_scored'),
+            ('obs_1q32_mdm4_single_cell_mosaic_fraction', 'obs_1q32_mdm4_single_cell_mosaic_cells_scored'),
+        )
+    )
     zero_event_proportion_missing_denominator_or_explicit_se = any(
         mk in validated_stage0
         and validated_stage0[mk] == 0.0
         and nk not in validated_stage0
         and (
-            se_provenance_by_mean.get(mk) != 'EXPLICIT_SE_SUPPLIED'
+            mk in strict_scored_cell_zero_keys
+            or se_provenance_by_mean.get(mk) != 'EXPLICIT_SE_SUPPLIED'
             or _validated_se(mk) < 5e-4
         )
         for mk, nk in (
             ('obs_20q11_bcl2l1_single_cell_mosaic_fraction', 'obs_20q11_bcl2l1_single_cell_mosaic_cells_scored'),
+            ('obs_mcb_1q32_mdm4_single_cell_mosaic_fraction', 'obs_mcb_1q32_mdm4_single_cell_mosaic_cells_scored'),
+            ('obs_1q32_mdm4_single_cell_mosaic_fraction', 'obs_1q32_mdm4_single_cell_mosaic_cells_scored'),
             ('obs_17q_birc5_survivin_single_cell_mosaic_fraction', 'obs_17q_birc5_survivin_single_cell_mosaic_cells_scored'),
             ('obs_gate0v_day28_persistent_vp1_ie1_positive_cell_pct', 'obs_gate0v_day28_persistent_vp1_ie1_cells_scored'),
             ('obs_cd24_sox2_oct4_3d_escapee_pct', 'obs_cd24_sox2_oct4_3d_escapee_cells_scored'),
@@ -2648,12 +2959,61 @@ def evaluate_stage0_decision_tree(
         s9_causal_failed_categories.append('HAZARD_PROLIF_SURVIVOR')
     if ap1903_generic_pk_failed:
         s9_causal_failed_categories.append('PULSED_PK_KILL')
+    # Bank & Stage-7 lot 1q32.1 MDM4 diploid CN + >= 299-cell mosaicism and observed-zero vetoes on Day-28 Gate 0V & Day-90 Gate 0S dual shedding (IIP-0024; DEC-103):
+    mcb_mdm4_cnv_failed = bool(
+        'obs_mcb_1q32_mdm4_cnv_ratio' in validated_stage0
+        and (
+            validated_stage0['obs_mcb_1q32_mdm4_cnv_ratio'] < 1.85
+            or validated_stage0['obs_mcb_1q32_mdm4_cnv_ratio'] > 2.15
+            or _lower95('obs_mcb_1q32_mdm4_cnv_ratio') < 1.85
+            or _upper95('obs_mcb_1q32_mdm4_cnv_ratio') > 2.15
+        )
+    )
+    lot_mdm4_cnv_failed = bool(
+        'obs_1q32_mdm4_cnv_ratio' in validated_stage0
+        and (
+            validated_stage0['obs_1q32_mdm4_cnv_ratio'] < 1.85
+            or validated_stage0['obs_1q32_mdm4_cnv_ratio'] > 2.15
+            or _lower95('obs_1q32_mdm4_cnv_ratio') < 1.85
+            or _upper95('obs_1q32_mdm4_cnv_ratio') > 2.15
+        )
+    )
+    mcb_mdm4_mosaic_u95 = _prop_or_pct_u95(
+        'obs_mcb_1q32_mdm4_single_cell_mosaic_fraction',
+        'obs_mcb_1q32_mdm4_single_cell_mosaic_cells_scored',
+        is_pct=False,
+    )
+    lot_mdm4_mosaic_u95 = _prop_or_pct_u95(
+        'obs_1q32_mdm4_single_cell_mosaic_fraction',
+        'obs_1q32_mdm4_single_cell_mosaic_cells_scored',
+        is_pct=False,
+    )
+    mdm4_mosaic_failed = bool(
+        ('obs_mcb_1q32_mdm4_single_cell_mosaic_fraction' in validated_stage0 and (validated_stage0['obs_mcb_1q32_mdm4_single_cell_mosaic_fraction'] > 0.01 or mcb_mdm4_mosaic_u95 > 0.01))
+        or ('obs_1q32_mdm4_single_cell_mosaic_fraction' in validated_stage0 and (validated_stage0['obs_1q32_mdm4_single_cell_mosaic_fraction'] > 0.01 or lot_mdm4_mosaic_u95 > 0.01))
+    )
+    gate0v_day28_observed_positive_veto = bool(
+        'obs_gate0v_day28_persistent_vp1_ie1_positive_cell_pct' in validated_stage0
+        and validated_stage0['obs_gate0v_day28_persistent_vp1_ie1_positive_cell_pct'] > 0.0
+    )
+    gate0s_shedding_observed_positive_veto = bool(
+        ('obs_gate0s_shedding_ddpcr_events_k' in validated_stage0 and validated_stage0['obs_gate0s_shedding_ddpcr_events_k'] > 0.0)
+        or ('obs_gate0s_shedding_viable_events_k' in validated_stage0 and validated_stage0['obs_gate0s_shedding_viable_events_k'] > 0.0)
+    )
     if ap1903_mono_pk_failed:
         s9_causal_failed_categories.append('MONOTHERAPY_PULSED_PK_KILL')
     if ap1903_step1_sublethal_survivor_detected:
         s9_causal_failed_categories.append('STEP1_SUBLETHAL_SURVIVOR')
     if explant_retrieval_failed:
         s9_causal_failed_categories.append('EXPLANT_RECOVERY')
+    if mcb_mdm4_cnv_failed or lot_mdm4_cnv_failed:
+        s9_causal_failed_categories.append('CNV_1Q32_MDM4')
+    if mdm4_mosaic_failed:
+        s9_causal_failed_categories.append('SINGLE_CELL_MOSAIC_1Q32_MDM4')
+    if gate0v_day28_observed_positive_veto:
+        s9_causal_failed_categories.append('GATE0V_PERSISTENT_VIRAL_POSITIVE')
+    if gate0s_shedding_observed_positive_veto:
+        s9_causal_failed_categories.append('GATE0S_DUAL_SHEDDING_POSITIVE')
 
     current_batch_s9_endpoint_failed = bool(s9_causal_failed_categories)
     safety_kill_s9_triggered = bool(
@@ -4317,7 +4677,227 @@ def evaluate_stage0_decision_tree(
         or ('obs_day28_functional_beta_survival_fraction' in validated_stage0 and _lower95('obs_day28_functional_beta_survival_fraction') < 0.80)
     )
 
+    # Stage-0 atomic provenance, donor-bank kinship, Readout-2 kinetics, CD16+ ADCC, coupled catalase endotoxin, Gate 0S dual shedding, 3-metric IAPP, and Design Z route binding (IIP-0024; DEC-103):
+    _req_iip0024_full = observations.get('require_full_iip0024_atomic_provenance_and_bank_panel') is True
+    _iip0024_quant_or_flag_keys = (
+        'obs_mcb_donor_pairwise_ibd_pi_hat',
+        'obs_mcb_1q32_mdm4_cnv_ratio',
+        'obs_mcb_1q32_mdm4_single_cell_mosaic_fraction',
+        'obs_1q32_mdm4_cnv_ratio',
+        'obs_1q32_mdm4_single_cell_mosaic_fraction',
+        'obs_readout2_perifusion_gsis_si',
+        'obs_readout2_first_phase_peak_to_basal_ratio',
+        'obs_readout2_first_phase_time_to_peak_min',
+        'obs_readout2_stepdown_shutoff_t50_min',
+        'obs_exact_product_net_cd16_adcc_lysis_pct',
+        'obs_cd16_adcc_positive_control_lysis_pct',
+        'obs_p05_total_loaded_catalase_protein_mg',
+        'obs_gate0s_shedding_ddpcr_events_k',
+        'obs_gate0s_shedding_ddpcr_trials_n',
+        'obs_gate0s_shedding_viable_events_k',
+        'obs_gate0s_shedding_viable_trials_n',
+        'obs_stage0_independent_lot_replicates_n',
+        'obs_iapp_3metric_thioflavin_s_area_pct',
+        'obs_iapp_3metric_soluble_oligomer_fold',
+        'obs_iapp_3metric_insoluble_fibril_fold',
+    )
+    _iip0024_bool_or_meta_keys = (
+        'cd16_adcc_igg_depletion_paired_control_verified',
+        'iapp_age_matched_reference_above_loq_verified',
+        'mcb_imprinting_ic1_ic2_igdmr_conjunctive_cleared',
+        'stage7_lot_imprinting_ic1_ic2_igdmr_conjunctive_cleared',
+        'mcb_and_lot_xci_46xx_3axis_cleared_or_46xy',
+        'mcb_and_lot_mtdna_1000x_numt_filtered_cleared',
+        'physical_route_id',
+        'donor_seedline_id',
+        'device_assembly_id',
+    )
+    _is_design_z_product = bool(
+        product_def is not None
+        and str(product_def.get('product_variant_id', '')) == 'ISLET1_Z_X_MOL_140UM_ZERO_CAO2'
+    )
+    _iip0024_active = bool(
+        _req_iip0024_full
+        or _is_design_z_product
+        or any(_k in validated_stage0 for _k in _iip0024_quant_or_flag_keys)
+        or any(observations.get(_bk) is not None for _bk in _iip0024_bool_or_meta_keys)
+    )
+    iip0024_hold_status: str | None = None
+    _phys_route_in = observations.get('physical_route_id')
+    if isinstance(_phys_route_in, str):
+        _phys_route_in = _phys_route_in.strip()
+    if _phys_route_in is not None:
+        _is_z_route = _phys_route_in in ('Z_OMENTAL_140UM_ZERO_CAO2', 'DESIGN_Z_140UM_ZERO_CAO2_PLAIN_HYDROGEL', 'DESIGN_Z_140UM_ZERO_CAO2_EXPLORATORY_DIVIDER')
+        _is_cao2_route = _phys_route_in == 'SUPRAFASCIAL_350UM_CAO2_CATALASE_POUCH'
+        if not (_is_z_route or _is_cao2_route):
+            iip0024_hold_status = 'HOLD_UNREGISTERED_PHYSICAL_ROUTE_ID'
+        elif _is_design_z_product and not _is_z_route:
+            iip0024_hold_status = 'HOLD_BIDIRECTIONAL_PRODUCT_PHYSICAL_ROUTE_MISMATCH'
+        elif product_def is not None and not _is_design_z_product and product_def.get('family') in ('A', 'B') and _is_z_route:
+            iip0024_hold_status = 'HOLD_BIDIRECTIONAL_PRODUCT_PHYSICAL_ROUTE_MISMATCH'
+    if iip0024_hold_status is None and product_def is not None and not _is_design_z_product and (
+        _dz_arm_val is not None or any(_k.startswith('obs_design_z_') for _k in validated_stage0)
+    ):
+        iip0024_hold_status = 'HOLD_BIDIRECTIONAL_PRODUCT_PHYSICAL_ROUTE_MISMATCH'
+    if iip0024_hold_status is None and _is_design_z_product and (
+        observations.get('p05_catalase_uniprot_accession') is not None
+        or any(_k.startswith('obs_p05_') for _k in validated_stage0)
+    ):
+        iip0024_hold_status = 'HOLD_BIDIRECTIONAL_PRODUCT_PHYSICAL_ROUTE_MISMATCH'
+    if iip0024_hold_status is None and _is_design_z_product:
+        if iip0019_dz_status != 'CLEARED_DESIGN_Z_TWO_STAGE_EMPTY_LUMEN_AND_LOADED_CLOSED_STATE_GATE':
+            iip0024_hold_status = iip0019_transport_hold_status or 'HOLD_DESIGN_Z_WILDCARD_TWO_STAGE_QUALIFICATION_REQUIRED'
+    if iip0024_hold_status is None and stage0_replicates_below_6_hold:
+        iip0024_hold_status = 'HOLD_STAGE0_INDEPENDENT_LOT_REPLICATES_BELOW_6_STUDENT_T_MINIMUM'
+    if iip0024_hold_status is None and 'obs_mcb_donor_pairwise_ibd_pi_hat' in validated_stage0:
+        if validated_stage0['obs_mcb_donor_pairwise_ibd_pi_hat'] >= 0.05 or _upper95('obs_mcb_donor_pairwise_ibd_pi_hat') >= 0.05:
+            iip0024_hold_status = 'HOLD_MCB_DONOR_SEEDLINE_PAIRWISE_IBD_PI_HAT_GE_0P05'
+    if iip0024_hold_status is None and any(
+        _rk in validated_stage0
+        for _rk in (
+            'obs_readout2_perifusion_gsis_si',
+            'obs_readout2_first_phase_peak_to_basal_ratio',
+            'obs_readout2_first_phase_time_to_peak_min',
+            'obs_readout2_stepdown_shutoff_t50_min',
+        )
+    ):
+        if (
+            ('obs_readout2_perifusion_gsis_si' in validated_stage0 and _lower95('obs_readout2_perifusion_gsis_si') < 3.0)
+            or ('obs_readout2_first_phase_peak_to_basal_ratio' in validated_stage0 and _lower95('obs_readout2_first_phase_peak_to_basal_ratio') < 4.5)
+            or ('obs_readout2_first_phase_time_to_peak_min' in validated_stage0 and _upper95('obs_readout2_first_phase_time_to_peak_min') > 8.0)
+            or ('obs_readout2_stepdown_shutoff_t50_min' in validated_stage0 and _upper95('obs_readout2_stepdown_shutoff_t50_min') > 3.0)
+            or (
+                'obs_readout2_stepdown_shutoff_t50_min' in validated_stage0
+                and 'obs_gate0m_shutoff_t90_min' in validated_stage0
+                and validated_stage0['obs_readout2_stepdown_shutoff_t50_min'] > validated_stage0['obs_gate0m_shutoff_t90_min']
+            )
+        ):
+            iip0024_hold_status = 'HOLD_READOUT2_PERIFUSION_KINETICS_OR_SHUTOFF_MONOTONICITY_FAILED'
+    if iip0024_hold_status is None and (
+        'obs_exact_product_net_cd16_adcc_lysis_pct' in validated_stage0
+        or 'obs_cd16_adcc_positive_control_lysis_pct' in validated_stage0
+        or observations.get('cd16_adcc_igg_depletion_paired_control_verified') is not None
+    ):
+        if (
+            observations.get('cd16_adcc_igg_depletion_paired_control_verified') is not True
+            or 'obs_exact_product_net_cd16_adcc_lysis_pct' not in validated_stage0
+            or 'obs_cd16_adcc_positive_control_lysis_pct' not in validated_stage0
+            or _upper95('obs_exact_product_net_cd16_adcc_lysis_pct') > 5.0
+            or _lower95('obs_cd16_adcc_positive_control_lysis_pct') < 25.0
+        ):
+            iip0024_hold_status = 'HOLD_PAIRED_IGG_DEPLETED_CD16_ADCC_GATE_FAILED_OR_UNVERIFIED'
+    if iip0024_hold_status is None and 'obs_p05_total_loaded_catalase_protein_mg' in validated_stage0 and not _is_design_z_product:
+        _m_cat = validated_stage0['obs_p05_total_loaded_catalase_protein_mg']
+        if _m_cat <= 0.0:
+            iip0024_hold_status = 'HOLD_P05_TOTAL_LOADED_CATALASE_MASS_NONPOSITIVE'
+        elif 'obs_p05_catalase_endotoxin_eu_per_mg' in validated_stage0:
+            _coupled_eu_cap = min(0.10, 0.50 / _m_cat)
+            if _upper95('obs_p05_catalase_endotoxin_eu_per_mg') > _coupled_eu_cap:
+                iip0024_hold_status = 'HOLD_P05_MASS_COUPLED_CATALASE_ENDOTOXIN_CAP_EXCEEDED'
+    if iip0024_hold_status is None and any(
+        _sk in validated_stage0
+        for _sk in (
+            'obs_gate0s_shedding_ddpcr_events_k',
+            'obs_gate0s_shedding_ddpcr_trials_n',
+            'obs_gate0s_shedding_viable_events_k',
+            'obs_gate0s_shedding_viable_trials_n',
+        )
+    ):
+        if not all(
+            _sk in validated_stage0
+            for _sk in (
+                'obs_gate0s_shedding_ddpcr_events_k',
+                'obs_gate0s_shedding_ddpcr_trials_n',
+                'obs_gate0s_shedding_viable_events_k',
+                'obs_gate0s_shedding_viable_trials_n',
+            )
+        ):
+            iip0024_hold_status = 'HOLD_GATE0S_DUAL_SHEDDING_PANEL_INCOMPLETE'
+        else:
+            _n_dd = int(round(validated_stage0['obs_gate0s_shedding_ddpcr_trials_n']))
+            _n_vi = int(round(validated_stage0['obs_gate0s_shedding_viable_trials_n']))
+            if (
+                _n_dd < 2995731
+                or _n_vi < 2995731
+                or clopper_pearson_upper95_independent(0, _n_dd) >= 1e-6
+                or clopper_pearson_upper95_independent(0, _n_vi) >= 1e-6
+            ):
+                iip0024_hold_status = 'HOLD_GATE0S_DUAL_SHEDDING_TRIALS_BELOW_2995731_BINOMIAL_1E6_FLOOR'
+    if iip0024_hold_status is None and (
+        any(_ik in validated_stage0 for _ik in ('obs_iapp_3metric_thioflavin_s_area_pct', 'obs_iapp_3metric_soluble_oligomer_fold', 'obs_iapp_3metric_insoluble_fibril_fold'))
+        or observations.get('iapp_age_matched_reference_above_loq_verified') is not None
+    ):
+        if (
+            observations.get('iapp_age_matched_reference_above_loq_verified') is not True
+            or 'obs_iapp_3metric_thioflavin_s_area_pct' not in validated_stage0
+            or 'obs_iapp_3metric_soluble_oligomer_fold' not in validated_stage0
+            or 'obs_iapp_3metric_insoluble_fibril_fold' not in validated_stage0
+            or _upper95('obs_iapp_3metric_thioflavin_s_area_pct') > 1.0
+            or _upper95('obs_iapp_3metric_soluble_oligomer_fold') > 1.5
+            or _upper95('obs_iapp_3metric_insoluble_fibril_fold') > 1.5
+        ):
+            iip0024_hold_status = 'HOLD_IAPP_3METRIC_PANEL_OR_REFERENCE_LOQ_FAILED'
+    if iip0024_hold_status is None:
+        for _epi_flag_k, _epi_hold_code in (
+            ('mcb_imprinting_ic1_ic2_igdmr_conjunctive_cleared', 'HOLD_MCB_CONJUNCTIVE_IMPRINTING_DMR_NOT_CLEARED'),
+            ('stage7_lot_imprinting_ic1_ic2_igdmr_conjunctive_cleared', 'HOLD_STAGE7_LOT_CONJUNCTIVE_IMPRINTING_DMR_NOT_CLEARED'),
+            ('mcb_and_lot_xci_46xx_3axis_cleared_or_46xy', 'HOLD_46XX_XCI_3AXIS_NOT_CLEARED'),
+            ('mcb_and_lot_mtdna_1000x_numt_filtered_cleared', 'HOLD_SCOPED_1000X_NUMT_MTDNA_NOT_CLEARED'),
+        ):
+            if observations.get(_epi_flag_k) is False or (_req_iip0024_full and observations.get(_epi_flag_k) is not True):
+                iip0024_hold_status = _epi_hold_code
+                break
+    if iip0024_hold_status is None and _req_iip0024_full:
+        _req_24_keys = (
+            'obs_mcb_donor_pairwise_ibd_pi_hat',
+            'obs_mcb_1q32_mdm4_cnv_ratio',
+            'obs_mcb_1q32_mdm4_single_cell_mosaic_fraction',
+            'obs_mcb_1q32_mdm4_single_cell_mosaic_cells_scored',
+            'obs_1q32_mdm4_cnv_ratio',
+            'obs_1q32_mdm4_single_cell_mosaic_fraction',
+            'obs_1q32_mdm4_single_cell_mosaic_cells_scored',
+            'obs_readout2_perifusion_gsis_si',
+            'obs_readout2_first_phase_peak_to_basal_ratio',
+            'obs_readout2_first_phase_time_to_peak_min',
+            'obs_readout2_stepdown_shutoff_t50_min',
+            'obs_exact_product_net_cd16_adcc_lysis_pct',
+            'obs_cd16_adcc_positive_control_lysis_pct',
+            'obs_gate0s_shedding_ddpcr_events_k',
+            'obs_gate0s_shedding_ddpcr_trials_n',
+            'obs_gate0s_shedding_viable_events_k',
+            'obs_gate0s_shedding_viable_trials_n',
+            'obs_iapp_3metric_thioflavin_s_area_pct',
+            'obs_iapp_3metric_soluble_oligomer_fold',
+            'obs_iapp_3metric_insoluble_fibril_fold',
+        )
+        if not all(_k in validated_stage0 for _k in _req_24_keys) or (not _is_design_z_product and 'obs_p05_total_loaded_catalase_protein_mg' not in validated_stage0):
+            iip0024_hold_status = 'HOLD_IIP0024_MANDATORY_ATOMIC_PROVENANCE_OR_BANK_PANEL_INCOMPLETE'
+    iip0024_eval_summary: dict[str, object] | None = None
+    if _iip0024_active:
+        iip0024_eval_summary = {
+            'gate_pass': iip0024_hold_status is None,
+            'hold_status': iip0024_hold_status,
+            'status': iip0024_hold_status if iip0024_hold_status is not None else 'CLEARED_IIP0024_STAGE0_ATOMIC_PROVENANCE_AND_BANK_GUARDRAILS',
+            'student_t_critical_multiplier_used': round(crit_95_mult, 8),
+        }
+
     resolved_arch = dict(tree_doc.get('default_architecture_assignments', {}))
+    if product_def is not None:
+        _pvid_canon = str(product_def['product_variant_id'])
+        resolved_arch['product_variant_id'] = _pvid_canon
+        resolved_arch['product_execution_supported'] = bool(product_def.get('execution_supported', False))
+        if _pvid_canon.startswith('ISLET1_B_SCT_'):
+            resolved_arch['locus1_construct'] = f'{_pvid_canon}_B2M_ARM1B_PLUS_CIITA_HLAC_SCT'
+            resolved_arch['locus2_construct'] = f'{_pvid_canon}_CIITA_HLAC_SCT'
+        elif _pvid_canon in ('ISLET1_B2_5LOCUS_BASE', 'ISLET1_B2_5LOCUS_TYK2_PE', 'ISLET1_B1_6LOCUS_TYK2_KO_INS'):
+            resolved_arch['locus1_construct'] = f'{_pvid_canon}_HLAA_KO_HLAB_KO_ENDOGENOUS_HLAC'
+        elif _pvid_canon == 'ISLET1_Z_X_MOL_140UM_ZERO_CAO2':
+            resolved_arch['locus1_construct'] = 'ISLET1_A4_X_MOL_RNLS_WT_ON_Z_140UM_ZERO_CAO2'
+    if iip0024_eval_summary is not None:
+        resolved_arch['stage0_atomic_provenance_and_bank_guardrails_iip_0024'] = iip0024_eval_summary['status']
+        resolved_arch['stage0_atomic_provenance_and_bank_evaluation_iip_0024'] = iip0024_eval_summary
+    else:
+        resolved_arch['stage0_atomic_provenance_and_bank_guardrails_iip_0024'] = 'NOT_TESTED'
     if knockin_splice_challenger_arm != 'PARENTAL_REFERENCE' or _chall_any_input:
         resolved_arch['knockin_splice_challenger_arm'] = knockin_splice_challenger_arm
         if knockin_locus4_orientation is not None:
@@ -4580,6 +5160,10 @@ def evaluate_stage0_decision_tree(
         resolved_arch['lot_maturation_status'] = 'HOLD_HAZARD_STATE_PROLIF_EFFECTIVE_TRIALS_BELOW_299573228_MINIMUM'
     elif ap1903_step1_trials_underpowered:
         resolved_arch['lot_maturation_status'] = 'HOLD_AP1903_STEP1_EFFECTIVE_TRIALS_BELOW_29957323_MINIMUM'
+    elif non_integer_scored_cell_or_trial_denominator:
+        resolved_arch['lot_maturation_status'] = 'HOLD_NON_INTEGER_SCORED_CELL_OR_TRIAL_DENOMINATOR'
+    elif mosaic_explicit_se_missing_scored_cell_denominator:
+        resolved_arch['lot_maturation_status'] = 'HOLD_SINGLE_CELL_MOSAIC_REQUIRES_INTEGER_CELLS_SCORED_DENOMINATOR'
     elif zero_event_proportion_missing_denominator_or_explicit_se:
         resolved_arch['lot_maturation_status'] = 'HOLD_ZERO_EVENT_PROPORTION_GATE_REQUIRES_EXPLICIT_SE_OR_SCORED_CELL_DENOMINATOR'
     elif ap1903_insulin_dump_failed and observations.get('s9_staged_cassette_excision_and_d10w_clamp_qualified') is not True:
@@ -4624,6 +5208,8 @@ def evaluate_stage0_decision_tree(
         resolved_arch['lot_maturation_status'] = iip0022_hold_status
     elif iip0023_hold_status is not None:
         resolved_arch['lot_maturation_status'] = iip0023_hold_status
+    elif iip0024_hold_status is not None:
+        resolved_arch['lot_maturation_status'] = iip0024_hold_status
     elif challenger_hold_status is not None:
         resolved_arch['lot_maturation_status'] = challenger_hold_status
     elif avascular_outer_band_dropout and not omental_revascularization_cleared:
@@ -4695,7 +5281,7 @@ def evaluate_stage0_decision_tree(
         and (
             (
                 str(product_def.get('family', 'A')).upper().startswith('B')
-                and str(product_def.get('product_variant_id', '')) != 'ISLET1_B2_5LOCUS_TYK2_PE'
+                and str(product_def.get('product_variant_id', '')) not in ('ISLET1_B2_5LOCUS_TYK2_PE', 'ISLET1_B2_5LOCUS_BASE')
             )
             or 'SCT' in str(product_def.get('product_variant_id', '')).upper()
         )
@@ -5091,16 +5677,20 @@ def evaluate_stage0_decision_tree(
         and not assembled_cluster_lineage_or_identity_failed
         and not zero_event_proportion_missing_denominator_or_explicit_se
     )
-    # Mandatory original exact-product primary biological & pouch endpoints required for READY_FOR_ENCAPSULATION_COMPLETE_STAGE0_EVIDENCE (R7S3-F01; DEC-058):
+    # Mandatory original exact-product primary biological & pouch endpoints required for READY_FOR_ENCAPSULATION_COMPLETE_STAGE0_EVIDENCE (R7S3-F01; DEC-058; Design Z Zero-CaO2 H2O2 exemption IIP-0024; DEC-103):
     # Prevents composite COMP-R4 combined-stress secondary coupons or omitted/UNAVAILABLE primary pouch oxygen/peroxide/pH/HLA-II/yield/CD47/SERPINB9/iCasp9 observations from awarding COMPLETE Stage-0 readiness.
+    _orig_primary_keys_for_product = tuple(
+        mk for mk in STAGE0_ORIGINAL_PRIMARY_MANDATORY_MEAN_KEYS
+        if not (_is_design_z_product and mk in ('obs_pouch_min_po2_mmhg', 'obs_pouch_max_h2o2_uM', 'obs_pouch_max_ph'))
+    )
     missing_original_primary_endpoints = [
-        mk for mk in STAGE0_ORIGINAL_PRIMARY_MANDATORY_MEAN_KEYS if mk not in validated_stage0
+        mk for mk in _orig_primary_keys_for_product if mk not in validated_stage0
     ]
     has_explicit_original_primary_obs = bool(
         not missing_original_primary_endpoints
         and all(
             se_provenance_by_mean.get(mk) == 'EXPLICIT_SE_SUPPLIED'
-            for mk in STAGE0_ORIGINAL_PRIMARY_MANDATORY_MEAN_KEYS
+            for mk in _orig_primary_keys_for_product
         )
         and validated_stage0['obs_stage7_yield_ratio'] >= 0.70
         and _lower95('obs_stage7_yield_ratio') >= 0.70
@@ -5110,12 +5700,9 @@ def evaluate_stage0_decision_tree(
         and _lower95('obs_serpinb9_log10_kass') >= 6.0
         and validated_stage0['obs_icasp9_log10_kill'] >= 4.0
         and _lower95('obs_icasp9_log10_kill') >= 4.0
-        and validated_stage0['obs_pouch_min_po2_mmhg'] >= 15.0
-        and _lower95('obs_pouch_min_po2_mmhg') >= 15.0
-        and validated_stage0['obs_pouch_max_h2o2_uM'] <= 5.0
-        and _upper95('obs_pouch_max_h2o2_uM') <= 5.0
-        and validated_stage0['obs_pouch_max_ph'] <= 7.45
-        and _upper95('obs_pouch_max_ph') <= 7.45
+        and (_is_design_z_product or (validated_stage0['obs_pouch_min_po2_mmhg'] >= 15.0 and _lower95('obs_pouch_min_po2_mmhg') >= 15.0))
+        and (_is_design_z_product or (validated_stage0['obs_pouch_max_h2o2_uM'] <= 5.0 and _upper95('obs_pouch_max_h2o2_uM') <= 5.0))
+        and (_is_design_z_product or (validated_stage0['obs_pouch_max_ph'] <= 7.45 and _upper95('obs_pouch_max_ph') <= 7.45))
         and validated_stage0['obs_ifng_hla_dr_dq_negative_pct'] >= 99.0
         and _lower95('obs_ifng_hla_dr_dq_negative_pct') >= 99.0
         and not primary_biological_or_pouch_gate_failed
@@ -5160,6 +5747,9 @@ def evaluate_stage0_decision_tree(
         and (not _req_iip0020_full or (iip0020_hold_status is None and (_dz_arm_val is not None or iip0020_p05_species_status == 'CLEARED_P05_HUMAN_P04040_SPECIES_ENDOTOXIN_AND_SHED_MASS_GATE') and iip0020_cuff_status == 'CLEARED_CUFF_HUMORAL_HYDROLYSIS_AND_HEPATOCYTE_SAFETY_GATE'))
         and (not _req_iip0021_full or (iip0021_hold_status is None and iip0021_rest_status is not None and iip0021_cond_status == 'CLEARED_CONDITIONING_4ARM_PELLET_LOQ_NQO1_AND_LINEAGE_GSIS_GATE'))
         and (not _req_iip0022_full or iip0022_hold_status is None)
+        and (not _req_iip0024_full or iip0024_hold_status is None)
+        and not non_integer_scored_cell_or_trial_denominator
+        and not mosaic_explicit_se_missing_scored_cell_denominator
     )
     any_fallback_switch_triggered = bool(
         s1_promoted
@@ -5181,6 +5771,8 @@ def evaluate_stage0_decision_tree(
         str(resolved_arch.get(k, '')).startswith('HOLD_')
         for k in ('locus1_construct', 'locus2_construct', 'locus3_construct', 'locus4_construct', 'track2_kir_subbank_construct')
     )
+    _prod_non_executable = bool(product_def is not None and product_def.get('execution_supported') is False)
+    _pvid_for_tier = str(product_def.get('product_variant_id', '')) if product_def is not None else ''
     if safety_kill_s9_triggered:
         lot_release_readiness_tier = 'HARD_SAFETY_STOP_REJECTED'
     elif str(resolved_arch.get('lot_maturation_status', '')).startswith('NO_GO_'):
@@ -5189,6 +5781,21 @@ def evaluate_stage0_decision_tree(
         lot_release_readiness_tier = 'HOLD_FAILED_OR_INCOMPLETE_GATE'
     elif is_comp_r4_product and combined_stress_coupon_status == 'RETAIN_EMBODIMENT_A_STAR_4143BP':
         lot_release_readiness_tier = 'CANDIDATE_NOT_INDICATED_RETAIN_EMBODIMENT_A_STAR_4143BP'
+    elif _prod_non_executable and _pvid_for_tier == 'ISLET1_B2_5LOCUS_BASE':
+        lot_release_readiness_tier = 'STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC'
+        resolved_arch['lot_maturation_status'] = 'STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC'
+    elif _prod_non_executable and _pvid_for_tier == 'ISLET1_Z_X_MOL_140UM_ZERO_CAO2':
+        if any_fallback_switch_triggered:
+            lot_release_readiness_tier = 'CANDIDATE_FALLBACK_PROMOTED_PENDING_REPLACEMENT_QUALIFICATION'
+        elif full_5endpoint_s9_panel_complete and has_explicit_maturity_obs and has_explicit_immune_and_ocr_core_obs and has_explicit_extended_stage0_obs:
+            lot_release_readiness_tier = 'WILDCARD_COUPON_QUALIFIED_NON_EXECUTABLE'
+            resolved_arch['lot_maturation_status'] = 'WILDCARD_COUPON_QUALIFIED_NON_EXECUTABLE'
+        else:
+            lot_release_readiness_tier = 'HOLD_FAILED_OR_INCOMPLETE_GATE'
+            resolved_arch['lot_maturation_status'] = 'HOLD_INCOMPLETE_WILDCARD_STAGE0_EVIDENCE'
+    elif _prod_non_executable:
+        lot_release_readiness_tier = 'RESEARCH_COMPARATOR_UNSUPPORTED_VARIANT_HOLD'
+        resolved_arch['lot_maturation_status'] = 'RESEARCH_COMPARATOR_UNSUPPORTED_VARIANT_HOLD'
     elif any_fallback_switch_triggered:
         lot_release_readiness_tier = 'CANDIDATE_FALLBACK_PROMOTED_PENDING_REPLACEMENT_QUALIFICATION'
     elif full_5endpoint_s9_panel_complete and has_explicit_maturity_obs and has_explicit_immune_and_ocr_core_obs and has_explicit_extended_stage0_obs:
@@ -5340,4 +5947,1123 @@ def evaluate_stage0_decision_tree(
         'switch_decisions': decisions,
         'canonical_json_switch_id_map': canonical_json_switch_id_map,
         'pivotal_combined_stress_coupon_gate': combined_stress_spec,
+    }
+
+
+# ============================================================================
+# Stage-0 Named Atomic Provenance Scopes, ENDPOINT_REGISTRY_SPEC, Exact
+# Student-t / 6+6 Welch TOST, & Conjunctive DMR / XCI / mtDNA / MDM4 Validators
+# (IIP-0024; DEC-103)
+# ============================================================================
+import dataclasses
+import hashlib
+from types import MappingProxyType
+from typing import Any
+
+
+def _is_strict_int_iip0024(val: Any) -> bool:
+    return isinstance(val, int) and not isinstance(val, bool)
+
+
+def _is_strict_finite_number_iip0024(val: Any) -> bool:
+    if isinstance(val, bool) or not isinstance(val, (int, float)):
+        return False
+    return math.isfinite(float(val))
+
+
+def _deep_freeze_iip0024(obj: Any) -> Any:
+    if isinstance(obj, MappingProxyType):
+        return obj
+    if isinstance(obj, dict):
+        return MappingProxyType({str(k): _deep_freeze_iip0024(v) for k, v in sorted(obj.items(), key=lambda kv: str(kv[0]))})
+    if isinstance(obj, (list, tuple)):
+        return tuple(_deep_freeze_iip0024(x) for x in obj)
+    if isinstance(obj, (set, frozenset)):
+        return frozenset(_deep_freeze_iip0024(x) for x in obj)
+    if isinstance(obj, (str, int, float, bool)) or obj is None:
+        return obj
+    raise TypeError(f'Unsupported mutable type inside AtomicObservation: {type(obj).__name__} (IIP-0024; DEC-103)')
+
+
+def _deep_to_jsonable_iip0024(obj: Any) -> Any:
+    if isinstance(obj, MappingProxyType) or isinstance(obj, dict):
+        return {str(k): _deep_to_jsonable_iip0024(obj[k]) for k in sorted(obj.keys(), key=str)}
+    if isinstance(obj, (list, tuple)):
+        return [_deep_to_jsonable_iip0024(x) for x in obj]
+    if isinstance(obj, frozenset):
+        return sorted(_deep_to_jsonable_iip0024(x) for x in obj)
+    return obj
+
+
+class MCBScopeKey:
+    """4-key Master Cell Bank provenance scope tuple (IIP-0024; DEC-103)."""
+    __slots__ = ('product_variant_id', 'construct_sha256', 'donor_seedline_id', 'mcb_id')
+
+    def __init__(self, product_variant_id: str, construct_sha256: str, donor_seedline_id: str, mcb_id: str) -> None:
+        for fname, val in (
+            ('product_variant_id', product_variant_id),
+            ('construct_sha256', construct_sha256),
+            ('donor_seedline_id', donor_seedline_id),
+            ('mcb_id', mcb_id),
+        ):
+            if not isinstance(val, str) or not val.strip() or val != val.strip():
+                raise ValueError(f'MCBScopeKey.{fname} must be a canonical non-whitespace-padded string (IIP-0024; DEC-103)')
+            object.__setattr__(self, fname, val)
+
+    def __setattr__(self, name: str, value: Any) -> None:
+        raise TypeError('MCBScopeKey is immutable (IIP-0024; DEC-103)')
+
+    def __delattr__(self, name: str) -> None:
+        raise TypeError('MCBScopeKey is immutable (IIP-0024; DEC-103)')
+
+    def as_tuple(self) -> tuple[str, str, str, str]:
+        return (self.product_variant_id, self.construct_sha256, self.donor_seedline_id, self.mcb_id)
+
+    def __eq__(self, other: object) -> bool:
+        return isinstance(other, MCBScopeKey) and self.as_tuple() == other.as_tuple()
+
+    def __hash__(self) -> int:
+        return hash(('MCBScopeKey', self.as_tuple()))
+
+    def __repr__(self) -> str:
+        return f'MCBScopeKey{self.as_tuple()!r}'
+
+
+class LotScopeKey:
+    """5-key Stage-7 differentiation lot provenance scope tuple (IIP-0024; DEC-103)."""
+    __slots__ = ('product_variant_id', 'construct_sha256', 'donor_seedline_id', 'mcb_id', 'lot_id')
+
+    def __init__(
+        self,
+        product_variant_id: str,
+        construct_sha256: str,
+        donor_seedline_id: str,
+        mcb_id: str,
+        lot_id: str,
+    ) -> None:
+        for fname, val in (
+            ('product_variant_id', product_variant_id),
+            ('construct_sha256', construct_sha256),
+            ('donor_seedline_id', donor_seedline_id),
+            ('mcb_id', mcb_id),
+            ('lot_id', lot_id),
+        ):
+            if not isinstance(val, str) or not val.strip() or val != val.strip():
+                raise ValueError(f'LotScopeKey.{fname} must be a canonical non-whitespace-padded string (IIP-0024; DEC-103)')
+            object.__setattr__(self, fname, val)
+
+    def __setattr__(self, name: str, value: Any) -> None:
+        raise TypeError('LotScopeKey is immutable (IIP-0024; DEC-103)')
+
+    def __delattr__(self, name: str) -> None:
+        raise TypeError('LotScopeKey is immutable (IIP-0024; DEC-103)')
+
+    def as_tuple(self) -> tuple[str, str, str, str, str]:
+        return (self.product_variant_id, self.construct_sha256, self.donor_seedline_id, self.mcb_id, self.lot_id)
+
+    def to_mcb_key(self) -> MCBScopeKey:
+        return MCBScopeKey(self.product_variant_id, self.construct_sha256, self.donor_seedline_id, self.mcb_id)
+
+    def __eq__(self, other: object) -> bool:
+        return isinstance(other, LotScopeKey) and self.as_tuple() == other.as_tuple()
+
+    def __hash__(self) -> int:
+        return hash(('LotScopeKey', self.as_tuple()))
+
+    def __repr__(self) -> str:
+        return f'LotScopeKey{self.as_tuple()!r}'
+
+
+class AssembledDeviceLotScopeKey:
+    """7-key assembled device x lot x physical route provenance scope tuple (IIP-0024; DEC-103)."""
+    __slots__ = (
+        'product_variant_id',
+        'construct_sha256',
+        'donor_seedline_id',
+        'mcb_id',
+        'lot_id',
+        'device_assembly_id',
+        'physical_route_id',
+    )
+
+    def __init__(
+        self,
+        product_variant_id: str,
+        construct_sha256: str,
+        donor_seedline_id: str,
+        mcb_id: str,
+        lot_id: str,
+        device_assembly_id: str,
+        physical_route_id: str,
+    ) -> None:
+        for fname, val in (
+            ('product_variant_id', product_variant_id),
+            ('construct_sha256', construct_sha256),
+            ('donor_seedline_id', donor_seedline_id),
+            ('mcb_id', mcb_id),
+            ('lot_id', lot_id),
+            ('device_assembly_id', device_assembly_id),
+            ('physical_route_id', physical_route_id),
+        ):
+            if not isinstance(val, str) or not val.strip() or val != val.strip():
+                raise ValueError(f'AssembledDeviceLotScopeKey.{fname} must be a canonical non-whitespace-padded string (IIP-0024; DEC-103)')
+            object.__setattr__(self, fname, val)
+
+    def __setattr__(self, name: str, value: Any) -> None:
+        raise TypeError('AssembledDeviceLotScopeKey is immutable (IIP-0024; DEC-103)')
+
+    def __delattr__(self, name: str) -> None:
+        raise TypeError('AssembledDeviceLotScopeKey is immutable (IIP-0024; DEC-103)')
+
+    def as_tuple(self) -> tuple[str, str, str, str, str, str, str]:
+        return (
+            self.product_variant_id,
+            self.construct_sha256,
+            self.donor_seedline_id,
+            self.mcb_id,
+            self.lot_id,
+            self.device_assembly_id,
+            self.physical_route_id,
+        )
+
+    def to_lot_key(self) -> LotScopeKey:
+        return LotScopeKey(
+            self.product_variant_id,
+            self.construct_sha256,
+            self.donor_seedline_id,
+            self.mcb_id,
+            self.lot_id,
+        )
+
+    def to_mcb_key(self) -> MCBScopeKey:
+        return MCBScopeKey(self.product_variant_id, self.construct_sha256, self.donor_seedline_id, self.mcb_id)
+
+    def __eq__(self, other: object) -> bool:
+        return isinstance(other, AssembledDeviceLotScopeKey) and self.as_tuple() == other.as_tuple()
+
+    def __hash__(self) -> int:
+        return hash(('AssembledDeviceLotScopeKey', self.as_tuple()))
+
+    def __repr__(self) -> str:
+        return f'AssembledDeviceLotScopeKey{self.as_tuple()!r}'
+
+
+ENDPOINT_REGISTRY_SPEC: MappingProxyType = _deep_freeze_iip0024({
+    'registry_version': 'IIP-0024-v1.0',
+    'decision_id': 'DEC-103',
+    'mcb_mandatory_endpoint_ids': (
+        'mcb_donor_pairwise_ibd_pi_hat',
+        'mcb_wgs_30x_structural_haplotype_verified',
+        'mcb_karyotype_gband_ogm_verified',
+        'mcb_imprinting_ic1_record',
+        'mcb_imprinting_ic2_record',
+        'mcb_imprinting_ig_dmr_record',
+        'mcb_xci_46xx_3axis_record',
+        'mcb_mtdna_1000x_scoped_record',
+        'mcb_1q32_mdm4_diploid_cn',
+        'mcb_1q32_mdm4_single_cell_mosaic',
+        'mcb_20q11_bcl2l1_diploid_cn',
+        'mcb_20q11_bcl2l1_single_cell_mosaic',
+        'mcb_tier6b_pure_hpsc_clonogenic_escape',
+    ),
+    'device_sister_terminal_endpoint_ids': (
+        'obs_explant_en_bloc_recovery_fraction',
+        'gate0s_shedding_ddpcr_assay',
+        'gate0s_shedding_viable_outgrowth_assay',
+        'obs_iapp_d84_immunocapture_oligomer_elisa_fold',
+        'obs_iapp_d84_colocalized_fibril_area_pct',
+    ),
+    'count_endpoint_caps_and_zero_vetoes': {
+        'mcb_1q32_mdm4_single_cell_mosaic': {'cap': 0.01, 'require_observed_zero': False},
+        'mcb_20q11_bcl2l1_single_cell_mosaic': {'cap': 0.01, 'require_observed_zero': False},
+        'mcb_tier6b_pure_hpsc_clonogenic_escape': {'cap': 1e-8, 'require_observed_zero': True, 'use_poisson_protocol_floor': True},
+        'obs_20q11_bcl2l1_single_cell_mosaic': {'cap': 0.01, 'require_observed_zero': False},
+        'obs_1q32_mdm4_single_cell_mosaic': {'cap': 0.01, 'require_observed_zero': False},
+        'obs_assembled_cluster_ki67_progenitor': {'cap': 0.005, 'require_observed_zero': False},
+        'obs_ductal_sox9_krt19_double_pos': {'cap': 0.001, 'require_observed_zero': False},
+        'obs_assembled_cluster_slc18a1_enterochromaffin': {'cap': 0.01, 'require_observed_zero': False},
+        'obs_senescent_p16_sasp_positive': {'cap': 0.01, 'require_observed_zero': False},
+        'obs_gate0v_day28_persistent_vp1_ie1': {'cap': 0.0005, 'require_observed_zero': True},
+        'lot_tier6b_sorted_prolif_clonogenic_escape': {'cap': 3.0e-7, 'require_observed_zero': True},
+        'obs_day28_sox2_oct4_nanog_residual_psc': {'cap': 0.0005, 'require_observed_zero': False},
+        'obs_day28_mki67_top2a_prolif_escapee': {'cap': 0.0005, 'require_observed_zero': False},
+        'gate0s_shedding_ddpcr_assay': {'cap': 1e-6, 'require_observed_zero': True},
+        'gate0s_shedding_viable_outgrowth_assay': {'cap': 1e-6, 'require_observed_zero': True},
+    },
+    'physical_routes': {
+        'SUPRAFASCIAL_350UM_CAO2_CATALASE_POUCH': {
+            'requires_cao2_catalase_p05': True,
+            'requires_design_z_two_stage': False,
+            'requires_cuff_panel': True,
+            'canonical_design_z_divider_arm': None,
+        },
+        'Z_OMENTAL_140UM_ZERO_CAO2': {
+            'requires_cao2_catalase_p05': False,
+            'requires_design_z_two_stage': True,
+            'requires_cuff_panel': True,
+            'canonical_design_z_divider_arm': 'PLAIN_HYDROGEL_140UM',
+        },
+        'DESIGN_Z_140UM_ZERO_CAO2_PLAIN_HYDROGEL': {
+            'requires_cao2_catalase_p05': False,
+            'requires_design_z_two_stage': True,
+            'requires_cuff_panel': True,
+            'canonical_design_z_divider_arm': 'PLAIN_HYDROGEL_140UM',
+        },
+        'DESIGN_Z_140UM_ZERO_CAO2_EXPLORATORY_DIVIDER': {
+            'requires_cao2_catalase_p05': False,
+            'requires_design_z_two_stage': True,
+            'requires_cuff_panel': True,
+            'canonical_design_z_divider_arm': 'EXPLORATORY_18PCT_DIVIDER_140UM',
+        },
+    },
+})
+
+REGISTERED_VALIDATED_CLUSTER_ESTIMATORS_IIP0024: frozenset[str] = frozenset({
+    'BETA_BINOMIAL_EXACT_PROFILE_L95_V1',
+    'DESIGN_BASED_HYPERGEOMETRIC_CLUSTER_BOUND_V1',
+})
+
+
+class AtomicObservation:
+    """
+    Deep-immutable Stage-0 evidence atom (MappingProxyType-frozen) derived strictly from
+    ENDPOINT_REGISTRY_SPEC (forbidding caller-supplied canonical_projection or cap overrides;
+    IIP-0024; DEC-103).
+    """
+    __slots__ = (
+        'endpoint_id',
+        'scope_type',
+        'scope_key',
+        'kind',
+        'value_or_k',
+        'se_or_n',
+        'sample_n',
+        'unit',
+        'controls',
+        'assay_version',
+        'campaign_id',
+        'timepoint',
+        'sample_unit_id',
+        'atom_sha256',
+    )
+
+    def __init__(
+        self,
+        *,
+        endpoint_id: str,
+        scope_type: str,
+        scope_key: MCBScopeKey | LotScopeKey | AssembledDeviceLotScopeKey,
+        kind: str,
+        value_or_k: Any,
+        se_or_n: Any = None,
+        sample_n: int | None = None,
+        unit: str = 'canonical_unit',
+        controls: dict[str, Any] | MappingProxyType | None = None,
+        assay_version: str = 'STAGE0_IIP0024_V1',
+        campaign_id: str = 'CAMP-DEFAULT-01',
+        timepoint: str = 'STAGE0',
+        sample_unit_id: str = 'SAMPLE-01',
+        **forbidden_kwargs: Any,
+    ) -> None:
+        if forbidden_kwargs:
+            raise ValueError(
+                f'Caller-supplied projection or threshold overrides are prohibited on AtomicObservation: '
+                f'{sorted(forbidden_kwargs.keys())} (IIP-0024; DEC-103)'
+            )
+        if not isinstance(endpoint_id, str) or not endpoint_id.strip():
+            raise ValueError('endpoint_id must be a nonempty string (IIP-0024; DEC-103)')
+        if scope_type == 'MCB_SCOPE' and not isinstance(scope_key, MCBScopeKey):
+            raise ValueError('MCB_SCOPE requires an MCBScopeKey instance (IIP-0024; DEC-103)')
+        if scope_type == 'LOT_SCOPE' and not isinstance(scope_key, LotScopeKey):
+            raise ValueError('LOT_SCOPE requires a LotScopeKey instance (IIP-0024; DEC-103)')
+        if scope_type == 'ASSEMBLED_DEVICE_LOT_SCOPE' and not isinstance(scope_key, AssembledDeviceLotScopeKey):
+            raise ValueError('ASSEMBLED_DEVICE_LOT_SCOPE requires an AssembledDeviceLotScopeKey instance (IIP-0024; DEC-103)')
+        if scope_type not in ('MCB_SCOPE', 'LOT_SCOPE', 'ASSEMBLED_DEVICE_LOT_SCOPE'):
+            raise ValueError(f'Unknown scope_type {scope_type!r} (IIP-0024; DEC-103)')
+        if kind not in ('CONTINUOUS_STUDENT_T', 'SCALAR_EXACT', 'EXACT_INTEGER_COUNT', 'STRUCTURED_PANEL', 'METADATA_CONTROL'):
+            raise ValueError(f'Unknown AtomicObservation kind {kind!r} (IIP-0024; DEC-103)')
+        if kind == 'EXACT_INTEGER_COUNT':
+            if not _is_strict_int_iip0024(value_or_k) or not _is_strict_int_iip0024(se_or_n):
+                raise ValueError('EXACT_INTEGER_COUNT requires strict Python integers (k, n) pre-normalization (IIP-0024; DEC-103)')
+            if se_or_n <= 0 or value_or_k < 0 or value_or_k > se_or_n:
+                raise ValueError('EXACT_INTEGER_COUNT requires 0 <= k <= n and n > 0 (IIP-0024; DEC-103)')
+        if kind == 'CONTINUOUS_STUDENT_T':
+            if (
+                not _is_strict_finite_number_iip0024(value_or_k)
+                or not _is_strict_finite_number_iip0024(se_or_n)
+                or float(se_or_n) <= 0.0
+                or not _is_strict_int_iip0024(sample_n)
+                or sample_n < 6
+            ):
+                raise ValueError('CONTINUOUS_STUDENT_T requires finite mean, SE > 0, and integer sample_n >= 6 (IIP-0024; DEC-103)')
+        ctrl_dict = dict(controls or {})
+        for bad_ck in ('canonical_projection', 'canonical_projection_keys', 'override_cap', 'override_requires_k_eq_0', 'cap'):
+            if bad_ck in ctrl_dict:
+                raise ValueError(f'Caller-supplied {bad_ck!r} inside controls is prohibited; caps derive from ENDPOINT_REGISTRY_SPEC (IIP-0024; DEC-103)')
+        frozen_val = _deep_freeze_iip0024(value_or_k)
+        frozen_ctrl = _deep_freeze_iip0024(ctrl_dict)
+        for s_name, s_val in (
+            ('unit', unit),
+            ('assay_version', assay_version),
+            ('campaign_id', campaign_id),
+            ('timepoint', timepoint),
+            ('sample_unit_id', sample_unit_id),
+        ):
+            if not isinstance(s_val, str) or not s_val.strip():
+                raise ValueError(f'{s_name} must be a nonempty string (IIP-0024; DEC-103)')
+        canonical_doc = {
+            'registry_version': ENDPOINT_REGISTRY_SPEC['registry_version'],
+            'endpoint_id': endpoint_id.strip(),
+            'scope_type': scope_type,
+            'scope_key': list(scope_key.as_tuple()),
+            'kind': kind,
+            'value_or_k': _deep_to_jsonable_iip0024(frozen_val),
+            'se_or_n': se_or_n,
+            'sample_n': sample_n,
+            'unit': unit.strip(),
+            'controls': _deep_to_jsonable_iip0024(frozen_ctrl),
+            'assay_version': assay_version.strip(),
+            'campaign_id': campaign_id.strip(),
+            'timepoint': timepoint.strip(),
+            'sample_unit_id': sample_unit_id.strip(),
+        }
+        digest = hashlib.sha256(
+            json.dumps(canonical_doc, sort_keys=True, separators=(',', ':'), allow_nan=False).encode('utf-8')
+        ).hexdigest()
+        object.__setattr__(self, 'endpoint_id', endpoint_id.strip())
+        object.__setattr__(self, 'scope_type', scope_type)
+        object.__setattr__(self, 'scope_key', scope_key)
+        object.__setattr__(self, 'kind', kind)
+        object.__setattr__(self, 'value_or_k', frozen_val)
+        object.__setattr__(self, 'se_or_n', se_or_n)
+        object.__setattr__(self, 'sample_n', sample_n)
+        object.__setattr__(self, 'unit', unit.strip())
+        object.__setattr__(self, 'controls', frozen_ctrl)
+        object.__setattr__(self, 'assay_version', assay_version.strip())
+        object.__setattr__(self, 'campaign_id', campaign_id.strip())
+        object.__setattr__(self, 'timepoint', timepoint.strip())
+        object.__setattr__(self, 'sample_unit_id', sample_unit_id.strip())
+        object.__setattr__(self, 'atom_sha256', digest)
+
+    def __setattr__(self, name: str, value: Any) -> None:
+        raise TypeError('AtomicObservation is strictly immutable (IIP-0024; DEC-103)')
+
+    def __delattr__(self, name: str) -> None:
+        raise TypeError('AtomicObservation is strictly immutable (IIP-0024; DEC-103)')
+
+    def digest(self) -> str:
+        return self.atom_sha256
+
+
+def evaluate_rare_event_count_iip0024(
+    *,
+    gate_id: str,
+    k: Any,
+    n: Any,
+    max_u95_fraction: float,
+    require_observed_zero: bool = False,
+    reported_rate: Any = None,
+    rate_scale: float = 1.0,
+    sampling_independence_model: str = 'INDEPENDENT_BIOLOGICAL_OPPORTUNITIES',
+    clustered_sampling: bool = False,
+    validated_clustered_estimator_id: str | None = None,
+    eta_spike_recovery_l95: Any = 1.0,
+    f_clonogenic: Any = 1.0,
+    use_poisson_protocol_floor: bool = False,
+) -> dict[str, Any]:
+    """
+    Fail-closed rare-event integer count validator (IIP-0024; DEC-103):
+      - Rejects bool, float (e.g. 298.9 or 300.0), NaN, Inf, < 0, k > n with structured HOLD.
+      - Enforces k == 0 observed-zero hard veto where specified even when U95(k, n) <= cap.
+      - Computes exact independent binomial-thinning sensitivity U95 = (1 - 0.05**(1/n)) / (f_clono * eta)
+        (holding 0/920 at eta = 0.325 where U95 = 0.01000288 > 0.01, never floor(n * eta)).
+      - Rejects unregistered cluster estimators and naive DEFF substitution.
+    """
+    if k is None or n is None:
+        return {'status': 'HOLD_MISSING_ATOMIC_INTEGER_K_OR_N', 'gate_id': gate_id}
+    if not _is_strict_int_iip0024(k) or not _is_strict_int_iip0024(n):
+        return {'status': 'HOLD_NON_INTEGER_COUNT_OR_DENOMINATOR_REJECTED', 'gate_id': gate_id}
+    if n <= 0 or k < 0 or k > n:
+        return {'status': 'HOLD_INVALID_COUNT_BOUNDS', 'gate_id': gate_id}
+    if reported_rate is not None:
+        if not _is_strict_finite_number_iip0024(reported_rate):
+            return {'status': 'HOLD_NONFINITE_REPORTED_RATE', 'gate_id': gate_id}
+        expected_rate = rate_scale * (k / float(n))
+        if abs(float(reported_rate) - expected_rate) > 1e-9:
+            return {'status': 'HOLD_RATE_COUNT_INCONSISTENCY_NEVER_INFER_FROM_ROUNDED_RATE', 'gate_id': gate_id}
+    if clustered_sampling or sampling_independence_model != 'INDEPENDENT_BIOLOGICAL_OPPORTUNITIES':
+        if (
+            not isinstance(validated_clustered_estimator_id, str)
+            or validated_clustered_estimator_id.strip() not in REGISTERED_VALIDATED_CLUSTER_ESTIMATORS_IIP0024
+        ):
+            return {
+                'status': 'HOLD_CLUSTERED_OR_UNREGISTERED_ESTIMATOR_REJECTED',
+                'gate_id': gate_id,
+            }
+    if not _is_strict_finite_number_iip0024(eta_spike_recovery_l95) or not _is_strict_finite_number_iip0024(f_clonogenic):
+        return {'status': 'HOLD_NONFINITE_RECOVERY_OR_CLONOGENIC_FACTOR', 'gate_id': gate_id}
+    eta = float(eta_spike_recovery_l95)
+    f_clono = float(f_clonogenic)
+    if not (0.0 < eta <= 1.0) or not (0.0 < f_clono <= 1.0):
+        return {'status': 'HOLD_OUT_OF_RANGE_RECOVERY_OR_CLONOGENIC_FACTOR', 'gate_id': gate_id}
+    if (eta < 1.0 or f_clono < 1.0) and eta < 0.30:
+        return {'status': 'HOLD_SPIKE_RECOVERY_BELOW_0P30_QUALIFICATION_FLOOR', 'gate_id': gate_id}
+    if require_observed_zero and k > 0:
+        return {
+            'status': 'FAIL_HARD_STOP',
+            'reason': 'OBSERVED_POSITIVE_EVENT_VIOLATES_MANDATORY_ZERO_VETO',
+            'gate_id': gate_id,
+            'k': k,
+            'n_nominal': n,
+            'u95_nominal': round(clopper_pearson_upper95_independent(k, n), 10),
+        }
+    eff_prob = f_clono * eta
+    if eff_prob < 1.0 and k > 0:
+        return {
+            'status': 'HOLD_NONZERO_RECOVERY_ADJUSTED_COUNT_REQUIRES_VALIDATED_JOINT_ESTIMATOR',
+            'gate_id': gate_id,
+        }
+    if k == 0:
+        # Exact independent per-trial detection probability P(obs=0) = (1 - p * f_clono * eta)**n <= 0.05:
+        u95_bin = min(1.0, (-math.expm1(math.log(0.05) / float(n))) / eff_prob)
+        u95_pois = min(1.0, (-math.log(0.05) / (float(n) * eff_prob)))
+    else:
+        u95_bin = clopper_pearson_upper95_independent(k, n)
+        u95_pois = u95_bin
+    u95_eval = u95_pois if use_poisson_protocol_floor else u95_bin
+    exceeds = (u95_eval >= max_u95_fraction) if gate_id.startswith('GATE0S_SHEDDING_') else (u95_eval > max_u95_fraction)
+    if exceeds:
+        if k == 0:
+            return {
+                'status': 'HOLD_INCONCLUSIVE_INSUFFICIENT_INDEPENDENT_DENOMINATOR',
+                'gate_id': gate_id,
+                'k': 0,
+                'n_nominal': n,
+                'effective_detection_factor': eff_prob,
+                'u95_binomial': u95_bin,
+                'u95_poisson': u95_pois,
+                'cap_fraction': max_u95_fraction,
+            }
+        return {
+            'status': 'FAIL_HARD_STOP',
+            'reason': 'CONFIRMED_COUNT_UPPER95_EXCEEDS_CAP',
+            'gate_id': gate_id,
+            'k': k,
+            'n_nominal': n,
+            'u95_binomial': u95_bin,
+            'cap_fraction': max_u95_fraction,
+        }
+    return {
+        'status': 'PASS',
+        'gate_id': gate_id,
+        'k': k,
+        'n_nominal': n,
+        'effective_detection_factor': eff_prob,
+        'u95_binomial': u95_bin,
+        'u95_poisson': u95_pois,
+        'cap_fraction': max_u95_fraction,
+    }
+
+
+REGISTERED_DMR_PANEL_SPECS_IIP0024: MappingProxyType = _deep_freeze_iip0024({
+    'IC1': {
+        'panel_version_id': 'IC1_H19_CTCF_CORE_V1',
+        'dmr_class': 'PRIMARY_GERMLINE_DMR',
+        'expected_methylated_parent': 'PATERNAL',
+        'grch38_window': 'chr11:1999500-2003500',
+    },
+    'IC2': {
+        'panel_version_id': 'IC2_KVDMR1_PROMOTER_CORE_V1',
+        'dmr_class': 'PRIMARY_GERMLINE_DMR',
+        'expected_methylated_parent': 'MATERNAL',
+        'grch38_window': 'chr11:2698800-2701199',
+    },
+    'IG_DMR': {
+        'panel_version_id': 'IG_DMR_KAGAMI_CG4_6CPG_CG6_19CPG_V1',
+        'dmr_class': 'PRIMARY_GERMLINE_DMR',
+        'expected_methylated_parent': 'PATERNAL',
+        'grch38_window': 'chr14:100809350-100811900',
+        'amplicon_cpg_counts': {'CG4': 6, 'CG6': 19},
+    },
+    'MEG3_DMR': {
+        'panel_version_id': 'MEG3_DMR_SOMATIC_STAGE7_V1',
+        'dmr_class': 'SECONDARY_SOMATIC_DMR',
+        'expected_methylated_parent': 'PATERNAL',
+        'grch38_window': 'chr14:100824100-100828299',
+    },
+})
+
+
+def evaluate_conjunctive_imprinting_dmr_iip0024(
+    *,
+    endpoint_scope: str,
+    dmr_id: Any,
+    panel_version_id: Any,
+    per_cpg_callable_verified: Any,
+    assay_controls_valid: Any,
+    bulk_beta: Any,
+    phased: Any,
+    beta_paternal: Any = None,
+    beta_maternal: Any = None,
+    min_allele_molecule_depth: Any = None,
+    mosaic_discordant_epiallele_frac: Any = None,
+    stage7_meg3_dlk1_rtqpcr_and_perifusion_cleared: Any = None,
+) -> dict[str, Any]:
+    """NaN-safe conjunctive DMR validator for IC1, IC2/KvDMR1, IG-DMR (CG4/CG6), and Stage-7 MEG3-DMR diagnostic HOLD (IIP-0024; DEC-103)."""
+    if endpoint_scope not in ('MCB_SCOPE', 'LOT_SCOPE'):
+        return {'status': 'HOLD_INVALID_ENDPOINT_SCOPE'}
+    if not isinstance(dmr_id, str) or dmr_id not in REGISTERED_DMR_PANEL_SPECS_IIP0024:
+        return {'status': 'HOLD_UNKNOWN_DMR_ID', 'dmr_id': dmr_id}
+    spec = REGISTERED_DMR_PANEL_SPECS_IIP0024[dmr_id]
+    if panel_version_id != spec['panel_version_id'] or per_cpg_callable_verified is not True:
+        return {'status': 'HOLD_UNQUALIFIED_OR_MISMATCHED_DMR_PANEL_VERSION', 'dmr_id': dmr_id}
+    if assay_controls_valid is not True:
+        return {'status': 'HOLD_INVALID_OR_MISSING_DMR_ASSAY_CONTROLS', 'dmr_id': dmr_id}
+    if not _is_strict_finite_number_iip0024(bulk_beta) or not (0.0 <= float(bulk_beta) <= 1.0):
+        return {'status': 'HOLD_NONFINITE_OR_OUT_OF_RANGE_BULK_BETA', 'dmr_id': dmr_id}
+    if not isinstance(phased, bool):
+        return {'status': 'HOLD_INVALID_PHASED_FLAG', 'dmr_id': dmr_id}
+    b_bulk = float(bulk_beta)
+    if dmr_id == 'MEG3_DMR':
+        aberrant = not (0.35 <= b_bulk <= 0.65)
+        if phased:
+            if (
+                not _is_strict_int_iip0024(min_allele_molecule_depth)
+                or min_allele_molecule_depth < 30
+                or not _is_strict_finite_number_iip0024(beta_paternal)
+                or not _is_strict_finite_number_iip0024(beta_maternal)
+                or not (0.0 <= float(beta_paternal) <= 1.0)
+                or not (0.0 <= float(beta_maternal) <= 1.0)
+            ):
+                return {'status': 'HOLD_MEG3_DMR_INCOMPLETE_PHASED_METRICS', 'dmr_id': dmr_id}
+            if (float(beta_paternal) - float(beta_maternal)) < 0.60:
+                aberrant = True
+        if aberrant:
+            if endpoint_scope == 'LOT_SCOPE' and stage7_meg3_dlk1_rtqpcr_and_perifusion_cleared is False:
+                return {'status': 'FAIL_HARD_STOP', 'dmr_id': dmr_id, 'reason': 'STAGE7_MEG3_SILENCING_AND_PERIFUSION_FAILED'}
+            return {
+                'status': 'HOLD_STAGE7_MEG3_DMR_REQUIRES_MEG3_DLK1_EXPRESSION_AND_PERIFUSION_CHECK',
+                'dmr_id': dmr_id,
+                'endpoint_scope': endpoint_scope,
+            }
+        return {'status': 'PASS', 'dmr_id': dmr_id, 'endpoint_scope': endpoint_scope}
+    if b_bulk < 0.35 or b_bulk > 0.65:
+        return {'status': 'FAIL_HARD_STOP', 'dmr_id': dmr_id, 'reason': 'BULK_METHYLATION_OUTSIDE_0P35_0P65'}
+    if not phased or not _is_strict_int_iip0024(min_allele_molecule_depth) or min_allele_molecule_depth < 30:
+        return {'status': 'HOLD_UNPHASED_OR_LOW_ALLELE_DEPTH', 'dmr_id': dmr_id}
+    if (
+        not _is_strict_finite_number_iip0024(beta_paternal)
+        or not _is_strict_finite_number_iip0024(beta_maternal)
+        or not (0.0 <= float(beta_paternal) <= 1.0)
+        or not (0.0 <= float(beta_maternal) <= 1.0)
+    ):
+        return {'status': 'HOLD_NONFINITE_OR_MISSING_PARENTAL_ALLELE_BETA', 'dmr_id': dmr_id}
+    if not _is_strict_finite_number_iip0024(mosaic_discordant_epiallele_frac) or not (0.0 <= float(mosaic_discordant_epiallele_frac) <= 1.0):
+        return {'status': 'HOLD_MISSING_OR_INVALID_MOSAIC_EPIALLELE_FRACTION', 'dmr_id': dmr_id}
+    b_pat, b_mat, mos = float(beta_paternal), float(beta_maternal), float(mosaic_discordant_epiallele_frac)
+    b_meth = b_mat if spec['expected_methylated_parent'] == 'MATERNAL' else b_pat
+    b_unmeth = b_pat if spec['expected_methylated_parent'] == 'MATERNAL' else b_mat
+    signed_delta = b_meth - b_unmeth
+    if signed_delta < 0.60 or b_meth < 0.75 or b_unmeth > 0.25 or mos > 0.10:
+        return {
+            'status': 'FAIL_HARD_STOP',
+            'dmr_id': dmr_id,
+            'signed_parental_delta': round(signed_delta, 4),
+            'mosaic_discordant_epiallele_frac': mos,
+        }
+    return {'status': 'PASS', 'dmr_id': dmr_id, 'endpoint_scope': endpoint_scope, 'signed_parental_delta': round(signed_delta, 4)}
+
+
+def evaluate_conjunctive_xci_46xx_iip0024(
+    *,
+    endpoint_scope: str,
+    donor_sex_karyotype: Any,
+    assay_controls_valid: Any,
+    xci_promoter_panel_id: Any = None,
+    xist_pos_k: Any = None,
+    xist_nuclei_n: Any = None,
+    xci_subject_promoter_cpg_retention: Any = None,
+    allele_specific_x_rna_informative_genes: Any = None,
+    allele_specific_x_rna_monoallelic_fraction: Any = None,
+) -> dict[str, Any]:
+    """Fail-closed 3-axis 46,XX XCI erosion validator (n >= 300 nuclei, k >= 279 -> L95 >= 0.90, promoter CpG >= 0.85, X-RNA >= 0.90 across >= 10 genes; IIP-0024; DEC-103)."""
+    if endpoint_scope not in ('MCB_SCOPE', 'LOT_SCOPE'):
+        return {'status': 'HOLD_INVALID_ENDPOINT_SCOPE'}
+    if donor_sex_karyotype == '46,XY':
+        return {'status': 'NOT_APPLICABLE_46XY', 'endpoint_scope': endpoint_scope}
+    if donor_sex_karyotype != '46,XX':
+        return {'status': 'HOLD_MISSING_OR_UNRECOGNIZED_KARYOTYPE'}
+    if assay_controls_valid is not True:
+        return {'status': 'HOLD_INVALID_OR_MISSING_XCI_ASSAY_CONTROLS'}
+    if xci_promoter_panel_id != 'XCI_SUBJECT_PROMOTER_CPG_PANEL_V1':
+        return {'status': 'HOLD_MISSING_OR_UNKNOWN_XCI_PROMOTER_PANEL_ID'}
+    if not _is_strict_int_iip0024(xist_pos_k) or not _is_strict_int_iip0024(xist_nuclei_n) or xist_pos_k < 0 or xist_pos_k > xist_nuclei_n:
+        return {'status': 'HOLD_NON_INTEGER_OR_OUT_OF_BOUNDS_XIST_COUNTS'}
+    if xist_nuclei_n < 300:
+        return {'status': 'HOLD_INSUFFICIENT_XIST_NUCLEI_REQUIRES_GE_300'}
+    if not _is_strict_finite_number_iip0024(xci_subject_promoter_cpg_retention) or not (0.0 <= float(xci_subject_promoter_cpg_retention) <= 1.0):
+        return {'status': 'HOLD_NONFINITE_OR_OUT_OF_RANGE_XCI_PROMOTER_RETENTION'}
+    xist_l95 = clopper_pearson_lower95_independent(xist_pos_k, xist_nuclei_n)
+    if xist_l95 < 0.90 or float(xci_subject_promoter_cpg_retention) < 0.85:
+        return {'status': 'FAIL_HARD_STOP', 'xist_lower95': round(xist_l95, 6), 'promoter_cpg_retention': float(xci_subject_promoter_cpg_retention)}
+    if not _is_strict_int_iip0024(allele_specific_x_rna_informative_genes) or allele_specific_x_rna_informative_genes < 10:
+        return {'status': 'HOLD_INSUFFICIENT_INFORMATIVE_X_RNA_SNPS_REQUIRES_GE_10'}
+    if not _is_strict_finite_number_iip0024(allele_specific_x_rna_monoallelic_fraction) or not (0.0 <= float(allele_specific_x_rna_monoallelic_fraction) <= 1.0):
+        return {'status': 'HOLD_NONFINITE_OR_MISSING_X_RNA_MONOALLELIC_FRACTION'}
+    if float(allele_specific_x_rna_monoallelic_fraction) < 0.90:
+        return {'status': 'FAIL_HARD_STOP', 'reason': 'BIALLELIC_X_LINKED_RNA_REACTIVATION_DETECTED'}
+    return {
+        'status': 'PASS',
+        'endpoint_scope': endpoint_scope,
+        'xist_lower95': round(xist_l95, 6),
+        'promoter_cpg_retention': float(xci_subject_promoter_cpg_retention),
+        'monoallelic_rna_fraction': float(allele_specific_x_rna_monoallelic_fraction),
+    }
+
+
+def evaluate_scoped_mtdna_gate_iip0024(
+    *,
+    endpoint_scope: str,
+    min_unique_chrm_molecule_depth: Any,
+    numt_filter_and_snv_del_spikes_validated: Any,
+    variants: Any,
+    deletion_vaf_max: Any = None,
+    seahorse_coupled_respiration_pass: Any = None,
+) -> dict[str, Any]:
+    """Fail-closed >= 1,000x NUMT-filtered chrM heteroplasmy, deletion, and respiration validator (IIP-0024; DEC-103)."""
+    if endpoint_scope not in ('MCB_SCOPE', 'LOT_SCOPE'):
+        return {'status': 'HOLD_INVALID_ENDPOINT_SCOPE'}
+    if not _is_strict_int_iip0024(min_unique_chrm_molecule_depth) or min_unique_chrm_molecule_depth < 1000:
+        return {'status': 'HOLD_CHRM_UNIQUE_DEPTH_BELOW_1000X'}
+    if numt_filter_and_snv_del_spikes_validated is not True:
+        return {'status': 'HOLD_NUMT_FILTER_OR_SNV_DEL_SPIKE_CONTROLS_UNVALIDATED'}
+    if not _is_strict_finite_number_iip0024(deletion_vaf_max) or not (0.0 <= float(deletion_vaf_max) <= 1.0):
+        return {'status': 'HOLD_MISSING_OR_INVALID_MTDNA_DELETION_VAF_CONTROL'}
+    if not isinstance(seahorse_coupled_respiration_pass, bool):
+        return {'status': 'HOLD_MISSING_MTDNA_SEAHORSE_RESPIRATION_CONTROL'}
+    if not isinstance(variants, list):
+        return {'status': 'HOLD_INVALID_MTDNA_VARIANTS_LIST'}
+    if seahorse_coupled_respiration_pass is False or float(deletion_vaf_max) > 0.02:
+        return {'status': 'FAIL_HARD_STOP', 'reason': 'MTDNA_DELETION_GT_2PCT_OR_RESPIRATION_FAILURE'}
+    borderline_hold = False
+    for v in variants:
+        if not isinstance(v, dict):
+            return {'status': 'HOLD_MALFORMED_MTDNA_VARIANT_RECORD'}
+        vid = v.get('variant_id')
+        vaf_raw = v.get('vaf')
+        if not isinstance(vid, str) or not vid.strip() or not _is_strict_finite_number_iip0024(vaf_raw) or not (0.0 <= float(vaf_raw) <= 1.0):
+            return {'status': 'HOLD_INVALID_MTDNA_VARIANT_ID_OR_VAF'}
+        vaf = float(vaf_raw)
+        b_hap = v.get('verified_benign_donor_germline_haplogroup_polymorphism')
+        b_path = v.get('known_pathogenic_mitomap_clinvar')
+        b_acq = v.get('acquired_denovo_or_private_coding_trna_rrna')
+        if any(x is not None and not isinstance(x, bool) for x in (b_hap, b_path, b_acq)):
+            return {'status': 'HOLD_NON_BOOLEAN_MTDNA_CLASSIFICATION_FLAG', 'variant_id': vid}
+        is_hap = b_hap is True
+        is_path = b_path is True
+        is_acq = b_acq is True
+        if is_hap and (is_path or is_acq):
+            return {'status': 'HOLD_CONTRADICTORY_MTDNA_BENIGN_AND_ACQUIRED_OR_PATHOGENIC_FLAGS', 'variant_id': vid}
+        if not (is_hap or is_path or is_acq):
+            return {'status': 'HOLD_UNCLASSIFIED_MTDNA_VARIANT_REQUIRES_CURATION', 'variant_id': vid}
+        if vid.strip() == 'm.3243A>G' and vaf > 0.01:
+            return {'status': 'FAIL_HARD_STOP', 'reason': 'M3243AG_EXCEEDS_1PCT_CAP', 'vaf': vaf}
+        if is_hap:
+            continue
+        if vaf > 0.05:
+            return {'status': 'FAIL_HARD_STOP', 'reason': 'SCOPED_MTDNA_HETEROPLASMY_EXCEEDS_5PCT_CAP', 'variant_id': vid, 'vaf': vaf}
+        if 0.03 <= vaf <= 0.05:
+            borderline_hold = True
+    if borderline_hold:
+        return {'status': 'HOLD_BORDERLINE_3_TO_5PCT_ACQUIRED_MTDNA_REQUIRES_ORTHOGONAL_DDPCR'}
+    return {'status': 'PASS', 'endpoint_scope': endpoint_scope}
+
+
+def _norm_cdf_iip0024(x: float) -> float:
+    return 0.5 * (1.0 + math.erf(x / math.sqrt(2.0)))
+
+
+def _chi2_pdf_iip0024(w: float, df: float) -> float:
+    if w <= 0.0:
+        return 0.0
+    half_df = 0.5 * df
+    return math.exp((half_df - 1.0) * math.log(w) - 0.5 * w - half_df * math.log(2.0) - math.lgamma(half_df))
+
+
+def welch_tost_power_exact_2d_iip0024(
+    m1: int,
+    m2: int,
+    sigma1: float,
+    sigma2: float,
+    delta_true: float,
+    theta_margin: float,
+    n_pts: int = 350,
+) -> float:
+    """Exact 2D chi-square quadrature over independent (S1^2, S2^2) for unpooled Welch 90% TOST power (IIP-0024; DEC-103)."""
+    df1 = float(m1 - 1)
+    df2 = float(m2 - 1)
+    se_true = math.sqrt((sigma1 ** 2) / m1 + (sigma2 ** 2) / m2)
+    u1_max = math.sqrt(df1 + 15.0 * math.sqrt(2.0 * df1))
+    u2_max = math.sqrt(df2 + 15.0 * math.sqrt(2.0 * df2))
+    h1 = u1_max / n_pts
+    h2 = u2_max / n_pts
+    u1_nodes = [
+        ((i + 0.5) * h1, _chi2_pdf_iip0024(((i + 0.5) * h1) ** 2, df1) * 2.0 * ((i + 0.5) * h1) * h1)
+        for i in range(n_pts)
+    ]
+    u2_nodes = [
+        ((j + 0.5) * h2, _chi2_pdf_iip0024(((j + 0.5) * h2) ** 2, df2) * 2.0 * ((j + 0.5) * h2) * h2)
+        for j in range(n_pts)
+    ]
+    c1 = (sigma1 ** 2) / (m1 * df1)
+    c2 = (sigma2 ** 2) / (m2 * df2)
+    df_lo = min(df1, df2)
+    df_hi = df1 + df2
+    n_tab = 4096
+    df_step = (df_hi - df_lo) / n_tab
+    t_tab = [student_t_ppf_one_sided_95(df_lo + idx * df_step) for idx in range(n_tab + 1)]
+    inv_sqrt2 = 1.0 / math.sqrt(2.0)
+
+    acc = 0.0
+    for u1, wt1 in u1_nodes:
+        a1 = c1 * (u1 * u1)
+        a1_sq_df = (a1 * a1) / df1
+        for u2, wt2 in u2_nodes:
+            a2 = c2 * (u2 * u2)
+            v_tot = a1 + a2
+            se_w = math.sqrt(v_tot)
+            df_w = (v_tot * v_tot) / (a1_sq_df + (a2 * a2) / df2)
+            pos = (df_w - df_lo) / df_step
+            idx = int(pos)
+            if idx < 0:
+                t_val = t_tab[0]
+            elif idx >= n_tab:
+                t_val = t_tab[n_tab]
+            else:
+                frac = pos - idx
+                t_val = t_tab[idx] + frac * (t_tab[idx + 1] - t_tab[idx])
+            half_w = t_val * se_w
+            if half_w < theta_margin:
+                hi_z = (theta_margin - half_w - delta_true) / se_true
+                lo_z = (-theta_margin + half_w - delta_true) / se_true
+                if hi_z > lo_z:
+                    acc += 0.5 * (math.erf(hi_z * inv_sqrt2) - math.erf(lo_z * inv_sqrt2)) * wt1 * wt2
+    return min(1.0, max(0.0, acc))
+
+
+def evaluate_donor_blocked_contrast_and_welch_tost_iip0024(n_pts: int = 350) -> dict[str, Any]:
+    """
+    Deterministic audit of asymptotic z=1.644854 Type-I inflation vs Student-t,
+    unblocked cross-donor false >25% shifts vs Donor-1 paired blocking, and
+    6+3 vs 6+6 unpooled Welch 90% TOST on [0.75, 1.3333] (IIP-0024; DEC-103).
+    """
+    z95 = 1.6448536269514722
+    type1_z_m3_pct = 100.0 * (1.0 - student_t_cdf(z95, 2.0))
+    type1_z_m6_pct = 100.0 * (1.0 - student_t_cdf(z95, 5.0))
+    type1_t_m6_pct = 100.0 * (1.0 - student_t_cdf(student_t_ppf_one_sided_95(5.0), 5.0))
+    # False >25% (|Delta_log| > ln(1.25)) shift probability under unblocked cross-donor vs blocked Donor-1 contrast (m=6, sigma_batch=0.12):
+    margin_25 = math.log(1.25)
+    sigma_batch = 0.12
+    sd_blocked = math.sqrt(2.0 * (sigma_batch ** 2) / 6.0)
+    blocked_false_shift_pct = 100.0 * 2.0 * (1.0 - _norm_cdf_iip0024(margin_25 / sd_blocked))
+    unblocked_false_shifts_pct: dict[str, float] = {}
+    for s_don in (0.10, 0.20, 0.30):
+        sd_unb = math.sqrt(2.0 * (s_don ** 2) + 2.0 * (sigma_batch ** 2) / 6.0)
+        unblocked_false_shifts_pct[f'sigma_donor_{s_don:.2f}'] = round(100.0 * 2.0 * (1.0 - _norm_cdf_iip0024(margin_25 / sd_unb)), 2)
+
+    theta_eq = math.log(4.0 / 3.0)
+    w_63_0 = 100.0 * welch_tost_power_exact_2d_iip0024(6, 3, 0.12, 0.12, 0.0, theta_eq, n_pts=n_pts)
+    w_63_10 = 100.0 * welch_tost_power_exact_2d_iip0024(6, 3, 0.12, 0.12, math.log(1.10), theta_eq, n_pts=n_pts)
+    w_63_15 = 100.0 * welch_tost_power_exact_2d_iip0024(6, 3, 0.12, 0.12, math.log(1.15), theta_eq, n_pts=n_pts)
+    w_66_0 = 100.0 * welch_tost_power_exact_2d_iip0024(6, 6, 0.12, 0.12, 0.0, theta_eq, n_pts=n_pts)
+    w_66_10 = 100.0 * welch_tost_power_exact_2d_iip0024(6, 6, 0.12, 0.12, math.log(1.10), theta_eq, n_pts=n_pts)
+    w_66_15 = 100.0 * welch_tost_power_exact_2d_iip0024(6, 6, 0.12, 0.12, math.log(1.15), theta_eq, n_pts=n_pts)
+    w_66_type1_sd_006_015 = 100.0 * welch_tost_power_exact_2d_iip0024(6, 6, 0.06, 0.15, theta_eq, theta_eq, n_pts=n_pts)
+    return {
+        'proposal_id': 'IIP-0024',
+        'decision_id': 'DEC-103',
+        'asymptotic_z_type1_error_pct': {
+            'm_eq_3_df2': round(type1_z_m3_pct, 3),
+            'm_eq_6_df5': round(type1_z_m6_pct, 3),
+            'student_t_m_eq_6_df5': round(type1_t_m6_pct, 3),
+        },
+        'construct_contrast_false_gt25pct_shift_pct': {
+            'donor1_paired_blocked_m6': round(blocked_false_shift_pct, 2),
+            'unblocked_cross_donor_m6': unblocked_false_shifts_pct,
+        },
+        'welch_90pct_tost_power_on_0p75_1p3333_pct': {
+            'lots_6_plus_3': {
+                'drift_0pct': round(w_63_0, 2),
+                'drift_plus10pct': round(w_63_10, 2),
+                'drift_plus15pct': round(w_63_15, 3),
+            },
+            'lots_6_plus_6': {
+                'drift_0pct': round(w_66_0, 2),
+                'drift_plus10pct': round(w_66_10, 2),
+                'drift_plus15pct': round(w_66_15, 2),
+                'boundary_type1_sd_0p06_vs_0p15_pct': round(w_66_type1_sd_006_015, 3),
+            },
+        },
+    }
+
+
+def evaluate_iip0024_atomic_stage0_ledger(
+    batches: list[dict[str, Any]],
+    target_provenance: dict[str, Any],
+    *,
+    target_campaign_id: str,
+    root: Path | str | None = None,
+    specimen_lifecycle_stage: str = 'FULL_LOT_RELEASE_WITH_SISTER_UNIT_TERMINAL',
+    authorized_sister_assembly_ids: frozenset[str] = frozenset(),
+) -> dict[str, Any]:
+    """
+    Fail-closed atomic Stage-0 ledger evaluator enforcing 4/5/7-key provenance scopes,
+    adverse observation latching across batch merges until an authorized same-scope QP reset,
+    distinct specimen units on Gate 0S dual shedding, and non-executable product holds (IIP-0024; DEC-103).
+    """
+    root_path = Path(root) if root is not None else Path(__file__).resolve().parents[1]
+    p_mod = _load_product_contract_module(root_path)
+    try:
+        mcb_k = MCBScopeKey(
+            target_provenance['product_variant_id'],
+            target_provenance['construct_sha256'],
+            target_provenance['donor_seedline_id'],
+            target_provenance['mcb_id'],
+        )
+        lot_k = LotScopeKey(
+            mcb_k.product_variant_id,
+            mcb_k.construct_sha256,
+            mcb_k.donor_seedline_id,
+            mcb_k.mcb_id,
+            target_provenance['lot_id'],
+        )
+        dev_k = AssembledDeviceLotScopeKey(
+            mcb_k.product_variant_id,
+            mcb_k.construct_sha256,
+            mcb_k.donor_seedline_id,
+            mcb_k.mcb_id,
+            lot_k.lot_id,
+            target_provenance['device_assembly_id'],
+            target_provenance['physical_route_id'],
+        )
+    except (KeyError, TypeError, ValueError) as exc:
+        return {'readiness_tier': 'HOLD_MISSING_OR_INVALID_IMMUTABLE_PROVENANCE_KEY', 'holds': [str(exc)]}
+
+    try:
+        pdef = p_mod.get_product_definition(mcb_k.product_variant_id, root=root_path)
+    except ValueError as exc:
+        return {'readiness_tier': 'HOLD_UNKNOWN_PRODUCT_VARIANT', 'holds': [str(exc)]}
+
+    pvid_canon = pdef['product_variant_id']
+    if pvid_canon == 'ISLET1_B2_5LOCUS_BASE':
+        return {
+            'readiness_tier': 'STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC',
+            'holds': ['HOLD_STAGED_B2_5LOCUS_BASE_EXECUTION_SUPPORTED_FALSE'],
+            'execution_supported': False,
+        }
+    if pdef.get('execution_supported') is False and pvid_canon != 'ISLET1_Z_X_MOL_140UM_ZERO_CAO2':
+        return {
+            'readiness_tier': 'RESEARCH_COMPARATOR_UNSUPPORTED_VARIANT_HOLD',
+            'holds': [f'non_executable_product:{pvid_canon}'],
+            'execution_supported': False,
+        }
+
+    routes = ENDPOINT_REGISTRY_SPEC['physical_routes']
+    if dev_k.physical_route_id not in routes:
+        return {'readiness_tier': 'HOLD_UNREGISTERED_PHYSICAL_ROUTE_ID', 'holds': [dev_k.physical_route_id]}
+    route_spec = routes[dev_k.physical_route_id]
+    is_z_prod = (pvid_canon == 'ISLET1_Z_X_MOL_140UM_ZERO_CAO2')
+    if is_z_prod and not route_spec['requires_design_z_two_stage']:
+        return {'readiness_tier': 'HOLD_BIDIRECTIONAL_PRODUCT_PHYSICAL_ROUTE_MISMATCH', 'holds': [dev_k.physical_route_id]}
+    if not is_z_prod and route_spec['requires_design_z_two_stage']:
+        return {'readiness_tier': 'HOLD_BIDIRECTIONAL_PRODUCT_PHYSICAL_ROUTE_MISMATCH', 'holds': [dev_k.physical_route_id]}
+
+    mcb_store: dict[str, AtomicObservation] = {}
+    lot_store: dict[str, AtomicObservation] = {}
+    dev_store: dict[str, AtomicObservation] = {}
+    atom_status_by_store_key: dict[tuple[str, str], str] = {}
+    invalidated_stale_keys: set[str] = set()
+    latched_adverse: dict[tuple[str, tuple[str, ...]], dict[str, Any]] = {}
+    retained_reset_audit_log: list[dict[str, Any]] = []
+    structural_holds: list[str] = []
+
+    count_caps = ENDPOINT_REGISTRY_SPEC['count_endpoint_caps_and_zero_vetoes']
+    sister_terminal_ids = set(ENDPOINT_REGISTRY_SPEC['device_sister_terminal_endpoint_ids'])
+    target_scope_tuples = {mcb_k.as_tuple(), lot_k.as_tuple(), dev_k.as_tuple()}
+
+    for b_idx, batch in enumerate(batches):
+        atoms = batch.get('atoms')
+        if not isinstance(atoms, list):
+            return {'readiness_tier': 'HOLD_MALFORMED_BATCH_ATOM_LIST', 'holds': ['atoms_must_be_list']}
+        for atom in atoms:
+            if not isinstance(atom, AtomicObservation):
+                return {'readiness_tier': 'HOLD_NON_ATOMIC_OBSERVATION_OBJECT', 'holds': ['raw_dict_rejected']}
+            sk_tup = atom.scope_key.as_tuple()
+            # Evaluate atom validity and latch any adverse failure on its exact scope:
+            atom_status = 'PASS'
+            if atom.kind == 'EXACT_INTEGER_COUNT':
+                spec_c = count_caps.get(atom.endpoint_id, {'cap': 0.01, 'require_observed_zero': False})
+                ctrl = dict(atom.controls)
+                c_res = evaluate_rare_event_count_iip0024(
+                    gate_id=('GATE0S_SHEDDING_' + atom.endpoint_id.upper() if atom.endpoint_id.startswith('gate0s_shedding_') else atom.endpoint_id.upper()),
+                    k=atom.value_or_k,
+                    n=atom.se_or_n,
+                    max_u95_fraction=float(spec_c['cap']),
+                    require_observed_zero=bool(spec_c['require_observed_zero']),
+                    sampling_independence_model=str(ctrl.get('sampling_independence_model', 'INDEPENDENT_BIOLOGICAL_OPPORTUNITIES')),
+                    clustered_sampling=bool(ctrl.get('clustered_sampling', False)),
+                    validated_clustered_estimator_id=ctrl.get('validated_clustered_estimator_id'),
+                    eta_spike_recovery_l95=ctrl.get('eta_spike_recovery_l95', 1.0),
+                    f_clonogenic=ctrl.get('f_clonogenic', 1.0),
+                    use_poisson_protocol_floor=bool(spec_c.get('use_poisson_protocol_floor', False)),
+                )
+                atom_status = c_res['status']
+            elif atom.kind == 'STRUCTURED_PANEL':
+                p_dict = dict(atom.value_or_k)
+                if 'imprinting_' in atom.endpoint_id or 'meg3_dmr' in atom.endpoint_id:
+                    atom_status = evaluate_conjunctive_imprinting_dmr_iip0024(endpoint_scope=atom.scope_type, **p_dict)['status']
+                elif 'xci_46xx' in atom.endpoint_id:
+                    st_x = evaluate_conjunctive_xci_46xx_iip0024(endpoint_scope=atom.scope_type, **p_dict)['status']
+                    atom_status = 'PASS' if st_x in ('PASS', 'NOT_APPLICABLE_46XY') else st_x
+                elif 'mtdna_1000x' in atom.endpoint_id:
+                    atom_status = evaluate_scoped_mtdna_gate_iip0024(endpoint_scope=atom.scope_type, **p_dict)['status']
+                else:
+                    atom_status = 'HOLD_UNKNOWN_STRUCTURED_PANEL'
+
+            latch_key = (atom.endpoint_id, sk_tup)
+            if atom_status == 'FAIL_HARD_STOP':
+                latched_adverse[latch_key] = {'stop_idx': b_idx, 'repeats': {}}
+            elif latch_key in latched_adverse and atom_status == 'PASS' and b_idx > latched_adverse[latch_key]['stop_idx']:
+                if dict(atom.controls).get('washout_and_retest_verified') is True and atom.campaign_id == target_campaign_id:
+                    latched_adverse[latch_key]['repeats'][str(batch.get('batch_id', b_idx))] = atom.sample_unit_id
+
+            if atom.scope_type == 'MCB_SCOPE':
+                if atom.scope_key == mcb_k:
+                    mcb_store[atom.endpoint_id] = atom
+                    atom_status_by_store_key[('MCB_SCOPE', atom.endpoint_id)] = atom_status
+            elif atom.scope_type == 'LOT_SCOPE':
+                if atom.scope_key == lot_k:
+                    if atom.campaign_id != target_campaign_id:
+                        structural_holds.append(f'HOLD_UNLINKED_CAMPAIGN:{atom.endpoint_id}')
+                    else:
+                        lot_store[atom.endpoint_id] = atom
+                        atom_status_by_store_key[('LOT_SCOPE', atom.endpoint_id)] = atom_status
+                elif atom.scope_key.to_mcb_key() == mcb_k:
+                    invalidated_stale_keys.add(atom.endpoint_id)
+            elif atom.scope_type == 'ASSEMBLED_DEVICE_LOT_SCOPE':
+                same_or_sister = (
+                    atom.scope_key.to_lot_key() == lot_k
+                    and atom.scope_key.physical_route_id == dev_k.physical_route_id
+                    and (
+                        atom.scope_key.device_assembly_id == dev_k.device_assembly_id
+                        or atom.scope_key.device_assembly_id in authorized_sister_assembly_ids
+                    )
+                )
+                if same_or_sister:
+                    if atom.scope_key.device_assembly_id != dev_k.device_assembly_id and atom.endpoint_id not in sister_terminal_ids:
+                        structural_holds.append(f'HOLD_SISTER_UNIT_NON_TERMINAL_TRANSFER_FORBIDDEN:{atom.endpoint_id}')
+                    elif atom.campaign_id != target_campaign_id:
+                        structural_holds.append(f'HOLD_UNLINKED_CAMPAIGN:{atom.endpoint_id}')
+                    else:
+                        dev_store[atom.endpoint_id] = atom
+                        atom_status_by_store_key[('ASSEMBLED_DEVICE_LOT_SCOPE', atom.endpoint_id)] = atom_status
+                elif atom.scope_key.to_mcb_key() == mcb_k:
+                    invalidated_stale_keys.add(atom.endpoint_id)
+
+        if batch.get('reset_prior_safety_stop_after_investigation') is True:
+            req_eid = batch.get('reset_prior_safety_stop_target_category')
+            rep_ids = batch.get('reset_prior_safety_stop_repeat_batch_ids') or []
+            qp_id = str(batch.get('reset_prior_safety_stop_independent_qp_approver_id') or '').strip()
+            sub_id = str(batch.get('submitter_id') or '').strip()
+            r_code = batch.get('reset_prior_safety_stop_reason_code')
+            req_scope = batch.get('reset_prior_safety_stop_target_scope_tuple')
+            allowed_scopes_for_reset = {tuple(req_scope)} if isinstance(req_scope, (list, tuple)) else target_scope_tuples
+            if (
+                isinstance(req_eid, str)
+                and qp_id
+                and sub_id
+                and qp_id != sub_id
+                and r_code in ALLOWED_STICKY_S9_RESET_REASON_CODES
+                and isinstance(rep_ids, list)
+                and len(set(rep_ids)) >= 2
+            ):
+                for lk_cand in list(latched_adverse.keys()):
+                    if lk_cand[0] == req_eid and lk_cand[1] in allowed_scopes_for_reset and lk_cand[1] in target_scope_tuples:
+                        reps_map = latched_adverse[lk_cand]['repeats']
+                        if set(rep_ids).issubset(set(reps_map.keys())) and len({reps_map[r] for r in rep_ids if str(reps_map[r]).strip()}) >= 2:
+                            retained_reset_audit_log.append({
+                                'cleared_endpoint_id': req_eid,
+                                'scope_tuple': list(lk_cand[1]),
+                                'qp_approver_id': qp_id,
+                                'submitter_id': sub_id,
+                                'repeat_batch_ids': list(rep_ids),
+                                'reason_code': r_code,
+                            })
+                            del latched_adverse[lk_cand]
+
+    holds: list[str] = list(structural_holds)
+    for (_sc_t, _eid_t), _st_t in sorted(atom_status_by_store_key.items()):
+        if _st_t not in ('PASS', 'FAIL_HARD_STOP'):
+            holds.append(f'{_st_t}:{_eid_t}')
+
+    active_target_latches = [eid for (eid, skt) in latched_adverse if skt in target_scope_tuples]
+    if active_target_latches:
+        return {
+            'readiness_tier': 'HARD_SAFETY_STOP_REJECTED',
+            'holds': [f'latched_adverse:{e}' for e in sorted(active_target_latches)] + holds,
+            'invalidated_stale_keys': sorted(invalidated_stale_keys),
+            'retained_reset_audit_log': retained_reset_audit_log,
+        }
+
+    if 'gate0s_shedding_ddpcr_assay' in dev_store and 'gate0s_shedding_viable_outgrowth_assay' in dev_store:
+        if dev_store['gate0s_shedding_ddpcr_assay'].sample_unit_id == dev_store['gate0s_shedding_viable_outgrowth_assay'].sample_unit_id:
+            holds.append('HOLD_GATE0S_DUAL_SHEDDING_REQUIRES_INDEPENDENT_SPECIMEN_UNITS')
+
+    missing_mcb = [mk for mk in ENDPOINT_REGISTRY_SPEC['mcb_mandatory_endpoint_ids'] if mk not in mcb_store]
+    if holds:
+        return {
+            'readiness_tier': 'HOLD_FAILED_STAGE0_GATE',
+            'holds': holds + missing_mcb,
+            'invalidated_stale_keys': sorted(invalidated_stale_keys),
+            'retained_reset_audit_log': retained_reset_audit_log,
+        }
+    if missing_mcb or not lot_store or (specimen_lifecycle_stage != 'AUTHORIZED_TEST_ARTICLE_PRE_IMPLANT' and any(tk not in dev_store for tk in sister_terminal_ids)):
+        tier = (
+            'HOLD_LOT_OR_DEVICE_SCOPED_EVIDENCE_MISSING_AFTER_PROVENANCE_CHANGE'
+            if invalidated_stale_keys
+            else 'PROVISIONAL_PARTIAL_LOT_SCREENING_ONLY'
+        )
+        return {
+            'readiness_tier': tier,
+            'holds': missing_mcb or ['incomplete_lot_or_device_panel'],
+            'invalidated_stale_keys': sorted(invalidated_stale_keys),
+            'transferred_mcb_count': len(mcb_store),
+            'retained_reset_audit_log': retained_reset_audit_log,
+        }
+    if specimen_lifecycle_stage == 'AUTHORIZED_TEST_ARTICLE_PRE_IMPLANT':
+        return {
+            'readiness_tier': 'AUTHORIZED_TEST_ARTICLE_ASSEMBLED_PENDING_LONGITUDINAL_READOUT',
+            'holds': [],
+            'transferred_mcb_count': len(mcb_store),
+            'retained_reset_audit_log': retained_reset_audit_log,
+        }
+    if is_z_prod:
+        return {
+            'readiness_tier': 'WILDCARD_COUPON_QUALIFIED_NON_EXECUTABLE',
+            'holds': [],
+            'execution_supported': False,
+            'wildcard_coupon_qualified': True,
+            'transferred_mcb_count': len(mcb_store),
+            'retained_reset_audit_log': retained_reset_audit_log,
+        }
+    return {
+        'readiness_tier': (
+            'READY_WITH_RETAINED_PRIOR_S9_INVESTIGATION_HISTORY'
+            if retained_reset_audit_log
+            else 'READY_FOR_ENCAPSULATION_COMPLETE_STAGE0_EVIDENCE'
+        ),
+        'holds': [],
+        'execution_supported': True,
+        'transferred_mcb_count': len(mcb_store),
+        'retained_reset_audit_log': retained_reset_audit_log,
     }

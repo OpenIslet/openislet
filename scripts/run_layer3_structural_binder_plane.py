@@ -15,12 +15,14 @@ Outputs:
 
 from __future__ import annotations
 
+import difflib
 import hashlib
 import io
 import json
 import math
 import re
 import sys
+from collections import defaultdict
 from numbers import Real
 from pathlib import Path
 from types import MappingProxyType
@@ -4267,6 +4269,176 @@ def _build_pvr_and_hlag1_structural_audit_iip_0022() -> Dict[str, Any]:
     }
 
 
+def derive_required_product_functions_iip_0024(product_def: Mapping[str, Any]) -> Tuple[str, ...]:
+    """
+    Derive applicable Layer-3 engineered product functions directly from the registered
+    product profile so Design B2 (5/5), Design Z (5/5), and Track-2 B'-SCT (6/6) are
+    evaluated on their exact molecular manifests without Design-A HLA-E deadlock (IIP-0024; DEC-103).
+    """
+    pvid = str(product_def.get("product_variant_id", ""))
+    if pvid.startswith("ISLET1_B_SCT_"):
+        return ("HLA-E", "HLA-C_SCT", "CD47", "SERPINB9", "PD-L1", "iCasp9")
+    if str(product_def.get("family", "A")) == "B":
+        return ("HLA-C_endogenous_KIR", "CD47", "SERPINB9", "PD-L1", "iCasp9")
+    return ("HLA-E", "CD47", "SERPINB9", "PD-L1", "iCasp9")
+
+
+def evaluate_product_function_manifest_iip_0024(
+    product_def: Mapping[str, Any],
+    *,
+    reference_coordinate_geometry_passed: bool,
+    experimental_function_status_by_target: Mapping[str, str],
+) -> Dict[str, Any]:
+    """Separate coordinate-geometry verification from exact-product functional completion (IIP-0024; DEC-103)."""
+    req_funcs = derive_required_product_functions_iip_0024(product_def)
+    resolved = [fn for fn in req_funcs if experimental_function_status_by_target.get(fn) == "experimentally_verified"]
+    unresolved = [fn for fn in req_funcs if experimental_function_status_by_target.get(fn) != "experimentally_verified"]
+    func_ok = len(unresolved) == 0
+    return {
+        "product_variant_id": str(product_def["product_variant_id"]),
+        "family": str(product_def.get("family", "")),
+        "execution_supported": bool(product_def.get("execution_supported", False)),
+        "required_product_function_count": len(req_funcs),
+        "required_product_functions": list(req_funcs),
+        "resolved_product_function_count": len(resolved),
+        "unresolved_product_functions": unresolved,
+        "structural_coordinate_geometry_status": "PASS" if reference_coordinate_geometry_passed else "FAIL",
+        "functional_qualification_status": "PASS" if func_ok else "HOLD_UNRESOLVED_EXPERIMENTAL_PRODUCT_FUNCTIONS",
+        "all_applicable_product_functions_resolved": func_ok,
+    }
+
+
+def _build_product_function_manifest_resolution_iip_0024(
+    *,
+    ref_geometry_passed: bool,
+    serpinb9_func_status: str,
+    cd47_pan_allele_status: str,
+) -> Dict[str, Any]:
+    """Build product-scoped Layer-3 function manifest audit across Design A, Design B2, Design Z, and B'-SCT (IIP-0024; DEC-103)."""
+    from scripts.product_contract import get_product_definition
+
+    baseline_exp_status: Dict[str, str] = {
+        "HLA-E": "unresolved_pending_wetlab",
+        "HLA-C_endogenous_KIR": "unresolved_pending_wetlab",
+        "HLA-C_SCT": "unresolved_pending_wetlab",
+        "CD47": cd47_pan_allele_status,
+        "SERPINB9": serpinb9_func_status,
+        "PD-L1": "unresolved_pending_wetlab",
+        "iCasp9": "unresolved_pending_wetlab",
+    }
+    audited_ids = (
+        "ISLET1_A4_ARM1B",
+        "ISLET1_A4_X_MOL_RNLS_WT",
+        "ISLET1_Z_X_MOL_140UM_ZERO_CAO2",
+        "ISLET1_B2_5LOCUS_BASE",
+        "ISLET1_B_SCT_C1_CIITA",
+    )
+    resolved_defs = {pid: get_product_definition(pid, root=REPO_ROOT) for pid in audited_ids}
+    baseline_profiles = {
+        pid: evaluate_product_function_manifest_iip_0024(
+            resolved_defs[pid],
+            reference_coordinate_geometry_passed=ref_geometry_passed,
+            experimental_function_status_by_target=baseline_exp_status,
+        )
+        for pid in audited_ids
+    }
+    return {
+        "proposal_id": "IIP-0024",
+        "decision_id": "DEC-103",
+        "staged_design_b2_c1_c5_pair_sha256_reference": "82c351af082e0f97361e715c36e2ab5872b8d097efa1c9f59dfda53ea60496ea",
+        "staged_design_b2_materialization_note": (
+            "ISLET1_B2_5LOCUS_BASE remains held at execution_supported=False (STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC) "
+            "pending edited-allele QC; its 5/5 required functional manifest replaces HLA-E SCT with HLA-C_endogenous_KIR."
+        ),
+        "function_counts_by_route": {
+            "ISLET1_A4_ARM1B": len(derive_required_product_functions_iip_0024(resolved_defs["ISLET1_A4_ARM1B"])),
+            "ISLET1_Z_X_MOL_140UM_ZERO_CAO2": len(derive_required_product_functions_iip_0024(resolved_defs["ISLET1_Z_X_MOL_140UM_ZERO_CAO2"])),
+            "ISLET1_B2_5LOCUS_BASE": len(derive_required_product_functions_iip_0024(resolved_defs["ISLET1_B2_5LOCUS_BASE"])),
+            "ISLET1_B_SCT_C1_CIITA": len(derive_required_product_functions_iip_0024(resolved_defs["ISLET1_B_SCT_C1_CIITA"])),
+        },
+        "baseline_uncalibrated_product_profiles": baseline_profiles,
+    }
+
+
+def _build_icasp9_1nw9_1jxq_insertion_code_audit_iip_0024() -> Dict[str, Any]:
+    """
+    Compute subordinate CC0 1NW9 x 1JXQ XIAP-BIR3 vs CASP9 homodimer steric superposition
+    under BOTH insertion-code policies (565/746 default excluding insertion codes vs 562/746
+    retaining insertion codes < 2.2 A; Shiozaki et al. 2003 PMID:12620238; Renatus et al. 2001
+    PMID:11734640; IIP-0024; DEC-103).
+    """
+    snaps = verify_structural_reference_inputs("pdb_00001nw9.cif", "pdb_00001jxq.cif")
+    policies: Dict[str, Any] = {}
+    for label, keep_ins in (("default_exclude_insertion_codes", False), ("retain_insertion_codes", True)):
+        nw9_atoms = [
+            a for a in parse_mmcif_atoms(
+                STRUCT_DIR / "pdb_00001nw9.cif",
+                keep_insertion_codes=keep_ins,
+                source_bytes=snaps["pdb_00001nw9.cif"],
+                include_zero_occupancy=False,
+            )
+            if a["group"] == "ATOM"
+        ]
+        jxq_atoms = [
+            a for a in parse_mmcif_atoms(
+                STRUCT_DIR / "pdb_00001jxq.cif",
+                keep_insertion_codes=keep_ins,
+                source_bytes=snaps["pdb_00001jxq.cif"],
+                include_zero_occupancy=False,
+            )
+            if a["group"] == "ATOM"
+        ]
+        nw9_by_c: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+        for a in nw9_atoms:
+            nw9_by_c[a["chain"]].append(a)
+        jxq_by_c: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+        for a in jxq_atoms:
+            jxq_by_c[a["chain"]].append(a)
+        nw9_sorted = sorted(nw9_by_c.items(), key=lambda kv: len(kv[1]), reverse=True)
+        casp_atoms, bir3_atoms = nw9_sorted[0][1], nw9_sorted[1][1]
+        ca1 = [a for a in casp_atoms if a["atom_id"] == "CA"]
+        ca2 = [a for a in jxq_by_c["A"] if a["atom_id"] == "CA"]
+        sm = difflib.SequenceMatcher(None, [a["comp_id"] for a in ca1], [a["comp_id"] for a in ca2], autojunk=False)
+        mp = [(ca1[i + k], ca2[j + k]) for i, j, n_b in sm.get_matching_blocks() for k in range(n_b)]
+        P = np.array([[p[0]["x"], p[0]["y"], p[0]["z"]] for p in mp], dtype=np.float64)
+        Q = np.array([[p[1]["x"], p[1]["y"], p[1]["z"]] for p in mp], dtype=np.float64)
+        pc, qc = P.mean(axis=0), Q.mean(axis=0)
+        H = np.einsum("ij,ik->jk", P - pc, Q - qc)
+        U, _, Vt = np.linalg.svd(H)
+        if np.linalg.det(U) * np.linalg.det(Vt) < 0:
+            U[:, -1] *= -1
+        R = np.einsum("ij,jk->ik", U, Vt)
+        P_al = np.einsum("ij,jk->ik", P - pc, R) + qc
+        rmsd = float(np.sqrt(np.mean(np.sum((P_al - Q) ** 2, axis=1))))
+        b_xyz = np.einsum("ij,jk->ik", np.array([[a["x"], a["y"], a["z"]] for a in bir3_atoms if a["element"] != "H"]) - pc, R) + qc
+        p_xyz = np.array([[a["x"], a["y"], a["z"]] for a in jxq_by_c["B"] if a["element"] != "H"])
+        d2 = np.sum((b_xyz[:, None, :] - p_xyz[None, :, :]) ** 2, axis=2)
+        policies[label] = {
+            "keep_insertion_codes": keep_ins,
+            "allowed_alt_ids": [".", "?", "A"],
+            "include_zero_occupancy": False,
+            "aligned_ca_residues": len(mp),
+            "ca_rmsd_angstrom": round(rmsd, 4),
+            "xiap_bir3_heavy_atoms_total": int(len(b_xyz)),
+            "xiap_bir3_heavy_atoms_lt_2p2A": int(np.sum(np.any(d2 < (2.2 ** 2), axis=1))),
+            "heavy_atom_clash_pairs_lt_2p2A": int(np.sum(d2 < (2.2 ** 2))),
+            "role": "SUBORDINATE_NON_BLOCKING_DIAGNOSTIC_ONLY",
+        }
+    if (
+        policies["default_exclude_insertion_codes"]["xiap_bir3_heavy_atoms_total"] != 746
+        or policies["default_exclude_insertion_codes"]["xiap_bir3_heavy_atoms_lt_2p2A"] != 565
+        or policies["retain_insertion_codes"]["xiap_bir3_heavy_atoms_total"] != 746
+        or policies["retain_insertion_codes"]["xiap_bir3_heavy_atoms_lt_2p2A"] != 562
+    ):
+        raise ValueError(f"Unexpected 1NW9 x 1JXQ insertion-code superposition counts: {policies}")
+    return {
+        "proposal_id": "IIP-0024",
+        "decision_id": "DEC-103",
+        "primary_citations": ["PMID:12620238", "PMID:11734640", "PMID:22047558"],
+        "policies": policies,
+    }
+
+
 def main() -> None:
     with LAYER2_ATLAS_PATH.open("r", encoding="utf-8") as f:
         layer2_atlas = json.load(f)
@@ -4882,6 +5054,12 @@ def main() -> None:
         "hurdle3_receptor_and_compartment_reconciliation_iip_0018": _build_hurdle3_receptor_and_compartment_reconciliation_iip_0018(),
         "biomaterial_cuff_and_catalase_structural_audit_iip_0020": _build_biomaterial_cuff_and_catalase_structural_audit_iip_0020(),
         "pvr_tigit_cd226_cd96_and_hlag1_structural_audit_iip_0022": _build_pvr_and_hlag1_structural_audit_iip_0022(),
+        "product_function_manifest_resolution_iip_0024": _build_product_function_manifest_resolution_iip_0024(
+            ref_geometry_passed=ref_geometry_passed,
+            serpinb9_func_status=serpinb9_func_status,
+            cd47_pan_allele_status=cd47_pan_allele_status,
+        ),
+        "icasp9_1nw9_1jxq_insertion_code_audit_iip_0024": _build_icasp9_1nw9_1jxq_insertion_code_audit_iip_0024(),
     }
 
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)

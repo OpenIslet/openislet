@@ -14,6 +14,21 @@ def load_product_contracts(root: Path | str | None = None) -> dict:
     payload = json.loads((root / CONTRACT_PATH).read_text(encoding="utf-8"))
     if not isinstance(payload, dict) or not isinstance(payload.get("products"), list):
         raise ValueError("Product registry must contain a products list")
+    if "mcb_donor_blocking_policy" in payload:
+        pol = payload["mcb_donor_blocking_policy"]
+        if (
+            not isinstance(pol, dict)
+            or type(pol.get("min_independent_abo_oo_seedlines")) is not int
+            or pol["min_independent_abo_oo_seedlines"] < 2
+            or not isinstance(pol.get("kinship_pi_hat_lt"), (int, float))
+            or isinstance(pol.get("kinship_pi_hat_lt"), bool)
+            or not (0.0 < float(pol["kinship_pi_hat_lt"]) <= 0.05)
+            or type(pol.get("donor1_paired_lot_blocks_min")) is not int
+            or pol["donor1_paired_lot_blocks_min"] < 6
+            or type(pol.get("confirmatory_welch_tost_lots_per_bank")) is not int
+            or pol["confirmatory_welch_tost_lots_per_bank"] < 6
+        ):
+            raise ValueError("Invalid mcb_donor_blocking_policy in product registry (IIP-0024; DEC-103)")
     products = payload["products"]
     for product in products:
         validate_product_definition(product)
@@ -41,7 +56,15 @@ def validate_product_definition(product: dict) -> dict:
         raise ValueError("Invalid canonical product identifier")
     if product["family"] not in {"A", "B"}:
         raise ValueError("Unknown product family")
-    if not (product["product_variant_id"].startswith("ISLET1_" + product["family"]) or (product["family"] == "A" and product["product_variant_id"].startswith("ISLET1_COMP_"))):
+    if not (
+        product["product_variant_id"].startswith("ISLET1_" + product["family"])
+        or (product["family"] == "A" and product["product_variant_id"].startswith("ISLET1_COMP_"))
+        or (
+            product["family"] == "A"
+            and product["product_variant_id"].startswith("ISLET1_Z_")
+            and product["execution_supported"] is False
+        )
+    ):
         raise ValueError("Product identifier conflicts with its family")
     if product["physical_manufacturing_yield"] is not None:
         raise ValueError("Physical manufacturing yield remains unmeasured in this release")
@@ -59,6 +82,10 @@ def validate_product_definition(product: dict) -> dict:
     for key in ("donor_lineage", "hla_retention"):
         if not isinstance(product[key], dict) or not product[key]:
             raise ValueError(f"{key} must explicitly define donor/HLA scope")
+    if "donor_seedline_id_required" in product["donor_lineage"] and type(product["donor_lineage"]["donor_seedline_id_required"]) is not bool:
+        raise ValueError("donor_seedline_id_required must be boolean (IIP-0024; DEC-103)")
+    if "physical_route_id" in product and (not isinstance(product["physical_route_id"], str) or not re.fullmatch(r"[A-Z0-9_]+", product["physical_route_id"])):
+        raise ValueError("physical_route_id must be a bounded uppercase identifier (IIP-0024; DEC-103)")
     gates = product["pending_assay_gates"]
     if not isinstance(gates, list) or not gates or any(not isinstance(g, str) or not g.strip() for g in gates):
         raise ValueError("Explicit pending assay gates are required")
@@ -107,6 +134,8 @@ def validate_product_definition(product: dict) -> dict:
 
 
 def get_product_definition(product_id: str, root: Path | str | None = None) -> dict:
+    if not isinstance(product_id, str) or not product_id or product_id != product_id.strip():
+        raise ValueError(f"Unknown product variant: {product_id!r}")
     for product in load_product_contracts(root)["products"]:
         if product_id == product["product_variant_id"] or product_id in product.get("aliases", []):
             return deepcopy(product)
