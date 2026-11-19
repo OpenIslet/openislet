@@ -4,7 +4,7 @@
     "pmid": "39326417",
     "pmcid": null,
     "doi": "10.1016/j.cell.2024.09.004",
-    "nct_id": null,
+    "nct_id": "ChiCTR2300072200",
     "geo_accessions": [],
     "title": "Transplantation of chemically induced pluripotent stem-cell-derived islets under abdominal anterior rectus sheath in a type 1 diabetes patient.",
     "first_author": "Wang S",
@@ -27,7 +27,7 @@
   "arms": [
     {
       "arm_id": "pmid39326417_arm1",
-      "arm_label": "Primary experimental arm in Wang S (2024)",
+      "arm_label": "Autologous CiPSC-islets implanted beneath abdominal anterior rectus sheath in Wang S (2024) [full text, absent from PubMed abstract: 1,488,283 IEQ / 19,843 IEQ/kg, hydrogel-free non-en-bloc injection, pre-existing liver-transplant tacrolimus systemic IS, and chronic liver-disease HbA1c interpretation caveat]",
       "is_reference_control": false,
       "sample_size_n": null,
       "sample_size_unit": null,
@@ -36,7 +36,7 @@
         "cell_line_id": null,
         "donor_hla_profile": null,
         "protocol_backbone": null,
-        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "canonical_differentiation_stage_evaluated": "InVivo_Engrafted_Maturation",
         "stage_small_molecules_and_factors": [],
         "cluster_mean_diameter_um": null,
         "pct_nkx6_1_cpeptide_double_pos": null,
@@ -50,13 +50,13 @@
         "transplant_site": "Intramuscular_Forearm_or_Rectus",
         "prevascularization_lead_time_days": null,
         "in_dish_vascular_assembly": "None_Avascular_Islet",
-        "oxygen_bridge_72h_carrier": "Hemoglobin_or_Myoglobin_Hydrogel",
+        "oxygen_bridge_72h_carrier": "None",
         "packing_density_ieq_per_cm2_or_ml": null,
         "number_of_distributed_micro_pockets": null,
         "staged_insertion_schedule": null,
         "encapsulation_or_biomaterial": null,
         "co_transplanted_cells_or_oxygen_source": null,
-        "systemic_immunosuppression_regimen": null
+        "systemic_immunosuppression_regimen": "Pre-existing tacrolimus-based systemic immunosuppression (prior liver transplant) continued and adapted peri-transplant; chronic liver disease noted as potential HbA1c confounder (Wang et al. Cell 2024 full text, DOI:10.1016/j.cell.2024.09.004; absent from PubMed abstract)"
       },
       "challenge_conditions": [
         {
@@ -92,10 +92,10 @@
     {
       "effect_id": "pmid39326417_eff1",
       "source_figure_or_table": "Abstract",
-      "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+      "focal_factor_X": "Sub_ARS_Autologous_CiPSC_Islet_Transplantation",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
-      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=%]",
-      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "outcome_variable_Y": "[Endpoint: Time-in-target glycemic range and HbA1c at month 4] TIR rose from 43.18% baseline to 96.21% at month 4 with non-diabetic HbA1c (full-text caveats: systemic tacrolimus IS; chronic liver disease may affect HbA1c)",
+      "outcome_domain": "InVivo_Glycemic_Cure_and_Graft_Longevity",
       "treatment_mean": null,
       "treatment_sd_or_sem": null,
       "treatment_n": null,
@@ -108,9 +108,9 @@
       "effect_direction": "Protective_or_Improved",
       "secretome_or_differentiation_penalty_observed": false,
       "conditioning_context_Z": {
-        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z1_developmental_stage_and_timing": "InVivo_Engrafted_Maturation",
         "Z2_genetic_background_and_allelic_dose": "CiPSC_chemically_induced",
-        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z3_immune_effector_and_stressor_pathway": "InVivo_Glycemic_Cure_and_Graft_Longevity",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
         "Z6_microenvironment_oxygen_and_vascular_niche": "Intramuscular_Forearm_or_Rectus",
@@ -122,7 +122,7 @@
       "comparator_arm_id": null,
       "p_value_relation": null,
       "p_value_bound": null,
-      "direction_adjudication_method": "rule_based_heuristic",
+      "direction_adjudication_method": "source_adjudicated_curated_override",
       "dispersion_type": "Not_Reported_in_Source_Sentence",
       "n_unit": "unspecified_in_source",
       "censoring_note": "Right-censored at last reported follow-up timepoint if graft remained functional",
@@ -136,9 +136,9 @@
       "quote_source_dossier_pmid": "39326417",
       "statistic_type": "qualitative_statement_only",
       "contrast_metadata": {
-        "intervention_label": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
+        "intervention_label": "Sub_ARS_Autologous_CiPSC_Islet_Transplantation",
         "comparator_label": null,
-        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
         "timepoint": null,
         "population_or_model": "CiPSC_chemically_induced (Tier_1_Human_InVivo)",
         "units": "%",
@@ -148,10 +148,10 @@
     {
       "effect_id": "pmid39326417_eff2",
       "source_figure_or_table": "Abstract",
-      "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
+      "focal_factor_X": "Sub_ARS_Autologous_CiPSC_Islet_Transplantation",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
-      "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
-      "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
+      "outcome_variable_Y": "[Endpoint: Stable glycemic control (TIR >98% and HbA1c ~5%)] Sustained TIR >98% and HbA1c ~5% under pre-existing liver-transplant tacrolimus IS (full-text caveat: chronic liver disease may affect HbA1c)",
+      "outcome_domain": "InVivo_Glycemic_Cure_and_Graft_Longevity",
       "treatment_mean": null,
       "treatment_sd_or_sem": null,
       "treatment_n": null,
@@ -161,12 +161,12 @@
       "measurement_unit": "qualitative_statement",
       "log_response_ratio_or_smd": null,
       "p_value": null,
-      "effect_direction": "Neutral_or_NonInferior",
+      "effect_direction": "Protective_or_Improved",
       "secretome_or_differentiation_penalty_observed": false,
       "conditioning_context_Z": {
-        "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
+        "Z1_developmental_stage_and_timing": "InVivo_Engrafted_Maturation",
         "Z2_genetic_background_and_allelic_dose": "CiPSC_chemically_induced",
-        "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
+        "Z3_immune_effector_and_stressor_pathway": "InVivo_Glycemic_Cure_and_Graft_Longevity",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
         "Z6_microenvironment_oxygen_and_vascular_niche": "Intramuscular_Forearm_or_Rectus",
@@ -178,7 +178,7 @@
       "comparator_arm_id": null,
       "p_value_relation": null,
       "p_value_bound": null,
-      "direction_adjudication_method": "rule_based_heuristic",
+      "direction_adjudication_method": "source_adjudicated_curated_override",
       "dispersion_type": "Not_Reported_in_Source_Sentence",
       "n_unit": "unspecified_in_source",
       "censoring_note": "Not_Time_To_Event_Endpoint",
@@ -192,9 +192,9 @@
       "quote_source_dossier_pmid": "39326417",
       "statistic_type": "qualitative_statement_only",
       "contrast_metadata": {
-        "intervention_label": "Biphasic_GSIS_and_Calcium_Coupling",
+        "intervention_label": "Sub_ARS_Autologous_CiPSC_Islet_Transplantation",
         "comparator_label": null,
-        "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
+        "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
         "timepoint": null,
         "population_or_model": "CiPSC_chemically_induced (Tier_1_Human_InVivo)",
         "units": "qualitative_statement",
@@ -203,24 +203,7 @@
     }
   ],
   "effect_modifier_interactions": [],
-  "causal_mechanism_edges": [
-    {
-      "upstream_node": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
-      "upstream_node_type": "Biophysical_or_Vascular_Cue",
-      "causal_relation": "Activates_or_Upregulates",
-      "downstream_node": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
-      "downstream_node_type": "Lineage_Identity_or_Maturation_State",
-      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:39326417 field=evidence_source quote_sha256=4b4b380e893691e1fd1b80e820c36ed89f158068539f754dc73c8480ad24c84d]"
-    },
-    {
-      "upstream_node": "Biphasic_GSIS_and_Calcium_Coupling",
-      "upstream_node_type": "Secreted_Hormone_or_Chemokine_DAMP",
-      "causal_relation": "Activates_or_Upregulates",
-      "downstream_node": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
-      "downstream_node_type": "Biophysical_or_Vascular_Cue",
-      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:39326417 field=evidence_source quote_sha256=e8ec3934626ac378e17be7edd1d9c3a30dcc475cbc29083d866a5b4b3fb1539d]"
-    }
-  ],
+  "causal_mechanism_edges": [],
   "cross_study_discovery_bridges": {
     "collateral_and_pleiotropic_findings": [],
     "residual_failure_and_escape_vectors": [],

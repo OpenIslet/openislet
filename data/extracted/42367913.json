@@ -53,7 +53,7 @@
         "transplant_site": "InVitro_Only",
         "prevascularization_lead_time_days": null,
         "in_dish_vascular_assembly": "None_Avascular_Islet",
-        "oxygen_bridge_72h_carrier": "Hemoglobin_or_Myoglobin_Hydrogel",
+        "oxygen_bridge_72h_carrier": "None",
         "packing_density_ieq_per_cm2_or_ml": null,
         "number_of_distributed_micro_pockets": null,
         "staged_insertion_schedule": null,

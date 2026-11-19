@@ -2003,6 +2003,12 @@
    "pubdate_year": "2021",
    "title": "Receptor-interacting serine/threonine-protein kinase 1 (RIPK1) inhibitors Necrostatin-1 (Nec-1) and 7-Cl-O-Nec-1 (Nec-1s) are potent inhibitors of NAD(P)H: Quinone oxidoreductase 1 (NQO1)."
   },
+  "34345868": {
+   "first_author": "Kenty JH",
+   "journal": "STAR Protoc",
+   "pubdate_year": "2021",
+   "title": "Retrieval and purification of human β cells from stem cell-derived islet engrafted mice."
+  },
   "34380648": {
    "first_author": "Nilsson PH",
    "journal": "J Immunol",
@@ -2207,6 +2213,12 @@
    "pubdate_year": "2023",
    "title": "Evolution of an adenine base editor into a small, efficient cytosine base editor with low off-target activity."
   },
+  "36497105": {
+   "first_author": "Triolo TM",
+   "journal": "Cells",
+   "pubdate_year": "2022",
+   "title": "Stem-Cell-Derived β-Like Cells with a Functional PTPN2 Knockout Display Increased Immunogenicity."
+  },
   "36522432": {
    "first_author": "Cancellieri S",
    "journal": "Nat Genet",
@@ -2231,6 +2243,12 @@
    "pubdate_year": "2023",
    "title": "Engineering human stem cell-derived islets to evade immune rejection and promote localized immune tolerance."
   },
+  "36624157": {
+   "first_author": "Liang Z",
+   "journal": "Nat Metab",
+   "pubdate_year": "2023",
+   "title": "Implantation underneath the abdominal anterior rectus sheath enables effective and functional engraftment of stem-cell-derived islets."
+  },
   "36707047": {
    "first_author": "Takiishi T",
    "journal": "Mol Metab",
@@ -2242,6 +2260,12 @@
    "journal": "Adv Healthc Mater",
    "pubdate_year": "2023",
    "title": "Engineering Modular, Oxygen-Generating Microbeads for the In Situ Mitigation of Cellular Hypoxia."
+  },
+  "37040771": {
+   "first_author": "Zhu H",
+   "journal": "Dev Cell",
+   "pubdate_year": "2023",
+   "title": "Understanding cell fate acquisition in stem-cell-derived pancreatic islets using single-cell multiome-inferred regulomes."
   },
   "37127662": {
    "first_author": "Allen AG",
@@ -2314,6 +2338,12 @@
    "journal": "Proc Natl Acad Sci U S A",
    "pubdate_year": "2023",
    "title": "A wireless, battery-free device enables oxygen generation and immune protection of therapeutic xenotransplants in vivo."
+  },
+  "37809993": {
+   "first_author": "Yabe SG",
+   "journal": "Heliyon",
+   "pubdate_year": "2023",
+   "title": "The functional maturity of grafted human pluripotent stem cell derived-islets (hSC-Islets) evaluated by the glycemic set point during blood glucose normalizing process in diabetic mice."
   },
   "37820008": {
    "first_author": "Ghimire K",
@@ -2567,6 +2597,12 @@
    "pubdate_year": "2025",
    "title": "Donor-recipient mismatch at the SIRPA locus adversely affects kidney allograft outcomes."
   },
+  "40700651": {
+   "first_author": "O'Brien S",
+   "journal": "ACS Biomater Sci Eng",
+   "pubdate_year": "2025",
+   "title": "Micropocket-Based Differentiation System to Streamline and Scale Stem Cell-Derived Pancreatic Islet Production."
+  },
   "40757665": {
    "first_author": "Carlsson PO",
    "journal": "N Engl J Med",
@@ -2692,6 +2728,12 @@
    "journal": "Sci Rep",
    "pubdate_year": "2026",
    "title": "Divergent cell-type specific hypoxia responses in human stem cell-derived and primary islets."
+  },
+  "42182975": {
+   "first_author": "Krishnan SR",
+   "journal": "Device",
+   "pubdate_year": "2026",
+   "title": "Wireless battery-free oxygenation devices enable extended immunosuppression-free islet transplantation in minimally invasive sites."
   },
   "42268925": {
    "first_author": "Howard CJ",

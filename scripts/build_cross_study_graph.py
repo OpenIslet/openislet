@@ -316,7 +316,22 @@ def main() -> None:
             else:
                 target_cell_species = (
                     "Human"
-                    if (has_human_target or any(s in ("Primary_Human_Islet", "iPSC_healthy_donor", "iPSC_T1D_patient", "hESC") for s in arm_sources))
+                    if (
+                        has_human_target
+                        or any(
+                            s
+                            in (
+                                "Primary_Human_Islet",
+                                "iPSC_healthy_donor",
+                                "iPSC_T1D_patient",
+                                "iPSC_T1D_or_LADA_patient",
+                                "CiPSC_chemically_induced",
+                                "hPSC_Derived_Unspecified_Line",
+                                "hESC",
+                            )
+                            for s in arm_sources
+                        )
+                    )
                     else ("NHP" if "NHP_Primary_Islet" in arm_sources else "Unspecified")
                 )
                 if len(arm_sources) > 1:

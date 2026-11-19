@@ -4496,7 +4496,7 @@
     "source_counts": {
       "studies": 563,
       "arms": 596,
-      "atomic_effects": 3093,
+      "atomic_effects": 3094,
       "raw_edit_rows": 237,
       "expanded_edit_gene_occurrences": 242
     },
@@ -4541,13 +4541,13 @@
         "strict_active_peer_reviewed_empirical_studies_total": 529
       },
       "active_deduplicated_arms_count": 581,
-      "active_deduplicated_effects_count": 2991,
+      "active_deduplicated_effects_count": 2992,
       "active_deduplicated_modifier_interactions_count": 1236,
-      "active_deduplicated_causal_edges_count": 1050,
+      "active_deduplicated_causal_edges_count": 1048,
       "non_superseded_arms_count": 582,
-      "non_superseded_effects_count": 2992,
+      "non_superseded_effects_count": 2993,
       "non_superseded_modifier_interactions_count": 1236,
-      "non_superseded_causal_edges_count": 1051,
+      "non_superseded_causal_edges_count": 1049,
       "studies_by_biological_fidelity_tier": {
         "Tier_1_Human_InVivo": 16,
         "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 34,
@@ -4561,11 +4561,12 @@
         "FullText_XML_or_PDF": 188,
         "Review_or_Commentary": 1
       },
-      "exact_source_span_verified_effects_count": 2991,
+      "exact_source_span_verified_effects_count": 2992,
       "quantitative_lrr_effects_count": 4,
       "heuristic_penalty_effects_count": 42,
       "direction_and_penalty_method_counts": {
-        "rule_based_heuristic": 2991
+        "rule_based_heuristic": 2983,
+        "source_adjudicated_curated_override": 9
       },
       "adjudication_semantics": "Rule-based heuristic extraction; no independent manual accuracy dataset is attached. Classifier agreement is not measured sensitivity or specificity.",
       "adjudicated_penalty_effects_count": 42,
@@ -4576,12 +4577,12 @@
         }
       },
       "effects_by_direction": {
-        "Deleterious_or_Impaired": 228,
-        "Neutral_or_NonInferior": 1539,
-        "Protective_or_Improved": 1224
+        "Deleterious_or_Impaired": 226,
+        "Neutral_or_NonInferior": 1538,
+        "Protective_or_Improved": 1228
       },
       "effects_by_polarity_orientation_sign": {
-        "-1": 199,
+        "-1": 200,
         "0": 2336,
         "1": 456
       },

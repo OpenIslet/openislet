@@ -83,9 +83,9 @@
     }
   ],
   "total_arms_extracted": 596,
-  "total_atomic_effects_extracted": 3093,
+  "total_atomic_effects_extracted": 3094,
   "total_effect_modifier_interactions_extracted": 1286,
-  "total_causal_mechanism_edges_extracted": 1091,
+  "total_causal_mechanism_edges_extracted": 1089,
   "multi_hop_cross_study_causal_chains_count": 500,
   "corpus_epistemic_and_fidelity_diagnostics": {
     "active_deduplicated_studies_count": 548,
@@ -128,13 +128,13 @@
       "strict_active_peer_reviewed_empirical_studies_total": 529
     },
     "active_deduplicated_arms_count": 581,
-    "active_deduplicated_effects_count": 2991,
+    "active_deduplicated_effects_count": 2992,
     "active_deduplicated_modifier_interactions_count": 1236,
-    "active_deduplicated_causal_edges_count": 1050,
+    "active_deduplicated_causal_edges_count": 1048,
     "non_superseded_arms_count": 582,
-    "non_superseded_effects_count": 2992,
+    "non_superseded_effects_count": 2993,
     "non_superseded_modifier_interactions_count": 1236,
-    "non_superseded_causal_edges_count": 1051,
+    "non_superseded_causal_edges_count": 1049,
     "studies_by_biological_fidelity_tier": {
       "Tier_1_Human_InVivo": 16,
       "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 34,
@@ -148,11 +148,12 @@
       "FullText_XML_or_PDF": 188,
       "Review_or_Commentary": 1
     },
-    "exact_source_span_verified_effects_count": 2991,
+    "exact_source_span_verified_effects_count": 2992,
     "quantitative_lrr_effects_count": 4,
     "heuristic_penalty_effects_count": 42,
     "direction_and_penalty_method_counts": {
-      "rule_based_heuristic": 2991
+      "rule_based_heuristic": 2983,
+      "source_adjudicated_curated_override": 9
     },
     "adjudication_semantics": "Rule-based heuristic extraction; no independent manual accuracy dataset is attached. Classifier agreement is not measured sensitivity or specificity.",
     "adjudicated_penalty_effects_count": 42,
@@ -163,12 +164,12 @@
       }
     },
     "effects_by_direction": {
-      "Deleterious_or_Impaired": 228,
-      "Neutral_or_NonInferior": 1539,
-      "Protective_or_Improved": 1224
+      "Deleterious_or_Impaired": 226,
+      "Neutral_or_NonInferior": 1538,
+      "Protective_or_Improved": 1228
     },
     "effects_by_polarity_orientation_sign": {
-      "-1": 199,
+      "-1": 200,
       "0": 2336,
       "1": 456
     },
@@ -9637,14 +9638,14 @@
       "hop2_study": "PMID:36497105 (Triolo TM 2022)",
       "hop2_relation": "Activates_or_Upregulates",
       "hop2_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -9794,14 +9795,14 @@
       "hop1_study": "PMID:36497105 (Triolo TM 2022)",
       "hop1_relation": "Activates_or_Upregulates",
       "hop1_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -10857,14 +10858,14 @@
       "hop1_study": "PMID:36497105 (Triolo TM 2022)",
       "hop1_relation": "Activates_or_Upregulates",
       "hop1_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -11537,14 +11538,14 @@
       "hop2_study": "PMID:36497105 (Triolo TM 2022)",
       "hop2_relation": "Activates_or_Upregulates",
       "hop2_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -11871,14 +11872,14 @@
       "hop1_study": "PMID:36497105 (Triolo TM 2022)",
       "hop1_relation": "Activates_or_Upregulates",
       "hop1_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -12551,14 +12552,14 @@
       "hop2_study": "PMID:36497105 (Triolo TM 2022)",
       "hop2_relation": "Activates_or_Upregulates",
       "hop2_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -12885,14 +12886,14 @@
       "hop1_study": "PMID:36497105 (Triolo TM 2022)",
       "hop1_relation": "Activates_or_Upregulates",
       "hop1_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -13816,14 +13817,14 @@
       "hop1_study": "PMID:36497105 (Triolo TM 2022)",
       "hop1_relation": "Activates_or_Upregulates",
       "hop1_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -13905,7 +13906,7 @@
       "hop1_relation": "Inhibits_or_Downregulates",
       "hop1_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Beta_Cell_Line_NIT1_MIN6_INS1|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
+        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
@@ -14099,14 +14100,14 @@
       "hop2_study": "PMID:36497105 (Triolo TM 2022)",
       "hop2_relation": "Activates_or_Upregulates",
       "hop2_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -14367,7 +14368,7 @@
       "hop2_relation": "Inhibits_or_Downregulates",
       "hop2_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Beta_Cell_Line_NIT1_MIN6_INS1|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
+        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
@@ -14701,14 +14702,14 @@
       "hop1_study": "PMID:36497105 (Triolo TM 2022)",
       "hop1_relation": "Activates_or_Upregulates",
       "hop1_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -15076,7 +15077,7 @@
       "hop2_relation": "Inhibits_or_Downregulates",
       "hop2_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Beta_Cell_Line_NIT1_MIN6_INS1|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
+        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
@@ -15367,14 +15368,14 @@
       "hop1_study": "PMID:36497105 (Triolo TM 2022)",
       "hop1_relation": "Activates_or_Upregulates",
       "hop1_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -16034,14 +16035,14 @@
       "hop1_study": "PMID:36497105 (Triolo TM 2022)",
       "hop1_relation": "Activates_or_Upregulates",
       "hop1_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -16607,14 +16608,14 @@
       "hop1_study": "PMID:36497105 (Triolo TM 2022)",
       "hop1_relation": "Activates_or_Upregulates",
       "hop1_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -17181,14 +17182,14 @@
       "hop1_study": "PMID:36497105 (Triolo TM 2022)",
       "hop1_relation": "Activates_or_Upregulates",
       "hop1_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -17756,14 +17757,14 @@
       "hop1_study": "PMID:36497105 (Triolo TM 2022)",
       "hop1_relation": "Activates_or_Upregulates",
       "hop1_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -18288,14 +18289,14 @@
       "hop1_study": "PMID:36497105 (Triolo TM 2022)",
       "hop1_relation": "Activates_or_Upregulates",
       "hop1_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -18777,14 +18778,14 @@
       "hop1_study": "PMID:36497105 (Triolo TM 2022)",
       "hop1_relation": "Activates_or_Upregulates",
       "hop1_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -19262,14 +19263,14 @@
       "hop1_study": "PMID:36497105 (Triolo TM 2022)",
       "hop1_relation": "Activates_or_Upregulates",
       "hop1_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -23038,14 +23039,14 @@
       "hop2_study": "PMID:36497105 (Triolo TM 2022)",
       "hop2_relation": "Activates_or_Upregulates",
       "hop2_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -23302,14 +23303,14 @@
       "hop2_study": "PMID:36497105 (Triolo TM 2022)",
       "hop2_relation": "Activates_or_Upregulates",
       "hop2_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -24622,14 +24623,14 @@
       "hop2_study": "PMID:36497105 (Triolo TM 2022)",
       "hop2_relation": "Activates_or_Upregulates",
       "hop2_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -25817,14 +25818,14 @@
       "hop2_study": "PMID:36497105 (Triolo TM 2022)",
       "hop2_relation": "Activates_or_Upregulates",
       "hop2_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -27144,14 +27145,14 @@
       "hop2_study": "PMID:36497105 (Triolo TM 2022)",
       "hop2_relation": "Activates_or_Upregulates",
       "hop2_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -27365,14 +27366,14 @@
       "hop2_study": "PMID:36497105 (Triolo TM 2022)",
       "hop2_relation": "Activates_or_Upregulates",
       "hop2_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -27587,14 +27588,14 @@
       "hop2_study": "PMID:36497105 (Triolo TM 2022)",
       "hop2_relation": "Activates_or_Upregulates",
       "hop2_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -27812,14 +27813,14 @@
       "hop2_study": "PMID:36497105 (Triolo TM 2022)",
       "hop2_relation": "Activates_or_Upregulates",
       "hop2_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -27838,7 +27839,7 @@
       "hop1_relation": "Inhibits_or_Downregulates",
       "hop1_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Beta_Cell_Line_NIT1_MIN6_INS1|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
+        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
@@ -28060,7 +28061,7 @@
       "hop1_relation": "Inhibits_or_Downregulates",
       "hop1_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Beta_Cell_Line_NIT1_MIN6_INS1|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
+        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
@@ -28282,7 +28283,7 @@
       "hop1_relation": "Inhibits_or_Downregulates",
       "hop1_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Beta_Cell_Line_NIT1_MIN6_INS1|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
+        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
@@ -28479,14 +28480,14 @@
       "hop2_study": "PMID:36497105 (Triolo TM 2022)",
       "hop2_relation": "Activates_or_Upregulates",
       "hop2_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -28505,7 +28506,7 @@
       "hop1_relation": "Inhibits_or_Downregulates",
       "hop1_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Beta_Cell_Line_NIT1_MIN6_INS1|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
+        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
@@ -28683,7 +28684,7 @@
       "hop1_relation": "Inhibits_or_Downregulates",
       "hop1_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Beta_Cell_Line_NIT1_MIN6_INS1|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
+        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
@@ -28861,7 +28862,7 @@
       "hop1_relation": "Inhibits_or_Downregulates",
       "hop1_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Primary_Islet|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
+        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
@@ -29039,7 +29040,7 @@
       "hop1_relation": "Inhibits_or_Downregulates",
       "hop1_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Primary_Islet|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
+        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
@@ -29217,7 +29218,7 @@
       "hop1_relation": "Inhibits_or_Downregulates",
       "hop1_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Primary_Islet|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
+        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
@@ -29396,7 +29397,7 @@
       "hop1_relation": "Inhibits_or_Downregulates",
       "hop1_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Primary_Islet|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
+        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
@@ -29531,7 +29532,7 @@
       "hop1_relation": "Inhibits_or_Downregulates",
       "hop1_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Primary_Islet|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
+        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
@@ -29684,7 +29685,7 @@
       "hop2_relation": "Inhibits_or_Downregulates",
       "hop2_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Beta_Cell_Line_NIT1_MIN6_INS1|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
+        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
@@ -29818,7 +29819,7 @@
       "hop2_relation": "Inhibits_or_Downregulates",
       "hop2_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Beta_Cell_Line_NIT1_MIN6_INS1|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
+        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
@@ -29953,7 +29954,7 @@
       "hop2_relation": "Inhibits_or_Downregulates",
       "hop2_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Beta_Cell_Line_NIT1_MIN6_INS1|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
+        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
@@ -30088,7 +30089,7 @@
       "hop2_relation": "Inhibits_or_Downregulates",
       "hop2_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Beta_Cell_Line_NIT1_MIN6_INS1|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
+        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
@@ -30487,7 +30488,7 @@
       "hop2_relation": "Inhibits_or_Downregulates",
       "hop2_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Beta_Cell_Line_NIT1_MIN6_INS1|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
+        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
@@ -30622,7 +30623,7 @@
       "hop2_relation": "Inhibits_or_Downregulates",
       "hop2_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Beta_Cell_Line_NIT1_MIN6_INS1|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
+        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:10907121 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=5b8aa0bf3c59daec38e2d0c690a1a62513208d1e2075dad62a32ca0b9440b1a1]",
@@ -57924,7 +57925,7 @@
       "study": "PMID:32719542 (Cai EP 2020)",
       "study_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Beta_Cell_Line_NIT1_MIN6_INS1|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "Unspecified",
+        "target_cell_species": "Human",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
@@ -57956,7 +57957,7 @@
       "study": "PMID:32719542 (Cai EP 2020)",
       "study_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Beta_Cell_Line_NIT1_MIN6_INS1|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "Unspecified",
+        "target_cell_species": "Human",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
@@ -57972,7 +57973,7 @@
         "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse",
         "epistemic_class": "Sentence_Heuristic_Candidate_Association"
       },
-      "upstream_node": "RNLS Knockout",
+      "upstream_node": "[REDACTED_NON_OA_EXCERPT: see PMID:32719542 field=omitted_text quote_sha256=5a9b5ebd075102510677a82c87e304435e0b52f5df6f40475a7bc93349b3a5e5]",
       "upstream_concepts": [
         "RNLS_Glycolytic_NADPH_GSH_Redox_Shield"
       ],
@@ -57985,7 +57986,7 @@
       "study": "PMID:32719542 (Cai EP 2020)",
       "study_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Beta_Cell_Line_NIT1_MIN6_INS1|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "Unspecified",
+        "target_cell_species": "Human",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
@@ -59057,17 +59058,17 @@
     {
       "study": "PMID:34345868 (Kenty JH 2021)",
       "study_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "Human",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
-        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "canonical_differentiation_stage_evaluated": "InVivo_Engrafted_Maturation",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
-          "Primary_Mature_Islet"
+          "InVivo_Engrafted_Maturation"
         ],
         "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse",
         "epistemic_class": "Sentence_Heuristic_Candidate_Association"
@@ -59085,17 +59086,17 @@
     {
       "study": "PMID:34345868 (Kenty JH 2021)",
       "study_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "Human",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
-        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "canonical_differentiation_stage_evaluated": "InVivo_Engrafted_Maturation",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
-          "Primary_Mature_Islet"
+          "InVivo_Engrafted_Maturation"
         ],
         "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse",
         "epistemic_class": "Sentence_Heuristic_Candidate_Association"
@@ -59397,17 +59398,17 @@
     {
       "study": "PMID:34861146 (Ramzy A 2021)",
       "study_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hPSC_Derived_Unspecified_Line",
         "target_cell_species": "Human",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
-        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "canonical_differentiation_stage_evaluated": "InVivo_Engrafted_Maturation",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hPSC_Derived_Unspecified_Line"
         ],
         "study_arm_differentiation_stages": [
-          "Primary_Mature_Islet"
+          "InVivo_Engrafted_Maturation"
         ],
         "max_biological_fidelity_tier": "Tier_1_Human_InVivo",
         "epistemic_class": "Sentence_Heuristic_Candidate_Association"
@@ -59711,7 +59712,7 @@
       "study": "PMID:35115708 (Du Y 2022)",
       "study_context": {
         "cell_source_class": "CiPSC_chemically_induced",
-        "target_cell_species": "Unspecified",
+        "target_cell_species": "Human",
         "host_recipient_species": "NHP",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
@@ -61767,14 +61768,14 @@
     {
       "study": "PMID:36497105 (Triolo TM 2022)",
       "study_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:36497105 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -61794,14 +61795,14 @@
     {
       "study": "PMID:36497105 (Triolo TM 2022)",
       "study_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:36497105 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -61821,14 +61822,14 @@
     {
       "study": "PMID:36497105 (Triolo TM 2022)",
       "study_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:36497105 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -61851,14 +61852,14 @@
     {
       "study": "PMID:36497105 (Triolo TM 2022)",
       "study_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hESC",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:36497105 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
         "canonical_differentiation_stage_evaluated": "Stage4_PancreaticProgenitor_PDX1_NKX6_1",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hESC"
         ],
         "study_arm_differentiation_stages": [
           "Stage4_PancreaticProgenitor_PDX1_NKX6_1"
@@ -64007,14 +64008,14 @@
     {
       "study": "PMID:37809993 (Yabe SG 2023)",
       "study_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "iPSC_healthy_donor",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:37809993 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "Rodent_or_Murine",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
         "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "iPSC_healthy_donor"
         ],
         "study_arm_differentiation_stages": [
           "Stage6_Immature_SC_Islet"
@@ -64032,14 +64033,14 @@
     {
       "study": "PMID:37809993 (Yabe SG 2023)",
       "study_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "iPSC_healthy_donor",
         "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:37809993 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
         "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "iPSC_healthy_donor"
         ],
         "study_arm_differentiation_stages": [
           "Stage6_Immature_SC_Islet"
@@ -67207,56 +67208,6 @@
       "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:39321953 field=evidence_source quote_sha256=bb2ee32fca7638cdf8d9d08205f87a984474bd809c6679cacb06248712878af4]"
     },
     {
-      "study": "PMID:39326417 (Wang S 2024)",
-      "study_context": {
-        "cell_source_class": "CiPSC_chemically_induced",
-        "target_cell_species": "Human",
-        "host_recipient_species": "InVitro_or_Same_As_Target",
-        "immune_effector_species": "Unspecified_or_Abiotic",
-        "reagent_species": "Unspecified",
-        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
-        "study_arm_cell_source_classes": [
-          "CiPSC_chemically_induced"
-        ],
-        "study_arm_differentiation_stages": [
-          "Stage6_Immature_SC_Islet"
-        ],
-        "max_biological_fidelity_tier": "Tier_1_Human_InVivo",
-        "epistemic_class": "Sentence_Heuristic_Candidate_Association"
-      },
-      "upstream_node": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
-      "upstream_concepts": [],
-      "causal_relation": "Activates_or_Upregulates",
-      "downstream_node": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
-      "downstream_concepts": [],
-      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:39326417 field=evidence_source quote_sha256=4b4b380e893691e1fd1b80e820c36ed89f158068539f754dc73c8480ad24c84d]"
-    },
-    {
-      "study": "PMID:39326417 (Wang S 2024)",
-      "study_context": {
-        "cell_source_class": "CiPSC_chemically_induced",
-        "target_cell_species": "Unspecified",
-        "host_recipient_species": "InVitro_or_Same_As_Target",
-        "immune_effector_species": "Unspecified_or_Abiotic",
-        "reagent_species": "Unspecified",
-        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
-        "study_arm_cell_source_classes": [
-          "CiPSC_chemically_induced"
-        ],
-        "study_arm_differentiation_stages": [
-          "Stage6_Immature_SC_Islet"
-        ],
-        "max_biological_fidelity_tier": "Tier_1_Human_InVivo",
-        "epistemic_class": "Sentence_Heuristic_Candidate_Association"
-      },
-      "upstream_node": "Biphasic_GSIS_and_Calcium_Coupling",
-      "upstream_concepts": [],
-      "causal_relation": "Activates_or_Upregulates",
-      "downstream_node": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
-      "downstream_concepts": [],
-      "evidence_source": "[REDACTED_NON_OA_EXCERPT: see PMID:39326417 field=evidence_source quote_sha256=e8ec3934626ac378e17be7edd1d9c3a30dcc475cbc29083d866a5b4b3fb1539d]"
-    },
-    {
       "study": "PMID:39344094 (Wu Y 2024)",
       "study_context": {
         "cell_source_class": "Rodent_Primary_Islet",
@@ -67310,7 +67261,7 @@
       "study": "PMID:39520565 (Chimienti R 2025)",
       "study_context": {
         "cell_source_class": "iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "Unspecified",
+        "target_cell_species": "Human",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
@@ -67337,7 +67288,7 @@
       "study": "PMID:39520565 (Chimienti R 2025)",
       "study_context": {
         "cell_source_class": "iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "Unspecified",
+        "target_cell_species": "Human",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
@@ -67362,7 +67313,7 @@
       "study": "PMID:39520565 (Chimienti R 2025)",
       "study_context": {
         "cell_source_class": "iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "Unspecified",
+        "target_cell_species": "[REDACTED_NON_OA_EXCERPT: see PMID:39520565 field=omitted_text quote_sha256=9ffa865f2bc6e850157bb454ef3e00fa789e3f8cc631552941a99ba3fcddde51]",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
@@ -68653,7 +68604,7 @@
       "study": "PMID:39988068 (MacDonald TL 2025)",
       "study_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Primary_Islet|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "Unspecified",
+        "target_cell_species": "Human",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
@@ -68685,7 +68636,7 @@
       "study": "PMID:39988068 (MacDonald TL 2025)",
       "study_context": {
         "cell_source_class": "Multi_Arm_Mixed_Context:Rodent_Primary_Islet|iPSC_T1D_or_LADA_patient",
-        "target_cell_species": "Unspecified",
+        "target_cell_species": "Human",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
@@ -71385,17 +71336,17 @@
     {
       "study": "PMID:40987274 (Xiong Y 2025)",
       "study_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hPSC_Derived_Unspecified_Line",
         "target_cell_species": "Human",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
-        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "canonical_differentiation_stage_evaluated": "InVivo_Engrafted_Maturation",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hPSC_Derived_Unspecified_Line"
         ],
         "study_arm_differentiation_stages": [
-          "Primary_Mature_Islet"
+          "InVivo_Engrafted_Maturation"
         ],
         "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse",
         "epistemic_class": "Sentence_Heuristic_Candidate_Association"
@@ -74782,14 +74733,14 @@
     {
       "study": "PMID:41932324 (Wang Z 2026)",
       "study_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hPSC_Derived_Unspecified_Line",
         "target_cell_species": "Human",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
         "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hPSC_Derived_Unspecified_Line"
         ],
         "study_arm_differentiation_stages": [
           "Stage6_Immature_SC_Islet"
@@ -74807,14 +74758,14 @@
     {
       "study": "PMID:41932324 (Wang Z 2026)",
       "study_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hPSC_Derived_Unspecified_Line",
         "target_cell_species": "Human",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
         "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hPSC_Derived_Unspecified_Line"
         ],
         "study_arm_differentiation_stages": [
           "Stage6_Immature_SC_Islet"
@@ -74834,14 +74785,14 @@
     {
       "study": "PMID:41932324 (Wang Z 2026)",
       "study_context": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hPSC_Derived_Unspecified_Line",
         "target_cell_species": "Human",
         "host_recipient_species": "InVitro_or_Same_As_Target",
         "immune_effector_species": "Unspecified_or_Abiotic",
         "reagent_species": "Unspecified",
         "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
         "study_arm_cell_source_classes": [
-          "Primary_Human_Islet"
+          "hPSC_Derived_Unspecified_Line"
         ],
         "study_arm_differentiation_stages": [
           "Stage6_Immature_SC_Islet"

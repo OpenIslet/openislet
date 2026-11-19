@@ -33,11 +33,11 @@
       "sample_size_n": null,
       "sample_size_unit": null,
       "gate1_substrate_and_differentiation": {
-        "cell_source_class": "Primary_Human_Islet",
+        "cell_source_class": "hPSC_Derived_Unspecified_Line",
         "cell_line_id": null,
         "donor_hla_profile": null,
         "protocol_backbone": null,
-        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "canonical_differentiation_stage_evaluated": "InVivo_Engrafted_Maturation",
         "stage_small_molecules_and_factors": [],
         "cluster_mean_diameter_um": null,
         "pct_nkx6_1_cpeptide_double_pos": null,
@@ -109,8 +109,8 @@
       "effect_direction": "Protective_or_Improved",
       "secretome_or_differentiation_penalty_observed": false,
       "conditioning_context_Z": {
-        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
-        "Z2_genetic_background_and_allelic_dose": "Primary_Human_Islet",
+        "Z1_developmental_stage_and_timing": "InVivo_Engrafted_Maturation",
+        "Z2_genetic_background_and_allelic_dose": "hPSC_Derived_Unspecified_Line",
         "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
@@ -141,7 +141,7 @@
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": null,
-        "population_or_model": "Primary_Human_Islet (Tier_1_Human_InVivo)",
+        "population_or_model": "hPSC_Derived_Unspecified_Line (Tier_1_Human_InVivo)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
       }
@@ -165,8 +165,8 @@
       "effect_direction": "Protective_or_Improved",
       "secretome_or_differentiation_penalty_observed": false,
       "conditioning_context_Z": {
-        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
-        "Z2_genetic_background_and_allelic_dose": "Primary_Human_Islet",
+        "Z1_developmental_stage_and_timing": "InVivo_Engrafted_Maturation",
+        "Z2_genetic_background_and_allelic_dose": "hPSC_Derived_Unspecified_Line",
         "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
@@ -197,7 +197,7 @@
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": null,
-        "population_or_model": "Primary_Human_Islet (Tier_1_Human_InVivo)",
+        "population_or_model": "hPSC_Derived_Unspecified_Line (Tier_1_Human_InVivo)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
       }

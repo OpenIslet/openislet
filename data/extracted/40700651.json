@@ -32,10 +32,10 @@
       "sample_size_n": null,
       "sample_size_unit": null,
       "gate1_substrate_and_differentiation": {
-        "cell_source_class": "Primary_Human_Islet",
-        "cell_line_id": null,
+        "cell_source_class": "hESC",
+        "cell_line_id": "WA01/H1",
         "donor_hla_profile": null,
-        "protocol_backbone": null,
+        "protocol_backbone": "Micropocket polyacrylamide hydrogel SC-islet differentiation from WA01/H1 hESCs [full text Methods section 2.3, DOI:10.1021/acsbiomaterials.5c00372, absent from PubMed abstract]",
         "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
         "stage_small_molecules_and_factors": [],
         "cluster_mean_diameter_um": null,
@@ -109,7 +109,7 @@
       "secretome_or_differentiation_penalty_observed": false,
       "conditioning_context_Z": {
         "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
-        "Z2_genetic_background_and_allelic_dose": "Primary_Human_Islet",
+        "Z2_genetic_background_and_allelic_dose": "hESC",
         "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
@@ -140,7 +140,7 @@
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": null,
-        "population_or_model": "Primary_Human_Islet (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "population_or_model": "hESC (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
       }
@@ -165,7 +165,7 @@
       "secretome_or_differentiation_penalty_observed": false,
       "conditioning_context_Z": {
         "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
-        "Z2_genetic_background_and_allelic_dose": "Primary_Human_Islet",
+        "Z2_genetic_background_and_allelic_dose": "hESC",
         "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
@@ -196,7 +196,7 @@
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": null,
-        "population_or_model": "Primary_Human_Islet (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "population_or_model": "hESC (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "μm",
         "contrast_type": "single_arm_descriptive_only"
       }

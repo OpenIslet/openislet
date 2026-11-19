@@ -27,7 +27,7 @@
   "arms": [
     {
       "arm_id": "pmid42182975_arm1",
-      "arm_label": "Primary experimental arm in Krishnan SR (2026)",
+      "arm_label": "Active wireless O2-Macrodevice multi-model summary arm (mouse, rat, human SC-islet, NHP; Abstract_Only) in Krishnan SR (2026) [unoxygenated comparator controls separated in full text; cross-reference CEG R1_0378 for arm-level model and control scope]",
       "is_reference_control": false,
       "sample_size_n": null,
       "sample_size_unit": null,
@@ -50,7 +50,7 @@
         "transplant_site": "Subcutaneous_Prevascularized_or_Device",
         "prevascularization_lead_time_days": null,
         "in_dish_vascular_assembly": "None_Avascular_Islet",
-        "oxygen_bridge_72h_carrier": "None",
+        "oxygen_bridge_72h_carrier": "Exogenous_O2_Chamber_or_Bioelectronic",
         "packing_density_ieq_per_cm2_or_ml": null,
         "number_of_distributed_micro_pockets": null,
         "staged_insertion_schedule": null,

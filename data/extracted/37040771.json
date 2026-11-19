@@ -34,16 +34,16 @@
   "arms": [
     {
       "arm_id": "pmid37040771_arm1",
-      "arm_label": "Primary experimental arm in Zhu H (2023)",
+      "arm_label": "Multi-stage hESC (H1/WA01) in vitro SC-islet differentiation with primary childhood and adult human donor pancreas comparisons in Zhu H (2023) [STAR Methods PMC10175223, absent from PubMed abstract: H1/WA01 line across multiple stages]",
       "is_reference_control": false,
       "sample_size_n": null,
       "sample_size_unit": null,
       "gate1_substrate_and_differentiation": {
-        "cell_source_class": "Primary_Human_Islet",
-        "cell_line_id": null,
+        "cell_source_class": "hESC",
+        "cell_line_id": "H1/WA01",
         "donor_hla_profile": null,
-        "protocol_backbone": null,
-        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "protocol_backbone": "Multi-stage in vitro hESC (H1/WA01) pancreatic islet differentiation single-cell multiome compared with primary childhood and adult human pancreas donors [STAR Methods PMC10175223, DOI:10.1016/j.devcel.2023.03.011, absent from PubMed abstract]",
+        "canonical_differentiation_stage_evaluated": null,
         "stage_small_molecules_and_factors": [],
         "cluster_mean_diameter_um": null,
         "pct_nkx6_1_cpeptide_double_pos": null,
@@ -115,8 +115,8 @@
       "effect_direction": "Neutral_or_NonInferior",
       "secretome_or_differentiation_penalty_observed": false,
       "conditioning_context_Z": {
-        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
-        "Z2_genetic_background_and_allelic_dose": "Primary_Human_Islet",
+        "Z1_developmental_stage_and_timing": "Multi-stage in vitro hESC (H1/WA01) differentiation plus primary childhood and adult human pancreas comparisons",
+        "Z2_genetic_background_and_allelic_dose": "hESC",
         "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
         "Z4_metabolic_and_glucose_load_state": "Reported in study",
         "Z5_cytoarchitecture_and_cluster_diameter": "Islet / beta-cell preparation",
@@ -147,7 +147,7 @@
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": null,
-        "population_or_model": "Primary_Human_Islet (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "population_or_model": "hESC (H1/WA01 multi-stage differentiation plus primary human donor pancreas comparison; Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
       }

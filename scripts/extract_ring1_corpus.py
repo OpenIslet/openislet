@@ -647,7 +647,559 @@ def infer_fidelity_tier(full_text: str, mesh: list[str], pub_types: list[str]) -
     return "Tier_4_Rodent_or_Xenogeneic_Only"
 
 
-def infer_cell_source_and_stage(full_text: str, mesh_terms: list[str] | None = None) -> tuple[str, str | None, str]:
+# ---------------------------------------------------------------------------
+# IIP-0030 (DEC-109): Hardened Clause-Scoped Oxygen-Bridge Carrier Classifier,
+# Scoped Primary-Source hPSC Cell-Source Repairs, Comparator-Arm Carrier Guard,
+# and Schema-Clean Curated Overrides (39326417, 36624157 atomic split, 40544428)
+# ---------------------------------------------------------------------------
+
+_CARRIER_FAMILY_TOKENS: dict[str, str] = {
+    "cao2": r"(?:cao2|calcium\s+peroxide|oxygen[- ]?carrier|o2[- ]?carrier)",
+    "pfc": r"(?:perfluor\w*|pfcs?\b|pfob\b|pftba\b|oxyfluor\b|oxycyte\b|fluosol\b|oxygen[- ]?carrier|o2[- ]?carrier)",
+    "exog_o2": r"(?:(?:beta|\u03b2)[- ]?air|oxygen\s+chamber|electrochemical\s+oxygen|o2[- ]macrodevice|oxygen[- ]?generat\w*\s+(?:\w+\s+){0,2}(?:device|macrodevice|implant|chamber)|oxygen[- ]?carrier|o2[- ]?carrier)",
+    "hb": r"(?:hemoglobin|haemoglobin|myoglobin|hb[- ]?vesicles?|hboc(?:-\d+)?|oxyglobin|hemopure|hemoxcell|hemarina|m101|oxygen[- ]?carrier|o2[- ]?carrier)",
+}
+
+_HARDENED_CAO2_PATTERNS: tuple[re.Pattern[str], ...] = (
+    re.compile(r"(?i)\b(?:cao2|calcium\s+peroxide)\b"),
+)
+
+_PFC_EXCLUSION_RE = re.compile(
+    r"(?i)\b(?:prefrontal\s+cortex|cortex|cortical|brain|fmri|pet\s+imaging|metabolic\s+imaging|"
+    r"19f(?:\s*[-/]?\s*mri)?|mri\b|magnetic\s+resonance|contrast\s+agent|imaging\s+tracer|mri\s+tracer|"
+    r"ultrasound\s+contrast|microbubble|"
+    r"splenic\s+pfc|plaque[- ]forming|pfc\s+response|antibody[- ]forming|"
+    r"perfluoro\s+elastomer|perfluoroelastomer|ptfe|ferrule|tubing|kruskal[- ]wallis)\b"
+)
+
+_HARDENED_PFC_PATTERNS: tuple[re.Pattern[str], ...] = (
+    # Specific PFC oxygen-delivery compounds / commercial oxygen emulsions
+    re.compile(
+        r"(?i)\b(?:perfluorodecalin|perfluorooctyl\s+bromide|perfluorotributylamine|"
+        r"pfob|pftba|oxyfluor|oxycyte|fluosol)\b"
+    ),
+    # Generic perfluorocarbon requires oxygen-delivery / encapsulation / islet context (blocks bare MRI/imaging mentions)
+    re.compile(
+        r"(?i)(?:\bperfluorocarbon\w*\b.{0,80}\b(?:oxygen\w*|o2\b|hypoxi\w*|carrier|emulsion|nanoemulsion|droplet|hydrogel|scaffold|encapsul\w*|preserv\w*|islet\w*|po2)\b"
+        r"|\b(?:oxygen[- ]?carrying|oxygen\w*|hypoxi\w*|carrier|emulsified|nanoemulsion|hydrogel|scaffold|encapsul\w*)\b.{0,55}\bperfluorocarbon\w*\b)"
+    ),
+    # Uppercase PFC/PFCs with bidirectional oxygen-carrier/emulsion context
+    re.compile(
+        r"(?-i:\bPFCs?\b)(?=.{0,80}(?i:oxygen|o2\b|emulsion|nanoemulsion|droplet|carrier|perfluor|islet\s+po2))"
+    ),
+    re.compile(
+        r"(?i:oxygen[- ]?carrying|emulsified|nanoemulsion|perfluor\w*|emulsion\s+containing.{0,20}|vol%\s+(?:oxygen|o2)[^\n.;]{0,30})"
+        r".{0,45}(?-i:\bPFCs?\b)"
+    ),
+    # Lowercase pfc only when directly paired with emulsion/nanoemulsion/oxygen-carrier (never Kruskal-Wallis (pFC))
+    re.compile(
+        r"(?i)\bpfc\s+(?:emulsion|nanoemulsion|droplets?|oxygen[- ]?carrier|o2[- ]?carrier)\b"
+    ),
+)
+
+_HARDENED_EXOG_O2_PATTERNS: tuple[re.Pattern[str], ...] = (
+    re.compile(r"(?i)(?:\b|(?<=\s))(?:beta|\u03b2)[- ]?air\b"),
+    re.compile(r"(?i)\b(?:oxygen\s+chamber|electrochemical\s+oxygen|o2[- ]macrodevice)\b"),
+    re.compile(r"(?i)\b(?:oxygen[- ]?generat\w*|wireless[, ]+(?:battery[- ]?free\s+)?oxygenation)\s+(?:\w+\s+){0,3}(?:device|macrodevice|implant|chamber|platform)s?\b"),
+)
+
+_HARDENED_HB_PATTERNS: tuple[re.Pattern[str], ...] = (
+    re.compile(r"(?i)\b(?:hemoxcell|hemarina|hboc(?:-\d+)?|oxyglobin|hemopure)\b"),
+    re.compile(r"(?i)\barenicola\s+marina\b.{0,45}\b(?:m101|hemoglobin|haemoglobin|oxygen|o2)\b"),
+    re.compile(
+        r"(?i)(?:(?<!clone\s)(?<!strain\s)(?<!line\s)\bm101\b.{0,65}(?:g/l|mg/ml|oxygen|o2|hypoxia|preserv\w*|islet|viab\w*|carrier|arenicola|hemarina|extracellular)"
+        r"|(?:preserv\w*|supplement\w*|oxygen\w*|hypoxia|hemoxcell|arenicola|hemarina|carrier).{0,55}(?<!clone\s)(?<!strain\s)(?<!line\s)\bm101\b)"
+    ),
+    re.compile(r"(?i)\b(?:hb[- ]?vesicles?|hemoglobin[- ]?vesicles?|haemoglobin[- ]?vesicles?)\b"),
+    re.compile(
+        r"(?i)\b(?:hemoglobin|haemoglobin|myoglobin)\s*[-/]?\s*"
+        r"(?:based|loaded|encapsulated|conjugated|cross[- ]?linked|containing|functionalized)\s*"
+        r"(?:hydrogel|scaffold|matrix|alginate|peg(?:-\d*mal)?|gel\b|microsphere|microparticle|nanoparticle|"
+        r"oxygen\s+carrier|o2\s+carrier|vesicle|biomaterial|microcapsule)"
+    ),
+    # Reverse-order PEG-hemoglobin / pegylated hemoglobin / alginate-hemoglobin / cell-free hemoglobin perfusate
+    re.compile(r"(?i)\b(?:peg|pegylated|alginate|hydrogel|scaffold|matrix)\s*[- ]\s*(?:hemoglobin|haemoglobin|myoglobin|hb)\b"),
+    re.compile(r"(?i)\bcell[- ]free\s+(?:hemoglobin|haemoglobin)\b.{0,60}\b(?:perfus\w*|oxygen\w*|o2\b|carrier|islet|preserv\w*|hypoxi\w*|solution|medium)\b"),
+    re.compile(r"(?i)\b(?:perfus\w*|oxygen\w*|carrier|preserv\w*)\b.{0,50}\bcell[- ]free\s+(?:hemoglobin|haemoglobin)\b"),
+    # American & British spelling: polymerized/polymerised, cross-linked, extracellular, marine hemoglobin/haemoglobin
+    re.compile(r"(?i)\b(?:cross[- ]?linked|polymeri[sz]ed|pegylated|extracellular|marine(?:\s+worm)?)\s+(?:hemoglobin|haemoglobin|myoglobin)\b"),
+    re.compile(
+        r"(?i)\b(?:hydrogel|scaffold|alginate|peg(?:-\d*mal)?|matrix|oxygen\s+carrier|o2\s+carrier)\s+"
+        r"(?:containing|loaded\s+with|functionalized\s+with|supplemented\s+with|conjugated\s+(?:to|with))\s+"
+        r"(?:hemoglobin|haemoglobin|myoglobin)\b"
+    ),
+)
+
+_HPSC_GENERIC_TITLE_RE = re.compile(
+    r"(?i)\b(?:hpscs?|hsc[- ]islets?|human\s+pluripotent\s+stem[- ]cell[- ]derived|"
+    r"pluripotent\s+stem[- ]cell[- ]derived|stem[- ]cell[- ]derived\s+(?:pancreatic\s+|fully\s+differentiated\s+)?(?:islets?|beta|\u03b2|endocrine|pancreatic\s+endoderm)|"
+    r"stem\s+cell[- ]derived,?\s+fully\s+differentiated\s+islets?)\b"
+)
+
+# Individually source-verified stage repairs strictly for the 7 hPSC records
+# that otherwise fell through to semantically contradictory "Primary_Mature_Islet".
+_HPSC_PRIMARY_MATURE_STAGE_REPAIRS: dict[str, str | None] = {
+    "31756031": "Stage6_Immature_SC_Islet",      # Davis 2019: in vitro SC-beta zinc enrichment
+    "34345868": "InVivo_Engrafted_Maturation",   # Kenty 2021: retrieval of in-vivo engrafted SC-beta cells in mice (HUES-8 hESC)
+    "34861146": "InVivo_Engrafted_Maturation",   # Ramzy 2021: Phase 1/2 PEC-01 implanted in vivo -> mature beta cells at 1 yr
+    "36624157": "InVivo_Engrafted_Maturation",   # Liang 2023: NHP sub-ARS CiPSC-islets survive and mature in vivo
+    "37040771": None,                            # Zhu 2023: multi-stage in vitro H1/WA01 differentiation + primary human donor pancreas comparison
+    "40544428": "InVivo_Engrafted_Maturation",   # Reichman 2025: Zimislecel Phase 1-2 human portal-vein infusion (12 mo)
+    "40987274": "InVivo_Engrafted_Maturation",   # Xiong & Berggren 2025: Preview of vascularized hPSC-islets maturation/in vivo grafts
+}
+
+# Primary-source verification recovered exact cell-source classes and named lines for 7 of the 15
+# Primary_Human_Islet stem-cell misclassifications (remaining 8 map to hPSC_Derived_Unspecified_Line):
+_HPSC_EXACT_LINE_SOURCE_REPAIRS: dict[str, tuple[str, str | None]] = {
+    "34345868": ("hESC", "HUES8"),
+    "36497105": ("hESC", "MEL1"),
+    "36624157": ("CiPSC_chemically_induced", "hCiPSC-8# (hPSC-8)"),
+    "37040771": ("hESC", "H1/WA01"),
+    "37809993": ("iPSC_healthy_donor", "TkDN4-M"),
+    "40544428": ("hESC", "Undisclosed proprietary hESC line (zimislecel / VX-880; USAN-documented hESC origin)"),
+    "40700651": ("hESC", "WA01/H1"),
+}
+
+_COMPARATOR_EXPLICIT_NO_O2_RE = re.compile(
+    r"(?i)\b(?:unoxygenated|non[- ]?oxygenated|without\s+(?:exogenous\s+)?(?:oxygen\w*|o2\b|carrier|cao2|pfc|hemoglobin|hemoxcell)|"
+    r"no\s+(?:exogenous\s+)?(?:oxygen\w*|o2\b|carrier|cao2|pfc|hemoglobin|hemoxcell)|"
+    r"(?:oxygen|o2|cao2|pfc|hemoglobin)[- ]free|passive\s+(?:diffusion|control)|unpowered|sham\s+device)\b"
+)
+
+
+def _split_carrier_clauses(text: str) -> list[str]:
+    clauses: list[str] = []
+    for sent in re.split(r"(?<=[.!?])\s+|\n+", text):
+        sent = sent.strip()
+        if not sent:
+            continue
+        # Split contrasting comparator prefixes ("Unlike prior perfluorocarbon..., HEMOXCell was administered")
+        # and clause boundaries (";" or ", whereas/while/but/however/without") so negating one carrier
+        # does not silence a genuinely administered carrier in the main clause.
+        sub = re.split(
+            r"\s*;\s*"
+            r"|,\s+(?=(?:whereas|while|but|however|yet|without|free\s+of|lacking|devoid\s+of)\b)"
+            r"|(?<=,\s)(?=(?:our|we|the|islets|cells|grafts|hemoxcell|m101|hboc|perfluor\w*|pfob|cao2|calcium\s+peroxide)\b)",
+            sent,
+            flags=re.IGNORECASE,
+        )
+        for piece in sub:
+            piece = piece.strip()
+            if piece:
+                clauses.append(piece)
+    return clauses
+
+
+def _clause_negates_family(clause: str, family: str) -> bool:
+    tok = _CARRIER_FAMILY_TOKENS[family]
+    # 1. Leading comparator clause ("Unlike prior perfluorocarbon emulsions...", "Compared with prior HBOC...")
+    if re.search(
+        rf"(?i)\b(?:unlike|instead\s+of|rather\s+than|compared\s+(?:to|with)\s+(?:prior|previous|conventional|existing))\s+"
+        rf"(?:prior\s+|previous\s+|conventional\s+|existing\s+)?(?:[\w-]+\s+){{0,4}}{tok}",
+        clause,
+    ):
+        return True
+    # 2. Explicit negative quantifier before carrier ("no HEMOXCell", "uses no added oxygen carrier", "without hemoglobin", "not loaded with CaO2")
+    if re.search(
+        rf"(?i)\b(?:uses?|used|using|contains?|containing|administered|loaded\s+with|supplemented\s+with)?\s*"
+        rf"(?:no|without|free\s+of|lacking|devoid\s+of|absent|not\s+(?:loaded\s+with|supplemented\s+with|containing|using|treated\s+with))\s+"
+        rf"(?:added\s+|any\s+|exogenous\s+)?(?:[\w-]+\s+){{0,3}}{tok}",
+        clause,
+    ):
+        return True
+    # 3. Carrier followed by negative passive verb ("No HEMOXCell was administered", "CaO2 was not loaded", "HEMOXCell was omitted")
+    if re.search(
+        rf"(?i)\b{tok}\b.{{0,40}}\b(?:was|were|is|are)\s+(?:not\s+(?:administered|used|added|loaded|included|supplied)|omitted|absent|excluded)\b",
+        clause,
+    ):
+        return True
+    # 4. Suffix "-free" ("CaO2-free", "hemoglobin-free", "PFC-free")
+    if re.search(rf"(?i)\b{tok}-free\b", clause):
+        return True
+    return False
+
+
+def _match_carrier_family(
+    text: str,
+    family: str,
+    patterns: tuple[re.Pattern[str], ...],
+    exclusion_re: re.Pattern[str] | None = None,
+) -> tuple[bool, str]:
+    for clause in _split_carrier_clauses(text):
+        if exclusion_re is not None and exclusion_re.search(clause):
+            continue
+        if _clause_negates_family(clause, family):
+            continue
+        for pat in patterns:
+            if pat.search(clause):
+                return True, clause[:160]
+    return False, ""
+
+
+def classify_oxygen_bridge_carrier_hardened(text: str) -> tuple[str, str]:
+    hit, sn = _match_carrier_family(text, "cao2", _HARDENED_CAO2_PATTERNS)
+    if hit:
+        return "CaO2_PDMS_Oxygen_Microbeads", sn
+    hit, sn = _match_carrier_family(text, "pfc", _HARDENED_PFC_PATTERNS, _PFC_EXCLUSION_RE)
+    if hit:
+        return "Perfluorocarbon_O2_Carrier", sn
+    hit, sn = _match_carrier_family(text, "exog_o2", _HARDENED_EXOG_O2_PATTERNS)
+    if hit:
+        return "Exogenous_O2_Chamber_or_Bioelectronic", sn
+    hit, sn = _match_carrier_family(text, "hb", _HARDENED_HB_PATTERNS)
+    if hit:
+        return "Hemoglobin_or_Myoglobin_Hydrogel", sn
+    return "None", ""
+
+
+def _infer_comparator_oxygen_carrier(base_o2: str | None, comp_arm_label: str) -> str | None:
+    """Prevent unoxygenated or unspecified comparator arms from inheriting study-level O2 carrier labels."""
+    if base_o2 in (None, "None"):
+        return base_o2
+    if _COMPARATOR_EXPLICIT_NO_O2_RE.search(comp_arm_label or ""):
+        return "None"
+    comp_o2, _ = classify_oxygen_bridge_carrier_hardened(comp_arm_label or "")
+    if comp_o2 != "None":
+        return comp_o2
+    # Schema permits null to preserve uncertainty when the comparator omits oxygenation methods
+    return None
+
+
+def _apply_part_a1_curated_overrides(record: dict[str, Any], dossier: dict[str, Any]) -> None:
+    """Apply individually source-verified, strictly schema-clean IIP-0030 (DEC-109) curated overrides."""
+    pmid = str(record.get("study_metadata", {}).get("pmid") or "")
+    dossier_sha = _compute_dossier_sha256(pmid, dossier)
+    arms = record.get("arms") or []
+    effects = record.get("atomic_effects") or []
+
+    if pmid == "39326417":
+        # Wang S et al., Cell 2024 Oct 31;187(22):6152-6164.e18 (DOI:10.1016/j.cell.2024.09.004; ChiCTR2300072200)
+        record["study_metadata"]["nct_id"] = "ChiCTR2300072200"
+        for arm in arms:
+            arm["arm_label"] = (
+                "Autologous CiPSC-islets implanted beneath abdominal anterior rectus sheath "
+                "in Wang S (2024) [full text, absent from PubMed abstract: 1,488,283 IEQ / "
+                "19,843 IEQ/kg, hydrogel-free non-en-bloc injection, pre-existing liver-transplant "
+                "tacrolimus systemic IS, and chronic liver-disease HbA1c interpretation caveat]"
+            )
+            g1 = arm["gate1_substrate_and_differentiation"]
+            g1["cell_source_class"] = "CiPSC_chemically_induced"
+            g1["canonical_differentiation_stage_evaluated"] = "InVivo_Engrafted_Maturation"
+            g5 = arm["gate5_engraftment_niche"]
+            g5["transplant_site"] = "Intramuscular_Forearm_or_Rectus"
+            g5["oxygen_bridge_72h_carrier"] = "None"
+            g5["systemic_immunosuppression_regimen"] = (
+                "Pre-existing tacrolimus-based systemic immunosuppression (prior liver transplant) "
+                "continued and adapted peri-transplant; chronic liver disease noted as potential HbA1c "
+                "confounder (Wang et al. Cell 2024 full text, DOI:10.1016/j.cell.2024.09.004; "
+                "absent from PubMed abstract)"
+            )
+        for eff in effects:
+            eid = eff.get("effect_id")
+            if eid == "pmid39326417_eff1":
+                eff["focal_factor_X"] = "Sub_ARS_Autologous_CiPSC_Islet_Transplantation"
+                eff["outcome_domain"] = "InVivo_Glycemic_Cure_and_Graft_Longevity"
+                eff["outcome_variable_Y"] = (
+                    "[Endpoint: Time-in-target glycemic range and HbA1c at month 4] "
+                    "TIR rose from 43.18% baseline to 96.21% at month 4 with non-diabetic HbA1c "
+                    "(full-text caveats: systemic tacrolimus IS; chronic liver disease may affect HbA1c)"
+                )
+                eff["effect_direction"] = "Protective_or_Improved"
+            elif eid == "pmid39326417_eff2":
+                eff["focal_factor_X"] = "Sub_ARS_Autologous_CiPSC_Islet_Transplantation"
+                eff["outcome_domain"] = "InVivo_Glycemic_Cure_and_Graft_Longevity"
+                eff["outcome_variable_Y"] = (
+                    "[Endpoint: Stable glycemic control (TIR >98% and HbA1c ~5%)] "
+                    "Sustained TIR >98% and HbA1c ~5% under pre-existing liver-transplant tacrolimus IS "
+                    "(full-text caveat: chronic liver disease may affect HbA1c)"
+                )
+                eff["effect_direction"] = "Protective_or_Improved"
+            eff["conditioning_context_Z"]["Z1_developmental_stage_and_timing"] = "InVivo_Engrafted_Maturation"
+            eff["conditioning_context_Z"]["Z2_genetic_background_and_allelic_dose"] = "CiPSC_chemically_induced"
+            eff["conditioning_context_Z"]["Z3_immune_effector_and_stressor_pathway"] = "InVivo_Glycemic_Cure_and_Graft_Longevity"
+            eff["conditioning_context_Z"]["Z6_microenvironment_oxygen_and_vascular_niche"] = "Intramuscular_Forearm_or_Rectus"
+            _populate_effect_provenance(eff, dossier, dossier_sha, "Intramuscular_Forearm_or_Rectus")
+            eff["direction_adjudication_method"] = "source_adjudicated_curated_override"
+        # Clear 2 garbled heuristic edges induced by bare "hemoglobin" substring match
+        record["causal_mechanism_edges"] = []
+
+    elif pmid == "36624157":
+        # Liang Z et al., Nat Metab 2023 Jan;5(1):29-40 (DOI:10.1038/s42255-022-00713-7)
+        for arm in arms:
+            arm["arm_label"] = (
+                "Chemically induced hPSC-islets (hCiPSC-8# / hPSC-8) placed beneath abdominal "
+                "anterior rectus sheath (distinct from intramuscular comparator; n=4 diabetic macaques "
+                "for post-meal C-peptide/HbA1c efficacy within n=8 [5M/3F] study total across experiments) "
+                "in Liang Z (2023) [full text, absent from PubMed abstract: hCiPSC-8#/hPSC-8 line "
+                "(Methods & Reporting Summary p. 5), n=4 diabetic efficacy cohort (Extended Data Fig. 5), "
+                "hydrogel-free free injection, sub-ARS vs intramuscular comparator]"
+            )
+            g1 = arm["gate1_substrate_and_differentiation"]
+            g1["cell_source_class"] = "CiPSC_chemically_induced"
+            g1["cell_line_id"] = "hCiPSC-8# (hPSC-8)"
+            g1["protocol_backbone"] = (
+                "Chemically induced pluripotent stem-cell-derived islets (hCiPSC-8# / hPSC-8) "
+                "beneath abdominal anterior rectus sheath, distinguished from intramuscular comparator "
+                "[full text Methods & Reporting Summary p. 5, DOI:10.1038/s42255-022-00713-7, "
+                "absent from PubMed abstract]"
+            )
+            g1["canonical_differentiation_stage_evaluated"] = "InVivo_Engrafted_Maturation"
+            g5 = arm["gate5_engraftment_niche"]
+            g5["transplant_site"] = "Intramuscular_Forearm_or_Rectus"
+            g5["oxygen_bridge_72h_carrier"] = "None"
+            g5["systemic_immunosuppression_regimen"] = (
+                "Chronic systemic immunosuppression in diabetic macaques (n=4 diabetic efficacy cohort "
+                "within n=8 study total across experiments; xenogeneic human CiPSC-islet transplantation; "
+                "Liang et al. Nat Metab 2023 full text & Extended Data Fig. 5, "
+                "DOI:10.1038/s42255-022-00713-7; absent from PubMed abstract)"
+            )
+        new_effects: list[dict[str, Any]] = []
+        for eff in effects:
+            eid = eff.get("effect_id")
+            if eid == "pmid36624157_eff1":
+                eff["focal_factor_X"] = "Sub_ARS_CiPSC_Islet_Transplantation"
+                eff["outcome_domain"] = "InVivo_Glycemic_Cure_and_Graft_Longevity"
+                eff["conditioning_context_Z"]["Z1_developmental_stage_and_timing"] = "InVivo_Engrafted_Maturation"
+                eff["conditioning_context_Z"]["Z2_genetic_background_and_allelic_dose"] = "CiPSC_chemically_induced"
+                eff["conditioning_context_Z"]["Z3_immune_effector_and_stressor_pathway"] = "InVivo_Glycemic_Cure_and_Graft_Longevity"
+                eff["conditioning_context_Z"]["Z6_microenvironment_oxygen_and_vascular_niche"] = "Intramuscular_Forearm_or_Rectus"
+                _populate_effect_provenance(eff, dossier, dossier_sha, "Intramuscular_Forearm_or_Rectus")
+                eff["contrast_metadata"]["population_or_model"] = (
+                    "CiPSC_chemically_induced (Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse)"
+                )
+                eff["direction_adjudication_method"] = "source_adjudicated_curated_override"
+                new_effects.append(eff)
+            elif eid == "pmid36624157_eff2":
+                # Atomic split: separate C-peptide (2.0 ng/mL from 8 wpt, Higher_Is_Better) from
+                # glycated hemoglobin (-44% / 44% relative decrease at 12 wpt, Lower_Is_Better).
+                q_cpep = (
+                    "The average post-prandial C-peptide level reaches approximately 2.0\u2009ng\u2009ml-1 "
+                    "from 8 wpt, which is five times higher than the peak value we previously obtained "
+                    "after portal vein infusion of hPSC islets"
+                )
+                q_hba1c = "was associated with a decrease of glycated hemoglobin levels by 44% at 12 wpt."
+
+                eff_cpep = copy.deepcopy(eff)
+                eff_cpep["effect_id"] = "pmid36624157_eff2"
+                eff_cpep["focal_factor_X"] = "Sub_ARS_CiPSC_Islet_Transplantation"
+                eff_cpep["comparator_X0"] = (
+                    "Single-arm post-transplant observation in diabetic macaques (n=4 diabetic efficacy "
+                    "cohort under systemic IS beneath anterior rectus sheath, distinct from intramuscular "
+                    "comparator; 5x higher than historical portal-vein peak; no concurrent control arm in sentence)"
+                )
+                eff_cpep["outcome_variable_Y"] = (
+                    "[Endpoint: Post-prandial C-peptide concentration] Average post-meal C-peptide "
+                    "~2.0 ng/mL from 8 wpt in diabetic macaques (n=4 sub-ARS under systemic IS; "
+                    "5x higher than historical portal-vein peak)"
+                )
+                eff_cpep["outcome_domain"] = "InVivo_Glycemic_Cure_and_Graft_Longevity"
+                eff_cpep["treatment_mean"] = 2.0
+                eff_cpep["treatment_sd_or_sem"] = None
+                eff_cpep["control_mean"] = None
+                eff_cpep["control_sd_or_sem"] = None
+                eff_cpep["measurement_unit"] = "ng/mL"
+                eff_cpep["log_response_ratio_or_smd"] = None
+                eff_cpep["comparator_arm_id"] = None
+                eff_cpep["effect_direction"] = "Protective_or_Improved"
+                eff_cpep["secretome_or_differentiation_penalty_observed"] = False
+                eff_cpep["verbatim_evidence_quote"] = q_cpep
+                eff_cpep["conditioning_context_Z"]["Z1_developmental_stage_and_timing"] = "InVivo_Engrafted_Maturation"
+                eff_cpep["conditioning_context_Z"]["Z2_genetic_background_and_allelic_dose"] = "CiPSC_chemically_induced"
+                eff_cpep["conditioning_context_Z"]["Z3_immune_effector_and_stressor_pathway"] = "InVivo_Glycemic_Cure_and_Graft_Longevity"
+                eff_cpep["conditioning_context_Z"]["Z6_microenvironment_oxygen_and_vascular_niche"] = "Intramuscular_Forearm_or_Rectus"
+                _populate_effect_provenance(eff_cpep, dossier, dossier_sha, "Intramuscular_Forearm_or_Rectus")
+                eff_cpep["direction_adjudication_method"] = "source_adjudicated_curated_override"
+                eff_cpep["endpoint_polarity_registry"] = {
+                    "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+                    "orientation_sign": 1,
+                    "matched_lexicon_term": "c-peptide",
+                }
+                eff_cpep["contrast_metadata"]["timepoint"] = "8 wpt"
+                eff_cpep["contrast_metadata"]["units"] = "ng/mL"
+                eff_cpep["contrast_metadata"]["population_or_model"] = (
+                    "CiPSC_chemically_induced (Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse)"
+                )
+                new_effects.append(eff_cpep)
+
+                eff_hba1c = copy.deepcopy(eff)
+                eff_hba1c["effect_id"] = "pmid36624157_eff3"
+                eff_hba1c["focal_factor_X"] = "Sub_ARS_CiPSC_Islet_Transplantation"
+                eff_hba1c["comparator_X0"] = (
+                    "Within-arm pre- to post-transplant change in diabetic macaques (n=4 diabetic efficacy "
+                    "cohort under systemic IS beneath anterior rectus sheath; 44% relative decrease [-44%] "
+                    "in HbA1c at 12 wpt; historical portal comparator noted; no concurrent control arm in sentence)"
+                )
+                eff_hba1c["outcome_variable_Y"] = (
+                    "[Endpoint: Glycated hemoglobin (HbA1c) relative change] -44% (44% relative decrease "
+                    "from baseline) at 12 wpt in diabetic macaques (n=4 sub-ARS under systemic IS)"
+                )
+                eff_hba1c["outcome_domain"] = "InVivo_Glycemic_Cure_and_Graft_Longevity"
+                eff_hba1c["treatment_mean"] = 44.0
+                eff_hba1c["treatment_sd_or_sem"] = None
+                eff_hba1c["control_mean"] = None
+                eff_hba1c["control_sd_or_sem"] = None
+                eff_hba1c["measurement_unit"] = "%_relative_decrease"
+                eff_hba1c["log_response_ratio_or_smd"] = None
+                eff_hba1c["comparator_arm_id"] = None
+                eff_hba1c["effect_direction"] = "Protective_or_Improved"
+                eff_hba1c["secretome_or_differentiation_penalty_observed"] = False
+                eff_hba1c["verbatim_evidence_quote"] = q_hba1c
+                eff_hba1c["conditioning_context_Z"]["Z1_developmental_stage_and_timing"] = "InVivo_Engrafted_Maturation"
+                eff_hba1c["conditioning_context_Z"]["Z2_genetic_background_and_allelic_dose"] = "CiPSC_chemically_induced"
+                eff_hba1c["conditioning_context_Z"]["Z3_immune_effector_and_stressor_pathway"] = "InVivo_Glycemic_Cure_and_Graft_Longevity"
+                eff_hba1c["conditioning_context_Z"]["Z6_microenvironment_oxygen_and_vascular_niche"] = "Intramuscular_Forearm_or_Rectus"
+                _populate_effect_provenance(eff_hba1c, dossier, dossier_sha, "Intramuscular_Forearm_or_Rectus")
+                eff_hba1c["direction_adjudication_method"] = "source_adjudicated_curated_override"
+                eff_hba1c["endpoint_polarity_registry"] = {
+                    "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
+                    "orientation_sign": -1,
+                    "matched_lexicon_term": "glycated hemoglobin",
+                }
+                eff_hba1c["contrast_metadata"]["timepoint"] = "12 wpt"
+                eff_hba1c["contrast_metadata"]["units"] = "%_relative_decrease"
+                eff_hba1c["contrast_metadata"]["population_or_model"] = (
+                    "CiPSC_chemically_induced (Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse)"
+                )
+                new_effects.append(eff_hba1c)
+            else:
+                new_effects.append(eff)
+        record["atomic_effects"] = new_effects
+
+    elif pmid == "40544428":
+        # Reichman TW et al., N Engl J Med 2025 (Zimislecel / VX-880; NCT04786262)
+        record["study_metadata"]["nct_id"] = "NCT04786262"
+        for arm in arms:
+            g1 = arm["gate1_substrate_and_differentiation"]
+            g1["cell_source_class"] = "hESC"
+            g1["cell_line_id"] = (
+                "Undisclosed proprietary hESC line (zimislecel / VX-880; USAN-documented hESC origin)"
+            )
+            g1["protocol_backbone"] = (
+                "Allogeneic human embryonic stem-cell-derived fully differentiated islet therapy "
+                "(zimislecel / VX-880; embryonic stem-cell origin documented in USAN name statement, "
+                "exact proprietary line undisclosed; absent from PubMed abstract)"
+            )
+            g1["canonical_differentiation_stage_evaluated"] = "InVivo_Engrafted_Maturation"
+            g5 = arm["gate5_engraftment_niche"]
+            g5["transplant_site"] = "Portal_Vein_Intrahepatic"
+            g5["oxygen_bridge_72h_carrier"] = "None"
+            g5["systemic_immunosuppression_regimen"] = (
+                "Glucocorticoid-free systemic immunosuppressive therapy "
+                "(Reichman et al. NEJM 2025 abstract, NCT04786262)"
+            )
+        for eff in effects:
+            eid = eff.get("effect_id")
+            eff["focal_factor_X"] = "Zimislecel_Portal_Infusion_Under_GlucocorticoidFree_Systemic_IS"
+            eff["outcome_domain"] = "InVivo_Glycemic_Cure_and_Graft_Longevity"
+            eff["conditioning_context_Z"]["Z1_developmental_stage_and_timing"] = "InVivo_Engrafted_Maturation"
+            eff["conditioning_context_Z"]["Z2_genetic_background_and_allelic_dose"] = "hESC"
+            eff["conditioning_context_Z"]["Z6_microenvironment_oxygen_and_vascular_niche"] = "Portal_Vein_Intrahepatic"
+            if eid == "pmid40544428_eff1":
+                eff["outcome_variable_Y"] = (
+                    "[Endpoint: Part C primary efficacy endpoint specification] "
+                    "Freedom from severe hypoglycemic events (days 90-365) with HbA1c <7% or "
+                    ">=1 percentage-point reduction (days 180-365)"
+                )
+                eff["effect_direction"] = "Neutral_or_NonInferior"
+                eff["conditioning_context_Z"]["Z3_immune_effector_and_stressor_pathway"] = "InVivo_Glycemic_Cure_and_Graft_Longevity"
+            elif eid == "pmid40544428_eff2":
+                # Transparent clinical safety/mortality attribution (never Differentiation_Yield_and_Lineage_Purity)
+                eff["outcome_variable_Y"] = (
+                    "[Endpoint: Clinical safety and all-cause mortality adverse events] "
+                    "Two participant deaths occurred (one cryptococcal meningitis under systemic "
+                    "immunosuppression; one progression of preexisting neurocognitive impairment; "
+                    "clinical safety observation, not differentiation yield)"
+                )
+                eff["effect_direction"] = "Deleterious_or_Impaired"
+                eff["conditioning_context_Z"]["Z3_immune_effector_and_stressor_pathway"] = (
+                    "Clinical_Safety_and_Systemic_Immunosuppression_Mortality_Observation"
+                )
+            elif eid == "pmid40544428_eff3":
+                eff["outcome_variable_Y"] = (
+                    "[Endpoint: Glycemic control and SHE freedom (Parts B and C)] "
+                    "All 12 full-dose recipients free of severe hypoglycemic events with HbA1c <7% "
+                    "and TIR >70% (70-180 mg/dL)"
+                )
+                eff["effect_direction"] = "Protective_or_Improved"
+                eff["conditioning_context_Z"]["Z3_immune_effector_and_stressor_pathway"] = "InVivo_Glycemic_Cure_and_Graft_Longevity"
+            elif eid == "pmid40544428_eff4":
+                eff["outcome_variable_Y"] = (
+                    "[Endpoint: Exogenous insulin independence at day 365] "
+                    "10 of 12 full-dose recipients (83%) insulin-independent without exogenous insulin at day 365"
+                )
+                eff["effect_direction"] = "Protective_or_Improved"
+                eff["conditioning_context_Z"]["Z3_immune_effector_and_stressor_pathway"] = "InVivo_Glycemic_Cure_and_Graft_Longevity"
+            _populate_effect_provenance(eff, dossier, dossier_sha, "Portal_Vein_Intrahepatic")
+            if eid == "pmid40544428_eff2":
+                eff["contrast_metadata"]["endpoint_name"] = "Clinical_Safety_and_Mortality_Adverse_Events"
+            elif eid == "pmid40544428_eff4":
+                eff["contrast_metadata"]["timepoint"] = "day 365"
+            eff["contrast_metadata"]["population_or_model"] = "hESC (Tier_1_Human_InVivo)"
+            eff["direction_adjudication_method"] = "source_adjudicated_curated_override"
+
+    elif pmid == "37040771":
+        # Zhu H et al., Dev Cell 2023 (PMC10175223; STAR Methods names H1/WA01 across multiple stages + primary human donor pancreas)
+        for arm in arms:
+            arm["arm_label"] = (
+                "Multi-stage hESC (H1/WA01) in vitro SC-islet differentiation with primary childhood "
+                "and adult human donor pancreas comparisons in Zhu H (2023) "
+                "[STAR Methods PMC10175223, absent from PubMed abstract: H1/WA01 line across multiple stages]"
+            )
+            g1 = arm["gate1_substrate_and_differentiation"]
+            g1["cell_source_class"] = "hESC"
+            g1["cell_line_id"] = "H1/WA01"
+            g1["canonical_differentiation_stage_evaluated"] = None
+            g1["protocol_backbone"] = (
+                "Multi-stage in vitro hESC (H1/WA01) pancreatic islet differentiation single-cell multiome "
+                "compared with primary childhood and adult human pancreas donors "
+                "[STAR Methods PMC10175223, DOI:10.1016/j.devcel.2023.03.011, absent from PubMed abstract]"
+            )
+        for eff in effects:
+            eff["conditioning_context_Z"]["Z1_developmental_stage_and_timing"] = (
+                "Multi-stage in vitro hESC (H1/WA01) differentiation plus primary childhood and adult human pancreas comparisons"
+            )
+            eff["conditioning_context_Z"]["Z2_genetic_background_and_allelic_dose"] = "hESC"
+            if isinstance(eff.get("contrast_metadata"), dict):
+                eff["contrast_metadata"]["population_or_model"] = (
+                    "hESC (H1/WA01 multi-stage differentiation plus primary human donor pancreas comparison; "
+                    "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)"
+                )
+
+    elif pmid == "40700651":
+        # O'Brien S et al., ACS Biomater Sci Eng 2025 (Methods section 2.3 names WA01/H1 hESC line)
+        for arm in arms:
+            g1 = arm["gate1_substrate_and_differentiation"]
+            g1["cell_source_class"] = "hESC"
+            g1["cell_line_id"] = "WA01/H1"
+            g1["protocol_backbone"] = (
+                "Micropocket polyacrylamide hydrogel SC-islet differentiation from WA01/H1 hESCs "
+                "[full text Methods section 2.3, DOI:10.1021/acsbiomaterials.5c00372, absent from PubMed abstract]"
+            )
+
+    elif pmid == "37809993":
+        # Yabe SG et al., Heliyon 2023 (Methods identifies TkDN4-M: 4M hiPSC line; donor health provenance noted)
+        for arm in arms:
+            g1 = arm["gate1_substrate_and_differentiation"]
+            g1["cell_source_class"] = "iPSC_healthy_donor"
+            g1["cell_line_id"] = "TkDN4-M"
+            g1["protocol_backbone"] = (
+                "6-stage differentiation of human iPS cell line TkDN4-M (4M; Methods identifies line "
+                "from IMSUT University of Tokyo, with donor health status requiring separate line-registry provenance)"
+            )
+
+    elif pmid == "42182975":
+        # Krishnan SR et al., Device 2026 (PMC13196877; Abstract_Only multi-model summary; cross-reference CEG R1_0378)
+        for arm in arms:
+            arm["arm_label"] = (
+                "Active wireless O2-Macrodevice multi-model summary arm (mouse, rat, human SC-islet, NHP; "
+                "Abstract_Only) in Krishnan SR (2026) [unoxygenated comparator controls separated in full text; "
+                "cross-reference CEG R1_0378 for arm-level model and control scope]"
+            )
+
+
+def infer_cell_source_and_stage(
+    full_text: str, mesh_terms: list[str] | None = None, title: str = "", pmid: str = ""
+) -> tuple[str, str | None, str | None]:
     tl = full_text.lower()
     mesh_lower = " ".join(mesh_terms or []).lower()
     tl_unnegated = re.sub(
@@ -776,6 +1328,13 @@ def infer_cell_source_and_stage(full_text: str, mesh_terms: list[str] | None = N
     else:
         stage = "Primary_Mature_Islet"
 
+    if source_class == "Primary_Human_Islet" and title and _HPSC_GENERIC_TITLE_RE.search(title):
+        if pmid in _HPSC_EXACT_LINE_SOURCE_REPAIRS:
+            source_class, cell_line = _HPSC_EXACT_LINE_SOURCE_REPAIRS[pmid]
+        else:
+            source_class = "hPSC_Derived_Unspecified_Line"
+        if stage == "Primary_Mature_Islet" and pmid in _HPSC_PRIMARY_MATURE_STAGE_REPAIRS:
+            stage = _HPSC_PRIMARY_MATURE_STAGE_REPAIRS[pmid]
     return source_class, cell_line, stage
 
 
@@ -812,16 +1371,7 @@ def infer_transplant_site_and_niche(full_text: str) -> dict[str, Any]:
     else:
         vasc = "None_Avascular_Islet"
 
-    if "cao2" in tl or "calcium peroxide" in tl:
-        o2 = "CaO2_PDMS_Oxygen_Microbeads"
-    elif "perfluorocarbon" in tl or re.search(r"\bpfcs?\b", tl):
-        o2 = "Perfluorocarbon_O2_Carrier"
-    elif "beta-air" in tl or "oxygen chamber" in tl or "electrochemical oxygen" in tl:
-        o2 = "Exogenous_O2_Chamber_or_Bioelectronic"
-    elif "hemoglobin" in tl or "myoglobin" in tl:
-        o2 = "Hemoglobin_or_Myoglobin_Hydrogel"
-    else:
-        o2 = "None"
+    o2, _ = classify_oxygen_bridge_carrier_hardened(full_text)
 
     biomaterial = None
     for bm in ("PEG-4MAL microgel", "alginate", "TheraCyte", "PEC-Direct", "PEC-Encap", "PTFE", "fibrin", "Matrigel", "collagen"):
@@ -2089,13 +2639,15 @@ def _parse_quantitative_numbers_unchecked(
 
     # Pattern 7: Single physiological measurement without comparator -> record value & unit only; control_mean=None, lrr=None
     m_unit = re.search(
-        rf"({num_tok})\s*(mg/dL|ng/mL|pg/mL|mM|µM|uM|nM|pmol|fmol|mmHg|µm|um|cells/mL|SI\b)",
+        rf"({num_tok})\s*(mg/dL|ng/mL|ng\s*ml(?:-1|⁻¹)|pg/mL|mM|µM|uM|nM|pmol|fmol|mmHg|µm|um|cells/mL|SI\b)",
         sentence,
         flags=re.IGNORECASE,
     )
     if m_unit:
         val = _source_numeric_match(m_unit, 1)
         unit = m_unit.group(2)
+        if re.fullmatch(r"ng\s*ml(?:-1|⁻¹)", unit, flags=re.IGNORECASE):
+            unit = "ng/mL"
         return val, None, None, None, unit, None
 
     # Qualitative statement without explicit paired numbers -> keep all numeric fields None
@@ -2778,7 +3330,7 @@ def validate_study_semantics(doc: dict[str, Any], dossier: dict[str, Any] | None
             or re.search(r"\bH[19]\b", cl_up)
         ):
             raise ValueError(f"{aid}: rodent cell_source_class {sc!r} cannot have human hPSC/EndoC cell_line_id {cl_str!r}")
-        if sc in ("iPSC_healthy_donor", "iPSC_T1D_or_LADA_patient", "CiPSC_chemically_induced", "hESC") and (
+        if sc in ("iPSC_healthy_donor", "iPSC_T1D_or_LADA_patient", "CiPSC_chemically_induced", "hESC", "hPSC_Derived_Unspecified_Line") and (
             cl in ("EndoC-βH1", "EndoC-betaH1", "EndoC-βH3", "NIT-1", "MIN6", "INS-1", "INS-1E")
             or any(tok in cl_up for tok in ("NIT-1", "MIN6", "INS-1"))
             or ("ENDOC" in cl_up and "IPSC" not in cl_up and "HESC" not in cl_up)
@@ -3285,7 +3837,7 @@ def extract_one_dossier(dossier: dict[str, Any]) -> dict[str, Any]:
     mesh_list = dossier.get("mesh_terms") or dossier.get("mesh_headings") or []
     pillars = map_pillars(dossier.get("matched_pillars", []), full_text)
     tier = infer_fidelity_tier(full_text, mesh_list, dossier.get("publication_types", []))
-    cell_source, cell_line, stage = infer_cell_source_and_stage(full_text, mesh_list)
+    cell_source, cell_line, stage = infer_cell_source_and_stage(full_text, mesh_list, title=title, pmid=pmid)
     niche = infer_transplant_site_and_niche(full_text)
     edits = detect_genetic_edits(title, abstract, full_text)
 
@@ -3430,6 +3982,10 @@ def extract_one_dossier(dossier: dict[str, Any]) -> dict[str, Any]:
         is_viability_y = ce0.get("measurement_unit") == "%" and any(
             k in ce0_y for k in ("viability", "survival")
         )
+        comp_niche = copy.deepcopy(niche)
+        comp_niche["oxygen_bridge_72h_carrier"] = _infer_comparator_oxygen_carrier(
+            niche.get("oxygen_bridge_72h_carrier"), comp_arm_label
+        )
         arms_list.append({
             "arm_id": f"pmid{pmid}_arm2_comparator",
             "arm_label": comp_arm_label,
@@ -3451,7 +4007,7 @@ def extract_one_dossier(dossier: dict[str, Any]) -> dict[str, Any]:
                 "pct_off_target_enterochromaffin_slc18a1": None,
             },
             "gate2_3_4_genetic_and_epitope_edits": [],
-            "gate5_engraftment_niche": niche,
+            "gate5_engraftment_niche": comp_niche,
             "challenge_conditions": challenges,
             "quantitative_readouts": {
                 "specific_lysis_or_death_pct_mean": None,
@@ -3619,6 +4175,7 @@ def extract_one_dossier(dossier: dict[str, Any]) -> dict[str, Any]:
         "causal_mechanism_edges": causal_edges,
         "cross_study_discovery_bridges": bridges,
     }
+    _apply_part_a1_curated_overrides(record, dossier)
     _apply_bibliographic_evidence_scope(record, dossier)
     validate_study_semantics(record, dossier)
     return record

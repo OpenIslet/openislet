@@ -228,6 +228,7 @@
                   "iPSC_healthy_donor",
                   "iPSC_T1D_or_LADA_patient",
                   "CiPSC_chemically_induced",
+                  "hPSC_Derived_Unspecified_Line",
                   "Primary_Human_Islet",
                   "NHP_Primary_Islet",
                   "EndoC_betaH1_or_H2_H3",

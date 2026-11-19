@@ -32,10 +32,10 @@
       "sample_size_n": null,
       "sample_size_unit": null,
       "gate1_substrate_and_differentiation": {
-        "cell_source_class": "Primary_Human_Islet",
-        "cell_line_id": null,
+        "cell_source_class": "iPSC_healthy_donor",
+        "cell_line_id": "TkDN4-M",
         "donor_hla_profile": null,
-        "protocol_backbone": null,
+        "protocol_backbone": "6-stage differentiation of human iPS cell line TkDN4-M (4M; Methods identifies line from IMSUT University of Tokyo, with donor health status requiring separate line-registry provenance)",
         "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
         "stage_small_molecules_and_factors": [],
         "cluster_mean_diameter_um": null,
@@ -109,7 +109,7 @@
       "secretome_or_differentiation_penalty_observed": false,
       "conditioning_context_Z": {
         "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
-        "Z2_genetic_background_and_allelic_dose": "Primary_Human_Islet",
+        "Z2_genetic_background_and_allelic_dose": "iPSC_healthy_donor",
         "Z3_immune_effector_and_stressor_pathway": "InVivo_Glycemic_Cure_and_Graft_Longevity",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
@@ -117,7 +117,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
-      "verbatim_evidence_quote": "In the non-DM mice, blood glucose levels gradually decreased from 150 mg/dl to 100 mg/dl (a human glycemic set point) within 10 weeks after transplantation (Fig.",
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37809993 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=3fc1a75e14fd140db83e4b3e5db003f881535dda1eef3c5ed96514680a94dddd]",
       "focal_arm_id": "pmid37809993_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,
@@ -140,7 +140,7 @@
         "comparator_label": null,
         "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
         "timepoint": "10 weeks",
-        "population_or_model": "Primary_Human_Islet (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "mg/dl",
         "contrast_type": "right_censored_followup_observation"
       }
@@ -165,7 +165,7 @@
       "secretome_or_differentiation_penalty_observed": false,
       "conditioning_context_Z": {
         "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
-        "Z2_genetic_background_and_allelic_dose": "Primary_Human_Islet",
+        "Z2_genetic_background_and_allelic_dose": "iPSC_healthy_donor",
         "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
@@ -173,7 +173,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
-      "verbatim_evidence_quote": "1B, the rate of double positive cells was 18%).",
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37809993 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=79ab5a056d7c4c9fee3fb40a937bb234f40506b433b0b2bf47bba1d25202624a]",
       "focal_arm_id": "pmid37809993_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,
@@ -196,7 +196,7 @@
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": null,
-        "population_or_model": "Primary_Human_Islet (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
       }
@@ -214,14 +214,14 @@
       "control_mean": null,
       "control_sd_or_sem": null,
       "control_n": null,
-      "measurement_unit": "[REDACTED_NON_OA_EXCERPT: see PMID:37809993 field=omitted_text quote_sha256=eb524c18e2466cbbd16b0886f6bcfd8248467c0d20bb8f60f4cf444c0e296dd7]",
+      "measurement_unit": "mg/dl",
       "log_response_ratio_or_smd": null,
       "p_value": null,
       "effect_direction": "Protective_or_Improved",
       "secretome_or_differentiation_penalty_observed": false,
       "conditioning_context_Z": {
         "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
-        "Z2_genetic_background_and_allelic_dose": "Primary_Human_Islet",
+        "Z2_genetic_background_and_allelic_dose": "iPSC_healthy_donor",
         "Z3_immune_effector_and_stressor_pathway": "InVivo_Glycemic_Cure_and_Graft_Longevity",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
@@ -251,9 +251,9 @@
         "intervention_label": "Biphasic_GSIS_and_Calcium_Coupling",
         "comparator_label": null,
         "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:37809993 field=omitted_text quote_sha256=302aceaf374d912449dbf8fec85a46dddd8a197cb1b0933e9af196dedf2e68c9]",
-        "population_or_model": "Primary_Human_Islet (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:37809993 field=omitted_text quote_sha256=eb524c18e2466cbbd16b0886f6bcfd8248467c0d20bb8f60f4cf444c0e296dd7]",
+        "timepoint": "4 weeks",
+        "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "units": "mg/dl",
         "contrast_type": "right_censored_followup_observation"
       }
     },
@@ -277,7 +277,7 @@
       "secretome_or_differentiation_penalty_observed": false,
       "conditioning_context_Z": {
         "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
-        "Z2_genetic_background_and_allelic_dose": "Primary_Human_Islet",
+        "Z2_genetic_background_and_allelic_dose": "iPSC_healthy_donor",
         "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
@@ -308,7 +308,7 @@
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:37809993 field=omitted_text quote_sha256=fc52302764758e98a29f355bd4f493fba87b46d2cca97249808d87164a5f7cfa]",
-        "population_or_model": "Primary_Human_Islet (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "[REDACTED_NON_OA_EXCERPT: see PMID:37809993 field=omitted_text quote_sha256=eb0d2375b51859a3212007c5a52de4b476022b3e9d45df6242497c4378631cba]",
         "contrast_type": "right_censored_followup_observation"
       }
@@ -333,7 +333,7 @@
       "secretome_or_differentiation_penalty_observed": false,
       "conditioning_context_Z": {
         "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
-        "Z2_genetic_background_and_allelic_dose": "Primary_Human_Islet",
+        "Z2_genetic_background_and_allelic_dose": "iPSC_healthy_donor",
         "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
@@ -364,7 +364,7 @@
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": null,
-        "population_or_model": "Primary_Human_Islet (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
       }
@@ -389,7 +389,7 @@
       "secretome_or_differentiation_penalty_observed": false,
       "conditioning_context_Z": {
         "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
-        "Z2_genetic_background_and_allelic_dose": "Primary_Human_Islet",
+        "Z2_genetic_background_and_allelic_dose": "iPSC_healthy_donor",
         "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
@@ -420,7 +420,7 @@
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": null,
-        "population_or_model": "Primary_Human_Islet (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
       }
@@ -445,7 +445,7 @@
       "secretome_or_differentiation_penalty_observed": true,
       "conditioning_context_Z": {
         "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
-        "Z2_genetic_background_and_allelic_dose": "Primary_Human_Islet",
+        "Z2_genetic_background_and_allelic_dose": "iPSC_healthy_donor",
         "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
@@ -476,7 +476,7 @@
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:37809993 field=omitted_text quote_sha256=5d1d13e5a51e59173447c467c272ff8bcc4479fc969ef4bcd3c820ddd354a273]",
-        "population_or_model": "Primary_Human_Islet (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "[REDACTED_NON_OA_EXCERPT: see PMID:37809993 field=omitted_text quote_sha256=eb0d2375b51859a3212007c5a52de4b476022b3e9d45df6242497c4378631cba]",
         "contrast_type": "right_censored_followup_observation"
       }
@@ -501,7 +501,7 @@
       "secretome_or_differentiation_penalty_observed": false,
       "conditioning_context_Z": {
         "Z1_developmental_stage_and_timing": "Stage6_Immature_SC_Islet",
-        "Z2_genetic_background_and_allelic_dose": "Primary_Human_Islet",
+        "Z2_genetic_background_and_allelic_dose": "iPSC_healthy_donor",
         "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
@@ -532,7 +532,7 @@
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": null,
-        "population_or_model": "Primary_Human_Islet (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
+        "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
       }

@@ -302,3 +302,155 @@ def test_sensitivity_rejects_duplicate_grid_before_estimating_variances():
     with pytest.raises(ValueError, match='each evaluated grid combination exactly once'):
         rank.compute_direct_output_logit_sensitivity_analysis(profiles, grid)
     assert rank.COMPLETE_GATE_COEFFICIENT_REGISTRY == registry
+
+
+def test_iip_0030_curated_corpus_carrier_o2_hpsc_sources_and_atomic_split():
+    """Regression & adversarial controls for IIP-0030 (DEC-109) Ring-1 corpus repairs."""
+    # 1. Schema enum count (11 -> 12) with hPSC_Derived_Unspecified_Line and additionalProperties: false
+    schema = json.loads((ROOT / 'schemas/extraction_schema_v0.2.json').read_text(encoding='utf-8'))
+    cs_enum = schema['properties']['arms']['items']['properties']['gate1_substrate_and_differentiation']['properties']['cell_source_class']['enum']
+    assert len(cs_enum) == 12 and 'hPSC_Derived_Unspecified_Line' in cs_enum
+    assert schema['properties']['arms']['items']['properties']['gate1_substrate_and_differentiation']['additionalProperties'] is False
+    assert schema['properties']['arms']['items']['properties']['gate5_engraftment_niche']['additionalProperties'] is False
+    assert schema['properties']['atomic_effects']['items']['additionalProperties'] is False
+
+    # 2. Full 48-case synthetic adversarial carrier precision battery (30 TP, 18 TN)
+    tp_cases = [
+        ('hb_hemoxcell_commercial', 'Islets were cultured with 1 g/L HEMOXCell to maintain oxygenation.', 'Hemoglobin_or_Myoglobin_Hydrogel'),
+        ('hb_m101_standalone', 'Supplementing islet preservation medium with M101 (1 g/L) improved islet viability.', 'Hemoglobin_or_Myoglobin_Hydrogel'),
+        ('hb_hemoxcell_m101', 'Islet preservation with HEMOXCell (M101) at 5 g/L improved graft survival.', 'Hemoglobin_or_Myoglobin_Hydrogel'),
+        ('hb_arenicola_m101', 'Arenicola marina M101 oxygen delivery preserved human islets for 24 h.', 'Hemoglobin_or_Myoglobin_Hydrogel'),
+        ('hb_vesicles_abbrev', 'Islets co-encapsulated with Hb-vesicles (HbV) survived 72h hypoxia.', 'Hemoglobin_or_Myoglobin_Hydrogel'),
+        ('hb_hboc_201', 'Perfusion with HBOC-201 maintained pO2 above 30 mmHg.', 'Hemoglobin_or_Myoglobin_Hydrogel'),
+        ('hb_hboc_phrase', 'Islets were supplemented with hemoglobin-based oxygen carrier (HBOC) in culture.', 'Hemoglobin_or_Myoglobin_Hydrogel'),
+        ('hb_oxyglobin', 'Oxyglobin supplementation improved marginal islet survival.', 'Hemoglobin_or_Myoglobin_Hydrogel'),
+        ('hb_alginate_microcapsule', 'Encapsulation in hemoglobin-loaded alginate prevented central necrosis.', 'Hemoglobin_or_Myoglobin_Hydrogel'),
+        ('hb_myoglobin_peg_gel', 'Myoglobin-conjugated PEG-4MAL gel buffered pericellular oxygen.', 'Hemoglobin_or_Myoglobin_Hydrogel'),
+        ('hb_crosslinked_hb', 'Infusion of cross-linked hemoglobin improved graft oxygenation.', 'Hemoglobin_or_Myoglobin_Hydrogel'),
+        ('hb_loaded_hydrogel', 'Islets were encapsulated in a hemoglobin-loaded hydrogel oxygen carrier for 72h.', 'Hemoglobin_or_Myoglobin_Hydrogel'),
+        ('hb_m101_arenicola_hb', 'Supplementation with marine worm Arenicola marina hemoglobin (M101) preserved islets.', 'Hemoglobin_or_Myoglobin_Hydrogel'),
+        ('pfc_oxygen_preceding', 'Hydrogel loaded with 5 vol% oxygen-carrying PFC prevented hypoxia.', 'Perfluorocarbon_O2_Carrier'),
+        ('pfc_alginate_preceding', 'Alginate encapsulation with 10% emulsified PFC improved islet pO2.', 'Perfluorocarbon_O2_Carrier'),
+        ('pfc_reversed_order', 'An oxygen-carrying emulsion containing 10% PFC improved islet oxygenation.', 'Perfluorocarbon_O2_Carrier'),
+        ('pfc_perfluorodecalin', 'Islets cultured over a perfluorodecalin liquid layer showed higher OCR.', 'Perfluorocarbon_O2_Carrier'),
+        ('pfc_pfob', 'PFOB nanoemulsions increased oxygen solubility in the scaffold.', 'Perfluorocarbon_O2_Carrier'),
+        ('pfc_oxyfluor', 'Oxyfluor emulsion was added to the culture medium during islet shipment.', 'Perfluorocarbon_O2_Carrier'),
+        ('pfc_emulsion', 'A perfluorocarbon emulsion oxygen carrier was added to the hydrogel.', 'Perfluorocarbon_O2_Carrier'),
+        ('pfc_droplets', 'Loaded 5 vol% PFC droplets enhance oxygen transport in the slab.', 'Perfluorocarbon_O2_Carrier'),
+        ('exog_o2_macrodevice', 'Wireless battery-free oxygen generating O2-Macrodevice enables immunosuppression-free islet transplantation.', 'Exogenous_O2_Chamber_or_Bioelectronic'),
+        ('exog_beta_air_unicode', 'Transplantation of macroencapsulated human islets within the bioartificial pancreas \u03b2Air to patients with type 1 diabetes.', 'Exogenous_O2_Chamber_or_Bioelectronic'),
+        ('tp_contrast_pfc_with_hemoxcell', 'Unlike prior perfluorocarbon emulsions, HEMOXCell was administered to preserve islet grafts.', 'Hemoglobin_or_Myoglobin_Hydrogel'),
+        ('tp_pfd_without_hb', 'Islets were encapsulated in oxygen-loaded perfluorodecalin droplets, without hemoglobin.', 'Perfluorocarbon_O2_Carrier'),
+        ('tp_cell_free_hb_perfusate', 'Cold pancreas perfusion with cell-free hemoglobin perfusate improved islet oxygenation.', 'Hemoglobin_or_Myoglobin_Hydrogel'),
+        ('tp_peg_hemoglobin', 'Co-encapsulation in PEG-hemoglobin hydrogels sustained islet viability.', 'Hemoglobin_or_Myoglobin_Hydrogel'),
+        ('tp_pegylated_hb', 'Islets supplemented with pegylated hemoglobin (PEG-Hb) survived hypoxia.', 'Hemoglobin_or_Myoglobin_Hydrogel'),
+        ('tp_british_polymerised_haemoglobin', 'Cross-linked polymerised haemoglobin improved oxygenation during islet isolation.', 'Hemoglobin_or_Myoglobin_Hydrogel'),
+        ('tp_lowercase_pfc_emulsion', 'Adding 10% pfc emulsion to the encapsulation hydrogel reduced hypoxic death.', 'Perfluorocarbon_O2_Carrier'),
+    ]
+    tn_cases = [
+        ('tn_prefrontal_cortex_oxygen', 'Metabolic imaging of the PFC revealed altered oxygen consumption in T1D patients.'),
+        ('tn_plaque_forming_cell_hydrogel', 'Splenic PFC response was measured after hydrogel implantation.'),
+        ('tn_negated_pfc_emulsion', 'Unlike prior perfluorocarbon emulsions, our hydrogel-free graft uses no oxygen carrier.'),
+        ('tn_negated_pfc_scaffold', 'Unlike prior perfluorocarbon scaffolds, our hydrogel-free approach used no oxygen carrier.'),
+        ('tn_hba1c', 'Accompanied by a decrease in glycated hemoglobin (HbA1c) to 5%.'),
+        ('tn_stat_pfc', 'Data were analyzed by two-sided t-test (pRA) and Kruskal-Wallis test (pFC).'),
+        ('tn_hbo2_oximetry_vesicle', 'Measured HbO2 saturation near extracellular vesicle membranes.'),
+        ('tn_clone_m101_hydrogel', 'Clone M101 hydrogel control without hemoglobin.'),
+        ('tn_perfluoro_elastomer', 'Compressible perfluoro elastomer ferrules were used to seal PTFE tubing.'),
+        ('tn_negated_hboc', 'Unlike prior HBOC-201 perfusion scaffolds, our device operates without hemoglobin.'),
+        ('tn_no_hemoxcell_administered', 'No HEMOXCell was administered to any graft in this trial.'),
+        ('tn_negated_cao2_loading', 'Control scaffolds were not loaded with calcium peroxide (CaO2-free PDMS).'),
+        ('tn_no_cao2_added', 'No CaO2 was added to the baseline alginate device.'),
+        ('tn_mri_tracer_pfc', 'Noninvasive tracking used a perfluorocarbon 19F MRI tracer to image graft location.'),
+        ('tn_bare_pfc_imaging_contrast', 'Perfluorocarbon nanoparticles were evaluated strictly as a contrast agent for MRI imaging.'),
+        ('tn_ultrasound_pfc_microbubble', 'Perfluorocarbon microbubble ultrasound contrast enabled vascular flow quantification.'),
+        ('tn_hb_omitted', 'HEMOXCell was omitted from all control islets.'),
+        ('tn_hba1c_with_islet_viability', 'Patients showed improved HbA1c (glycated hemoglobin) alongside graft viability.'),
+    ]
+    assert len(tp_cases) == 30 and len(tn_cases) == 18
+    for cid, text, expected in tp_cases:
+        got, _ = ext.classify_oxygen_bridge_carrier_hardened(text)
+        assert got == expected, f'{cid}: got {got}, expected {expected}'
+    for cid, text in tn_cases:
+        got, _ = ext.classify_oxygen_bridge_carrier_hardened(text)
+        assert got == 'None', f'{cid}: got {got}, expected None'
+
+    # 3. Comparator-arm exogenous O2 inheritance guard
+    assert ext._infer_comparator_oxygen_carrier('Exogenous_O2_Chamber_or_Bioelectronic', 'Unoxygenated control macrodevice') == 'None'
+    assert ext._infer_comparator_oxygen_carrier('Exogenous_O2_Chamber_or_Bioelectronic', 'Reference control arm (device details unspecified)') is None
+    assert ext._infer_comparator_oxygen_carrier('None', 'Vehicle control arm') == 'None'
+
+    # 4. Live extracted corpus assertions across repaired records
+    ext_dir = ROOT / 'data/extracted'
+    by_pmid = {p.stem: json.loads(p.read_text(encoding='utf-8')) for p in ext_dir.glob('*.json') if p.stem.isdigit()}
+    assert len(by_pmid) == 563
+    carrier_arms = [
+        (pmid, a['gate5_engraftment_niche']['oxygen_bridge_72h_carrier'])
+        for pmid, doc in by_pmid.items()
+        for a in doc['arms']
+        if a['gate5_engraftment_niche']['oxygen_bridge_72h_carrier'] not in (None, 'None')
+    ]
+    assert sorted(carrier_arms) == [
+        ('29288549', 'Exogenous_O2_Chamber_or_Bioelectronic'),
+        ('42182975', 'Exogenous_O2_Chamber_or_Bioelectronic'),
+    ]
+
+    # Exact-line & unspecified-line stem-cell repairs (15 total: 7 exact + 8 unspecified)
+    expected_exact = {
+        '34345868': ('hESC', 'HUES8', 'InVivo_Engrafted_Maturation'),
+        '36497105': ('hESC', 'MEL1', 'Stage4_PancreaticProgenitor_PDX1_NKX6_1'),
+        '36624157': ('CiPSC_chemically_induced', 'hCiPSC-8# (hPSC-8)', 'InVivo_Engrafted_Maturation'),
+        '37040771': ('hESC', 'H1/WA01', None),
+        '37809993': ('iPSC_healthy_donor', 'TkDN4-M', 'Stage6_Immature_SC_Islet'),
+        '40544428': ('hESC', 'Undisclosed proprietary hESC line (zimislecel / VX-880; USAN-documented hESC origin)', 'InVivo_Engrafted_Maturation'),
+        '40700651': ('hESC', 'WA01/H1', 'Stage6_Immature_SC_Islet'),
+    }
+    for pmid, (exp_src, exp_line, exp_stg) in expected_exact.items():
+        g1 = by_pmid[pmid]['arms'][0]['gate1_substrate_and_differentiation']
+        assert g1['cell_source_class'] == exp_src, pmid
+        assert g1['cell_line_id'] == exp_line, pmid
+        assert g1['canonical_differentiation_stage_evaluated'] == exp_stg, pmid
+
+    expected_unspec = ['31756031', '34861146', '36111962', '39211191', '40173261', '40987274', '41932324', '42244553']
+    for pmid in expected_unspec:
+        assert by_pmid[pmid]['arms'][0]['gate1_substrate_and_differentiation']['cell_source_class'] == 'hPSC_Derived_Unspecified_Line', pmid
+
+    # Liang 36624157 atomic split (eff2 C-peptide 2.0 ng/mL + eff3 HbA1c -44%) and 3,094 total effects
+    liang = by_pmid['36624157']
+    assert liang['arms'][0]['gate5_engraftment_niche']['transplant_site'] == 'Intramuscular_Forearm_or_Rectus'
+    liang_effs = {e['effect_id']: e for e in liang['atomic_effects']}
+    assert set(liang_effs) == {'pmid36624157_eff1', 'pmid36624157_eff2', 'pmid36624157_eff3'}
+    assert liang_effs['pmid36624157_eff2']['treatment_mean'] == 2.0
+    assert liang_effs['pmid36624157_eff2']['measurement_unit'] == 'ng/mL'
+    assert liang_effs['pmid36624157_eff2']['log_response_ratio_or_smd'] is None
+    assert liang_effs['pmid36624157_eff2']['endpoint_polarity_registry']['orientation_sign'] == 1
+    assert liang_effs['pmid36624157_eff3']['treatment_mean'] == 44.0
+    assert liang_effs['pmid36624157_eff3']['measurement_unit'] == '%_relative_decrease'
+    assert liang_effs['pmid36624157_eff3']['log_response_ratio_or_smd'] is None
+    assert liang_effs['pmid36624157_eff3']['endpoint_polarity_registry']['orientation_sign'] == -1
+
+    # Wang 39326417 & Reichman 40544428 curated fields (including mortality domain repair on 40544428 eff2)
+    wang = by_pmid['39326417']
+    assert wang['study_metadata']['nct_id'] == 'ChiCTR2300072200'
+    assert wang['causal_mechanism_edges'] == []
+    assert wang['arms'][0]['gate1_substrate_and_differentiation']['canonical_differentiation_stage_evaluated'] == 'InVivo_Engrafted_Maturation'
+    reichman = by_pmid['40544428']
+    assert reichman['study_metadata']['nct_id'] == 'NCT04786262'
+    r_eff2 = next(e for e in reichman['atomic_effects'] if e['effect_id'] == 'pmid40544428_eff2')
+    assert r_eff2['outcome_domain'] != 'Differentiation_Yield_and_Lineage_Purity'
+    assert r_eff2['contrast_metadata']['endpoint_name'] == 'Clinical_Safety_and_Mortality_Adverse_Events'
+    assert sum(len(d['atomic_effects']) for d in by_pmid.values()) == 3094
+
+    # Public export 240-char aggregate verbatim quote ceiling check when running inside an exported bundle
+    if (ROOT / '.openislet_public_bundle').is_file():
+        verbatim_len = sum(
+            len(e['verbatim_evidence_quote'])
+            for e in liang['atomic_effects']
+            if not e['verbatim_evidence_quote'].startswith('[REDACTED_NON_OA_EXCERPT:')
+        )
+        assert verbatim_len <= 240
+        assert any(
+            e['verbatim_evidence_quote'].startswith('[REDACTED_NON_OA_EXCERPT: see PMID:36624157')
+            for e in liang['atomic_effects']
+        )
+

@@ -80,7 +80,7 @@ def test_context_evidence_graph_integrity_and_replay() -> None:
         mf = json.loads(manifest_path.read_text(encoding="utf-8"))
         mf_counts = mf["counts"]
         assert mf_counts["extracted_studies_total"] == 563
-        assert mf_counts["extracted_atomic_effects_total"] == 3093
+        assert mf_counts["extracted_atomic_effects_total"] == 3094
         assert mf_counts["ceg_studies_total"] == 1151
         assert mf_counts["ceg_arms_total"] == 7659
         assert mf_counts["ceg_outcomes_total"] == 14105
