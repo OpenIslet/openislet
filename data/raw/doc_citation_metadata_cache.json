@@ -233,6 +233,12 @@
    "pubdate_year": "2003",
    "title": "Analysis of HLA-E peptide-binding specificity and contact residues in bound peptide required for recognition by CD94/NKG2."
   },
+  "12879249": {
+   "first_author": "Rorsman P",
+   "journal": "Diabetologia",
+   "pubdate_year": "2003",
+   "title": "Insulin granule dynamics in pancreatic beta cells."
+  },
   "12951775": {
    "first_author": "Giannakis G",
    "journal": "Biotechniques",
@@ -316,6 +322,12 @@
    "journal": "J Biol Chem",
    "pubdate_year": "2005",
    "title": "Interaction between the CD8 coreceptor and major histocompatibility complex class I stabilizes T cell receptor-antigen complexes at the cell surface."
+  },
+  "15919785": {
+   "first_author": "Meier JJ",
+   "journal": "Diabetes",
+   "pubdate_year": "2005",
+   "title": "Pulsatile insulin secretion dictates systemic insulin delivery by regulating hepatic insulin extraction in humans."
   },
   "16034111": {
    "first_author": "Whitelegg AM",
@@ -1235,6 +1247,12 @@
    "pubdate_year": "2016",
    "title": "Age-Related Accumulation of Somatic Mitochondrial DNA Mutations in Adult-Derived Human iPSCs."
   },
+  "27163171": {
+   "first_author": "Millman JR",
+   "journal": "Nat Commun",
+   "pubdate_year": "2016",
+   "title": "Generation of stem cell-derived β-cells from patients with type 1 diabetes."
+  },
   "27183617": {
    "first_author": "Polukort SH",
    "journal": "J Immunol",
@@ -1583,6 +1601,18 @@
    "pubdate_year": "2019",
    "title": "Human blood vessel organoids as a model of diabetic vasculopathy."
   },
+  "30661993": {
+   "first_author": "Velazco-Cruz L",
+   "journal": "Stem Cell Reports",
+   "pubdate_year": "2019",
+   "title": "Acquisition of Dynamic Function in Human Stem Cell-Derived β Cells."
+  },
+  "30710150": {
+   "first_author": "Nair GG",
+   "journal": "Nat Cell Biol",
+   "pubdate_year": "2019",
+   "title": "Recapitulating endocrine cell clustering in culture promotes maturation of human stem-cell-derived β cells."
+  },
   "30778232": {
    "first_author": "Deuse T",
    "journal": "Nat Biotechnol",
@@ -1630,6 +1660,12 @@
    "journal": "Cell Stem Cell",
    "pubdate_year": "2019",
    "title": "Precise Gene Editing Preserves Hematopoietic Stem Cell Function following Transient p53-Mediated DNA Damage Response."
+  },
+  "30931946": {
+   "first_author": "Rosado-Olivieri EA",
+   "journal": "Nat Commun",
+   "pubdate_year": "2019",
+   "title": "YAP inhibition enhances the differentiation of functional stem cell-derived insulin-producing β cells."
   },
   "30951669": {
    "first_author": "Poggio M",
@@ -1738,6 +1774,12 @@
    "journal": "Clin Chem Lab Med",
    "pubdate_year": "2020",
    "title": "Interference of anti-streptavidin antibodies in immunoassays: a very rare phenomenon or a more common finding?"
+  },
+  "31839570": {
+   "first_author": "Alvarez-Dominguez JR",
+   "journal": "Cell Stem Cell",
+   "pubdate_year": "2020",
+   "title": "Circadian Entrainment Triggers Maturation of Human In Vitro Islets."
   },
   "31900242": {
    "first_author": "Demine S",
@@ -1906,6 +1948,12 @@
    "journal": "Cell Stem Cell",
    "pubdate_year": "2021",
    "title": "Quantitative evaluation of chromosomal rearrangements in gene-edited human stem cells by CAST-Seq."
+  },
+  "33737253": {
+   "first_author": "Henquin JC",
+   "journal": "Mol Metab",
+   "pubdate_year": "2021",
+   "title": "Glucose-induced insulin secretion in isolated human islets: Does it truly reflect β-cell function in vivo?"
   },
   "33757297": {
    "first_author": "Halliwell JA",
@@ -2135,6 +2183,12 @@
    "pubdate_year": "2022",
    "title": "Transcription and splicing regulation by NLRC5 shape the interferon response in human pancreatic β cells."
   },
+  "36136756": {
+   "first_author": "Barsby T",
+   "journal": "STAR Protoc",
+   "pubdate_year": "2022",
+   "title": "Differentiating functional human islet-like aggregates from pluripotent stem cells."
+  },
   "36170817": {
    "first_author": "Chimienti R",
    "journal": "Cell Rep",
@@ -2266,6 +2320,12 @@
    "journal": "Sci Transl Med",
    "pubdate_year": "2023",
    "title": "A metabolic role for CD47 in pancreatic β cell insulin secretion and islet transplant outcomes."
+  },
+  "38012450": {
+   "first_author": "Keymeulen B",
+   "journal": "Nat Biotechnol",
+   "pubdate_year": "2024",
+   "title": "Encapsulated stem cell-derived β cells exert glucose control in patients with type 1 diabetes."
   },
   "38055252": {
    "first_author": "Waibel M",
@@ -2567,6 +2627,12 @@
    "pubdate_year": "2026",
    "title": "Bri2 BRICHOS domain inhibits IAPP amyloid formation and improves beta cell function in stem cell-derived islets under metabolic stress."
   },
+  "41372150": {
+   "first_author": "Lietzke AC",
+   "journal": "Nat Commun",
+   "pubdate_year": "2025",
+   "title": "Limitations in PPARα-dependent mitochondrial programming restrain the differentiation of human stem cell-derived β cells."
+  },
   "41385368": {
    "first_author": "Preza S",
    "journal": "Cell Rep",
@@ -2608,6 +2674,12 @@
    "journal": "Cell Death Dis",
    "pubdate_year": "2026",
    "title": "RIP kinase inhibition with Necrostatin-1 improves human marginal mass islet graft survival and function for the management of type 1 diabetes."
+  },
+  "41997152": {
+   "first_author": "Wu S",
+   "journal": "Stem Cell Reports",
+   "pubdate_year": "2026",
+   "title": "An optimized protocol for efficient derivation of pancreatic islets from multiple human pluripotent stem cell lines."
   },
   "42078397": {
    "first_author": "Gasser M",

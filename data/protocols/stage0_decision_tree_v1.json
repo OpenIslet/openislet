@@ -243,7 +243,7 @@
       "contract_decision_key": "S8_SC_Islet_Paracrine_Maturity_Gate_0M",
       "precedence_tier": "3_ENDOCRINE_FUNCTION_AND_MATURITY_S8",
       "trigger": "obs_gate0m_shutoff_t90_min > 3.0 or obs_basal_insulin_frac_peak > 0.15 or obs_glucose_threshold_mM < 4.5 or (obs_immaturity_corner_min_glucose_mM or obs_immaturity_corner_min_g_mM) < 3.50 or obs_alpha_glucagon_low_glc_fold < 2.0 or obs_alpha_counterregulatory_gain_ratio < 0.80 or obs_ucn3_maturity_ratio < 0.70",
-      "action": "Hold lot for +3-week extended Stage-7 maturation (Balboa et al. 2022 PMID:35241836) and re-run Gate 0M-maturity (including challenged v=0.60 / 300k beta-eq IEQ exercise counter-regulatory validation); suspend G6PC2/GLIS3 set-point edits for that lot lineage (AUDIT-REF & AUDIT-REF)."
+      "action": "Hold lot for +1-3-week ALK5i-free extended Stage-7 maturation (0 uM terminal ALK5i II / TGFb-inhibitor continuation per Velazco-Cruz et al. 2019 PMID:30661993 Fig. 5F; retaining 10 nM T3 + 1 mM NAC and logged ZM447439 regimen [S7w0-only 0.0 uM vs continuous Balboa 0.45-0.55 uM per Balboa et al. 2022 PMID:35241836 and Barsby et al. 2022 PMID:36136756] with analytical LC-MS/MS washout <= LLOQ <= 0.005 uM across >= 3 washes plus pre-co-assembly iEC/pericyte vascular function verification) and re-run two-clock two-pulse Readout 2 (with adult-islet reference floor, paired within-recipe Fieller theta_0 = 0.85, inert-tracer tau_chamber <= 0.50 min, and matched 40 + 100 mmHg coverage), full Gate 0M-maturity (including challenged v=0.60 / 300k beta-eq IEQ exercise counter-regulatory validation), and mature-insulin conservation (escalating > 138.3 IU to scope-matched atomic Gate 0S); suspend G6PC2/GLIS3 set-point edits for that lot lineage (IIP-0029; DEC-108)."
     },
     {
       "switch_id": "S8b",
@@ -838,6 +838,42 @@
       "descriptive_6pwm_ledger_and_oq011_open": "Archives whole-donor 6-PWM JASPAR scans (pseudocounts 0.8 and 0.5, both strands) across DX-L3 (10/3/5), L3-BF-B (12/5/5; 53-bp repeat at 650-702 / 680-732 resolved wholly inside Unit-1 230-bp basal-floor promoter), DEC-105 c1..c6 (12/5/5, 10/3/5, 3/2/2, 1/1/0, 0/0/0, 1/1/0), IIP-0018 ARM1 (12/5/5), and 145-bp AAV2 ITR (0/0/0) strictly as part-resolved annotation; rejects motif-count stopping rules and keeps OQ-011 open until origin-resolved RNA is measured.",
       "tightened_c1_c2_pdl1_5prime_race_omitted_or_null_hold": "Closes the omitted/null skip on design_b_locus5_pdl1_5prime_race_coord_bp for c1/c2 bound to DESIGN_B_C1_C5_PAIR_SHA256 (82c351af...) so omitted, null, and 'UNRESOLVED' values all emit HOLD_PENDING_5PRIME_RACE_TSS consistently across Direct, Serialized JSON Ingestion, and Chronological Replay paths.",
       "conditional_bio06_aav_itr_rna_origin_attribution": "Pairs Earley et al. 2020 (PMID:31914802; alongside Haberman et al. 2000 PMID:10954575 and Flotte et al. 1993 PMID:7679117) with Hanlon et al. 2019 (PMID:31570731) in Readout 1 BIO-06: whenever locus-specific junction sequencing documents retained AAV ITR DNA (> 0%, even below the < 0.5% BIO-06 DNA cap), RNA-origin 5'-RACE attribution must verify k_itr_origin_rna == 0 rather than assuming ITR silence or activity from DNA capture alone."
+    }
+  },
+  "twoclock_alk5i_free_maturation_and_repeated_challenge_iip_0029": {
+    "gate_id": "STAGE0_ALK5I_FREE_TWOCLOCK_REPEATED_CHALLENGE_AND_GATE0S_ESCALATION_IIP_0029",
+    "decision_id": "DEC-108",
+    "contribution_id": "IIP-0029",
+    "applies_to_designs_a_b_and_x": "Reconciled ALK5i-free Rule S8 maturation pharmacology (0 uM terminal ALK5i II, 10 nM T3 + 1 mM NAC, logged ZM447439 regimen with analytical LC-MS/MS <= 0.005 uM washout across >= 3 washes + pre-co-assembly iEC/pericyte vascular function verification), source-bound empirical two-clock/two-pulse Readout 2 + full Gate 0M qualification subgate delegating final release strictly to the live atomic Stage-0 ledger (absolute + contemporaneous adult-islet reference second-pulse floors, locked UTC dual clocks, matched 40 + 100 mmHg independent differentiation blocks, per-trace tracer alignment tau_chamber <= 0.50 min + censored short-interval handling, common-denominator sorting+reaggregation recovery, registered-mixture + measured-composition DEC-084 linkage, immutable within-recipe Rule S8 Fieller theta_0 = 0.85, exact Bonferroni multiplicity or disjoint pilot with locked analysis plan, exploratory Keymeulen proinsulin:C-peptide <= 0.10 marker, and non-bypassable > 138.3 IU Gate 0S atomic-ledger escalation identically across flat, ingested, replayed, and atomic-ledger paths), opt-in exploratory Mode B v2 granule-store sensitivity comparator, and GY-024 (OFFGRID_GUARD_014_*)",
+    "primary_citations": [
+      "PMID:30661993",
+      "PMID:35241836",
+      "PMID:36136756",
+      "PMID:31068696",
+      "PMID:30710150",
+      "PMID:27163171",
+      "PMID:30931946",
+      "PMID:25303535",
+      "PMID:38012450",
+      "PMID:31839570",
+      "PMID:32094658",
+      "PMID:12879249",
+      "PMID:33737253",
+      "PMID:31177185",
+      "PMID:40404627",
+      "PMID:39169271",
+      "PMID:40544428",
+      "PMID:41997152",
+      "PMID:41372150",
+      "PMID:30830873",
+      "PMID:15919785",
+      "PMID:3891471"
+    ],
+    "rules": {
+      "reconciled_alk5i_free_rule_s8_pharmacology_and_pre_iec_washout": "Reconciles Layer 4 pivot_rule_S8 (reconciled from pivot_rule_S6), Playbook Contingency Matrix Row 7 (S8 / Gate 0M-maturity) and Row 8 (S8b / Gate 0E-epistasis), stage0_decision_tree_v1.json S8, Master Spec, rank_islet1_stacks.py, and ISLET-1-BLUEPRINT.md: prohibits terminal ALK5i II / TGFb-inhibitor continuation (Velazco-Cruz et al. 2019 PMID:30661993 Fig. 5F), requires 10 nM T3 + 1 mM NAC retention (Balboa et al. 2022 PMID:35241836; Barsby et al. 2022 PMID:36136756), logs post_sort_endocrine_zm447439_regimen (S7W0_ONLY_0UM_POST_SORT at 0.0 uM vs CONTINUOUS_0P5UM_BALBOA_S7 in 0.45-0.55 uM), and requires LC-MS/MS washout <= LLOQ <= 0.005 uM across >= 3 wash cycles with 80-120% matrix spike recovery AND verified pre-co-assembly iEC/pericyte vascular function before co-assembly.",
+      "absolute_and_adult_islet_reference_two_pulse_floors_and_gate0m_separation": "Requires BOTH unit-bound pre-sort-normalized increment floors (L95_t(Z1) >= z_min, L95_t(Z2) >= z_min on common sorting+reaggregation denominator) AND contemporaneous same-assay primary adult human islet second-pulse control floors (L95_t(RefAdult_Z2) >= z_min and L95_t(Z2 - 0.50 * RefAdult_Z2) >= 0) both inside and outside Rule S8, plus immutable within-recipe Rule S8 Fieller (theta_0 = 0.85) with locked_analysis_plan_id and exact Bonferroni t_ppf(1 - 0.05/K, n - 1) or disjoint n >= 3 pilot. Keeps canonical Readout 2 (SI_1 >= 3.0, Peak1/Basal1 >= 4.5 <= 8.0 min, t50 <= 3.0 min) and full Gate 0M (t90 <= 3.0 min, t50_b < t90_b, strict Basal1/Peak1 <= 0.15 explicitly distinguished from Readout 2 4.5x on pre-step [-10, 0] min Basal1 and [0, 8] min Peak1, Low2/Peak1 <= 0.15, Low2 <= 1.50 * Low1, glucagon >= 2.0x, threshold >= 4.5 mM, UCN3 >= 0.70, counterregulation >= 0.80) intact.",
+      "locked_dual_clocks_oxygen_coverage_tracer_alignment_and_dec084_composition_linkage": "Locks timezone-aware ISO-8601 UTC timestamps (stage7_start_utc, sort_reaggregation_utc, assay_harvest_utc) to classify extended exposure while keeping phenotype failure as the S8 hold trigger; requires distinct differentiation_block_id coverage at BOTH 40 mmHg AND 100 mmHg, per-trace tracer_response_valid + tracer_time_aligned + tau_chamber_b <= 0.50 min (and U95_t <= 0.50 min), censored short low-interval holds (< 10 min), common-denominator recovery basis, DEC-084 linkage by registered_mixture_id and measured (beta, alpha, delta) composition tolerance band, mature-insulin-specific inventory assay, and explicit exploratory Stage-0 processing marker labeling on proinsulin:C-peptide <= 0.10 (Keymeulen et al. 2024 PMID:38012450).",
+      "non_bypassable_gate0s_atomic_escalation_above_138p3_iu_and_exploratory_mode_b_v2": "Delegates final clinical release strictly to the live atomic Stage-0 ledger (preserving ISLET1_B2_5LOCUS_BASE and ISLET1_Z_X_MOL_140UM_ZERO_CAO2 execution_supported = false holds) and triggers identical non-overridable escalation to full scope-matched Gate 0S (<= 2.8 IU 1-h burst, <= 0.15 24-h dump, >= 0.99 en-bloc retrieval) across flat, serialized ingestion, chronological replay (with immutable source-replacement latching), and atomic-ledger paths whenever U95_t(stored_insulin_iu) > 138.3 IU OR max_lot > 138.3 IU, while keeping Layer 4 Mode B v2 strictly opt-in and exploratory with exact Mode A default parity."
     }
   }
 }

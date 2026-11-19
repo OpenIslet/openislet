@@ -6312,7 +6312,15 @@ def solve_24h_paracrine_and_whole_body_metabolic_ode(
                         },
                     })(),
                 },
-                "pivot_rule_S6": "Hold Stage-1 progression if Gate 0M-maturity fails; extend Stage-7 maturation culture (+7-14 days thyroid/TGFb-inhibitor/aurora-kinase-inhibitor) and re-verify before device loading.",
+                "pivot_rule_S8": (
+                    "Hold Stage-1 progression if Gate 0M-maturity (S8_SC_Islet_Paracrine_Maturity_Gate_0M) fails; "
+                    "extend ALK5i-free Stage-7 maturation (+1-3 weeks; Balboa et al. 2022 PMID:35241836; Barsby et al. 2022 PMID:36136756; "
+                    "zero terminal ALK5i II / TGFb-inhibitor continuation per Velazco-Cruz et al. 2019 PMID:30661993 Fig. 5F; "
+                    "retaining 10 nM T3 + 1 mM NAC and logged ZM447439 regimen [0.0 uM S7w0-only vs 0.45-0.55 uM continuous endocrine Stage 7] "
+                    "with analytical LC-MS/MS washout <= LLOQ <= 0.005 uM across >= 3 washes plus pre-co-assembly iEC/pericyte vascular function verification) "
+                    "and re-verify two-clock two-pulse Readout 2, Gate 0M, and stored-insulin conservation before device loading (IIP-0029; DEC-108)."
+                ),
+                "legacy_pivot_rule_key_reconciled_from": "pivot_rule_S6",
             },
         })(),
     }
@@ -8690,6 +8698,973 @@ def build_measured_potency_dec084_mixture_and_glucagon_audit_iip_0028() -> Dict[
 # === END_IIP_0028_MEASURED_POTENCY_DEC084_MIXTURE_AND_GLUCAGON_AUDIT ===
 
 
+# === BEGIN_IIP_0029_EXPLORATORY_MODE_B_V2_GRANULE_STORE_SENSITIVITY ===
+ALPHA_SYS_INSULIN_IU_PER_PM_IIP0029 = 1.0 / 600.0
+
+
+def _trapezoid_iip0029(y: np.ndarray, x: np.ndarray) -> float:
+    if hasattr(np, "trapezoid"):
+        return float(np.trapezoid(y, x=x))
+    return float(np.trapz(y, x=x))
+
+
+def _smoothstep01_iip0029(u: float) -> float:
+    x = min(1.0, max(0.0, float(u)))
+    return x * x * (3.0 - 2.0 * x)
+
+
+class ModeBV2GranuleStoreParams:
+    """
+    Physiological parameter bundle for the strictly opt-in exploratory conserved two-pool
+    (RRP Q_P + Reserve Q_R) Mode B v2 sensitivity comparator (IIP-0029; DEC-108).
+    Enforces strict finite non-bool physical bounds (0 < f_rrp < 1, tau_chamber == 0 or >= 0.01 min,
+    0 <= f_hepatic < 0.90) and scales intracellular inventory linearly with beta-cell equivalents
+    (beta_cell_fraction / 0.60) * (implanted_total_ieq / 500,000).
+    """
+
+    def __init__(
+        self,
+        c0_ref_iu_at_300k_beta_eeq: float = 89.9,
+        beta_cell_fraction: float = 0.60,
+        implanted_total_ieq: float = 500_000.0,
+        f_hepatic: float = 0.50,
+        f_rrp: float = 0.0045,
+        tau_refill_min: float = 16.5,
+        gamma_amp: float = 0.08,
+        g_pot: float = 0.0,
+        tau_pot_min: float = 35.0,
+        tau_biosyn_min: float = 180.0,
+        enable_biosyn: bool = True,
+        basal_leak_multiplier: float = 1.0,
+        tau_chamber_min: float = 0.35,
+    ) -> None:
+        checked = {}
+        for nm, val in (
+            ("c0_ref_iu_at_300k_beta_eeq", c0_ref_iu_at_300k_beta_eeq),
+            ("beta_cell_fraction", beta_cell_fraction),
+            ("implanted_total_ieq", implanted_total_ieq),
+            ("f_hepatic", f_hepatic),
+            ("f_rrp", f_rrp),
+            ("tau_refill_min", tau_refill_min),
+            ("gamma_amp", gamma_amp),
+            ("g_pot", g_pot),
+            ("tau_pot_min", tau_pot_min),
+            ("tau_biosyn_min", tau_biosyn_min),
+            ("basal_leak_multiplier", basal_leak_multiplier),
+            ("tau_chamber_min", tau_chamber_min),
+        ):
+            checked[nm] = _strict_numeric_float_iip0024(val, nm)
+        if not isinstance(enable_biosyn, bool):
+            raise ValueError("enable_biosyn must be a strict bool (IIP-0029; DEC-108)")
+        if not (0.0 <= checked["f_hepatic"] < 0.90):
+            raise ValueError("f_hepatic must lie in [0.0, 0.90) (IIP-0029; DEC-108)")
+        if not (0.0 < checked["beta_cell_fraction"] <= 1.0):
+            raise ValueError("beta_cell_fraction must lie in (0.0, 1.0] (IIP-0029; DEC-108)")
+        if checked["implanted_total_ieq"] <= 0.0 or checked["c0_ref_iu_at_300k_beta_eeq"] <= 0.0:
+            raise ValueError("implanted_total_ieq and c0_ref_iu_at_300k_beta_eeq must be > 0 (IIP-0029; DEC-108)")
+        if not (0.0 < checked["f_rrp"] < 1.0):
+            raise ValueError("f_rrp must lie strictly inside (0.0, 1.0) so Q_R0 > 0 (IIP-0029; DEC-108)")
+        if checked["tau_refill_min"] <= 0.0 or checked["tau_pot_min"] <= 0.0 or checked["tau_biosyn_min"] <= 0.0:
+            raise ValueError("tau_refill_min, tau_pot_min, and tau_biosyn_min must be > 0 (IIP-0029; DEC-108)")
+        if checked["basal_leak_multiplier"] < 0.0 or checked["gamma_amp"] < 0.0 or checked["g_pot"] < 0.0:
+            raise ValueError("basal_leak_multiplier, gamma_amp, and g_pot must be >= 0 (IIP-0029; DEC-108)")
+        tc = checked["tau_chamber_min"]
+        if tc < 0.0 or (0.0 < tc < 0.01):
+            raise ValueError("tau_chamber_min must be 0.0 (ideal cellular limit) or >= 0.01 min (IIP-0029; DEC-108)")
+
+        self.c0_ref_iu_at_300k_beta_eeq = checked["c0_ref_iu_at_300k_beta_eeq"]
+        self.beta_cell_fraction = checked["beta_cell_fraction"]
+        self.implanted_total_ieq = checked["implanted_total_ieq"]
+        self.f_hepatic = checked["f_hepatic"]
+        self.f_rrp = checked["f_rrp"]
+        self.tau_refill_min = checked["tau_refill_min"]
+        self.gamma_amp = checked["gamma_amp"]
+        self.g_pot = checked["g_pot"]
+        self.tau_pot_min = checked["tau_pot_min"]
+        self.tau_biosyn_min = checked["tau_biosyn_min"]
+        self.enable_biosyn = enable_biosyn
+        self.basal_leak_multiplier = checked["basal_leak_multiplier"]
+        self.tau_chamber_min = tc
+
+    @property
+    def beta_eeq_count(self) -> float:
+        return self.implanted_total_ieq * self.beta_cell_fraction
+
+    @property
+    def beta_scale_vs_300k_ref(self) -> float:
+        return self.beta_eeq_count / 300_000.0
+
+    @property
+    def total_store_c0_iu(self) -> float:
+        return self.c0_ref_iu_at_300k_beta_eeq * self.beta_scale_vs_300k_ref
+
+
+def build_mode_b_v2_granule_store_system_iip_0029(
+    params: ModeBV2GranuleStoreParams,
+    assay_context: str = "in_vivo_metabolic_twin",
+    viable_endocrine_fraction_override: float | None = None,
+    local_paracrine_preserved_systemic_scale: bool = False,
+    extravascular_insulin_lag_total_min: float = 0.0,
+    low_glucose_challenge_mode: bool = False,
+    meals_override: List[tuple[float, float]] | None = None,
+) -> Dict[str, Any]:
+    """
+    Construct the conserved two-pool (Q_P + Q_R) Mode B v2 ODE system with uncapped stiffness-rate
+    bounds covering RRP exocytosis, chamber mixing (1/tau_chamber), and extravascular lag (2/tau_vasc).
+    First-pass hepatic extraction f_hepatic is owned solely by Mode B v2 to debit total pre-hepatic
+    secretion from intracellular stores while delivering (1 - f_hepatic) systemically, remaining
+    strictly distinct from Layer 4's 13-state f_sys_ins insulin-action scaling.
+    """
+    if not isinstance(params, ModeBV2GranuleStoreParams):
+        raise ValueError("params must be a ModeBV2GranuleStoreParams instance (IIP-0029; DEC-108)")
+    if assay_context not in ("in_vivo_metabolic_twin", "in_vitro_perifusion"):
+        raise ValueError(f"Unknown assay_context: {assay_context!r} (IIP-0029; DEC-108)")
+    lag_f = _strict_numeric_float_iip0024(extravascular_insulin_lag_total_min, "extravascular_insulin_lag_total_min")
+    if lag_f < 0.0 or (0.0 < lag_f < 0.05):
+        raise ValueError("extravascular_insulin_lag_total_min must be 0.0 or >= 0.05 min (IIP-0029; DEC-108)")
+
+    is_invivo = assay_context == "in_vivo_metabolic_twin"
+    if viable_endocrine_fraction_override is not None:
+        v = _strict_numeric_float_iip0024(viable_endocrine_fraction_override, "viable_endocrine_fraction_override")
+        if v <= 0.0:
+            raise ValueError("viable_endocrine_fraction_override must be > 0 (IIP-0029; DEC-108)")
+        c0_iu = params.c0_ref_iu_at_300k_beta_eeq * (v / 0.60)
+    else:
+        v = 0.60 * params.beta_scale_vs_300k_ref
+        c0_iu = params.total_store_c0_iu
+
+    f_hep_eff = params.f_hepatic if is_invivo else 0.0
+    alpha_prehep_iu_per_pm = ALPHA_SYS_INSULIN_IU_PER_PM_IIP0029 / (1.0 - f_hep_eff)
+
+    loc_f = 1.0 if (local_paracrine_preserved_systemic_scale or not is_invivo) else v
+    k05 = 7.2
+    nh = 4.2
+    k_ip_clear = 0.14
+    k_x_decay = 0.035
+
+    qp0 = params.f_rrp * c0_iu
+    qr0 = (1.0 - params.f_rrp) * c0_iu
+
+    if meals_override is not None:
+        meals_sched = list(meals_override)
+    elif low_glucose_challenge_mode:
+        meals_sched = [(60.0, 60.0), (360.0, 60.0), (840.0, 80.0)]
+    else:
+        meals_sched = [(60.0, 75.0), (360.0, 85.0), (780.0, 90.0)]
+
+    ex_start = 448.0 if low_glucose_challenge_mode else 600.0
+    ex_end = 536.0 if low_glucose_challenge_mode else 660.0
+    ex_int = 1.51 if low_glucose_challenge_mode else 1.0
+
+    def meal_app(t_min: float) -> float:
+        r_m = 0.0
+        tau_m = 34.0
+        for t0, grams in meals_sched:
+            if t_min > t0:
+                dt = t_min - t0
+                amp = (grams * 0.095) / (tau_m * tau_m)
+                r_m += amp * dt * math.exp(-dt / tau_m)
+        return r_m
+
+    def sst_occ(s_val: float) -> float:
+        sp = max(0.0, s_val)
+        return (sp / (1e-4 + sp)) if sp > 0.0 else 0.0
+
+    def fluxes(g_val: float, s_val: float, m_val: float, qp_val: float, qr_val: float, a_pot_val: float) -> Dict[str, float]:
+        gp = max(0.5, g_val)
+        sp = max(0.0, s_val)
+        gs = sst_occ(sp)
+        base_rate = 6.8 - 0.8 * gs
+
+        if is_invivo and gp < 4.20:
+            clamp_raw = (gp / 4.20) ** 8
+            low_g_clamp = 1.0 - gs * (1.0 - clamp_raw)
+        else:
+            low_g_clamp = 0.85 + 0.15 * _smoothstep01_iip0029((gp - 2.0) / 2.2)
+
+        p_norm = max(0.0, qp_val) / max(1e-15, qp0)
+        r_norm = max(0.0, qr_val) / max(1e-15, qr0)
+        r_avail_gate = _smoothstep01_iip0029(r_norm / 0.05) if r_norm > 0.0 else 0.0
+
+        unclamped_autonomous_leak = max(0.0, params.basal_leak_multiplier - 1.0)
+        j_basal_sys_pm = v * base_rate * (low_g_clamp * min(1.0, params.basal_leak_multiplier) + unclamped_autonomous_leak) * r_avail_gate
+        j_exo_sys_pm = v * 88.0 * max(0.0, m_val) * (low_g_clamp if is_invivo else 1.0) * p_norm
+        sec_ins_sys_pm = j_basal_sys_pm + j_exo_sys_pm
+
+        j_basal_iu = alpha_prehep_iu_per_pm * j_basal_sys_pm
+        j_exo_iu = alpha_prehep_iu_per_pm * j_exo_sys_pm
+
+        g_eff = max(0.0, gp - 3.5)
+        k_eff = k05 - 3.5
+        phi_glc = (g_eff ** nh) / ((k_eff ** nh) + (g_eff ** nh))
+
+        p_cap = 1.0 + max(0.0, a_pot_val)
+        refill_deficit = max(0.0, p_cap - p_norm)
+        j_refill_iu = (qp0 / params.tau_refill_min) * r_norm * (1.0 + params.gamma_amp * phi_glc) * refill_deficit
+
+        if params.enable_biosyn:
+            phi_maint = _smoothstep01_iip0029((gp - 2.0) / 0.8)
+            cap_gate = 1.0 - _smoothstep01_iip0029((qr_val - qr0) / max(1e-15, 1e-4 * qr0)) if qr_val > qr0 else 1.0
+            g_trans = max(0.0, gp - 2.5)
+            phi_trans = (g_trans ** 4) / ((3.0 ** 4) + (g_trans ** 4))
+            j_biosyn_iu = phi_maint * cap_gate * j_basal_iu + phi_trans * max(0.0, qr0 - qr_val) / params.tau_biosyn_min
+        else:
+            j_biosyn_iu = 0.0
+
+        return {
+            "sec_ins_sys_pm": sec_ins_sys_pm,
+            "j_sys_iu": ALPHA_SYS_INSULIN_IU_PER_PM_IIP0029 * sec_ins_sys_pm,
+            "j_basal_iu": j_basal_iu,
+            "j_exo_iu": j_exo_iu,
+            "j_sec_prehep_iu": j_basal_iu + j_exo_iu,
+            "j_refill_iu": j_refill_iu,
+            "j_biosyn_iu": j_biosyn_iu,
+            "phi_glc": phi_glc,
+        }
+
+    has_lag = is_invivo and (lag_f > 0.0)
+
+    def rhs(t: float, y: np.ndarray) -> np.ndarray:
+        if has_lag:
+            G, Ip, X, U, S, Gcg, M_sec, Q_P, Q_R, A_pot, CumPre, CumBio, CumSys, I1, I2 = y
+        else:
+            G, Ip, X, U, S, Gcg, M_sec, Q_P, Q_R, A_pot, CumPre, CumBio, CumSys = y
+
+        gp = max(0.5, G)
+        sp = max(0.0, S)
+        gs = sst_occ(sp)
+        flx = fluxes(gp, sp, M_sec, Q_P, Q_R, A_pot)
+        phi_glc = flx["phi_glc"]
+        sst_inhib = 1.0 / (1.0 + 1.50 * sp * gs)
+        m_target = phi_glc * sst_inhib
+
+        if m_target < M_sec:
+            if is_invivo:
+                tau_sst = 1.85 / (1.0 + 0.8 * sp)
+                if gp < 4.20:
+                    tau_sst = tau_sst * ((gp / 4.20) ** 4)
+            else:
+                tau_sst = 0.85 / (1.0 + 0.6 * sp)
+            tau_m = 6.80 * (1.0 - gs) + tau_sst * gs
+        else:
+            tau_m = 2.00 if is_invivo else 1.35
+        dM_dt = (m_target - M_sec) / tau_m
+
+        sec_sys = flx["sec_ins_sys_pm"]
+        if has_lag:
+            tau_tr = 0.5 * lag_f
+            dI1_dt = (sec_sys - I1) / tau_tr
+            dI2_dt = (I1 - I2) / tau_tr
+            dIp_dt = I2 - k_ip_clear * Ip
+        else:
+            dIp_dt = sec_sys - k_ip_clear * Ip
+
+        dX_dt = k_x_decay * (max(0.0, Ip - 45.0) / 100.0 - X)
+        dU_dt = (1.2 * loc_f * M_sec - U) / 2.5
+        sst_drive = loc_f * (0.65 * U + 0.45 * ((gp ** 4) / (5.8 ** 4 + gp ** 4)))
+        dS_dt = (sst_drive - S) / 1.5
+
+        low_g_drive = 1.0 / (1.0 + ((gp / 4.45) ** 6))
+        ins_eff_block = Ip * (1.0 - gs * (1.0 - ((gp / 4.20) ** 8))) if (is_invivo and gp < 4.20) else Ip
+        ins_paracrine_block = 0.018 * max(0.0, ins_eff_block - 52.0)
+        gcg_sec = 11.4 + (56.0 * v) * low_g_drive / (1.0 + ins_paracrine_block + 0.35 * sp)
+        dGcg_dt = gcg_sec - 0.20 * Gcg
+
+        if is_invivo:
+            ex = ex_int if ex_start <= t <= ex_end else 0.0
+            basal_ins_tone = min(1.0, (max(0.0, Ip) / 25.0) ** 2)
+            egp_base = 0.056 * (1.0 + 0.018 * (Gcg - 58.0)) / (1.0 + 0.26 * max(0.0, X))
+            egp_t1d = 0.068 * (1.0 - basal_ins_tone)
+            egp = max(0.010, egp_base + egp_t1d)
+            uptake_indep = 0.032 * (gp / (1.2 + gp)) * (1.0 + 0.48 * ex)
+            uptake_ins = (0.0052 * basal_ins_tone + 0.0135 * max(0.0, X)) * gp * (1.0 + 1.55 * ex)
+            renal = 0.0065 * max(0.0, gp - 10.0)
+            dG_dt = egp + meal_app(t) - uptake_indep - uptake_ins - renal
+        else:
+            dG_dt = 0.0
+
+        dQP_dt = flx["j_refill_iu"] - flx["j_exo_iu"]
+        dQR_dt = flx["j_biosyn_iu"] - flx["j_refill_iu"] - flx["j_basal_iu"]
+        dApot_dt = (params.g_pot * phi_glc - A_pot) / params.tau_pot_min
+        dCumPre_dt = flx["j_sec_prehep_iu"]
+        dCumBio_dt = flx["j_biosyn_iu"]
+        dCumSys_dt = flx["j_sys_iu"]
+
+        if has_lag:
+            return np.array(
+                [dG_dt, dIp_dt, dX_dt, dU_dt, dS_dt, dGcg_dt, dM_dt, dQP_dt, dQR_dt, dApot_dt, dCumPre_dt, dCumBio_dt, dCumSys_dt, dI1_dt, dI2_dt],
+                dtype=np.float64,
+            )
+        return np.array(
+            [dG_dt, dIp_dt, dX_dt, dU_dt, dS_dt, dGcg_dt, dM_dt, dQP_dt, dQR_dt, dApot_dt, dCumPre_dt, dCumBio_dt, dCumSys_dt],
+            dtype=np.float64,
+        )
+
+    g0 = 5.1 if v >= 0.6 else 17.2 - 12.1 * v
+    s0 = 0.12 * loc_f
+    m0 = 0.08 * loc_f if is_invivo else 0.0
+    s_ins0 = fluxes(g0, s0, m0, qp0, qr0, 0.0)["sec_ins_sys_pm"]
+    base_y0 = [g0, 48.0 * v, 0.03 * v, 0.08 * loc_f if is_invivo else 0.0, s0, 60.0, m0, qp0, qr0, 0.0, 0.0, 0.0, 0.0]
+    if has_lag:
+        base_y0.extend([s_ins0, s_ins0])
+
+    # Uncapped stiffness-rate bound covering Q_P turnover, 1/tau_chamber, and 2/tau_vasc:
+    lam_qp_upper = (alpha_prehep_iu_per_pm * v * 88.0 / max(1e-15, qp0)) + ((1.0 + params.gamma_amp) / params.tau_refill_min)
+    lam_chamber = (1.0 / params.tau_chamber_min) if (not is_invivo and params.tau_chamber_min > 0.0) else 0.0
+    lam_vasc = (2.0 / lag_f) if has_lag else 0.0
+    max_lam_upper = max(lam_qp_upper, lam_chamber, lam_vasc) + 0.5 * min(lam_qp_upper, max(lam_chamber, lam_vasc))
+
+    return {
+        "rhs": rhs,
+        "fluxes": fluxes,
+        "y0": np.array(base_y0, dtype=np.float64),
+        "c0_iu": c0_iu,
+        "qp0_iu": qp0,
+        "qr0_iu": qr0,
+        "v_eff": v,
+        "f_hepatic_eff": f_hep_eff,
+        "max_stiff_rate_min_inv": max_lam_upper,
+        "ex_start": ex_start,
+        "ex_end": ex_end,
+    }
+
+
+def courant_safe_rk4_integrate_iip_0029(
+    rhs: Any,
+    y0: np.ndarray,
+    t_grid: np.ndarray,
+    max_stiff_rate: float,
+    breakpoints: tuple[float, ...] = (),
+    courant_target: float = 0.18,
+) -> np.ndarray:
+    """Explicit 4th-order Runge-Kutta integrator with uncapped stiffness-rate substepping and breakpoint handling."""
+    out = np.zeros((len(y0), len(t_grid)), dtype=np.float64)
+    out[:, 0] = y0.copy()
+    cur = y0.copy()
+    bp_set = {float(b) for b in breakpoints}
+
+    for idx in range(len(t_grid) - 1):
+        t0 = float(t_grid[idx])
+        t1 = float(t_grid[idx + 1])
+        span = t1 - t0
+        if span <= 0.0:
+            out[:, idx + 1] = cur
+            continue
+        n_sub = max(1, int(math.ceil(span * max(1.0, float(max_stiff_rate)) / float(courant_target))))
+        h = span / float(n_sub)
+        tc = t0
+        for _ in range(n_sub):
+            t_eval_mid = tc + 0.5 * h
+            t_r1 = math.nextafter(tc, t1) if tc in bp_set else tc
+            t_r4 = math.nextafter(tc + h, tc) if (tc + h) in bp_set else (tc + h)
+            k1 = rhs(t_r1, cur)
+            k2 = rhs(t_eval_mid, cur + 0.5 * h * k1)
+            k3 = rhs(t_eval_mid, cur + 0.5 * h * k2)
+            k4 = rhs(t_r4, cur + h * k3)
+            cur = cur + (h / 6.0) * (k1 + 2.0 * k2 + 2.0 * k3 + k4)
+            tc += h
+        out[:, idx + 1] = cur
+    return out
+
+
+def replay_mode_b_v2_perifusion_iip_0029(
+    params: ModeBV2GranuleStoreParams,
+    low_mM: float,
+    high_mM: float,
+    pre_low_min: float,
+    high_durations: List[float],
+    low_gaps: List[float],
+    dt_out: float = 0.1,
+) -> Dict[str, Any]:
+    """
+    Imposed-glucose repeated-challenge perifusion replay under exploratory Mode B v2.
+    Uses the pre-pulse steady basal reference for step-down shut-off so truncated short low
+    intervals return censored None rather than an artificial fast t90.
+    """
+    sys_b = build_mode_b_v2_granule_store_system_iip_0029(params, assay_context="in_vitro_perifusion")
+    rhs_cell = sys_b["rhs"]
+    flux_fn = sys_b["fluxes"]
+    tau_ch = params.tau_chamber_min
+    use_chamber = tau_ch > 1e-9
+
+    y0_cell = sys_b["y0"].copy()
+    y0_cell[0] = float(low_mM)
+    sec0 = flux_fn(float(low_mM), y0_cell[4], y0_cell[6], y0_cell[7], y0_cell[8], y0_cell[9])["sec_ins_sys_pm"]
+    state = np.concatenate([y0_cell, [float(low_mM), sec0]]) if use_chamber else y0_cell.copy()
+
+    def run_seg(st_in: np.ndarray, g_inlet: float, dur: float) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+        n_steps = max(1, int(round(dur / dt_out)))
+        t_vec = np.linspace(0.0, float(dur), n_steps + 1)
+        if use_chamber:
+            def _aug_rhs(t: float, ya: np.ndarray) -> np.ndarray:
+                yc = ya[:13].copy()
+                g_ch, c_eff = float(ya[13]), float(ya[14])
+                yc[0] = g_ch
+                dyc = rhs_cell(t, yc)
+                dyc[0] = 0.0
+                sec_now = flux_fn(g_ch, yc[4], yc[6], yc[7], yc[8], yc[9])["sec_ins_sys_pm"]
+                dg_ch = (float(g_inlet) - g_ch) / tau_ch
+                dc_eff = (sec_now - c_eff) / tau_ch
+                return np.concatenate([dyc, [dg_ch, dc_eff]])
+
+            y_mat = courant_safe_rk4_integrate_iip_0029(_aug_rhs, st_in, t_vec, sys_b["max_stiff_rate_min_inv"])
+            eff_sec = y_mat[14, :].copy()
+            return y_mat[:, -1].copy(), t_vec, eff_sec, y_mat
+
+        st0 = st_in.copy()
+        st0[0] = float(g_inlet)
+
+        def _clamp_rhs(t: float, yc: np.ndarray) -> np.ndarray:
+            yc_use = yc.copy()
+            yc_use[0] = float(g_inlet)
+            dy = rhs_cell(t, yc_use)
+            dy[0] = 0.0
+            return dy
+
+        y_mat = courant_safe_rk4_integrate_iip_0029(_clamp_rhs, st0, t_vec, sys_b["max_stiff_rate_min_inv"])
+        eff_sec = np.array(
+            [flux_fn(float(g_inlet), y_mat[4, j], y_mat[6, j], y_mat[7, j], y_mat[8, j], y_mat[9, j])["sec_ins_sys_pm"] for j in range(n_steps + 1)],
+            dtype=np.float64,
+        )
+        return y_mat[:, -1].copy(), t_vec, eff_sec, y_mat
+
+    state, _, prior_eff, y_pre = run_seg(state, low_mM, pre_low_min)
+    min_qp_seen = float(np.min(y_pre[7, :]))
+    min_qr_seen = float(np.min(y_pre[8, :]))
+    max_qr_seen = float(np.max(y_pre[8, :]))
+    min_m_seen = float(np.min(y_pre[6, :]))
+    max_m_seen = float(np.max(y_pre[6, :]))
+
+    pulses: List[Dict[str, Any]] = []
+    instantaneous_stepdown_drop_pct = None
+
+    for idx, h_min in enumerate(high_durations):
+        basal = float(prior_eff[-1])
+        state, t_vec, eff_vec, y_hi = run_seg(state, high_mM, h_min)
+        min_qp_seen = min(min_qp_seen, float(np.min(y_hi[7, :])))
+        min_qr_seen = min(min_qr_seen, float(np.min(y_hi[8, :])))
+        max_qr_seen = max(max_qr_seen, float(np.max(y_hi[8, :])))
+        min_m_seen = min(min_m_seen, float(np.min(y_hi[6, :])))
+        max_m_seen = max(max_m_seen, float(np.max(y_hi[6, :])))
+
+        peak_idx = int(np.argmax(eff_vec))
+        tot_area = _trapezoid_iip0029(eff_vec, t_vec)
+        exc_area = _trapezoid_iip0029(eff_vec - basal, t_vec)
+        pulses.append(
+            {
+                "high_minutes": float(h_min),
+                "pre_secretion": basal,
+                "peak": float(eff_vec[peak_idx]),
+                "mean_high_rate": tot_area / max(1e-9, float(h_min)),
+                "time_to_peak_min": float(t_vec[peak_idx]),
+                "late_plateau": float(np.mean(eff_vec[max(0, int(0.75 * len(eff_vec))):])),
+                "total_high_area": tot_area,
+                "excess_high_area": exc_area,
+            }
+        )
+        if idx < len(low_gaps):
+            eff_pre_stepdown = float(eff_vec[-1])
+            state, t_low, prior_eff, y_low = run_seg(state, low_mM, low_gaps[idx])
+            min_qp_seen = min(min_qp_seen, float(np.min(y_low[7, :])))
+            min_qr_seen = min(min_qr_seen, float(np.min(y_low[8, :])))
+            max_qr_seen = max(max_qr_seen, float(np.max(y_low[8, :])))
+            min_m_seen = min(min_m_seen, float(np.min(y_low[6, :])))
+            max_m_seen = max(max_m_seen, float(np.max(y_low[6, :])))
+            if idx == 0:
+                eff_t0plus = float(prior_eff[0])
+                instantaneous_stepdown_drop_pct = (
+                    0.0 if eff_pre_stepdown <= 1e-12 else 100.0 * (1.0 - eff_t0plus / eff_pre_stepdown)
+                )
+                s_start = float(prior_eff[0])
+                s_basal_ref = float(pulses[0]["pre_secretion"])
+                span_drop = s_start - s_basal_ref
+                t50_val, t90_val = None, None
+                if span_drop > 1e-6:
+                    target50 = s_basal_ref + 0.50 * span_drop
+                    target90 = s_basal_ref + 0.10 * span_drop
+                    for k_i in range(len(prior_eff) - 1):
+                        ya, yb = float(prior_eff[k_i]), float(prior_eff[k_i + 1])
+                        if t50_val is None and ya >= target50 >= yb:
+                            frac = 0.0 if abs(ya - yb) < 1e-15 else (ya - target50) / (ya - yb)
+                            t50_val = float(t_low[k_i] + frac * (t_low[k_i + 1] - t_low[k_i]))
+                        if t90_val is None and ya >= target90 >= yb:
+                            frac = 0.0 if abs(ya - yb) < 1e-15 else (ya - target90) / (ya - yb)
+                            t90_val = float(t_low[k_i] + frac * (t_low[k_i + 1] - t_low[k_i]))
+                pulses[0]["effluent_stepdown_t50_min"] = t50_val
+                pulses[0]["effluent_stepdown_t90_min"] = t90_val
+
+    if not (-1e-12 <= min_m_seen and max_m_seen <= 1.0 + 1e-12):
+        raise AssertionError(f"Mode B v2 M_sec invariant violated: [{min_m_seen}, {max_m_seen}] (IIP-0029; DEC-108)")
+
+    final_store = float(state[7] + state[8])
+    cum_prehep = float(state[10])
+    cum_bio = float(state[11])
+    c0 = sys_b["c0_iu"]
+    rel_mass_err = abs((final_store + cum_prehep - cum_bio) - c0) / c0
+    exc0 = pulses[0]["excess_high_area"]
+    excess_ratios = None if abs(exc0) <= 1e-12 else [p["excess_high_area"] / exc0 for p in pulses]
+
+    return {
+        "pulses": pulses,
+        "peak_ratios": [p["peak"] / max(1e-15, pulses[0]["peak"]) for p in pulses],
+        "total_area_ratios": [p["total_high_area"] / max(1e-15, pulses[0]["total_high_area"]) for p in pulses],
+        "excess_area_ratios": excess_ratios,
+        "initial_store_c0_iu": c0,
+        "final_store_iu": final_store,
+        "min_qp_iu": min_qp_seen,
+        "min_qr_iu": min_qr_seen,
+        "max_qr_over_qr0": max_qr_seen / sys_b["qr0_iu"],
+        "min_m_sec": min_m_seen,
+        "max_m_sec": max_m_seen,
+        "instantaneous_stepdown_drop_pct": instantaneous_stepdown_drop_pct,
+        "cumulative_secreted_iu": cum_prehep,
+        "cumulative_biosyn_iu": cum_bio,
+        "relative_mass_conservation_error": rel_mass_err,
+    }
+
+
+def run_mode_b_v2_24h_metabolic_sensitivity_iip_0029(
+    params: ModeBV2GranuleStoreParams,
+    *,
+    viable_endocrine_fraction_override: float | None = None,
+    local_paracrine_preserved_systemic_scale: bool = False,
+    extravascular_insulin_lag_total_min: float = 0.0,
+    low_glucose_challenge_mode: bool = False,
+    meals_override: List[tuple[float, float]] | None = None,
+    return_traces: bool = False,
+) -> Dict[str, Any]:
+    """Run a 24-h (5,761-step, dt = 0.25 min) exploratory Mode B v2 granule-store sensitivity replay."""
+    sys_b = build_mode_b_v2_granule_store_system_iip_0029(
+        params,
+        assay_context="in_vivo_metabolic_twin",
+        viable_endocrine_fraction_override=viable_endocrine_fraction_override,
+        local_paracrine_preserved_systemic_scale=local_paracrine_preserved_systemic_scale,
+        extravascular_insulin_lag_total_min=extravascular_insulin_lag_total_min,
+        low_glucose_challenge_mode=low_glucose_challenge_mode,
+        meals_override=meals_override,
+    )
+    t_grid = np.linspace(0.0, 1440.0, 5761)
+    rk4_y = courant_safe_rk4_integrate_iip_0029(
+        sys_b["rhs"],
+        sys_b["y0"],
+        t_grid,
+        sys_b["max_stiff_rate_min_inv"],
+        breakpoints=(sys_b["ex_start"], sys_b["ex_end"]),
+    )
+    g_0p25 = rk4_y[0, :]
+    min_m_val = float(np.min(rk4_y[6, :]))
+    max_m_val = float(np.max(rk4_y[6, :]))
+    if not (-1e-12 <= min_m_val and max_m_val <= 1.0 + 1e-12):
+        raise AssertionError(f"Mode B v2 24h M_sec invariant violated: [{min_m_val}, {max_m_val}] (IIP-0029; DEC-108)")
+
+    elapsed = compute_exact_elapsed_glycemic_metrics_iip_0024(t_grid, g_0p25)
+    ex_s_idx = int(sys_b["ex_start"] * 4)
+    ex_e_idx = int(sys_b["ex_end"] * 4)
+    sec_ex = np.array(
+        [
+            sys_b["fluxes"](
+                float(rk4_y[0, k]),
+                float(rk4_y[4, k]),
+                float(rk4_y[6, k]),
+                float(rk4_y[7, k]),
+                float(rk4_y[8, k]),
+                float(rk4_y[9, k]),
+            )["sec_ins_sys_pm"]
+            for k in range(ex_s_idx, ex_e_idx + 1)
+        ],
+        dtype=np.float64,
+    )
+    half_drop = _trajectory_half_drop_time(t_grid[ex_s_idx : ex_e_idx + 1], sec_ex, sys_b["ex_start"], sys_b["ex_end"])
+    final_store = float(rk4_y[7, -1] + rk4_y[8, -1])
+    cum_prehep = float(rk4_y[10, -1])
+    cum_bio = float(rk4_y[11, -1])
+    cum_sys = float(rk4_y[12, -1])
+    c0 = sys_b["c0_iu"]
+    rel_mass_err = abs((final_store + cum_prehep - cum_bio) - c0) / c0
+    out: Dict[str, Any] = {
+        "granule_conservation_mode": "two_pool_conserved_v2",
+        "evidence_status": "EXPLORATORY_OPT_IN_SENSITIVITY_COMPARATOR_NOT_A_RELEASE_GATE",
+        "initial_store_c0_iu": round(c0, 4),
+        "final_store_iu": round(final_store, 4),
+        "min_glucose_0p25min_mM": float(np.min(g_0p25)),
+        "max_glucose_0p25min_mM": float(np.max(g_0p25)),
+        "tir_3p9_to_10_elapsed_pct": float(elapsed["tir_elapsed_unrounded_pct"]),
+        "tbr_lt_3p9_elapsed_pct": float(elapsed["tbr39_elapsed_unrounded_pct"]),
+        "tbr_lt_3p0_elapsed_pct": float(elapsed["tbr30_elapsed_unrounded_pct"]),
+        "exercise_shutoff_half_time_min": None if half_drop is None else float(half_drop),
+        "min_qp_iu": float(np.min(rk4_y[7, :])),
+        "min_qr_iu": float(np.min(rk4_y[8, :])),
+        "max_qr_over_qr0": float(np.max(rk4_y[8, :]) / sys_b["qr0_iu"]),
+        "min_m_sec": min_m_val,
+        "max_m_sec": max_m_val,
+        "max_abs_ip": float(np.max(np.abs(rk4_y[1, :]))),
+        "cumulative_24h_prehepatic_secreted_iu": cum_prehep,
+        "cumulative_24h_systemic_appearance_iu": cum_sys,
+        "cumulative_24h_biosyn_iu": cum_bio,
+        "relative_mass_conservation_error": rel_mass_err,
+    }
+    if return_traces:
+        out["t_grid"] = t_grid
+        out["state_matrix"] = rk4_y
+        out["sys_b"] = sys_b
+    return out
+
+
+def simulate_metabolic_twin_granule_sensitivity_iip_0029(
+    *,
+    granule_conservation_mode: str = "mode_a_default",
+    params: ModeBV2GranuleStoreParams | None = None,
+    viable_endocrine_fraction_override: float | None = None,
+    local_paracrine_preserved_systemic_scale: bool = True,
+    extravascular_insulin_lag_total_min: float = 0.0,
+    low_glucose_challenge_mode: bool = False,
+    meals_override: List[tuple[float, float]] | None = None,
+    return_traces: bool = False,
+) -> Dict[str, Any]:
+    """
+    Opt-in dispatcher preserving exact Mode A default parity unless callers explicitly select
+    granule_conservation_mode='two_pool_conserved_v2' for exploratory sensitivity analysis (IIP-0029; DEC-108).
+    """
+    if granule_conservation_mode == "mode_a_default":
+        ode_a = solve_24h_paracrine_and_whole_body_metabolic_ode(pde_regimes=[])
+        lead_a = ode_a["graft_architectures_compared"][0]
+        return {
+            "granule_conservation_mode": "mode_a_default",
+            "evidence_status": "LIVE_MODE_A_DEFAULT_PARITY",
+            "lead_graft_id": lead_a["graft_id"],
+            "tir_3p9_to_10_elapsed_pct": float(lead_a["time_in_tight_range_3p9_to_10p0_mM_pct"]),
+            "min_glucose_mM": float(lead_a["min_glucose_mM"]),
+            "exercise_shutoff_half_time_min": float(lead_a["insulin_secretion_shutoff_half_time_min"]),
+            "tbr_lt_3p0_elapsed_pct": float(lead_a["time_severe_hypoglycemia_lt_3p0_mM_54_mg_dL_pct"]),
+        }
+    if granule_conservation_mode == "two_pool_conserved_v2":
+        use_params = params if params is not None else ModeBV2GranuleStoreParams()
+        return run_mode_b_v2_24h_metabolic_sensitivity_iip_0029(
+            use_params,
+            viable_endocrine_fraction_override=viable_endocrine_fraction_override,
+            local_paracrine_preserved_systemic_scale=local_paracrine_preserved_systemic_scale,
+            extravascular_insulin_lag_total_min=extravascular_insulin_lag_total_min,
+            low_glucose_challenge_mode=low_glucose_challenge_mode,
+            meals_override=meals_override,
+            return_traces=return_traces,
+        )
+    raise ValueError(
+        f"Unsupported granule_conservation_mode={granule_conservation_mode!r}; "
+        "expected 'mode_a_default' or 'two_pool_conserved_v2' (IIP-0029; DEC-108)"
+    )
+
+
+def verify_mode_b_v2_against_scipy_dop853_iip_0029(
+    params: ModeBV2GranuleStoreParams | None = None,
+    *,
+    local_paracrine_preserved_systemic_scale: bool = True,
+) -> Dict[str, Any]:
+    """
+    Independent piecewise SciPy DOP853 verification of Mode B v2 across glucose G(t),
+    RRP store Q_P(t), reserve store Q_R(t), and cumulative pre-hepatic secretion CumPre(t)
+    over 0-1,440 min (breakpoints 600 and 660 min; IIP-0029; DEC-108).
+    """
+    use_params = params if params is not None else ModeBV2GranuleStoreParams()
+    sim = run_mode_b_v2_24h_metabolic_sensitivity_iip_0029(
+        use_params,
+        local_paracrine_preserved_systemic_scale=local_paracrine_preserved_systemic_scale,
+        return_traces=True,
+    )
+    rk4_mat = sim["state_matrix"]
+    sys_p = sim["sys_b"]
+    try:
+        import scipy
+        from scipy.integrate import solve_ivp as _dop_solve_ivp
+    except ImportError:
+        return {
+            "scipy_available": False,
+            "verified": False,
+            "note": "SciPy is not installed in this Python interpreter; run with SciPy to execute live DOP853 parity.",
+        }
+
+    t_s1 = np.linspace(0.0, 600.0, 2401)
+    t_s2 = np.linspace(600.0, 660.0, 241)
+    t_s3 = np.linspace(660.0, 1440.0, 3121)
+    d1 = _dop_solve_ivp(sys_p["rhs"], (0.0, 600.0), sys_p["y0"], method="DOP853", t_eval=t_s1, rtol=1e-11, atol=1e-13, max_step=1.0)
+    d2 = _dop_solve_ivp(sys_p["rhs"], (600.0, 660.0), d1.y[:, -1], method="DOP853", t_eval=t_s2, rtol=1e-11, atol=1e-13, max_step=1.0)
+    d3 = _dop_solve_ivp(sys_p["rhs"], (660.0, 1440.0), d2.y[:, -1], method="DOP853", t_eval=t_s3, rtol=1e-11, atol=1e-13, max_step=1.0)
+    if not (d1.success and d2.success and d3.success):
+        raise RuntimeError("Piecewise SciPy DOP853 verification failed to converge (IIP-0029; DEC-108)")
+
+    dop_full = np.concatenate([d1.y, d2.y[:, 1:], d3.y[:, 1:]], axis=1)
+    max_g_diff = float(np.max(np.abs(rk4_mat[0, :] - dop_full[0, :])))
+    max_qp_diff = float(np.max(np.abs(rk4_mat[7, :] - dop_full[7, :])))
+    max_qr_diff = float(np.max(np.abs(rk4_mat[8, :] - dop_full[8, :])))
+    max_cum_diff = float(np.max(np.abs(rk4_mat[10, :] - dop_full[10, :])))
+    max_g_0_600 = float(np.max(np.abs(rk4_mat[0, :2401] - d1.y[0, :])))
+
+    return {
+        "scipy_available": True,
+        "scipy_version": str(scipy.__version__),
+        "verified": bool(
+            max_g_diff < 1e-5
+            and max_qp_diff < 1e-6
+            and max_qr_diff < 1e-5
+            and max_cum_diff < 1e-5
+        ),
+        "dop853_0_to_600min_max_abs_g_diff_mM": max_g_0_600,
+        "dop853_0_to_1440min_max_abs_g_diff_mM": max_g_diff,
+        "dop853_0_to_1440min_max_abs_qp_diff_iu": max_qp_diff,
+        "dop853_0_to_1440min_max_abs_qr_diff_iu": max_qr_diff,
+        "dop853_0_to_1440min_max_abs_cum_prehep_diff_iu": max_cum_diff,
+    }
+
+
+def _replay_live_mode_a_imposed_perifusion_iip_0029(
+    low_mM: float,
+    high_mM: float,
+    pre_low_min: float,
+    high_durations: List[float],
+    low_gaps: List[float],
+    *,
+    force_zero_sst: bool = False,
+    dt_out: float = 0.1,
+) -> Dict[str, Any]:
+    """Direct imposed-glucose replay of live Mode A secretion/SST equations showing zero granule conservation."""
+    def _step(st: np.ndarray, g_val: float, dur: float) -> tuple[np.ndarray, np.ndarray]:
+        n_st = max(1, int(round(dur / dt_out)))
+        t_v = np.linspace(0.0, float(dur), n_st + 1)
+
+        def _rhs_a(_t: float, y: np.ndarray) -> np.ndarray:
+            u_v, s_v, m_v = float(y[0]), float(y[1]), float(y[2])
+            gp = max(0.5, float(g_val))
+            sp = max(0.0, s_v)
+            gs = (sp / (1e-4 + sp)) if sp > 0.0 else 0.0
+            g_eff = max(0.0, gp - 3.5)
+            k_eff = 7.2 - 3.5
+            phi_g = (g_eff ** 4.2) / ((k_eff ** 4.2) + (g_eff ** 4.2))
+            m_t = phi_g / (1.0 + 1.50 * sp * gs)
+            if m_t < m_v:
+                tau_s = 1.85 / (1.0 + 0.8 * sp)
+                if gp < 4.20:
+                    tau_s = tau_s * ((gp / 4.20) ** 4)
+                tau_m = 6.80 * (1.0 - gs) + tau_s * gs
+            else:
+                tau_m = 2.00
+            dm = (m_t - m_v) / tau_m
+            du = (1.2 * m_v - u_v) / 2.5
+            s_drv = 0.0 if force_zero_sst else (0.65 * u_v + 0.45 * ((gp ** 4) / (5.8 ** 4 + gp ** 4)))
+            ds = (s_drv - s_v) / 1.5
+            return np.array([du, ds, dm], dtype=np.float64)
+
+        ym = courant_safe_rk4_integrate_iip_0029(_rhs_a, st, t_v, max_stiff_rate=3.0)
+        gp_c = max(0.5, float(g_val))
+        sec = np.array(
+            [
+                (
+                    (6.8 - 0.8 * (0.0 if force_zero_sst else ((max(0.0, ym[1, k]) / (1e-4 + max(0.0, ym[1, k]))) if ym[1, k] > 0 else 0.0)))
+                    + 88.0 * max(0.0, ym[2, k])
+                )
+                * (
+                    1.0
+                    - (0.0 if force_zero_sst else ((max(0.0, ym[1, k]) / (1e-4 + max(0.0, ym[1, k]))) if ym[1, k] > 0 else 0.0))
+                    * (1.0 - (gp_c / 4.20) ** 8)
+                    if gp_c < 4.20
+                    else 1.0
+                )
+                for k in range(len(t_v))
+            ],
+            dtype=np.float64,
+        )
+        return ym[:, -1].copy(), sec
+
+    st = np.array([0.0, 0.0 if force_zero_sst else 0.12, 0.0], dtype=np.float64)
+    st, _ = _step(st, low_mM, pre_low_min)
+    peaks: List[float] = []
+    for i, hd in enumerate(high_durations):
+        st, sec_hi = _step(st, high_mM, hd)
+        peaks.append(float(np.max(sec_hi)))
+        if i < len(low_gaps):
+            st, _ = _step(st, low_mM, low_gaps[i])
+    return {
+        "peaks": peaks,
+        "peak2_over_peak1_pct": round(100.0 * peaks[1] / max(1e-15, peaks[0]), 4) if len(peaks) >= 2 else None,
+    }
+
+
+def build_exploratory_mode_b_v2_granule_sensitivity_audit_iip_0029(
+    part_b_mode_a: Dict[str, Any] | None = None,
+) -> Dict[str, Any]:
+    """
+    Build the bounded, strictly opt-in exploratory Mode B v2 two-clock granule-store sensitivity
+    audit attached to Layer 4 Part B (IIP-0029; DEC-108). Preserves exact Mode A default parity
+    and is NEVER a Stage-0 clinical release gate.
+    """
+    p_portal = ModeBV2GranuleStoreParams(c0_ref_iu_at_300k_beta_eeq=89.9, beta_cell_fraction=0.60, implanted_total_ieq=500_000.0, f_hepatic=0.50)
+    sim_p = run_mode_b_v2_24h_metabolic_sensitivity_iip_0029(p_portal, local_paracrine_preserved_systemic_scale=True)
+    sim_f40 = run_mode_b_v2_24h_metabolic_sensitivity_iip_0029(ModeBV2GranuleStoreParams(f_hepatic=0.40), local_paracrine_preserved_systemic_scale=True)
+    sim_f60 = run_mode_b_v2_24h_metabolic_sensitivity_iip_0029(ModeBV2GranuleStoreParams(f_hepatic=0.60), local_paracrine_preserved_systemic_scale=True)
+    sim_f00 = run_mode_b_v2_24h_metabolic_sensitivity_iip_0029(ModeBV2GranuleStoreParams(f_hepatic=0.00), local_paracrine_preserved_systemic_scale=True)
+
+    # Real piecewise SciPy DOP853 multi-state verification (G, Q_P, Q_R, CumPre):
+    dop_audit = verify_mode_b_v2_against_scipy_dop853_iip_0029(p_portal, local_paracrine_preserved_systemic_scale=True)
+
+    # Infinite-store convergence to live Mode A (reference 1,440-min 7-state ODE):
+    p_inf = ModeBV2GranuleStoreParams(c0_ref_iu_at_300k_beta_eeq=1e9, f_rrp=0.10, tau_refill_min=0.5, gamma_amp=5.0, f_hepatic=0.0)
+    sim_inf = run_mode_b_v2_24h_metabolic_sensitivity_iip_0029(p_inf, viable_endocrine_fraction_override=1.0, return_traces=True)
+    lead_a_tir = None
+    lead_a_min_g = None
+    if isinstance(part_b_mode_a, dict) and part_b_mode_a.get("graft_architectures_compared"):
+        lead_a = part_b_mode_a["graft_architectures_compared"][0]
+        lead_a_tir = float(lead_a["time_in_tight_range_3p9_to_10p0_mM_pct"])
+        lead_a_min_g = float(lead_a["min_glucose_mM"])
+
+    # Positivity, mass conservation, small-lag stability, and C^1 biosynthesis saturation:
+    p_stiff = ModeBV2GranuleStoreParams(c0_ref_iu_at_300k_beta_eeq=0.25, f_rrp=0.0045, tau_refill_min=16.5, enable_biosyn=True)
+    sim_stiff = run_mode_b_v2_24h_metabolic_sensitivity_iip_0029(p_stiff, meals_override=[(60.0, 120.0), (240.0, 120.0)])
+    rep_small_ch = replay_mode_b_v2_perifusion_iip_0029(ModeBV2GranuleStoreParams(tau_chamber_min=0.01), 2.8, 16.7, 30.0, [10.0], [5.0], dt_out=0.2)
+    sim_small_vasc = run_mode_b_v2_24h_metabolic_sensitivity_iip_0029(p_portal, extravascular_insulin_lag_total_min=0.05, local_paracrine_preserved_systemic_scale=True)
+    fast_12h = replay_mode_b_v2_perifusion_iip_0029(p_portal, 2.8, 2.8, 720.0, [10.0], [], dt_out=1.0)
+    sys_p_diag = build_mode_b_v2_granule_store_system_iip_0029(p_portal, assay_context="in_vivo_metabolic_twin")
+    hypo_2mM_biosyn = sys_p_diag["fluxes"](2.0, 0.12, 0.0, sys_p_diag["qp0_iu"], 0.50 * sys_p_diag["qr0_iu"], 0.0)["j_biosyn_iu"]
+
+    # Effluent shutoff & short low-interval censoring:
+    r2_std = replay_mode_b_v2_perifusion_iip_0029(p_portal, 2.8, 16.7, 90.0, [20.0, 20.0], [15.0], dt_out=0.1)
+    p_ch06 = ModeBV2GranuleStoreParams(tau_chamber_min=0.60)
+    r2_short_2m = replay_mode_b_v2_perifusion_iip_0029(p_ch06, 2.8, 16.7, 90.0, [20.0], [2.0], dt_out=0.1)
+    r2_long_60m = replay_mode_b_v2_perifusion_iip_0029(p_ch06, 2.8, 16.7, 90.0, [20.0], [60.0], dt_out=0.1)
+
+    # Ceteris-paribus isolated tau_refill = 16.5 -> 45.0 min at fixed 56.88 IU (f_rrp=0.0045, gamma_amp=0.08):
+    c0_w6 = 89.9 * 0.632693
+    p_w6_fast = ModeBV2GranuleStoreParams(c0_ref_iu_at_300k_beta_eeq=c0_w6, f_rrp=0.0045, tau_refill_min=16.5, gamma_amp=0.08, f_hepatic=0.50)
+    p_w6_slow = ModeBV2GranuleStoreParams(c0_ref_iu_at_300k_beta_eeq=c0_w6, f_rrp=0.0045, tau_refill_min=45.0, gamma_amp=0.08, f_hepatic=0.50)
+    m_5h7h = [(60.0, 75.0), (360.0, 85.0), (780.0, 90.0)]
+    m_4h4h = [(60.0, 75.0), (300.0, 85.0), (540.0, 90.0)]
+    s_fast_57 = run_mode_b_v2_24h_metabolic_sensitivity_iip_0029(p_w6_fast, local_paracrine_preserved_systemic_scale=True, meals_override=m_5h7h)
+    s_slow_57 = run_mode_b_v2_24h_metabolic_sensitivity_iip_0029(p_w6_slow, local_paracrine_preserved_systemic_scale=True, meals_override=m_5h7h)
+    s_fast_44 = run_mode_b_v2_24h_metabolic_sensitivity_iip_0029(p_w6_fast, local_paracrine_preserved_systemic_scale=True, meals_override=m_4h4h)
+    s_slow_44 = run_mode_b_v2_24h_metabolic_sensitivity_iip_0029(p_w6_slow, local_paracrine_preserved_systemic_scale=True, meals_override=m_4h4h)
+
+    # Local 4-schedule Jacobian & FIM conditioning (illustrating unidentifiability from cross-protocol summaries):
+    fim_scheds = (
+        ("peak", 2.0, 20.0, 120.0, [18.0, 18.0], [5.0]),
+        ("peak", 2.8, 20.0, 120.0, [19.0, 14.0], [17.0]),
+        ("area", 2.8, 20.0, 90.0, [30.0, 30.0], [30.0]),
+        ("area", 2.8, 20.0, 120.0, [60.0, 60.0], [60.0]),
+    )
+
+    def _eval_fim_vec(c0_v: float, fr_v: float, tr_v: float, ga_v: float) -> np.ndarray:
+        pf = ModeBV2GranuleStoreParams(c0_ref_iu_at_300k_beta_eeq=c0_v, f_rrp=fr_v, tau_refill_min=tr_v, gamma_amp=ga_v, enable_biosyn=False, tau_chamber_min=0.0)
+        vals = []
+        for rk, lo, hi, pre, hd, gp in fim_scheds:
+            rep = replay_mode_b_v2_perifusion_iip_0029(pf, lo, hi, pre, hd, gp, dt_out=0.5)
+            vals.append(rep["peak_ratios"][1] if rk == "peak" else rep["total_area_ratios"][1])
+        return np.array(vals, dtype=np.float64)
+
+    th0 = np.array([89.9, 0.0045, 16.5, 0.08], dtype=np.float64)
+    eps = 1e-3
+    jac = np.zeros((4, 4), dtype=np.float64)
+    for j in range(4):
+        tp, tm = th0.copy(), th0.copy()
+        tp[j] *= math.exp(eps)
+        tm[j] *= math.exp(-eps)
+        jac[:, j] = (_eval_fim_vec(*tp) - _eval_fim_vec(*tm)) / (2.0 * eps)
+    sv = np.linalg.svd(jac, compute_uv=False)
+    jac_cond = float(sv[0] / max(1e-15, sv[-1]))
+
+    # Live Mode A zero-conservation diagnostic on 5-min gap:
+    ma_5m = _replay_live_mode_a_imposed_perifusion_iip_0029(2.0, 20.0, 120.0, [18.0, 18.0], [5.0], force_zero_sst=False)
+    ma_5m_nosst = _replay_live_mode_a_imposed_perifusion_iip_0029(2.0, 20.0, 120.0, [18.0, 18.0], [5.0], force_zero_sst=True)
+
+    return {
+        "decision_id": "DEC-108",
+        "contribution_id": "IIP-0029",
+        "evidence_status": "EXPLORATORY_OPT_IN_SENSITIVITY_COMPARATOR_NOT_A_RELEASE_GATE",
+        "default_mode_a_unchanged": True,
+        "mode_a_default_reference_parity": {
+            "lead_60_30_10_mode_a_tir_pct": lead_a_tir,
+            "lead_60_30_10_mode_a_min_glucose_mM": lead_a_min_g,
+            "infinite_store_mode_b_v2_tir_pct": round(sim_inf["tir_3p9_to_10_elapsed_pct"], 2),
+            "infinite_store_mode_b_v2_min_glucose_mM": round(sim_inf["min_glucose_0p25min_mM"], 4),
+            "live_mode_a_5min_gap_peak2_over_peak1_pct": ma_5m["peak2_over_peak1_pct"],
+            "live_mode_a_zero_sst_5min_gap_peak2_over_peak1_pct": ma_5m_nosst["peak2_over_peak1_pct"],
+        },
+        "real_scipy_dop853_multi_state_verification": dop_audit,
+        "positivity_mass_conservation_and_biosyn_audit": {
+            "c0_0p25_iu_min_qp_iu": sim_stiff["min_qp_iu"],
+            "c0_0p25_iu_relative_mass_error": sim_stiff["relative_mass_conservation_error"],
+            "c0_0p25_iu_m_sec_range": [round(sim_stiff["min_m_sec"], 6), round(sim_stiff["max_m_sec"], 6)],
+            "small_tau_chamber_0p01_min_finite_and_positive": bool(math.isfinite(rep_small_ch["pulses"][0]["peak"]) and rep_small_ch["min_qp_iu"] > 0.0),
+            "small_tau_vasc_0p05_min_max_ip": round(sim_small_vasc["max_abs_ip"], 4),
+            "fasting_12h_store_drift_iu": abs(fast_12h["final_store_iu"] - fast_12h["initial_store_c0_iu"]),
+            "hypoglycemia_2p0mM_biosynthesis_iu_per_min": float(hypo_2mM_biosyn),
+        },
+        "effluent_shutoff_and_short_interval_censoring_audit": {
+            "tau_chamber_0p35_min_t50_min": round(float(r2_std["pulses"][0]["effluent_stepdown_t50_min"]), 4),
+            "tau_chamber_0p35_min_t90_min": round(float(r2_std["pulses"][0]["effluent_stepdown_t90_min"]), 4),
+            "tau_chamber_0p60_min_2min_low_t90_censored": r2_short_2m["pulses"][0]["effluent_stepdown_t90_min"],
+            "tau_chamber_0p60_min_60min_low_t90_min": round(float(r2_long_60m["pulses"][0]["effluent_stepdown_t90_min"]), 4),
+            "instantaneous_stepdown_drop_pct": round(float(r2_std["instantaneous_stepdown_drop_pct"]), 6),
+        },
+        "hepatic_first_pass_extraction_sensitivity_sweep": {
+            "ownership_note": (
+                "First-pass hepatic extraction f_hepatic is owned solely by exploratory Mode B v2 to debit total pre-hepatic secretion "
+                "from intracellular stores while delivering (1 - f_hepatic) systemically; it is strictly distinct from Layer 4's 13-state "
+                "f_sys_ins insulin-action scaling and is never double-counted. Direct human hepatic-vein pulsatile extraction "
+                "(Meier et al. 2005 PMID:15919785) and canine portal-vs-peripheral studies (Edgerton et al. 2019 PMID:30830873) provide "
+                "route context only and do not validate a 40-60% extraction range for this graft."
+            ),
+            "f_hepatic_0p00_systemic_iu_day": round(sim_f00["cumulative_24h_systemic_appearance_iu"], 2),
+            "f_hepatic_0p40_prehepatic_iu_day": round(sim_f40["cumulative_24h_prehepatic_secreted_iu"], 2),
+            "f_hepatic_0p50_prehepatic_iu_day": round(sim_p["cumulative_24h_prehepatic_secreted_iu"], 2),
+            "f_hepatic_0p50_systemic_iu_day": round(sim_p["cumulative_24h_systemic_appearance_iu"], 2),
+            "f_hepatic_0p60_prehepatic_iu_day": round(sim_f60["cumulative_24h_prehepatic_secreted_iu"], 2),
+        },
+        "ceteris_paribus_isolated_tau_refill_meal_sensitivity": {
+            "c0_fixed_iu": round(c0_w6, 2),
+            "f_rrp_fixed": 0.0045,
+            "gamma_amp_fixed": 0.08,
+            "f_hepatic_fixed": 0.50,
+            "canonical_5h_7h_250g_tir_tau16p5_pct": round(s_fast_57["tir_3p9_to_10_elapsed_pct"], 2),
+            "canonical_5h_7h_250g_tir_tau45p0_pct": round(s_slow_57["tir_3p9_to_10_elapsed_pct"], 2),
+            "realistic_4h_4h_250g_tir_tau16p5_pct": round(s_fast_44["tir_3p9_to_10_elapsed_pct"], 2),
+            "realistic_4h_4h_250g_tir_tau45p0_pct": round(s_slow_44["tir_3p9_to_10_elapsed_pct"], 2),
+        },
+        "beta_fraction_stored_insulin_scaling_note": {
+            "modeled_60_30_10_500k_ieq_range_iu": [41.5, 138.3],
+            "unadjusted_70_20_10_500k_ieq_equal_per_beta_content_range_iu": [round(41.5 * 7.0 / 6.0, 2), round(138.3 * 7.0 / 6.0, 2)],
+            "gate0s_escalation_trigger_iu": 138.3,
+            "caveat": (
+                "Arithmetic scaling assumes identical total IEQ and identical mature insulin content per beta-equivalent "
+                "(Perez-Frances et al. 2024 PMID:39169271 did not measure this recipe). Stage-0 therefore measures intact mature "
+                "insulin directly at the actual final dose and escalates to full scope-matched Gate 0S atomic-ledger review "
+                "whenever U95_t(stored_insulin_iu) > 138.3 IU or max_lot > 138.3 IU."
+            ),
+        },
+        "local_4schedule_jacobian_and_fim_conditioning": {
+            "log_parameter_jacobian_condition_number": round(jac_cond, 2),
+            "log_parameter_fim_condition_number": round(jac_cond ** 2, 1),
+            "identifiability_caveat": (
+                "Local 4-summary FIM ill-conditioning (which depends on parameter scaling) and cross-protocol validation "
+                "confirm that uncalibrated ODE parameter inversion cannot replace empirical Stage-0 two-pulse Readout 2, "
+                "direct inert-tracer tau_chamber verification, and mature-insulin inventory measurement."
+            ),
+        },
+        "primary_citations": [
+            "PMID:30661993",
+            "PMID:35241836",
+            "PMID:36136756",
+            "PMID:31068696",
+            "PMID:30710150",
+            "PMID:27163171",
+            "PMID:30931946",
+            "PMID:25303535",
+            "PMID:12879249",
+            "PMID:33737253",
+            "PMID:31177185",
+            "PMID:39169271",
+            "PMID:15919785",
+            "PMID:30830873",
+        ],
+    }
+# === END_IIP_0029_EXPLORATORY_MODE_B_V2_GRANULE_STORE_SENSITIVITY ===
+
+
 def main() -> None:
     part_a_algebra = verify_exact_slab_source_distribution_algebra()
     part_a_pde = solve_336h_spatial_pouch_pde()
@@ -8920,6 +9895,9 @@ def main() -> None:
     )
     part_a_pde["measured_potency_dec084_mixture_and_glucagon_audit_iip_0028"] = (
         build_measured_potency_dec084_mixture_and_glucagon_audit_iip_0028()
+    )
+    part_b_ode["exploratory_two_clock_granule_store_sensitivity_audit_iip_0029"] = (
+        build_exploratory_mode_b_v2_granule_sensitivity_audit_iip_0029(part_b_ode)
     )
 
     atlas = {

@@ -68,7 +68,15 @@
     "contemporaneous_arm3_control_sample_id",
     "sister_assembly_id",
     "cxcl10_tss_donor_id",
-    "cxcl10_tss_transcription_unit_id"
+    "cxcl10_tss_transcription_unit_id",
+    "construct_sha256",
+    "post_sort_endocrine_zm447439_regimen",
+    "stage7_start_utc",
+    "sort_reaggregation_utc",
+    "assay_harvest_utc",
+    "registered_mixture_id",
+    "locked_analysis_plan_id",
+    "gate0s_elevated_store_scope_matched_device_lot_id"
   ],
   "boolean_policy_keys": [
     "require_full_5endpoint_s9_panel",
@@ -173,7 +181,14 @@
     "require_full_iip0027_promoter_origin_and_itr_panel",
     "cxcl10_insert_matched_comparator_control_verified",
     "cxcl10_resting_expression_below_loq_confirmed",
-    "bio06_itr_rna_origin_attribution_verified"
+    "bio06_itr_rna_origin_attribution_verified",
+    "require_full_iip0029_twoclock_maturation_panel",
+    "obs_alk5i_free_maturation_applied",
+    "terminal_alk5i_tgfb_inhibitor_continued",
+    "stage7_t3_10nM_and_nac_1mM_retained",
+    "zm447439_washout_verified_pre_iec",
+    "pre_coassembly_iec_vascular_function_verified",
+    "readout2_both_40_and_100mmhg_tracer_aligned_verified"
   ],
   "endpoints": [
     {
@@ -4008,6 +4023,149 @@
       "default_se": 1e-12,
       "minimum_se": 1e-12,
       "unit": "bio06_conditional_aav_itr_origin_transcript_5prime_race_umi_count_k"
+    },
+    {
+      "endpoint_id": "stage0_stage7_total_maturation_days",
+      "meanKey": "obs_stage7_total_maturation_days",
+      "seKey": "obs_stage7_total_maturation_days_se",
+      "min": 0.0,
+      "max": 90.0,
+      "se_required": false,
+      "default_se": 0.45,
+      "minimum_se": 0.001,
+      "unit": "total_stage7_culture_duration_days_from_stage7_start_utc"
+    },
+    {
+      "endpoint_id": "stage0_stage7_days_post_sort_reaggregation",
+      "meanKey": "obs_stage7_days_post_sort_reaggregation",
+      "seKey": "obs_stage7_days_post_sort_reaggregation_se",
+      "min": 0.0,
+      "max": 90.0,
+      "se_required": false,
+      "default_se": 0.45,
+      "minimum_se": 0.001,
+      "unit": "days_elapsed_from_sort_reaggregation_utc_to_assay_harvest_utc"
+    },
+    {
+      "endpoint_id": "stage0_stage7_eta_sort_viable_recovery",
+      "meanKey": "obs_stage7_eta_sort_viable_recovery",
+      "seKey": "obs_stage7_eta_sort_viable_recovery_se",
+      "min": 0.0,
+      "max": 1.0,
+      "se_required": false,
+      "default_se": 0.01,
+      "minimum_se": 0.001,
+      "unit": "sorting_and_reaggregation_viable_recovery_fraction_on_common_denominator"
+    },
+    {
+      "endpoint_id": "stage0_readout2_inert_tracer_tau_chamber_min",
+      "meanKey": "obs_readout2_inert_tracer_tau_chamber_min",
+      "seKey": "obs_readout2_inert_tracer_tau_chamber_se",
+      "min": 0.0,
+      "max": 30.0,
+      "se_required": false,
+      "default_se": 0.15,
+      "minimum_se": 0.001,
+      "unit": "direct_fluorescent_inert_tracer_perifusion_chamber_mixing_time_constant_minutes"
+    },
+    {
+      "endpoint_id": "stage0_readout2_pulse2_net_increment_z2",
+      "meanKey": "obs_readout2_pulse2_net_increment_z2",
+      "seKey": "obs_readout2_pulse2_net_increment_z2_se",
+      "min": -50.0,
+      "max": 500.0,
+      "se_required": false,
+      "default_se": 2.75,
+      "minimum_se": 0.001,
+      "unit": "recovery_weighted_second_pulse_net_increment_z2_on_registered_unit_and_common_denominator"
+    },
+    {
+      "endpoint_id": "stage0_readout2_adult_islet_ref_z2",
+      "meanKey": "obs_readout2_adult_islet_ref_z2",
+      "seKey": "obs_readout2_adult_islet_ref_z2_se",
+      "min": -50.0,
+      "max": 500.0,
+      "se_required": false,
+      "default_se": 2.75,
+      "minimum_se": 0.001,
+      "unit": "contemporaneous_same_assay_primary_adult_human_islet_second_pulse_net_increment_ref_z2"
+    },
+    {
+      "endpoint_id": "stage0_readout2_low2_frac_peak1",
+      "meanKey": "obs_readout2_low2_frac_peak1",
+      "seKey": "obs_readout2_low2_frac_peak1_se",
+      "min": 0.0,
+      "max": 5.0,
+      "se_required": false,
+      "default_se": 0.05,
+      "minimum_se": 0.001,
+      "unit": "second_low_glucose_washout_secretion_as_fraction_of_first_phase_peak1"
+    },
+    {
+      "endpoint_id": "stage0_readout2_low2_over_low1_ratio",
+      "meanKey": "obs_readout2_low2_over_low1_ratio",
+      "seKey": "obs_readout2_low2_over_low1_ratio_se",
+      "min": 0.0,
+      "max": 20.0,
+      "se_required": false,
+      "default_se": 0.1,
+      "minimum_se": 0.001,
+      "unit": "second_low_glucose_washout_over_first_low_glucose_baseline_ratio"
+    },
+    {
+      "endpoint_id": "stage0_stage7_s8_fieller_z2_diff",
+      "meanKey": "obs_stage7_s8_fieller_z2_diff",
+      "seKey": "obs_stage7_s8_fieller_z2_diff_se",
+      "min": -500.0,
+      "max": 500.0,
+      "se_required": false,
+      "default_se": 5.0,
+      "minimum_se": 0.001,
+      "unit": "within_recipe_rule_s8_paired_fieller_contrast_z2_ext_minus_0p85_z2_early"
+    },
+    {
+      "endpoint_id": "stage0_stage7_stored_mature_insulin_iu_implanted",
+      "meanKey": "obs_stage7_stored_mature_insulin_iu_implanted",
+      "seKey": "obs_stage7_stored_mature_insulin_iu_implanted_se",
+      "min": 0.0,
+      "max": 1000.0,
+      "se_required": false,
+      "default_se": 5.0,
+      "minimum_se": 0.001,
+      "unit": "specific_mature_insulin_inventory_iu_at_actual_implanted_dose"
+    },
+    {
+      "endpoint_id": "stage0_stage7_stored_mature_insulin_max_lot_iu",
+      "meanKey": "obs_stage7_stored_mature_insulin_max_lot_iu",
+      "seKey": "obs_stage7_stored_mature_insulin_max_lot_iu_se",
+      "min": 0.0,
+      "max": 1000.0,
+      "se_required": false,
+      "default_se": 5.0,
+      "minimum_se": 0.001,
+      "unit": "maximum_individual_lot_specific_mature_insulin_inventory_iu_at_actual_implanted_dose"
+    },
+    {
+      "endpoint_id": "stage0_stage7_proinsulin_to_cpeptide_molar_ratio",
+      "meanKey": "obs_stage7_proinsulin_to_cpeptide_molar_ratio",
+      "seKey": "obs_stage7_proinsulin_to_cpeptide_molar_ratio_se",
+      "min": 0.0,
+      "max": 5.0,
+      "se_required": false,
+      "default_se": 0.05,
+      "minimum_se": 0.001,
+      "unit": "exploratory_stage0_in_vitro_intact_proinsulin_to_c_peptide_content_molar_ratio"
+    },
+    {
+      "endpoint_id": "stage0_stage7_pre_iec_zm447439_residual_uM",
+      "meanKey": "obs_stage7_pre_iec_zm447439_residual_uM",
+      "seKey": "obs_stage7_pre_iec_zm447439_residual_se",
+      "min": 0.0,
+      "max": 10.0,
+      "se_required": false,
+      "default_se": 0.05,
+      "minimum_se": 0.001,
+      "unit": "analytical_lc_ms_ms_residual_zm447439_concentration_micromolar_prior_to_iec_coassembly"
     }
   ]
 }

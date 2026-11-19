@@ -559,6 +559,28 @@
           "38864729",
           "39169271"
         ]
+      },
+      {
+        "guardrail_id": "OFFGRID_GUARD_014_ALK5I_TERMINAL_MATURATION_SINGLE_PULSE_S8_UNNORMALIZED_SORT_AND_STANDALONE_RELEASE",
+        "graveyard_card_id": "GY-024",
+        "severity_level": "BLOCK",
+        "curation_status": "corroborated",
+        "evidence_basis_class": "direct_in_vitro_and_contract_falsification",
+        "contribution_id": "IIP-0029",
+        "status": "BARRED_TERMINAL_ALK5I_CONTINUATION_SINGLE_PULSE_S8_UNIVERSAL_HIGH2_FLOOR_UNNORMALIZED_SORT_AND_STANDALONE_RELEASE",
+        "summary": "Extending Stage 6-7 maturation with terminal ALK5i II / TGFb-inhibitor continuation suppresses dynamic GSIS peak ~8-9-fold (Velazco-Cruz et al. 2019 PMID:30661993 Fig. 5F), whereas Balboa et al. 2022 (PMID:35241836) and protocol companion Barsby et al. 2022 (PMID:36136756) omit ALK5i while retaining 10 nM T3 + 1 mM NAC + 0.5 uM ZM447439; co-assembling mitotic iEC/pericyte microvessels without verified pre-co-assembly ZM447439 washout (LC-MS/MS <= LLOQ <= 0.005 uM across >= 3 washes with 80-120% spike recovery plus endothelial vascular function verification) is barred. Qualifying Rule S8 extended maturation on single-pulse GSIS alone misses late-culture second-pulse depletion (-32.8% to -37.7% in Veres et al. 2019 PMID:31068696 Ext. Data Fig. 2) and > 138.3 IU mature-insulin inventory escalations, whereas universal cross-protocol High2/High1 floors (such as >= 0.80, rejecting 5/7 primary adult human static donor controls in PMID:31068696) or conflated integrated Low1/High1 <= 0.15 gates are equally barred. Reporting post-sort functional gains without common-denominator sorting+reaggregation recovery eta_sort (or applying per-cell eta_sort to per-DNA measurements), clearing tiny near-zero increments on ratio alone without unit-bound and contemporaneous adult-islet reference floors, unadjusted multi-window selection without Bonferroni or a disjoint pilot, substituting within-recipe age ratios into DEC-084 between-mixture sizing, bypassing live atomic-ledger Gate 0S escalation above 138.3 IU (or granting standalone non-ledger clinical release), and replacing empirical Readout 2 with uncalibrated cross-protocol Mode B ODE parameter inversion are permanently barred (IIP-0029; DEC-108).",
+        "cheapest_falsification_assay": "Locked-timestamp two-clock, two-pulse microfluidic perifusion (+35-min 15-min Low2 -> 20-min High2 extension) across n >= 6 independent differentiation blocks (n >= 8 for registered DEC-084 mixtures) at matched 40 and 100 mmHg with contemporaneous primary adult human islet controls, per-trace fluorescent inert-tracer tau_chamber <= 0.50 min, common-denominator viable recovery eta_sort, analytical LC-MS/MS <= 0.005 uM pre-iEC ZM447439 washout + vascular function verification, mature-insulin-specific acid-ethanol inventory assay, and linked scope-matched atomic-ledger Gate 0S review whenever U95_t > 138.3 IU or max_lot > 138.3 IU.",
+        "pmids": [
+          "30661993",
+          "35241836",
+          "36136756",
+          "31068696",
+          "30710150",
+          "38012450",
+          "39169271",
+          "15919785",
+          "30830873"
+        ]
       }
     ]
   }

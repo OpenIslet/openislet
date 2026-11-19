@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import ast
+from datetime import datetime, timezone
 import importlib.util
 import json
 import math
@@ -385,6 +386,20 @@ STAGE0_DECISION_TREE_ENDPOINT_SPECS = [
     ('stage0_cxcl10_ifng24h_unresolved_origin_umi_k', 'obs_cxcl10_ifng24h_unresolved_origin_umi_k', 'obs_cxcl10_ifng24h_unresolved_origin_umi_k_se', 0.0, 1000000.0, 'cxcl10_ifng24h_unresolved_tss_origin_umi_count_k'),
     ('stage0_bio06_retained_aav_itr_dna_pct', 'obs_bio06_retained_aav_itr_dna_pct', 'obs_bio06_retained_aav_itr_dna_pct_se', 0.0, 100.0, 'bio06_locus_junction_retained_aav_itr_dna_allele_percentage'),
     ('stage0_bio06_itr_origin_rna_umi_k', 'obs_bio06_itr_origin_rna_umi_k', 'obs_bio06_itr_origin_rna_umi_k_se', 0.0, 1000000.0, 'bio06_conditional_aav_itr_origin_transcript_5prime_race_umi_count_k'),
+    # Stage-0 ALK5i-free two-clock maturation, two-pulse Readout 2 with adult-islet reference floor, inert-tracer tau_chamber, and >138.3 IU Gate 0S atomic escalation endpoints (IIP-0029; DEC-108):
+    ('stage0_stage7_total_maturation_days', 'obs_stage7_total_maturation_days', 'obs_stage7_total_maturation_days_se', 0.0, 90.0, 'total_stage7_culture_duration_days_from_stage7_start_utc'),
+    ('stage0_stage7_days_post_sort_reaggregation', 'obs_stage7_days_post_sort_reaggregation', 'obs_stage7_days_post_sort_reaggregation_se', 0.0, 90.0, 'days_elapsed_from_sort_reaggregation_utc_to_assay_harvest_utc'),
+    ('stage0_stage7_eta_sort_viable_recovery', 'obs_stage7_eta_sort_viable_recovery', 'obs_stage7_eta_sort_viable_recovery_se', 0.0, 1.0, 'sorting_and_reaggregation_viable_recovery_fraction_on_common_denominator'),
+    ('stage0_readout2_inert_tracer_tau_chamber_min', 'obs_readout2_inert_tracer_tau_chamber_min', 'obs_readout2_inert_tracer_tau_chamber_se', 0.0, 30.0, 'direct_fluorescent_inert_tracer_perifusion_chamber_mixing_time_constant_minutes'),
+    ('stage0_readout2_pulse2_net_increment_z2', 'obs_readout2_pulse2_net_increment_z2', 'obs_readout2_pulse2_net_increment_z2_se', -50.0, 500.0, 'recovery_weighted_second_pulse_net_increment_z2_on_registered_unit_and_common_denominator'),
+    ('stage0_readout2_adult_islet_ref_z2', 'obs_readout2_adult_islet_ref_z2', 'obs_readout2_adult_islet_ref_z2_se', -50.0, 500.0, 'contemporaneous_same_assay_primary_adult_human_islet_second_pulse_net_increment_ref_z2'),
+    ('stage0_readout2_low2_frac_peak1', 'obs_readout2_low2_frac_peak1', 'obs_readout2_low2_frac_peak1_se', 0.0, 5.0, 'second_low_glucose_washout_secretion_as_fraction_of_first_phase_peak1'),
+    ('stage0_readout2_low2_over_low1_ratio', 'obs_readout2_low2_over_low1_ratio', 'obs_readout2_low2_over_low1_ratio_se', 0.0, 20.0, 'second_low_glucose_washout_over_first_low_glucose_baseline_ratio'),
+    ('stage0_stage7_s8_fieller_z2_diff', 'obs_stage7_s8_fieller_z2_diff', 'obs_stage7_s8_fieller_z2_diff_se', -500.0, 500.0, 'within_recipe_rule_s8_paired_fieller_contrast_z2_ext_minus_0p85_z2_early'),
+    ('stage0_stage7_stored_mature_insulin_iu_implanted', 'obs_stage7_stored_mature_insulin_iu_implanted', 'obs_stage7_stored_mature_insulin_iu_implanted_se', 0.0, 1000.0, 'specific_mature_insulin_inventory_iu_at_actual_implanted_dose'),
+    ('stage0_stage7_stored_mature_insulin_max_lot_iu', 'obs_stage7_stored_mature_insulin_max_lot_iu', 'obs_stage7_stored_mature_insulin_max_lot_iu_se', 0.0, 1000.0, 'maximum_individual_lot_specific_mature_insulin_inventory_iu_at_actual_implanted_dose'),
+    ('stage0_stage7_proinsulin_to_cpeptide_molar_ratio', 'obs_stage7_proinsulin_to_cpeptide_molar_ratio', 'obs_stage7_proinsulin_to_cpeptide_molar_ratio_se', 0.0, 5.0, 'exploratory_stage0_in_vitro_intact_proinsulin_to_c_peptide_content_molar_ratio'),
+    ('stage0_stage7_pre_iec_zm447439_residual_uM', 'obs_stage7_pre_iec_zm447439_residual_uM', 'obs_stage7_pre_iec_zm447439_residual_se', 0.0, 10.0, 'analytical_lc_ms_ms_residual_zm447439_concentration_micromolar_prior_to_iec_coassembly'),
 ]
 
 STAGE0_S10_V3_MEAN_KEYS: frozenset[str] = frozenset({
@@ -1687,6 +1702,13 @@ STAGE0_DECISION_TREE_BOOLEAN_KEYS: tuple[str, ...] = (
     'cxcl10_insert_matched_comparator_control_verified',
     'cxcl10_resting_expression_below_loq_confirmed',
     'bio06_itr_rna_origin_attribution_verified',
+    'require_full_iip0029_twoclock_maturation_panel',
+    'obs_alk5i_free_maturation_applied',
+    'terminal_alk5i_tgfb_inhibitor_continued',
+    'stage7_t3_10nM_and_nac_1mM_retained',
+    'zm447439_washout_verified_pre_iec',
+    'pre_coassembly_iec_vascular_function_verified',
+    'readout2_both_40_and_100mmhg_tracer_aligned_verified',
 )
 
 
@@ -1781,6 +1803,14 @@ def derive_contract(root: Path | str | None = None) -> dict:
                 'sister_assembly_id',
                 'cxcl10_tss_donor_id',
                 'cxcl10_tss_transcription_unit_id',
+                'construct_sha256',
+                'post_sort_endocrine_zm447439_regimen',
+                'stage7_start_utc',
+                'sort_reaggregation_utc',
+                'assay_harvest_utc',
+                'registered_mixture_id',
+                'locked_analysis_plan_id',
+                'gate0s_elevated_store_scope_matched_device_lot_id',
             ],
             'boolean_policy_keys': list(STAGE0_DECISION_TREE_BOOLEAN_KEYS),
             'endpoints': endpoints,
@@ -2707,6 +2737,22 @@ def evaluate_stage0_decision_tree(
         'bio06_itr_rna_origin_attribution_verified',
         'cxcl10_tss_donor_id',
         'cxcl10_tss_transcription_unit_id',
+        'require_full_iip0029_twoclock_maturation_panel',
+        'obs_alk5i_free_maturation_applied',
+        'terminal_alk5i_tgfb_inhibitor_continued',
+        'stage7_t3_10nM_and_nac_1mM_retained',
+        'zm447439_washout_verified_pre_iec',
+        'pre_coassembly_iec_vascular_function_verified',
+        'readout2_both_40_and_100mmhg_tracer_aligned_verified',
+        'construct_sha256',
+        'post_sort_endocrine_zm447439_regimen',
+        'stage7_start_utc',
+        'sort_reaggregation_utc',
+        'assay_harvest_utc',
+        'registered_mixture_id',
+        'locked_analysis_plan_id',
+        'gate0s_elevated_store_scope_matched_device_lot_id',
+        'iip0029_twoclock_record',
     }
     unknown_keys = sorted(set(observations) - set(spec_by_mean) - set(spec_by_se) - allowed_boolean_and_meta_flags)
     if unknown_keys:
@@ -2728,6 +2774,14 @@ def evaluate_stage0_decision_tree(
         'sister_assembly_id',
         'cxcl10_tss_donor_id',
         'cxcl10_tss_transcription_unit_id',
+        'construct_sha256',
+        'post_sort_endocrine_zm447439_regimen',
+        'stage7_start_utc',
+        'sort_reaggregation_utc',
+        'assay_harvest_utc',
+        'registered_mixture_id',
+        'locked_analysis_plan_id',
+        'gate0s_elevated_store_scope_matched_device_lot_id',
     ):
         if _str_meta_k in observations and observations[_str_meta_k] is not None:
             _sv = observations[_str_meta_k]
@@ -3495,7 +3549,7 @@ def evaluate_stage0_decision_tree(
     )
     # S10 triggers on one-sided 95% bounds (CMV-imprinted NKG2C+NKG2A-CD57+ adaptive NK lysis upper95 > 8% OR receptor-negative NKG2A-KIR2DL-NKG2C+ NK lysis upper95 > 8% OR covalent-SCT NKG2C/NKG2A KD selectivity ratio lower95 < 4.0) or any failing S10 v3 functional/comparator panel (AUDIT-REF & IIP-0016; DEC-042/046/094):
     _s10_v3_active = bool(
-        any(observations.get(_mk) is not None for _mk in STAGE0_S10_V3_METADATA_KEYS)
+        any(observations.get(_mk) is not None for _mk in STAGE0_S10_V3_METADATA_KEYS if _mk != 'current_lot_id')
         or any(observations.get(_bk) is not None for _bk in STAGE0_S10_V3_BOOLEAN_KEYS)
         or any(_ek in validated_stage0 for _ek in STAGE0_S10_V3_MEAN_KEYS)
     )
@@ -6044,6 +6098,59 @@ def evaluate_stage0_decision_tree(
         if iip0027_eval_summary['gate_pass'] is not True:
             iip0027_hold_status = str(iip0027_eval_summary['status'])
 
+    # Stage-0 ALK5i-free two-clock maturation, two-pulse Readout 2 with adult-islet reference floor,
+    # inert-tracer tau_chamber, and >138.3 IU Gate 0S atomic escalation gate (IIP-0029; DEC-108):
+    _iip0029_obs_keys = (
+        'obs_stage7_total_maturation_days',
+        'obs_stage7_days_post_sort_reaggregation',
+        'obs_stage7_eta_sort_viable_recovery',
+        'obs_readout2_inert_tracer_tau_chamber_min',
+        'obs_readout2_pulse2_net_increment_z2',
+        'obs_readout2_adult_islet_ref_z2',
+        'obs_readout2_low2_frac_peak1',
+        'obs_readout2_low2_over_low1_ratio',
+        'obs_stage7_s8_fieller_z2_diff',
+        'obs_stage7_stored_mature_insulin_iu_implanted',
+        'obs_stage7_stored_mature_insulin_max_lot_iu',
+        'obs_stage7_proinsulin_to_cpeptide_molar_ratio',
+        'obs_stage7_pre_iec_zm447439_residual_uM',
+    )
+    _iip0029_meta_or_bool_keys = (
+        'require_full_iip0029_twoclock_maturation_panel',
+        'obs_alk5i_free_maturation_applied',
+        'terminal_alk5i_tgfb_inhibitor_continued',
+        'stage7_t3_10nM_and_nac_1mM_retained',
+        'zm447439_washout_verified_pre_iec',
+        'pre_coassembly_iec_vascular_function_verified',
+        'readout2_both_40_and_100mmhg_tracer_aligned_verified',
+        'post_sort_endocrine_zm447439_regimen',
+        'stage7_start_utc',
+        'sort_reaggregation_utc',
+        'assay_harvest_utc',
+        'registered_mixture_id',
+        'locked_analysis_plan_id',
+        'gate0s_elevated_store_scope_matched_device_lot_id',
+        'iip0029_twoclock_record',
+    )
+    _iip0029_active = bool(
+        any(_k in validated_stage0 for _k in _iip0029_obs_keys)
+        or any(observations.get(_k) is not None for _k in _iip0029_meta_or_bool_keys)
+    )
+    iip0029_eval_summary: dict[str, object] | None = None
+    iip0029_hold_status: str | None = None
+    if _iip0029_active:
+        iip0029_eval_summary = evaluate_stage0_twoclock_flat_or_structured_iip_0029(
+            observations,
+            validated_stage0=validated_stage0,
+            se_provenance_by_mean=se_provenance_by_mean,
+            upper95_fn=_upper95,
+            lower95_fn=_lower95,
+            root=root_path,
+            product_def=product_def,
+        )
+        if iip0029_eval_summary['gate_pass'] is not True:
+            iip0029_hold_status = str(iip0029_eval_summary['status'])
+
     resolved_arch = dict(tree_doc.get('default_architecture_assignments', {}))
     if product_def is not None:
         _pvid_canon = str(product_def['product_variant_id'])
@@ -6386,6 +6493,8 @@ def evaluate_stage0_decision_tree(
         resolved_arch['lot_maturation_status'] = iip0028_hold_status
     elif iip0027_hold_status is not None:
         resolved_arch['lot_maturation_status'] = iip0027_hold_status
+    elif iip0029_hold_status is not None:
+        resolved_arch['lot_maturation_status'] = iip0029_hold_status
     elif challenger_hold_status is not None:
         resolved_arch['lot_maturation_status'] = challenger_hold_status
     elif avascular_outer_band_dropout and not omental_revascularization_cleared:
@@ -7152,6 +7261,11 @@ def evaluate_stage0_decision_tree(
         **(
             {'iip0027_promoter_origin_and_itr_evaluation': iip0027_eval_summary}
             if iip0027_eval_summary is not None
+            else {}
+        ),
+        **(
+            {'iip0029_twoclock_maturation_and_repeated_challenge_evaluation': iip0029_eval_summary}
+            if iip0029_eval_summary is not None
             else {}
         ),
     }
@@ -8093,6 +8207,9 @@ def evaluate_iip0024_atomic_stage0_ledger(
     latched_adverse: dict[tuple[str, tuple[str, ...]], dict[str, Any]] = {}
     retained_reset_audit_log: list[dict[str, Any]] = []
     structural_holds: list[str] = []
+    elevated_store_gate0s_escalated_on_lot = False
+    iip0029_lot_source_fingerprint: tuple[Any, ...] | None = None
+    iip0029_lot_store_sample_unit_id: str | None = None
 
     count_caps = ENDPOINT_REGISTRY_SPEC['count_endpoint_caps_and_zero_vetoes']
     sister_terminal_ids = set(ENDPOINT_REGISTRY_SPEC['device_sister_terminal_endpoint_ids'])
@@ -8125,8 +8242,40 @@ def evaluate_iip0024_atomic_stage0_ledger(
                     use_poisson_protocol_floor=bool(spec_c.get('use_poisson_protocol_floor', False)),
                 )
                 atom_status = c_res['status']
+            elif atom.kind == 'CONTINUOUS_STUDENT_T':
+                t_95_a = student_t_ppf_one_sided_95(float(atom.sample_n - 1))
+                u95_a = float(atom.value_or_k) + t_95_a * float(atom.se_or_n)
+                l95_a = float(atom.value_or_k) - t_95_a * float(atom.se_or_n)
+                if atom.endpoint_id == 'stage7_stored_mature_insulin_iu':
+                    ctrl_a = dict(atom.controls)
+                    max_lot_iu_a = ctrl_a.get('max_lot_iu', float(atom.value_or_k))
+                    if not _is_strict_finite_number_iip0024(max_lot_iu_a) or float(max_lot_iu_a) < 0.0:
+                        atom_status = 'HOLD_INVALID_STORED_MATURE_INSULIN_MAX_LOT_IU'
+                    else:
+                        crossed_138p3 = (
+                            u95_a > float(STAGE0_IIP0029_CONSTANTS['GATE0S_ABSOLUTE_STORED_INSULIN_CEILING_IU'])
+                            or float(max_lot_iu_a) > float(STAGE0_IIP0029_CONSTANTS['GATE0S_ABSOLUTE_STORED_INSULIN_CEILING_IU'])
+                        )
+                        if atom.scope_type == 'LOT_SCOPE' and atom.scope_key == lot_k:
+                            if elevated_store_gate0s_escalated_on_lot and not crossed_138p3:
+                                atom_status = 'FAIL_HARD_STOP'
+                                structural_holds.append('FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED')
+                            elif iip0029_lot_store_sample_unit_id is not None and atom.sample_unit_id != iip0029_lot_store_sample_unit_id and not crossed_138p3 and elevated_store_gate0s_escalated_on_lot:
+                                atom_status = 'FAIL_HARD_STOP'
+                                structural_holds.append('FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED')
+                            else:
+                                iip0029_lot_store_sample_unit_id = atom.sample_unit_id
+                                if crossed_138p3:
+                                    elevated_store_gate0s_escalated_on_lot = True
+                                atom_status = 'PASS'
+                elif atom.endpoint_id == 'gate0s_ap1903_1h_insulin_burst_iu':
+                    atom_status = 'PASS' if u95_a <= 2.8 else 'FAIL_HARD_STOP'
+                elif atom.endpoint_id == 'gate0s_ap1903_24h_insulin_dump_fraction':
+                    atom_status = 'PASS' if u95_a <= 0.15 else 'FAIL_HARD_STOP'
+                elif atom.endpoint_id == 'obs_explant_en_bloc_recovery_fraction':
+                    atom_status = 'PASS' if l95_a >= 0.99 else 'FAIL_HARD_STOP'
             elif atom.kind == 'STRUCTURED_PANEL':
-                p_dict = dict(atom.value_or_k)
+                p_dict = _deep_to_jsonable_iip0024(atom.value_or_k)
                 if 'imprinting_' in atom.endpoint_id or 'meg3_dmr' in atom.endpoint_id:
                     atom_status = evaluate_conjunctive_imprinting_dmr_iip0024(endpoint_scope=atom.scope_type, **p_dict)['status']
                 elif 'xci_46xx' in atom.endpoint_id:
@@ -8134,6 +8283,39 @@ def evaluate_iip0024_atomic_stage0_ledger(
                     atom_status = 'PASS' if st_x in ('PASS', 'NOT_APPLICABLE_46XY') else st_x
                 elif 'mtdna_1000x' in atom.endpoint_id:
                     atom_status = evaluate_scoped_mtdna_gate_iip0024(endpoint_scope=atom.scope_type, **p_dict)['status']
+                elif atom.endpoint_id == 'stage0_twoclock_repeated_challenge_panel':
+                    if atom.scope_type != 'LOT_SCOPE':
+                        atom_status = 'HOLD_IIP0029_PANEL_REQUIRES_LOT_SCOPE'
+                    else:
+                        rec_29 = dict(p_dict) if isinstance(p_dict, dict) else {}
+                        rec_29.setdefault(
+                            'lot_scope_key',
+                            {
+                                'product_variant_id': atom.scope_key.product_variant_id,
+                                'construct_sha256': atom.scope_key.construct_sha256,
+                                'donor_seedline_id': atom.scope_key.donor_seedline_id,
+                                'mcb_id': atom.scope_key.mcb_id,
+                                'lot_id': atom.scope_key.lot_id,
+                            },
+                        )
+                        res_29 = evaluate_stage0_twoclock_and_repeated_challenge_iip_0029(rec_29, root=root_path)
+                        fp_29 = _extract_iip0029_source_fingerprint(rec_29)
+                        if atom.scope_key == lot_k:
+                            if iip0029_lot_source_fingerprint is not None and fp_29 != iip0029_lot_source_fingerprint:
+                                atom_status = 'FAIL_HARD_STOP'
+                                structural_holds.append('FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED')
+                            else:
+                                iip0029_lot_source_fingerprint = fp_29
+                                if res_29.get('gate0s_escalation_required') is True:
+                                    elevated_store_gate0s_escalated_on_lot = True
+                                if res_29.get('subgate_pass') is True:
+                                    atom_status = 'PASS'
+                                elif res_29.get('gate0s_escalation_required') is True and res_29.get('all_non_store_ceiling_checks_passed') is True:
+                                    atom_status = 'PASS_PENDING_GATE0S_ESCALATION'
+                                else:
+                                    atom_status = str(res_29.get('status', 'HOLD_IIP0029_SUBGATE_FAILED'))
+                        else:
+                            atom_status = 'PASS' if res_29.get('subgate_pass') is True else str(res_29.get('status', 'HOLD_IIP0029_SUBGATE_FAILED'))
                 else:
                     atom_status = 'HOLD_UNKNOWN_STRUCTURED_PANEL'
 
@@ -8209,8 +8391,26 @@ def evaluate_iip0024_atomic_stage0_ledger(
                             del latched_adverse[lk_cand]
 
     holds: list[str] = list(structural_holds)
+    if elevated_store_gate0s_escalated_on_lot:
+        _g0s_req_ids = (
+            'gate0s_ap1903_1h_insulin_burst_iu',
+            'gate0s_ap1903_24h_insulin_dump_fraction',
+            'obs_explant_en_bloc_recovery_fraction',
+        )
+        _g0s_all_ok = all(
+            (eid in dev_store) and (atom_status_by_store_key.get(('ASSEMBLED_DEVICE_LOT_SCOPE', eid)) == 'PASS')
+            for eid in _g0s_req_ids
+        )
+        if _g0s_all_ok:
+            if atom_status_by_store_key.get(('LOT_SCOPE', 'stage0_twoclock_repeated_challenge_panel')) == 'PASS_PENDING_GATE0S_ESCALATION':
+                atom_status_by_store_key[('LOT_SCOPE', 'stage0_twoclock_repeated_challenge_panel')] = 'PASS'
+        else:
+            holds.append('HOLD_STORED_INSULIN_EXCEEDS_138P3_IU_REQUIRES_FULL_LINKED_GATE0S_LEDGER_REVIEW')
     for (_sc_t, _eid_t), _st_t in sorted(atom_status_by_store_key.items()):
-        if _st_t not in ('PASS', 'FAIL_HARD_STOP'):
+        if _st_t == 'PASS_PENDING_GATE0S_ESCALATION':
+            if 'HOLD_STORED_INSULIN_EXCEEDS_138P3_IU_REQUIRES_FULL_LINKED_GATE0S_LEDGER_REVIEW' not in holds:
+                holds.append('HOLD_STORED_INSULIN_EXCEEDS_138P3_IU_REQUIRES_FULL_LINKED_GATE0S_LEDGER_REVIEW')
+        elif _st_t not in ('PASS', 'FAIL_HARD_STOP'):
             holds.append(f'{_st_t}:{_eid_t}')
 
     active_target_latches = [eid for (eid, skt) in latched_adverse if skt in target_scope_tuples]
@@ -8496,6 +8696,15 @@ IIP0026_ALLOWED_MOLECULAR_OBS_KEYS: frozenset[str] = frozenset({
     'arm2_depleted_sample_id',
     'contemporaneous_arm3_control_sample_id',
     'sister_assembly_id',
+    'construct_sha256',
+    'post_sort_endocrine_zm447439_regimen',
+    'stage7_start_utc',
+    'sort_reaggregation_utc',
+    'assay_harvest_utc',
+    'registered_mixture_id',
+    'locked_analysis_plan_id',
+    'gate0s_elevated_store_scope_matched_device_lot_id',
+    'iip0029_twoclock_record',
 })
 
 
@@ -8636,10 +8845,20 @@ def _build_safe_stage0_tree_obs_iip0026(
         'arm2_depleted_sample_id',
         'contemporaneous_arm3_control_sample_id',
         'sister_assembly_id',
+        'construct_sha256',
+        'post_sort_endocrine_zm447439_regimen',
+        'stage7_start_utc',
+        'sort_reaggregation_utc',
+        'assay_harvest_utc',
+        'registered_mixture_id',
+        'locked_analysis_plan_id',
+        'gate0s_elevated_store_scope_matched_device_lot_id',
     ):
         sv = payload.get(str_id_k)
         if isinstance(sv, str) and sv == sv.strip() and 4 <= len(sv) <= 120:
             out[str_id_k] = sv
+    if 'iip0029_twoclock_record' in payload and payload['iip0029_twoclock_record'] is not None:
+        out['iip0029_twoclock_record'] = payload['iip0029_twoclock_record']
     for bkey in STAGE0_DECISION_TREE_BOOLEAN_KEYS:
         if type(payload.get(bkey)) is bool:
             out[bkey] = payload[bkey]
@@ -8919,6 +9138,13 @@ def evaluate_stage0_research_and_molecular_guardrails(
     if reg['is_held_design_y']:
         reasons.append('HOLD_DESIGNY_EXPLORATORY_UNBIASED_CAPTURE_AND_63K_OR_90K_LOD_REQUIRED')
 
+    # Propagate IIP-0029 two-clock/two-pulse & >138.3 IU Gate 0S escalation holds identically on all variants:
+    _iip0029_tree_eval = tree_eval.get('iip0029_twoclock_maturation_and_repeated_challenge_evaluation')
+    if isinstance(_iip0029_tree_eval, dict) and _iip0029_tree_eval.get('gate_pass') is not True:
+        _r29 = str(_iip0029_tree_eval.get('status', 'HOLD_IIP0029_SUBGATE_FAILED'))
+        if _r29 not in reasons:
+            reasons.append(_r29)
+
     # Preserve stricter applicable Stage-0 tree holds on non-research-comparator executable variants:
     tree_tier = str(tree_eval['lot_release_readiness_tier'])
     if (
@@ -8955,6 +9181,11 @@ def evaluate_stage0_research_and_molecular_guardrails(
         'endogenous_hlac_gate_applied': reg['requires_endogenous_hlac_and_locus5_gates'],
         'b_sct_route_separated': reg['requires_b_sct_gates'],
         'switch_decisions': switch_decisions,
+        **(
+            {'iip0029_twoclock_maturation_and_repeated_challenge_evaluation': _iip0029_tree_eval}
+            if isinstance(_iip0029_tree_eval, dict)
+            else {}
+        ),
     }
 
 
@@ -9864,4 +10095,1072 @@ def evaluate_cxcl10_promoter_origin_and_itr_gate_iip_0027(
         ifng24h_race_umi_n_eff=s_n,
         retained_itr_dna_pct=itr_dna_pct,
         itr_origin_rna_umi_k=itr_rna_k,
+    )
+
+
+# ============================================================================
+# Stage-0 ALK5i-Free Two-Clock Maturation, Two-Pulse Readout 2 with Adult-Islet
+# Reference Floor, Inert-Tracer tau_chamber, and Non-Bypassable >138.3 IU Gate 0S
+# Atomic-Ledger Escalation (IIP-0029; DEC-108)
+# ============================================================================
+_HEX64_RE_IIP0029 = re.compile(r'^[0-9a-fA-F]{64}$')
+
+STAGE0_IIP0029_CONSTANTS: MappingProxyType = _deep_freeze_iip0024({
+    'MIN_INDEPENDENT_LOTS_N': 6,
+    'MIN_DEC084_MIXTURE_LOTS_N': 8,
+    'MIN_PILOT_SELECTION_LOTS_N': 3,
+    'STAGE7_MIN_TOTAL_DAYS': 7.0,
+    'STAGE7_MAX_TOTAL_DAYS': 49.0,
+    'SORTED_MIN_SORT_DAY': 7.0,
+    'SORTED_MIN_POST_SORT_DAYS': 5.0,
+    'BASELINE_WINDOW_MAX_STAGE7_DAYS': 28.0,
+    'BASELINE_WINDOW_MAX_POST_SORT_DAYS': 14.0,
+    'TIMESTAMP_DAY_TOLERANCE': 0.25,
+    'SORTED_ETA_MIN': 0.05,
+    'SORTED_ETA_MAX_EXCLUSIVE': 0.95,
+    'CONTINUOUS_ZM447439_MIN_UM': 0.45,
+    'CONTINUOUS_ZM447439_MAX_UM': 0.55,
+    'PRE_IEC_ZM447439_MAX_LLOQ_UM': 0.005,
+    'PRE_IEC_MIN_WASH_CYCLES': 3,
+    'PRE_IEC_SPIKE_RECOVERY_MIN_PCT': 80.0,
+    'PRE_IEC_SPIKE_RECOVERY_MAX_PCT': 120.0,
+    'ALLOWED_ASSAY_PO2_MMHG': (40.0, 100.0),
+    'INTEGRATED_SI1_MIN': 3.0,
+    'DYNAMIC_PEAK1_OVER_BASAL1_MIN': 4.5,
+    'DYNAMIC_TIME_TO_PEAK1_MAX_MIN': 8.0,
+    'GATE0M_BASAL1_FRAC_PEAK1_MAX': 0.15,
+    'DYNAMIC_LOW2_FRAC_PEAK1_MAX': 0.15,
+    'LOW2_OVER_LOW1_WASHOUT_MAX': 1.50,
+    'STATIC_LOW_OVER_KCL_MAX': 0.25,
+    'GATE0M_GLUCAGON_FOLD_MIN': 2.0,
+    'GATE0M_GLUCOSE_THRESHOLD_MIN_MM': 4.5,
+    'GATE0M_UCN3_RATIO_MIN': 0.70,
+    'GATE0M_COUNTERREG_GAIN_MIN': 0.80,
+    'TRACER_TAU_CHAMBER_MAX_MIN': 0.50,
+    'MIN_UNCENSORED_LOW2_DURATION_MIN': 10.0,
+    'READOUT2_T50_MAX_MIN': 3.0,
+    'GATE0M_T90_MAX_MIN': 3.0,
+    'ADULT_ISLET_REF_PULSE2_MIN_FRACTION': 0.50,
+    'REGISTERED_HORMONE_UNIT_SPECS': {
+        'pmol_cpep_per_1e6_presort_cells_per_min': {
+            'z_min_floor': 0.50,
+            'required_denominator': '1e6_presort_viable_endocrine_cells',
+        },
+        'uIU_insulin_per_ug_dna_per_min': {
+            'z_min_floor': 0.50,
+            'required_denominator': 'ug_presort_viable_endocrine_dna',
+        },
+        'ng_insulin_per_1e5_presort_cells_per_30min': {
+            'z_min_floor': 0.50,
+            'required_denominator': '1e5_presort_viable_endocrine_cells',
+        },
+    },
+    'REGISTERED_MIXTURES': {
+        'REF_60_30_10': {'beta': 0.60, 'alpha': 0.30, 'delta': 0.10, 'is_reference': True},
+        'DEC084_M1_70_20_10': {'beta': 0.70, 'alpha': 0.20, 'delta': 0.10, 'is_reference': False},
+        'DEC084_M2_70_25_5': {'beta': 0.70, 'alpha': 0.25, 'delta': 0.05, 'is_reference': False},
+        'DEC084_M3_80_15_5': {'beta': 0.80, 'alpha': 0.15, 'delta': 0.05, 'is_reference': False},
+        'DEC084_M4_80_10_10': {'beta': 0.80, 'alpha': 0.10, 'delta': 0.10, 'is_reference': False},
+    },
+    'STORED_INSULIN_FLOOR_AT_300K_BETA_IU': 41.5,
+    'GATE0S_ABSOLUTE_STORED_INSULIN_CEILING_IU': 138.3,
+    'PROINSULIN_TO_CPEPTIDE_CONTENT_MOLAR_MAX': 0.10,
+    'S8_WITHIN_RECIPE_FIELLER_THETA0': 0.85,
+})
+
+_FORBIDDEN_IIP0029_OVERRIDE_KEYS: frozenset[str] = frozenset({
+    'execution_supported',
+    'clinical_release_eligible',
+    'gate0s_elevated_stored_insulin_clamp_reverified',
+    'override_gate0s_ceiling',
+    'bypass_atomic_ledger_gate0s',
+})
+
+
+def _strict_finite_float_iip0029(val: Any) -> float | None:
+    if isinstance(val, bool) or not isinstance(val, (int, float)):
+        return None
+    fv = float(val)
+    return fv if math.isfinite(fv) else None
+
+
+def _strict_pos_int_iip0029(val: Any) -> int | None:
+    if isinstance(val, bool) or not isinstance(val, int) or val <= 0:
+        return None
+    return int(val)
+
+
+def _strict_unpadded_str_iip0029(val: Any, min_len: int = 1) -> str | None:
+    if not isinstance(val, str):
+        return None
+    if len(val) < min_len or val != val.strip() or not val.strip():
+        return None
+    return val
+
+
+def _valid_construct_sha256_iip0029(val: Any) -> bool:
+    if not isinstance(val, str) or not _HEX64_RE_IIP0029.fullmatch(val):
+        return False
+    return val != ('0' * 64)
+
+
+def _parse_utc_iso_iip0029(val: Any) -> datetime | None:
+    s = _strict_unpadded_str_iip0029(val, 16)
+    if s is None:
+        return None
+    try:
+        iso = s[:-1] + '+00:00' if s.endswith('Z') else s
+        dt = datetime.fromisoformat(iso)
+    except ValueError:
+        return None
+    if dt.tzinfo is None:
+        return None
+    return dt.astimezone(timezone.utc)
+
+
+def _coerce_lot_scope_key_iip0029(raw: Any) -> LotScopeKey | None:
+    if isinstance(raw, LotScopeKey):
+        return raw
+    if isinstance(raw, (dict, MappingProxyType)):
+        req = ('product_variant_id', 'construct_sha256', 'donor_seedline_id', 'mcb_id', 'lot_id')
+        if set(raw.keys()) != set(req):
+            return None
+        try:
+            return LotScopeKey(
+                raw['product_variant_id'],
+                raw['construct_sha256'],
+                raw['donor_seedline_id'],
+                raw['mcb_id'],
+                raw['lot_id'],
+            )
+        except (TypeError, ValueError):
+            return None
+    return None
+
+
+def _one_sided_t_bounds_iip0029(
+    vals: list[float],
+    t_crit: float,
+    *,
+    extra_within_var: float = 0.0,
+) -> tuple[float, float, float]:
+    n = len(vals)
+    if n < 2:
+        return (vals[0] if vals else float('nan'), float('-inf'), float('inf'))
+    mu = sum(vals) / float(n)
+    s2 = sum((x - mu) ** 2 for x in vals) / float(n - 1)
+    if s2 <= 0.0:
+        # Degenerate zero-between-lot-variance arrays cannot pass uncertainty gates:
+        return mu, float('-inf'), float('inf')
+    se = math.sqrt(max(0.0, s2 / float(n) + max(0.0, float(extra_within_var))))
+    return mu, mu - t_crit * se, mu + t_crit * se
+
+
+def _extract_iip0029_source_fingerprint(record: Any) -> tuple[Any, ...]:
+    if not isinstance(record, (dict, MappingProxyType)):
+        return ()
+    sk = _coerce_lot_scope_key_iip0029(record.get('lot_scope_key'))
+    csha = sk.construct_sha256 if sk is not None else None
+    lids = tuple(record.get('confirmation_lot_ids') or ()) if isinstance(record.get('confirmation_lot_ids'), (list, tuple)) else ()
+    lot_obs = record.get('lot_observations') or ()
+    tids: list[str] = []
+    if isinstance(lot_obs, (list, tuple)):
+        for it in lot_obs:
+            if isinstance(it, (dict, MappingProxyType)):
+                tids.append(str(it.get('trace_id', '')))
+                if 'matched_100mmhg_trace_id' in it:
+                    tids.append(str(it.get('matched_100mmhg_trace_id', '')))
+    return (
+        csha,
+        record.get('stage7_start_utc'),
+        record.get('sort_reaggregation_utc'),
+        record.get('assay_harvest_utc'),
+        record.get('locked_analysis_plan_id'),
+        lids,
+        tuple(tids),
+    )
+
+
+def evaluate_stage0_twoclock_and_repeated_challenge_iip_0029(
+    record: dict[str, Any] | MappingProxyType,
+    *,
+    root: Path | str | None = None,
+) -> dict[str, Any]:
+    """
+    Fail-closed Stage-0 two-clock & repeated-challenge empirical qualification subgate (IIP-0029; DEC-108).
+    NEVER grants standalone clinical release authority (`release_authority` remains strictly
+    'DELEGATED_TO_LIVE_ATOMIC_STAGE0_LEDGER', preserving registry `execution_supported` holds on
+    ISLET1_B2_5LOCUS_BASE and ISLET1_Z_X_MOL_140UM_ZERO_CAO2).
+
+    Enforces:
+      1. Unit-bound absolute increment floors (Z1, Z2) PLUS contemporaneous same-assay primary adult
+         human islet second-pulse floor (L95_t(RefAdult_Z2) >= z_min and L95_t(Z2 - 0.50 * RefAdult_Z2) >= 0)
+         both inside and outside Rule S8, plus immutable within-recipe Rule S8 Fieller (theta_0 = 0.85)
+         with exact Bonferroni across K windows or disjoint pilot with locked_analysis_plan_id.
+      2. Preserved canonical Readout 2 (SI_1 >= 3.0, Peak1/Basal1 >= 4.5 <= 8.0 min, t50 <= 3.0 min)
+         and full Gate 0M (t90 <= 3.0 min, t50_b < t90_b, Basal1/Peak1 <= 0.15 explicitly separated from
+         nominal Readout 2 4.5x with window definitions, glucagon >= 2.0x, threshold >= 4.5 mM,
+         UCN3 >= 0.70, counterregulation >= 0.80).
+      3. Non-overridable escalation to full scope-matched Gate 0S atomic-ledger review whenever
+         U95_t(stored_insulin_iu) > 138.3 IU OR max_lot > 138.3 IU.
+      4. Locked UTC timestamps for dual clocks (phenotype failure remains S8 hold trigger; clocks classify
+         extended exposure), independent differentiation_block_id coverage at BOTH 40 mmHg AND 100 mmHg,
+         per-trace tracer alignment (tau_chamber_b <= 0.50 min AND U95_t <= 0.50 min) & censored short
+         low-interval handling, common-denominator sorting+reaggregation recovery, registered-mixture +
+         measured (beta, alpha, delta) DEC-084 linkage, pre-iEC LC-MS/MS washout + vascular function
+         verification, mature-insulin-specific inventory assay, and explicit exploratory labeling of
+         Keymeulen proinsulin:C-peptide <= 0.10.
+    """
+    C = STAGE0_IIP0029_CONSTANTS
+
+    def _hold(status: str, **extra: Any) -> dict[str, Any]:
+        out: dict[str, Any] = {
+            'subgate_pass': False,
+            'release_authority': 'DELEGATED_TO_LIVE_ATOMIC_STAGE0_LEDGER',
+            'gate0s_escalation_required': False,
+            'all_non_store_ceiling_checks_passed': False,
+            'status': status,
+        }
+        out.update(extra)
+        return out
+
+    if not isinstance(record, (dict, MappingProxyType)):
+        return _hold('HOLD_INVALID_RECORD_TYPE')
+
+    # Reject any caller attempt to override registry execution_supported, release authority, or Gate 0S ceiling:
+    if any(k in record for k in _FORBIDDEN_IIP0029_OVERRIDE_KEYS):
+        return _hold('HOLD_FORBIDDEN_CALLER_RELEASE_OR_EXECUTION_OVERRIDE')
+
+    root_path = Path(root) if root is not None else Path(__file__).resolve().parents[1]
+    p_mod = _load_product_contract_module(root_path)
+    prod_doc = p_mod.load_product_contracts(root_path)
+    product_registry = {str(p['product_variant_id']): p for p in prod_doc['products']}
+
+    # 1. Registry-bound LotScopeKey & strict 64-hex non-zero construct_sha256:
+    scope_key = _coerce_lot_scope_key_iip0029(record.get('lot_scope_key'))
+    if scope_key is None:
+        return _hold('HOLD_MISSING_OR_INVALID_IIP0024_LOT_SCOPE_KEY')
+    pvid = _strict_unpadded_str_iip0029(scope_key.product_variant_id, 4)
+    if pvid is None or pvid not in product_registry:
+        return _hold('HOLD_UNREGISTERED_OR_UNSUPPORTED_PRODUCT_VARIANT_ID')
+    reg_entry = product_registry[pvid]
+    registry_exec_supported = bool(reg_entry.get('execution_supported', False))
+
+    if not _valid_construct_sha256_iip0029(scope_key.construct_sha256):
+        return _hold('HOLD_INVALID_OR_ZERO_CONSTRUCT_SHA256')
+    if (
+        _strict_unpadded_str_iip0029(scope_key.donor_seedline_id, 2) is None
+        or _strict_unpadded_str_iip0029(scope_key.mcb_id, 2) is None
+        or _strict_unpadded_str_iip0029(scope_key.lot_id, 2) is None
+    ):
+        return _hold('HOLD_INVALID_SCOPE_PROVENANCE_IDENTIFIERS')
+
+    # 2. Registered mixture + measured (beta, alpha, delta) composition linkage to DEC-084 (Sol BOX2 Fix #4):
+    reg_mix_id = _strict_unpadded_str_iip0029(record.get('registered_mixture_id'), 4)
+    if reg_mix_id is None or reg_mix_id not in C['REGISTERED_MIXTURES']:
+        return _hold('HOLD_MISSING_OR_UNREGISTERED_MIXTURE_ID')
+    mix_spec = C['REGISTERED_MIXTURES'][reg_mix_id]
+    beta_frac = _strict_finite_float_iip0029(record.get('beta_cell_fraction'))
+    alpha_frac = _strict_finite_float_iip0029(record.get('alpha_cell_fraction'))
+    delta_frac = _strict_finite_float_iip0029(record.get('delta_cell_fraction'))
+    imp_ieq = _strict_finite_float_iip0029(record.get('implanted_total_ieq'))
+    if (
+        beta_frac is None
+        or alpha_frac is None
+        or delta_frac is None
+        or imp_ieq is None
+        or imp_ieq <= 0.0
+        or not (0.0 < beta_frac <= 1.0)
+        or not (0.0 <= alpha_frac <= 1.0)
+        or not (0.0 <= delta_frac <= 1.0)
+    ):
+        return _hold('HOLD_MISSING_OR_INVALID_MEASURED_COMPOSITION_OR_IEQ')
+    comp_sum = beta_frac + alpha_frac + delta_frac
+    if not (0.95 <= comp_sum <= 1.0 + 1e-6):
+        return _hold('HOLD_INVALID_MEASURED_ENDOCRINE_COMPOSITION_SUM')
+
+    comp_within_registered_band = (
+        abs(beta_frac - float(mix_spec['beta'])) <= 0.05 + 1e-9
+        and abs(alpha_frac - float(mix_spec['alpha'])) <= 0.05 + 1e-9
+        and abs(delta_frac - float(mix_spec['delta'])) <= 0.03 + 1e-9
+    )
+    if mix_spec['is_reference']:
+        alpha_delta_ratio = alpha_frac / max(1e-9, delta_frac)
+        if not comp_within_registered_band or not (2.0 <= alpha_delta_ratio <= 4.5):
+            return _hold(
+                'HOLD_MEASURED_COMPOSITION_DRIFT_FROM_REGISTERED_MIXTURE_REQUIRES_DEC084_QUALIFICATION',
+                measured_composition={'beta': beta_frac, 'alpha': alpha_frac, 'delta': delta_frac},
+            )
+    elif not comp_within_registered_band:
+        return _hold(
+            'HOLD_MEASURED_COMPOSITION_OUTSIDE_REGISTERED_DEC084_TOLERANCE',
+            measured_composition={'beta': beta_frac, 'alpha': alpha_frac, 'delta': delta_frac},
+        )
+
+    is_dec084_non_ref_mixture = not bool(mix_spec['is_reference'])
+    n_lots = _strict_pos_int_iip0029(record.get('n_independent_lots'))
+    min_n_req = int(C['MIN_DEC084_MIXTURE_LOTS_N'] if is_dec084_non_ref_mixture else C['MIN_INDEPENDENT_LOTS_N'])
+    if n_lots is None or n_lots < min_n_req:
+        return _hold(
+            'HOLD_DEC084_MIXTURE_REQUIRES_N_GE_8_CONFIRMATION_BLOCKS'
+            if is_dec084_non_ref_mixture
+            else 'HOLD_INSUFFICIENT_INDEPENDENT_LOTS_REQUIRES_N_GE_6'
+        )
+    if is_dec084_non_ref_mixture:
+        dec084_obs = record.get('dec084_mixture_observations')
+        if isinstance(dec084_obs, (dict, MappingProxyType)):
+            dec084_res = evaluate_dec084_measured_potency_mixture_gate_iip_0028(dict(dec084_obs))
+            if dec084_res.get('gate_pass') is not True:
+                return _hold(
+                    'HOLD_DEC084_REQUIRES_LINKED_MATCHED_AGE_MIXTURE_GATE',
+                    dec084_gate_status=dec084_res.get('status'),
+                )
+        elif record.get('dec084_matched_age_mixture_gate_passed') is not True:
+            return _hold('HOLD_DEC084_REQUIRES_LINKED_MATCHED_AGE_MIXTURE_GATE')
+
+    lot_ids_raw = record.get('confirmation_lot_ids')
+    if not isinstance(lot_ids_raw, (list, tuple)) or len(lot_ids_raw) != n_lots:
+        return _hold('HOLD_DUPLICATE_OR_INVALID_CONFIRMATION_LOT_IDS')
+    if any(_strict_unpadded_str_iip0029(x, 2) is None for x in lot_ids_raw):
+        return _hold('HOLD_DUPLICATE_OR_INVALID_CONFIRMATION_LOT_IDS')
+    lot_ids = [str(x) for x in lot_ids_raw]
+    if len(set(lot_ids)) != n_lots:
+        return _hold('HOLD_DUPLICATE_OR_INVALID_CONFIRMATION_LOT_IDS')
+
+    # 3. Locked analysis plan, explicit K, pilot disjointness, and exact Bonferroni multiplicity:
+    locked_plan_id = _strict_unpadded_str_iip0029(record.get('locked_analysis_plan_id'), 4)
+    if locked_plan_id is None:
+        return _hold('HOLD_MISSING_LOCKED_ANALYSIS_PLAN_ID')
+    if 'candidate_windows_evaluated_k' not in record:
+        return _hold('HOLD_MISSING_EXPLICIT_CANDIDATE_WINDOWS_K')
+    k_cand = _strict_pos_int_iip0029(record.get('candidate_windows_evaluated_k'))
+    if k_cand is None or k_cand > 5:
+        return _hold('HOLD_INVALID_CANDIDATE_WINDOW_COUNT')
+
+    win_design = record.get('window_selection_design')
+    pilot_block_ids_set: set[str] = set()
+    if win_design == 'SINGLE_PRESPECIFIED_PRIMARY':
+        if k_cand != 1:
+            return _hold('HOLD_WINNERS_CURSE_UNADJUSTED_MULTIWINDOW_OR_LOT_OVERLAP')
+        t_crit = student_t_ppf(0.95, float(n_lots - 1))
+    elif win_design == 'PILOT_SCREEN_THEN_DISJOINT_CONFIRMATION':
+        pilot_raw = record.get('pilot_selection_lot_ids')
+        pilot_blk_raw = record.get('pilot_differentiation_block_ids')
+        if (
+            not isinstance(pilot_raw, (list, tuple))
+            or len(pilot_raw) < int(C['MIN_PILOT_SELECTION_LOTS_N'])
+            or any(_strict_unpadded_str_iip0029(x, 2) is None for x in pilot_raw)
+        ):
+            return _hold('HOLD_WINNERS_CURSE_UNADJUSTED_MULTIWINDOW_OR_LOT_OVERLAP')
+        if len(set(pilot_raw)) != len(pilot_raw) or (set(pilot_raw) & set(lot_ids)):
+            return _hold('HOLD_WINNERS_CURSE_UNADJUSTED_MULTIWINDOW_OR_LOT_OVERLAP')
+        if (
+            not isinstance(pilot_blk_raw, (list, tuple))
+            or len(pilot_blk_raw) < int(C['MIN_PILOT_SELECTION_LOTS_N'])
+            or any(_strict_unpadded_str_iip0029(x, 2) is None for x in pilot_blk_raw)
+            or len(set(pilot_blk_raw)) != len(pilot_blk_raw)
+        ):
+            return _hold('HOLD_WINNERS_CURSE_UNADJUSTED_MULTIWINDOW_OR_LOT_OVERLAP')
+        pilot_block_ids_set = {str(x) for x in pilot_blk_raw}
+        t_crit = student_t_ppf(0.95, float(n_lots - 1))
+    elif win_design == 'MULTI_WINDOW_CONFIRMATION_BONFERRONI':
+        if k_cand < 2:
+            return _hold('HOLD_INVALID_BONFERRONI_SINGLE_WINDOW_CONFIG')
+        t_crit = student_t_ppf(1.0 - 0.05 / float(k_cand), float(n_lots - 1))
+    else:
+        return _hold('HOLD_WINNERS_CURSE_UNADJUSTED_MULTIWINDOW_OR_LOT_OVERLAP')
+
+    # 4. Registered hormone unit, common-denominator recovery basis, and fluidics mode (Sol Fix #4):
+    hormone_unit = _strict_unpadded_str_iip0029(record.get('hormone_unit'), 3)
+    norm_denom = _strict_unpadded_str_iip0029(record.get('normalization_denominator'), 3)
+    recov_basis = _strict_unpadded_str_iip0029(record.get('recovery_denominator_basis'), 3)
+    if hormone_unit is None or hormone_unit not in C['REGISTERED_HORMONE_UNIT_SPECS'] or norm_denom is None or recov_basis is None:
+        return _hold('HOLD_MISSING_OR_UNREGISTERED_HORMONE_UNIT_OR_DENOMINATOR')
+    unit_spec = C['REGISTERED_HORMONE_UNIT_SPECS'][hormone_unit]
+    if norm_denom != str(unit_spec['required_denominator']) or recov_basis != norm_denom:
+        return _hold('HOLD_RECOVERY_DENOMINATOR_BASIS_MISMATCH')
+    if record.get('eta_sort_includes_sorting_and_reaggregation_losses') is not True:
+        return _hold('HOLD_ETA_SORT_MUST_INCLUDE_SORTING_AND_REAGGREGATION_LOSSES')
+    z_min_floor = float(unit_spec['z_min_floor'])
+
+    fluidics = record.get('assay_fluidics_mode')
+    if fluidics not in ('DYNAMIC_PERIFUSION', 'STATIC_BATCH_BENCHMARK'):
+        return _hold('HOLD_INVALID_ASSAY_FLUIDICS_MODE')
+
+    # 5. Source-bound per-lot records with independent differentiation_block_ids and matched 40 + 100 mmHg coverage:
+    lot_obs_list = record.get('lot_observations')
+    if not isinstance(lot_obs_list, (list, tuple)) or len(lot_obs_list) != n_lots:
+        return _hold('HOLD_MISSING_SOURCE_BOUND_PER_LOT_OBSERVATIONS')
+
+    seen_obs_lot_ids: list[str] = []
+    seen_block_ids: list[str] = []
+    seen_trace_ids: list[str] = []
+    block_by_lot: dict[str, str] = {}
+
+    eta_v: list[float] = []
+    basal1_v: list[float] = []
+    low1_v: list[float] = []
+    high1_v: list[float] = []
+    low2_v: list[float] = []
+    high2_v: list[float] = []
+    kcl_v: list[float] = []
+    adult_ref_z2_v: list[float] = []
+    stored_iu_v: list[float] = []
+    proins_ratio_v: list[float] = []
+
+    peak1_v: list[float] = []
+    tpeak1_v: list[float] = []
+    t50_v: list[float] = []
+    t90_v: list[float] = []
+    tau_ch_v: list[float] = []
+    gcg_fold_v: list[float] = []
+    glc_thresh_v: list[float] = []
+    ucn3_v: list[float] = []
+    counterreg_v: list[float] = []
+
+    # Matched 100 mmHg sibling vectors for DYNAMIC_PERIFUSION:
+    h1_100_v: list[float] = []
+    l1_100_v: list[float] = []
+    h2_100_v: list[float] = []
+    l2_100_v: list[float] = []
+    tau_100_v: list[float] = []
+
+    for item in lot_obs_list:
+        if not isinstance(item, (dict, MappingProxyType)):
+            return _hold('HOLD_INVALID_PER_LOT_OBSERVATION_RECORD')
+        lsk = _coerce_lot_scope_key_iip0029(item.get('lot_scope_key'))
+        if lsk is None:
+            return _hold('HOLD_PER_LOT_RECORD_MISSING_LOT_SCOPE_KEY')
+        if (
+            lsk.product_variant_id != scope_key.product_variant_id
+            or lsk.construct_sha256 != scope_key.construct_sha256
+            or lsk.donor_seedline_id != scope_key.donor_seedline_id
+            or lsk.mcb_id != scope_key.mcb_id
+        ):
+            return _hold('HOLD_PER_LOT_SCOPE_KEY_PROVENANCE_MISMATCH')
+        lid = _strict_unpadded_str_iip0029(lsk.lot_id, 2)
+        bid = _strict_unpadded_str_iip0029(item.get('differentiation_block_id'), 2)
+        tid = _strict_unpadded_str_iip0029(item.get('trace_id'), 3)
+        po2 = _strict_finite_float_iip0029(item.get('assay_po2_mmhg'))
+        if lid is None or bid is None or tid is None or po2 is None or po2 not in C['ALLOWED_ASSAY_PO2_MMHG']:
+            return _hold('HOLD_PER_LOT_MISSING_BLOCK_TRACE_ID_OR_INVALID_ASSAY_PO2')
+        seen_obs_lot_ids.append(lid)
+        seen_block_ids.append(bid)
+        seen_trace_ids.append(tid)
+        block_by_lot[lid] = bid
+
+        vals: dict[str, float] = {}
+        for k in (
+            'eta_sort_viable_recovery',
+            'basal1_pre_pulse',
+            'low1_mean',
+            'high1_mean',
+            'low2_mean',
+            'high2_mean',
+            'kcl_mean',
+            'adult_islet_ref_z2',
+            'stored_mature_insulin_iu_implanted',
+            'proinsulin_to_cpeptide_content_molar_ratio',
+        ):
+            fv = _strict_finite_float_iip0029(item.get(k))
+            if fv is None or fv < 0.0:
+                return _hold(f'HOLD_MISSING_OR_INVALID_PER_LOT_{k.upper()}')
+            vals[k] = fv
+        eta_v.append(vals['eta_sort_viable_recovery'])
+        basal1_v.append(vals['basal1_pre_pulse'])
+        low1_v.append(vals['low1_mean'])
+        high1_v.append(vals['high1_mean'])
+        low2_v.append(vals['low2_mean'])
+        high2_v.append(vals['high2_mean'])
+        kcl_v.append(vals['kcl_mean'])
+        adult_ref_z2_v.append(vals['adult_islet_ref_z2'])
+        stored_iu_v.append(vals['stored_mature_insulin_iu_implanted'])
+        proins_ratio_v.append(vals['proinsulin_to_cpeptide_content_molar_ratio'])
+
+        if fluidics == 'DYNAMIC_PERIFUSION':
+            # Primary trace must be boundary-matched 40 mmHg paired with a matched 100 mmHg sibling trace:
+            if abs(po2 - 40.0) > 1e-6:
+                return _hold('HOLD_DYNAMIC_PRIMARY_TRACE_MUST_BE_40MMHG_PAIRED_WITH_100MMHG_SIBLING')
+            # Censored short low-interval handling (Sol Fix #4):
+            low2_dur = _strict_finite_float_iip0029(item.get('low2_washout_duration_min'))
+            if low2_dur is None or low2_dur < float(C['MIN_UNCENSORED_LOW2_DURATION_MIN']) or item.get('effluent_t90_shutoff_min') is None:
+                return _hold('HOLD_CENSORED_SHORT_LOW_INTERVAL_SHUTOFF_UNRESOLVED')
+            # Per-trace tracer validity, alignment, and individual chamber ceiling <= 0.50 min:
+            if item.get('tracer_response_valid') is not True or item.get('tracer_time_aligned') is not True:
+                return _hold('HOLD_PER_TRACE_TRACER_RESPONSE_OR_TIME_ALIGNMENT_UNVERIFIED')
+            for k, dst in (
+                ('peak1_instantaneous', peak1_v),
+                ('time_to_peak1_min', tpeak1_v),
+                ('effluent_t50_shutoff_min', t50_v),
+                ('effluent_t90_shutoff_min', t90_v),
+                ('inert_tracer_tau_chamber_min', tau_ch_v),
+                ('glucagon_2mM_fold_increase', gcg_fold_v),
+                ('glucose_threshold_mM', glc_thresh_v),
+                ('ucn3_maturity_ratio', ucn3_v),
+                ('alpha_counterregulatory_gain_ratio', counterreg_v),
+            ):
+                fv = _strict_finite_float_iip0029(item.get(k))
+                if fv is None or fv <= 0.0:
+                    return _hold('HOLD_MISSING_DYNAMIC_PERIFUSION_PEAK_SHUTOFF_TRACER_OR_GATE0M_METRIC')
+                dst.append(fv)
+            if tau_ch_v[-1] > float(C['TRACER_TAU_CHAMBER_MAX_MIN']):
+                return _hold('HOLD_INDIVIDUAL_CHAMBER_DISPERSION_TAU_EXCEEDED_0P50_MIN')
+
+            # Matched 100 mmHg sibling trace coverage on every independent block:
+            tid_100 = _strict_unpadded_str_iip0029(item.get('matched_100mmhg_trace_id'), 3)
+            po2_100 = _strict_finite_float_iip0029(item.get('matched_100mmhg_assay_po2_mmhg'))
+            tau_100 = _strict_finite_float_iip0029(item.get('matched_100mmhg_tracer_tau_chamber_min'))
+            h1_100 = _strict_finite_float_iip0029(item.get('matched_100mmhg_high1_mean'))
+            l1_100 = _strict_finite_float_iip0029(item.get('matched_100mmhg_low1_mean'))
+            h2_100 = _strict_finite_float_iip0029(item.get('matched_100mmhg_high2_mean'))
+            l2_100 = _strict_finite_float_iip0029(item.get('matched_100mmhg_low2_mean'))
+            if (
+                tid_100 is None
+                or po2_100 is None
+                or abs(po2_100 - 100.0) > 1e-6
+                or tau_100 is None
+                or tau_100 <= 0.0
+                or h1_100 is None or h1_100 < 0.0
+                or l1_100 is None or l1_100 < 0.0
+                or h2_100 is None or h2_100 < 0.0
+                or l2_100 is None or l2_100 < 0.0
+                or item.get('matched_100mmhg_tracer_response_valid') is not True
+                or item.get('matched_100mmhg_tracer_time_aligned') is not True
+            ):
+                return _hold('HOLD_MISSING_MATCHED_100MMHG_OXYGEN_COVERAGE_OR_TRACER_ALIGNMENT')
+            if tau_100 > float(C['TRACER_TAU_CHAMBER_MAX_MIN']):
+                return _hold('HOLD_INDIVIDUAL_CHAMBER_DISPERSION_TAU_EXCEEDED_0P50_MIN')
+            seen_trace_ids.append(tid_100)
+            h1_100_v.append(h1_100)
+            l1_100_v.append(l1_100)
+            h2_100_v.append(h2_100)
+            l2_100_v.append(l2_100)
+            tau_100_v.append(tau_100)
+
+    expected_traces = (2 * n_lots) if fluidics == 'DYNAMIC_PERIFUSION' else n_lots
+    if seen_obs_lot_ids != lot_ids or len(set(seen_trace_ids)) != expected_traces:
+        return _hold('HOLD_PER_LOT_IDS_OR_TRACE_IDS_MISMATCH_CONFIRMATION_SET')
+    if len(set(seen_block_ids)) != n_lots or (pilot_block_ids_set & set(seen_block_ids)):
+        return _hold('HOLD_NON_INDEPENDENT_DIFFERENTIATION_BLOCKS_OR_PILOT_BLOCK_OVERLAP')
+
+    # 6. Locked UTC Timestamps, Dual Clocks & Process Mode (Sol Fix #4):
+    proc_mode = record.get('preparation_process_mode')
+    sorting_performed = record.get('sorting_performed')
+    if proc_mode not in ('SORTED_REAGGREGATED', 'UNSORTED_CONTROL') or type(sorting_performed) is not bool:
+        return _hold('HOLD_MISSING_OR_INVALID_PROCESS_SORTING_MODE')
+    if (proc_mode == 'SORTED_REAGGREGATED' and sorting_performed is not True) or (
+        proc_mode == 'UNSORTED_CONTROL' and sorting_performed is not False
+    ):
+        return _hold('HOLD_SORTING_MODE_BOOLEAN_CONTRADICTION')
+
+    dt_s7_start = _parse_utc_iso_iip0029(record.get('stage7_start_utc'))
+    dt_sort = _parse_utc_iso_iip0029(record.get('sort_reaggregation_utc'))
+    dt_harvest = _parse_utc_iso_iip0029(record.get('assay_harvest_utc'))
+    if dt_s7_start is None or dt_sort is None or dt_harvest is None:
+        return _hold('HOLD_MISSING_OR_INVALID_LOCKED_CLOCK_TIMESTAMPS')
+    if not (dt_s7_start <= dt_sort <= dt_harvest):
+        return _hold('HOLD_NON_MONOTONIC_CLOCK_TIMESTAMPS')
+
+    s7_total = _strict_finite_float_iip0029(record.get('stage7_total_days'))
+    s7_sort = _strict_finite_float_iip0029(record.get('sort_reaggregation_stage7_day'))
+    post_sort = _strict_finite_float_iip0029(record.get('days_post_sort_reaggregation'))
+    if s7_total is None or s7_sort is None or post_sort is None:
+        return _hold('HOLD_MISSING_OR_INVALID_TWOCLOCK_METADATA')
+    if not (float(C['STAGE7_MIN_TOTAL_DAYS']) <= s7_total <= float(C['STAGE7_MAX_TOTAL_DAYS'])):
+        return _hold('HOLD_STAGE7_TOTAL_DAYS_OUT_OF_QUALIFIED_RANGE')
+    if abs((s7_total - s7_sort) - post_sort) > 1e-6:
+        return _hold('HOLD_TWOCLOCK_ARITHMETIC_MISMATCH')
+
+    ts_total_d = (dt_harvest - dt_s7_start).total_seconds() / 86400.0
+    ts_sort_d = (dt_sort - dt_s7_start).total_seconds() / 86400.0
+    ts_post_d = (dt_harvest - dt_sort).total_seconds() / 86400.0
+    tol_d = float(C['TIMESTAMP_DAY_TOLERANCE'])
+    if abs(ts_total_d - s7_total) > tol_d or abs(ts_sort_d - s7_sort) > tol_d or abs(ts_post_d - post_sort) > tol_d:
+        return _hold('HOLD_TWOCLOCK_TIMESTAMP_DAY_MISMATCH')
+
+    if proc_mode == 'SORTED_REAGGREGATED':
+        if s7_sort < float(C['SORTED_MIN_SORT_DAY']) or post_sort < float(C['SORTED_MIN_POST_SORT_DAYS']):
+            return _hold('HOLD_SORTED_CLOCK_BELOW_MINIMUM_MATURATION_DAYS')
+        if any(e < float(C['SORTED_ETA_MIN']) or e >= float(C['SORTED_ETA_MAX_EXCLUSIVE']) for e in eta_v):
+            return _hold('HOLD_IMPOSSIBLE_OR_UNQUALIFIED_SORTED_ETA_RECOVERY')
+    else:
+        if abs(post_sort) > 1e-9 or abs(s7_sort - s7_total) > 1e-9 or any(abs(e - 1.0) > 1e-9 for e in eta_v):
+            return _hold('HOLD_UNSORTED_CONTROL_CLOCK_OR_ETA_MISMATCH')
+
+    # 7. Stage-7 Maturation Pharmacology (ALK5i-free + T3/NAC + ZM447439 tolerance + LLOQ washout + vascular function):
+    if record.get('obs_alk5i_free_maturation_applied') is not True or record.get('terminal_alk5i_tgfb_inhibitor_continued') is not False:
+        return _hold('HOLD_PROHIBITED_OR_UNVERIFIED_ALK5I_FREE_MATURATION')
+    if record.get('stage7_t3_10nM_and_nac_1mM_retained') is not True:
+        return _hold('HOLD_STAGE7_MISSING_REQUIRED_10NM_T3_OR_1MM_NAC')
+
+    zm_regimen = record.get('post_sort_endocrine_zm447439_regimen')
+    zm_uM = _strict_finite_float_iip0029(record.get('post_sort_zm447439_uM'))
+    if zm_regimen not in ('S7W0_ONLY_0UM_POST_SORT', 'CONTINUOUS_0P5UM_BALBOA_S7') or zm_uM is None:
+        return _hold('HOLD_MISSING_OR_UNREGISTERED_ZM447439_COVARIATE')
+    if zm_regimen == 'S7W0_ONLY_0UM_POST_SORT' and abs(zm_uM) > 1e-9:
+        return _hold('HOLD_ZM447439_CONCENTRATION_REGIMEN_MISMATCH')
+    if zm_regimen == 'CONTINUOUS_0P5UM_BALBOA_S7' and not (
+        float(C['CONTINUOUS_ZM447439_MIN_UM']) <= zm_uM <= float(C['CONTINUOUS_ZM447439_MAX_UM'])
+    ):
+        return _hold('HOLD_ZM447439_CONCENTRATION_REGIMEN_MISMATCH')
+
+    iec_coassembled = record.get('vascular_iec_coassembled')
+    if type(iec_coassembled) is not bool:
+        return _hold('HOLD_MISSING_VASCULAR_IEC_COASSEMBLY_DECLARATION')
+    if iec_coassembled is True:
+        coassembly_zm = _strict_finite_float_iip0029(record.get('coassembly_zm447439_uM'))
+        coassembly_lloq = _strict_finite_float_iip0029(record.get('coassembly_zm447439_lloq_uM'))
+        wash_method = _strict_unpadded_str_iip0029(record.get('zm447439_washout_assay_method'), 3)
+        wash_cycles = _strict_pos_int_iip0029(record.get('zm447439_wash_cycles'))
+        spike_rec = _strict_finite_float_iip0029(record.get('zm447439_matrix_spike_recovery_pct'))
+        if (
+            coassembly_zm is None
+            or coassembly_lloq is None
+            or wash_method is None
+            or wash_cycles is None
+            or spike_rec is None
+            or wash_cycles < int(C['PRE_IEC_MIN_WASH_CYCLES'])
+            or not (0.0 < coassembly_lloq <= float(C['PRE_IEC_ZM447439_MAX_LLOQ_UM']))
+            or not (0.0 <= coassembly_zm <= coassembly_lloq)
+            or not (float(C['PRE_IEC_SPIKE_RECOVERY_MIN_PCT']) <= spike_rec <= float(C['PRE_IEC_SPIKE_RECOVERY_MAX_PCT']))
+            or record.get('zm447439_washout_verified_pre_iec') is not True
+            or record.get('pre_coassembly_iec_vascular_function_verified') is not True
+        ):
+            return _hold('HOLD_UNWASHED_OR_UNVERIFIED_LLOQ_ZM447439_OR_VASCULAR_FUNCTION_PRE_IEC')
+
+    # 8. Integrated SI_1, KCl Reserve, Separate Readout 2 vs Gate 0M Basal/Peak/Shutoff & Full Gate 0M Paracrine (Sol Fix #2):
+    _, low1_l95, _ = _one_sided_t_bounds_iip0029(low1_v, t_crit)
+    _, si1_l95, _ = _one_sided_t_bounds_iip0029([h - float(C['INTEGRATED_SI1_MIN']) * lo for h, lo in zip(high1_v, low1_v)], t_crit)
+    _, kcl_vs_h2_l95, _ = _one_sided_t_bounds_iip0029([k - h2 for k, h2 in zip(kcl_v, high2_v)], t_crit)
+    _, kcl_vs_l2_l95, _ = _one_sided_t_bounds_iip0029([k - l2 for k, l2 in zip(kcl_v, low2_v)], t_crit)
+    if low1_l95 <= 0.0 or si1_l95 < 0.0 or kcl_vs_h2_l95 <= 0.0 or kcl_vs_l2_l95 <= 0.0:
+        return _hold('HOLD_INTEGRATED_SI1_OR_KCL_RESERVE_FAILED')
+
+    basal_peak_stats: dict[str, Any] | None = None
+    if fluidics == 'DYNAMIC_PERIFUSION':
+        _, _, tau_ch_u95 = _one_sided_t_bounds_iip0029(tau_ch_v, t_crit)
+        _, _, tau_100_u95 = _one_sided_t_bounds_iip0029(tau_100_v, t_crit)
+        if tau_ch_u95 > float(C['TRACER_TAU_CHAMBER_MAX_MIN']) or tau_100_u95 > float(C['TRACER_TAU_CHAMBER_MAX_MIN']):
+            return _hold('HOLD_CHAMBER_DISPERSION_TAU_EXCEEDED_REQUIRES_FAST_CHIP')
+        if any(a >= b for a, b in zip(t50_v, t90_v)):
+            return _hold('HOLD_SHUTOFF_T50_GE_T90_MONOTONICITY_VIOLATION')
+
+        _, _, t50_u95 = _one_sided_t_bounds_iip0029(t50_v, t_crit)
+        if t50_u95 > float(C['READOUT2_T50_MAX_MIN']):
+            return _hold('HOLD_READOUT2_STEPDOWN_T50_U95_EXCEEDED')
+        _, _, t90_u95 = _one_sided_t_bounds_iip0029(t90_v, t_crit)
+        if t90_u95 > float(C['GATE0M_T90_MAX_MIN']):
+            return _hold('HOLD_GATE0M_S8_STEPDOWN_T90_U95_EXCEEDED')
+
+        # Canonical Readout 2 (Peak1/Basal1 >= 4.5 within <= 8.0 min) explicitly distinguished from
+        # stricter Gate 0M / extended-maturation low-basal check (Basal1/Peak1 <= 0.15 => Peak1/Basal1 >= 6.67x):
+        _, p1_4p5_l95, _ = _one_sided_t_bounds_iip0029([p - float(C['DYNAMIC_PEAK1_OVER_BASAL1_MIN']) * b for p, b in zip(peak1_v, basal1_v)], t_crit)
+        _, _, tpeak1_u95 = _one_sided_t_bounds_iip0029(tpeak1_v, t_crit)
+        if p1_4p5_l95 < 0.0 or tpeak1_u95 > float(C['DYNAMIC_TIME_TO_PEAK1_MAX_MIN']):
+            return _hold('HOLD_READOUT2_FIRST_PHASE_PEAK_OR_LATENCY_FAILED')
+
+        _, g0m_b1_l95, _ = _one_sided_t_bounds_iip0029([float(C['GATE0M_BASAL1_FRAC_PEAK1_MAX']) * p - b for p, b in zip(peak1_v, basal1_v)], t_crit)
+        _, g0m_l2_l95, _ = _one_sided_t_bounds_iip0029([float(C['DYNAMIC_LOW2_FRAC_PEAK1_MAX']) * p - l2 for p, l2 in zip(peak1_v, low2_v)], t_crit)
+        _, wash_l95, _ = _one_sided_t_bounds_iip0029([float(C['LOW2_OVER_LOW1_WASHOUT_MAX']) * l1 - l2 for l1, l2 in zip(low1_v, low2_v)], t_crit)
+        if g0m_b1_l95 < 0.0 or g0m_l2_l95 < 0.0 or wash_l95 < 0.0:
+            return _hold('HOLD_GATE0M_BASAL_FRAC_PEAK_OR_LOW2_WASHOUT_FAILED')
+
+        # Full canonical Gate 0M paracrine checks (glucagon, threshold, UCN3, counterregulation):
+        _, gcg_l95, _ = _one_sided_t_bounds_iip0029(gcg_fold_v, t_crit)
+        _, thresh_l95, _ = _one_sided_t_bounds_iip0029(glc_thresh_v, t_crit)
+        _, ucn3_l95, _ = _one_sided_t_bounds_iip0029(ucn3_v, t_crit)
+        _, creg_l95, _ = _one_sided_t_bounds_iip0029(counterreg_v, t_crit)
+        if (
+            gcg_l95 < float(C['GATE0M_GLUCAGON_FOLD_MIN'])
+            or thresh_l95 < float(C['GATE0M_GLUCOSE_THRESHOLD_MIN_MM'])
+            or ucn3_l95 < float(C['GATE0M_UCN3_RATIO_MIN'])
+            or creg_l95 < float(C['GATE0M_COUNTERREG_GAIN_MIN'])
+        ):
+            return _hold('HOLD_GATE0M_PARACRINE_GLUCAGON_THRESHOLD_UCN3_OR_COUNTERREG_FAILED')
+
+        # Matched 100 mmHg sibling SI_1 and Z2 positivity verification:
+        _, si1_100_l95, _ = _one_sided_t_bounds_iip0029([h - float(C['INTEGRATED_SI1_MIN']) * lo for h, lo in zip(h1_100_v, l1_100_v)], t_crit)
+        z2_100_vec = [e * (h2 - l2) for e, h2, l2 in zip(eta_v, h2_100_v, l2_100_v)]
+        _, z2_100_l95, _ = _one_sided_t_bounds_iip0029(z2_100_vec, t_crit)
+        if si1_100_l95 < 0.0 or z2_100_l95 < z_min_floor:
+            return _hold('HOLD_MATCHED_100MMHG_SIBLING_SI1_OR_PULSE2_INCREMENT_FAILED')
+
+        b1_p1_ratios = [b / max(1e-12, p) for b, p in zip(basal1_v, peak1_v)]
+        p1_b1_ratios = [p / max(1e-12, b) for b, p in zip(basal1_v, peak1_v)]
+        basal_peak_stats = {
+            'basal1_pre_pulse_window_min': [-10.0, 0.0],
+            'peak1_window_min': [0.0, 8.0],
+            'readout2_nominal_peak1_over_basal1_min': float(C['DYNAMIC_PEAK1_OVER_BASAL1_MIN']),
+            'readout2_peak1_over_basal1_mean': round(sum(p1_b1_ratios) / float(n_lots), 4),
+            'readout2_peak1_minus_4p5_basal1_l95': round(p1_4p5_l95, 4),
+            'gate0m_strict_basal1_over_peak1_max': float(C['GATE0M_BASAL1_FRAC_PEAK1_MAX']),
+            'gate0m_basal1_over_peak1_mean': round(sum(b1_p1_ratios) / float(n_lots), 4),
+            'gate0m_0p15_peak1_minus_basal1_l95': round(g0m_b1_l95, 4),
+            'relationship_note': 'Gate 0M Basal1/Peak1 <= 0.15 (Peak1/Basal1 >= 6.67x) is stricter than nominal Readout 2 Peak1/Basal1 >= 4.5x on the same pre-step [-10, 0] min Basal1 and [0, 8] min Peak1 windows.',
+        }
+    else:
+        _, l1_kcl_l95, _ = _one_sided_t_bounds_iip0029([float(C['STATIC_LOW_OVER_KCL_MAX']) * k - l1 for k, l1 in zip(kcl_v, low1_v)], t_crit)
+        _, l2_kcl_l95, _ = _one_sided_t_bounds_iip0029([float(C['STATIC_LOW_OVER_KCL_MAX']) * k - l2 for k, l2 in zip(kcl_v, low2_v)], t_crit)
+        if l1_kcl_l95 < 0.0 or l2_kcl_l95 < 0.0:
+            return _hold('HOLD_STATIC_BASAL_LEAK_OVER_KCL_EXCEEDED')
+
+    # 9. Lot-Paired Pre-Sort-Normalized Net Increments Z1, Z2 + Contemporaneous Adult-Islet Reference Floor (Sol Fix #1):
+    if 'within_lot_technical_var_z2' not in record:
+        return _hold('HOLD_MISSING_EXPLICIT_WITHIN_LOT_TECHNICAL_VARIANCE')
+    tech_var_z2 = _strict_finite_float_iip0029(record.get('within_lot_technical_var_z2'))
+    if tech_var_z2 is None or tech_var_z2 < 0.0:
+        return _hold('HOLD_INVALID_WITHIN_LOT_TECHNICAL_VARIANCE')
+
+    z1_vec = [e * (h1 - l1) for e, h1, l1 in zip(eta_v, high1_v, low1_v)]
+    z2_vec = [e * (h2 - l2) for e, h2, l2 in zip(eta_v, high2_v, low2_v)]
+    z1_mean, z1_l95, _ = _one_sided_t_bounds_iip0029(z1_vec, t_crit)
+    z2_mean, z2_l95, _ = _one_sided_t_bounds_iip0029(z2_vec, t_crit, extra_within_var=tech_var_z2 / float(n_lots))
+    if z1_l95 < z_min_floor or z2_l95 < z_min_floor:
+        return _hold('HOLD_NET_INCREMENT_PER_PRESORT_CELL_L95_INSUFFICIENT')
+
+    # Contemporaneous same-assay adult-islet reference floor (blocks tiny 0.001 increments clearing on ratio alone!):
+    ref_mean, ref_z2_l95, _ = _one_sided_t_bounds_iip0029(adult_ref_z2_v, t_crit)
+    if ref_z2_l95 < z_min_floor:
+        return _hold('HOLD_CONTEMPORANEOUS_ADULT_ISLET_REFERENCE_PULSE2_INSUFFICIENT')
+    ref_frac = float(C['ADULT_ISLET_REF_PULSE2_MIN_FRACTION'])
+    _, z2_vs_ref_l95, _ = _one_sided_t_bounds_iip0029([z2 - ref_frac * rv for z2, rv in zip(z2_vec, adult_ref_z2_v)], t_crit)
+    if z2_vs_ref_l95 < 0.0:
+        return _hold(
+            'HOLD_SECOND_PULSE_BELOW_ADULT_ISLET_REFERENCE_FLOOR',
+            z2_l95=round(z2_l95, 4),
+            adult_ref_z2_mean=round(ref_mean, 4),
+            z2_minus_half_adult_ref_l95=round(z2_vs_ref_l95, 4),
+        )
+
+    # 10. Clock-Classified Extended-Maturation Exposure -> Paired Within-Recipe Rule S8 Fieller (theta_0 = 0.85):
+    is_extended_s8 = (s7_total > float(C['BASELINE_WINDOW_MAX_STAGE7_DAYS'])) or (
+        post_sort > float(C['BASELINE_WINDOW_MAX_POST_SORT_DAYS'])
+    )
+    s8_fieller_l95: float | None = None
+    if is_extended_s8:
+        early_map = record.get('paired_earlier_window_z2_by_lot')
+        if not isinstance(early_map, (dict, MappingProxyType)) or set(early_map.keys()) != set(lot_ids):
+            return _hold('HOLD_S8_EXTENDED_CLOCK_REQUIRES_SOURCE_LINKED_EARLIER_WINDOW')
+        early_vals: list[float] = []
+        early_100_vals: list[float] = []
+        early_traces_seen: set[str] = set()
+        for lid in lot_ids:
+            raw_e = early_map[lid]
+            if isinstance(raw_e, (dict, MappingProxyType)):
+                ebid = _strict_unpadded_str_iip0029(raw_e.get('differentiation_block_id'), 2)
+                et40 = _strict_unpadded_str_iip0029(raw_e.get('trace_id_40mmhg'), 3)
+                ez40 = _strict_finite_float_iip0029(raw_e.get('z2_40mmhg'))
+                dt_eh = _parse_utc_iso_iip0029(raw_e.get('early_harvest_utc'))
+                if (
+                    ebid != block_by_lot[lid]
+                    or et40 is None
+                    or ez40 is None
+                    or dt_eh is None
+                    or dt_eh >= dt_harvest
+                    or et40 in seen_trace_ids
+                    or et40 in early_traces_seen
+                ):
+                    return _hold('HOLD_S8_EXTENDED_CLOCK_EARLIER_WINDOW_BLOCK_OR_TIMESTAMP_MISMATCH')
+                early_traces_seen.add(et40)
+                early_vals.append(ez40)
+                if fluidics == 'DYNAMIC_PERIFUSION':
+                    et100 = _strict_unpadded_str_iip0029(raw_e.get('trace_id_100mmhg'), 3)
+                    ez100 = _strict_finite_float_iip0029(raw_e.get('z2_100mmhg'))
+                    if et100 is None or ez100 is None or et100 in seen_trace_ids or et100 in early_traces_seen:
+                        return _hold('HOLD_S8_EXTENDED_CLOCK_MISSING_MATCHED_100MMHG_EARLIER_ARM')
+                    early_traces_seen.add(et100)
+                    early_100_vals.append(ez100)
+            else:
+                return _hold('HOLD_S8_EXTENDED_CLOCK_REQUIRES_BLOCK_BOUND_EARLIER_RECORD')
+        _, early_z2_l95, _ = _one_sided_t_bounds_iip0029(early_vals, t_crit)
+        if early_z2_l95 < z_min_floor:
+            return _hold('HOLD_S8_EARLIER_REFERENCE_WINDOW_FAILED_POSITIVITY_FLOOR')
+        theta0 = float(C['S8_WITHIN_RECIPE_FIELLER_THETA0'])
+        _, s8_fieller_l95, _ = _one_sided_t_bounds_iip0029([z_e - theta0 * z_0 for z_e, z_0 in zip(z2_vec, early_vals)], t_crit)
+        if s8_fieller_l95 < 0.0:
+            return _hold(
+                'HOLD_S8_EXTENDED_MATURATION_FIELLER_DEGRADED_KEEP_EARLIER_WINDOW',
+                s8_fieller_diff_l95=round(s8_fieller_l95, 4),
+                theta0_applied=theta0,
+            )
+        if fluidics == 'DYNAMIC_PERIFUSION':
+            _, early_100_l95, _ = _one_sided_t_bounds_iip0029(early_100_vals, t_crit)
+            z2_100_v = [e * (h2 - l2) for e, h2, l2 in zip(eta_v, h2_100_v, l2_100_v)]
+            _, s8_100_fieller_l95, _ = _one_sided_t_bounds_iip0029([z_e - theta0 * z_0 for z_e, z_0 in zip(z2_100_v, early_100_vals)], t_crit)
+            if early_100_l95 < z_min_floor or s8_100_fieller_l95 < 0.0:
+                return _hold(
+                    'HOLD_S8_EXTENDED_MATURATION_100MMHG_FIELLER_DEGRADED',
+                    s8_100mmhg_fieller_diff_l95=round(s8_100_fieller_l95, 4),
+                )
+
+    # 11. Specific Mature-Insulin Inventory Conservation, Exploratory Proinsulin:C-Peptide, & >138.3 IU Gate 0S Trigger:
+    if record.get('insulin_inventory_assay_specificity') != 'MATURE_INSULIN_SPECIFIC_LOW_PROINSULIN_CROSSREACTIVITY':
+        return _hold('HOLD_CROSS_REACTIVE_OR_UNVERIFIED_MATURE_INSULIN_INVENTORY_ASSAY')
+    if 'assay_cumulative_secreted_iu_equiv' not in record:
+        return _hold('HOLD_MISSING_EXPLICIT_ASSAY_CUMULATIVE_SECRETED_IU')
+    cum_assay_iu = _strict_finite_float_iip0029(record.get('assay_cumulative_secreted_iu_equiv'))
+    if cum_assay_iu is None or cum_assay_iu < 0.0:
+        return _hold('HOLD_INVALID_ASSAY_CUMULATIVE_SECRETED_IU')
+
+    beta_scale = (beta_frac / 0.60) * (imp_ieq / 500_000.0)
+    min_phys_store_iu = max(float(C['STORED_INSULIN_FLOOR_AT_300K_BETA_IU']) * beta_scale, cum_assay_iu)
+    _, stored_l95, stored_u95 = _one_sided_t_bounds_iip0029(stored_iu_v, t_crit)
+    if stored_l95 < min_phys_store_iu:
+        return _hold('HOLD_STORED_INSULIN_L95_BELOW_PHYSIOLOGICAL_OR_MASS_FLOOR')
+
+    _, _, proins_u95 = _one_sided_t_bounds_iip0029(proins_ratio_v, t_crit)
+    if proins_u95 > float(C['PROINSULIN_TO_CPEPTIDE_CONTENT_MOLAR_MAX']):
+        return _hold(
+            'HOLD_ELEVATED_PROINSULIN_TO_CPEPTIDE_CONTENT_RATIO',
+            proinsulin_to_cpeptide_u95=round(proins_u95, 4),
+            proinsulin_to_cpeptide_marker_classification='EXPLORATORY_STAGE0_IN_VITRO_PROCESSING_MARKER_PENDING_CALIBRATION',
+        )
+
+    max_lot_store_iu = max(stored_iu_v)
+    ceiling_iu = float(C['GATE0S_ABSOLUTE_STORED_INSULIN_CEILING_IU'])
+    if stored_u95 > ceiling_iu or max_lot_store_iu > ceiling_iu:
+        return _hold(
+            'HOLD_STORED_INSULIN_EXCEEDS_138P3_IU_REQUIRES_FULL_LINKED_GATE0S_LEDGER_REVIEW',
+            gate0s_escalation_required=True,
+            all_non_store_ceiling_checks_passed=True,
+            stored_insulin_l95_iu=round(stored_l95, 4),
+            stored_insulin_u95_iu=round(stored_u95, 4),
+            stored_insulin_max_lot_iu=round(max_lot_store_iu, 4),
+            registry_execution_supported=registry_exec_supported,
+            proinsulin_to_cpeptide_u95=round(proins_u95, 4),
+            proinsulin_to_cpeptide_marker_classification='EXPLORATORY_STAGE0_IN_VITRO_PROCESSING_MARKER_PENDING_CALIBRATION',
+        )
+
+    common_payload: dict[str, Any] = {
+        'subgate_pass': True,
+        'release_authority': 'DELEGATED_TO_LIVE_ATOMIC_STAGE0_LEDGER',
+        'gate0s_escalation_required': False,
+        'all_non_store_ceiling_checks_passed': True,
+        'registry_execution_supported': registry_exec_supported,
+        'is_extended_s8_exposure': is_extended_s8,
+        'registered_mixture_id': reg_mix_id,
+        't_crit_applied': round(t_crit, 6),
+        'z1_mean': round(z1_mean, 4),
+        'z1_l95': round(z1_l95, 4),
+        'z2_mean': round(z2_mean, 4),
+        'z2_l95': round(z2_l95, 4),
+        'adult_islet_ref_z2_l95': round(ref_z2_l95, 4),
+        'z2_minus_half_adult_ref_l95': round(z2_vs_ref_l95, 4),
+        'stored_insulin_l95_iu': round(stored_l95, 4),
+        'stored_insulin_u95_iu': round(stored_u95, 4),
+        'stored_insulin_max_lot_iu': round(max_lot_store_iu, 4),
+        'proinsulin_to_cpeptide_u95': round(proins_u95, 4),
+        'proinsulin_to_cpeptide_marker_classification': 'EXPLORATORY_STAGE0_IN_VITRO_PROCESSING_MARKER_PENDING_CALIBRATION',
+        'proinsulin_provenance_note': (
+            'Keymeulen et al. 2024 (PMID:38012450) measured post-hoc plasma proinsulin:C-peptide in a selected responder '
+            'and does not validate 0.10 as a universal in-vitro cutoff; retained strictly as an exploratory Stage-0 processing marker.'
+        ),
+        's8_fieller_diff_l95': None if s8_fieller_l95 is None else round(s8_fieller_l95, 4),
+        'post_sort_endocrine_zm447439_regimen': zm_regimen,
+        'basal_peak_statistics_and_windows': basal_peak_stats,
+        'diagnostic_high2_over_high1_mean_nonblocking': round(sum(h2 / max(1e-12, h1) for h2, h1 in zip(high2_v, high1_v)) / float(n_lots), 4),
+    }
+    if fluidics == 'STATIC_BATCH_BENCHMARK' or proc_mode == 'UNSORTED_CONTROL':
+        common_payload['status'] = 'COMPARATIVE_BENCHMARK_QUALIFIED_NON_RELEASE'
+        return common_payload
+    if not registry_exec_supported:
+        common_payload['status'] = 'RESEARCH_COMPARATOR_QUALIFIED_NON_EXECUTABLE'
+        return common_payload
+    common_payload['status'] = 'QUALIFIED_TWOCLOCK_REPEATED_CHALLENGE_SUBGATE_EVIDENCE_ONLY'
+    return common_payload
+
+
+def evaluate_stage0_twoclock_flat_or_structured_iip_0029(
+    observations: dict[str, Any],
+    *,
+    validated_stage0: dict[str, float],
+    se_provenance_by_mean: dict[str, str],
+    upper95_fn: Any,
+    lower95_fn: Any,
+    root: Path | str | None = None,
+    product_def: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """
+    Unified Stage-0 IIP-0029 evaluator wired identically into evaluate_stage0_decision_tree,
+    evaluate_stage0_research_and_molecular_guardrails, ingest_stage0_research_or_wetlab_batch,
+    and replay_stage0_chronological_batches (DEC-108).
+    Enforces identical fail-closed handling for missing records, ALK5i/washout violations,
+    wrong-lot scope mismatches, and non-overridable >138.3 IU Gate 0S escalations.
+    """
+    C = STAGE0_IIP0029_CONSTANTS
+
+    def _res(status: str, gate_pass: bool, **extra: Any) -> dict[str, Any]:
+        out: dict[str, Any] = {
+            'gate_pass': gate_pass,
+            'status': status,
+            'release_authority': 'DELEGATED_TO_LIVE_ATOMIC_STAGE0_LEDGER',
+            'decision_id': 'DEC-108',
+            'contribution_id': 'IIP-0029',
+        }
+        out.update(extra)
+        return out
+
+    def _check_scope_matched_gate0s_escalation() -> tuple[bool, str]:
+        req_g0s = (
+            'obs_gate0s_ap1903_1h_insulin_burst_iu',
+            'obs_gate0s_ap1903_supernatant_insulin_dump_fraction_24h',
+            'obs_explant_en_bloc_recovery_fraction',
+        )
+        if not all(k in validated_stage0 and se_provenance_by_mean.get(k) == 'EXPLICIT_SE_SUPPLIED' for k in req_g0s):
+            return False, 'HOLD_STORED_INSULIN_EXCEEDS_138P3_IU_REQUIRES_FULL_LINKED_GATE0S_LEDGER_REVIEW'
+        outer_lot = observations.get('current_lot_id', observations.get('lot_id'))
+        outer_dev = observations.get('device_assembly_id')
+        matched_tag = observations.get('gate0s_elevated_store_scope_matched_device_lot_id')
+        if outer_lot is not None or outer_dev is not None:
+            if not isinstance(matched_tag, str) or not matched_tag.strip():
+                return False, 'HOLD_STORED_INSULIN_EXCEEDS_138P3_IU_REQUIRES_FULL_LINKED_GATE0S_LEDGER_REVIEW'
+            if outer_lot is not None and str(outer_lot) not in matched_tag:
+                return False, 'FAIL_IIP0029_WRONG_LOT_OR_PRODUCT_SCOPE_MISMATCH'
+            if outer_dev is not None and str(outer_dev) not in matched_tag:
+                return False, 'FAIL_IIP0029_WRONG_LOT_OR_PRODUCT_SCOPE_MISMATCH'
+        if upper95_fn('obs_gate0s_ap1903_1h_insulin_burst_iu') > 2.8:
+            return False, 'FAIL_GATE0S_ELEVATED_STORE_BURST_OR_DUMP_BREACHED'
+        if upper95_fn('obs_gate0s_ap1903_supernatant_insulin_dump_fraction_24h') > 0.15:
+            return False, 'FAIL_GATE0S_ELEVATED_STORE_BURST_OR_DUMP_BREACHED'
+        if lower95_fn('obs_explant_en_bloc_recovery_fraction') < 0.99:
+            return False, 'FAIL_GATE0S_ELEVATED_STORE_BURST_OR_DUMP_BREACHED'
+        return True, 'CLEARED_ESCALATED_SCOPE_MATCHED_GATE0S_REVIEW'
+
+    structured = observations.get('iip0029_twoclock_record')
+    if structured is not None:
+        if not isinstance(structured, (dict, MappingProxyType)):
+            return _res('HOLD_INVALID_RECORD_TYPE', False)
+        # Verify lot & product provenance match outer payload scope (rejects wrong-lot borrowing!):
+        rec_sk = _coerce_lot_scope_key_iip0029(structured.get('lot_scope_key'))
+        if rec_sk is not None:
+            outer_pvid = product_def.get('product_variant_id') if isinstance(product_def, dict) else observations.get('product_variant_id')
+            outer_lot = observations.get('current_lot_id', observations.get('lot_id'))
+            outer_csha = observations.get('construct_sha256')
+            if outer_pvid is not None and rec_sk.product_variant_id != str(outer_pvid):
+                return _res('FAIL_IIP0029_WRONG_LOT_OR_PRODUCT_SCOPE_MISMATCH', False)
+            if outer_lot is not None and rec_sk.lot_id != str(outer_lot):
+                return _res('FAIL_IIP0029_WRONG_LOT_OR_PRODUCT_SCOPE_MISMATCH', False)
+            if outer_csha is not None and rec_sk.construct_sha256 != str(outer_csha):
+                return _res('FAIL_IIP0029_WRONG_LOT_OR_PRODUCT_SCOPE_MISMATCH', False)
+
+        sub = evaluate_stage0_twoclock_and_repeated_challenge_iip_0029(structured, root=root)
+        if sub.get('gate0s_escalation_required') is True and sub.get('all_non_store_ceiling_checks_passed') is True:
+            g0s_ok, g0s_status = _check_scope_matched_gate0s_escalation()
+            if not g0s_ok:
+                return _res(g0s_status, False, subgate=sub, gate0s_escalation_required=True)
+            return _res(
+                'CLEARED_IIP0029_WITH_ESCALATED_SCOPE_MATCHED_GATE0S_REVIEW',
+                True,
+                subgate=sub,
+                gate0s_escalation_required=True,
+                gate0s_escalation_status=g0s_status,
+            )
+        return _res(
+            str(sub['status']),
+            bool(sub['subgate_pass']),
+            subgate=sub,
+            gate0s_escalation_required=bool(sub.get('gate0s_escalation_required', False)),
+        )
+
+    # Flat endpoint evaluation path (identical fail-closed rules when structured record is omitted):
+    if observations.get('obs_alk5i_free_maturation_applied') is not True or observations.get('terminal_alk5i_tgfb_inhibitor_continued') is not False:
+        return _res('HOLD_PROHIBITED_OR_UNVERIFIED_ALK5I_FREE_MATURATION', False)
+    if observations.get('stage7_t3_10nM_and_nac_1mM_retained') is not True:
+        return _res('HOLD_STAGE7_MISSING_REQUIRED_10NM_T3_OR_1MM_NAC', False)
+
+    zm_reg = observations.get('post_sort_endocrine_zm447439_regimen')
+    if zm_reg not in ('S7W0_ONLY_0UM_POST_SORT', 'CONTINUOUS_0P5UM_BALBOA_S7'):
+        return _res('HOLD_MISSING_OR_UNREGISTERED_ZM447439_COVARIATE', False)
+    if (
+        observations.get('zm447439_washout_verified_pre_iec') is not True
+        or observations.get('pre_coassembly_iec_vascular_function_verified') is not True
+        or 'obs_stage7_pre_iec_zm447439_residual_uM' not in validated_stage0
+        or upper95_fn('obs_stage7_pre_iec_zm447439_residual_uM') > float(C['PRE_IEC_ZM447439_MAX_LLOQ_UM'])
+    ):
+        return _res('HOLD_UNWASHED_OR_UNVERIFIED_LLOQ_ZM447439_OR_VASCULAR_FUNCTION_PRE_IEC', False)
+
+    if observations.get('readout2_both_40_and_100mmhg_tracer_aligned_verified') is not True:
+        return _res('HOLD_MISSING_MATCHED_100MMHG_OXYGEN_COVERAGE_OR_TRACER_ALIGNMENT', False)
+    if _strict_unpadded_str_iip0029(observations.get('locked_analysis_plan_id'), 4) is None:
+        return _res('HOLD_MISSING_LOCKED_ANALYSIS_PLAN_ID', False)
+    reg_mix = observations.get('registered_mixture_id')
+    if reg_mix not in C['REGISTERED_MIXTURES']:
+        return _res('HOLD_MISSING_OR_UNREGISTERED_MIXTURE_ID', False)
+
+    dt_s = _parse_utc_iso_iip0029(observations.get('stage7_start_utc'))
+    dt_r = _parse_utc_iso_iip0029(observations.get('sort_reaggregation_utc'))
+    dt_h = _parse_utc_iso_iip0029(observations.get('assay_harvest_utc'))
+    if dt_s is None or dt_r is None or dt_h is None or not (dt_s <= dt_r <= dt_h):
+        return _res('HOLD_MISSING_OR_INVALID_LOCKED_CLOCK_TIMESTAMPS', False)
+
+    req_flat_means = (
+        'obs_stage7_total_maturation_days',
+        'obs_stage7_days_post_sort_reaggregation',
+        'obs_stage7_eta_sort_viable_recovery',
+        'obs_readout2_inert_tracer_tau_chamber_min',
+        'obs_readout2_pulse2_net_increment_z2',
+        'obs_readout2_adult_islet_ref_z2',
+        'obs_readout2_low2_frac_peak1',
+        'obs_readout2_low2_over_low1_ratio',
+        'obs_stage7_stored_mature_insulin_iu_implanted',
+        'obs_stage7_stored_mature_insulin_max_lot_iu',
+        'obs_stage7_proinsulin_to_cpeptide_molar_ratio',
+    )
+    if any(k not in validated_stage0 or se_provenance_by_mean.get(k) != 'EXPLICIT_SE_SUPPLIED' for k in req_flat_means):
+        return _res('HOLD_IIP0029_INCOMPLETE_OR_DEFAULT_SE_FLAT_PANEL', False)
+
+    if upper95_fn('obs_readout2_inert_tracer_tau_chamber_min') > float(C['TRACER_TAU_CHAMBER_MAX_MIN']):
+        return _res('HOLD_CHAMBER_DISPERSION_TAU_EXCEEDED_REQUIRES_FAST_CHIP', False)
+    if lower95_fn('obs_readout2_pulse2_net_increment_z2') < 0.50 or lower95_fn('obs_readout2_adult_islet_ref_z2') < 0.50:
+        return _res('HOLD_NET_INCREMENT_PER_PRESORT_CELL_L95_INSUFFICIENT', False)
+    if lower95_fn('obs_readout2_pulse2_net_increment_z2') < float(C['ADULT_ISLET_REF_PULSE2_MIN_FRACTION']) * validated_stage0['obs_readout2_adult_islet_ref_z2']:
+        return _res('HOLD_SECOND_PULSE_BELOW_ADULT_ISLET_REFERENCE_FLOOR', False)
+    if upper95_fn('obs_readout2_low2_frac_peak1') > float(C['DYNAMIC_LOW2_FRAC_PEAK1_MAX']) or upper95_fn('obs_readout2_low2_over_low1_ratio') > float(C['LOW2_OVER_LOW1_WASHOUT_MAX']):
+        return _res('HOLD_GATE0M_BASAL_FRAC_PEAK_OR_LOW2_WASHOUT_FAILED', False)
+
+    is_ext_flat = (
+        validated_stage0['obs_stage7_total_maturation_days'] > float(C['BASELINE_WINDOW_MAX_STAGE7_DAYS'])
+        or validated_stage0['obs_stage7_days_post_sort_reaggregation'] > float(C['BASELINE_WINDOW_MAX_POST_SORT_DAYS'])
+    )
+    if is_ext_flat:
+        if 'obs_stage7_s8_fieller_z2_diff' not in validated_stage0 or se_provenance_by_mean.get('obs_stage7_s8_fieller_z2_diff') != 'EXPLICIT_SE_SUPPLIED':
+            return _res('HOLD_S8_EXTENDED_CLOCK_REQUIRES_SOURCE_LINKED_EARLIER_WINDOW', False)
+        if lower95_fn('obs_stage7_s8_fieller_z2_diff') < 0.0:
+            return _res('HOLD_S8_EXTENDED_MATURATION_FIELLER_DEGRADED_KEEP_EARLIER_WINDOW', False)
+
+    if lower95_fn('obs_stage7_stored_mature_insulin_iu_implanted') < float(C['STORED_INSULIN_FLOOR_AT_300K_BETA_IU']):
+        return _res('HOLD_STORED_INSULIN_L95_BELOW_PHYSIOLOGICAL_OR_MASS_FLOOR', False)
+    if upper95_fn('obs_stage7_proinsulin_to_cpeptide_molar_ratio') > float(C['PROINSULIN_TO_CPEPTIDE_CONTENT_MOLAR_MAX']):
+        return _res('HOLD_ELEVATED_PROINSULIN_TO_CPEPTIDE_CONTENT_RATIO', False)
+
+    u95_store_flat = upper95_fn('obs_stage7_stored_mature_insulin_iu_implanted')
+    max_lot_flat = validated_stage0['obs_stage7_stored_mature_insulin_max_lot_iu']
+    ceiling_iu = float(C['GATE0S_ABSOLUTE_STORED_INSULIN_CEILING_IU'])
+    if u95_store_flat > ceiling_iu or max_lot_flat > ceiling_iu:
+        g0s_ok, g0s_status = _check_scope_matched_gate0s_escalation()
+        if not g0s_ok:
+            return _res(
+                g0s_status,
+                False,
+                gate0s_escalation_required=True,
+                stored_insulin_u95_iu=round(u95_store_flat, 4),
+                stored_insulin_max_lot_iu=round(max_lot_flat, 4),
+            )
+        return _res(
+            'CLEARED_IIP0029_WITH_ESCALATED_SCOPE_MATCHED_GATE0S_REVIEW',
+            True,
+            gate0s_escalation_required=True,
+            gate0s_escalation_status=g0s_status,
+            stored_insulin_u95_iu=round(u95_store_flat, 4),
+            stored_insulin_max_lot_iu=round(max_lot_flat, 4),
+        )
+
+    return _res(
+        'CLEARED_IIP0029_TWOCLOCK_REPEATED_CHALLENGE_FLAT_PANEL',
+        True,
+        gate0s_escalation_required=False,
+        is_extended_s8_exposure=is_ext_flat,
+        stored_insulin_u95_iu=round(u95_store_flat, 4),
+        stored_insulin_max_lot_iu=round(max_lot_flat, 4),
+        proinsulin_to_cpeptide_marker_classification='EXPLORATORY_STAGE0_IN_VITRO_PROCESSING_MARKER_PENDING_CALIBRATION',
     )

@@ -18599,7 +18599,7 @@
             "passes_spatial_mean_diagnostic_15_and_5": true,
             "passes_unrounded_dual_band_min_face_15_and_core_5_iip_0025": false,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 7.248658087747211e-16
+            "rel_mass_balance_error": 4.3491948526483256e-16
           },
           "100um_1500ieq_45um_physical_collagen_135um_hydrogel_equiv": {
             "areal_loading_ieq_cm2": 1500.0,
@@ -18633,7 +18633,7 @@
             "passes_spatial_mean_diagnostic_15_and_5": false,
             "passes_unrounded_dual_band_min_face_15_and_core_5_iip_0025": false,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 1.3674418576312092e-13
+            "rel_mass_balance_error": 1.3659683211466926e-13
           },
           "80um_1500ieq_45um_physical_collagen_135um_hydrogel_equiv": {
             "areal_loading_ieq_cm2": 1500.0,
@@ -18667,7 +18667,7 @@
             "passes_spatial_mean_diagnostic_15_and_5": false,
             "passes_unrounded_dual_band_min_face_15_and_core_5_iip_0025": false,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 1.2789645724825419e-15
+            "rel_mass_balance_error": 1.4210717472028242e-15
           },
           "provenance_note": "Rule S6 baseline models 15.0 um physical fibrous collagen at D_capsule = D_gel_chronic / 3 (equivalent to 45.0 um chronic hydrogel resistance; 17.0804 mmHg harmonic-face spatial mean / 8.1635 mmHg core, while unrounded dual-band worst-face fv_harmonic_face_min_mmhg across nx in {40, 60, 80} is 12.7988 / 12.6776 / 13.0542 mmHg < 15.0 mmHg FAIL, reconciled by dose-matched 80 um clusters at 142.22 um square / 152.83 um hex pitch clearing 16.1611 / 16.1164 / 16.3162 mmHg no-film and 15.7101 / 15.9496 / 15.8598 mmHg 350-um barrier; IIP-0025; DEC-104). A true 45.0 um physical fibrous collagen capsule equals 135.0 um chronic-hydrogel-equivalent standoff (12.4414 mmHg harmonic-face / 4.0062 mmHg core FAIL on 100 um clusters), consistent with Playbook chronic capsule escalation (>30 um enforcing 80 um clusters [14.2371 / 8.6253 mmHg] or >50 um requiring omental revascularization). Montazeri 2016 (PMID:26970510) tested PVP/H2O2-PLGA microparticles with fibrin in diabetic mouse omentum and does not supply a fixed 45 um pouch capsule parameter."
         },
@@ -18704,7 +18704,7 @@
             "passes_spatial_mean_diagnostic_15_and_5": true,
             "passes_unrounded_dual_band_min_face_15_and_core_5_iip_0025": true,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 1.388128136629757e-13
+            "rel_mass_balance_error": 1.3867202987629922e-13
           },
           "dose_matched_80um_1500ieq_plus10pct_ocr_and_standoff": {
             "areal_loading_ieq_cm2": 1500.0,
@@ -18738,7 +18738,7 @@
             "passes_spatial_mean_diagnostic_15_and_5": true,
             "passes_unrounded_dual_band_min_face_15_and_core_5_iip_0025": false,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 3.8541445201359514e-15
+            "rel_mass_balance_error": 3.72567303613142e-15
           },
           "pitch_held_80um_768ieq_198p76um_square_213p58um_hex_pitch_48p8pct_dose_reduction": {
             "areal_loading_ieq_cm2": 768.0,
@@ -18772,7 +18772,7 @@
             "passes_spatial_mean_diagnostic_15_and_5": true,
             "passes_unrounded_dual_band_min_face_15_and_core_5_iip_0025": true,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 2.378104378509452e-15
+            "rel_mass_balance_error": 2.5179928713629497e-15
           }
         },
         "joint_plus10pct_100um_knife_edge_discretization_audit": {
@@ -18809,7 +18809,7 @@
             "passes_spatial_mean_diagnostic_15_and_5": true,
             "passes_unrounded_dual_band_min_face_15_and_core_5_iip_0025": false,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 6.636968470449225e-16
+            "rel_mass_balance_error": 7.964362164539071e-16
           },
           "half_voxel_shifted_nx40_nz70": {
             "areal_loading_ieq_cm2": 1500.0,
@@ -18843,7 +18843,7 @@
             "passes_spatial_mean_diagnostic_15_and_5": true,
             "passes_unrounded_dual_band_min_face_15_and_core_5_iip_0025": false,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 1.3273034274973586e-16
+            "rel_mass_balance_error": 0.0
           },
           "finer_nx60_nz105_reference": {
             "areal_loading_ieq_cm2": 1500.0,
@@ -19778,7 +19778,7 @@
             "passes_spatial_mean_diagnostic_15_and_5": true,
             "passes_unrounded_dual_band_min_face_15_and_core_5_iip_0025": false,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 7.248658087747211e-16
+            "rel_mass_balance_error": 4.3491948526483256e-16
           },
           "expanded_390um_2x20um_film_2x125um_bands_100um_cluster": {
             "areal_loading_ieq_cm2": 1500.0,
@@ -19812,7 +19812,7 @@
             "passes_spatial_mean_diagnostic_15_and_5": true,
             "passes_unrounded_dual_band_min_face_15_and_core_5_iip_0025": false,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 1.59411955951568e-15
+            "rel_mass_balance_error": 1.4491995995597093e-15
           },
           "fixed_350um_2x20um_film_compressed_2x105um_bands_100um_cluster": {
             "areal_loading_ieq_cm2": 1500.0,
@@ -19846,7 +19846,7 @@
             "passes_spatial_mean_diagnostic_15_and_5": true,
             "passes_unrounded_dual_band_min_face_15_and_core_5_iip_0025": false,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 1.3050768151966033e-15
+            "rel_mass_balance_error": 1.3050768151966031e-15
           },
           "fixed_350um_2x20um_film_compressed_2x105um_bands_80um_cluster": {
             "areal_loading_ieq_cm2": 1500.0,
@@ -19880,7 +19880,7 @@
             "passes_spatial_mean_diagnostic_15_and_5": true,
             "passes_unrounded_dual_band_min_face_15_and_core_5_iip_0025": true,
             "voxel_frac_below_0p5mmhg_pct": 0.0,
-            "rel_mass_balance_error": 1.8066617195708138e-13
+            "rel_mass_balance_error": 1.806661719570814e-13
           },
           "layout_b_119um_lamina_geometry_exclusion_note": "Inserting 2 x 20 um barrier films inside a fixed 350 um slab around Layout B's 119 um lamina leaves only 95.5 um per cell band, physically excluding undeformed 100 um spheres."
         },
@@ -25226,8 +25226,103 @@
             }
           }
         },
-        "pivot_rule_S6": "Hold Stage-1 progression if Gate 0M-maturity fails; extend Stage-7 maturation culture (+7-14 days thyroid/TGFb-inhibitor/aurora-kinase-inhibitor) and re-verify before device loading."
+        "pivot_rule_S8": "Hold Stage-1 progression if Gate 0M-maturity (S8_SC_Islet_Paracrine_Maturity_Gate_0M) fails; extend ALK5i-free Stage-7 maturation (+1-3 weeks; Balboa et al. 2022 PMID:35241836; Barsby et al. 2022 PMID:36136756; zero terminal ALK5i II / TGFb-inhibitor continuation per Velazco-Cruz et al. 2019 PMID:30661993 Fig. 5F; retaining 10 nM T3 + 1 mM NAC and logged ZM447439 regimen [0.0 uM S7w0-only vs 0.45-0.55 uM continuous endocrine Stage 7] with analytical LC-MS/MS washout <= LLOQ <= 0.005 uM across >= 3 washes plus pre-co-assembly iEC/pericyte vascular function verification) and re-verify two-clock two-pulse Readout 2, Gate 0M, and stored-insulin conservation before device loading (IIP-0029; DEC-108).",
+        "legacy_pivot_rule_key_reconciled_from": "pivot_rule_S6"
       }
+    },
+    "exploratory_two_clock_granule_store_sensitivity_audit_iip_0029": {
+      "decision_id": "DEC-108",
+      "contribution_id": "IIP-0029",
+      "evidence_status": "EXPLORATORY_OPT_IN_SENSITIVITY_COMPARATOR_NOT_A_RELEASE_GATE",
+      "default_mode_a_unchanged": true,
+      "mode_a_default_reference_parity": {
+        "lead_60_30_10_mode_a_tir_pct": 100.0,
+        "lead_60_30_10_mode_a_min_glucose_mM": 4.59,
+        "infinite_store_mode_b_v2_tir_pct": 100.0,
+        "infinite_store_mode_b_v2_min_glucose_mM": 4.5849,
+        "live_mode_a_5min_gap_peak2_over_peak1_pct": 96.7284,
+        "live_mode_a_zero_sst_5min_gap_peak2_over_peak1_pct": 100.0055
+      },
+      "real_scipy_dop853_multi_state_verification": {
+        "scipy_available": true,
+        "scipy_version": "1.18.1",
+        "verified": true,
+        "dop853_0_to_600min_max_abs_g_diff_mM": 1.7265474649974522e-07,
+        "dop853_0_to_1440min_max_abs_g_diff_mM": 1.7265474649974522e-07,
+        "dop853_0_to_1440min_max_abs_qp_diff_iu": 1.62900377076447e-08,
+        "dop853_0_to_1440min_max_abs_qr_diff_iu": 2.6103251116182946e-08,
+        "dop853_0_to_1440min_max_abs_cum_prehep_diff_iu": 3.976139950623292e-08
+      },
+      "positivity_mass_conservation_and_biosyn_audit": {
+        "c0_0p25_iu_min_qp_iu": 7.48914631279578e-07,
+        "c0_0p25_iu_relative_mass_error": 1.6484591469634324e-12,
+        "c0_0p25_iu_m_sec_range": [
+          0.029557,
+          0.60038
+        ],
+        "small_tau_chamber_0p01_min_finite_and_positive": true,
+        "small_tau_vasc_0p05_min_max_ip": 66.6859,
+        "fasting_12h_store_drift_iu": 0.0,
+        "hypoglycemia_2p0mM_biosynthesis_iu_per_min": 0.0
+      },
+      "effluent_shutoff_and_short_interval_censoring_audit": {
+        "tau_chamber_0p35_min_t50_min": 1.202,
+        "tau_chamber_0p35_min_t90_min": 2.3316,
+        "tau_chamber_0p60_min_2min_low_t90_censored": null,
+        "tau_chamber_0p60_min_60min_low_t90_min": 3.148,
+        "instantaneous_stepdown_drop_pct": 0.0
+      },
+      "hepatic_first_pass_extraction_sensitivity_sweep": {
+        "ownership_note": "First-pass hepatic extraction f_hepatic is owned solely by exploratory Mode B v2 to debit total pre-hepatic secretion from intracellular stores while delivering (1 - f_hepatic) systemically; it is strictly distinct from Layer 4's 13-state f_sys_ins insulin-action scaling and is never double-counted. Direct human hepatic-vein pulsatile extraction (Meier et al. 2005 PMID:15919785) and canine portal-vs-peripheral studies (Edgerton et al. 2019 PMID:30830873) provide route context only and do not validate a 40-60% extraction range for this graft.",
+        "f_hepatic_0p00_systemic_iu_day": 21.75,
+        "f_hepatic_0p40_prehepatic_iu_day": 33.41,
+        "f_hepatic_0p50_prehepatic_iu_day": 38.54,
+        "f_hepatic_0p50_systemic_iu_day": 19.27,
+        "f_hepatic_0p60_prehepatic_iu_day": 45.52
+      },
+      "ceteris_paribus_isolated_tau_refill_meal_sensitivity": {
+        "c0_fixed_iu": 56.88,
+        "f_rrp_fixed": 0.0045,
+        "gamma_amp_fixed": 0.08,
+        "f_hepatic_fixed": 0.5,
+        "canonical_5h_7h_250g_tir_tau16p5_pct": 89.53,
+        "canonical_5h_7h_250g_tir_tau45p0_pct": 74.81,
+        "realistic_4h_4h_250g_tir_tau16p5_pct": 93.03,
+        "realistic_4h_4h_250g_tir_tau45p0_pct": 78.95
+      },
+      "beta_fraction_stored_insulin_scaling_note": {
+        "modeled_60_30_10_500k_ieq_range_iu": [
+          41.5,
+          138.3
+        ],
+        "unadjusted_70_20_10_500k_ieq_equal_per_beta_content_range_iu": [
+          48.42,
+          161.35
+        ],
+        "gate0s_escalation_trigger_iu": 138.3,
+        "caveat": "Arithmetic scaling assumes identical total IEQ and identical mature insulin content per beta-equivalent (Perez-Frances et al. 2024 PMID:39169271 did not measure this recipe). Stage-0 therefore measures intact mature insulin directly at the actual final dose and escalates to full scope-matched Gate 0S atomic-ledger review whenever U95_t(stored_insulin_iu) > 138.3 IU or max_lot > 138.3 IU."
+      },
+      "local_4schedule_jacobian_and_fim_conditioning": {
+        "log_parameter_jacobian_condition_number": 336.57,
+        "log_parameter_fim_condition_number": 113276.3,
+        "identifiability_caveat": "Local 4-summary FIM ill-conditioning (which depends on parameter scaling) and cross-protocol validation confirm that uncalibrated ODE parameter inversion cannot replace empirical Stage-0 two-pulse Readout 2, direct inert-tracer tau_chamber verification, and mature-insulin inventory measurement."
+      },
+      "primary_citations": [
+        "PMID:30661993",
+        "PMID:35241836",
+        "PMID:36136756",
+        "PMID:31068696",
+        "PMID:30710150",
+        "PMID:27163171",
+        "PMID:30931946",
+        "PMID:25303535",
+        "PMID:12879249",
+        "PMID:33737253",
+        "PMID:31177185",
+        "PMID:39169271",
+        "PMID:15919785",
+        "PMID:30830873"
+      ]
     }
   }
 }

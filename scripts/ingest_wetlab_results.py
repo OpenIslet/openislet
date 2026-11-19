@@ -702,6 +702,13 @@ STAGE0_PERSISTED_BOOLEAN_FLAGS: tuple[str, ...] = (
     "cxcl10_insert_matched_comparator_control_verified",
     "cxcl10_resting_expression_below_loq_confirmed",
     "bio06_itr_rna_origin_attribution_verified",
+    "require_full_iip0029_twoclock_maturation_panel",
+    "obs_alk5i_free_maturation_applied",
+    "terminal_alk5i_tgfb_inhibitor_continued",
+    "stage7_t3_10nM_and_nac_1mM_retained",
+    "zm447439_washout_verified_pre_iec",
+    "pre_coassembly_iec_vascular_function_verified",
+    "readout2_both_40_and_100mmhg_tracer_aligned_verified",
 )
 
 HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS: tuple[str, ...] = (
@@ -778,6 +785,15 @@ ALLOWED_ORDERED_BATCH_LEDGER_KEYS: frozenset[str] = frozenset({
     "sister_assembly_id",
     "cxcl10_tss_donor_id",
     "cxcl10_tss_transcription_unit_id",
+    "construct_sha256",
+    "post_sort_endocrine_zm447439_regimen",
+    "stage7_start_utc",
+    "sort_reaggregation_utc",
+    "assay_harvest_utc",
+    "registered_mixture_id",
+    "locked_analysis_plan_id",
+    "gate0s_elevated_store_scope_matched_device_lot_id",
+    "iip0029_twoclock_record",
     *HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS,
 })
 
@@ -3302,10 +3318,13 @@ def ingest_stage0_research_or_wetlab_batch(
             "product_variant_id": scope.get("product_variant_id"),
             "lot_id": scope.get("lot_id", scope.get("current_lot_id")),
             "campaign_id": scope.get("campaign_id", scope.get("assay_campaign_id")),
+            **({"construct_sha256": scope["construct_sha256"]} if "construct_sha256" in scope and scope["construct_sha256"] is not None else {}),
+            **({"device_assembly_id": scope["device_assembly_id"]} if "device_assembly_id" in scope and scope["device_assembly_id"] is not None else {}),
             **({"schema_era": scope["schema_era"]} if "schema_era" in scope else {}),
             **({"iip0026_schema_era": scope["iip0026_schema_era"]} if "iip0026_schema_era" in scope else {}),
             **extracted_meas,
             **filtered_mol,
+            **({"iip0029_twoclock_record": doc["iip0029_twoclock_record"]} if "iip0029_twoclock_record" in doc and doc["iip0029_twoclock_record"] is not None else {}),
             **override_attempt,
         }
     else:
@@ -3400,16 +3419,30 @@ def replay_stage0_chronological_batches(
         "product_variant_id": s_pid,
         "lot_id": s_lot,
         "campaign_id": s_camp,
+        **({"construct_sha256": first_scope["construct_sha256"]} if "construct_sha256" in first_scope and first_scope["construct_sha256"] is not None else {}),
+        **({"device_assembly_id": first_scope["device_assembly_id"]} if "device_assembly_id" in first_scope and first_scope["device_assembly_id"] is not None else {}),
         **({"schema_era": first_scope["schema_era"]} if "schema_era" in first_scope else {}),
         **({"iip0026_schema_era": first_scope["iip0026_schema_era"]} if "iip0026_schema_era" in first_scope else {}),
     }
     latched_adverse_reasons: list[str] = []
     latched_hard_stop = False
     latched_switch_decisions: Dict[str, Any] | None = None
+    locked_iip0029_source_fp: tuple[Any, ...] | None = None
+    locked_iip0029_flat_clocks: Dict[str, Any] = {}
+    latched_iip0029_store_gt_138p3 = False
+    latched_iip0029_alk5i_continued = False
 
     for rec in ordered:
         sc = rec.get("scope") or {}
         mol = rec.get("iip0026_molecular_observations") or {}
+        if "construct_sha256" in sc and sc["construct_sha256"] is not None:
+            if "construct_sha256" in accum and accum["construct_sha256"] != sc["construct_sha256"]:
+                if "FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED" not in latched_adverse_reasons:
+                    latched_adverse_reasons.append("FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED")
+            else:
+                accum["construct_sha256"] = sc["construct_sha256"]
+        if "device_assembly_id" in sc and sc["device_assembly_id"] is not None:
+            accum["device_assembly_id"] = sc["device_assembly_id"]
         for k, v in {**rec, **sc, **mol}.items():
             if (k in forbidden_ovr) or str(k).endswith("_lifecycle_state") or str(k).endswith("_execution_supported"):
                 accum[k] = v
@@ -3419,7 +3452,37 @@ def replay_stage0_chronological_batches(
         for mk, mv in mol.items():
             if (mk in allowed_mol or mk in bool_flags) and mv is not None:
                 accum[mk] = mv
+        rec_29_in = rec.get("iip0029_twoclock_record", mol.get("iip0029_twoclock_record"))
+        if rec_29_in is not None:
+            fp_now = wc_helper._extract_iip0029_source_fingerprint(rec_29_in)
+            if locked_iip0029_source_fp is not None and fp_now != locked_iip0029_source_fp:
+                if "FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED" not in latched_adverse_reasons:
+                    latched_adverse_reasons.append("FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED")
+            else:
+                locked_iip0029_source_fp = fp_now
+            accum["iip0029_twoclock_record"] = rec_29_in
+        for clk_k in ("stage7_start_utc", "sort_reaggregation_utc", "assay_harvest_utc", "locked_analysis_plan_id"):
+            clk_v = accum.get(clk_k)
+            if clk_v is not None:
+                if clk_k in locked_iip0029_flat_clocks and locked_iip0029_flat_clocks[clk_k] != clk_v:
+                    if "FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED" not in latched_adverse_reasons:
+                        latched_adverse_reasons.append("FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED")
+                else:
+                    locked_iip0029_flat_clocks[clk_k] = clk_v
+        if accum.get("terminal_alk5i_tgfb_inhibitor_continued") is True:
+            latched_iip0029_alk5i_continued = True
+        elif latched_iip0029_alk5i_continued and accum.get("terminal_alk5i_tgfb_inhibitor_continued") is False:
+            if "FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED" not in latched_adverse_reasons:
+                latched_adverse_reasons.append("FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED")
+
         step_eval = wc_helper.evaluate_stage0_research_and_molecular_guardrails(dict(accum), root=root)
+        step_29 = step_eval.get("iip0029_twoclock_maturation_and_repeated_challenge_evaluation")
+        if isinstance(step_29, dict):
+            if step_29.get("gate0s_escalation_required") is True:
+                latched_iip0029_store_gt_138p3 = True
+            elif latched_iip0029_store_gt_138p3 and step_29.get("gate0s_escalation_required") is False:
+                if "FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED" not in latched_adverse_reasons:
+                    latched_adverse_reasons.append("FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED")
         if step_eval["overall_status"] == "HARD_SAFETY_STOP_REJECTED":
             latched_hard_stop = True
             latched_switch_decisions = dict(step_eval["switch_decisions"])

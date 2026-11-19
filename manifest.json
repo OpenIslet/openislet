@@ -111,8 +111,8 @@
     "extracted_thresholds_total": 5,
     "extracted_failure_modes_total": 724,
     "graveyard_entries_total": 10,
-    "graveyard_offgrid_guardrails_total": 13,
-    "graveyard_public_cards_total": 23,
+    "graveyard_offgrid_guardrails_total": 14,
+    "graveyard_public_cards_total": 24,
     "omics_gnomad_raw_files_total": 34,
     "candidate_stacks_evaluated": 2160,
     "graph_target_nodes": 40,
@@ -255,8 +255,8 @@
       "bytes": 1157
     },
     "ISLET-1-BLUEPRINT.md": {
-      "sha256": "594f409177eecbb213f1005f9c31c6f1d03cf47e2b150d85360e59c66ca8c769",
-      "bytes": 226278
+      "sha256": "6297dd3ed0db841d5031beb3eb3a0e8f780261175e271cd812431993df6d169e",
+      "bytes": 229410
     },
     "README.md": {
       "sha256": "91fbca4540ecc81dcaebaed2a67a7fac723bd6ea0e6aa87b5761a094c4c37073",
@@ -283,16 +283,16 @@
       "bytes": 20334
     },
     "docs/PROJECT-DECISIONS-LOG.md": {
-      "sha256": "2530e77e936b352811da57e6f90ee56462c893fcc069207a1c7e7430f07cc9f4",
-      "bytes": 571966
+      "sha256": "4da20be71dadfffb6632e822d7b967718ad35209ea298948d0d7c438e242f335",
+      "bytes": 579313
     },
     "docs/OPENISLET-2026-2030-MASTER-TIMELINE.md": {
       "sha256": "9c42a296f5aab5cf8d75361505cf8cfc42ebd3e5ac1fc83816a9d5a4ca395305",
       "bytes": 32751
     },
     "docs/STAGE-0-EXECUTION-PLAYBOOK.md": {
-      "sha256": "421459aa432b6ea1c82d0ee9259b5dcb2cf2ee3c0a8d7589895f1f1d23508240",
-      "bytes": 196779
+      "sha256": "23b6992016c38fb8caf4ba3d39c485af7d98f9a714ade11e3e1ac9bd4c3e20f0",
+      "bytes": 204773
     },
     "data/raw/corpus_manifest_all_sources.jsonl": {
       "sha256": "119ecbd3be2ccb79a2f38ac7feca8713ffb7c6c5e92165078e2722331b9e0536",
@@ -307,8 +307,8 @@
       "bytes": 11990
     },
     "data/raw/doc_citation_metadata_cache.json": {
-      "sha256": "24302b48d9aab392cd34ea233f3f68889cc857d90a6acf8b57c3c2901cfac1cc",
-      "bytes": 106681
+      "sha256": "4812c475c57af3a90c3b5ae613db3c0e3ad8e0cf3681f3d62bbd8ed8af9ce36e",
+      "bytes": 109315
     },
     "data/raw/layer2_genomic_and_jaspar_reference.json": {
       "sha256": "5a7d0da91936e5be815b5cf8844b087b8fcbe8d02f837db806eccadee882737d",
@@ -355,8 +355,8 @@
       "bytes": 10303
     },
     "data/graveyard/idea_graveyard_v0.5.json": {
-      "sha256": "4425ecafa65eef3e4ec0f558f668a40ebbd56c6c0f9449f000545d1f76346a1e",
-      "bytes": 58321
+      "sha256": "d40a3012fdb2b118153d81f2f8278e2c53d3a133028f2d0bafc3bfdef5162a85",
+      "bytes": 61472
     },
     "data/omics/target_prior_table.json": {
       "sha256": "a55269bdb1ef8f7a3b0c3b3f87c27cd7681a0ddd921827c9275a21bcbdb8a3e5",
@@ -384,12 +384,12 @@
       "bytes": 581846
     },
     "data/extracted/islet1_candidate_stack_rankings.json": {
-      "sha256": "82989771f6aeab2791efca908cc009ba640588d57a09efe223d105e75f713e1f",
-      "bytes": 16922166
+      "sha256": "0f188a8f94b0dbb5cfb0a6fdb6fd9353ac49fd87e1e9558b25f12b6832f5e7d1",
+      "bytes": 16922860
     },
     "data/extracted/islet1_stack_ranking_v0.5.json": {
-      "sha256": "82989771f6aeab2791efca908cc009ba640588d57a09efe223d105e75f713e1f",
-      "bytes": 16922166
+      "sha256": "0f188a8f94b0dbb5cfb0a6fdb6fd9353ac49fd87e1e9558b25f12b6832f5e7d1",
+      "bytes": 16922860
     },
     "data/extracted/islet1_combinatorial_pareto_and_ladder_v0.8.0.json": {
       "sha256": "591ddeb9a706c0bc95fc509765b512aadad8a403287a796e63dd52e7db548575",
@@ -415,8 +415,8 @@
       "bytes": 340830
     },
     "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": {
-      "sha256": "3c4552d16bf93d84ad316f2c6326664634556e8ed07cb6c9b1427c67ea5e0d2f",
-      "bytes": 1381480
+      "sha256": "cf88d5bbb1c0e1de9795a1c187fbddec1ce7b27f8af27b21e0e82540b57aeebf",
+      "bytes": 1387012
     },
     "data/extracted/layer5_personalized_patient_and_crispr_atlas.json": {
       "sha256": "61c571785bbd22d95c24e92cc06f6040cefbfbe2c76a2adfe77f0de2a58677c6",
@@ -435,8 +435,8 @@
       "bytes": 24439
     },
     "data/protocols/hip_core_fractional_factorial_v0.6.2.json": {
-      "sha256": "7a3aead410a1c9a10ac4fb56b78a1775c73755aed90c1fff4861eb3b94595741",
-      "bytes": 251016
+      "sha256": "05405fb1194b60de66121a8dbd914155823a3e4365a0a637591a01bc44f79ea5",
+      "bytes": 251447
     },
     "data/structures/AF-P10144-F1-metadata.json": {
       "sha256": "a3aa9f96665877f90a573a938c6a8edae6fc9661a206efdff0f0a1d09bc83264",
@@ -551,8 +551,8 @@
       "bytes": 4935
     },
     "scripts/wetlab_contract.py": {
-      "sha256": "4f9765dc4a627ba47ae7cf9d57abbd27def3cd0000b856a9511fd57d3cdfdaa2",
-      "bytes": 604144
+      "sha256": "b566f68654b32224e4e8c1fc4a4d0df3cffaf36a676ccf89efe608db7ce8ff67",
+      "bytes": 677976
     },
     "scripts/render_documentation.py": {
       "sha256": "78a215056730e6bc84839e4a2fc07ea11349e66706a989a3d8f0e72e8b47328e",
@@ -563,16 +563,16 @@
       "bytes": 70520
     },
     "data/protocols/wetlab_endpoint_contract_v0.8.0.json": {
-      "sha256": "a7783dc72b8c58b45fb3a0b91d26cb548dc2d9ee7e58cf0348757c9443081989",
-      "bytes": 145661
+      "sha256": "066d1839a062b1b2fe0af30a8c58080b3c25d80b6b6c51f08a9249c300955886",
+      "bytes": 151496
     },
     "data/protocols/stage0_decision_tree_v1.json": {
-      "sha256": "0d483f7dd59f533034b759c52b168ea3bf1f67744388838bf2f0034819c7bc78",
-      "bytes": 73713
+      "sha256": "b749c29a15c741173ad0d35a129bf022a58674cb47afb6c12b285f41cc9a7844",
+      "bytes": 79796
     },
     "data/extracted/documentation_facts_v0.8.0.json": {
-      "sha256": "3cb486cfbb5cdaa2382435e58a1861520e5fc30d2762fc270e98b7fe85c25e39",
-      "bytes": 1600143
+      "sha256": "9f8a07032fc6e9700f7e190aa20ef3794482d4c051e774e128c28b15d5859fdc",
+      "bytes": 1600574
     },
     "tests/test_preastra_layer1.py": {
       "sha256": "22003c36465438faacdaf2630f01d3b902a72556957cf0113775b1303ec79739",
@@ -659,12 +659,12 @@
       "bytes": 22891
     },
     "scripts/ingest_wetlab_results.py": {
-      "sha256": "bb1e0da22b6b0efa317c75aa6af98e4deeb1ae0f480340ab3ce0219aeb4e7d5b",
-      "bytes": 192126
+      "sha256": "d4d01208ef7c4ab9708bdee43a4dbb16e601860e383c08c1860ab355ce46bbac",
+      "bytes": 196729
     },
     "scripts/rank_islet1_stacks.py": {
-      "sha256": "27a98dc48e14517ce139ada59f068d3d8ce4d08f64544100ac4409780eac9d9d",
-      "bytes": 552895
+      "sha256": "49e85c2f8c009367d87f85e93d1b071f1e557ea43d4184d41eceab256856bb50",
+      "bytes": 553589
     },
     "scripts/run_layer2_perturbation_and_regulatory_plane.py": {
       "sha256": "e33621e8014c951452b7f1ef28980c2df25a3cc897359481cc3233b3106af501",
@@ -675,8 +675,8 @@
       "bytes": 400050
     },
     "scripts/run_layer4_tissue_and_metabolic_twin.py": {
-      "sha256": "78da531e947b8896d5b0add429f811f1785b191e7c309a0ab1fc44aad26e60ff",
-      "bytes": 657472
+      "sha256": "20f0cdaf01593c54be1a0e59a5f6fda2a14de78b32cda127d6a921a0f03d5871",
+      "bytes": 706394
     },
     "scripts/run_layer5_personalized_patient_compiler.py": {
       "sha256": "0195c46cd10d8399a2f0546bac32e502c445ff3987bfeb3dd00f9dfa85a14b18",
@@ -687,8 +687,8 @@
       "bytes": 30449
     },
     "tests/test_adversarial_acceptance.py": {
-      "sha256": "ed1ebc0c9e85bb11f1542f556ec48e6dbcd24ea6404cfc9a95f3468803bb48f7",
-      "bytes": 71852
+      "sha256": "ea78ec4228991edc76d429475664d92e9bba37bcbe6b7de1c3bfb1404ca6dbd8",
+      "bytes": 71862
     },
     "tests/test_citations_resolve.py": {
       "sha256": "fc661436de871d2901558e6bafde596168a2df3e338ecb43b2c634e53c0997b1",
@@ -6149,8 +6149,8 @@
       "bytes": 40897
     },
     "tests/test_round3_supporting_boundaries.py": {
-      "sha256": "54e0be05162f9bfe8da57af1fac9c0c5700a953ec1db3e2f3e8796b4c54c5a4f",
-      "bytes": 471132
+      "sha256": "f658f69088e11b9ade7b6db89acce490df320bbcc7675dae64e8584c47868c30",
+      "bytes": 500434
     }
   },
   "public_export_file_inventory": [

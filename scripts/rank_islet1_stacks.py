@@ -174,7 +174,7 @@ COMPLETE_GATE_COEFFICIENT_REGISTRY = {
     ),
     "Gate1_Maturation_GSIS_and_Paracrine": {
         "base_intercept": {"logit_value": 0.40, "expression": "0.08 * 5.0", "rationale": "Baseline hPSC-islet Stage 6/7 endocrine maturation prior"},
-        "NICHE_TRIHORMONAL_120UM_MVF_CAO2": {"logit_value": 0.45, "expression": "0.08 * 5.625 + _pdelta('stage7_trihormonal_120um_mvf_cao2_niche_prior', 0.45)", "rationale": "Stage 7 ZM+NAC+T3 tri-hormonal maturation + <=120 um diameter (PMID:35241836)"},
+        "NICHE_TRIHORMONAL_120UM_MVF_CAO2": {"logit_value": 0.45, "expression": "0.08 * 5.625 + _pdelta('stage7_trihormonal_120um_mvf_cao2_niche_prior', 0.45)", "rationale": "ALK5i-free Stage 7 10 nM T3 + 1 mM NAC + logged ZM447439 (Balboa 0.5 uM endocrine vs S7w0-only covariate, analytical LC-MS/MS <= 0.005 uM pre-iEC washout + vascular function verification) tri-hormonal maturation + <=120 um diameter (Balboa et al. 2022 PMID:35241836; Barsby et al. 2022 PMID:36136756; Velazco-Cruz et al. 2019 PMID:30661993)"},
         "NICHE_UNEDITED_MACRODEVICE_ENCAPSULATION": {"logit_value": -0.45, "expression": "-0.08 * 5.625", "rationale": "Diffusional lag and central hypoxia in cell-impermeable macrodevice"},
         "ALLO_HLA_C_RETAINED_SUPERDONOR_PLUS_TYK2_KO": {"logit_value": -0.32, "expression": "-0.08 * 4.0 + _pdelta('tyk2_stage0_differentiation_yield_penalty', -0.32)", "rationale": "Clonal TYK2-/- compromises Stage 0->7 endocrine progenitor emergence by ~40-60% (PMID:36289205)"},
         "AUTO_FULL_KO_G6PC2_SLC30A8_PLUS_BASE_INS_GAD2_IAPP_CXADR": {"logit_value": -0.55, "expression": "-0.08 * 6.875", "rationale": "G6PC2-/- fasting glucose set-point downshift + high-pLI PTPN2/GAD2 disruption (PMID:32569842, PMID:32432213)"},
@@ -6520,7 +6520,7 @@ def main() -> None:
             ],
             "dosing_unit": (
                 "Two-Step Lineage Purification & Tri-Hormonal Re-Aggregation Workflow: "
-                "Step 1 (Live-Cell Surface Sorting): Stage 7 SC-islet cultures (after Stage 7 week 0 [S7w0] Aurora kinase inhibitor ZM447439 pulse to suppress off-target enterochromaffin proliferation; Balboa et al. 2022 PMID:35241836) "
+                "Step 1 (Live-Cell Surface Sorting): ALK5i-free Stage 7 SC-islet cultures (0 uM terminal ALK5i II per Velazco-Cruz et al. 2019 PMID:30661993; retaining 10 nM T3 + 1 mM NAC with logged Aurora kinase inhibitor ZM447439 regimen—distinguishing Balboa et al. 2022 PMID:35241836 / Barsby et al. 2022 PMID:36136756 continuous 0-42 d 0.5 uM endocrine Stage-7 supplementation from OpenIslet's S7w0-only 0.0 uM post-sort covariate—and analytical LC-MS/MS <= 0.005 uM washout across >= 3 washes plus vascular function verification prior to iEC/pericyte co-assembly to suppress off-target enterochromaffin proliferation without arresting endothelial mitosis) "
                 "are dissociated and purified without fixation/permeabilization via live-cell surface MACS/FACS into beta-like cells (CD49a+/ITGA1+ live-cell enrichment per Veres et al. 2019 Nature PMID:31068696, which achieves <=80% beta-cell purity with <5% enterochromaffin cells, "
                 "co-evaluated with adult beta-cell ectonucleotidase NTPDase3+/ENTPD3+ per Saunders et al. 2019 Cell Metab PMID:30449685 and CD9- negative selection per Li et al. 2020 PMID:33096048), "
                 "alpha-like cells (CD26+/DPP4+ / CD49a-, excluding CD49a+ beta and polyhormonal cells, validated by intracellular GCG+ QC aliquot), and delta-like cells (validated by intracellular SST+ QC aliquot). "
