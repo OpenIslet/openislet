@@ -32,6 +32,7 @@ import sys
 import uuid
 import unicodedata
 from contextlib import contextmanager
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
@@ -197,7 +198,14 @@ def loads_strict_json(raw_text: str) -> Any:
     def _reject_bad_const(c: str) -> Any:
         raise ValueError(f"Non-finite JSON constant {c!r} is prohibited")
 
-    return json.loads(raw_text, object_pairs_hook=reject_duplicate_json_keys, parse_constant=_reject_bad_const)
+    def _finite_float(raw: str) -> float:
+        value = float(raw)
+        if not math.isfinite(value):
+            raise ValueError("JSON number exceeds the finite floating-point range")
+        return value
+
+    return json.loads(raw_text, object_pairs_hook=reject_duplicate_json_keys,
+                      parse_constant=_reject_bad_const, parse_float=_finite_float)
 
 
 def _require_finite_float(val: Any, name: str) -> float:
@@ -709,6 +717,18 @@ STAGE0_PERSISTED_BOOLEAN_FLAGS: tuple[str, ...] = (
     "zm447439_washout_verified_pre_iec",
     "pre_coassembly_iec_vascular_function_verified",
     "readout2_both_40_and_100mmhg_tracer_aligned_verified",
+    "require_full_iip0031_locus2_and_tier6b_panel",
+    "ciita_ki_allele_informative_transcript_recovery_verified",
+    "ciita_ko_allele_informative_transcript_recovery_verified",
+    "ciita_cis_sentinels_socs1_dexi_clec16a_tost_verified",
+    "lineage_matched_wt_stage7_hla_dr_dp_dq_inducibility_verified",
+    "l2_v3_same_background_intronless_control_linked_to_cargo",
+    "l2_v3_same_background_scramble_control_linked_to_cargo",
+    "phasing_verified",
+    "cis_verified",
+    "wt_inducibility_verified",
+    "rnai_attribution_verified",
+    "obs_l2_v3_chr16_ha_wgs_pass",
 )
 
 HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS: tuple[str, ...] = (
@@ -794,6 +814,17 @@ ALLOWED_ORDERED_BATCH_LEDGER_KEYS: frozenset[str] = frozenset({
     "locked_analysis_plan_id",
     "gate0s_elevated_store_scope_matched_device_lot_id",
     "iip0029_twoclock_record",
+    "background_id",
+    "mcb_id",
+    "l2_v3_donor_id",
+    "donor_id",
+    "sample_id",
+    "sample_unit_id",
+    "scope_type",
+    "tier6b_presort_lineage_panel",
+    "tier6b_clonogenic_risk_unit",
+    "tier6b_sorted_lot_observations",
+    "iip0031_locus2_record",
     *HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS,
 })
 
@@ -1477,6 +1508,7 @@ def _validate_prior_posterior_report(
                 "full_5endpoint_s9_panel_complete",
                 "s9_5endpoint_er_safety_panel_complete",
                 "s9_causal_failed_categories",
+                "s9_frequency_assay_holds",
                 "s9_panel_completeness_tier",
                 "lot_release_readiness_tier",
                 "safety_kill_s9_triggered",
@@ -1496,6 +1528,9 @@ def _validate_prior_posterior_report(
                 "pivotal_combined_stress_coupon_gate",
                 "prior_s9_safety_stop_cleared_after_investigation",
                 "zero_event_proportion_missing_denominator_or_explicit_se",
+                "iip0031_locus2_and_tier6b_evaluation",
+                "s9_point_estimate_fallback_se_policy",
+                "s9_se_imputed_endpoints",
             }
             unknown_stage0_eval_keys = sorted(set(prior_stage0_eval.keys()) - allowed_stage0_eval_keys)
             if unknown_stage0_eval_keys:
@@ -3245,21 +3280,144 @@ def _load_contract_helper_iip0026(root: Path | str | None = None) -> Any:
     return _MEASUREMENT_CONTRACT_MODULE
 
 
+def _nonfinite_stage0_measurement_keys(measurements: dict) -> set:
+    """Include integers and floats that cannot be represented finitely by the measurement normalizer."""
+    out = set()
+    for key, value in measurements.items():
+        if type(value) in (int, float):
+            try:
+                if not (-sys.float_info.max <= value <= sys.float_info.max):
+                    out.add(key)
+            except (OverflowError, TypeError):
+                out.add(key)
+    return out
+
+
+def _conflicting_stage0_batch_scope(record: dict, contract: Any, root_path: Path) -> bool:
+    """A structured scope must agree with provenance aliases on the envelope."""
+    scope_obj = record.get("scope")
+    scope_dict = scope_obj if isinstance(scope_obj, dict) else {}
+    for names in (("product_variant_id",), ("lot_id", "current_lot_id"), ("campaign_id", "assay_campaign_id")):
+        values = [container[key] for container in (record, scope_dict)
+                  for key in names if key in container]
+        if len(values) < 2 or all(value == values[0] for value in values):
+            continue
+        if names == ("product_variant_id",) and all(isinstance(value, str) for value in values):
+            canonical = {contract._canonicalize_product_id_iip0031(value, root_path)[0] or value for value in values}
+            if len(canonical) == 1:
+                continue
+        return True
+    return False
+
+
+def _sanitize_stage0_envelope_iip0031(doc: Dict[str, Any]) -> Tuple[Dict[str, Any], List[str], bool]:
+    """
+    Isolate malformed envelope container blocks and non-finite/oversized scalar entries without
+    suppressing independently attributable safety stops (S9, Tier 6B, Rule S11).
+    """
+    bad_struct_names = [
+        name
+        for name in ("scope", "measurements", "iip0026_molecular_observations")
+        if name in doc and not isinstance(doc[name], dict)
+    ]
+    top_nf = _nonfinite_stage0_measurement_keys(doc)
+    had_nonfinite = bool(top_nf)
+    sanitized: Dict[str, Any] = {
+        k: v
+        for k, v in doc.items()
+        if k not in bad_struct_names and k not in top_nf
+    }
+    for ctr_name in ("scope", "measurements", "iip0026_molecular_observations"):
+        if ctr_name in sanitized and isinstance(sanitized[ctr_name], dict):
+            ctr_nf = _nonfinite_stage0_measurement_keys(sanitized[ctr_name])
+            if ctr_nf:
+                had_nonfinite = True
+                sanitized[ctr_name] = {k: v for k, v in sanitized[ctr_name].items() if k not in ctr_nf}
+            else:
+                sanitized[ctr_name] = dict(sanitized[ctr_name])
+    scope_d = sanitized.get("scope") if isinstance(sanitized.get("scope"), dict) else {}
+    mol_d = sanitized.get("iip0026_molecular_observations") if isinstance(sanitized.get("iip0026_molecular_observations"), dict) else {}
+    if (
+        scope_d.get("sample_id") is not None
+        and sanitized.get("sample_id") is not None
+        and scope_d.get("sample_id") != sanitized.get("sample_id")
+        and scope_d.get("sample_unit_id") is None
+        and sanitized.get("sample_unit_id") is None
+    ):
+        sanitized["sample_unit_id"] = scope_d["sample_id"]
+    if (
+        scope_d.get("sample_unit_id") is not None
+        and sanitized.get("sample_unit_id") is not None
+        and scope_d.get("sample_unit_id") != sanitized.get("sample_unit_id")
+        and scope_d.get("sample_id") is None
+        and sanitized.get("sample_id") is None
+    ):
+        sanitized["sample_id"] = scope_d["sample_unit_id"]
+    if (
+        "iip0029_twoclock_record" not in sanitized
+        and "iip0029_twoclock_record" in mol_d
+        and mol_d["iip0029_twoclock_record"] is not None
+    ):
+        sanitized["iip0029_twoclock_record"] = mol_d["iip0029_twoclock_record"]
+    return sanitized, bad_struct_names, had_nonfinite
+
+
+def _is_hard_stop_result_iip0031(res: Dict[str, Any]) -> bool:
+    """Return True iff `res` carries an independently attributable S9, Tier 6B, or Rule S11 hard stop."""
+    winner = res.get("hard_stop_precedence_winner")
+    return bool(
+        winner in ("S9_HARD_SAFETY_STOP", "FAIL_TIER6B_OUTGROWTH_DETECTED")
+        or (isinstance(winner, str) and winner.startswith("FAIL_S11_"))
+    )
+
+
+def _hard_stop_rank_iip0031(res: Dict[str, Any]) -> int:
+    """Global hard-stop precedence rank: 0 = S9, 1 = Tier 6B, 2 = Rule S11, 3 = none."""
+    winner = res.get("hard_stop_precedence_winner")
+    if winner == "S9_HARD_SAFETY_STOP":
+        return 0
+    if winner == "FAIL_TIER6B_OUTGROWTH_DETECTED":
+        return 1
+    if isinstance(winner, str) and winner.startswith("FAIL_S11_"):
+        return 2
+    return 3
+
+
+def _parse_replay_timestamp_iip0031(ts_raw: Any) -> Tuple[int, int, str]:
+    """Parse ISO-8601 UTC timestamps into an exact integer microsecond epoch key for chronological sorting."""
+    if isinstance(ts_raw, str):
+        ts_clean = ts_raw.strip()
+        if ts_clean:
+            try:
+                norm = ts_clean[:-1] + "+00:00" if ts_clean.endswith(("Z", "z")) else ts_clean
+                dt = datetime.fromisoformat(norm)
+                if dt.tzinfo is None:
+                    dt = dt.replace(tzinfo=timezone.utc)
+                delta = dt.astimezone(timezone.utc) - datetime(1970, 1, 1, tzinfo=timezone.utc)
+                epoch_us = (delta.days * 86400 + delta.seconds) * 1_000_000 + delta.microseconds
+                return (0, epoch_us, "")
+            except ValueError:
+                return (1, 0, ts_clean)
+    return (2, 0, "")
+
+
 def _extract_stage0_batch_measurements_preserving_explicit_se_iip0026(
     raw_meas: Dict[str, Any],
     wc_helper: Any,
 ) -> Dict[str, Any]:
-    """Extract canonical measurements via `_extract_canonical_measurements` without fabricating explicit SE provenance or erasing strict int types (IIP-0026; DEC-105)."""
-    extracted = _extract_canonical_measurements(raw_meas)
+    """Extract canonical measurements via `_extract_canonical_measurements` without fabricating explicit SE provenance, overflowing on huge ints, or erasing strict int types (IIP-0026; DEC-105)."""
+    bad_nf = _nonfinite_stage0_measurement_keys(raw_meas)
+    finite_raw = {k: v for k, v in raw_meas.items() if k not in bad_nf} if bad_nf else raw_meas
+    extracted = _extract_canonical_measurements(finite_raw)
     strict_int_keys = getattr(wc_helper, "STAGE0_STRICT_INTEGER_COUNT_AND_DENOMINATOR_KEYS", frozenset())
     out: Dict[str, Any] = {}
     for k, v in extracted.items():
         if v == "UNAVAILABLE":
             continue
-        if k.endswith("_se") and k not in raw_meas:
+        if k.endswith("_se") and k not in finite_raw:
             continue
-        if k in strict_int_keys and k in raw_meas:
-            orig = raw_meas[k]
+        if k in strict_int_keys and k in finite_raw:
+            orig = finite_raw[k]
             if type(orig) is bool:
                 out[k] = orig
             elif type(orig) is int:
@@ -3268,8 +3426,8 @@ def _extract_stage0_batch_measurements_preserving_explicit_se_iip0026(
                 out[k] = v
         else:
             out[k] = v
-    # Preserve any invalid/boolean measurement attempts so downstream guardrail evaluation fails closed identically to direct calls:
-    for k, orig in raw_meas.items():
+    # Preserve any invalid/boolean finite measurement attempts so downstream guardrail evaluation fails closed identically to direct calls:
+    for k, orig in finite_raw.items():
         if k not in out and orig is not None:
             out[k] = orig
     return out
@@ -3281,63 +3439,535 @@ def ingest_stage0_research_or_wetlab_batch(
     root: Path | str | None = None,
 ) -> Dict[str, Any]:
     """
-    Path 2 Stage-0 Research & Wet-Lab Batch Ingestion Evaluator (IIP-0026; DEC-105).
-    Parses a serialized JSON document or dictionary strictly through `_extract_canonical_measurements`
-    plus typed `scope` and `iip0026_molecular_observations` blocks — decoupled from Bayesian
-    calibration admission (`validate_product_and_estimand_compatibility`) so Family A, Family B
-    (`ISLET1_B2_5LOCUS_BASE`, `ISLET1_B2_5LOCUS_TYK2_PE`, `ISLET1_B_SCT_*`), Design X, Design Y,
-    and Design Z produce 100% identical branch and lot decisions to direct evaluation and replay.
+    Path 2 Stage-0 Research & Wet-Lab Batch Ingestion Evaluator (IIP-0026; DEC-105; hardened IIP-0031).
+    Parses a serialized JSON document or dictionary strictly via `loads_strict_json` (rejecting
+    unreadable JSON, duplicate keys, and non-finite JSON tokens), then routes through the shared
+    registry-bound `evaluate_stage0_product_contract` validator so Direct, Dict Ingestion, Wire
+    Ingestion, and Chronological Replay share identical provenance, alias, BAF, S9, Tier 6B, and
+    Rule S11 semantics. When an unambiguously decoded JSON object contains a malformed auxiliary
+    envelope field or out-of-range integer alongside an independently attributable hard safety stop,
+    the hard safety stop is preserved with explicit malformed-envelope diagnostics; otherwise the
+    strict schema `ValueError` is raised.
     """
-    doc = json.loads(raw_json_or_dict) if isinstance(raw_json_or_dict, str) else dict(raw_json_or_dict)
+    doc = loads_strict_json(raw_json_or_dict) if isinstance(raw_json_or_dict, str) else raw_json_or_dict
     if not isinstance(doc, dict):
         raise ValueError("Stage-0 ingest batch document must decode to a JSON object (IIP-0026; DEC-105)")
     wc_helper = _load_contract_helper_iip0026(root)
-    allowed_mol = getattr(wc_helper, "IIP0026_ALLOWED_MOLECULAR_OBS_KEYS")
+    root_path = Path(root) if root is not None else REPO_ROOT
+    if _conflicting_stage0_batch_scope(doc, wc_helper, root_path):
+        raise ValueError("Conflicting Stage-0 batch scope")
+
+    sanitized_doc, bad_struct_names, had_nonfinite = _sanitize_stage0_envelope_iip0031(doc)
+    out = wc_helper.evaluate_stage0_product_contract(sanitized_doc, root=root)
+    if bad_struct_names or had_nonfinite:
+        if _is_hard_stop_result_iip0031(out):
+            reasons = list(out.get("iip0026_reasons", []))
+            if bad_struct_names and "HOLD_MALFORMED_STAGE0_ENVELOPE_FIELD" not in reasons:
+                reasons.append("HOLD_MALFORMED_STAGE0_ENVELOPE_FIELD")
+            if had_nonfinite and "HOLD_NONFINITE_STAGE0_MEASUREMENT" not in reasons:
+                reasons.append("HOLD_NONFINITE_STAGE0_MEASUREMENT")
+            out["iip0026_reasons"] = reasons
+            return out
+        if bad_struct_names:
+            raise ValueError(f"Stage-0 batch field {bad_struct_names[0]!r} must be an object")
+        raise ValueError("Stage-0 measurements must be finite and representable")
+    return out
+
+
+def _replay_single_scope_iip0031(
+    scope_key: Tuple[str, str, str],
+    scoped_items: List[Tuple[Tuple[Any, ...], Dict[str, Any], bool]],
+    *,
+    has_external_malformed: bool,
+    root: Path | str | None,
+    root_path: Path,
+    wc_helper: Any,
+) -> Dict[str, Any]:
+    """Chronologically replay all records attributed to a single immutable `(product_variant_id, lot_id, campaign_id)` partition."""
+    s_pid, s_lot, s_camp = scope_key
+    allowed_mol = set(getattr(wc_helper, "IIP0026_ALLOWED_MOLECULAR_OBS_KEYS")) | set(
+        getattr(wc_helper, "_ALL_S11_RECOGNIZED_EVIDENCE_KEYS", ())
+    )
     forbidden_ovr = getattr(wc_helper, "IIP0026_FORBIDDEN_CALLER_OVERRIDE_KEYS")
     bool_flags = set(getattr(wc_helper, "STAGE0_DECISION_TREE_BOOLEAN_KEYS", ()))
+    all_s9_rep_keys = frozenset(k for ks in wc_helper.S9_REPLICATE_KEYS.values() for k in ks)
+    all_alias_keys = frozenset(
+        k
+        for sh, ob, _ in getattr(wc_helper, "_IIP0026_DESIGNB_TYK2_ALIAS_PAIRS", ())
+        for k in (sh, ob)
+    ) | frozenset({
+        "post_edit_per_locus_segmented_baf",
+        "per_locus_segmented_baf",
+        "obs_post_edit_segmented_baf_chr19q",
+        "obs_post_edit_segmented_baf_chr11p15",
+        "obs_post_edit_segmented_baf_chr6p21",
+    })
+    mol_excl_replay = all_s9_rep_keys | all_alias_keys | frozenset({
+        "tier6b_sorted_lot_observations",
+        "iip0031_locus2_record",
+        "iip0029_twoclock_record",
+    })
 
-    # Support flat payloads OR structured {"scope": ..., "measurements": ..., "iip0026_molecular_observations": ...}:
-    if "scope" in doc or "measurements" in doc or "iip0026_molecular_observations" in doc:
-        scope = doc.get("scope") or {}
-        mol_obs = doc.get("iip0026_molecular_observations") or {}
-        raw_meas = doc.get("measurements")
-        extracted_meas: Dict[str, Any] = {}
-        if isinstance(raw_meas, dict) and len(raw_meas) > 0:
-            extracted_meas = _extract_stage0_batch_measurements_preserving_explicit_se_iip0026(raw_meas, wc_helper)
-        filtered_mol = {
-            k: v
-            for k, v in mol_obs.items()
-            if (k in allowed_mol or k in bool_flags) and v is not None
-        }
-        override_attempt = {
-            k: v
-            for k, v in {**doc, **scope, **mol_obs}.items()
-            if (k in forbidden_ovr) or str(k).endswith("_lifecycle_state") or str(k).endswith("_execution_supported")
-        }
-        assembled: Dict[str, Any] = {
-            "product_variant_id": scope.get("product_variant_id"),
-            "lot_id": scope.get("lot_id", scope.get("current_lot_id")),
-            "campaign_id": scope.get("campaign_id", scope.get("assay_campaign_id")),
-            **({"construct_sha256": scope["construct_sha256"]} if "construct_sha256" in scope and scope["construct_sha256"] is not None else {}),
-            **({"device_assembly_id": scope["device_assembly_id"]} if "device_assembly_id" in scope and scope["device_assembly_id"] is not None else {}),
-            **({"schema_era": scope["schema_era"]} if "schema_era" in scope else {}),
-            **({"iip0026_schema_era": scope["iip0026_schema_era"]} if "iip0026_schema_era" in scope else {}),
-            **extracted_meas,
-            **filtered_mol,
-            **({"iip0029_twoclock_record": doc["iip0029_twoclock_record"]} if "iip0029_twoclock_record" in doc and doc["iip0029_twoclock_record"] is not None else {}),
-            **override_attempt,
-        }
-    else:
-        raw_obs_subset = {k: v for k, v in doc.items() if str(k).startswith("obs_") and v is not None}
-        extracted_meas = (
-            _extract_stage0_batch_measurements_preserving_explicit_se_iip0026(raw_obs_subset, wc_helper)
-            if raw_obs_subset
-            else {}
+    accum: Dict[str, Any] = {
+        "product_variant_id": s_pid,
+        "lot_id": s_lot,
+        "campaign_id": s_camp,
+    }
+    accum_tier6b_obs: list[Any] = []
+    has_any_tier6b_field = False
+    if has_external_malformed:
+        has_any_tier6b_field = True
+        accum_tier6b_obs.append(None)
+        accum["tier6b_sorted_lot_observations"] = list(accum_tier6b_obs)
+
+    latched_other_fails: list[str] = []
+    latched_s9_hard_stop = False
+    latched_tier6b_hard_stop = False
+    latched_tier6b_eval: Dict[str, Any] | None = None
+    s11_fail_records: List[Tuple[Tuple[Any, ...], Dict[str, Any]]] = []
+    latched_switch_decisions: Dict[str, Any] | None = None
+    locked_iip0029_source_fp: tuple[Any, ...] | None = None
+    locked_iip0029_flat_clocks: Dict[str, Any] = {}
+    latched_iip0029_store_gt_138p3 = False
+    latched_iip0029_alk5i_continued = False
+    malformed_replay = bool(has_external_malformed)
+    latched_s9_rep_conflict = False
+    latched_meas_conflict = False
+
+    def _add_other_fail(code: str) -> None:
+        if code.startswith("FAIL_") and not code.startswith("FAIL_S11_") and code != "FAIL_TIER6B_OUTGROWTH_DETECTED":
+            if code not in latched_other_fails:
+                latched_other_fails.append(code)
+
+    immutable_lot_keys = (
+        "construct_sha256",
+        "background_id",
+        "donor_seedline_id",
+        "seed_line_id",
+        "mcb_id",
+        "l2_v3_donor_id",
+        "donor_id",
+    )
+    per_record_meta_keys = (
+        "scope_type",
+        "sample_id",
+        "sample_unit_id",
+        "device_assembly_id",
+        "schema_era",
+        "iip0026_schema_era",
+    )
+
+    for logical_tk, rec, scope_is_malformed in scoped_items:
+        rec_san, bad_struct_names, had_nf = _sanitize_stage0_envelope_iip0031(rec)
+        if rec.get("malformed_record") is True or scope_is_malformed or bad_struct_names or had_nf:
+            malformed_replay = True
+            has_any_tier6b_field = True
+            accum_tier6b_obs.append(None)
+            accum["tier6b_sorted_lot_observations"] = list(accum_tier6b_obs)
+
+        sc = rec_san.get("scope") if isinstance(rec_san.get("scope"), dict) else {}
+        mol = rec_san.get("iip0026_molecular_observations") if isinstance(rec_san.get("iip0026_molecular_observations"), dict) else {}
+        raw_m_dict = rec_san.get("measurements") if isinstance(rec_san.get("measurements"), dict) else {}
+
+        # Reconcile immutable lot-level provenance keys from BOTH nested `scope` and flat record:
+        rec_has_immutable_conflict = False
+        for ik in immutable_lot_keys:
+            vals_ik = []
+            if ik in sc and sc[ik] is not None:
+                vals_ik.append(sc[ik])
+            if ik in rec_san and rec_san[ik] is not None:
+                vals_ik.append(rec_san[ik])
+            for iv in vals_ik:
+                if not isinstance(iv, str) or not iv.strip():
+                    malformed_replay = True
+                    continue
+                if ik in accum and accum[ik] != iv:
+                    rec_has_immutable_conflict = True
+                    if ik == "construct_sha256":
+                        _add_other_fail("FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED")
+                    else:
+                        _add_other_fail("FAIL_CROSS_LOT_OR_CAMPAIGN_REPLAY_MIXING")
+                elif ik not in accum:
+                    accum[ik] = iv
+
+        # Check per-record / per-specimen metadata without letting malformed fields poison later records:
+        for mk in per_record_meta_keys:
+            for src_m in (sc, rec_san):
+                if mk in src_m and src_m[mk] is not None:
+                    mv = src_m[mk]
+                    if not isinstance(mv, str) or not mv.strip():
+                        malformed_replay = True
+                    else:
+                        accum[mk] = mv
+
+        # Build an isolated per-record evaluation document carrying valid lot provenance + THIS record's own fields:
+        rec_eval_doc = dict(rec_san)
+        rec_eval_scope = dict(sc) if isinstance(rec_san.get("scope"), dict) else {}
+        rec_eval_scope.setdefault("product_variant_id", s_pid)
+        rec_eval_scope.setdefault("lot_id", s_lot)
+        rec_eval_scope.setdefault("campaign_id", s_camp)
+        if not rec_has_immutable_conflict:
+            for ik in immutable_lot_keys:
+                if ik in accum and ik not in rec_eval_scope and ik not in rec_eval_doc:
+                    rec_eval_scope[ik] = accum[ik]
+        if isinstance(rec_san.get("scope"), dict):
+            rec_eval_doc["scope"] = rec_eval_scope
+        else:
+            for k_s, v_s in rec_eval_scope.items():
+                rec_eval_doc.setdefault(k_s, v_s)
+
+        rec_eval = wc_helper.evaluate_stage0_product_contract(rec_eval_doc, root=root)
+        if (
+            rec_eval.get("overall_status") == "HARD_SAFETY_STOP_REJECTED"
+            and rec_eval.get("hard_stop_precedence_winner") == "S9_HARD_SAFETY_STOP"
+        ):
+            latched_s9_hard_stop = True
+            latched_switch_decisions = dict(rec_eval["switch_decisions"])
+        if (
+            rec_eval.get("tier6b_disposition") == "FAIL_HARD_STOP"
+            or rec_eval.get("hard_stop_precedence_winner") == "FAIL_TIER6B_OUTGROWTH_DETECTED"
+        ):
+            latched_tier6b_hard_stop = True
+            if isinstance(rec_eval.get("tier6b_sorted_lot_evaluation"), dict):
+                latched_tier6b_eval = dict(rec_eval["tier6b_sorted_lot_evaluation"])
+        rec_s11 = rec_eval.get("s11_evaluation")
+        if isinstance(rec_s11, dict) and str(rec_s11.get("status", "")).startswith("FAIL_"):
+            s11_fail_records.append((logical_tk, dict(rec_s11)))
+        for r_code in rec_eval.get("iip0026_reasons", []):
+            _add_other_fail(str(r_code))
+
+        # Replicate counts across all 4 sanitized containers:
+        _rec_s9_containers = (raw_m_dict, sc, rec_san, mol)
+        _rec_s9_resolved, _rec_s9_conflict_groups, _rec_s9_any_conflict = wc_helper._resolve_s9_replicate_counts_detailed_iip0031(
+            _rec_s9_containers,
+            flag_explicit_none=True,
         )
-        assembled = {k: v for k, v in doc.items() if not str(k).startswith("obs_")}
-        assembled.update(extracted_meas)
+        if _rec_s9_any_conflict:
+            latched_s9_rep_conflict = True
+            accum["_s9_replicate_count_conflict"] = True
 
-    return wc_helper.evaluate_stage0_research_and_molecular_guardrails(assembled, root=root)
+        # A replacement assay carries its own uncertainty and depth; skip mutating S9 accum on immutable conflict:
+        if not rec_has_immutable_conflict:
+            _rec_s9_all_ctrs = (rec_san, sc, mol, raw_m_dict)
+            s9_se_keys = {
+                r[1]: r[2]
+                for r in wc_helper.STAGE0_DECISION_TREE_ENDPOINT_SPECS
+                if r[1] in wc_helper.S9_CORE_LOT_ENDPOINT_IDS
+            }
+            for eid, se_key in s9_se_keys.items():
+                n_keys = wc_helper.S9_REPLICATE_KEYS[eid]
+                assay_keys = (eid, se_key, *wc_helper.S9_FREQUENCY_ASSAY_KEYS.get(eid, ()))
+                if any(any(key in _c for _c in _rec_s9_all_ctrs) for key in (*assay_keys, *n_keys)):
+                    for key in (*assay_keys, *n_keys):
+                        if not any(key in _c and _c[key] is not None and _c[key] != "UNAVAILABLE" for _c in _rec_s9_all_ctrs):
+                            accum.pop(key, None)
+                    if _rec_s9_resolved.get(eid) is not None:
+                        accum[n_keys[0]] = _rec_s9_resolved[eid]
+                    elif not any(any(key in _c for _c in _rec_s9_all_ctrs) for key in n_keys):
+                        accum[n_keys[0]] = _rec_s9_resolved["default"] if _rec_s9_resolved.get("default") is not None else 6
+            if _rec_s9_any_conflict:
+                for _rk in all_s9_rep_keys:
+                    accum.pop(_rk, None)
+                for _grp, _grp_keys in wc_helper.S9_REPLICATE_KEYS.items():
+                    if _rec_s9_resolved.get(_grp) is not None:
+                        accum[_grp_keys[0]] = _rec_s9_resolved[_grp]
+            else:
+                for _grp, _grp_keys in wc_helper.S9_REPLICATE_KEYS.items():
+                    if any(_rk in _src_nr and _src_nr[_rk] is not None for _rk in _grp_keys for _src_nr in _rec_s9_containers):
+                        for _rk in _grp_keys:
+                            accum.pop(_rk, None)
+                        for _nk_r in _grp_keys:
+                            for _src_nr in _rec_s9_containers:
+                                if _nk_r in _src_nr and _src_nr[_nk_r] is not None:
+                                    accum[_nk_r] = _src_nr[_nk_r]
+                                    break
+
+        for k, v in {**rec_san, **sc, **mol}.items():
+            if isinstance(k, str) and (
+                (k in forbidden_ovr) or k.endswith("_lifecycle_state") or k.endswith("_execution_supported")
+            ):
+                accum[k] = v
+
+        # Reconcile Design B, TYK2, and BAF aliases identically across all 4 containers:
+        _r_clean_aliases, _, _r_clean_baf, _, _r_alias_conflict = wc_helper._reconcile_iip0026_aliases_and_baf_iip0031(
+            (rec_san, sc, raw_m_dict, mol)
+        )
+        if _r_alias_conflict:
+            latched_meas_conflict = True
+            accum["_stage0_conflicting_measurement"] = True
+        if _r_clean_aliases:
+            accum.update(_r_clean_aliases)
+        if _r_clean_baf is not None:
+            existing_baf = accum.get("post_edit_per_locus_segmented_baf")
+            merged_baf = dict(existing_baf) if isinstance(existing_baf, dict) else {}
+            merged_baf.update(_r_clean_baf)
+            accum["post_edit_per_locus_segmented_baf"] = merged_baf
+
+        # Merge non-alias obs_* and molecular observations into cumulative `accum`:
+        flat_m_all = {k: v for k, v in rec_san.items() if isinstance(k, str) and k.startswith("obs_") and k not in all_s9_rep_keys and k not in all_alias_keys}
+        raw_m_obs_all = {k: v for k, v in raw_m_dict.items() if isinstance(k, str) and k.startswith("obs_") and k not in all_s9_rep_keys and k not in all_alias_keys}
+        sc_m_all = {k: v for k, v in sc.items() if isinstance(k, str) and k.startswith("obs_") and k not in all_s9_rep_keys and k not in all_alias_keys}
+        mol_m_all = {k: v for k, v in mol.items() if isinstance(k, str) and k.startswith("obs_") and k not in all_s9_rep_keys and k not in all_alias_keys}
+        non_obs_raw_m = {
+            k: v
+            for k, v in raw_m_dict.items()
+            if isinstance(k, str)
+            and not k.startswith("obs_")
+            and k not in mol_excl_replay
+            and k not in allowed_mol
+            and k not in bool_flags
+        }
+        clean_m_rec, meas_probes_rec, has_m_conflict_rec = wc_helper._merge_stage0_container_fields_iip0031(
+            (flat_m_all, raw_m_obs_all, sc_m_all, mol_m_all),
+            excluded_keys=all_s9_rep_keys | all_alias_keys,
+            key_predicate=lambda k: k.startswith("obs_"),
+        )
+        all_rec_obs_keys = set(flat_m_all) | set(raw_m_obs_all) | set(sc_m_all) | set(mol_m_all)
+        if not rec_has_immutable_conflict:
+            for _obs_k in all_rec_obs_keys:
+                if _obs_k not in clean_m_rec:
+                    accum.pop(_obs_k, None)
+
+        def _is_mol_key_replay(k: str) -> bool:
+            return (k in allowed_mol or k in bool_flags) and not k.startswith("obs_") and k not in mol_excl_replay
+
+        flat_mol_r = {k: v for k, v in rec_san.items() if isinstance(k, str) and _is_mol_key_replay(k)}
+        nested_mol_r = {k: v for k, v in mol.items() if isinstance(k, str) and _is_mol_key_replay(k)}
+        sc_mol_r = {k: v for k, v in sc.items() if isinstance(k, str) and _is_mol_key_replay(k)}
+        meas_mol_r = {k: v for k, v in raw_m_dict.items() if isinstance(k, str) and _is_mol_key_replay(k)}
+        clean_mol_rec, mol_probes_rec, has_mol_conflict_rec = wc_helper._merge_stage0_container_fields_iip0031(
+            (flat_mol_r, nested_mol_r, sc_mol_r, meas_mol_r),
+            excluded_keys=mol_excl_replay,
+            key_predicate=_is_mol_key_replay,
+        )
+        all_rec_mol_keys = set(flat_mol_r) | set(nested_mol_r) | set(sc_mol_r) | set(meas_mol_r)
+        for _mol_k in all_rec_mol_keys:
+            if _mol_k not in clean_mol_rec:
+                accum.pop(_mol_k, None)
+
+        if has_m_conflict_rec or has_mol_conflict_rec:
+            latched_meas_conflict = True
+            accum["_stage0_conflicting_measurement"] = True
+            m_plist = meas_probes_rec if meas_probes_rec else [clean_m_rec]
+            mol_plist = mol_probes_rec if mol_probes_rec else [clean_mol_rec]
+            for _cand_m in m_plist:
+                _cand_ext = _extract_stage0_batch_measurements_preserving_explicit_se_iip0026(
+                    {**{k: v for k, v in non_obs_raw_m.items() if v is not None}, **_cand_m},
+                    wc_helper,
+                )
+                for _cand_mol in mol_plist:
+                    _probe_acc = {**accum, **_cand_ext, **_cand_mol}
+                    _probe_ev = wc_helper.evaluate_stage0_product_contract(_probe_acc, root=root)
+                    if (
+                        _probe_ev.get("overall_status") == "HARD_SAFETY_STOP_REJECTED"
+                        and _probe_ev.get("hard_stop_precedence_winner") == "S9_HARD_SAFETY_STOP"
+                    ):
+                        latched_s9_hard_stop = True
+                        latched_switch_decisions = dict(_probe_ev["switch_decisions"])
+                    _probe_s11 = _probe_ev.get("s11_evaluation")
+                    if isinstance(_probe_s11, dict) and str(_probe_s11.get("status", "")).startswith("FAIL_"):
+                        s11_fail_records.append((logical_tk, dict(_probe_s11)))
+                    for _pr_code in _probe_ev.get("iip0026_reasons", []):
+                        _add_other_fail(str(_pr_code))
+
+        if not rec_has_immutable_conflict:
+            combined_m = {**{k: v for k, v in non_obs_raw_m.items() if v is not None}, **clean_m_rec}
+            if combined_m:
+                accum.update(_extract_stage0_batch_measurements_preserving_explicit_se_iip0026(combined_m, wc_helper))
+        if clean_mol_rec:
+            accum.update(clean_mol_rec)
+
+        # Accumulate sorted-lot Tier 6B observations across ALL 4 supported containers:
+        for src_dict in (rec_san, sc, mol, raw_m_dict):
+            if "tier6b_sorted_lot_observations" in src_dict:
+                has_any_tier6b_field = True
+                t6_in = src_dict["tier6b_sorted_lot_observations"]
+                if isinstance(t6_in, (list, tuple)):
+                    accum_tier6b_obs.extend(t6_in)
+                else:
+                    accum_tier6b_obs.append("__EXPLICIT_NULL_OR_MALFORMED_TIER6B_CONTAINER__")
+        if has_any_tier6b_field:
+            accum["tier6b_sorted_lot_observations"] = list(accum_tier6b_obs)
+
+        # Accumulate valid S11 record onto `accum` when present so single- or multi-record final_eval reflects latest state:
+        _rec_s11_dicts = [
+            _src_31["iip0031_locus2_record"]
+            for _src_31 in (rec_san, sc, mol, raw_m_dict)
+            if "iip0031_locus2_record" in _src_31 and isinstance(_src_31["iip0031_locus2_record"], dict)
+        ]
+        if len(_rec_s11_dicts) == 1:
+            accum["iip0031_locus2_record"] = _rec_s11_dicts[0]
+        elif len(_rec_s11_dicts) > 1 and any(d != _rec_s11_dicts[0] for d in _rec_s11_dicts[1:]):
+            accum["iip0031_locus2_record"] = "CONFLICTING_DUPLICATE_IIP0031_LOCUS2_RECORDS"
+        elif any("iip0031_locus2_record" in _src_31 for _src_31 in (rec_san, sc, mol, raw_m_dict)):
+            accum["iip0031_locus2_record"] = "__MALFORMED_NON_DICT__"
+
+        rec_29_in = rec_san.get("iip0029_twoclock_record", mol.get("iip0029_twoclock_record"))
+        if rec_29_in is not None:
+            fp_now = wc_helper._extract_iip0029_source_fingerprint(rec_29_in)
+            if locked_iip0029_source_fp is not None and fp_now != locked_iip0029_source_fp:
+                _add_other_fail("FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED")
+            else:
+                locked_iip0029_source_fp = fp_now
+            accum["iip0029_twoclock_record"] = rec_29_in
+        for clk_k in ("stage7_start_utc", "sort_reaggregation_utc", "assay_harvest_utc", "locked_analysis_plan_id"):
+            clk_v = accum.get(clk_k)
+            if clk_v is not None:
+                if clk_k in locked_iip0029_flat_clocks and locked_iip0029_flat_clocks[clk_k] != clk_v:
+                    _add_other_fail("FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED")
+                else:
+                    locked_iip0029_flat_clocks[clk_k] = clk_v
+        if accum.get("terminal_alk5i_tgfb_inhibitor_continued") is True:
+            latched_iip0029_alk5i_continued = True
+        elif latched_iip0029_alk5i_continued and accum.get("terminal_alk5i_tgfb_inhibitor_continued") is False:
+            _add_other_fail("FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED")
+
+        step_eval = wc_helper.evaluate_stage0_product_contract(dict(accum), root=root)
+        step_29 = step_eval.get("iip0029_twoclock_maturation_and_repeated_challenge_evaluation")
+        if isinstance(step_29, dict):
+            if step_29.get("gate0s_escalation_required") is True:
+                latched_iip0029_store_gt_138p3 = True
+            elif latched_iip0029_store_gt_138p3 and step_29.get("gate0s_escalation_required") is False:
+                _add_other_fail("FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED")
+        if step_eval.get("overall_status") == "HARD_SAFETY_STOP_REJECTED" and step_eval.get("hard_stop_precedence_winner") == "S9_HARD_SAFETY_STOP":
+            latched_s9_hard_stop = True
+            latched_switch_decisions = dict(step_eval["switch_decisions"])
+        if step_eval.get("tier6b_disposition") == "FAIL_HARD_STOP" or step_eval.get("hard_stop_precedence_winner") == "FAIL_TIER6B_OUTGROWTH_DETECTED":
+            latched_tier6b_hard_stop = True
+            if isinstance(step_eval.get("tier6b_sorted_lot_evaluation"), dict):
+                latched_tier6b_eval = dict(step_eval["tier6b_sorted_lot_evaluation"])
+        step_s11 = step_eval.get("s11_evaluation")
+        if isinstance(step_s11, dict) and str(step_s11.get("status", "")).startswith("FAIL_"):
+            s11_fail_records.append((logical_tk, dict(step_s11)))
+        for r in step_eval.get("iip0026_reasons", []):
+            _add_other_fail(str(r))
+
+    if latched_s9_rep_conflict:
+        accum["_s9_replicate_count_conflict"] = True
+    if latched_meas_conflict:
+        accum["_stage0_conflicting_measurement"] = True
+    final_eval = wc_helper.evaluate_stage0_product_contract(dict(accum), root=root)
+    if (
+        final_eval.get("overall_status") == "HARD_SAFETY_STOP_REJECTED"
+        and final_eval.get("hard_stop_precedence_winner") == "S9_HARD_SAFETY_STOP"
+    ):
+        latched_s9_hard_stop = True
+        if latched_switch_decisions is None:
+            latched_switch_decisions = dict(final_eval["switch_decisions"])
+    if (
+        final_eval.get("tier6b_disposition") == "FAIL_HARD_STOP"
+        or final_eval.get("hard_stop_precedence_winner") == "FAIL_TIER6B_OUTGROWTH_DETECTED"
+    ):
+        latched_tier6b_hard_stop = True
+        if latched_tier6b_eval is None and isinstance(final_eval.get("tier6b_sorted_lot_evaluation"), dict):
+            latched_tier6b_eval = dict(final_eval["tier6b_sorted_lot_evaluation"])
+    final_s11 = final_eval.get("s11_evaluation")
+    if isinstance(final_s11, dict) and str(final_s11.get("status", "")).startswith("FAIL_"):
+        s11_fail_records.append((((3, 0, ""), 0), dict(final_s11)))
+
+    # Deterministically consolidate all observed S11 failures (earliest chronological instant wins; ties use canonical headline):
+    latched_s11_eval: Dict[str, Any] | None = None
+    if s11_fail_records:
+        min_tk = min(tk for tk, _ in s11_fail_records)
+        earliest_evals = [ev for tk, ev in s11_fail_records if tk == min_tk]
+        earliest_fails: list[str] = []
+        for ev in earliest_evals:
+            st = str(ev.get("status", ""))
+            if st.startswith("FAIL_") and st not in earliest_fails:
+                earliest_fails.append(st)
+            for r in ev.get("reasons", []):
+                rs = str(r)
+                if rs.startswith("FAIL_") and rs not in earliest_fails:
+                    earliest_fails.append(rs)
+        win_s11 = wc_helper._pick_headline_s11_fail_iip0031(earliest_fails)
+        all_s11_fails: list[str] = [win_s11]
+        all_s11_holds: list[str] = []
+        chosen_base = earliest_evals[0]
+        for _, ev in s11_fail_records:
+            st = str(ev.get("status", ""))
+            if st == win_s11:
+                chosen_base = ev
+            if st.startswith("FAIL_") and st not in all_s11_fails:
+                all_s11_fails.append(st)
+            for r in ev.get("reasons", []):
+                rs = str(r)
+                if rs.startswith("FAIL_"):
+                    if rs not in all_s11_fails:
+                        all_s11_fails.append(rs)
+                elif rs not in all_s11_holds:
+                    all_s11_holds.append(rs)
+        ordered_s11_fails = [win_s11] + sorted(f for f in all_s11_fails if f != win_s11)
+        latched_s11_eval = dict(chosen_base)
+        latched_s11_eval["status"] = win_s11
+        latched_s11_eval["gate_pass"] = False
+        latched_s11_eval["reasons"] = ordered_s11_fails + all_s11_holds
+
+    # SINGLE EXPLICIT GLOBAL PRECEDENCE TABLE: 1. S9 -> 2. Tier 6B -> 3. Rule S11 -> 4. Other FAIL_* -> 5. Malformed HOLD
+    if latched_s9_hard_stop:
+        final_eval["overall_status"] = "HARD_SAFETY_STOP_REJECTED"
+        final_eval["lot_release_readiness_tier"] = "HARD_SAFETY_STOP_REJECTED"
+        s9_reasons = ["HARD_SAFETY_STOP_S9"] + [r for r in latched_other_fails if r != "HARD_SAFETY_STOP_S9"]
+        final_eval["iip0026_reasons"] = s9_reasons
+        final_eval["hard_stop_precedence_winner"] = "S9_HARD_SAFETY_STOP"
+        final_eval["execution_supported"] = False
+        final_eval["effective_execution_permitted"] = False
+        if latched_switch_decisions is not None:
+            final_eval["switch_decisions"] = dict(latched_switch_decisions)
+    elif latched_tier6b_hard_stop:
+        final_eval["overall_status"] = "FAIL_HARD_STOP"
+        final_eval["lot_release_readiness_tier"] = "HARD_SAFETY_STOP_REJECTED"
+        t6_reasons = ["FAIL_TIER6B_OUTGROWTH_DETECTED"] + [r for r in latched_other_fails if r != "FAIL_TIER6B_OUTGROWTH_DETECTED"]
+        final_eval["iip0026_reasons"] = t6_reasons
+        final_eval["hard_stop_precedence_winner"] = "FAIL_TIER6B_OUTGROWTH_DETECTED"
+        final_eval["execution_supported"] = False
+        final_eval["effective_execution_permitted"] = False
+    elif latched_s11_eval is not None:
+        win_s11 = str(latched_s11_eval["status"])
+        merged_s11_reasons: list[str] = [win_s11]
+        for r in list(latched_s11_eval.get("reasons", [])) + latched_other_fails + list(final_eval.get("iip0026_reasons", [])):
+            rs = str(r)
+            if rs not in merged_s11_reasons:
+                merged_s11_reasons.append(rs)
+        final_eval["overall_status"] = win_s11
+        final_eval["lot_release_readiness_tier"] = win_s11
+        final_eval["iip0026_reasons"] = merged_s11_reasons
+        final_eval["hard_stop_precedence_winner"] = win_s11
+        final_eval["execution_supported"] = False
+        final_eval["effective_execution_permitted"] = False
+    elif latched_other_fails:
+        merged_reasons = list(latched_other_fails) + [
+            r for r in final_eval["iip0026_reasons"] if r not in latched_other_fails
+        ]
+        final_eval["iip0026_reasons"] = merged_reasons
+        final_eval["overall_status"] = latched_other_fails[0]
+        final_eval["lot_release_readiness_tier"] = latched_other_fails[0]
+        final_eval["hard_stop_precedence_winner"] = None
+        final_eval["execution_supported"] = False
+        final_eval["effective_execution_permitted"] = False
+    elif malformed_replay:
+        reason = "HOLD_MALFORMED_STAGE0_REPLAY_RECORD"
+        if reason not in final_eval["iip0026_reasons"]:
+            final_eval["iip0026_reasons"] = [*final_eval["iip0026_reasons"], reason]
+        if not final_eval["overall_status"].startswith(("HOLD_", "FAIL_")):
+            final_eval["overall_status"] = reason
+            final_eval["lot_release_readiness_tier"] = reason
+        final_eval["execution_supported"] = False
+        final_eval["effective_execution_permitted"] = False
+
+    # ALWAYS project latched Tier 6B and Rule S11 diagnostic evaluations even when a higher-precedence hard stop won:
+    if latched_tier6b_hard_stop:
+        final_eval["tier6b_disposition"] = "FAIL_HARD_STOP"
+        final_eval["tier6b_reason"] = "FAIL_TIER6B_OUTGROWTH_DETECTED"
+        if latched_tier6b_eval is not None:
+            final_eval["tier6b_sorted_lot_evaluation"] = dict(latched_tier6b_eval)
+    if latched_s11_eval is not None:
+        final_eval["s11_evaluation"] = dict(latched_s11_eval)
+        latched_s11_st = str(latched_s11_eval.get("status", "FAIL_S11_LATCHED_FAILURE"))
+        if isinstance(final_eval.get("switch_decisions"), dict):
+            final_eval["switch_decisions"] = dict(final_eval["switch_decisions"])
+            final_eval["switch_decisions"]["S11_Locus2_CIITA_ModeB_Vascular_Complement_and_Efferocytosis_Gate"] = latched_s11_st
+            final_eval["switch_decisions"]["JSON_S11_Locus2_CIITA_ModeB_Vascular_Complement_and_Efferocytosis_Gate"] = latched_s11_st
+    return final_eval
 
 
 def replay_stage0_chronological_batches(
@@ -3346,169 +3976,254 @@ def replay_stage0_chronological_batches(
     root: Path | str | None = None,
 ) -> Dict[str, Any]:
     """
-    Path 3 Chronological Multi-Record Stage-0 Replay Evaluator (IIP-0026; DEC-105).
+    Path 4 Chronological Multi-Record Stage-0 Replay Evaluator (IIP-0026; DEC-105; hardened IIP-0031; DEC-110).
     Enforces:
-      - Non-empty record sequence with identical `(product_variant_id, lot_id, campaign_id)` across all records
-        (`FAIL_CROSS_LOT_OR_CAMPAIGN_REPLAY_MIXING` on any scope mismatch), preserving `product_variant_id` at every step.
-      - Deterministic chronological sort by `(utc_timestamp, seq_index)`.
-      - Monotonic adverse-event latching (`HARD_SAFETY_STOP_REJECTED` or `FAIL_*` in any earlier record cannot be
-        erased by a subsequent clean record in the same lot/campaign).
-      - Exact branch (`switch_decisions`) and lot parity with Direct evaluation and Serialized JSON Ingestion.
+      - Exact UTC instant chronological sorting by `(parsed_utc_timestamp, seq_index)` with deterministic tie handling.
+      - Per-scope `(product_variant_id, lot_id, campaign_id)` and conditioning-arm partitioning so mixed-envelope
+        rejections (`FAIL_CROSS_LOT_OR_CAMPAIGN_REPLAY_MIXING`, `FAIL_CROSS_CONDITIONING_ARM_REPLAY_MIXING`)
+        never suppress independently attributable S9, Tier 6B, or Rule S11 hard stops.
+      - Monotonic adverse-event latching (`S9` -> `Tier 6B` -> `Rule S11` -> other `FAIL_*`) surviving
+        subsequent malformed records, incomplete-scope peers, and later clean zero repeats.
+      - Exact branch (`switch_decisions`) and lot parity with Direct evaluation, Atomic Ledger, and Serialized JSON Ingestion.
     """
     wc_helper = _load_contract_helper_iip0026(root)
     if not records:
-        return wc_helper.evaluate_stage0_research_and_molecular_guardrails({}, root=root)
-    allowed_mol = getattr(wc_helper, "IIP0026_ALLOWED_MOLECULAR_OBS_KEYS")
-    forbidden_ovr = getattr(wc_helper, "IIP0026_FORBIDDEN_CALLER_OVERRIDE_KEYS")
-    bool_flags = set(getattr(wc_helper, "STAGE0_DECISION_TREE_BOOLEAN_KEYS", ()))
+        return wc_helper.evaluate_stage0_product_contract({}, root=root)
+    root_path = Path(root) if root is not None else REPO_ROOT
 
-    ordered = sorted(
-        records,
-        key=lambda r: (str(r.get("utc_timestamp", "")), int(r.get("seq_index", 0))),
-    )
-    first_scope = ordered[0].get("scope") or {}
-    s_pid = first_scope.get("product_variant_id", ordered[0].get("product_variant_id"))
-    s_lot = first_scope.get("lot_id", first_scope.get("current_lot_id", ordered[0].get("lot_id", ordered[0].get("current_lot_id"))))
-    s_camp = first_scope.get("campaign_id", first_scope.get("assay_campaign_id", ordered[0].get("campaign_id", ordered[0].get("assay_campaign_id"))))
+    def _replay_sort_key(indexed_r: tuple[int, Any]) -> tuple[int, Tuple[int, int, str], int, int]:
+        idx, r = indexed_r
+        if isinstance(r, dict):
+            raw_seq = r.get("seq_index", idx)
+            seq_i = raw_seq if (type(raw_seq) is int) else idx
+            return (0, _parse_replay_timestamp_iip0031(r.get("utc_timestamp")), seq_i, idx)
+        return (1, (3, 0, ""), idx, idx)
 
-    p_mod = wc_helper._load_product_contract_module(Path(root) if root is not None else REPO_ROOT)
-    prod_by_id = {str(p["product_variant_id"]): p for p in p_mod.load_product_contracts(Path(root) if root is not None else REPO_ROOT)["products"]}
-    reg_state = (
-        wc_helper._derive_versioned_product_registry_entry_iip0026(prod_by_id[str(s_pid)])["lifecycle_state"]
-        if str(s_pid) in prod_by_id
-        else "UNREGISTERED"
-    )
+    def _extract_scope_field(rec_d: Dict[str, Any], sc_d: Dict[str, Any], names: Tuple[str, ...]) -> Any:
+        for k in names:
+            if k in sc_d and sc_d[k] is not None:
+                return sc_d[k]
+        for k in names:
+            if k in rec_d and rec_d[k] is not None:
+                return rec_d[k]
+        return None
 
-    seen_replay_history_arms: set[str] = set()
-    for rec in ordered:
-        sc_a = rec.get("scope") or {}
-        mol_a = rec.get("iip0026_molecular_observations") or {}
-        r_arm = sc_a.get("adjunct_conditioning_history_arm", mol_a.get("adjunct_conditioning_history_arm", rec.get("adjunct_conditioning_history_arm")))
-        if isinstance(r_arm, str) and r_arm.strip():
-            seen_replay_history_arms.add(r_arm.strip())
-    if len(seen_replay_history_arms) > 1:
-        empty_s0 = wc_helper.evaluate_stage0_decision_tree({}, root=root)
-        return {
-            "overall_status": "FAIL_CROSS_CONDITIONING_ARM_REPLAY_MIXING",
-            "lot_release_readiness_tier": "FAIL_CROSS_CONDITIONING_ARM_REPLAY_MIXING",
-            "iip0026_reasons": ["FAIL_CROSS_CONDITIONING_ARM_REPLAY_MIXING"],
-            "lifecycle_state": reg_state,
-            "execution_supported": False,
-            "effective_execution_permitted": False,
-            "switch_decisions": empty_s0["switch_decisions"],
-        }
+    records_by_scope: Dict[Tuple[str, str, str], List[Tuple[Tuple[Any, ...], Dict[str, Any], bool, str | None]]] = {}
+    incomplete_scope_records: List[Dict[str, Any]] = []
+    ambiguous_scope_records: List[Dict[str, Any]] = []
+    has_unattributable_malformed = False
+    has_ambiguous_scope = False
 
-    for rec in ordered[1:]:
-        sc = rec.get("scope") or {}
-        r_pid = sc.get("product_variant_id", rec.get("product_variant_id"))
-        r_lot = sc.get("lot_id", sc.get("current_lot_id", rec.get("lot_id", rec.get("current_lot_id"))))
-        r_camp = sc.get("campaign_id", sc.get("assay_campaign_id", rec.get("campaign_id", rec.get("assay_campaign_id"))))
-        if (r_pid, r_lot, r_camp) != (s_pid, s_lot, s_camp):
+    for idx, record in sorted(enumerate(records), key=_replay_sort_key):
+        if not isinstance(record, dict):
+            has_unattributable_malformed = True
+            continue
+        scope_is_malformed = "scope" in record and not isinstance(record["scope"], dict)
+        sc = record["scope"] if isinstance(record.get("scope"), dict) else {}
+        mol = record["iip0026_molecular_observations"] if isinstance(record.get("iip0026_molecular_observations"), dict) else {}
+        if _conflicting_stage0_batch_scope(record, wc_helper, root_path):
+            has_ambiguous_scope = True
+            ambiguous_scope_records.append(record)
+            continue
+        raw_product = _extract_scope_field(record, sc, ("product_variant_id",))
+        lot = _extract_scope_field(record, sc, ("lot_id", "current_lot_id"))
+        campaign = _extract_scope_field(record, sc, ("campaign_id", "assay_campaign_id"))
+        if not all(isinstance(v, str) and v.strip() for v in (raw_product, lot, campaign)):
+            has_unattributable_malformed = True
+            incomplete_scope_records.append(record)
+            continue
+        canonical_product, _ = wc_helper._canonicalize_product_id_iip0031(raw_product, root_path)
+        scope_key = (canonical_product or raw_product.strip(), lot.strip(), campaign.strip())
+        r_arm = sc.get(
+            "adjunct_conditioning_history_arm",
+            mol.get("adjunct_conditioning_history_arm", record.get("adjunct_conditioning_history_arm")),
+        )
+        arm_str = r_arm.strip() if isinstance(r_arm, str) and r_arm.strip() else None
+        raw_seq = record.get("seq_index", idx)
+        seq_i = raw_seq if (type(raw_seq) is int) else idx
+        logical_tk = (_parse_replay_timestamp_iip0031(record.get("utc_timestamp")), seq_i)
+        records_by_scope.setdefault(scope_key, []).append((logical_tk, record, scope_is_malformed, arm_str))
+
+    # Evaluate incomplete-scope records independently (order-independent, non-overwriting S9 latch):
+    incomplete_s9_eval: Dict[str, Any] | None = None
+    incomplete_pvids: set[str] = set()
+    incomplete_base_doc: Dict[str, Any] | None = None
+    allowed_mol_inc = getattr(wc_helper, "IIP0026_ALLOWED_MOLECULAR_OBS_KEYS")
+    bool_flags_inc = set(getattr(wc_helper, "STAGE0_DECISION_TREE_BOOLEAN_KEYS", ()))
+    for inc_rec in incomplete_scope_records:
+        inc_san, _, _ = _sanitize_stage0_envelope_iip0031(inc_rec)
+        inc_ev = wc_helper.evaluate_stage0_product_contract(inc_san, root=root)
+        sc_i = inc_san.get("scope") if isinstance(inc_san.get("scope"), dict) else {}
+        rp_i = _extract_scope_field(inc_san, sc_i, ("product_variant_id",))
+        if isinstance(rp_i, str) and rp_i.strip():
+            cp_i, _ = wc_helper._canonicalize_product_id_iip0031(rp_i, root_path)
+            incomplete_pvids.add(cp_i or rp_i.strip())
+            if incomplete_base_doc is None:
+                incomplete_base_doc = {
+                    "product_variant_id": cp_i or rp_i.strip(),
+                    "lot_id": _extract_scope_field(inc_san, sc_i, ("lot_id", "current_lot_id")),
+                    "campaign_id": _extract_scope_field(inc_san, sc_i, ("campaign_id", "assay_campaign_id")),
+                }
+            flat_mf = {k: v for k, v in inc_san.items() if isinstance(k, str) and k.startswith("obs_") and v is not None}
+            raw_mf = inc_san.get("measurements")
+            merged_mf = {**flat_mf, **(raw_mf if isinstance(raw_mf, dict) else {})}
+            if merged_mf:
+                incomplete_base_doc.update(_extract_stage0_batch_measurements_preserving_explicit_se_iip0026(merged_mf, wc_helper))
+            mol_f = inc_san.get("iip0026_molecular_observations")
+            for src_inc_m in (inc_san, sc_i, mol_f if isinstance(mol_f, dict) else {}):
+                for mk_f, mv_f in src_inc_m.items():
+                    if isinstance(mk_f, str) and (mk_f in allowed_mol_inc or mk_f in bool_flags_inc) and mv_f is not None:
+                        incomplete_base_doc[mk_f] = mv_f
+        if (
+            inc_ev.get("overall_status") == "HARD_SAFETY_STOP_REJECTED"
+            and inc_ev.get("hard_stop_precedence_winner") == "S9_HARD_SAFETY_STOP"
+            and incomplete_s9_eval is None
+        ):
+            incomplete_s9_eval = dict(inc_ev)
+
+    if not records_by_scope:
+        if incomplete_s9_eval is not None:
+            if has_ambiguous_scope and "FAIL_CROSS_LOT_OR_CAMPAIGN_REPLAY_MIXING" not in incomplete_s9_eval.get("iip0026_reasons", []):
+                incomplete_s9_eval["iip0026_reasons"] = [*incomplete_s9_eval.get("iip0026_reasons", []), "FAIL_CROSS_LOT_OR_CAMPAIGN_REPLAY_MIXING"]
+            return incomplete_s9_eval
+        if has_ambiguous_scope:
+            p_mod = wc_helper._load_product_contract_module(root_path)
+            prod_by_id = {str(p["product_variant_id"]): p for p in p_mod.load_product_contracts(root_path)["products"]}
+            reg_state_amb = "UNREGISTERED"
+            for amb_r in ambiguous_scope_records:
+                sc_amb = amb_r.get("scope") if isinstance(amb_r.get("scope"), dict) else {}
+                rp_amb = _extract_scope_field(amb_r, sc_amb, ("product_variant_id",))
+                if isinstance(rp_amb, str) and rp_amb.strip():
+                    cp_amb, _ = wc_helper._canonicalize_product_id_iip0031(rp_amb, root_path)
+                    if cp_amb and str(cp_amb) in prod_by_id:
+                        reg_state_amb = wc_helper._derive_versioned_product_registry_entry_iip0026(prod_by_id[str(cp_amb)])["lifecycle_state"]
+                        break
             empty_s0 = wc_helper.evaluate_stage0_decision_tree({}, root=root)
             return {
                 "overall_status": "FAIL_CROSS_LOT_OR_CAMPAIGN_REPLAY_MIXING",
                 "lot_release_readiness_tier": "FAIL_CROSS_LOT_OR_CAMPAIGN_REPLAY_MIXING",
                 "iip0026_reasons": ["FAIL_CROSS_LOT_OR_CAMPAIGN_REPLAY_MIXING"],
-                "lifecycle_state": reg_state,
+                "hard_stop_precedence_winner": None,
+                "lifecycle_state": reg_state_amb,
                 "execution_supported": False,
                 "effective_execution_permitted": False,
                 "switch_decisions": empty_s0["switch_decisions"],
             }
+        if len(incomplete_pvids) == 1 and incomplete_base_doc is not None:
+            return wc_helper.evaluate_stage0_product_contract(incomplete_base_doc, root=root)
+        return wc_helper.evaluate_stage0_product_contract({}, root=root)
 
-    accum: Dict[str, Any] = {
-        "product_variant_id": s_pid,
-        "lot_id": s_lot,
-        "campaign_id": s_camp,
-        **({"construct_sha256": first_scope["construct_sha256"]} if "construct_sha256" in first_scope and first_scope["construct_sha256"] is not None else {}),
-        **({"device_assembly_id": first_scope["device_assembly_id"]} if "device_assembly_id" in first_scope and first_scope["device_assembly_id"] is not None else {}),
-        **({"schema_era": first_scope["schema_era"]} if "schema_era" in first_scope else {}),
-        **({"iip0026_schema_era": first_scope["iip0026_schema_era"]} if "iip0026_schema_era" in first_scope else {}),
+    all_arms: set[str] = {
+        arm_str
+        for items in records_by_scope.values()
+        for _, _, _, arm_str in items
+        if arm_str is not None
     }
-    latched_adverse_reasons: list[str] = []
-    latched_hard_stop = False
-    latched_switch_decisions: Dict[str, Any] | None = None
-    locked_iip0029_source_fp: tuple[Any, ...] | None = None
-    locked_iip0029_flat_clocks: Dict[str, Any] = {}
-    latched_iip0029_store_gt_138p3 = False
-    latched_iip0029_alk5i_continued = False
+    has_cross_arm = len(all_arms) > 1
+    has_cross_scope = (len(records_by_scope) > 1) or has_ambiguous_scope
 
-    for rec in ordered:
-        sc = rec.get("scope") or {}
-        mol = rec.get("iip0026_molecular_observations") or {}
-        if "construct_sha256" in sc and sc["construct_sha256"] is not None:
-            if "construct_sha256" in accum and accum["construct_sha256"] != sc["construct_sha256"]:
-                if "FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED" not in latched_adverse_reasons:
-                    latched_adverse_reasons.append("FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED")
-            else:
-                accum["construct_sha256"] = sc["construct_sha256"]
-        if "device_assembly_id" in sc and sc["device_assembly_id"] is not None:
-            accum["device_assembly_id"] = sc["device_assembly_id"]
-        for k, v in {**rec, **sc, **mol}.items():
-            if (k in forbidden_ovr) or str(k).endswith("_lifecycle_state") or str(k).endswith("_execution_supported"):
-                accum[k] = v
-        raw_m = rec.get("measurements")
-        if isinstance(raw_m, dict) and len(raw_m) > 0:
-            accum.update(_extract_stage0_batch_measurements_preserving_explicit_se_iip0026(raw_m, wc_helper))
-        for mk, mv in mol.items():
-            if (mk in allowed_mol or mk in bool_flags) and mv is not None:
-                accum[mk] = mv
-        rec_29_in = rec.get("iip0029_twoclock_record", mol.get("iip0029_twoclock_record"))
-        if rec_29_in is not None:
-            fp_now = wc_helper._extract_iip0029_source_fingerprint(rec_29_in)
-            if locked_iip0029_source_fp is not None and fp_now != locked_iip0029_source_fp:
-                if "FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED" not in latched_adverse_reasons:
-                    latched_adverse_reasons.append("FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED")
-            else:
-                locked_iip0029_source_fp = fp_now
-            accum["iip0029_twoclock_record"] = rec_29_in
-        for clk_k in ("stage7_start_utc", "sort_reaggregation_utc", "assay_harvest_utc", "locked_analysis_plan_id"):
-            clk_v = accum.get(clk_k)
-            if clk_v is not None:
-                if clk_k in locked_iip0029_flat_clocks and locked_iip0029_flat_clocks[clk_k] != clk_v:
-                    if "FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED" not in latched_adverse_reasons:
-                        latched_adverse_reasons.append("FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED")
-                else:
-                    locked_iip0029_flat_clocks[clk_k] = clk_v
-        if accum.get("terminal_alk5i_tgfb_inhibitor_continued") is True:
-            latched_iip0029_alk5i_continued = True
-        elif latched_iip0029_alk5i_continued and accum.get("terminal_alk5i_tgfb_inhibitor_continued") is False:
-            if "FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED" not in latched_adverse_reasons:
-                latched_adverse_reasons.append("FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED")
+    # Build exact `(scope_key, arm_key)` partitions (only splitting by arm when multiple conditioning arms appear):
+    partitions: List[Tuple[Tuple[str, str, str], str | None, List[Tuple[Tuple[Any, ...], Dict[str, Any], bool]]]] = []
+    for scope_key, items in records_by_scope.items():
+        scope_arms = {arm_str for _, _, _, arm_str in items if arm_str is not None}
+        if len(scope_arms) > 1:
+            by_arm: Dict[str | None, List[Tuple[Tuple[Any, ...], Dict[str, Any], bool]]] = {}
+            for tk, rec, sm, arm_str in items:
+                by_arm.setdefault(arm_str, []).append((tk, rec, sm))
+            for arm_k, arm_items in by_arm.items():
+                partitions.append((scope_key, arm_k, arm_items))
+        else:
+            only_arm = next(iter(scope_arms)) if scope_arms else None
+            partitions.append((scope_key, only_arm, [(tk, rec, sm) for tk, rec, sm, _ in items]))
 
-        step_eval = wc_helper.evaluate_stage0_research_and_molecular_guardrails(dict(accum), root=root)
-        step_29 = step_eval.get("iip0029_twoclock_maturation_and_repeated_challenge_evaluation")
-        if isinstance(step_29, dict):
-            if step_29.get("gate0s_escalation_required") is True:
-                latched_iip0029_store_gt_138p3 = True
-            elif latched_iip0029_store_gt_138p3 and step_29.get("gate0s_escalation_required") is False:
-                if "FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED" not in latched_adverse_reasons:
-                    latched_adverse_reasons.append("FAIL_IIP0029_IMMUTABLE_SOURCE_OR_THRESHOLD_REPLACEMENT_DETECTED")
-        if step_eval["overall_status"] == "HARD_SAFETY_STOP_REJECTED":
-            latched_hard_stop = True
-            latched_switch_decisions = dict(step_eval["switch_decisions"])
-        for r in step_eval["iip0026_reasons"]:
-            if r.startswith("FAIL_") and r not in latched_adverse_reasons:
-                latched_adverse_reasons.append(r)
+    # Fast single-scope, single-arm, unambiguous path:
+    if len(partitions) == 1 and not has_cross_scope and not has_cross_arm:
+        scope_key, _, part_items = partitions[0]
+        single_out = _replay_single_scope_iip0031(
+            scope_key,
+            part_items,
+            has_external_malformed=has_unattributable_malformed,
+            root=root,
+            root_path=root_path,
+            wc_helper=wc_helper,
+        )
+        if incomplete_s9_eval is not None and _hard_stop_rank_iip0031(single_out) > 0:
+            single_out["overall_status"] = "HARD_SAFETY_STOP_REJECTED"
+            single_out["lot_release_readiness_tier"] = "HARD_SAFETY_STOP_REJECTED"
+            single_out["hard_stop_precedence_winner"] = "S9_HARD_SAFETY_STOP"
+            if "HARD_SAFETY_STOP_S9" not in single_out.get("iip0026_reasons", []):
+                single_out["iip0026_reasons"] = ["HARD_SAFETY_STOP_S9", *single_out.get("iip0026_reasons", [])]
+            single_out["execution_supported"] = False
+            single_out["effective_execution_permitted"] = False
+        return single_out
 
-    final_eval = wc_helper.evaluate_stage0_research_and_molecular_guardrails(dict(accum), root=root)
-    if latched_hard_stop:
-        final_eval["overall_status"] = "HARD_SAFETY_STOP_REJECTED"
-        final_eval["lot_release_readiness_tier"] = "HARD_SAFETY_STOP_REJECTED"
-        final_eval["iip0026_reasons"] = ["HARD_SAFETY_STOP_S9"]
-        final_eval["execution_supported"] = False
-        final_eval["effective_execution_permitted"] = False
-        if latched_switch_decisions is not None:
-            final_eval["switch_decisions"] = latched_switch_decisions
-    elif latched_adverse_reasons:
-        merged_reasons = list(latched_adverse_reasons) + [
-            r for r in final_eval["iip0026_reasons"] if r not in latched_adverse_reasons
+    # Multi-scope / multi-arm / ambiguous-peer replay: evaluate each attributable partition independently
+    # so cross-scope/cross-arm rejection NEVER erases an independently attributable hard safety stop:
+    partition_evals: List[Tuple[Tuple[str, str, str], str | None, Dict[str, Any]]] = []
+    for scope_key, arm_k, part_items in partitions:
+        p_eval = _replay_single_scope_iip0031(
+            scope_key,
+            part_items,
+            has_external_malformed=False,
+            root=root,
+            root_path=root_path,
+            wc_helper=wc_helper,
+        )
+        partition_evals.append((scope_key, arm_k, p_eval))
+
+    adverse_parts = [
+        (scope_key, arm_k, ev)
+        for scope_key, arm_k, ev in partition_evals
+        if _is_hard_stop_result_iip0031(ev)
+    ]
+    if adverse_parts or incomplete_s9_eval is not None:
+        if incomplete_s9_eval is not None and (not adverse_parts or min(_hard_stop_rank_iip0031(ev) for _, _, ev in adverse_parts) > 0):
+            best_eval = dict(incomplete_s9_eval)
+        else:
+            adverse_parts.sort(key=lambda item: (_hard_stop_rank_iip0031(item[2]), item[0], item[1] or ""))
+            best_eval = dict(adverse_parts[0][2])
+        reasons = list(best_eval.get("iip0026_reasons", []))
+        if has_cross_arm and "FAIL_CROSS_CONDITIONING_ARM_REPLAY_MIXING" not in reasons:
+            reasons.append("FAIL_CROSS_CONDITIONING_ARM_REPLAY_MIXING")
+        if has_cross_scope and "FAIL_CROSS_LOT_OR_CAMPAIGN_REPLAY_MIXING" not in reasons:
+            reasons.append("FAIL_CROSS_LOT_OR_CAMPAIGN_REPLAY_MIXING")
+        best_eval["iip0026_reasons"] = reasons
+        best_eval["scoped_adverse_events"] = [
+            {
+                "product_variant_id": sk[0],
+                "lot_id": sk[1],
+                "campaign_id": sk[2],
+                "adjunct_conditioning_history_arm": ak,
+                "overall_status": ev.get("overall_status"),
+                "hard_stop_precedence_winner": ev.get("hard_stop_precedence_winner"),
+            }
+            for sk, ak, ev in adverse_parts
         ]
-        final_eval["iip0026_reasons"] = merged_reasons
-        final_eval["overall_status"] = latched_adverse_reasons[0]
-        final_eval["lot_release_readiness_tier"] = latched_adverse_reasons[0]
-        final_eval["execution_supported"] = False
-        final_eval["effective_execution_permitted"] = False
-    return final_eval
+        best_eval["execution_supported"] = False
+        best_eval["effective_execution_permitted"] = False
+        return best_eval
+
+    # No partition had an independent hard safety stop -> return deterministic cross-arm or cross-scope rejection:
+    first_pid = next(iter(records_by_scope.keys()))[0]
+    p_mod = wc_helper._load_product_contract_module(root_path)
+    prod_by_id = {str(p["product_variant_id"]): p for p in p_mod.load_product_contracts(root_path)["products"]}
+    reg_state = (
+        wc_helper._derive_versioned_product_registry_entry_iip0026(prod_by_id[str(first_pid)])["lifecycle_state"]
+        if str(first_pid) in prod_by_id
+        else "UNREGISTERED"
+    )
+    empty_s0 = wc_helper.evaluate_stage0_decision_tree({}, root=root)
+    mix_code = "FAIL_CROSS_CONDITIONING_ARM_REPLAY_MIXING" if has_cross_arm else "FAIL_CROSS_LOT_OR_CAMPAIGN_REPLAY_MIXING"
+    return {
+        "overall_status": mix_code,
+        "lot_release_readiness_tier": mix_code,
+        "iip0026_reasons": [mix_code],
+        "hard_stop_precedence_winner": None,
+        "lifecycle_state": reg_state,
+        "execution_supported": False,
+        "effective_execution_permitted": False,
+        "switch_decisions": empty_s0["switch_decisions"],
+    }
 
 
 def main() -> None:

@@ -1429,8 +1429,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 1162,
-          "total_tests_across_all_scanned_matrices_in_region": 6972,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 1162 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (6972 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 6972,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 1162 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 6972; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -1448,6 +1449,80 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 2,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 2,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 2,
+          "all_significant_hits": [
+            {
+              "matrix_id": "MA0050.2",
+              "tf_name": "IRF1",
+              "strand": "-",
+              "start_1based_in_window": 158,
+              "end_1based_in_window": 178,
+              "matched_kmer": "TCCCGTTTTCAGTTTCCTTTT",
+              "log2_odds_score": 17.6728,
+              "relative_score_0_to_1": 0.9069,
+              "null_z_score": 4.562,
+              "analytical_gaussian_p_value_unadjusted": 3e-06,
+              "exact_markov0_p_value_unadjusted": 2.94426606884e-08,
+              "empirical_markov0_2000_window_p_value_unadjusted": 0.0005,
+              "bonferroni_window_p_value": 3.421237172e-05,
+              "bonferroni_corrected_p_value_6_motifs": 0.0002052742303,
+              "bonferroni_region_across_all_matrices_p_value": 0.0002052742303,
+              "analytical_bonferroni_window_p_value": 0.00294,
+              "empirical_markov0_2000_window_bonferroni_p_value": 0.58071,
+              "passes_rel_score_0p80_and_p_le_0p05": true,
+              "passes_region_wide_bonferroni_0p05": true,
+              "passes_2000_window_mc_bonferroni_0p05": false,
+              "mc_2000_window_min_achievable_bonferroni_p": 0.58071,
+              "mc_2000_window_gate_resolution_limited": true
+            },
+            {
+              "matrix_id": "MA0050.2",
+              "tf_name": "IRF1",
+              "strand": "-",
+              "start_1based_in_window": 152,
+              "end_1based_in_window": 172,
+              "matched_kmer": "TTTCAGTTTCCTTTTCTTAGA",
+              "log2_odds_score": 11.7177,
+              "relative_score_0_to_1": 0.8538,
+              "null_z_score": 4.063,
+              "analytical_gaussian_p_value_unadjusted": 2.4e-05,
+              "exact_markov0_p_value_unadjusted": 1.24950632672e-06,
+              "empirical_markov0_2000_window_p_value_unadjusted": 0.0005,
+              "bonferroni_window_p_value": 0.001451926352,
+              "bonferroni_corrected_p_value_6_motifs": 0.00871155811,
+              "bonferroni_region_across_all_matrices_p_value": 0.00871155811,
+              "analytical_bonferroni_window_p_value": 0.02817,
+              "empirical_markov0_2000_window_bonferroni_p_value": 0.58071,
+              "passes_rel_score_0p80_and_p_le_0p05": true,
+              "passes_region_wide_bonferroni_0p05": true,
+              "passes_2000_window_mc_bonferroni_0p05": false,
+              "mc_2000_window_min_achievable_bonferroni_p": 0.58071,
+              "mc_2000_window_gate_resolution_limited": true
+            },
+            {
+              "matrix_id": "MA0050.2",
+              "tf_name": "IRF1",
+              "strand": "+",
+              "start_1based_in_window": 362,
+              "end_1based_in_window": 382,
+              "matched_kmer": "CGCTACTCTCTCTTTCTGGCC",
+              "log2_odds_score": 10.0409,
+              "relative_score_0_to_1": 0.8388,
+              "null_z_score": 3.922,
+              "analytical_gaussian_p_value_unadjusted": 4.4e-05,
+              "exact_markov0_p_value_unadjusted": 2.282211815e-05,
+              "empirical_markov0_2000_window_p_value_unadjusted": 0.0005,
+              "bonferroni_window_p_value": 0.02651930129,
+              "bonferroni_corrected_p_value_6_motifs": 0.1591158077,
+              "bonferroni_region_across_all_matrices_p_value": 0.1591158077,
+              "analytical_bonferroni_window_p_value": 0.050985,
+              "empirical_markov0_2000_window_bonferroni_p_value": 0.58071,
+              "passes_rel_score_0p80_and_p_le_0p05": true,
+              "passes_region_wide_bonferroni_0p05": false,
+              "passes_2000_window_mc_bonferroni_0p05": false,
+              "mc_2000_window_min_achievable_bonferroni_p": 0.58071,
+              "mc_2000_window_gate_resolution_limited": true
+            }
+          ],
           "top_hits": [
             {
               "matrix_id": "MA0050.2",
@@ -1508,8 +1583,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 1186,
-          "total_tests_across_all_scanned_matrices_in_region": 7116,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 1186 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (7116 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 7116,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 1186 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 7116; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -1527,6 +1603,7 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 0,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 0,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [],
           "top_hits": [
             {
               "matrix_id": "MA0079.5",
@@ -1587,8 +1664,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 1178,
-          "total_tests_across_all_scanned_matrices_in_region": 7068,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 1178 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (7068 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 7068,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 1178 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 7068; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -1606,6 +1684,7 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 0,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 0,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [],
           "top_hits": [
             {
               "matrix_id": "MA0105.4",
@@ -1666,8 +1745,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 1184,
-          "total_tests_across_all_scanned_matrices_in_region": 7104,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 1184 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (7104 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 7104,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 1184 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 7104; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -1685,6 +1765,32 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 1,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 1,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 1,
+          "all_significant_hits": [
+            {
+              "matrix_id": "MA0107.1",
+              "tf_name": "RELA",
+              "strand": "-",
+              "start_1based_in_window": 176,
+              "end_1based_in_window": 185,
+              "matched_kmer": "GGGACTTTCC",
+              "log2_odds_score": 14.2128,
+              "relative_score_0_to_1": 0.964,
+              "null_z_score": 4.639,
+              "analytical_gaussian_p_value_unadjusted": 2e-06,
+              "exact_markov0_p_value_unadjusted": 3.56477223069e-06,
+              "empirical_markov0_2000_window_p_value_unadjusted": 0.0005,
+              "bonferroni_window_p_value": 0.004220690321,
+              "bonferroni_corrected_p_value_6_motifs": 0.02532414193,
+              "bonferroni_region_across_all_matrices_p_value": 0.02532414193,
+              "analytical_bonferroni_window_p_value": 0.002074,
+              "empirical_markov0_2000_window_bonferroni_p_value": 0.591704,
+              "passes_rel_score_0p80_and_p_le_0p05": true,
+              "passes_region_wide_bonferroni_0p05": true,
+              "passes_2000_window_mc_bonferroni_0p05": false,
+              "mc_2000_window_min_achievable_bonferroni_p": 0.591704,
+              "mc_2000_window_gate_resolution_limited": true
+            }
+          ],
           "top_hits": [
             {
               "matrix_id": "MA0107.1",
@@ -1745,8 +1851,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 1182,
-          "total_tests_across_all_scanned_matrices_in_region": 7092,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 1182 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (7092 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 7092,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 1182 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 7092; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -1764,6 +1871,7 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 0,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 0,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [],
           "top_hits": [
             {
               "matrix_id": "MA0137.3",
@@ -1824,8 +1932,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 1166,
-          "total_tests_across_all_scanned_matrices_in_region": 6996,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 1166 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (6996 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 6996,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 1166 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 6996; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -1843,6 +1952,7 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 0,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 0,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [],
           "top_hits": [
             {
               "matrix_id": "MA0139.1",
@@ -1911,8 +2021,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 1162,
-          "total_tests_across_all_scanned_matrices_in_region": 6972,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 1162 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (6972 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 6972,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 1162 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 6972; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -1930,6 +2041,32 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 1,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 1,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [
+            {
+              "matrix_id": "MA0050.2",
+              "tf_name": "IRF1",
+              "strand": "+",
+              "start_1based_in_window": 507,
+              "end_1based_in_window": 527,
+              "matched_kmer": "ATTAGGTTTCACTTTCCAAAA",
+              "log2_odds_score": 14.6274,
+              "relative_score_0_to_1": 0.8798,
+              "null_z_score": 4.307,
+              "analytical_gaussian_p_value_unadjusted": 8e-06,
+              "exact_markov0_p_value_unadjusted": 3.38073933676e-05,
+              "empirical_markov0_2000_window_p_value_unadjusted": 0.0005,
+              "bonferroni_window_p_value": 0.03928419109,
+              "bonferroni_corrected_p_value_6_motifs": 0.2357051466,
+              "bonferroni_region_across_all_matrices_p_value": 0.2357051466,
+              "analytical_bonferroni_window_p_value": 0.00962,
+              "empirical_markov0_2000_window_bonferroni_p_value": 0.58071,
+              "passes_rel_score_0p80_and_p_le_0p05": true,
+              "passes_region_wide_bonferroni_0p05": false,
+              "passes_2000_window_mc_bonferroni_0p05": false,
+              "mc_2000_window_min_achievable_bonferroni_p": 0.58071,
+              "mc_2000_window_gate_resolution_limited": true
+            }
+          ],
           "top_hits": [
             {
               "matrix_id": "MA0050.2",
@@ -1990,8 +2127,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 1186,
-          "total_tests_across_all_scanned_matrices_in_region": 7116,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 1186 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (7116 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 7116,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 1186 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 7116; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -2009,6 +2147,7 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 0,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 0,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [],
           "top_hits": [
             {
               "matrix_id": "MA0079.5",
@@ -2069,8 +2208,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 1178,
-          "total_tests_across_all_scanned_matrices_in_region": 7068,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 1178 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (7068 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 7068,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 1178 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 7068; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -2088,6 +2228,56 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 1,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 1,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [
+            {
+              "matrix_id": "MA0105.4",
+              "tf_name": "NFKB1",
+              "strand": "+",
+              "start_1based_in_window": 412,
+              "end_1based_in_window": 424,
+              "matched_kmer": "TGGGGAAGTCCCA",
+              "log2_odds_score": 3.9576,
+              "relative_score_0_to_1": 0.8574,
+              "null_z_score": 3.99,
+              "analytical_gaussian_p_value_unadjusted": 3.3e-05,
+              "exact_markov0_p_value_unadjusted": 1.43775110474e-05,
+              "empirical_markov0_2000_window_p_value_unadjusted": 0.001,
+              "bonferroni_window_p_value": 0.01693670801,
+              "bonferroni_corrected_p_value_6_motifs": 0.1016202481,
+              "bonferroni_region_across_all_matrices_p_value": 0.1016202481,
+              "analytical_bonferroni_window_p_value": 0.038883,
+              "empirical_markov0_2000_window_bonferroni_p_value": 1.0,
+              "passes_rel_score_0p80_and_p_le_0p05": true,
+              "passes_region_wide_bonferroni_0p05": false,
+              "passes_2000_window_mc_bonferroni_0p05": false,
+              "mc_2000_window_min_achievable_bonferroni_p": 0.588706,
+              "mc_2000_window_gate_resolution_limited": true
+            },
+            {
+              "matrix_id": "MA0105.4",
+              "tf_name": "NFKB1",
+              "strand": "-",
+              "start_1based_in_window": 412,
+              "end_1based_in_window": 424,
+              "matched_kmer": "TGGGACTTCCCCA",
+              "log2_odds_score": 3.0577,
+              "relative_score_0_to_1": 0.8508,
+              "null_z_score": 3.933,
+              "analytical_gaussian_p_value_unadjusted": 4.2e-05,
+              "exact_markov0_p_value_unadjusted": 1.98649989853e-05,
+              "empirical_markov0_2000_window_p_value_unadjusted": 0.0005,
+              "bonferroni_window_p_value": 0.0234009688,
+              "bonferroni_corrected_p_value_6_motifs": 0.1404058128,
+              "bonferroni_region_across_all_matrices_p_value": 0.1404058128,
+              "analytical_bonferroni_window_p_value": 0.049314,
+              "empirical_markov0_2000_window_bonferroni_p_value": 0.588706,
+              "passes_rel_score_0p80_and_p_le_0p05": true,
+              "passes_region_wide_bonferroni_0p05": false,
+              "passes_2000_window_mc_bonferroni_0p05": false,
+              "mc_2000_window_min_achievable_bonferroni_p": 0.588706,
+              "mc_2000_window_gate_resolution_limited": true
+            }
+          ],
           "top_hits": [
             {
               "matrix_id": "MA0105.4",
@@ -2148,8 +2338,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 1184,
-          "total_tests_across_all_scanned_matrices_in_region": 7104,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 1184 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (7104 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 7104,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 1184 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 7104; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -2167,6 +2358,80 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 2,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 2,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 2,
+          "all_significant_hits": [
+            {
+              "matrix_id": "MA0107.1",
+              "tf_name": "RELA",
+              "strand": "+",
+              "start_1based_in_window": 468,
+              "end_1based_in_window": 477,
+              "matched_kmer": "CGGAATTTCC",
+              "log2_odds_score": 14.4221,
+              "relative_score_0_to_1": 0.969,
+              "null_z_score": 4.676,
+              "analytical_gaussian_p_value_unadjusted": 1e-06,
+              "exact_markov0_p_value_unadjusted": 2.2030237085e-06,
+              "empirical_markov0_2000_window_p_value_unadjusted": 0.0005,
+              "bonferroni_window_p_value": 0.002608380071,
+              "bonferroni_corrected_p_value_6_motifs": 0.01565028043,
+              "bonferroni_region_across_all_matrices_p_value": 0.01565028043,
+              "analytical_bonferroni_window_p_value": 0.00173,
+              "empirical_markov0_2000_window_bonferroni_p_value": 0.591704,
+              "passes_rel_score_0p80_and_p_le_0p05": true,
+              "passes_region_wide_bonferroni_0p05": true,
+              "passes_2000_window_mc_bonferroni_0p05": false,
+              "mc_2000_window_min_achievable_bonferroni_p": 0.591704,
+              "mc_2000_window_gate_resolution_limited": true
+            },
+            {
+              "matrix_id": "MA0107.1",
+              "tf_name": "RELA",
+              "strand": "-",
+              "start_1based_in_window": 469,
+              "end_1based_in_window": 478,
+              "matched_kmer": "GGGAAATTCC",
+              "log2_odds_score": 13.1348,
+              "relative_score_0_to_1": 0.9382,
+              "null_z_score": 4.447,
+              "analytical_gaussian_p_value_unadjusted": 4e-06,
+              "exact_markov0_p_value_unadjusted": 5.88284084508e-06,
+              "empirical_markov0_2000_window_p_value_unadjusted": 0.0005,
+              "bonferroni_window_p_value": 0.006965283561,
+              "bonferroni_corrected_p_value_6_motifs": 0.04179170136,
+              "bonferroni_region_across_all_matrices_p_value": 0.04179170136,
+              "analytical_bonferroni_window_p_value": 0.005164,
+              "empirical_markov0_2000_window_bonferroni_p_value": 0.591704,
+              "passes_rel_score_0p80_and_p_le_0p05": true,
+              "passes_region_wide_bonferroni_0p05": true,
+              "passes_2000_window_mc_bonferroni_0p05": false,
+              "mc_2000_window_min_achievable_bonferroni_p": 0.591704,
+              "mc_2000_window_gate_resolution_limited": true
+            },
+            {
+              "matrix_id": "MA0107.1",
+              "tf_name": "RELA",
+              "strand": "-",
+              "start_1based_in_window": 414,
+              "end_1based_in_window": 423,
+              "matched_kmer": "GGGACTTCCC",
+              "log2_odds_score": 11.6278,
+              "relative_score_0_to_1": 0.9022,
+              "null_z_score": 4.178,
+              "analytical_gaussian_p_value_unadjusted": 1.5e-05,
+              "exact_markov0_p_value_unadjusted": 1.44947300481e-05,
+              "empirical_markov0_2000_window_p_value_unadjusted": 0.0005,
+              "bonferroni_window_p_value": 0.01716176038,
+              "bonferroni_corrected_p_value_6_motifs": 0.1029705623,
+              "bonferroni_region_across_all_matrices_p_value": 0.1029705623,
+              "analytical_bonferroni_window_p_value": 0.017415,
+              "empirical_markov0_2000_window_bonferroni_p_value": 0.591704,
+              "passes_rel_score_0p80_and_p_le_0p05": true,
+              "passes_region_wide_bonferroni_0p05": false,
+              "passes_2000_window_mc_bonferroni_0p05": false,
+              "mc_2000_window_min_achievable_bonferroni_p": 0.591704,
+              "mc_2000_window_gate_resolution_limited": true
+            }
+          ],
           "top_hits": [
             {
               "matrix_id": "MA0107.1",
@@ -2227,8 +2492,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 1182,
-          "total_tests_across_all_scanned_matrices_in_region": 7092,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 1182 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (7092 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 7092,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 1182 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 7092; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -2246,6 +2512,7 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 0,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 0,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [],
           "top_hits": [
             {
               "matrix_id": "MA0137.3",
@@ -2306,8 +2573,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 1166,
-          "total_tests_across_all_scanned_matrices_in_region": 6996,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 1166 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (6996 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 6996,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 1166 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 6996; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -2325,6 +2593,32 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 1,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 1,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [
+            {
+              "matrix_id": "MA0139.1",
+              "tf_name": "CTCF",
+              "strand": "-",
+              "start_1based_in_window": 389,
+              "end_1based_in_window": 407,
+              "matched_kmer": "CAGCCAGCAGGTTTTGCTA",
+              "log2_odds_score": 9.3479,
+              "relative_score_0_to_1": 0.8384,
+              "null_z_score": 3.848,
+              "analytical_gaussian_p_value_unadjusted": 6e-05,
+              "exact_markov0_p_value_unadjusted": 1.9474207097e-05,
+              "empirical_markov0_2000_window_p_value_unadjusted": 0.0005,
+              "bonferroni_window_p_value": 0.02270692548,
+              "bonferroni_corrected_p_value_6_motifs": 0.1362415529,
+              "bonferroni_region_across_all_matrices_p_value": 0.1362415529,
+              "analytical_bonferroni_window_p_value": 0.069537,
+              "empirical_markov0_2000_window_bonferroni_p_value": 0.582709,
+              "passes_rel_score_0p80_and_p_le_0p05": true,
+              "passes_region_wide_bonferroni_0p05": false,
+              "passes_2000_window_mc_bonferroni_0p05": false,
+              "mc_2000_window_min_achievable_bonferroni_p": 0.582709,
+              "mc_2000_window_gate_resolution_limited": true
+            }
+          ],
           "top_hits": [
             {
               "matrix_id": "MA0139.1",
@@ -2393,8 +2687,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 2362,
-          "total_tests_across_all_scanned_matrices_in_region": 14172,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 2362 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (14172 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 14172,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 2362 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 14172; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -2412,6 +2707,32 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 1,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 1,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [
+            {
+              "matrix_id": "MA0050.2",
+              "tf_name": "IRF1",
+              "strand": "+",
+              "start_1based_in_window": 516,
+              "end_1based_in_window": 536,
+              "matched_kmer": "CTTCCCTTTTTGTTTTCCGTG",
+              "log2_odds_score": 8.9921,
+              "relative_score_0_to_1": 0.8295,
+              "null_z_score": 3.834,
+              "analytical_gaussian_p_value_unadjusted": 6.3e-05,
+              "exact_markov0_p_value_unadjusted": 1.62604763162e-05,
+              "empirical_markov0_2000_window_p_value_unadjusted": 0.0005,
+              "bonferroni_window_p_value": 0.03840724506,
+              "bonferroni_corrected_p_value_6_motifs": 0.2304434704,
+              "bonferroni_region_across_all_matrices_p_value": 0.2304434704,
+              "analytical_bonferroni_window_p_value": 0.148772,
+              "empirical_markov0_2000_window_bonferroni_p_value": 1.0,
+              "passes_rel_score_0p80_and_p_le_0p05": true,
+              "passes_region_wide_bonferroni_0p05": false,
+              "passes_2000_window_mc_bonferroni_0p05": false,
+              "mc_2000_window_min_achievable_bonferroni_p": 1.0,
+              "mc_2000_window_gate_resolution_limited": true
+            }
+          ],
           "top_hits": [
             {
               "matrix_id": "MA0050.2",
@@ -2472,8 +2793,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 2386,
-          "total_tests_across_all_scanned_matrices_in_region": 14316,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 2386 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (14316 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 14316,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 2386 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 14316; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -2491,6 +2813,7 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 0,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 0,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [],
           "top_hits": [
             {
               "matrix_id": "MA0079.5",
@@ -2551,8 +2874,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 2378,
-          "total_tests_across_all_scanned_matrices_in_region": 14268,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 2378 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (14268 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 14268,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 2378 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 14268; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -2570,6 +2894,7 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 0,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 0,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [],
           "top_hits": [
             {
               "matrix_id": "MA0105.4",
@@ -2630,8 +2955,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 2384,
-          "total_tests_across_all_scanned_matrices_in_region": 14304,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 2384 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (14304 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 14304,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 2384 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 14304; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -2649,6 +2975,7 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 0,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 0,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [],
           "top_hits": [
             {
               "matrix_id": "MA0107.1",
@@ -2709,8 +3036,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 2382,
-          "total_tests_across_all_scanned_matrices_in_region": 14292,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 2382 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (14292 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 14292,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 2382 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 14292; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -2728,6 +3056,7 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 0,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 0,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [],
           "top_hits": [
             {
               "matrix_id": "MA0137.3",
@@ -2788,8 +3117,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 2366,
-          "total_tests_across_all_scanned_matrices_in_region": 14196,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 2366 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (14196 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 14196,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 2366 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 14196; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -2807,6 +3137,7 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 0,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 0,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [],
           "top_hits": [
             {
               "matrix_id": "MA0139.1",
@@ -2875,8 +3206,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 1962,
-          "total_tests_across_all_scanned_matrices_in_region": 11772,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 1962 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (11772 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 11772,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 1962 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 11772; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -2894,6 +3226,7 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 0,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 0,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [],
           "top_hits": [
             {
               "matrix_id": "MA0050.2",
@@ -2954,8 +3287,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 1986,
-          "total_tests_across_all_scanned_matrices_in_region": 11916,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 1986 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (11916 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 11916,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 1986 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 11916; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -2973,6 +3307,7 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 0,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 0,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [],
           "top_hits": [
             {
               "matrix_id": "MA0079.5",
@@ -3033,8 +3368,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 1978,
-          "total_tests_across_all_scanned_matrices_in_region": 11868,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 1978 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (11868 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 11868,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 1978 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 11868; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -3052,6 +3388,7 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 0,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 0,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [],
           "top_hits": [
             {
               "matrix_id": "MA0105.4",
@@ -3112,8 +3449,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 1984,
-          "total_tests_across_all_scanned_matrices_in_region": 11904,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 1984 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (11904 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 11904,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 1984 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 11904; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -3131,6 +3469,7 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 0,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 0,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [],
           "top_hits": [
             {
               "matrix_id": "MA0107.1",
@@ -3191,8 +3530,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 1982,
-          "total_tests_across_all_scanned_matrices_in_region": 11892,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 1982 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (11892 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 11892,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 1982 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 11892; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -3210,6 +3550,7 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 0,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 0,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [],
           "top_hits": [
             {
               "matrix_id": "MA0137.3",
@@ -3270,8 +3611,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 1966,
-          "total_tests_across_all_scanned_matrices_in_region": 11796,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 1966 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (11796 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 11796,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 1966 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 11796; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -3289,6 +3631,7 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 0,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 0,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 0,
+          "all_significant_hits": [],
           "top_hits": [
             {
               "matrix_id": "MA0139.1",
@@ -3610,8 +3953,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 1,
           "total_positions_tested_both_strands": 464,
+          "focal_matrix_bonferroni_family_factor": 464,
           "total_tests_across_all_scanned_matrices_in_region": 464,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 464 tests) and region-wide family-wise error rate across all 1 JASPAR matrices (464 tests; closes AUDIT-REF & 109)",
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 464 tests) and equal-alpha family-wise Bonferroni factor across 1 JASPAR matrices (focal_matrix_bonferroni_family_factor = 464; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -3629,6 +3973,32 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 1,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 1,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 1,
+          "all_significant_hits": [
+            {
+              "matrix_id": "MA0139.1",
+              "tf_name": "CTCF",
+              "strand": "+",
+              "start_1based_in_window": 48,
+              "end_1based_in_window": 66,
+              "matched_kmer": "CCCCCGCTAGGGGGCAGCA",
+              "log2_odds_score": 15.4123,
+              "relative_score_0_to_1": 0.8971,
+              "null_z_score": 4.448,
+              "analytical_gaussian_p_value_unadjusted": 4e-06,
+              "exact_markov0_p_value_unadjusted": 1.41227316475e-05,
+              "empirical_markov0_2000_window_p_value_unadjusted": 0.0005,
+              "bonferroni_window_p_value": 0.006552947484,
+              "bonferroni_corrected_p_value_6_motifs": 0.006552947484,
+              "bonferroni_region_across_all_matrices_p_value": 0.006552947484,
+              "analytical_bonferroni_window_p_value": 0.002007,
+              "empirical_markov0_2000_window_bonferroni_p_value": 0.231884,
+              "passes_rel_score_0p80_and_p_le_0p05": true,
+              "passes_region_wide_bonferroni_0p05": true,
+              "passes_2000_window_mc_bonferroni_0p05": false,
+              "mc_2000_window_min_achievable_bonferroni_p": 0.231884,
+              "mc_2000_window_gate_resolution_limited": true
+            }
+          ],
           "top_hits": [
             {
               "matrix_id": "MA0139.1",
@@ -3689,8 +4059,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 464,
-          "total_tests_across_all_scanned_matrices_in_region": 2784,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 464 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (2784 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 2784,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 464 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 2784; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -3708,6 +4079,32 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 1,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 1,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 1,
+          "all_significant_hits": [
+            {
+              "matrix_id": "MA0139.1",
+              "tf_name": "CTCF",
+              "strand": "+",
+              "start_1based_in_window": 48,
+              "end_1based_in_window": 66,
+              "matched_kmer": "CCCCCGCTAGGGGGCAGCA",
+              "log2_odds_score": 15.4123,
+              "relative_score_0_to_1": 0.8971,
+              "null_z_score": 4.448,
+              "analytical_gaussian_p_value_unadjusted": 4e-06,
+              "exact_markov0_p_value_unadjusted": 1.41227316475e-05,
+              "empirical_markov0_2000_window_p_value_unadjusted": 0.0005,
+              "bonferroni_window_p_value": 0.006552947484,
+              "bonferroni_corrected_p_value_6_motifs": 0.03931768491,
+              "bonferroni_region_across_all_matrices_p_value": 0.03931768491,
+              "analytical_bonferroni_window_p_value": 0.002007,
+              "empirical_markov0_2000_window_bonferroni_p_value": 0.231884,
+              "passes_rel_score_0p80_and_p_le_0p05": true,
+              "passes_region_wide_bonferroni_0p05": true,
+              "passes_2000_window_mc_bonferroni_0p05": false,
+              "mc_2000_window_min_achievable_bonferroni_p": 0.231884,
+              "mc_2000_window_gate_resolution_limited": true
+            }
+          ],
           "top_hits": [
             {
               "matrix_id": "MA0139.1",
@@ -6626,9 +7023,9 @@
         "bytes": 8891753,
         "unique_effect_records": 3094
       },
-      "raw_reference_object_sha256": "78077eda5efca4972fb28a439eba279d959acf9c921611c804a250958fab194a",
-      "construct_verification_object_sha256": "4c9727d0c259ea17ae95f9643d0e422bd50ce8374517d45914da73fd0469283c",
-      "motif_scan_object_sha256": "114c5a8f35a47eccab3c1896a592db35687b7685a8f0f3bd2fba8239221a9a20",
+      "raw_reference_object_sha256": "508f207e2a5c025d0e72963a82c91469f3305dfb4286afd678cfc7e9ad21d173",
+      "construct_verification_object_sha256": "462f0560436b2142ce667ece4010cb7f7f1434a739ece69fdf6ad905bd3725f1",
+      "motif_scan_object_sha256": "ed5cbb4a46340f786cff70e595b623bc672ab4715f398d1762012d649194fe1d",
       "scope": "Hashes bind the actual consumed bytes/objects, not an authenticated biological prediction."
     },
     "calibration_inputs_consumed": {
@@ -31452,6 +31849,1517 @@
       "PMID:29288549",
       "PMID:33210820",
       "PMID:19904234"
+    ]
+  },
+  "stage0_locus2_ciita_modeb_comparators_v3_manifest_iip_0031": {
+    "proposal_id": "IIP-0031",
+    "decision_id": "DEC-110",
+    "rule_id": "S11_Locus2_CIITA_ModeB_Vascular_Complement_and_Efferocytosis_Gate",
+    "graveyard_card_id": "GY-025",
+    "provenance_computation_mode": "DYNAMICALLY_RECOMPUTED_END_TO_END_FROM_BUNDLED_FASTA_AND_REFERENCE_JSON",
+    "mode_b_comparator_fasta": "data/constructs/islet1_locus2_ciita_modeb_comparators_v0.8.0.fasta",
+    "mode_b_comparator_fasta_sha256": "25ffcb10e2bad77a4b34725c7eff0532990ebf7b80864cf7217d33f5ccbe5b6d",
+    "grch38_chr16_2001bp_reference_sha256": "ec47ca4d65be793a536354da3d81c3188c4021598f4cecee749e2ff2a89b5e36",
+    "record_count": 8,
+    "execution_supported": false,
+    "layer1_pareto_artifact_verified": true,
+    "layer1_pareto_artifact_sha256": "591ddeb9a706c0bc95fc509765b512aadad8a403287a796e63dd52e7db548575",
+    "layer1_and_oq016_score_delta_pp": 0.0,
+    "canonical_fastas_verified_count": 6,
+    "canonical_fastas_untouched": true,
+    "descriptive_6pwm_jaspar_spatial_audit": {
+      "wholly_non_promoter_6pwm_hits": 0,
+      "promoter_boundary_irf1_nt538_558_6pwm_hits_count": 3,
+      "promoter_boundary_irf1_nt538_558_1pwm_hits_count": 7,
+      "promoter_boundary_irf1_6pwm_hits": [
+        {
+          "construct_id": "L2_V3_CO_PRIMARY_MANF",
+          "matrix_id": "MA0050.2",
+          "tf_name": "IRF1",
+          "start_1based": 538,
+          "end_1based": 558,
+          "strand": "+",
+          "relative_score_0_to_1": 0.8802,
+          "p_adj_1pwm": 0.007682840537,
+          "p_adj_6pwm": 0.04609704322,
+          "passes_1pwm_0p05": true,
+          "passes_6pwm_0p05": true
+        },
+        {
+          "construct_id": "L2_V3_DESIGN_B_CD200",
+          "matrix_id": "MA0050.2",
+          "tf_name": "IRF1",
+          "start_1based": 538,
+          "end_1based": 558,
+          "strand": "+",
+          "relative_score_0_to_1": 0.8802,
+          "p_adj_1pwm": 0.007464052471,
+          "p_adj_6pwm": 0.04478431483,
+          "passes_1pwm_0p05": true,
+          "passes_6pwm_0p05": true
+        },
+        {
+          "construct_id": "L2_V3_DESIGN_B_MANF",
+          "matrix_id": "MA0050.2",
+          "tf_name": "IRF1",
+          "start_1based": 538,
+          "end_1based": 558,
+          "strand": "+",
+          "relative_score_0_to_1": 0.8802,
+          "p_adj_1pwm": 0.005925720371,
+          "p_adj_6pwm": 0.03555432223,
+          "passes_1pwm_0p05": true,
+          "passes_6pwm_0p05": true
+        }
+      ],
+      "promoter_boundary_irf1_1pwm_hits": [
+        {
+          "construct_id": "L2_V3_CO_PRIMARY_CD200",
+          "matrix_id": "MA0050.2",
+          "tf_name": "IRF1",
+          "start_1based": 538,
+          "end_1based": 558,
+          "strand": "+",
+          "relative_score_0_to_1": 0.8802,
+          "p_adj_1pwm": 0.009365157787,
+          "p_adj_6pwm": 0.05619094672,
+          "passes_1pwm_0p05": true,
+          "passes_6pwm_0p05": false
+        },
+        {
+          "construct_id": "L2_V3_CO_PRIMARY_MANF",
+          "matrix_id": "MA0050.2",
+          "tf_name": "IRF1",
+          "start_1based": 538,
+          "end_1based": 558,
+          "strand": "+",
+          "relative_score_0_to_1": 0.8802,
+          "p_adj_1pwm": 0.007682840537,
+          "p_adj_6pwm": 0.04609704322,
+          "passes_1pwm_0p05": true,
+          "passes_6pwm_0p05": true
+        },
+        {
+          "construct_id": "L2_V3_DESIGN_B_CD200",
+          "matrix_id": "MA0050.2",
+          "tf_name": "IRF1",
+          "start_1based": 538,
+          "end_1based": 558,
+          "strand": "+",
+          "relative_score_0_to_1": 0.8802,
+          "p_adj_1pwm": 0.007464052471,
+          "p_adj_6pwm": 0.04478431483,
+          "passes_1pwm_0p05": true,
+          "passes_6pwm_0p05": true
+        },
+        {
+          "construct_id": "L2_V3_DESIGN_B_MANF",
+          "matrix_id": "MA0050.2",
+          "tf_name": "IRF1",
+          "start_1based": 538,
+          "end_1based": 558,
+          "strand": "+",
+          "relative_score_0_to_1": 0.8802,
+          "p_adj_1pwm": 0.005925720371,
+          "p_adj_6pwm": 0.03555432223,
+          "passes_1pwm_0p05": true,
+          "passes_6pwm_0p05": true
+        },
+        {
+          "construct_id": "L2_V3_ALT2_CCL22",
+          "matrix_id": "MA0050.2",
+          "tf_name": "IRF1",
+          "start_1based": 538,
+          "end_1based": 558,
+          "strand": "+",
+          "relative_score_0_to_1": 0.8802,
+          "p_adj_1pwm": 0.009399040229,
+          "p_adj_6pwm": 0.05639424138,
+          "passes_1pwm_0p05": true,
+          "passes_6pwm_0p05": false
+        },
+        {
+          "construct_id": "L2_V3_CTRL_NT_SCRAMBLE",
+          "matrix_id": "MA0050.2",
+          "tf_name": "IRF1",
+          "start_1based": 538,
+          "end_1based": 558,
+          "strand": "+",
+          "relative_score_0_to_1": 0.8802,
+          "p_adj_1pwm": 0.009796784945,
+          "p_adj_6pwm": 0.05878070967,
+          "passes_1pwm_0p05": true,
+          "passes_6pwm_0p05": false
+        },
+        {
+          "construct_id": "L2_V3_BARRIER_CHS4_250",
+          "matrix_id": "MA0050.2",
+          "tf_name": "IRF1",
+          "start_1based": 538,
+          "end_1based": 558,
+          "strand": "+",
+          "relative_score_0_to_1": 0.8802,
+          "p_adj_1pwm": 0.009079895732,
+          "p_adj_6pwm": 0.05447937439,
+          "passes_1pwm_0p05": true,
+          "passes_6pwm_0p05": false
+        }
+      ],
+      "co_primary_cd200_ctcf_insulator_hits": {
+        "DM1": {
+          "matrix_id": "MA0139.1",
+          "start_1based": 3589,
+          "end_1based": 3607,
+          "strand": "-",
+          "relative_score_0_to_1": 0.915,
+          "p_adj_1pwm": 0.011812422,
+          "p_adj_6pwm": 0.07087453202
+        },
+        "cHS4": {
+          "matrix_id": "MA0139.1",
+          "start_1based": 1717,
+          "end_1based": 1735,
+          "strand": "+",
+          "relative_score_0_to_1": 0.8971,
+          "p_adj_1pwm": 0.04504051755,
+          "p_adj_6pwm": 0.2702431053
+        }
+      }
+    },
+    "repeat_summary": {
+      "max_disjoint_dr_across_8_bp": 29,
+      "overlapping_dr_syn5xisre_bp": 52,
+      "overlapping_dr_cd274p_maz4_bp": 35,
+      "max_dr_outside_canonical_tandems_bp": 16,
+      "max_disjoint_ir_range_bp": [
+        12,
+        15
+      ],
+      "disjoint_ir_ge_16bp_total_across_8": 0,
+      "disjoint_ir_ge_20bp_le_1mm_total_across_8": 0
+    },
+    "barrier_chs4_250_disclosure": {
+      "construct_id": "L2_V3_BARRIER_CHS4_250",
+      "classification": "COMBINED_LENGTH_AND_SEQUENCE_CHANGE_250BP_PLUS_U78775_2_C79T_C80A",
+      "shared_80bp_alignment_1based_in_250bp": [
+        17,
+        96
+      ],
+      "shared_80bp_diffs": [
+        {
+          "chs4_250_pos_1based": 72,
+          "chs4_80_pos_1based": 56,
+          "u78775_2_pos_1based": 79,
+          "base_in_80bp": "C",
+          "base_in_250bp": "T"
+        },
+        {
+          "chs4_250_pos_1based": 73,
+          "chs4_80_pos_1based": 57,
+          "u78775_2_pos_1based": 80,
+          "base_in_80bp": "C",
+          "base_in_250bp": "A"
+        }
+      ],
+      "interpretation_note": "L2_V3_BARRIER_CHS4_250 replaces the 80-bp FII element with the 250-bp cHS4 core carrying U78775.2 C79T/C80A (cHS4 core positions 72..73, differing at 2 bases inside the shared 80-bp FII region as well as length); therefore any difference vs L2_V3_CO_PRIMARY_CD200 is a combined length-and-sequence effect, not a pure length contrast."
+    },
+    "ciita_all_8_refseq_isoforms_audit": {
+      "isoforms_audited_count": 8,
+      "refseq_accessions": [
+        "NM_001286402.1",
+        "NM_000246.4",
+        "NM_001286403.2",
+        "NM_001379330.1",
+        "NM_001379331.1",
+        "NM_001379332.1",
+        "NM_001379333.1",
+        "NM_001379334.1"
+      ],
+      "knockin_created_non_native_8_11mers": 0,
+      "knockin_created_non_native_15mers": 0,
+      "by_refseq_accession": {
+        "NM_001286402.1": {
+          "iso_key": "variant_1_alt_FIII_pIII_81bp_Ex5",
+          "promoter_first_exon_mapping": "pIII / alternative FIII (exon1 1..185, 81-bp Ex5, N-term MRCLAP...)",
+          "exon5_index_in_transcript": 5,
+          "exon5_length_bp": 81,
+          "exon5_splice_phase": "1->1",
+          "native_aa_len": 1131,
+          "truncated_aa_len": 135,
+          "stop_codon": "TGA",
+          "stop_donor_pos_1based": 379,
+          "knockin_created_non_native_8_11mers": 0,
+          "knockin_created_non_native_15mers": 0
+        },
+        "NM_000246.4": {
+          "iso_key": "variant_2_canonical_pIII_78bp_Ex5",
+          "promoter_first_exon_mapping": "canonical pIII / FIII (exon1 1..181, 78-bp Ex5, N-term MRCLAP...)",
+          "exon5_index_in_transcript": 5,
+          "exon5_length_bp": 78,
+          "exon5_splice_phase": "1->1",
+          "native_aa_len": 1130,
+          "truncated_aa_len": 134,
+          "stop_codon": "TGA",
+          "stop_donor_pos_1based": 379,
+          "knockin_created_non_native_8_11mers": 0,
+          "knockin_created_non_native_15mers": 0
+        },
+        "NM_001286403.2": {
+          "iso_key": "variant_3_short_pIII_prefix_78bp_Ex5",
+          "promoter_first_exon_mapping": "shorter pIII-prefix isoform (shares exon1 1..181 with NM_000246.4, 78-bp Ex5, 546 aa)",
+          "exon5_index_in_transcript": 5,
+          "exon5_length_bp": 78,
+          "exon5_splice_phase": "1->1",
+          "native_aa_len": 546,
+          "truncated_aa_len": 134,
+          "stop_codon": "TGA",
+          "stop_donor_pos_1based": 379,
+          "knockin_created_non_native_8_11mers": 0,
+          "knockin_created_non_native_15mers": 0
+        },
+        "NM_001379330.1": {
+          "iso_key": "variant_5_pIII_81bp_Ex5",
+          "promoter_first_exon_mapping": "pIII-prefix variant 5 (exon1 1..181, 81-bp Ex5, 1,082 aa)",
+          "exon5_index_in_transcript": 5,
+          "exon5_length_bp": 81,
+          "exon5_splice_phase": "1->1",
+          "native_aa_len": 1082,
+          "truncated_aa_len": 135,
+          "stop_codon": "TGA",
+          "stop_donor_pos_1based": 379,
+          "knockin_created_non_native_8_11mers": 0,
+          "knockin_created_non_native_15mers": 0
+        },
+        "NM_001379331.1": {
+          "iso_key": "variant_6_pIII_78bp_Ex5",
+          "promoter_first_exon_mapping": "pIII-prefix variant 6 (exon1 1..181, 78-bp Ex5, 1,081 aa)",
+          "exon5_index_in_transcript": 5,
+          "exon5_length_bp": 78,
+          "exon5_splice_phase": "1->1",
+          "native_aa_len": 1081,
+          "truncated_aa_len": 134,
+          "stop_codon": "TGA",
+          "stop_donor_pos_1based": 379,
+          "knockin_created_non_native_8_11mers": 0,
+          "knockin_created_non_native_15mers": 0
+        },
+        "NM_001379332.1": {
+          "iso_key": "variant_7_pIII_81bp_Ex5",
+          "promoter_first_exon_mapping": "pIII-prefix variant 7 (exon1 1..181, 81-bp Ex5, 1,131 aa)",
+          "exon5_index_in_transcript": 5,
+          "exon5_length_bp": 81,
+          "exon5_splice_phase": "1->1",
+          "native_aa_len": 1131,
+          "truncated_aa_len": 135,
+          "stop_codon": "TGA",
+          "stop_donor_pos_1based": 379,
+          "knockin_created_non_native_8_11mers": 0,
+          "knockin_created_non_native_15mers": 0
+        },
+        "NM_001379333.1": {
+          "iso_key": "variant_8_pIII_78bp_Ex5",
+          "promoter_first_exon_mapping": "pIII-prefix variant 8 (exon1 1..181, 78-bp Ex5, 1,130 aa)",
+          "exon5_index_in_transcript": 5,
+          "exon5_length_bp": 78,
+          "exon5_splice_phase": "1->1",
+          "native_aa_len": 1130,
+          "truncated_aa_len": 134,
+          "stop_codon": "TGA",
+          "stop_donor_pos_1based": 379,
+          "knockin_created_non_native_8_11mers": 0,
+          "knockin_created_non_native_15mers": 0
+        },
+        "NM_001379334.1": {
+          "iso_key": "variant_9_IFNg_pIV_81bp_Ex5",
+          "promoter_first_exon_mapping": "IFN-gamma-inducible pIV / FIV (noncoding exon1 1..76, Exon-2 ATG N-term MELGPL..., 81-bp Ex5, 1,107 aa)",
+          "exon5_index_in_transcript": 5,
+          "exon5_length_bp": 81,
+          "exon5_splice_phase": "1->1",
+          "native_aa_len": 1107,
+          "truncated_aa_len": 111,
+          "stop_codon": "TGA",
+          "stop_donor_pos_1based": 379,
+          "knockin_created_non_native_8_11mers": 0,
+          "knockin_created_non_native_15mers": 0
+        }
+      },
+      "mandatory_stage0_controls": [
+        "Informative transcript recovery of both CIITA alleles (KI and KO)",
+        "Cis sentinels SOCS1, DEXI, and CLEC16A equivalence",
+        "Demonstrated HLA-DR/DP/DQ inducibility in lineage-matched wild-type Stage-7 controls"
+      ]
+    },
+    "intronic_mir_and_rnai_attribution_scope": {
+      "candidate_seed_pairs_screened": 296,
+      "strands_screened_count": 8,
+      "targets_screened_count": 37,
+      "openislet_proxy_targets_count": 15,
+      "bundled_refseq_3utr_targets_count": 22,
+      "replayed_8mer_hits_total": 0,
+      "replayed_7mer_m8_hits_total": 0,
+      "disclosed_7mer_a1_hits": [
+        {
+          "hairpin": "CD276_v3_g1",
+          "strand": "passenger",
+          "scope": "openislet_15_proxies",
+          "target": "L2_V3_CFH_STP_GPI_CDS",
+          "count": 1
+        },
+        {
+          "hairpin": "PVR_v3_g1",
+          "strand": "guide",
+          "scope": "human_22_refseq_3utrs",
+          "target": "CLEC16A",
+          "count": 1
+        }
+      ],
+      "disclosed_22gene_cds_7mer_m8_genes": [
+        "CDH5",
+        "CLEC16A",
+        "KDR",
+        "NEUROD1",
+        "NKX6-1",
+        "PCSK1"
+      ],
+      "disclosed_22gene_5utr_7mer_m8_genes": [],
+      "disclosed_22gene_full_mrna_7mer_m8_genes": [
+        "CDH5",
+        "CLEC16A",
+        "KDR",
+        "NEUROD1",
+        "NKX6-1",
+        "PCSK1"
+      ],
+      "lead_guides_per_target": 1,
+      "backup_guides_per_target": 4,
+      "total_screened_guides_per_target": 5,
+      "verified_pvr_guides_4of4_isoforms": 5,
+      "verified_cd276_guides_4of4_isoforms": 5,
+      "backup_guides_screened_against_all_15_openislet_proxies_and_22_utrs": true,
+      "backup_guide_screen_ledger_15oi_22utr": [
+        {
+          "gene": "PVR",
+          "guide_id": "PVR_v3_g1_LEAD",
+          "role": "LEAD",
+          "target_22nt": "TGGCCGTCTTCCACCAAACGCA",
+          "guide_22nt": "TGCGTTTGGTGGAAGACGGCCA",
+          "passenger_21nt": "TGGCCGTTTTGCACCAAACGC",
+          "refseq_isoforms_matched": "4/4",
+          "openislet_15_proxies_8mer_or_7mer_m8_hits": 0,
+          "human_22_refseq_3utrs_8mer_or_7mer_m8_hits": 0
+        },
+        {
+          "gene": "PVR",
+          "guide_id": "PVR_v3_g2_BKUP",
+          "role": "BACKUP",
+          "target_22nt": "CAGCTGAGGTTCAGAAGGTCCA",
+          "guide_22nt": "TGGACCTTCTGAACCTCAGCTG",
+          "passenger_21nt": "CAGCGGAGGTGCAGAAGGTCC",
+          "refseq_isoforms_matched": "4/4",
+          "openislet_15_proxies_8mer_or_7mer_m8_hits": 0,
+          "human_22_refseq_3utrs_8mer_or_7mer_m8_hits": 0
+        },
+        {
+          "gene": "PVR",
+          "guide_id": "PVR_v3_g3_BKUP",
+          "role": "BACKUP",
+          "target_22nt": "CGTCCTGTGGACAAACCAATCA",
+          "guide_22nt": "TGATTGGTTTGTCCACAGGACG",
+          "passenger_21nt": "CGTCGTGTGGCCAAACCAATC",
+          "refseq_isoforms_matched": "4/4",
+          "openislet_15_proxies_8mer_or_7mer_m8_hits": 0,
+          "human_22_refseq_3utrs_8mer_or_7mer_m8_hits": 0
+        },
+        {
+          "gene": "PVR",
+          "guide_id": "PVR_v3_g4_BKUP",
+          "role": "BACKUP",
+          "target_22nt": "AAACGGCTGGAATTCGTGGCAG",
+          "guide_22nt": "TTGCCACGAATTCCAGCCGTTT",
+          "passenger_21nt": "AAACGGCGGGCATTCGTGGCA",
+          "refseq_isoforms_matched": "4/4",
+          "openislet_15_proxies_8mer_or_7mer_m8_hits": 0,
+          "human_22_refseq_3utrs_8mer_or_7mer_m8_hits": 0
+        },
+        {
+          "gene": "PVR",
+          "guide_id": "PVR_v3_g5_BKUP",
+          "role": "BACKUP",
+          "target_22nt": "CACCTGCCTGTTCGTCACGTTC",
+          "guide_22nt": "TAACGTGACGAACAGGCAGGTG",
+          "passenger_21nt": "CACCGGCCTGCTCGTCACGTT",
+          "refseq_isoforms_matched": "4/4",
+          "openislet_15_proxies_8mer_or_7mer_m8_hits": 0,
+          "human_22_refseq_3utrs_8mer_or_7mer_m8_hits": 0
+        },
+        {
+          "gene": "CD276",
+          "guide_id": "CD276_v3_g1_LEAD_DUAL_IG",
+          "role": "LEAD",
+          "target_22nt": "GTGGCCGCTCCCTACTCGAAGC",
+          "guide_22nt": "TCTTCGAGTAGGGAGCGGCCAC",
+          "passenger_21nt": "GTGGCCGTTCGCTACTCGAAG",
+          "refseq_isoforms_matched": "4/4",
+          "openislet_15_proxies_8mer_or_7mer_m8_hits": 0,
+          "human_22_refseq_3utrs_8mer_or_7mer_m8_hits": 0
+        },
+        {
+          "gene": "CD276",
+          "guide_id": "CD276_v3_g2_BKUP_CDS",
+          "role": "BACKUP",
+          "target_22nt": "CAGGACCAGGGCAGCGCCTATG",
+          "guide_22nt": "TATAGGCGCTGCCCTGGTCCTG",
+          "passenger_21nt": "CAGGACCGGGCCAGCGCCTAT",
+          "refseq_isoforms_matched": "4/4",
+          "openislet_15_proxies_8mer_or_7mer_m8_hits": 0,
+          "human_22_refseq_3utrs_8mer_or_7mer_m8_hits": 0
+        },
+        {
+          "gene": "CD276",
+          "guide_id": "CD276_v3_g3_BKUP_3UTR",
+          "role": "BACKUP",
+          "target_22nt": "TGCACGTGCTGGAACACGTGTG",
+          "guide_22nt": "TACACGTGTTCCAGCACGTGCA",
+          "passenger_21nt": "TGCGCGTGCTCGAACACGTGT",
+          "refseq_isoforms_matched": "4/4",
+          "openislet_15_proxies_8mer_or_7mer_m8_hits": 0,
+          "human_22_refseq_3utrs_8mer_or_7mer_m8_hits": 0
+        },
+        {
+          "gene": "CD276",
+          "guide_id": "CD276_v3_g4_BKUP_CDS",
+          "role": "BACKUP",
+          "target_22nt": "CGGGTGGTGCTGGGTGCGAATG",
+          "guide_22nt": "TATTCGCACCCAGCACCACCCG",
+          "passenger_21nt": "CGGGTCGTGCCGGGTGCGAAT",
+          "refseq_isoforms_matched": "4/4",
+          "openislet_15_proxies_8mer_or_7mer_m8_hits": 0,
+          "human_22_refseq_3utrs_8mer_or_7mer_m8_hits": 0
+        },
+        {
+          "gene": "CD276",
+          "guide_id": "CD276_v3_g5_BKUP_3UTR",
+          "role": "BACKUP",
+          "target_22nt": "TGGGAGACAGACAACTAACTAC",
+          "guide_22nt": "TTAGTTAGTTGTCTGTCTCCCA",
+          "passenger_21nt": "TGGGATACAGCCAACTAACTA",
+          "refseq_isoforms_matched": "4/4",
+          "openislet_15_proxies_8mer_or_7mer_m8_hits": 0,
+          "human_22_refseq_3utrs_8mer_or_7mer_m8_hits": 0
+        }
+      ],
+      "active_mir_targets": [
+        "CD276",
+        "PVR"
+      ],
+      "design_b_active_mir_policy": "BARRED_ON_DESIGN_B_HLAC_INTACT",
+      "attribution_rule": "Claiming an RNAi-specific benefit requires same-background intronless and scramble controls linked to the tested cargo; within the staged 8-donor FASTA, RNAi-specific attribution is therefore restricted to the matched CD200 comparison (L2_V3_CO_PRIMARY_CD200 vs L2_V3_CTRL_NT_SCRAMBLE, paired with same-background intronless CD200 when RNAi benefit is claimed)."
+    },
+    "constructs": [
+      {
+        "construct_id": "L2_V3_CO_PRIMARY_CD200",
+        "donor_length_bp": 4012,
+        "itr_pair_nominal_bp": 290,
+        "nominal_aav6_packaged_bp": 4302,
+        "nominal_aav6_headroom_bp": 398,
+        "fits_nominal_single_aav6_le_4700bp": true,
+        "donor_sha256": "723e052172adfe5ae6c74e35e44cf727202d2716010772041d8c12abd76529c8",
+        "gc_pct": 56.8,
+        "homology_arms_bp": [
+          375,
+          375
+        ],
+        "ha_l_grch38_1based": "chr16:10,898,593-10,898,967 (+)",
+        "ha_l_exact_matches_bp": 375,
+        "ha_r_grch38_1based": "chr16:10,898,968-10,899,342 (+)",
+        "ha_r_pam_shield_diffs_verified": [
+          {
+            "offset0_in_ha_r": 20,
+            "chr16_pos_1based": 10898988,
+            "ref_base": "A",
+            "donor_base": "C"
+          },
+          {
+            "offset0_in_ha_r": 21,
+            "chr16_pos_1based": 10898989,
+            "ref_base": "A",
+            "donor_base": "C"
+          }
+        ],
+        "pam_shield_applied": "chr16:10,898,988_10,898,989AA>CC (+ GAAA->GACC / - TTTC->GGTC; 0 neo-splice sites)",
+        "two_a_count": 0,
+        "sv40pa_count": 0,
+        "bgh_polya_count": 0,
+        "poly_t20_count": 0,
+        "homopolymers_ge_7nt_count": 0,
+        "unit2_upstream_tatataatgg_count": 1,
+        "cargo_splice_counts_isolated": {
+          "plus_donors": 5,
+          "minus_donors": 3,
+          "plus_acceptors": 17,
+          "minus_acceptors": 22
+        },
+        "cargo_splice_counts_integrated_chr16_flanks": {
+          "plus_donors": 5,
+          "minus_donors": 3,
+          "plus_acceptors": 17,
+          "minus_acceptors": 22
+        },
+        "donor_vs_integrated_chr16_splice_parity": true,
+        "max_disjoint_direct_repeat_bp": 29,
+        "max_disjoint_direct_repeat_info": {
+          "length_bp": 29,
+          "pos1_a": 475,
+          "pos1_b": 513,
+          "sequence": "CACTGGAGGGGCTGGAGGGGCTGGAGGGG"
+        },
+        "max_overlapping_direct_repeat_bp": 52,
+        "max_overlapping_direct_repeat_info": {
+          "length_bp": 52,
+          "pos1_a": 542,
+          "pos1_b": 555,
+          "sequence": "AGTTTCATTTTCCAGTTTCATTTTCCAGTTTCATTTTCCAGTTTCATTTTCC"
+        },
+        "max_overlapping_direct_repeat_outside_canonical_tandems_bp": 15,
+        "max_disjoint_inverted_repeat_bp": 14,
+        "max_disjoint_inverted_repeat_info": {
+          "length_bp": 14,
+          "pos1_a": 2174,
+          "pos1_b": 2250,
+          "seq_a": "TCCAACGATCGCTC",
+          "seq_b": "GAGCGATCGTTGGA"
+        },
+        "disjoint_inverted_repeats_ge_16bp_count": 0,
+        "disjoint_inverted_repeats_ge_20bp_le_1mm_count": 0,
+        "disjoint_inverted_repeats_ge_20bp_le_1mm_hits": [],
+        "execution_supported": false,
+        "descriptive_6pwm_jaspar_summary": {
+          "counts_window_merged_region6_total": [
+            11,
+            4,
+            4
+          ],
+          "exact_family_total_tests": 47990,
+          "wholly_non_promoter_6pwm_hits": 0,
+          "promoter_boundary_irf1_hits": [
+            {
+              "matrix_id": "MA0050.2",
+              "tf_name": "IRF1",
+              "start_1based": 538,
+              "end_1based": 558,
+              "strand": "+",
+              "relative_score_0_to_1": 0.8802,
+              "p_adj_1pwm": 0.009365157787,
+              "p_adj_6pwm": 0.05619094672,
+              "passes_1pwm_0p05": true,
+              "passes_6pwm_0p05": false
+            }
+          ],
+          "ctcf_insulator_hits": {
+            "DM1": {
+              "matrix_id": "MA0139.1",
+              "start_1based": 3589,
+              "end_1based": 3607,
+              "strand": "-",
+              "relative_score_0_to_1": 0.915,
+              "p_adj_1pwm": 0.011812422,
+              "p_adj_6pwm": 0.07087453202
+            },
+            "cHS4": {
+              "matrix_id": "MA0139.1",
+              "start_1based": 1717,
+              "end_1based": 1735,
+              "strand": "+",
+              "relative_score_0_to_1": 0.8971,
+              "p_adj_1pwm": 0.04504051755,
+              "p_adj_6pwm": 0.2702431053
+            }
+          },
+          "scope_note": "Descriptive part-resolved 6-PWM JASPAR annotation only (IIP-0027 / DEC-107; never a motif-count stopping rule)."
+        }
+      },
+      {
+        "construct_id": "L2_V3_CO_PRIMARY_MANF",
+        "donor_length_bp": 3724,
+        "itr_pair_nominal_bp": 290,
+        "nominal_aav6_packaged_bp": 4014,
+        "nominal_aav6_headroom_bp": 686,
+        "fits_nominal_single_aav6_le_4700bp": true,
+        "donor_sha256": "e4d9ba0c1019ecc04930f38dd484d433f3a476e0af886765fa4779a3225a014a",
+        "gc_pct": 56.85,
+        "homology_arms_bp": [
+          375,
+          375
+        ],
+        "ha_l_grch38_1based": "chr16:10,898,593-10,898,967 (+)",
+        "ha_l_exact_matches_bp": 375,
+        "ha_r_grch38_1based": "chr16:10,898,968-10,899,342 (+)",
+        "ha_r_pam_shield_diffs_verified": [
+          {
+            "offset0_in_ha_r": 20,
+            "chr16_pos_1based": 10898988,
+            "ref_base": "A",
+            "donor_base": "C"
+          },
+          {
+            "offset0_in_ha_r": 21,
+            "chr16_pos_1based": 10898989,
+            "ref_base": "A",
+            "donor_base": "C"
+          }
+        ],
+        "pam_shield_applied": "chr16:10,898,988_10,898,989AA>CC (+ GAAA->GACC / - TTTC->GGTC; 0 neo-splice sites)",
+        "two_a_count": 0,
+        "sv40pa_count": 0,
+        "bgh_polya_count": 0,
+        "poly_t20_count": 0,
+        "homopolymers_ge_7nt_count": 0,
+        "unit2_upstream_tatataatgg_count": 1,
+        "cargo_splice_counts_isolated": {
+          "plus_donors": 5,
+          "minus_donors": 3,
+          "plus_acceptors": 17,
+          "minus_acceptors": 21
+        },
+        "cargo_splice_counts_integrated_chr16_flanks": {
+          "plus_donors": 5,
+          "minus_donors": 3,
+          "plus_acceptors": 17,
+          "minus_acceptors": 21
+        },
+        "donor_vs_integrated_chr16_splice_parity": true,
+        "max_disjoint_direct_repeat_bp": 29,
+        "max_disjoint_direct_repeat_info": {
+          "length_bp": 29,
+          "pos1_a": 475,
+          "pos1_b": 513,
+          "sequence": "CACTGGAGGGGCTGGAGGGGCTGGAGGGG"
+        },
+        "max_overlapping_direct_repeat_bp": 52,
+        "max_overlapping_direct_repeat_info": {
+          "length_bp": 52,
+          "pos1_a": 542,
+          "pos1_b": 555,
+          "sequence": "AGTTTCATTTTCCAGTTTCATTTTCCAGTTTCATTTTCCAGTTTCATTTTCC"
+        },
+        "max_overlapping_direct_repeat_outside_canonical_tandems_bp": 16,
+        "max_disjoint_inverted_repeat_bp": 14,
+        "max_disjoint_inverted_repeat_info": {
+          "length_bp": 14,
+          "pos1_a": 1886,
+          "pos1_b": 1962,
+          "seq_a": "TCCAACGATCGCTC",
+          "seq_b": "GAGCGATCGTTGGA"
+        },
+        "disjoint_inverted_repeats_ge_16bp_count": 0,
+        "disjoint_inverted_repeats_ge_20bp_le_1mm_count": 0,
+        "disjoint_inverted_repeats_ge_20bp_le_1mm_hits": [],
+        "execution_supported": false,
+        "descriptive_6pwm_jaspar_summary": {
+          "counts_window_merged_region6_total": [
+            11,
+            4,
+            5
+          ],
+          "exact_family_total_tests": 44534,
+          "wholly_non_promoter_6pwm_hits": 0,
+          "promoter_boundary_irf1_hits": [
+            {
+              "matrix_id": "MA0050.2",
+              "tf_name": "IRF1",
+              "start_1based": 538,
+              "end_1based": 558,
+              "strand": "+",
+              "relative_score_0_to_1": 0.8802,
+              "p_adj_1pwm": 0.007682840537,
+              "p_adj_6pwm": 0.04609704322,
+              "passes_1pwm_0p05": true,
+              "passes_6pwm_0p05": true
+            }
+          ],
+          "ctcf_insulator_hits": {
+            "DM1": {
+              "matrix_id": "MA0139.1",
+              "start_1based": 3301,
+              "end_1based": 3319,
+              "strand": "-",
+              "relative_score_0_to_1": 0.915,
+              "p_adj_1pwm": 0.01056568525,
+              "p_adj_6pwm": 0.06339411148
+            },
+            "cHS4": {
+              "matrix_id": "MA0139.1",
+              "start_1based": 1429,
+              "end_1based": 1447,
+              "strand": "+",
+              "relative_score_0_to_1": 0.8971,
+              "p_adj_1pwm": 0.0435404831,
+              "p_adj_6pwm": 0.2612428986
+            }
+          },
+          "scope_note": "Descriptive part-resolved 6-PWM JASPAR annotation only (IIP-0027 / DEC-107; never a motif-count stopping rule)."
+        }
+      },
+      {
+        "construct_id": "L2_V3_DESIGN_B_CD200",
+        "donor_length_bp": 3692,
+        "itr_pair_nominal_bp": 290,
+        "nominal_aav6_packaged_bp": 3982,
+        "nominal_aav6_headroom_bp": 718,
+        "fits_nominal_single_aav6_le_4700bp": true,
+        "donor_sha256": "4b2b5713e29a190bcca115507a876fd48ce9ef92b0e6f793a08cd925a33334e1",
+        "gc_pct": 57.26,
+        "homology_arms_bp": [
+          375,
+          375
+        ],
+        "ha_l_grch38_1based": "chr16:10,898,593-10,898,967 (+)",
+        "ha_l_exact_matches_bp": 375,
+        "ha_r_grch38_1based": "chr16:10,898,968-10,899,342 (+)",
+        "ha_r_pam_shield_diffs_verified": [
+          {
+            "offset0_in_ha_r": 20,
+            "chr16_pos_1based": 10898988,
+            "ref_base": "A",
+            "donor_base": "C"
+          },
+          {
+            "offset0_in_ha_r": 21,
+            "chr16_pos_1based": 10898989,
+            "ref_base": "A",
+            "donor_base": "C"
+          }
+        ],
+        "pam_shield_applied": "chr16:10,898,988_10,898,989AA>CC (+ GAAA->GACC / - TTTC->GGTC; 0 neo-splice sites)",
+        "two_a_count": 0,
+        "sv40pa_count": 0,
+        "bgh_polya_count": 0,
+        "poly_t20_count": 0,
+        "homopolymers_ge_7nt_count": 0,
+        "unit2_upstream_tatataatgg_count": 1,
+        "cargo_splice_counts_isolated": {
+          "plus_donors": 3,
+          "minus_donors": 3,
+          "plus_acceptors": 15,
+          "minus_acceptors": 21
+        },
+        "cargo_splice_counts_integrated_chr16_flanks": {
+          "plus_donors": 3,
+          "minus_donors": 3,
+          "plus_acceptors": 15,
+          "minus_acceptors": 21
+        },
+        "donor_vs_integrated_chr16_splice_parity": true,
+        "max_disjoint_direct_repeat_bp": 29,
+        "max_disjoint_direct_repeat_info": {
+          "length_bp": 29,
+          "pos1_a": 475,
+          "pos1_b": 513,
+          "sequence": "CACTGGAGGGGCTGGAGGGGCTGGAGGGG"
+        },
+        "max_overlapping_direct_repeat_bp": 52,
+        "max_overlapping_direct_repeat_info": {
+          "length_bp": 52,
+          "pos1_a": 542,
+          "pos1_b": 555,
+          "sequence": "AGTTTCATTTTCCAGTTTCATTTTCCAGTTTCATTTTCCAGTTTCATTTTCC"
+        },
+        "max_overlapping_direct_repeat_outside_canonical_tandems_bp": 15,
+        "max_disjoint_inverted_repeat_bp": 12,
+        "max_disjoint_inverted_repeat_info": {
+          "length_bp": 12,
+          "pos1_a": 1720,
+          "pos1_b": 3273,
+          "seq_a": "CCGCTAGGGGGC",
+          "seq_b": "GCCCCCTAGCGG"
+        },
+        "disjoint_inverted_repeats_ge_16bp_count": 0,
+        "disjoint_inverted_repeats_ge_20bp_le_1mm_count": 0,
+        "disjoint_inverted_repeats_ge_20bp_le_1mm_hits": [],
+        "execution_supported": false,
+        "descriptive_6pwm_jaspar_summary": {
+          "counts_window_merged_region6_total": [
+            11,
+            4,
+            5
+          ],
+          "exact_family_total_tests": 44150,
+          "wholly_non_promoter_6pwm_hits": 0,
+          "promoter_boundary_irf1_hits": [
+            {
+              "matrix_id": "MA0050.2",
+              "tf_name": "IRF1",
+              "start_1based": 538,
+              "end_1based": 558,
+              "strand": "+",
+              "relative_score_0_to_1": 0.8802,
+              "p_adj_1pwm": 0.007464052471,
+              "p_adj_6pwm": 0.04478431483,
+              "passes_1pwm_0p05": true,
+              "passes_6pwm_0p05": true
+            }
+          ],
+          "ctcf_insulator_hits": {
+            "DM1": {
+              "matrix_id": "MA0139.1",
+              "start_1based": 3269,
+              "end_1based": 3287,
+              "strand": "-",
+              "relative_score_0_to_1": 0.915,
+              "p_adj_1pwm": 0.01093617946,
+              "p_adj_6pwm": 0.06561707676
+            },
+            "cHS4": {
+              "matrix_id": "MA0139.1",
+              "start_1based": 1717,
+              "end_1based": 1735,
+              "strand": "+",
+              "relative_score_0_to_1": 0.8971,
+              "p_adj_1pwm": 0.04451680671,
+              "p_adj_6pwm": 0.2671008402
+            }
+          },
+          "scope_note": "Descriptive part-resolved 6-PWM JASPAR annotation only (IIP-0027 / DEC-107; never a motif-count stopping rule)."
+        }
+      },
+      {
+        "construct_id": "L2_V3_DESIGN_B_MANF",
+        "donor_length_bp": 3404,
+        "itr_pair_nominal_bp": 290,
+        "nominal_aav6_packaged_bp": 3694,
+        "nominal_aav6_headroom_bp": 1006,
+        "fits_nominal_single_aav6_le_4700bp": true,
+        "donor_sha256": "841a52222c703426c44d4f18fe799b646db71479b008d4b8fdbdcb7c2c2038c8",
+        "gc_pct": 57.34,
+        "homology_arms_bp": [
+          375,
+          375
+        ],
+        "ha_l_grch38_1based": "chr16:10,898,593-10,898,967 (+)",
+        "ha_l_exact_matches_bp": 375,
+        "ha_r_grch38_1based": "chr16:10,898,968-10,899,342 (+)",
+        "ha_r_pam_shield_diffs_verified": [
+          {
+            "offset0_in_ha_r": 20,
+            "chr16_pos_1based": 10898988,
+            "ref_base": "A",
+            "donor_base": "C"
+          },
+          {
+            "offset0_in_ha_r": 21,
+            "chr16_pos_1based": 10898989,
+            "ref_base": "A",
+            "donor_base": "C"
+          }
+        ],
+        "pam_shield_applied": "chr16:10,898,988_10,898,989AA>CC (+ GAAA->GACC / - TTTC->GGTC; 0 neo-splice sites)",
+        "two_a_count": 0,
+        "sv40pa_count": 0,
+        "bgh_polya_count": 0,
+        "poly_t20_count": 0,
+        "homopolymers_ge_7nt_count": 0,
+        "unit2_upstream_tatataatgg_count": 1,
+        "cargo_splice_counts_isolated": {
+          "plus_donors": 3,
+          "minus_donors": 3,
+          "plus_acceptors": 15,
+          "minus_acceptors": 20
+        },
+        "cargo_splice_counts_integrated_chr16_flanks": {
+          "plus_donors": 3,
+          "minus_donors": 3,
+          "plus_acceptors": 15,
+          "minus_acceptors": 20
+        },
+        "donor_vs_integrated_chr16_splice_parity": true,
+        "max_disjoint_direct_repeat_bp": 29,
+        "max_disjoint_direct_repeat_info": {
+          "length_bp": 29,
+          "pos1_a": 475,
+          "pos1_b": 513,
+          "sequence": "CACTGGAGGGGCTGGAGGGGCTGGAGGGG"
+        },
+        "max_overlapping_direct_repeat_bp": 52,
+        "max_overlapping_direct_repeat_info": {
+          "length_bp": 52,
+          "pos1_a": 542,
+          "pos1_b": 555,
+          "sequence": "AGTTTCATTTTCCAGTTTCATTTTCCAGTTTCATTTTCCAGTTTCATTTTCC"
+        },
+        "max_overlapping_direct_repeat_outside_canonical_tandems_bp": 15,
+        "max_disjoint_inverted_repeat_bp": 12,
+        "max_disjoint_inverted_repeat_info": {
+          "length_bp": 12,
+          "pos1_a": 1432,
+          "pos1_b": 2985,
+          "seq_a": "CCGCTAGGGGGC",
+          "seq_b": "GCCCCCTAGCGG"
+        },
+        "disjoint_inverted_repeats_ge_16bp_count": 0,
+        "disjoint_inverted_repeats_ge_20bp_le_1mm_count": 0,
+        "disjoint_inverted_repeats_ge_20bp_le_1mm_hits": [],
+        "execution_supported": false,
+        "descriptive_6pwm_jaspar_summary": {
+          "counts_window_merged_region6_total": [
+            11,
+            4,
+            5
+          ],
+          "exact_family_total_tests": 40694,
+          "wholly_non_promoter_6pwm_hits": 0,
+          "promoter_boundary_irf1_hits": [
+            {
+              "matrix_id": "MA0050.2",
+              "tf_name": "IRF1",
+              "start_1based": 538,
+              "end_1based": 558,
+              "strand": "+",
+              "relative_score_0_to_1": 0.8802,
+              "p_adj_1pwm": 0.005925720371,
+              "p_adj_6pwm": 0.03555432223,
+              "passes_1pwm_0p05": true,
+              "passes_6pwm_0p05": true
+            }
+          ],
+          "ctcf_insulator_hits": {
+            "DM1": {
+              "matrix_id": "MA0139.1",
+              "start_1based": 2981,
+              "end_1based": 2999,
+              "strand": "-",
+              "relative_score_0_to_1": 0.915,
+              "p_adj_1pwm": 0.009663454902,
+              "p_adj_6pwm": 0.05798072941
+            },
+            "cHS4": {
+              "matrix_id": "MA0139.1",
+              "start_1based": 1429,
+              "end_1based": 1447,
+              "strand": "+",
+              "relative_score_0_to_1": 0.8971,
+              "p_adj_1pwm": 0.04308188606,
+              "p_adj_6pwm": 0.2584913164
+            }
+          },
+          "scope_note": "Descriptive part-resolved 6-PWM JASPAR annotation only (IIP-0027 / DEC-107; never a motif-count stopping rule)."
+        }
+      },
+      {
+        "construct_id": "L2_V3_ALT2_CCL22",
+        "donor_length_bp": 3457,
+        "itr_pair_nominal_bp": 290,
+        "nominal_aav6_packaged_bp": 3747,
+        "nominal_aav6_headroom_bp": 953,
+        "fits_nominal_single_aav6_le_4700bp": true,
+        "donor_sha256": "ba84d57577ff5143b3a2b813c4b12aab5139570eb60903a3c7aebae6fdaad30e",
+        "gc_pct": 56.87,
+        "homology_arms_bp": [
+          375,
+          375
+        ],
+        "ha_l_grch38_1based": "chr16:10,898,593-10,898,967 (+)",
+        "ha_l_exact_matches_bp": 375,
+        "ha_r_grch38_1based": "chr16:10,898,968-10,899,342 (+)",
+        "ha_r_pam_shield_diffs_verified": [
+          {
+            "offset0_in_ha_r": 20,
+            "chr16_pos_1based": 10898988,
+            "ref_base": "A",
+            "donor_base": "C"
+          },
+          {
+            "offset0_in_ha_r": 21,
+            "chr16_pos_1based": 10898989,
+            "ref_base": "A",
+            "donor_base": "C"
+          }
+        ],
+        "pam_shield_applied": "chr16:10,898,988_10,898,989AA>CC (+ GAAA->GACC / - TTTC->GGTC; 0 neo-splice sites)",
+        "two_a_count": 0,
+        "sv40pa_count": 0,
+        "bgh_polya_count": 0,
+        "poly_t20_count": 0,
+        "homopolymers_ge_7nt_count": 0,
+        "unit2_upstream_tatataatgg_count": 1,
+        "cargo_splice_counts_isolated": {
+          "plus_donors": 5,
+          "minus_donors": 3,
+          "plus_acceptors": 18,
+          "minus_acceptors": 22
+        },
+        "cargo_splice_counts_integrated_chr16_flanks": {
+          "plus_donors": 5,
+          "minus_donors": 3,
+          "plus_acceptors": 18,
+          "minus_acceptors": 22
+        },
+        "donor_vs_integrated_chr16_splice_parity": true,
+        "max_disjoint_direct_repeat_bp": 29,
+        "max_disjoint_direct_repeat_info": {
+          "length_bp": 29,
+          "pos1_a": 475,
+          "pos1_b": 513,
+          "sequence": "CACTGGAGGGGCTGGAGGGGCTGGAGGGG"
+        },
+        "max_overlapping_direct_repeat_bp": 52,
+        "max_overlapping_direct_repeat_info": {
+          "length_bp": 52,
+          "pos1_a": 542,
+          "pos1_b": 555,
+          "sequence": "AGTTTCATTTTCCAGTTTCATTTTCCAGTTTCATTTTCCAGTTTCATTTTCC"
+        },
+        "max_overlapping_direct_repeat_outside_canonical_tandems_bp": 15,
+        "max_disjoint_inverted_repeat_bp": 14,
+        "max_disjoint_inverted_repeat_info": {
+          "length_bp": 14,
+          "pos1_a": 1619,
+          "pos1_b": 1695,
+          "seq_a": "TCCAACGATCGCTC",
+          "seq_b": "GAGCGATCGTTGGA"
+        },
+        "disjoint_inverted_repeats_ge_16bp_count": 0,
+        "disjoint_inverted_repeats_ge_20bp_le_1mm_count": 0,
+        "disjoint_inverted_repeats_ge_20bp_le_1mm_hits": [],
+        "execution_supported": false,
+        "descriptive_6pwm_jaspar_summary": {
+          "counts_window_merged_region6_total": [
+            11,
+            4,
+            4
+          ],
+          "exact_family_total_tests": 41330,
+          "wholly_non_promoter_6pwm_hits": 0,
+          "promoter_boundary_irf1_hits": [
+            {
+              "matrix_id": "MA0050.2",
+              "tf_name": "IRF1",
+              "start_1based": 538,
+              "end_1based": 558,
+              "strand": "+",
+              "relative_score_0_to_1": 0.8802,
+              "p_adj_1pwm": 0.009399040229,
+              "p_adj_6pwm": 0.05639424138,
+              "passes_1pwm_0p05": true,
+              "passes_6pwm_0p05": false
+            }
+          ],
+          "ctcf_insulator_hits": {
+            "DM1": {
+              "matrix_id": "MA0139.1",
+              "start_1based": 3034,
+              "end_1based": 3052,
+              "strand": "-",
+              "relative_score_0_to_1": 0.915,
+              "p_adj_1pwm": 0.01051285776,
+              "p_adj_6pwm": 0.06307714658
+            },
+            "cHS4": {
+              "matrix_id": "MA0139.1",
+              "start_1based": 1162,
+              "end_1based": 1180,
+              "strand": "+",
+              "relative_score_0_to_1": 0.8971,
+              "p_adj_1pwm": 0.03816835449,
+              "p_adj_6pwm": 0.229010127
+            }
+          },
+          "scope_note": "Descriptive part-resolved 6-PWM JASPAR annotation only (IIP-0027 / DEC-107; never a motif-count stopping rule)."
+        }
+      },
+      {
+        "construct_id": "L2_V3_CTRL_NT_SCRAMBLE",
+        "donor_length_bp": 4012,
+        "itr_pair_nominal_bp": 290,
+        "nominal_aav6_packaged_bp": 4302,
+        "nominal_aav6_headroom_bp": 398,
+        "fits_nominal_single_aav6_le_4700bp": true,
+        "donor_sha256": "d1c8d1bbe01e89dac2256d48b51d2dac03b7cba41d076a0e9bbed6cc249c43ff",
+        "gc_pct": 56.58,
+        "homology_arms_bp": [
+          375,
+          375
+        ],
+        "ha_l_grch38_1based": "chr16:10,898,593-10,898,967 (+)",
+        "ha_l_exact_matches_bp": 375,
+        "ha_r_grch38_1based": "chr16:10,898,968-10,899,342 (+)",
+        "ha_r_pam_shield_diffs_verified": [
+          {
+            "offset0_in_ha_r": 20,
+            "chr16_pos_1based": 10898988,
+            "ref_base": "A",
+            "donor_base": "C"
+          },
+          {
+            "offset0_in_ha_r": 21,
+            "chr16_pos_1based": 10898989,
+            "ref_base": "A",
+            "donor_base": "C"
+          }
+        ],
+        "pam_shield_applied": "chr16:10,898,988_10,898,989AA>CC (+ GAAA->GACC / - TTTC->GGTC; 0 neo-splice sites)",
+        "two_a_count": 0,
+        "sv40pa_count": 0,
+        "bgh_polya_count": 0,
+        "poly_t20_count": 0,
+        "homopolymers_ge_7nt_count": 0,
+        "unit2_upstream_tatataatgg_count": 1,
+        "cargo_splice_counts_isolated": {
+          "plus_donors": 4,
+          "minus_donors": 3,
+          "plus_acceptors": 17,
+          "minus_acceptors": 22
+        },
+        "cargo_splice_counts_integrated_chr16_flanks": {
+          "plus_donors": 4,
+          "minus_donors": 3,
+          "plus_acceptors": 17,
+          "minus_acceptors": 22
+        },
+        "donor_vs_integrated_chr16_splice_parity": true,
+        "max_disjoint_direct_repeat_bp": 29,
+        "max_disjoint_direct_repeat_info": {
+          "length_bp": 29,
+          "pos1_a": 475,
+          "pos1_b": 513,
+          "sequence": "CACTGGAGGGGCTGGAGGGGCTGGAGGGG"
+        },
+        "max_overlapping_direct_repeat_bp": 52,
+        "max_overlapping_direct_repeat_info": {
+          "length_bp": 52,
+          "pos1_a": 542,
+          "pos1_b": 555,
+          "sequence": "AGTTTCATTTTCCAGTTTCATTTTCCAGTTTCATTTTCCAGTTTCATTTTCC"
+        },
+        "max_overlapping_direct_repeat_outside_canonical_tandems_bp": 15,
+        "max_disjoint_inverted_repeat_bp": 15,
+        "max_disjoint_inverted_repeat_info": {
+          "length_bp": 15,
+          "pos1_a": 2174,
+          "pos1_b": 2249,
+          "seq_a": "TCCAACGATCGCTCC",
+          "seq_b": "GGAGCGATCGTTGGA"
+        },
+        "disjoint_inverted_repeats_ge_16bp_count": 0,
+        "disjoint_inverted_repeats_ge_20bp_le_1mm_count": 0,
+        "disjoint_inverted_repeats_ge_20bp_le_1mm_hits": [],
+        "execution_supported": false,
+        "descriptive_6pwm_jaspar_summary": {
+          "counts_window_merged_region6_total": [
+            11,
+            4,
+            4
+          ],
+          "exact_family_total_tests": 47990,
+          "wholly_non_promoter_6pwm_hits": 0,
+          "promoter_boundary_irf1_hits": [
+            {
+              "matrix_id": "MA0050.2",
+              "tf_name": "IRF1",
+              "start_1based": 538,
+              "end_1based": 558,
+              "strand": "+",
+              "relative_score_0_to_1": 0.8802,
+              "p_adj_1pwm": 0.009796784945,
+              "p_adj_6pwm": 0.05878070967,
+              "passes_1pwm_0p05": true,
+              "passes_6pwm_0p05": false
+            }
+          ],
+          "ctcf_insulator_hits": {
+            "DM1": {
+              "matrix_id": "MA0139.1",
+              "start_1based": 3589,
+              "end_1based": 3607,
+              "strand": "-",
+              "relative_score_0_to_1": 0.915,
+              "p_adj_1pwm": 0.01164232155,
+              "p_adj_6pwm": 0.06985392928
+            },
+            "cHS4": {
+              "matrix_id": "MA0139.1",
+              "start_1based": 1717,
+              "end_1based": 1735,
+              "strand": "+",
+              "relative_score_0_to_1": 0.8971,
+              "p_adj_1pwm": 0.04389888345,
+              "p_adj_6pwm": 0.2633933007
+            }
+          },
+          "scope_note": "Descriptive part-resolved 6-PWM JASPAR annotation only (IIP-0027 / DEC-107; never a motif-count stopping rule)."
+        }
+      },
+      {
+        "construct_id": "L2_V3_BARRIER_CHS4_250",
+        "donor_length_bp": 4182,
+        "itr_pair_nominal_bp": 290,
+        "nominal_aav6_packaged_bp": 4472,
+        "nominal_aav6_headroom_bp": 228,
+        "fits_nominal_single_aav6_le_4700bp": true,
+        "donor_sha256": "f58995d9396ed09432e14a2d231a995aecd76122b852ee07ddd629cb07b6af66",
+        "gc_pct": 57.29,
+        "homology_arms_bp": [
+          375,
+          375
+        ],
+        "ha_l_grch38_1based": "chr16:10,898,593-10,898,967 (+)",
+        "ha_l_exact_matches_bp": 375,
+        "ha_r_grch38_1based": "chr16:10,898,968-10,899,342 (+)",
+        "ha_r_pam_shield_diffs_verified": [
+          {
+            "offset0_in_ha_r": 20,
+            "chr16_pos_1based": 10898988,
+            "ref_base": "A",
+            "donor_base": "C"
+          },
+          {
+            "offset0_in_ha_r": 21,
+            "chr16_pos_1based": 10898989,
+            "ref_base": "A",
+            "donor_base": "C"
+          }
+        ],
+        "pam_shield_applied": "chr16:10,898,988_10,898,989AA>CC (+ GAAA->GACC / - TTTC->GGTC; 0 neo-splice sites)",
+        "two_a_count": 0,
+        "sv40pa_count": 0,
+        "bgh_polya_count": 0,
+        "poly_t20_count": 0,
+        "homopolymers_ge_7nt_count": 1,
+        "unit2_upstream_tatataatgg_count": 1,
+        "cargo_splice_counts_isolated": {
+          "plus_donors": 5,
+          "minus_donors": 4,
+          "plus_acceptors": 18,
+          "minus_acceptors": 25
+        },
+        "cargo_splice_counts_integrated_chr16_flanks": {
+          "plus_donors": 5,
+          "minus_donors": 4,
+          "plus_acceptors": 18,
+          "minus_acceptors": 25
+        },
+        "donor_vs_integrated_chr16_splice_parity": true,
+        "max_disjoint_direct_repeat_bp": 29,
+        "max_disjoint_direct_repeat_info": {
+          "length_bp": 29,
+          "pos1_a": 475,
+          "pos1_b": 513,
+          "sequence": "CACTGGAGGGGCTGGAGGGGCTGGAGGGG"
+        },
+        "max_overlapping_direct_repeat_bp": 52,
+        "max_overlapping_direct_repeat_info": {
+          "length_bp": 52,
+          "pos1_a": 542,
+          "pos1_b": 555,
+          "sequence": "AGTTTCATTTTCCAGTTTCATTTTCCAGTTTCATTTTCCAGTTTCATTTTCC"
+        },
+        "max_overlapping_direct_repeat_outside_canonical_tandems_bp": 15,
+        "max_disjoint_inverted_repeat_bp": 14,
+        "max_disjoint_inverted_repeat_info": {
+          "length_bp": 14,
+          "pos1_a": 2344,
+          "pos1_b": 2420,
+          "seq_a": "TCCAACGATCGCTC",
+          "seq_b": "GAGCGATCGTTGGA"
+        },
+        "disjoint_inverted_repeats_ge_16bp_count": 0,
+        "disjoint_inverted_repeats_ge_20bp_le_1mm_count": 0,
+        "disjoint_inverted_repeats_ge_20bp_le_1mm_hits": [],
+        "execution_supported": false,
+        "descriptive_6pwm_jaspar_summary": {
+          "counts_window_merged_region6_total": [
+            11,
+            4,
+            4
+          ],
+          "exact_family_total_tests": 50030,
+          "wholly_non_promoter_6pwm_hits": 0,
+          "promoter_boundary_irf1_hits": [
+            {
+              "matrix_id": "MA0050.2",
+              "tf_name": "IRF1",
+              "start_1based": 538,
+              "end_1based": 558,
+              "strand": "+",
+              "relative_score_0_to_1": 0.8802,
+              "p_adj_1pwm": 0.009079895732,
+              "p_adj_6pwm": 0.05447937439,
+              "passes_1pwm_0p05": true,
+              "passes_6pwm_0p05": false
+            }
+          ],
+          "ctcf_insulator_hits": {
+            "DM1": {
+              "matrix_id": "MA0139.1",
+              "start_1based": 3759,
+              "end_1based": 3777,
+              "strand": "-",
+              "relative_score_0_to_1": 0.915,
+              "p_adj_1pwm": 0.01283444348,
+              "p_adj_6pwm": 0.07700666091
+            },
+            "cHS4": {
+              "matrix_id": "MA0139.1",
+              "start_1based": 1733,
+              "end_1based": 1751,
+              "strand": "+",
+              "relative_score_0_to_1": 0.8971,
+              "p_adj_1pwm": 0.04912914937,
+              "p_adj_6pwm": 0.2947748962
+            }
+          },
+          "scope_note": "Descriptive part-resolved 6-PWM JASPAR annotation only (IIP-0027 / DEC-107; never a motif-count stopping rule)."
+        },
+        "barrier_intervention_classification": "COMBINED_LENGTH_AND_SEQUENCE_CHANGE_250BP_PLUS_U78775_2_C79T_C80A",
+        "barrier_shared_80bp_alignment_offset_1based": [
+          17,
+          96
+        ],
+        "barrier_shared_80bp_sequence_diffs": [
+          {
+            "chs4_250_pos_1based": 72,
+            "chs4_80_pos_1based": 56,
+            "u78775_2_pos_1based": 79,
+            "base_in_80bp": "C",
+            "base_in_250bp": "T"
+          },
+          {
+            "chs4_250_pos_1based": 73,
+            "chs4_80_pos_1based": 57,
+            "u78775_2_pos_1based": 80,
+            "base_in_80bp": "C",
+            "base_in_250bp": "A"
+          }
+        ]
+      },
+      {
+        "construct_id": "L2_V3_CD274P_ZERO_TATATA",
+        "donor_length_bp": 4114,
+        "itr_pair_nominal_bp": 290,
+        "nominal_aav6_packaged_bp": 4404,
+        "nominal_aav6_headroom_bp": 296,
+        "fits_nominal_single_aav6_le_4700bp": true,
+        "donor_sha256": "ecd6df0d48f0fc6f897482d14e4ec2c92e1f4740e58e11b77c40fe9760de5577",
+        "gc_pct": 57.27,
+        "homology_arms_bp": [
+          375,
+          375
+        ],
+        "ha_l_grch38_1based": "chr16:10,898,593-10,898,967 (+)",
+        "ha_l_exact_matches_bp": 375,
+        "ha_r_grch38_1based": "chr16:10,898,968-10,899,342 (+)",
+        "ha_r_pam_shield_diffs_verified": [
+          {
+            "offset0_in_ha_r": 20,
+            "chr16_pos_1based": 10898988,
+            "ref_base": "A",
+            "donor_base": "C"
+          },
+          {
+            "offset0_in_ha_r": 21,
+            "chr16_pos_1based": 10898989,
+            "ref_base": "A",
+            "donor_base": "C"
+          }
+        ],
+        "pam_shield_applied": "chr16:10,898,988_10,898,989AA>CC (+ GAAA->GACC / - TTTC->GGTC; 0 neo-splice sites)",
+        "two_a_count": 0,
+        "sv40pa_count": 0,
+        "bgh_polya_count": 0,
+        "poly_t20_count": 0,
+        "homopolymers_ge_7nt_count": 0,
+        "unit2_upstream_tatataatgg_count": 0,
+        "cargo_splice_counts_isolated": {
+          "plus_donors": 7,
+          "minus_donors": 4,
+          "plus_acceptors": 17,
+          "minus_acceptors": 27
+        },
+        "cargo_splice_counts_integrated_chr16_flanks": {
+          "plus_donors": 7,
+          "minus_donors": 4,
+          "plus_acceptors": 17,
+          "minus_acceptors": 27
+        },
+        "donor_vs_integrated_chr16_splice_parity": true,
+        "max_disjoint_direct_repeat_bp": 29,
+        "max_disjoint_direct_repeat_info": {
+          "length_bp": 29,
+          "pos1_a": 475,
+          "pos1_b": 513,
+          "sequence": "CACTGGAGGGGCTGGAGGGGCTGGAGGGG"
+        },
+        "max_overlapping_direct_repeat_bp": 35,
+        "max_overlapping_direct_repeat_info": {
+          "length_bp": 35,
+          "pos1_a": 438,
+          "pos1_b": 442,
+          "sequence": "TCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCA"
+        },
+        "max_overlapping_direct_repeat_outside_canonical_tandems_bp": 15,
+        "max_disjoint_inverted_repeat_bp": 14,
+        "max_disjoint_inverted_repeat_info": {
+          "length_bp": 14,
+          "pos1_a": 2276,
+          "pos1_b": 2352,
+          "seq_a": "TCCAACGATCGCTC",
+          "seq_b": "GAGCGATCGTTGGA"
+        },
+        "disjoint_inverted_repeats_ge_16bp_count": 0,
+        "disjoint_inverted_repeats_ge_20bp_le_1mm_count": 0,
+        "disjoint_inverted_repeats_ge_20bp_le_1mm_hits": [],
+        "execution_supported": false,
+        "descriptive_6pwm_jaspar_summary": {
+          "counts_window_merged_region6_total": [
+            4,
+            3,
+            2
+          ],
+          "exact_family_total_tests": 49214,
+          "wholly_non_promoter_6pwm_hits": 0,
+          "promoter_boundary_irf1_hits": [],
+          "ctcf_insulator_hits": {
+            "DM1": {
+              "matrix_id": "MA0139.1",
+              "start_1based": 3691,
+              "end_1based": 3709,
+              "strand": "-",
+              "relative_score_0_to_1": 0.915,
+              "p_adj_1pwm": 0.01237231032,
+              "p_adj_6pwm": 0.07423386195
+            },
+            "cHS4": {
+              "matrix_id": "MA0139.1",
+              "start_1based": 1819,
+              "end_1based": 1837,
+              "strand": "+",
+              "relative_score_0_to_1": 0.8971,
+              "p_adj_1pwm": 0.04887359243,
+              "p_adj_6pwm": 0.2932415546
+            }
+          },
+          "scope_note": "Descriptive part-resolved 6-PWM JASPAR annotation only (IIP-0027 / DEC-107; never a motif-count stopping rule)."
+        }
+      }
+    ],
+    "primary_citations": [
+      "PMID:19503104",
+      "PMID:28671664",
+      "PMID:21266852",
+      "PMID:19549636",
+      "PMID:21989056",
+      "PMID:12011446",
+      "PMID:15544620",
+      "PMID:28723575",
+      "PMID:24332856",
+      "PMID:35880017",
+      "PMID:28462820",
+      "PMID:32775498",
+      "PMID:36055241",
+      "PMID:37996616",
+      "PMID:40251154",
+      "PMID:2570734",
+      "PMID:34050011",
+      "PMID:30010673"
     ]
   },
   "public_effects_provenance_rebinding": {

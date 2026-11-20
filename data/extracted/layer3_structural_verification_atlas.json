@@ -4,9 +4,11 @@
   "status": "COORDINATE_GEOMETRY_VERIFIED_PRODUCT_FUNCTION_UNRESOLVED_PENDING_WETLAB",
   "layer2_construct_fasta_sha256_linked": "b5ba4e2b4bbbcc7d6cf1138975c5fae5c6ab074dda43973f071c671cd8cd1d88",
   "summary": {
-    "total_experimental_pdb_structures_verified": 13,
+    "total_experimental_pdb_structures_verified": 15,
     "experimental_rcsb_mmcif_structures_verified": 11,
-    "experimental_rcsb_legacy_pdb_structures_verified": 2,
+    "experimental_rcsb_legacy_pdb_structures_verified": 4,
+    "canonical_experimental_pdb_structures_verified": 13,
+    "challenger_iip0031_experimental_pdb_structures_verified": 2,
     "experimental_pdb_accession_inventory": [
       "1MHE",
       "3CDG",
@@ -20,7 +22,9 @@
       "1IM9",
       "1BL4",
       "1JXQ",
-      "1NW9"
+      "1NW9",
+      "2WII",
+      "5O32"
     ],
     "total_alphafold_v6_models_verified": 2,
     "foldseek_databases_queried": [
@@ -7292,5 +7296,213 @@
         "role": "SUBORDINATE_NON_BLOCKING_DIAGNOSTIC_ONLY"
       }
     }
+  },
+  "locus2_cfh_stp_gpi_structural_provenance_iip_0031": {
+    "proposal_id": "IIP-0031",
+    "decision_id": "DEC-110",
+    "rule_id": "S11_Locus2_CIITA_ModeB_Vascular_Complement_and_Efferocytosis_Gate",
+    "execution_supported": false,
+    "coordinate_computation_mode": "DYNAMICALLY_RECOMPUTED_FROM_BUNDLED_PDB_SNAPSHOTS_ON_DISK",
+    "structural_scope_verdict": "STRUCTURAL_PLAUSIBILITY_ONLY (static soluble X-ray crystal provenance without STP stalk or GPI membrane geometry; cell-surface expression, AP/classical/lectin complement regulation, conjunctive GY-023 ADCC, and efferocytosis require Stage-0 empirical qualification).",
+    "pdb_2wii": {
+      "pdb_id": "2WII",
+      "local_coordinate_path": "data/structures/2WII.pdb",
+      "citation": "Wu et al. 2009 Nat Immunol (PMID:19503104)",
+      "license": "CC0-1.0 (wwPDB)",
+      "pdb_file_sha256": "93dc715a38124883028aea79a1e3a2715c1d82bed06f59e7889e9971f41543eb",
+      "resolution_angstrom": 2.7,
+      "resolved_disulfides_count": 8,
+      "resolved_disulfides_expected": 8,
+      "resolved_disulfides_sg_sg_range_angstrom": [
+        2.018,
+        2.032
+      ],
+      "resolved_disulfides_8_of_8": [
+        {
+          "cys_a_p08603": 21,
+          "cys_b_p08603": 66,
+          "sg_sg_angstrom": 2.03
+        },
+        {
+          "cys_a_p08603": 52,
+          "cys_b_p08603": 80,
+          "sg_sg_angstrom": 2.032
+        },
+        {
+          "cys_a_p08603": 85,
+          "cys_b_p08603": 129,
+          "sg_sg_angstrom": 2.03
+        },
+        {
+          "cys_a_p08603": 114,
+          "cys_b_p08603": 141,
+          "sg_sg_angstrom": 2.023
+        },
+        {
+          "cys_a_p08603": 146,
+          "cys_b_p08603": 192,
+          "sg_sg_angstrom": 2.03
+        },
+        {
+          "cys_a_p08603": 178,
+          "cys_b_p08603": 205,
+          "sg_sg_angstrom": 2.018
+        },
+        {
+          "cys_a_p08603": 210,
+          "cys_b_p08603": 251,
+          "sg_sg_angstrom": 2.032
+        },
+        {
+          "cys_a_p08603": 237,
+          "cys_b_p08603": 262,
+          "sg_sg_angstrom": 2.032
+        }
+      ],
+      "cfh_c3b_heavy_atom_pairs_le_4p5A": 475,
+      "cfh_contacting_residue_count": 50,
+      "c3b_contacting_residue_count": 55,
+      "last_c3b_contacting_cfh_residue_p08603": 259,
+      "last_c3b_contacting_cfh_residue_label": "Leu259",
+      "last_c3b_contact_min_dist_angstrom": 4.389,
+      "glu264_min_dist_to_c3b_angstrom": 6.291,
+      "c3b_ted_q1013_pdb_author_residue": "B:991 (GLN; UniProt P01024 Gln1013)",
+      "glu264_ca_to_c3b_ted_q1013_ca_angstrom": 33.04,
+      "post_glu264_deposited_coordinate_audit": {
+        "deposited_chain_c_resseq": 247,
+        "deposited_resname_verified_on_disk": "ALA",
+        "deposited_residue_identity": "NON_NATIVE_ALA_EXCLUDED_FROM_NATIVE_LYS265_GEOMETRY",
+        "native_residue_265_geometry_claimed": false,
+        "exit_vector_from_residue_265_claimed": false,
+        "note": "The coordinate deposited after Glu264 in PDB 2WII (C:247) is verified on disk as a non-native ALA artifact rather than native human CFH Lys265; accordingly, C:247 is excluded from all CFH[1-264] contact counts and no native residue-265 distance or C262->K265 exit-vector geometry is claimed from PDB 2WII."
+      },
+      "crystallized_allotype": "Ile62 (rs800292; verified C:44=ILE)",
+      "engineered_v3_allotype": "Val62 (canonical UniProt P08603)"
+    },
+    "pdb_5o32": {
+      "pdb_id": "5O32",
+      "local_coordinate_path": "data/structures/5O32.pdb",
+      "citation": "Xue et al. 2017 Nat Struct Mol Biol (PMID:28671664)",
+      "license": "CC0-1.0 (wwPDB)",
+      "pdb_file_sha256": "26b9d9684e7b3fa1757f91a173c8423d583ca6df88eb11d1fa2ecdc059a803d3",
+      "resolution_angstrom": 4.21,
+      "complex_composition_disclosure": "Soluble truncated engineered CFH (SCR1-4+19-20) bound to C3b and catalytically inactive Factor I (no membrane STP stalk or GPI anchor); both asymmetric-unit copies recomputed directly from data/structures/5O32.pdb.",
+      "asu_copy_1": {
+        "chains": {
+          "c3b": [
+            "A",
+            "B"
+          ],
+          "factor_i": [
+            "D",
+            "I"
+          ],
+          "truncated_cfh": "C"
+        },
+        "cfh_residues_contacting_factor_i_le_4p5A": [
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          132,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          142,
+          145,
+          146,
+          147,
+          148,
+          164,
+          165,
+          166,
+          167,
+          195,
+          196,
+          197
+        ],
+        "last_cfh_residue_contacting_factor_i_le_4p5A": 197,
+        "glu264_min_dist_to_factor_i_angstrom": 58.052,
+        "glu264_min_dist_to_c3b_angstrom": 4.821
+      },
+      "asu_copy_2": {
+        "chains": {
+          "c3b": [
+            "E",
+            "F"
+          ],
+          "factor_i": [
+            "H",
+            "J"
+          ],
+          "truncated_cfh": "G"
+        },
+        "cfh_residues_contacting_factor_i_le_4p5A": [
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          132,
+          134,
+          135,
+          136,
+          137,
+          138,
+          140,
+          142,
+          145,
+          147,
+          148,
+          164,
+          165,
+          166,
+          167,
+          195,
+          196,
+          197
+        ],
+        "last_cfh_residue_contacting_factor_i_le_4p5A": 197,
+        "glu264_min_dist_to_factor_i_angstrom": 57.214,
+        "glu264_min_dist_to_c3b_angstrom": 7.075
+      },
+      "pathway_scope_disclosure": "CFH SCR1-4 decays alternative-pathway C3bBb and acts as Factor I cofactor for C3b, but does NOT directly decay classical (C1q/sensitized) or lectin (MBL/mannan) C4b2a convertases (Seya et al. 1995 PMID:7739573; Fridkis-Hareli et al. 2011 PMID:21860027; Sonnentag et al. 2024 PMID:38401844). Rule S11 therefore mandates explicit numerical post-cuff stops for AP (<= 5.0%), classical C4b2a (U95 <= 10.0%; L95 > 10.0% stops), lectin C4b2a (U95 <= 10.0%; L95 > 10.0% stops), overall 20% NHS (<= 5.0%), and conjunctive GY-023 intact + IgG-increment ADCC (both <= 5.0%)."
+    },
+    "val62_vs_ile62_swissprot_census": {
+      "record_provenance_label": "archived_uniprot_2026_04_descriptive_record",
+      "recomputed_from_bundled_disk_inputs": false,
+      "input_provenance_classification": "archived_uniprot_2026_04_descriptive_record: EXTERNAL_ARCHIVE_PROVENANCE_NOT_BUNDLED_IN_PUBLIC_SNAPSHOT (computed offline against the full 20,429-entry UniProtKB/Swiss-Prot human FASTA archive pinned below by SHA-256; explicitly separated from the disk-recomputed 2WII/5O32 coordinate metrics because the full UniProtKB/Swiss-Prot proteome archive is external).",
+      "reference_proteome": "Human UniProtKB/Swiss-Prot reviewed proteome (20,429 proteins)",
+      "swissprot_gz_sha256": "40a8856b4e3f3620b11635143b501ef701558ed97309b0cdb4423ef09e4618d0",
+      "swissprot_uncompressed_sha256": "13852e174364bf1c705206c38eacae57210f5bca9955f05be6b4ff48f727d37b",
+      "cfh_val62_stp_gpi_mature_unmatched_8_11mers": 26,
+      "cfh_val62_stp_gpi_mature_unmatched_15mers": 12,
+      "cfh_ile62_rs800292_stp_gpi_mature_unmatched_8_11mers": 64,
+      "cfh_ile62_rs800292_stp_gpi_mature_unmatched_15mers": 27,
+      "cfh_short_gpi_mature_unmatched_8_11mers": 33,
+      "cfh_short_gpi_mature_unmatched_15mers": 9,
+      "cd47_igv_gpi_mature_unmatched_8_11mers": 25,
+      "cd47_igv_gpi_mature_unmatched_15mers": 7,
+      "ks_seam_hlac_anchor_motifs": [
+        "LPSCEEKSL",
+        "PLPSCEEKSL"
+      ],
+      "bidirectional_allotype_stratification_requirement": "Materialized v3 donors encode canonical Val62 (P08603) rather than rs800292 Ile62 (Tortajada et al. 2009 PMID:19549636); Stage-0 HLA-C and HLA-DQ2/DQ8 recipient panels must genotype and stratify recipients by rs800292 (since Ile62/Ile62 recipients view Val62 windows as non-self) while benchmarking Val62 cofactor kinetics against soluble CFH. Swiss-Prot non-match k-mer counts are descriptive sequence-census metrics only, not immunogenicity scores."
+    },
+    "primary_citations": [
+      "PMID:19503104",
+      "PMID:28671664",
+      "PMID:19549636",
+      "PMID:7739573",
+      "PMID:21860027",
+      "PMID:38401844"
+    ]
   }
 }

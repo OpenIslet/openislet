@@ -227,6 +227,96 @@ def test_metadata_unknown_keys_and_duplicate_json_keys_reject():
     with pytest.raises(ValueError):measurements.normalize_measurements({},require_observation=True)
 
 
+@pytest.mark.parametrize("value_pair", ["0,1", "1,0"])
+@pytest.mark.parametrize("container", [
+    '{"k":%s,"k":%s}', '{"measurements":{"k":%s,"k":%s}}',
+    '{"tier6b_sorted_lot_observations":[{"controls":{"k":%s,"k":%s}}]}',
+])
+def test_stage0_serialized_ingestion_rejects_duplicate_keys(container, value_pair):
+    raw = container % tuple(value_pair.split(","))
+    with pytest.raises(ValueError, match="Duplicate JSON key"):
+        ingest.ingest_stage0_research_or_wetlab_batch(raw)
+
+
+@pytest.mark.parametrize("token", ["NaN", "Infinity", "-Infinity", "1e9999", "-1e9999"])
+def test_stage0_serialized_ingestion_rejects_nonfinite_numbers(token):
+    raw = '{"measurements":{"value":' + token + '}}'
+    with pytest.raises(ValueError, match="finite"):
+        ingest.ingest_stage0_research_or_wetlab_batch(raw)
+
+
+@pytest.mark.parametrize("value", [None, [], False, "", ["key", "value"]])
+@pytest.mark.parametrize("name", ["scope", "measurements", "iip0026_molecular_observations"])
+def test_stage0_ingestion_rejects_malformed_structured_blocks(value, name):
+    packet = {name: value}
+    for document in (packet, json.dumps(packet)):
+        with pytest.raises(ValueError, match="must be an object"):
+            ingest.ingest_stage0_research_or_wetlab_batch(document)
+
+
+@pytest.mark.parametrize("value", [[], [["lot_id", "one"]], None, 1, True])
+def test_stage0_ingestion_requires_object_root(value):
+    for document in (value, json.dumps(value)):
+        with pytest.raises(ValueError, match="must decode to a JSON object"):
+            ingest.ingest_stage0_research_or_wetlab_batch(document)
+
+
+@pytest.mark.parametrize("malformed", [
+    {}, {"scope": []}, {"scope": {"lot_id": "orphan"}}, None,
+    {"measurements": ["malformed"]}, {"iip0026_molecular_observations": False},
+    {"measurements": {"obs_icasp9_log10_kill": True}},
+    {"measurements": {"obs_icasp9_log10_kill": 10**600}},
+])
+@pytest.mark.parametrize("adverse_first", [True, False])
+def test_stage0_replay_keeps_s9_stop_across_malformed_records(malformed, adverse_first):
+    scope = {"product_variant_id": "ISLET1_B2_5LOCUS_BASE", "lot_id": "LOT-TEST", "campaign_id": "CAMP-TEST"}
+    adverse = {"scope": scope, "measurements": {"obs_icasp9_log10_kill": 0.1, "obs_icasp9_log10_kill_se": 0.1}}
+    if malformed and "scope" not in malformed:
+        malformed = {"scope": scope, **malformed}
+    records = [adverse, malformed] if adverse_first else [malformed, adverse]
+    out = ingest.replay_stage0_chronological_batches(records)
+    assert out["overall_status"] == "HARD_SAFETY_STOP_REJECTED"
+    assert out["hard_stop_precedence_winner"] == "S9_HARD_SAFETY_STOP"
+    assert out["effective_execution_permitted"] is False
+
+
+def test_stage0_replay_rejects_two_attributable_lots():
+    scope = {"product_variant_id": "ISLET1_B2_5LOCUS_BASE", "lot_id": "A", "campaign_id": "C"}
+    records = [{"scope": scope}, {"scope": {**scope, "lot_id": "B"}}]
+    for ordered in (records, records[::-1]):
+        out = ingest.replay_stage0_chronological_batches(ordered)
+        assert out["overall_status"] == "FAIL_CROSS_LOT_OR_CAMPAIGN_REPLAY_MIXING"
+        assert out["effective_execution_permitted"] is False
+
+
+@pytest.mark.parametrize("key", ["lot_id", "current_lot_id", "campaign_id", "assay_campaign_id", "product_variant_id"])
+def test_stage0_rejects_ambiguous_envelope_provenance(key):
+    packet = {"scope": {"product_variant_id": "ISLET1_B2_5LOCUS_BASE", "lot_id": "A", "campaign_id": "C"},
+              key: "OTHER"}
+    with pytest.raises(ValueError, match="Conflicting Stage-0 batch scope"):
+        ingest.ingest_stage0_research_or_wetlab_batch(json.dumps(packet))
+    out = ingest.replay_stage0_chronological_batches([packet])
+    assert out["overall_status"] == "FAIL_CROSS_LOT_OR_CAMPAIGN_REPLAY_MIXING"
+    assert out["effective_execution_permitted"] is False
+
+
+@pytest.mark.parametrize("explicit_malformed", [False, True])
+@pytest.mark.parametrize("adverse_first", [True, False])
+def test_stage0_replay_keeps_attributable_outgrowth_with_malformed_peers(explicit_malformed, adverse_first):
+    scope = {"product_variant_id": "ISLET1_B2_5LOCUS_BASE", "lot_id": "LOT-TEST", "campaign_id": "CAMP-TEST",
+             "construct_sha256": hashlib.sha256(b"transport-test").hexdigest(),
+             "donor_seedline_id": "TEST-SEED", "mcb_id": "TEST-MCB"}
+    count = {**scope, "endpoint_id": "lot_tier6b_sorted_prolif_clonogenic_escape", "scope_type": "LOT_SCOPE",
+             "sample_id": "transport-test", "k": 1}
+    adverse = {"scope": scope, "tier6b_sorted_lot_observations": [count], "malformed_record": explicit_malformed}
+    zero = {"scope": scope, "tier6b_sorted_lot_observations": [{**count, "k": 0}]}
+    records = [adverse, {}, zero] if adverse_first else [zero, {}, adverse]
+    out = ingest.replay_stage0_chronological_batches(records)
+    assert out["overall_status"] == "FAIL_HARD_STOP"
+    assert out["hard_stop_precedence_winner"] == "FAIL_TIER6B_OUTGROWTH_DETECTED"
+    assert out["effective_execution_permitted"] is False
+
+
 def test_report_integrity_lineage_and_replay_remain_fail_closed():
     report=ingest.run_calibration(payload_for(0),False);next_payload=payload_for(0,batch_id='QA-NEXT',obs_stage7_yield_ratio=.96)
     for lineage in ingest.SUPPORTED_EMPIRICAL_LINEAGES:

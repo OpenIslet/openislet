@@ -161,6 +161,12 @@
    "pubdate_year": "2002",
    "title": "Probing for membrane domains in the endoplasmic reticulum: retention and degradation of unassembled MHC class I molecules."
   },
+  "12011446": {
+   "first_author": "Recillas-Targa F",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "2002",
+   "title": "Position-effect protection and enhancer blocking by the chicken beta-globin insulator are separable activities."
+  },
   "12176911": {
    "first_author": "Mollnes TE",
    "journal": "Blood",
@@ -245,6 +251,12 @@
    "pubdate_year": "2003",
    "title": "Aberrant cryptic responsiveness of the pCAT 3- and pGL3-promoter reporter vectors."
   },
+  "14566335": {
+   "first_author": "Gaggar A",
+   "journal": "Nat Med",
+   "pubdate_year": "2003",
+   "title": "CD46 is a cellular receptor for group B adenoviruses."
+  },
   "14566337": {
    "first_author": "Lizée G",
    "journal": "Nat Immunol",
@@ -299,11 +311,23 @@
    "pubdate_year": "2004",
    "title": "Granzyme M is a regulatory protease that inactivates proteinase inhibitor 9, an endogenous inhibitor of granzyme B."
   },
+  "15525517": {
+   "first_author": "West AG",
+   "journal": "Mol Cell",
+   "pubdate_year": "2004",
+   "title": "Recruitment of histone modifications by USF proteins at a vertebrate barrier element."
+  },
   "15538371": {
    "first_author": "Poy MN",
    "journal": "Nature",
    "pubdate_year": "2004",
    "title": "A pancreatic islet-specific microRNA regulates insulin secretion."
+  },
+  "15544620": {
+   "first_author": "Harboe M",
+   "journal": "Clin Exp Immunol",
+   "pubdate_year": "2004",
+   "title": "The quantitative role of alternative pathway amplification in classical pathway induced terminal complement activation."
   },
   "15728125": {
    "first_author": "Straathof KC",
@@ -425,6 +449,12 @@
    "pubdate_year": "2007",
    "title": "A K ATP channel-dependent pathway within alpha cells regulates glucagon release from both rodent and human islets of Langerhans."
   },
+  "17507765": {
+   "first_author": "Mizobuchi N",
+   "journal": "Cell Struct Funct",
+   "pubdate_year": "2007",
+   "title": "ARMET is a soluble ER protein induced by the unfolded protein response via ERSE-II element."
+  },
   "17926672": {
    "first_author": "Dalla Man C",
    "journal": "IEEE Trans Biomed Eng",
@@ -460,6 +490,12 @@
    "journal": "J Biol Chem",
    "pubdate_year": "1991",
    "title": "Glycophospholipid membrane anchor attachment. Molecular analysis of the cleavage/attachment site."
+  },
+  "18283290": {
+   "first_author": "Curtin JA",
+   "journal": "Gene Ther",
+   "pubdate_year": "2008",
+   "title": "Bidirectional promoter interference between two widely used internal heterologous promoters in a late-generation lentiviral construct."
   },
   "18332182": {
    "first_author": "Petrie EJ",
@@ -574,6 +610,18 @@
    "journal": "Diabetes",
    "pubdate_year": "2009",
    "title": "PTPN2, a candidate gene for type 1 diabetes, modulates interferon-gamma-induced pancreatic beta-cell apoptosis."
+  },
+  "19503104": {
+   "first_author": "Wu J",
+   "journal": "Nat Immunol",
+   "pubdate_year": "2009",
+   "title": "Structure of complement fragment C3b-factor H and implications for host protection by complement regulators."
+  },
+  "19549636": {
+   "first_author": "Tortajada A",
+   "journal": "Hum Mol Genet",
+   "pubdate_year": "2009",
+   "title": "The disease-protective complement factor H allotypic variant Ile62 shows increased binding affinity for C3b and enhanced cofactor activity."
   },
   "19641142": {
    "first_author": "Tanaka S",
@@ -695,6 +743,12 @@
    "pubdate_year": "2011",
    "title": "Reappraisal of the relationship between the HIV-1-protective single-nucleotide polymorphism 35 kilobases upstream of the HLA-C gene and surface HLA-C expression."
   },
+  "21266852": {
+   "first_author": "Mehta NT",
+   "journal": "Epigenetics",
+   "pubdate_year": "2011",
+   "title": "Early epigenetic events regulate the adaptive immune response gene CIITA."
+  },
   "21368762": {
    "first_author": "Kaiser WJ",
    "journal": "Nature",
@@ -743,11 +797,23 @@
    "pubdate_year": "2011",
    "title": "Intracellular serine protease inhibitor SERPINB4 inhibits granzyme M-induced cell death."
   },
+  "21860027": {
+   "first_author": "Fridkis-Hareli M",
+   "journal": "Blood",
+   "pubdate_year": "2011",
+   "title": "Design and development of TT30, a novel C3d-targeted C3/C5 convertase inhibitor for treatment of human complement alternative pathway-mediated diseases."
+  },
   "21964334": {
    "first_author": "Shukla S",
    "journal": "Nature",
    "pubdate_year": "2011",
    "title": "CTCF-promoted RNA polymerase II pausing links DNA methylation to splicing."
+  },
+  "21989056": {
+   "first_author": "Davison LJ",
+   "journal": "Hum Mol Genet",
+   "pubdate_year": "2012",
+   "title": "Long-range DNA looping and gene expression analyses identify DEXI as an autoimmune disease candidate gene."
   },
   "22047558": {
    "first_author": "Di Stasi A",
@@ -887,6 +953,12 @@
    "pubdate_year": "2013",
    "title": "NK cell tolerance of self-specific activating receptor KIR2DS1 in individuals with cognate HLA-C2 ligand."
   },
+  "23616575": {
+   "first_author": "Schmidt CQ",
+   "journal": "J Immunol",
+   "pubdate_year": "2013",
+   "title": "Rational engineering of a minimized immune inhibitor with unique triple-targeting properties."
+  },
   "23698740": {
    "first_author": "Arber C",
    "journal": "Gene Ther",
@@ -1013,6 +1085,12 @@
    "pubdate_year": "2014",
    "title": "Control of insulin secretion by cholinergic signaling in the human pancreatic islet."
   },
+  "24726366": {
+   "first_author": "Lindahl M",
+   "journal": "Cell Rep",
+   "pubdate_year": "2014",
+   "title": "MANF is indispensable for the proliferation and survival of pancreatic β cells."
+  },
   "24804568": {
    "first_author": "Aubert O",
    "journal": "Am J Transplant",
@@ -1108,6 +1186,12 @@
    "journal": "Nucleic Acids Res",
    "pubdate_year": "2015",
    "title": "A minimal ubiquitous chromatin opening element (UCOE) effectively prevents silencing of juxtaposed heterologous promoters by epigenetic remodeling in multipotent and pluripotent stem cells."
+  },
+  "25640174": {
+   "first_author": "Chen L",
+   "journal": "Sci Rep",
+   "pubdate_year": "2015",
+   "title": "Mesencephalic astrocyte-derived neurotrophic factor is involved in inflammation by negatively regulating the NF-κB pathway."
   },
   "25701572": {
    "first_author": "Tan A",
@@ -1397,6 +1481,12 @@
    "pubdate_year": "2017",
    "title": "Systematic comparison of 2A peptides for cloning multi-genes in a polycistronic vector."
   },
+  "28671664": {
+   "first_author": "Xue X",
+   "journal": "Nat Struct Mol Biol",
+   "pubdate_year": "2017",
+   "title": "Regulator-dependent mechanisms of C3b processing by factor I allow differentiation of immune responses."
+  },
   "28723575": {
    "first_author": "Bak RO",
    "journal": "Cell Rep",
@@ -1552,6 +1642,12 @@
    "journal": "EBioMedicine",
    "pubdate_year": "2018",
    "title": "PDL1 is expressed in the islets of people with type 1 diabetes and is up-regulated by interferons-α and-γ via IRF1 induction."
+  },
+  "30305368": {
+   "first_author": "Danilova T",
+   "journal": "Diabetes",
+   "pubdate_year": "2019",
+   "title": "MANF Is Required for the Postnatal Expansion and Maintenance of Pancreatic β-Cell Mass in Mice."
   },
   "30378751": {
    "first_author": "Weaver JD",
@@ -1714,6 +1810,12 @@
    "journal": "Genes Immun",
    "pubdate_year": "2020",
    "title": "The type 1 diabetes candidate gene Dexi does not affect disease risk in the nonobese diabetic mouse model."
+  },
+  "31492834": {
+   "first_author": "Tuladhar R",
+   "journal": "Nat Commun",
+   "pubdate_year": "2019",
+   "title": "CRISPR-Cas9-based mutagenesis frequently provokes on-target mRNA misregulation."
   },
   "31552143": {
    "first_author": "Trivedi PM",
@@ -1883,6 +1985,12 @@
    "pubdate_year": "2020",
    "title": "CD47 Ligation Repositions the Inhibitory Receptor SIRPA to Suppress Integrin Activation and Phagocytosis."
   },
+  "32775498": {
+   "first_author": "Tran NT",
+   "journal": "Mol Ther Methods Clin Dev",
+   "pubdate_year": "2020",
+   "title": "AAV-Genome Population Sequencing of Vectors Packaging CRISPR Components Reveals Design-Influenced Heterogeneity."
+  },
   "32814902": {
    "first_author": "Yoshihara E",
    "journal": "Nature",
@@ -1936,6 +2044,12 @@
    "journal": "J Exp Med",
    "pubdate_year": "2021",
    "title": "The SIRPα-CD47 immune checkpoint in NK cells."
+  },
+  "33500254": {
+   "first_author": "Montaser H",
+   "journal": "Diabetes",
+   "pubdate_year": "2021",
+   "title": "Loss of MANF Causes Childhood-Onset Syndromic Diabetes Due to Increased Endoplasmic Reticulum Stress."
   },
   "33599743": {
    "first_author": "Davis Z",
@@ -2351,6 +2465,12 @@
    "pubdate_year": "2023",
    "title": "A metabolic role for CD47 in pancreatic β cell insulin secretion and islet transplant outcomes."
   },
+  "37996616": {
+   "first_author": "Harding J",
+   "journal": "Nat Biomed Eng",
+   "pubdate_year": "2024",
+   "title": "Immune-privileged tissues formed from immunologically cloaked mouse embryonic stem cells survive long term in allogeneic hosts."
+  },
   "38012450": {
    "first_author": "Keymeulen B",
    "journal": "Nat Biotechnol",
@@ -2374,6 +2494,12 @@
    "journal": "ACS Omega",
    "pubdate_year": "2024",
    "title": "Controlled Release of Oxygen from Calcium Peroxide in a Weak Acidic Condition by Stabilized Amorphous Calcium Carbonate Nanocoating for Biomedical Applications."
+  },
+  "38401844": {
+   "first_author": "Sonnentag SJ",
+   "journal": "J Biol Chem",
+   "pubdate_year": "2024",
+   "title": "Triple-fusion protein (TriFu): A potent, targeted, enzyme-like inhibitor of all three complement activation pathways."
   },
   "38402281": {
    "first_author": "Zhang E",
@@ -2819,6 +2945,18 @@
    "pubdate_year": "1983",
    "title": "Splanchnic and peripheral disposal of oral glucose in man."
   },
+  "7517044": {
+   "first_author": "Bergelson JM",
+   "journal": "Proc Natl Acad Sci U S A",
+   "pubdate_year": "1994",
+   "title": "Decay-accelerating factor (CD55), a glycosylphosphatidylinositol-anchored complement regulatory protein, is a receptor for several echoviruses."
+  },
+  "7531780": {
+   "first_author": "Bergelson JM",
+   "journal": "J Virol",
+   "pubdate_year": "1995",
+   "title": "Coxsackievirus B3 adapted to growth in RD cells binds to decay-accelerating factor (CD55)."
+  },
   "7545436": {
    "first_author": "Sugimoto N",
    "journal": "Biochemistry",
@@ -2836,6 +2974,12 @@
    "journal": "J Biol Chem",
    "pubdate_year": "1993",
    "title": "Expression of the cystic fibrosis transmembrane conductance regulator from a novel adeno-associated virus promoter."
+  },
+  "7739573": {
+   "first_author": "Seya T",
+   "journal": "Mol Immunol",
+   "pubdate_year": "1995",
+   "title": "Human factor H and C4b-binding protein serve as factor I-cofactors both encompassing inactivation of C3b and C4b."
   },
   "7988563": {
    "first_author": "Ashfield R",
@@ -2902,6 +3046,12 @@
    "journal": "Diabetes",
    "pubdate_year": "1998",
    "title": "Human islets of Langerhans express Fas ligand and undergo apoptosis in response to interleukin-1beta and Fas ligation."
+  },
+  "9644970": {
+   "first_author": "Nagy E",
+   "journal": "Trends Biochem Sci",
+   "pubdate_year": "1998",
+   "title": "A rule for termination-codon position within intron-containing genes: when nonsense affects RNA abundance."
   },
   "9660937": {
    "first_author": "O'Callaghan CA",

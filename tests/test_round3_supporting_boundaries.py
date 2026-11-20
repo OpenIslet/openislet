@@ -1537,7 +1537,7 @@ def test_muse_wonder_r3_dec036_high_impact_biological_upgrades() -> None:
         }
     )
     assert dt_res["strict_precedence_order"][0] == "1_SAFETY_KILL_S9"
-    assert len(dt_res["switch_decisions"]) == 11
+    assert len(dt_res["switch_decisions"]) == 12
     assert dt_res["switch_decisions"]["S1_Locus3_Kinetic_and_Topology_Gate_0C"] == "PROMOTE_ISLET1_A4_L3_BFB_BASALFLOOR"
     assert dt_res["switch_decisions"]["S7_Design_B_Prime_4Digit_Allo_vs_B_SCT_Gate_0B"] == "PROMOTE_ISLET1_B_SCT_C1_OR_C2_CIITA"
 
@@ -3069,11 +3069,11 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
         == 0.90
     )
 
-    # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (106 persisted boolean flags, 110 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
-    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 106
+    # - R7S2-F02 & Q1/Q2: Historical ledger strict boolean validation (118 persisted boolean flags, 122 ledger metadata booleans) & Layer-4 5.71 mmHg prose alignment
+    assert len(wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS) == 118
     assert "require_full_5endpoint_s9_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
     assert "require_full_7metric_combined_stress_panel" in wetlab.STAGE0_PERSISTED_BOOLEAN_FLAGS
-    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 110
+    assert len(wetlab.HISTORICAL_LEDGER_BOOLEAN_METADATA_KEYS) == 122
     assert "5.71 mmHg at 100 um clusters with matched D_caps = D_gel" in film_limit["surgical_mitigation"]
 
     batch1_r7s2 = {
@@ -3156,7 +3156,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     # - R7S3-F02: Both wetlab_contract.evaluate_stage0_decision_tree and ingest_wetlab_results.evaluate_stage0_decision_tree reject non-boolean policy values
     from scripts import wetlab_contract as wc_mod
 
-    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 110
+    assert len(wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS) == 122
     for bkey in wc_mod.STAGE0_DECISION_TREE_BOOLEAN_KEYS:
         for bad_val in ("false", "False", 0, "true", "True", 1):
             for eval_fn in (wc_mod.evaluate_stage0_decision_tree, wetlab.evaluate_stage0_decision_tree):
@@ -3996,9 +3996,11 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     # 34. DEC-075 & DEC-090 (IIP-0011) Layer 3 structural reference inventory checks:
     # - AUDIT-REF & IIP-0011: 2A-free CD55(SCR1-4)-GPI + CD59-GPI complement challenger (no upstream GPI-P2A defect) and 13 experimental PDB structures (11 mmCIF + 2 legacy PDB, adding 1BL4, 1JXQ, 1NW9 for Locus 4 iCasp9)
     _r9_s3_l3 = json.loads((ROOT / "data/extracted/layer3_structural_verification_atlas.json").read_text(encoding="utf-8"))
-    assert _r9_s3_l3["summary"]["total_experimental_pdb_structures_verified"] == 13
+    assert _r9_s3_l3["summary"]["total_experimental_pdb_structures_verified"] == 15
     assert _r9_s3_l3["summary"]["experimental_rcsb_mmcif_structures_verified"] == 11
-    assert _r9_s3_l3["summary"]["experimental_rcsb_legacy_pdb_structures_verified"] == 2
+    assert _r9_s3_l3["summary"]["experimental_rcsb_legacy_pdb_structures_verified"] == 4
+    assert _r9_s3_l3["summary"]["canonical_experimental_pdb_structures_verified"] == 13
+    assert _r9_s3_l3["summary"]["challenger_iip0031_experimental_pdb_structures_verified"] == 2
     _r9_s3_chandler = _r9_s3_l3["hlac_sct_kir2dl_f_pocket_clearance_and_self_peptide_audit_argon_r4"]["endogenous_5tm_cd47_tsp1_axis_and_ectodomain_protease_shedding_audit_kimi31_r4"]["non_hla_chimeric_junction_neoepitope_and_flow_crossmatch_audit_sonnet55_r5"]["membrane_complement_regulator_cd55_scr14_cd59_and_assembled_cassette_ibmir_gate_muse_r6"]["assembled_cassette_chandler_loop_ibmir_and_complement_gate"]["cell_intrinsic_cd55_scr14_cd59_challenger"]
     assert "SV40pA-CD55(SCR1-4)-GPI(antisense) <- EEF1A1-core | hPGK1-min(sense) -> CD59-GPI-bGHpA" in _r9_s3_chandler
     assert "explicitly rejecting 2A-linked CD55-P2A-CD59" in _r9_s3_chandler
@@ -4021,7 +4023,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     # 35. DEC-076 (Audit Convergence Round 9 Step 4 Layers 1-5 Audit) regression checks:
     # - AUDIT-REF: experimental_pdb_accession_inventory matches the exact 10 authenticated experimental inputs (4CMM, 4ZQK, 1IAU instead of 2VSC, 1G1Q, 1I8L)
     assert _r9_s3_l3["summary"]["experimental_pdb_accession_inventory"] == [
-        "1MHE", "3CDG", "3BZE", "2JJS", "4CMM", "4KJY", "4ZQK", "1IAU", "1EFX", "1IM9", "1BL4", "1JXQ", "1NW9"
+        "1MHE", "3CDG", "3BZE", "2JJS", "4CMM", "4KJY", "4ZQK", "1IAU", "1EFX", "1IM9", "1BL4", "1JXQ", "1NW9", "2WII", "5O32"
     ]
     # - AUDIT-REF: Decision Experiment #2 separates Headen/Lei SA-FasL rapamycin from Turan 2024 syngeneic SA-THBD+SA-CD47 without rapamycin
     if _r9_rank_atlas is not None:
@@ -5907,7 +5909,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     assert hashlib.sha256((ROOT / "data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta").read_bytes()).hexdigest() == "b5ba4e2b4bbbcc7d6cf1138975c5fae5c6ab074dda43973f071c671cd8cd1d88"
     _pdefs_26 = pc.load_product_contracts(ROOT)
     _fam_b_26 = [p for p in _pdefs_26["products"] if p.get("family") == "B"]
-    assert len(_fam_b_26) == 9 and all(p["execution_supported"] is False for p in _fam_b_26)
+    assert len(_fam_b_26) == 11 and all(p["execution_supported"] is False for p in _fam_b_26)
     for _b2_id in ("ISLET1_B2_5LOCUS_BASE", "ISLET1_B2_5LOCUS_TYK2_PE"):
         _b2_def = pc.get_product_definition(_b2_id, root=ROOT)
         assert _b2_def["lifecycle_state"] == "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC"
@@ -6100,12 +6102,86 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
         "obs_mcb_clonogenic_survivor_count_k": 0,
         "obs_mcb_effective_clonogenic_trials": 300000000,
     }
+    def _valid_t6b_26(pvid: str, lot: str, csha: str = wc_mod.DESIGN_B_C1_C5_PAIR_SHA256, camp: str = "CAMP_S0_IIP0026") -> list:
+        return [
+            {
+                "endpoint_id": "lot_tier6b_sorted_prolif_clonogenic_escape",
+                "scope_type": "LOT_SCOPE",
+                "kind": "EXACT_INTEGER_COUNT",
+                "timepoint": "STAGE7_PRE_ASSEMBLY",
+                "assay_version": "TIER6B_SORTED_LOT_V1",
+                "unit": "clonogenic_opportunities",
+                "product_variant_id": pvid,
+                "construct_sha256": csha,
+                "donor_seedline_id": "SEED_IIP0026_01",
+                "mcb_id": "MCB_IIP0026_01",
+                "lot_id": lot,
+                "campaign_id": camp,
+                "sample_id": f"SMP_{lot}_ENR",
+                "fraction_id": "enriched",
+                "declared_fraction_roster": ["enriched", "flow_through"],
+                "presort_lineage_panel": "CD31_NEG_CD144_NEG_ENDOCRINE_PRE_ASSEMBLY",
+                "clonogenic_risk_unit": "CD31_NEG_CD144_NEG_CLONOGENIC_OPPORTUNITY",
+                "endogenous_denominator_verified": True,
+                "endogenous_denominator_basis": "MATCHED_UNTREATED_CLONOGENIC_CONTROL",
+                "untreated_cfu_control": {"untreated_sample_id": f"UNTR_{lot}_ENR", "untreated_cfu_colonies_k": 4000, "untreated_plated_cells_n": 10000},
+                "presort_mass_balance_reconciled": True,
+                "unreconciled_loss_fraction": 0.0,
+                "presort_total_input_cells": 3_000_000_000,
+                "presort_reconciled_loss_cells": 0,
+                "presort_fraction_cells": 2_999_700_000,
+                "plated_treated_cells_n": 80_000_000,
+                "w_i": 0.9999,
+                "N": 30_000_000,
+                "k": 0,
+                "hpsc_calibrant": {"r_k": 20, "r_n": 20},
+                "edited_differentiated_calibrant": {"r_k": 20, "r_n": 20},
+            },
+            {
+                "endpoint_id": "lot_tier6b_sorted_prolif_clonogenic_escape",
+                "scope_type": "LOT_SCOPE",
+                "kind": "EXACT_INTEGER_COUNT",
+                "timepoint": "STAGE7_PRE_ASSEMBLY",
+                "assay_version": "TIER6B_SORTED_LOT_V1",
+                "unit": "clonogenic_opportunities",
+                "product_variant_id": pvid,
+                "construct_sha256": csha,
+                "donor_seedline_id": "SEED_IIP0026_01",
+                "mcb_id": "MCB_IIP0026_01",
+                "lot_id": lot,
+                "campaign_id": camp,
+                "sample_id": f"SMP_{lot}_FT",
+                "fraction_id": "flow_through",
+                "declared_fraction_roster": ["enriched", "flow_through"],
+                "presort_lineage_panel": "CD31_NEG_CD144_NEG_ENDOCRINE_PRE_ASSEMBLY",
+                "clonogenic_risk_unit": "CD31_NEG_CD144_NEG_CLONOGENIC_OPPORTUNITY",
+                "endogenous_denominator_verified": True,
+                "endogenous_denominator_basis": "MATCHED_UNTREATED_CLONOGENIC_CONTROL",
+                "untreated_cfu_control": {"untreated_sample_id": f"UNTR_{lot}_FT", "untreated_cfu_colonies_k": 4000, "untreated_plated_cells_n": 10000},
+                "presort_mass_balance_reconciled": True,
+                "unreconciled_loss_fraction": 0.0,
+                "presort_total_input_cells": 3_000_000_000,
+                "presort_reconciled_loss_cells": 0,
+                "presort_fraction_cells": 300_000,
+                "plated_treated_cells_n": 260_000,
+                "w_i": 0.0001,
+                "N": 100_000,
+                "k": 0,
+                "hpsc_calibrant": {"r_k": 10, "r_n": 10},
+                "edited_differentiated_calibrant": {"r_k": 10, "r_n": 10},
+            },
+        ]
+
     _complete_b2_26 = {
         **_base_s9_26,
         "product_variant_id": "ISLET1_B2_5LOCUS_BASE",
         "lot_id": "LOT_B2_IIP0026",
         "campaign_id": "CAMP_S0_IIP0026",
         "bound_c1_c5_pair_sha256": wc_mod.DESIGN_B_C1_C5_PAIR_SHA256,
+        "construct_sha256": wc_mod.DESIGN_B_C1_C5_PAIR_SHA256,
+        "donor_seedline_id": "SEED_IIP0026_01",
+        "mcb_id": "MCB_IIP0026_01",
+        "tier6b_sorted_lot_observations": _valid_t6b_26("ISLET1_B2_5LOCUS_BASE", "LOT_B2_IIP0026"),
         "donor_seed_gnomad_target_site_wgs_verified": True,
         "post_edit_per_locus_segmented_baf": {"chr19q": 0.502, "chr11p15": 0.499, "chr6p21": 0.504},
         "post_edit_reciprocal_mosaic_sv_or_clonal_zygosity_verified": True,
@@ -6200,6 +6276,10 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
         "product_variant_id": "ISLET1_B_SCT_C1_CIITA",
         "lot_id": "LOT_BSCT_26",
         "campaign_id": "CAMP_S0_26",
+        "construct_sha256": wc_mod.DESIGN_B_C1_C5_PAIR_SHA256,
+        "donor_seedline_id": "SEED_IIP0026_01",
+        "mcb_id": "MCB_IIP0026_01",
+        "tier6b_sorted_lot_observations": _valid_t6b_26("ISLET1_B_SCT_C1_CIITA", "LOT_BSCT_26", camp="CAMP_S0_26"),
         "donor_seed_gnomad_target_site_wgs_verified": True,
         "post_edit_per_locus_segmented_baf": {"chr19q": 0.498, "chr11p15": 0.503},
         "post_edit_reciprocal_mosaic_sv_or_clonal_zygosity_verified": True,
@@ -6668,10 +6748,10 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     )
     assert _ia_rep_28["disposition"] == "CONFIRMED_CHRONIC_P2_ELIGIBLE" and _ia_rep_28["p2_active_weight_pct"] == 0.0
 
-    # (e) Graveyard GY-023 (10 combinatorial grid + >=13 off-grid; 14 after IIP-0029 GY-024):
+    # (e) Graveyard GY-023 (10 combinatorial grid + >=13 off-grid; 15 after IIP-0031 GY-025):
     _gy_28 = json.loads((ROOT / "data/graveyard/idea_graveyard_v0.5.json").read_text(encoding="utf-8"))
     _og_28 = _gy_28["off_grid_molecular_dead_end_guardrails"]["guardrails"]
-    assert len(_gy_28["graveyard_entries"]) == 10 and len(_og_28) == 14
+    assert len(_gy_28["graveyard_entries"]) == 10 and len(_og_28) == 15
     _gy23 = [g for g in _og_28 if g["graveyard_card_id"] == "GY-023"]
     assert len(_gy23) == 1 and _gy23[0]["guardrail_id"].startswith("OFFGRID_GUARD_013_") and _gy23[0]["contribution_id"] == "IIP-0028"
 
@@ -6744,6 +6824,77 @@ def test_53_iip0027_promoter_origin_tss_6pwm_ledger_and_c1_c2_race_hold() -> Non
         "lot_id": "LOT_B2_IIP0027",
         "campaign_id": "CAMP_S0_IIP0027",
         "bound_c1_c5_pair_sha256": wc_mod.DESIGN_B_C1_C5_PAIR_SHA256,
+        "construct_sha256": wc_mod.DESIGN_B_C1_C5_PAIR_SHA256,
+        "donor_seedline_id": "SEED_IIP0027_01",
+        "mcb_id": "MCB_IIP0027_01",
+        "tier6b_sorted_lot_observations": [
+            {
+                "endpoint_id": "lot_tier6b_sorted_prolif_clonogenic_escape",
+                "scope_type": "LOT_SCOPE",
+                "kind": "EXACT_INTEGER_COUNT",
+                "timepoint": "STAGE7_PRE_ASSEMBLY",
+                "assay_version": "TIER6B_SORTED_LOT_V1",
+                "unit": "clonogenic_opportunities",
+                "product_variant_id": "ISLET1_B2_5LOCUS_BASE",
+                "construct_sha256": wc_mod.DESIGN_B_C1_C5_PAIR_SHA256,
+                "donor_seedline_id": "SEED_IIP0027_01",
+                "mcb_id": "MCB_IIP0027_01",
+                "lot_id": "LOT_B2_IIP0027",
+                "campaign_id": "CAMP_S0_IIP0027",
+                "sample_id": "SMP_27_ENR",
+                "fraction_id": "enriched",
+                "declared_fraction_roster": ["enriched", "flow_through"],
+                "presort_lineage_panel": "CD31_NEG_CD144_NEG_ENDOCRINE_PRE_ASSEMBLY",
+                "clonogenic_risk_unit": "CD31_NEG_CD144_NEG_CLONOGENIC_OPPORTUNITY",
+                "endogenous_denominator_verified": True,
+                "endogenous_denominator_basis": "MATCHED_UNTREATED_CLONOGENIC_CONTROL",
+                "untreated_cfu_control": {"untreated_sample_id": "UNTR_27_ENR", "untreated_cfu_colonies_k": 4000, "untreated_plated_cells_n": 10000},
+                "presort_mass_balance_reconciled": True,
+                "unreconciled_loss_fraction": 0.0,
+                "presort_total_input_cells": 3_000_000_000,
+                "presort_reconciled_loss_cells": 0,
+                "presort_fraction_cells": 2_999_700_000,
+                "plated_treated_cells_n": 80_000_000,
+                "w_i": 0.9999,
+                "N": 30_000_000,
+                "k": 0,
+                "hpsc_calibrant": {"r_k": 20, "r_n": 20},
+                "edited_differentiated_calibrant": {"r_k": 20, "r_n": 20},
+            },
+            {
+                "endpoint_id": "lot_tier6b_sorted_prolif_clonogenic_escape",
+                "scope_type": "LOT_SCOPE",
+                "kind": "EXACT_INTEGER_COUNT",
+                "timepoint": "STAGE7_PRE_ASSEMBLY",
+                "assay_version": "TIER6B_SORTED_LOT_V1",
+                "unit": "clonogenic_opportunities",
+                "product_variant_id": "ISLET1_B2_5LOCUS_BASE",
+                "construct_sha256": wc_mod.DESIGN_B_C1_C5_PAIR_SHA256,
+                "donor_seedline_id": "SEED_IIP0027_01",
+                "mcb_id": "MCB_IIP0027_01",
+                "lot_id": "LOT_B2_IIP0027",
+                "campaign_id": "CAMP_S0_IIP0027",
+                "sample_id": "SMP_27_FT",
+                "fraction_id": "flow_through",
+                "declared_fraction_roster": ["enriched", "flow_through"],
+                "presort_lineage_panel": "CD31_NEG_CD144_NEG_ENDOCRINE_PRE_ASSEMBLY",
+                "clonogenic_risk_unit": "CD31_NEG_CD144_NEG_CLONOGENIC_OPPORTUNITY",
+                "endogenous_denominator_verified": True,
+                "endogenous_denominator_basis": "MATCHED_UNTREATED_CLONOGENIC_CONTROL",
+                "untreated_cfu_control": {"untreated_sample_id": "UNTR_27_FT", "untreated_cfu_colonies_k": 4000, "untreated_plated_cells_n": 10000},
+                "presort_mass_balance_reconciled": True,
+                "unreconciled_loss_fraction": 0.0,
+                "presort_total_input_cells": 3_000_000_000,
+                "presort_reconciled_loss_cells": 0,
+                "presort_fraction_cells": 300_000,
+                "plated_treated_cells_n": 260_000,
+                "w_i": 0.0001,
+                "N": 100_000,
+                "k": 0,
+                "hpsc_calibrant": {"r_k": 10, "r_n": 10},
+                "edited_differentiated_calibrant": {"r_k": 10, "r_n": 10},
+            },
+        ],
         "donor_seed_gnomad_target_site_wgs_verified": True,
         "post_edit_per_locus_segmented_baf": {"chr19q": 0.502, "chr11p15": 0.499, "chr6p21": 0.504},
         "post_edit_reciprocal_mosaic_sv_or_clonal_zygosity_verified": True,
@@ -6837,9 +6988,9 @@ def test_53_iip0027_promoter_origin_tss_6pwm_ledger_and_c1_c2_race_hold() -> Non
 
     # (d) Contract, decision-tree & Layer-1 2,160-stack invariance:
     _ct_27 = json.loads((ROOT / "data/protocols/wetlab_endpoint_contract_v0.8.0.json").read_text(encoding="utf-8"))
-    assert len(_ct_27["stage0_decision_tree_endpoints"]) == 354
-    assert len(_ct_27["metadata_keys"]) == 72
-    assert len(_ct_27["boolean_policy_keys"]) == 110
+    assert len(_ct_27["stage0_decision_tree_endpoints"]) == 366
+    assert len(_ct_27["metadata_keys"]) == 77
+    assert len(_ct_27["boolean_policy_keys"]) == 122
     _dt_27 = json.loads((ROOT / "data/protocols/stage0_decision_tree_v1.json").read_text(encoding="utf-8"))
     assert _dt_27["promoter_origin_tss_and_conditional_aav_itr_iip_0027"]["decision_id"] == "DEC-107"
     if (ROOT / "data/extracted/islet1_candidate_stack_rankings.json").exists():
@@ -7178,10 +7329,80 @@ def test_54_iip0029_alk5i_free_maturation_twoclock_gates_and_mode_b_v2() -> None
         "obs_explant_en_bloc_recovery_se": 0.001,
         "gate0s_elevated_store_scope_matched_device_lot_id": "LOT_S7_2026_01__DEV_29_01",
     }
+    _t6b_pass_54 = [
+        {
+            "endpoint_id": "lot_tier6b_sorted_prolif_clonogenic_escape",
+            "scope_type": "LOT_SCOPE",
+            "kind": "EXACT_INTEGER_COUNT",
+            "timepoint": "STAGE7_PRE_ASSEMBLY",
+            "assay_version": "TIER6B_SORTED_LOT_V1",
+            "unit": "clonogenic_opportunities",
+            "product_variant_id": "ISLET1_A4_ARM1B",
+            "construct_sha256": valid_sha,
+            "donor_seedline_id": "DONOR1_H1_GMP",
+            "mcb_id": "MCB_D1_001",
+            "lot_id": "LOT_S7_2026_01",
+            "campaign_id": "CAMP_S0_29",
+            "fraction_id": "enriched_cd31_neg_cd144_neg",
+            "declared_fraction_roster": ["enriched_cd31_neg_cd144_neg", "flow_through_and_excluded"],
+            "sample_id": "T54_S1",
+            "k": 0,
+            "N": 30_000_000,
+            "w_i": 0.9999,
+            "hpsc_calibrant": (20, 20),
+            "edited_differentiated_calibrant": (20, 20),
+            "presort_lineage_panel": "CD31_NEG_CD144_NEG_ENDOCRINE_PRE_ASSEMBLY",
+            "clonogenic_risk_unit": "SORTED_SINGLE_CELL_EQUIVALENT_CLONOGENIC_OPPORTUNITY",
+            "endogenous_denominator_verified": True,
+            "endogenous_denominator_basis": "MATCHED_UNTREATED_CLONOGENIC_CONTROL",
+            "untreated_cfu_control": {"untreated_sample_id": "T54_UNTR_1", "untreated_cfu_colonies_k": 4000, "untreated_plated_cells_n": 10000},
+            "presort_mass_balance_reconciled": True,
+            "unreconciled_loss_fraction": 0.0,
+            "presort_total_input_cells": 3_000_000_000,
+            "presort_reconciled_loss_cells": 0,
+            "presort_fraction_cells": 2_999_700_000,
+            "plated_treated_cells_n": 80_000_000,
+        },
+        {
+            "endpoint_id": "lot_tier6b_sorted_prolif_clonogenic_escape",
+            "scope_type": "LOT_SCOPE",
+            "kind": "EXACT_INTEGER_COUNT",
+            "timepoint": "STAGE7_PRE_ASSEMBLY",
+            "assay_version": "TIER6B_SORTED_LOT_V1",
+            "unit": "clonogenic_opportunities",
+            "product_variant_id": "ISLET1_A4_ARM1B",
+            "construct_sha256": valid_sha,
+            "donor_seedline_id": "DONOR1_H1_GMP",
+            "mcb_id": "MCB_D1_001",
+            "lot_id": "LOT_S7_2026_01",
+            "campaign_id": "CAMP_S0_29",
+            "fraction_id": "flow_through_and_excluded",
+            "declared_fraction_roster": ["enriched_cd31_neg_cd144_neg", "flow_through_and_excluded"],
+            "sample_id": "T54_S2",
+            "k": 0,
+            "N": 100_000,
+            "w_i": 0.0001,
+            "hpsc_calibrant": (10, 10),
+            "edited_differentiated_calibrant": (10, 10),
+            "presort_lineage_panel": "CD31_NEG_CD144_NEG_ENDOCRINE_PRE_ASSEMBLY",
+            "clonogenic_risk_unit": "SORTED_SINGLE_CELL_EQUIVALENT_CLONOGENIC_OPPORTUNITY",
+            "endogenous_denominator_verified": True,
+            "endogenous_denominator_basis": "MATCHED_UNTREATED_CLONOGENIC_CONTROL",
+            "untreated_cfu_control": {"untreated_sample_id": "T54_UNTR_2", "untreated_cfu_colonies_k": 4000, "untreated_plated_cells_n": 10000},
+            "presort_mass_balance_reconciled": True,
+            "unreconciled_loss_fraction": 0.0,
+            "presort_total_input_cells": 3_000_000_000,
+            "presort_reconciled_loss_cells": 0,
+            "presort_fraction_cells": 300_000,
+            "plated_treated_cells_n": 260_000,
+        },
+    ]
     ing_doc_cleared = {
         **ing_doc_hi,
+        "scope": {**ing_doc_hi["scope"], "donor_seedline_id": "DONOR1_H1_GMP", "mcb_id": "MCB_D1_001"},
         "measurements": {**ing_doc_hi["measurements"], **{k: v for k, v in g0s_pass.items() if k.startswith("obs_")}},
         "iip0026_molecular_observations": {**ing_doc_hi["iip0026_molecular_observations"], "gate0s_elevated_store_scope_matched_device_lot_id": "LOT_S7_2026_01__DEV_29_01"},
+        "tier6b_sorted_lot_observations": _t6b_pass_54,
     }
     assert ing_mod.ingest_stage0_research_or_wetlab_batch(json.dumps(ing_doc_cleared), root=ROOT)["overall_status"] == "STAGE0_IIP0026_MOLECULAR_GUARDRAILS_CLEARED"
     ing_doc_breach = {
@@ -7208,6 +7429,23 @@ def test_54_iip0029_alk5i_free_maturation_twoclock_gates_and_mode_b_v2() -> None
         wc_mod.AtomicObservation(endpoint_id=eid, scope_type="MCB_SCOPE", scope_key=mcb_k, kind="METADATA_CONTROL", value_or_k=True, campaign_id="CAMP_S0_29", sample_unit_id=f"MCB_U_{idx}")
         for idx, eid in enumerate(wc_mod.ENDPOINT_REGISTRY_SPEC["mcb_mandatory_endpoint_ids"])
     ]
+    t6b_atoms_54 = [
+        wc_mod.AtomicObservation(
+            endpoint_id="lot_tier6b_sorted_prolif_clonogenic_escape",
+            scope_type="LOT_SCOPE",
+            scope_key=lot_k,
+            kind="EXACT_INTEGER_COUNT",
+            value_or_k=0,
+            se_or_n=r["N"],
+            timepoint=r["timepoint"],
+            assay_version=r["assay_version"],
+            unit=r["unit"],
+            campaign_id="CAMP_S0_29",
+            sample_unit_id=r["sample_id"],
+            controls={k: v for k, v in r.items() if k not in ("endpoint_id", "scope_type", "kind", "k", "N", "timepoint", "assay_version", "unit")},
+        )
+        for r in _t6b_pass_54
+    ]
     sister_term_atoms = [
         wc_mod.AtomicObservation(endpoint_id=eid, scope_type="ASSEMBLED_DEVICE_LOT_SCOPE", scope_key=dev_k, kind="METADATA_CONTROL", value_or_k=True, campaign_id="CAMP_S0_29", sample_unit_id=f"DEV_U_{idx}")
         for idx, eid in enumerate(wc_mod.ENDPOINT_REGISTRY_SPEC["device_sister_terminal_endpoint_ids"])
@@ -7216,6 +7454,11 @@ def test_54_iip0029_alk5i_free_maturation_twoclock_gates_and_mode_b_v2() -> None
         wc_mod.AtomicObservation(endpoint_id="obs_explant_en_bloc_recovery_fraction", scope_type="ASSEMBLED_DEVICE_LOT_SCOPE", scope_key=dev_k, kind="CONTINUOUS_STUDENT_T", value_or_k=0.996, se_or_n=0.001, sample_n=6, campaign_id="CAMP_S0_29", sample_unit_id="DEV_RETR_01")
     ]
     panel_hi_atom = wc_mod.AtomicObservation(endpoint_id="stage0_twoclock_repeated_challenge_panel", scope_type="LOT_SCOPE", scope_key=lot_k, kind="STRUCTURED_PANEL", value_or_k=rec_hi_store, campaign_id="CAMP_S0_29", sample_unit_id="LOT_PANEL_01")
+    s9_lot_atoms_54 = [
+        wc_mod.AtomicObservation(endpoint_id="obs_icasp9_log10_kill", scope_type="LOT_SCOPE", scope_key=lot_k, kind="CONTINUOUS_STUDENT_T", value_or_k=4.8, se_or_n=0.12, sample_n=6, campaign_id="CAMP_S0_29", sample_unit_id="LOT29_IC9"),
+        wc_mod.AtomicObservation(endpoint_id="obs_tp53_ppm1d_bcor_vaf", scope_type="LOT_SCOPE", scope_key=lot_k, kind="CONTINUOUS_STUDENT_T", value_or_k=0.0, se_or_n=1e-6, sample_n=6, campaign_id="CAMP_S0_29", sample_unit_id="LOT29_TP53", controls={"obs_tp53_ppm1d_bcor_duplex_depth": 70000}),
+        wc_mod.AtomicObservation(endpoint_id="obs_castseq_translocation_freq", scope_type="LOT_SCOPE", scope_key=lot_k, kind="CONTINUOUS_STUDENT_T", value_or_k=0.0, se_or_n=1e-6, sample_n=6, campaign_id="CAMP_S0_29", sample_unit_id="LOT29_CAST", controls={"obs_castseq_duplex_or_amplicon_depth": 70000}),
+    ]
     target_prov = {
         "product_variant_id": "ISLET1_A4_ARM1B",
         "construct_sha256": valid_sha,
@@ -7225,7 +7468,7 @@ def test_54_iip0029_alk5i_free_maturation_twoclock_gates_and_mode_b_v2() -> None
         "device_assembly_id": "DEV_29_01",
         "physical_route_id": "SUPRAFASCIAL_350UM_CAO2_CATALASE_POUCH",
     }
-    led_missing_g0s = wc_mod.evaluate_iip0024_atomic_stage0_ledger([{"batch_id": "B1", "atoms": mcb_atoms + [panel_hi_atom] + sister_term_atoms}], target_prov, target_campaign_id="CAMP_S0_29", root=ROOT)
+    led_missing_g0s = wc_mod.evaluate_iip0024_atomic_stage0_ledger([{"batch_id": "B1", "atoms": mcb_atoms + s9_lot_atoms_54 + t6b_atoms_54 + [panel_hi_atom] + sister_term_atoms}], target_prov, target_campaign_id="CAMP_S0_29", root=ROOT)
     assert led_missing_g0s["readiness_tier"] == "HOLD_FAILED_STAGE0_GATE"
     assert "HOLD_STORED_INSULIN_EXCEEDS_138P3_IU_REQUIRES_FULL_LINKED_GATE0S_LEDGER_REVIEW" in led_missing_g0s["holds"]
 
@@ -7233,8 +7476,11 @@ def test_54_iip0029_alk5i_free_maturation_twoclock_gates_and_mode_b_v2() -> None
         wc_mod.AtomicObservation(endpoint_id="gate0s_ap1903_1h_insulin_burst_iu", scope_type="ASSEMBLED_DEVICE_LOT_SCOPE", scope_key=dev_k, kind="CONTINUOUS_STUDENT_T", value_or_k=1.6, se_or_n=0.2, sample_n=6, campaign_id="CAMP_S0_29", sample_unit_id="DEV_BURST_01"),
         wc_mod.AtomicObservation(endpoint_id="gate0s_ap1903_24h_insulin_dump_fraction", scope_type="ASSEMBLED_DEVICE_LOT_SCOPE", scope_key=dev_k, kind="CONTINUOUS_STUDENT_T", value_or_k=0.08, se_or_n=0.01, sample_n=6, campaign_id="CAMP_S0_29", sample_unit_id="DEV_DUMP_01"),
     ]
-    led_cleared = wc_mod.evaluate_iip0024_atomic_stage0_ledger([{"batch_id": "B1", "atoms": mcb_atoms + [panel_hi_atom] + sister_term_atoms + g0s_atoms_pass}], target_prov, target_campaign_id="CAMP_S0_29", root=ROOT)
-    assert led_cleared["readiness_tier"] == "READY_FOR_ENCAPSULATION_COMPLETE_STAGE0_EVIDENCE"
+    led_cleared = wc_mod.evaluate_iip0024_atomic_stage0_ledger([{"batch_id": "B1", "atoms": mcb_atoms + s9_lot_atoms_54 + t6b_atoms_54 + [panel_hi_atom] + sister_term_atoms + g0s_atoms_pass}], target_prov, target_campaign_id="CAMP_S0_29", root=ROOT)
+    assert led_cleared["readiness_tier"] == "HOLD_FAILED_STAGE0_GATE"
+    assert "HOLD_STORED_INSULIN_EXCEEDS_138P3_IU_REQUIRES_FULL_LINKED_GATE0S_LEDGER_REVIEW" not in led_cleared["holds"]
+    assert "HOLD_INVALID_ATOM_KIND_OR_NON_NUMERIC_VALUE:mcb_1q32_mdm4_single_cell_mosaic" in led_cleared["holds"]
+    assert "HOLD_INVALID_ATOM_KIND_OR_NON_NUMERIC_VALUE:gate0s_shedding_ddpcr_assay" in led_cleared["holds"]
 
     # (d) Exploratory Mode B v2 sensitivity comparator & Mode A default parity:
     mode_a_def = l4_mod.simulate_metabolic_twin_granule_sensitivity_iip_0029(granule_conservation_mode="mode_a_default")
@@ -7266,18 +7512,3530 @@ def test_54_iip0029_alk5i_free_maturation_twoclock_gates_and_mode_b_v2() -> None
     assert mb_audit["ceteris_paribus_isolated_tau_refill_meal_sensitivity"]["canonical_5h_7h_250g_tir_tau16p5_pct"] >= 85.0
     assert mb_audit["ceteris_paribus_isolated_tau_refill_meal_sensitivity"]["canonical_5h_7h_250g_tir_tau45p0_pct"] < 80.0
 
-    # (e) Graveyard GY-024 (10 grid + 14 off-grid = 24 total):
+    # (e) Graveyard GY-024 (10 grid + 15 off-grid = 25 total after IIP-0031 GY-025):
     gy_doc = json.loads((ROOT / "data/graveyard/idea_graveyard_v0.5.json").read_text(encoding="utf-8"))
     og_list = gy_doc["off_grid_molecular_dead_end_guardrails"]["guardrails"]
-    assert len(gy_doc["graveyard_entries"]) == 10 and len(og_list) == 14
+    assert len(gy_doc["graveyard_entries"]) == 10 and len(og_list) == 15
     gy24 = [g for g in og_list if g["graveyard_card_id"] == "GY-024"]
     assert len(gy24) == 1 and gy24[0]["guardrail_id"].startswith("OFFGRID_GUARD_014_") and gy24[0]["contribution_id"] == "IIP-0029"
 
 
+@pytest.mark.parametrize("malformed", [None, [], False, 0, "", "null"])
+def test_s11_nonobject_panel_payload_holds(malformed):
+    from scripts.wetlab_contract import evaluate_locus2_ciita_modeb_challenger_v3_gate
+
+    result = evaluate_locus2_ciita_modeb_challenger_v3_gate(malformed)
+    assert result["gate_pass"] is False
+    assert result["status"] == "HOLD_S11_MALFORMED_RECORD"
+
+
+@pytest.mark.parametrize("invalid", [None, [], {}, 11, True, "", " lot "])
+@pytest.mark.parametrize("key", ["lot_id", "current_lot_id", "sample_id", "sample_unit_id"])
+def test_s11_invalid_identity_alias_holds(key, invalid):
+    from scripts.wetlab_contract import evaluate_locus2_ciita_modeb_challenger_v3_gate
+
+    record = {"scope_type": "LOT_SCOPE", key: invalid}
+    result = evaluate_locus2_ciita_modeb_challenger_v3_gate({"iip0031_locus2_record": record})
+    assert result["gate_pass"] is False
+    assert result["status"] == "HOLD_S11_MISSING_LOT_OR_SAMPLE_BINDING"
+
+
+@pytest.mark.parametrize("outer,nested", [(3, 4), (4, 3), (True, 1), (1, True), (None, 1), (1, None)])
+def test_s11_conflicting_nested_evidence_holds(outer, nested):
+    from scripts.wetlab_contract import evaluate_locus2_ciita_modeb_challenger_v3_gate
+
+    key = "obs_stage0_independent_lot_replicates_n"
+    payload = {key: outer, "iip0031_locus2_record": {"scope_type": "LOT_SCOPE", key: nested}}
+    result = evaluate_locus2_ciita_modeb_challenger_v3_gate(payload)
+    assert result["status"] == "HOLD_S11_CONFLICTING_NESTED_EVIDENCE"
+    assert result["gate_pass"] is False
+
+
+@pytest.mark.parametrize("reported,alias", [
+    (6, 6), (10_000, 10_000), (10_001, 10_001), (10**308, 10**308),
+    (10**350, 10**350), (6, 100), (100, 6), (6, True), (6, 6.0),
+])
+def test_s11_replicates_respect_count_type_aliases_and_contract_range(reported, alias):
+    from scripts.wetlab_contract import evaluate_locus2_ciita_modeb_challenger_v3_gate
+
+    rec = {"scope_type": "LOT_SCOPE", "obs_stage0_independent_lot_replicates_n": reported, "replicates_n": alias}
+    result = evaluate_locus2_ciita_modeb_challenger_v3_gate({"iip0031_locus2_record": rec})
+    assert result["gate_pass"] is False
+    valid = type(alias) is int and reported == alias and 6 <= reported <= 10_000
+    assert ("HOLD_S11_INVALID_OR_MISSING_REPLICATES_N" in result["reasons"]) == (not valid)
+
+
+@pytest.mark.parametrize("payload", [
+    {"iip0031_locus2_record": {"lot_id": "lot"}},
+    {"obs_l2_v3_adcc_intact_specimen_id": "sample"},
+])
+def test_s11_requires_explicit_scope(payload):
+    from scripts.wetlab_contract import evaluate_locus2_ciita_modeb_challenger_v3_gate
+
+    result = evaluate_locus2_ciita_modeb_challenger_v3_gate(payload)
+    assert result["status"] == "HOLD_S11_PANEL_REQUIRES_LOT_SCOPE"
+    assert result["gate_pass"] is False
+
+
+def test_55_iip0031_locus2_modeb_comparators_rule_s11_and_tier6b_per_fraction_thinning():
+    """
+    IIP-0031 (DEC-110; GY-025 / OFFGRID_GUARD_015_*; Rule S11):
+    Verifies all 7 exact Tier 6B per-fraction thinning acceptance fixtures across ALL FOUR entry points
+    (direct product contract, atomic Stage-0 ledger, serialized JSON ingestion, chronological replay),
+    all 8 non-executable L2_V3_* products, Rule S11 hard/numerical/attribution gates, Layer-2 v3 manifest
+    & <=1 mm >=20 bp disjoint IR scanner, Layer-3 2WII/5O32/Val62 provenance, GY-025, and bit-for-bit
+    Layer-1 2,160/2,160 & OQ-016 invariance.
+    """
+    import hashlib
+    import importlib.util
+    import json
+    from pathlib import Path
+    from typing import Any
+
+    ROOT = Path(__file__).resolve().parents[1]
+
+    def _load_mod(name: str, path: Path):
+        spec = importlib.util.spec_from_file_location(name, path)
+        assert spec and spec.loader
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        return mod
+
+    wc_mod = _load_mod("wc_iip0031_55", ROOT / "scripts/wetlab_contract.py")
+    ing_mod = _load_mod("ing_iip0031_55", ROOT / "scripts/ingest_wetlab_results.py")
+    pc_mod = _load_mod("pc_iip0031_55", ROOT / "scripts/product_contract.py")
+    l2_mod = _load_mod("l2_iip0031_55", ROOT / "scripts/run_layer2_perturbation_and_regulatory_plane.py")
+
+    p_defs = pc_mod.load_product_contracts(ROOT)
+    by_id = {p["product_variant_id"]: p for p in p_defs["products"]}
+    assert len(p_defs["products"]) == 27
+    l2_v3_ids = sorted(pc_mod.STAGED_LOCUS2_V3_PRODUCT_IDS)
+    assert len(l2_v3_ids) == 8
+
+    # Verify locked v3 FASTA SHA-256 and every per-record digest:
+    v3_fasta_path = ROOT / "data/constructs/islet1_locus2_ciita_modeb_comparators_v0.8.0.fasta"
+    assert v3_fasta_path.exists()
+    assert hashlib.sha256(v3_fasta_path.read_bytes()).hexdigest() == "25ffcb10e2bad77a4b34725c7eff0532990ebf7b80864cf7217d33f5ccbe5b6d"
+    fasta_seqs = {}
+    cur_h = None
+    cur_buf = []
+    for raw_ln in v3_fasta_path.read_text(encoding="utf-8").splitlines():
+        s_ln = raw_ln.strip()
+        if not s_ln:
+            continue
+        if s_ln.startswith(">"):
+            if cur_h is not None:
+                fasta_seqs[cur_h] = "".join(cur_buf).upper()
+            cur_h = s_ln[1:].split()[0]
+            cur_buf = []
+        else:
+            cur_buf.append(s_ln)
+    if cur_h is not None:
+        fasta_seqs[cur_h] = "".join(cur_buf).upper()
+    assert len(fasta_seqs) == 8
+
+    for pvid in l2_v3_ids:
+        pdef = by_id[pvid]
+        assert pdef["execution_supported"] is False
+        assert pdef["lifecycle_state"] == "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC"
+        l2b = pdef["staged_locus2_modeb_donor_binding"]
+        did = l2b["locus2_donor_id"]
+        assert did in fasta_seqs
+        assert l2b["locus2_donor_sha256"] == hashlib.sha256(fasta_seqs[did].encode("ascii")).hexdigest()
+        assert l2b["rule_s11_gate_id"] == "S11_Locus2_CIITA_ModeB_Vascular_Complement_and_Efferocytosis_Gate"
+
+    # Helper to construct clean baseline executable A4 lot across ALL FOUR entry points:
+    a4_sha = "f74728767987c18bdcb8c9d49773ee8dbe10e6006e57aa622638e4fb07062b0b"
+    LOT_ID = "LOT_S7_IIP0031_01"
+    CAMP_ID = "CAMP_S0_31"
+    SEED_ID = "DONOR1_H1_GMP"
+    MCB_ID = "MCB_D1_001"
+    DEV_ID = "DEV_31_01"
+    ROUTE_ID = "SUPRAFASCIAL_350UM_CAO2_CATALASE_POUCH"
+
+    mcb_k = wc_mod.MCBScopeKey("ISLET1_A4_ARM1B", a4_sha, SEED_ID, MCB_ID)
+    lot_k = wc_mod.LotScopeKey("ISLET1_A4_ARM1B", a4_sha, SEED_ID, MCB_ID, LOT_ID)
+    dev_k = wc_mod.AssembledDeviceLotScopeKey("ISLET1_A4_ARM1B", a4_sha, SEED_ID, MCB_ID, LOT_ID, DEV_ID, ROUTE_ID)
+    target_prov = {
+        "product_variant_id": "ISLET1_A4_ARM1B",
+        "construct_sha256": a4_sha,
+        "donor_seedline_id": SEED_ID,
+        "mcb_id": MCB_ID,
+        "lot_id": LOT_ID,
+        "device_assembly_id": DEV_ID,
+        "physical_route_id": ROUTE_ID,
+    }
+    mcb_atoms_base = [
+        wc_mod.AtomicObservation(endpoint_id=eid, scope_type="MCB_SCOPE", scope_key=mcb_k, kind="METADATA_CONTROL", value_or_k=True, campaign_id=CAMP_ID, sample_unit_id=f"MCB31_{i}")
+        for i, eid in enumerate(wc_mod.ENDPOINT_REGISTRY_SPEC["mcb_mandatory_endpoint_ids"])
+    ]
+    dev_atoms_base = [
+        wc_mod.AtomicObservation(endpoint_id=eid, scope_type="ASSEMBLED_DEVICE_LOT_SCOPE", scope_key=dev_k, kind="METADATA_CONTROL", value_or_k=True, campaign_id=CAMP_ID, sample_unit_id=f"DEV31_{i}")
+        for i, eid in enumerate(wc_mod.ENDPOINT_REGISTRY_SPEC["device_sister_terminal_endpoint_ids"])
+        if eid != "obs_explant_en_bloc_recovery_fraction"
+    ] + [
+        wc_mod.AtomicObservation(endpoint_id="obs_explant_en_bloc_recovery_fraction", scope_type="ASSEMBLED_DEVICE_LOT_SCOPE", scope_key=dev_k, kind="CONTINUOUS_STUDENT_T", value_or_k=0.996, se_or_n=0.001, sample_n=6, campaign_id=CAMP_ID, sample_unit_id="DEV31_RETR")
+    ]
+    base_meas_31 = {
+        "obs_icasp9_log10_kill": 4.8,
+        "obs_icasp9_log10_kill_se": 0.12,
+        "obs_tp53_ppm1d_bcor_vaf": 0.0,
+        "obs_tp53_ppm1d_bcor_vaf_se": 1e-6,
+        "obs_tp53_ppm1d_bcor_duplex_depth": 70000,
+        "obs_castseq_translocation_freq": 0.0,
+        "obs_castseq_translocation_se": 1e-6,
+        "obs_castseq_duplex_or_amplicon_depth": 70000,
+        "obs_mcb_clonogenic_survivor_count_k": 0,
+        "obs_mcb_effective_clonogenic_trials": 300000000,
+        "obs_chop_coincidence_fold": 1.1,
+        "obs_chop_coincidence_se": 0.05,
+        "obs_hc10_surface_fold_wt": 1.05,
+        "obs_hc10_surface_fold_se": 0.05,
+        "obs_post_edit_segmented_baf_chr19q": 0.50,
+        "obs_post_edit_segmented_baf_chr11p15": 0.50,
+    }
+    base_mol_31 = {
+        "donor_seed_gnomad_target_site_wgs_verified": True,
+        "post_edit_reciprocal_mosaic_sv_or_clonal_zygosity_verified": True,
+    }
+    base_scope_31 = {
+        "product_variant_id": "ISLET1_A4_ARM1B",
+        "lot_id": LOT_ID,
+        "campaign_id": CAMP_ID,
+        "construct_sha256": a4_sha,
+        "donor_seedline_id": SEED_ID,
+        "mcb_id": MCB_ID,
+        "device_assembly_id": DEV_ID,
+    }
+
+    def _mk_frac(
+        fid: str,
+        sid: str,
+        *,
+        k: Any = 0,
+        N: Any = 30_000_000,
+        w_i: Any = 0.9999,
+        hpsc: Any = (20, 20),
+        diff: Any = (20, 20),
+        roster: Any = ("enriched_cd31_neg_cd144_neg", "flow_through_and_excluded"),
+        lot_id: str = LOT_ID,
+        construct_sha256: str = a4_sha,
+        donor_seedline_id: str = SEED_ID,
+        mcb_id: str = MCB_ID,
+        product_variant_id: str = "ISLET1_A4_ARM1B",
+        endpoint_id: str = "lot_tier6b_sorted_prolif_clonogenic_escape",
+        scope_type: str = "LOT_SCOPE",
+        kind: str = "EXACT_INTEGER_COUNT",
+        extra: Any = None,
+    ) -> dict:
+        tot_cells_default = 3_000_000_000
+        if isinstance(w_i, (int, float)) and not isinstance(w_i, bool) and 0.0 < float(w_i) <= 1.0:
+            frac_cells_default = max(1, int(round(float(w_i) * float(tot_cells_default))))
+        else:
+            frac_cells_default = 2_999_700_000 if "enriched" in str(fid) else 300_000
+        plated_default = int((int(N) * 8 + 2) // 3) if (type(N) is int and N >= 1) else 80_000_000
+        rec = {
+            "endpoint_id": endpoint_id,
+            "scope_type": scope_type,
+            "kind": kind,
+            "timepoint": "STAGE7_PRE_ASSEMBLY",
+            "assay_version": "TIER6B_SORTED_LOT_V1",
+            "unit": "clonogenic_opportunities",
+            "product_variant_id": product_variant_id,
+            "construct_sha256": construct_sha256,
+            "donor_seedline_id": donor_seedline_id,
+            "mcb_id": mcb_id,
+            "lot_id": lot_id,
+            "campaign_id": CAMP_ID,
+            "fraction_id": fid,
+            "declared_fraction_roster": list(roster) if isinstance(roster, (list, tuple)) else roster,
+            "sample_id": sid,
+            "k": k,
+            "N": N,
+            "w_i": w_i,
+            "hpsc_calibrant": list(hpsc) if isinstance(hpsc, tuple) else hpsc,
+            "edited_differentiated_calibrant": list(diff) if isinstance(diff, tuple) else diff,
+            "presort_lineage_panel": "CD31_NEG_CD144_NEG_ENDOCRINE_PRE_ASSEMBLY",
+            "clonogenic_risk_unit": "SORTED_SINGLE_CELL_EQUIVALENT_CLONOGENIC_OPPORTUNITY",
+            "endogenous_denominator_verified": True,
+            "endogenous_denominator_basis": "MATCHED_UNTREATED_CLONOGENIC_CONTROL",
+            "untreated_cfu_control": {
+                "untreated_sample_id": f"{sid}_UNTR_CFU",
+                "untreated_cfu_colonies_k": 4000,
+                "untreated_plated_cells_n": 10000,
+            },
+            "presort_mass_balance_reconciled": True,
+            "unreconciled_loss_fraction": 0.0,
+            "presort_total_input_cells": tot_cells_default,
+            "presort_reconciled_loss_cells": 0,
+            "presort_fraction_cells": frac_cells_default,
+            "plated_treated_cells_n": plated_default,
+        }
+        if extra:
+            rec.update(extra)
+        return rec
+
+    def _to_atom(r: Any) -> Any:
+        if not isinstance(r, dict):
+            return r
+        if "controls" in r and r["controls"] is not None and not isinstance(r["controls"], dict):
+            raise ValueError("malformed non-dict controls routed to ledger raw fallback lane")
+        st = r.get("scope_type", "LOT_SCOPE")
+        pvid_r = r.get("product_variant_id", "ISLET1_A4_ARM1B")
+        sha_r = r.get("construct_sha256", a4_sha)
+        seed_r = r.get("donor_seedline_id", SEED_ID)
+        mcb_r = r.get("mcb_id", MCB_ID)
+        lot_r = r.get("lot_id", LOT_ID)
+        if st == "MCB_SCOPE":
+            sk = wc_mod.MCBScopeKey(pvid_r, sha_r, seed_r, mcb_r)
+        elif st == "ASSEMBLED_DEVICE_LOT_SCOPE":
+            sk = wc_mod.AssembledDeviceLotScopeKey(pvid_r, sha_r, seed_r, mcb_r, lot_r, DEV_ID, ROUTE_ID)
+        else:
+            sk = wc_mod.LotScopeKey(pvid_r, sha_r, seed_r, mcb_r, lot_r)
+        atom_meta_kw = {}
+        for _mk in ("timepoint", "assay_version", "unit"):
+            if _mk in r and isinstance(r[_mk], str) and r[_mk].strip():
+                atom_meta_kw[_mk] = r[_mk]
+        ctrl = {
+            k: v for k, v in r.items()
+            if k not in (
+                "endpoint_id", "scope_type", "kind", "k", "N",
+                "product_variant_id", "construct_sha256", "donor_seedline_id",
+                "mcb_id", "lot_id", "controls", "timepoint", "assay_version",
+                "unit", "campaign_id", "sample_n",
+            )
+        }
+        if isinstance(r.get("controls"), dict):
+            ctrl.update(r["controls"])
+        return wc_mod.AtomicObservation(
+            endpoint_id=r.get("endpoint_id", "lot_tier6b_sorted_prolif_clonogenic_escape"),
+            scope_type=st,
+            scope_key=sk,
+            kind=r.get("kind", "EXACT_INTEGER_COUNT"),
+            value_or_k=r.get("k"),
+            se_or_n=r.get("N"),
+            campaign_id=CAMP_ID,
+            sample_unit_id=str(r.get("sample_id", "S_UNK")),
+            controls=ctrl,
+            **atom_meta_kw,
+        )
+
+    def _eval_4paths(
+        t6b_records: list,
+        *,
+        scope_override: Any = None,
+        target_prov_override: Any = None,
+        meas_override: Any = None,
+        s11_record: Any = None,
+        include_s11_key: bool = False,
+        s11_ledger_scope: str = "LOT_SCOPE",
+        extra_ledger_atoms: Any = None,
+        extra_ledger_batches: Any = None,
+        extra_replay_records: Any = None,
+        split_replay_batches: bool = True,
+    ) -> dict:
+        scope_use = {k: v for k, v in {**base_scope_31, **(scope_override or {})}.items() if v is not None}
+        tprov_use = {k: v for k, v in {**target_prov, **(target_prov_override or {})}.items() if v is not None}
+        meas_use = {**base_meas_31, **(meas_override or {})}
+        s11_dict_part = {"iip0031_locus2_record": s11_record} if (include_s11_key or s11_record is not None) else {}
+
+        # Path 1: Direct product contract
+        p1 = wc_mod.evaluate_stage0_product_contract(
+            {**scope_use, **meas_use, **base_mol_31, **s11_dict_part, "tier6b_sorted_lot_observations": list(t6b_records)},
+            root=ROOT,
+        )
+
+        # Path 2: Atomic Stage-0 Ledger (strict AtomicObservation where constructible; raw tier6b_sorted_lot_observations
+        # when testing invalid non-int/bool/zero-N/malformed count payloads rejected by AtomicObservation.__init__):
+        pvid_l2 = tprov_use.get("product_variant_id", "ISLET1_A4_ARM1B")
+        sha_l2 = tprov_use.get("construct_sha256", a4_sha)
+        seed_l2 = tprov_use.get("donor_seedline_id", SEED_ID)
+        mcb_l2 = tprov_use.get("mcb_id", MCB_ID)
+        lot_l2 = tprov_use.get("lot_id", LOT_ID)
+        mcb_k_use = wc_mod.MCBScopeKey(pvid_l2, sha_l2, seed_l2, mcb_l2)
+        lot_k_use = wc_mod.LotScopeKey(pvid_l2, sha_l2, seed_l2, mcb_l2, lot_l2)
+        dev_k_use = wc_mod.AssembledDeviceLotScopeKey(pvid_l2, sha_l2, seed_l2, mcb_l2, lot_l2, DEV_ID, ROUTE_ID)
+        extra_eids = {getattr(a, "endpoint_id", None) for a in (extra_ledger_atoms or [])}
+        _vaf_n_l2 = int(meas_use.get("obs_tp53_ppm1d_bcor_vaf_n", meas_use.get("obs_tp53_ppm1d_bcor_vaf_sample_n", meas_use.get("sample_n", 6))))
+        _cast_n_l2 = int(meas_use.get("obs_castseq_translocation_freq_n", meas_use.get("obs_castseq_translocation_n", meas_use.get("sample_n", 6))))
+        s9_lot_atoms_use = []
+        if "obs_icasp9_log10_kill" not in extra_eids and meas_use.get("obs_icasp9_log10_kill") is not None:
+            s9_lot_atoms_use.append(
+                wc_mod.AtomicObservation(
+                    endpoint_id="obs_icasp9_log10_kill",
+                    scope_type="LOT_SCOPE",
+                    scope_key=lot_k_use,
+                    kind="CONTINUOUS_STUDENT_T",
+                    value_or_k=meas_use["obs_icasp9_log10_kill"],
+                    se_or_n=meas_use["obs_icasp9_log10_kill_se"],
+                    sample_n=6,
+                    campaign_id=CAMP_ID,
+                    sample_unit_id="LOT31_IC9",
+                )
+            )
+        if "obs_tp53_ppm1d_bcor_vaf" not in extra_eids and meas_use.get("obs_tp53_ppm1d_bcor_vaf") is not None:
+            _vaf_ctrl_l2 = {}
+            if meas_use.get("obs_tp53_ppm1d_bcor_duplex_depth") is not None:
+                _vaf_ctrl_l2["obs_tp53_ppm1d_bcor_duplex_depth"] = meas_use["obs_tp53_ppm1d_bcor_duplex_depth"]
+            s9_lot_atoms_use.append(
+                wc_mod.AtomicObservation(
+                    endpoint_id="obs_tp53_ppm1d_bcor_vaf",
+                    scope_type="LOT_SCOPE",
+                    scope_key=lot_k_use,
+                    kind="CONTINUOUS_STUDENT_T",
+                    value_or_k=meas_use["obs_tp53_ppm1d_bcor_vaf"],
+                    se_or_n=meas_use["obs_tp53_ppm1d_bcor_vaf_se"],
+                    sample_n=_vaf_n_l2,
+                    campaign_id=CAMP_ID,
+                    sample_unit_id="LOT31_TP53",
+                    controls=_vaf_ctrl_l2,
+                )
+            )
+        if "obs_castseq_translocation_freq" not in extra_eids and meas_use.get("obs_castseq_translocation_freq") is not None:
+            _cast_ctrl_l2 = {}
+            if meas_use.get("obs_castseq_duplex_or_amplicon_depth") is not None:
+                _cast_ctrl_l2["obs_castseq_duplex_or_amplicon_depth"] = meas_use["obs_castseq_duplex_or_amplicon_depth"]
+            s9_lot_atoms_use.append(
+                wc_mod.AtomicObservation(
+                    endpoint_id="obs_castseq_translocation_freq",
+                    scope_type="LOT_SCOPE",
+                    scope_key=lot_k_use,
+                    kind="CONTINUOUS_STUDENT_T",
+                    value_or_k=meas_use["obs_castseq_translocation_freq"],
+                    se_or_n=meas_use["obs_castseq_translocation_se"],
+                    sample_n=_cast_n_l2,
+                    campaign_id=CAMP_ID,
+                    sample_unit_id="LOT31_CAST",
+                    controls=_cast_ctrl_l2,
+                )
+            )
+        s11_atoms_use = []
+        if include_s11_key or s11_record is not None:
+            sk_s11 = mcb_k_use if s11_ledger_scope == "MCB_SCOPE" else (dev_k_use if s11_ledger_scope == "ASSEMBLED_DEVICE_LOT_SCOPE" else lot_k_use)
+            s11_atoms_use.append(
+                wc_mod.AtomicObservation(
+                    endpoint_id="stage0_locus2_modeb_v3_panel",
+                    scope_type=s11_ledger_scope,
+                    scope_key=sk_s11,
+                    kind="STRUCTURED_PANEL",
+                    value_or_k=s11_record,
+                    campaign_id=CAMP_ID,
+                    sample_unit_id=str(scope_use.get("sample_id", scope_use.get("sample_unit_id", "S11_PANEL_01"))),
+                )
+            )
+        # These inputs contain lot evidence only. Unrelated bank and device
+        # endpoints stay missing on each path.
+        batches_l2 = [{"batch_id": "B_BASE", "atoms": s9_lot_atoms_use + s11_atoms_use + (extra_ledger_atoms or [])}]
+        for idx_a, raw_r in enumerate(t6b_records):
+            if not isinstance(raw_r, dict):
+                batches_l2.append({"batch_id": f"B_T6_{idx_a}", "atoms": [raw_r]})
+                continue
+            try:
+                a_obj = _to_atom(raw_r)
+                batches_l2.append({"batch_id": f"B_T6_{idx_a}", "atoms": [a_obj]})
+            except (ValueError, TypeError):
+                batches_l2.append({"batch_id": f"B_T6_RAW_{idx_a}", "atoms": [], "tier6b_sorted_lot_observations": [raw_r]})
+        if extra_ledger_batches:
+            batches_l2.extend(extra_ledger_batches)
+        p2 = wc_mod.evaluate_iip0024_atomic_stage0_ledger(batches_l2, tprov_use, target_campaign_id=CAMP_ID, root=ROOT)
+
+        # Path 3: Serialized JSON Ingestion
+        doc3 = {
+            "scope": dict(scope_use),
+            "measurements": dict(meas_use),
+            "iip0026_molecular_observations": dict(base_mol_31),
+            "tier6b_sorted_lot_observations": list(t6b_records),
+            **s11_dict_part,
+        }
+        p3 = ing_mod.ingest_stage0_research_or_wetlab_batch(json.dumps(doc3), root=ROOT)
+
+        # Path 4: Chronological Replay
+        replay_recs = []
+        if split_replay_batches and len(t6b_records) >= 2:
+            replay_recs.append({
+                "utc_timestamp": "2026-11-19T01:00:00Z",
+                "seq_index": 1,
+                "scope": dict(scope_use),
+                "measurements": dict(meas_use),
+                "iip0026_molecular_observations": dict(base_mol_31),
+                "tier6b_sorted_lot_observations": [t6b_records[0]],
+                **s11_dict_part,
+            })
+            for r_i, item in enumerate(t6b_records[1:], start=2):
+                if isinstance(item, dict):
+                    replay_recs.append({
+                        "utc_timestamp": f"2026-11-19T0{min(r_i, 9)}:00:00Z",
+                        "seq_index": r_i,
+                        "scope": dict(scope_use),
+                        "tier6b_sorted_lot_observations": [item],
+                    })
+                else:
+                    replay_recs.append({"utc_timestamp": f"2026-11-19T0{min(r_i, 9)}:00:00Z", "seq_index": r_i, "malformed_record": True})
+        else:
+            replay_recs.append({
+                "utc_timestamp": "2026-11-19T01:00:00Z",
+                "seq_index": 1,
+                "scope": dict(scope_use),
+                "measurements": dict(meas_use),
+                "iip0026_molecular_observations": dict(base_mol_31),
+                "tier6b_sorted_lot_observations": list(t6b_records),
+                **s11_dict_part,
+            })
+        if extra_replay_records:
+            replay_recs.extend(extra_replay_records)
+        p4 = ing_mod.replay_stage0_chronological_batches(replay_recs, root=ROOT)
+        return {"direct": p1, "ledger": p2, "ingest": p3, "replay": p4}
+
+    # --- FIXTURE 1: Raw-count pass across all 4 entry points (unconditional 3-way simultaneous Clopper-Pearson) + exact 2-way math_only benchmark ---
+    m_fix1_2way = wc_mod.compute_tier6b_per_fraction_thinning_bound_math_only([
+        {"fraction_id": "enriched", "N": 30_000_000, "w_i": 0.9999, "d_i_L": wc_mod._exact_one_sided_cp_lower_iip0031(20, 20, 0.05 / 8.0)},
+        {"fraction_id": "flow_through", "N": 100_000, "w_i": 0.0001, "d_i_L": wc_mod._exact_one_sided_cp_lower_iip0031(10, 10, 0.05 / 8.0)},
+    ])
+    assert m_fix1_2way["release_clearance_permitted"] is False and abs(m_fix1_2way["p_lot_U95"] - 1.9552099522e-7) < 1e-15
+    assert abs(wc_mod._exact_one_sided_cp_lower_iip0031(20, 20, 0.05 / 8.0) - 0.7758790062) < 1e-9
+    assert abs(wc_mod._exact_one_sided_cp_lower_iip0031(10, 10, 0.05 / 8.0) - 0.6019882323) < 1e-9
+    m_fix2_2way = wc_mod.compute_tier6b_per_fraction_thinning_bound_math_only([
+        {"fraction_id": "enriched", "N": 9_999_500, "w_i": 0.9999, "d_i_L": wc_mod._exact_one_sided_cp_lower_iip0031(20, 20, 0.05 / 8.0)},
+        {"fraction_id": "flow_through", "N": 1_000, "w_i": 0.0001, "d_i_L": wc_mod._exact_one_sided_cp_lower_iip0031(10, 10, 0.05 / 8.0)},
+    ])
+    assert m_fix2_2way["within_numerical_cap"] is False and abs(m_fix2_2way["p_lot_U95"] - 1.2910869131e-6) < 1e-15
+    assert abs(wc_mod._exact_one_sided_cp_lower_iip0031(7, 7, 0.05 / 8.0) - 0.4843125430) < 1e-9
+    assert abs(wc_mod._exact_one_sided_cp_lower_iip0031(8, 8, 0.05 / 8.0) - 0.5302552806) < 1e-9
+
+    fix1_recs = [
+        _mk_frac("enriched_cd31_neg_cd144_neg", "F1_ENRICH", k=0, N=30_000_000, w_i=0.9999, hpsc=(20, 20), diff=(20, 20)),
+        _mk_frac("flow_through_and_excluded", "F1_FT", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+    ]
+    res1 = _eval_4paths(fix1_recs)
+    for nm, out in res1.items():
+        ev = out["tier6b_sorted_lot_evaluation"]
+        assert ev["disposition"] == "PASS", (nm, ev)
+        assert abs(ev["d_L_by_fraction"]["enriched_cd31_neg_cd144_neg"] - 0.7603077860) < 1e-9, (nm, ev)
+        assert abs(ev["d_L_by_fraction"]["flow_through_and_excluded"] - 0.5780679294) < 1e-9, (nm, ev)
+        assert ev["p_lot_U95"] <= 3.0e-7 and abs(ev["p_lot_U95"] - 2.1870701159e-7) < 1e-11, (nm, ev)
+    assert res1["direct"]["overall_status"] == "STAGE0_IIP0026_MOLECULAR_GUARDRAILS_CLEARED"
+    assert res1["ingest"]["overall_status"] == "STAGE0_IIP0026_MOLECULAR_GUARDRAILS_CLEARED"
+    assert res1["replay"]["overall_status"] == "STAGE0_IIP0026_MOLECULAR_GUARDRAILS_CLEARED"
+    assert res1["ledger"]["readiness_tier"] == "PROVISIONAL_PARTIAL_LOT_SCREENING_ONLY"
+    assert set(res1["ledger"]["holds"]) == set(wc_mod.ENDPOINT_REGISTRY_SPEC["mcb_mandatory_endpoint_ids"])
+
+    # --- FIXTURE 2: Zero counts, insufficient evidence across all 4 entry points (including single-dose ~80k scale) ---
+    fix2_recs = [
+        _mk_frac("enriched_cd31_neg_cd144_neg", "F2_ENRICH", k=0, N=9_999_500, w_i=0.9999, hpsc=(20, 20), diff=(20, 20)),
+        _mk_frac("flow_through_and_excluded", "F2_FT", k=0, N=1_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+    ]
+    res2 = _eval_4paths(fix2_recs)
+    for nm, out in res2.items():
+        ev = out["tier6b_sorted_lot_evaluation"]
+        assert ev["disposition"] == "HOLD_TIER6B_INSUFFICIENT_DENOMINATOR", (nm, ev)
+        assert ev["p_lot_U95"] > 1.4e-6 and abs(ev["p_lot_U95"] - 1.5112233424e-6) < 1e-10, (nm, ev)
+        assert out["overall_status"] == "HOLD_TIER6B_INSUFFICIENT_DENOMINATOR", (nm, out)
+    # Single-graft-dose (~80,000 total clonogenic opportunities across 2 fractions) fails closed on all 4 paths (> 5.98419e-5 single-fraction alpha=0.05/6 floor):
+    fix2_single_dose_80k = [
+        _mk_frac("enriched_cd31_neg_cd144_neg", "F2_80K_1", k=0, N=79_000, w_i=79_000 / 80_000, hpsc=(20, 20), diff=(20, 20)),
+        _mk_frac("flow_through_and_excluded", "F2_80K_2", k=0, N=1_000, w_i=1_000 / 80_000, hpsc=(20, 20), diff=(20, 20)),
+    ]
+    for nm, out in _eval_4paths(fix2_single_dose_80k).items():
+        assert out["tier6b_disposition"] == "HOLD_TIER6B_INSUFFICIENT_DENOMINATOR", (nm, out)
+        assert out["tier6b_sorted_lot_evaluation"]["p_lot_U95"] > 5.98419e-5, (nm, out)
+        assert out["tier6b_sorted_lot_evaluation"]["p_lot_U95"] > 1.19e-4, (nm, out)
+
+    # --- FIXTURE 3: Detection floor & separate calibrants across all 4 entry points ---
+    fix3_7 = [
+        _mk_frac("enriched_cd31_neg_cd144_neg", "F3_7_ENRICH", k=0, N=9_999_500, w_i=0.9999, hpsc=(20, 20), diff=(7, 7)),
+        _mk_frac("flow_through_and_excluded", "F3_7_FT", k=0, N=1_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+    ]
+    res3_7 = _eval_4paths(fix3_7)
+    for nm, out in res3_7.items():
+        ev = out["tier6b_sorted_lot_evaluation"]
+        assert ev["disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (nm, ev)
+        assert ev["detection_floor_cleared"] is False
+        assert abs(ev["d_L_by_fraction"]["enriched_cd31_neg_cd144_neg"] - 0.4570564295) < 1e-9, (nm, ev)
+        assert out["overall_status"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (nm, out)
+    # Pooling 27/27 must NOT clear:
+    fix3_pool = [
+        _mk_frac("enriched_cd31_neg_cd144_neg", "F3_P_ENRICH", k=0, N=30_000_000, w_i=0.9999, hpsc=(27, 27), diff=(27, 27), extra={"pooled_calibrants": True}),
+        _mk_frac("flow_through_and_excluded", "F3_P_FT", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+    ]
+    for nm, out in _eval_4paths(fix3_pool).items():
+        assert out["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (nm, out)
+    # Changing 7/7 -> 8/8 clears detection floor ONLY (0.5040499718 >= 0.50), still holds on N:
+    fix3_8 = [
+        _mk_frac("enriched_cd31_neg_cd144_neg", "F3_8_ENRICH", k=0, N=9_999_500, w_i=0.9999, hpsc=(20, 20), diff=(8, 8)),
+        _mk_frac("flow_through_and_excluded", "F3_8_FT", k=0, N=1_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+    ]
+    res3_8 = _eval_4paths(fix3_8)
+    for nm, out in res3_8.items():
+        ev = out["tier6b_sorted_lot_evaluation"]
+        assert ev["detection_floor_cleared"] is True, (nm, ev)
+        assert abs(ev["d_L_by_fraction"]["enriched_cd31_neg_cd144_neg"] - 0.5040499718) < 1e-9, (nm, ev)
+        assert ev["disposition"] == "HOLD_TIER6B_INSUFFICIENT_DENOMINATOR", (nm, ev)
+        assert out["overall_status"] == "HOLD_TIER6B_INSUFFICIENT_DENOMINATOR", (nm, out)
+
+    # --- FIXTURE 4: Pure-math unrounded 29,213,508 vs 29,213,509 boundary vs live rejection of supplied d_L ---
+    m_hold = wc_mod.compute_tier6b_per_fraction_thinning_bound_math_only([
+        {"fraction_id": "enriched", "N": 29_213_508, "w_i": 0.5, "d_i_L": 0.50},
+        {"fraction_id": "flow_through", "N": 29_213_508, "w_i": 0.5, "d_i_L": 0.50},
+    ])
+    assert m_hold["math_only_non_authorizing"] is True and m_hold["release_clearance_permitted"] is False
+    assert m_hold["within_numerical_cap"] is False and abs(m_hold["p_lot_U95"] - 3.0000000725841394e-7) < 1e-18
+    m_pass = wc_mod.compute_tier6b_per_fraction_thinning_bound_math_only([
+        {"fraction_id": "enriched", "N": 29_213_509, "w_i": 0.5, "d_i_L": 0.50},
+        {"fraction_id": "flow_through", "N": 29_213_509, "w_i": 0.5, "d_i_L": 0.50},
+    ])
+    assert m_pass["math_only_non_authorizing"] is True and m_pass["release_clearance_permitted"] is False
+    assert m_pass["within_numerical_cap"] is True and abs(m_pass["p_lot_U95"] - 2.9999999698919284e-7) < 1e-18
+
+    # COUNTEREXAMPLE 1 (Sol R6): Live paths MUST REJECT calculation_only_supplied_d_L / supplied_d_i_L (absent OR present calibrants)!
+    for sup_lbl, sup_recs in (
+        (
+            "calibrants_absent_supplied_d_L",
+            [
+                _mk_frac("enriched_cd31_neg_cd144_neg", "CE1_A1", k=0, N=29_213_509, w_i=0.5, hpsc=None, diff=None, extra={"calculation_only_supplied_d_L": True, "supplied_d_i_L": 0.50}),
+                _mk_frac("flow_through_and_excluded", "CE1_A2", k=0, N=29_213_509, w_i=0.5, hpsc=None, diff=None, extra={"calculation_only_supplied_d_L": True, "supplied_d_i_L": 0.50}),
+            ],
+        ),
+        (
+            "calibrants_present_but_supplied_d_L_flag",
+            [
+                _mk_frac("enriched_cd31_neg_cd144_neg", "CE1_B1", k=0, N=29_213_509, w_i=0.5, extra={"calculation_only_supplied_d_L": True, "supplied_d_i_L": 0.50}),
+                _mk_frac("flow_through_and_excluded", "CE1_B2", k=0, N=29_213_509, w_i=0.5, extra={"calculation_only_supplied_d_L": True, "supplied_d_i_L": 0.50}),
+            ],
+        ),
+    ):
+        for nm, out in _eval_4paths(sup_recs).items():
+            assert out["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (sup_lbl, nm, out)
+            assert out["overall_status"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (sup_lbl, nm, out)
+
+    # --- FIXTURE 5 & COUNTEREXAMPLES 2, 3, 6 (Missing/invalid evidence, single_fraction_unsorted_lot, order-invariance, CFU & mass-balance) ---
+    obs_15m_cal = _mk_frac("enriched_cd31_neg_cd144_neg", "CE3_CAL_15M", k=0, N=15_000_000, w_i=0.9999, hpsc=(20, 20), diff=(20, 20))
+    obs_15m_uncal = _mk_frac("enriched_cd31_neg_cd144_neg", "CE3_UNCAL_15M", k=0, N=15_000_000, w_i=0.9999, hpsc=None, diff=None)
+    obs_15m_low7 = _mk_frac("enriched_cd31_neg_cd144_neg", "CE3_LOW7_15M", k=0, N=15_000_000, w_i=0.9999, hpsc=(20, 20), diff=(7, 7))
+    obs_ft_ok = _mk_frac("flow_through_and_excluded", "CE3_FT_OK", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10))
+
+    fix5_cases = {
+        "omitted_flow_through": [
+            _mk_frac("enriched_cd31_neg_cd144_neg", "F5_NOFT", k=0, N=30_000_000, w_i=1.0, roster=("enriched_cd31_neg_cd144_neg",)),
+        ],
+        "ce2_single_fraction_unsorted_lot_bypass_attempt": [
+            _mk_frac(
+                "enriched_cd31_neg_cd144_neg",
+                "CE2_UNSORT_BYPASS",
+                k=0,
+                N=30_000_000,
+                w_i=1.0,
+                roster=("enriched_cd31_neg_cd144_neg",),
+                extra={"single_fraction_unsorted_lot": True},
+            ),
+        ],
+        "ce3_partial_cal_calibrated_first": [obs_15m_cal, obs_15m_uncal, obs_ft_ok],
+        "ce3_partial_cal_uncalibrated_first": [obs_15m_uncal, obs_15m_cal, obs_ft_ok],
+        "ce3_mixed_7of7_cal_order_ab": [obs_15m_cal, obs_15m_low7, obs_ft_ok],
+        "ce3_mixed_7of7_cal_order_ba": [obs_15m_low7, obs_15m_cal, obs_ft_ok],
+        "unreconciled_losses": [
+            _mk_frac("enriched_cd31_neg_cd144_neg", "F5_LOSS1", k=0, N=30_000_000, w_i=0.9999, extra={"unreconciled_loss_fraction": 0.02}),
+            _mk_frac("flow_through_and_excluded", "F5_LOSS2", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+        ],
+        "unreconciled_integer_presort_cell_balance": [
+            _mk_frac("enriched_cd31_neg_cd144_neg", "F5_IBAL1", k=0, N=30_000_000, w_i=0.9999, extra={"presort_fraction_cells": 2_900_000_000}),
+            _mk_frac("flow_through_and_excluded", "F5_IBAL2", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+        ],
+        "plated_exceeds_fraction_physical_cells": [
+            _mk_frac("enriched_cd31_neg_cd144_neg", "F5_PL1", k=0, N=30_000_000, w_i=0.9999),
+            _mk_frac("flow_through_and_excluded", "F5_PL2", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10), extra={"plated_treated_cells_n": 400_000}),
+        ],
+        "missing_untreated_cfu_control": [
+            _mk_frac("enriched_cd31_neg_cd144_neg", "F5_UCFU1", k=0, N=30_000_000, w_i=0.9999, extra={"untreated_cfu_control": None}),
+            _mk_frac("flow_through_and_excluded", "F5_UCFU2", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+        ],
+        "non_disjoint_untreated_cfu_sample_id": [
+            _mk_frac(
+                "enriched_cd31_neg_cd144_neg",
+                "F5_DISJ1",
+                k=0,
+                N=30_000_000,
+                w_i=0.9999,
+                extra={"untreated_cfu_control": {"untreated_sample_id": "F5_DISJ2", "untreated_cfu_colonies_k": 100, "untreated_plated_cells_n": 500}},
+            ),
+            _mk_frac("flow_through_and_excluded", "F5_DISJ2", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+        ],
+        "omitted_endogenous_denominator": [
+            _mk_frac("enriched_cd31_neg_cd144_neg", "F5_ENDO1", k=0, N=30_000_000, w_i=0.9999, extra={"endogenous_denominator_verified": False}),
+            _mk_frac("flow_through_and_excluded", "F5_ENDO2", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+        ],
+        "omitted_calibrant": [
+            _mk_frac("enriched_cd31_neg_cd144_neg", "F5_CAL1", k=0, N=30_000_000, w_i=0.9999, diff=None),
+            _mk_frac("flow_through_and_excluded", "F5_CAL2", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+        ],
+        "invalid_weights": [
+            _mk_frac("enriched_cd31_neg_cd144_neg", "F5_W1", k=0, N=30_000_000, w_i=0.70),
+            _mk_frac("flow_through_and_excluded", "F5_W2", k=0, N=100_000, w_i=0.20, hpsc=(10, 10), diff=(10, 10)),
+        ],
+        "zero_N": [
+            _mk_frac("enriched_cd31_neg_cd144_neg", "F5_N0_1", k=0, N=0, w_i=0.9999),
+            _mk_frac("flow_through_and_excluded", "F5_N0_2", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+        ],
+        "boolean_count": [
+            _mk_frac("enriched_cd31_neg_cd144_neg", "F5_BOOL1", k=False, N=30_000_000, w_i=0.9999),
+            _mk_frac("flow_through_and_excluded", "F5_BOOL2", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+        ],
+        "float_count": [
+            _mk_frac("enriched_cd31_neg_cd144_neg", "F5_FLT1", k=0.0, N=30_000_000, w_i=0.9999),
+            _mk_frac("flow_through_and_excluded", "F5_FLT2", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+        ],
+        "clustered_sampling": [
+            _mk_frac("enriched_cd31_neg_cd144_neg", "F5_CL1", k=0, N=30_000_000, w_i=0.9999, extra={"clustered_sampling": True}),
+            _mk_frac("flow_through_and_excluded", "F5_CL2", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+        ],
+    }
+    res_order_cache: dict[str, dict] = {}
+    for sub_name, sub_recs in fix5_cases.items():
+        res_sub = _eval_4paths(sub_recs)
+        res_order_cache[sub_name] = res_sub
+        for nm, out in res_sub.items():
+            assert out["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (sub_name, nm, out)
+            assert out["overall_status"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (sub_name, nm, out)
+    # Verify exact order invariance on reversed sub-observation sequences:
+    for nm in ("direct", "ledger", "ingest", "replay"):
+        assert res_order_cache["ce3_partial_cal_calibrated_first"][nm]["tier6b_reason"] == res_order_cache["ce3_partial_cal_uncalibrated_first"][nm]["tier6b_reason"]
+        assert res_order_cache["ce3_mixed_7of7_cal_order_ab"][nm]["tier6b_sorted_lot_evaluation"]["d_L_by_fraction"] == res_order_cache["ce3_mixed_7of7_cal_order_ba"][nm]["tier6b_sorted_lot_evaluation"]["d_L_by_fraction"]
+
+    # Also verify evaluate_rare_event_count_iip0024 NEVER defaults missing eta_spike_recovery_l95 / f_clonogenic to 1.0:
+    re_miss = wc_mod.evaluate_rare_event_count_iip0024(
+        gate_id="TIER6B_SORTED_CLONOGENIC_CHECK",
+        k=0,
+        n=30_000_000,
+        max_u95_fraction=3.0e-7,
+        require_observed_zero=True,
+        eta_spike_recovery_l95=None,
+        f_clonogenic=None,
+    )
+    assert re_miss["status"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION"
+    re_pos_uncal = wc_mod.evaluate_rare_event_count_iip0024(
+        gate_id="TIER6B_SORTED_CLONOGENIC_CHECK",
+        k=1,
+        n=0,
+        max_u95_fraction=3.0e-7,
+        require_observed_zero=True,
+        eta_spike_recovery_l95=None,
+        f_clonogenic=None,
+    )
+    assert re_pos_uncal["status"] == "FAIL_HARD_STOP"
+
+    # --- FIXTURE 6 & COUNTEREXAMPLES 4, 5 (Positive outgrowth with malformed controls + S9 VAF 0.0002 parity across all 4 paths) ---
+    fix6_valid_cal = [
+        _mk_frac("enriched_cd31_neg_cd144_neg", "F6_POS_V", k=1, N=30_000_000, w_i=0.9999, hpsc=(20, 20), diff=(20, 20)),
+        "MALFORMED_NON_DICT_RECORD",
+        _mk_frac("enriched_cd31_neg_cd144_neg", "F6_Z1", k=0, N=30_000_000, w_i=0.9999, hpsc=(20, 20), diff=(20, 20)),
+        _mk_frac("flow_through_and_excluded", "F6_Z2", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+    ]
+    fix6_invalid_cal = [
+        _mk_frac("enriched_cd31_neg_cd144_neg", "F6_POS_BAD", k=1, N=0, w_i=None, hpsc=None, diff=None, extra={"endogenous_denominator_verified": False}),
+        "MALFORMED_NON_DICT_RECORD",
+        _mk_frac("enriched_cd31_neg_cd144_neg", "F6_Z3", k=0, N=30_000_000, w_i=0.9999, hpsc=(20, 20), diff=(20, 20)),
+        _mk_frac("flow_through_and_excluded", "F6_Z4", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+    ]
+    # COUNTEREXAMPLE 4 (Sol R6): Same-lot k=1 with valid outer identity and malformed ancillary `controls`, followed by valid zeros!
+    ce4_malformed_controls_pos = [
+        {
+            "endpoint_id": "lot_tier6b_sorted_prolif_clonogenic_escape",
+            "scope_type": "LOT_SCOPE",
+            "product_variant_id": "ISLET1_A4_ARM1B",
+            "construct_sha256": a4_sha,
+            "donor_seedline_id": SEED_ID,
+            "mcb_id": MCB_ID,
+            "lot_id": LOT_ID,
+            "fraction_id": "enriched_cd31_neg_cd144_neg",
+            "sample_id": "CE4_POS_MALCTRL",
+            "k": 1,
+            "N": 30_000_000,
+            "controls": "MALFORMED_ANCILLARY_CONTROLS_STRING",
+        },
+        *fix1_recs,
+    ]
+    for label6, recs6 in (
+        ("valid_cal", fix6_valid_cal),
+        ("missing_invalid_cal", fix6_invalid_cal),
+        ("ce4_malformed_controls_on_positive", ce4_malformed_controls_pos),
+    ):
+        res6 = _eval_4paths(recs6)
+        for nm, out in res6.items():
+            assert out["tier6b_disposition"] == "FAIL_HARD_STOP", (label6, nm, out)
+            assert out["tier6b_reason"] == "FAIL_TIER6B_OUTGROWTH_DETECTED", (label6, nm, out)
+            assert out["overall_status"] == "FAIL_HARD_STOP", (label6, nm, out)
+            assert out["hard_stop_precedence_winner"] == "FAIL_TIER6B_OUTGROWTH_DETECTED", (label6, nm, out)
+    # Also verify raw dict inside ledger batch["atoms"] (fallback non-AtomicObservation lane) latches FAIL_HARD_STOP on k=1:
+    led_raw_atoms_pos = wc_mod.evaluate_iip0024_atomic_stage0_ledger(
+        [
+            {"batch_id": "B_BASE", "atoms": mcb_atoms_base + dev_atoms_base},
+            {"batch_id": "B_RAW_ATOM_LANE", "atoms": [ce4_malformed_controls_pos[0]]},
+            {"batch_id": "B_CLEAN_ZEROS", "atoms": [_to_atom(r) for r in fix1_recs]},
+        ],
+        target_prov,
+        target_campaign_id=CAMP_ID,
+        root=ROOT,
+    )
+    assert led_raw_atoms_pos["overall_status"] == "FAIL_HARD_STOP"
+    assert led_raw_atoms_pos["hard_stop_precedence_winner"] == "FAIL_TIER6B_OUTGROWTH_DETECTED"
+
+    # Independent S9 hard stop keeps FIRST precedence over Tier 6B k=1 across all 4 entry points:
+    s9_atom_fail = wc_mod.AtomicObservation(
+        endpoint_id="obs_icasp9_log10_kill",
+        scope_type="LOT_SCOPE",
+        scope_key=lot_k,
+        kind="CONTINUOUS_STUDENT_T",
+        value_or_k=2.0,
+        se_or_n=0.1,
+        sample_n=6,
+        campaign_id=CAMP_ID,
+        sample_unit_id="S9_KILL_FAIL",
+    )
+    res6_s9 = _eval_4paths(
+        fix6_valid_cal,
+        meas_override={"obs_icasp9_log10_kill": 2.0, "obs_icasp9_log10_kill_se": 0.1},
+        extra_ledger_atoms=[s9_atom_fail],
+    )
+    for nm, out in res6_s9.items():
+        assert out["overall_status"] == "HARD_SAFETY_STOP_REJECTED", (nm, out)
+        assert out["hard_stop_precedence_winner"] == "S9_HARD_SAFETY_STOP", (nm, out)
+
+    # COUNTEREXAMPLE 5 (Sol R6): Qualifying Tier 6B with TP53/PPM1D/BCOR VAF mean 0.0002, SE 0.000001, depth 70,000
+    # MUST hard-stop under S9 (>= 1e-4) across ALL FOUR routes INCLUDING the atomic ledger!
+    s9_vaf_0p0002_atom = wc_mod.AtomicObservation(
+        endpoint_id="obs_tp53_ppm1d_bcor_vaf",
+        scope_type="LOT_SCOPE",
+        scope_key=lot_k,
+        kind="CONTINUOUS_STUDENT_T",
+        value_or_k=0.0002,
+        se_or_n=0.000001,
+        sample_n=6,
+        campaign_id=CAMP_ID,
+        sample_unit_id="S9_VAF_2E4",
+        controls={"obs_tp53_ppm1d_bcor_duplex_depth": 70000},
+    )
+    res_ce5_vaf = _eval_4paths(
+        fix1_recs,
+        meas_override={
+            "obs_tp53_ppm1d_bcor_vaf": 0.0002,
+            "obs_tp53_ppm1d_bcor_vaf_se": 0.000001,
+            "obs_tp53_ppm1d_bcor_duplex_depth": 70000,
+        },
+        extra_ledger_atoms=[s9_vaf_0p0002_atom],
+    )
+    for nm, out in res_ce5_vaf.items():
+        assert out["overall_status"] == "HARD_SAFETY_STOP_REJECTED", (nm, out)
+        assert out["hard_stop_precedence_winner"] == "S9_HARD_SAFETY_STOP", (nm, out)
+    # Underpowered VAF depth (< 62,958) at VAF=0.0 holds on the atomic ledger:
+    s9_vaf_underdepth_atom = wc_mod.AtomicObservation(
+        endpoint_id="obs_tp53_ppm1d_bcor_vaf",
+        scope_type="LOT_SCOPE",
+        scope_key=lot_k,
+        kind="CONTINUOUS_STUDENT_T",
+        value_or_k=0.0,
+        se_or_n=1e-6,
+        sample_n=6,
+        campaign_id=CAMP_ID,
+        sample_unit_id="S9_VAF_LOWDEPTH",
+        controls={"obs_tp53_ppm1d_bcor_duplex_depth": 30000},
+    )
+    led_lowdepth = wc_mod.evaluate_iip0024_atomic_stage0_ledger(
+        [{"batch_id": "B1", "atoms": mcb_atoms_base + dev_atoms_base + [s9_vaf_underdepth_atom] + [_to_atom(r) for r in fix1_recs]}],
+        target_prov,
+        target_campaign_id=CAMP_ID,
+        root=ROOT,
+    )
+    assert led_lowdepth["readiness_tier"] == "HOLD_FAILED_STAGE0_GATE"
+
+    # --- FIXTURE 7 & COUNTEREXAMPLE 6 (Scope, omitted outer provenance, mixed fraction identities, sample_id dedup, cross-lot non-latch) ---
+    fix7_rejects = {
+        "wrong_lot": [
+            _mk_frac("enriched_cd31_neg_cd144_neg", "F7_WL1", lot_id="OTHER_LOT_99"),
+            _mk_frac("flow_through_and_excluded", "F7_WL2", N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10), lot_id="OTHER_LOT_99"),
+        ],
+        "wrong_construct": [
+            _mk_frac("enriched_cd31_neg_cd144_neg", "F7_WC1", construct_sha256="0" * 64),
+            _mk_frac("flow_through_and_excluded", "F7_WC2", N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10), construct_sha256="0" * 64),
+        ],
+        "wrong_bank": [
+            _mk_frac("enriched_cd31_neg_cd144_neg", "F7_WB1", mcb_id="MCB_OTHER_999"),
+            _mk_frac("flow_through_and_excluded", "F7_WB2", N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10), mcb_id="MCB_OTHER_999"),
+        ],
+        "ce6_inconsistent_identities_across_two_fractions": [
+            _mk_frac("enriched_cd31_neg_cd144_neg", "CE6_MIX1", construct_sha256=a4_sha, mcb_id=MCB_ID),
+            _mk_frac("flow_through_and_excluded", "CE6_MIX2", N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10), construct_sha256="b" * 64, mcb_id="MCB_OTHER_MIX"),
+        ],
+        "metadata_instead_of_counts": [
+            _mk_frac("enriched_cd31_neg_cd144_neg", "F7_MD1", kind="METADATA_CONTROL"),
+            _mk_frac("flow_through_and_excluded", "F7_MD2", N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+        ],
+        "pure_hpsc_mcb_instead_of_sorted_lot": [
+            _mk_frac(
+                "enriched_cd31_neg_cd144_neg",
+                "F7_MCB1",
+                N=900_000_000,
+                scope_type="MCB_SCOPE",
+                endpoint_id="mcb_tier6b_pure_hpsc_clonogenic_escape",
+                extra={"eta_spike_recovery_l95": 0.80, "f_clonogenic": 0.80},
+            ),
+        ],
+        "assembled_product_instead_of_sorted_lot": [
+            _mk_frac(
+                "enriched_cd31_neg_cd144_neg",
+                "F7_DEV1",
+                N=300_000_000,
+                scope_type="ASSEMBLED_DEVICE_LOT_SCOPE",
+                endpoint_id="gate0s_shedding_viable_outgrowth_assay",
+                extra={"eta_spike_recovery_l95": 0.80, "f_clonogenic": 0.80},
+            ),
+        ],
+    }
+    for sub7, recs7 in fix7_rejects.items():
+        for nm, out in _eval_4paths(recs7).items():
+            assert out["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (sub7, nm, out)
+            assert out["overall_status"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (sub7, nm, out)
+
+    # COUNTEREXAMPLE 6b (Sol R6): Omitting outer construct_sha256, donor_seedline_id, and mcb_id MUST hold on ALL 4 paths!
+    mixed_two_fracs = [
+        _mk_frac("enriched_cd31_neg_cd144_neg", "CE6B_1", construct_sha256="a" * 64, donor_seedline_id="SEED_A", mcb_id="MCB_A"),
+        _mk_frac("flow_through_and_excluded", "CE6B_2", N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10), construct_sha256="b" * 64, donor_seedline_id="SEED_B", mcb_id="MCB_B"),
+    ]
+    omitted_outer_scope = {"construct_sha256": None, "donor_seedline_id": None, "mcb_id": None}
+    for recs_om in (fix1_recs, mixed_two_fracs):
+        p1_om = wc_mod.evaluate_stage0_product_contract(
+            {"product_variant_id": "ISLET1_A4_ARM1B", "lot_id": LOT_ID, "campaign_id": CAMP_ID, **base_meas_31, **base_mol_31, "tier6b_sorted_lot_observations": recs_om},
+            root=ROOT,
+        )
+        p2_om = wc_mod.evaluate_iip0024_atomic_stage0_ledger(
+            [{"batch_id": "B1", "atoms": [_to_atom(r) for r in recs_om]}],
+            {"product_variant_id": "ISLET1_A4_ARM1B", "lot_id": LOT_ID, "device_assembly_id": DEV_ID, "physical_route_id": ROUTE_ID},
+            target_campaign_id=CAMP_ID,
+            root=ROOT,
+        )
+        p3_om = ing_mod.ingest_stage0_research_or_wetlab_batch(
+            json.dumps({
+                "scope": {"product_variant_id": "ISLET1_A4_ARM1B", "lot_id": LOT_ID, "campaign_id": CAMP_ID},
+                "measurements": dict(base_meas_31),
+                "iip0026_molecular_observations": dict(base_mol_31),
+                "tier6b_sorted_lot_observations": recs_om,
+            }),
+            root=ROOT,
+        )
+        p4_om = ing_mod.replay_stage0_chronological_batches(
+            [{
+                "utc_timestamp": "2026-11-19T01:00:00Z",
+                "seq_index": 1,
+                "scope": {"product_variant_id": "ISLET1_A4_ARM1B", "lot_id": LOT_ID, "campaign_id": CAMP_ID},
+                "measurements": dict(base_meas_31),
+                "iip0026_molecular_observations": dict(base_mol_31),
+                "tier6b_sorted_lot_observations": recs_om,
+            }],
+            root=ROOT,
+        )
+        assert p1_om["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION" and p1_om["overall_status"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", p1_om
+        assert p3_om["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION" and p3_om["overall_status"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", p3_om
+        assert p4_om["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION" and p4_om["overall_status"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", p4_om
+        assert p2_om["readiness_tier"] == "HOLD_MISSING_OR_INVALID_IMMUTABLE_PROVENANCE_KEY", p2_om
+        assert omitted_outer_scope["construct_sha256"] is None
+
+    # 7b. Replayed sample_id under a new record_id MUST NOT inflate N_i:
+    fix7_dup = [
+        _mk_frac("enriched_cd31_neg_cd144_neg", "DUP_SID_01", k=0, N=15_000_000, w_i=0.9999, extra={"record_id": "REC_A"}),
+        _mk_frac("enriched_cd31_neg_cd144_neg", "DUP_SID_01", k=0, N=15_000_000, w_i=0.9999, extra={"record_id": "REC_B"}),
+        _mk_frac("flow_through_and_excluded", "F7_FT_DUP", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+    ]
+    res7_dup = _eval_4paths(fix7_dup)
+    for nm, out in res7_dup.items():
+        ev = out["tier6b_sorted_lot_evaluation"]
+        assert ev["N_by_fraction"]["enriched_cd31_neg_cd144_neg"] == 15_000_000, (nm, ev)
+        assert "DUP_SID_01" in ev["deduplicated_sample_ids"], (nm, ev)
+        assert ev["disposition"] == "HOLD_TIER6B_INSUFFICIENT_DENOMINATOR", (nm, ev)
+    # Distinct calibrated sample_ids with independent source-owned trial & calibrant IDs summing to 30,000,000 DO pass:
+    fix7_distinct = [
+        _mk_frac("enriched_cd31_neg_cd144_neg", "DIST_SID_01", k=0, N=15_000_000, w_i=0.9999, extra={"record_id": "DIST_REC_01", "source_sample_id": "DIST_SRC_01", "cal_batch_id": "DIST_CAL_01"}),
+        _mk_frac("enriched_cd31_neg_cd144_neg", "DIST_SID_02", k=0, N=15_000_000, w_i=0.9999, extra={"record_id": "DIST_REC_02", "source_sample_id": "DIST_SRC_02", "cal_batch_id": "DIST_CAL_02"}),
+        _mk_frac("flow_through_and_excluded", "F7_FT_DIST", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+    ]
+    for nm, out in _eval_4paths(fix7_distinct).items():
+        ev = out["tier6b_sorted_lot_evaluation"]
+        assert ev["N_by_fraction"]["enriched_cd31_neg_cd144_neg"] == 30_000_000, (nm, ev)
+        assert ev["disposition"] == "PASS", (nm, ev)
+    # Without source-owned record_id / source_sample_id / cal_batch_id, multi-observation summing MUST hold (#5):
+    fix7_missing_src_id = [
+        _mk_frac("enriched_cd31_neg_cd144_neg", "DIST_NOID_01", k=0, N=15_000_000, w_i=0.9999),
+        _mk_frac("enriched_cd31_neg_cd144_neg", "DIST_NOID_02", k=0, N=15_000_000, w_i=0.9999),
+        _mk_frac("flow_through_and_excluded", "F7_FT_NOID", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+    ]
+    for nm, out in _eval_4paths(fix7_missing_src_id).items():
+        ev = out["tier6b_sorted_lot_evaluation"]
+        assert ev["disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (nm, ev)
+        assert ev["reason_code"] == "MISSING_SOURCE_OWNED_TRIAL_OR_CALIBRANT_IDENTITY_FOR_MULTI_OBSERVATION_SUM", (nm, ev)
+
+    # 7c. Adverse observation (k=1) from a DIFFERENT lot does NOT latch target lot across all 4 entry points:
+    fix7_other_lot_pos = [
+        _mk_frac("enriched_cd31_neg_cd144_neg", "OTHER_POS_1", k=1, N=30_000_000, w_i=0.9999, lot_id="OTHER_LOT_99"),
+        *fix1_recs,
+    ]
+    res7_ol = _eval_4paths(fix7_other_lot_pos)
+    for nm, out in res7_ol.items():
+        assert out["tier6b_disposition"] == "PASS", (nm, out)
+    assert res7_ol["direct"]["overall_status"] == "STAGE0_IIP0026_MOLECULAR_GUARDRAILS_CLEARED"
+    assert res7_ol["ledger"]["readiness_tier"] == "PROVISIONAL_PARTIAL_LOT_SCREENING_ONLY"
+
+    # --- RULE S11 QUANTITATIVE PANEL, NON-EXECUTABLE L2_V3_* PRECEDENCE, & SOL R6 S11 COUNTEREXAMPLES ---
+    co_cd200_def = by_id["ISLET1_A4_L2_V3_CO_PRIMARY_CD200"]
+    co_cd200_sha = co_cd200_def["staged_locus2_modeb_donor_binding"]["locus2_donor_sha256"]
+    s11_passing_panel = {
+        "scope_type": "LOT_SCOPE",
+        "sample_id": "S11_PANEL_01",
+        "ciita_locus2_genotype_copy_class": "KI/KO",
+        "obs_stage0_independent_lot_replicates_n": 6,
+        "phasing_verified": True,
+        "cis_verified": True,
+        "wt_inducibility_verified": True,
+        "rnai_attribution_verified": True,
+        "ciita_ki_allele_informative_transcript_recovery_verified": True,
+        "ciita_ko_allele_informative_transcript_recovery_verified": True,
+        "ciita_cis_sentinels_socs1_dexi_clec16a_tost_verified": True,
+        "lineage_matched_wt_stage7_hla_dr_dp_dq_inducibility_verified": True,
+        "l2_v3_same_background_intronless_control_linked_to_cargo": True,
+        "l2_v3_same_background_scramble_control_linked_to_cargo": True,
+        "obs_l2_v3_chr16_ha_wgs_pass": True,
+        "obs_l2_v3_chr16_ha_wgs_variant_count": 0,
+        "obs_l2_v3_tandem_polya_readthrough_fold": 1.15, "obs_l2_v3_tandem_polya_readthrough_se": 0.10,
+        "obs_l2_v3_cfh_stp_gpi_quantibrite_molecules": 85000.0, "obs_l2_v3_cfh_stp_gpi_quantibrite_se": 4000.0,
+        "obs_l2_v3_unit2_copy_expression_quantibrite_or_fold": 45000.0, "obs_l2_v3_unit2_copy_expression_se": 2500.0,
+        "obs_ciita_ki_allele_informative_reads_n": 500,
+        "obs_ciita_ko_allele_informative_reads_n": 500,
+        "obs_ciita_ki_ex4_ex6_aberrant_skip_reads_k": 0,
+        "obs_ciita_ko_ex4_ex6_aberrant_skip_reads_k": 0,
+        "obs_ciita_ki_ex4_ex6_aberrant_skip_pct": 0.0, "obs_ciita_ki_ex4_ex6_aberrant_skip_se": 0.05,
+        "obs_ciita_ko_ex4_ex6_aberrant_skip_pct": 0.0, "obs_ciita_ko_ex4_ex6_aberrant_skip_se": 0.05,
+        "obs_edited_72h_ifng_hla_dr_dp_dq_pos_pct": 0.2, "obs_edited_72h_ifng_hla_dr_dp_dq_pos_se": 0.05,
+        "obs_wt_lineage_matched_72h_ifng_hla_dr_dp_dq_pos_pct": 75.0, "obs_wt_lineage_matched_72h_ifng_hla_dr_dp_dq_pos_se": 2.0,
+        "obs_cis_socs1_tost90_ratio_lo": 0.92, "obs_cis_socs1_tost90_ratio_hi": 1.08,
+        "obs_cis_dexi_tost90_ratio_lo": 0.90, "obs_cis_dexi_tost90_ratio_hi": 1.10,
+        "obs_cis_clec16a_tost90_ratio_lo": 0.91, "obs_cis_clec16a_tost90_ratio_hi": 1.09,
+        "obs_16p13_ddpcr_cn_ratio": 2.00,
+        "obs_16p13_phased_baf": 0.50,
+        "obs_l2_v3_unit1_eef1a1_resting_0h_5race_umi_n_eff": 4200, "obs_l2_v3_unit1_eef1a1_resting_0h_unexpected_tss_umi_k": 0,
+        "obs_l2_v3_unit1_eef1a1_stim_24h_5race_umi_n_eff": 4300, "obs_l2_v3_unit1_eef1a1_stim_24h_unexpected_tss_umi_k": 0,
+        "obs_l2_v3_unit2_resting_0h_5race_umi_n_eff": 4100, "obs_l2_v3_unit2_resting_0h_unexpected_tss_umi_k": 0,
+        "obs_l2_v3_unit2_stim_24h_5race_umi_n_eff": 4500, "obs_l2_v3_unit2_stim_24h_unexpected_tss_umi_k": 0,
+        "obs_l2_v3_unit2_tss_pos1_in_donor": 665,
+        "obs_l2_v3_stage0_eef1a1_cpg_methylation_pct": 3.5, "obs_l2_v3_stage0_eef1a1_cpg_methylation_se": 0.4,
+        "obs_l2_v3_stage0_chs4_cpg_methylation_pct": 4.2, "obs_l2_v3_stage0_chs4_cpg_methylation_se": 0.5,
+        "obs_l2_v3_stage0_dm1_cpg_methylation_pct": 4.8, "obs_l2_v3_stage0_dm1_cpg_methylation_se": 0.5,
+        "obs_l2_v3_stage7_eef1a1_cpg_methylation_pct": 4.0, "obs_l2_v3_stage7_eef1a1_cpg_methylation_se": 0.5,
+        "obs_l2_v3_stage7_chs4_cpg_methylation_pct": 5.0, "obs_l2_v3_stage7_chs4_cpg_methylation_se": 0.6,
+        "obs_l2_v3_stage7_dm1_cpg_methylation_pct": 6.0, "obs_l2_v3_stage7_dm1_cpg_methylation_se": 0.7,
+        "obs_l2_v3_stage0_chs4_ctcf_chip_fold_enrichment": 12.4, "obs_l2_v3_stage0_chs4_ctcf_chip_fold_enrichment_se": 1.0,
+        "obs_l2_v3_stage0_dm1_ctcf_chip_fold_enrichment": 11.8, "obs_l2_v3_stage0_dm1_ctcf_chip_fold_enrichment_se": 1.0,
+        "obs_l2_v3_stage7_chs4_ctcf_chip_fold_enrichment": 12.0, "obs_l2_v3_stage7_chs4_ctcf_chip_fold_enrichment_se": 1.0,
+        "obs_l2_v3_stage7_dm1_ctcf_chip_fold_enrichment": 11.5, "obs_l2_v3_stage7_dm1_ctcf_chip_fold_enrichment_se": 1.0,
+        "obs_l2_v3_ap_c5b9_pct": 1.8, "obs_l2_v3_ap_c5b9_se": 0.2,
+        "obs_l2_v3_classical_c4b2a_lysis_pct": 4.0, "obs_l2_v3_classical_c4b2a_lysis_se": 0.5,
+        "obs_l2_v3_lectin_c4b2a_lysis_pct": 4.2, "obs_l2_v3_lectin_c4b2a_lysis_se": 0.5,
+        "obs_l2_v3_overall_20pct_nhs_lysis_pct": 2.0, "obs_l2_v3_overall_20pct_nhs_lysis_se": 0.2,
+        "obs_l2_v3_intact_serum_adcc_lysis_pct": 1.5, "obs_l2_v3_intact_serum_adcc_lysis_se": 0.2,
+        "obs_l2_v3_igg_depleted_serum_adcc_lysis_pct": 0.3, "obs_l2_v3_igg_depleted_serum_adcc_lysis_se": 0.1,
+        "obs_l2_v3_igg_increment_adcc_lysis_pct": 1.2, "obs_l2_v3_igg_increment_adcc_lysis_se": 0.2,
+        "obs_l2_v3_adcc_serum_donor_pair_id": "SERUM_PAIR_D1_01",
+        "obs_l2_v3_adcc_intact_specimen_id": "ADCC_INTACT_SPEC_01",
+        "obs_l2_v3_adcc_igg_depleted_specimen_id": "ADCC_IGG_DEP_SPEC_01",
+        "obs_l2_v3_plvap_iec_network_t50_h": 24.0, "obs_l2_v3_plvap_iec_network_t50_se": 1.5,
+        "obs_l2_v3_plvap_iec_viability_pct": 92.0, "obs_l2_v3_plvap_iec_viability_se": 1.0,
+        "obs_l2_v3_exact_stack_effero_abs_pct": 88.0, "obs_l2_v3_exact_stack_effero_abs_se": 1.0,
+        "obs_l2_v3_exact_stack_effero_pct_of_wt": 82.0, "obs_l2_v3_exact_stack_effero_pct_of_wt_se": 1.5,
+        "obs_l2_v3_pericyte_coverage_pct": 82.0, "obs_l2_v3_pericyte_coverage_se": 1.5,
+        "obs_l2_v3_aav6_full_length_monomer_pct": 86.0,
+        "obs_l2_v3_aav6_truncated_species_pct": 5.0,
+        "obs_l2_v3_aav6_dimeric_or_intermediate_pct": 9.0,
+        "obs_l2_v3_small_rnaseq_mir375_retention_pct": 96.5, "obs_l2_v3_small_rnaseq_mir375_retention_se": 1.0,
+        "obs_l2_v3_intron_splicing_efficiency_pct": 94.0, "obs_l2_v3_intron_splicing_efficiency_se": 1.2,
+        "obs_l2_v3_cd276_kd_pct": 84.0, "obs_l2_v3_cd276_kd_se": 2.0,
+        "obs_l2_v3_pvr_kd_pct": 82.0, "obs_l2_v3_pvr_kd_se": 2.0,
+        "obs_l2_v3_joint_stratum_nk_lysis_pct": 5.2, "obs_l2_v3_joint_stratum_nk_lysis_se": 0.8,
+        "rnai_attribution_scramble_control_id": "L2_V3_CTRL_NT_SCRAMBLE",
+        "rnai_attribution_scramble_control_sha256": "d1c8d1bbe01e89dac2256d48b51d2dac03b7cba41d076a0e9bbed6cc249c43ff",
+        "rnai_attribution_scramble_background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL",
+        "rnai_attribution_scramble_sample_id": "S11_SCRAMBLE_CTRL_SPEC_01",
+        "rnai_attribution_intronless_control_id": "L2_V3_B2MKO_INTRONLESS_CD200_CTRL",
+        "rnai_attribution_intronless_control_sha256": "1" * 64,
+        "rnai_attribution_intronless_background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL",
+        "rnai_attribution_intronless_sample_id": "S11_INTRONLESS_CTRL_SPEC_01",
+    }
+    l2_scope_cd200 = {
+        "product_variant_id": "ISLET1_A4_L2_V3_CO_PRIMARY_CD200",
+        "construct_sha256": co_cd200_sha,
+        "background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL",
+    }
+    l2_t6b_pass = [
+        _mk_frac("enriched_cd31_neg_cd144_neg", "L2_P1", product_variant_id="ISLET1_A4_L2_V3_CO_PRIMARY_CD200", construct_sha256=co_cd200_sha, extra={"background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL"}),
+        _mk_frac("flow_through_and_excluded", "L2_P2", N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10), product_variant_id="ISLET1_A4_L2_V3_CO_PRIMARY_CD200", construct_sha256=co_cd200_sha, extra={"background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL"}),
+    ]
+
+    def assert_only_unverified_controls(nm, out):
+        missing_digest = "HOLD_S11_UNVERIFIED_INTRONLESS_CONTROL_DIGEST"
+        assert out["s11_evaluation"]["reasons"] == [
+            missing_digest,
+            "HOLD_S11_UNVERIFIED_ATTRIBUTION_CONTROL_MEASUREMENTS",
+        ], (nm, out)
+        assert out["s11_evaluation"]["gate_pass"] is False, (nm, out)
+        assert out["s11_evaluation"]["status"] == missing_digest, (nm, out)
+        assert out["overall_status"] == missing_digest, (nm, out)
+
+    # A specimen label and a submitted digest cannot establish the external controls.
+    res_l2_clean = _eval_4paths(
+        l2_t6b_pass,
+        scope_override=l2_scope_cd200,
+        target_prov_override=l2_scope_cd200,
+        s11_record=s11_passing_panel,
+    )
+    for nm, out in res_l2_clean.items():
+        assert out["execution_supported"] is False, (nm, out)
+        assert_only_unverified_controls(nm, out)
+
+    impossible_se = "HOLD_S11_IMPOSSIBLE_PAIRED_ADCC_UNCERTAINTY"
+    for difference_se, is_possible in (
+        (0.01, False), (0.09999999999999999, False), (0.10, True), (0.30, True),
+        (0.30000000000000004, False), (0.35, False),
+    ):
+        for nm, out in _eval_4paths(
+            l2_t6b_pass, scope_override=l2_scope_cd200, target_prov_override=l2_scope_cd200,
+            s11_record={**s11_passing_panel, "obs_l2_v3_igg_increment_adcc_lysis_se": difference_se},
+        ).items():
+            if is_possible:
+                assert_only_unverified_controls(nm, out)
+            else:
+                assert out["s11_evaluation"]["status"] == impossible_se, (nm, out)
+                assert out["overall_status"] == impossible_se, (nm, out)
+
+    # COUNTEREXAMPLE 7 (Sol R6): CD200 comparator with qualifying Tier 6B and OMITTED S11 MUST HOLD on ALL 4 paths!
+    res_l2_omitted_s11 = _eval_4paths(
+        l2_t6b_pass,
+        scope_override=l2_scope_cd200,
+        target_prov_override=l2_scope_cd200,
+    )
+    for nm, out in res_l2_omitted_s11.items():
+        assert out["s11_evaluation"]["gate_pass"] is False, (nm, out)
+        assert out["s11_evaluation"]["status"] == "HOLD_S11_INCOMPLETE_EVIDENCE", (nm, out)
+        assert out["overall_status"] == "HOLD_S11_INCOMPLETE_EVIDENCE", (nm, out)
+    assert res_l2_omitted_s11["ledger"]["readiness_tier"] == "HOLD_FAILED_STAGE0_GATE"
+
+    # COUNTEREXAMPLE 8 (Sol R6): S11 panel with SEs removed, invalid replicate count, -100% AP deposition, nested override, or MCB_SCOPE MUST NOT clear on any path!
+    panel_no_se = {k: v for k, v in s11_passing_panel.items() if not k.endswith("_se")}
+    panel_neg_ap = {**s11_passing_panel, "obs_l2_v3_ap_c5b9_pct": -100.0}
+    panel_bad_rep = {**s11_passing_panel, "obs_stage0_independent_lot_replicates_n": 2}
+    panel_nested_ovr = {**s11_passing_panel, "lot_id": "NESTED_FOREIGN_LOT_99"}
+    for bad_s11_lbl, bad_s11_rec, exp_prefix in (
+        ("missing_all_ses", panel_no_se, "HOLD_S11_"),
+        ("negative_100pct_ap_deposition", panel_neg_ap, "HOLD_S11_"),
+        ("invalid_replicates_n_2", panel_bad_rep, "HOLD_S11_"),
+        ("nested_lot_id_override", panel_nested_ovr, "FAIL_S11_NESTED_PROVENANCE_SCOPE_MISMATCH"),
+    ):
+        res_bad_s11 = _eval_4paths(
+            l2_t6b_pass,
+            scope_override=l2_scope_cd200,
+            target_prov_override=l2_scope_cd200,
+            s11_record=bad_s11_rec,
+        )
+        for nm, out in res_bad_s11.items():
+            assert str(out["overall_status"]).startswith(exp_prefix), (bad_s11_lbl, nm, out)
+            assert out["overall_status"] != "RESEARCH_COMPARATOR_STAGE0_PANEL_CLEARED_PENDING_STATE4_PROMOTION", (bad_s11_lbl, nm, out)
+
+    # MCB-scoped S11 panel MUST be rejected as lot evidence across all 4 paths:
+    res_mcb_s11 = _eval_4paths(
+        l2_t6b_pass,
+        scope_override={**l2_scope_cd200, "scope_type": "MCB_SCOPE"},
+        target_prov_override=l2_scope_cd200,
+        s11_record={**s11_passing_panel, "scope_type": "MCB_SCOPE"},
+        s11_ledger_scope="MCB_SCOPE",
+    )
+    for nm, out in res_mcb_s11.items():
+        assert out["overall_status"] != "RESEARCH_COMPARATOR_STAGE0_PANEL_CLEARED_PENDING_STATE4_PROMOTION", (nm, out)
+        assert "HOLD_S11_" in str(out["overall_status"]) or "HOLD_TIER6B_" in str(out["overall_status"]), (nm, out)
+    # Specifically test ledger with valid LOT_SCOPE Tier 6B + MCB_SCOPE S11 panel:
+    res_mcb_s11_ledger_only = _eval_4paths(
+        l2_t6b_pass,
+        scope_override=l2_scope_cd200,
+        target_prov_override=l2_scope_cd200,
+        s11_record=s11_passing_panel,
+        s11_ledger_scope="MCB_SCOPE",
+    )["ledger"]
+    assert res_mcb_s11_ledger_only["readiness_tier"] == "HOLD_FAILED_STAGE0_GATE"
+    assert "HOLD_S11_PANEL_REQUIRES_LOT_SCOPE" in res_mcb_s11_ledger_only["holds"]
+
+    # COUNTEREXAMPLE 9 (Sol R6): 18% lectin failure followed by a later clean S11 batch on the SAME lot MUST stay failed on ALL 4 paths!
+    panel_18pct_lectin = {**s11_passing_panel, "obs_l2_v3_lectin_c4b2a_lysis_pct": 18.0, "obs_l2_v3_lectin_c4b2a_lysis_se": 0.5}
+    lot_k_cd200 = wc_mod.LotScopeKey("ISLET1_A4_L2_V3_CO_PRIMARY_CD200", co_cd200_sha, SEED_ID, MCB_ID, LOT_ID)
+    clean_s11_atom_later = wc_mod.AtomicObservation(
+        endpoint_id="stage0_locus2_modeb_v3_panel",
+        scope_type="LOT_SCOPE",
+        scope_key=lot_k_cd200,
+        kind="STRUCTURED_PANEL",
+        value_or_k=s11_passing_panel,
+        campaign_id=CAMP_ID,
+        sample_unit_id="S11_CLEAN_RETRY_02",
+    )
+    res_18_lectin_latch = _eval_4paths(
+        l2_t6b_pass,
+        scope_override=l2_scope_cd200,
+        target_prov_override=l2_scope_cd200,
+        s11_record=panel_18pct_lectin,
+        extra_ledger_batches=[{"batch_id": "B_LATER_CLEAN_S11", "atoms": [clean_s11_atom_later]}],
+        extra_replay_records=[{
+            "utc_timestamp": "2026-11-19T08:00:00Z",
+            "seq_index": 99,
+            "scope": {**base_scope_31, **l2_scope_cd200},
+            "iip0031_locus2_record": s11_passing_panel,
+        }],
+    )
+    for nm, out in res_18_lectin_latch.items():
+        assert out["overall_status"] == "FAIL_S11_POST_CUFF_LECTIN_C4B2A_LYSIS_EXCEEDS_10PCT", (nm, out)
+        assert out["hard_stop_precedence_winner"] == "FAIL_S11_POST_CUFF_LECTIN_C4B2A_LYSIS_EXCEEDS_10PCT", (nm, out)
+        assert out["s11_evaluation"]["status"] == "FAIL_S11_POST_CUFF_LECTIN_C4B2A_LYSIS_EXCEEDS_10PCT", (nm, out)
+        if "switch_decisions" in out:
+            assert out["switch_decisions"][wc_mod.RULE_S11_GATE_ID_IIP0031] == "FAIL_S11_POST_CUFF_LECTIN_C4B2A_LYSIS_EXCEEDS_10PCT", (nm, out["switch_decisions"])
+            assert out["switch_decisions"][f"JSON_{wc_mod.RULE_S11_GATE_ID_IIP0031}"] == "FAIL_S11_POST_CUFF_LECTIN_C4B2A_LYSIS_EXCEEDS_10PCT", (nm, out["switch_decisions"])
+
+    # Adverse Tier 6B k=1 on non-executable L2_V3_* evaluates BEFORE research hold across all 4 paths:
+    res_l2_pos = _eval_4paths(
+        [
+            _mk_frac("enriched_cd31_neg_cd144_neg", "L2_POS1", k=1, product_variant_id="ISLET1_A4_L2_V3_CO_PRIMARY_CD200", construct_sha256=co_cd200_sha, extra={"background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL"}),
+        ],
+        scope_override=l2_scope_cd200,
+        target_prov_override=l2_scope_cd200,
+    )
+    for nm, out in res_l2_pos.items():
+        assert out["overall_status"] == "FAIL_HARD_STOP", (nm, out)
+        assert out["hard_stop_precedence_winner"] == "FAIL_TIER6B_OUTGROWTH_DETECTED", (nm, out)
+
+    # Rule S11 hard architectural blocks evaluate BEFORE research hold:
+    assert wc_mod.evaluate_stage0_product_contract(
+        {**base_scope_31, "product_variant_id": "ISLET1_B_SCT_C1_CIITA", "l2_v3_donor_id": "L2_V3_CO_PRIMARY_CD200", **base_meas_31},
+        root=ROOT,
+    )["overall_status"] == "FAIL_S11_TRACK2_BSCT_INCOMPATIBLE_AT_LOCUS_2"
+    assert wc_mod.evaluate_stage0_product_contract(
+        {**base_scope_31, "product_variant_id": "ISLET1_B2_5LOCUS_BASE", "l2_v3_donor_id": "L2_V3_CO_PRIMARY_CD200", **base_meas_31},
+        root=ROOT,
+    )["overall_status"] == "FAIL_S11_MIR_CD276_PVR_BARRED_ON_DESIGN_B_HLAC_INTACT"
+    assert wc_mod.evaluate_stage0_product_contract(
+        {**base_scope_31, "product_variant_id": "ISLET1_A4_L2_V3_CO_PRIMARY_CD200", "background_id": "DESIGN_Y_Y03", **base_meas_31},
+        root=ROOT,
+    )["overall_status"] == "FAIL_S11_SYN5XISRE_CD200_BARRED_IN_DESIGN_Y_Y03"
+    assert wc_mod.evaluate_locus2_ciita_modeb_challenger_v3_gate(
+        {"product_variant_id": "ISLET1_Y_RESEARCH", "l2_v3_donor_id": "L2_V3_CO_PRIMARY_CD200"},
+        root=ROOT,
+    )["status"] == "FAIL_S11_SYN5XISRE_CD200_BARRED_IN_DESIGN_Y_Y03"
+
+    # COUNTEREXAMPLE 10 (Sol R6) + Quantitative Rule S11 stops & straddlers across ALL 4 paths:
+    for s11_override, exp_st in (
+        # Classical & lectin interval straddlers (11.0%, SE 0.5, n=6 -> L95=9.9925% <= 10.0% < U95=12.0075% -> HOLD):
+        ({"obs_l2_v3_classical_c4b2a_lysis_pct": 11.0, "obs_l2_v3_classical_c4b2a_lysis_se": 0.5}, "HOLD_S11_INCONCLUSIVE_CLASSICAL_C4B2A_STRADDLES_10PCT"),
+        ({"obs_l2_v3_lectin_c4b2a_lysis_pct": 11.0, "obs_l2_v3_lectin_c4b2a_lysis_se": 0.5}, "HOLD_S11_INCONCLUSIVE_LECTIN_C4B2A_STRADDLES_10PCT"),
+        # Classical & lectin true stops (12.0%, SE 0.5, n=6 -> L95=10.9925% > 10.0% -> FAIL):
+        ({"obs_l2_v3_classical_c4b2a_lysis_pct": 12.0, "obs_l2_v3_classical_c4b2a_lysis_se": 0.5}, "FAIL_S11_POST_CUFF_CLASSICAL_C4B2A_LYSIS_EXCEEDS_10PCT"),
+        ({"obs_l2_v3_lectin_c4b2a_lysis_pct": 12.0, "obs_l2_v3_lectin_c4b2a_lysis_se": 0.5}, "FAIL_S11_POST_CUFF_LECTIN_C4B2A_LYSIS_EXCEEDS_10PCT"),
+        ({"obs_l2_v3_ap_c5b9_pct": 5.5, "obs_l2_v3_ap_c5b9_se": 0.2}, "FAIL_S11_POST_CUFF_AP_C5B9_EXCEEDS_5PCT"),
+        ({"obs_l2_v3_intact_serum_adcc_lysis_pct": 6.2, "obs_l2_v3_igg_depleted_serum_adcc_lysis_pct": 1.0, "obs_l2_v3_igg_increment_adcc_lysis_pct": 5.2, "obs_l2_v3_igg_increment_adcc_lysis_se": 0.2}, "FAIL_S11_CONJUNCTIVE_GY023_ADCC_EXCEEDS_5PCT"),
+        ({"obs_l2_v3_plvap_iec_network_t50_h": 42.0, "obs_l2_v3_plvap_iec_network_t50_se": 1.0}, "FAIL_S11_PLVAP_IEC_NETWORK_MORPHOGENESIS_EXCEEDS_36H"),
+        ({"obs_l2_v3_plvap_iec_viability_pct": 75.0, "obs_l2_v3_plvap_iec_viability_se": 1.0}, "FAIL_S11_PLVAP_IEC_VIABILITY_BELOW_85PCT"),
+        ({"obs_l2_v3_exact_stack_effero_abs_pct": 75.0, "obs_l2_v3_exact_stack_effero_abs_se": 1.0}, "FAIL_S11_EXACT_STACK_EFFEROCYTOSIS_BELOW_80ABS_OR_70WT"),
+        ({"obs_l2_v3_pericyte_coverage_pct": 65.0, "obs_l2_v3_pericyte_coverage_se": 1.0}, "FAIL_S11_GATE0G_PERICYTE_COVERAGE_BELOW_70PCT"),
+        ({"obs_l2_v3_aav6_full_length_monomer_pct": 75.0, "obs_l2_v3_aav6_truncated_species_pct": 12.0, "obs_l2_v3_aav6_dimeric_or_intermediate_pct": 13.0}, "FAIL_S11_AAV6_HOMOGENEITY_SPEC_BREACHED"),
+        ({"obs_l2_v3_aav6_full_length_monomer_pct": 85.0, "obs_l2_v3_aav6_truncated_species_pct": 5.0, "obs_l2_v3_aav6_dimeric_or_intermediate_pct": 5.0}, "HOLD_S11_AAV6_SPECIES_DENOMINATOR_UNRECONCILED"),
+        ({"obs_ciita_ko_allele_informative_reads_n": 25}, "HOLD_S11_MISSING_QUANTITATIVE_CIITA_BIALLELIC_SPLICE_OR_HLAII_EVIDENCE"),
+        ({"obs_ciita_ko_ex4_ex6_aberrant_skip_reads_k": 20, "obs_ciita_ko_ex4_ex6_aberrant_skip_pct": 4.0, "obs_ciita_ko_ex4_ex6_aberrant_skip_se": 0.3}, "FAIL_S11_CIITA_ABERRANT_EX4_EX6_SKIP_EXCEEDS_1PCT"),
+        ({"obs_edited_72h_ifng_hla_dr_dp_dq_pos_pct": 4.0, "obs_edited_72h_ifng_hla_dr_dp_dq_pos_se": 0.3}, "FAIL_S11_EDITED_CELL_HLA_II_ESCAPE_DETECTED"),
+        ({"obs_wt_lineage_matched_72h_ifng_hla_dr_dp_dq_pos_pct": 20.0, "obs_wt_lineage_matched_72h_ifng_hla_dr_dp_dq_pos_se": 1.5}, "HOLD_S11_UNINDUCIBLE_WT_HLAII_POSITIVE_CONTROL"),
+        ({"obs_cis_dexi_tost90_ratio_lo": 1.30, "obs_cis_dexi_tost90_ratio_hi": 1.50}, "FAIL_S11_16P13_CIS_SENTINEL_TOST_BREACHED"),
+        ({"obs_cis_dexi_tost90_ratio_lo": 0.75, "obs_cis_dexi_tost90_ratio_hi": 1.05}, "HOLD_S11_INCONCLUSIVE_16P13_CIS_SENTINEL_TOST"),
+        ({"obs_l2_v3_unit2_stim_24h_5race_umi_n_eff": 2000}, "HOLD_S11_MISSING_LOCUS2_DUAL_PROMOTER_5PRIME_RACE_3689"),
+        ({"obs_l2_v3_unit2_tss_pos1_in_donor": 620}, "FAIL_S11_SYN5XISRE_UPSTREAM_ATG_INCLUDED_OR_INVALID_TSS"),
+        ({"obs_l2_v3_stage7_dm1_cpg_methylation_pct": 35.0, "obs_l2_v3_stage7_dm1_cpg_methylation_se": 1.5}, "FAIL_S11_LOCUS2_CPG_HYPERMETHYLATION_EXCEEDS_20PCT"),
+        ({"obs_l2_v3_stage7_dm1_ctcf_chip_fold_enrichment": 2.0, "obs_l2_v3_stage7_dm1_ctcf_chip_fold_enrichment_se": 0.3}, "HOLD_S11_INSUFFICIENT_CTCF_CHIP_OCCUPANCY_BELOW_5X"),
+        ({"rnai_specific_benefit_claimed": True, "l2_v3_same_background_intronless_control_linked_to_cargo": False}, "HOLD_S11_RNAI_ATTRIBUTION_REQUIRES_SAME_BACKGROUND_CARGO_LINKED_INTRONLESS_AND_SCRAMBLE_CONTROLS"),
+    ):
+        res_s11_4p = _eval_4paths(
+            l2_t6b_pass,
+            scope_override=l2_scope_cd200,
+            target_prov_override=l2_scope_cd200,
+            s11_record={**s11_passing_panel, **s11_override},
+        )
+        for nm, out in res_s11_4p.items():
+            assert out["s11_evaluation"]["status"] == exp_st, (s11_override, nm, out)
+            assert out["overall_status"] == exp_st, (s11_override, nm, out)
+
+    # --- ROUND-7 DIFFERENTIAL CONFORMANCE CASES (ALL 4 ENTRY PATHS) ---
+    # R7-1: Unconditional untreated CFU quantitative bound (1/30M & 1/100k claiming 30M/100k MUST HOLD on all 4 paths):
+    r7_1_untr_low = [
+        _mk_frac(
+            "enriched_cd31_neg_cd144_neg",
+            "R7_UCFU_1",
+            k=0,
+            N=30_000_000,
+            w_i=0.9999,
+            extra={
+                "plated_treated_cells_n": 30_000_000,
+                "untreated_cfu_control": {"untreated_sample_id": "UNTR_R7_1A", "untreated_cfu_colonies_k": 1, "untreated_plated_cells_n": 30_000_000},
+            },
+        ),
+        _mk_frac(
+            "flow_through_and_excluded",
+            "R7_UCFU_2",
+            k=0,
+            N=100_000,
+            w_i=0.0001,
+            hpsc=(10, 10),
+            diff=(10, 10),
+            extra={
+                "plated_treated_cells_n": 100_000,
+                "untreated_cfu_control": {"untreated_sample_id": "UNTR_R7_1B", "untreated_cfu_colonies_k": 1, "untreated_plated_cells_n": 100_000},
+            },
+        ),
+    ]
+    for nm, out in _eval_4paths(r7_1_untr_low).items():
+        assert out["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (nm, out)
+        assert "UNTREATED_CFU_DOES_NOT_SUPPORT_CLAIMED_OPPORTUNITIES" in str(out["tier6b_reason"]), (nm, out)
+        assert out["overall_status"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (nm, out)
+
+    # R7-2: Forbid caller-supplied w=(0.99999, 0.00001) overriding 0.5/0.5 shares AND forbid weight_override/w_i_lo/w_i_hi shortcuts:
+    r7_2_w_spoof = [
+        _mk_frac("enriched_cd31_neg_cd144_neg", "R7_W_1", k=0, N=30_000_000, w_i=0.99999, extra={"presort_total_input_cells": 600_000_000, "presort_fraction_cells": 300_000_000}),
+        _mk_frac("flow_through_and_excluded", "R7_W_2", k=0, N=100_000, w_i=0.00001, hpsc=(10, 10), diff=(10, 10), extra={"presort_total_input_cells": 600_000_000, "presort_fraction_cells": 300_000_000}),
+    ]
+    for nm, out in _eval_4paths(r7_2_w_spoof).items():
+        assert out["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (nm, out)
+        assert "FRACTION_WEIGHT_MISMATCH_WITH_VERIFIED_CLONOGENIC_RISK_UNIT_SHARE" in str(out["tier6b_reason"]), (nm, out)
+        assert out["overall_status"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (nm, out)
+    for ovr_k, ovr_extra in (
+        ("weight_override", {"weight_override": 0.99999}),
+        ("w_i_bounds_shortcut", {"w_i_lo": 0.99998, "w_i_hi": 0.99999}),
+        ("w_i_upper_shortcut", {"w_i_upper": 0.99999}),
+    ):
+        r7_2_ovr = [
+            _mk_frac("enriched_cd31_neg_cd144_neg", f"R7_OVR1_{ovr_k}", k=0, N=30_000_000, w_i=0.9999, extra=ovr_extra),
+            _mk_frac("flow_through_and_excluded", f"R7_OVR2_{ovr_k}", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+        ]
+        for nm, out in _eval_4paths(r7_2_ovr).items():
+            assert out["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (ovr_k, nm, out)
+            assert "CALLER_WEIGHT_OVERRIDE_OR_UNVERIFIED_BOUNDS_PROHIBITED" in str(out["tier6b_reason"]), (ovr_k, nm, out)
+    # Clonogenic-risk-unit share w_i = E_clono_i / sum(E_clono_j) consistency:
+    # Enriched: 100M physical * 0.04 CFU = 4M clono (w=4/5=0.8); FT: 2.5M physical * 0.40 CFU = 1M clono (w=1/5=0.2)
+    r7_2_clono_mismatch = [
+        _mk_frac(
+            "enriched_cd31_neg_cd144_neg",
+            "R7_CLM1",
+            k=0,
+            N=3_000_000,
+            w_i=100.0 / 102.5,  # raw physical share (wrong risk unit!)
+            extra={
+                "presort_total_input_cells": 102_500_000,
+                "presort_fraction_cells": 100_000_000,
+                "plated_treated_cells_n": 75_000_000,
+                "untreated_cfu_control": {"untreated_sample_id": "UNTR_CLM1", "untreated_cfu_colonies_k": 20, "untreated_plated_cells_n": 500},
+            },
+        ),
+        _mk_frac(
+            "flow_through_and_excluded",
+            "R7_CLM2",
+            k=0,
+            N=500_000,
+            w_i=2.5 / 102.5,
+            hpsc=(10, 10),
+            diff=(10, 10),
+            extra={
+                "presort_total_input_cells": 102_500_000,
+                "presort_fraction_cells": 2_500_000,
+                "plated_treated_cells_n": 1_250_000,
+                "untreated_cfu_control": {"untreated_sample_id": "UNTR_CLM2", "untreated_cfu_colonies_k": 200, "untreated_plated_cells_n": 500},
+            },
+        ),
+    ]
+    for nm, out in _eval_4paths(r7_2_clono_mismatch).items():
+        assert out["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (nm, out)
+        assert "FRACTION_WEIGHT_MISMATCH_WITH_VERIFIED_CLONOGENIC_RISK_UNIT_SHARE" in str(out["tier6b_reason"]), (nm, out)
+
+    # R7-3: Calibration batch multiplicity across two distinct 8/8 batches in one fraction -> d_L = 0.4622158621 < 0.50 -> HOLD on all 4 paths:
+    for cal_mode, cal_a_extra, cal_b_extra in (
+        ("distinct_cal_batch_ids", {"cal_batch_id": "CAL_BATCH_A"}, {"cal_batch_id": "CAL_BATCH_B"}),
+        ("omitted_cal_batch_ids_distinct_samples", {}, {}),
+    ):
+        r7_3_cal_mult = [
+            _mk_frac("enriched_cd31_neg_cd144_neg", f"R7_CM1_{cal_mode}", k=0, N=15_000_000, w_i=0.9999, hpsc=(20, 20), diff=(8, 8), extra=cal_a_extra),
+            _mk_frac("enriched_cd31_neg_cd144_neg", f"R7_CM2_{cal_mode}", k=0, N=15_000_000, w_i=0.9999, hpsc=(20, 20), diff=(8, 8), extra=cal_b_extra),
+            _mk_frac("flow_through_and_excluded", f"R7_CM_FT_{cal_mode}", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+        ]
+        for nm, out in _eval_4paths(r7_3_cal_mult).items():
+            ev = out["tier6b_sorted_lot_evaluation"]
+            assert ev["disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (cal_mode, nm, ev)
+            assert ev["detection_floor_cleared"] is False, (cal_mode, nm, ev)
+            assert abs(ev["d_L_by_fraction"]["enriched_cd31_neg_cd144_neg"] - 0.4622158621) < 1e-9, (cal_mode, nm, ev)
+            assert out["overall_status"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (cal_mode, nm, out)
+
+    # R7-4: Conflicting outer vs nested controls['sample_id'] MUST HOLD unqualified (T9), while nested aliquot_id or shared source_sample_id deduplicates to 15M on ALL 4 paths (never clears READY!):
+    r7_4_dup_nested_conflict = [
+        _mk_frac("enriched_cd31_neg_cd144_neg", "R7_DUP_15M", k=0, N=15_000_000, w_i=0.9999, extra={"controls": {"sample_id": "WRAP_NESTED_1"}}),
+        _mk_frac("enriched_cd31_neg_cd144_neg", "R7_DUP_15M", k=0, N=15_000_000, w_i=0.9999, extra={"controls": {"sample_id": "WRAP_NESTED_2"}}),
+        _mk_frac("flow_through_and_excluded", "R7_DUP_FT1", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+    ]
+    res_dup_conflict = _eval_4paths(r7_4_dup_nested_conflict)
+    for nm, out in res_dup_conflict.items():
+        ev = out["tier6b_sorted_lot_evaluation"]
+        assert ev["disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (nm, ev)
+        assert "CONFLICTING_OUTER_AND_NESTED_IDENTITY" in str(ev["reason_code"]), (nm, ev)
+    r7_4_dup_nested_alias = [
+        _mk_frac("enriched_cd31_neg_cd144_neg", "R7_DUP_15M", k=0, N=15_000_000, w_i=0.9999, extra={"controls": {"aliquot_id": "WRAP_NESTED_1"}}),
+        _mk_frac("enriched_cd31_neg_cd144_neg", "R7_DUP_15M", k=0, N=15_000_000, w_i=0.9999, extra={"controls": {"aliquot_id": "WRAP_NESTED_2"}}),
+        _mk_frac("flow_through_and_excluded", "R7_DUP_FT1", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+    ]
+    r7_4_dup_source = [
+        _mk_frac(
+            "enriched_cd31_neg_cd144_neg",
+            "R7_WRAP_OUTER_1",
+            k=0,
+            N=15_000_000,
+            w_i=0.9999,
+            extra={
+                "source_sample_id": "PHYS_ALIQUOT_15M_A",
+                "untreated_cfu_control": {"untreated_sample_id": "UNTR_PHYS_15M_A", "untreated_cfu_colonies_k": 4000, "untreated_plated_cells_n": 10000},
+            },
+        ),
+        _mk_frac(
+            "enriched_cd31_neg_cd144_neg",
+            "R7_WRAP_OUTER_2",
+            k=0,
+            N=15_000_000,
+            w_i=0.9999,
+            extra={
+                "source_sample_id": "PHYS_ALIQUOT_15M_A",
+                "untreated_cfu_control": {"untreated_sample_id": "UNTR_PHYS_15M_A", "untreated_cfu_colonies_k": 4000, "untreated_plated_cells_n": 10000},
+            },
+        ),
+        _mk_frac("flow_through_and_excluded", "R7_DUP_FT2", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+    ]
+    for dup_lbl, dup_recs in (("nested_aliquot_ids", r7_4_dup_nested_alias), ("shared_source_sample_id", r7_4_dup_source)):
+        res_dup = _eval_4paths(dup_recs)
+        for nm, out in res_dup.items():
+            ev = out["tier6b_sorted_lot_evaluation"]
+            assert ev["N_by_fraction"]["enriched_cd31_neg_cd144_neg"] == 15_000_000, (dup_lbl, nm, ev)
+            assert ev["disposition"] == "HOLD_TIER6B_INSUFFICIENT_DENOMINATOR", (dup_lbl, nm, ev)
+            assert out["overall_status"] == "HOLD_TIER6B_INSUFFICIENT_DENOMINATOR", (dup_lbl, nm, out)
+        assert res_dup["ledger"]["readiness_tier"] == "HOLD_FAILED_STAGE0_GATE", (dup_lbl, res_dup["ledger"])
+
+    # R7-5: Strict Donor-ID + SHA-256 Registry Binding (CD200 + correct SHA + spoofed CD274P donor label + missing Unit-2 TSS -> HOLD_S11_DONOR_MISMATCH on all 4 paths):
+    panel_no_tss_spoof_cd274p = {k: v for k, v in s11_passing_panel.items() if k != "obs_l2_v3_unit2_tss_pos1_in_donor"}
+    l2_t6b_bad_sha = [
+        _mk_frac("enriched_cd31_neg_cd144_neg", "L2_BS1", product_variant_id="ISLET1_A4_L2_V3_CO_PRIMARY_CD200", construct_sha256="f" * 64, extra={"background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL"}),
+        _mk_frac("flow_through_and_excluded", "L2_BS2", N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10), product_variant_id="ISLET1_A4_L2_V3_CO_PRIMARY_CD200", construct_sha256="f" * 64, extra={"background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL"}),
+    ]
+    for spoof_lbl, t6_use, sc_spoof, rec_spoof in (
+        ("outer_spoofed_cd274p_donor_id", l2_t6b_pass, {**l2_scope_cd200, "l2_v3_donor_id": "L2_V3_CD274P_ZERO_TATATA"}, panel_no_tss_spoof_cd274p),
+        ("nested_spoofed_cd274p_donor_id", l2_t6b_pass, l2_scope_cd200, {**panel_no_tss_spoof_cd274p, "donor_id": "L2_V3_CD274P_ZERO_TATATA"}),
+        ("mismatched_donor_sha256", l2_t6b_bad_sha, {**l2_scope_cd200, "construct_sha256": "f" * 64}, s11_passing_panel),
+    ):
+        res_spoof = _eval_4paths(
+            t6_use,
+            scope_override=sc_spoof,
+            target_prov_override=sc_spoof,
+            s11_record=rec_spoof,
+        )
+        for nm, out in res_spoof.items():
+            assert out["s11_evaluation"]["status"] == "HOLD_S11_DONOR_MISMATCH", (spoof_lbl, nm, out)
+            assert out["overall_status"] == "HOLD_S11_DONOR_MISMATCH", (spoof_lbl, nm, out)
+
+    # R7-6: Reject False verification flags, missing 4th RACE, missing Stage-0 methylation, n_reads=100 (< 300), missing WGS/readthrough/QuantiBRITE/active-RNAi/matched B2M-/- controls, or missing direct lot/sample ID:
+    r7_6_s11_holds = [
+        ("phasing_verified_false", {**s11_passing_panel, "phasing_verified": False}, "HOLD_S11_CIITA_BIALLELIC_PHASING_UNVERIFIED"),
+        ("cis_verified_false", {**s11_passing_panel, "cis_verified": False}, "HOLD_S11_16P13_CIS_SENTINELS_UNVERIFIED"),
+        ("wt_inducibility_verified_false", {**s11_passing_panel, "wt_inducibility_verified": False}, "HOLD_S11_WT_HLAII_INDUCIBILITY_UNVERIFIED"),
+        ("rnai_attribution_verified_false", {**s11_passing_panel, "rnai_attribution_verified": False}, "HOLD_S11_RNAI_ATTRIBUTION_UNVERIFIED"),
+        ("missing_4th_race_eef1a1_24h", {k: v for k, v in s11_passing_panel.items() if k != "obs_l2_v3_unit1_eef1a1_stim_24h_5race_umi_n_eff"}, "HOLD_S11_MISSING_LOCUS2_DUAL_PROMOTER_5PRIME_RACE_3689"),
+        ("missing_stage0_methylation", {k: v for k, v in s11_passing_panel.items() if not k.startswith("obs_l2_v3_stage0_eef1a1_cpg_methylation_")}, "HOLD_S11_MISSING_LONGITUDINAL_STAGE0_AND_STAGE7_METHYLATION_OR_CTCF_PANEL"),
+        ("ciita_reads_100_below_300", {**s11_passing_panel, "obs_ciita_ko_allele_informative_reads_n": 100}, "HOLD_S11_MISSING_QUANTITATIVE_CIITA_BIALLELIC_SPLICE_OR_HLAII_EVIDENCE"),
+        ("missing_chr16_ha_wgs", {k: v for k, v in s11_passing_panel.items() if k != "obs_l2_v3_chr16_ha_wgs_pass"}, "HOLD_S11_MISSING_CHR16_HA_WGS"),
+        ("missing_tandem_polya_readthrough", {k: v for k, v in s11_passing_panel.items() if not k.startswith("obs_l2_v3_tandem_polya_readthrough_")}, "HOLD_S11_MISSING_TANDEM_POLYA_READTHROUGH_EVIDENCE"),
+        ("missing_quantibrite_cfh", {k: v for k, v in s11_passing_panel.items() if not k.startswith("obs_l2_v3_cfh_stp_gpi_quantibrite_")}, "HOLD_S11_MISSING_COPY_SPECIFIC_QUANTIBRITE_EXPRESSION"),
+        ("missing_small_rnaseq_mir375", {k: v for k, v in s11_passing_panel.items() if not k.startswith("obs_l2_v3_small_rnaseq_mir375_retention_")}, "HOLD_S11_MISSING_ACTIVE_MIR_PROCESSING_KD_OR_JOINT_STRATUM_NK_PANEL"),
+        ("design_b_hlac_intact_wrong_rnai_ctrl", {**s11_passing_panel, "rnai_attribution_intronless_control_id": "L2_V3_DESIGN_B_CD200"}, "HOLD_S11_RNAI_ATTRIBUTION_REQUIRES_SAME_BACKGROUND_CARGO_LINKED_INTRONLESS_AND_SCRAMBLE_CONTROLS"),
+    ]
+    for r7_lbl, r7_rec, r7_exp in r7_6_s11_holds:
+        for nm, out in _eval_4paths(
+            l2_t6b_pass,
+            scope_override=l2_scope_cd200,
+            target_prov_override=l2_scope_cd200,
+            s11_record=r7_rec,
+        ).items():
+            assert out["s11_evaluation"]["status"] == r7_exp, (r7_lbl, nm, out)
+            assert out["overall_status"] == r7_exp, (r7_lbl, nm, out)
+    # Direct S11 without lot_id or sample_id MUST HOLD (`HOLD_S11_MISSING_LOT_OR_SAMPLE_BINDING`):
+    s11_no_lot_direct = wc_mod.evaluate_locus2_ciita_modeb_challenger_v3_gate(
+        {"product_variant_id": "ISLET1_A4_L2_V3_CO_PRIMARY_CD200", "construct_sha256": co_cd200_sha, "iip0031_locus2_record": {k: v for k, v in s11_passing_panel.items() if k != "sample_id"}},
+        root=ROOT,
+    )
+    assert s11_no_lot_direct["gate_pass"] is False and s11_no_lot_direct["status"] == "HOLD_S11_MISSING_LOT_OR_SAMPLE_BINDING", s11_no_lot_direct
+    # Genotype-matched allele evidence leaves exactly the unresolved control reasons.
+    s11_kiki_panel = {
+        **{
+            k: v
+            for k, v in s11_passing_panel.items()
+            if not k.startswith("obs_ciita_k")
+            and k not in ("ciita_ki_allele_informative_transcript_recovery_verified", "ciita_ko_allele_informative_transcript_recovery_verified")
+        },
+        "ciita_locus2_genotype_copy_class": "KI/KI",
+        "ciita_ki_allele1_informative_transcript_recovery_verified": True,
+        "ciita_ki_allele2_informative_transcript_recovery_verified": True,
+        "obs_ciita_allele1_informative_reads_n": 400,
+        "obs_ciita_allele2_informative_reads_n": 400,
+        "obs_ciita_allele1_ex4_ex6_aberrant_skip_reads_k": 0,
+        "obs_ciita_allele2_ex4_ex6_aberrant_skip_reads_k": 0,
+        "obs_ciita_allele1_ex4_ex6_aberrant_skip_pct": 0.0,
+        "obs_ciita_allele1_ex4_ex6_aberrant_skip_se": 0.05,
+        "obs_ciita_allele2_ex4_ex6_aberrant_skip_pct": 0.0,
+        "obs_ciita_allele2_ex4_ex6_aberrant_skip_se": 0.05,
+    }
+    for nm, out in _eval_4paths(
+        l2_t6b_pass,
+        scope_override=l2_scope_cd200,
+        target_prov_override=l2_scope_cd200,
+        s11_record=s11_kiki_panel,
+    ).items():
+        assert_only_unverified_controls(nm, out)
+
+    # R7-7: Zero VAF with missing duplex depth MUST HOLD on ALL 4 paths (including atomic ledger — no silent 62,958 default!):
+    s9_vaf_missing_depth_atom = wc_mod.AtomicObservation(
+        endpoint_id="obs_tp53_ppm1d_bcor_vaf",
+        scope_type="LOT_SCOPE",
+        scope_key=lot_k,
+        kind="CONTINUOUS_STUDENT_T",
+        value_or_k=0.0,
+        se_or_n=1e-6,
+        sample_n=6,
+        campaign_id=CAMP_ID,
+        sample_unit_id="S9_VAF_NODEPTH",
+        controls={},
+    )
+    meas_no_depth = {k: v for k, v in base_meas_31.items() if k != "obs_tp53_ppm1d_bcor_duplex_depth"}
+    meas_no_depth["obs_tp53_ppm1d_bcor_vaf"] = 0.0
+    meas_no_depth["obs_tp53_ppm1d_bcor_vaf_se"] = 1e-6
+    p1_nd = wc_mod.evaluate_stage0_product_contract(
+        {**base_scope_31, **meas_no_depth, **base_mol_31, "tier6b_sorted_lot_observations": list(fix1_recs)},
+        root=ROOT,
+    )
+    p2_nd = wc_mod.evaluate_iip0024_atomic_stage0_ledger(
+        [{"batch_id": "B_ND", "atoms": mcb_atoms_base + dev_atoms_base + [s9_vaf_missing_depth_atom] + [_to_atom(r) for r in fix1_recs]}],
+        target_prov,
+        target_campaign_id=CAMP_ID,
+        root=ROOT,
+    )
+    p3_nd = ing_mod.ingest_stage0_research_or_wetlab_batch(
+        json.dumps({"scope": dict(base_scope_31), "measurements": meas_no_depth, "iip0026_molecular_observations": dict(base_mol_31), "tier6b_sorted_lot_observations": list(fix1_recs)}),
+        root=ROOT,
+    )
+    p4_nd = ing_mod.replay_stage0_chronological_batches(
+        [{"utc_timestamp": "2026-11-19T01:00:00Z", "seq_index": 1, "scope": dict(base_scope_31), "measurements": meas_no_depth, "iip0026_molecular_observations": dict(base_mol_31), "tier6b_sorted_lot_observations": list(fix1_recs)}],
+        root=ROOT,
+    )
+    assert p1_nd["overall_status"].startswith("HOLD_"), p1_nd
+    assert p3_nd["overall_status"].startswith("HOLD_"), p3_nd
+    assert p4_nd["overall_status"].startswith("HOLD_"), p4_nd
+    assert p2_nd["readiness_tier"] == "HOLD_FAILED_STAGE0_GATE" and any("HOLD_S9_MISSING_OR_INVALID_DUPLEX_DEPTH" in h for h in p2_nd["holds"]), p2_nd
+
+    # R7-8: Single shared S9 VAF guard: VAF=4.0e-5, SE=3.1e-5, depth=500,000, n=6 -> IDENTICAL HARD_SAFETY_STOP_REJECTED on ALL 4 paths!
+    s9_vaf_border_atom = wc_mod.AtomicObservation(
+        endpoint_id="obs_tp53_ppm1d_bcor_vaf",
+        scope_type="LOT_SCOPE",
+        scope_key=lot_k,
+        kind="CONTINUOUS_STUDENT_T",
+        value_or_k=4.0e-5,
+        se_or_n=3.1e-5,
+        sample_n=6,
+        campaign_id=CAMP_ID,
+        sample_unit_id="S9_VAF_BORDER_T",
+        controls={"obs_tp53_ppm1d_bcor_duplex_depth": 500000},
+    )
+    res_r7_8_s9 = _eval_4paths(
+        fix1_recs,
+        meas_override={
+            "obs_tp53_ppm1d_bcor_vaf": 4.0e-5,
+            "obs_tp53_ppm1d_bcor_vaf_se": 3.1e-5,
+            "obs_tp53_ppm1d_bcor_duplex_depth": 500000,
+            "obs_tp53_ppm1d_bcor_vaf_sample_n": 6,
+        },
+        extra_ledger_atoms=[s9_vaf_border_atom],
+    )
+    for nm, out in res_r7_8_s9.items():
+        assert out["overall_status"] == "HARD_SAFETY_STOP_REJECTED", (nm, out)
+        assert out["hard_stop_precedence_winner"] == "S9_HARD_SAFETY_STOP", (nm, out)
+
+    # A valid signed paired difference leaves exactly the unresolved control reasons.
+    res_r7_10_signed_adcc = _eval_4paths(
+        l2_t6b_pass,
+        scope_override=l2_scope_cd200,
+        target_prov_override=l2_scope_cd200,
+        s11_record={**s11_passing_panel, "obs_l2_v3_igg_depleted_serum_adcc_lysis_pct": 1.8, "obs_l2_v3_igg_increment_adcc_lysis_pct": -0.3, "obs_l2_v3_igg_increment_adcc_lysis_se": 0.2},
+    )
+    for nm, out in res_r7_10_signed_adcc.items():
+        assert_only_unverified_controls(nm, out)
+    res_r7_10_neg_intact = _eval_4paths(
+        l2_t6b_pass,
+        scope_override=l2_scope_cd200,
+        target_prov_override=l2_scope_cd200,
+        s11_record={**s11_passing_panel, "obs_l2_v3_intact_serum_adcc_lysis_pct": -0.3, "obs_l2_v3_intact_serum_adcc_lysis_se": 0.2},
+    )
+    for nm, out in res_r7_10_neg_intact.items():
+        assert out["s11_evaluation"]["status"] == "HOLD_S11_INVALID_SE_OR_OUT_OF_RANGE_PHYSIOLOGICAL_READOUT", (nm, out)
+
+    # --- ROUND-8 DIFFERENTIAL CONFORMANCE CASES (ALL 4 ENTRY PATHS + PERMUTATION & ADVERSARIAL FUZZ) ---
+    # R8-1: Finite untreated CFU (1/1 -> 17k/500M AND even 70/2M) MUST HOLD unconditionally on all 4 paths;
+    #       explicit statistically_estimated_denominator_or_share=False opt-out MUST HOLD;
+    #       90% reconciled sort losses without explicit disposal attestation MUST HOLD:
+    r8_1_finite_1of1 = [
+        _mk_frac(
+            "enriched_cd31_neg_cd144_neg",
+            "R8_1OF1_E",
+            k=0,
+            N=17_000,
+            w_i=None,
+            extra={
+                "presort_total_input_cells": 500_017_002,
+                "presort_fraction_cells": 17_001,
+                "plated_treated_cells_n": 17_000,
+                "untreated_cfu_control": {"untreated_sample_id": "R8_U1E", "untreated_cfu_colonies_k": 1, "untreated_plated_cells_n": 1},
+            },
+        ),
+        _mk_frac(
+            "flow_through_and_excluded",
+            "R8_1OF1_F",
+            k=0,
+            N=500_000_000,
+            w_i=None,
+            extra={
+                "presort_total_input_cells": 500_017_002,
+                "presort_fraction_cells": 500_000_001,
+                "plated_treated_cells_n": 500_000_000,
+                "untreated_cfu_control": {"untreated_sample_id": "R8_U1F", "untreated_cfu_colonies_k": 1, "untreated_plated_cells_n": 1},
+            },
+        ),
+    ]
+    for nm, out in _eval_4paths(r8_1_finite_1of1).items():
+        assert out["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (nm, out)
+        assert out["overall_status"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (nm, out)
+    # Even if caller lowers N to 70 & 2,083,333 on 1/1 CFU, worst-case E-box bound still >> 3e-7 -> HOLD on all 4 paths:
+    r8_1_finite_1of1_lowN = [
+        {**r8_1_finite_1of1[0], "sample_id": "R8_1OF1_E_LOW", "N": 70},
+        {**r8_1_finite_1of1[1], "sample_id": "R8_1OF1_F_LOW", "N": 2_083_333},
+    ]
+    for nm, out in _eval_4paths(r8_1_finite_1of1_lowN).items():
+        assert out["tier6b_disposition"] in ("HOLD_TIER6B_INSUFFICIENT_DENOMINATOR", "HOLD_TIER6B_UNQUALIFIED_FRACTION"), (nm, out)
+        assert out["overall_status"] != "STAGE0_IIP0026_MOLECULAR_GUARDRAILS_CLEARED", (nm, out)
+    # Opting out via statistically_estimated_denominator_or_share=False MUST HOLD on all 4 paths:
+    r8_1_opt_out = [
+        {**fix1_recs[0], "sample_id": "R8_OPT1", "statistically_estimated_denominator_or_share": False},
+        {**fix1_recs[1], "sample_id": "R8_OPT2", "statistically_estimated_denominator_or_share": False},
+    ]
+    for nm, out in _eval_4paths(r8_1_opt_out).items():
+        assert out["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (nm, out)
+        assert out["tier6b_reason"] == "EXACT_FINITE_CFU_OPT_OUT_PROHIBITED", (nm, out)
+    # 90% reconciled sort losses without explicit excluded_or_lost_material_discarded_not_in_graft=True MUST HOLD:
+    r8_1_loss90 = [
+        _mk_frac("enriched_cd31_neg_cd144_neg", "R8_L90_E", k=0, N=30_000_000, w_i=0.9999, extra={"presort_total_input_cells": 30_000_000_000, "presort_reconciled_loss_cells": 27_000_000_000, "presort_fraction_cells": 2_999_700_000}),
+        _mk_frac("flow_through_and_excluded", "R8_L90_F", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10), extra={"presort_total_input_cells": 30_000_000_000, "presort_reconciled_loss_cells": 27_000_000_000, "presort_fraction_cells": 300_000}),
+    ]
+    for nm, out in _eval_4paths(r8_1_loss90).items():
+        assert out["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (nm, out)
+        assert out["tier6b_reason"] == "UNVERIFIED_DISPOSAL_OF_RECONCILED_SORT_LOSSES", (nm, out)
+
+    # R8-2a: Order-independent transitive alias dedup across ALL 6 permutations of [A, B, Link(A,B)] -> 15M HOLD on ALL 4 paths!
+    import itertools as _it_r8
+    rec_alias_a = _mk_frac("enriched_cd31_neg_cd144_neg", "R8_ALI_A", k=0, N=15_000_000, w_i=0.9999, extra={"untreated_cfu_control": {"untreated_sample_id": "R8_ALI_U", "untreated_cfu_colonies_k": 4000, "untreated_plated_cells_n": 10000}})
+    rec_alias_b = _mk_frac("enriched_cd31_neg_cd144_neg", "R8_ALI_B", k=0, N=15_000_000, w_i=0.9999, extra={"untreated_cfu_control": {"untreated_sample_id": "R8_ALI_U", "untreated_cfu_colonies_k": 4000, "untreated_plated_cells_n": 10000}})
+    rec_alias_link = _mk_frac("enriched_cd31_neg_cd144_neg", "R8_ALI_A", k=0, N=15_000_000, w_i=0.9999, extra={"source_sample_id": "R8_ALI_B", "untreated_cfu_control": {"untreated_sample_id": "R8_ALI_U", "untreated_cfu_colonies_k": 4000, "untreated_plated_cells_n": 10000}})
+    rec_alias_ft = _mk_frac("flow_through_and_excluded", "R8_ALI_FT", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10))
+    for perm_idx, perm_t in enumerate(_it_r8.permutations((rec_alias_a, rec_alias_b, rec_alias_link))):
+        res_perm = _eval_4paths([*perm_t, rec_alias_ft])
+        for nm, out in res_perm.items():
+            ev = out["tier6b_sorted_lot_evaluation"]
+            assert ev["N_by_fraction"]["enriched_cd31_neg_cd144_neg"] == 15_000_000, (perm_idx, nm, ev)
+            assert ev["disposition"] == "HOLD_TIER6B_INSUFFICIENT_DENOMINATOR", (perm_idx, nm, ev)
+            assert out["overall_status"] == "HOLD_TIER6B_INSUFFICIENT_DENOMINATOR", (perm_idx, nm, out)
+        assert res_perm["ledger"]["readiness_tier"] == "HOLD_FAILED_STAGE0_GATE", (perm_idx, res_perm["ledger"])
+
+    # R8-2b: Dual-location Tier 6B (clean top-level + nested k=1 in mol_obs) MUST FAIL_HARD_STOP on Direct, Ingest, AND Replay identically!
+    k1_hidden = _mk_frac("enriched_cd31_neg_cd144_neg", "R8_HIDDEN_K1", k=1, N=100_000, w_i=0.9999)
+    dual_doc = {
+        "scope": dict(base_scope_31),
+        "measurements": dict(base_meas_31),
+        "iip0026_molecular_observations": {**base_mol_31, "tier6b_sorted_lot_observations": [k1_hidden]},
+        "tier6b_sorted_lot_observations": list(fix1_recs),
+    }
+    dual_direct = wc_mod.evaluate_stage0_product_contract(
+        {**base_scope_31, **base_meas_31, **base_mol_31, "iip0026_molecular_observations": {"tier6b_sorted_lot_observations": [k1_hidden]}, "tier6b_sorted_lot_observations": list(fix1_recs)},
+        root=ROOT,
+    )
+    dual_ingest = ing_mod.ingest_stage0_research_or_wetlab_batch(json.dumps(dual_doc), root=ROOT)
+    dual_replay = ing_mod.replay_stage0_chronological_batches([{"utc_timestamp": "2026-11-20T01:00:00Z", "seq_index": 1, **dual_doc}], root=ROOT)
+    for nm_d, out_d in (("direct", dual_direct), ("ingest", dual_ingest), ("replay", dual_replay)):
+        assert out_d["overall_status"] == "FAIL_HARD_STOP", (nm_d, out_d)
+        assert out_d["hard_stop_precedence_winner"] == "FAIL_TIER6B_OUTGROWTH_DETECTED", (nm_d, out_d)
+
+    # R8-3: S11 Round-8 catches across ALL 4 paths (1/300 CP U95=1.57% > 1%, omitted attestations, KI/KI+KI/KO mismatch, reused RNAi control ID, arbitrary background_id, 103% implied ADCC):
+    r8_3_s11_cases = [
+        ("ciita_1_of_300_cp_u95_gt_1pct", {**s11_passing_panel, "obs_ciita_ko_allele_informative_reads_n": 300, "obs_ciita_ko_ex4_ex6_aberrant_skip_reads_k": 1, "obs_ciita_ko_ex4_ex6_aberrant_skip_pct": 0.333, "obs_ciita_ko_ex4_ex6_aberrant_skip_se": 0.01}, "HOLD_S11_INCONCLUSIVE_CIITA_EX4_EX6_SKIP_STRADDLES_1PCT"),
+        ("omitted_phasing_attestations", {k: v for k, v in s11_passing_panel.items() if k not in ("phasing_verified", "ciita_ki_allele_informative_transcript_recovery_verified", "ciita_ko_allele_informative_transcript_recovery_verified")}, "HOLD_S11_CIITA_BIALLELIC_PHASING_UNVERIFIED"),
+        ("omitted_cis_attestations", {k: v for k, v in s11_passing_panel.items() if k not in ("cis_verified", "ciita_cis_sentinels_socs1_dexi_clec16a_tost_verified")}, "HOLD_S11_16P13_CIS_SENTINELS_UNVERIFIED"),
+        ("omitted_wt_attestations", {k: v for k, v in s11_passing_panel.items() if k not in ("wt_inducibility_verified", "lineage_matched_wt_stage7_hla_dr_dp_dq_inducibility_verified")}, "HOLD_S11_WT_HLAII_INDUCIBILITY_UNVERIFIED"),
+        ("omitted_rnai_attestation", {k: v for k, v in s11_passing_panel.items() if k != "rnai_attribution_verified"}, "HOLD_S11_RNAI_ATTRIBUTION_UNVERIFIED"),
+        ("kiki_label_with_kiko_fields", {**s11_passing_panel, "ciita_locus2_genotype_copy_class": "KI/KI"}, "HOLD_S11_GENOTYPE_CLASS_ALLELE_FIELD_MISMATCH"),
+        ("reused_fictitious_rnai_ctrl_id", {**s11_passing_panel, "rnai_attribution_scramble_control_id": "FAKE_CTRL_SAME", "rnai_attribution_intronless_control_id": "FAKE_CTRL_SAME"}, "HOLD_S11_RNAI_ATTRIBUTION_REQUIRES_SAME_BACKGROUND_CARGO_LINKED_INTRONLESS_AND_SCRAMBLE_CONTROLS"),
+        ("paired_adcc_103pct_depleted_arm", {**s11_passing_panel, "obs_l2_v3_intact_serum_adcc_lysis_pct": 3.0, "obs_l2_v3_intact_serum_adcc_lysis_se": 0.2, "obs_l2_v3_igg_increment_adcc_lysis_pct": -100.0, "obs_l2_v3_igg_increment_adcc_lysis_se": 0.2}, "HOLD_S11_INVALID_SE_OR_OUT_OF_RANGE_PHYSIOLOGICAL_READOUT"),
+    ]
+    for r8_lbl, r8_rec, r8_exp in r8_3_s11_cases:
+        for nm, out in _eval_4paths(
+            l2_t6b_pass,
+            scope_override=l2_scope_cd200,
+            target_prov_override=l2_scope_cd200,
+            s11_record=r8_rec,
+        ).items():
+            assert out["s11_evaluation"]["status"] == r8_exp, (r8_lbl, nm, out)
+            assert out["overall_status"] == r8_exp, (r8_lbl, nm, out)
+    # Arbitrary background_id ("FAKE_BG") overriding registry background MUST HOLD with HOLD_S11_BACKGROUND_MISMATCH on all 4 paths:
+    fake_bg_scope = {**l2_scope_cd200, "background_id": "FAKE_BG"}
+    fake_bg_rec = {**s11_passing_panel, "rnai_attribution_scramble_background_id": "FAKE_BG", "rnai_attribution_intronless_background_id": "FAKE_BG"}
+    fake_bg_t6b = [{**r, "background_id": "FAKE_BG"} for r in l2_t6b_pass]
+    for nm, out in _eval_4paths(fake_bg_t6b, scope_override=fake_bg_scope, target_prov_override=fake_bg_scope, s11_record=fake_bg_rec).items():
+        assert out["s11_evaluation"]["status"] == "HOLD_S11_BACKGROUND_MISMATCH", (nm, out)
+        assert out["overall_status"] == "HOLD_S11_BACKGROUND_MISMATCH", (nm, out)
+
+    # R8-4a: TP53 VAF=5e-5, SE=1e-6 with duplex depth OMITTED -> IDENTICAL HARD_SAFETY_STOP_REJECTED on ALL 4 paths!
+    s9_5e5_no_depth_atom = wc_mod.AtomicObservation(
+        endpoint_id="obs_tp53_ppm1d_bcor_vaf",
+        scope_type="LOT_SCOPE",
+        scope_key=lot_k,
+        kind="CONTINUOUS_STUDENT_T",
+        value_or_k=5.0e-5,
+        se_or_n=1e-6,
+        sample_n=6,
+        campaign_id=CAMP_ID,
+        sample_unit_id="S9_5E5_NODEPTH",
+        controls={},
+    )
+    meas_5e5_nd = {k: v for k, v in base_meas_31.items() if k != "obs_tp53_ppm1d_bcor_duplex_depth"}
+    meas_5e5_nd["obs_tp53_ppm1d_bcor_vaf"] = 5.0e-5
+    meas_5e5_nd["obs_tp53_ppm1d_bcor_vaf_se"] = 1e-6
+    p1_5e5 = wc_mod.evaluate_stage0_product_contract({**base_scope_31, **meas_5e5_nd, **base_mol_31, "tier6b_sorted_lot_observations": list(fix1_recs)}, root=ROOT)
+    p2_5e5 = wc_mod.evaluate_iip0024_atomic_stage0_ledger([{"batch_id": "B_5E5", "atoms": mcb_atoms_base + dev_atoms_base + [s9_5e5_no_depth_atom] + [_to_atom(r) for r in fix1_recs]}], target_prov, target_campaign_id=CAMP_ID, root=ROOT)
+    p3_5e5 = ing_mod.ingest_stage0_research_or_wetlab_batch(json.dumps({"scope": dict(base_scope_31), "measurements": meas_5e5_nd, "iip0026_molecular_observations": dict(base_mol_31), "tier6b_sorted_lot_observations": list(fix1_recs)}), root=ROOT)
+    p4_5e5 = ing_mod.replay_stage0_chronological_batches([{"utc_timestamp": "2026-11-20T01:00:00Z", "seq_index": 1, "scope": dict(base_scope_31), "measurements": meas_5e5_nd, "iip0026_molecular_observations": dict(base_mol_31), "tier6b_sorted_lot_observations": list(fix1_recs)}], root=ROOT)
+    assert p1_5e5["overall_status"] == p3_5e5["overall_status"] == p4_5e5["overall_status"] == "HARD_SAFETY_STOP_REJECTED"
+    assert p2_5e5["readiness_tier"] == "HARD_SAFETY_STOP_REJECTED", p2_5e5
+
+    # R8-4b: Earlier S9 hard stop + later S11 18% lectin failure -> overall retains S9 precedence WHILE switch_decisions preserves latched S11 FAIL!
+    replay_s9_then_s11 = ing_mod.replay_stage0_chronological_batches(
+        [
+            {
+                "utc_timestamp": "2026-11-20T01:00:00Z",
+                "seq_index": 1,
+                "scope": {**base_scope_31, **l2_scope_cd200},
+                "measurements": {**base_meas_31, "obs_tp53_ppm1d_bcor_vaf": 2.5e-4, "obs_tp53_ppm1d_bcor_vaf_se": 1e-6},
+                "iip0026_molecular_observations": dict(base_mol_31),
+                "tier6b_sorted_lot_observations": list(l2_t6b_pass),
+                "iip0031_locus2_record": s11_passing_panel,
+            },
+            {
+                "utc_timestamp": "2026-11-20T02:00:00Z",
+                "seq_index": 2,
+                "scope": {**base_scope_31, **l2_scope_cd200},
+                "measurements": dict(base_meas_31),
+                "iip0031_locus2_record": panel_18pct_lectin,
+            },
+            {
+                "utc_timestamp": "2026-11-20T03:00:00Z",
+                "seq_index": 3,
+                "scope": {**base_scope_31, **l2_scope_cd200},
+                "measurements": dict(base_meas_31),
+                "iip0031_locus2_record": s11_passing_panel,
+            },
+        ],
+        root=ROOT,
+    )
+    assert replay_s9_then_s11["overall_status"] == "HARD_SAFETY_STOP_REJECTED"
+    assert replay_s9_then_s11["hard_stop_precedence_winner"] == "S9_HARD_SAFETY_STOP"
+    assert replay_s9_then_s11["s11_evaluation"]["status"] == "FAIL_S11_POST_CUFF_LECTIN_C4B2A_LYSIS_EXCEEDS_10PCT"
+    assert replay_s9_then_s11["switch_decisions"][wc_mod.RULE_S11_GATE_ID_IIP0031] == "FAIL_S11_POST_CUFF_LECTIN_C4B2A_LYSIS_EXCEEDS_10PCT"
+    assert replay_s9_then_s11["switch_decisions"][f"JSON_{wc_mod.RULE_S11_GATE_ID_IIP0031}"] == "FAIL_S11_POST_CUFF_LECTIN_C4B2A_LYSIS_EXCEEDS_10PCT"
+
+    # R8-5: Removing jaspar_pwms from Layer-2 reference MUST raise ValueError (never silently report 0 hits / empty CTCF!):
+    raw_ref_no_pwm = json.loads((ROOT / "data/raw/layer2_genomic_and_jaspar_reference.json").read_text(encoding="utf-8"))
+    raw_ref_no_pwm.pop("jaspar_pwms", None)
+    try:
+        l2_mod.build_locus2_ciita_modeb_comparators_v3_manifest(ref=raw_ref_no_pwm)
+        raise AssertionError("Expected ValueError when jaspar_pwms is missing")
+    except ValueError as exc_pwm:
+        assert "JASPAR" in str(exc_pwm) or "PWM" in str(exc_pwm), str(exc_pwm)
+
+    # --- ROUND-9 DIFFERENTIAL 4-PATH REPLAY REGRESSIONS (Tier 6B nested aliases & hybrid labels, S9 completeness & n=100 parity, S11 strict attribution & longitudinal/barrier/ADCC provenance) ---
+    # R9-1a: Conflicting outer vs nested controls['sample_unit_id'] MUST HOLD unqualified (T9), while shared nested aliquot_id deduplicates identically to 15M HOLD across ALL 4 paths!
+    r9_conflict_enr_1 = _mk_frac(
+        "enriched_cd31_neg_cd144_neg",
+        "R9_OUTER_A",
+        k=0,
+        N=15_000_000,
+        w_i=0.9999,
+        hpsc=(20, 20),
+        diff=(20, 20),
+        extra={
+            "sample_unit_id": "R9_OUTER_A",
+            "untreated_cfu_control": {"untreated_sample_id": "R9_SHARED_UNTR_CFU", "untreated_cfu_colonies_k": 4000, "untreated_plated_cells_n": 10000},
+            "controls": {"sample_id": "R9_OUTER_A", "sample_unit_id": "R9_SHARED_ALIQUOT"},
+        },
+    )
+    r9_alias_enr_1 = _mk_frac(
+        "enriched_cd31_neg_cd144_neg",
+        "R9_OUTER_A",
+        k=0,
+        N=15_000_000,
+        w_i=0.9999,
+        hpsc=(20, 20),
+        diff=(20, 20),
+        extra={
+            "sample_unit_id": "R9_OUTER_A",
+            "untreated_cfu_control": {"untreated_sample_id": "R9_SHARED_UNTR_CFU", "untreated_cfu_colonies_k": 4000, "untreated_plated_cells_n": 10000},
+            "controls": {"sample_id": "R9_OUTER_A", "aliquot_id": "R9_SHARED_ALIQUOT"},
+        },
+    )
+    r9_alias_enr_2 = _mk_frac(
+        "enriched_cd31_neg_cd144_neg",
+        "R9_SHARED_ALIQUOT",
+        k=0,
+        N=15_000_000,
+        w_i=0.9999,
+        hpsc=(20, 20),
+        diff=(20, 20),
+        extra={
+            "untreated_cfu_control": {"untreated_sample_id": "R9_SHARED_UNTR_CFU", "untreated_cfu_colonies_k": 4000, "untreated_plated_cells_n": 10000},
+        },
+    )
+    r9_ft = _mk_frac("flow_through_and_excluded", "R9_FT", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10))
+    for nm_c, out_c in _eval_4paths([r9_conflict_enr_1, r9_alias_enr_2, r9_ft]).items():
+        ev_c = out_c["tier6b_sorted_lot_evaluation"]
+        assert ev_c["disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (nm_c, ev_c)
+        assert "CONFLICTING_OUTER_AND_NESTED_IDENTITY" in str(ev_c["reason_code"]), (nm_c, ev_c)
+    for perm_r9 in ([r9_alias_enr_1, r9_alias_enr_2, r9_ft], [r9_alias_enr_2, r9_alias_enr_1, r9_ft]):
+        res_r9_al = _eval_4paths(perm_r9)
+        for nm, out in res_r9_al.items():
+            ev_al = out["tier6b_sorted_lot_evaluation"]
+            assert ev_al["disposition"] == "HOLD_TIER6B_INSUFFICIENT_DENOMINATOR", (nm, ev_al)
+            assert ev_al["N_by_fraction"]["enriched_cd31_neg_cd144_neg"] == 15_000_000, (nm, ev_al)
+            assert abs(ev_al["p_lot_U95"] - 4.2857727075e-7) < 1e-11, (nm, ev_al)
+
+    # R9-1b: Hybrid fraction label ("enriched_flow_through" + "secondary_enriched") MUST HOLD across ALL 4 paths!
+    r9_hybrid_roster = ("enriched_flow_through", "secondary_enriched")
+    r9_hybrid_recs = [
+        _mk_frac("enriched_flow_through", "R9_H1", k=0, N=30_000_000, w_i=0.9999, roster=r9_hybrid_roster),
+        _mk_frac("secondary_enriched", "R9_H2", k=0, N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10), roster=r9_hybrid_roster),
+    ]
+    for nm, out in _eval_4paths(r9_hybrid_recs).items():
+        assert out["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (nm, out)
+        assert out["tier6b_reason"] == "AMBIGUOUS_HYBRID_ENRICHED_FLOW_THROUGH_FRACTION_ID", (nm, out)
+
+    # R9-2a: Omitting core S9 lot observations MUST HOLD across ALL 4 paths (including atomic ledger — NEVER READY_FOR_ENCAPSULATION)!
+    p2_no_s9 = wc_mod.evaluate_iip0024_atomic_stage0_ledger(
+        [{"batch_id": "B_NOS9", "atoms": [_to_atom(r) for r in fix1_recs]}],
+        target_prov,
+        target_campaign_id=CAMP_ID,
+        root=ROOT,
+    )
+    assert p2_no_s9["readiness_tier"] == "HOLD_FAILED_STAGE0_GATE", p2_no_s9
+    assert p2_no_s9["overall_status"] == "HOLD_MISSING_CORE_S9_MOLECULAR_OBSERVATIONS", p2_no_s9
+    meas_no_tp53 = {k: v for k, v in base_meas_31.items() if k != "obs_tp53_ppm1d_bcor_vaf"}
+    p1_no_s9 = wc_mod.evaluate_stage0_product_contract(
+        {**base_scope_31, **meas_no_tp53, **base_mol_31, "tier6b_sorted_lot_observations": list(fix1_recs)},
+        root=ROOT,
+    )
+    assert p1_no_s9["overall_status"] == "HOLD_MISSING_CORE_S9_MOLECULAR_OBSERVATIONS", p1_no_s9
+
+    # R9-2b: Endpoint replicate count n=100 vs n=6 on synthetic VAF (vaf=2e-5, se=4.5e-5, depth=70000) MUST match across ALL 4 paths!
+    # At n=100: t95(99)=1.66039 -> 2e-5 + 1.66039*4.5e-5 = 9.47e-5 < 1e-4 (PASS); at n=6: t95(5)=2.01505 -> 1.107e-4 >= 1e-4 (HARD STOP)!
+    res_r9_n100 = _eval_4paths(
+        fix1_recs,
+        meas_override={"obs_tp53_ppm1d_bcor_vaf": 2.0e-5, "obs_tp53_ppm1d_bcor_vaf_se": 4.5e-5, "obs_tp53_ppm1d_bcor_vaf_n": 100},
+    )
+    assert res_r9_n100["direct"]["overall_status"] == "STAGE0_IIP0026_MOLECULAR_GUARDRAILS_CLEARED", res_r9_n100["direct"]
+    assert res_r9_n100["ingest"]["overall_status"] == "STAGE0_IIP0026_MOLECULAR_GUARDRAILS_CLEARED", res_r9_n100["ingest"]
+    assert res_r9_n100["replay"]["overall_status"] == "STAGE0_IIP0026_MOLECULAR_GUARDRAILS_CLEARED", res_r9_n100["replay"]
+    assert res_r9_n100["ledger"]["readiness_tier"] == "PROVISIONAL_PARTIAL_LOT_SCREENING_ONLY", res_r9_n100["ledger"]
+    res_r9_n6 = _eval_4paths(
+        fix1_recs,
+        meas_override={"obs_tp53_ppm1d_bcor_vaf": 2.0e-5, "obs_tp53_ppm1d_bcor_vaf_se": 4.5e-5, "obs_tp53_ppm1d_bcor_vaf_n": 6},
+    )
+    for nm, out in res_r9_n6.items():
+        ov_n6 = out["readiness_tier"] if nm == "ledger" else out["overall_status"]
+        assert ov_n6 == "HARD_SAFETY_STOP_REJECTED", (nm, out)
+
+    # R9-3a/b/c/d: Unregistered intronless control ID, KI/KO with KI/KI recovery attestations, conflicting outer vs nested sample_id,
+    # untimed CTCF ChIP, missing/identical GY-023 IgG-depleted specimens, and L2_V3_BARRIER_CHS4_250 linked 80-bp comparator!
+    r9_s11_cases = [
+        ("unregistered_intronless_ctrl_id", {**s11_passing_panel, "rnai_attribution_intronless_control_id": "UNREGISTERED_FAKE_CTRL_99"}, "HOLD_S11_RNAI_ATTRIBUTION_REQUIRES_SAME_BACKGROUND_CARGO_LINKED_INTRONLESS_AND_SCRAMBLE_CONTROLS"),
+        ("wrong_cargo_intronless_ctrl_id", {**s11_passing_panel, "rnai_attribution_intronless_control_id": "L2_V3_B2MKO_INTRONLESS_MANF_CTRL"}, "HOLD_S11_RNAI_ATTRIBUTION_REQUIRES_SAME_BACKGROUND_CARGO_LINKED_INTRONLESS_AND_SCRAMBLE_CONTROLS"),
+        ("kiko_with_only_kiki_recovery_attestations", {**{k: v for k, v in s11_passing_panel.items() if k not in ("ciita_ki_allele_informative_transcript_recovery_verified", "ciita_ko_allele_informative_transcript_recovery_verified")}, "ciita_ki_allele1_informative_transcript_recovery_verified": True, "ciita_ki_allele2_informative_transcript_recovery_verified": True}, "HOLD_S11_GENOTYPE_CLASS_ALLELE_FIELD_MISMATCH"),
+        ("missing_stage0_ctcf_chip_untimed_only", {**{k: v for k, v in s11_passing_panel.items() if not k.startswith("obs_l2_v3_stage0_chs4_ctcf_")}, "obs_l2_v3_chs4_ctcf_chip_fold_enrichment": 12.0, "obs_l2_v3_chs4_ctcf_chip_fold_enrichment_se": 1.0}, "HOLD_S11_MISSING_LONGITUDINAL_STAGE0_AND_STAGE7_METHYLATION_OR_CTCF_PANEL"),
+        ("missing_gy023_igg_depleted_arm", {k: v for k, v in s11_passing_panel.items() if not k.startswith("obs_l2_v3_igg_depleted_")}, "HOLD_S11_UNVERIFIED_PAIRED_GY023_ADCC_SPECIMENS"),
+        ("identical_gy023_intact_and_depleted_specimen_ids", {**s11_passing_panel, "obs_l2_v3_adcc_igg_depleted_specimen_id": "ADCC_INTACT_SPEC_01"}, "HOLD_S11_UNVERIFIED_PAIRED_GY023_ADCC_SPECIMENS"),
+    ]
+    for r9_lbl, r9_rec, r9_exp in r9_s11_cases:
+        for nm, out in _eval_4paths(
+            l2_t6b_pass,
+            scope_override=l2_scope_cd200,
+            target_prov_override=l2_scope_cd200,
+            s11_record=r9_rec,
+        ).items():
+            assert out["s11_evaluation"]["status"] == r9_exp, (r9_lbl, nm, out)
+            assert out["overall_status"] == r9_exp, (r9_lbl, nm, out)
+
+    # R9-3c: Conflicting outer sample_id / sample_unit_id vs nested sample_id MUST FAIL identically across ALL 4 paths!
+    for nm, out in _eval_4paths(
+        l2_t6b_pass,
+        scope_override={**l2_scope_cd200, "sample_id": "OUTER_S11_CONFLICT_ID"},
+        target_prov_override=l2_scope_cd200,
+        s11_record=s11_passing_panel,
+    ).items():
+        assert out["s11_evaluation"]["status"] == "FAIL_S11_NESTED_PROVENANCE_SCOPE_MISMATCH", (nm, out)
+        assert out["overall_status"] == "FAIL_S11_NESTED_PROVENANCE_SCOPE_MISMATCH", (nm, out)
+
+    # Linking the barrier measurement clears only its own missing-evidence reason.
+    bar250_def = by_id["ISLET1_A4_L2_V3_BARRIER_CHS4_250"]
+    bar250_sha = bar250_def["staged_locus2_modeb_donor_binding"]["locus2_donor_sha256"]
+    bar250_scope = {"product_variant_id": "ISLET1_A4_L2_V3_BARRIER_CHS4_250", "construct_sha256": bar250_sha, "background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL"}
+    bar250_t6b = [
+        _mk_frac("enriched_cd31_neg_cd144_neg", "B250_P1", product_variant_id="ISLET1_A4_L2_V3_BARRIER_CHS4_250", construct_sha256=bar250_sha, extra={"background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL"}),
+        _mk_frac("flow_through_and_excluded", "B250_P2", N=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10), product_variant_id="ISLET1_A4_L2_V3_BARRIER_CHS4_250", construct_sha256=bar250_sha, extra={"background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL"}),
+    ]
+    for nm, out in _eval_4paths(bar250_t6b, scope_override=bar250_scope, target_prov_override=bar250_scope, s11_record=s11_passing_panel).items():
+        assert out["s11_evaluation"]["status"] == "HOLD_S11_MISSING_LINKED_BARRIER_80BP_COMPARATOR_MEASUREMENT", (nm, out)
+    bar250_panel_linked = {
+        **s11_passing_panel,
+        "obs_l2_v3_barrier_matched_80bp_comparator_id": "L2_V3_CO_PRIMARY_CD200",
+        "obs_l2_v3_barrier_matched_80bp_comparator_sha256": co_cd200_sha,
+        "obs_l2_v3_barrier_matched_80bp_comparator_sample_id": "S11_LINKED_80BP_COMP_SPEC_01",
+        "obs_l2_v3_barrier_matched_80bp_stage7_eef1a1_cpg_methylation_pct": 4.5,
+        "obs_l2_v3_barrier_matched_80bp_stage7_eef1a1_cpg_methylation_se": 0.5,
+        "obs_l2_v3_barrier_matched_80bp_stage7_chs4_ctcf_chip_fold_enrichment": 11.2,
+        "obs_l2_v3_barrier_matched_80bp_stage7_chs4_ctcf_chip_fold_enrichment_se": 0.9,
+    }
+    for nm, out in _eval_4paths(bar250_t6b, scope_override=bar250_scope, target_prov_override=bar250_scope, s11_record=bar250_panel_linked).items():
+        assert out["execution_supported"] is False, (nm, out)
+        assert_only_unverified_controls(nm, out)
+
+    # Composite cHS4-250 disclosure classification:
+    chs4_ev = wc_mod.evaluate_locus2_ciita_modeb_challenger_v3_gate(
+        {"product_variant_id": "L2_V3_BARRIER_CHS4_250"},
+        root=ROOT,
+    )
+    assert chs4_ev["barrier_intervention_classification"] == "COMBINED_LENGTH_AND_SEQUENCE_CHANGE_250BP_PLUS_U78775_2_C79T_C80A"
+    assert chs4_ev["gate_pass"] is False and chs4_ev["status"] == "HOLD_S11_INCOMPLETE_EVIDENCE"
+
+    # Verify S8b preserved for TYK2 and S11 present in stage0_decision_tree_v1.json:
+    dt_doc = json.loads((ROOT / "data/protocols/stage0_decision_tree_v1.json").read_text(encoding="utf-8"))
+    smap = dt_doc["switch_id_to_contract_decision_key_map"]
+    assert smap["S8b"] == "S8b_TYK2_Inducible_Promoter_Epistasis_Gate_0E"
+    assert smap["S11"] == "S11_Locus2_CIITA_ModeB_Vascular_Complement_and_Efferocytosis_Gate"
+
+    # --- LAYER 2 MANIFEST & <= 1 mm >= 20 bp DISJOINT IR SCANNER ---
+    stem_a = "ACGTTGCATGCAACGTTGCA"
+    rc_map = str.maketrans("ACGT", "TGCA")
+    stem_b_exact = stem_a.translate(rc_map)[::-1]
+    stem_b_1mm = stem_b_exact[:9] + ("A" if stem_b_exact[9] != "A" else "C") + stem_b_exact[10:]
+    synth_seq = "GGGGGG" + stem_a + ("A" * 25) + stem_b_1mm + "CCCCCC"
+    synth_hits = l2_mod.scan_disjoint_inverted_repeats_with_mismatches(synth_seq, min_k=20, max_mismatches=1)
+    assert len(synth_hits) >= 1 and synth_hits[0]["mismatches"] == 1 and synth_hits[0]["length_bp"] >= 20
+
+    l2_atlas = json.loads((ROOT / "data/extracted/layer2_regulatory_and_perturbation_atlas.json").read_text(encoding="utf-8"))
+    l2_v3_man = l2_atlas["stage0_locus2_ciita_modeb_comparators_v3_manifest_iip_0031"]
+    assert l2_v3_man["proposal_id"] == "IIP-0031" and l2_v3_man["decision_id"] == "DEC-110"
+    assert l2_v3_man["provenance_computation_mode"] == "DYNAMICALLY_RECOMPUTED_END_TO_END_FROM_BUNDLED_FASTA_AND_REFERENCE_JSON"
+    assert l2_v3_man["mode_b_comparator_fasta_sha256"] == "25ffcb10e2bad77a4b34725c7eff0532990ebf7b80864cf7217d33f5ccbe5b6d"
+    assert l2_v3_man["repeat_summary"]["max_disjoint_dr_across_8_bp"] == 29
+    assert l2_v3_man["repeat_summary"]["overlapping_dr_syn5xisre_bp"] == 52
+    assert l2_v3_man["repeat_summary"]["overlapping_dr_cd274p_maz4_bp"] == 35
+    assert l2_v3_man["repeat_summary"]["max_dr_outside_canonical_tandems_bp"] == 16
+    assert l2_v3_man["repeat_summary"]["disjoint_ir_ge_16bp_total_across_8"] == 0
+    assert l2_v3_man["repeat_summary"]["disjoint_ir_ge_20bp_le_1mm_total_across_8"] == 0
+    assert l2_v3_man["intronic_mir_and_rnai_attribution_scope"]["candidate_seed_pairs_screened"] == 296
+    assert l2_v3_man["intronic_mir_and_rnai_attribution_scope"]["replayed_8mer_hits_total"] == 0
+    assert l2_v3_man["intronic_mir_and_rnai_attribution_scope"]["replayed_7mer_m8_hits_total"] == 0
+    assert len(l2_v3_man["barrier_chs4_250_disclosure"]["shared_80bp_diffs"]) == 2
+    assert [d["u78775_2_pos_1based"] for d in l2_v3_man["barrier_chs4_250_disclosure"]["shared_80bp_diffs"]] == [79, 80]
+    # Round-7 Layer-2 provenance completeness: exact 8 CIITA isoforms, spatial 6-PWM JASPAR audit, 10/10 backup guides vs 15 OI proxies + 22 UTRs, zero bare assert:
+    assert l2_v3_man["ciita_all_8_refseq_isoforms_audit"]["isoforms_audited_count"] == 8
+    jaspar_sp = l2_v3_man["descriptive_6pwm_jaspar_spatial_audit"]
+    assert jaspar_sp["wholly_non_promoter_6pwm_hits"] == 0
+    assert jaspar_sp["promoter_boundary_irf1_nt538_558_6pwm_hits_count"] == 3
+    assert jaspar_sp["promoter_boundary_irf1_nt538_558_1pwm_hits_count"] == 7
+    ctcf_hits = jaspar_sp["co_primary_cd200_ctcf_insulator_hits"]
+    assert abs(ctcf_hits["cHS4"]["p_adj_1pwm"] - 0.045041) < 1e-4
+    assert abs(ctcf_hits["cHS4"]["p_adj_6pwm"] - 0.270243) < 1e-4
+    assert abs(ctcf_hits["DM1"]["p_adj_1pwm"] - 0.011812) < 1e-4
+    assert abs(ctcf_hits["DM1"]["p_adj_6pwm"] - 0.070875) < 1e-4
+    bk_ledger = l2_v3_man["intronic_mir_and_rnai_attribution_scope"]["backup_guide_screen_ledger_15oi_22utr"]
+    assert len(bk_ledger) == 10
+    assert l2_v3_man["intronic_mir_and_rnai_attribution_scope"]["backup_guides_screened_against_all_15_openislet_proxies_and_22_utrs"] is True
+    assert all(g["openislet_15_proxies_8mer_or_7mer_m8_hits"] == 0 and g["human_22_refseq_3utrs_8mer_or_7mer_m8_hits"] == 0 for g in bk_ledger)
+    # Missing any 1 of the 8 CIITA isoforms MUST raise ValueError (never silently accept 7!):
+    raw_ref_copy = json.loads((ROOT / "data/raw/layer2_genomic_and_jaspar_reference.json").read_text(encoding="utf-8"))
+    raw_ref_copy["iip0031_locus2_modeb_v3_reference_bundle"]["ciita_refseq_isoforms_8"].pop("NM_001379334.1")
+    try:
+        l2_mod.build_locus2_ciita_modeb_comparators_v3_manifest(ref=raw_ref_copy)
+        raise AssertionError("Expected ValueError when only 7 CIITA isoforms are present")
+    except ValueError as exc_ciita:
+        assert "8" in str(exc_ciita), str(exc_ciita)
+
+    # Zero bare `assert` statements in Layer-2 and Layer-3 production scripts (survives python3 -O / test_master_molecular_validation.py):
+    import ast as _ast_mod
+    for prod_rel in ("scripts/run_layer2_perturbation_and_regulatory_plane.py", "scripts/run_layer3_structural_binder_plane.py"):
+        prod_tree = _ast_mod.parse((ROOT / prod_rel).read_text(encoding="utf-8"))
+        assert not [n for n in _ast_mod.walk(prod_tree) if isinstance(n, _ast_mod.Assert)], prod_rel
+
+    # --- LAYER 3 STRUCTURAL PROVENANCE (PDB 2WII, 5O32, Val62) ---
+    l3_atlas = json.loads((ROOT / "data/extracted/layer3_structural_verification_atlas.json").read_text(encoding="utf-8"))
+    l3_prov = l3_atlas["locus2_cfh_stp_gpi_structural_provenance_iip_0031"]
+    assert l3_prov["proposal_id"] == "IIP-0031" and l3_prov["decision_id"] == "DEC-110"
+    assert l3_prov["coordinate_computation_mode"] == "DYNAMICALLY_RECOMPUTED_FROM_BUNDLED_PDB_SNAPSHOTS_ON_DISK"
+    assert l3_prov["pdb_2wii"]["cfh_c3b_heavy_atom_pairs_le_4p5A"] == 475
+    assert l3_prov["pdb_2wii"]["post_glu264_deposited_coordinate_audit"]["native_residue_265_geometry_claimed"] is False
+    assert l3_prov["pdb_2wii"]["post_glu264_deposited_coordinate_audit"]["exit_vector_from_residue_265_claimed"] is False
+    assert l3_prov["pdb_5o32"]["asu_copy_1"]["last_cfh_residue_contacting_factor_i_le_4p5A"] == 197
+    assert l3_prov["pdb_5o32"]["asu_copy_2"]["last_cfh_residue_contacting_factor_i_le_4p5A"] == 197
+    assert l3_prov["pdb_2wii"]["engineered_v3_allotype"] == "Val62 (canonical UniProt P08603)"
+    assert l3_prov["val62_vs_ile62_swissprot_census"]["record_provenance_label"] == "archived_uniprot_2026_04_descriptive_record"
+    assert l3_prov["val62_vs_ile62_swissprot_census"]["recomputed_from_bundled_disk_inputs"] is False
+
+    # --- GY-025 (Provisional Stage-0 Guardrail) & DEC-110 ---
+    gy_doc = json.loads((ROOT / "data/graveyard/idea_graveyard_v0.5.json").read_text(encoding="utf-8"))
+    og_list = gy_doc["off_grid_molecular_dead_end_guardrails"]["guardrails"]
+    assert len(gy_doc["graveyard_entries"]) == 10 and len(og_list) == 15
+    gy25 = [g for g in og_list if g["graveyard_card_id"] == "GY-025"]
+    assert len(gy25) == 1 and gy25[0]["guardrail_id"].startswith("OFFGRID_GUARD_015_") and gy25[0]["contribution_id"] == "IIP-0031" and gy25[0]["severity_level"] == "BLOCK"
+    assert gy25[0]["curation_status"] == "provisional_stage0_computational_guardrail"
+    assert gy25[0]["status"].startswith("PROVISIONAL_STAGE0_GUARDRAIL_")
+    assert "permanently barred" not in gy25[0]["summary"].lower()
+    assert "DEC-110" in (ROOT / "ISLET-1-BLUEPRINT.md").read_text(encoding="utf-8")
+    pdl_path = ROOT / "docs/PROJECT-DECISIONS-LOG.md"
+    if pdl_path.exists():
+        assert "DEC-110" in pdl_path.read_text(encoding="utf-8")
+
+    # --- LAYER 1 2,160/2,160 & OQ-016 INVARIANCE ---
+    pareto_path = ROOT / "data/extracted/islet1_combinatorial_pareto_and_ladder_v0.8.0.json"
+    assert hashlib.sha256(pareto_path.read_bytes()).hexdigest() == "591ddeb9a706c0bc95fc509765b512aadad8a403287a796e63dd52e7db548575"
+    l1_pareto = json.loads(pareto_path.read_text(encoding="utf-8"))
+    assert len(l1_pareto["evaluated_stacks"]) == 2160
+    rk_mod = _load_mod("rk_iip0031_55", ROOT / "scripts/rank_islet1_stacks.py")
+    oq16 = rk_mod._build_odds_composition_and_profile_scope_audit_iip_0003()
+    assert oq16["open_question_id"] == "OQ-016"
+    assert hashlib.sha256(json.dumps(oq16, sort_keys=True).encode("utf-8")).hexdigest() == "9ea7e8be4ee7e6a368d4fa3c3cc6385c2bbeadb88c4e9f37e4407a4a77c906a7"
+
+
+S9_TEST_ENDPOINTS = {
+    "obs_icasp9_log10_kill": ("obs_icasp9_log10_kill_se", None),
+    "obs_tp53_ppm1d_bcor_vaf": ("obs_tp53_ppm1d_bcor_vaf_se", "obs_tp53_ppm1d_bcor_duplex_depth"),
+    "obs_castseq_translocation_freq": ("obs_castseq_translocation_se", "obs_castseq_duplex_or_amplicon_depth"),
+}
+
+
+def s9_incomplete_lot_results(product_id, measurements, atom_overrides=None):
+    """Evaluate safety data in a lot that lacks the independent evidence needed for clearance."""
+    from scripts import ingest_wetlab_results as ingest
+    from scripts import wetlab_contract as contract
+
+    scope = {
+        "product_variant_id": product_id,
+        "construct_sha256": "7" * 64,
+        "donor_seedline_id": "SEED-S9",
+        "mcb_id": "MCB-S9",
+        "lot_id": "LOT-S9",
+        "campaign_id": "CAMPAIGN-S9",
+        "device_assembly_id": "DEVICE-S9",
+        "physical_route_id": "SUPRAFASCIAL_350UM_CAO2_CATALASE_POUCH",
+    }
+    lot_key = contract.LotScopeKey(
+        product_id, scope["construct_sha256"], scope["donor_seedline_id"], scope["mcb_id"], scope["lot_id"]
+    )
+    atoms = []
+    for endpoint, (se_key, depth_key) in S9_TEST_ENDPOINTS.items():
+        fields = {
+            "kind": "CONTINUOUS_STUDENT_T",
+            "value_or_k": measurements[endpoint],
+            "se_or_n": measurements[se_key],
+            "sample_n": measurements.get(endpoint + "_n", 6),
+            "controls": {depth_key: measurements[depth_key]} if depth_key in measurements else {},
+        }
+        fields.update((atom_overrides or {}).get(endpoint, {}))
+        atoms.append(contract.AtomicObservation(
+            endpoint_id=endpoint, scope_type="LOT_SCOPE", scope_key=lot_key,
+            campaign_id=scope["campaign_id"], sample_unit_id=endpoint, **fields,
+        ))
+    molecular = {"bound_c1_c5_pair_sha256": contract.DESIGN_B_C1_C5_PAIR_SHA256} if product_id == "ISLET1_B2_5LOCUS_BASE" else {}
+    batch = {"scope": scope, "measurements": measurements, "iip0026_molecular_observations": molecular}
+    return {
+        "direct": contract.evaluate_stage0_product_contract({**scope, **measurements, **molecular}),
+        "ledger": contract.evaluate_iip0024_atomic_stage0_ledger(
+            [{"atoms": atoms}], scope, target_campaign_id=scope["campaign_id"]
+        ),
+        "json": ingest.ingest_stage0_research_or_wetlab_batch(json.dumps(batch)),
+        "replay": ingest.replay_stage0_chronological_batches([{"seq_index": 1, **batch}]),
+    }
+
+
+@pytest.fixture
+def s9_measurements():
+    return {
+        "obs_icasp9_log10_kill": 4.8,
+        "obs_icasp9_log10_kill_se": 0.12,
+        "obs_tp53_ppm1d_bcor_vaf": 0.0,
+        "obs_tp53_ppm1d_bcor_vaf_se": 1e-6,
+        "obs_tp53_ppm1d_bcor_duplex_depth": 70_000,
+        "obs_castseq_translocation_freq": 0.0,
+        "obs_castseq_translocation_se": 1e-6,
+        "obs_castseq_duplex_or_amplicon_depth": 70_000,
+        "obs_mcb_clonogenic_survivor_count_k": 0,
+        "obs_mcb_effective_clonogenic_trials": 300_000_000,
+    }
+
+
+@pytest.mark.parametrize("product_id", ["ISLET1_A4_ARM1B", "ISLET1_B2_5LOCUS_BASE"])
+@pytest.mark.parametrize("depth_key", ["obs_tp53_ppm1d_bcor_duplex_depth", "obs_castseq_duplex_or_amplicon_depth"])
+@pytest.mark.parametrize("depth", [None, 60_000, 62_957, 62_958])
+def test_s9_input_integrity_across_entry_paths(s9_measurements, product_id, depth_key, depth):
+    if depth is None:
+        del s9_measurements[depth_key]
+    else:
+        s9_measurements[depth_key] = depth
+    for path, result in s9_incomplete_lot_results(product_id, s9_measurements).items():
+        reasons = result["holds"] if path == "ledger" else result["iip0026_reasons"]
+        assert result["overall_status"].startswith("HOLD_"), (path, reasons)
+        depth_hold = any("DUPLEX" in reason and "62958" in reason for reason in reasons)
+        if depth is None:
+            assert any(
+                reason.startswith(("HOLD_MISSING_CORE_S9_MOLECULAR_OBSERVATIONS", "HOLD_S9_MISSING_OR_INVALID_DUPLEX_DEPTH"))
+                for reason in reasons
+            ), (path, reasons)
+        else:
+            assert depth_hold == (depth < 62_958), (path, reasons)
+
+
+@pytest.mark.parametrize("endpoint", S9_TEST_ENDPOINTS)
+@pytest.mark.parametrize(("kind", "value", "count"), [
+    ("METADATA_CONTROL", True, None),
+    ("SCALAR_EXACT", 1, None),
+    ("EXACT_INTEGER_COUNT", 0, 70_000),
+    ("STRUCTURED_PANEL", {}, None),
+])
+def test_s9_input_integrity_wrong_kind(s9_measurements, endpoint, kind, value, count):
+    # Scalar transports carry a Boolean in the numeric field. Ledger represents
+    # the equivalent failure as a legal atom kind for the wrong evidence type.
+    s9_measurements[endpoint] = True
+    overrides = {endpoint: {"kind": kind, "value_or_k": value, "se_or_n": count, "sample_n": None}}
+    for path, result in s9_incomplete_lot_results("ISLET1_A4_ARM1B", s9_measurements, overrides).items():
+        assert result["overall_status"].startswith("HOLD_"), path
+        if path == "ledger":
+            assert any("KIND" in reason and endpoint in reason for reason in result["holds"]), result["holds"]
+        else:
+            assert "HOLD_MISSING_CORE_S9_MOLECULAR_OBSERVATIONS" in result["iip0026_reasons"], path
+
+
+@pytest.mark.parametrize("endpoint", S9_TEST_ENDPOINTS)
+@pytest.mark.parametrize("n", [6, 100])
+def test_s9_input_integrity_replicate_bounds(s9_measurements, endpoint, n):
+    se_key, _depth_key = S9_TEST_ENDPOINTS[endpoint]
+    s9_measurements[endpoint], s9_measurements[se_key] = (
+        (4.18, 0.10) if endpoint == "obs_icasp9_log10_kill" else (2e-5, 4.5e-5)
+    )
+    s9_measurements[endpoint + "_n"] = n
+    for path, result in s9_incomplete_lot_results("ISLET1_A4_ARM1B", s9_measurements).items():
+        if n == 6:
+            assert result["hard_stop_precedence_winner"] == "S9_HARD_SAFETY_STOP", path
+            assert result["overall_status"] == "HARD_SAFETY_STOP_REJECTED", path
+        else:
+            assert result["hard_stop_precedence_winner"] is None, path
+            assert result["overall_status"].startswith("HOLD_"), path
+
+
+@pytest.mark.parametrize("endpoint", S9_TEST_ENDPOINTS)
+def test_s9_input_integrity_replay_replacement_cannot_borrow_assay_fields(s9_measurements, endpoint):
+    from scripts import ingest_wetlab_results as ingest
+
+    se_key, depth_key = S9_TEST_ENDPOINTS[endpoint]
+    scope = {"product_variant_id": "ISLET1_A4_ARM1B", "lot_id": "LOT-S9", "campaign_id": "CAMPAIGN-S9"}
+    replacement = {endpoint: s9_measurements[endpoint]}
+    if depth_key is not None:
+        replacement[se_key] = s9_measurements[se_key]
+    result = ingest.replay_stage0_chronological_batches([
+        {"scope": scope, "seq_index": 1, "measurements": s9_measurements},
+        {"scope": scope, "seq_index": 2, "measurements": replacement},
+    ])
+    assert "HOLD_MISSING_CORE_S9_MOLECULAR_OBSERVATIONS" in result["iip0026_reasons"]
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+def test_iip0031_binomial_confidence_limits_preserve_probability_tails(monkeypatch):
+    from math import comb, isclose
+    from scripts import wetlab_contract as contract
+
+    lower = contract.clopper_pearson_lower95_independent
+    upper = contract.clopper_pearson_upper95_independent
+    for n in (5, 13, 29):
+        for k in range(n + 1):
+            for alpha in (0.005, 0.05, 0.75):
+                p_lo, p_hi = lower(k, n, alpha), upper(k, n, alpha)
+                if k:
+                    right = sum(comb(n, i) * p_lo ** i * (1-p_lo) ** (n-i) for i in range(k, n+1))
+                    assert isclose(right, alpha, rel_tol=3e-12)
+                else:
+                    assert p_lo == 0
+                if k != n:
+                    left = sum(comb(n, i) * p_hi ** i * (1-p_hi) ** (n-i) for i in range(k+1))
+                    assert isclose(left, alpha, rel_tol=3e-12)
+                else:
+                    assert p_hi == 1
+
+    # Independently evaluated with SciPy's inverse regularized beta functions.
+    assert abs(lower(500_000_000, 1_000_000_000, 0.05/6) - 0.49996214735588584) < 1e-13
+    assert abs(upper(500_000_000, 1_000_000_000, 0.05/6) - 0.5000378526441142) < 1e-13
+    assert isclose(lower(1, 1_000_000_000, 1e-15), 1e-24, rel_tol=1e-14)
+    assert 0 < lower(2, 10, 1e-150) < 1e-74
+    for limit in (lower, upper):
+        for k, n in ((True, 2), (1, False), (0, 0), (1.0, 4), (-1, 5), (8, 7)):
+            with pytest.raises(ValueError):
+                limit(k, n)
+        for k in (0, 1, 3):
+            for alpha in (True, False, '0.05', None, float('nan'), float('inf'), 0, 1):
+                with pytest.raises(ValueError):
+                    limit(k, 3, alpha)
+    assert lower(2, 2**60) == 0 and upper(2, 2**60) == 1
+
+    # Force a fresh inversion to exhaust its numeric solver before either bracket moves.
+    def failed_cf(*args):
+        raise ArithmeticError('unresolved tail')
+
+    contract._cp_interior_limit.cache_clear()
+    monkeypatch.setattr(contract, '_betacf_iip0024', failed_cf)
+    try:
+        assert lower(3, 11) == 0 and upper(3, 11) == 1
+    finally:
+        contract._cp_interior_limit.cache_clear()
+
+
+def test_56_iip0031_four_path_nested_flat_poisson_and_identity_parity() -> None:
+    """Four-path conformance regressions for nested Tier 6B containers, flat replay replacements, exact Poisson boundaries, negated fraction labels, and S11 campaign conflicts."""
+    import json
+    from scripts import ingest_wetlab_results as ing_mod
+    from scripts import product_contract as pc_mod
+    from scripts import wetlab_contract as wc_mod
+
+    ROOT = Path(__file__).resolve().parent.parent
+    prods = {p["product_variant_id"]: p for p in pc_mod.load_product_contracts(ROOT)["products"]}
+    pvid_a = "ISLET1_A4_ARM1B"
+    pvid_l2 = "ISLET1_A4_L2_V3_CO_PRIMARY_CD200"
+    sha_a = "a" * 64
+    sha_l2 = prods[pvid_l2]["staged_locus2_modeb_donor_binding"]["locus2_donor_sha256"]
+    seed_id, mcb_id, lot_id, camp_id = "SEED_R11", "MCB_R11", "LOT_R11", "CAMP_R11"
+    dev_id, route_id = "DEV_R11", "SUPRAFASCIAL_350UM_CAO2_CATALASE_POUCH"
+
+    def _mk_t6(fid: str, sid: str, *, k: int = 0, n: int = 30_000_000, w_i: float = 0.9999,
+               roster: list[str] | None = None, tot_cells: int = 3_000_000_000, frac_cells: int | None = None,
+               hpsc: list[int] | None = None, diff: list[int] | None = None) -> dict:
+        r_use = roster if roster is not None else ["enriched_cd31_neg_cd144_neg", "flow_through_and_excluded"]
+        fc = frac_cells if frac_cells is not None else (2_999_700_000 if fid == r_use[0] else 300_000)
+        return {
+            "endpoint_id": "lot_tier6b_sorted_prolif_clonogenic_escape",
+            "scope_type": "LOT_SCOPE",
+            "kind": "EXACT_INTEGER_COUNT",
+            "timepoint": "STAGE7_PRE_ASSEMBLY",
+            "assay_version": "TIER6B_SORTED_LOT_V1",
+            "unit": "clonogenic_opportunities",
+            "product_variant_id": pvid_a,
+            "construct_sha256": sha_a,
+            "donor_seedline_id": seed_id,
+            "mcb_id": mcb_id,
+            "lot_id": lot_id,
+            "campaign_id": camp_id,
+            "fraction_id": fid,
+            "declared_fraction_roster": list(r_use),
+            "sample_id": sid,
+            "k": k,
+            "N": n,
+            "w_i": w_i,
+            "hpsc_calibrant": list(hpsc or [20, 20]),
+            "edited_differentiated_calibrant": list(diff or [10, 10]),
+            "presort_lineage_panel": "CD31_NEG_CD144_NEG_ENDOCRINE_PRE_ASSEMBLY",
+            "clonogenic_risk_unit": "SORTED_SINGLE_CELL_EQUIVALENT_CLONOGENIC_OPPORTUNITY",
+            "endogenous_denominator_verified": True,
+            "endogenous_denominator_basis": "MATCHED_UNTREATED_CLONOGENIC_CONTROL",
+            "untreated_cfu_control": {
+                "untreated_sample_id": f"{sid}_UNTR",
+                "untreated_cfu_colonies_k": 4000,
+                "untreated_plated_cells_n": 10000,
+            },
+            "presort_mass_balance_reconciled": True,
+            "unreconciled_loss_fraction": 0.0,
+            "presort_total_input_cells": tot_cells,
+            "presort_reconciled_loss_cells": 0,
+            "presort_fraction_cells": fc,
+            "plated_treated_cells_n": int((n * 8 + 2) // 3),
+        }
+
+    clean_t6 = [
+        _mk_t6("enriched_cd31_neg_cd144_neg", "ENR_1"),
+        _mk_t6("flow_through_and_excluded", "FT_1", n=100_000, w_i=0.0001, hpsc=[10, 10], diff=[10, 10]),
+    ]
+    base_scope = {
+        "product_variant_id": pvid_a, "construct_sha256": sha_a,
+        "donor_seedline_id": seed_id, "mcb_id": mcb_id, "lot_id": lot_id, "campaign_id": camp_id,
+    }
+    base_meas = {
+        "obs_stage7_yield_ratio": 0.86, "obs_stage7_yield_se": 0.02,
+        "obs_cd47_fold": 4.2, "obs_cd47_se": 0.15,
+        "obs_serpinb9_log10_kass": 6.5, "obs_serpinb9_log10_kass_se": 0.05,
+        "obs_icasp9_log10_kill": 4.8, "obs_icasp9_log10_kill_se": 0.10,
+        "obs_pouch_min_po2_mmhg": 24.0, "obs_pouch_min_po2_se": 1.0,
+        "obs_pouch_max_h2o2_uM": 1.8, "obs_pouch_max_h2o2_se": 0.2,
+        "obs_pouch_max_ph": 7.30, "obs_pouch_max_ph_se": 0.02,
+        "obs_ifng_hla_dr_dq_negative_pct": 99.8, "obs_ifng_hla_dr_dq_negative_se": 0.05,
+        "obs_cd47_hour0_molecules": 180000.0, "obs_cd47_hour0_molecules_se": 5000.0,
+        "obs_hlae_hour0_molecules": 45000.0, "obs_hlae_hour0_molecules_se": 1500.0,
+        "obs_tp53_ppm1d_bcor_vaf": 0.0, "obs_tp53_ppm1d_bcor_vaf_se": 1e-6,
+        "obs_tp53_ppm1d_bcor_duplex_depth": 70000, "obs_tp53_ppm1d_bcor_mutant_molecules_k": 0,
+        "obs_castseq_translocation_freq": 0.0, "obs_castseq_translocation_se": 1e-6,
+        "obs_castseq_duplex_or_amplicon_depth": 70000, "obs_castseq_mutant_junctions_k": 0,
+        "obs_mcb_clonogenic_survivor_count_k": 0,
+        "obs_mcb_effective_clonogenic_trials": 350_000_000,
+        "obs_chop_coincidence_fold": 1.1, "obs_chop_coincidence_se": 0.05,
+        "obs_hc10_surface_fold_wt": 1.05, "obs_hc10_surface_fold_se": 0.05,
+        "obs_post_edit_segmented_baf_chr19q": 0.50,
+        "obs_post_edit_segmented_baf_chr11p15": 0.50,
+    }
+    base_mol = {
+        "donor_seed_gnomad_target_site_wgs_verified": True,
+        "post_edit_reciprocal_mosaic_sv_or_clonal_zygosity_verified": True,
+    }
+    lot_k = wc_mod.LotScopeKey(pvid_a, sha_a, seed_id, mcb_id, lot_id)
+    target_prov = {**base_scope, "device_assembly_id": dev_id, "physical_route_id": route_id}
+    s9_atoms = [
+        wc_mod.AtomicObservation(endpoint_id="obs_icasp9_log10_kill", scope_type="LOT_SCOPE", scope_key=lot_k,
+                                 kind="CONTINUOUS_STUDENT_T", value_or_k=4.8, se_or_n=0.10, sample_n=6,
+                                 campaign_id=camp_id, sample_unit_id="S9_IC9"),
+        wc_mod.AtomicObservation(endpoint_id="obs_tp53_ppm1d_bcor_vaf", scope_type="LOT_SCOPE", scope_key=lot_k,
+                                 kind="CONTINUOUS_STUDENT_T", value_or_k=0.0, se_or_n=1e-6, sample_n=6,
+                                 campaign_id=camp_id, sample_unit_id="S9_VAF",
+                                 controls={"duplex_depth": 70000, "obs_tp53_ppm1d_bcor_mutant_molecules_k": 0}),
+        wc_mod.AtomicObservation(endpoint_id="obs_castseq_translocation_freq", scope_type="LOT_SCOPE", scope_key=lot_k,
+                                 kind="CONTINUOUS_STUDENT_T", value_or_k=0.0, se_or_n=1e-6, sample_n=6,
+                                 campaign_id=camp_id, sample_unit_id="S9_CAST",
+                                 controls={"duplex_depth": 70000, "obs_castseq_mutant_junctions_k": 0}),
+    ]
+
+    # 1. Atomic Ledger MUST inspect nested measurements["tier6b_sorted_lot_observations"] identically to Direct/Ingest/Replay:
+    pos_nested = _mk_t6("enriched_cd31_neg_cd144_neg", "ENR_1", k=1)
+    conf_tot_nested = _mk_t6("enriched_cd31_neg_cd144_neg", "ENR_1", tot_cells=3_500_000_000)
+    for container_key in ("measurements", "iip0026_molecular_observations"):
+        l_pos = wc_mod.evaluate_iip0024_atomic_stage0_ledger(
+            [{"batch_id": "B1", "atoms": list(s9_atoms), "tier6b_sorted_lot_observations": list(clean_t6),
+              container_key: {"tier6b_sorted_lot_observations": [pos_nested]}}],
+            target_prov, target_campaign_id=camp_id, root=ROOT,
+        )
+        assert l_pos["overall_status"] == "FAIL_HARD_STOP", (container_key, l_pos)
+        assert l_pos["tier6b_reason"] == "FAIL_TIER6B_OUTGROWTH_DETECTED", (container_key, l_pos)
+
+        l_conf = wc_mod.evaluate_iip0024_atomic_stage0_ledger(
+            [{"batch_id": "B1", "atoms": list(s9_atoms), "tier6b_sorted_lot_observations": list(clean_t6),
+              container_key: {"tier6b_sorted_lot_observations": [conf_tot_nested]}}],
+            target_prov, target_campaign_id=camp_id, root=ROOT,
+        )
+        assert l_conf["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (container_key, l_conf)
+        assert l_conf["overall_status"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (container_key, l_conf)
+
+    # 2. Chronological Replay MUST process flat top-level obs_* S9 replacements identically to nested measurements:
+    rp_flat_adverse = ing_mod.replay_stage0_chronological_batches([
+        {"utc_timestamp": "2026-11-20T01:00:00Z", "seq_index": 0, "scope": dict(base_scope),
+         "measurements": dict(base_meas), "iip0026_molecular_observations": dict(base_mol),
+         "tier6b_sorted_lot_observations": list(clean_t6)},
+        {"utc_timestamp": "2026-11-20T02:00:00Z", "seq_index": 1, "scope": dict(base_scope),
+         "obs_tp53_ppm1d_bcor_vaf": 2e-4, "obs_tp53_ppm1d_bcor_vaf_se": 1e-6,
+         "obs_tp53_ppm1d_bcor_duplex_depth": 70000, "obs_tp53_ppm1d_bcor_mutant_molecules_k": 14},
+    ], root=ROOT)
+    assert rp_flat_adverse["overall_status"] == "HARD_SAFETY_STOP_REJECTED", rp_flat_adverse
+    assert rp_flat_adverse["hard_stop_precedence_winner"] == "S9_HARD_SAFETY_STOP", rp_flat_adverse
+
+    # Flat adverse replacement followed by clean structured batch MUST stay latched:
+    rp_flat_then_clean = ing_mod.replay_stage0_chronological_batches([
+        {"utc_timestamp": "2026-11-20T01:00:00Z", "seq_index": 0, "scope": dict(base_scope),
+         "measurements": dict(base_meas), "iip0026_molecular_observations": dict(base_mol),
+         "tier6b_sorted_lot_observations": list(clean_t6)},
+        {"utc_timestamp": "2026-11-20T02:00:00Z", "seq_index": 1, "scope": dict(base_scope),
+         "obs_tp53_ppm1d_bcor_vaf": 2e-4, "obs_tp53_ppm1d_bcor_vaf_se": 1e-6,
+         "obs_tp53_ppm1d_bcor_duplex_depth": 70000, "obs_tp53_ppm1d_bcor_mutant_molecules_k": 14},
+        {"utc_timestamp": "2026-11-20T03:00:00Z", "seq_index": 2, "scope": dict(base_scope),
+         "measurements": dict(base_meas)},
+    ], root=ROOT)
+    assert rp_flat_then_clean["overall_status"] == "HARD_SAFETY_STOP_REJECTED", rp_flat_then_clean
+
+    # 3. Exact Poisson upper bound boundary at k=16, n=243,000 MUST exceed 1e-4 and hard-stop on ALL 4 paths:
+    u95_16 = wc_mod._poisson_exact_upper95_rate(16, 243_000)
+    assert abs(u95_16 - 1.000048711261e-4) < 1e-10 and u95_16 > 1.0e-4, u95_16
+    meas_16 = {
+        **base_meas,
+        "obs_tp53_ppm1d_bcor_vaf": 16.0 / 243_000.0,
+        "obs_tp53_ppm1d_bcor_vaf_se": 1e-6,
+        "obs_tp53_ppm1d_bcor_duplex_depth": 243_000,
+        "obs_tp53_ppm1d_bcor_mutant_molecules_k": 16,
+    }
+    d_16 = wc_mod.evaluate_stage0_product_contract({**base_scope, **meas_16, **base_mol, "tier6b_sorted_lot_observations": list(clean_t6)}, root=ROOT)
+    i_16 = ing_mod.ingest_stage0_research_or_wetlab_batch(json.dumps({"scope": base_scope, "measurements": meas_16, "iip0026_molecular_observations": base_mol, "tier6b_sorted_lot_observations": clean_t6}), root=ROOT)
+    r_16 = ing_mod.replay_stage0_chronological_batches([{"utc_timestamp": "2026-11-20T01:00:00Z", "seq_index": 0, "scope": base_scope, "measurements": meas_16, "iip0026_molecular_observations": base_mol, "tier6b_sorted_lot_observations": clean_t6}], root=ROOT)
+    s9_atoms_16 = [
+        s9_atoms[0],
+        wc_mod.AtomicObservation(endpoint_id="obs_tp53_ppm1d_bcor_vaf", scope_type="LOT_SCOPE", scope_key=lot_k,
+                                 kind="CONTINUOUS_STUDENT_T", value_or_k=16.0 / 243_000.0, se_or_n=1e-6, sample_n=6,
+                                 campaign_id=camp_id, sample_unit_id="S9_VAF16",
+                                 controls={"duplex_depth": 243_000, "obs_tp53_ppm1d_bcor_mutant_molecules_k": 16}),
+        s9_atoms[2],
+    ]
+    l_16 = wc_mod.evaluate_iip0024_atomic_stage0_ledger([{"batch_id": "B1", "atoms": s9_atoms_16, "tier6b_sorted_lot_observations": list(clean_t6)}], target_prov, target_campaign_id=camp_id, root=ROOT)
+    for nm, out in (("direct", d_16), ("ingest", i_16), ("replay", r_16), ("ledger", l_16)):
+        assert out["overall_status"] == "HARD_SAFETY_STOP_REJECTED", (nm, out)
+
+    # 4a. Negated Tier 6B fraction labels MUST be rejected on ALL 4 paths:
+    for bad_enr, bad_ft in (
+        ("not_enriched", "not_flow_through"),
+        ("non_enriched", "flow_through"),
+        ("unenriched", "flow_through"),
+        ("enriched_neg", "flow_through"),
+        ("enriched", "no_flow_through"),
+    ):
+        neg_t6 = [
+            _mk_t6(bad_enr, "NEG_E", roster=[bad_enr, bad_ft]),
+            _mk_t6(bad_ft, "NEG_F", n=100_000, w_i=0.0001, roster=[bad_enr, bad_ft], hpsc=[10, 10], diff=[10, 10]),
+        ]
+        ev_neg = wc_mod.evaluate_tier6b_per_fraction_thinning_iip0031(neg_t6, target_scope=base_scope, root=ROOT)
+        assert ev_neg["status"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (bad_enr, bad_ft, ev_neg)
+        assert ev_neg["reason_code"] == "AMBIGUOUS_OR_NEGATED_FRACTION_ID", (bad_enr, bad_ft, ev_neg)
+
+    # 4b. Adverse S11 panel with conflicting campaign_id OR assay_campaign_id MUST hold identically across ALL 4 paths:
+    l2_scope = {
+        "product_variant_id": pvid_l2, "construct_sha256": sha_l2,
+        "background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL",
+        "donor_seedline_id": seed_id, "mcb_id": mcb_id, "lot_id": lot_id, "campaign_id": camp_id,
+        "sample_id": "S11_CAMP_SID", "scope_type": "LOT_SCOPE",
+    }
+    l2_lot_k = wc_mod.LotScopeKey(pvid_l2, sha_l2, seed_id, mcb_id, lot_id)
+    l2_tprov = {**l2_scope, "device_assembly_id": dev_id, "physical_route_id": route_id}
+    l2_s9_atoms = [
+        wc_mod.AtomicObservation(endpoint_id="obs_icasp9_log10_kill", scope_type="LOT_SCOPE", scope_key=l2_lot_k,
+                                 kind="CONTINUOUS_STUDENT_T", value_or_k=4.8, se_or_n=0.10, sample_n=6,
+                                 campaign_id=camp_id, sample_unit_id="L2_IC9"),
+        wc_mod.AtomicObservation(endpoint_id="obs_tp53_ppm1d_bcor_vaf", scope_type="LOT_SCOPE", scope_key=l2_lot_k,
+                                 kind="CONTINUOUS_STUDENT_T", value_or_k=0.0, se_or_n=1e-6, sample_n=6,
+                                 campaign_id=camp_id, sample_unit_id="L2_VAF",
+                                 controls={"duplex_depth": 70000, "obs_tp53_ppm1d_bcor_mutant_molecules_k": 0}),
+        wc_mod.AtomicObservation(endpoint_id="obs_castseq_translocation_freq", scope_type="LOT_SCOPE", scope_key=l2_lot_k,
+                                 kind="CONTINUOUS_STUDENT_T", value_or_k=0.0, se_or_n=1e-6, sample_n=6,
+                                 campaign_id=camp_id, sample_unit_id="L2_CAST",
+                                 controls={"duplex_depth": 70000, "obs_castseq_mutant_junctions_k": 0}),
+    ]
+    l2_clean_t6 = [
+        {**r, "product_variant_id": pvid_l2, "construct_sha256": sha_l2, "background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL"}
+        for r in clean_t6
+    ]
+    for camp_key in ("campaign_id", "assay_campaign_id"):
+        adverse_s11 = {
+            "scope_type": "LOT_SCOPE",
+            "sample_id": "S11_CAMP_SID",
+            camp_key: "OTHER_CAMP_CONFLICT",
+            "obs_l2_v3_ap_c5b9_pct": 25.0,
+            "obs_l2_v3_ap_c5b9_se": 0.5,
+            "replicates_n": 6,
+        }
+        d_c = wc_mod.evaluate_stage0_product_contract({**l2_scope, **base_meas, **base_mol, "tier6b_sorted_lot_observations": l2_clean_t6, "iip0031_locus2_record": adverse_s11}, root=ROOT)
+        i_c = ing_mod.ingest_stage0_research_or_wetlab_batch(json.dumps({"scope": l2_scope, "measurements": base_meas, "iip0026_molecular_observations": base_mol, "tier6b_sorted_lot_observations": l2_clean_t6, "iip0031_locus2_record": adverse_s11}), root=ROOT)
+        r_c = ing_mod.replay_stage0_chronological_batches([{"utc_timestamp": "2026-11-20T01:00:00Z", "seq_index": 0, "scope": l2_scope, "measurements": base_meas, "iip0026_molecular_observations": base_mol, "tier6b_sorted_lot_observations": l2_clean_t6, "iip0031_locus2_record": adverse_s11}], root=ROOT)
+        s11_atom = wc_mod.AtomicObservation(endpoint_id="stage0_locus2_modeb_v3_panel", scope_type="LOT_SCOPE", scope_key=l2_lot_k,
+                                            kind="STRUCTURED_PANEL", value_or_k=adverse_s11, campaign_id=camp_id, sample_unit_id="S11_CAMP_SID")
+        l_c = wc_mod.evaluate_iip0024_atomic_stage0_ledger([{"batch_id": "B1", "atoms": [*l2_s9_atoms, s11_atom], "tier6b_sorted_lot_observations": l2_clean_t6}], l2_tprov, target_campaign_id=camp_id, root=ROOT)
+        for nm, out in (("direct", d_c), ("ingest", i_c), ("replay", r_c), ("ledger", l_c)):
+            assert out["s11_evaluation"]["status"] == "HOLD_S11_CONFLICTING_NESTED_EVIDENCE", (camp_key, nm, out)
+            assert out["overall_status"] == "HOLD_S11_CONFLICTING_NESTED_EVIDENCE", (camp_key, nm, out)
+
+    # 4c. Decision-tree JSON and Graveyard JSON contain ZERO stale 3.001e7 / 30.01M / 0.05/(2m)-live / >=100-reads wording:
+    dt_txt = (ROOT / "data/protocols/stage0_decision_tree_v1.json").read_text(encoding="utf-8")
+    gy_txt = (ROOT / "data/graveyard/idea_graveyard_v0.5.json").read_text(encoding="utf-8")
+    assert "3.001e7" not in dt_txt and "30.01" not in dt_txt and "informative reads (>= 100)" not in dt_txt
+    assert "30.01" not in gy_txt and "3.001e7" not in gy_txt
+
+
+def test_57_iip0031_round12_metadata_borrowing_unhashable_and_replicate_conflict_parity():
+    """
+    IIP-0031 Round-12 4-path conformance regressions:
+      1. Tier 6B strict Stage-7 pre-assembly timepoint, assay_version, unit, and canonical
+         clonogenic_risk_unit allowlists + prohibition on borrowing cal_batch_id or
+         untreated_sample_id across distinct treated aliquots (all 4 paths).
+      2. Unhashable/malformed JSON values (lists/dicts/oversized ints) in S11 provenance
+         fields never raise TypeError/OverflowError and never mask an independent S9 stop.
+      3. Contradictory S9 replicate counts across containers (measurements/scope/doc/mol_obs)
+         and aliases resolve symmetrically at the conservative minimum valid n for hard stops
+         and flag HOLD_S9_INVALID_OR_CONFLICTING_REPLICATE_COUNT when no hard stop fires.
+      4. Playbook single-dose 80k bound reflects live two-fraction alpha_obs = 0.05/6 (5.98419e-5).
+    """
+    import hashlib
+    import json
+    import math
+    from pathlib import Path
+    import scripts.ingest_wetlab_results as ing_mod
+    import scripts.product_contract as pc_mod
+    import scripts.wetlab_contract as wc_mod
+
+    ROOT = Path(__file__).resolve().parents[1]
+    p_doc = pc_mod.load_product_contracts(ROOT)
+    p_by_id = {p["product_variant_id"]: p for p in p_doc["products"]}
+    a4_sha = hashlib.sha256(b"ISLET1_A4_ARM1B_R12_TEST").hexdigest()
+    l2_pvid = "ISLET1_A4_L2_V3_CO_PRIMARY_CD200"
+    l2_sha = p_by_id[l2_pvid]["staged_locus2_modeb_donor_binding"]["locus2_donor_sha256"]
+
+    seed_id, mcb_id, lot_id, camp_id = "SEED-R12-01", "MCB-R12-01", "LOT-R12-01", "CAMP-R12-01"
+    dev_id, route_id = "DEV-R12-01", "SUPRAFASCIAL_350UM_CAO2_CATALASE_POUCH"
+
+    base_scope = {
+        "product_variant_id": "ISLET1_A4_ARM1B",
+        "construct_sha256": a4_sha,
+        "donor_seedline_id": seed_id,
+        "mcb_id": mcb_id,
+        "lot_id": lot_id,
+        "campaign_id": camp_id,
+    }
+    base_meas = {
+        "obs_icasp9_log10_kill": 4.80,
+        "obs_icasp9_log10_kill_se": 0.10,
+        "obs_tp53_ppm1d_bcor_vaf": 0.0,
+        "obs_tp53_ppm1d_bcor_vaf_se": 1e-6,
+        "obs_tp53_ppm1d_bcor_duplex_depth": 70000,
+        "obs_tp53_ppm1d_bcor_mutant_molecules_k": 0,
+        "obs_castseq_translocation_freq": 0.0,
+        "obs_castseq_translocation_se": 1e-6,
+        "obs_castseq_duplex_or_amplicon_depth": 70000,
+        "obs_castseq_mutant_junctions_k": 0,
+        "obs_mcb_clonogenic_survivor_count_k": 0,
+        "obs_mcb_effective_clonogenic_trials": 300_000_000,
+    }
+    base_mol = {
+        "donor_seed_gnomad_target_site_wgs_verified": True,
+        "post_edit_reciprocal_mosaic_sv_or_clonal_zygosity_verified": True,
+        "per_locus_segmented_baf": {"chr19q": 0.50, "chr11p15": 0.50},
+    }
+    lot_k = wc_mod.LotScopeKey("ISLET1_A4_ARM1B", a4_sha, seed_id, mcb_id, lot_id)
+    target_prov = {**base_scope, "device_assembly_id": dev_id, "physical_route_id": route_id}
+
+    def _s9_atoms(lk, ic9_mean=4.80, ic9_se=0.10, ic9_n=6, ic9_controls=None):
+        return [
+            wc_mod.AtomicObservation(
+                endpoint_id="obs_icasp9_log10_kill", scope_type="LOT_SCOPE", scope_key=lk,
+                kind="CONTINUOUS_STUDENT_T", value_or_k=ic9_mean, se_or_n=ic9_se, sample_n=ic9_n,
+                campaign_id=camp_id, sample_unit_id="R12_IC9", controls=ic9_controls or {},
+            ),
+            wc_mod.AtomicObservation(
+                endpoint_id="obs_tp53_ppm1d_bcor_vaf", scope_type="LOT_SCOPE", scope_key=lk,
+                kind="CONTINUOUS_STUDENT_T", value_or_k=0.0, se_or_n=1e-6, sample_n=6,
+                campaign_id=camp_id, sample_unit_id="R12_VAF",
+                controls={"duplex_depth": 70000, "obs_tp53_ppm1d_bcor_mutant_molecules_k": 0},
+            ),
+            wc_mod.AtomicObservation(
+                endpoint_id="obs_castseq_translocation_freq", scope_type="LOT_SCOPE", scope_key=lk,
+                kind="CONTINUOUS_STUDENT_T", value_or_k=0.0, se_or_n=1e-6, sample_n=6,
+                campaign_id=camp_id, sample_unit_id="R12_CAST",
+                controls={"duplex_depth": 70000, "obs_castseq_mutant_junctions_k": 0},
+            ),
+        ]
+
+    def _mk_t6(fid, sid, *, n, w_i, hpsc=(20, 20), diff=(20, 20), extra=None):
+        tot = 3_000_000_000
+        frac_cells = max(1, int(round(w_i * tot)))
+        plated = int((n * 8 + 2) // 3)
+        rec = {
+            **base_scope,
+            "endpoint_id": "lot_tier6b_sorted_prolif_clonogenic_escape",
+            "scope_type": "LOT_SCOPE",
+            "kind": "EXACT_INTEGER_COUNT",
+            "timepoint": "STAGE7_PRE_ASSEMBLY",
+            "assay_version": "TIER6B_SORTED_LOT_V1",
+            "unit": "clonogenic_opportunities",
+            "fraction_id": fid,
+            "declared_fraction_roster": ["enriched_cd31_neg_cd144_neg", "flow_through_and_excluded"],
+            "sample_id": sid,
+            "k": 0,
+            "N": n,
+            "w_i": w_i,
+            "hpsc_calibrant": list(hpsc),
+            "edited_differentiated_calibrant": list(diff),
+            "presort_lineage_panel": "CD31_NEG_CD144_NEG_ENDOCRINE_PRE_ASSEMBLY",
+            "clonogenic_risk_unit": "SORTED_SINGLE_CELL_EQUIVALENT_CLONOGENIC_OPPORTUNITY",
+            "endogenous_denominator_verified": True,
+            "endogenous_denominator_basis": "MATCHED_UNTREATED_CLONOGENIC_CONTROL",
+            "untreated_cfu_control": {
+                "untreated_sample_id": f"{sid}_UNTR",
+                "untreated_cfu_colonies_k": 4000,
+                "untreated_plated_cells_n": 10000,
+            },
+            "presort_mass_balance_reconciled": True,
+            "unreconciled_loss_fraction": 0.0,
+            "presort_total_input_cells": tot,
+            "presort_reconciled_loss_cells": 0,
+            "presort_fraction_cells": frac_cells,
+            "plated_treated_cells_n": plated,
+        }
+        if extra:
+            rec.update(extra)
+        return rec
+
+    def _to_t6_atom(rec):
+        atom_kwargs = {}
+        for ak in ("timepoint", "assay_version", "unit"):
+            if ak in rec and isinstance(rec[ak], str) and rec[ak].strip():
+                atom_kwargs[ak] = rec[ak]
+        ctrl = {
+            k: v for k, v in rec.items()
+            if k not in (
+                "endpoint_id", "scope_type", "kind", "k", "N", "product_variant_id",
+                "construct_sha256", "donor_seedline_id", "mcb_id", "lot_id", "campaign_id",
+                "timepoint", "assay_version", "unit", "sample_n",
+            )
+        }
+        return wc_mod.AtomicObservation(
+            endpoint_id=rec["endpoint_id"],
+            scope_type=rec["scope_type"],
+            scope_key=lot_k,
+            kind=rec["kind"],
+            value_or_k=rec["k"],
+            se_or_n=rec["N"],
+            sample_n=rec.get("sample_n"),
+            campaign_id=rec.get("campaign_id", camp_id),
+            sample_unit_id=rec["sample_id"],
+            controls=ctrl,
+            **atom_kwargs,
+        )
+
+    def _run_t6_4paths(t6_recs):
+        d = wc_mod.evaluate_stage0_product_contract(
+            {**base_scope, **base_meas, **base_mol, "tier6b_sorted_lot_observations": list(t6_recs)},
+            root=ROOT,
+        )
+        i = ing_mod.ingest_stage0_research_or_wetlab_batch(
+            json.dumps({"scope": base_scope, "measurements": base_meas, "iip0026_molecular_observations": base_mol, "tier6b_sorted_lot_observations": list(t6_recs)}),
+            root=ROOT,
+        )
+        r = ing_mod.replay_stage0_chronological_batches(
+            [{"utc_timestamp": "2026-11-20T01:00:00Z", "seq_index": 0, "scope": base_scope, "measurements": base_meas, "iip0026_molecular_observations": base_mol, "tier6b_sorted_lot_observations": list(t6_recs)}],
+            root=ROOT,
+        )
+        l = wc_mod.evaluate_iip0024_atomic_stage0_ledger(
+            [{"batch_id": "B1", "atoms": [*_s9_atoms(lot_k), *[_to_t6_atom(x) for x in t6_recs]]}],
+            target_prov,
+            target_campaign_id=camp_id,
+            root=ROOT,
+        )
+        return {"direct": d, "ingest": i, "replay": r, "ledger": l}
+
+    # 1a. Explicit Stage-7 pre-assembly valid metadata passes identically across all 4 paths:
+    valid_s7_meta = {"timepoint": "STAGE7_PRE_ASSEMBLY", "assay_version": "TIER6B_SORTED_LOT_V1", "unit": "clonogenic_opportunities"}
+    t6_valid_s7 = [
+        _mk_t6("enriched_cd31_neg_cd144_neg", "R12_OK_E", n=30_000_000, w_i=0.9999, extra=valid_s7_meta),
+        _mk_t6("flow_through_and_excluded", "R12_OK_F", n=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10), extra=valid_s7_meta),
+    ]
+    for nm, out in _run_t6_4paths(t6_valid_s7).items():
+        assert out["tier6b_disposition"] == "PASS", (nm, out)
+        assert abs(out["tier6b_sorted_lot_evaluation"]["p_lot_U95"] - 2.1870701159e-7) < 1e-12, (nm, out)
+
+    # 1b. Wrong stage, unvalidated assay version, incompatible unit, and unsupported risk unit MUST HOLD on all 4 paths:
+    bad_t6_cases = [
+        ("stage2_timepoint", {"timepoint": "STAGE2"}, "INVALID_OR_WRONG_STAGE_TIER6B_TIMEPOINT"),
+        ("post_assembly_timepoint", {"timepoint": "POST_ASSEMBLY"}, "INVALID_OR_WRONG_STAGE_TIER6B_TIMEPOINT"),
+        ("stage2_diff_stage", {"differentiation_stage": "STAGE2"}, "INVALID_OR_WRONG_STAGE_TIER6B_TIMEPOINT"),
+        ("post_assembly_state", {"assembly_state": "POST_ASSEMBLY"}, "INVALID_OR_WRONG_STAGE_TIER6B_TIMEPOINT"),
+        ("unvalidated_assay_version", {"assay_version": "UNVALIDATED_V99"}, "UNVALIDATED_TIER6B_ASSAY_VERSION"),
+        ("incompatible_unit", {"unit": "percent"}, "INCOMPATIBLE_TIER6B_MEASUREMENT_UNIT"),
+        ("unsupported_whole_lot_risk_unit", {"clonogenic_risk_unit": "WHOLE_LOT_CELLS"}, "INVALID_OR_UNSUBSTANTIATED_CLONOGENIC_RISK_UNIT"),
+        ("arbitrary_risk_unit", {"clonogenic_risk_unit": "CUSTOM_UNVERIFIED_UNIT"}, "INVALID_OR_UNSUBSTANTIATED_CLONOGENIC_RISK_UNIT"),
+    ]
+    for lbl, bad_extra, exp_reason in bad_t6_cases:
+        recs_bad = [
+            _mk_t6("enriched_cd31_neg_cd144_neg", f"R12_{lbl}_E", n=30_000_000, w_i=0.9999, extra=bad_extra),
+            _mk_t6("flow_through_and_excluded", f"R12_{lbl}_F", n=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+        ]
+        for nm, out in _run_t6_4paths(recs_bad).items():
+            assert out["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (lbl, nm, out)
+            assert out["tier6b_reason"] == exp_reason, (lbl, nm, out)
+
+    # 1c. Two distinct treated aliquots in the same fraction borrowing cal_batch_id OR untreated_sample_id MUST HOLD on all 4 paths:
+    t6_borrow_cal = [
+        _mk_t6("enriched_cd31_neg_cd144_neg", "R12_BC_E1", n=15_000_000, w_i=0.9999, extra={"cal_batch_id": "SHARED_CAL_01"}),
+        _mk_t6("enriched_cd31_neg_cd144_neg", "R12_BC_E2", n=15_000_000, w_i=0.9999, extra={"cal_batch_id": "SHARED_CAL_01"}),
+        _mk_t6("flow_through_and_excluded", "R12_BC_F", n=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+    ]
+    for nm, out in _run_t6_4paths(t6_borrow_cal).items():
+        assert out["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (nm, out)
+        assert "BORROWED_OR_SHARED_CALIBRATION_BATCH_ACROSS_OBSERVATIONS" in str(out["tier6b_reason"]), (nm, out)
+
+    shared_untr = {"untreated_sample_id": "SHARED_UNTR_01", "untreated_cfu_colonies_k": 4000, "untreated_plated_cells_n": 10000}
+    t6_borrow_untr = [
+        _mk_t6("enriched_cd31_neg_cd144_neg", "R12_BU_E1", n=15_000_000, w_i=0.9999, extra={"untreated_cfu_control": dict(shared_untr)}),
+        _mk_t6("enriched_cd31_neg_cd144_neg", "R12_BU_E2", n=15_000_000, w_i=0.9999, extra={"untreated_cfu_control": dict(shared_untr)}),
+        _mk_t6("flow_through_and_excluded", "R12_BU_F", n=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+    ]
+    for nm, out in _run_t6_4paths(t6_borrow_untr).items():
+        assert out["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (nm, out)
+        assert "BORROWED_OR_SHARED_UNTREATED_CFU_CONTROL_ACROSS_OBSERVATIONS" in str(out["tier6b_reason"]), (nm, out)
+
+    t6_indep_two_aliquots = [
+        _mk_t6("enriched_cd31_neg_cd144_neg", "R12_IND_E1", n=15_000_000, w_i=0.9999, extra={"record_id": "R12_REC_A", "source_sample_id": "R12_SRC_A", "cal_batch_id": "IND_CAL_A"}),
+        _mk_t6("enriched_cd31_neg_cd144_neg", "R12_IND_E2", n=15_000_000, w_i=0.9999, extra={"record_id": "R12_REC_B", "source_sample_id": "R12_SRC_B", "cal_batch_id": "IND_CAL_B"}),
+        _mk_t6("flow_through_and_excluded", "R12_IND_F", n=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+    ]
+    for nm, out in _run_t6_4paths(t6_indep_two_aliquots).items():
+        assert out["tier6b_disposition"] == "PASS", (nm, out)
+
+    # 2. Malformed/unhashable JSON types in S11 provenance fields NEVER raise TypeError and NEVER mask an S9 hard stop:
+    l2_scope = {
+        "product_variant_id": l2_pvid,
+        "construct_sha256": l2_sha,
+        "background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL",
+        "donor_seedline_id": seed_id,
+        "mcb_id": mcb_id,
+        "lot_id": lot_id,
+        "campaign_id": camp_id,
+        "sample_id": "R12_S11_SID",
+        "scope_type": "LOT_SCOPE",
+    }
+    l2_lot_k = wc_mod.LotScopeKey(l2_pvid, l2_sha, seed_id, mcb_id, lot_id)
+    l2_tprov = {**l2_scope, "device_assembly_id": dev_id, "physical_route_id": route_id}
+    s9_fail_meas = {**base_meas, "obs_icasp9_log10_kill": 3.50, "obs_icasp9_log10_kill_se": 0.10}
+    for bad_key in ("donor_seedline_id", "seed_line_id", "l2_v3_donor_id", "donor_id", "background_id", "sample_id", "lot_id", "campaign_id", "mcb_id", "construct_sha256"):
+        for bad_val in (["x"], {"nested": 1}):
+            bad_s11_rec = {"scope_type": "LOT_SCOPE", bad_key: bad_val}
+            d_u = wc_mod.evaluate_stage0_product_contract({**l2_scope, **s9_fail_meas, **base_mol, "iip0031_locus2_record": bad_s11_rec}, root=ROOT)
+            i_u = ing_mod.ingest_stage0_research_or_wetlab_batch(json.dumps({"scope": l2_scope, "measurements": s9_fail_meas, "iip0026_molecular_observations": base_mol, "iip0031_locus2_record": bad_s11_rec}), root=ROOT)
+            r_u = ing_mod.replay_stage0_chronological_batches([{"utc_timestamp": "2026-11-20T01:00:00Z", "seq_index": 0, "scope": l2_scope, "measurements": s9_fail_meas, "iip0026_molecular_observations": base_mol, "iip0031_locus2_record": bad_s11_rec}], root=ROOT)
+            s11_a = wc_mod.AtomicObservation(
+                endpoint_id="stage0_locus2_modeb_v3_panel", scope_type="LOT_SCOPE", scope_key=l2_lot_k,
+                kind="STRUCTURED_PANEL", value_or_k=bad_s11_rec, campaign_id=camp_id, sample_unit_id="R12_S11_SID",
+            )
+            l_u = wc_mod.evaluate_iip0024_atomic_stage0_ledger(
+                [{"batch_id": "B_U", "atoms": [*_s9_atoms(l2_lot_k, ic9_mean=3.50, ic9_se=0.10), s11_a]}],
+                l2_tprov, target_campaign_id=camp_id, root=ROOT,
+            )
+            for nm, out in (("direct", d_u), ("ingest", i_u), ("replay", r_u), ("ledger", l_u)):
+                assert out["overall_status"] == "HARD_SAFETY_STOP_REJECTED", (bad_key, bad_val, nm, out)
+                assert out["hard_stop_precedence_winner"] == "S9_HARD_SAFETY_STOP", (bad_key, bad_val, nm, out)
+            # Without S9 hard stop, malformed nested provenance also fails closed cleanly without raising:
+            clean_direct = wc_mod.evaluate_stage0_product_contract({**l2_scope, **base_meas, **base_mol, "iip0031_locus2_record": bad_s11_rec}, root=ROOT)
+            assert clean_direct["s11_evaluation"]["gate_pass"] is False, (bad_key, bad_val, clean_direct)
+    # Outer scope list in donor_seedline_id (direct/ingest/replay) alongside S9 hard stop also never raises:
+    outer_list_scope = {**l2_scope, "donor_seedline_id": ["x"]}
+    for nm, out in (
+        ("direct", wc_mod.evaluate_stage0_product_contract({**outer_list_scope, **s9_fail_meas, **base_mol}, root=ROOT)),
+        ("ingest", ing_mod.ingest_stage0_research_or_wetlab_batch(json.dumps({"scope": outer_list_scope, "measurements": s9_fail_meas, "iip0026_molecular_observations": base_mol}), root=ROOT)),
+        ("replay", ing_mod.replay_stage0_chronological_batches([{"utc_timestamp": "2026-11-20T01:00:00Z", "seq_index": 0, "scope": outer_list_scope, "measurements": s9_fail_meas, "iip0026_molecular_observations": base_mol}], root=ROOT)),
+    ):
+        assert out["overall_status"] == "HARD_SAFETY_STOP_REJECTED", (nm, out)
+        assert out["hard_stop_precedence_winner"] == "S9_HARD_SAFETY_STOP", (nm, out)
+
+    # 3. Contradictory S9 replicate counts (100 vs 6) across containers & aliases are order-independent on ALL 4 paths:
+    #    - Adverse iCasp9=4.18, se=0.10 (passes at n=100 [4.014>=4.0], hard-stops at n=6 [3.9785<4.0]) -> HARD_SAFETY_STOP_REJECTED in BOTH orders!
+    #    - Clean iCasp9=4.80, se=0.10 -> HOLD_S9_INVALID_OR_CONFLICTING_REPLICATE_COUNT in BOTH orders (even when tp53/castseq are omitted)!
+    for key_m, key_s in (
+        ("obs_icasp9_log10_kill_n", "obs_icasp9_log10_kill_n"),
+        ("replicates_n", "replicates_n"),
+        ("obs_icasp9_log10_kill_n", "obs_icasp9_log10_kill_sample_n"),
+        ("replicates_n", "sample_n"),
+    ):
+        for n_meas, n_scope in ((100, 6), (6, 100)):
+            # 3a. Adverse partial submission (only iCasp9 supplied, missing tp53/castseq):
+            partial_doc_adv = {
+                "scope": {**base_scope, key_s: n_scope},
+                "measurements": {"obs_icasp9_log10_kill": 4.18, "obs_icasp9_log10_kill_se": 0.10, key_m: n_meas},
+            }
+            ing_adv = ing_mod.ingest_stage0_research_or_wetlab_batch(json.dumps(partial_doc_adv), root=ROOT)
+            rep_adv = ing_mod.replay_stage0_chronological_batches([{"utc_timestamp": "2026-11-20T01:00:00Z", "seq_index": 0, **partial_doc_adv}], root=ROOT)
+            assert ing_adv["overall_status"] == "HARD_SAFETY_STOP_REJECTED", (key_m, key_s, n_meas, n_scope, ing_adv)
+            assert rep_adv["overall_status"] == "HARD_SAFETY_STOP_REJECTED", (key_m, key_s, n_meas, n_scope, rep_adv)
+
+            # 3b. Clean partial submission (iCasp9=4.80, missing tp53/castseq) -> MUST flag conflict explicitly, never hide behind missing-core only:
+            partial_doc_ok = {
+                "scope": {**base_scope, key_s: n_scope},
+                "measurements": {"obs_icasp9_log10_kill": 4.80, "obs_icasp9_log10_kill_se": 0.10, key_m: n_meas},
+            }
+            ing_ok = ing_mod.ingest_stage0_research_or_wetlab_batch(json.dumps(partial_doc_ok), root=ROOT)
+            rep_ok = ing_mod.replay_stage0_chronological_batches([{"utc_timestamp": "2026-11-20T01:00:00Z", "seq_index": 0, **partial_doc_ok}], root=ROOT)
+            assert ing_ok["overall_status"] == "HOLD_S9_INVALID_OR_CONFLICTING_REPLICATE_COUNT", (key_m, key_s, n_meas, n_scope, ing_ok)
+            assert rep_ok["overall_status"] == "HOLD_S9_INVALID_OR_CONFLICTING_REPLICATE_COUNT", (key_m, key_s, n_meas, n_scope, rep_ok)
+
+            # 3c. Clean full submission with contradictory replicate counts -> HOLD_S9_INVALID_OR_CONFLICTING_REPLICATE_COUNT:
+            full_doc_ok = {
+                "scope": {**base_scope, key_s: n_scope},
+                "measurements": {**base_meas, key_m: n_meas},
+                "iip0026_molecular_observations": base_mol,
+                "tier6b_sorted_lot_observations": t6_valid_s7,
+            }
+            ing_f = ing_mod.ingest_stage0_research_or_wetlab_batch(json.dumps(full_doc_ok), root=ROOT)
+            rep_f = ing_mod.replay_stage0_chronological_batches([{"utc_timestamp": "2026-11-20T01:00:00Z", "seq_index": 0, **full_doc_ok}], root=ROOT)
+            assert ing_f["overall_status"] == "HOLD_S9_INVALID_OR_CONFLICTING_REPLICATE_COUNT", (key_m, key_s, n_meas, n_scope, ing_f)
+            assert rep_f["overall_status"] == "HOLD_S9_INVALID_OR_CONFLICTING_REPLICATE_COUNT", (key_m, key_s, n_meas, n_scope, rep_f)
+
+    # 3d. Direct conflicting aliases & Atomic Ledger conflicting controls match identically:
+    for d_n1, d_n2 in ((100, 6), (6, 100)):
+        d_adv = wc_mod.evaluate_stage0_product_contract(
+            {**base_scope, "obs_icasp9_log10_kill": 4.18, "obs_icasp9_log10_kill_se": 0.10, "obs_icasp9_log10_kill_n": d_n1, "obs_icasp9_log10_kill_sample_n": d_n2},
+            root=ROOT,
+        )
+        assert d_adv["overall_status"] == "HARD_SAFETY_STOP_REJECTED", (d_n1, d_n2, d_adv)
+        d_ok = wc_mod.evaluate_stage0_product_contract(
+            {**base_scope, "obs_icasp9_log10_kill": 4.80, "obs_icasp9_log10_kill_se": 0.10, "obs_icasp9_log10_kill_n": d_n1, "obs_icasp9_log10_kill_sample_n": d_n2},
+            root=ROOT,
+        )
+        assert d_ok["overall_status"] == "HOLD_S9_INVALID_OR_CONFLICTING_REPLICATE_COUNT", (d_n1, d_n2, d_ok)
+    # Oversized int (10**400) in replicate count never raises OverflowError:
+    d_huge = wc_mod.evaluate_stage0_product_contract(
+        {**base_scope, "obs_icasp9_log10_kill": 4.18, "obs_icasp9_log10_kill_se": 0.10, "obs_icasp9_log10_kill_n": 100, "obs_icasp9_log10_kill_sample_n": 10**400},
+        root=ROOT,
+    )
+    assert d_huge["overall_status"] == "HARD_SAFETY_STOP_REJECTED", d_huge
+    # Atomic Ledger conflicting controls on iCasp9 atom:
+    l_adv = wc_mod.evaluate_iip0024_atomic_stage0_ledger(
+        [{"batch_id": "B_CONFL_ADV", "atoms": [*_s9_atoms(lot_k, ic9_mean=4.18, ic9_se=0.10, ic9_n=100, ic9_controls={"obs_icasp9_log10_kill_n": 6})]}],
+        target_prov, target_campaign_id=camp_id, root=ROOT,
+    )
+    assert l_adv["overall_status"] == "HARD_SAFETY_STOP_REJECTED", l_adv
+    l_ok = wc_mod.evaluate_iip0024_atomic_stage0_ledger(
+        [{"batch_id": "B_CONFL_OK", "atoms": [*_s9_atoms(lot_k, ic9_mean=4.80, ic9_se=0.10, ic9_n=100, ic9_controls={"obs_icasp9_log10_kill_n": 6}), *[_to_t6_atom(x) for x in t6_valid_s7]]}],
+        target_prov, target_campaign_id=camp_id, root=ROOT,
+    )
+    assert any("HOLD_S9_INVALID_OR_CONFLICTING_REPLICATE_COUNT" in h for h in l_ok["holds"]), l_ok
+
+    # 4. Playbook single-dose bound uses live alpha_obs = 0.05/6 (5.98419e-5), never stale 5.48e-5:
+    pb_txt = (ROOT / "docs/STAGE-0-EXECUTION-PLAYBOOK.md").read_text(encoding="utf-8")
+    assert "5.98419" in pb_txt and "5.48 \\times 10^{-5}" not in pb_txt
+    assert abs((-math.expm1(math.log(0.05 / 6.0) / 80_000.0)) - 5.9841856189e-5) < 1e-12
+
+
+def test_58_iip0031_round13_duplicate_record_id_explicit_metadata_null_conflict_and_22gene_pins():
+    """
+    IIP-0031 Round-13 4-path conformance regressions:
+      1. Copying a Tier 6B observation with the same `record_id` (or alias) and relabeled
+         treated/untreated/calibrant identifiers MUST NOT earn extra trial credit on ANY path
+         (`CONFLICTING_OR_RELABELED_DUPLICATE_RECORD_ID` -> `HOLD_TIER6B_UNQUALIFIED_FRACTION`).
+      2. Omitting explicit Stage-7 pre-assembly `timepoint`, `assay_version`, or `unit` MUST NOT
+         receive generic-default clearance credit on ANY path (`HOLD_TIER6B_UNQUALIFIED_FRACTION`).
+      3. An adverse S9 record paired with a nested or top-level `null` for the same mean/SE OR
+         with cross-group replicate-count conflict (`replicates_n=100` vs `obs_icasp9_log10_kill_n=6`
+         in either order) MUST retain `HARD_SAFETY_STOP_REJECTED` (`S9_HARD_SAFETY_STOP`) across
+         ALL 4 paths (and non-adverse conflicts MUST hold rather than clearing).
+      4. The 22-gene RefSeq off-target panel pins accessions, SHA-256 digests, ATG..STOP CDS
+         bounds, and nonempty 3'-UTRs, rejecting out-of-range slices, swapped accessions, or
+         mutated sequences while verifying true CDS 7mer-m8 hits separately from 5'-UTR/full-mRNA.
+    """
+    import copy
+    import hashlib
+    import json
+    from pathlib import Path
+    import pytest
+    import scripts.ingest_wetlab_results as ing_mod
+    import scripts.product_contract as pc_mod
+    import scripts.run_layer2_perturbation_and_regulatory_plane as l2_mod
+    import scripts.wetlab_contract as wc_mod
+
+    ROOT = Path(__file__).resolve().parents[1]
+    p_doc = pc_mod.load_product_contracts(ROOT)
+    p_by_id = {p["product_variant_id"]: p for p in p_doc["products"]}
+    a4_sha = hashlib.sha256(b"ISLET1_A4_ARM1B_R13_TEST").hexdigest()
+    l2_pvid = "ISLET1_A4_L2_V3_CO_PRIMARY_CD200"
+    l2_sha = p_by_id[l2_pvid]["staged_locus2_modeb_donor_binding"]["locus2_donor_sha256"]
+
+    seed_id, mcb_id, lot_id, camp_id = "SEED-R13-01", "MCB-R13-01", "LOT-R13-01", "CAMP-R13-01"
+    dev_id, route_id = "DEV-R13-01", "SUPRAFASCIAL_350UM_CAO2_CATALASE_POUCH"
+    base_scope = {
+        "product_variant_id": l2_pvid,
+        "construct_sha256": l2_sha,
+        "background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL",
+        "donor_seedline_id": seed_id,
+        "mcb_id": mcb_id,
+        "lot_id": lot_id,
+        "campaign_id": camp_id,
+    }
+    base_meas = {
+        "obs_icasp9_log10_kill": 4.80,
+        "obs_icasp9_log10_kill_se": 0.10,
+        "obs_tp53_ppm1d_bcor_vaf": 0.0,
+        "obs_tp53_ppm1d_bcor_vaf_se": 1e-6,
+        "obs_tp53_ppm1d_bcor_duplex_depth": 70000,
+        "obs_tp53_ppm1d_bcor_mutant_molecules_k": 0,
+        "obs_castseq_translocation_freq": 0.0,
+        "obs_castseq_translocation_se": 1e-6,
+        "obs_castseq_duplex_or_amplicon_depth": 70000,
+        "obs_castseq_mutant_junctions_k": 0,
+        "obs_mcb_clonogenic_survivor_count_k": 0,
+        "obs_mcb_effective_clonogenic_trials": 300_000_000,
+    }
+    base_mol = {
+        "donor_seed_gnomad_target_site_wgs_verified": True,
+        "post_edit_reciprocal_mosaic_sv_or_clonal_zygosity_verified": True,
+        "per_locus_segmented_baf": {"chr19q": 0.50, "chr11p15": 0.50},
+    }
+    lot_k = wc_mod.LotScopeKey(l2_pvid, l2_sha, seed_id, mcb_id, lot_id)
+    target_prov = {**base_scope, "device_assembly_id": dev_id, "physical_route_id": route_id}
+
+    def _s9_atoms(lk, ic9_mean=4.80, ic9_se=0.10, ic9_n=6, ic9_controls=None):
+        return [
+            wc_mod.AtomicObservation(
+                endpoint_id="obs_icasp9_log10_kill", scope_type="LOT_SCOPE", scope_key=lk,
+                kind="CONTINUOUS_STUDENT_T", value_or_k=ic9_mean, se_or_n=ic9_se, sample_n=ic9_n,
+                campaign_id=camp_id, sample_unit_id="R13_IC9", controls=ic9_controls or {},
+            ),
+            wc_mod.AtomicObservation(
+                endpoint_id="obs_tp53_ppm1d_bcor_vaf", scope_type="LOT_SCOPE", scope_key=lk,
+                kind="CONTINUOUS_STUDENT_T", value_or_k=0.0, se_or_n=1e-6, sample_n=6,
+                campaign_id=camp_id, sample_unit_id="R13_VAF",
+                controls={"duplex_depth": 70000, "obs_tp53_ppm1d_bcor_mutant_molecules_k": 0},
+            ),
+            wc_mod.AtomicObservation(
+                endpoint_id="obs_castseq_translocation_freq", scope_type="LOT_SCOPE", scope_key=lk,
+                kind="CONTINUOUS_STUDENT_T", value_or_k=0.0, se_or_n=1e-6, sample_n=6,
+                campaign_id=camp_id, sample_unit_id="R13_CAST",
+                controls={"duplex_depth": 70000, "obs_castseq_mutant_junctions_k": 0},
+            ),
+        ]
+
+    def _mk_t6_r13(fid, sid, *, n, w_i, hpsc=(20, 20), diff=(20, 20), extra=None, omit=()):
+        tot = 3_000_000_000
+        frac_cells = 2_999_700_000 if "enriched" in fid else 300_000
+        plated = int((n * 8 + 2) // 3)
+        rec = {
+            **base_scope,
+            "endpoint_id": "lot_tier6b_sorted_prolif_clonogenic_escape",
+            "scope_type": "LOT_SCOPE",
+            "kind": "EXACT_INTEGER_COUNT",
+            "timepoint": "STAGE7_PRE_ASSEMBLY",
+            "assay_version": "TIER6B_SORTED_LOT_V1",
+            "unit": "clonogenic_opportunities",
+            "fraction_id": fid,
+            "declared_fraction_roster": ["enriched_cd31_neg_cd144_neg", "flow_through_and_excluded"],
+            "sample_id": sid,
+            "k": 0,
+            "N": n,
+            "w_i": w_i,
+            "hpsc_calibrant": list(hpsc),
+            "edited_differentiated_calibrant": list(diff),
+            "presort_lineage_panel": "CD31_NEG_CD144_NEG_ENDOCRINE_PRE_ASSEMBLY",
+            "clonogenic_risk_unit": "SORTED_SINGLE_CELL_EQUIVALENT_CLONOGENIC_OPPORTUNITY",
+            "endogenous_denominator_verified": True,
+            "endogenous_denominator_basis": "MATCHED_UNTREATED_CLONOGENIC_CONTROL",
+            "untreated_cfu_control": {
+                "untreated_sample_id": f"{sid}_UNTR",
+                "untreated_cfu_colonies_k": 4000,
+                "untreated_plated_cells_n": 10000,
+            },
+            "presort_mass_balance_reconciled": True,
+            "unreconciled_loss_fraction": 0.0,
+            "presort_total_input_cells": tot,
+            "presort_reconciled_loss_cells": 0,
+            "presort_fraction_cells": frac_cells,
+            "plated_treated_cells_n": plated,
+        }
+        if extra:
+            rec.update(extra)
+        for ok in omit:
+            rec.pop(ok, None)
+        return rec
+
+    def _to_atom_r13(rec):
+        akw = {}
+        for k in ("timepoint", "assay_version", "unit"):
+            if k in rec and isinstance(rec[k], str) and rec[k].strip():
+                akw[k] = rec[k]
+        ctrl = {
+            k: v for k, v in rec.items()
+            if k not in (
+                "endpoint_id", "scope_type", "kind", "k", "N",
+                "product_variant_id", "construct_sha256", "donor_seedline_id",
+                "mcb_id", "lot_id", "campaign_id", "timepoint", "assay_version",
+                "unit", "sample_n",
+            )
+        }
+        return wc_mod.AtomicObservation(
+            endpoint_id=rec["endpoint_id"],
+            scope_type=rec.get("scope_type", "LOT_SCOPE"),
+            scope_key=lot_k,
+            kind=rec.get("kind", "EXACT_INTEGER_COUNT"),
+            value_or_k=rec["k"],
+            se_or_n=rec["N"],
+            campaign_id=camp_id,
+            sample_unit_id=rec["sample_id"],
+            controls=ctrl,
+            **akw,
+        )
+
+    def _eval_4_r13(t6_recs):
+        d = wc_mod.evaluate_stage0_product_contract(
+            {**base_scope, **base_meas, **base_mol, "tier6b_sorted_lot_observations": list(t6_recs)},
+            root=ROOT,
+        )
+        i = ing_mod.ingest_stage0_research_or_wetlab_batch(
+            json.dumps({"scope": base_scope, "measurements": base_meas, "iip0026_molecular_observations": base_mol, "tier6b_sorted_lot_observations": list(t6_recs)}),
+            root=ROOT,
+        )
+        r = ing_mod.replay_stage0_chronological_batches(
+            [{"utc_timestamp": "2026-11-20T01:00:00Z", "seq_index": 0, "scope": base_scope, "measurements": base_meas, "iip0026_molecular_observations": base_mol, "tier6b_sorted_lot_observations": list(t6_recs)}],
+            root=ROOT,
+        )
+        l = wc_mod.evaluate_iip0024_atomic_stage0_ledger(
+            [{"batch_id": "B_R13", "atoms": [*_s9_atoms(lot_k), *[_to_atom_r13(x) for x in t6_recs]]}],
+            target_prov,
+            target_campaign_id=camp_id,
+            root=ROOT,
+        )
+        return {"direct": d, "ingest": i, "replay": r, "ledger": l}
+
+    # 1. Same-source `record_id` copy with relabeled sample/untreated/calibrant IDs MUST NOT double N on ANY path:
+    underpowered_base = [
+        _mk_t6_r13("enriched_cd31_neg_cd144_neg", "R13_ENR_1", n=18_000_000, w_i=0.9999, extra={"record_id": "SRC_REC_001", "cal_batch_id": "CAL_E1"}),
+        _mk_t6_r13("flow_through_and_excluded", "R13_FT_1", n=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10), extra={"record_id": "SRC_REC_002", "cal_batch_id": "CAL_F1"}),
+    ]
+    for nm, out in _eval_4_r13(underpowered_base).items():
+        assert out["tier6b_disposition"] == "HOLD_TIER6B_INSUFFICIENT_DENOMINATOR", (nm, out)
+        assert abs(out["tier6b_sorted_lot_evaluation"]["p_lot_U95"] - 3.586205214e-7) < 1e-12, (nm, out)
+        assert out["s11_evaluation"]["status"] == "HOLD_S11_INCOMPLETE_EVIDENCE", (nm, out)
+
+    copied_same_rec_id = [
+        underpowered_base[0],
+        _mk_t6_r13("enriched_cd31_neg_cd144_neg", "R13_ENR_2_RELABELED", n=18_000_000, w_i=0.9999, extra={"record_id": "SRC_REC_001", "cal_batch_id": "CAL_E2_RELABELED"}),
+        underpowered_base[1],
+    ]
+    for nm, out in _eval_4_r13(copied_same_rec_id).items():
+        assert out["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (nm, out)
+        assert "CONFLICTING_OR_RELABELED_DUPLICATE_RECORD_ID" in str(out["tier6b_reason"]), (nm, out)
+        assert out["s11_evaluation"]["status"] == "HOLD_S11_INCOMPLETE_EVIDENCE", (nm, out)
+
+    # 2. Missing explicit `timepoint`, `assay_version`, or `unit` MUST HOLD on all 4 paths (no generic defaults):
+    for omitted_fields, expected_reason in (
+        (("timepoint",), "INVALID_OR_WRONG_STAGE_TIER6B_TIMEPOINT"),
+        (("assay_version",), "UNVALIDATED_TIER6B_ASSAY_VERSION"),
+        (("unit",), "INCOMPATIBLE_TIER6B_MEASUREMENT_UNIT"),
+        (("timepoint", "assay_version", "unit"), "INVALID_OR_WRONG_STAGE_TIER6B_TIMEPOINT"),
+    ):
+        missing_meta_recs = [
+            _mk_t6_r13("enriched_cd31_neg_cd144_neg", "R13_MM_E", n=30_000_000, w_i=0.9999, omit=omitted_fields),
+            _mk_t6_r13("flow_through_and_excluded", "R13_MM_F", n=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10), omit=omitted_fields),
+        ]
+        for nm, out in _eval_4_r13(missing_meta_recs).items():
+            assert out["tier6b_disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (omitted_fields, nm, out)
+            assert out["tier6b_reason"] == expected_reason, (omitted_fields, nm, out)
+
+    # 3a. Adverse S9 paired with nested/top-level `null` for the same mean/SE MUST retain S9_HARD_SAFETY_STOP on Direct, Ingest, and Replay:
+    valid_t6_r13 = [
+        _mk_t6_r13("enriched_cd31_neg_cd144_neg", "R13_OK_E", n=30_000_000, w_i=0.9999),
+        _mk_t6_r13("flow_through_and_excluded", "R13_OK_F", n=100_000, w_i=0.0001, hpsc=(10, 10), diff=(10, 10)),
+    ]
+    null_adverse_packets = [
+        {
+            "scope": base_scope,
+            "obs_icasp9_log10_kill": 3.50,
+            "obs_icasp9_log10_kill_se": 0.10,
+            "measurements": {"obs_icasp9_log10_kill": None},
+        },
+        {
+            "scope": base_scope,
+            "obs_icasp9_log10_kill": None,
+            "measurements": {"obs_icasp9_log10_kill": 3.50, "obs_icasp9_log10_kill_se": 0.10},
+        },
+        {
+            "scope": {**base_scope, "obs_icasp9_log10_kill": None},
+            "measurements": {"obs_icasp9_log10_kill": 3.50, "obs_icasp9_log10_kill_se": 0.10},
+        },
+    ]
+    for pkt in null_adverse_packets:
+        d_na = wc_mod.evaluate_stage0_product_contract(pkt, root=ROOT)
+        i_na = ing_mod.ingest_stage0_research_or_wetlab_batch(json.dumps(pkt), root=ROOT)
+        r_na = ing_mod.replay_stage0_chronological_batches([{"utc_timestamp": "2026-11-20T01:00:00Z", "seq_index": 0, **pkt}], root=ROOT)
+        for nm, out in (("direct", d_na), ("ingest", i_na), ("replay", r_na)):
+            assert out["overall_status"] == "HARD_SAFETY_STOP_REJECTED", (nm, pkt, out)
+            assert out["hard_stop_precedence_winner"] == "S9_HARD_SAFETY_STOP", (nm, pkt, out)
+            assert out["s11_evaluation"]["status"].startswith("HOLD_S11_"), (nm, pkt, out)
+
+    # Non-adverse clean S9 paired with nested `null` MUST hold (`HOLD_CONFLICTING_STAGE0_MEASUREMENT`) and never clear:
+    a4_scope = {
+        "product_variant_id": "ISLET1_A4_ARM1B",
+        "construct_sha256": a4_sha,
+        "donor_seedline_id": seed_id,
+        "mcb_id": mcb_id,
+        "lot_id": lot_id,
+        "campaign_id": camp_id,
+    }
+    a4_t6 = [{**r, "product_variant_id": "ISLET1_A4_ARM1B", "construct_sha256": a4_sha} for r in valid_t6_r13]
+    for r_x in a4_t6:
+        r_x.pop("background_id", None)
+    clean_plus_null_pkt = {
+        "scope": a4_scope,
+        "obs_icasp9_log10_kill": 4.80,
+        "measurements": {**base_meas, "obs_icasp9_log10_kill": None},
+        "iip0026_molecular_observations": base_mol,
+        "tier6b_sorted_lot_observations": a4_t6,
+    }
+    for nm, out in (
+        ("direct", wc_mod.evaluate_stage0_product_contract(clean_plus_null_pkt, root=ROOT)),
+        ("ingest", ing_mod.ingest_stage0_research_or_wetlab_batch(json.dumps(clean_plus_null_pkt), root=ROOT)),
+        ("replay", ing_mod.replay_stage0_chronological_batches([{"utc_timestamp": "2026-11-20T01:00:00Z", "seq_index": 0, **clean_plus_null_pkt}], root=ROOT)),
+    ):
+        assert out["overall_status"] == "HOLD_CONFLICTING_STAGE0_MEASUREMENT", (nm, out)
+        assert out["effective_execution_permitted"] is False, (nm, out)
+
+    # 3b. Cross-group replicate-count conflict (`replicates_n` vs `obs_icasp9_log10_kill_n`: 100 vs 6) MUST produce S9_HARD_SAFETY_STOP on ALL 4 paths:
+    for n_def, n_ep in ((100, 6), (6, 100)):
+        pkt_xgrp = {
+            "scope": {**base_scope, "replicates_n": n_def},
+            "measurements": {"obs_icasp9_log10_kill": 4.18, "obs_icasp9_log10_kill_se": 0.10, "obs_icasp9_log10_kill_n": n_ep},
+        }
+        d_xg = wc_mod.evaluate_stage0_product_contract(pkt_xgrp, root=ROOT)
+        i_xg = ing_mod.ingest_stage0_research_or_wetlab_batch(json.dumps(pkt_xgrp), root=ROOT)
+        r_xg = ing_mod.replay_stage0_chronological_batches([{"utc_timestamp": "2026-11-20T01:00:00Z", "seq_index": 0, **pkt_xgrp}], root=ROOT)
+        l_xg = wc_mod.evaluate_iip0024_atomic_stage0_ledger(
+            [{"batch_id": "B_XG", "replicates_n": n_def, "atoms": [*_s9_atoms(lot_k, ic9_mean=4.18, ic9_se=0.10, ic9_n=n_ep, ic9_controls={"replicates_n": n_def})]}],
+            target_prov, target_campaign_id=camp_id, root=ROOT,
+        )
+        for nm, out in (("direct", d_xg), ("ingest", i_xg), ("replay", r_xg), ("ledger", l_xg)):
+            assert out["overall_status"] == "HARD_SAFETY_STOP_REJECTED", (n_def, n_ep, nm, out)
+            assert out["hard_stop_precedence_winner"] == "S9_HARD_SAFETY_STOP", (n_def, n_ep, nm, out)
+            assert out["s11_evaluation"]["status"].startswith("HOLD_S11_"), (n_def, n_ep, nm, out)
+
+    # 4. 22-gene RefSeq off-target panel pins accessions, CDS bounds, SHA-256s, and nonempty 3'-UTRs:
+    raw_ref = json.loads((ROOT / "data/raw/layer2_genomic_and_jaspar_reference.json").read_text(encoding="utf-8"))
+    ref_b = raw_ref["iip0031_locus2_modeb_v3_reference_bundle"]
+    u3, cds_m, u5, full_m = l2_mod._verified_22gene_refseq_panel(ref_b)
+    assert len(u3) == 22 and all(len(v) >= 1 for v in u3.values())
+    assert len(cds_m) == 22 and all(v.startswith("ATG") and v[-3:] in ("TAA", "TAG", "TGA") for v in cds_m.values())
+
+    bad_utr_b = copy.deepcopy(ref_b)
+    bad_utr_b["human_22_gene_refseq_panel"]["INS"]["cds_end_1based"] = len(bad_utr_b["human_22_gene_refseq_panel"]["INS"]["mrna_sequence"])
+    with pytest.raises(ValueError):
+        l2_mod._verified_22gene_refseq_panel(bad_utr_b)
+
+    bad_acc_b = copy.deepcopy(ref_b)
+    bad_acc_b["human_22_gene_refseq_panel"]["INS"]["accession"] = "NM_000000.0"
+    with pytest.raises(ValueError):
+        l2_mod._verified_22gene_refseq_panel(bad_acc_b)
+
+    bad_sha_b = copy.deepcopy(ref_b)
+    bad_sha_b["human_22_gene_refseq_panel"]["INS"]["mrna_sequence"] = "ATG" + bad_sha_b["human_22_gene_refseq_panel"]["INS"]["mrna_sequence"][3:]
+    with pytest.raises(ValueError):
+        l2_mod._verified_22gene_refseq_panel(bad_sha_b)
+
+
+def test_59_iip0031_hardened_4path_tier6b_s11_layer3_conformance():
+    """
+    Comprehensive conformance suite for IIP-0031 hardened 4-path evidence validation,
+    Tier 6B source-owned multi-observation identity & exact integer/CP bounds, Rule S11
+    provenance/ADCC/CIITA/RACE isolation, and Layer-3 2WII DBREF Gln1013 (33.04 A) / 15-PDB inventory.
+    """
+    import copy
+    import json
+    from types import MappingProxyType
+    from pathlib import Path
+    from scripts import ingest_wetlab_results as ing_mod
+    from scripts import product_contract as pc_mod
+    from scripts import wetlab_contract as wc_mod
+
+    ROOT = Path(__file__).resolve().parents[1]
+    l2_pdef = pc_mod.get_product_definition("L2_V3_CO_PRIMARY_CD200", root=ROOT)
+    l2_pvid = l2_pdef["product_variant_id"]
+    l2_sha = l2_pdef["staged_locus2_modeb_donor_binding"]["locus2_donor_sha256"]
+    bsct_scope = {
+        "product_variant_id": "ISLET1_B_SCT_C1_CIITA",
+        "construct_sha256": "7" * 64,
+        "donor_seedline_id": "S_QA",
+        "mcb_id": "M_QA",
+        "lot_id": "L_QA",
+        "campaign_id": "C_QA",
+        "device_assembly_id": "D_QA",
+        "physical_route_id": "SUPRAFASCIAL_350UM_CAO2_CATALASE_POUCH",
+    }
+    l2_scope = {**bsct_scope, "product_variant_id": l2_pvid, "construct_sha256": l2_sha, "scope_type": "LOT_SCOPE", "sample_id": "S_L2"}
+    s9_adv = {"obs_icasp9_log10_kill": 0.1, "obs_icasp9_log10_kill_se": 0.1}
+    t6_pos = {**bsct_scope, "endpoint_id": "lot_tier6b_sorted_prolif_clonogenic_escape", "scope_type": "LOT_SCOPE", "sample_id": "T6_POS", "k": 1}
+    lectin_fail = {"obs_l2_v3_lectin_c4b2a_lysis_pct": 18.0, "obs_l2_v3_lectin_c4b2a_lysis_se": 0.1, "replicates_n": 6}
+    classical_fail = {"obs_l2_v3_classical_c4b2a_lysis_pct": 18.0, "obs_l2_v3_classical_c4b2a_lysis_se": 0.1, "replicates_n": 6}
+
+    # 1. Malformed container + 10**400 scalar never suppress independently attributable S9 / Tier 6B / S11 hard stops across all 4 dict/wire/replay paths:
+    for exp_w, doc in (
+        ("S9_HARD_SAFETY_STOP", {**bsct_scope, **s9_adv, "measurements": []}),
+        ("S9_HARD_SAFETY_STOP", {"scope": bsct_scope, "measurements": {**s9_adv, "obs_stage7_yield_ratio": 10**400}}),
+        ("FAIL_TIER6B_OUTGROWTH_DETECTED", {**bsct_scope, "tier6b_sorted_lot_observations": [t6_pos], "scope": []}),
+        ("FAIL_S11_POST_CUFF_LECTIN_C4B2A_LYSIS_EXCEEDS_10PCT", {"scope": l2_scope, "iip0031_locus2_record": None, "iip0026_molecular_observations": {"iip0031_locus2_record": lectin_fail}}),
+        ("FAIL_S11_POST_CUFF_LECTIN_C4B2A_LYSIS_EXCEEDS_10PCT", {"scope": l2_scope, "iip0031_locus2_record": {}, "iip0026_molecular_observations": {"iip0031_locus2_record": lectin_fail}}),
+        ("FAIL_S11_POST_CUFF_LECTIN_C4B2A_LYSIS_EXCEEDS_10PCT", {"scope": l2_scope, "iip0031_locus2_record": 10**400, "iip0026_molecular_observations": {"iip0031_locus2_record": lectin_fail}}),
+    ):
+        for fn in (
+            lambda d: wc_mod.evaluate_stage0_product_contract(d, root=ROOT),
+            lambda d: ing_mod.ingest_stage0_research_or_wetlab_batch(d, root=ROOT),
+            lambda d: ing_mod.ingest_stage0_research_or_wetlab_batch(json.dumps(d), root=ROOT),
+            lambda d: ing_mod.replay_stage0_chronological_batches([d], root=ROOT),
+        ):
+            out = fn(doc)
+            assert out["hard_stop_precedence_winner"] == exp_w, (exp_w, out)
+            assert out["effective_execution_permitted"] is False
+
+    # 2. Mixed-scope / cross-arm / ambiguous-envelope / incomplete-scope replay preserves attributable hard stops in both orders:
+    adv_s9_pkt = {"scope": bsct_scope, "measurements": s9_adv}
+    for peer in (
+        {"scope": {**bsct_scope, "lot_id": "OTHER"}},
+        {"scope": bsct_scope, "lot_id": None},
+        {"scope": bsct_scope, "adjunct_conditioning_history_arm": "ARM2_CONDITIONED_DEPLETED"},
+    ):
+        a_use = {**adv_s9_pkt, "adjunct_conditioning_history_arm": "ARM1_NEVER_CONDITIONED"} if "adjunct_conditioning_history_arm" in peer else adv_s9_pkt
+        for order in ([a_use, peer], [peer, a_use]):
+            r_mix = ing_mod.replay_stage0_chronological_batches(order, root=ROOT)
+            assert r_mix["hard_stop_precedence_winner"] == "S9_HARD_SAFETY_STOP", (peer, r_mix)
+            assert r_mix["effective_execution_permitted"] is False
+    inc_s = {k: v for k, v in bsct_scope.items() if k != "campaign_id"}
+    for order in ([{"scope": inc_s, "measurements": s9_adv}, {"scope": inc_s, "measurements": {"obs_icasp9_log10_kill": 10**400}}],
+                  [{"scope": inc_s, "measurements": {"obs_icasp9_log10_kill": 5.0, "obs_icasp9_log10_kill_se": 0.1}}, {"scope": inc_s, "measurements": s9_adv}]):
+        r_inc = ing_mod.replay_stage0_chronological_batches(order, root=ROOT)
+        assert r_inc["hard_stop_precedence_winner"] == "S9_HARD_SAFETY_STOP", r_inc
+
+    # 3. ISO-8601 UTC timestamp ordering & tie determinism + S11 precedence over generic failures:
+    t_before = {"scope": l2_scope, "iip0031_locus2_record": lectin_fail, "utc_timestamp": "2026-11-20T00:00:00Z", "seq_index": 1}
+    t_after = {"scope": l2_scope, "iip0031_locus2_record": classical_fail, "utc_timestamp": "2026-11-20T00:00:00.001Z", "seq_index": 2}
+    for order in ([t_before, t_after], [t_after, t_before]):
+        r_ts = ing_mod.replay_stage0_chronological_batches(order, root=ROOT)
+        assert r_ts["overall_status"] == "FAIL_S11_POST_CUFF_LECTIN_C4B2A_LYSIS_EXCEEDS_10PCT", r_ts
+        assert "FAIL_S11_POST_CUFF_CLASSICAL_C4B2A_LYSIS_EXCEEDS_10PCT" in r_ts["s11_evaluation"]["reasons"]
+    tie_a = {"scope": l2_scope, "iip0031_locus2_record": lectin_fail, "seq_index": 1}
+    tie_b = {"scope": l2_scope, "iip0031_locus2_record": classical_fail, "seq_index": 1}
+    r_tie1 = ing_mod.replay_stage0_chronological_batches([tie_a, tie_b], root=ROOT)
+    r_tie2 = ing_mod.replay_stage0_chronological_batches([tie_b, tie_a], root=ROOT)
+    assert r_tie1["overall_status"] == r_tie2["overall_status"] == "FAIL_S11_POST_CUFF_CLASSICAL_C4B2A_LYSIS_EXCEEDS_10PCT"
+    s11_bsct = {"scope": bsct_scope, "iip0031_locus2_record": {"test": True}}
+    ovr_pkt = {"scope": bsct_scope, "execution_supported": False}
+    for order in ([ovr_pkt, s11_bsct], [s11_bsct, ovr_pkt]):
+        r_p7 = ing_mod.replay_stage0_chronological_batches(order, root=ROOT)
+        assert r_p7["overall_status"] == "FAIL_S11_TRACK2_BSCT_INCOMPATIBLE_AT_LOCUS_2", r_p7
+
+    # 4. Shared BAF / Design-B / TYK2 alias conflict preservation across all 4 containers & paths:
+    b2_tyk2_base = {
+        "scope": {**bsct_scope, "product_variant_id": "ISLET1_B2_5LOCUS_TYK2_PE"},
+        "obs_icasp9_log10_kill": 5.0, "obs_icasp9_log10_kill_se": 0.1,
+        "obs_tp53_ppm1d_bcor_vaf": 0.0, "obs_tp53_ppm1d_bcor_vaf_se": 1e-6, "obs_tp53_ppm1d_bcor_duplex_depth": 70000,
+        "obs_castseq_translocation_freq": 0.0, "obs_castseq_translocation_se": 1e-6, "obs_castseq_duplex_or_amplicon_depth": 70000,
+        "obs_mcb_clonogenic_survivor_count_k": 0, "obs_mcb_effective_clonogenic_trials": 300000000,
+        "bound_c1_c5_pair_sha256": wc_mod.DESIGN_B_C1_C5_PAIR_SHA256,
+        "post_edit_reciprocal_mosaic_sv_or_clonal_zygosity_verified": True,
+        "design_b_locus5_race_umi_n_eff": 4000, "tyk2_pe_modality": "PE4MAX_MSI_GATED", "tyk2_phased_haplotype_sap_verified": True,
+    }
+    for doc_a, exp_reason in (
+        ({**b2_tyk2_base, "measurements": {"per_locus_segmented_baf": {"chr19q": 0.25, "chr11p15": 0.25, "chr6p21": 0.25}}}, "FAIL_DISCORDANT_PER_LOCUS_SEGMENTED_BAF"),
+        ({**b2_tyk2_base, "design_b_locus5_aberrant_umi_k": 1, "obs_design_b_locus5_aberrant_umi_k": 0}, "FAIL_DESIGNB_LOCUS5_CHIMERIC_TRANSCRIPT_DETECTED"),
+        ({**b2_tyk2_base, "tyk2_pe4max_pentaplex_msi_shifts_k": 1, "obs_tyk2_pe4max_pentaplex_msi_shifts_k": 0}, "FAIL_MSI_DETECTED"),
+    ):
+        for fn in (
+            lambda d: wc_mod.evaluate_stage0_product_contract(d, root=ROOT),
+            lambda d: ing_mod.ingest_stage0_research_or_wetlab_batch(json.dumps(d), root=ROOT),
+            lambda d: ing_mod.replay_stage0_chronological_batches([d], root=ROOT),
+        ):
+            assert exp_reason in fn(doc_a)["iip0026_reasons"], (exp_reason, doc_a)
+
+    # 5. Atomic ledger wrong-campaign S9 isolation, 10**400 atom isolation, QP reset hardening, and MappingProxyType immutability:
+    lot_k = wc_mod.LotScopeKey(bsct_scope["product_variant_id"], bsct_scope["construct_sha256"], bsct_scope["donor_seedline_id"], bsct_scope["mcb_id"], bsct_scope["lot_id"])
+    mcb_k = wc_mod.MCBScopeKey(bsct_scope["product_variant_id"], bsct_scope["construct_sha256"], bsct_scope["donor_seedline_id"], bsct_scope["mcb_id"])
+    a_bad_camp = wc_mod.AtomicObservation(endpoint_id="obs_icasp9_log10_kill", scope_type="LOT_SCOPE", scope_key=lot_k, kind="CONTINUOUS_STUDENT_T", value_or_k=0.1, se_or_n=0.1, sample_n=6, campaign_id="OTHER", sample_unit_id="S1")
+    a_ok = wc_mod.AtomicObservation(endpoint_id="obs_icasp9_log10_kill", scope_type="LOT_SCOPE", scope_key=lot_k, kind="CONTINUOUS_STUDENT_T", value_or_k=5.0, se_or_n=0.1, sample_n=6, campaign_id="C_QA", sample_unit_id="S2")
+    l_wc = wc_mod.evaluate_iip0024_atomic_stage0_ledger([{"atoms": [a_bad_camp]}, {"atoms": [a_ok]}], bsct_scope, target_campaign_id="C_QA", root=ROOT)
+    assert l_wc["hard_stop_precedence_winner"] is None and any("HOLD_UNLINKED_CAMPAIGN" in h for h in l_wc["holds"]), l_wc
+    a_s9 = wc_mod.AtomicObservation(endpoint_id="obs_icasp9_log10_kill", scope_type="LOT_SCOPE", scope_key=lot_k, kind="CONTINUOUS_STUDENT_T", value_or_k=0.1, se_or_n=0.1, sample_n=6, campaign_id="C_QA", sample_unit_id="S3")
+    a_huge = wc_mod.AtomicObservation(endpoint_id="mcb_1q32_mdm4_diploid_cn", scope_type="MCB_SCOPE", scope_key=mcb_k, kind="CONTINUOUS_STUDENT_T", value_or_k=2.0, se_or_n=0.01, sample_n=10**400, campaign_id="C_QA", sample_unit_id="S4")
+    l_huge = wc_mod.evaluate_iip0024_atomic_stage0_ledger([{"atoms": [a_s9]}, {"atoms": [a_huge]}], bsct_scope, target_campaign_id="C_QA", root=ROOT)
+    assert l_huge["hard_stop_precedence_winner"] == "S9_HARD_SAFETY_STOP", l_huge
+    # MappingProxyType deep-freeze cannot be mutated post-construction:
+    mut_d = {"k_val": 4000}
+    a_mp = wc_mod.AtomicObservation(endpoint_id="obs_icasp9_log10_kill", scope_type="LOT_SCOPE", scope_key=lot_k, kind="CONTINUOUS_STUDENT_T", value_or_k=5.0, se_or_n=0.1, sample_n=6, campaign_id="C_QA", sample_unit_id="S5", controls={"nested": MappingProxyType(mut_d)})
+    d_pre = a_mp.digest()
+    mut_d["k_val"] = 1
+    assert a_mp.digest() == d_pre and a_mp.controls["nested"]["k_val"] == 4000
+
+    # 6. Rule S11 fail-closed unknown ID, public product_def override resistance, CIITA 10**400 guard, paired ADCC exact decimal check, & 5'-RACE k>n check:
+    assert wc_mod.evaluate_locus2_ciita_modeb_challenger_v3_gate({"product_variant_id": "ISLET1_UNKNOWN_999"}, root=ROOT)["gate_pass"] is False
+    fake_pdef = copy.deepcopy(pc_mod.get_product_definition("ISLET1_A4_ARM1B", root=ROOT))
+    s11_ovr_test = wc_mod.evaluate_locus2_ciita_modeb_challenger_v3_gate({"product_variant_id": "ISLET1_B2_5LOCUS_BASE", "has_intronic_mir_cd276_pvr": True}, root=ROOT, product_def=fake_pdef)
+    assert s11_ovr_test["status"] == "FAIL_S11_MIR_CD276_PVR_BARRED_ON_DESIGN_B_HLAC_INTACT"
+    s11_adcc_bad = wc_mod.evaluate_locus2_ciita_modeb_challenger_v3_gate(
+        {**l2_scope, "iip0031_locus2_record": {"obs_l2_v3_intact_serum_adcc_lysis_pct": 2.0, "obs_l2_v3_igg_depleted_serum_adcc_lysis_pct": 1.0, "obs_l2_v3_igg_increment_adcc_lysis_pct": 9.0, "obs_l2_v3_igg_increment_adcc_lysis_se": 0.1, "replicates_n": 6}},
+        root=ROOT,
+    )
+    assert s11_adcc_bad["status"].startswith("HOLD_S11_") and "FAIL_S11_CONJUNCTIVE_GY023_ADCC_EXCEEDS_5PCT" not in s11_adcc_bad["reasons"], s11_adcc_bad
+    s11_ciita_huge = wc_mod.evaluate_locus2_ciita_modeb_challenger_v3_gate(
+        {**l2_scope, "iip0031_locus2_record": {"replicates_n": 6, "obs_ciita_ki_allele_informative_reads_n": 10**400, "obs_ciita_ki_ex4_ex6_aberrant_skip_reads_k": 0, "obs_ciita_ko_allele_informative_reads_n": 500, "obs_ciita_ko_ex4_ex6_aberrant_skip_reads_k": 20}},
+        root=ROOT,
+    )
+    assert s11_ciita_huge["status"] == "FAIL_S11_CIITA_ABERRANT_EX4_EX6_SKIP_EXCEEDS_1PCT", s11_ciita_huge
+    s11_race_oob = wc_mod.evaluate_locus2_ciita_modeb_challenger_v3_gate(
+        {**l2_scope, "iip0031_locus2_record": {"replicates_n": 6, "obs_l2_v3_unit1_eef1a1_resting_0h_5race_umi_n_eff": 4000, "obs_l2_v3_unit1_eef1a1_resting_0h_unexpected_tss_umi_k": 4001}},
+        root=ROOT,
+    )
+    assert s11_race_oob["status"].startswith("HOLD_S11_") and "FAIL_S11_LOCUS2_UNEXPECTED_5PRIME_RACE_START_DETECTED" not in s11_race_oob["reasons"], s11_race_oob
+
+    # 7. Math-only parameter validation & exact Layer-3 2WII DBREF Gln1013 (33.04 A) / 15-PDB inventory:
+    for bad_cap in (-1, float("inf"), float("nan"), False, "0.01"):
+        with pytest.raises(ValueError):
+            wc_mod.compute_tier6b_per_fraction_thinning_bound_math_only(
+                [{"fraction_id": "a", "N": 10_000_000, "w_i": 0.5, "d_i_L": 0.5}, {"fraction_id": "b", "N": 10_000_000, "w_i": 0.5, "d_i_L": 0.5}],
+                lot_cap=bad_cap,
+            )
+    l3_atlas = json.loads((ROOT / "data/extracted/layer3_structural_verification_atlas.json").read_text(encoding="utf-8"))
+    assert l3_atlas["summary"]["total_experimental_pdb_structures_verified"] == 15
+    assert l3_atlas["locus2_cfh_stp_gpi_structural_provenance_iip_0031"]["pdb_2wii"]["glu264_ca_to_c3b_ted_q1013_ca_angstrom"] == 33.04
+
+    # 8. Patch v11 table-driven 4-path mutation conformance:
+    # (a) Conflicting flat Rule S11 measurements across supported containers MUST NEVER erase an attributable FAIL_S11_* hard stop
+    # across Direct, Dict Ingestion, Wire Ingestion, Chronological Replay (single- and multi-record), and Atomic Ledger!
+    l2_lot_k = wc_mod.LotScopeKey(
+        l2_scope["product_variant_id"],
+        l2_scope["construct_sha256"],
+        l2_scope["donor_seedline_id"],
+        l2_scope["mcb_id"],
+        l2_scope["lot_id"],
+    )
+    flat_s11_conflict_cases = [
+        (
+            "lectin_18_vs_4",
+            {"obs_l2_v3_lectin_c4b2a_lysis_pct": 18.0, "obs_l2_v3_lectin_c4b2a_lysis_se": 0.1, "replicates_n": 6},
+            {"obs_l2_v3_lectin_c4b2a_lysis_pct": 4.0},
+            "FAIL_S11_POST_CUFF_LECTIN_C4B2A_LYSIS_EXCEEDS_10PCT",
+        ),
+        (
+            "lectin_18_vs_null",
+            {"obs_l2_v3_lectin_c4b2a_lysis_pct": 18.0, "obs_l2_v3_lectin_c4b2a_lysis_se": 0.1, "replicates_n": 6},
+            {"obs_l2_v3_lectin_c4b2a_lysis_pct": None},
+            "FAIL_S11_POST_CUFF_LECTIN_C4B2A_LYSIS_EXCEEDS_10PCT",
+        ),
+        (
+            "classical_18_vs_4",
+            {"obs_l2_v3_classical_c4b2a_lysis_pct": 18.0, "obs_l2_v3_classical_c4b2a_lysis_se": 0.1, "replicates_n": 6},
+            {"obs_l2_v3_classical_c4b2a_lysis_pct": 4.0, "obs_l2_v3_classical_c4b2a_lysis_se": 0.2},
+            "FAIL_S11_POST_CUFF_CLASSICAL_C4B2A_LYSIS_EXCEEDS_10PCT",
+        ),
+        (
+            "ap_c5b9_8_vs_1",
+            {"obs_l2_v3_ap_c5b9_pct": 8.0, "obs_l2_v3_ap_c5b9_se": 0.1, "replicates_n": 6},
+            {"obs_l2_v3_ap_c5b9_pct": 1.0},
+            "FAIL_S11_POST_CUFF_AP_C5B9_EXCEEDS_5PCT",
+        ),
+        (
+            "intact_adcc_12_vs_2",
+            {"obs_l2_v3_intact_serum_adcc_lysis_pct": 12.0, "obs_l2_v3_intact_serum_adcc_lysis_se": 0.1, "replicates_n": 6},
+            {"obs_l2_v3_intact_serum_adcc_lysis_pct": 2.0},
+            "FAIL_S11_CONJUNCTIVE_GY023_ADCC_EXCEEDS_5PCT",
+        ),
+        (
+            "lectin_with_conflicting_bad_replicates_n",
+            {"obs_l2_v3_lectin_c4b2a_lysis_pct": 18.0, "obs_l2_v3_lectin_c4b2a_lysis_se": 0.1, "replicates_n": 6},
+            {"obs_l2_v3_lectin_c4b2a_lysis_pct": 4.0, "replicates_n": 2},
+            "FAIL_S11_POST_CUFF_LECTIN_C4B2A_LYSIS_EXCEEDS_10PCT",
+        ),
+        (
+            "chr16_ha_wgs_false_vs_true",
+            {"obs_l2_v3_chr16_ha_wgs_pass": False, "obs_l2_v3_chr16_ha_wgs_variant_count": 2},
+            {"obs_l2_v3_chr16_ha_wgs_pass": True, "obs_l2_v3_chr16_ha_wgs_variant_count": 0},
+            "FAIL_S11_CHR16_HA_WGS_VARIANT_DETECTED",
+        ),
+    ]
+    for case_lbl, adv_block, safe_block, exp_s11 in flat_s11_conflict_cases:
+        # Test BOTH container orientations (adverse in measurements vs safe in mol, AND adverse in mol vs safe in measurements):
+        for meas_blk, mol_blk in ((adv_block, safe_block), (safe_block, adv_block)):
+            pkt = {
+                "scope": dict(l2_scope),
+                "measurements": dict(meas_blk),
+                "iip0026_molecular_observations": dict(mol_blk),
+            }
+            for p_nm, res_p in (
+                ("direct", wc_mod.evaluate_stage0_product_contract(pkt, root=ROOT)),
+                ("ingest_dict", ing_mod.ingest_stage0_research_or_wetlab_batch(pkt, root=ROOT)),
+                ("ingest_wire", ing_mod.ingest_stage0_research_or_wetlab_batch(json.dumps(pkt), root=ROOT)),
+                ("replay_1rec", ing_mod.replay_stage0_chronological_batches([pkt], root=ROOT)),
+            ):
+                assert res_p["overall_status"] == exp_s11, (case_lbl, p_nm, res_p)
+                assert res_p["hard_stop_precedence_winner"] == exp_s11, (case_lbl, p_nm, res_p)
+                assert res_p["s11_evaluation"]["status"] == exp_s11, (case_lbl, p_nm, res_p)
+                assert "HOLD_CONFLICTING_STAGE0_MEASUREMENT" in res_p["iip0026_reasons"], (case_lbl, p_nm, res_p)
+        # Atomic ledger parity for contradictory structured panels:
+        a_adv = wc_mod.AtomicObservation(
+            endpoint_id="stage0_locus2_modeb_v3_panel",
+            scope_type="LOT_SCOPE",
+            scope_key=l2_lot_k,
+            kind="STRUCTURED_PANEL",
+            value_or_k={**adv_block, "scope_type": "LOT_SCOPE"},
+            campaign_id="C_QA",
+            sample_unit_id="S1",
+        )
+        a_safe = wc_mod.AtomicObservation(
+            endpoint_id="stage0_locus2_modeb_v3_panel",
+            scope_type="LOT_SCOPE",
+            scope_key=l2_lot_k,
+            kind="STRUCTURED_PANEL",
+            value_or_k={**safe_block, "scope_type": "LOT_SCOPE"},
+            campaign_id="C_QA",
+            sample_unit_id="S2",
+        )
+        for batch_seq in ([{"atoms": [a_adv]}, {"atoms": [a_safe]}], [{"atoms": [a_safe]}, {"atoms": [a_adv]}]):
+            res_l = wc_mod.evaluate_iip0024_atomic_stage0_ledger(batch_seq, l2_scope, target_campaign_id="C_QA", root=ROOT)
+            assert res_l["overall_status"] == exp_s11, (case_lbl, res_l)
+            assert res_l["hard_stop_precedence_winner"] == exp_s11, (case_lbl, res_l)
+            assert res_l["s11_evaluation"]["status"] == exp_s11, (case_lbl, res_l)
+
+    # Multi-record chronological replay where SE & replicates_n arrive in Record 1 and conflicting flat lectin means arrive in Record 2:
+    r_multi_1 = {"scope": dict(l2_scope), "measurements": {"obs_l2_v3_lectin_c4b2a_lysis_se": 0.1, "replicates_n": 6}, "utc_timestamp": "2026-11-20T01:00:00Z", "seq_index": 1}
+    r_multi_2 = {"scope": dict(l2_scope), "measurements": {"obs_l2_v3_lectin_c4b2a_lysis_pct": 18.0}, "iip0026_molecular_observations": {"obs_l2_v3_lectin_c4b2a_lysis_pct": 4.0}, "utc_timestamp": "2026-11-20T01:01:00Z", "seq_index": 2}
+    res_rm = ing_mod.replay_stage0_chronological_batches([r_multi_1, r_multi_2], root=ROOT)
+    assert res_rm["overall_status"] == "FAIL_S11_POST_CUFF_LECTIN_C4B2A_LYSIS_EXCEEDS_10PCT", res_rm
+    assert res_rm["hard_stop_precedence_winner"] == "FAIL_S11_POST_CUFF_LECTIN_C4B2A_LYSIS_EXCEEDS_10PCT", res_rm
+
+    # Anti-cross-breeding control: safe mean+SE in measurements (4.0, SE=0.1) + bare adverse mean (18.0, NO SE) in mol MUST NOT fabricate SE=0.1 onto 18.0:
+    pkt_no_xb = {
+        "scope": dict(l2_scope),
+        "measurements": {"obs_l2_v3_lectin_c4b2a_lysis_pct": 4.0, "obs_l2_v3_lectin_c4b2a_lysis_se": 0.1, "replicates_n": 6},
+        "iip0026_molecular_observations": {"obs_l2_v3_lectin_c4b2a_lysis_pct": 18.0},
+    }
+    res_no_xb = wc_mod.evaluate_stage0_product_contract(pkt_no_xb, root=ROOT)
+    assert res_no_xb["overall_status"] == "HOLD_CONFLICTING_STAGE0_MEASUREMENT", res_no_xb
+    assert res_no_xb["s11_evaluation"]["status"] == "HOLD_S11_CONFLICTING_NESTED_EVIDENCE", res_no_xb
+
+    # (b) Tier 6B strict fraction-role classification & optional typed `fraction_role` across ALL 4 paths:
+    def _t6b_pair_v11(enr_lbl: str, ft_lbl: str = "flow_through_and_excluded", *, enr_extra: dict | None = None, ft_extra: dict | None = None) -> list[dict]:
+        roster = [enr_lbl, ft_lbl]
+        base_meta = {
+            "endpoint_id": "lot_tier6b_sorted_prolif_clonogenic_escape",
+            "scope_type": "LOT_SCOPE",
+            "kind": "EXACT_INTEGER_COUNT",
+            "product_variant_id": l2_scope["product_variant_id"],
+            "construct_sha256": l2_scope["construct_sha256"],
+            "background_id": l2_pdef["staged_locus2_modeb_donor_binding"]["background_id"],
+            "donor_seedline_id": l2_scope["donor_seedline_id"],
+            "mcb_id": l2_scope["mcb_id"],
+            "lot_id": l2_scope["lot_id"],
+            "campaign_id": l2_scope["campaign_id"],
+            "timepoint": "STAGE7_PRE_ASSEMBLY",
+            "assay_version": "TIER6B_SORTED_LOT_V1",
+            "unit": "clonogenic_opportunities",
+            "presort_lineage_panel": "CD31_NEG_CD144_NEG_ENDOCRINE_PRE_ASSEMBLY",
+            "clonogenic_risk_unit": "SORTED_SINGLE_CELL_EQUIVALENT_CLONOGENIC_OPPORTUNITY",
+            "endogenous_denominator_verified": True,
+            "endogenous_denominator_basis": "MATCHED_UNTREATED_CLONOGENIC_CONTROL",
+            "presort_mass_balance_reconciled": True,
+            "unreconciled_loss_fraction": 0.0,
+            "presort_total_input_cells": 3_000_000_000,
+            "presort_reconciled_loss_cells": 0,
+            "excluded_or_lost_material_discarded_not_in_graft": True,
+            "declared_fraction_roster": roster,
+            "k": 0,
+        }
+        r_enr = {
+            **base_meta,
+            "fraction_id": enr_lbl,
+            "sample_id": "V11_ENR_S1",
+            "N": 30_000_000,
+            "plated_treated_cells_n": 80_000_000,
+            "presort_fraction_cells": 2_999_700_000,
+            "w_i": 0.9999,
+            "hpsc_calibrant": {"r_k": 20, "r_n": 20, "cal_batch_id": "V11_CAL_E_H"},
+            "edited_differentiated_calibrant": {"r_k": 20, "r_n": 20, "cal_batch_id": "V11_CAL_E_D"},
+            "untreated_cfu_control": {"untreated_sample_id": "V11_UNTR_E", "untreated_cfu_colonies_k": 4000, "untreated_plated_cells_n": 10000},
+            **(enr_extra or {}),
+        }
+        r_ft = {
+            **base_meta,
+            "fraction_id": ft_lbl,
+            "sample_id": "V11_FT_S1",
+            "N": 100_000,
+            "plated_treated_cells_n": 266_667,
+            "presort_fraction_cells": 300_000,
+            "w_i": 0.0001,
+            "hpsc_calibrant": {"r_k": 10, "r_n": 10, "cal_batch_id": "V11_CAL_F_H"},
+            "edited_differentiated_calibrant": {"r_k": 10, "r_n": 10, "cal_batch_id": "V11_CAL_F_D"},
+            "untreated_cfu_control": {"untreated_sample_id": "V11_UNTR_F", "untreated_cfu_colonies_k": 4000, "untreated_plated_cells_n": 10000},
+            **(ft_extra or {}),
+        }
+        return [r_enr, r_ft]
+
+    def _eval_t6b_4paths_v11(recs: list[dict]) -> dict[str, dict]:
+        pkt = {"scope": dict(l2_scope), "tier6b_sorted_lot_observations": recs}
+        atoms = [
+            wc_mod.AtomicObservation(
+                endpoint_id=r["endpoint_id"],
+                scope_type="LOT_SCOPE",
+                scope_key=l2_lot_k,
+                kind="EXACT_INTEGER_COUNT",
+                value_or_k=r["k"],
+                se_or_n=r["N"],
+                campaign_id=r["campaign_id"],
+                sample_unit_id=r["sample_id"],
+                unit=r["unit"],
+                assay_version=r["assay_version"],
+                timepoint=r["timepoint"],
+                controls={k: v for k, v in r.items() if k not in ("endpoint_id", "scope_type", "kind", "k", "N", "product_variant_id", "construct_sha256", "donor_seedline_id", "mcb_id", "lot_id", "campaign_id", "sample_id", "unit", "assay_version", "timepoint")},
+            )
+            for r in recs
+        ]
+        return {
+            "direct": wc_mod.evaluate_stage0_product_contract(pkt, root=ROOT)["tier6b_sorted_lot_evaluation"],
+            "ingest_wire": ing_mod.ingest_stage0_research_or_wetlab_batch(json.dumps(pkt), root=ROOT)["tier6b_sorted_lot_evaluation"],
+            "replay": ing_mod.replay_stage0_chronological_batches([pkt], root=ROOT)["tier6b_sorted_lot_evaluation"],
+            "ledger": wc_mod.evaluate_iip0024_atomic_stage0_ledger([{"atoms": atoms}], l2_scope, target_campaign_id="C_QA", root=ROOT)["tier6b_sorted_lot_evaluation"],
+        }
+
+    # Positive controls (with and without explicit typed fraction_role) MUST PASS with exact 2.1870701159e-7 on ALL 4 paths:
+    for pos_recs in (
+        _t6b_pair_v11("enriched_cd31_neg_cd144_neg", "flow_through_and_excluded"),
+        _t6b_pair_v11("enriched_cd31_neg_cd144_neg", "flow_through_and_excluded", enr_extra={"fraction_role": "ENRICHED"}, ft_extra={"fraction_role": "FLOW_THROUGH_OR_EXCLUDED"}),
+    ):
+        for p_nm, ev_pos in _eval_t6b_4paths_v11(pos_recs).items():
+            assert ev_pos["disposition"] == "PASS", (p_nm, ev_pos)
+            assert abs(ev_pos["p_lot_U95"] - 2.187070115946855e-7) < 1e-12, (p_nm, ev_pos)
+
+    # Ambiguous/contradictory enriched labels (including Box 2's exact `depleted_enriched_cd31_neg_cd144_neg`, even with explicit `fraction_role="ENRICHED"`!) MUST HOLD on ALL 4 paths:
+    for bad_enr_lbl, bad_enr_extra in (
+        ("depleted_enriched_cd31_neg_cd144_neg", None),
+        ("depleted_enriched_cd31_neg_cd144_neg", {"fraction_role": "ENRICHED"}),
+        ("enriched_depleted_cd31_neg_cd144_neg", None),
+        ("excluded_enriched_cd31_neg_cd144_neg", None),
+        ("discard_enriched", None),
+        ("waste_enriched", None),
+        ("rejected_enriched", None),
+        ("residual_enriched", None),
+        ("unselected_enriched", None),
+        ("mixed_enriched", None),
+        ("unsorted_enriched", None),
+        ("bulk_enriched", None),
+        ("pseudo_enriched_cd31_neg_cd144_neg", None),
+        ("enriched_cd31_pos_cd144_neg", None),
+        ("enriched_cd31_neg_cd144_neg", {"fraction_role": "FLOW_THROUGH_OR_EXCLUDED"}),
+        ("enriched_cd31_neg_cd144_neg", {"fraction_role": "UNKNOWN_ROLE"}),
+    ):
+        bad_recs = _t6b_pair_v11(bad_enr_lbl, "flow_through_and_excluded", enr_extra=bad_enr_extra)
+        for p_nm, ev_bad in _eval_t6b_4paths_v11(bad_recs).items():
+            assert ev_bad["disposition"] == "HOLD_TIER6B_UNQUALIFIED_FRACTION", (bad_enr_lbl, bad_enr_extra, p_nm, ev_bad)
+            assert ev_bad["gate_pass"] is False, (bad_enr_lbl, bad_enr_extra, p_nm, ev_bad)
 
 
 

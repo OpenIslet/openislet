@@ -4,6 +4,10 @@
   "minimum_se": 0.001,
   "missing_mean": "UNAVAILABLE",
   "unknown_keys": "REJECT",
+  "tier6b_sorted_lot": {
+    "minimum_untreated_plated_cells_n": 2,
+    "underpowered_untreated_cfu_reason": "UNDERPOWERED_UNTREATED_CFU_CONTROL_DENOMINATOR"
+  },
   "metadata_keys": [
     "batch_id",
     "assay_id",
@@ -76,7 +80,12 @@
     "assay_harvest_utc",
     "registered_mixture_id",
     "locked_analysis_plan_id",
-    "gate0s_elevated_store_scope_matched_device_lot_id"
+    "gate0s_elevated_store_scope_matched_device_lot_id",
+    "background_id",
+    "mcb_id",
+    "l2_v3_donor_id",
+    "tier6b_presort_lineage_panel",
+    "tier6b_clonogenic_risk_unit"
   ],
   "boolean_policy_keys": [
     "require_full_5endpoint_s9_panel",
@@ -188,7 +197,19 @@
     "stage7_t3_10nM_and_nac_1mM_retained",
     "zm447439_washout_verified_pre_iec",
     "pre_coassembly_iec_vascular_function_verified",
-    "readout2_both_40_and_100mmhg_tracer_aligned_verified"
+    "readout2_both_40_and_100mmhg_tracer_aligned_verified",
+    "require_full_iip0031_locus2_and_tier6b_panel",
+    "ciita_ki_allele_informative_transcript_recovery_verified",
+    "ciita_ko_allele_informative_transcript_recovery_verified",
+    "ciita_cis_sentinels_socs1_dexi_clec16a_tost_verified",
+    "lineage_matched_wt_stage7_hla_dr_dp_dq_inducibility_verified",
+    "l2_v3_same_background_intronless_control_linked_to_cargo",
+    "l2_v3_same_background_scramble_control_linked_to_cargo",
+    "phasing_verified",
+    "cis_verified",
+    "wt_inducibility_verified",
+    "rnai_attribution_verified",
+    "obs_l2_v3_chr16_ha_wgs_pass"
   ],
   "endpoints": [
     {
@@ -4166,6 +4187,138 @@
       "default_se": 0.05,
       "minimum_se": 0.001,
       "unit": "analytical_lc_ms_ms_residual_zm447439_concentration_micromolar_prior_to_iec_coassembly"
+    },
+    {
+      "endpoint_id": "stage0_l2_v3_ap_c5b9_pct",
+      "meanKey": "obs_l2_v3_ap_c5b9_pct",
+      "seKey": "obs_l2_v3_ap_c5b9_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.5,
+      "minimum_se": 0.001,
+      "unit": "post_cuff_alternative_pathway_20pct_nhs_c5b9_deposition_pct"
+    },
+    {
+      "endpoint_id": "stage0_l2_v3_classical_c4b2a_lysis_pct",
+      "meanKey": "obs_l2_v3_classical_c4b2a_lysis_pct",
+      "seKey": "obs_l2_v3_classical_c4b2a_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.5,
+      "minimum_se": 0.001,
+      "unit": "post_cuff_classical_c1q_sensitized_c4b2a_cdc_lysis_pct"
+    },
+    {
+      "endpoint_id": "stage0_l2_v3_lectin_c4b2a_lysis_pct",
+      "meanKey": "obs_l2_v3_lectin_c4b2a_lysis_pct",
+      "seKey": "obs_l2_v3_lectin_c4b2a_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.5,
+      "minimum_se": 0.001,
+      "unit": "post_cuff_lectin_mbl_mannan_c4b2a_cdc_lysis_pct"
+    },
+    {
+      "endpoint_id": "stage0_l2_v3_overall_20pct_nhs_lysis_pct",
+      "meanKey": "obs_l2_v3_overall_20pct_nhs_lysis_pct",
+      "seKey": "obs_l2_v3_overall_20pct_nhs_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.5,
+      "minimum_se": 0.001,
+      "unit": "post_cuff_playbook_overall_20pct_nhs_specific_lysis_pct"
+    },
+    {
+      "endpoint_id": "stage0_l2_v3_intact_serum_adcc_lysis_pct",
+      "meanKey": "obs_l2_v3_intact_serum_adcc_lysis_pct",
+      "seKey": "obs_l2_v3_intact_serum_adcc_lysis_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.5,
+      "minimum_se": 0.001,
+      "unit": "post_cuff_gy023_intact_serum_cd16_adcc_total_lysis_pct"
+    },
+    {
+      "endpoint_id": "stage0_l2_v3_igg_increment_adcc_lysis_pct",
+      "meanKey": "obs_l2_v3_igg_increment_adcc_lysis_pct",
+      "seKey": "obs_l2_v3_igg_increment_adcc_lysis_se",
+      "min": -100.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 0.001,
+      "unit": "post_cuff_gy023_paired_igg_attributable_cd16_adcc_increment_pct"
+    },
+    {
+      "endpoint_id": "stage0_l2_v3_exact_stack_effero_abs_pct",
+      "meanKey": "obs_l2_v3_exact_stack_effero_abs_pct",
+      "seKey": "obs_l2_v3_exact_stack_effero_abs_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.5,
+      "minimum_se": 0.001,
+      "unit": "exact_stack_apoptotic_corpse_efferocytosis_absolute_clearance_pct"
+    },
+    {
+      "endpoint_id": "stage0_l2_v3_exact_stack_effero_pct_of_wt",
+      "meanKey": "obs_l2_v3_exact_stack_effero_pct_of_wt",
+      "seKey": "obs_l2_v3_exact_stack_effero_pct_of_wt_se",
+      "min": 0.0,
+      "max": 200.0,
+      "se_required": false,
+      "default_se": 1.0,
+      "minimum_se": 0.001,
+      "unit": "exact_stack_apoptotic_corpse_efferocytosis_pct_of_wt"
+    },
+    {
+      "endpoint_id": "stage0_l2_v3_pericyte_coverage_pct",
+      "meanKey": "obs_l2_v3_pericyte_coverage_pct",
+      "seKey": "obs_l2_v3_pericyte_coverage_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.5,
+      "minimum_se": 0.001,
+      "unit": "gate0g_vascular_pericyte_ng2_pdgfrb_coverage_pct"
+    },
+    {
+      "endpoint_id": "stage0_l2_v3_aav6_full_length_monomer_pct",
+      "meanKey": "obs_l2_v3_aav6_full_length_monomer_pct",
+      "seKey": "obs_l2_v3_aav6_full_length_monomer_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.5,
+      "minimum_se": 0.001,
+      "unit": "reconciled_aav6_alkaline_gel_smrt_ont_full_length_monomer_pct"
+    },
+    {
+      "endpoint_id": "stage0_l2_v3_aav6_truncated_species_pct",
+      "meanKey": "obs_l2_v3_aav6_truncated_species_pct",
+      "seKey": "obs_l2_v3_aav6_truncated_species_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.5,
+      "minimum_se": 0.001,
+      "unit": "reconciled_aav6_truncated_genome_species_pct"
+    },
+    {
+      "endpoint_id": "stage0_l2_v3_aav6_dimeric_or_intermediate_pct",
+      "meanKey": "obs_l2_v3_aav6_dimeric_or_intermediate_pct",
+      "seKey": "obs_l2_v3_aav6_dimeric_or_intermediate_se",
+      "min": 0.0,
+      "max": 100.0,
+      "se_required": false,
+      "default_se": 0.5,
+      "minimum_se": 0.001,
+      "unit": "reconciled_aav6_dimeric_and_intermediate_species_pct"
     }
   ]
 }

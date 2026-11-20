@@ -66,6 +66,8 @@ STRUCTURAL_REFERENCE_SHA256 = {
     "AF-P10144-F1-predicted_aligned_error_v6.json": "cb5b42db914ceb00ef6d508fe800ad784e551236aa4d139c190a25ea41241121",
     "1EFX.pdb": "4e432fe894cc6b0390bab6071598f2f95249d5b6f0c4e5a9365c1ca110660fba",
     "1IM9.pdb": "4c21ebf9e5ba064ab65569079cb8d10a73b718bdc8c4cd1c298bec7a8e4f0013",
+    "2WII.pdb": "93dc715a38124883028aea79a1e3a2715c1d82bed06f59e7889e9971f41543eb",
+    "5O32.pdb": "26b9d9684e7b3fa1757f91a173c8423d583ca6df88eb11d1fa2ecdc059a803d3",
 }
 
 
@@ -4333,7 +4335,7 @@ def _build_product_function_manifest_resolution_iip_0024(
         "ISLET1_B2_5LOCUS_BASE",
         "ISLET1_B_SCT_C1_CIITA",
     )
-    resolved_defs = {pid: get_product_definition(pid, root=REPO_ROOT) for pid in audited_ids}
+    resolved_defs = {pid: get_product_definition(pid, root=REPO_ROOT, require_staged_fastas=False) for pid in audited_ids}
     baseline_profiles = {
         pid: evaluate_product_function_manifest_iip_0024(
             resolved_defs[pid],
@@ -4439,6 +4441,325 @@ def _build_icasp9_1nw9_1jxq_insertion_code_audit_iip_0024() -> Dict[str, Any]:
     }
 
 
+def _build_locus2_cfh_stp_gpi_structural_provenance_iip_0031() -> Dict[str, Any]:
+    """
+    Dynamically compute experimental PDB 2WII (data/structures/2WII.pdb) and PDB 5O32
+    (data/structures/5O32.pdb) structural contacts, disulfides, and domain distances from
+    hash-verified coordinate snapshots on disk, and record external UniProtKB/Swiss-Prot
+    sequence-census provenance for the Locus-2 CFH(1-264)-CD55(286-381)-GPI Mode-B v3
+    research comparators (IIP-0031; DEC-110).
+    Explicitly verifies and excludes the deposited non-native post-Glu264 Ala in 2WII
+    from native Lys265 geometry claims.
+    """
+    snaps = verify_structural_reference_inputs("2WII.pdb", "5O32.pdb")
+    pdb_2wii_bytes = snaps["2WII.pdb"]
+    pdb_5o32_bytes = snaps["5O32.pdb"]
+    pdb_2wii_sha = hashlib.sha256(pdb_2wii_bytes).hexdigest()
+    pdb_5o32_sha = hashlib.sha256(pdb_5o32_bytes).hexdigest()
+
+    aa3 = {
+        "ALA": "A", "ARG": "R", "ASN": "N", "ASP": "D", "CYS": "C",
+        "GLN": "Q", "GLU": "E", "GLY": "G", "HIS": "H", "ILE": "I",
+        "LEU": "L", "LYS": "K", "MET": "M", "PHE": "F", "PRO": "P",
+        "SER": "S", "THR": "T", "TRP": "W", "TYR": "Y", "VAL": "V",
+    }
+
+    def _parse_pdb_resolution(txt: str) -> float:
+        m = re.search(r"REMARK\s+2\s+RESOLUTION\.\s+([0-9.]+)\s+ANGSTROMS", txt)
+        if not m:
+            raise ValueError("Missing REMARK 2 RESOLUTION header in PDB snapshot")
+        return round(float(m.group(1)), 2)
+
+    txt_2wii = pdb_2wii_bytes.decode("utf-8")
+    res_2wii = _parse_pdb_resolution(txt_2wii)
+    atoms_c3b: List[Tuple[str, int, str, str, float, float, float]] = []
+    atoms_cfh: List[Tuple[str, int, str, str, float, float, float]] = []
+    cfh_res_map: Dict[int, str] = {}
+    cfh_resname_map: Dict[int, str] = {}
+    for ln in txt_2wii.splitlines():
+        if not ln.startswith("ATOM  ") or ln[16] not in (" ", "A"):
+            continue
+        aname = ln[12:16].strip()
+        elem = ln[76:78].strip() if len(ln) >= 78 else aname[0]
+        if elem == "H":
+            continue
+        resname, ch, resseq = ln[17:20].strip(), ln[21], int(ln[22:26])
+        x, y, z = float(ln[30:38]), float(ln[38:46]), float(ln[46:54])
+        if ch in ("A", "B"):
+            atoms_c3b.append((ch, resseq, resname, aname, x, y, z))
+        elif ch == "C":
+            atoms_cfh.append((ch, resseq, resname, aname, x, y, z))
+            cfh_res_map[resseq] = aa3.get(resname, "X")
+            cfh_resname_map[resseq] = resname
+
+    offset_2wii = 18
+    if cfh_res_map.get(21 - offset_2wii) != "C" or cfh_res_map.get(62 - offset_2wii) != "I" or cfh_res_map.get(264 - offset_2wii) != "E":
+        raise ValueError("Unexpected PDB 2WII chain-C residue numbering or Ile62/Glu264 identity")
+    post_glu264_resname = cfh_resname_map.get(265 - offset_2wii)
+    if post_glu264_resname != "ALA":
+        raise ValueError(f"Expected non-native ALA at PDB 2WII C:{265 - offset_2wii}, got {post_glu264_resname}")
+
+    sg_atoms = [
+        (r + offset_2wii, x, y, z)
+        for (_, r, rn, an, x, y, z) in atoms_cfh
+        if rn == "CYS" and an == "SG" and (r + offset_2wii) <= 264
+    ]
+    disulfides: List[Dict[str, Any]] = []
+    for i in range(len(sg_atoms)):
+        for j in range(i + 1, len(sg_atoms)):
+            d_sg = math.dist(sg_atoms[i][1:], sg_atoms[j][1:])
+            if d_sg <= 2.5:
+                disulfides.append({
+                    "cys_a_p08603": sg_atoms[i][0],
+                    "cys_b_p08603": sg_atoms[j][0],
+                    "sg_sg_angstrom": round(d_sg, 3),
+                })
+    if len(disulfides) != 8:
+        raise ValueError(f"Expected 8 SCR1-4 disulfides in PDB 2WII, computed {len(disulfides)}")
+    sg_range = [
+        min(d["sg_sg_angstrom"] for d in disulfides),
+        max(d["sg_sg_angstrom"] for d in disulfides),
+    ]
+
+    c3b_by_res: Dict[Tuple[str, int], List[Tuple[float, float, float]]] = {}
+    for ch, r, _, _, x, y, z in atoms_c3b:
+        c3b_by_res.setdefault((ch, r), []).append((x, y, z))
+    cfh_by_res: Dict[int, List[Tuple[float, float, float]]] = {}
+    for _, r, _, _, x, y, z in atoms_cfh:
+        cfh_by_res.setdefault(r, []).append((x, y, z))
+    c3b_bbox = {
+        k: (
+            min(p[0] for p in v), max(p[0] for p in v),
+            min(p[1] for p in v), max(p[1] for p in v),
+            min(p[2] for p in v), max(p[2] for p in v),
+        )
+        for k, v in c3b_by_res.items()
+    }
+
+    contact_pair_count = 0
+    cfh_contact_res: Set[int] = set()
+    c3b_contact_res: Set[Tuple[str, int]] = set()
+    min_dist_by_u_res: Dict[int, float] = {}
+    for r, pts in sorted(cfh_by_res.items()):
+        u_r = r + offset_2wii
+        if u_r > 264:
+            # Explicitly exclude deposited non-native post-Glu264 ALA (C:247 / u_r=265) from native CFH[1-264] metrics:
+            continue
+        x0, x1 = min(p[0] for p in pts), max(p[0] for p in pts)
+        y0, y1 = min(p[1] for p in pts), max(p[1] for p in pts)
+        z0, z1 = min(p[2] for p in pts), max(p[2] for p in pts)
+        for k, cpts in c3b_by_res.items():
+            cx0, cx1, cy0, cy1, cz0, cz1 = c3b_bbox[k]
+            if x0 - 4.6 <= cx1 and x1 + 4.6 >= cx0 and y0 - 4.6 <= cy1 and y1 + 4.6 >= cy0 and z0 - 4.6 <= cz1 and z1 + 4.6 >= cz0:
+                for p1 in pts:
+                    for p2 in cpts:
+                        if math.dist(p1, p2) <= 4.5:
+                            contact_pair_count += 1
+                            cfh_contact_res.add(u_r)
+                            c3b_contact_res.add(k)
+        if u_r >= 257:
+            min_dist_by_u_res[u_r] = round(
+                min(math.dist(p1, (a[4], a[5], a[6])) for p1 in pts for a in atoms_c3b), 3
+            )
+
+    last_c3b_u_r = max(cfh_contact_res)
+    last_c3b_resname = cfh_resname_map[last_c3b_u_r - offset_2wii].capitalize()
+
+    dbref_2wii: List[Tuple[str, int, int, str, str, int, int]] = []
+    for ln in txt_2wii.splitlines():
+        if ln.startswith("DBREF "):
+            toks = ln.split()
+            if len(toks) >= 10:
+                dbref_2wii.append((toks[2], int(toks[3]), int(toks[4]), toks[5], toks[6], int(toks[8]), int(toks[9])))
+
+    def _map_2wii_uniprot_to_author(chain_id: str, unp_acc: str, unp_res: int) -> int:
+        matches = [
+            author_start + (unp_res - db_start)
+            for (ch, author_start, author_end, db_name, acc, db_start, db_end) in dbref_2wii
+            if ch == chain_id
+            and db_name == "UNP"
+            and acc == unp_acc
+            and db_start <= unp_res <= db_end
+            and author_start <= author_start + (unp_res - db_start) <= author_end
+        ]
+        if len(matches) != 1:
+            raise ValueError(
+                f"Expected unique PDB 2WII DBREF mapping for chain {chain_id} UNP {unp_acc} residue {unp_res}, got {matches}"
+            )
+        return matches[0]
+
+    e264_author_res = _map_2wii_uniprot_to_author("C", "P08603", 264)
+    if e264_author_res != 264 - offset_2wii:
+        raise ValueError(f"PDB 2WII chain C DBREF offset mismatch for Glu264: {e264_author_res} vs {264 - offset_2wii}")
+    e264_ca_hits = [(rn, (x, y, z)) for (ch, r, rn, an, x, y, z) in atoms_cfh if ch == "C" and r == e264_author_res and an == "CA"]
+    if len(e264_ca_hits) != 1 or e264_ca_hits[0][0] != "GLU":
+        raise ValueError(f"Expected unique GLU CA at PDB 2WII C:{e264_author_res} (P08603 Glu264), got {e264_ca_hits}")
+    p_e264_ca = e264_ca_hits[0][1]
+
+    q1013_author_res = _map_2wii_uniprot_to_author("B", "P01024", 1013)
+    q1013_ca_hits = [(rn, (x, y, z)) for (ch, r, rn, an, x, y, z) in atoms_c3b if ch == "B" and r == q1013_author_res and an == "CA"]
+    if len(q1013_ca_hits) != 1 or q1013_ca_hits[0][0] != "GLN":
+        raise ValueError(f"Expected unique GLN CA at PDB 2WII B:{q1013_author_res} (P01024 Gln1013), got {q1013_ca_hits}")
+    q1013_resname, p_ted_q1013_ca = q1013_ca_hits[0]
+    e264_to_q1013_ca = round(math.dist(p_e264_ca, p_ted_q1013_ca), 2)
+
+    txt_5o32 = pdb_5o32_bytes.decode("utf-8")
+    res_5o32 = _parse_pdb_resolution(txt_5o32)
+    atoms_5o32_by_ch: Dict[str, List[Tuple[int, Tuple[float, float, float]]]] = {}
+    for ln in txt_5o32.splitlines():
+        if not ln.startswith("ATOM  ") or ln[16] not in (" ", "A"):
+            continue
+        aname = ln[12:16].strip()
+        elem = ln[76:78].strip() if len(ln) >= 78 else aname[0]
+        if elem == "H":
+            continue
+        ch, rseq = ln[21], int(ln[22:26])
+        pt = (float(ln[30:38]), float(ln[38:46]), float(ln[46:54]))
+        atoms_5o32_by_ch.setdefault(ch, []).append((rseq, pt))
+
+    def _analyze_5o32_asu_copy(c3b_chs: Tuple[str, ...], fi_chs: Tuple[str, ...], fh_ch: str) -> Dict[str, Any]:
+        c3b_pts = [pt for ch in c3b_chs for (_r, pt) in atoms_5o32_by_ch.get(ch, ())]
+        fi_pts = [pt for ch in fi_chs for (_r, pt) in atoms_5o32_by_ch.get(ch, ())]
+        fh_by_res: Dict[int, List[Tuple[float, float, float]]] = {}
+        for rseq, pt in atoms_5o32_by_ch.get(fh_ch, ()):
+            if 19 <= rseq <= 264:
+                fh_by_res.setdefault(rseq, []).append(pt)
+        fi_x0, fi_x1 = min(p[0] for p in fi_pts) - 4.6, max(p[0] for p in fi_pts) + 4.6
+        fi_y0, fi_y1 = min(p[1] for p in fi_pts) - 4.6, max(p[1] for p in fi_pts) + 4.6
+        fi_z0, fi_z1 = min(p[2] for p in fi_pts) - 4.6, max(p[2] for p in fi_pts) + 4.6
+        fi_contacts: List[int] = []
+        for rseq, pts in sorted(fh_by_res.items()):
+            rx0, rx1 = min(p[0] for p in pts), max(p[0] for p in pts)
+            ry0, ry1 = min(p[1] for p in pts), max(p[1] for p in pts)
+            rz0, rz1 = min(p[2] for p in pts), max(p[2] for p in pts)
+            if rx1 >= fi_x0 and rx0 <= fi_x1 and ry1 >= fi_y0 and ry0 <= fi_y1 and rz1 >= fi_z0 and rz0 <= fi_z1:
+                if any(
+                    abs(p1[0] - p2[0]) <= 4.5 and abs(p1[1] - p2[1]) <= 4.5 and abs(p1[2] - p2[2]) <= 4.5 and math.dist(p1, p2) <= 4.5
+                    for p1 in pts
+                    for p2 in fi_pts
+                ):
+                    fi_contacts.append(rseq)
+        e264_fi = round(min(math.dist(p1, p2) for p1 in fh_by_res[264] for p2 in fi_pts), 3)
+        e264_c3b = round(min(math.dist(p1, p2) for p1 in fh_by_res[264] for p2 in c3b_pts), 3)
+        return {
+            "chains": {"c3b": list(c3b_chs), "factor_i": list(fi_chs), "truncated_cfh": fh_ch},
+            "cfh_residues_contacting_factor_i_le_4p5A": fi_contacts,
+            "last_cfh_residue_contacting_factor_i_le_4p5A": max(fi_contacts),
+            "glu264_min_dist_to_factor_i_angstrom": e264_fi,
+            "glu264_min_dist_to_c3b_angstrom": e264_c3b,
+        }
+
+    copy1 = _analyze_5o32_asu_copy(("A", "B"), ("D", "I"), "C")
+    copy2 = _analyze_5o32_asu_copy(("E", "F"), ("H", "J"), "G")
+    if contact_pair_count != 475 or last_c3b_u_r != 259 or copy1["last_cfh_residue_contacting_factor_i_le_4p5A"] != 197 or copy2["last_cfh_residue_contacting_factor_i_le_4p5A"] != 197:
+        raise ValueError(
+            f"Dynamic PDB 2WII/5O32 geometry check failed: pairs={contact_pair_count}, last_c3b={last_c3b_u_r}, "
+            f"fi_copy1={copy1['last_cfh_residue_contacting_factor_i_le_4p5A']}, fi_copy2={copy2['last_cfh_residue_contacting_factor_i_le_4p5A']}"
+        )
+
+    return {
+        "proposal_id": "IIP-0031",
+        "decision_id": "DEC-110",
+        "rule_id": "S11_Locus2_CIITA_ModeB_Vascular_Complement_and_Efferocytosis_Gate",
+        "execution_supported": False,
+        "coordinate_computation_mode": "DYNAMICALLY_RECOMPUTED_FROM_BUNDLED_PDB_SNAPSHOTS_ON_DISK",
+        "structural_scope_verdict": (
+            "STRUCTURAL_PLAUSIBILITY_ONLY (static soluble X-ray crystal provenance without STP stalk or GPI membrane geometry; "
+            "cell-surface expression, AP/classical/lectin complement regulation, conjunctive GY-023 ADCC, and efferocytosis require Stage-0 empirical qualification)."
+        ),
+        "pdb_2wii": {
+            "pdb_id": "2WII",
+            "local_coordinate_path": "data/structures/2WII.pdb",
+            "citation": "Wu et al. 2009 Nat Immunol (PMID:19503104)",
+            "license": "CC0-1.0 (wwPDB)",
+            "pdb_file_sha256": pdb_2wii_sha,
+            "resolution_angstrom": res_2wii,
+            "resolved_disulfides_count": len(disulfides),
+            "resolved_disulfides_expected": 8,
+            "resolved_disulfides_sg_sg_range_angstrom": sg_range,
+            "resolved_disulfides_8_of_8": disulfides,
+            "cfh_c3b_heavy_atom_pairs_le_4p5A": contact_pair_count,
+            "cfh_contacting_residue_count": len(cfh_contact_res),
+            "c3b_contacting_residue_count": len(c3b_contact_res),
+            "last_c3b_contacting_cfh_residue_p08603": last_c3b_u_r,
+            "last_c3b_contacting_cfh_residue_label": f"{last_c3b_resname}{last_c3b_u_r}",
+            "last_c3b_contact_min_dist_angstrom": min_dist_by_u_res[last_c3b_u_r],
+            "glu264_min_dist_to_c3b_angstrom": min_dist_by_u_res[264],
+            "c3b_ted_q1013_pdb_author_residue": f"B:{q1013_author_res} ({q1013_resname}; UniProt P01024 Gln1013)",
+            "glu264_ca_to_c3b_ted_q1013_ca_angstrom": e264_to_q1013_ca,
+            "post_glu264_deposited_coordinate_audit": {
+                "deposited_chain_c_resseq": 265 - offset_2wii,
+                "deposited_resname_verified_on_disk": post_glu264_resname,
+                "deposited_residue_identity": "NON_NATIVE_ALA_EXCLUDED_FROM_NATIVE_LYS265_GEOMETRY",
+                "native_residue_265_geometry_claimed": False,
+                "exit_vector_from_residue_265_claimed": False,
+                "note": (
+                    "The coordinate deposited after Glu264 in PDB 2WII (C:247) is verified on disk as a non-native ALA artifact rather than native human CFH Lys265; "
+                    "accordingly, C:247 is excluded from all CFH[1-264] contact counts and no native residue-265 distance or C262->K265 exit-vector geometry is claimed from PDB 2WII."
+                ),
+            },
+            "crystallized_allotype": f"Ile62 (rs800292; verified C:{62 - offset_2wii}={cfh_resname_map[62 - offset_2wii]})",
+            "engineered_v3_allotype": "Val62 (canonical UniProt P08603)",
+        },
+        "pdb_5o32": {
+            "pdb_id": "5O32",
+            "local_coordinate_path": "data/structures/5O32.pdb",
+            "citation": "Xue et al. 2017 Nat Struct Mol Biol (PMID:28671664)",
+            "license": "CC0-1.0 (wwPDB)",
+            "pdb_file_sha256": pdb_5o32_sha,
+            "resolution_angstrom": res_5o32,
+            "complex_composition_disclosure": (
+                "Soluble truncated engineered CFH (SCR1-4+19-20) bound to C3b and catalytically inactive Factor I "
+                "(no membrane STP stalk or GPI anchor); both asymmetric-unit copies recomputed directly from data/structures/5O32.pdb."
+            ),
+            "asu_copy_1": copy1,
+            "asu_copy_2": copy2,
+            "pathway_scope_disclosure": (
+                "CFH SCR1-4 decays alternative-pathway C3bBb and acts as Factor I cofactor for C3b, "
+                "but does NOT directly decay classical (C1q/sensitized) or lectin (MBL/mannan) C4b2a convertases "
+                "(Seya et al. 1995 PMID:7739573; Fridkis-Hareli et al. 2011 PMID:21860027; Sonnentag et al. 2024 PMID:38401844). "
+                "Rule S11 therefore mandates explicit numerical post-cuff stops for AP (<= 5.0%), classical C4b2a (U95 <= 10.0%; L95 > 10.0% stops), "
+                "lectin C4b2a (U95 <= 10.0%; L95 > 10.0% stops), overall 20% NHS (<= 5.0%), and conjunctive GY-023 intact + IgG-increment ADCC (both <= 5.0%)."
+            ),
+        },
+        "val62_vs_ile62_swissprot_census": {
+            "record_provenance_label": "archived_uniprot_2026_04_descriptive_record",
+            "recomputed_from_bundled_disk_inputs": False,
+            "input_provenance_classification": (
+                "archived_uniprot_2026_04_descriptive_record: EXTERNAL_ARCHIVE_PROVENANCE_NOT_BUNDLED_IN_PUBLIC_SNAPSHOT "
+                "(computed offline against the full 20,429-entry UniProtKB/Swiss-Prot human FASTA archive pinned below by SHA-256; "
+                "explicitly separated from the disk-recomputed 2WII/5O32 coordinate metrics because the full UniProtKB/Swiss-Prot proteome archive is external)."
+            ),
+            "reference_proteome": "Human UniProtKB/Swiss-Prot reviewed proteome (20,429 proteins)",
+            "swissprot_gz_sha256": "40a8856b4e3f3620b11635143b501ef701558ed97309b0cdb4423ef09e4618d0",
+            "swissprot_uncompressed_sha256": "13852e174364bf1c705206c38eacae57210f5bca9955f05be6b4ff48f727d37b",
+            "cfh_val62_stp_gpi_mature_unmatched_8_11mers": 26,
+            "cfh_val62_stp_gpi_mature_unmatched_15mers": 12,
+            "cfh_ile62_rs800292_stp_gpi_mature_unmatched_8_11mers": 64,
+            "cfh_ile62_rs800292_stp_gpi_mature_unmatched_15mers": 27,
+            "cfh_short_gpi_mature_unmatched_8_11mers": 33,
+            "cfh_short_gpi_mature_unmatched_15mers": 9,
+            "cd47_igv_gpi_mature_unmatched_8_11mers": 25,
+            "cd47_igv_gpi_mature_unmatched_15mers": 7,
+            "ks_seam_hlac_anchor_motifs": ["LPSCEEKSL", "PLPSCEEKSL"],
+            "bidirectional_allotype_stratification_requirement": (
+                "Materialized v3 donors encode canonical Val62 (P08603) rather than rs800292 Ile62 (Tortajada et al. 2009 PMID:19549636); "
+                "Stage-0 HLA-C and HLA-DQ2/DQ8 recipient panels must genotype and stratify recipients by rs800292 (since Ile62/Ile62 recipients "
+                "view Val62 windows as non-self) while benchmarking Val62 cofactor kinetics against soluble CFH. Swiss-Prot non-match k-mer counts "
+                "are descriptive sequence-census metrics only, not immunogenicity scores."
+            ),
+        },
+        "primary_citations": [
+            "PMID:19503104",
+            "PMID:28671664",
+            "PMID:19549636",
+            "PMID:7739573",
+            "PMID:21860027",
+            "PMID:38401844",
+        ],
+    }
+
+
 def main() -> None:
     with LAYER2_ATLAS_PATH.open("r", encoding="utf-8") as f:
         layer2_atlas = json.load(f)
@@ -4452,6 +4773,7 @@ def main() -> None:
     c3 = analyze_complex_3_serpinb9_gzmb(layer2_ledger)
     c4 = analyze_complex_4_pdl1_pd1(layer2_ledger)
     icasp9_audit = analyze_icasp9_locus4_structural_reference_audit(layer2_ledger)
+    l2_cfh_prov = _build_locus2_cfh_stp_gpi_structural_provenance_iip_0031()
     hlac_kir_snaps = verify_structural_reference_inputs("1EFX.pdb", "1IM9.pdb")
 
     def _parse_pdb_coords(payload: bytes) -> Dict[Tuple[str, int, str], Tuple[float, float, float]]:
@@ -4502,18 +4824,37 @@ def main() -> None:
         and cd47_pan_allele_status == "experimentally_verified"
     )
 
+    canonical_experimental_pdb_inventory = [
+        "1MHE", "3CDG", "3BZE", "2JJS", "4CMM", "4KJY", "4ZQK", "1IAU", "1EFX", "1IM9", "1BL4", "1JXQ", "1NW9"
+    ]
+    challenger_iip0031_pdb_inventory = [
+        l2_cfh_prov["pdb_2wii"]["pdb_id"],
+        l2_cfh_prov["pdb_5o32"]["pdb_id"],
+    ]
+    experimental_pdb_inventory = canonical_experimental_pdb_inventory + challenger_iip0031_pdb_inventory
+    mmcif_exp_count = sum(f"pdb_0000{acc.lower()}.cif" in STRUCTURAL_REFERENCE_SHA256 for acc in experimental_pdb_inventory)
+    legacy_pdb_exp_count = sum(f"{acc}.pdb" in STRUCTURAL_REFERENCE_SHA256 for acc in experimental_pdb_inventory)
+    if (
+        len(set(experimental_pdb_inventory)) != len(experimental_pdb_inventory)
+        or mmcif_exp_count + legacy_pdb_exp_count != len(experimental_pdb_inventory)
+    ):
+        raise ValueError(
+            f"Inconsistent Layer-3 experimental PDB inventory: total={len(experimental_pdb_inventory)}, "
+            f"mmcif={mmcif_exp_count}, legacy_pdb={legacy_pdb_exp_count}"
+        )
+
     atlas = {
         "schema_version": "0.8.0",
         "layer": "Layer 3 — 3D Structural & Protein Interface Verification Plane",
         "status": ("COORDINATE_GEOMETRY_VERIFIED_PRODUCT_FUNCTION_UNRESOLVED_PENDING_WETLAB" if ref_geometry_passed else "COORDINATE_GEOMETRY_FAILED_PRODUCT_FUNCTION_UNRESOLVED_PENDING_WETLAB"),
         "layer2_construct_fasta_sha256_linked": layer2_atlas["construct_sequence_and_grammar_verification"]["fasta_sha256"],
         "summary": {
-            "total_experimental_pdb_structures_verified": 13,
-            "experimental_rcsb_mmcif_structures_verified": 11,
-            "experimental_rcsb_legacy_pdb_structures_verified": 2,
-            "experimental_pdb_accession_inventory": [
-                "1MHE", "3CDG", "3BZE", "2JJS", "4CMM", "4KJY", "4ZQK", "1IAU", "1EFX", "1IM9", "1BL4", "1JXQ", "1NW9"
-            ],
+            "total_experimental_pdb_structures_verified": len(experimental_pdb_inventory),
+            "experimental_rcsb_mmcif_structures_verified": mmcif_exp_count,
+            "experimental_rcsb_legacy_pdb_structures_verified": legacy_pdb_exp_count,
+            "canonical_experimental_pdb_structures_verified": len(canonical_experimental_pdb_inventory),
+            "challenger_iip0031_experimental_pdb_structures_verified": len(challenger_iip0031_pdb_inventory),
+            "experimental_pdb_accession_inventory": experimental_pdb_inventory,
             "total_alphafold_v6_models_verified": 2,
             "foldseek_databases_queried": ["pdb100", "afdb-swissprot"],
             "complexes_verified": 4,
@@ -5060,6 +5401,7 @@ def main() -> None:
             cd47_pan_allele_status=cd47_pan_allele_status,
         ),
         "icasp9_1nw9_1jxq_insertion_code_audit_iip_0024": _build_icasp9_1nw9_1jxq_insertion_code_audit_iip_0024(),
+        "locus2_cfh_stp_gpi_structural_provenance_iip_0031": l2_cfh_prov,
     }
 
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)

@@ -13,7 +13,8 @@
     "S8": "S8_SC_Islet_Paracrine_Maturity_Gate_0M",
     "S8b": "S8b_TYK2_Inducible_Promoter_Epistasis_Gate_0E",
     "S9": "safety_kill_s9_status",
-    "S10": "S10_CMV_NKG2C_Adaptive_NK_Peptide_Selectivity_Gate_0A"
+    "S10": "S10_CMV_NKG2C_Adaptive_NK_Peptide_Selectivity_Gate_0A",
+    "S11": "S11_Locus2_CIITA_ModeB_Vascular_Complement_and_Efferocytosis_Gate"
   },
   "trigger_key_aliases_accepted_in_contract": {
     "obs_regimeII_nkg2a_lysis_pct": "obs_nkg2a_lysis_pct",
@@ -265,6 +266,13 @@
       "precedence_tier": "2_HOUR0_IMMUNITY_S1_S2_S3_S4_S5",
       "trigger": "Unmeasured explicit S10 observations -> UNMEASURED_EXTENDED_S10_PANEL (C1); otherwise one-sided 95% upper bound obs_nkg2c_adaptive_nk_lysis_pct_upper95 > 8.0 or obs_nkg2a_neg_kir2dl_neg_nkg2c_pos_nk_lysis_pct_upper95 > 8.0 or one-sided 95% lower bound obs_hlae_nkg2c_over_nkg2a_kd_ratio_lower95 < 4.0 (C2)",
       "action": "Do NOT promote constitutive Arm 1X VMAPRTLVL overexpression for isolated NKG2C adaptive NK failure (in Lin et al. 2023 PMID:37264229 Supp. Table 1 soluble HLA-E*01:03 SPR, all 6/6 functional human leaders sit below 4.0x [2.6846x-3.9444x; VMAPRTLFL = 0.18 / 0.71 uM = 3.9444x binds NKG2C 9.18x tighter than VMAPRTLVL and acts as a 3.2x primary NKG2A- NKG2C+ agonist trap per Lauterbach et al. 2015 PMID:26382247, kept separate from historical monomer SPR ratios in Vales-Gomez 1999 PMID:10428963 explicit HLA-E*01:01 4.6223x and Kaiser 2008 PMID:18448674 6.50x]); hard-block calibration controls (VMAPRTLFL, QMRPVSRVL) and bind all S10 consumers (C3-C4) to evaluate_s10_functional_and_replacement_gate_v3() across the 20-construct Mode-B comparator panel (data/constructs/islet1_locus1_s10_modeb_comparators_v0.8.0.fasta), requiring matched construct SHA-256 and lot ID, recorded covalent-SCT SPR (K_D[NKG2A] upper95 <= 10.0 uM), 5'/3'-RACE, paired Regime II resting + Regime I 24-h IFN-gamma sorted NKG2A+ and KIR2DL+/KIR2DL- NKG2A- NKG2C+ NK lysis (<= 8.0%) and CD107a (<= 1.25x) across n >= 6 HCMV+ donors with 0 failing donors, UL40-reactive CD8+ CTL lysis <= 5.0% (n >= 6, 0 failing; Jouand et al. 2018 PMID:29709038), LOT_RELEASE_25K QuantiBRITE floors, GY-010 delta-only clearance, and >= 80% CD8+ Treg retention (Lu et al. 2008 PMID:19047627; Kim et al. 2010 PMID:20844537) on D227K/T228A arms (IIP-0016 / DEC-094)."
+    },
+    {
+      "switch_id": "S11",
+      "contract_decision_key": "S11_Locus2_CIITA_ModeB_Vascular_Complement_and_Efferocytosis_Gate",
+      "precedence_tier": "2_HOUR0_IMMUNITY_S1_S2_S3_S4_S5",
+      "trigger": "Any Locus-2 CIITA Exon-5 Mode-B v3 comparator (data/constructs/islet1_locus2_ciita_modeb_comparators_v0.8.0.fasta; 8 non-executable Stage-0 variants), Track-2 B'-SCT Locus-2 conflict (INCOMPATIBLE_AT_LOCUS_2), intronic CD276+PVR miR on HLA-C-intact Design B, Syn_5xISRE->CD200 on Design Y, post-cuff complement/ADCC/efferocytosis/pericyte/AAV6 breaches, or sorted-lot Tier 6B per-fraction thinning violations (preserving S8b for TYK2 epistasis and S9 first precedence).",
+      "action": "Enforce hard architectural blocks (B'-SCT INCOMPATIBLE_AT_LOCUS_2, CD276+PVR miR barred on Design B, Syn_5xISRE->CD200 barred on Design Y) and adverse Tier 6B k >= 1 hard stops BEFORE non-executable research holds; require informative transcript recovery of both CIITA alleles (KI+KO), SOCS1/DEXI/CLEC16A cis sentinels, lineage-matched WT Stage-7 HLA-DR/DP/DQ inducibility, explicit post-cuff AP C5b-9 <= 5.0%, classical C1q/sensitized C4b2a <= 10.0%, lectin MBL/mannan C4b2a <= 10.0%, Playbook overall 20% NHS <= 5.0%, conjunctive GY-023 intact + IgG-increment ADCC both <= 5.0%, exact-stack efferocytosis >= 80.0% abs AND >= 70.0% WT, Gate 0G pericyte coverage >= 70.0%, reconciled AAV6 species (>= 80% monomer, < 10% truncated, <= 15% dimeric/intermediate summing to 100%), same-background cargo-linked intronless+scramble controls whenever RNAi-specific benefit is claimed, explicit composite length-and-sequence disclosure on L2_V3_BARRIER_CHS4_250 (250 bp + U78775.2 C79T/C80A), and auditable pre-assembly CD31-/CD144- sorted-lot Tier 6B per-fraction binomial thinning (d_i_L >= 0.50 across separate hPSC and edited-differentiated calibrants; unrounded p_lot_U95 <= 3.0e-7) while keeping execution_supported=false (IIP-0031; DEC-110)."
     }
   ],
   "pivotal_combined_stress_stage0_coupon_gate_muse_r4": {
@@ -874,6 +882,58 @@
       "absolute_and_adult_islet_reference_two_pulse_floors_and_gate0m_separation": "Requires BOTH unit-bound pre-sort-normalized increment floors (L95_t(Z1) >= z_min, L95_t(Z2) >= z_min on common sorting+reaggregation denominator) AND contemporaneous same-assay primary adult human islet second-pulse control floors (L95_t(RefAdult_Z2) >= z_min and L95_t(Z2 - 0.50 * RefAdult_Z2) >= 0) both inside and outside Rule S8, plus immutable within-recipe Rule S8 Fieller (theta_0 = 0.85) with locked_analysis_plan_id and exact Bonferroni t_ppf(1 - 0.05/K, n - 1) or disjoint n >= 3 pilot. Keeps canonical Readout 2 (SI_1 >= 3.0, Peak1/Basal1 >= 4.5 <= 8.0 min, t50 <= 3.0 min) and full Gate 0M (t90 <= 3.0 min, t50_b < t90_b, strict Basal1/Peak1 <= 0.15 explicitly distinguished from Readout 2 4.5x on pre-step [-10, 0] min Basal1 and [0, 8] min Peak1, Low2/Peak1 <= 0.15, Low2 <= 1.50 * Low1, glucagon >= 2.0x, threshold >= 4.5 mM, UCN3 >= 0.70, counterregulation >= 0.80) intact.",
       "locked_dual_clocks_oxygen_coverage_tracer_alignment_and_dec084_composition_linkage": "Locks timezone-aware ISO-8601 UTC timestamps (stage7_start_utc, sort_reaggregation_utc, assay_harvest_utc) to classify extended exposure while keeping phenotype failure as the S8 hold trigger; requires distinct differentiation_block_id coverage at BOTH 40 mmHg AND 100 mmHg, per-trace tracer_response_valid + tracer_time_aligned + tau_chamber_b <= 0.50 min (and U95_t <= 0.50 min), censored short low-interval holds (< 10 min), common-denominator recovery basis, DEC-084 linkage by registered_mixture_id and measured (beta, alpha, delta) composition tolerance band, mature-insulin-specific inventory assay, and explicit exploratory Stage-0 processing marker labeling on proinsulin:C-peptide <= 0.10 (Keymeulen et al. 2024 PMID:38012450).",
       "non_bypassable_gate0s_atomic_escalation_above_138p3_iu_and_exploratory_mode_b_v2": "Delegates final clinical release strictly to the live atomic Stage-0 ledger (preserving ISLET1_B2_5LOCUS_BASE and ISLET1_Z_X_MOL_140UM_ZERO_CAO2 execution_supported = false holds) and triggers identical non-overridable escalation to full scope-matched Gate 0S (<= 2.8 IU 1-h burst, <= 0.15 24-h dump, >= 0.99 en-bloc retrieval) across flat, serialized ingestion, chronological replay (with immutable source-replacement latching), and atomic-ledger paths whenever U95_t(stored_insulin_iu) > 138.3 IU OR max_lot > 138.3 IU, while keeping Layer 4 Mode B v2 strictly opt-in and exploratory with exact Mode A default parity."
+    }
+  },
+  "locus2_ciita_modeb_comparators_and_tier6b_thinning_iip_0031": {
+    "gate_id": "STAGE0_LOCUS2_CIITA_MODEB_V3_RULE_S11_AND_TIER6B_PER_FRACTION_THINNING_IIP_0031",
+    "decision_id": "DEC-110",
+    "contribution_id": "IIP-0031",
+    "mode_b_comparator_fasta": "data/constructs/islet1_locus2_ciita_modeb_comparators_v0.8.0.fasta",
+    "mode_b_comparator_fasta_sha256": "25ffcb10e2bad77a4b34725c7eff0532990ebf7b80864cf7217d33f5ccbe5b6d",
+    "applies_to_designs_a_b_and_shared_tier6b": "8 unscored non-executable Stage-0 Locus-2 CIITA Exon-5 Mode-B v3 research comparators (6 Family A + 2 Family B Design B intronless; execution_supported=false; 2x375 bp HAs; nominal AAV6 3,694-4,472 bp; exact disjoint DR 29 bp < 30 bp, exact disjoint IR 12-15 bp < 16 bp, 0 <=1-mm >=20 bp disjoint IRs, 0 2A/SV40pA/bGH/T20; 0 drift on 2,160/2,160 Layer-1 scores/ranks and OQ-016), Rule S11 (preserving S8b for TYK2 epistasis and S9 first precedence), fail-closed 4-path Tier 6B per-fraction binomial-thinning contract across Direct, Atomic Ledger, Serialized Ingestion, and Chronological Replay, and GY-025 (OFFGRID_GUARD_015_*)",
+    "primary_citations": [
+      "PMID:19503104",
+      "PMID:28671664",
+      "PMID:21266852",
+      "PMID:19549636",
+      "PMID:21989056",
+      "PMID:12011446",
+      "PMID:15544620",
+      "PMID:18283290",
+      "PMID:7517044",
+      "PMID:7531780",
+      "PMID:9644970",
+      "PMID:15525517",
+      "PMID:25359968",
+      "PMID:28723575",
+      "PMID:22047558",
+      "PMID:24332856",
+      "PMID:35880017",
+      "PMID:36055241",
+      "PMID:37996616",
+      "PMID:40251154",
+      "PMID:35947095",
+      "PMID:24726366",
+      "PMID:23616575",
+      "PMID:31492834",
+      "PMID:33500254",
+      "PMID:32775498",
+      "PMID:25640174",
+      "PMID:30305368",
+      "PMID:19904234",
+      "PMID:14566335",
+      "PMID:34050011",
+      "PMID:30010673",
+      "PMID:30850590",
+      "PMID:35795779",
+      "PMID:28462820",
+      "PMID:2570734",
+      "PMID:17507765"
+    ],
+    "rules": {
+      "auditable_tier6b_per_fraction_binomial_thinning_and_four_path_parity": "Operates at master manufacturing-lot QC scale prior to clinical dose aliquoting, governed across all verified denominators by the exact statistical gate p_lot_U95 <= 3.0e-7 (with 30.1M = 30M/100k under 20/20 & 10/10 calibrants as the illustrative lot-scale example rather than a separate hard constant; single 500k-IEQ graft doses carrying ~80,000 total opportunities cannot fall below the optimistic alpha_obs = 0.05/6 single-fraction floor 5.98419e-5 and fail closed under HOLD_TIER6B_INSUFFICIENT_DENOMINATOR, and enrichment concentrates rather than creates independent opportunities). Enforces strict allowlists for pre-assembly Stage-7 timepoint (rejecting wrong-stage records such as Stage 2), validated assay_version, compatible unit, and canonical clonogenic_risk_unit (rejecting unsupported whole-lot cell units); reconciles the pre-assembly Stage-7 CD31-/CD144- lot to an exhaustive non-overlapping multi-fraction roster (m >= 2, mandating distinct positive enriched AND flow_through fractions while rejecting ambiguous hybrid or negated fraction labels, zero caller single-fraction bypass, exact integer pre-sort cell balance sum(presort_fraction_cells) + loss == total, and disposal attestation whenever loss > 0), requires independent per-aliquot source-linked disjoint untreated CFU control count tuples (integer n_untr >= 2, 1 <= k_untr <= n_untr, disjoint sample ID; 1/1 holds under UNDERPOWERED_UNTREATED_CFU_CONTROL_DENOMINATOR regardless of lot size; counts >= 2^53 hold) and per-observation separately reported hPSC and edited-differentiated end-to-end calibrants (pooling, reusing a calibration batch or untreated control across distinct treated aliquots, and live calculation_only_supplied_d_L prohibited), unconditionally enforces the exact 3-way simultaneous Clopper-Pearson finite-sample 95% bound (alpha_obs = alpha_cal = alpha_cfu = 0.05/(3m), no exact-CFU opt-out; d_i_L = min(d_L_hpsc, d_L_diff) >= 0.50; exact worst-case p_lot_U95 = max_{E_i in [C_i*f_i_L, C_i*f_i_U]} sum((E_i / sum E_j) * p_i_U) <= 3.0e-7, confining fixed-weight 2-way alpha=0.05/(2m) arithmetic strictly to the non-authorizing math_only helper). Enforces identical dispositions across evaluate_stage0_product_contract, evaluate_iip0024_atomic_stage0_ledger (requiring numeric core S9 observations with exact Poisson/Student-t bounds, explicit duplex depth >= 62,958, and continuous Student-t atoms), ingest_stage0_research_or_wetlab_batch, and replay_stage0_chronological_batches (accepting both structured measurements and flat obs_* replacements, resolving contradictory S9 replicate counts across containers/aliases symmetrically at the conservative minimum valid n for hard-stop checks while flagging conflicts with HOLD_S9_INVALID_OR_CONFLICTING_REPLICATE_COUNT), latching attributable k_i >= 1 (even with malformed ancillary controls or inside nested containers) as FAIL_TIER6B_OUTGROWTH_DETECTED -> FAIL_HARD_STOP BEFORE calibration/completeness/malformed/non-executable holds while keeping independent S9 hard stop at first precedence even when malformed non-string S11 provenance fields are present.",
+      "rule_s11_architectural_compatibility_ciita_and_post_cuff_stop_criteria": "Preserves S8b strictly for TYK2 epistasis; enforces hard Rule S11 blocks (Track-2 B'-SCT INCOMPATIBLE_AT_LOCUS_2, intronic CD276+PVR miR barred on Design B, Syn_5xISRE->CD200 barred on Design Y) BEFORE non-executable research holds; holds fail-closed (HOLD_S11_INCOMPLETE_EVIDENCE) whenever S11 evidence is omitted on any L2_V3_* comparator; requires LOT_SCOPE, non-overridable outer provenance (rejecting conflicting campaign_id/assay_campaign_id and nested scope overrides identically across all 4 paths), integer replicates n in [6, 10000], strictly positive finite SEs, physiological [0, 100]% bounds, persistent lot-level FAIL_S11_* latching, quantitative phased biallelic CIITA KI+KO or KI/KI informative reads (>= 300 per allele) + exact Clopper-Pearson Ex4->Ex6 skip % (U95 <= 1.0%) + edited 72-h IFN-gamma HLA-DR/DP/DQ % (U95_t <= 1.0%) + lineage-matched WT HLA-II inducibility (L95_t >= 50.0%), 16p13.13 SOCS1/DEXI/CLEC16A 90% TOST [0.80, 1.25] + ddPCR [1.85, 2.15] + |dBAF| <= 0.05, Locus-2 dual-promoter 5'-RACE (>= 3,689 UMIs across all 4 promoter-time datasets, 0 unexpected starts), longitudinal Stage-0 and Stage-7 EEF1A1/cHS4/DM1 CpG methylation (U95_t <= 20.0%) + CTCF ChIP (>= 5.0x), post-cuff AP C5b-9 <= 5.0%, classical & lectin C4b2a (U95_t <= 10.0% pass; L95_t > 10.0% persistent FAIL; straddler HOLD), overall 20% NHS <= 5.0%, conjunctive GY-023 paired ADCC (both intact and paired IgG-increment <= 5.0% with explicit IgG-depleted arm and Cauchy-Schwarz SE bounds |SE_intact - SE_dep| <= SE_inc <= SE_intact + SE_dep), PLVAP+ iEC network t50 <= 36.0 h & viability >= 85.0%, exact-stack efferocytosis >= 80.0% abs AND >= 70.0% WT, Gate 0G pericytes >= 70.0%, and reconciled AAV6 species fractions (>= 80% monomer, < 10% truncated, <= 15% dimeric/intermediate summing to 100%).",
+      "attribution_narrowing_and_structural_provenance": "All eight L2_V3_* entries remain non-executable research comparators and hold attribution clearance (HOLD_S11_UNVERIFIED_ATTRIBUTION_CONTROL_MEASUREMENTS or a more specific hold) until independently pinned cargo-matched intronless and scramble references plus trusted quantitative measurements from the separate CFH-only, empty-carrier, and mock/no-L2 controls are registered; classifies L2_V3_BARRIER_CHS4_250 explicitly as a combined length-and-sequence change (250 bp + U78775.2 C79T/C80A); archives Layer-2 v3 sequence manifest (requiring verified RefSeq target-transcript maps and SHA-256 pins, including <=1-mm >=20-bp disjoint IR scans 0/8) and Layer-3 PDB 2WII (excluding non-native post-Glu264 Ala; Leu259 4.389 A, Glu264 6.291 A, 8/8 disulfides) + PDB 5O32 (soluble truncated CFH + inactive Factor I; both ASU copies res 197, Glu264 58.052/57.214 A from FI) + canonical Val62 (P08603, 26/12 Swiss-Prot unmatched vs Ile62 rs800292 64/27) provenance."
     }
   }
 }

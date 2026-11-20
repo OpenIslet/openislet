@@ -2000,12 +2000,22 @@ def _build_two_strand_splice_census_and_challenger_manifest_iip_0015(
     }
 
 
+def _is_finite_real(value: Any) -> bool:
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return False
+    try:
+        return math.isfinite(float(value))
+    except OverflowError:
+        return False
+
+
 def scan_jaspar_pwm(
     seq: str,
     pwm_entry: Dict[str, Any],
     top_k: int = 3,
     n_matrices_in_scan: int = 6,
     pseudocount: float = 0.8,
+    actual_family_total_tests: Optional[int] = None,
 ) -> Dict[str, Any]:
     """
     Scan DNA sequence on both strands with a JASPAR log2-odds PWM and calibrate
@@ -2018,14 +2028,19 @@ def scan_jaspar_pwm(
         raise TypeError("PWM scan sequence must be a string")
     if type(top_k) is not int or top_k < 0 or type(n_matrices_in_scan) is not int or n_matrices_in_scan <= 0:
         raise ValueError("PWM result limit and matrix-family size must be nonnegative/positive integers")
-    if isinstance(pseudocount, bool) or not isinstance(pseudocount, (int, float)) or not math.isfinite(pseudocount) or pseudocount <= 0:
+    if actual_family_total_tests is not None and (type(actual_family_total_tests) is not int or actual_family_total_tests < 0):
+        raise ValueError("actual_family_total_tests must be a nonnegative integer when provided")
+    if not _is_finite_real(pseudocount) or float(pseudocount) <= 0.0:
         raise ValueError("PWM pseudocount must be finite and positive")
+    pseudocount_f = float(pseudocount)
     raw_seq = str(seq)
     lowercase_normalized_cnt = sum(1 for ch in raw_seq if ch in "acgt")
     seq = raw_seq.upper()
     non_acgt_ambiguous_cnt = sum(1 for ch in seq if ch not in "ACGT")
 
-    w = pwm_entry["length"]
+    if not isinstance(pwm_entry, dict):
+        raise ValueError("PWM entry must be a dictionary")
+    w = pwm_entry.get("length")
     if type(w) is not int or w <= 0:
         raise ValueError("PWM width must be a positive integer")
     pfm_counts = pwm_entry.get("pfm_counts")
@@ -2034,10 +2049,16 @@ def scan_jaspar_pwm(
             continue
         if not isinstance(matrix, dict) or set(matrix) != set("ACGT") or any(not isinstance(matrix[b], list) or len(matrix[b]) != w for b in "ACGT"):
             raise ValueError(f"{label} must have four complete A/C/G/T rows")
-        if any(isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v) or (label == "pfm_counts" and v < 0) for b in "ACGT" for v in matrix[b]):
+        if any(not _is_finite_real(v) or (label == "pfm_counts" and float(v) < 0.0) for b in "ACGT" for v in matrix[b]):
             raise ValueError(f"Invalid finite numeric values in {label}")
+    if pwm_entry.get("pfm_counts_sha256") is not None:
+        if not isinstance(pfm_counts, dict) or sha256_str(json.dumps(pfm_counts, sort_keys=True)) != pwm_entry["pfm_counts_sha256"]:
+            raise ValueError(f"JASPAR pfm_counts_sha256 mismatch in {pwm_entry.get('matrix_id')}")
+    if pwm_entry.get("pwm_matrix_sha256") is not None:
+        if sha256_str(json.dumps(pwm_entry["log2_odds_pwm"], sort_keys=True, separators=(",", ":"))) != pwm_entry["pwm_matrix_sha256"]:
+            raise ValueError(f"JASPAR pwm_matrix_sha256 mismatch in {pwm_entry.get('matrix_id')}")
     pfm_verified = False
-    if abs(pseudocount - 0.8) <= 1e-9:
+    if abs(pseudocount_f - 0.8) <= 1e-9:
         pwm = pwm_entry["log2_odds_pwm"]
         if isinstance(pfm_counts, dict):
             for j in range(w):
@@ -2049,13 +2070,13 @@ def scan_jaspar_pwm(
             pfm_verified = True
     else:
         if not isinstance(pfm_counts, dict):
-            raise ValueError(f"Cannot recompute PWM at pseudocount={pseudocount} without pfm_counts in {pwm_entry.get('matrix_id')}")
+            raise ValueError(f"Cannot recompute PWM at pseudocount={pseudocount_f} without pfm_counts in {pwm_entry.get('matrix_id')}")
         pwm = {b: [] for b in "ACGT"}
         for j in range(w):
             col_sum = sum(float(pfm_counts[b][j]) for b in "ACGT")
             for b in "ACGT":
                 w_val = round(
-                    math.log2(((float(pfm_counts[b][j]) + pseudocount) / (col_sum + 4.0 * pseudocount)) / 0.25),
+                    math.log2(((float(pfm_counts[b][j]) + pseudocount_f) / (col_sum + 4.0 * pseudocount_f)) / 0.25),
                     4,
                 )
                 pwm[b].append(w_val)
@@ -2205,6 +2226,9 @@ def scan_jaspar_pwm(
             )
     hits.sort(key=lambda x: (-x["log2_odds_score"], x["start_1based_in_window"]))
     sig_hits = [h for h in hits if h["passes_rel_score_0p80_and_p_le_0p05"]]
+    all_significant_hits = [
+        h for h in hits if h["passes_rel_score_0p80_and_p_le_0p05"] or h["passes_region_wide_bonferroni_0p05"]
+    ]
     significant_count = len(sig_hits)
     significant_region_wide_count = sum(1 for h in hits if h["passes_region_wide_bonferroni_0p05"])
     distinct_loci_intervals: List[Tuple[int, int]] = []
@@ -2212,6 +2236,12 @@ def scan_jaspar_pwm(
         s_i, e_i = int(sh["start_1based_in_window"]), int(sh["end_1based_in_window"])
         if not any(max(s_i, os_i) <= min(e_i, oe_i) for os_i, oe_i in distinct_loci_intervals):
             distinct_loci_intervals.append((s_i, e_i))
+    focal_family_factor = n_tests * max(1, n_matrices_in_scan)
+    resolved_family_total = (
+        actual_family_total_tests
+        if actual_family_total_tests is not None
+        else (n_tests if n_matrices_in_scan == 1 else None)
+    )
     return {
         "input_sequence_length_bp": n,
         "lowercase_bases_normalized_to_uppercase_count": lowercase_normalized_cnt,
@@ -2221,10 +2251,18 @@ def scan_jaspar_pwm(
         "pfm_to_pwm_conversion_verified": pfm_verified,
         "scan_family_size_matrices": n_matrices_in_scan,
         "total_positions_tested_both_strands": n_tests,
-        "total_tests_across_all_scanned_matrices_in_region": n_tests * max(1, n_matrices_in_scan),
+        "focal_matrix_bonferroni_family_factor": focal_family_factor,
+        "total_tests_across_all_scanned_matrices_in_region": resolved_family_total,
         "multiplicity_correction_scope": (
-            f"Reports both within-matrix two-strand window scan (2 * (L - w + 1) = {n_tests} tests) and "
-            f"region-wide family-wise error rate across all {n_matrices_in_scan} JASPAR matrices ({n_tests * max(1, n_matrices_in_scan)} tests; closes AUDIT-REF & 109)"
+            f"Reports within-matrix two-strand window scan (2 * (L - w + 1) = {n_tests} tests) and "
+            f"equal-alpha family-wise Bonferroni factor across {n_matrices_in_scan} JASPAR matrices "
+            f"(focal_matrix_bonferroni_family_factor = {focal_family_factor}"
+            + (
+                f"; exact total windows across family = {actual_family_total_tests}"
+                if actual_family_total_tests is not None
+                else ""
+            )
+            + "; closes AUDIT-REF & 109)"
         ),
         "null_calibration_method": (
             "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) "
@@ -2250,6 +2288,7 @@ def scan_jaspar_pwm(
         "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": len(distinct_loci_intervals),
         "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": len(distinct_loci_intervals),
         "significant_hits_rel0p80_region_wide_bonferroni_0p05": significant_region_wide_count,
+        "all_significant_hits": all_significant_hits,
         "top_hits": hits[:top_k],
     }
 
@@ -2601,7 +2640,7 @@ def build_constructs(ref: Dict[str, Any], avi_summary: Dict[str, Any]) -> Dict[s
             k20 = s[i : i + 20]
             seen20[k20] = seen20.get(k20, 0) + 1
         ge20_cnt = sum(1 for c in seen20.values() if c >= 2)
-        for rlen in range(min(120, n // 2), 0, -1):
+        for rlen in range(min(120, n - 1), 0, -1):
             seen_r = set()
             found = False
             for i in range(n - rlen + 1):
@@ -5235,7 +5274,7 @@ def simulate_stage0_to_stage7_perturbation_plane(
         prof["uncertainty_semantics"] = "independent prior scenario draws; no posterior fitting or held-out validation"
         if spec["genotype_id"].startswith("SCENARIO_B"):
             product_id = "ISLET1_B1_6LOCUS_TYK2_KO_INS" if spec["genotype_id"].startswith("SCENARIO_B1_") else "ISLET1_B2_5LOCUS_TYK2_PE"
-            contract = get_product_definition(product_id, root=REPO_ROOT)
+            contract = get_product_definition(product_id, root=REPO_ROOT, require_staged_fastas=False)
             prof.update(product_definition_id=product_id, product_definition=contract,
                         exact_product_defined=False, source_construct=None,
                         prediction_status="PROVISIONAL_P2A_COMPARATOR_NOT_EXACT_SCENARIO_B_PRODUCT",
@@ -5247,7 +5286,9 @@ def simulate_stage0_to_stage7_perturbation_plane(
         else:
             prof["product_definition_id"] = "ISLET1_A4_ARM1B" if spec["genotype_id"] == "SCENARIO_A_ARM_1B_UNIVERSAL_LEAN_4LOCUS" else "REFERENCE_PRIOR_COMPARATOR"
         if prof["product_definition_id"].startswith("ISLET1_A4_"):
-            prof["product_definition"] = get_product_definition(prof["product_definition_id"], root=REPO_ROOT)
+            prof["product_definition"] = get_product_definition(
+                prof["product_definition_id"], root=REPO_ROOT, require_staged_fastas=False
+            )
             prof["source_construct"] = ("LOCUS1_ARM1A_TPT2A_BICISTRONIC" if prof["product_definition_id"].endswith("ARM1A") else "LOCUS1_ARM1B_2AFREE_BIDIRECTIONAL_R01")
             prof["exact_product_defined"] = True
             prof["physical_qualification_status"] = "PREREGISTERED_PENDING"
@@ -13232,6 +13273,1367 @@ def _build_locus3_initiation_6pwm_and_aav_itr_audit_iip_0027(
     }
 
 
+def scan_disjoint_inverted_repeats_with_mismatches(
+    seq: str,
+    *,
+    min_k: int = 20,
+    max_mismatches: int = 1,
+    cluster_within_bp: Optional[int] = None,
+) -> List[Dict[str, Any]]:
+    """
+    Exact scanner for all qualifying disjoint width-`min_k` inverted-repeat pairs
+    with `<= max_mismatches` mismatches (IIP-0031; DEC-110).
+    Validates strict ASCII `ACGTacgt` alphabet before uppercasing, supports `min_k >= 1`
+    and arbitrary `max_mismatches >= 0` (using exact disjoint pair evaluation whenever
+    `max_mismatches >= min_k`, and exact pigeonhole seed partitioning otherwise), and
+    returns every exact disjoint `(pos1_a, pos1_b)` pair of width `min_k` together with
+    its maximal ungapped disjoint extension `maximal_stem_bp` unless `cluster_within_bp`
+    is explicitly supplied.
+    """
+    if not isinstance(seq, str):
+        raise ValueError("Inverted-repeat scan sequence must be a string")
+    if not all(ch in "ACGTacgt" for ch in seq):
+        raise ValueError("Inverted-repeat scan sequence contains non-ACGT symbols")
+    if type(min_k) is not int or min_k < 1:
+        raise ValueError("min_k must be an integer >= 1")
+    if type(max_mismatches) is not int or max_mismatches < 0:
+        raise ValueError("max_mismatches must be an integer >= 0")
+    if cluster_within_bp is not None and (type(cluster_within_bp) is not int or cluster_within_bp < 0):
+        raise ValueError("cluster_within_bp must be None or an integer >= 0")
+    seq_u = seq.upper()
+    n = len(seq_u)
+    if n < 2 * min_k:
+        return []
+    rc_map = {"A": "T", "C": "G", "G": "C", "T": "A"}
+    n_chunks = max_mismatches + 1
+    seed_k = min_k // n_chunks
+    raw_hits: List[Tuple[int, int, int, int, str, str]] = []
+
+    def _maximal_stem_from_pair(i0: int, j0: int, base_mm: int) -> int:
+        # Extend antiparallel stem inward (right from i0+min_k, left from j0) and outward (left from i0, right from j0+min_k):
+        i_lo, i_hi = i0, i0 + min_k
+        j_lo, j_hi = j0, j0 + min_k
+        cur_mm = base_mm
+        while i_hi <= j_lo - 1:
+            if seq_u[i_hi] != rc_map[seq_u[j_lo - 1]]:
+                if cur_mm + 1 > max_mismatches:
+                    break
+                cur_mm += 1
+            i_hi += 1
+            j_lo -= 1
+        while i_lo > 0 and j_hi < n:
+            if seq_u[i_lo - 1] != rc_map[seq_u[j_hi]]:
+                if cur_mm + 1 > max_mismatches:
+                    break
+                cur_mm += 1
+            i_lo -= 1
+            j_hi += 1
+        return i_hi - i_lo
+
+    if seed_k < 1:
+        for i in range(n - 2 * min_k + 1):
+            a = seq_u[i : i + min_k]
+            for j in range(i + min_k, n - min_k + 1):
+                b = seq_u[j : j + min_k]
+                mm = sum(x != rc_map[y] for x, y in zip(a, reversed(b)))
+                if mm <= max_mismatches:
+                    raw_hits.append((i + 1, j + 1, mm, _maximal_stem_from_pair(i, j, mm), a, b))
+    else:
+        pos: Dict[str, List[int]] = {}
+        for i in range(n - seed_k + 1):
+            pos.setdefault(seq_u[i : i + seed_k], []).append(i)
+        chunk_offsets = [c * seed_k for c in range(n_chunks - 1)] + [min_k - seed_k]
+        seen_pairs: Set[Tuple[int, int]] = set()
+        for i in range(n - 2 * min_k + 1):
+            cand_js: Set[int] = set()
+            for off in chunk_offsets:
+                chunk = seq_u[i + off : i + off + seed_k]
+                rc_chunk = revcomp(chunk)
+                b_rel = min_k - off - seed_k
+                for p in pos.get(rc_chunk, []):
+                    j = p - b_rel
+                    if j >= i + min_k and j + min_k <= n:
+                        cand_js.add(j)
+            a = seq_u[i : i + min_k]
+            for j in sorted(cand_js):
+                if (i, j) in seen_pairs:
+                    continue
+                b = seq_u[j : j + min_k]
+                mm = sum(x != rc_map[y] for x, y in zip(a, reversed(b)))
+                if mm <= max_mismatches:
+                    seen_pairs.add((i, j))
+                    raw_hits.append((i + 1, j + 1, mm, _maximal_stem_from_pair(i, j, mm), a, b))
+
+    results: List[Dict[str, Any]] = []
+    for p1, p2, mm, max_stem, a, b in raw_hits:
+        if (
+            cluster_within_bp is not None
+            and results
+            and abs(p1 - results[-1]["pos1_a"]) <= cluster_within_bp
+            and abs(p2 - results[-1]["pos1_b"]) <= cluster_within_bp
+        ):
+            continue
+        results.append({
+            "length_bp": min_k,
+            "maximal_stem_bp": max_stem,
+            "mismatches": mm,
+            "pos1_a": p1,
+            "pos1_b": p2,
+            "seq_a": a,
+            "seq_b": b,
+        })
+    return results
+
+
+_IIP0031_TRANSCRIPT_PINS = {
+    "pvr_refseq_isoforms_4": {
+        "NM_001135768.3": "2ef24fc0974fcb43bd4424146aa7a142621a92b8b77860e92830a7d57d16cff9",
+        "NM_001135769.3": "9542fd4f187f2c5a604f50446a6152673717873a82b94f744a3b268809af5960",
+        "NM_001135770.3": "419c3ac33f73fa4fab71d01ba0cceb42f5ee3273a682d635014a97b8a901a849",
+        "NM_006505.5": "14a36f7386490c060695e1ec5cd588b4c9c07be5d71641bfe1888ca2bf56929a",
+    },
+    "cd276_refseq_isoforms_4": {
+        "NM_001024736.2": "7a89c6a6555555531e2f8eff270ee62bd6ee93f90eb1b950ca97ba673baf65ce",
+        "NM_001329628.2": "19ec2749d06fe9645e7fc55b6ac78401b6075c6864a93dd30458ee2539f245b8",
+        "NM_001329629.2": "db51d99b1b5cb052b09c9c7f83f635afc484924f85b619aff6a1be4ed8666a03",
+        "NM_025240.3": "0bd1628a649a1ca8a39cb5058dc07b0890a42707465fe314a24631f0089c98f5",
+    },
+}
+_IIP0031_CHR16_2001BP_SHA256 = "ec47ca4d65be793a536354da3d81c3188c4021598f4cecee749e2ff2a89b5e36"
+_IIP0031_DM1_80BP_SHA256 = "801f07cae8f29ec2c75d02cc1ce52e3728566d24d0595d4722a318dee0a097f3"
+_IIP0031_CIITA_EXON5_200BP_SHA256 = "10c69c9dcafd39f2935f26a87a1283ef4dc4875ef259d77b1fef8e5ba4e82daa"
+_IIP0031_CIITA_REFSEQ_PINS: Dict[str, Tuple[int, int, str, Tuple[Tuple[int, int], ...], str, str]] = {
+    "NM_000246.4": (
+        130, 3522, "aebd7a44ddee5e33c6b8e9ef6fc2a187ac3aaa48d8b3e7fe5a4ba0c85784f518",
+        ((1, 181), (182, 328), (329, 424), (425, 487), (488, 565), (566, 610), (611, 757), (758, 901), (902, 1066), (1067, 1135), (1136, 2786), (2787, 2945), (2946, 3017), (3018, 3098), (3099, 3191), (3192, 3278), (3279, 3362), (3363, 3446), (3447, 3544), (3545, 16061)),
+        "variant_2_canonical_pIII_78bp_Ex5",
+        "canonical pIII / FIII (exon1 1..181, 78-bp Ex5, N-term MRCLAP...)",
+    ),
+    "NM_001286402.1": (
+        134, 3529, "841888c82eb9d941c1d3441d4094a04cceafd96eae0da7a4bbb47cf9b4f308f2",
+        ((1, 185), (186, 332), (333, 428), (429, 491), (492, 572), (573, 617), (618, 764), (765, 908), (909, 1073), (1074, 1142), (1143, 2793), (2794, 2952), (2953, 3024), (3025, 3105), (3106, 3198), (3199, 3285), (3286, 3369), (3370, 3453), (3454, 3551), (3552, 4657)),
+        "variant_1_alt_FIII_pIII_81bp_Ex5",
+        "pIII / alternative FIII (exon1 1..185, 81-bp Ex5, N-term MRCLAP...)",
+    ),
+    "NM_001286403.2": (
+        130, 1770, "154afe08df9fc8a285b78c76dfd0f43869b63451404aec24c16d7868b6de0a00",
+        ((1, 181), (182, 328), (329, 424), (425, 487), (488, 565), (566, 610), (611, 754), (755, 919), (920, 988), (989, 1193), (1194, 1265), (1266, 1346), (1347, 1439), (1440, 1526), (1527, 1610), (1611, 1694), (1695, 1792), (1793, 14309)),
+        "variant_3_short_pIII_prefix_78bp_Ex5",
+        "shorter pIII-prefix isoform (shares exon1 1..181 with NM_000246.4, 78-bp Ex5, 546 aa)",
+    ),
+    "NM_001379330.1": (
+        130, 3378, "2bac24c75173978aea51384b27e53a22e69f15a1346903e2596790b4f8d8fea4",
+        ((1, 181), (182, 328), (329, 424), (425, 487), (488, 568), (569, 613), (614, 757), (758, 922), (923, 991), (992, 2642), (2643, 2801), (2802, 2873), (2874, 2954), (2955, 3047), (3048, 3134), (3135, 3218), (3219, 3302), (3303, 3400), (3401, 4679)),
+        "variant_5_pIII_81bp_Ex5",
+        "pIII-prefix variant 5 (exon1 1..181, 81-bp Ex5, 1,082 aa)",
+    ),
+    "NM_001379331.1": (
+        130, 3375, "5ddf0bee290880d504973c271ffe81d164d1f158f054cc38bbb8058efb3e938f",
+        ((1, 181), (182, 328), (329, 424), (425, 487), (488, 565), (566, 610), (611, 754), (755, 919), (920, 988), (989, 2639), (2640, 2798), (2799, 2870), (2871, 2951), (2952, 3044), (3045, 3131), (3132, 3215), (3216, 3299), (3300, 3397), (3398, 4676)),
+        "variant_6_pIII_78bp_Ex5",
+        "pIII-prefix variant 6 (exon1 1..181, 78-bp Ex5, 1,081 aa)",
+    ),
+    "NM_001379332.1": (
+        130, 3525, "6f7085648132bcfa8d4d98a11200c42b4ba7c89ef151d9d69d59714197717560",
+        ((1, 181), (182, 328), (329, 424), (425, 487), (488, 568), (569, 613), (614, 760), (761, 904), (905, 1069), (1070, 1138), (1139, 2789), (2790, 2948), (2949, 3020), (3021, 3101), (3102, 3194), (3195, 3281), (3282, 3365), (3366, 3449), (3450, 3547), (3548, 4826)),
+        "variant_7_pIII_81bp_Ex5",
+        "pIII-prefix variant 7 (exon1 1..181, 81-bp Ex5, 1,131 aa)",
+    ),
+    "NM_001379333.1": (
+        130, 3522, "03a68ae89b34641207b0560b72af5cfc7f63fd8e1f70f29767ab4ff81d2e7b41",
+        ((1, 181), (182, 328), (329, 424), (425, 487), (488, 565), (566, 610), (611, 757), (758, 901), (902, 1066), (1067, 1135), (1136, 2786), (2787, 2945), (2946, 3017), (3018, 3098), (3099, 3191), (3192, 3278), (3279, 3362), (3363, 3446), (3447, 3544), (3545, 4823)),
+        "variant_8_pIII_78bp_Ex5",
+        "pIII-prefix variant 8 (exon1 1..181, 78-bp Ex5, 1,130 aa)",
+    ),
+    "NM_001379334.1": (
+        97, 3420, "5a809c6442135d48b01b84e83a263a20d654e61ed131091765b182ea05978aa7",
+        ((1, 76), (77, 223), (224, 319), (320, 382), (383, 463), (464, 508), (509, 655), (656, 799), (800, 964), (965, 1033), (1034, 2684), (2685, 2843), (2844, 2915), (2916, 2996), (2997, 3089), (3090, 3176), (3177, 3260), (3261, 3344), (3345, 3442), (3443, 4721)),
+        "variant_9_IFNg_pIV_81bp_Ex5",
+        "IFN-gamma-inducible pIV / FIV (noncoding exon1 1..76, Exon-2 ATG N-term MELGPL..., 81-bp Ex5, 1,107 aa)",
+    ),
+}
+_IIP0031_JASPAR_6PWM_PINS: Dict[str, Tuple[str, int, str, str]] = {
+    "MA0050.2": ("IRF1", 21, "082e0a83f20a173eb3788790f18dcc8131c29349b24ca37a0ef8046b9e4fb37e", "24cab749fa45ac2bfc0fdd1b7ce02e7473e6ca5f190bedeaffe9e1b7314e367a"),
+    "MA0079.5": ("SP1", 9, "3f688e30c538bf39cc39a1f9c52d3c661ec4fb0f6c0d507859206c4e3e3a96d0", "79c93a2a42b6b1bddf611e1531811171977d4be313ed291e73d300d8eaf3357e"),
+    "MA0105.4": ("NFKB1", 13, "3d3c7718a9308d4fb70c4ad70abbcf79e8fc0ac688616b5206ae69608e7b39c5", "31592be2b4d4120b1d2de96ffc2600ccb4de69ef3bb9a99d141a773c13bd3f0e"),
+    "MA0107.1": ("RELA", 10, "7a765b29b62589558b9195fae9e6e4a62d917839e9b73655ca6afc6b7cd1f5c6", "f810a450edefd1e38ce0e0f81348478285254707b529e8edb47a9ff0164c57bb"),
+    "MA0137.3": ("STAT1", 11, "d1088b63cf03a4c891ec4799c891e70725330815f9c2fd817d3297935a8d38ac", "68abc7d51226ebca191d010f0b202e0f727b53e48cc431f93c0294cc382565a0"),
+    "MA0139.1": ("CTCF", 19, "c750c526e1fd8d747a728a0f9c6a9efd17cedc684f4ee69a4354c6760be68967", "987a2fd393dc17e886e40d26757622c88b70dc3ecf82c52e8e38aafaedc1b335"),
+}
+_IIP0031_PREEXISTING_6_FASTA_SHA256: Dict[str, str] = {
+    "data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta": "b5ba4e2b4bbbcc7d6cf1138975c5fae5c6ab074dda43973f071c671cd8cd1d88",
+    "data/constructs/islet1_design_b_complete_constructs_v0.8.0.fasta": "4bb20389773c76b2705031ba675487825dfbd94d920a692cde75b7d56af22aa4",
+    "data/constructs/islet1_locus3_multimir_modeb_comparators_v0.8.0.fasta": "22df54a27ef3f68b646b63dc036b11f5a66a9fcadb50378dfb8057e108c79ffa",
+    "data/constructs/islet1_locus1_s10_modeb_comparators_v0.8.0.fasta": "a589ea72144cf1ad2cfa82e9b08c22e075746c63a9264e276a3bd4ec3f896854",
+    "data/constructs/islet1_design_y_wildcard_comparators_v0.8.0.fasta": "c7f54b824a73cf9d40247d4fd251cb5c28a8eca4a1530b9661284200bb4cbabc",
+    "data/constructs/nm_021999_5_archival_mrna.fasta": "4a4cb15d0544884a62d86ebf4137c5284edad8210b6e32e74c2eb0aff005d13e",
+}
+_IIP0031_PROXY_4_FASTAS: Tuple[str, ...] = (
+    "data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta",
+    "data/constructs/islet1_design_b_complete_constructs_v0.8.0.fasta",
+    "data/constructs/islet1_locus3_multimir_modeb_comparators_v0.8.0.fasta",
+    "data/constructs/islet1_locus1_s10_modeb_comparators_v0.8.0.fasta",
+)
+_IIP0031_OI_15_PROXY_LENGTHS: Dict[str, int] = {
+    "DesignA_L3_SERPINB9_PDL1_WPRE_bGH": 2890,
+    "DesignA_L1_ARM1A_HLAE_CD47_WPRE_bGH": 2908,
+    "DesignA_L1_ARM1B_HLAE_bGH": 1737,
+    "DesignA_L1_ARM1B_CD47_SV40": 659,
+    "DesignA_L4_iCasp9_SV40": 1322,
+    "DesignB_c1_L5A_BFB_SYN6": 2599,
+    "DesignB_c3_L5A_HUMAN": 2572,
+    "DesignB_c5_L6_iCasp9": 1350,
+    "DesignB_c5_L6_CD47": 687,
+    "L3_ARM5_MultiMiR_SB9_PDL1": 2919,
+    "S10_ASTAR_HLAE": 1752,
+    "L2_V3_CFH_STP_GPI_CDS": 1083,
+    "L2_V3_CD200_CDS": 837,
+    "L2_V3_MANF_CDS": 549,
+    "L2_V3_CCL22_CDS": 282,
+}
+_IIP0031_PARETO_REL = "data/extracted/islet1_combinatorial_pareto_and_ladder_v0.8.0.json"
+_IIP0031_PARETO_SHA256 = "591ddeb9a706c0bc95fc509765b512aadad8a403287a796e63dd52e7db548575"
+_IIP0031_HUMAN_22_REFSEQ_PINS: Dict[str, Tuple[str, int, int, str]] = {
+    "CD46": ("NM_002389.4", 176, 1354, "5aaa0dc3b47b8378f2ee4b4c8a922314bb3d37bb8d2accfa4e6da3d31bc8ada7"),
+    "CD47": ("NM_001777.4", 124, 1095, "4d0d4e7bb124fdc6a86d7cc09af5c601b3e59421a93bec2ebc026d8c4e857b58"),
+    "CD55": ("NM_000574.5", 89, 1234, "69097f6406a43daeb14a3881a0b6d9c77629dd8b7eb2be579249d624a4933878"),
+    "CD59": ("NM_203330.2", 278, 664, "9c93b1a9a67a85140769f2c09feb37725355a6066357cd54d177228a3fe1eaa7"),
+    "CDH5": ("NM_001795.5", 88, 2442, "eca8977b9a0dd1164c16c9c2fd1dabced73e0a23d6f664ac5b23fe696f46bce6"),
+    "CLEC16A": ("NM_015226.3", 155, 3316, "52b6a9f414e692606e5a6bf9ecdb32f3cc595e222a65182cad2d893931cf2fc0"),
+    "DEXI": ("NM_014015.4", 464, 751, "127c13310e13ad969cf980f2aa6e016c45063b3023489035aafdf8e412382f78"),
+    "GCG": ("NM_002054.5", 100, 642, "7e3860e8bf5ea697b2a2326a9a83dba62ee07439ba59b412034aa413a4e1199d"),
+    "GCK": ("NM_000162.5", 487, 1884, "5d1a3f2f9bbc6b7f34e16e908406674a236ec2eff99d2169ea7fd22ccb2bd288"),
+    "HLA-E": ("NM_005516.6", 24, 1100, "3bee2f46b3ee02931fac10809ad9423e5c59b155e79599a31d1b083a5a376869"),
+    "INS": ("NM_000207.3", 60, 392, "2132509911c26572e7dfcaea140a3c893ab2cb6ec1d71cfe23b91fcf09ae4ff1"),
+    "KDR": ("NM_002253.4", 303, 4373, "d073a219056b5d5a6ee14429142e863cb27e56e62b0fbd01856891f609c713e2"),
+    "MAFA": ("NM_201589.4", 327, 1388, "f68563d4331e22ad4242bb8506b47a5d54ea2c68dffb03e5d07d2ef42fd6036e"),
+    "NEUROD1": ("NM_002500.5", 100, 1170, "c2833f3f23f9c9c41d5c72e990d552264989a9de721b4b814ff69220007d61c4"),
+    "NKX6-1": ("NM_006168.3", 1065, 2168, "d55a510ebcb2ab18806e881622a00b31ef6d6e94a2914df027761a6af42f2272"),
+    "PCSK1": ("NM_000439.5", 207, 2468, "62593e784df126a9cdc48df003712b5f32b83213eaadb7e8a77b6b1c6d6b4df9"),
+    "PDX1": ("NM_000209.4", 140, 991, "f08b47ded18ecba68fd30c0691895c5db3aa07db12eb172c30bc237c077150d5"),
+    "PECAM1": ("NM_000442.5", 196, 2412, "f21e1e198379e7a6c99c567907319eb977e6c3679f8043e2e0a64607f509bada"),
+    "PIGA": ("NM_002641.4", 86, 1540, "6fb573d0f9d3a1ef61c4435a223183faffc6bbd15a5c3f4c9b52520661dba6f4"),
+    "PIGK": ("NM_005482.3", 29, 1216, "9e239db10fe98d3d7ca9050d16ace8e67f3dba57c6e08bb293bf72a4e5df23e4"),
+    "SLC30A8": ("NM_173851.3", 334, 1443, "dfa4694f334ea6cade8390837f58735f5e49c5934fae93f33dc422e5c173c173"),
+    "SOCS1": ("NM_003745.2", 177, 812, "a406261ebdfb581e9f57a897cc53137e63e3918755c85f5a21047cf47a33725a"),
+}
+
+
+def _verified_refseq_panel(bundle: dict, key: str) -> Dict[str, str]:
+    expected = _IIP0031_TRANSCRIPT_PINS[key]
+    records = bundle.get(key)
+    if not isinstance(records, dict) or records.keys() != expected.keys():
+        raise ValueError(f"{key} requires the exact {len(expected)} pinned accessions")
+
+    verified = {}
+    for accession, digest in expected.items():
+        row = records[accession]
+        sequence = row.get("mrna_sequence") if isinstance(row, dict) else None
+        if not isinstance(sequence, str) or not sequence.strip():
+            raise ValueError(f"{key} accession {accession} has no transcript sequence")
+        sequence = sequence.upper()
+        if row.get("mrna_sha256") != digest or sha256_str(sequence) != digest:
+            raise ValueError(f"{key} accession {accession} SHA-256 mismatch")
+        verified[accession] = sequence
+    return verified
+
+
+def _verified_22gene_refseq_panel(
+    bundle: dict,
+) -> Tuple[Dict[str, str], Dict[str, str], Dict[str, str], Dict[str, str]]:
+    """
+    Validate all 22 curated human RefSeq transcripts against pinned gene symbols,
+    accessions, CDS start/end coordinates, SHA-256 digests, valid ORF structure
+    (ATG..STOP with zero internal stops), and strictly nonempty 3'-UTR & CDS slices.
+    Returns (utr3_by_gene, cds_by_gene, utr5_by_gene, full_mrna_by_gene).
+    """
+    raw_panel = bundle.get("human_22_gene_refseq_panel")
+    if not isinstance(raw_panel, dict) or set(raw_panel.keys()) != set(_IIP0031_HUMAN_22_REFSEQ_PINS.keys()):
+        raise ValueError("human_22_gene_refseq_panel requires the exact 22 pinned human gene entries")
+    utr3_map: Dict[str, str] = {}
+    cds_map: Dict[str, str] = {}
+    utr5_map: Dict[str, str] = {}
+    full_map: Dict[str, str] = {}
+    for gsym, (exp_acc, exp_cs, exp_ce, exp_sha) in _IIP0031_HUMAN_22_REFSEQ_PINS.items():
+        uobj = raw_panel[gsym]
+        if not isinstance(uobj, dict):
+            raise ValueError(f"22-gene panel entry {gsym} must be a dict")
+        if uobj.get("accession") != exp_acc:
+            raise ValueError(f"22-gene panel {gsym} accession mismatch: expected {exp_acc}, got {uobj.get('accession')!r}")
+        raw_seq = uobj.get("mrna_sequence")
+        if not isinstance(raw_seq, str) or not raw_seq.strip():
+            raise ValueError(f"22-gene panel {gsym} missing mrna_sequence")
+        m_seq = raw_seq.upper()
+        if not set(m_seq).issubset({"A", "C", "G", "T"}):
+            raise ValueError(f"22-gene panel {gsym} contains non-ACGT bases")
+        if uobj.get("mrna_sha256") != exp_sha or sha256_str(m_seq) != exp_sha:
+            raise ValueError(f"22-gene panel RefSeq {gsym} ({exp_acc}) SHA-256 mismatch")
+        if "cds_start_1based" not in uobj or "cds_end_1based" not in uobj:
+            raise ValueError(f"22-gene panel {gsym} ({exp_acc}) missing explicit cds_start_1based or cds_end_1based")
+        cs_raw = uobj["cds_start_1based"]
+        ce_raw = uobj["cds_end_1based"]
+        if (
+            type(cs_raw) is not int
+            or type(ce_raw) is not int
+            or cs_raw != exp_cs
+            or ce_raw != exp_ce
+            or not (1 <= cs_raw < ce_raw < len(m_seq))
+            or (ce_raw - cs_raw + 1) % 3 != 0
+        ):
+            raise ValueError(f"22-gene panel {gsym} ({exp_acc}) invalid or out-of-range CDS coordinates ({cs_raw}, {ce_raw}) for length {len(m_seq)}")
+        cds_slice = m_seq[cs_raw - 1 : ce_raw]
+        utr3_slice = m_seq[ce_raw:]
+        utr5_slice = m_seq[: cs_raw - 1]
+        if len(cds_slice) < 6 or len(utr3_slice) < 1:
+            raise ValueError(f"22-gene panel {gsym} ({exp_acc}) produced an empty CDS or 3'-UTR slice")
+        if cds_slice[:3] != "ATG" or cds_slice[-3:] not in ("TAA", "TAG", "TGA"):
+            raise ValueError(f"22-gene panel {gsym} ({exp_acc}) CDS does not start with ATG and end with a stop codon")
+        if any(cds_slice[i : i + 3] in ("TAA", "TAG", "TGA") for i in range(0, len(cds_slice) - 3, 3)):
+            raise ValueError(f"22-gene panel {gsym} ({exp_acc}) CDS contains an internal in-frame stop codon")
+        utr3_map[gsym] = utr3_slice
+        cds_map[gsym] = cds_slice
+        utr5_map[gsym] = utr5_slice
+        full_map[gsym] = m_seq
+    return utr3_map, cds_map, utr5_map, full_map
+
+
+def _parse_fa_bytes(raw_bytes: bytes, label: str = "FASTA") -> Dict[str, str]:
+    try:
+        fasta_text = raw_bytes.decode("utf-8")
+    except UnicodeDecodeError as exc:
+        raise ValueError(f"{label} is not valid UTF-8") from exc
+    out_fa: Dict[str, str] = {}
+    cid_cur: Optional[str] = None
+    buf_cur: List[str] = []
+    for ln in fasta_text.splitlines():
+        s = ln.strip()
+        if not s:
+            continue
+        if s.startswith(">"):
+            if cid_cur is not None:
+                raw_seq = "".join(buf_cur)
+                if not raw_seq or not all(ch in "ACGTacgt" for ch in raw_seq):
+                    raise ValueError(f"Empty or non-ACGT sequence in {label} record {cid_cur!r}")
+                out_fa[cid_cur] = raw_seq.upper()
+            tokens = s[1:].split()
+            if not tokens:
+                raise ValueError(f"Empty FASTA header in {label}")
+            cid_cur = tokens[0]
+            if cid_cur in out_fa:
+                raise ValueError(f"Duplicate FASTA record header {cid_cur!r} in {label}")
+            buf_cur = []
+        else:
+            if cid_cur is None:
+                raise ValueError(f"Sequence data before first header in {label}")
+            buf_cur.append(s)
+    if cid_cur is not None:
+        raw_seq = "".join(buf_cur)
+        if not raw_seq or not all(ch in "ACGTacgt" for ch in raw_seq):
+            raise ValueError(f"Empty or non-ACGT sequence in {label} record {cid_cur!r}")
+        out_fa[cid_cur] = raw_seq.upper()
+    if not out_fa:
+        raise ValueError(f"Empty FASTA file: {label}")
+    return out_fa
+
+
+def _max_disjoint_dr(seq: str, max_k: int = 80) -> Tuple[int, Optional[Dict[str, Any]]]:
+    n = len(seq)
+    for k in range(min(max_k, n // 2), 0, -1):
+        seen: Dict[str, int] = {}
+        for i in range(n - k + 1):
+            sub = seq[i : i + k]
+            if sub in seen and seen[sub] + k <= i:
+                return k, {"length_bp": k, "pos1_a": seen[sub] + 1, "pos1_b": i + 1, "sequence": sub}
+            if sub not in seen:
+                seen[sub] = i
+    return 0, None
+
+
+def _max_overlapping_dr(
+    seq: str,
+    max_k: int = 80,
+    excluded_spans_0based: Tuple[Tuple[int, int], ...] = (),
+) -> Tuple[int, Optional[Dict[str, Any]]]:
+    n = len(seq)
+    for k in range(min(max_k, n - 1), 0, -1):
+        seen: Dict[str, List[int]] = {}
+        for i in range(n - k + 1):
+            sub = seq[i : i + k]
+            for j0 in seen.get(sub, ()):
+                if not any(
+                    j0 >= lo and (j0 + k) <= hi and i >= lo and (i + k) <= hi
+                    for (lo, hi) in excluded_spans_0based
+                ):
+                    return k, {"length_bp": k, "pos1_a": j0 + 1, "pos1_b": i + 1, "sequence": sub}
+            seen.setdefault(sub, []).append(i)
+    return 0, None
+
+
+def _max_disjoint_ir(seq: str, max_k: int = 80) -> Tuple[int, Optional[Dict[str, Any]]]:
+    n = len(seq)
+    for k in range(min(max_k, n // 2), 0, -1):
+        seen: Dict[str, int] = {}
+        for i in range(n - k + 1):
+            sub = seq[i : i + k]
+            rc = revcomp(sub)
+            if rc in seen and seen[rc] + k <= i:
+                return k, {"length_bp": k, "pos1_a": seen[rc] + 1, "pos1_b": i + 1, "seq_a": rc, "seq_b": sub}
+            if sub not in seen:
+                seen[sub] = i
+    return 0, None
+
+
+def _count_disjoint_ir_ge_k(seq: str, min_k: int = 16) -> int:
+    n = len(seq)
+    if min_k < 1 or n < 2 * min_k:
+        return 0
+    pos: Dict[str, List[int]] = {}
+    for i in range(n - min_k + 1):
+        pos.setdefault(seq[i : i + min_k], []).append(i)
+    cnt = 0
+    for i in range(n - 2 * min_k + 1):
+        rc_sub = revcomp(seq[i : i + min_k])
+        if rc_sub in pos:
+            cnt += sum(1 for j in pos[rc_sub] if j - i >= min_k)
+    return cnt
+
+
+def _scan_seeds(strand_s: str, targets: Dict[str, str]) -> Dict[str, Dict[str, int]]:
+    if not isinstance(strand_s, str) or len(strand_s) < 8 or not all(ch in "ACGTacgt" for ch in strand_s):
+        raise ValueError(f"Invalid RNAi strand sequence for seed scan: {strand_s!r}")
+    strand_u = strand_s.upper()
+    s7m8 = revcomp(strand_u[1:8])
+    s8m = s7m8 + "A"
+    s7a1 = revcomp(strand_u[1:7]) + "A"
+    hits_d: Dict[str, Dict[str, int]] = {}
+    for tk, ts in targets.items():
+        if not isinstance(ts, str) or not all(ch in "ACGTacgt" for ch in ts):
+            raise ValueError(f"Invalid target sequence for seed scan ({tk!r})")
+        ts_u = ts.upper()
+        nt = len(ts_u)
+        c8 = sum(1 for i in range(max(0, nt - 7)) if ts_u[i : i + 8] == s8m)
+        c7m8 = sum(1 for i in range(max(0, nt - 6)) if ts_u[i : i + 7] == s7m8)
+        c7a1 = sum(1 for i in range(max(0, nt - 6)) if ts_u[i : i + 7] == s7a1)
+        if c8 or c7m8 or c7a1:
+            hits_d[tk] = {"8mer": c8, "7mer_m8": c7m8, "7mer_A1": c7a1}
+    return hits_d
+
+
+def build_locus2_ciita_modeb_comparators_v3_manifest(
+    ref: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    """
+    Build and verify the Stage-0 Locus-2 CIITA Exon-5 Mode-B v3 research comparator manifest
+    100% dynamically from data/constructs/islet1_locus2_ciita_modeb_comparators_v0.8.0.fasta,
+    local OpenIslet construct FASTAs, and hash-pinned GRCh38/RefSeq reference sequences in
+    data/raw/layer2_genomic_and_jaspar_reference.json (IIP-0031; DEC-110).
+    """
+    if ref is None:
+        ref = json.loads(REF_PATH.read_text(encoding="utf-8"))
+    ref_bundle = ref.get("iip0031_locus2_modeb_v3_reference_bundle") if isinstance(ref, dict) else None
+    if not isinstance(ref_bundle, dict):
+        raise ValueError("Missing iip0031_locus2_modeb_v3_reference_bundle in layer2_genomic_and_jaspar_reference.json")
+    pvr_iso_map = _verified_refseq_panel(ref_bundle, "pvr_refseq_isoforms_4")
+    cd276_iso_map = _verified_refseq_panel(ref_bundle, "cd276_refseq_isoforms_4")
+
+    fasta_rel = "data/constructs/islet1_locus2_ciita_modeb_comparators_v0.8.0.fasta"
+    fasta_path = REPO_ROOT / fasta_rel
+    if not fasta_path.is_file():
+        raise FileNotFoundError(f"Missing pinned Locus-2 v3 comparator FASTA: {fasta_path}")
+    raw_bytes = fasta_path.read_bytes()
+    file_sha256 = hashlib.sha256(raw_bytes).hexdigest()
+    expected_file_sha256 = "25ffcb10e2bad77a4b34725c7eff0532990ebf7b80864cf7217d33f5ccbe5b6d"
+    if file_sha256 != expected_file_sha256:
+        raise ValueError(f"Locus-2 v3 FASTA SHA-256 mismatch: {file_sha256} != {expected_file_sha256}")
+
+    records = _parse_fa_bytes(raw_bytes, fasta_rel)
+    expected_order = (
+        "L2_V3_CO_PRIMARY_CD200",
+        "L2_V3_CO_PRIMARY_MANF",
+        "L2_V3_DESIGN_B_CD200",
+        "L2_V3_DESIGN_B_MANF",
+        "L2_V3_ALT2_CCL22",
+        "L2_V3_CTRL_NT_SCRAMBLE",
+        "L2_V3_BARRIER_CHS4_250",
+        "L2_V3_CD274P_ZERO_TATATA",
+    )
+    if tuple(records.keys()) != expected_order:
+        raise ValueError(f"Unexpected Locus-2 v3 FASTA record order: {list(records.keys())}")
+
+    # 1. Authenticate full 2,001-bp GRCh38 chr16 window & cross-verify 200/200 against canonical 200-bp window:
+    chr16_obj = ref_bundle.get("grch38_chr16_ciita_exon5_2001bp")
+    if not isinstance(chr16_obj, dict) or not isinstance(chr16_obj.get("sequence"), str):
+        raise ValueError("Missing grch38_chr16_ciita_exon5_2001bp sequence")
+    chr16_seq_raw = chr16_obj["sequence"]
+    if not all(ch in "ACGTacgt" for ch in chr16_seq_raw):
+        raise ValueError("GRCh38 chr16 2001-bp reference contains non-ACGT bases")
+    chr16_seq = chr16_seq_raw.upper()
+    if (
+        len(chr16_seq) != 2001
+        or chr16_obj.get("chrom") != "chr16"
+        or type(chr16_obj.get("start_1based")) is not int
+        or chr16_obj.get("start_1based") != 10898000
+        or type(chr16_obj.get("end_1based")) is not int
+        or chr16_obj.get("end_1based") != 10900000
+        or type(chr16_obj.get("strand")) is not int
+        or chr16_obj.get("strand") != 1
+        or type(chr16_obj.get("length_bp")) is not int
+        or chr16_obj.get("length_bp") != 2001
+        or chr16_obj.get("region") != "GRCh38.p14:chr16:10898000-10900000:strand=+1"
+        or chr16_obj.get("sha256") != _IIP0031_CHR16_2001BP_SHA256
+        or sha256_str(chr16_seq) != _IIP0031_CHR16_2001BP_SHA256
+    ):
+        raise ValueError("GRCh38 chr16 2001-bp reference SHA-256, length, or coordinate metadata mismatch")
+
+    outer_elems = ref.get("ensembl_verified_homology_arms_and_elements") if isinstance(ref, dict) else None
+    w200_obj = outer_elems.get("CIITA_pan_isoform_exon5_window_200bp") if isinstance(outer_elems, dict) else None
+    if not isinstance(w200_obj, dict) or not isinstance(w200_obj.get("sequence"), str):
+        raise ValueError("Missing or malformed CIITA_pan_isoform_exon5_window_200bp in ensembl_verified_homology_arms_and_elements")
+    w200_raw = w200_obj["sequence"]
+    if not all(ch in "ACGTacgt" for ch in w200_raw):
+        raise ValueError("CIITA_pan_isoform_exon5_window_200bp contains non-ACGT bases")
+    w200_pinned = w200_raw.upper()
+    if (
+        len(w200_pinned) != 200
+        or w200_obj.get("chrom") != "chr16"
+        or type(w200_obj.get("start_1based")) is not int
+        or w200_obj.get("start_1based") != 10898880
+        or type(w200_obj.get("end_1based")) is not int
+        or w200_obj.get("end_1based") != 10899079
+        or type(w200_obj.get("strand")) is not int
+        or w200_obj.get("strand") != 1
+        or type(w200_obj.get("length_bp")) is not int
+        or w200_obj.get("length_bp") != 200
+        or w200_obj.get("sha256") != _IIP0031_CIITA_EXON5_200BP_SHA256
+        or sha256_str(w200_pinned) != _IIP0031_CIITA_EXON5_200BP_SHA256
+    ):
+        raise ValueError("CIITA_pan_isoform_exon5_window_200bp SHA-256 or coordinate metadata mismatch")
+    if chr16_seq[10898880 - 10898000 : 10899079 - 10898000 + 1] != w200_pinned:
+        raise ValueError("GRCh38 chr16 2001-bp slice disagrees with pinned CIITA_pan_isoform_exon5_window_200bp")
+
+    dm1_obj = ref_bundle.get("grch38_chr19_dm1_ctcf1_80bp")
+    if not isinstance(dm1_obj, dict) or not isinstance(dm1_obj.get("sequence"), str):
+        raise ValueError("Missing grch38_chr19_dm1_ctcf1_80bp sequence")
+    dm1_raw = dm1_obj["sequence"]
+    if not all(ch in "ACGTacgt" for ch in dm1_raw):
+        raise ValueError("GRCh38 chr19 DM1 CTCF1 80-bp reference contains non-ACGT bases")
+    dm1_seq = dm1_raw.upper()
+    if (
+        len(dm1_seq) != 80
+        or dm1_obj.get("chrom") != "chr19"
+        or type(dm1_obj.get("start_1based")) is not int
+        or dm1_obj.get("start_1based") != 45770299
+        or type(dm1_obj.get("end_1based")) is not int
+        or dm1_obj.get("end_1based") != 45770378
+        or type(dm1_obj.get("strand")) is not int
+        or dm1_obj.get("strand") != 1
+        or type(dm1_obj.get("length_bp")) is not int
+        or dm1_obj.get("length_bp") != 80
+        or dm1_obj.get("region") != "GRCh38.p14:chr19:45770299-45770378:strand=+1"
+        or dm1_obj.get("sha256") != _IIP0031_DM1_80BP_SHA256
+        or sha256_str(dm1_seq) != _IIP0031_DM1_80BP_SHA256
+    ):
+        raise ValueError("GRCh38 chr19 DM1 CTCF1 80-bp reference SHA-256 or coordinate metadata mismatch")
+
+    v3_ha_bp = 375
+    ha_l_ref = chr16_seq[(10898967 - 10898000 + 1) - v3_ha_bp : 10898967 - 10898000 + 1]
+    ha_r_wt_ref = chr16_seq[10898968 - 10898000 : (10898968 - 10898000) + v3_ha_bp]
+    flank_up_300 = chr16_seq[(10898967 - 10898000 + 1) - v3_ha_bp - 300 : (10898967 - 10898000 + 1) - v3_ha_bp]
+    flank_dn_300 = chr16_seq[(10898968 - 10898000) + v3_ha_bp : (10898968 - 10898000) + v3_ha_bp + 300]
+    native_ir_18bp_excluded = chr16_seq[10898566 - 10898000 : 10898583 - 10898000 + 1]
+    if revcomp(native_ir_18bp_excluded) not in ha_l_ref:
+        raise ValueError("Expected native 18-bp HA_L inverted-repeat partner verification failed")
+
+    canonical_shield_154 = (
+        "AATAAAAGATCTTTATTTTCATTAGATCTGTGTGTTGGTTTTTTGTGTG"
+        + "CTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCA"
+        + "CTGGAGGGGCTGGAGGGGCTGGAGGGGCTGGAGGGGCACTGGAGGGGCTGGAGGGGCTGGAGGGG"
+    )
+
+    def _kmers_aa(prot: str, sizes: Tuple[int, ...]) -> set[str]:
+        out_k: set[str] = set()
+        for sz in sizes:
+            for idx_k in range(max(0, len(prot) - sz + 1)):
+                out_k.add(prot[idx_k : idx_k + sz])
+        return out_k
+
+    # 2. Authenticate all 8 curated human CIITA NM_* RefSeq transcripts from reference bundle:
+    ex5_78bp = chr16_seq[10898925 - 10898000 : 10899002 - 10898000 + 1]
+    cut_off_ex5 = 10898967 - 10898925 + 1  # 43 nt of constitutive 78-bp Exon-5 core in HA_L
+    expected_ciita_accs = (
+        "NM_001286402.1",
+        "NM_000246.4",
+        "NM_001286403.2",
+        "NM_001379330.1",
+        "NM_001379331.1",
+        "NM_001379332.1",
+        "NM_001379333.1",
+        "NM_001379334.1",
+    )
+    ciita_iso_bundle = ref_bundle.get("ciita_refseq_isoforms_8")
+    if (
+        not isinstance(ciita_iso_bundle, dict)
+        or len(ciita_iso_bundle) != 8
+        or set(ciita_iso_bundle.keys()) != set(expected_ciita_accs)
+    ):
+        got_n = len(ciita_iso_bundle) if isinstance(ciita_iso_bundle, dict) else 0
+        raise ValueError(
+            f"Expected exact 8 curated human CIITA RefSeq isoforms ({list(expected_ciita_accs)}), got {got_n}"
+        )
+    ciita_iso_verified: Dict[str, Dict[str, Any]] = {}
+    for acc_c, rec_c in ciita_iso_bundle.items():
+        if not isinstance(rec_c, dict) or not isinstance(rec_c.get("mrna_sequence"), str):
+            raise ValueError(f"CIITA RefSeq {acc_c} missing mrna_sequence")
+        mrna_raw_c = rec_c["mrna_sequence"]
+        if not mrna_raw_c or not all(ch in "ACGTacgt" for ch in mrna_raw_c):
+            raise ValueError(f"CIITA RefSeq {acc_c} empty or non-ACGT mrna_sequence")
+        mrna_c = mrna_raw_c.upper()
+        exp_cs_c, exp_ce_c, exp_sha_c, exp_exons_c, exp_iso_key_c, exp_prom_map_c = _IIP0031_CIITA_REFSEQ_PINS[acc_c]
+        if rec_c.get("mrna_sha256") != exp_sha_c or sha256_str(mrna_c) != exp_sha_c:
+            raise ValueError(f"CIITA RefSeq {acc_c} SHA-256 mismatch")
+        cs_c, ce_c = rec_c.get("cds_start_1based"), rec_c.get("cds_end_1based")
+        if type(cs_c) is not int or type(ce_c) is not int or cs_c != exp_cs_c or ce_c != exp_ce_c:
+            raise ValueError(f"CIITA RefSeq {acc_c} CDS coordinate mismatch")
+        iso_key_c = rec_c.get("iso_key")
+        prom_map_c = rec_c.get("promoter_first_exon_mapping")
+        if (
+            not isinstance(iso_key_c, str)
+            or iso_key_c != exp_iso_key_c
+            or not isinstance(prom_map_c, str)
+            or prom_map_c != exp_prom_map_c
+        ):
+            raise ValueError(f"CIITA RefSeq {acc_c} iso_key or promoter_first_exon_mapping mismatch")
+        exons_raw_c = rec_c.get("exons_1based")
+        if not isinstance(exons_raw_c, list) or not exons_raw_c:
+            raise ValueError(f"CIITA RefSeq {acc_c} missing or empty exons_1based")
+        parsed_exons_c: List[Tuple[int, int]] = []
+        expected_next_start = 1
+        for pair_ex in exons_raw_c:
+            if (
+                not isinstance(pair_ex, (list, tuple))
+                or len(pair_ex) != 2
+                or type(pair_ex[0]) is not int
+                or type(pair_ex[1]) is not int
+            ):
+                raise ValueError(f"CIITA RefSeq {acc_c} malformed exon interval {pair_ex!r}")
+            es_i, ee_i = pair_ex[0], pair_ex[1]
+            if es_i != expected_next_start or ee_i < es_i or ee_i > len(mrna_c):
+                raise ValueError(f"CIITA RefSeq {acc_c} non-contiguous or out-of-range exon interval [{es_i}, {ee_i}]")
+            parsed_exons_c.append((es_i, ee_i))
+            expected_next_start = ee_i + 1
+        if expected_next_start - 1 != len(mrna_c) or tuple(parsed_exons_c) != exp_exons_c:
+            raise ValueError(f"CIITA RefSeq {acc_c} exons_1based mismatch against pinned RefSeq exon coordinates")
+        ex5_pos1 = mrna_c.find(ex5_78bp) + 1
+        if ex5_pos1 <= 0:
+            raise ValueError(f"Constitutive Exon-5 78-bp core not found in {acc_c}")
+        ex5_end1 = ex5_pos1 + len(ex5_78bp) - 1
+        matching_exons = [
+            (ei, es_i, ee_i, ee_i - es_i + 1)
+            for ei, (es_i, ee_i) in enumerate(parsed_exons_c, 1)
+            if es_i <= ex5_pos1 and ex5_end1 <= ee_i
+        ]
+        if len(matching_exons) != 1:
+            raise ValueError(f"CIITA RefSeq {acc_c} Exon-5 core [{ex5_pos1}, {ex5_end1}] not wholly contained in a single exon")
+        ex_hit = matching_exons[0]
+        sp_start = (ex_hit[1] - cs_c) % 3
+        sp_end = (ex_hit[2] - cs_c + 1) % 3
+        if sp_start != 1 or sp_end != 1:
+            raise ValueError(f"Unexpected Exon-5 splice phase on {acc_c}: {sp_start}->{sp_end}")
+        cds_seq_c = mrna_c[cs_c - 1 : ce_c]
+        native_aa_c = translate_dna(cds_seq_c)
+        if native_aa_c.endswith("*"):
+            native_aa_c = native_aa_c[:-1]
+        ciita_iso_verified[acc_c] = {
+            "iso_key": iso_key_c,
+            "promoter_first_exon_mapping": prom_map_c,
+            "exon5_index_in_transcript": ex_hit[0],
+            "exon5_length_bp": ex_hit[3],
+            "exon5_splice_phase": f"{sp_start}->{sp_end}",
+            "cds_before_ex5_core": mrna_c[cs_c - 1 : ex5_pos1 - 1],
+            "native_aa": native_aa_c,
+        }
+
+    # Verify canonical cHS4-80 vs cHS4-250 combined length-and-sequence diff directly on disk:
+    chs4_80_slice = records["L2_V3_CO_PRIMARY_CD200"][1685:1765]
+    chs4_250_slice = records["L2_V3_BARRIER_CHS4_250"][1685:1935]
+    best_mm, best_off = min(
+        ((sum(a != b for a, b in zip(chs4_80_slice, chs4_250_slice[i : i + 80])), i) for i in range(len(chs4_250_slice) - 79))
+    )
+    chs4_diffs = [
+        {
+            "chs4_250_pos_1based": best_off + j + 1,
+            "chs4_80_pos_1based": j + 1,
+            "u78775_2_pos_1based": best_off + j + 8,
+            "base_in_80bp": chs4_80_slice[j],
+            "base_in_250bp": chs4_250_slice[best_off + j],
+        }
+        for j in range(80)
+        if chs4_80_slice[j] != chs4_250_slice[best_off + j]
+    ]
+    if best_mm != 2 or len(chs4_diffs) != 2:
+        raise ValueError(f"Expected 2-bp U78775.2 C79T/C80A diff between cHS4-80 and cHS4-250, got {chs4_diffs}")
+
+    sv40_sig = "AACTTGTTTATTGCAGCTTATAATGGTTACAAATAAAGCAATAGCATCACAAATTTCACAAATAAAGCATTTTTTTCACTGC"
+    bgh_sig = "CGACTGTGCCTTCTAGTTGCCAGCCATCTGTTGTTTGCCCCTCCCCCGTGCCTTCCTTGACCCTGGAAGGTGCCACTCCCAC"
+    two_a_sig = "GGAAGCGGAGCTACTAACTTCAGCCTGCTGAAGCAGGCTGGAGACGTGGAGGAGAACCCTGGACCT"
+
+    pwms_map = ref.get("jaspar_pwms") if isinstance(ref, dict) else None
+    if not isinstance(pwms_map, dict) or set(pwms_map.keys()) != set(_IIP0031_JASPAR_6PWM_PINS.keys()):
+        raise ValueError(
+            f"Missing, incomplete, or unpinned 6-PWM JASPAR reference map in layer2_genomic_and_jaspar_reference.json "
+            f"(expected exact keys {sorted(_IIP0031_JASPAR_6PWM_PINS.keys())}, got {sorted(pwms_map.keys()) if isinstance(pwms_map, dict) else None})"
+        )
+    for _mid_chk, (_exp_tf, _exp_len, _exp_pwm_sha, _exp_pfm_sha) in _IIP0031_JASPAR_6PWM_PINS.items():
+        _ment_chk = pwms_map[_mid_chk]
+        if not isinstance(_ment_chk, dict):
+            raise ValueError(f"Malformed JASPAR PWM entry for {_mid_chk}")
+        _l2p = _ment_chk.get("log2_odds_pwm")
+        _pfm = _ment_chk.get("pfm_counts")
+        _mlen = _ment_chk.get("length")
+        if (
+            _ment_chk.get("matrix_id") != _mid_chk
+            or _ment_chk.get("tf_name") != _exp_tf
+            or type(_mlen) is not int
+            or _mlen != _exp_len
+            or not isinstance(_l2p, dict)
+            or set(_l2p.keys()) != {"A", "C", "G", "T"}
+            or any(
+                not isinstance(_l2p[_b], list)
+                or len(_l2p[_b]) != _exp_len
+                or any(not _is_finite_real(_v) for _v in _l2p[_b])
+                for _b in ("A", "C", "G", "T")
+            )
+            or not isinstance(_pfm, dict)
+            or set(_pfm.keys()) != {"A", "C", "G", "T"}
+            or any(
+                not isinstance(_pfm[_b], list)
+                or len(_pfm[_b]) != _exp_len
+                or any(not _is_finite_real(_v) or float(_v) < 0.0 for _v in _pfm[_b])
+                for _b in ("A", "C", "G", "T")
+            )
+        ):
+            raise ValueError(f"Corrupted, unauthenticated, or non-finite JASPAR PWM/PFM entry for {_mid_chk}")
+        _obs_pwm_sha = sha256_str(json.dumps(_l2p, sort_keys=True, separators=(",", ":")))
+        _obs_pfm_sha = sha256_str(json.dumps(_pfm, sort_keys=True))
+        if (
+            _ment_chk.get("pwm_matrix_sha256") != _exp_pwm_sha
+            or _obs_pwm_sha != _exp_pwm_sha
+            or _ment_chk.get("pfm_counts_sha256") != _exp_pfm_sha
+            or _obs_pfm_sha != _exp_pfm_sha
+        ):
+            raise ValueError(f"JASPAR PWM/PFM SHA-256 digest mismatch against pinned reference for {_mid_chk}")
+    n_pwms = len(pwms_map)
+    utr22_3utrs, utr22_cds, utr22_5utrs, utr22_full = _verified_22gene_refseq_panel(ref_bundle)
+
+    verified_preexisting_fastas: Dict[str, str] = {}
+    parsed_proxy_fastas: Dict[str, Dict[str, str]] = {}
+    for rel_fa, exp_fa_sha in _IIP0031_PREEXISTING_6_FASTA_SHA256.items():
+        fa_p = REPO_ROOT / rel_fa
+        is_required_proxy = rel_fa in _IIP0031_PROXY_4_FASTAS
+        if is_required_proxy and not fa_p.is_file():
+            raise ValueError(f"Missing or non-regular required canonical proxy FASTA: {fa_p}")
+        if fa_p.exists():
+            if not fa_p.is_file():
+                raise ValueError(f"Non-regular canonical FASTA path: {fa_p}")
+            fa_bytes = fa_p.read_bytes()
+            obs_fa_sha = hashlib.sha256(fa_bytes).hexdigest()
+            if obs_fa_sha != exp_fa_sha:
+                raise ValueError(f"Canonical FASTA SHA-256 mismatch for {rel_fa}: {obs_fa_sha} != {exp_fa_sha}")
+            parsed_map = _parse_fa_bytes(fa_bytes, rel_fa)
+            verified_preexisting_fastas[rel_fa] = obs_fa_sha
+            if is_required_proxy:
+                parsed_proxy_fastas[rel_fa] = parsed_map
+
+    canonical_fastas_untouched = len(verified_preexisting_fastas) == len(_IIP0031_PREEXISTING_6_FASTA_SHA256)
+
+    pareto_path = REPO_ROOT / _IIP0031_PARETO_REL
+    layer1_pareto_verified = False
+    layer1_pareto_sha256: Optional[str] = None
+    layer1_score_delta_pp: Optional[float] = None
+    if pareto_path.exists():
+        if not pareto_path.is_file():
+            raise ValueError(f"Non-regular Layer-1 Pareto artifact path: {pareto_path}")
+        pareto_bytes = pareto_path.read_bytes()
+        obs_pareto_sha = hashlib.sha256(pareto_bytes).hexdigest()
+        if obs_pareto_sha != _IIP0031_PARETO_SHA256:
+            raise ValueError(
+                f"Layer-1 Pareto artifact SHA-256 mismatch for {_IIP0031_PARETO_REL}: "
+                f"{obs_pareto_sha} != {_IIP0031_PARETO_SHA256}"
+            )
+        layer1_pareto_verified = True
+        layer1_pareto_sha256 = obs_pareto_sha
+        layer1_score_delta_pp = 0.0
+
+    construct_entries: List[Dict[str, Any]] = []
+    ciita_isoform_summary_by_acc: Dict[str, Dict[str, Any]] = {}
+    extracted_unit2_cds: Dict[str, str] = {}
+    extracted_cfh_cds: Optional[str] = None
+
+    for cid in expected_order:
+        seq = records[cid]
+        dlen = len(seq)
+        # Dynamic full 2x375-bp arm alignment & PAM-shield verification against GRCh38 chr16:
+        ha_l_obs = seq[:v3_ha_bp]
+        ha_r_obs = seq[-v3_ha_bp:]
+        ha_l_mm = sum(a != b for a, b in zip(ha_l_obs, ha_l_ref))
+        ha_r_diffs = [
+            {"offset0_in_ha_r": j, "chr16_pos_1based": 10898968 + j, "ref_base": ha_r_wt_ref[j], "donor_base": ha_r_obs[j]}
+            for j in range(v3_ha_bp)
+            if ha_r_obs[j] != ha_r_wt_ref[j]
+        ]
+        if ha_l_mm != 0 or [d["chr16_pos_1based"] for d in ha_r_diffs] != [10898988, 10898989] or [d["donor_base"] for d in ha_r_diffs] != ["C", "C"]:
+            raise ValueError(f"Full 375-bp arm GRCh38 alignment failed on {cid}: ha_l_mm={ha_l_mm}, ha_r_diffs={ha_r_diffs}")
+        if seq[v3_ha_bp + 12 : v3_ha_bp + 166] != canonical_shield_154:
+            raise ValueError(f"Canonical 154-bp shield mismatch on {cid}")
+        if revcomp(seq[-v3_ha_bp - 80 : -v3_ha_bp]) != dm1_seq:
+            raise ValueError(f"Right-hand 80-bp DM1 CTCF1 mismatch on {cid}")
+
+        has_intron = cid not in ("L2_V3_DESIGN_B_CD200", "L2_V3_DESIGN_B_MANF")
+        prom2_len = 250 if cid == "L2_V3_CD274P_ZERO_TATATA" else 148
+        mid_ins_len = 250 if cid == "L2_V3_BARRIER_CHS4_250" else 80
+        cfh_cds_slice = seq[dlen - 1688 : dlen - 605]
+        if extracted_cfh_cds is None:
+            extracted_cfh_cds = cfh_cds_slice
+        elif extracted_cfh_cds != cfh_cds_slice:
+            raise ValueError(f"CFH-STP-GPI CDS mismatch across donors on {cid}")
+        eef_start0 = (dlen - 2247) if has_intron else (dlen - 1927)
+        u2_cds_start0 = 550 + prom2_len
+        u2_cds_end0 = eef_start0 - mid_ins_len - 150
+        u2_cds_slice = seq[u2_cds_start0:u2_cds_end0]
+        if "CD200" in cid or cid in ("L2_V3_CTRL_NT_SCRAMBLE", "L2_V3_BARRIER_CHS4_250", "L2_V3_CD274P_ZERO_TATATA"):
+            extracted_unit2_cds["CD200"] = u2_cds_slice
+        elif "MANF" in cid:
+            extracted_unit2_cds["MANF"] = u2_cds_slice
+        elif "CCL22" in cid:
+            extracted_unit2_cds["CCL22"] = u2_cds_slice
+
+        # Dynamic repeat/IR scans (including max overlapping DR outside canonical shield & Syn_5xISRE tandems):
+        disj_dr_bp, disj_dr_info = _max_disjoint_dr(seq)
+        ov_dr_bp, ov_dr_info = _max_overlapping_dr(seq)
+        canonical_tandem_spans = ((387, 541), (541, 541 + prom2_len)) if cid != "L2_V3_CD274P_ZERO_TATATA" else ((387, 541),)
+        ov_outside_bp, _ = _max_overlapping_dr(seq, excluded_spans_0based=canonical_tandem_spans)
+        disj_ir_bp, disj_ir_info = _max_disjoint_ir(seq)
+        ir_ge16_cnt = _count_disjoint_ir_ge_k(seq, min_k=16)
+        near_ir_hits = scan_disjoint_inverted_repeats_with_mismatches(seq, min_k=20, max_mismatches=1)
+        if disj_dr_bp >= 30 or disj_ir_bp >= 16 or ir_ge16_cnt != 0 or len(near_ir_hits) != 0:
+            raise ValueError(
+                f"Locus-2 v3 repeat invariant failed on {cid}: disj_dr={disj_dr_bp}, disj_ir={disj_ir_bp}, "
+                f"ir_ge16={ir_ge16_cnt}, near_ir_ge20_le1mm={len(near_ir_hits)}"
+            )
+        t20_cnt = seq.count("T" * 20)
+        sv40_cnt = seq.count(sv40_sig)
+        bgh_cnt = seq.count(bgh_sig)
+        two_a_cnt = seq.count(two_a_sig)
+        if t20_cnt or sv40_cnt or bgh_cnt or two_a_cnt:
+            raise ValueError(f"Forbidden motif (T20/SV40pA/bGH/2A) found in {cid}")
+
+        # Dynamic isolated vs integrated (chr16 + 2x300-bp flanks) two-strand splice parity:
+        sp_iso = scan_donors_and_acceptors_both_strands(seq, cargo_bounds_1based=(v3_ha_bp + 1, dlen - v3_ha_bp))
+        sp_int = scan_donors_and_acceptors_both_strands(
+            flank_up_300 + seq + flank_dn_300,
+            cargo_bounds_1based=(300 + v3_ha_bp + 1, 300 + dlen - v3_ha_bp),
+        )
+        iso_sp_counts = {
+            "plus_donors": int(sp_iso["cargo_donors_plus_strand"]),
+            "minus_donors": int(sp_iso["cargo_donors_minus_strand"]),
+            "plus_acceptors": sum(1 for a in sp_iso["acceptors"] if a["in_cargo"] and a["strand_relative_to_input"] == "+"),
+            "minus_acceptors": sum(1 for a in sp_iso["acceptors"] if a["in_cargo"] and a["strand_relative_to_input"] == "-"),
+        }
+        int_sp_counts = {
+            "plus_donors": int(sp_int["cargo_donors_plus_strand"]),
+            "minus_donors": int(sp_int["cargo_donors_minus_strand"]),
+            "plus_acceptors": sum(1 for a in sp_int["acceptors"] if a["in_cargo"] and a["strand_relative_to_input"] == "+"),
+            "minus_acceptors": sum(1 for a in sp_int["acceptors"] if a["in_cargo"] and a["strand_relative_to_input"] == "-"),
+        }
+        if iso_sp_counts != int_sp_counts:
+            raise ValueError(f"Donor vs integrated chr16 splice parity failed on {cid}: {iso_sp_counts} != {int_sp_counts}")
+
+        # Dynamic 8-isoform CIITA Exon-5 knock-in translation & chimeric k-mer census:
+        for acc_c, irec in ciita_iso_verified.items():
+            chim_dna = irec["cds_before_ex5_core"] + seq[v3_ha_bp - cut_off_ex5 :]
+            aas_c: List[str] = []
+            stop_cod = ""
+            stop_pos1 = -1
+            for i_cod in range(0, len(chim_dna) - 2, 3):
+                cod = chim_dna[i_cod : i_cod + 3]
+                aa_c = GENETIC_CODE[cod]
+                if aa_c == "*":
+                    stop_cod = cod
+                    stop_pos1 = v3_ha_bp - cut_off_ex5 + (i_cod + 3 - len(irec["cds_before_ex5_core"]))
+                    break
+                aas_c.append(aa_c)
+            trunc_aa_c = "".join(aas_c)
+            nat_aa_c = irec["native_aa"]
+            ki_nov_8_11 = len(_kmers_aa(trunc_aa_c, (8, 9, 10, 11)) - _kmers_aa(nat_aa_c, (8, 9, 10, 11)))
+            ki_nov_15 = len(_kmers_aa(trunc_aa_c, (15,)) - _kmers_aa(nat_aa_c, (15,)))
+            if trunc_aa_c != nat_aa_c[: len(trunc_aa_c)] or stop_cod != "TGA" or stop_pos1 != (v3_ha_bp + 4) or ki_nov_8_11 != 0 or ki_nov_15 != 0:
+                raise ValueError(f"CIITA isoform {acc_c} junction translation failed on {cid}")
+            if cid == "L2_V3_CO_PRIMARY_CD200":
+                ciita_isoform_summary_by_acc[acc_c] = {
+                    "iso_key": irec["iso_key"],
+                    "promoter_first_exon_mapping": irec["promoter_first_exon_mapping"],
+                    "exon5_index_in_transcript": irec["exon5_index_in_transcript"],
+                    "exon5_length_bp": irec["exon5_length_bp"],
+                    "exon5_splice_phase": irec["exon5_splice_phase"],
+                    "native_aa_len": len(nat_aa_c),
+                    "truncated_aa_len": len(trunc_aa_c),
+                    "stop_codon": stop_cod,
+                    "stop_donor_pos_1based": stop_pos1,
+                    "knockin_created_non_native_8_11mers": ki_nov_8_11,
+                    "knockin_created_non_native_15mers": ki_nov_15,
+                }
+
+        homos_ge7 = [len(m.group(0)) for m in re.finditer(r"(A{7,}|C{7,}|G{7,}|T{7,})", seq)]
+        u2_prom_slice = seq[541 : 541 + prom2_len]
+        tatata_cnt = u2_prom_slice.count("TATATAATGG")
+
+        pwm_summary: Dict[str, Any] = {}
+        if pwms_map:
+            total_win = 0
+            total_merged = 0
+            total_reg6 = 0
+            u2_prom_span = (542, 541 + prom2_len)
+            eef_prom_span = (eef_start0 + 1, eef_start0 + 230)
+            chs4_span = (eef_start0 - mid_ins_len + 1, eef_start0)
+            dm1_span = (dlen - v3_ha_bp - 80 + 1, dlen - v3_ha_bp)
+            wholly_non_prom_6pwm = 0
+            boundary_irf1_hits: List[Dict[str, Any]] = []
+            ctcf_ins_hits: Dict[str, Dict[str, Any]] = {}
+            exact_family_tests = sum(max(0, 2 * (dlen - int(m["length"]) + 1)) for m in pwms_map.values())
+            for mid, pentry in pwms_map.items():
+                sc = scan_jaspar_pwm(
+                    seq,
+                    pentry,
+                    top_k=30,
+                    n_matrices_in_scan=n_pwms,
+                    actual_family_total_tests=exact_family_tests,
+                )
+                total_win += int(sc["significant_window_hits_rel0p80_bonferroni_0p05"])
+                total_merged += int(sc["distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05"])
+                total_reg6 += int(sc["significant_hits_rel0p80_region_wide_bonferroni_0p05"])
+                for h_p in sc["all_significant_hits"]:
+                    s1 = int(h_p["start_1based_in_window"])
+                    e1 = int(h_p["end_1based_in_window"])
+                    ov_u2 = not (e1 < u2_prom_span[0] or s1 > u2_prom_span[1])
+                    in_u2 = (s1 >= u2_prom_span[0] and e1 <= u2_prom_span[1])
+                    ov_eef = not (e1 < eef_prom_span[0] or s1 > eef_prom_span[1])
+                    if h_p["passes_region_wide_bonferroni_0p05"] and not ov_u2 and not ov_eef:
+                        wholly_non_prom_6pwm += 1
+                    if mid == "MA0050.2" and ov_u2 and not in_u2 and (h_p["passes_rel_score_0p80_and_p_le_0p05"] or h_p["passes_region_wide_bonferroni_0p05"]):
+                        boundary_irf1_hits.append({
+                            "matrix_id": mid,
+                            "tf_name": str(h_p["tf_name"]),
+                            "start_1based": s1,
+                            "end_1based": e1,
+                            "strand": str(h_p["strand"]),
+                            "relative_score_0_to_1": float(h_p["relative_score_0_to_1"]),
+                            "p_adj_1pwm": float(h_p["bonferroni_window_p_value"]),
+                            "p_adj_6pwm": float(h_p["bonferroni_region_across_all_matrices_p_value"]),
+                            "passes_1pwm_0p05": bool(h_p["passes_rel_score_0p80_and_p_le_0p05"]),
+                            "passes_6pwm_0p05": bool(h_p["passes_region_wide_bonferroni_0p05"]),
+                        })
+                    if mid == "MA0139.1" and (h_p["passes_rel_score_0p80_and_p_le_0p05"] or h_p["passes_region_wide_bonferroni_0p05"]):
+                        if not (e1 < chs4_span[0] or s1 > chs4_span[1]):
+                            ctcf_ins_hits["cHS4"] = {
+                                "matrix_id": mid,
+                                "start_1based": s1,
+                                "end_1based": e1,
+                                "strand": str(h_p["strand"]),
+                                "relative_score_0_to_1": float(h_p["relative_score_0_to_1"]),
+                                "p_adj_1pwm": float(h_p["bonferroni_window_p_value"]),
+                                "p_adj_6pwm": float(h_p["bonferroni_region_across_all_matrices_p_value"]),
+                            }
+                        elif not (e1 < dm1_span[0] or s1 > dm1_span[1]):
+                            ctcf_ins_hits["DM1"] = {
+                                "matrix_id": mid,
+                                "start_1based": s1,
+                                "end_1based": e1,
+                                "strand": str(h_p["strand"]),
+                                "relative_score_0_to_1": float(h_p["relative_score_0_to_1"]),
+                                "p_adj_1pwm": float(h_p["bonferroni_window_p_value"]),
+                                "p_adj_6pwm": float(h_p["bonferroni_region_across_all_matrices_p_value"]),
+                            }
+            if wholly_non_prom_6pwm != 0:
+                raise ValueError(f"Unexpected wholly non-promoter 6-PWM hit on {cid}: {wholly_non_prom_6pwm}")
+            pwm_summary = {
+                "counts_window_merged_region6_total": [total_win, total_merged, total_reg6],
+                "exact_family_total_tests": exact_family_tests,
+                "wholly_non_promoter_6pwm_hits": wholly_non_prom_6pwm,
+                "promoter_boundary_irf1_hits": boundary_irf1_hits,
+                "ctcf_insulator_hits": ctcf_ins_hits,
+                "scope_note": "Descriptive part-resolved 6-PWM JASPAR annotation only (IIP-0027 / DEC-107; never a motif-count stopping rule).",
+            }
+
+        entry: Dict[str, Any] = {
+            "construct_id": cid,
+            "donor_length_bp": dlen,
+            "itr_pair_nominal_bp": 290,
+            "nominal_aav6_packaged_bp": dlen + 290,
+            "nominal_aav6_headroom_bp": 4700 - (dlen + 290),
+            "fits_nominal_single_aav6_le_4700bp": (dlen + 290) <= 4700,
+            "donor_sha256": sha256_str(seq),
+            "gc_pct": round(100.0 * (seq.count("G") + seq.count("C")) / float(dlen), 2),
+            "homology_arms_bp": [len(ha_l_obs), len(ha_r_obs)],
+            "ha_l_grch38_1based": "chr16:10,898,593-10,898,967 (+)",
+            "ha_l_exact_matches_bp": v3_ha_bp - ha_l_mm,
+            "ha_r_grch38_1based": "chr16:10,898,968-10,899,342 (+)",
+            "ha_r_pam_shield_diffs_verified": ha_r_diffs,
+            "pam_shield_applied": "chr16:10,898,988_10,898,989AA>CC (+ GAAA->GACC / - TTTC->GGTC; 0 neo-splice sites)",
+            "two_a_count": two_a_cnt,
+            "sv40pa_count": sv40_cnt,
+            "bgh_polya_count": bgh_cnt,
+            "poly_t20_count": t20_cnt,
+            "homopolymers_ge_7nt_count": len(homos_ge7),
+            "unit2_upstream_tatataatgg_count": tatata_cnt,
+            "cargo_splice_counts_isolated": iso_sp_counts,
+            "cargo_splice_counts_integrated_chr16_flanks": int_sp_counts,
+            "donor_vs_integrated_chr16_splice_parity": iso_sp_counts == int_sp_counts,
+            "max_disjoint_direct_repeat_bp": disj_dr_bp,
+            "max_disjoint_direct_repeat_info": disj_dr_info,
+            "max_overlapping_direct_repeat_bp": ov_dr_bp,
+            "max_overlapping_direct_repeat_info": ov_dr_info,
+            "max_overlapping_direct_repeat_outside_canonical_tandems_bp": ov_outside_bp,
+            "max_disjoint_inverted_repeat_bp": disj_ir_bp,
+            "max_disjoint_inverted_repeat_info": disj_ir_info,
+            "disjoint_inverted_repeats_ge_16bp_count": ir_ge16_cnt,
+            "disjoint_inverted_repeats_ge_20bp_le_1mm_count": len(near_ir_hits),
+            "disjoint_inverted_repeats_ge_20bp_le_1mm_hits": near_ir_hits,
+            "execution_supported": False,
+            **({"descriptive_6pwm_jaspar_summary": pwm_summary} if pwm_summary else {}),
+        }
+        if cid == "L2_V3_BARRIER_CHS4_250":
+            entry["barrier_intervention_classification"] = "COMBINED_LENGTH_AND_SEQUENCE_CHANGE_250BP_PLUS_U78775_2_C79T_C80A"
+            entry["barrier_shared_80bp_alignment_offset_1based"] = [best_off + 1, best_off + 80]
+            entry["barrier_shared_80bp_sequence_diffs"] = chs4_diffs
+        construct_entries.append(entry)
+
+    # 3. Authenticate canonical proxy FASTAs from immutable single-read byte snapshots & replay 296-pair screen:
+    if extracted_cfh_cds is None:
+        raise ValueError("Missing extracted CFH-STP-GPI CDS from Locus-2 v3 FASTA")
+    intron_active = records["L2_V3_CO_PRIMARY_CD200"][len(records["L2_V3_CO_PRIMARY_CD200"]) - 2017 : len(records["L2_V3_CO_PRIMARY_CD200"]) - 1697]
+    intron_nt = records["L2_V3_CTRL_NT_SCRAMBLE"][len(records["L2_V3_CTRL_NT_SCRAMBLE"]) - 2017 : len(records["L2_V3_CTRL_NT_SCRAMBLE"]) - 1697]
+    hairpin_4 = (
+        ("CD276_v3_g1", intron_active[82:104], intron_active[41:62]),
+        ("PVR_v3_g1", intron_active[232:254], intron_active[193:214]),
+        ("NT1_v3", intron_nt[82:104], intron_nt[41:62]),
+        ("NT2_v3", intron_nt[232:254], intron_nt[193:214]),
+    )
+
+    scen_a_fa = parsed_proxy_fastas["data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta"]
+    db_fa = parsed_proxy_fastas["data/constructs/islet1_design_b_complete_constructs_v0.8.0.fasta"]
+    l3_fa = parsed_proxy_fastas["data/constructs/islet1_locus3_multimir_modeb_comparators_v0.8.0.fasta"]
+    s10_fa = parsed_proxy_fastas["data/constructs/islet1_locus1_s10_modeb_comparators_v0.8.0.fasta"]
+    for req_map, req_key in (
+        (scen_a_fa, "ISLET1_LOCUS1_ARM1B_B2M_BIDIR_2AFREE_CD47_IGV_GPI_HLAE_SCT_3974bp"),
+        (scen_a_fa, "ISLET1_LOCUS3_CXCL10_SERPINB9_GSGP2A_PDL1_NO_FURIN_4090bp"),
+        (scen_a_fa, "ISLET1_LOCUS1_ARM1A_B2M_HLAE_SCT_GSGP2A_CD47_IGV_GPI_4880bp"),
+        (scen_a_fa, "ISLET1_LOCUS4_AAVS1_CHS4_455BP_CBX3_A2UCOE_EEF1A1_ICASP9_3457bp"),
+        (db_fa, "DESIGNB_L5A_CXCL10_BFB_SYN6_ACC_4078bp"),
+        (db_fa, "DESIGNB_L5A_CXCL10_HUMAN_DUAL_SYN6_ACC_3772bp"),
+        (db_fa, "DESIGNB_L6_AAVS1_CD47_ICASP9_2AFREE_HUMAN_ACC_4172bp"),
+        (l3_fa, "ARM5_L3_V2_INTRON_DUPLEX_IL1R1_FAS_WT_SB9_4398"),
+        (s10_fa, "S10_CTRL_WT_VMAPRTLVL_ASTAR_4143"),
+    ):
+        if req_key not in req_map:
+            raise ValueError(f"Missing required canonical construct record {req_key!r} for RNAi proxy extraction")
+    arm1b_s = scen_a_fa["ISLET1_LOCUS1_ARM1B_B2M_BIDIR_2AFREE_CD47_IGV_GPI_HLAE_SCT_3974bp"]
+    oi_15_proxies: Dict[str, str] = {
+        "DesignA_L3_SERPINB9_PDL1_WPRE_bGH": scen_a_fa["ISLET1_LOCUS3_CXCL10_SERPINB9_GSGP2A_PDL1_NO_FURIN_4090bp"][600:3490],
+        "DesignA_L1_ARM1A_HLAE_CD47_WPRE_bGH": scen_a_fa["ISLET1_LOCUS1_ARM1A_B2M_HLAE_SCT_GSGP2A_CD47_IGV_GPI_4880bp"][1172:4080],
+        "DesignA_L1_ARM1B_HLAE_bGH": arm1b_s[1637:3374],
+        "DesignA_L1_ARM1B_CD47_SV40": revcomp(arm1b_s[600:1259]),
+        "DesignA_L4_iCasp9_SV40": scen_a_fa["ISLET1_LOCUS4_AAVS1_CHS4_455BP_CBX3_A2UCOE_EEF1A1_ICASP9_3457bp"][1535:2857],
+        "DesignB_c1_L5A_BFB_SYN6": db_fa["DESIGNB_L5A_CXCL10_BFB_SYN6_ACC_4078bp"][879:3478],
+        "DesignB_c3_L5A_HUMAN": db_fa["DESIGNB_L5A_CXCL10_HUMAN_DUAL_SYN6_ACC_3772bp"][600:3172],
+        "DesignB_c5_L6_iCasp9": db_fa["DESIGNB_L6_AAVS1_CD47_ICASP9_2AFREE_HUMAN_ACC_4172bp"][2222:3572],
+        "DesignB_c5_L6_CD47": revcomp(db_fa["DESIGNB_L6_AAVS1_CD47_ICASP9_2AFREE_HUMAN_ACC_4172bp"][600:1287]),
+        "L3_ARM5_MultiMiR_SB9_PDL1": l3_fa["ARM5_L3_V2_INTRON_DUPLEX_IL1R1_FAS_WT_SB9_4398"][879:3798],
+        "S10_ASTAR_HLAE": s10_fa["S10_CTRL_WT_VMAPRTLVL_ASTAR_4143"][1791:3543],
+        "L2_V3_CFH_STP_GPI_CDS": extracted_cfh_cds,
+        "L2_V3_CD200_CDS": extracted_unit2_cds["CD200"],
+        "L2_V3_MANF_CDS": extracted_unit2_cds["MANF"],
+        "L2_V3_CCL22_CDS": extracted_unit2_cds["CCL22"],
+    }
+    if oi_15_proxies.keys() != _IIP0031_OI_15_PROXY_LENGTHS.keys():
+        raise ValueError("OpenIslet 15-proxy target key set mismatch")
+    for _pk, _pseq in oi_15_proxies.items():
+        _exp_plen = _IIP0031_OI_15_PROXY_LENGTHS[_pk]
+        if not _pseq or len(_pseq) != _exp_plen or not set(_pseq).issubset({"A", "C", "G", "T"}):
+            raise ValueError(f"OpenIslet proxy {_pk} length or alphabet mismatch: got len={len(_pseq)}, expected {_exp_plen}")
+
+    total_strands_screened = len(hairpin_4) * 2
+    total_targets_screened = len(oi_15_proxies) + len(utr22_3utrs)
+    replayed_pair_count = total_strands_screened * total_targets_screened
+    total_8mer_hits = 0
+    total_7m8_hits = 0
+    hits_7a1_disclosed: List[Dict[str, Any]] = []
+    cds_7m8_genes: set[str] = set()
+    utr5_7m8_genes: set[str] = set()
+    full_mrna_7m8_genes: set[str] = set()
+    for hname, g22, p21 in hairpin_4:
+        for role_lbl, st_seq in (("guide", g22), ("passenger", p21)):
+            for scope_lbl, tmap in (("openislet_15_proxies", oi_15_proxies), ("human_22_refseq_3utrs", utr22_3utrs)):
+                res_s = _scan_seeds(st_seq, tmap)
+                for tname, hdict in res_s.items():
+                    total_8mer_hits += hdict["8mer"]
+                    total_7m8_hits += hdict["7mer_m8"]
+                    if hdict["7mer_A1"] > 0:
+                        hits_7a1_disclosed.append({"hairpin": hname, "strand": role_lbl, "scope": scope_lbl, "target": tname, "count": hdict["7mer_A1"]})
+            cds_res = _scan_seeds(st_seq, utr22_cds)
+            for tname, hdict in cds_res.items():
+                if hdict["7mer_m8"] > 0:
+                    cds_7m8_genes.add(tname)
+            utr5_res = _scan_seeds(st_seq, utr22_5utrs)
+            for tname, hdict in utr5_res.items():
+                if hdict["7mer_m8"] > 0:
+                    utr5_7m8_genes.add(tname)
+            full_res = _scan_seeds(st_seq, utr22_full)
+            for tname, hdict in full_res.items():
+                if hdict["7mer_m8"] > 0:
+                    full_mrna_7m8_genes.add(tname)
+    if replayed_pair_count != 296 or total_8mer_hits != 0 or total_7m8_hits != 0:
+        raise ValueError(f"Dynamic 296-pair RNAi replay failed: pairs={replayed_pair_count}, 8mer={total_8mer_hits}, 7m8={total_7m8_hits}")
+
+    # All 10 guides (1 lead + 4 clean backups per gene) screened unconditionally across ALL 15 OpenIslet proxies
+    # (including the 4 new L2_V3 cargo CDSs) + all 22 RefSeq 3'-UTRs + all 4/4 RefSeq isoforms:
+    pvr_5panel = (
+        ("PVR_v3_g1_LEAD", "LEAD", "TGGCCGTCTTCCACCAAACGCA", "TGCGTTTGGTGGAAGACGGCCA", "TGGCCGTTTTGCACCAAACGC"),
+        ("PVR_v3_g2_BKUP", "BACKUP", "CAGCTGAGGTTCAGAAGGTCCA", "TGGACCTTCTGAACCTCAGCTG", "CAGCGGAGGTGCAGAAGGTCC"),
+        ("PVR_v3_g3_BKUP", "BACKUP", "CGTCCTGTGGACAAACCAATCA", "TGATTGGTTTGTCCACAGGACG", "CGTCGTGTGGCCAAACCAATC"),
+        ("PVR_v3_g4_BKUP", "BACKUP", "AAACGGCTGGAATTCGTGGCAG", "TTGCCACGAATTCCAGCCGTTT", "AAACGGCGGGCATTCGTGGCA"),
+        ("PVR_v3_g5_BKUP", "BACKUP", "CACCTGCCTGTTCGTCACGTTC", "TAACGTGACGAACAGGCAGGTG", "CACCGGCCTGCTCGTCACGTT"),
+    )
+    cd276_5panel = (
+        ("CD276_v3_g1_LEAD_DUAL_IG", "LEAD", "GTGGCCGCTCCCTACTCGAAGC", "TCTTCGAGTAGGGAGCGGCCAC", "GTGGCCGTTCGCTACTCGAAG"),
+        ("CD276_v3_g2_BKUP_CDS", "BACKUP", "CAGGACCAGGGCAGCGCCTATG", "TATAGGCGCTGCCCTGGTCCTG", "CAGGACCGGGCCAGCGCCTAT"),
+        ("CD276_v3_g3_BKUP_3UTR", "BACKUP", "TGCACGTGCTGGAACACGTGTG", "TACACGTGTTCCAGCACGTGCA", "TGCGCGTGCTCGAACACGTGT"),
+        ("CD276_v3_g4_BKUP_CDS", "BACKUP", "CGGGTGGTGCTGGGTGCGAATG", "TATTCGCACCCAGCACCACCCG", "CGGGTCGTGCCGGGTGCGAAT"),
+        ("CD276_v3_g5_BKUP_3UTR", "BACKUP", "TGGGAGACAGACAACTAACTAC", "TTAGTTAGTTGTCTGTCTCCCA", "TGGGATACAGCCAACTAACTA"),
+    )
+    backup_guide_screen_ledger: List[Dict[str, Any]] = []
+    verified_pvr_guides = 0
+    verified_pvr_leads = 0
+    verified_pvr_backups = 0
+    for gid, grole, tgt22, g22, p21 in pvr_5panel:
+        matched = sum(tgt22 in sequence for sequence in pvr_iso_map.values())
+        if matched != len(pvr_iso_map):
+            raise ValueError(f"PVR guide {gid} matched {matched}/{len(pvr_iso_map)} RefSeq isoforms")
+        oi_8_7m8 = 0
+        utr_8_7m8 = 0
+        for st_seq in (g22, p21):
+            oi_res = _scan_seeds(st_seq, oi_15_proxies)
+            utr_res = _scan_seeds(st_seq, utr22_3utrs)
+            oi_8_7m8 += sum(v["8mer"] + v["7mer_m8"] for v in oi_res.values())
+            utr_8_7m8 += sum(v["8mer"] + v["7mer_m8"] for v in utr_res.values())
+        if oi_8_7m8 != 0 or utr_8_7m8 != 0:
+            raise ValueError(f"PVR guide {gid} failed full 15-OI/22-UTR off-target check: oi={oi_8_7m8}, utr={utr_8_7m8}")
+        backup_guide_screen_ledger.append({
+            "gene": "PVR",
+            "guide_id": gid,
+            "role": grole,
+            "target_22nt": tgt22,
+            "guide_22nt": g22,
+            "passenger_21nt": p21,
+            "refseq_isoforms_matched": f"{matched}/{len(pvr_iso_map)}",
+            "openislet_15_proxies_8mer_or_7mer_m8_hits": oi_8_7m8,
+            "human_22_refseq_3utrs_8mer_or_7mer_m8_hits": utr_8_7m8,
+        })
+        verified_pvr_guides += 1
+        if grole == "LEAD":
+            verified_pvr_leads += 1
+        else:
+            verified_pvr_backups += 1
+    verified_cd276_guides = 0
+    verified_cd276_leads = 0
+    verified_cd276_backups = 0
+    for gid, grole, tgt22, g22, p21 in cd276_5panel:
+        matched = sum(tgt22 in sequence for sequence in cd276_iso_map.values())
+        if matched != len(cd276_iso_map):
+            raise ValueError(f"CD276 guide {gid} matched {matched}/{len(cd276_iso_map)} RefSeq isoforms")
+        oi_8_7m8 = 0
+        utr_8_7m8 = 0
+        for st_seq in (g22, p21):
+            oi_res = _scan_seeds(st_seq, oi_15_proxies)
+            utr_res = _scan_seeds(st_seq, utr22_3utrs)
+            oi_8_7m8 += sum(v["8mer"] + v["7mer_m8"] for v in oi_res.values())
+            utr_8_7m8 += sum(v["8mer"] + v["7mer_m8"] for v in utr_res.values())
+        if oi_8_7m8 != 0 or utr_8_7m8 != 0:
+            raise ValueError(f"CD276 guide {gid} failed full 15-OI/22-UTR off-target check: oi={oi_8_7m8}, utr={utr_8_7m8}")
+        backup_guide_screen_ledger.append({
+            "gene": "CD276",
+            "guide_id": gid,
+            "role": grole,
+            "target_22nt": tgt22,
+            "guide_22nt": g22,
+            "passenger_21nt": p21,
+            "refseq_isoforms_matched": f"{matched}/{len(cd276_iso_map)}",
+            "openislet_15_proxies_8mer_or_7mer_m8_hits": oi_8_7m8,
+            "human_22_refseq_3utrs_8mer_or_7mer_m8_hits": utr_8_7m8,
+        })
+        verified_cd276_guides += 1
+        if grole == "LEAD":
+            verified_cd276_leads += 1
+        else:
+            verified_cd276_backups += 1
+
+    if verified_pvr_leads != 1 or verified_pvr_backups != 4 or verified_cd276_leads != 1 or verified_cd276_backups != 4:
+        raise ValueError("Unexpected lead/backup guide counts in 10-guide RNAi screen")
+
+    wholly_non_prom_total = sum(
+        int(c.get("descriptive_6pwm_jaspar_summary", {}).get("wholly_non_promoter_6pwm_hits", 0))
+        for c in construct_entries
+    )
+    boundary_irf1_6pwm_donors = [
+        {
+            "construct_id": c["construct_id"],
+            **h_b,
+        }
+        for c in construct_entries
+        for h_b in c.get("descriptive_6pwm_jaspar_summary", {}).get("promoter_boundary_irf1_hits", [])
+        if h_b.get("passes_6pwm_0p05")
+    ]
+    boundary_irf1_1pwm_donors = [
+        {
+            "construct_id": c["construct_id"],
+            **h_b,
+        }
+        for c in construct_entries
+        for h_b in c.get("descriptive_6pwm_jaspar_summary", {}).get("promoter_boundary_irf1_hits", [])
+        if h_b.get("passes_1pwm_0p05")
+    ]
+    co_cd200_ctcf = next(
+        c.get("descriptive_6pwm_jaspar_summary", {}).get("ctcf_insulator_hits", {})
+        for c in construct_entries
+        if c["construct_id"] == "L2_V3_CO_PRIMARY_CD200"
+    )
+    if (
+        wholly_non_prom_total != 0
+        or len(boundary_irf1_6pwm_donors) != 3
+        or len(boundary_irf1_1pwm_donors) != 7
+        or not {"cHS4", "DM1"}.issubset(co_cd200_ctcf.keys())
+    ):
+        raise ValueError(
+            f"Unexpected 6-PWM spatial audit counts: wholly_non_prom={wholly_non_prom_total}, "
+            f"boundary_irf1_6pwm={len(boundary_irf1_6pwm_donors)}, boundary_irf1_1pwm={len(boundary_irf1_1pwm_donors)}, "
+            f"ctcf_keys={sorted(co_cd200_ctcf.keys())}"
+        )
+
+    syn_ov_bp = max(c["max_overlapping_direct_repeat_bp"] for c in construct_entries if c["construct_id"] != "L2_V3_CD274P_ZERO_TATATA")
+    cd274p_ov_bp = next(c["max_overlapping_direct_repeat_bp"] for c in construct_entries if c["construct_id"] == "L2_V3_CD274P_ZERO_TATATA")
+    max_outside_bp = max(c["max_overlapping_direct_repeat_outside_canonical_tandems_bp"] for c in construct_entries)
+    total_ki_8_11 = sum(v["knockin_created_non_native_8_11mers"] for v in ciita_isoform_summary_by_acc.values())
+    total_ki_15 = sum(v["knockin_created_non_native_15mers"] for v in ciita_isoform_summary_by_acc.values())
+
+    return {
+        "proposal_id": "IIP-0031",
+        "decision_id": "DEC-110",
+        "rule_id": "S11_Locus2_CIITA_ModeB_Vascular_Complement_and_Efferocytosis_Gate",
+        "graveyard_card_id": "GY-025",
+        "provenance_computation_mode": "DYNAMICALLY_RECOMPUTED_END_TO_END_FROM_BUNDLED_FASTA_AND_REFERENCE_JSON",
+        "mode_b_comparator_fasta": fasta_rel,
+        "mode_b_comparator_fasta_sha256": file_sha256,
+        "grch38_chr16_2001bp_reference_sha256": chr16_obj["sha256"],
+        "record_count": len(construct_entries),
+        "execution_supported": False,
+        "layer1_pareto_artifact_verified": layer1_pareto_verified,
+        "layer1_pareto_artifact_sha256": layer1_pareto_sha256,
+        "layer1_and_oq016_score_delta_pp": layer1_score_delta_pp,
+        "canonical_fastas_verified_count": len(verified_preexisting_fastas),
+        "canonical_fastas_untouched": canonical_fastas_untouched,
+        "descriptive_6pwm_jaspar_spatial_audit": {
+            "wholly_non_promoter_6pwm_hits": wholly_non_prom_total,
+            "promoter_boundary_irf1_nt538_558_6pwm_hits_count": len(boundary_irf1_6pwm_donors),
+            "promoter_boundary_irf1_nt538_558_1pwm_hits_count": len(boundary_irf1_1pwm_donors),
+            "promoter_boundary_irf1_6pwm_hits": boundary_irf1_6pwm_donors,
+            "promoter_boundary_irf1_1pwm_hits": boundary_irf1_1pwm_donors,
+            "co_primary_cd200_ctcf_insulator_hits": co_cd200_ctcf,
+        },
+        "repeat_summary": {
+            "max_disjoint_dr_across_8_bp": max(c["max_disjoint_direct_repeat_bp"] for c in construct_entries),
+            "overlapping_dr_syn5xisre_bp": syn_ov_bp,
+            "overlapping_dr_cd274p_maz4_bp": cd274p_ov_bp,
+            "max_dr_outside_canonical_tandems_bp": max_outside_bp,
+            "max_disjoint_ir_range_bp": [
+                min(c["max_disjoint_inverted_repeat_bp"] for c in construct_entries),
+                max(c["max_disjoint_inverted_repeat_bp"] for c in construct_entries),
+            ],
+            "disjoint_ir_ge_16bp_total_across_8": sum(c["disjoint_inverted_repeats_ge_16bp_count"] for c in construct_entries),
+            "disjoint_ir_ge_20bp_le_1mm_total_across_8": sum(c["disjoint_inverted_repeats_ge_20bp_le_1mm_count"] for c in construct_entries),
+        },
+        "barrier_chs4_250_disclosure": {
+            "construct_id": "L2_V3_BARRIER_CHS4_250",
+            "classification": "COMBINED_LENGTH_AND_SEQUENCE_CHANGE_250BP_PLUS_U78775_2_C79T_C80A",
+            "shared_80bp_alignment_1based_in_250bp": [best_off + 1, best_off + 80],
+            "shared_80bp_diffs": chs4_diffs,
+            "interpretation_note": (
+                "L2_V3_BARRIER_CHS4_250 replaces the 80-bp FII element with the 250-bp cHS4 core carrying U78775.2 C79T/C80A "
+                "(cHS4 core positions 72..73, differing at 2 bases inside the shared 80-bp FII region as well as length); "
+                "therefore any difference vs L2_V3_CO_PRIMARY_CD200 is a combined length-and-sequence effect, not a pure length contrast."
+            ),
+        },
+        "ciita_all_8_refseq_isoforms_audit": {
+            "isoforms_audited_count": len(ciita_isoform_summary_by_acc),
+            "refseq_accessions": list(ciita_isoform_summary_by_acc.keys()),
+            "knockin_created_non_native_8_11mers": total_ki_8_11,
+            "knockin_created_non_native_15mers": total_ki_15,
+            "by_refseq_accession": ciita_isoform_summary_by_acc,
+            "mandatory_stage0_controls": [
+                "Informative transcript recovery of both CIITA alleles (KI and KO)",
+                "Cis sentinels SOCS1, DEXI, and CLEC16A equivalence",
+                "Demonstrated HLA-DR/DP/DQ inducibility in lineage-matched wild-type Stage-7 controls",
+            ],
+        },
+        "intronic_mir_and_rnai_attribution_scope": {
+            "candidate_seed_pairs_screened": replayed_pair_count,
+            "strands_screened_count": total_strands_screened,
+            "targets_screened_count": total_targets_screened,
+            "openislet_proxy_targets_count": len(oi_15_proxies),
+            "bundled_refseq_3utr_targets_count": len(utr22_3utrs),
+            "replayed_8mer_hits_total": total_8mer_hits,
+            "replayed_7mer_m8_hits_total": total_7m8_hits,
+            "disclosed_7mer_a1_hits": hits_7a1_disclosed,
+            "disclosed_22gene_cds_7mer_m8_genes": sorted(cds_7m8_genes),
+            "disclosed_22gene_5utr_7mer_m8_genes": sorted(utr5_7m8_genes),
+            "disclosed_22gene_full_mrna_7mer_m8_genes": sorted(full_mrna_7m8_genes),
+            "lead_guides_per_target": min(verified_pvr_leads, verified_cd276_leads),
+            "backup_guides_per_target": min(verified_pvr_backups, verified_cd276_backups),
+            "total_screened_guides_per_target": min(verified_pvr_guides, verified_cd276_guides),
+            "verified_pvr_guides_4of4_isoforms": verified_pvr_guides,
+            "verified_cd276_guides_4of4_isoforms": verified_cd276_guides,
+            "backup_guides_screened_against_all_15_openislet_proxies_and_22_utrs": True,
+            "backup_guide_screen_ledger_15oi_22utr": backup_guide_screen_ledger,
+            "active_mir_targets": ["CD276", "PVR"],
+            "design_b_active_mir_policy": "BARRED_ON_DESIGN_B_HLAC_INTACT",
+            "attribution_rule": (
+                "Claiming an RNAi-specific benefit requires same-background intronless and scramble controls linked to the tested cargo; "
+                "within the staged 8-donor FASTA, RNAi-specific attribution is therefore restricted to the matched CD200 comparison "
+                "(L2_V3_CO_PRIMARY_CD200 vs L2_V3_CTRL_NT_SCRAMBLE, paired with same-background intronless CD200 when RNAi benefit is claimed)."
+            ),
+        },
+        "constructs": construct_entries,
+        "primary_citations": [
+            "PMID:19503104",
+            "PMID:28671664",
+            "PMID:21266852",
+            "PMID:19549636",
+            "PMID:21989056",
+            "PMID:12011446",
+            "PMID:15544620",
+            "PMID:28723575",
+            "PMID:24332856",
+            "PMID:35880017",
+            "PMID:28462820",
+            "PMID:32775498",
+            "PMID:36055241",
+            "PMID:37996616",
+            "PMID:40251154",
+            "PMID:2570734",
+            "PMID:34050011",
+            "PMID:30010673",
+        ],
+    }
+
+
 def main() -> None:
     with REF_PATH.open("r", encoding="utf-8") as f:
         ref = json.load(f)
@@ -13541,6 +14943,9 @@ def main() -> None:
             ref=ref,
             l3_can=_canonical_fasta["ISLET1_LOCUS3_CXCL10_SERPINB9_GSGP2A_PDL1_NO_FURIN_4090bp"],
             l4_can=_canonical_fasta["ISLET1_LOCUS4_AAVS1_CHS4_455BP_CBX3_A2UCOE_EEF1A1_ICASP9_3457bp"],
+        ),
+        "stage0_locus2_ciita_modeb_comparators_v3_manifest_iip_0031": build_locus2_ciita_modeb_comparators_v3_manifest(
+            ref=ref,
         ),
     }
 

@@ -1,7 +1,7 @@
 {
   "schema_version": "0.8.0",
   "epistemic_status": "GENERATED_COMPUTATIONAL_FACTS_PHYSICAL_QUALIFICATION_PENDING",
-  "manifest_pin_count": 1364,
+  "manifest_pin_count": 1367,
   "discovery_manifest": {
     "jsonl_rows": 7703,
     "unique_pubmed_pmids": 7703,
@@ -13,8 +13,8 @@
     "data/extracted/cross_study_discovery_graph.json": "aa645be738e77f5c32f7db6b1c7f768dfaa0e9fbed938d8b82ee47b0ef25f1d2",
     "data/extracted/islet1_candidate_stack_rankings.json": "7926bbe94330e75b6ac209507d1c4cb0bcec51033b45954fe16b6366d70141dc",
     "data/protocols/hip_core_fractional_factorial_v0.6.2.json": "9a7780e1700a6888ce0a07e844aacfbc89e69584727edb13ca1d2a6dbbc9ce00",
-    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "ef5379de5a8932d443f18c654e50ad55eb0c8f85a3931ceb693df4f4aeeb953d",
-    "data/extracted/layer3_structural_verification_atlas.json": "c19d83d87d057a334f45398de1b8ed3569585a2b0273be3a477295835678eab1",
+    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "2a2743f22be738d446d0b8e7048c1f583a4aa8f44f4ff7f66fed3dab919d3a4e",
+    "data/extracted/layer3_structural_verification_atlas.json": "5647f213e48c592bc565321e7612d30288fe12ebe5194a7f2c6147511a8e41e1",
     "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": "cf88d5bbb1c0e1de9795a1c187fbddec1ce7b27f8af27b21e0e82540b57aeebf",
     "data/extracted/layer5_personalized_patient_and_crispr_atlas.json": "61c571785bbd22d95c24e92cc06f6040cefbfbe2c76a2adfe77f0de2a58677c6",
     "data/extracted/10202046.json": "b3d836e8c0fc8ed898592975e0f09c0154a0d4f887c2b6893e7c8194befd0a6a",
@@ -580,7 +580,7 @@
     "data/extracted/9541172.json": "c2aa5e5c65ed730a19ddc920d81bdcdb84c5d0076fa455ed2b0ecf4fc186df84",
     "data/extracted/9701263.json": "850d97e396adbbbb43f61f0c860244ed657ace2d5c5e191759a82126eaf0e740",
     "data/extracted/9734483.json": "7f01f228aad5898b9c2ae894dde4cf1727cb2ab519e9e63d73ffd2d458e4fbe8",
-    "data/raw/layer2_genomic_and_jaspar_reference.json": "5a7d0da91936e5be815b5cf8844b087b8fcbe8d02f837db806eccadee882737d"
+    "data/raw/layer2_genomic_and_jaspar_reference.json": "224409b79e6d37676b35f59e6061e6882b255a1afbd9d7ca8adfee2f33492756"
   },
   "corpus": {
     "studies": 563,
@@ -10056,8 +10056,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 1,
           "total_positions_tested_both_strands": 464,
+          "focal_matrix_bonferroni_family_factor": 464,
           "total_tests_across_all_scanned_matrices_in_region": 464,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 464 tests) and region-wide family-wise error rate across all 1 JASPAR matrices (464 tests; closes AUDIT-REF & 109)",
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 464 tests) and equal-alpha family-wise Bonferroni factor across 1 JASPAR matrices (focal_matrix_bonferroni_family_factor = 464; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -10075,6 +10076,32 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 1,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 1,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 1,
+          "all_significant_hits": [
+            {
+              "matrix_id": "MA0139.1",
+              "tf_name": "CTCF",
+              "strand": "+",
+              "start_1based_in_window": 48,
+              "end_1based_in_window": 66,
+              "matched_kmer": "CCCCCGCTAGGGGGCAGCA",
+              "log2_odds_score": 15.4123,
+              "relative_score_0_to_1": 0.8971,
+              "null_z_score": 4.448,
+              "analytical_gaussian_p_value_unadjusted": 4e-06,
+              "exact_markov0_p_value_unadjusted": 1.41227316475e-05,
+              "empirical_markov0_2000_window_p_value_unadjusted": 0.0005,
+              "bonferroni_window_p_value": 0.006552947484,
+              "bonferroni_corrected_p_value_6_motifs": 0.006552947484,
+              "bonferroni_region_across_all_matrices_p_value": 0.006552947484,
+              "analytical_bonferroni_window_p_value": 0.002007,
+              "empirical_markov0_2000_window_bonferroni_p_value": 0.231884,
+              "passes_rel_score_0p80_and_p_le_0p05": true,
+              "passes_region_wide_bonferroni_0p05": true,
+              "passes_2000_window_mc_bonferroni_0p05": false,
+              "mc_2000_window_min_achievable_bonferroni_p": 0.231884,
+              "mc_2000_window_gate_resolution_limited": true
+            }
+          ],
           "top_hits": [
             {
               "matrix_id": "MA0139.1",
@@ -10135,8 +10162,9 @@
           "pfm_to_pwm_conversion_verified": true,
           "scan_family_size_matrices": 6,
           "total_positions_tested_both_strands": 464,
-          "total_tests_across_all_scanned_matrices_in_region": 2784,
-          "multiplicity_correction_scope": "Reports both within-matrix two-strand window scan (2 * (L - w + 1) = 464 tests) and region-wide family-wise error rate across all 6 JASPAR matrices (2784 tests; closes AUDIT-REF & 109)",
+          "focal_matrix_bonferroni_family_factor": 2784,
+          "total_tests_across_all_scanned_matrices_in_region": null,
+          "multiplicity_correction_scope": "Reports within-matrix two-strand window scan (2 * (L - w + 1) = 464 tests) and equal-alpha family-wise Bonferroni factor across 6 JASPAR matrices (focal_matrix_bonferroni_family_factor = 2784; closes AUDIT-REF & 109)",
           "null_calibration_method": "Exact discrete Markov-0 base-composition dynamic-programming convolution on a 0.0001-bit (10,000 units/bit) integer lattice with strand-complemented mononucleotide frequencies for reverse-complement windows (guaranteeing exact reverse-complement invariance and probability mass = 1.0; closing AUDIT-REF & AUDIT-REF)",
           "null_probability_mass_forward_strand": 1.0,
           "null_probability_mass_reverse_strand": 1.0,
@@ -10154,6 +10182,32 @@
           "distinct_non_overlapping_significant_loci_rel0p80_bonferroni_0p05": 1,
           "distinct_non_overlapping_merged_sites_rel0p80_bonferroni_0p05": 1,
           "significant_hits_rel0p80_region_wide_bonferroni_0p05": 1,
+          "all_significant_hits": [
+            {
+              "matrix_id": "MA0139.1",
+              "tf_name": "CTCF",
+              "strand": "+",
+              "start_1based_in_window": 48,
+              "end_1based_in_window": 66,
+              "matched_kmer": "CCCCCGCTAGGGGGCAGCA",
+              "log2_odds_score": 15.4123,
+              "relative_score_0_to_1": 0.8971,
+              "null_z_score": 4.448,
+              "analytical_gaussian_p_value_unadjusted": 4e-06,
+              "exact_markov0_p_value_unadjusted": 1.41227316475e-05,
+              "empirical_markov0_2000_window_p_value_unadjusted": 0.0005,
+              "bonferroni_window_p_value": 0.006552947484,
+              "bonferroni_corrected_p_value_6_motifs": 0.03931768491,
+              "bonferroni_region_across_all_matrices_p_value": 0.03931768491,
+              "analytical_bonferroni_window_p_value": 0.002007,
+              "empirical_markov0_2000_window_bonferroni_p_value": 0.231884,
+              "passes_rel_score_0p80_and_p_le_0p05": true,
+              "passes_region_wide_bonferroni_0p05": true,
+              "passes_2000_window_mc_bonferroni_0p05": false,
+              "mc_2000_window_min_achievable_bonferroni_p": 0.231884,
+              "mc_2000_window_gate_resolution_limited": true
+            }
+          ],
           "top_hits": [
             {
               "matrix_id": "MA0139.1",
@@ -12248,9 +12302,11 @@
   },
   "layer3": {
     "summary": {
-      "total_experimental_pdb_structures_verified": 13,
+      "total_experimental_pdb_structures_verified": 15,
       "experimental_rcsb_mmcif_structures_verified": 11,
-      "experimental_rcsb_legacy_pdb_structures_verified": 2,
+      "experimental_rcsb_legacy_pdb_structures_verified": 4,
+      "canonical_experimental_pdb_structures_verified": 13,
+      "challenger_iip0031_experimental_pdb_structures_verified": 2,
       "experimental_pdb_accession_inventory": [
         "1MHE",
         "3CDG",
@@ -12264,7 +12320,9 @@
         "1IM9",
         "1BL4",
         "1JXQ",
-        "1NW9"
+        "1NW9",
+        "2WII",
+        "5O32"
       ],
       "total_alphafold_v6_models_verified": 2,
       "foldseek_databases_queried": [

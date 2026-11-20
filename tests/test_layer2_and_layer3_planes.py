@@ -28,6 +28,8 @@ import sys
 from typing import Any, Dict, List
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 L2_ATLAS = REPO_ROOT / "data" / "extracted" / "layer2_regulatory_and_perturbation_atlas.json"
 L2_FASTA = REPO_ROOT / "data" / "constructs" / "islet1_scenario_a_constructs_v0.7.0.fasta"
 L2_RAW_REF = REPO_ROOT / "data" / "raw" / "layer2_genomic_and_jaspar_reference.json"
@@ -306,7 +308,8 @@ def regenerate_layer3_from_current_inputs(root: Path = REPO_ROOT) -> Dict[str, A
         (scratch / "data/extracted").mkdir()
         shutil.copy2(root / "data/extracted/layer2_regulatory_and_perturbation_atlas.json", scratch / "data/extracted")
         (scratch / "data/constructs").mkdir()
-        shutil.copy2(root / "data/constructs/islet1_scenario_a_constructs_v0.7.0.fasta", scratch / "data/constructs")
+        for fasta_p in sorted((root / "data/constructs").glob("*.fasta")):
+            shutil.copy2(fasta_p, scratch / "data/constructs")
         (scratch / "data/protocols").mkdir()
         shutil.copy2(root / "data/protocols/islet1_product_definitions_v0.8.0.json", scratch / "data/protocols")
         result = subprocess.run([sys.executable, "-B", str(scratch / "scripts/run_layer3_structural_binder_plane.py")],
@@ -500,6 +503,23 @@ def main() -> None:
         "SERPINB9 RCL functional_status mismatch",
     )
 
+    l3_cfh_prov = l3["locus2_cfh_stp_gpi_structural_provenance_iip_0031"]
+    _check(
+        l3_cfh_prov["pdb_2wii"]["glu264_ca_to_c3b_ted_q1013_ca_angstrom"] == 33.04,
+        f"Expected 2WII Glu264->Gln1013(B:991) CA distance 33.04 A, got {l3_cfh_prov['pdb_2wii']['glu264_ca_to_c3b_ted_q1013_ca_angstrom']}",
+    )
+    _check(
+        l3_cfh_prov["pdb_2wii"].get("c3b_ted_q1013_pdb_author_residue") == "B:991 (GLN; UniProt P01024 Gln1013)",
+        "Missing or mismatched 2WII c3b_ted_q1013_pdb_author_residue label",
+    )
+    _check(l3["summary"]["total_experimental_pdb_structures_verified"] == 15, "Expected 15 experimental PDB structures verified")
+    _check(l3["summary"]["experimental_rcsb_mmcif_structures_verified"] == 11, "Expected 11 experimental mmCIF structures verified")
+    _check(l3["summary"]["experimental_rcsb_legacy_pdb_structures_verified"] == 4, "Expected 4 experimental legacy PDB structures verified")
+    _check(
+        {"2WII", "5O32"} <= set(l3["summary"]["experimental_pdb_accession_inventory"]),
+        "Expected 2WII and 5O32 in summary experimental_pdb_accession_inventory",
+    )
+
     print(
         "layer2_and_layer3_planes gate: PASS (4/4 FASTAs translated & SHA-256 verified, AVI quarantine metadata verified, fresh Layer 3 replay identical, "
         "10/10 CIFs parsed, 226/226 1IAU insertion codes preserved, negative-control mutation probes rejected)"
@@ -507,6 +527,368 @@ def main() -> None:
 
 
 run_layer2_and_layer3_suite = main
+
+
+def test_iip0031_reference_panels_reject_incomplete_inputs(monkeypatch, tmp_path) -> None:
+    import pytest
+    from scripts import run_layer2_perturbation_and_regulatory_plane as layer2
+
+    panel_keys = ("pvr_refseq_isoforms_4", "cd276_refseq_isoforms_4")
+    texts = {f"row-{i}": f"RECORD-{i}" for i in range(4)}
+    pins = {key: hashlib.sha256(text.encode()).hexdigest() for key, text in texts.items()}
+    monkeypatch.setattr(layer2, "_IIP0031_TRANSCRIPT_PINS", {key: pins for key in panel_keys})
+    monkeypatch.setattr(layer2, "REPO_ROOT", tmp_path)
+    rows = {key: {"mrna_sequence": text, "mrna_sha256": pins[key]} for key, text in texts.items()}
+    complete = {key: rows for key in panel_keys}
+    bundle_key = "iip0031_locus2_modeb_v3_reference_bundle"
+    build = layer2.build_locus2_ciita_modeb_comparators_v3_manifest
+
+    with pytest.raises(ValueError, match="requires the exact"):
+        build({bundle_key: {key: {} for key in panel_keys}})
+    for key in panel_keys:
+        assert layer2._verified_refseq_panel(complete, key) == texts
+        with pytest.raises(ValueError, match=key):
+            build({bundle_key: {other: rows for other in panel_keys if other != key}})
+        missing_one = {k: v for k, v in rows.items() if k != "row-0"}
+        invalid_panels = [
+            None, {}, [], missing_one, {**rows, "extra": rows["row-0"]},
+            {**missing_one, "substitute": rows["row-0"]},
+        ]
+        invalid_records = (
+            None, [], {}, {"mrna_sequence": None}, {"mrna_sequence": "  "},
+            {"mrna_sequence": texts["row-0"]}, rows["row-1"],
+            {**rows["row-0"], "mrna_sequence": texts["row-1"]},
+            {**rows["row-0"], "mrna_sha256": pins["row-1"]},
+        )
+        invalid_panels.extend({**rows, "row-0": row} for row in invalid_records)
+        for malformed in invalid_panels:
+            with pytest.raises(ValueError, match=key):
+                build({bundle_key: {**complete, key: malformed}})
+
+
+def test_iip0031_product_contract_hardening(tmp_path) -> None:
+    import copy
+    import pytest
+    from scripts import product_contract as pc
+
+    def _stage_registry_root(dest: Path) -> Path:
+        (dest / "data" / "protocols").mkdir(parents=True, exist_ok=True)
+        (dest / "data" / "constructs").mkdir(parents=True, exist_ok=True)
+        shutil.copy2(REPO_ROOT / pc.CONTRACT_PATH, dest / pc.CONTRACT_PATH)
+        shutil.copy2(REPO_ROOT / pc.DESIGN_B_FASTA_PATH, dest / pc.DESIGN_B_FASTA_PATH)
+        shutil.copy2(REPO_ROOT / pc.LOCUS2_V3_FASTA_PATH, dest / pc.LOCUS2_V3_FASTA_PATH)
+        return dest
+
+    root = _stage_registry_root(tmp_path / "canonical")
+    doc = pc.load_product_contracts(root)
+    for row in doc["products"]:
+        assert pc.validate_product_definition_dict(copy.deepcopy(row), root=root)["product_variant_id"] == row["product_variant_id"]
+
+    # Mutated in-memory product_def dictionaries must be rejected by validate_product_definition_dict:
+    l2_cd200 = copy.deepcopy(pc.get_product_definition("L2_V3_CO_PRIMARY_CD200", root=root))
+    assert pc.validate_product_definition_dict(l2_cd200, root=root) == l2_cd200
+    for mutator in (
+        lambda d: d.__setitem__("execution_supported", 0),
+        lambda d: d["staged_locus2_modeb_donor_binding"].__setitem__("donor_length_bp", 4012.0),
+        lambda d: d["staged_locus2_modeb_donor_binding"].__setitem__("unit2_promoter", "EEF1A1_core_230bp"),
+        lambda d: d.__setitem__("extra_injected_field", True),
+    ):
+        bad_def = copy.deepcopy(l2_cd200)
+        mutator(bad_def)
+        with pytest.raises(ValueError):
+            pc.validate_product_definition_dict(bad_def, root=root)
+    with pytest.raises(ValueError):
+        pc.validate_product_definition_dict("not-a-dict", root=root)  # type: ignore[arg-type]
+
+    pdef_path = root / pc.CONTRACT_PATH
+    canonical_text = pdef_path.read_text(encoding="utf-8")
+    canonical_json = json.loads(canonical_text)
+
+    def _expect_registry_reject(mutated_obj_or_raw: Any, match: str | None = None) -> None:
+        if isinstance(mutated_obj_or_raw, str):
+            pdef_path.write_text(mutated_obj_or_raw, encoding="utf-8")
+        else:
+            pdef_path.write_text(json.dumps(mutated_obj_or_raw), encoding="utf-8")
+        try:
+            if match:
+                with pytest.raises(ValueError, match=match):
+                    pc.load_product_contracts(root)
+            else:
+                with pytest.raises(ValueError):
+                    pc.load_product_contracts(root)
+        finally:
+            pdef_path.write_text(canonical_text, encoding="utf-8")
+
+    # Duplicate JSON keys at root and nested levels must raise ValueError:
+    _expect_registry_reject(
+        '{"schema_version": "0.8.0", "schema_version": "0.8.0", "products": []}',
+        match="Duplicate JSON key",
+    )
+    nested_dup = canonical_text.replace(
+        '"unit2_promoter": "Syn_5xISRE_minP",',
+        '"unit2_promoter": "EEF1A1_core_230bp", "unit2_promoter": "Syn_5xISRE_minP",',
+        1,
+    )
+    assert nested_dup != canonical_text
+    _expect_registry_reject(nested_dup, match="Duplicate JSON key")
+
+    # Unhashable / malformed scalar types must raise clean ValueError (never TypeError or AttributeError):
+    for field, bad_val in (
+        ("family", []),
+        ("family", 123),
+        ("lifecycle_state", []),
+        ("lifecycle_state", 123),
+        ("execution_supported", 1),
+        ("aliases", [" L2_V3_CO_PRIMARY_CD200 "]),
+        ("aliases", [123]),
+        ("nominal_packaged_aav6_bp", 4264.0),
+        ("nominal_packaged_aav6_bp", True),
+    ):
+        bad = copy.deepcopy(canonical_json)
+        bad["products"][0][field] = bad_val
+        _expect_registry_reject(bad)
+
+    # Missing any of the 8 STAGED_LOCUS2_V3_PRODUCT_IDS rows must raise ValueError:
+    missing_row = copy.deepcopy(canonical_json)
+    missing_row["products"] = [
+        r for r in missing_row["products"] if r["product_variant_id"] != "ISLET1_A4_L2_V3_CO_PRIMARY_MANF"
+    ]
+    _expect_registry_reject(missing_row, match="ISLET1_A4_L2_V3_CO_PRIMARY_MANF")
+
+    # Missing L2_V3_* short alias on its canonical row or reassigning it to another row must raise ValueError:
+    dropped_alias = copy.deepcopy(canonical_json)
+    for r in dropped_alias["products"]:
+        if r["product_variant_id"] == "ISLET1_A4_L2_V3_CO_PRIMARY_CD200":
+            r["aliases"] = [a for a in r["aliases"] if a != "L2_V3_CO_PRIMARY_CD200"]
+    _expect_registry_reject(dropped_alias, match="L2_V3_CO_PRIMARY_CD200")
+
+    reassigned_alias = copy.deepcopy(canonical_json)
+    for r in reassigned_alias["products"]:
+        if r["product_variant_id"] == "ISLET1_A4_L2_V3_CO_PRIMARY_CD200":
+            r["aliases"] = [a for a in r["aliases"] if a != "L2_V3_CO_PRIMARY_CD200"]
+        elif r["product_variant_id"] == "ISLET1_A4_LEAD":
+            r["aliases"].append("L2_V3_CO_PRIMARY_CD200")
+    _expect_registry_reject(reassigned_alias, match="L2_V3_CO_PRIMARY_CD200")
+
+    # Mutating pinned semantic metadata, float lengths, or Design-B c1/c5 bindings must raise ValueError:
+    for target_id, mut_fn in (
+        ("ISLET1_A4_L2_V3_CO_PRIMARY_CD200", lambda r: r["staged_locus2_modeb_donor_binding"].__setitem__("unit2_promoter", "EEF1A1_core_230bp")),
+        ("ISLET1_A4_L2_V3_CO_PRIMARY_CD200", lambda r: r["staged_locus2_modeb_donor_binding"].__setitem__("mir_class", "INTRONLESS")),
+        ("ISLET1_A4_L2_V3_BARRIER_CHS4_250", lambda r: r["staged_locus2_modeb_donor_binding"].__setitem__("barrier_variant_type", "CANONICAL_80BP_PAIR")),
+        ("ISLET1_A4_L2_V3_CO_PRIMARY_CD200", lambda r: r["staged_locus2_modeb_donor_binding"].__setitem__("donor_length_bp", 4012.0)),
+        ("ISLET1_A4_L2_V3_CO_PRIMARY_CD200", lambda r: r["staged_locus2_modeb_donor_binding"].__setitem__("nominal_packaged_aav6_bp", 4302.0)),
+        ("ISLET1_B2_5LOCUS_BASE", lambda r: r["staged_design_b_donor_reference_binding"].pop("cxcl10_locus5_primary_donor_sha256")),
+        ("ISLET1_B2_5LOCUS_BASE", lambda r: r["staged_design_b_donor_reference_binding"].__setitem__("cxcl10_locus5_primary_donor_length_bp", 4078.0)),
+        ("ISLET1_B2_L2_V3_DESIGN_B_CD200", lambda r: r["staged_design_b_donor_reference_binding"].pop("aavs1_locus6_primary_donor_sha256")),
+    ):
+        bad = copy.deepcopy(canonical_json)
+        for r in bad["products"]:
+            if r["product_variant_id"] == target_id:
+                mut_fn(r)
+        _expect_registry_reject(bad)
+
+    # Missing or directory FASTA paths must raise ValueError (never silently skip or raise IsADirectoryError):
+    for fasta_rel in (pc.DESIGN_B_FASTA_PATH, pc.LOCUS2_V3_FASTA_PATH):
+        fpath = root / fasta_rel
+        saved = fpath.read_bytes()
+        try:
+            fpath.unlink()
+            with pytest.raises(ValueError, match="Missing or non-regular"):
+                pc.load_product_contracts(root)
+            fpath.mkdir()
+            with pytest.raises(ValueError, match="Missing or non-regular"):
+                pc.load_product_contracts(root)
+            fpath.rmdir()
+            fpath.write_bytes(saved[:-1])
+            with pytest.raises(ValueError, match="SHA-256 mismatch"):
+                pc.load_product_contracts(root)
+        finally:
+            if fpath.is_dir():
+                fpath.rmdir()
+            fpath.write_bytes(saved)
+
+
+def test_iip0031_layer2_hardening_and_scanners(monkeypatch, tmp_path) -> None:
+    import copy
+    import pytest
+    from scripts import run_layer2_perturbation_and_regulatory_plane as layer2
+
+    raw_ref = json.loads(L2_RAW_REF.read_text(encoding="utf-8"))
+
+    # 1. Frozen-input parity on overlapping seed scanner, spatial PWM audit, and guide counts:
+    frozen = layer2.build_locus2_ciita_modeb_comparators_v3_manifest(ref=copy.deepcopy(raw_ref))
+    rnai = frozen["intronic_mir_and_rnai_attribution_scope"]
+    assert rnai["candidate_seed_pairs_screened"] == 296
+    assert rnai["replayed_8mer_hits_total"] == 0
+    assert rnai["replayed_7mer_m8_hits_total"] == 0
+    assert len(rnai["disclosed_7mer_a1_hits"]) == 2
+    assert len(rnai["disclosed_22gene_cds_7mer_m8_genes"]) == 6
+    assert rnai["lead_guides_per_target"] == 1
+    assert rnai["backup_guides_per_target"] == 4
+    assert rnai["total_screened_guides_per_target"] == 5
+    roles = [row["role"] for row in rnai["backup_guide_screen_ledger_15oi_22utr"]]
+    assert roles.count("LEAD") == 2 and roles.count("BACKUP") == 8
+    assert frozen["canonical_fastas_untouched"] is True
+    assert frozen["layer1_pareto_artifact_verified"] is True
+    assert frozen["layer1_and_oq016_score_delta_pp"] == 0.0
+    co_cd200_entry = next(c for c in frozen["constructs"] if c["construct_id"] == "L2_V3_CO_PRIMARY_CD200")
+    assert co_cd200_entry["descriptive_6pwm_jaspar_summary"]["exact_family_total_tests"] == 47990
+
+    # 2. Single-read comparator FASTA immutability + construct-only temp root + proxy/canonical FASTA pin checks:
+    construct_root = tmp_path / "construct_root"
+    shutil.copytree(REPO_ROOT / "data" / "constructs", construct_root / "data" / "constructs")
+    monkeypatch.setattr(layer2, "REPO_ROOT", construct_root)
+
+    comp_fa = construct_root / "data" / "constructs" / "islet1_locus2_ciita_modeb_comparators_v0.8.0.fasta"
+    comp_bytes = comp_fa.read_bytes()
+    orig_read_bytes = Path.read_bytes
+    comp_reads: List[str] = []
+
+    def _mutate_comp_after_first_read(p: Path) -> bytes:
+        data = orig_read_bytes(p)
+        if p == comp_fa:
+            comp_reads.append(p.name)
+            p.write_bytes(b">CORRUPTED_AFTER_FIRST_READ\nAAAA\n")
+        return data
+
+    with monkeypatch.context() as mp:
+        mp.setattr(Path, "read_bytes", _mutate_comp_after_first_read)
+        res_race = layer2.build_locus2_ciita_modeb_comparators_v3_manifest(ref=copy.deepcopy(raw_ref))
+    assert comp_reads == ["islet1_locus2_ciita_modeb_comparators_v0.8.0.fasta"]
+    assert res_race["layer1_pareto_artifact_verified"] is False
+    assert res_race["layer1_and_oq016_score_delta_pp"] is None
+    comp_fa.write_bytes(comp_bytes)
+
+    # Stripped or mutated proxy / canonical FASTAs must raise ValueError:
+    for fasta_name in (
+        "islet1_scenario_a_constructs_v0.7.0.fasta",
+        "islet1_design_b_complete_constructs_v0.8.0.fasta",
+        "islet1_design_y_wildcard_comparators_v0.8.0.fasta",
+        "nm_021999_5_archival_mrna.fasta",
+    ):
+        fp = construct_root / "data" / "constructs" / fasta_name
+        saved = fp.read_bytes()
+        try:
+            fp.write_bytes(b">EMPTY_HEADER\n")
+            with pytest.raises(ValueError):
+                layer2.build_locus2_ciita_modeb_comparators_v3_manifest(ref=copy.deepcopy(raw_ref))
+        finally:
+            fp.write_bytes(saved)
+
+    with pytest.raises(ValueError, match="Duplicate FASTA"):
+        layer2._parse_fa_bytes(b">REC1\nACGT\n>REC1\nTGCA\n", label="dup_test")
+    with pytest.raises(ValueError, match="Empty or non-ACGT"):
+        layer2._parse_fa_bytes(b">REC1\n", label="empty_test")
+    with pytest.raises(ValueError, match="non-ACGT"):
+        layer2._parse_fa_bytes(b">REC1\nACGTN\n", label="non_acgt_test")
+
+    # Mutated Pareto artifact must raise ValueError when present:
+    pareto_dst = construct_root / "data" / "extracted" / "islet1_combinatorial_pareto_and_ladder_v0.8.0.json"
+    pareto_dst.parent.mkdir(parents=True, exist_ok=True)
+    pareto_dst.write_text('{"tampered": true}\n', encoding="utf-8")
+    with pytest.raises(ValueError, match="SHA-256 mismatch"):
+        layer2.build_locus2_ciita_modeb_comparators_v3_manifest(ref=copy.deepcopy(raw_ref))
+    pareto_dst.unlink()
+
+    # 3. CIITA 8-isoform exon coordinates/labels, genomic metadata, 22-gene cds_start_1based, and 6-PWM pins:
+    for bad_mut in (
+        lambda r: r["iip0031_locus2_modeb_v3_reference_bundle"]["ciita_refseq_isoforms_8"].__setitem__("NM_000246.4", "not-a-dict"),
+        lambda r: r["iip0031_locus2_modeb_v3_reference_bundle"]["ciita_refseq_isoforms_8"]["NM_000246.4"].__setitem__("exons_1based", []),
+        lambda r: r["iip0031_locus2_modeb_v3_reference_bundle"]["ciita_refseq_isoforms_8"]["NM_000246.4"].__setitem__(
+            "exons_1based", [[1, 4532]]
+        ),
+        lambda r: r["iip0031_locus2_modeb_v3_reference_bundle"]["ciita_refseq_isoforms_8"]["NM_000246.4"].__setitem__("iso_key", "TAMPERED"),
+        lambda r: r["iip0031_locus2_modeb_v3_reference_bundle"]["ciita_refseq_isoforms_8"]["NM_000246.4"].__setitem__(
+            "promoter_first_exon_mapping", "TAMPERED"
+        ),
+        lambda r: r["iip0031_locus2_modeb_v3_reference_bundle"]["grch38_chr16_ciita_exon5_2001bp"].__setitem__("chrom", "chr1"),
+        lambda r: r["iip0031_locus2_modeb_v3_reference_bundle"]["grch38_chr19_dm1_ctcf1_80bp"].__setitem__("strand", -1),
+        lambda r: r["ensembl_verified_homology_arms_and_elements"].pop("CIITA_pan_isoform_exon5_window_200bp"),
+        lambda r: r["ensembl_verified_homology_arms_and_elements"]["CIITA_pan_isoform_exon5_window_200bp"].__setitem__("sha256", "0" * 64),
+        lambda r: r["iip0031_locus2_modeb_v3_reference_bundle"]["human_22_gene_refseq_panel"]["PDX1"].pop("cds_start_1based"),
+        lambda r: r["jaspar_pwms"].pop("MA0139.1"),
+        lambda r: r["jaspar_pwms"]["MA0139.1"].__setitem__("pwm_matrix_sha256", "0" * 64),
+        lambda r: r["jaspar_pwms"]["MA0139.1"]["log2_odds_pwm"]["A"].__setitem__(0, 10**400),
+    ):
+        bad_ref = copy.deepcopy(raw_ref)
+        bad_mut(bad_ref)
+        with pytest.raises(ValueError):
+            layer2.build_locus2_ciita_modeb_comparators_v3_manifest(ref=bad_ref)
+
+    # 4. Direct scan_jaspar_pwm overflow guard, uncapped all_significant_hits, and family-test fields:
+    irf1_pwm = copy.deepcopy(raw_ref["jaspar_pwms"]["MA0050.2"])
+    dense_irf1_seq = "GAAAGTGAAACC" * 40
+    dense_scan = layer2.scan_jaspar_pwm(dense_irf1_seq, irf1_pwm, top_k=5, n_matrices_in_scan=6)
+    assert len(dense_scan["top_hits"]) == 5
+    assert len(dense_scan["all_significant_hits"]) >= 35
+    assert dense_scan["focal_matrix_bonferroni_family_factor"] == 6 * dense_scan["total_positions_tested_both_strands"]
+    assert dense_scan["total_tests_across_all_scanned_matrices_in_region"] is None
+    dense_scan_exact = layer2.scan_jaspar_pwm(
+        dense_irf1_seq, irf1_pwm, top_k=5, n_matrices_in_scan=6, actual_family_total_tests=5000
+    )
+    assert dense_scan_exact["total_tests_across_all_scanned_matrices_in_region"] == 5000
+
+    overflow_pwm = copy.deepcopy(irf1_pwm)
+    overflow_pwm.pop("pwm_matrix_sha256", None)
+    overflow_pwm["log2_odds_pwm"]["A"][0] = 10**400
+    with pytest.raises(ValueError, match="finite"):
+        layer2.scan_jaspar_pwm("ACGT" * 10, overflow_pwm)
+
+    # 5. Overlapping _scan_seeds verification ("T"*22 on "A"*9 -> 2x 8mer, 3x 7mer-m8, 3x 7mer-A1):
+    seed_hits = layer2._scan_seeds("T" * 22, {"homopoly_A9": "A" * 9})
+    assert seed_hits == {"homopoly_A9": {"8mer": 2, "7mer_m8": 3, "7mer_A1": 3}}
+    with pytest.raises(ValueError):
+        layer2._scan_seeds("ACGTTGC", {"t": "AAAAAAAAA"})
+    with pytest.raises(ValueError):
+        layer2._scan_seeds("T" * 22, {"t": "AAAAANAAA"})
+
+    # 6. Repeat-scanner input validation, budget edge cases, unclustered pairs, and cross-span DR:
+    for bad_seq in ("NNNN", "RRYY", "ßß", 123):
+        with pytest.raises(ValueError):
+            layer2.scan_disjoint_inverted_repeats_with_mismatches(bad_seq, min_k=4, max_mismatches=0)  # type: ignore[arg-type]
+    for bad_k, bad_mm in ((0, 0), (-1, 0), (True, 0), (4, -1), (4, False)):
+        with pytest.raises(ValueError):
+            layer2.scan_disjoint_inverted_repeats_with_mismatches("ACGTACGT", min_k=bad_k, max_mismatches=bad_mm)  # type: ignore[arg-type]
+
+    hits_at = layer2.scan_disjoint_inverted_repeats_with_mismatches("AT", min_k=1, max_mismatches=0)
+    assert len(hits_at) == 1 and hits_at[0]["pos1_a"] == 1 and hits_at[0]["pos1_b"] == 2
+    hits_budget = layer2.scan_disjoint_inverted_repeats_with_mismatches("AAAA", min_k=2, max_mismatches=2)
+    assert len(hits_budget) == 1 and hits_budget[0]["mismatches"] == 2
+    hits_aattt = layer2.scan_disjoint_inverted_repeats_with_mismatches("AATTT", min_k=2, max_mismatches=0)
+    assert [(h["pos1_a"], h["pos1_b"]) for h in hits_aattt] == [(1, 3), (1, 4)]
+    hits_aattt_clustered = layer2.scan_disjoint_inverted_repeats_with_mismatches(
+        "AATTT", min_k=2, max_mismatches=0, cluster_within_bp=4
+    )
+    assert len(hits_aattt_clustered) == 1
+    hits_aaattt = layer2.scan_disjoint_inverted_repeats_with_mismatches("AAATTT", min_k=2, max_mismatches=0)
+    assert len(hits_aaattt) == 4
+    assert next(h for h in hits_aaattt if (h["pos1_a"], h["pos1_b"]) == (1, 5))["maximal_stem_bp"] == 3
+    assert next(h for h in hits_aaattt if (h["pos1_a"], h["pos1_b"]) == (2, 4))["maximal_stem_bp"] == 3
+
+    assert layer2._max_overlapping_dr("ACGTACGTACGTCCCTGAGA", excluded_spans_0based=((0, 12),))[0] <= 3
+    assert layer2._max_overlapping_dr("ACGTACGGTTCCACGTACGGTT", excluded_spans_0based=((0, 10),))[0] == 10
+    assert layer2._max_overlapping_dr("ACGACG")[0] == 3
+    assert layer2._max_disjoint_dr("ACGACG")[0] == 3
+    assert layer2._max_disjoint_ir("AAATTT")[0] == 3
+    assert layer2._count_disjoint_ir_ge_k("AATTT", min_k=2) == 2
+
+
+def test_iip0031_layer3_2wii_dbref_and_inventory() -> None:
+    from scripts import run_layer3_structural_binder_plane as l3
+
+    prov = l3._build_locus2_cfh_stp_gpi_structural_provenance_iip_0031()
+    assert prov["pdb_2wii"]["glu264_ca_to_c3b_ted_q1013_ca_angstrom"] == 33.04
+    assert prov["pdb_2wii"]["c3b_ted_q1013_pdb_author_residue"] == "B:991 (GLN; UniProt P01024 Gln1013)"
+
+    fresh = regenerate_layer3_from_current_inputs(REPO_ROOT)
+    summary = fresh["summary"]
+    assert summary["total_experimental_pdb_structures_verified"] == 15
+    assert summary["experimental_rcsb_mmcif_structures_verified"] == 11
+    assert summary["experimental_rcsb_legacy_pdb_structures_verified"] == 4
+    assert summary["canonical_experimental_pdb_structures_verified"] == 13
+    assert summary["challenger_iip0031_experimental_pdb_structures_verified"] == 2
+    assert summary["experimental_pdb_accession_inventory"][-2:] == ["2WII", "5O32"]
+    assert fresh["locus2_cfh_stp_gpi_structural_provenance_iip_0031"] == prov
 
 
 def test_layer2_and_layer3_planes() -> None:

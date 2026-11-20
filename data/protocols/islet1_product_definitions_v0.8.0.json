@@ -1338,6 +1338,622 @@
       "physical_route_id": "Z_OMENTAL_140UM_ZERO_CAO2",
       "cao2_and_p04040_catalase_exempt": true,
       "wildcard_budget_cap_fraction": 0.2
+    },
+    {
+      "product_variant_id": "ISLET1_A4_L2_V3_CO_PRIMARY_CD200",
+      "family": "A",
+      "aliases": [
+        "L2_V3_CO_PRIMARY_CD200"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 4,
+      "B": 0,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with canonical Embodiment A* / Arm 1B reference donor",
+        "CIITA": "biallelic LOF with Mode-B v3 L2_V3_CO_PRIMARY_CD200 (4012 bp) CIITA Exon-5 knock-in (phased biallelic KI+KO Delta-Ex5 RT-PCR required)",
+        "CXCL10": "biallelic canonical SERPINB9 + PD-L1 checkpoint swap",
+        "AAVS1": "biallelic cHS4-A2UCOE-EEF1A1-iCasp9 safety switch"
+      },
+      "cassette_topology": {
+        "B2M": "antisense EEF1A1-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible 5xISRE-HLA-E-SCT",
+        "CIITA": "2x375bp HAs (AA>CC PAM shield) + 12bp 3-frame stop + canonical 154bp SPA-spacer-MAZ4 shield + Syn_5xISRE_minP->CD200-hGAPDHpA + 80-bp cHS4 1xFII convergent left + 80-bp human DM1 CTCF1 convergent right + EEF1A1_core_230 (320-bp EEF1A1 5-UTR intron carrying CD276_v3_g1 (miR-E) + PVR_v3_g1 (miR-16-2) [B2M-/- only]) -> CFH[1-264]-CD55[286-381](Val62)-hHBBpA (4012 bp donor / 4302 bp nominal AAV6)",
+        "CXCL10": "SERPINB9 + PD-L1",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Unscored Mode-B Stage-0 Locus-2 (CIITA Exon 5) research comparator L2_V3_CO_PRIMARY_CD200 (IIP-0031; DEC-110); non-executable pending allele/Delta-Ex5/AAV6/Rule S11/Tier 6B qualification; Track-2 B-prime-SCT INCOMPATIBLE_AT_LOCUS_2",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption intended",
+        "classical_MHC_II": "CIITA Exon-5 LOF intended (phased biallelic KI+KO Ex4->Ex6 + lineage-matched WT HLA-DR/DP/DQ induction required)",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "staged_locus2_modeb_donor_binding": {
+        "fasta_path": "data/constructs/islet1_locus2_ciita_modeb_comparators_v0.8.0.fasta",
+        "fasta_sha256": "25ffcb10e2bad77a4b34725c7eff0532990ebf7b80864cf7217d33f5ccbe5b6d",
+        "locus2_donor_id": "L2_V3_CO_PRIMARY_CD200",
+        "locus2_donor_sha256": "723e052172adfe5ae6c74e35e44cf727202d2716010772041d8c12abd76529c8",
+        "donor_length_bp": 4012,
+        "nominal_packaged_aav6_bp": 4302,
+        "background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL",
+        "has_intronic_mir": true,
+        "mir_class": "ACTIVE_CD276_PVR",
+        "unit2_cargo": "CD200",
+        "unit2_promoter": "Syn_5xISRE_minP",
+        "barrier_variant_type": "cHS4_1xFII_80bp",
+        "rule_s11_gate_id": "S11_Locus2_CIITA_ModeB_Vascular_Complement_and_Efferocytosis_Gate"
+      },
+      "pending_assay_gates": [
+        "Pre-order chr16 HA WGS and reconciled AAV6 species homogeneity (>=80% monomer, <10% truncated, <=15% dimeric/intermediate summing to 100%)",
+        "First-pass phased biallelic CIITA KI+KO informative transcript recovery (Ex4->Ex6), SOCS1/DEXI/CLEC16A cis sentinels, and lineage-matched WT Stage-7 HLA-DR/DP/DQ inducibility",
+        "Rule S11 post-cuff AP (C5b-9 <= 5.0%), classical (C4b2a <= 10.0%), lectin (C4b2a <= 10.0%), Playbook 20% NHS (<= 5.0%), conjunctive GY-023 intact+increment ADCC (both <= 5.0%), exact-stack efferocytosis (>= 80.0% abs AND >= 70.0% WT), Gate 0G pericytes (>= 70.0%), and PLVAP+ iEC morphogenesis",
+        "Pre-assembly Stage-7 CD31-/CD144- sorted-lot Tier 6B per-fraction binomial thinning (p_lot_U95 <= 3.0e-7, dual hPSC+edited differentiated calibrants d_i_L >= 0.50, k_i == 0 sticky hard stop)",
+        "Dual-promoter DEC-107 5-prime-RACE (EEF1A1 + Unit-2 promoter), bisulfite/CTCF ChIP, same-background cargo-linked RNAi attribution controls, PIGK, rs800292/Val62, and GY-010 DQ2/DQ8"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_A4_L2_V3_CO_PRIMARY_MANF",
+      "family": "A",
+      "aliases": [
+        "L2_V3_CO_PRIMARY_MANF"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 4,
+      "B": 0,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with canonical Embodiment A* / Arm 1B reference donor",
+        "CIITA": "biallelic LOF with Mode-B v3 L2_V3_CO_PRIMARY_MANF (3724 bp) CIITA Exon-5 knock-in (phased biallelic KI+KO Delta-Ex5 RT-PCR required)",
+        "CXCL10": "biallelic canonical SERPINB9 + PD-L1 checkpoint swap",
+        "AAVS1": "biallelic cHS4-A2UCOE-EEF1A1-iCasp9 safety switch"
+      },
+      "cassette_topology": {
+        "B2M": "antisense EEF1A1-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible 5xISRE-HLA-E-SCT",
+        "CIITA": "2x375bp HAs (AA>CC PAM shield) + 12bp 3-frame stop + canonical 154bp SPA-spacer-MAZ4 shield + Syn_5xISRE_minP->MANF-hGAPDHpA + 80-bp cHS4 1xFII convergent left + 80-bp human DM1 CTCF1 convergent right + EEF1A1_core_230 (320-bp EEF1A1 5-UTR intron carrying CD276_v3_g1 (miR-E) + PVR_v3_g1 (miR-16-2) [B2M-/- only]) -> CFH[1-264]-CD55[286-381](Val62)-hHBBpA (3724 bp donor / 4014 bp nominal AAV6)",
+        "CXCL10": "SERPINB9 + PD-L1",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Unscored Mode-B Stage-0 Locus-2 (CIITA Exon 5) research comparator L2_V3_CO_PRIMARY_MANF (IIP-0031; DEC-110); non-executable pending allele/Delta-Ex5/AAV6/Rule S11/Tier 6B qualification; Track-2 B-prime-SCT INCOMPATIBLE_AT_LOCUS_2",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption intended",
+        "classical_MHC_II": "CIITA Exon-5 LOF intended (phased biallelic KI+KO Ex4->Ex6 + lineage-matched WT HLA-DR/DP/DQ induction required)",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "staged_locus2_modeb_donor_binding": {
+        "fasta_path": "data/constructs/islet1_locus2_ciita_modeb_comparators_v0.8.0.fasta",
+        "fasta_sha256": "25ffcb10e2bad77a4b34725c7eff0532990ebf7b80864cf7217d33f5ccbe5b6d",
+        "locus2_donor_id": "L2_V3_CO_PRIMARY_MANF",
+        "locus2_donor_sha256": "e4d9ba0c1019ecc04930f38dd484d433f3a476e0af886765fa4779a3225a014a",
+        "donor_length_bp": 3724,
+        "nominal_packaged_aav6_bp": 4014,
+        "background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL",
+        "has_intronic_mir": true,
+        "mir_class": "ACTIVE_CD276_PVR",
+        "unit2_cargo": "MANF",
+        "unit2_promoter": "Syn_5xISRE_minP",
+        "barrier_variant_type": "cHS4_1xFII_80bp",
+        "rule_s11_gate_id": "S11_Locus2_CIITA_ModeB_Vascular_Complement_and_Efferocytosis_Gate"
+      },
+      "pending_assay_gates": [
+        "Pre-order chr16 HA WGS and reconciled AAV6 species homogeneity (>=80% monomer, <10% truncated, <=15% dimeric/intermediate summing to 100%)",
+        "First-pass phased biallelic CIITA KI+KO informative transcript recovery (Ex4->Ex6), SOCS1/DEXI/CLEC16A cis sentinels, and lineage-matched WT Stage-7 HLA-DR/DP/DQ inducibility",
+        "Rule S11 post-cuff AP (C5b-9 <= 5.0%), classical (C4b2a <= 10.0%), lectin (C4b2a <= 10.0%), Playbook 20% NHS (<= 5.0%), conjunctive GY-023 intact+increment ADCC (both <= 5.0%), exact-stack efferocytosis (>= 80.0% abs AND >= 70.0% WT), Gate 0G pericytes (>= 70.0%), and PLVAP+ iEC morphogenesis",
+        "Pre-assembly Stage-7 CD31-/CD144- sorted-lot Tier 6B per-fraction binomial thinning (p_lot_U95 <= 3.0e-7, dual hPSC+edited differentiated calibrants d_i_L >= 0.50, k_i == 0 sticky hard stop)",
+        "Dual-promoter DEC-107 5-prime-RACE (EEF1A1 + Unit-2 promoter), bisulfite/CTCF ChIP, same-background cargo-linked RNAi attribution controls, PIGK, rs800292/Val62, and GY-010 DQ2/DQ8"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_B2_L2_V3_DESIGN_B_CD200",
+      "family": "B",
+      "aliases": [
+        "L2_V3_DESIGN_B_CD200"
+      ],
+      "dsb_or_indel_loci": [
+        "HLA-A",
+        "HLA-B",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 5,
+      "B": 0,
+      "alleles": {
+        "HLA-A": "biallelic knockout intended (phased donor WGS CFD < 0.05)",
+        "HLA-B": "biallelic knockout intended (separated ~1.41 Mb chr6p21.3 pass)",
+        "HLA-C": "retained endogenous 4-digit matched HLA-C (intact B2M; miR(CD276+PVR) excluded from Locus 2)",
+        "CIITA": "biallelic LOF with Mode-B v3 L2_V3_DESIGN_B_CD200 (3692 bp) CIITA Exon-5 knock-in (phased biallelic KI+KO Delta-Ex5 RT-PCR required)",
+        "CXCL10": "biallelic 2A-free c1 SERPINB9 + PD-L1 comparator donor bound (82c351af...)",
+        "AAVS1": "biallelic 2A-free c5 CD47-IgV-GPI + iCasp9 comparator donor bound (82c351af...)"
+      },
+      "cassette_topology": {
+        "HLA_AB_C": "HLA-A-/- HLA-B-/- with retained endogenous HLA-C (B2M intact)",
+        "CIITA": "2x375bp HAs (AA>CC PAM shield) + 12bp 3-frame stop + canonical 154bp SPA-spacer-MAZ4 shield + Syn_5xISRE_minP->CD200-hGAPDHpA + 80-bp cHS4 1xFII convergent left + 80-bp human DM1 CTCF1 convergent right + EEF1A1_core_230 (intronless (miR(CD276+PVR) barred on HLA-C-intact Design B)) -> CFH[1-264]-CD55[286-381](Val62)-hHBBpA (3692 bp donor / 3982 bp nominal AAV6)",
+        "CXCL10": "2A-free c1 SERPINB9 + PD-L1",
+        "AAVS1": "2A-free c5 CD47-IgV-GPI + iCasp9"
+      },
+      "sequence_materialization_status": "STAGED_RESEARCH_COMPARATOR_DONORS_BOUND_PENDING_ALLELE_QC",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Unscored Mode-B Stage-0 Locus-2 (CIITA Exon 5) research comparator L2_V3_DESIGN_B_CD200 (IIP-0031; DEC-110); non-executable pending allele/Delta-Ex5/AAV6/Rule S11/Tier 6B qualification; Track-2 B-prime-SCT INCOMPATIBLE_AT_LOCUS_2",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
+      },
+      "hla_retention": {
+        "classical_MHC_I": "HLA-A-/- HLA-B-/- with retained endogenous 4-digit matched HLA-C",
+        "classical_MHC_II": "CIITA Exon-5 LOF intended (phased biallelic KI+KO Ex4->Ex6 + lineage-matched WT HLA-DR/DP/DQ induction required)",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "staged_locus2_modeb_donor_binding": {
+        "fasta_path": "data/constructs/islet1_locus2_ciita_modeb_comparators_v0.8.0.fasta",
+        "fasta_sha256": "25ffcb10e2bad77a4b34725c7eff0532990ebf7b80864cf7217d33f5ccbe5b6d",
+        "locus2_donor_id": "L2_V3_DESIGN_B_CD200",
+        "locus2_donor_sha256": "4b2b5713e29a190bcca115507a876fd48ce9ef92b0e6f793a08cd925a33334e1",
+        "donor_length_bp": 3692,
+        "nominal_packaged_aav6_bp": 3982,
+        "background_id": "DESIGN_B_ENDOGENOUS_HLAC_INTACT",
+        "has_intronic_mir": false,
+        "mir_class": "INTRONLESS_NO_MIR",
+        "unit2_cargo": "CD200",
+        "unit2_promoter": "Syn_5xISRE_minP",
+        "barrier_variant_type": "cHS4_1xFII_80bp",
+        "rule_s11_gate_id": "S11_Locus2_CIITA_ModeB_Vascular_Complement_and_Efferocytosis_Gate"
+      },
+      "pending_assay_gates": [
+        "Pre-order chr16 HA WGS and reconciled AAV6 species homogeneity (>=80% monomer, <10% truncated, <=15% dimeric/intermediate summing to 100%)",
+        "First-pass phased biallelic CIITA KI+KO informative transcript recovery (Ex4->Ex6), SOCS1/DEXI/CLEC16A cis sentinels, and lineage-matched WT Stage-7 HLA-DR/DP/DQ inducibility",
+        "Rule S11 post-cuff AP (C5b-9 <= 5.0%), classical (C4b2a <= 10.0%), lectin (C4b2a <= 10.0%), Playbook 20% NHS (<= 5.0%), conjunctive GY-023 intact+increment ADCC (both <= 5.0%), exact-stack efferocytosis (>= 80.0% abs AND >= 70.0% WT), Gate 0G pericytes (>= 70.0%), and PLVAP+ iEC morphogenesis",
+        "Pre-assembly Stage-7 CD31-/CD144- sorted-lot Tier 6B per-fraction binomial thinning (p_lot_U95 <= 3.0e-7, dual hPSC+edited differentiated calibrants d_i_L >= 0.50, k_i == 0 sticky hard stop)",
+        "Dual-promoter DEC-107 5-prime-RACE (EEF1A1 + Unit-2 promoter), bisulfite/CTCF ChIP, same-background cargo-linked RNAi attribution controls, PIGK, rs800292/Val62, and GY-010 DQ2/DQ8"
+      ],
+      "staged_design_b_donor_reference_binding": {
+        "fasta_path": "data/constructs/islet1_design_b_complete_constructs_v0.8.0.fasta",
+        "fasta_sha256": "4bb20389773c76b2705031ba675487825dfbd94d920a692cde75b7d56af22aa4",
+        "cxcl10_locus5_primary_donor_id": "DESIGNB_L5A_CXCL10_BFB_SYN6_ACC_4078bp",
+        "cxcl10_locus5_primary_donor_sha256": "3392af83d0b37b63c7db2094e88ae3b7034811e3a7b64f678f45ffd56194bf56",
+        "aavs1_locus6_primary_donor_id": "DESIGNB_L6_AAVS1_CD47_ICASP9_2AFREE_HUMAN_ACC_4172bp",
+        "aavs1_locus6_primary_donor_sha256": "ba264b14b5cf81b191a8e2126cf5f2c9949559a3782f6ff69bb206690d705882",
+        "bound_c1_c5_pair_sha256": "82c351af082e0f97361e715c36e2ab5872b8d097efa1c9f59dfda53ea60496ea"
+      }
+    },
+    {
+      "product_variant_id": "ISLET1_B2_L2_V3_DESIGN_B_MANF",
+      "family": "B",
+      "aliases": [
+        "L2_V3_DESIGN_B_MANF"
+      ],
+      "dsb_or_indel_loci": [
+        "HLA-A",
+        "HLA-B",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 5,
+      "B": 0,
+      "alleles": {
+        "HLA-A": "biallelic knockout intended (phased donor WGS CFD < 0.05)",
+        "HLA-B": "biallelic knockout intended (separated ~1.41 Mb chr6p21.3 pass)",
+        "HLA-C": "retained endogenous 4-digit matched HLA-C (intact B2M; miR(CD276+PVR) excluded from Locus 2)",
+        "CIITA": "biallelic LOF with Mode-B v3 L2_V3_DESIGN_B_MANF (3404 bp) CIITA Exon-5 knock-in (phased biallelic KI+KO Delta-Ex5 RT-PCR required)",
+        "CXCL10": "biallelic 2A-free c1 SERPINB9 + PD-L1 comparator donor bound (82c351af...)",
+        "AAVS1": "biallelic 2A-free c5 CD47-IgV-GPI + iCasp9 comparator donor bound (82c351af...)"
+      },
+      "cassette_topology": {
+        "HLA_AB_C": "HLA-A-/- HLA-B-/- with retained endogenous HLA-C (B2M intact)",
+        "CIITA": "2x375bp HAs (AA>CC PAM shield) + 12bp 3-frame stop + canonical 154bp SPA-spacer-MAZ4 shield + Syn_5xISRE_minP->MANF-hGAPDHpA + 80-bp cHS4 1xFII convergent left + 80-bp human DM1 CTCF1 convergent right + EEF1A1_core_230 (intronless (miR(CD276+PVR) barred on HLA-C-intact Design B)) -> CFH[1-264]-CD55[286-381](Val62)-hHBBpA (3404 bp donor / 3694 bp nominal AAV6)",
+        "CXCL10": "2A-free c1 SERPINB9 + PD-L1",
+        "AAVS1": "2A-free c5 CD47-IgV-GPI + iCasp9"
+      },
+      "sequence_materialization_status": "STAGED_RESEARCH_COMPARATOR_DONORS_BOUND_PENDING_ALLELE_QC",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Unscored Mode-B Stage-0 Locus-2 (CIITA Exon 5) research comparator L2_V3_DESIGN_B_MANF (IIP-0031; DEC-110); non-executable pending allele/Delta-Ex5/AAV6/Rule S11/Tier 6B qualification; Track-2 B-prime-SCT INCOMPATIBLE_AT_LOCUS_2",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
+      },
+      "hla_retention": {
+        "classical_MHC_I": "HLA-A-/- HLA-B-/- with retained endogenous 4-digit matched HLA-C",
+        "classical_MHC_II": "CIITA Exon-5 LOF intended (phased biallelic KI+KO Ex4->Ex6 + lineage-matched WT HLA-DR/DP/DQ induction required)",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "staged_locus2_modeb_donor_binding": {
+        "fasta_path": "data/constructs/islet1_locus2_ciita_modeb_comparators_v0.8.0.fasta",
+        "fasta_sha256": "25ffcb10e2bad77a4b34725c7eff0532990ebf7b80864cf7217d33f5ccbe5b6d",
+        "locus2_donor_id": "L2_V3_DESIGN_B_MANF",
+        "locus2_donor_sha256": "841a52222c703426c44d4f18fe799b646db71479b008d4b8fdbdcb7c2c2038c8",
+        "donor_length_bp": 3404,
+        "nominal_packaged_aav6_bp": 3694,
+        "background_id": "DESIGN_B_ENDOGENOUS_HLAC_INTACT",
+        "has_intronic_mir": false,
+        "mir_class": "INTRONLESS_NO_MIR",
+        "unit2_cargo": "MANF",
+        "unit2_promoter": "Syn_5xISRE_minP",
+        "barrier_variant_type": "cHS4_1xFII_80bp",
+        "rule_s11_gate_id": "S11_Locus2_CIITA_ModeB_Vascular_Complement_and_Efferocytosis_Gate"
+      },
+      "pending_assay_gates": [
+        "Pre-order chr16 HA WGS and reconciled AAV6 species homogeneity (>=80% monomer, <10% truncated, <=15% dimeric/intermediate summing to 100%)",
+        "First-pass phased biallelic CIITA KI+KO informative transcript recovery (Ex4->Ex6), SOCS1/DEXI/CLEC16A cis sentinels, and lineage-matched WT Stage-7 HLA-DR/DP/DQ inducibility",
+        "Rule S11 post-cuff AP (C5b-9 <= 5.0%), classical (C4b2a <= 10.0%), lectin (C4b2a <= 10.0%), Playbook 20% NHS (<= 5.0%), conjunctive GY-023 intact+increment ADCC (both <= 5.0%), exact-stack efferocytosis (>= 80.0% abs AND >= 70.0% WT), Gate 0G pericytes (>= 70.0%), and PLVAP+ iEC morphogenesis",
+        "Pre-assembly Stage-7 CD31-/CD144- sorted-lot Tier 6B per-fraction binomial thinning (p_lot_U95 <= 3.0e-7, dual hPSC+edited differentiated calibrants d_i_L >= 0.50, k_i == 0 sticky hard stop)",
+        "Dual-promoter DEC-107 5-prime-RACE (EEF1A1 + Unit-2 promoter), bisulfite/CTCF ChIP, same-background cargo-linked RNAi attribution controls, PIGK, rs800292/Val62, and GY-010 DQ2/DQ8"
+      ],
+      "staged_design_b_donor_reference_binding": {
+        "fasta_path": "data/constructs/islet1_design_b_complete_constructs_v0.8.0.fasta",
+        "fasta_sha256": "4bb20389773c76b2705031ba675487825dfbd94d920a692cde75b7d56af22aa4",
+        "cxcl10_locus5_primary_donor_id": "DESIGNB_L5A_CXCL10_BFB_SYN6_ACC_4078bp",
+        "cxcl10_locus5_primary_donor_sha256": "3392af83d0b37b63c7db2094e88ae3b7034811e3a7b64f678f45ffd56194bf56",
+        "aavs1_locus6_primary_donor_id": "DESIGNB_L6_AAVS1_CD47_ICASP9_2AFREE_HUMAN_ACC_4172bp",
+        "aavs1_locus6_primary_donor_sha256": "ba264b14b5cf81b191a8e2126cf5f2c9949559a3782f6ff69bb206690d705882",
+        "bound_c1_c5_pair_sha256": "82c351af082e0f97361e715c36e2ab5872b8d097efa1c9f59dfda53ea60496ea"
+      }
+    },
+    {
+      "product_variant_id": "ISLET1_A4_L2_V3_ALT2_CCL22",
+      "family": "A",
+      "aliases": [
+        "L2_V3_ALT2_CCL22"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 4,
+      "B": 0,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with canonical Embodiment A* / Arm 1B reference donor",
+        "CIITA": "biallelic LOF with Mode-B v3 L2_V3_ALT2_CCL22 (3457 bp) CIITA Exon-5 knock-in (phased biallelic KI+KO Delta-Ex5 RT-PCR required)",
+        "CXCL10": "biallelic canonical SERPINB9 + PD-L1 checkpoint swap",
+        "AAVS1": "biallelic cHS4-A2UCOE-EEF1A1-iCasp9 safety switch"
+      },
+      "cassette_topology": {
+        "B2M": "antisense EEF1A1-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible 5xISRE-HLA-E-SCT",
+        "CIITA": "2x375bp HAs (AA>CC PAM shield) + 12bp 3-frame stop + canonical 154bp SPA-spacer-MAZ4 shield + Syn_5xISRE_minP->CCL22-hGAPDHpA + 80-bp cHS4 1xFII convergent left + 80-bp human DM1 CTCF1 convergent right + EEF1A1_core_230 (320-bp EEF1A1 5-UTR intron carrying CD276_v3_g1 (miR-E) + PVR_v3_g1 (miR-16-2) [B2M-/- only]) -> CFH[1-264]-CD55[286-381](Val62)-hHBBpA (3457 bp donor / 3747 bp nominal AAV6)",
+        "CXCL10": "SERPINB9 + PD-L1",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Unscored Mode-B Stage-0 Locus-2 (CIITA Exon 5) research comparator L2_V3_ALT2_CCL22 (IIP-0031; DEC-110); non-executable pending allele/Delta-Ex5/AAV6/Rule S11/Tier 6B qualification; Track-2 B-prime-SCT INCOMPATIBLE_AT_LOCUS_2",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption intended",
+        "classical_MHC_II": "CIITA Exon-5 LOF intended (phased biallelic KI+KO Ex4->Ex6 + lineage-matched WT HLA-DR/DP/DQ induction required)",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "staged_locus2_modeb_donor_binding": {
+        "fasta_path": "data/constructs/islet1_locus2_ciita_modeb_comparators_v0.8.0.fasta",
+        "fasta_sha256": "25ffcb10e2bad77a4b34725c7eff0532990ebf7b80864cf7217d33f5ccbe5b6d",
+        "locus2_donor_id": "L2_V3_ALT2_CCL22",
+        "locus2_donor_sha256": "ba84d57577ff5143b3a2b813c4b12aab5139570eb60903a3c7aebae6fdaad30e",
+        "donor_length_bp": 3457,
+        "nominal_packaged_aav6_bp": 3747,
+        "background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL",
+        "has_intronic_mir": true,
+        "mir_class": "ACTIVE_CD276_PVR",
+        "unit2_cargo": "CCL22",
+        "unit2_promoter": "Syn_5xISRE_minP",
+        "barrier_variant_type": "cHS4_1xFII_80bp",
+        "rule_s11_gate_id": "S11_Locus2_CIITA_ModeB_Vascular_Complement_and_Efferocytosis_Gate"
+      },
+      "pending_assay_gates": [
+        "Pre-order chr16 HA WGS and reconciled AAV6 species homogeneity (>=80% monomer, <10% truncated, <=15% dimeric/intermediate summing to 100%)",
+        "First-pass phased biallelic CIITA KI+KO informative transcript recovery (Ex4->Ex6), SOCS1/DEXI/CLEC16A cis sentinels, and lineage-matched WT Stage-7 HLA-DR/DP/DQ inducibility",
+        "Rule S11 post-cuff AP (C5b-9 <= 5.0%), classical (C4b2a <= 10.0%), lectin (C4b2a <= 10.0%), Playbook 20% NHS (<= 5.0%), conjunctive GY-023 intact+increment ADCC (both <= 5.0%), exact-stack efferocytosis (>= 80.0% abs AND >= 70.0% WT), Gate 0G pericytes (>= 70.0%), and PLVAP+ iEC morphogenesis",
+        "Pre-assembly Stage-7 CD31-/CD144- sorted-lot Tier 6B per-fraction binomial thinning (p_lot_U95 <= 3.0e-7, dual hPSC+edited differentiated calibrants d_i_L >= 0.50, k_i == 0 sticky hard stop)",
+        "Dual-promoter DEC-107 5-prime-RACE (EEF1A1 + Unit-2 promoter), bisulfite/CTCF ChIP, same-background cargo-linked RNAi attribution controls, PIGK, rs800292/Val62, and GY-010 DQ2/DQ8"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_A4_L2_V3_CTRL_NT_SCRAMBLE",
+      "family": "A",
+      "aliases": [
+        "L2_V3_CTRL_NT_SCRAMBLE"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 4,
+      "B": 0,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with canonical Embodiment A* / Arm 1B reference donor",
+        "CIITA": "biallelic LOF with Mode-B v3 L2_V3_CTRL_NT_SCRAMBLE (4012 bp) CIITA Exon-5 knock-in (phased biallelic KI+KO Delta-Ex5 RT-PCR required)",
+        "CXCL10": "biallelic canonical SERPINB9 + PD-L1 checkpoint swap",
+        "AAVS1": "biallelic cHS4-A2UCOE-EEF1A1-iCasp9 safety switch"
+      },
+      "cassette_topology": {
+        "B2M": "antisense EEF1A1-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible 5xISRE-HLA-E-SCT",
+        "CIITA": "2x375bp HAs (AA>CC PAM shield) + 12bp 3-frame stop + canonical 154bp SPA-spacer-MAZ4 shield + Syn_5xISRE_minP->CD200-hGAPDHpA + 80-bp cHS4 1xFII convergent left + 80-bp human DM1 CTCF1 convergent right + EEF1A1_core_230 (320-bp EEF1A1 5-UTR intron carrying matched non-targeting scrambles NT1_v3 + NT2_v3 [CD200 control only]) -> CFH[1-264]-CD55[286-381](Val62)-hHBBpA (4012 bp donor / 4302 bp nominal AAV6)",
+        "CXCL10": "SERPINB9 + PD-L1",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Unscored Mode-B Stage-0 Locus-2 (CIITA Exon 5) research comparator L2_V3_CTRL_NT_SCRAMBLE (IIP-0031; DEC-110); non-executable pending allele/Delta-Ex5/AAV6/Rule S11/Tier 6B qualification; Track-2 B-prime-SCT INCOMPATIBLE_AT_LOCUS_2",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption intended",
+        "classical_MHC_II": "CIITA Exon-5 LOF intended (phased biallelic KI+KO Ex4->Ex6 + lineage-matched WT HLA-DR/DP/DQ induction required)",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "staged_locus2_modeb_donor_binding": {
+        "fasta_path": "data/constructs/islet1_locus2_ciita_modeb_comparators_v0.8.0.fasta",
+        "fasta_sha256": "25ffcb10e2bad77a4b34725c7eff0532990ebf7b80864cf7217d33f5ccbe5b6d",
+        "locus2_donor_id": "L2_V3_CTRL_NT_SCRAMBLE",
+        "locus2_donor_sha256": "d1c8d1bbe01e89dac2256d48b51d2dac03b7cba41d076a0e9bbed6cc249c43ff",
+        "donor_length_bp": 4012,
+        "nominal_packaged_aav6_bp": 4302,
+        "background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL",
+        "has_intronic_mir": true,
+        "mir_class": "NON_TARGETING_SCRAMBLE",
+        "unit2_cargo": "CD200",
+        "unit2_promoter": "Syn_5xISRE_minP",
+        "barrier_variant_type": "cHS4_1xFII_80bp",
+        "rule_s11_gate_id": "S11_Locus2_CIITA_ModeB_Vascular_Complement_and_Efferocytosis_Gate"
+      },
+      "pending_assay_gates": [
+        "Pre-order chr16 HA WGS and reconciled AAV6 species homogeneity (>=80% monomer, <10% truncated, <=15% dimeric/intermediate summing to 100%)",
+        "First-pass phased biallelic CIITA KI+KO informative transcript recovery (Ex4->Ex6), SOCS1/DEXI/CLEC16A cis sentinels, and lineage-matched WT Stage-7 HLA-DR/DP/DQ inducibility",
+        "Rule S11 post-cuff AP (C5b-9 <= 5.0%), classical (C4b2a <= 10.0%), lectin (C4b2a <= 10.0%), Playbook 20% NHS (<= 5.0%), conjunctive GY-023 intact+increment ADCC (both <= 5.0%), exact-stack efferocytosis (>= 80.0% abs AND >= 70.0% WT), Gate 0G pericytes (>= 70.0%), and PLVAP+ iEC morphogenesis",
+        "Pre-assembly Stage-7 CD31-/CD144- sorted-lot Tier 6B per-fraction binomial thinning (p_lot_U95 <= 3.0e-7, dual hPSC+edited differentiated calibrants d_i_L >= 0.50, k_i == 0 sticky hard stop)",
+        "Dual-promoter DEC-107 5-prime-RACE (EEF1A1 + Unit-2 promoter), bisulfite/CTCF ChIP, same-background cargo-linked RNAi attribution controls, PIGK, rs800292/Val62, and GY-010 DQ2/DQ8"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_A4_L2_V3_BARRIER_CHS4_250",
+      "family": "A",
+      "aliases": [
+        "L2_V3_BARRIER_CHS4_250"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 4,
+      "B": 0,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with canonical Embodiment A* / Arm 1B reference donor",
+        "CIITA": "biallelic LOF with Mode-B v3 L2_V3_BARRIER_CHS4_250 (4182 bp) CIITA Exon-5 knock-in (phased biallelic KI+KO Delta-Ex5 RT-PCR required)",
+        "CXCL10": "biallelic canonical SERPINB9 + PD-L1 checkpoint swap",
+        "AAVS1": "biallelic cHS4-A2UCOE-EEF1A1-iCasp9 safety switch"
+      },
+      "cassette_topology": {
+        "B2M": "antisense EEF1A1-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible 5xISRE-HLA-E-SCT",
+        "CIITA": "2x375bp HAs (AA>CC PAM shield) + 12bp 3-frame stop + canonical 154bp SPA-spacer-MAZ4 shield + Syn_5xISRE_minP->CD200-hGAPDHpA + 250-bp cHS4 barrier comparator (combined length-and-sequence change: 250 bp + U78775.2 C79T/C80A) + EEF1A1_core_230 (320-bp EEF1A1 5-UTR intron carrying CD276_v3_g1 (miR-E) + PVR_v3_g1 (miR-16-2) [B2M-/- only]) -> CFH[1-264]-CD55[286-381](Val62)-hHBBpA (4182 bp donor / 4472 bp nominal AAV6)",
+        "CXCL10": "SERPINB9 + PD-L1",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Unscored Mode-B Stage-0 Locus-2 (CIITA Exon 5) research comparator L2_V3_BARRIER_CHS4_250 (IIP-0031; DEC-110); non-executable pending allele/Delta-Ex5/AAV6/Rule S11/Tier 6B qualification; Track-2 B-prime-SCT INCOMPATIBLE_AT_LOCUS_2",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption intended",
+        "classical_MHC_II": "CIITA Exon-5 LOF intended (phased biallelic KI+KO Ex4->Ex6 + lineage-matched WT HLA-DR/DP/DQ induction required)",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "staged_locus2_modeb_donor_binding": {
+        "fasta_path": "data/constructs/islet1_locus2_ciita_modeb_comparators_v0.8.0.fasta",
+        "fasta_sha256": "25ffcb10e2bad77a4b34725c7eff0532990ebf7b80864cf7217d33f5ccbe5b6d",
+        "locus2_donor_id": "L2_V3_BARRIER_CHS4_250",
+        "locus2_donor_sha256": "f58995d9396ed09432e14a2d231a995aecd76122b852ee07ddd629cb07b6af66",
+        "donor_length_bp": 4182,
+        "nominal_packaged_aav6_bp": 4472,
+        "background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL",
+        "has_intronic_mir": true,
+        "mir_class": "ACTIVE_CD276_PVR",
+        "unit2_cargo": "CD200",
+        "unit2_promoter": "Syn_5xISRE_minP",
+        "barrier_variant_type": "cHS4_250bp_C79T_C80A_COMBINED_LENGTH_AND_SEQUENCE",
+        "rule_s11_gate_id": "S11_Locus2_CIITA_ModeB_Vascular_Complement_and_Efferocytosis_Gate"
+      },
+      "pending_assay_gates": [
+        "Pre-order chr16 HA WGS and reconciled AAV6 species homogeneity (>=80% monomer, <10% truncated, <=15% dimeric/intermediate summing to 100%)",
+        "First-pass phased biallelic CIITA KI+KO informative transcript recovery (Ex4->Ex6), SOCS1/DEXI/CLEC16A cis sentinels, and lineage-matched WT Stage-7 HLA-DR/DP/DQ inducibility",
+        "Rule S11 post-cuff AP (C5b-9 <= 5.0%), classical (C4b2a <= 10.0%), lectin (C4b2a <= 10.0%), Playbook 20% NHS (<= 5.0%), conjunctive GY-023 intact+increment ADCC (both <= 5.0%), exact-stack efferocytosis (>= 80.0% abs AND >= 70.0% WT), Gate 0G pericytes (>= 70.0%), and PLVAP+ iEC morphogenesis",
+        "Pre-assembly Stage-7 CD31-/CD144- sorted-lot Tier 6B per-fraction binomial thinning (p_lot_U95 <= 3.0e-7, dual hPSC+edited differentiated calibrants d_i_L >= 0.50, k_i == 0 sticky hard stop)",
+        "Dual-promoter DEC-107 5-prime-RACE (EEF1A1 + Unit-2 promoter), bisulfite/CTCF ChIP, same-background cargo-linked RNAi attribution controls, PIGK, rs800292/Val62, and GY-010 DQ2/DQ8"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_A4_L2_V3_CD274P_ZERO_TATATA",
+      "family": "A",
+      "aliases": [
+        "L2_V3_CD274P_ZERO_TATATA"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CIITA",
+        "CXCL10",
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 4,
+      "B": 0,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with canonical Embodiment A* / Arm 1B reference donor",
+        "CIITA": "biallelic LOF with Mode-B v3 L2_V3_CD274P_ZERO_TATATA (4114 bp) CIITA Exon-5 knock-in (phased biallelic KI+KO Delta-Ex5 RT-PCR required)",
+        "CXCL10": "biallelic canonical SERPINB9 + PD-L1 checkpoint swap",
+        "AAVS1": "biallelic cHS4-A2UCOE-EEF1A1-iCasp9 safety switch"
+      },
+      "cassette_topology": {
+        "B2M": "antisense EEF1A1-CD47-IgV-GPI + 154bp SPA-pause shield / sense inducible 5xISRE-HLA-E-SCT",
+        "CIITA": "2x375bp HAs (AA>CC PAM shield) + 12bp 3-frame stop + canonical 154bp SPA-spacer-MAZ4 shield + human_CD274_prom_250bp->CD200-hGAPDHpA + 80-bp cHS4 1xFII convergent left + 80-bp human DM1 CTCF1 convergent right + EEF1A1_core_230 (320-bp EEF1A1 5-UTR intron carrying CD276_v3_g1 (miR-E) + PVR_v3_g1 (miR-16-2) [B2M-/- only]) -> CFH[1-264]-CD55[286-381](Val62)-hHBBpA (4114 bp donor / 4404 bp nominal AAV6)",
+        "CXCL10": "SERPINB9 + PD-L1",
+        "AAVS1": "cHS4 + HNRNPA2B1-proximal455bp candidate + EEF1A1-iCasp9"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Unscored Mode-B Stage-0 Locus-2 (CIITA Exon 5) research comparator L2_V3_CD274P_ZERO_TATATA (IIP-0031; DEC-110); non-executable pending allele/Delta-Ex5/AAV6/Rule S11/Tier 6B qualification; Track-2 B-prime-SCT INCOMPATIBLE_AT_LOCUS_2",
+      "physical_manufacturing_yield": null,
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M disruption intended",
+        "classical_MHC_II": "CIITA Exon-5 LOF intended (phased biallelic KI+KO Ex4->Ex6 + lineage-matched WT HLA-DR/DP/DQ induction required)",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "staged_locus2_modeb_donor_binding": {
+        "fasta_path": "data/constructs/islet1_locus2_ciita_modeb_comparators_v0.8.0.fasta",
+        "fasta_sha256": "25ffcb10e2bad77a4b34725c7eff0532990ebf7b80864cf7217d33f5ccbe5b6d",
+        "locus2_donor_id": "L2_V3_CD274P_ZERO_TATATA",
+        "locus2_donor_sha256": "ecd6df0d48f0fc6f897482d14e4ec2c92e1f4740e58e11b77c40fe9760de5577",
+        "donor_length_bp": 4114,
+        "nominal_packaged_aav6_bp": 4404,
+        "background_id": "DESIGN_A_OR_TRACK1_X_B2M_NULL",
+        "has_intronic_mir": true,
+        "mir_class": "ACTIVE_CD276_PVR",
+        "unit2_cargo": "CD200",
+        "unit2_promoter": "human_CD274_prom_250bp",
+        "barrier_variant_type": "cHS4_1xFII_80bp",
+        "rule_s11_gate_id": "S11_Locus2_CIITA_ModeB_Vascular_Complement_and_Efferocytosis_Gate"
+      },
+      "pending_assay_gates": [
+        "Pre-order chr16 HA WGS and reconciled AAV6 species homogeneity (>=80% monomer, <10% truncated, <=15% dimeric/intermediate summing to 100%)",
+        "First-pass phased biallelic CIITA KI+KO informative transcript recovery (Ex4->Ex6), SOCS1/DEXI/CLEC16A cis sentinels, and lineage-matched WT Stage-7 HLA-DR/DP/DQ inducibility",
+        "Rule S11 post-cuff AP (C5b-9 <= 5.0%), classical (C4b2a <= 10.0%), lectin (C4b2a <= 10.0%), Playbook 20% NHS (<= 5.0%), conjunctive GY-023 intact+increment ADCC (both <= 5.0%), exact-stack efferocytosis (>= 80.0% abs AND >= 70.0% WT), Gate 0G pericytes (>= 70.0%), and PLVAP+ iEC morphogenesis",
+        "Pre-assembly Stage-7 CD31-/CD144- sorted-lot Tier 6B per-fraction binomial thinning (p_lot_U95 <= 3.0e-7, dual hPSC+edited differentiated calibrants d_i_L >= 0.50, k_i == 0 sticky hard stop)",
+        "Dual-promoter DEC-107 5-prime-RACE (EEF1A1 + Unit-2 promoter), bisulfite/CTCF ChIP, same-background cargo-linked RNAi attribution controls, PIGK, rs800292/Val62, and GY-010 DQ2/DQ8"
+      ]
     }
   ]
 }

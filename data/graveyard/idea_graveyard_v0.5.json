@@ -581,6 +581,34 @@
           "15919785",
           "30830873"
         ]
+      },
+      {
+        "guardrail_id": "OFFGRID_GUARD_015_UNSHIELDED_CIITA_EX5_KI_UNDECLARED_REPEATS_UNCONTROLLED_RNAI_AND_UNQUALIFIED_TIER6B_SORT",
+        "graveyard_card_id": "GY-025",
+        "severity_level": "BLOCK",
+        "curation_status": "provisional_stage0_computational_guardrail",
+        "evidence_basis_class": "direct_in_silico_sequence_structural_and_contract_falsification",
+        "contribution_id": "IIP-0031",
+        "status": "PROVISIONAL_STAGE0_GUARDRAIL_UNSHIELDED_CIITA_EX5_HDR_UNDECLARED_REPEATS_UNCONTROLLED_RNAI_DESIGNB_MIR_AND_UNQUALIFIED_TIER6B_SORT",
+        "summary": "Provisional Stage-0 guardrail pending wet-lab qualification (IIP-0031; DEC-110): deploying unshielded CIITA Exon-5 HDR donors without mandatory gRNA PAM/seed co-conversion or without auditing all 8 RefSeq CIITA NM_* transcripts (plus quantitative informative transcript recovery of both KI and KO alleles, 16p13.13 SOCS1/DEXI/CLEC16A 90% TOST cis sentinels, and lineage-matched WT Stage-7 HLA-DR/DP/DQ inducibility >= 50%) is barred. Deploying Locus-2 AAV6 cassettes with undeclared direct/inverted repeats (including <=1-mm >=20-bp disjoint inverted repeats) or oversized > 4,700 bp nominal single-AAV6 payloads, pairing Track-2 B'-SCT with a Locus-2 donor (INCOMPATIBLE_AT_LOCUS_2), placing active intronic CD276+PVR miRs on HLA-C-intact Design B (risking HLA-C/CD276/PVR co-perturbation without same-background intronless+scramble controls), placing Syn_5xISRE->CD200 on Design Y, misclassifying L2_V3_BARRIER_CHS4_250 as a pure length change rather than a combined length-and-sequence change (250 bp + U78775.2 C79T/C80A), or claiming RNAi-specific benefit without same-background intronless and scramble controls linked to the tested cargo are barred under this provisional Stage-0 guardrail. Qualifying post-cuff vascular/complement safety without explicit quantitative classical (C1q/sensitized C4b2a U95_t <= 10.0%; L95_t > 10.0% stops), lectin (MBL/mannan C4b2a U95_t <= 10.0%; L95_t > 10.0% stops), AP (C5b-9 <= 5.0%), Playbook overall 20% NHS (<= 5.0%), conjunctive GY-023 ADCC (both <= 5.0%), PLVAP+ iEC morphogenesis/viability (t50 <= 36.0 h, viability >= 85.0%), exact-stack efferocytosis (>= 80.0% abs and >= 70.0% WT), Gate 0G pericyte (>= 70.0%), Locus-2 promoter-specific 5'-RACE (>= 3,689 UMIs), Stage 0-7 CpG methylation + CTCF ChIP, and reconciled AAV6 species (>= 80% monomer, < 10% truncated, <= 15% dimeric/intermediate summing to 100%) evidence is barred. Certifying pre-assembly Stage-7 CD31-/CD144- sorted-lot Tier 6B zero-outgrowth on single-graft-dose (~80k) rather than master manufacturing-lot scale satisfying the exact 3-way simultaneous Clopper-Pearson gate (p_lot_U95 <= 3.0e-7; 30.1M = 30M/100k illustrative), total-cell or spike-in-only counts without source-linked disjoint untreated CFU controls (n_untr >= 2, rejecting 1/1), omitted flow-through, hybrid/negated fraction labels, or caller single-fraction bypasses, unreconciled pre-sort cell balance, pooled or borrowed calibrants, supplied calculation-only d_L values on live release paths, rounded p_lot_U95 comparisons, non-integer/Boolean/clustered counts, or downgrading attributable k >= 1 outgrowth (even with malformed ancillary controls or inside nested containers) below FAIL_HARD_STOP (keeping independent S9 at first precedence) is barred under provisional Stage-0 guardrail GY-025.",
+        "cheapest_falsification_assay": "Sequence-verified 8-record Locus-2 Mode-B v3 FASTA (SHA-256 25ffcb10..., 0 <=1-mm >=20-bp disjoint IRs), quantitative Rule S11 post-cuff AP/classical/lectin complement + conjunctive GY-023 ADCC + PLVAP+ iEC + exact-stack efferocytosis + Gate 0G pericyte + reconciled AAV6 species + phased biallelic CIITA/cis-sentinel/WT-HLA-II + 5'-RACE + methylation/CTCF ChIP + same-background cargo-linked RNAi controls, and 4-path fail-closed manufacturing-lot Tier 6B per-fraction binomial thinning (reconciled enriched + flow-through partition, disjoint untreated CFU control, per-observation separate hPSC & edited-differentiated calibrants d_i_L >= 0.50; unrounded p_lot_U95 <= 3.0e-7).",
+        "pmids": [
+          "19503104",
+          "28671664",
+          "21266852",
+          "19549636",
+          "21989056",
+          "12011446",
+          "15544620",
+          "28723575",
+          "24332856",
+          "35880017",
+          "36055241",
+          "37996616",
+          "40251154",
+          "34050011",
+          "30010673"
+        ]
       }
     ]
   }
