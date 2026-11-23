@@ -691,7 +691,7 @@ def build_target_evidence_profiles(studies: list[dict], omics: dict) -> dict:
         if any(not isinstance(eid, str) or not eid for eid in effect_ids) or len(set(effect_ids)) != len(effect_ids):
             raise ValueError("Effect identifiers must be nonempty and unique within each study")
         for effect in effects:
-            if effect.get("effect_direction") not in {"Protective_or_Improved", "Neutral_or_NonInferior", "Deleterious_or_Impaired"}:
+            if effect.get("effect_direction") not in {"Protective_or_Improved", "Neutral_or_NonInferior", "Deleterious_or_Impaired", "Descriptive_or_Unoriented"}:
                 raise ValueError("Unknown effect_direction cannot be interpreted as neutral evidence")
             if type(effect.get("secretome_or_differentiation_penalty_observed", False)) is not bool:
                 raise ValueError("Evidence penalty flags must be boolean")
@@ -737,6 +737,7 @@ def build_target_evidence_profiles(studies: list[dict], omics: dict) -> dict:
                 "n_project_summary_records_excluded_from_weights": 0,
                 "n_review_records_excluded_from_weights": 0,
                 "n_superseded_preprint_records_excluded_from_weights": 0,
+                "n_confounded_nonislet_records_excluded_from_weights": 0,
                 "n_human_tier1_to_3_studies": 0,
                 "n_rodent_tier4_studies": 0,
                 "n_protective_effects": 0,
@@ -809,7 +810,28 @@ def build_target_evidence_profiles(studies: list[dict], omics: dict) -> dict:
             src_type == "Preprint_Superseded_By_Peer_Reviewed"
             or bool(meta.get("superseded_by_pmid"))
         )
-        is_non_weighted_record = is_project_summary or is_superseded_preprint or is_review
+        arms_list = doc.get("arms", [])
+        _conditioning_tokens = (
+            "lymphodeplet", "fludarabine", "cyclophosphamide", "flu/cy",
+            "bendamustine", "myeloablat", "total body irradiation",
+            "conditioning", "busulfan", "melphalan",
+        )
+        is_confounded_nonislet_conditioned = bool(arms_list) and all(
+            (a.get("gate1_substrate_and_differentiation") or {}).get("cell_source_class")
+            == "NonIslet_Immune_Endothelial_or_Hematopoietic_Model"
+            and (
+                (a.get("gate5_engraftment_niche") or {}).get("clinical_conditioning_regimen_class")
+                == "Lymphodepleting_or_Myeloablative_Conditioning"
+                or any(
+                    tok in str((a.get("gate5_engraftment_niche") or {}).get("systemic_immunosuppression_regimen") or "").lower()
+                    for tok in _conditioning_tokens
+                )
+            )
+            for a in arms_list
+        )
+        is_non_weighted_record = (
+            is_project_summary or is_superseded_preprint or is_review or is_confounded_nonislet_conditioned
+        )
         tier = meta.get("max_biological_fidelity_tier", "Tier_4_Rodent_or_Xenogeneic_Only")
         if tier not in FIDELITY_WEIGHTS:
             raise ValueError(f"Unmapped max_biological_fidelity_tier {tier!r} in PMID {pmid}")
@@ -839,6 +861,8 @@ def build_target_evidence_profiles(studies: list[dict], omics: dict) -> dict:
                 st["n_superseded_preprint_records_excluded_from_weights"] += 1
             elif is_review:
                 st["n_review_records_excluded_from_weights"] += 1
+            elif is_confounded_nonislet_conditioned:
+                st["n_confounded_nonislet_records_excluded_from_weights"] += 1
             else:
                 st["n_empirical_studies"] += 1
             if is_human:
@@ -946,7 +970,7 @@ def build_target_evidence_profiles(studies: list[dict], omics: dict) -> dict:
                         "LENTIVIRAL_OR_TRANSPOSON_OE", "SAFEHARBOR_KI_AAVS1_GAPDH_CLYBL",
                         "CRISPRA_ACTIVATION", "TRANSIENT_MRNA_OR_SURFACE_TETHERING",
                     )
-                ) and not any(t in arm_ets for t in ("KNOCKOUT", "CRISPR_CAS9_KO", "CRISPR_CAS12A_MULTIPLEX_KO", "DELETION", "LOSS")):
+                ) and not any(t in arm_ets for t in ("KNOCKOUT", "CRISPR_CAS9_KO", "CRISPR_CAS12A_MULTIPLEX_KO", "CRISPR_CAS12B_MULTIPLEX_KO", "DELETION", "LOSS")):
                     pert_dir = "GOF_OE"
                 elif any(t in arm_ets for t in ("KNOCKOUT", "KO", "DELETION", "BASEEDIT", "PRIMEEDIT", "SHRNA", "LOSS")):
                     pert_dir = "KO_LOF"

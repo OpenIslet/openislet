@@ -390,7 +390,7 @@
     },
     {
       "effect_id": "pmid38005341_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:38005341 field=omitted_text quote_sha256=e24a9302a43f89bc89c08b43cbfb84949b9f9fff784dcb4fd9a21a6118885606]",
+      "source_figure_or_table": "Figure 14",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Lower_Is_Better_Hazard_Endpoint | orientation_sign=-1 | unit=qualitative_statement]",
@@ -428,7 +428,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
         "orientation_sign": -1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:38005341 field=omitted_text quote_sha256=a8d34d42aeff603765213ae709399cc6a5ef2251f3cf54eb14d392f1a8a7b69f]"
+        "matched_lexicon_term": "apoptosis"
       },
       "dossier_sha256": "4c653367f7e340231c61b62c1972d75348ad8f626d038772b31ab0ff15618b13",
       "source_span": "fulltext_data_sections.figure_legends[13].caption[835:1011]|norm=exact",
@@ -446,7 +446,7 @@
     },
     {
       "effect_id": "pmid38005341_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:38005341 field=omitted_text quote_sha256=e24a9302a43f89bc89c08b43cbfb84949b9f9fff784dcb4fd9a21a6118885606]",
+      "source_figure_or_table": "Figure 14",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -502,7 +502,7 @@
     },
     {
       "effect_id": "pmid38005341_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:38005341 field=omitted_text quote_sha256=e24a9302a43f89bc89c08b43cbfb84949b9f9fff784dcb4fd9a21a6118885606]",
+      "source_figure_or_table": "Figure 14",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -566,7 +566,7 @@
       "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. Condition_2",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38005341 field=level_1_condition_and_effect quote_sha256=f065bc90a4abfdbe82eea08104b1e3890a9d5f6a0ecd7b6daecfe207c62b2338]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38005341 field=level_2_condition_and_effect quote_sha256=d54636c01edce0d8aaedf57e8e5cced3541d3b60e633017139668c9fbab0cef1]",
+      "level_2_condition_and_effect": "Ct + Et-OH (Figure 9).",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:38005341 field=mechanistic_explanation quote_sha256=46f4c5cfc93d5c178572dc9c24965fab3755b1fa53aeeec4ad0d1628339ad574]"

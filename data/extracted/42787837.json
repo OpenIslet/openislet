@@ -287,7 +287,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:42787837 field=omitted_text quote_sha256=66e5550833f46fb41648825b19e92c907b18b102166906f317b4b66c9cc7002a]"
+        "matched_lexicon_term": "insulin secretion"
       },
       "dossier_sha256": "c5f92f5f0c91fa3232d8cfc310d46a1ca8845d33a4ff0e94d35cd65df324d59a",
       "source_span": "fulltext_data_sections.figure_legends[0].caption[993:1148]|norm=exact",
@@ -305,7 +305,7 @@
     },
     {
       "effect_id": "pmid42787837_eff4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:42787837 field=omitted_text quote_sha256=0565fceba715022c0e85824b201086ecd54eb9eb38df8778c3686ed57b2148e0]",
+      "source_figure_or_table": "Figure 1",
       "focal_factor_X": "Study_Intervention",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -361,7 +361,7 @@
     },
     {
       "effect_id": "pmid42787837_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:42787837 field=omitted_text quote_sha256=b3d365f7b39223cd818bf36026fbdce2a793b72eb0856c16d0a3ffe50fc3cd23]",
+      "source_figure_or_table": "Figure 5",
       "focal_factor_X": "Study_Intervention",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Amyloid_hIAPP_or_Enterovirus_Protection | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -417,7 +417,7 @@
     },
     {
       "effect_id": "pmid42787837_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:42787837 field=omitted_text quote_sha256=b3d365f7b39223cd818bf36026fbdce2a793b72eb0856c16d0a3ffe50fc3cd23]",
+      "source_figure_or_table": "Figure 5",
       "focal_factor_X": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Amyloid_hIAPP_or_Enterovirus_Protection | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -473,7 +473,7 @@
     },
     {
       "effect_id": "pmid42787837_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:42787837 field=omitted_text quote_sha256=b3d365f7b39223cd818bf36026fbdce2a793b72eb0856c16d0a3ffe50fc3cd23]",
+      "source_figure_or_table": "Figure 5",
       "focal_factor_X": "Study_Intervention",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Amyloid_hIAPP_or_Enterovirus_Protection | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -529,7 +529,7 @@
     },
     {
       "effect_id": "pmid42787837_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:42787837 field=omitted_text quote_sha256=b3d365f7b39223cd818bf36026fbdce2a793b72eb0856c16d0a3ffe50fc3cd23]",
+      "source_figure_or_table": "Figure 5",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Amyloid_hIAPP_or_Enterovirus_Protection | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -577,7 +577,7 @@
         "intervention_label": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
         "comparator_label": null,
         "endpoint_name": "Amyloid_hIAPP_or_Enterovirus_Protection",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:42787837 field=omitted_text quote_sha256=ab8325238fed6fc7376aee450cb5fae3b7c19affd208876793b7f8cb03d423e2]",
+        "timepoint": "48 h",
         "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
@@ -587,7 +587,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid42787837_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:42787837 field=omitted_text quote_sha256=b3d365f7b39223cd818bf36026fbdce2a793b72eb0856c16d0a3ffe50fc3cd23]",
+      "source_figure_or_table": "Figure 5",
       "focal_factor_X": "Study_Intervention",
       "outcome_Y": "Amyloid_hIAPP_or_Enterovirus_Protection",
       "modifier_variable_Z": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack vs. Condition_2",
@@ -600,7 +600,7 @@
     },
     {
       "interaction_id": "pmid42787837_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:42787837 field=omitted_text quote_sha256=b3d365f7b39223cd818bf36026fbdce2a793b72eb0856c16d0a3ffe50fc3cd23]",
+      "source_figure_or_table": "Figure 5",
       "focal_factor_X": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
       "outcome_Y": "Amyloid_hIAPP_or_Enterovirus_Protection",
       "modifier_variable_Z": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack vs. BetaCell_Survival_and_Glycemic_Cure",
@@ -613,7 +613,7 @@
     },
     {
       "interaction_id": "pmid42787837_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:42787837 field=omitted_text quote_sha256=f5cad8a908aa757f2043449d15eca7f401541068b76a18c0f97546ac61b9e0bd]",
+      "source_figure_or_table": "Figure 6",
       "focal_factor_X": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
       "outcome_Y": "Amyloid_hIAPP_or_Enterovirus_Protection",
       "modifier_variable_Z": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack vs. MAFA_NKX6_1_PDX1_BetaCell_Identity",

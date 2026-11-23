@@ -389,7 +389,7 @@
     },
     {
       "effect_id": "pmid39266581_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39266581 field=omitted_text quote_sha256=7817791c5ed120bd5ee4749da73978290ffd90681768b87845ef98e751387b69]",
+      "source_figure_or_table": "Fig. 4",
       "focal_factor_X": "TNFAIP3 (Lentiviral_or_Transposon_OE — Gate4_Intrinsic_IFN_JAK_STAT_NFkB_Block)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=%]",
@@ -445,7 +445,7 @@
     },
     {
       "effect_id": "pmid39266581_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39266581 field=omitted_text quote_sha256=7817791c5ed120bd5ee4749da73978290ffd90681768b87845ef98e751387b69]",
+      "source_figure_or_table": "Fig. 4",
       "focal_factor_X": "TNFAIP3 (Lentiviral_or_Transposon_OE — Gate4_Intrinsic_IFN_JAK_STAT_NFkB_Block)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=%]",
@@ -501,7 +501,7 @@
     },
     {
       "effect_id": "pmid39266581_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39266581 field=omitted_text quote_sha256=d5e9076ff340c06615ceb16ebcfb1c14ecc362d87f08a6bd33c04a4cb7fc20cd]",
+      "source_figure_or_table": "Fig. 5",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -559,7 +559,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid39266581_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39266581 field=omitted_text quote_sha256=982a11b859cf4a9c062604083fdac0d3080127ba3e44b4c40b0c3f7b5e15e638]",
+      "source_figure_or_table": "Fig. 6",
       "focal_factor_X": "TNFAIP3 (Lentiviral_or_Transposon_OE — Gate4_Intrinsic_IFN_JAK_STAT_NFkB_Block)",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
@@ -604,7 +604,7 @@
       "modifier_variable_Z": "IFNg_IFNa_IL1b_TNFa_Cytokine_Challenge vs. Condition_2",
       "modifier_class": "Z2_Genetic_Background_Zygosity_or_Surface_MFI_Dose",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:39266581 field=level_1_condition_and_effect quote_sha256=666320d36e3af10b4d7d67d33c2ebb1adaeb500a9aefebf09626c19b1c5df86a]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:39266581 field=level_2_condition_and_effect quote_sha256=3e68bb2e39ed163caa3f61713fe89c2a63194e03bdeff7bb382fc53cb02e4ab2]",
+      "level_2_condition_and_effect": "others show transient behavior.",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:39266581 field=mechanistic_explanation quote_sha256=e0505561f03aba6eda4718425bf5f028ec6496d7e3eee5105d6d54ea5821d09c]"

@@ -318,7 +318,7 @@
     },
     {
       "effect_id": "pmid41372150_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41372150 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Metabolic_and_Biphasic_GSIS_Maturation | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
@@ -356,7 +356,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:41372150 field=omitted_text quote_sha256=66e5550833f46fb41648825b19e92c907b18b102166906f317b4b66c9cc7002a]"
+        "matched_lexicon_term": "insulin secretion"
       },
       "dossier_sha256": "b94ee85855f87406fc19b664d680cfa0c3881561d7102ec069b014a80eb52f6a",
       "source_span": "fulltext_data_sections.figure_legends[0].caption[925:1185]|norm=exact",
@@ -374,7 +374,7 @@
     },
     {
       "effect_id": "pmid41372150_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41372150 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -430,7 +430,7 @@
     },
     {
       "effect_id": "pmid41372150_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41372150 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "WNT4_ESRRG_Mitochondrial_OXPHOS_Switch",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -486,7 +486,7 @@
     },
     {
       "effect_id": "pmid41372150_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41372150 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "WNT4_ESRRG_Mitochondrial_OXPHOS_Switch",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Hypoxia_72h_or_Vascular_Inosculation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -544,7 +544,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid41372150_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41372150 field=omitted_text quote_sha256=6ab12f290e9cb76539bc4abbfe2b4838c77577eb0b3b1f5c47c72bb78aaf9788]",
+      "source_figure_or_table": "Fig. 3",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition contrast (MAFA_NKX6_1_PDX1_BetaCell_Identity)",
@@ -557,7 +557,7 @@
     },
     {
       "interaction_id": "pmid41372150_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41372150 field=omitted_text quote_sha256=6ab12f290e9cb76539bc4abbfe2b4838c77577eb0b3b1f5c47c72bb78aaf9788]",
+      "source_figure_or_table": "Fig. 3",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition contrast (MAFA_NKX6_1_PDX1_BetaCell_Identity)",
@@ -570,20 +570,20 @@
     },
     {
       "interaction_id": "pmid41372150_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41372150 field=omitted_text quote_sha256=6ab12f290e9cb76539bc4abbfe2b4838c77577eb0b3b1f5c47c72bb78aaf9788]",
+      "source_figure_or_table": "Fig. 3",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition contrast (MAFA_NKX6_1_PDX1_BetaCell_Identity)",
       "modifier_class": "Z1_Developmental_Timing_or_Stage",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:41372150 field=level_1_condition_and_effect quote_sha256=b0bc380718eedc0ae9f4e22585203a3409cecb0206a513ad5dcfdab0b1fb1335]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:41372150 field=level_2_condition_and_effect quote_sha256=20fabdde07e63ad4d442c1de36f2c47bfddf1fb9db5f522059c248aaad5aabfe]",
+      "level_2_condition_and_effect": "human islets.",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:41372150 field=mechanistic_explanation quote_sha256=c44e3f60f445d5c00ec44c42852a6cd3dbb20f0f2566d0e9099fba6ab50dff1e]"
     },
     {
       "interaction_id": "pmid41372150_int4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41372150 field=omitted_text quote_sha256=982a11b859cf4a9c062604083fdac0d3080127ba3e44b4c40b0c3f7b5e15e638]",
+      "source_figure_or_table": "Fig. 6",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition contrast (MAFA_NKX6_1_PDX1_BetaCell_Identity)",

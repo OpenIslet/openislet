@@ -501,7 +501,7 @@
     },
     {
       "effect_id": "pmid22442301_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:22442301 field=omitted_text quote_sha256=7f4d64f61fd2056bb2eec2c7e6bda2af2f2963da5a9ad9763011c3f949676701]",
+      "source_figure_or_table": "FIG. 7.",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",

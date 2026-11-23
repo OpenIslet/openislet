@@ -363,15 +363,15 @@
         "intervention_label": "WNT4_ESRRG_Mitochondrial_OXPHOS_Switch",
         "comparator_label": null,
         "endpoint_name": "Metabolic_and_Biphasic_GSIS_Maturation",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:40600980 field=omitted_text quote_sha256=afb197920de2d079ef85d7a2d89803f3fabe8b0fb93f5d0b8c6c788ce6586e36]",
+        "timepoint": "4 months",
         "population_or_model": "hESC (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:40600980 field=omitted_text quote_sha256=16837433443196b57199277283d81f9432152d4d389026deae3266b96bbe980d]",
+        "units": "months",
         "contrast_type": "right_censored_followup_observation"
       }
     },
     {
       "effect_id": "pmid40600980_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40600980 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: InVivo_Glycemic_Cure_and_Graft_Longevity | polarity=Lower_Is_Better_Hazard_Endpoint | orientation_sign=-1 | unit=qualitative_statement]",
@@ -427,7 +427,7 @@
     },
     {
       "effect_id": "pmid40600980_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40600980 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
@@ -483,7 +483,7 @@
     },
     {
       "effect_id": "pmid40600980_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40600980 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: InVivo_Glycemic_Cure_and_Graft_Longevity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",

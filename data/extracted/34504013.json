@@ -1,0 +1,338 @@
+{
+  "arms": [
+    {
+      "arm_id": "pmid34504013_arm1",
+      "arm_label": "Human islets in perfused ceMED (STZ Lewis rats)",
+      "challenge_conditions": [
+        {
+          "challenge_type": "Hypoxia_Ischemia_Challenge",
+          "duration_hours_or_days": null,
+          "effector_to_target_ratio": null,
+          "glucose_concentration_mM": null,
+          "oxygen_pct": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "gate1_substrate_and_differentiation": {
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "cell_line_id": null,
+        "cell_source_class": "Primary_Human_Islet",
+        "cluster_mean_diameter_um": null,
+        "donor_hla_profile": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_mafa_pos": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null,
+        "protocol_backbone": null,
+        "stage_small_molecules_and_factors": []
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "co_transplanted_cells_or_oxygen_source": null,
+        "encapsulation_or_biomaterial": "Convection-enhanced macroencapsulation device (ceMED)",
+        "in_dish_vascular_assembly": null,
+        "number_of_distributed_micro_pockets": null,
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "prevascularization_lead_time_days": null,
+        "staged_insertion_schedule": null,
+        "systemic_immunosuppression_regimen": "None (immunocompetent STZ Lewis rats)",
+        "transplant_site": "Subcutaneous_Prevascularized_or_Device"
+      },
+      "is_reference_control": false,
+      "quantitative_readouts": {
+        "cell_viability_pct_mean": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "early_72h_graft_survival_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "followup_duration_days": null,
+        "in_vivo_graft_survival_days_median": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "proinsulin_to_insulin_ratio": null,
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "time_to_vascular_inosculation_hours": null
+      },
+      "sample_size_n": null,
+      "sample_size_unit": null
+    },
+    {
+      "arm_id": "pmid34504013_arm2",
+      "arm_label": "Dual-EqC ceMED device (in vitro solute-release pilot, SI Appendix Fig. S7)",
+      "challenge_conditions": [
+        {
+          "challenge_type": "Hypoxia_Ischemia_Challenge",
+          "duration_hours_or_days": null,
+          "effector_to_target_ratio": null,
+          "glucose_concentration_mM": null,
+          "oxygen_pct": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "gate1_substrate_and_differentiation": {
+        "canonical_differentiation_stage_evaluated": null,
+        "cell_line_id": null,
+        "cell_source_class": "None_Acellular_Device_or_Scaffold",
+        "cluster_mean_diameter_um": null,
+        "donor_hla_profile": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_mafa_pos": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null,
+        "protocol_backbone": null,
+        "stage_small_molecules_and_factors": []
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "co_transplanted_cells_or_oxygen_source": null,
+        "encapsulation_or_biomaterial": "Dual-EqC convection-enhanced macrodevice",
+        "in_dish_vascular_assembly": null,
+        "number_of_distributed_micro_pockets": null,
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "prevascularization_lead_time_days": null,
+        "staged_insertion_schedule": null,
+        "systemic_immunosuppression_regimen": null,
+        "transplant_site": "InVitro_Only"
+      },
+      "is_reference_control": false,
+      "quantitative_readouts": {
+        "cell_viability_pct_mean": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "early_72h_graft_survival_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "followup_duration_days": null,
+        "in_vivo_graft_survival_days_median": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "proinsulin_to_insulin_ratio": null,
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "time_to_vascular_inosculation_hours": null
+      },
+      "sample_size_n": null,
+      "sample_size_unit": null
+    },
+    {
+      "arm_id": "pmid34504013_arm3",
+      "arm_label": "Single-EqC ceMED reference comparator (in vitro solute-release pilot, SI Appendix Fig. S7)",
+      "challenge_conditions": [
+        {
+          "challenge_type": "Hypoxia_Ischemia_Challenge",
+          "duration_hours_or_days": null,
+          "effector_to_target_ratio": null,
+          "glucose_concentration_mM": null,
+          "oxygen_pct": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "gate1_substrate_and_differentiation": {
+        "canonical_differentiation_stage_evaluated": null,
+        "cell_line_id": null,
+        "cell_source_class": "None_Acellular_Device_or_Scaffold",
+        "cluster_mean_diameter_um": null,
+        "donor_hla_profile": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_mafa_pos": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null,
+        "protocol_backbone": null,
+        "stage_small_molecules_and_factors": []
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "co_transplanted_cells_or_oxygen_source": null,
+        "encapsulation_or_biomaterial": "Single-EqC convection-enhanced macrodevice comparator",
+        "in_dish_vascular_assembly": null,
+        "number_of_distributed_micro_pockets": null,
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "prevascularization_lead_time_days": null,
+        "staged_insertion_schedule": null,
+        "systemic_immunosuppression_regimen": null,
+        "transplant_site": "InVitro_Only"
+      },
+      "is_reference_control": true,
+      "quantitative_readouts": {
+        "cell_viability_pct_mean": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "early_72h_graft_survival_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "followup_duration_days": null,
+        "in_vivo_graft_survival_days_median": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "proinsulin_to_insulin_ratio": null,
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "time_to_vascular_inosculation_hours": null
+      },
+      "sample_size_n": null,
+      "sample_size_unit": null
+    }
+  ],
+  "atomic_effects": [
+    {
+      "censoring_note": "Not_Applicable",
+      "comparator_X0": "Active-flow baseline Day 17 (same 4 Lewis rats)",
+      "comparator_arm_id": null,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "day 17 to day 24",
+        "Z2_genetic_background_and_allelic_dose": "Specified in study arm",
+        "Z3_immune_effector_and_stressor_pathway": "Specified in study arm",
+        "Z4_metabolic_and_glucose_load_state": "Standard assay state",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Specified in study arm",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Specified in study arm",
+        "Z7_promoter_and_epigenetic_context": "Specified in study arm",
+        "Z8_species_age_and_sex_context": "Immunocompetent STZ Lewis rat human-islet xenograft"
+      },
+      "contrast_metadata": {
+        "comparator_label": null,
+        "contrast_type": "qualitative_statement_only",
+        "endpoint_name": "Hypoxia_72h_or_Vascular_Inosculation",
+        "intervention_label": "Stopping convective flow at Day 18 (within-animal longitudinal trajectory)",
+        "population_or_model": "Immunocompetent STZ Lewis rat human-islet xenograft",
+        "timepoint": "day 17 to day 24",
+        "units": "qualitative_statement"
+      },
+      "control_mean": null,
+      "control_n": null,
+      "control_sd_or_sem": null,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "dossier_sha256": "a6789cad10d47d555fe52416380271b58bf5009c44292d738ad06ae7a48da07a",
+      "effect_direction": "Deleterious_or_Impaired",
+      "effect_id": "pmid34504013_eff1_flow_stop_rebound",
+      "endpoint_polarity_registry": {
+        "matched_lexicon_term": "blood glucose",
+        "orientation_sign": -1,
+        "polarity_class": "Lower_Is_Better_Hazard_Endpoint"
+      },
+      "focal_arm_id": "pmid34504013_arm1",
+      "focal_factor_X": "Stopping convective flow at Day 18 (within-animal longitudinal trajectory)",
+      "log_response_ratio_or_smd": null,
+      "measurement_unit": "qualitative_statement",
+      "n_unit": "unspecified_in_source",
+      "outcome_domain": "Hypoxia_72h_or_Vascular_Inosculation",
+      "outcome_variable_Y": "[Endpoint: Longitudinal glycemic rebound after pump cessation despite external vessels]",
+      "p_value": null,
+      "p_value_bound": null,
+      "p_value_relation": null,
+      "quote_source_dossier_pmid": "34504013",
+      "secretome_or_differentiation_penalty_observed": false,
+      "source_figure_or_table": "Fig. 5D & Results (within-animal pump stop)",
+      "source_span": "fulltext_data_sections.results_paragraphs[15][320:470]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "treatment_mean": null,
+      "treatment_n": null,
+      "treatment_sd_or_sem": null,
+      "verbatim_evidence_quote": "Interestingly, when flow was stopped in ceMED transplanted rats, blood glucose increased from 277 ± 44.1 (day 17) to 449.0 ± 134.2 (day 24) (Fig. 5D)."
+    },
+    {
+      "censoring_note": "Not_Applicable",
+      "comparator_X0": "Single-EqC ceMED comparator (in vitro solute-release pilot, SI Appendix Fig. S7)",
+      "comparator_arm_id": "pmid34504013_arm3",
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Reported assay window",
+        "Z2_genetic_background_and_allelic_dose": "Specified in study arm",
+        "Z3_immune_effector_and_stressor_pathway": "Assay_Instrument_Calibration_or_Biophysical_Method",
+        "Z4_metabolic_and_glucose_load_state": "Standard assay state",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Specified in study arm",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Specified in study arm",
+        "Z7_promoter_and_epigenetic_context": "Specified in study arm",
+        "Z8_species_age_and_sex_context": "In vitro acellular solute-release device pilot (SI Appendix Fig. S7)"
+      },
+      "contrast_metadata": {
+        "comparator_label": "Single-EqC ceMED comparator",
+        "contrast_type": "between_arm_comparative_descriptive",
+        "endpoint_name": "Assay_Instrument_Calibration_or_Biophysical_Method",
+        "intervention_label": "Dual-EqC ceMED (secondary downstream equilibrium chamber)",
+        "population_or_model": "In vitro acellular solute-release device pilot (SI Appendix Fig. S7)",
+        "timepoint": null,
+        "units": "qualitative_statement"
+      },
+      "control_mean": null,
+      "control_n": null,
+      "control_sd_or_sem": null,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "dossier_sha256": "a6789cad10d47d555fe52416380271b58bf5009c44292d738ad06ae7a48da07a",
+      "effect_direction": "Protective_or_Improved",
+      "effect_id": "pmid34504013_eff2_dual_eqc_dextran_tracer_release",
+      "effect_notes": "SI Appendix Fig. S7 quantifies measured in vitro fluorescent dextran tracer release (not insulin) comparing dual-EqC vs single-EqC ceMED layouts while withdrawing outflow.",
+      "endpoint_polarity_registry": {
+        "matched_lexicon_term": "solute_release",
+        "orientation_sign": 1,
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint"
+      },
+      "focal_arm_id": "pmid34504013_arm2",
+      "focal_factor_X": "Dual-EqC ceMED (secondary downstream equilibrium chamber)",
+      "log_response_ratio_or_smd": null,
+      "measurement_unit": "qualitative_statement",
+      "n_unit": "unspecified_in_source",
+      "outcome_domain": "Assay_Instrument_Calibration_or_Biophysical_Method",
+      "outcome_variable_Y": "[Endpoint: Measured in vitro fluorescent dextran tracer release from second EqC while removing outflow (dual-EqC vs single-EqC, SI Appendix Fig. S7)]",
+      "p_value": null,
+      "p_value_bound": null,
+      "p_value_relation": null,
+      "quote_source_dossier_pmid": "34504013",
+      "secretome_or_differentiation_penalty_observed": false,
+      "source_figure_or_table": "Results & SI Appendix Fig. S7 (in vitro dual-EqC vs single-EqC solute-release pilot)",
+      "source_span": "fulltext_data_sections.results_paragraphs[10][756:1037]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "treatment_mean": null,
+      "treatment_n": null,
+      "treatment_sd_or_sem": null,
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:34504013 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=23c231af180ee3363bcb7c416141b9a95c9267c15c2243e1534544d18e015728]"
+    }
+  ],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "high_throughput_screen_hits": [],
+    "regime_thresholds": [],
+    "residual_failure_and_escape_vectors": []
+  },
+  "effect_modifier_interactions": [],
+  "schema_version": "0.2.0",
+  "screening_decision": {
+    "exclusion_reason": null,
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null
+  },
+  "study_metadata": {
+    "doi": "10.1073/pnas.2101258118",
+    "first_author": "Yang K",
+    "geo_accessions": [],
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse",
+    "nct_id": null,
+    "pillars_covered": [
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "pmcid": "PMC8449352",
+    "pmid": "34504013",
+    "pub_year": 2021,
+    "senior_author": "Karp JM",
+    "source_text_type": "FullText_XML_or_PDF",
+    "superseded_by_pmid": null,
+    "title": "A therapeutic convection-enhanced macroencapsulation device for enhancing β cell viability and insulin secretion."
+  }
+}

@@ -279,7 +279,7 @@ def run_acceptance_suite(out_path: Path) -> int:
         len(gy_entries) == 10
         and len(offgrid_guards) >= 10
         and len(set(offgrid_card_ids)) == len(offgrid_card_ids)
-        and {"GY-011", "GY-012", "GY-013", "GY-014", "GY-015", "GY-016", "GY-017", "GY-018", "GY-019", "GY-020", "GY-021", "GY-022", "GY-023", "GY-024", "GY-025"}.issubset(set(offgrid_card_ids))
+        and {"GY-011", "GY-012", "GY-013", "GY-014", "GY-015", "GY-016", "GY-017", "GY-018", "GY-019", "GY-020", "GY-021", "GY-022", "GY-023", "GY-024", "GY-025", "GY-026", "GY-027"}.issubset(set(offgrid_card_ids))
         and all(g.get("severity_level") in ("BLOCK", "WARN") and bool(g.get("pmids")) for g in offgrid_guards)
     )
     fired_counts = Counter(
@@ -748,7 +748,7 @@ def run_acceptance_suite(out_path: Path) -> int:
                 )
                 for e in d.get("atomic_effects", []):
                     oy = str(e.get("outcome_variable_Y") or "")
-                    if not oy.startswith("[Endpoint:"):
+                    if not oy.startswith("[Endpoint:") and not oy.startswith("[REDACTED_NON_OA_EXCERPT:"):
                         unredacted_chars += len(oy)
                 for em in d.get("effect_modifier_interactions", []):
                     for mfield in ("level_1_condition_and_effect", "level_2_condition_and_effect", "mechanistic_explanation"):

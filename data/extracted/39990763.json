@@ -174,7 +174,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:39990763 field=verbatim_evidence_quote genes=NONE pert=KO_LOF quote_sha256=1c247d101b7afc38e5f17f7cf284565c3e24319b1861d2ed5eebb15dd7488063]",
+      "verbatim_evidence_quote": "RT-qPCR analyses of C) PCK1 and D) G6PC1 in ZHX3 KO HepG2 lines (n = 3).",
       "focal_arm_id": "pmid39990763_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,
@@ -204,7 +204,7 @@
     },
     {
       "effect_id": "pmid39990763_eff3",
-      "source_figure_or_table": "Fig. 1.",
+      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39990763 field=omitted_text quote_sha256=cf6e11b4d20a5e769b345c5d9f6882b69d21334cfd1a1111574a0547e8001743]",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -260,7 +260,7 @@
     },
     {
       "effect_id": "pmid39990763_eff4",
-      "source_figure_or_table": "Fig. 1.",
+      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39990763 field=omitted_text quote_sha256=cf6e11b4d20a5e769b345c5d9f6882b69d21334cfd1a1111574a0547e8001743]",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -316,7 +316,7 @@
     },
     {
       "effect_id": "pmid39990763_eff5",
-      "source_figure_or_table": "Fig. 1.",
+      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39990763 field=omitted_text quote_sha256=cf6e11b4d20a5e769b345c5d9f6882b69d21334cfd1a1111574a0547e8001743]",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -372,7 +372,7 @@
     },
     {
       "effect_id": "pmid39990763_eff6",
-      "source_figure_or_table": "Fig. 1.",
+      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39990763 field=omitted_text quote_sha256=cf6e11b4d20a5e769b345c5d9f6882b69d21334cfd1a1111574a0547e8001743]",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -428,7 +428,7 @@
     },
     {
       "effect_id": "pmid39990763_eff7",
-      "source_figure_or_table": "Fig. 2.",
+      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39990763 field=omitted_text quote_sha256=2dda3a94576d223bd075e7cd2b3de82cf2e145df636a3a06db5ba23faee92698]",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -484,7 +484,7 @@
     },
     {
       "effect_id": "pmid39990763_eff8",
-      "source_figure_or_table": "Fig. 2.",
+      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39990763 field=omitted_text quote_sha256=2dda3a94576d223bd075e7cd2b3de82cf2e145df636a3a06db5ba23faee92698]",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -548,7 +548,7 @@
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:39990763 field=level_1_condition_and_effect quote_sha256=308a851710f38c5f94d06aabd31c571f79bd1fbac27a1ddb35cd25b62216506d]",
-      "level_2_condition_and_effect": "the Empty control (Fig.",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:39990763 field=level_2_condition_and_effect quote_sha256=f1437366b0b4c8ad918a2ea103402d179014bd059a529ec88c6d561e66de0235]",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:39990763 field=mechanistic_explanation quote_sha256=55822c67c93f470f61af37e80e0a4f46ea21da7490219bcdbdfac6a2c7063408]"

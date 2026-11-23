@@ -342,7 +342,7 @@
     },
     {
       "effect_id": "pmid40832357_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40832357 field=omitted_text quote_sha256=2dda3a94576d223bd075e7cd2b3de82cf2e145df636a3a06db5ba23faee92698]",
+      "source_figure_or_table": "Fig. 2.",
       "focal_factor_X": "PVR_TIGIT_MICA_MICB_NKG2D_Axis",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Surface_HLA_or_Transgene_Expression_Level | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",

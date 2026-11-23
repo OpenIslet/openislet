@@ -489,7 +489,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:41680134 field=verbatim_evidence_quote genes=RIPK1 pert=NONE quote_sha256=12cc8a546019cdbe20835998221e8f57ffe3b2ea2d04ee8237cb48873dbb5515]",
+      "verbatim_evidence_quote": "D Cell death was quantified at 24 h, and F representative images are shown.",
       "focal_arm_id": "pmid41680134_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,

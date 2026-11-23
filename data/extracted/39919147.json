@@ -573,7 +573,7 @@
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
-      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:39919147 field=level_1_condition_and_effect quote_sha256=e6a5570a62bff34f04ebff580bb772f59c264eca2545ba3845fec90ccf5ea60f]",
+      "level_1_condition_and_effect": "This creates two minor complications to be aware of: first,",
       "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:39919147 field=level_2_condition_and_effect quote_sha256=488c8132c7b56433049ddf0b735d453c18417cb44fec3f6fc26006fb2cd58041]",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,

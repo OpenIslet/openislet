@@ -258,7 +258,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
         "orientation_sign": -1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:19336676 field=omitted_text quote_sha256=a8d34d42aeff603765213ae709399cc6a5ef2251f3cf54eb14d392f1a8a7b69f]"
+        "matched_lexicon_term": "apoptosis"
       },
       "dossier_sha256": "9882f675572a7796db801995088233fc846a91143d49d3d4b75f12899dab2e87",
       "source_span": "fulltext_data_sections.figure_legends[3].caption[235:340]|norm=exact",
@@ -268,7 +268,7 @@
         "intervention_label": "BetaCell_Survival_and_Glycemic_Cure",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "24 h",
+        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:19336676 field=omitted_text quote_sha256=a00380040f74dadfe46f1a1018854f9c41147b89779151be0d08afed757b2538]",
         "population_or_model": "Rodent_Beta_Cell_Line_NIT1_MIN6_INS1 (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"

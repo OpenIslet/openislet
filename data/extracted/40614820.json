@@ -510,7 +510,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:40614820 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=deade90f69d9e2d066566ff6b0e6ed998457341fd15dc9a4a66834c8176fdf08]",
+      "verbatim_evidence_quote": "D) Proposed model for how loss of PAX4 disrupts human islet development.",
       "focal_arm_id": "pmid40614820_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,
@@ -555,7 +555,7 @@
     },
     {
       "interaction_id": "pmid40614820_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40614820 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
       "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. Condition_2",
@@ -568,7 +568,7 @@
     },
     {
       "interaction_id": "pmid40614820_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40614820 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "outcome_Y": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
       "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. Condition_2",
@@ -581,7 +581,7 @@
     },
     {
       "interaction_id": "pmid40614820_int4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40614820 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. Condition_2",

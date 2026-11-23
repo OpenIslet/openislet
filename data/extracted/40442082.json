@@ -206,7 +206,7 @@
         "intervention_label": "Biphasic_GSIS_and_Calcium_Coupling",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:40442082 field=omitted_text quote_sha256=b63f1f48f79dc3c0319a846b9df813b98c4882df4d8b885b7f74d4ad237cf24f]",
+        "timepoint": "60 min",
         "population_or_model": "iPSC_healthy_donor (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
         "units": "pmol",
         "contrast_type": "right_censored_followup_observation"
@@ -552,7 +552,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid40442082_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40442082 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Regime dependency on MAFA_NKX6_1_PDX1_BetaCell_Identity",
@@ -565,7 +565,7 @@
     },
     {
       "interaction_id": "pmid40442082_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40442082 field=omitted_text quote_sha256=ed7ba0018c84d2325e3872d63876f7f7211de61f576538a6c32bb2bbdff83bc3]",
+      "source_figure_or_table": "Fig. 2",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition contrast (MAFA_NKX6_1_PDX1_BetaCell_Identity)",

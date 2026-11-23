@@ -563,7 +563,7 @@
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition contrast (CXCL10_CXCR3_Chemokine_Recruitment)",
       "modifier_class": "Z1_Developmental_Timing_or_Stage",
-      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:33042009 field=level_1_condition_and_effect quote_sha256=c36badfdc8e6826c0d9aee9b3fcb5970a80274a6f9c24c7b0bcdf5d874536e61]",
+      "level_1_condition_and_effect": "In contrast, in new-onset diabetic NOD mice (12- to 21-week-old) the expression of CXCL10 was higher",
       "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:33042009 field=level_2_condition_and_effect quote_sha256=18e9d296e48f20807bdaa61fc77d4a51adf7494ae9467e17b787957807a0202f]",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,

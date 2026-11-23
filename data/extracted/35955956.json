@@ -546,7 +546,7 @@
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "modifier_class": "Z1_Developmental_Timing_or_Stage",
-      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:35955956 field=level_1_condition_and_effect quote_sha256=2c32522b2f00954de185705619e9270384c46b58896da9bec38bfcdfeddafdba]",
+      "level_1_condition_and_effect": "(A) Abnormal organoids generated from MNDINSi001-A (mutant) cells",
       "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:35955956 field=level_2_condition_and_effect quote_sha256=008aafd358103e38ffb4c5af93e70d1fb8307bd222a2ab2e07ec51d1931680fe]",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
@@ -560,7 +560,7 @@
       "modifier_variable_Z": "BetaCell_Survival_and_Glycemic_Cure vs. Condition_2",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:35955956 field=level_1_condition_and_effect quote_sha256=7c82b095daf59fc4b0a38bbf7cfe3f1b92435ca1cd1bbca351d34ae5fb687436]",
-      "level_2_condition_and_effect": "electroporation (data not shown).",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:35955956 field=level_2_condition_and_effect quote_sha256=66abb6f7c29dae723b2f678bb2ab0894035d60e7e514a889c2235741e1104db3]",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:35955956 field=mechanistic_explanation quote_sha256=2ab73e65c525d2542ff4d7089e98196f922899594164d162013804ab42207819]"

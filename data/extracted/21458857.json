@@ -229,7 +229,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:21458857 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=2e9228996a110564c7ee731695874a66ec8af5a0afa084968871000c78af7cc1]",
+      "verbatim_evidence_quote": "Protection of PLG scaffold islet allografts was associated with several mechanisms of immune regulation.",
       "focal_arm_id": "pmid21458857_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,

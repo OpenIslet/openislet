@@ -468,7 +468,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
         "orientation_sign": -1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:39055936 field=omitted_text quote_sha256=27d276d50e373019a2a72a5bc22763a358c1cdb8ebc872322dbcdfe5c3b4eef7]"
+        "matched_lexicon_term": "apoptotic"
       },
       "dossier_sha256": "40f3b5213d1521e522865c39f0edc670d90a8ad77d13ab2b7c51dcb887f16d46",
       "source_span": "fulltext_data_sections.figure_legends[5].caption[963:1082]|norm=exact",
@@ -544,7 +544,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid39055936_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39055936 field=omitted_text quote_sha256=0fb418bc6b224cad46820d15c23eadb4ce2fc19a718992213ef4bc57591ed9cf]",
+      "source_figure_or_table": "Figure 4",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Biphasic_GSIS_and_Calcium_Coupling",

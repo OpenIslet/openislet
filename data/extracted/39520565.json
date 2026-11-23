@@ -562,7 +562,7 @@
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
       "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
-      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:39520565 field=level_1_condition_and_effect quote_sha256=33abb2c8338264e07e35dfe480d2ac717e05fb9b1d82ee3c654b2391fbbf8202]",
+      "level_1_condition_and_effect": "DNA-sequencing patterns were",
       "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:39520565 field=level_2_condition_and_effect quote_sha256=e1955af4dd2070c7982807308e15ab68cfbb9c740c925f5e7f9ebdf5e516261b]",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,

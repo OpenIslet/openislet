@@ -333,7 +333,7 @@
     },
     {
       "effect_id": "pmid31164864_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31164864 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -389,7 +389,7 @@
     },
     {
       "effect_id": "pmid31164864_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31164864 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "TXNIP (Lentiviral_or_Transposon_OE — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -445,7 +445,7 @@
     },
     {
       "effect_id": "pmid31164864_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31164864 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "TXNIP (Lentiviral_or_Transposon_OE — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -501,7 +501,7 @@
     },
     {
       "effect_id": "pmid31164864_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31164864 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "TXNIP (Lentiviral_or_Transposon_OE — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -559,12 +559,12 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid31164864_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31164864 field=omitted_text quote_sha256=0fb418bc6b224cad46820d15c23eadb4ce2fc19a718992213ef4bc57591ed9cf]",
+      "source_figure_or_table": "Figure 4",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Biphasic_GSIS_and_Calcium_Coupling",
       "modifier_class": "Z4_Metabolic_Glucose_or_ER_Secretory_Load",
-      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:31164864 field=level_1_condition_and_effect quote_sha256=00e46a283ab5c4c1f758cca0f05a1170c0efb52a4d91c1cd1cdff1d6a90efb4c]",
+      "level_1_condition_and_effect": "*p < 0.05, ***p < 0.001 when",
       "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:31164864 field=level_2_condition_and_effect quote_sha256=e59ca594885621c31512365b9ad3cfca361d4c2d5bb2f5bf1bae698d9ec35537]",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,

@@ -521,7 +521,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:19492079 field=omitted_text quote_sha256=66e5550833f46fb41648825b19e92c907b18b102166906f317b4b66c9cc7002a]"
+        "matched_lexicon_term": "insulin secretion"
       },
       "dossier_sha256": "76eea53db9c5ffb43c4bc1f8e4a05a823a820c4425d824d31ef6f533b826541b",
       "source_span": "fulltext_data_sections.results_paragraphs[2][463:738]|norm=exact",
@@ -541,7 +541,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid19492079_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:19492079 field=omitted_text quote_sha256=f5cad8a908aa757f2043449d15eca7f401541068b76a18c0f97546ac61b9e0bd]",
+      "source_figure_or_table": "Figure 6",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. Condition_2",
@@ -554,13 +554,13 @@
     },
     {
       "interaction_id": "pmid19492079_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:19492079 field=omitted_text quote_sha256=ef000543bc3239e1ea4d155d9f7b14dd6fea42d41a0fa6a23032d99bc28ab6db]",
+      "source_figure_or_table": "Figure 7",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:19492079 field=level_1_condition_and_effect quote_sha256=c2e2bd6a6371995996ea1b7b0f09fc5d2c1ed7c0c751e2af0b8d243c633cd4a4]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:19492079 field=level_2_condition_and_effect quote_sha256=85899dd2104c9f6a5a0e918cc656e4607e1a052d8bc24daad74a13b29863d929]",
+      "level_2_condition_and_effect": "mismatch controls.",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:19492079 field=mechanistic_explanation quote_sha256=510a5fa20a6dd719b76723b7337915e4bdb2d860fce045101c003627a9f04738]"

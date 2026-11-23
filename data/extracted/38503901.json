@@ -316,7 +316,7 @@
     },
     {
       "effect_id": "pmid38503901_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:38503901 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "Alpha_GCG_Delta_SST_Paracrine_CounterRegulation",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
@@ -354,7 +354,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:38503901 field=omitted_text quote_sha256=479d20f15996d1e0e4e9f89fb8780b91f339ff5d938892921ad269b8abd7a5d4]"
+        "matched_lexicon_term": "viability"
       },
       "dossier_sha256": "7b8786a4dab02310834ecfad031011a8c7edbf7d342f4c7f02c15dc1ba9fbdea",
       "source_span": "fulltext_data_sections.figure_legends[0].caption[919:1130]|norm=exact",
@@ -364,7 +364,7 @@
         "intervention_label": "Alpha_GCG_Delta_SST_Paracrine_CounterRegulation",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:38503901 field=omitted_text quote_sha256=d3d01135921642f901e68fca88214c28f65bbe57226c329b5b4f75ba5a878b94]",
+        "timepoint": "2 and 3 days",
         "population_or_model": "Rodent_Beta_Cell_Line_NIT1_MIN6_INS1 (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
@@ -372,7 +372,7 @@
     },
     {
       "effect_id": "pmid38503901_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:38503901 field=omitted_text quote_sha256=ed7ba0018c84d2325e3872d63876f7f7211de61f576538a6c32bb2bbdff83bc3]",
+      "source_figure_or_table": "Fig. 2",
       "focal_factor_X": "Alpha_GCG_Delta_SST_Paracrine_CounterRegulation",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Alpha_Delta_Paracrine_CounterRegulation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -428,7 +428,7 @@
     },
     {
       "effect_id": "pmid38503901_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:38503901 field=omitted_text quote_sha256=ed7ba0018c84d2325e3872d63876f7f7211de61f576538a6c32bb2bbdff83bc3]",
+      "source_figure_or_table": "Fig. 2",
       "focal_factor_X": "Alpha_GCG_Delta_SST_Paracrine_CounterRegulation",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Alpha_Delta_Paracrine_CounterRegulation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -484,7 +484,7 @@
     },
     {
       "effect_id": "pmid38503901_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:38503901 field=omitted_text quote_sha256=6ab12f290e9cb76539bc4abbfe2b4838c77577eb0b3b1f5c47c72bb78aaf9788]",
+      "source_figure_or_table": "Fig. 3",
       "focal_factor_X": "Alpha_GCG_Delta_SST_Paracrine_CounterRegulation",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Alpha_Delta_Paracrine_CounterRegulation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -532,7 +532,7 @@
         "intervention_label": "Alpha_GCG_Delta_SST_Paracrine_CounterRegulation",
         "comparator_label": null,
         "endpoint_name": "Alpha_Delta_Paracrine_CounterRegulation",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:38503901 field=omitted_text quote_sha256=a00380040f74dadfe46f1a1018854f9c41147b89779151be0d08afed757b2538]",
+        "timepoint": "24 h",
         "population_or_model": "Rodent_Beta_Cell_Line_NIT1_MIN6_INS1 (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"

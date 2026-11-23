@@ -448,7 +448,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:30269996 field=verbatim_evidence_quote genes=CD274 pert=NONE quote_sha256=aa9c0cc4bd3ae2e5bb161722d0783247391842c6e40985419347c7951e674d2b]",
+      "verbatim_evidence_quote": "(n = 4, *** p < .001, ANOVA with Bonferroni correction).(K) Immunostaining of PDL1 (green), IRF1 (red), insulin (light blue) and nuclei (dapi; dark blue) in the islets of an individual with T1D.",
       "focal_arm_id": "pmid30269996_arm1",
       "comparator_arm_id": null,
       "p_value_relation": "<",

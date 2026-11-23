@@ -117,7 +117,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:39744389 field=verbatim_evidence_quote genes=NONE pert=KO_LOF quote_sha256=b19a677d62175719cc73edaa4e8ba42d20760e1f711706b0ba6cfc2302548730]",
+      "verbatim_evidence_quote": "EndoC-βH1 cells were transfected with one control siRNA (siCTL) or by the combination of 3 different specific siRNAs targeting METTL3 (A–C) (n = 10) or one siRNA targeting WTAP (D–F) (n = 4) and infected with CVB1 at MOI 0.01.",
       "focal_arm_id": "pmid39744389_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,

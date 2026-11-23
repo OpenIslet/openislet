@@ -371,7 +371,7 @@
     },
     {
       "effect_id": "pmid36139776_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36139776 field=omitted_text quote_sha256=b3d365f7b39223cd818bf36026fbdce2a793b72eb0856c16d0a3ffe50fc3cd23]",
+      "source_figure_or_table": "Figure 5",
       "focal_factor_X": "IFNg_IFNa_IL1b_TNFa_Cytokine_Challenge",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -427,7 +427,7 @@
     },
     {
       "effect_id": "pmid36139776_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36139776 field=omitted_text quote_sha256=f5cad8a908aa757f2043449d15eca7f401541068b76a18c0f97546ac61b9e0bd]",
+      "source_figure_or_table": "Figure 6",
       "focal_factor_X": "TNFAIP3_A20_NFkB_JNK_Brake",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -483,7 +483,7 @@
     },
     {
       "effect_id": "pmid36139776_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36139776 field=omitted_text quote_sha256=f5cad8a908aa757f2043449d15eca7f401541068b76a18c0f97546ac61b9e0bd]",
+      "source_figure_or_table": "Figure 6",
       "focal_factor_X": "TNFAIP3_A20_NFkB_JNK_Brake",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -560,7 +560,7 @@
       "modifier_variable_Z": "Biphasic_GSIS_and_Calcium_Coupling vs. Condition_2",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36139776 field=level_1_condition_and_effect quote_sha256=24e239c759be0e4fd87c91c2818a810d648865ca8542dc1d82d99b40d1a2887d]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36139776 field=level_2_condition_and_effect quote_sha256=bbdc7f4a422a5259f3f42938591264f36ef40379e1cbcc909157d323094d9cc5]",
+      "level_2_condition_and_effect": "the db/db group (Figure 1b).",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:36139776 field=mechanistic_explanation quote_sha256=e45cac0f86096124ff8b19ea13ce449702a2dd0426334be3c64d17c913882e34]"

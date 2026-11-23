@@ -175,7 +175,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:41826481 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=df1779de969ee207e401284deeaaffd7347e4144d6f1ac828192490be012254f]",
+      "verbatim_evidence_quote": "Sample sizes: Hi-C (n = 3 biologically independent experiments), HiChIP (n = 2), ChIP-seq (n = 2).",
       "focal_arm_id": "pmid41826481_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,

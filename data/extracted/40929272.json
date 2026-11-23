@@ -602,7 +602,7 @@
     },
     {
       "interaction_id": "pmid40929272_int4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40929272 field=omitted_text quote_sha256=448521a316334c62f71cdb8a4da818af542948a7acf994fb77047e9795bbe010]",
+      "source_figure_or_table": "Fig. 3.",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. Condition_2",

@@ -426,7 +426,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
         "orientation_sign": -1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:41951603 field=omitted_text quote_sha256=bc2a590ae5558a39182d795d4ac8e6024a4bcb20a505ce82bd625c826531f6ea]"
+        "matched_lexicon_term": "cell death"
       },
       "dossier_sha256": "9a427802838bb4ee22dd7278d93fb1955e15eb2f4d3d8b5c9ee327b60859f2dd",
       "source_span": "fulltext_data_sections.figure_legends[0].caption[510:660]|norm=exact",
@@ -437,7 +437,7 @@
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": "24 h",
         "population_or_model": "Primary_Human_Islet (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:41951603 field=omitted_text quote_sha256=aaa9402664f1a41f40ebbc52c9993eb66aeb366602958fdfaa283b71e64db123]",
+        "units": "h",
         "contrast_type": "single_arm_descriptive_only"
       },
       "p_value_relation": null,
@@ -447,7 +447,7 @@
     },
     {
       "effect_id": "pmid41951603_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41951603 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "RIPK1 functional evaluation — Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Isogenic wild-type / untreated baseline control in study",
       "outcome_variable_Y": "[Endpoint: Hypoxia_72h_or_Vascular_Inosculation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -503,7 +503,7 @@
     },
     {
       "effect_id": "pmid41951603_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41951603 field=omitted_text quote_sha256=ed7ba0018c84d2325e3872d63876f7f7211de61f576538a6c32bb2bbdff83bc3]",
+      "source_figure_or_table": "Fig. 2",
       "focal_factor_X": "RIPK1 functional evaluation — CD55_CD59_THBD_Complement_IBMIR_Axis",
       "comparator_X0": "Isogenic wild-type / untreated baseline control in study",
       "outcome_variable_Y": "[Endpoint: Complement_or_IBMIR_Coagulation_Block | polarity=Lower_Is_Better_Hazard_Endpoint | orientation_sign=-1 | unit=qualitative_statement]",
@@ -538,7 +538,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
         "orientation_sign": -1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:41951603 field=omitted_text quote_sha256=a8d34d42aeff603765213ae709399cc6a5ef2251f3cf54eb14d392f1a8a7b69f]"
+        "matched_lexicon_term": "apoptosis"
       },
       "dossier_sha256": "9a427802838bb4ee22dd7278d93fb1955e15eb2f4d3d8b5c9ee327b60859f2dd",
       "source_span": "fulltext_data_sections.figure_legends[1].caption[204:539]|norm=exact",

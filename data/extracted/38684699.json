@@ -93,7 +93,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid38684699_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:38684699 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Biphasic_GSIS_and_Calcium_Coupling vs. Condition_2",

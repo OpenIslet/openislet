@@ -240,7 +240,7 @@
     },
     {
       "effect_id": "pmid34305820_eff3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:34305820 field=omitted_text quote_sha256=0fb418bc6b224cad46820d15c23eadb4ce2fc19a718992213ef4bc57591ed9cf]",
+      "source_figure_or_table": "Figure 4",
       "focal_factor_X": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -296,7 +296,7 @@
     },
     {
       "effect_id": "pmid34305820_eff4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:34305820 field=omitted_text quote_sha256=0fb418bc6b224cad46820d15c23eadb4ce2fc19a718992213ef4bc57591ed9cf]",
+      "source_figure_or_table": "Figure 4",
       "focal_factor_X": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -578,7 +578,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid34305820_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:34305820 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
@@ -591,7 +591,7 @@
     },
     {
       "interaction_id": "pmid34305820_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:34305820 field=omitted_text quote_sha256=0fb418bc6b224cad46820d15c23eadb4ce2fc19a718992213ef4bc57591ed9cf]",
+      "source_figure_or_table": "Figure 4",
       "focal_factor_X": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
       "outcome_Y": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
       "modifier_variable_Z": "PD_L1_CD274_Checkpoint vs. Condition_2",

@@ -547,8 +547,8 @@
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
-      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:30930126 field=level_1_condition_and_effect quote_sha256=95732779bfb100453f8b698fdc9c2ad9160759a4626a888be7c3eacc769c377c]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:30930126 field=level_2_condition_and_effect quote_sha256=5c1f36e21d27a35ae76040b5b5eaba6bb0fb2aab390dd9fa7e3cce29956df481]",
+      "level_1_condition_and_effect": "Red depicts increased expression in PPs",
+      "level_2_condition_and_effect": "orange depicts increased expression in iPSCs.",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:30930126 field=mechanistic_explanation quote_sha256=673ca53a2e378e5f21c5cc81ae010e21772638111e6da57035def49e0e9e30fd]"
@@ -581,7 +581,7 @@
     },
     {
       "interaction_id": "pmid30930126_int4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:30930126 field=omitted_text quote_sha256=32df29f9a28cf0a0927771672b2470447f5aaeb7caa2dde9a393c5d1765f6bbb]",
+      "source_figure_or_table": "Figure 8",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. MAFA_NKX6_1_PDX1_BetaCell_Identity",

@@ -176,7 +176,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:34352411 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=ea574e1d141f49c0687dba53ebcb5ce34951b1c437d4f03c75e16c8d6258e50b]",
+      "verbatim_evidence_quote": "The full list of the 50 most significantly enriched motifs is shown in Suppl Figure 4.",
       "focal_arm_id": "pmid34352411_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,
@@ -262,7 +262,7 @@
     },
     {
       "effect_id": "pmid34352411_eff4",
-      "source_figure_or_table": "Supplemental Figure 4",
+      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:34352411 field=omitted_text quote_sha256=d4fa758159ab8ccf747c0be9598647e274a88bfbc2aec6990ca3332ebfeb1aa4]",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",

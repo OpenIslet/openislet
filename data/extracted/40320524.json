@@ -54,13 +54,13 @@
           "ensembl_gene_id": "ENSG00000265972",
           "sub_molecular_coordinate": {
             "region_class": "Whole_Gene_Coding_CDS",
-            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:40320524 field=exact_variant_or_swap_description mod=CRISPR_Cas9_KO genes=TXNIP quote_sha256=83fd76d86095eb3dacb0a44c37f34fc8a3f129c23b36af8115956e5e0b62a3cd]"
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:40320524 field=exact_variant_or_swap_description mod=CRISPR_Cas12a_Multiplex_KO genes=TXNIP quote_sha256=83fd76d86095eb3dacb0a44c37f34fc8a3f129c23b36af8115956e5e0b62a3cd]"
           },
           "functional_gate": "Gate4_Intrinsic_ER_Stress_UPR_Shield",
           "target_autoantibody_or_tcr_evaded": [
             "None_Not_Antigen_Specific"
           ],
-          "edit_modality": "CRISPR_Cas9_KO",
+          "edit_modality": "CRISPR_Cas12a_Multiplex_KO",
           "promoter_or_locus_context": "Not_Applicable_KO",
           "zygosity_or_allelic_state": null,
           "protein_or_surface_expression_fold_vs_wt": null,
@@ -68,7 +68,7 @@
         }
       ],
       "gate5_engraftment_niche": {
-        "transplant_site": "Intramuscular_Forearm_or_Rectus",
+        "transplant_site": "Kidney_Capsule",
         "prevascularization_lead_time_days": null,
         "in_dish_vascular_assembly": "None_Avascular_Islet",
         "oxygen_bridge_72h_carrier": "None",
@@ -121,7 +121,7 @@
     {
       "effect_id": "pmid40320524_eff1",
       "source_figure_or_table": "Fig. 1",
-      "focal_factor_X": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+      "focal_factor_X": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
       "outcome_domain": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
@@ -142,7 +142,7 @@
         "Z3_immune_effector_and_stressor_pathway": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
-        "Z6_microenvironment_oxygen_and_vascular_niche": "Intramuscular_Forearm_or_Rectus",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Kidney_Capsule",
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
@@ -165,7 +165,7 @@
       "quote_source_dossier_pmid": "40320524",
       "statistic_type": "qualitative_statement_only",
       "contrast_metadata": {
-        "intervention_label": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+        "intervention_label": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
         "comparator_label": null,
         "endpoint_name": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
         "timepoint": null,
@@ -177,7 +177,7 @@
     {
       "effect_id": "pmid40320524_eff2",
       "source_figure_or_table": "Fig. 1",
-      "focal_factor_X": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+      "focal_factor_X": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
       "outcome_domain": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
@@ -198,7 +198,7 @@
         "Z3_immune_effector_and_stressor_pathway": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
-        "Z6_microenvironment_oxygen_and_vascular_niche": "Intramuscular_Forearm_or_Rectus",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Kidney_Capsule",
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
@@ -221,7 +221,7 @@
       "quote_source_dossier_pmid": "40320524",
       "statistic_type": "qualitative_statement_only",
       "contrast_metadata": {
-        "intervention_label": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+        "intervention_label": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
         "comparator_label": null,
         "endpoint_name": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
         "timepoint": null,
@@ -233,7 +233,7 @@
     {
       "effect_id": "pmid40320524_eff3",
       "source_figure_or_table": "Fig. 2",
-      "focal_factor_X": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+      "focal_factor_X": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
       "outcome_domain": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
@@ -254,7 +254,7 @@
         "Z3_immune_effector_and_stressor_pathway": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
-        "Z6_microenvironment_oxygen_and_vascular_niche": "Intramuscular_Forearm_or_Rectus",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Kidney_Capsule",
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
@@ -277,7 +277,7 @@
       "quote_source_dossier_pmid": "40320524",
       "statistic_type": "qualitative_statement_only",
       "contrast_metadata": {
-        "intervention_label": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+        "intervention_label": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
         "comparator_label": null,
         "endpoint_name": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
         "timepoint": null,
@@ -289,7 +289,7 @@
     {
       "effect_id": "pmid40320524_eff4",
       "source_figure_or_table": "Fig. 2",
-      "focal_factor_X": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+      "focal_factor_X": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
       "outcome_domain": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
@@ -310,7 +310,7 @@
         "Z3_immune_effector_and_stressor_pathway": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
-        "Z6_microenvironment_oxygen_and_vascular_niche": "Intramuscular_Forearm_or_Rectus",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Kidney_Capsule",
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
@@ -333,7 +333,7 @@
       "quote_source_dossier_pmid": "40320524",
       "statistic_type": "qualitative_statement_only",
       "contrast_metadata": {
-        "intervention_label": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+        "intervention_label": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
         "comparator_label": null,
         "endpoint_name": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
         "timepoint": null,
@@ -345,7 +345,7 @@
     {
       "effect_id": "pmid40320524_eff5",
       "source_figure_or_table": "Fig. 2",
-      "focal_factor_X": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+      "focal_factor_X": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Lower_Is_Better_Hazard_Endpoint | orientation_sign=-1 | unit=qualitative_statement]",
       "outcome_domain": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
@@ -366,7 +366,7 @@
         "Z3_immune_effector_and_stressor_pathway": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
-        "Z6_microenvironment_oxygen_and_vascular_niche": "Intramuscular_Forearm_or_Rectus",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Kidney_Capsule",
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
@@ -389,7 +389,7 @@
       "quote_source_dossier_pmid": "40320524",
       "statistic_type": "qualitative_statement_only",
       "contrast_metadata": {
-        "intervention_label": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+        "intervention_label": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
         "comparator_label": null,
         "endpoint_name": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
         "timepoint": null,
@@ -401,7 +401,7 @@
     {
       "effect_id": "pmid40320524_eff6",
       "source_figure_or_table": "Fig. 2",
-      "focal_factor_X": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+      "focal_factor_X": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
       "outcome_domain": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
@@ -422,7 +422,7 @@
         "Z3_immune_effector_and_stressor_pathway": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
-        "Z6_microenvironment_oxygen_and_vascular_niche": "Intramuscular_Forearm_or_Rectus",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Kidney_Capsule",
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
@@ -445,7 +445,7 @@
       "quote_source_dossier_pmid": "40320524",
       "statistic_type": "qualitative_statement_only",
       "contrast_metadata": {
-        "intervention_label": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+        "intervention_label": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
         "comparator_label": null,
         "endpoint_name": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
         "timepoint": null,
@@ -457,7 +457,7 @@
     {
       "effect_id": "pmid40320524_eff7",
       "source_figure_or_table": "Fig. 3",
-      "focal_factor_X": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+      "focal_factor_X": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
       "outcome_domain": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
@@ -478,7 +478,7 @@
         "Z3_immune_effector_and_stressor_pathway": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
-        "Z6_microenvironment_oxygen_and_vascular_niche": "Intramuscular_Forearm_or_Rectus",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Kidney_Capsule",
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
@@ -501,7 +501,7 @@
       "quote_source_dossier_pmid": "40320524",
       "statistic_type": "qualitative_statement_only",
       "contrast_metadata": {
-        "intervention_label": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+        "intervention_label": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
         "comparator_label": null,
         "endpoint_name": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
         "timepoint": null,
@@ -513,7 +513,7 @@
     {
       "effect_id": "pmid40320524_eff8",
       "source_figure_or_table": "Fig. 4",
-      "focal_factor_X": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+      "focal_factor_X": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
       "outcome_domain": "Differentiation_Yield_and_Lineage_Purity",
@@ -534,7 +534,7 @@
         "Z3_immune_effector_and_stressor_pathway": "Differentiation_Yield_and_Lineage_Purity",
         "Z4_metabolic_and_glucose_load_state": "Study assay condition",
         "Z5_cytoarchitecture_and_cluster_diameter": "3D islet / SC-islet cluster or monolayer",
-        "Z6_microenvironment_oxygen_and_vascular_niche": "Intramuscular_Forearm_or_Rectus",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Kidney_Capsule",
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
@@ -557,7 +557,7 @@
       "quote_source_dossier_pmid": "40320524",
       "statistic_type": "qualitative_statement_only",
       "contrast_metadata": {
-        "intervention_label": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+        "intervention_label": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": null,
@@ -571,7 +571,7 @@
     {
       "interaction_id": "pmid40320524_int1",
       "source_figure_or_table": "Fig. 2",
-      "focal_factor_X": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+      "focal_factor_X": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "outcome_Y": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
       "modifier_variable_Z": "Condition contrast (ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP)",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
@@ -584,7 +584,7 @@
     {
       "interaction_id": "pmid40320524_int2",
       "source_figure_or_table": "Fig. 3",
-      "focal_factor_X": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+      "focal_factor_X": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "outcome_Y": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
       "modifier_variable_Z": "Regime dependency on ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
       "modifier_class": "Z1_Developmental_Timing_or_Stage",
@@ -610,7 +610,7 @@
     {
       "interaction_id": "pmid40320524_int4",
       "source_figure_or_table": "Results para 3",
-      "focal_factor_X": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+      "focal_factor_X": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "outcome_Y": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
       "modifier_variable_Z": "Regime dependency on ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
       "modifier_class": "Z1_Developmental_Timing_or_Stage",
@@ -667,19 +667,19 @@
     "collateral_and_pleiotropic_findings": [],
     "residual_failure_and_escape_vectors": [
       {
-        "arm_or_intervention": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+        "arm_or_intervention": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
         "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:40320524 field=omitted_text quote_sha256=ff2141c790d3f36f2dcb1af914117fc4a4dfb767890fd12711640785d340ae38]",
         "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:40320524 field=omitted_text quote_sha256=55d7237ef572038b313f2b8454ec141458708d073b68199edb82dce8b0ed9468]",
         "complementary_lever_needed": "Empirical head-to-head comparison required"
       },
       {
-        "arm_or_intervention": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+        "arm_or_intervention": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
         "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:40320524 field=omitted_text quote_sha256=9a48ddcf5231042f7aebc3c1a325d1b0464ca34bcb4e4b4e3c2d5e8d16b907ee]",
         "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:40320524 field=omitted_text quote_sha256=c93b0436e7bedbe37ad7d45cd70d7b4563564a192af34b5793c00f02caea4a69]",
         "complementary_lever_needed": "Empirical head-to-head comparison required"
       },
       {
-        "arm_or_intervention": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
+        "arm_or_intervention": "TXNIP (CRISPR_Cas12a_Multiplex_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
         "residual_loss_or_limitation": "[REDACTED_NON_OA_EXCERPT: see PMID:40320524 field=omitted_text quote_sha256=01c762f7a4cf5718e1fe71974bba7e4347ace64e49156c4e1513b19e0af4a615]",
         "escape_mechanism_identified": "[REDACTED_NON_OA_EXCERPT: see PMID:40320524 field=omitted_text quote_sha256=74abb559303c2fdddeac48456b8e9caabe4f394fe6eff8fd8860f5bd905142c5]",
         "complementary_lever_needed": "Empirical head-to-head comparison required"

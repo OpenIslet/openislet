@@ -591,7 +591,7 @@
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:37396167 field=level_1_condition_and_effect quote_sha256=f9a359f916dcbf587a76a7a61bcec1aab482b36a378592870f8f84268a84d3ef]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:37396167 field=level_2_condition_and_effect quote_sha256=4a92b0c5f46f4df28e57a3bb0a5597f079b2b3f28ecd09c9780a43e326f40863]",
+      "level_2_condition_and_effect": "WT mice (AUC; 290.5 ± 31.3 vs.",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:37396167 field=mechanistic_explanation quote_sha256=6939c6d8efbd58371aabb7680cbf9b8b5dde0bf3248a73bf701c86106ac91b89]"

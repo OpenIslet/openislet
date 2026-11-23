@@ -316,7 +316,7 @@
     },
     {
       "effect_id": "pmid40160725_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40160725 field=omitted_text quote_sha256=0fb418bc6b224cad46820d15c23eadb4ce2fc19a718992213ef4bc57591ed9cf]",
+      "source_figure_or_table": "Figure 4",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -372,7 +372,7 @@
     },
     {
       "effect_id": "pmid40160725_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40160725 field=omitted_text quote_sha256=0fb418bc6b224cad46820d15c23eadb4ce2fc19a718992213ef4bc57591ed9cf]",
+      "source_figure_or_table": "Figure 4",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
@@ -410,7 +410,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:40160725 field=omitted_text quote_sha256=c21cf7a2d7e7584a07afc703a9b021cbace07f8dae43f3309bdd1fc4f855a2fb]"
+        "matched_lexicon_term": "c-peptide"
       },
       "dossier_sha256": "ccd47c70e7435fc9bb055a251bbea3579173ef7641e13066b5f01b4de9010ce6",
       "source_span": "fulltext_data_sections.figure_legends[3].caption[437:620]|norm=exact",
@@ -428,7 +428,7 @@
     },
     {
       "effect_id": "pmid40160725_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40160725 field=omitted_text quote_sha256=0fb418bc6b224cad46820d15c23eadb4ce2fc19a718992213ef4bc57591ed9cf]",
+      "source_figure_or_table": "Figure 4",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
@@ -466,7 +466,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:40160725 field=omitted_text quote_sha256=c21cf7a2d7e7584a07afc703a9b021cbace07f8dae43f3309bdd1fc4f855a2fb]"
+        "matched_lexicon_term": "c-peptide"
       },
       "dossier_sha256": "ccd47c70e7435fc9bb055a251bbea3579173ef7641e13066b5f01b4de9010ce6",
       "source_span": "fulltext_data_sections.figure_legends[3].caption[843:1035]|norm=exact",
@@ -484,7 +484,7 @@
     },
     {
       "effect_id": "pmid40160725_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40160725 field=omitted_text quote_sha256=b3d365f7b39223cd818bf36026fbdce2a793b72eb0856c16d0a3ffe50fc3cd23]",
+      "source_figure_or_table": "Figure 5",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",

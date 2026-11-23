@@ -175,7 +175,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:40072094 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=3c14ee5ef173dd50dba8a4d64a6a7d3fe45662cc47387c6b7dba6e5958259132]",
+      "verbatim_evidence_quote": "(C) Cell viability at day 2 after cluster formation as determined by TUNEL assay (n = 3).",
       "focal_arm_id": "pmid40072094_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,
@@ -355,7 +355,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "normoglycemia"
+        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:40072094 field=omitted_text quote_sha256=4e0cc36bf064ab66c2766b793f4753aa80eff84fb881f281fa17db5863ae11f6]"
       },
       "dossier_sha256": "6a729a9ce3a1c8e319919b42466dddfcc8ea50edc39c1603667563cb88c6053f",
       "source_span": "fulltext_data_sections.figure_legends[1].caption[244:353]|norm=exact",
@@ -549,7 +549,7 @@
       "modifier_variable_Z": "Hypoxia_72h_Ischemia_and_O2_Scaffolds vs. Condition_2",
       "modifier_class": "Z6_Oxygen_Tension_Vascular_Site_or_ECM_Niche",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:40072094 field=level_1_condition_and_effect quote_sha256=d8b906aee279a8e342ce2a7d8725e343019a205da36d094fcd96b265629e2660]",
-      "level_2_condition_and_effect": "REPIs alone.",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:40072094 field=level_2_condition_and_effect quote_sha256=294f07cce889251d7514c8f059561b78a676ea067b180b45b7fe4adce2ad4dcb]",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:40072094 field=mechanistic_explanation quote_sha256=c430b8f987c1c10da54d401f202a05cfc81982bc333e8e314cec42ee812dbae6]"

@@ -341,7 +341,7 @@
     },
     {
       "effect_id": "pmid29844327_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:29844327 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "CD274 (CRISPR_Cas9_KO — Gate2_Checkpoint_T_Cell_Inhibition)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Surface_HLA_or_Transgene_Expression_Level | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -397,7 +397,7 @@
     },
     {
       "effect_id": "pmid29844327_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:29844327 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "CD274 (CRISPR_Cas9_KO — Gate2_Checkpoint_T_Cell_Inhibition)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Surface_HLA_or_Transgene_Expression_Level | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -453,7 +453,7 @@
     },
     {
       "effect_id": "pmid29844327_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:29844327 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -509,7 +509,7 @@
     },
     {
       "effect_id": "pmid29844327_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:29844327 field=omitted_text quote_sha256=0fb418bc6b224cad46820d15c23eadb4ce2fc19a718992213ef4bc57591ed9cf]",
+      "source_figure_or_table": "Figure 4",
       "focal_factor_X": "CD274 (CRISPR_Cas9_KO — Gate2_Checkpoint_T_Cell_Inhibition)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -567,7 +567,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid29844327_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:29844327 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Biphasic_GSIS_and_Calcium_Coupling",
@@ -580,7 +580,7 @@
     },
     {
       "interaction_id": "pmid29844327_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:29844327 field=omitted_text quote_sha256=0fb418bc6b224cad46820d15c23eadb4ce2fc19a718992213ef4bc57591ed9cf]",
+      "source_figure_or_table": "Figure 4",
       "focal_factor_X": "CD274 (CRISPR_Cas9_KO — Gate2_Checkpoint_T_Cell_Inhibition)",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
@@ -593,7 +593,7 @@
     },
     {
       "interaction_id": "pmid29844327_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:29844327 field=omitted_text quote_sha256=f5cad8a908aa757f2043449d15eca7f401541068b76a18c0f97546ac61b9e0bd]",
+      "source_figure_or_table": "Figure 6",
       "focal_factor_X": "CD274 (CRISPR_Cas9_KO — Gate2_Checkpoint_T_Cell_Inhibition)",
       "outcome_Y": "Autoimmune_TCR_or_AutoAb_Evasion",
       "modifier_variable_Z": "PD_L1_CD274_Checkpoint vs. Condition_2",
@@ -606,7 +606,7 @@
     },
     {
       "interaction_id": "pmid29844327_int4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:29844327 field=omitted_text quote_sha256=f5cad8a908aa757f2043449d15eca7f401541068b76a18c0f97546ac61b9e0bd]",
+      "source_figure_or_table": "Figure 6",
       "focal_factor_X": "CD274 (CRISPR_Cas9_KO — Gate2_Checkpoint_T_Cell_Inhibition)",
       "outcome_Y": "Surface_HLA_or_Transgene_Expression_Level",
       "modifier_variable_Z": "PD_L1_CD274_Checkpoint vs. Condition_2",

@@ -532,7 +532,7 @@
         "intervention_label": "Biphasic_GSIS_and_Calcium_Coupling",
         "comparator_label": null,
         "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:40644632 field=omitted_text quote_sha256=23ea917fa18dd8fcdedcba4f778ae2174991465323394e94db94d5f9b85e745d]",
+        "timepoint": "7 wk",
         "population_or_model": "hESC (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"

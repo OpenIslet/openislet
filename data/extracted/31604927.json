@@ -417,7 +417,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:31604927 field=verbatim_evidence_quote genes=CHGA pert=NONE quote_sha256=e93d1629bf879fb2115befb0b5873ae97220e5b4f02fa2bb59f2407a6ab2ab91]",
+      "verbatim_evidence_quote": "control whole pancreata (n = 3 samples each genotype).",
       "focal_arm_id": "pmid31604927_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,

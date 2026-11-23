@@ -241,7 +241,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
         "orientation_sign": -1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:37809993 field=omitted_text quote_sha256=bcd3c113b8678e0374dea1cf05f0c79521d90d3a8c403d7efd56462d2e9fd35d]"
+        "matched_lexicon_term": "blood glucose"
       },
       "dossier_sha256": "b5fbb15ec60b99769435e55d24882c805d5346bf78d98d809d5b35cb7abeef24",
       "source_span": "fulltext_data_sections.results_paragraphs[0][1197:1360]|norm=exact",
@@ -270,7 +270,7 @@
       "control_mean": null,
       "control_sd_or_sem": null,
       "control_n": null,
-      "measurement_unit": "[REDACTED_NON_OA_EXCERPT: see PMID:37809993 field=omitted_text quote_sha256=eb0d2375b51859a3212007c5a52de4b476022b3e9d45df6242497c4378631cba]",
+      "measurement_unit": "weeks",
       "log_response_ratio_or_smd": null,
       "p_value": null,
       "effect_direction": "Protective_or_Improved",
@@ -297,7 +297,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:37809993 field=omitted_text quote_sha256=c21cf7a2d7e7584a07afc703a9b021cbace07f8dae43f3309bdd1fc4f855a2fb]"
+        "matched_lexicon_term": "c-peptide"
       },
       "dossier_sha256": "b5fbb15ec60b99769435e55d24882c805d5346bf78d98d809d5b35cb7abeef24",
       "source_span": "fulltext_data_sections.results_paragraphs[0][1361:1611]|norm=exact",
@@ -309,7 +309,7 @@
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:37809993 field=omitted_text quote_sha256=fc52302764758e98a29f355bd4f493fba87b46d2cca97249808d87164a5f7cfa]",
         "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:37809993 field=omitted_text quote_sha256=eb0d2375b51859a3212007c5a52de4b476022b3e9d45df6242497c4378631cba]",
+        "units": "weeks",
         "contrast_type": "right_censored_followup_observation"
       }
     },
@@ -438,7 +438,7 @@
       "control_mean": null,
       "control_sd_or_sem": null,
       "control_n": null,
-      "measurement_unit": "[REDACTED_NON_OA_EXCERPT: see PMID:37809993 field=omitted_text quote_sha256=eb0d2375b51859a3212007c5a52de4b476022b3e9d45df6242497c4378631cba]",
+      "measurement_unit": "weeks",
       "log_response_ratio_or_smd": null,
       "p_value": null,
       "effect_direction": "Deleterious_or_Impaired",
@@ -477,7 +477,7 @@
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:37809993 field=omitted_text quote_sha256=5d1d13e5a51e59173447c467c272ff8bcc4479fc969ef4bcd3c820ddd354a273]",
         "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:37809993 field=omitted_text quote_sha256=eb0d2375b51859a3212007c5a52de4b476022b3e9d45df6242497c4378631cba]",
+        "units": "weeks",
         "contrast_type": "right_censored_followup_observation"
       }
     },

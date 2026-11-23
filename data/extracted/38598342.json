@@ -149,7 +149,7 @@
     },
     {
       "effect_id": "pmid38598342_eff2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:38598342 field=omitted_text quote_sha256=cf6e11b4d20a5e769b345c5d9f6882b69d21334cfd1a1111574a0547e8001743]",
+      "source_figure_or_table": "Fig. 1.",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Metabolic_and_Biphasic_GSIS_Maturation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",

@@ -446,7 +446,7 @@
     },
     {
       "effect_id": "pmid41710881_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41710881 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "RNLS (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -502,7 +502,7 @@
     },
     {
       "effect_id": "pmid41710881_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41710881 field=omitted_text quote_sha256=f5cad8a908aa757f2043449d15eca7f401541068b76a18c0f97546ac61b9e0bd]",
+      "source_figure_or_table": "Figure 6",
       "focal_factor_X": "RNLS (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -560,7 +560,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid41710881_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41710881 field=omitted_text quote_sha256=0565fceba715022c0e85824b201086ecd54eb9eb38df8778c3686ed57b2148e0]",
+      "source_figure_or_table": "Figure 1",
       "focal_factor_X": "RNLS (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
@@ -573,20 +573,20 @@
     },
     {
       "interaction_id": "pmid41710881_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41710881 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "RNLS (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "outcome_Y": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
       "modifier_variable_Z": "RNLS_Glycolytic_NADPH_GSH_Redox_Shield vs. Condition_2",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:41710881 field=level_1_condition_and_effect quote_sha256=afdf7dc415860fb9958ba274613dbc7e6146ecefcc0bd38a142996aaff364802]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:41710881 field=level_2_condition_and_effect quote_sha256=9928cd2b515c53d7c49761d38295e409b2d1e90223bde769890783bad6a5723e]",
+      "level_2_condition_and_effect": "NT lanes show only full–length amplicons.",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:41710881 field=mechanistic_explanation quote_sha256=8ac0a7d7d5ee69978374a45c620b6273298a3f1c13a0ed65c5de9c3db06efb8d]"
     },
     {
       "interaction_id": "pmid41710881_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41710881 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "RNLS (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "outcome_Y": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
       "modifier_variable_Z": "RNLS_Glycolytic_NADPH_GSH_Redox_Shield vs. Condition_2",
@@ -599,7 +599,7 @@
     },
     {
       "interaction_id": "pmid41710881_int4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41710881 field=omitted_text quote_sha256=f5cad8a908aa757f2043449d15eca7f401541068b76a18c0f97546ac61b9e0bd]",
+      "source_figure_or_table": "Figure 6",
       "focal_factor_X": "RNLS (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "outcome_Y": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
       "modifier_variable_Z": "Biphasic_GSIS_and_Calcium_Coupling vs. RNLS_Glycolytic_NADPH_GSH_Redox_Shield",

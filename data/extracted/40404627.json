@@ -436,7 +436,7 @@
     },
     {
       "effect_id": "pmid40404627_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40404627 field=omitted_text quote_sha256=982a11b859cf4a9c062604083fdac0d3080127ba3e44b4c40b0c3f7b5e15e638]",
+      "source_figure_or_table": "Fig. 6",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Hypoxia_72h_or_Vascular_Inosculation | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
@@ -474,7 +474,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:40404627 field=omitted_text quote_sha256=a5b15f661af9251f213fdebaeb2022cd7a9670c8dc252624672651d7bb7a07f6]"
+        "matched_lexicon_term": "gsis"
       },
       "dossier_sha256": "8a8a237f98d5312452d9b42ab6f24c329ce109cc80514b6d4f164d295ceaa03a",
       "source_span": "fulltext_data_sections.figure_legends[5].caption[1846:2074]|norm=exact",
@@ -484,7 +484,7 @@
         "intervention_label": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
         "comparator_label": null,
         "endpoint_name": "Hypoxia_72h_or_Vascular_Inosculation",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:40404627 field=omitted_text quote_sha256=c8cc522340b984b57109fd8b120419170b4301baead519e2a8fd65736b9ddd41]",
+        "timepoint": "1 week",
         "population_or_model": "hESC (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
@@ -492,7 +492,7 @@
     },
     {
       "effect_id": "pmid40404627_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40404627 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Hypoxia_72h_or_Vascular_Inosculation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -540,7 +540,7 @@
         "intervention_label": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
         "comparator_label": null,
         "endpoint_name": "Hypoxia_72h_or_Vascular_Inosculation",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:40404627 field=omitted_text quote_sha256=302aceaf374d912449dbf8fec85a46dddd8a197cb1b0933e9af196dedf2e68c9]",
+        "timepoint": "4 weeks",
         "population_or_model": "hESC (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
@@ -550,7 +550,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid40404627_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40404627 field=omitted_text quote_sha256=6ab12f290e9cb76539bc4abbfe2b4838c77577eb0b3b1f5c47c72bb78aaf9788]",
+      "source_figure_or_table": "Fig. 3",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Hypoxia_72h_or_Vascular_Inosculation",
       "modifier_variable_Z": "Condition contrast (MAFA_NKX6_1_PDX1_BetaCell_Identity)",
@@ -563,7 +563,7 @@
     },
     {
       "interaction_id": "pmid40404627_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40404627 field=omitted_text quote_sha256=6ab12f290e9cb76539bc4abbfe2b4838c77577eb0b3b1f5c47c72bb78aaf9788]",
+      "source_figure_or_table": "Fig. 3",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
       "modifier_variable_Z": "Condition contrast (MAFA_NKX6_1_PDX1_BetaCell_Identity)",
@@ -576,7 +576,7 @@
     },
     {
       "interaction_id": "pmid40404627_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40404627 field=omitted_text quote_sha256=7817791c5ed120bd5ee4749da73978290ffd90681768b87845ef98e751387b69]",
+      "source_figure_or_table": "Fig. 4",
       "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Regime dependency on Experimental_Context",
@@ -589,13 +589,13 @@
     },
     {
       "interaction_id": "pmid40404627_int4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40404627 field=omitted_text quote_sha256=d5e9076ff340c06615ceb16ebcfb1c14ecc362d87f08a6bd33c04a4cb7fc20cd]",
+      "source_figure_or_table": "Fig. 5",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
       "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. Condition_2",
       "modifier_class": "Z6_Oxygen_Tension_Vascular_Site_or_ECM_Niche",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:40404627 field=level_1_condition_and_effect quote_sha256=843a136ebcc43b02b72e14fa275dfdc6584752ce07e00125903f8c3f19e5b4e6]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:40404627 field=level_2_condition_and_effect quote_sha256=963741a8d65b0a88ee7e6ca344de774c9ee8284c098c0054dcfcf7245e14c19f]",
+      "level_2_condition_and_effect": "that in high oxygen.",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:40404627 field=mechanistic_explanation quote_sha256=3165e8db7477b0bcac14e3c7dbfcc7130196a11a9baa6f216896f36fb39dac62]"

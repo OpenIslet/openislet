@@ -241,7 +241,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:14703462 field=omitted_text quote_sha256=4032ee4038775060258f8e68061309aed9bfdea5b574f24324ab7f065202d052]"
+        "matched_lexicon_term": "survival"
       },
       "dossier_sha256": "2f778f9bbbe6da3259304cf9d32a1d467452d7a9441dfd9eb7de1413f8d92786",
       "source_span": "abstract[1489:1723]|norm=exact",
@@ -251,7 +251,7 @@
         "intervention_label": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:14703462 field=omitted_text quote_sha256=1de3af85d7447294df9089f7e2ac6556ca668cd37ee552bf2cb58d6516915045]",
+        "timepoint": "3.1 days",
         "population_or_model": "Rodent_Primary_Islet (Tier_4_Rodent_or_Xenogeneic_Only)",
         "units": "days",
         "contrast_type": "right_censored_followup_observation"
@@ -297,7 +297,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:14703462 field=omitted_text quote_sha256=4032ee4038775060258f8e68061309aed9bfdea5b574f24324ab7f065202d052]"
+        "matched_lexicon_term": "survival"
       },
       "dossier_sha256": "2f778f9bbbe6da3259304cf9d32a1d467452d7a9441dfd9eb7de1413f8d92786",
       "source_span": "abstract[0:137]|norm=exact",

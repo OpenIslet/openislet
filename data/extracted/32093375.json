@@ -548,14 +548,14 @@
       "modifier_variable_Z": "CXADR_IFIH1_Enterovirus_CVB_Infection vs. Condition_2",
       "modifier_class": "Z4_Metabolic_Glucose_or_ER_Secretory_Load",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:32093375 field=level_1_condition_and_effect quote_sha256=55006be01d5a432222cff24575632879eea8c9e70384141ac1f59ba840d5d0f4]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:32093375 field=level_2_condition_and_effect quote_sha256=04105e16cadad67fdb9061337049b212bf3da108a2120567fdc9e57b07757408]",
+      "level_2_condition_and_effect": "uninfected cells (left panel).",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:32093375 field=mechanistic_explanation quote_sha256=a1ddfb173351d6f53a9cd3a8af2378d2de25863c804e322955b157c5bdadf1ef]"
     },
     {
       "interaction_id": "pmid32093375_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:32093375 field=omitted_text quote_sha256=b3d365f7b39223cd818bf36026fbdce2a793b72eb0856c16d0a3ffe50fc3cd23]",
+      "source_figure_or_table": "Figure 5",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",

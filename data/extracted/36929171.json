@@ -364,7 +364,7 @@
         "intervention_label": "Biphasic_GSIS_and_Calcium_Coupling",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:36929171 field=omitted_text quote_sha256=b384092d3dfc60de7df9ff4a065cd462a9b30287702c4d9066410ac75bfce5df]",
+        "timepoint": "400 days",
         "population_or_model": "Primary_Human_Islet (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
@@ -372,7 +372,7 @@
     },
     {
       "effect_id": "pmid36929171_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36929171 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -428,7 +428,7 @@
     },
     {
       "effect_id": "pmid36929171_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36929171 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Hypoxia_72h_or_Vascular_Inosculation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=days]",
@@ -439,7 +439,7 @@
       "control_mean": null,
       "control_sd_or_sem": null,
       "control_n": null,
-      "measurement_unit": "[REDACTED_NON_OA_EXCERPT: see PMID:36929171 field=omitted_text quote_sha256=ab51004e9d71a485f160f655fb9e72bcdef8f5ca4178b26938b49471456fd11c]",
+      "measurement_unit": "days",
       "log_response_ratio_or_smd": null,
       "p_value": null,
       "effect_direction": "Protective_or_Improved",
@@ -476,9 +476,9 @@
         "intervention_label": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
         "comparator_label": null,
         "endpoint_name": "Hypoxia_72h_or_Vascular_Inosculation",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:36929171 field=omitted_text quote_sha256=7f920bb639c9307589b65e5f639391d65dcb86b0611ac47f58f7c769215326ee]",
+        "timepoint": "7 days",
         "population_or_model": "Primary_Human_Islet (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:36929171 field=omitted_text quote_sha256=ab51004e9d71a485f160f655fb9e72bcdef8f5ca4178b26938b49471456fd11c]",
+        "units": "days",
         "contrast_type": "right_censored_followup_observation"
       }
     },
@@ -532,7 +532,7 @@
         "intervention_label": "Biphasic_GSIS_and_Calcium_Coupling",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:36929171 field=omitted_text quote_sha256=b384092d3dfc60de7df9ff4a065cd462a9b30287702c4d9066410ac75bfce5df]",
+        "timepoint": "400 days",
         "population_or_model": "Primary_Human_Islet (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"

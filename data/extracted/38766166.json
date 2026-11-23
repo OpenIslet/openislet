@@ -458,7 +458,7 @@
     },
     {
       "effect_id": "pmid38766166_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:38766166 field=omitted_text quote_sha256=eb488f83ba20491a131882a7c5f6046f0e07dcd5ef190527e068b90037235887]",
+      "source_figure_or_table": "Figure 5.",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -620,7 +620,7 @@
         "endpoint_name": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
         "timepoint": "2 h",
         "population_or_model": "iPSC_healthy_donor (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:38766166 field=omitted_text quote_sha256=aaa9402664f1a41f40ebbc52c9993eb66aeb366602958fdfaa283b71e64db123]",
+        "units": "h",
         "contrast_type": "right_censored_followup_observation"
       }
     }

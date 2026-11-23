@@ -119,18 +119,278 @@ def _validate_graph_references(doc: dict, path: str) -> None:
         if any(not isinstance(value, str) or not value for value in identifiers) or len(identifiers) != len(set(identifiers)):
             raise ValueError(f"{path}: {identifier} values must be nonempty and unique")
     arms = {arm["arm_id"]: arm for arm in doc["arms"]}
+    _subtrial_stop = {
+        "pmid", "arm", "arms", "ctrl", "ref", "control", "controls", "cohort", "cohorts",
+        "placebo", "matched", "reference", "comparator", "vehicle", "saline", "untreated",
+        "daily", "monthly", "weekly", "systemic", "oral", "human", "murine", "mouse", "mice",
+        "rat", "rats", "islet", "islets", "graft", "grafts", "cell", "cells", "cluster", "clusters",
+        "group", "groups", "with", "without", "and", "the", "for", "from", "only", "alone",
+        "overall", "primary", "adult", "wild", "type", "transgenic", "model", "models",
+        "assay", "vitro", "vivo", "comparison", "baseline", "treated", "treatment", "therapy",
+        "negative", "positive", "expressing", "full", "length", "table", "fig", "figure",
+        "contrast", "blocking", "stimulated", "exposed", "variant", "variants", "fragment",
+        "recombinant", "recombinants", "carrying", "lacking", "plus", "minus", "not", "all",
+        "high", "low", "derived", "macrophage", "macrophages", "bone", "marrow", "c57bl",
+        "bmdm", "porcine", "aortic", "endothelial", "paec", "liposome", "liposomes",
+        "depleted", "intact", "autologous", "tpiat", "patients", "patient", "sequentially",
+        "site", "sites", "supplementary", "extended", "data", "threshold", "dual",
+        "over", "under", "after", "before", "during", "within", "between", "into", "onto",
+        "than", "that", "this", "were", "have", "been", "showed", "overexpression",
+        "expression", "knockout", "double", "single",
+    }
+    _short_domain_toks = {"wt", "ko", "ki", "tg", "c3", "c5", "5e", "6f", "d7", "o2", "h2"}
+    def _g_tok_text(text: str) -> set[str]:
+        low = (text or "").lower().replace("\u03b2", "beta")
+        toks = set()
+        if "primary human" in low or "primary adult human" in low:
+            toks.add("primaryhuman")
+        for t in re.findall(r"[a-z0-9]+", low):
+            if t.isdigit():
+                continue
+            if (len(t) >= 3 or t in _short_domain_toks) and t not in _subtrial_stop:
+                toks.add(t)
+        return toks
+    def _g_arm_disc_tokens(arm_obj: dict) -> set[str]:
+        aid_clean = re.sub(r"^pmid\d+_arm\d+_?", "", str(arm_obj.get("arm_id") or "").lower())
+        raw_lbl = str(arm_obj.get("arm_label") or "")
+        if raw_lbl.startswith("[REDACTED_"):
+            raw_lbl = ""
+        toks = _g_tok_text(f"{aid_clean} {raw_lbl}")
+        for t in list(toks):
+            if "gtko" in t:
+                toks.add("gtko")
+            if "hcd64" in t:
+                toks.add("hcd64")
+            if "hiapp" in t:
+                toks.add("hiapp")
+        return toks
+    def _g_tok_matches(tset_a: set[str], tset_b: set[str]) -> set[str]:
+        hits = set()
+        for a in tset_a:
+            if a in tset_b:
+                hits.add(a)
+                continue
+            if len(a) >= 5 and a.isalpha():
+                for b in tset_b:
+                    if len(b) >= 5 and b.isalpha() and (a.startswith(b) or b.startswith(a)):
+                        hits.add(a)
+                        break
+        return hits
+    def _g_fig_table_refs(text: str) -> tuple[set[str], set[str]]:
+        low = (text or "").lower()
+        figs: set[str] = set()
+        tabs: set[str] = set()
+        for _m_ft in re.finditer(r"\b(figs?|figures?|tables?)\.?\s*((?:[0-9]+[a-z]?|[ivxlcdm]+)(?:\s*(?:,\s*and|,|and)\s*(?:[0-9]+[a-z]?|[ivxlcdm]+))*)", low):
+            _dest = tabs if _m_ft.group(1).startswith("table") else figs
+            for _tok in re.findall(r"[0-9]+[a-z]?|[ivxlcdm]+", _m_ft.group(2)):
+                if _tok != "and":
+                    _dest.add(_tok)
+        return figs, tabs
+    _focal_arm_ids = [a["arm_id"] for a in doc.get("arms", []) if not a.get("is_reference_control", False)]
+    _ref_arm_ids = [a["arm_id"] for a in doc.get("arms", []) if a.get("is_reference_control", False)]
+    _toks_by_arm = {aid: _g_arm_disc_tokens(a) for aid, a in arms.items()}
+    _figs_by_arm = {aid: (_g_fig_table_refs(str(a.get("arm_label") or "")) if not str(a.get("arm_label") or "").startswith("[REDACTED_") else (set(), set())) for aid, a in arms.items()}
+    _univ_focal = set.intersection(*(_toks_by_arm[fid] for fid in _focal_arm_ids)) if len(_focal_arm_ids) >= 2 else set()
+    _disc_focal = {fid: _toks_by_arm[fid] - _univ_focal for fid in _focal_arm_ids}
+    _uniq_focal = {
+        fid: _toks_by_arm[fid] - (set().union(*(_toks_by_arm[o] for o in _focal_arm_ids if o != fid)) if len(_focal_arm_ids) > 1 else set())
+        for fid in _focal_arm_ids
+    }
+    _uniq_ref = {
+        rid: _toks_by_arm[rid] - (set().union(*(_toks_by_arm[o] for o in _ref_arm_ids if o != rid)) if len(_ref_arm_ids) > 1 else set())
+        for rid in _ref_arm_ids
+    }
     for effect in doc["atomic_effects"]:
+        eid = effect["effect_id"]
         focal = effect["focal_arm_id"]
         comparator = effect["comparator_arm_id"]
+        stat_type = effect.get("statistic_type")
+        cm = effect.get("contrast_metadata") or {}
+        cm_type = cm.get("contrast_type")
         if focal not in arms:
-            raise ValueError(f"{path}: effect {effect['effect_id']} references an unknown focal arm")
+            raise ValueError(f"{path}: effect {eid} references an unknown focal arm")
         if comparator is not None and (comparator not in arms or comparator == focal):
-            raise ValueError(f"{path}: effect {effect['effect_id']} references an invalid comparator arm")
+            raise ValueError(f"{path}: effect {eid} references an invalid comparator arm")
+        _doc_pmid = str((doc.get("study_metadata") or {}).get("pmid") or "")
+        _f_coh = arms[focal].get("cohort_id")
+        _c_coh = arms[comparator].get("cohort_id") if comparator is not None else None
+        _cm_coh = cm.get("cohort_id")
+        for _coh_val in (_f_coh, _c_coh, _cm_coh):
+            if _coh_val is not None:
+                _m_coh = re.fullmatch(r"pmid([1-9][0-9]{0,8})_cohort[1-9][0-9]{0,3}", str(_coh_val))
+                if _m_coh is None or (_doc_pmid and _m_coh.group(1) != _doc_pmid):
+                    raise ValueError(f"{path}: {eid} invalid or cross-study cohort_id {_coh_val!r} for PMID {_doc_pmid}")
+        if comparator is not None and _f_coh and _c_coh and _f_coh != _c_coh:
+            raise ValueError(f"{path}: {eid} cohort_id mismatch between focal_arm {focal!r} ({_f_coh!r}) and comparator_arm {comparator!r} ({_c_coh!r})")
+        if _cm_coh and _f_coh and _cm_coh != _f_coh:
+            raise ValueError(f"{path}: {eid} contrast_metadata.cohort_id {_cm_coh!r} conflicts with focal_arm {focal!r} ({_f_coh!r})")
+        if _cm_coh and comparator is not None and _c_coh and _cm_coh != _c_coh:
+            raise ValueError(f"{path}: {eid} contrast_metadata.cohort_id {_cm_coh!r} conflicts with comparator_arm {comparator!r} ({_c_coh!r})")
         if effect.get("log_response_ratio_or_smd") is not None:
             if comparator is None or arms[focal].get("is_reference_control", False) or not arms[comparator].get("is_reference_control", False):
-                raise ValueError(f"{path}: numeric effect {effect['effect_id']} requires treatment and reference-control arms")
-        elif comparator is not None:
-            raise ValueError(f"{path}: non-comparative effect {effect['effect_id']} cannot declare a comparator arm")
+                raise ValueError(f"{path}: numeric effect {eid} requires treatment and reference-control arms")
+        else:
+            _pe = effect.get("point_estimate")
+            _ci_lo = effect.get("ci_95_lower")
+            _ci_hi = effect.get("ci_95_upper")
+            _req_ci = (
+                stat_type == "adjusted_mean_difference_with_95ci_and_pvalue"
+                or cm_type == "between_arm_comparative_adjusted_difference"
+                or any(v is not None for v in (_pe, _ci_lo, _ci_hi))
+            )
+            if isinstance(cm_type, str) and cm_type.startswith("between_arm_comparative_") and comparator is None:
+                raise ValueError(f"{path}: comparative effect {eid} requires non-null comparator_arm_id")
+            if _req_ci:
+                if comparator is None:
+                    raise ValueError(f"{path}: comparative adjusted-difference / CI effect {eid} requires non-null comparator_arm_id")
+                if stat_type == "adjusted_mean_difference_with_95ci_and_pvalue" and any(v is None for v in (_pe, _ci_lo, _ci_hi)):
+                    raise ValueError(f"{path}: {eid} adjusted_mean_difference_with_95ci_and_pvalue requires non-null point_estimate, ci_95_lower, and ci_95_upper")
+                if _ci_lo is not None and _ci_hi is not None:
+                    if float(_ci_lo) > float(_ci_hi):
+                        raise ValueError(f"{path}: {eid} reversed 95% CI bounds ({_ci_lo} > {_ci_hi})")
+                    if float(_ci_lo) == float(_ci_hi):
+                        raise ValueError(f"{path}: {eid} degenerate 95% CI bounds (ci_95_lower == ci_95_upper == {_ci_lo}; strict interior required)")
+                if _pe is not None and _ci_lo is not None and _ci_hi is not None:
+                    if not (float(_ci_lo) <= float(_pe) <= float(_ci_hi)):
+                        raise ValueError(f"{path}: {eid} point_estimate {_pe} lies outside [ci_95_lower={_ci_lo}, ci_95_upper={_ci_hi}]")
+                    if float(_pe) == float(_ci_lo) or float(_pe) == float(_ci_hi):
+                        raise ValueError(f"{path}: {eid} point_estimate {_pe} equals a 95% CI endpoint ({_ci_lo}, {_ci_hi}); strict interior required")
+            if comparator is not None:
+                if cm_type in ("between_arm_comparative_adjusted_difference", "between_arm_comparative_descriptive"):
+                    if arms[focal].get("is_reference_control", False) or not arms[comparator].get("is_reference_control", False):
+                        raise ValueError(f"{path}: comparative non-LRR effect {eid} requires treatment and reference-control arms")
+                else:
+                    raise ValueError(f"{path}: non-comparative effect {eid} cannot declare a comparator arm")
+        # Mandatory exact p-value & p_value/p_value_bound/quote parity (source-free + unredacted)
+        _p_val = effect.get("p_value")
+        _p_rel = effect.get("p_value_relation")
+        _p_bnd = effect.get("p_value_bound")
+        if _p_rel == "=":
+            if _p_val is None or _p_bnd is None or abs(float(_p_val) - float(_p_bnd)) > 1e-12:
+                raise ValueError(f"{path}: {eid} exact p_value {_p_val!r} disagrees with p_value_bound {_p_bnd!r} under relation='='")
+        elif _p_rel in ("<", "<=", ">", ">="):
+            if _p_val is not None:
+                raise ValueError(f"{path}: {eid} inequality p-value ({_p_rel!r}) cannot store exact p_value={_p_val!r}")
+            if _p_bnd is None:
+                raise ValueError(f"{path}: {eid} inequality p-value ({_p_rel!r}) requires non-null p_value_bound")
+        elif _p_rel is None:
+            if _p_val is not None or _p_bnd is not None:
+                raise ValueError(f"{path}: {eid} null p_value_relation cannot carry p_value={_p_val!r} or p_value_bound={_p_bnd!r}")
+        if isinstance(stat_type, str) and stat_type.endswith(("_and_pvalue", "_with_pvalue")):
+            if _p_val is None or _p_rel != "=":
+                raise ValueError(f"{path}: {eid} {stat_type} requires a grounded exact p-value (relation='=') and non-null exact p_value, got relation={_p_rel!r}, p_value={_p_val!r}")
+        # Comparator label, figure/table, NCT, and multi-arm cross-wiring checks (source-free parity)
+        _q_str = str(effect.get("verbatim_evidence_quote") or "")
+        _q_unred = "" if _q_str.startswith("[REDACTED_") else _q_str
+        _y_str = str(effect.get("outcome_variable_Y") or "")
+        _y_unred = "" if _y_str.startswith("[REDACTED_") else _y_str
+        _flab_chk = str(arms[focal].get("arm_label") or "")
+        if comparator is not None:
+            _cm_clab = str(cm.get("comparator_label") or "").strip()
+            _arm_clab = str(arms[comparator].get("arm_label") or "").strip()
+            if _cm_clab and _arm_clab and not _cm_clab.startswith("[REDACTED_") and not _arm_clab.startswith("[REDACTED_"):
+                _c_stop = {"the", "and", "for", "with", "from", "control", "cohort", "placebo", "matched", "reference", "comparator", "condition", "between", "arm", "group", "groups", "islet", "islets", "cells", "in", "of", "to", "a", "an", "or", "vs", "negative"}
+                _t_cm = {t for t in re.findall(r"[a-z0-9]{3,}", _cm_clab.lower()) if t not in _c_stop}
+                _t_arm = {t for t in re.findall(r"[a-z0-9]{3,}", _arm_clab.lower()) if t not in _c_stop}
+                if _t_cm and _t_arm and not (_t_cm & _t_arm):
+                    raise ValueError(f"{path}: {eid} comparator_arm_id {comparator!r} arm_label {_arm_clab!r} conflicts with contrast_metadata.comparator_label {_cm_clab!r}")
+        if not _flab_chk.startswith("[REDACTED_"):
+            _q_toks = _g_tok_text(_q_unred)
+            _ev_y_toks = _q_toks | _g_tok_text(_y_unred)
+            _y_figs, _y_tabs = _g_fig_table_refs(_y_unred)
+            _f_figs, _f_tabs = _figs_by_arm.get(focal, (set(), set()))
+            if (_y_figs and _f_figs and _y_figs.isdisjoint(_f_figs)) or (_y_tabs and _f_tabs and _y_tabs.isdisjoint(_f_tabs)):
+                raise ValueError(f"{path}: {eid} focal_arm_id {focal!r} figure/table ref (figs={sorted(_f_figs)}, tabs={sorted(_f_tabs)}) conflicts with outcome_variable_Y ref (figs={sorted(_y_figs)}, tabs={sorted(_y_tabs)})")
+            if comparator is not None:
+                _c_figs, _c_tabs = _figs_by_arm.get(comparator, (set(), set()))
+                if (_y_figs and _c_figs and _y_figs.isdisjoint(_c_figs)) or (_y_tabs and _c_tabs and _y_tabs.isdisjoint(_c_tabs)):
+                    raise ValueError(f"{path}: {eid} comparator_arm_id {comparator!r} figure/table ref (figs={sorted(_c_figs)}, tabs={sorted(_c_tabs)}) conflicts with outcome_variable_Y ref (figs={sorted(_y_figs)}, tabs={sorted(_y_tabs)})")
+            if len(_focal_arm_ids) >= 2 and focal in _disc_focal:
+                if _q_toks:
+                    _f_q_hits = _g_tok_matches(_disc_focal[focal], _q_toks)
+                    _other_f_q = {_of: sorted(_g_tok_matches(_uniq_focal[_of], _q_toks)) for _of in _focal_arm_ids if _of != focal and _g_tok_matches(_uniq_focal[_of], _q_toks)}
+                    if not _f_q_hits and _other_f_q:
+                        raise ValueError(f"{path}: {eid} verbatim_evidence_quote conflicts with focal_arm_id {focal!r} (matches other focal arm(s) {_other_f_q})")
+                if comparator is not None and _ev_y_toks:
+                    _f_ev_hits = _g_tok_matches(_disc_focal[focal], _ev_y_toks)
+                    _other_f_ev = {_of: sorted(_g_tok_matches(_uniq_focal[_of], _ev_y_toks)) for _of in _focal_arm_ids if _of != focal and _g_tok_matches(_uniq_focal[_of], _ev_y_toks)}
+                    if not _f_ev_hits and _other_f_ev:
+                        raise ValueError(f"{path}: {eid} outcome/quote cohort tokens conflict with focal_arm_id {focal!r} (matches other focal arm(s) {_other_f_ev})")
+            if comparator is not None:
+                _clab_chk = str(arms[comparator].get("arm_label") or "")
+                if not _clab_chk.startswith("[REDACTED_"):
+                    _fncts = set(re.findall(r"\bnct\d{8}\b", _flab_chk.lower()))
+                    _cncts = set(re.findall(r"\bnct\d{8}\b", _clab_chk.lower()))
+                    if _fncts and _cncts and _fncts.isdisjoint(_cncts):
+                        raise ValueError(f"{path}: {eid} cross-trial comparator_arm_id {comparator!r} ({sorted(_cncts)}) mismatches focal_arm {focal!r} ({sorted(_fncts)})")
+                    if len(_ref_arm_ids) >= 2:
+                        _ev_ctx = _toks_by_arm[focal] | _q_toks | _g_tok_text(_y_unred)
+                        _c_hits = _g_tok_matches(_uniq_ref[comparator], _ev_ctx)
+                        _better_refs = {_rc: sorted(_g_tok_matches(_uniq_ref[_rc], _ev_ctx)) for _rc in _ref_arm_ids if _rc != comparator and _g_tok_matches(_uniq_ref[_rc], _ev_ctx)}
+                        _q_comp = _q_toks - _toks_by_arm[focal]
+                        _c_q_hits = _g_tok_matches(_uniq_ref[comparator], _q_comp)
+                        _better_q_refs = {_rc: sorted(_g_tok_matches(_uniq_ref[_rc], _q_comp)) for _rc in _ref_arm_ids if _rc != comparator and _g_tok_matches(_uniq_ref[_rc], _q_comp)}
+                        if _q_toks and not _c_q_hits and _better_q_refs:
+                            raise ValueError(f"{path}: {eid} verbatim_evidence_quote conflicts with comparator_arm_id {comparator!r} (matches other comparator arm(s) {_better_q_refs})")
+                        if not _c_hits and _better_refs:
+                            raise ValueError(f"{path}: {eid} comparator_arm_id {comparator!r} cross-wired/conflicts with focal_arm {focal!r} / quote (better comparator(s): {_better_refs})")
+                        if len(_focal_arm_ids) >= 2 and not _c_hits:
+                            _other_f_c = {_of: sorted(_g_tok_matches(_uniq_ref[comparator], _toks_by_arm[_of])) for _of in _focal_arm_ids if _of != focal and _g_tok_matches(_uniq_ref[comparator], _toks_by_arm[_of])}
+                            if _other_f_c:
+                                raise ValueError(f"{path}: {eid} comparator_arm_id {comparator!r} cross-wired to other focal arm(s) {_other_f_c}, not {focal!r}")
+        if _q_unred:
+            from decimal import Decimal as _Dec_g, DecimalException as _DecErr_g
+            _q_norm_p = re.sub(r"(\d)\u00b7(\d)", r"\1.\2", _q_unred)
+            _p_tok_re = r"(?:\d+(?:\.\d*)?|\.\d+)(?:\s*[\u00d7xX*]\s*10\s*\^?\s*[-\u2212]?\d+|[eE][-+−]?\d+)?"
+            _p_toks_g = []
+            for _mp_g in re.finditer(rf"(?<!\w)[pP]\s*(<=|>=|[=<>\u2264\u2265])\s*({_p_tok_re})(?![\d.])", _q_norm_p):
+                _raw_g = re.sub(r"\s+", "", _mp_g.group(2)).replace("\u2212", "-")
+                try:
+                    if re.search(r"[\u00d7xX*]", _raw_g):
+                        _base_g, _exp_g = re.split(r"[\u00d7xX*]10\^?", _raw_g)
+                        _dv_g = _Dec_g(_base_g) * (_Dec_g(10) ** int(_exp_g))
+                    else:
+                        _dv_g = _Dec_g(_raw_g)
+                    if _dv_g.is_finite() and _Dec_g(0) <= _dv_g <= _Dec_g(1) and (_dv_g == 0 or float(_dv_g) > 0):
+                        _op_g = {"\u2264": "<=", "\u2265": ">="}.get(_mp_g.group(1), _mp_g.group(1))
+                        _p_toks_g.append((_op_g, float(_dv_g)))
+                except (_DecErr_g, ValueError, OverflowError):
+                    continue
+            _exp_rel_g, _exp_bnd_g = (_p_toks_g[0] if len(_p_toks_g) == 1 else (None, None))
+            if _p_rel != _exp_rel_g or (_exp_bnd_g is None and _p_bnd is not None) or (_exp_bnd_g is not None and (_p_bnd is None or abs(float(_p_bnd) - _exp_bnd_g) > 1e-12)):
+                raise ValueError(f"{path}: {eid} p-value relation/bound ({_p_rel!r}, {_p_bnd!r}) does not match quote token ({_exp_rel_g!r}, {_exp_bnd_g!r})")
+            if _exp_rel_g == "=" and (_p_val is None or abs(float(_p_val) - _exp_bnd_g) > 1e-12):
+                raise ValueError(f"{path}: {eid} exact p_value {_p_val!r} does not match quote token p={_exp_bnd_g!r}")
+        elif _p_val is not None:
+            for _ci_fn_r in ("point_estimate", "ci_95_lower", "ci_95_upper"):
+                _ci_v_r = effect.get(_ci_fn_r)
+                if _ci_v_r is not None and abs(float(_ci_v_r) - float(_p_val)) <= 1e-12:
+                    raise ValueError(f"{path}: {eid} {_ci_fn_r}={_ci_v_r!r} duplicates p_value={_p_val!r} on redacted quote (p-value clause transposition)")
+        for _ci_src_name, _ci_src_txt in (("verbatim_evidence_quote", _q_unred), ("outcome_variable_Y", _y_unred)):
+            if not _ci_src_txt:
+                continue
+            _q_norm_ci = re.sub(r"(\d)\u00b7(\d)", r"\1.\2", _ci_src_txt).replace("\u2212", "-")
+            _q_no_p = re.sub(r"(?i)\bp\s*(?:<=|>=|<|>|=|\u2264|\u2265)\s*[0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?", " ", _q_norm_ci)
+            _ci_lo_q = effect.get("ci_95_lower")
+            _ci_hi_q = effect.get("ci_95_upper")
+            if _ci_src_name == "verbatim_evidence_quote":
+                for _ci_fn in ("point_estimate", "ci_95_lower", "ci_95_upper"):
+                    _ci_v = effect.get(_ci_fn)
+                    if _ci_v is not None:
+                        _nums_no_p = [float(_mn.group(0)) for _mn in re.finditer(r"(?<![A-Za-z0-9_])[+-]?\d+(?:\.\d+)?", _q_no_p)]
+                        if not any(abs(float(_ci_v) - _nv) <= 1e-6 for _nv in _nums_no_p):
+                            raise ValueError(f"{path}: {eid} {_ci_fn}={_ci_v!r} is grounded only inside a p-value clause or absent outside p-value in verbatim_evidence_quote")
+            if _ci_lo_q is not None and _ci_hi_q is not None:
+                _ci_spans = [
+                    (float(_m_ci.group(1)), float(_m_ci.group(2)))
+                    for _m_ci in re.finditer(
+                        r"(?:95%\s*CI\s*:?\s*|\(\s*)([+-]?\d+(?:\.\d+)?)\s*(?:to|[\-\u2013\u2014])\s*([+-]?\d+(?:\.\d+)?)",
+                        _q_no_p,
+                        flags=re.IGNORECASE,
+                    )
+                ]
+                if _ci_spans and not any(abs(float(_ci_lo_q) - _lo) <= 1e-6 and abs(float(_ci_hi_q) - _hi) <= 1e-6 for _lo, _hi in _ci_spans):
+                    raise ValueError(f"{path}: {eid} 95% CI [{_ci_lo_q}, {_ci_hi_q}] does not match parsed CI span(s) {_ci_spans} in {_ci_src_name}")
 
 
 def _validate_graph_corpus_identity(studies: list[dict]) -> None:

@@ -174,7 +174,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:38867450 field=verbatim_evidence_quote genes=NONE pert=KO_LOF quote_sha256=49525df010a52d1e0856f8ebdbcc1f783a5db98611996802225202fb1050f4ad]",
+      "verbatim_evidence_quote": "(J) Number of wild-type and knockout monoclonal colonies supplemented with 0 or 20 μM dTMP that reached over 90% confluency.",
       "focal_arm_id": "pmid38867450_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,

@@ -333,7 +333,7 @@
     },
     {
       "effect_id": "pmid39640632_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39640632 field=omitted_text quote_sha256=7d6c83e7d41d949899f067d13b3893e147b9cb5e7e5c8b4d48017d203213f422]",
+      "source_figure_or_table": "Figure (2)",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: InVivo_Glycemic_Cure_and_Graft_Longevity | polarity=Lower_Is_Better_Hazard_Endpoint | orientation_sign=-1 | unit=qualitative_statement]",
@@ -389,7 +389,7 @@
     },
     {
       "effect_id": "pmid39640632_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39640632 field=omitted_text quote_sha256=ab97cc27bbfb1ffffe8a83dc454349ecf75f4016e2637da86474894d577ffd54]",
+      "source_figure_or_table": "Figure (3)",
       "focal_factor_X": "TXNIP (Lentiviral_or_Transposon_OE — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -445,7 +445,7 @@
     },
     {
       "effect_id": "pmid39640632_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39640632 field=omitted_text quote_sha256=8f6394ee58b5b6d5c004a46c1513916b942fba7baa707f2596894377c028c9f2]",
+      "source_figure_or_table": "Figure (4)",
       "focal_factor_X": "IFNg_IFNa_IL1b_TNFa_Cytokine_Challenge",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -501,7 +501,7 @@
     },
     {
       "effect_id": "pmid39640632_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39640632 field=omitted_text quote_sha256=be2f393a7b70107aeaa2bcb899cbb3f464256a11cec06a8324ef528b329674f8]",
+      "source_figure_or_table": "Figure (7)",
       "focal_factor_X": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -559,7 +559,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid39640632_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39640632 field=omitted_text quote_sha256=efe5b90412508c2d754052dd86b4928d9919663a1577b029f38fa203b824da9b]",
+      "source_figure_or_table": "Figure (1)",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Biphasic_GSIS_and_Calcium_Coupling",
@@ -572,7 +572,7 @@
     },
     {
       "interaction_id": "pmid39640632_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39640632 field=omitted_text quote_sha256=efe5b90412508c2d754052dd86b4928d9919663a1577b029f38fa203b824da9b]",
+      "source_figure_or_table": "Figure (1)",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Biphasic_GSIS_and_Calcium_Coupling",
@@ -585,7 +585,7 @@
     },
     {
       "interaction_id": "pmid39640632_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39640632 field=omitted_text quote_sha256=efe5b90412508c2d754052dd86b4928d9919663a1577b029f38fa203b824da9b]",
+      "source_figure_or_table": "Figure (1)",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Biphasic_GSIS_and_Calcium_Coupling",
@@ -598,7 +598,7 @@
     },
     {
       "interaction_id": "pmid39640632_int4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39640632 field=omitted_text quote_sha256=efe5b90412508c2d754052dd86b4928d9919663a1577b029f38fa203b824da9b]",
+      "source_figure_or_table": "Figure (1)",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Biphasic_GSIS_and_Calcium_Coupling",

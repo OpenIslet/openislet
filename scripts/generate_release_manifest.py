@@ -749,9 +749,9 @@ def _generate_release_manifest() -> None:
             }
         },
         "auxiliary_non_ring1_dossiers_registry": {
-            "note": "Two Ring-2 review dossiers cached in data/dossiers/ are outside the 563-study Ring-1 primary experimental extracted corpus (563 + 2 = 565 total dossiers):",
-            "26649319": "Akter et al. 2016 (Journal of Diabetes Research, doi:10.1155/2016/2798269): 'Islet Amyloid Polypeptide: Structure, Function, and Pathophysiology.' (Ring-2 review dossier retained in local dossier cache; not part of 563-study Ring-1 extracted queue)",
-            "35650334": "Nekoua, Alidjinou & Hober 2022 (Nature Reviews Endocrinology, doi:10.1038/s41574-022-00688-1): 'Persistent coxsackievirus B infection and pathogenesis of type 1 diabetes mellitus.' (Ring-2 review dossier retained in local dossier cache; not part of 563-study Ring-1 extracted queue)",
+            "note": "Two Ring-2 review dossiers cached in data/dossiers/ are outside the 583-study Ring-1 primary experimental extracted corpus (583 + 2 = 585 total dossiers):",
+            "26649319": "Akter et al. 2016 (Journal of Diabetes Research, doi:10.1155/2016/2798269): 'Islet Amyloid Polypeptide: Structure, Function, and Pathophysiology.' (Ring-2 review dossier retained in local dossier cache; not part of 583-study Ring-1 extracted queue)",
+            "35650334": "Nekoua, Alidjinou & Hober 2022 (Nature Reviews Endocrinology, doi:10.1038/s41574-022-00688-1): 'Persistent coxsackievirus B infection and pathogenesis of type 1 diabetes mellitus.' (Ring-2 review dossier retained in local dossier cache; not part of 583-study Ring-1 extracted queue)",
         },
         "public_redistribution_allowlist_spec": {
             "policy_note": (
@@ -844,8 +844,14 @@ def _generate_release_manifest() -> None:
             "extracted_arms_total": sum(len(s.get("arms", [])) for s in studies),
             "extracted_atomic_effects_total": n_effects,
             "ceg_screened_records_total": layer1_ceg_atlas["summary"]["screened_candidate_records_total"],
-            "ceg_empirical_candidates_total": layer1_ceg_atlas["summary"]["empirical_candidates_identified_total"],
-            "ceg_studies_total": layer1_ceg_atlas["summary"]["primary_empirical_studies_extracted"],
+            "ceg_candidates_advanced_total": layer1_ceg_atlas["summary"]["candidates_advanced_total"],
+            "ceg_studies_total": layer1_ceg_atlas["summary"]["ceg_records_total"],
+            "ceg_empirical_primary_studies_total": layer1_ceg_atlas["summary"]["primary_empirical_studies_extracted"],
+            "ceg_trial_registry_protocols_total": layer1_ceg_atlas["summary"]["trial_registry_protocols_in_ceg"],
+            "ceg_regulatory_or_guidance_records_total": layer1_ceg_atlas["summary"]["regulatory_or_guidance_records_in_ceg"],
+            "ceg_computational_models_total": layer1_ceg_atlas["summary"]["computational_models_in_ceg"],
+            "ceg_correspondence_secondary_total": layer1_ceg_atlas["summary"]["correspondence_or_secondary_records_in_ceg"],
+            "ceg_superseded_preprint_duplicates_total": layer1_ceg_atlas["summary"]["superseded_preprint_duplicates_in_ceg"],
             "ceg_arms_total": layer1_ceg_atlas["summary"]["experimental_and_control_arms_total"],
             "ceg_outcomes_total": layer1_ceg_atlas["summary"]["structured_outcomes_total"],
             "ceg_blueprint_links_total": layer1_ceg_atlas["summary"]["blueprint_links_total"],
@@ -965,6 +971,7 @@ def _is_fixed_public_schema_metadata(value: str, field: str = "") -> bool:
         'arm_id': r'pmid[1-9][0-9]{0,8}_arm[1-9][0-9]{0,5}',
         'focal_arm_id': r'pmid[1-9][0-9]{0,8}_arm[1-9][0-9]{0,5}',
         'comparator_arm_id': r'pmid[1-9][0-9]{0,8}_arm[1-9][0-9]{0,5}',
+        'cohort_id': r'pmid[1-9][0-9]{0,8}_cohort[1-9][0-9]{0,3}',
         'dossier_sha256': r'[0-9a-f]{64}',
         'quote_source_dossier_pmid': r'[1-9][0-9]{0,8}',
         'superseded_by_pmid': r'[1-9][0-9]{0,8}',
@@ -1008,7 +1015,31 @@ def _is_fixed_public_schema_metadata(value: str, field: str = "") -> bool:
         for name in ("systemic_immunosuppression_regimen", "encapsulation_or_biomaterial", "co_transplanted_cells_or_oxygen_source"):
             by_field.setdefault(name, set()).add("None")
         for name in ("measurement_unit", "units"):
-            by_field.setdefault(name, set()).add("quarantined_ambiguous_numeric")
+            by_field.setdefault(name, set()).update((
+                "%", "%_relative_decrease", "days", "fold_change_ratio",
+                "functional_SP_variants_out_of_16", "genetic_correlation_rg",
+                "h", "hours", "mM", "mg/dL", "mg/dl", "mm", "mmHg",
+                "molecules_per_cell", "months", "nM", "ng/mL", "nm",
+                "nmol/L", "nmol/L per min", "nmol/min/100 islets",
+                "pg/mL", "pmol", "pmol/mL", "qualitative_statement",
+                "quarantined_ambiguous_numeric",
+                "quarantined_approximate_or_bounded_fold_change",
+                "quarantined_mismatched_units",
+                "quarantined_unbound_numeric_operand",
+                "quarantined_unsupported_numeric_notation",
+                "quarantined_unsupported_unit",
+                "reported_units", "scc/h", "ug/mL", "week", "weeks",
+                "\u00b5M", "\u00b5m", "\u03bcM", "\u03bcm",
+            ))
+        by_field.setdefault("cell_line_id", set()).update((
+            "EndoC-\u03b2H1", "EndoC-\u03b2H3", "H1", "H9", "HUES8",
+            "WA01", "H1/WA01", "WA01/H1", "CyT49", "MEL1", "MIN6",
+            "INS-1", "INS-1E", "NIT-1", "WTC11", "HEL24.3", "HEL46.11",
+            "TkDN4-M", "UP421",
+        ))
+        by_field.setdefault("comparator_X0", set()).add(
+            "Control / comparator condition (see structured arm definitions)"
+        )
         span_pattern = schema["properties"]["atomic_effects"]["items"]["properties"]["source_span"]["pattern"]
         if len(_PUBLIC_SCHEMA_METADATA_CACHE) >= 16:
             _PUBLIC_SCHEMA_METADATA_CACHE.pop(next(iter(_PUBLIC_SCHEMA_METADATA_CACHE)))
@@ -1019,6 +1050,23 @@ def _is_fixed_public_schema_metadata(value: str, field: str = "") -> bool:
         helper=snapshot['helper'] if snapshot is not None else _REDACTION_HELPER
         if value in helper.GENES or value in {"HLA-B_HLA-C_HLA-A24", "IL10_TGFB1_IL2_N88D", "JAK1_JAK2"}:
             return True
+    if field == "source_figure_or_table" and len(value) <= 80:
+        if _re.fullmatch(
+            r"(?:Abstract|Title|Results|Methods|Discussion|Table|Tables|Fig\.?|Figs\.?|Figure|Figures|Extended Data|Supplementary|Supp\.?|SI Appendix|Section|Sec\.?|Panel|para|and|or|&|,|;|\(|\)|-|/|\u00a7|NCT\d{8}|[Ss]?[0-9]+(?:\.[0-9]+)?[A-Za-z]?|[IVX]+|\s)+",
+            value,
+        ) is not None:
+            return True
+    if field == "outcome_variable_Y":
+        _m_ep = _re.fullmatch(
+            r"\[Endpoint: ([A-Za-z0-9_]+) \| polarity=([A-Za-z0-9_]+) \| orientation_sign=(-1|0|1) \| unit=([^\|\]]+?)(?: \| erratum_pmid=([1-9][0-9]{6,7}))?\]",
+            value,
+        )
+        if _m_ep is not None:
+            return (
+                _m_ep.group(1) in by_field.get("outcome_domain", ())
+                and _m_ep.group(2) in by_field.get("polarity_class", ())
+                and _m_ep.group(4) in by_field.get("measurement_unit", ())
+            )
     return value in by_field.get(field, ()) or (field == "source_span" and span_pattern.fullmatch(value) is not None)
 
 
@@ -1026,7 +1074,7 @@ def _source_free_effect_identifier(value, field):
     # Source-free replay retains this bounded legacy identifier; it cannot
     # authenticate its original prose. With a private source available it is
     # deliberately counted for overlap, just like any source-derived slug.
-    return field == 'effect_id' and isinstance(value, str) and _re.fullmatch(r'[a-z][a-z0-9_]{5,80}', value) is not None
+    return field == 'effect_id' and isinstance(value, str) and _re.fullmatch(r'[a-z][a-z0-9_]{5,96}', value) is not None
 
 
 def _rewrite_exact_arm_references(obj: object, identifier_map: dict[str, str]) -> object:
@@ -1647,24 +1695,33 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                     pol_reg = eff.get("endpoint_polarity_registry") or {}
                     pol_cls = pol_reg.get("polarity_class", "higher_is_better")
                     orient_sign = pol_reg.get("orientation_sign", 1)
-                    if out_y.startswith("[Endpoint:"):
+                    _unit_tok = str(eff.get("measurement_unit") or "qualitative_statement")
+                    if not _is_fixed_public_schema_metadata(_unit_tok, "measurement_unit"):
+                        _unit_tok = "qualitative_statement"
+                    _err_tok = " | erratum_pmid=41887653" if "41887653" in out_y else ""
+                    if not full_src_text:
+                        eff["outcome_variable_Y"] = (
+                            f"[Endpoint: {eff.get('outcome_domain', 'General')} | polarity={pol_cls} | orientation_sign={orient_sign} | unit={_unit_tok}{_err_tok}]"
+                        )
+                    elif out_y.startswith("[Endpoint:"):
                         # Curated structured endpoint summary: verify if it shares any 6-word verbatim shingle with source dossier
-                        v_len = _max_verbatim_shingle_chars(out_y, full_src_text) if full_src_text else len(out_y)
+                        v_len = _max_verbatim_shingle_chars(out_y, full_src_text)
                         if v_len > 0:
                             if used_chars + len(out_y) <= char_budget:
                                 used_chars += len(out_y)
                             else:
-                                m_ep = re.match(r"^(\[Endpoint:[^\]]+\])", out_y)
-                                ep_prefix = m_ep.group(1) if m_ep else f"[Endpoint: {eff.get('outcome_domain', 'General')}]"
-                                err_note = " (verified against 2026 author/affiliation erratum PMID:41887653)" if "41887653" in out_y else ""
-                                eff["outcome_variable_Y"] = f"{ep_prefix}{err_note} [polarity={pol_cls} orientation_sign={orient_sign}]"
+                                eff["outcome_variable_Y"] = (
+                                    f"[Endpoint: {eff.get('outcome_domain', 'General')} | polarity={pol_cls} | orientation_sign={orient_sign} | unit={_unit_tok}{_err_tok}]"
+                                )
                     else:
                         eff["outcome_variable_Y"] = (
-                            f"[Endpoint: {eff.get('outcome_domain', 'General')} | polarity={pol_cls} | orientation_sign={orient_sign} | unit={eff.get('measurement_unit') or 'qualitative'}]"
+                            f"[Endpoint: {eff.get('outcome_domain', 'General')} | polarity={pol_cls} | orientation_sign={orient_sign} | unit={_unit_tok}{_err_tok}]"
                         )
 
                     comp_x0 = eff.get("comparator_X0") or ""
-                    if (not full_src_text and len(comp_x0) > 0) or _max_verbatim_shingle_chars(comp_x0, full_src_text) > 0:
+                    if not full_src_text:
+                        eff["comparator_X0"] = "Control / comparator condition (see structured arm definitions)"
+                    elif _max_verbatim_shingle_chars(comp_x0, full_src_text) > 0:
                         if used_chars + len(comp_x0) <= char_budget:
                             used_chars += len(comp_x0)
                         else:
@@ -1769,6 +1826,8 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                             return obj
                         if not full_src_text and _source_free_effect_identifier(obj, parent_key):
                             return obj
+                        if parent_key == "verbatim_evidence_quote" and cur_eff_id in _pre_budgeted_quotes:
+                            return obj
                         if _is_authentic_redaction_marker(obj) or _is_fixed_public_schema_metadata(obj, parent_key):
                             return obj
                         f_tok = _public_redaction_field(parent_key or "field")
@@ -1791,6 +1850,23 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                         return obj
                     return obj
 
+                _pre_budgeted_quotes: set[str] = set()
+                if not full_src_text:
+                    for _e_pre in doc.get("atomic_effects", []):
+                        _eid_pre = str(_e_pre.get("effect_id") or "")
+                        _vq_pre = _e_pre.get("verbatim_evidence_quote") or ""
+                        if isinstance(_vq_pre, str) and _vq_pre and not _is_authentic_redaction_marker(_vq_pre):
+                            if _vq_pre.startswith("[REDACTED_NON_OA_EXCERPT:"):
+                                _g_v, _p_v = eff_redaction_meta.get(_eid_pre, ("NONE", "NONE"))
+                                _s_sha = hashlib.sha256(_vq_pre.encode("utf-8")).hexdigest()
+                                _e_pre["verbatim_evidence_quote"] = f"[REDACTED_NON_OA_EXCERPT: see PMID:{pmid} field=verbatim_evidence_quote genes={_g_v} pert={_p_v} quote_sha256={_s_sha}]"
+                            elif pmid_shingle_used[pmid] + len(_vq_pre) <= char_budget:
+                                pmid_shingle_used[pmid] += len(_vq_pre)
+                                _pre_budgeted_quotes.add(_eid_pre)
+                            else:
+                                _g_v, _p_v = eff_redaction_meta.get(_eid_pre, ("NONE", "NONE"))
+                                _s_sha = hashlib.sha256(_vq_pre.encode("utf-8")).hexdigest()
+                                _e_pre["verbatim_evidence_quote"] = f"[REDACTED_NON_OA_EXCERPT: see PMID:{pmid} field=verbatim_evidence_quote genes={_g_v} pert={_p_v} quote_sha256={_s_sha}]"
                 _enforce_doc_shingle_budget(doc)
                 sp.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
             redacted_studies.append(doc)
@@ -2051,7 +2127,8 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
             if fp.exists():
                 new_sha = sha256_file(fp)
                 if new_sha != entry["sha256"]:
-                    entry["local_audit_tree_sha256"] = entry["sha256"]
+                    if "public_export_file_inventory" not in manifest:
+                        entry["local_audit_tree_sha256"] = entry["sha256"]
                     entry["sha256"] = new_sha
                     entry["bytes"] = fp.stat().st_size
         (work_dir / "manifest.json").write_text(

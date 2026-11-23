@@ -297,7 +297,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:12107727 field=omitted_text quote_sha256=4032ee4038775060258f8e68061309aed9bfdea5b574f24324ab7f065202d052]"
+        "matched_lexicon_term": "survival"
       },
       "dossier_sha256": "42b4554b581f4666f4ec14e0eb5123c2ac91738b2a7624c5e96e6188df807ebf",
       "source_span": "abstract[809:915]|norm=exact",
@@ -353,7 +353,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:12107727 field=omitted_text quote_sha256=4032ee4038775060258f8e68061309aed9bfdea5b574f24324ab7f065202d052]"
+        "matched_lexicon_term": "survival"
       },
       "dossier_sha256": "42b4554b581f4666f4ec14e0eb5123c2ac91738b2a7624c5e96e6188df807ebf",
       "source_span": "abstract[1125:1300]|norm=exact",

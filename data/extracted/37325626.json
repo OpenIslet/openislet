@@ -151,7 +151,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=verbatim_evidence_quote genes=G6PC2 pert=BOTH quote_sha256=91dc0d4a7d58d609b03c9afe6d55211453621e5b8ffc9cf061e32773c9f1cc25]",
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=verbatim_evidence_quote genes=G6PC2,TRAC pert=BOTH quote_sha256=91dc0d4a7d58d609b03c9afe6d55211453621e5b8ffc9cf061e32773c9f1cc25]",
       "focal_arm_id": "pmid37325626_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,
@@ -263,7 +263,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=verbatim_evidence_quote genes=G6PC2 pert=BOTH quote_sha256=fb296aaffcb4d417690392cb882cf3009eb65d29471550fcf530cadad7f51b60]",
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=verbatim_evidence_quote genes=G6PC2,TRAC pert=BOTH quote_sha256=fb296aaffcb4d417690392cb882cf3009eb65d29471550fcf530cadad7f51b60]",
       "focal_arm_id": "pmid37325626_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,
@@ -319,7 +319,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=verbatim_evidence_quote genes=G6PC2 pert=BOTH quote_sha256=3048e0edde9eebbe7136c3a6d90e046d48ffef51dd5b6a58305b708c511f2fb0]",
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=verbatim_evidence_quote genes=G6PC2,TRAC pert=BOTH quote_sha256=3048e0edde9eebbe7136c3a6d90e046d48ffef51dd5b6a58305b708c511f2fb0]",
       "focal_arm_id": "pmid37325626_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,
@@ -375,7 +375,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=verbatim_evidence_quote genes=G6PC2 pert=BOTH quote_sha256=c8361bf050a34db1e6c4a40b5ecfed74e8f653df327707d89931cf0e2ebc84fa]",
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=verbatim_evidence_quote genes=G6PC2,TRAC pert=BOTH quote_sha256=c8361bf050a34db1e6c4a40b5ecfed74e8f653df327707d89931cf0e2ebc84fa]",
       "focal_arm_id": "pmid37325626_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,
@@ -431,7 +431,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=verbatim_evidence_quote genes=G6PC2 pert=BOTH quote_sha256=6d4d7d9b64e25a206bcf371b21e1f54206b124713b8530be7ccf20187519d9b2]",
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=verbatim_evidence_quote genes=G6PC2,TRAC pert=BOTH quote_sha256=6d4d7d9b64e25a206bcf371b21e1f54206b124713b8530be7ccf20187519d9b2]",
       "focal_arm_id": "pmid37325626_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,
@@ -487,7 +487,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=verbatim_evidence_quote genes=G6PC2 pert=BOTH quote_sha256=70538c1ce6f6ccdf08552e1edbeedfbd2750d8d0392ea287c927deef55070a91]",
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=verbatim_evidence_quote genes=G6PC2,TRAC pert=BOTH quote_sha256=70538c1ce6f6ccdf08552e1edbeedfbd2750d8d0392ea287c927deef55070a91]",
       "focal_arm_id": "pmid37325626_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,
@@ -543,7 +543,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=verbatim_evidence_quote genes=G6PC2 pert=BOTH quote_sha256=cabf9a5ed07f56ed1fd3883c4515f1e2130b7d3d8564a325b52eb92be9310e7d]",
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=verbatim_evidence_quote genes=G6PC2,TRAC pert=BOTH quote_sha256=cabf9a5ed07f56ed1fd3883c4515f1e2130b7d3d8564a325b52eb92be9310e7d]",
       "focal_arm_id": "pmid37325626_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,
@@ -565,9 +565,9 @@
         "intervention_label": "G6PC2 (Lentiviral_or_Transposon_OE — Gate2_Autoantigen_or_Neoantigen_Stealth)",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=omitted_text quote_sha256=e5bc99278849514de080c915a43a38d724a9bbd52a73657b5413cbd4d6291f83]",
+        "timepoint": "4 hours",
         "population_or_model": "Primary_Human_Islet (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=omitted_text quote_sha256=404314b1f4bd8fa2ff42a84cd851ddc011c76fb64e12dfe3748101b03ed8ce7c]",
+        "units": "hours",
         "contrast_type": "single_arm_descriptive_only"
       }
     }
@@ -575,20 +575,20 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid37325626_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=omitted_text quote_sha256=0565fceba715022c0e85824b201086ecd54eb9eb38df8778c3686ed57b2148e0]",
+      "source_figure_or_table": "Figure 1",
       "focal_factor_X": "G6PC2 (Lentiviral_or_Transposon_OE — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "outcome_Y": "Autoimmune_TCR_or_AutoAb_Evasion",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=level_1_condition_and_effect quote_sha256=57b37a760e31ed34c4ea6ba4d60d36c410fea18b657bad89b08a465c60c8522b]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=level_2_condition_and_effect quote_sha256=e6c6e5f4bc4eb07bab98a753069b4a334376b588c18ffc55280cb37567a28bd2]",
+      "level_2_condition_and_effect": "the electroporation only negative",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=mechanistic_explanation quote_sha256=9c22cddffc4e41c8457eda6422c1ebe2e784a8f19672b5b62cb310bca9c83f3d]"
     },
     {
       "interaction_id": "pmid37325626_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "G6PC2 (Lentiviral_or_Transposon_OE — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
@@ -601,7 +601,7 @@
     },
     {
       "interaction_id": "pmid37325626_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "G6PC2 (Lentiviral_or_Transposon_OE — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "outcome_Y": "Autoimmune_TCR_or_AutoAb_Evasion",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
@@ -614,7 +614,7 @@
     },
     {
       "interaction_id": "pmid37325626_int4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37325626 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "G6PC2 (Lentiviral_or_Transposon_OE — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",

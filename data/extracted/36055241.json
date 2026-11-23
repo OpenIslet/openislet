@@ -507,7 +507,7 @@
         "protective_perturbation_direction": "Knockout_or_Depletion_is_Protective"
       },
       {
-        "gene_symbol_hgnc": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=omitted_text quote_sha256=48db5fdef4f31964bb4baa264740dfb1fe1a15869c51d7e7f2a4518566fbed00]",
+        "gene_symbol_hgnc": "TAP1",
         "ensembl_gene_id": "ENSG00000168394",
         "selection_challenge": "In vivo 10-week allogeneic PBMC rejection screen in Hu-PBL-NSG-MHCnull mice",
         "effect_size_lfc_or_zscore": 1.5,
@@ -515,7 +515,7 @@
         "protective_perturbation_direction": "Knockout_or_Depletion_is_Protective"
       },
       {
-        "gene_symbol_hgnc": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=omitted_text quote_sha256=d0123005e2ea3693eea978415bea8a696f5e399d24ecb2233683c2dadd03373b]",
+        "gene_symbol_hgnc": "TAP2",
         "ensembl_gene_id": "ENSG00000204267",
         "selection_challenge": "In vivo 10-week allogeneic PBMC rejection screen in Hu-PBL-NSG-MHCnull mice",
         "effect_size_lfc_or_zscore": 1.4,
@@ -539,7 +539,7 @@
         "protective_perturbation_direction": "Knockout_or_Depletion_is_Protective"
       },
       {
-        "gene_symbol_hgnc": "[REDACTED_NON_OA_EXCERPT: see PMID:36055241 field=omitted_text quote_sha256=0989a44da10ca9a4f3a1c73288df2cf9f4833b6e4219dd5c2cc70b860ec3dec7]",
+        "gene_symbol_hgnc": "TRIM8",
         "ensembl_gene_id": "ENSG00000171206",
         "selection_challenge": "In vivo 10-week allogeneic PBMC rejection screen in Hu-PBL-NSG-MHCnull mice (RING finger inhibitor of SOCS1)",
         "effect_size_lfc_or_zscore": 1.3,

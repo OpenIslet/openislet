@@ -164,7 +164,7 @@
         "intervention_label": "Alginate_or_Macrodevice_Encapsulation_FBR",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:36572684 field=omitted_text quote_sha256=7e27a865600b1bfd5c99106413e49ccd02d36102d64ade73add21aa31ea30c19]",
+        "timepoint": "6 weeks",
         "population_or_model": "Primary_Human_Islet (Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
@@ -172,7 +172,7 @@
     },
     {
       "effect_id": "pmid36572684_eff2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36572684 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -228,7 +228,7 @@
     },
     {
       "effect_id": "pmid36572684_eff3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36572684 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "BetaCell_Survival_and_Glycemic_Cure",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -284,7 +284,7 @@
     },
     {
       "effect_id": "pmid36572684_eff4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36572684 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "BetaCell_Survival_and_Glycemic_Cure",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -340,7 +340,7 @@
     },
     {
       "effect_id": "pmid36572684_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36572684 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "BetaCell_Survival_and_Glycemic_Cure",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Hypoxia_72h_or_Vascular_Inosculation | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
@@ -396,7 +396,7 @@
     },
     {
       "effect_id": "pmid36572684_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36572684 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "BetaCell_Survival_and_Glycemic_Cure",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -452,7 +452,7 @@
     },
     {
       "effect_id": "pmid36572684_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36572684 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -508,7 +508,7 @@
     },
     {
       "effect_id": "pmid36572684_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36572684 field=omitted_text quote_sha256=ed7ba0018c84d2325e3872d63876f7f7211de61f576538a6c32bb2bbdff83bc3]",
+      "source_figure_or_table": "Fig. 2",
       "focal_factor_X": "BetaCell_Survival_and_Glycemic_Cure",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",

@@ -1,0 +1,337 @@
+{
+  "arms": [
+    {
+      "arm_id": "pmid38844131_arm1",
+      "arm_label": "Soluble CR1 LHR-ABC control",
+      "challenge_conditions": [
+        {
+          "challenge_type": "Patient_Autoantibody_ADCC_ADCP_or_Complement",
+          "duration_hours_or_days": null,
+          "effector_to_target_ratio": null,
+          "glucose_concentration_mM": null,
+          "oxygen_pct": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "gate1_substrate_and_differentiation": {
+        "canonical_differentiation_stage_evaluated": null,
+        "cell_line_id": null,
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cluster_mean_diameter_um": null,
+        "donor_hla_profile": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_mafa_pos": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null,
+        "protocol_backbone": null,
+        "stage_small_molecules_and_factors": []
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "co_transplanted_cells_or_oxygen_source": null,
+        "encapsulation_or_biomaterial": null,
+        "in_dish_vascular_assembly": null,
+        "number_of_distributed_micro_pockets": null,
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "prevascularization_lead_time_days": null,
+        "staged_insertion_schedule": null,
+        "systemic_immunosuppression_regimen": null,
+        "transplant_site": "InVitro_Only"
+      },
+      "is_reference_control": true,
+      "quantitative_readouts": {
+        "cell_viability_pct_mean": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "early_72h_graft_survival_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "followup_duration_days": null,
+        "in_vivo_graft_survival_days_median": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "proinsulin_to_insulin_ratio": null,
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "time_to_vascular_inosculation_hours": null
+      },
+      "sample_size_n": null,
+      "sample_size_unit": null
+    },
+    {
+      "arm_id": "pmid38844131_arm2",
+      "arm_label": "Soluble CR1 LHR-ABCC variant",
+      "challenge_conditions": [
+        {
+          "challenge_type": "Patient_Autoantibody_ADCC_ADCP_or_Complement",
+          "duration_hours_or_days": null,
+          "effector_to_target_ratio": null,
+          "glucose_concentration_mM": null,
+          "oxygen_pct": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "gate1_substrate_and_differentiation": {
+        "canonical_differentiation_stage_evaluated": null,
+        "cell_line_id": null,
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cluster_mean_diameter_um": null,
+        "donor_hla_profile": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_mafa_pos": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null,
+        "protocol_backbone": null,
+        "stage_small_molecules_and_factors": []
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "co_transplanted_cells_or_oxygen_source": null,
+        "encapsulation_or_biomaterial": null,
+        "in_dish_vascular_assembly": null,
+        "number_of_distributed_micro_pockets": null,
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "prevascularization_lead_time_days": null,
+        "staged_insertion_schedule": null,
+        "systemic_immunosuppression_regimen": null,
+        "transplant_site": "InVitro_Only"
+      },
+      "is_reference_control": false,
+      "quantitative_readouts": {
+        "cell_viability_pct_mean": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "early_72h_graft_survival_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "followup_duration_days": null,
+        "in_vivo_graft_survival_days_median": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "proinsulin_to_insulin_ratio": null,
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "time_to_vascular_inosculation_hours": null
+      },
+      "sample_size_n": null,
+      "sample_size_unit": null
+    },
+    {
+      "arm_id": "pmid38844131_arm3",
+      "arm_label": "Soluble CR1 LHR-BBCC variant",
+      "challenge_conditions": [
+        {
+          "challenge_type": "Patient_Autoantibody_ADCC_ADCP_or_Complement",
+          "duration_hours_or_days": null,
+          "effector_to_target_ratio": null,
+          "glucose_concentration_mM": null,
+          "oxygen_pct": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "gate1_substrate_and_differentiation": {
+        "canonical_differentiation_stage_evaluated": null,
+        "cell_line_id": null,
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cluster_mean_diameter_um": null,
+        "donor_hla_profile": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_mafa_pos": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null,
+        "protocol_backbone": null,
+        "stage_small_molecules_and_factors": []
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "co_transplanted_cells_or_oxygen_source": null,
+        "encapsulation_or_biomaterial": null,
+        "in_dish_vascular_assembly": null,
+        "number_of_distributed_micro_pockets": null,
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "prevascularization_lead_time_days": null,
+        "staged_insertion_schedule": null,
+        "systemic_immunosuppression_regimen": null,
+        "transplant_site": "InVitro_Only"
+      },
+      "is_reference_control": false,
+      "quantitative_readouts": {
+        "cell_viability_pct_mean": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "early_72h_graft_survival_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "followup_duration_days": null,
+        "in_vivo_graft_survival_days_median": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "proinsulin_to_insulin_ratio": null,
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "time_to_vascular_inosculation_hours": null
+      },
+      "sample_size_n": null,
+      "sample_size_unit": null
+    }
+  ],
+  "atomic_effects": [
+    {
+      "censoring_note": "Not_Applicable",
+      "comparator_X0": "CR1 LHR-ABC control (CSL040)",
+      "comparator_arm_id": "pmid38844131_arm1",
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Reported assay window",
+        "Z2_genetic_background_and_allelic_dose": "Specified in study arm",
+        "Z3_immune_effector_and_stressor_pathway": "Complement_or_IBMIR_Coagulation_Block",
+        "Z4_metabolic_and_glucose_load_state": "Standard assay state",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Specified in study arm",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Specified in study arm",
+        "Z7_promoter_and_epigenetic_context": "Specified in study arm",
+        "Z8_species_age_and_sex_context": "Soluble recombinant human CR1 biochemical assays"
+      },
+      "contrast_metadata": {
+        "comparator_label": "Soluble CR1 LHR-ABC control (CSL040)",
+        "contrast_type": "between_arm_comparative_descriptive",
+        "endpoint_name": "Complement_or_IBMIR_Coagulation_Block",
+        "intervention_label": "CR1 LHR-ABCC soluble variant",
+        "population_or_model": "Soluble recombinant human CR1 biochemical assays",
+        "timepoint": null,
+        "units": "qualitative_statement"
+      },
+      "control_mean": null,
+      "control_n": null,
+      "control_sd_or_sem": null,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "dossier_sha256": "5b9f87472f8c5201c15dcc9eaffff704ae697e8d4b4b434cd83958924ee61dbc",
+      "effect_direction": "Protective_or_Improved",
+      "effect_id": "pmid38844131_eff1_lhr_abcc_cp_vs_csl040",
+      "endpoint_polarity_registry": {
+        "matched_lexicon_term": "ic50",
+        "orientation_sign": -1,
+        "polarity_class": "Lower_Is_Better_Hazard_Endpoint"
+      },
+      "focal_arm_id": "pmid38844131_arm2",
+      "focal_factor_X": "CR1 LHR-ABCC soluble variant",
+      "log_response_ratio_or_smd": null,
+      "measurement_unit": "qualitative_statement",
+      "n_unit": "unspecified_in_source",
+      "outcome_domain": "Complement_or_IBMIR_Coagulation_Block",
+      "outcome_variable_Y": "[Endpoint: Classical and lectin pathway Wieslab IC50 potency improvement (see Table 5)]",
+      "p_value": null,
+      "p_value_bound": 0.05,
+      "p_value_relation": "<",
+      "quote_source_dossier_pmid": "38844131",
+      "secretome_or_differentiation_penalty_observed": false,
+      "source_figure_or_table": "Results & Table 5 (PMC11261467)",
+      "source_span": "fulltext_data_sections.results_paragraphs[0][1374:1525]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "treatment_mean": null,
+      "treatment_n": null,
+      "treatment_sd_or_sem": null,
+      "verbatim_evidence_quote": "The calculated differences in IC50 values were found to be approximately 2-fold and statistically significant for the Wieslab assay results (p < 0.05)."
+    },
+    {
+      "censoring_note": "Not_Applicable",
+      "comparator_X0": "CR1 LHR-ABC control (CSL040)",
+      "comparator_arm_id": "pmid38844131_arm1",
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Reported assay window",
+        "Z2_genetic_background_and_allelic_dose": "Specified in study arm",
+        "Z3_immune_effector_and_stressor_pathway": "Complement_or_IBMIR_Coagulation_Block",
+        "Z4_metabolic_and_glucose_load_state": "Standard assay state",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Specified in study arm",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Specified in study arm",
+        "Z7_promoter_and_epigenetic_context": "Specified in study arm",
+        "Z8_species_age_and_sex_context": "Soluble recombinant human CR1 biochemical assays"
+      },
+      "contrast_metadata": {
+        "comparator_label": "Soluble CR1 LHR-ABC control (CSL040)",
+        "contrast_type": "between_arm_comparative_descriptive",
+        "endpoint_name": "Complement_or_IBMIR_Coagulation_Block",
+        "intervention_label": "CR1 LHR-BBCC soluble variant lacking LHR-A",
+        "population_or_model": "Soluble recombinant human CR1 biochemical assays",
+        "timepoint": null,
+        "units": "qualitative_statement"
+      },
+      "control_mean": null,
+      "control_n": null,
+      "control_sd_or_sem": null,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "dossier_sha256": "5b9f87472f8c5201c15dcc9eaffff704ae697e8d4b4b434cd83958924ee61dbc",
+      "effect_direction": "Deleterious_or_Impaired",
+      "effect_id": "pmid38844131_eff2_lhr_bbcc_ch50_loss",
+      "endpoint_polarity_registry": {
+        "matched_lexicon_term": "ic50",
+        "orientation_sign": -1,
+        "polarity_class": "Lower_Is_Better_Hazard_Endpoint"
+      },
+      "focal_arm_id": "pmid38844131_arm3",
+      "focal_factor_X": "CR1 LHR-BBCC soluble variant lacking LHR-A",
+      "log_response_ratio_or_smd": null,
+      "measurement_unit": "qualitative_statement",
+      "n_unit": "unspecified_in_source",
+      "outcome_domain": "Complement_or_IBMIR_Coagulation_Block",
+      "outcome_variable_Y": "[Endpoint: Reduced CH50 classical hemolytic potency without LHR-A (see Table 5)]",
+      "p_value": null,
+      "p_value_bound": 0.05,
+      "p_value_relation": "<",
+      "quote_source_dossier_pmid": "38844131",
+      "secretome_or_differentiation_penalty_observed": false,
+      "source_figure_or_table": "Results & Table 5 (PMC11261467)",
+      "source_span": "fulltext_data_sections.results_paragraphs[0][297:492]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "treatment_mean": null,
+      "treatment_n": null,
+      "treatment_sd_or_sem": null,
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:38844131 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=da780d155089ec37c444495573d0d5d7efd76a36a052f6bd0256ee1b1ba84511]"
+    }
+  ],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "high_throughput_screen_hits": [],
+    "regime_thresholds": [],
+    "residual_failure_and_escape_vectors": []
+  },
+  "effect_modifier_interactions": [],
+  "schema_version": "0.2.0",
+  "screening_decision": {
+    "exclusion_reason": null,
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null
+  },
+  "study_metadata": {
+    "doi": "10.1016/j.jbc.2024.107451",
+    "first_author": "Wymann S",
+    "geo_accessions": [],
+    "journal": "The Journal of biological chemistry",
+    "max_biological_fidelity_tier": "Tier_4_Rodent_or_Xenogeneic_Only",
+    "nct_id": null,
+    "pillars_covered": [
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth"
+    ],
+    "pmcid": "PMC11261467",
+    "pmid": "38844131",
+    "pub_year": 2024,
+    "senior_author": "Hardy MP",
+    "source_text_type": "FullText_XML_or_PDF",
+    "superseded_by_pmid": null,
+    "title": "Mechanistic insights into complement pathway inhibition by CR1 domain duplication."
+  }
+}

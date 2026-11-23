@@ -203,7 +203,7 @@
     },
     {
       "effect_id": "pmid28883507_eff3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:28883507 field=omitted_text quote_sha256=b3d365f7b39223cd818bf36026fbdce2a793b72eb0856c16d0a3ffe50fc3cd23]",
+      "source_figure_or_table": "Figure 5",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -541,7 +541,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid28883507_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:28883507 field=omitted_text quote_sha256=b3d365f7b39223cd818bf36026fbdce2a793b72eb0856c16d0a3ffe50fc3cd23]",
+      "source_figure_or_table": "Figure 5",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Biphasic_GSIS_and_Calcium_Coupling vs. Condition_2",

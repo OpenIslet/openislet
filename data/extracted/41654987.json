@@ -253,7 +253,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:41654987 field=verbatim_evidence_quote genes=PTPN2 pert=NONE quote_sha256=7edebb7543ed54bc10be08d48bb8923109b742401475fdf5f2a8a3925df4ee6f]",
+      "verbatim_evidence_quote": "G Dimension reduction represented by UMAP of different stages during SC-islet differentiation.",
       "focal_arm_id": "pmid41654987_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,
@@ -571,7 +571,7 @@
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:41654987 field=level_1_condition_and_effect quote_sha256=537699bafe2d0b455487e91169bcc95d5ba4a84bb8fd341c059a3af4eb76d500]",
-      "level_2_condition_and_effect": "healthy organ donors.",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:41654987 field=level_2_condition_and_effect quote_sha256=ac6b3485001f84cba8d6a168ec22a8fe86bb08d97261c2a7a5506c41a330938d]",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:41654987 field=mechanistic_explanation quote_sha256=6e4daf63ed9465af8ac2bc7561b10d397437cda746b894842df7ae687a137471]"

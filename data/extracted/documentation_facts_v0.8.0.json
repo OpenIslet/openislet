@@ -1,7 +1,7 @@
 {
   "schema_version": "0.8.0",
   "epistemic_status": "GENERATED_COMPUTATIONAL_FACTS_PHYSICAL_QUALIFICATION_PENDING",
-  "manifest_pin_count": 1367,
+  "manifest_pin_count": 1428,
   "discovery_manifest": {
     "jsonl_rows": 7703,
     "unique_pubmed_pmids": 7703,
@@ -10,14 +10,15 @@
   },
   "source_sha256": {
     "data/raw/corpus_manifest_all_sources.jsonl": "119ecbd3be2ccb79a2f38ac7feca8713ffb7c6c5e92165078e2722331b9e0536",
-    "data/extracted/cross_study_discovery_graph.json": "aa645be738e77f5c32f7db6b1c7f768dfaa0e9fbed938d8b82ee47b0ef25f1d2",
-    "data/extracted/islet1_candidate_stack_rankings.json": "7926bbe94330e75b6ac209507d1c4cb0bcec51033b45954fe16b6366d70141dc",
-    "data/protocols/hip_core_fractional_factorial_v0.6.2.json": "9a7780e1700a6888ce0a07e844aacfbc89e69584727edb13ca1d2a6dbbc9ce00",
-    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "2a2743f22be738d446d0b8e7048c1f583a4aa8f44f4ff7f66fed3dab919d3a4e",
+    "data/extracted/cross_study_discovery_graph.json": "455c0b17616b9c07b74da14797e5c9f9e38007b10808d92651404b6262c7ecd7",
+    "data/extracted/islet1_candidate_stack_rankings.json": "4e3f079ae1e271c2f02d6e4ed85a68a666e247913d8806e928859c0108999fd4",
+    "data/protocols/hip_core_fractional_factorial_v0.6.2.json": "7a9a4f675787197f4563e3bd333f2bb6ece1834f44446d9ca8adf387794fac55",
+    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "70a89a3350c3fa6d81a708edc5c22f13732102291f6ca9858aa6f90adb5215b5",
     "data/extracted/layer3_structural_verification_atlas.json": "5647f213e48c592bc565321e7612d30288fe12ebe5194a7f2c6147511a8e41e1",
     "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": "cf88d5bbb1c0e1de9795a1c187fbddec1ce7b27f8af27b21e0e82540b57aeebf",
     "data/extracted/layer5_personalized_patient_and_crispr_atlas.json": "61c571785bbd22d95c24e92cc06f6040cefbfbe2c76a2adfe77f0de2a58677c6",
     "data/extracted/10202046.json": "b3d836e8c0fc8ed898592975e0f09c0154a0d4f887c2b6893e7c8194befd0a6a",
+    "data/extracted/10531307.json": "74ce179ebcdf4f1d485735f5d473359bb340002b6802ddf78bf1df5731f87901",
     "data/extracted/10728379.json": "b2efcc82101e33914aebc51e74ddc7650894d097c11841518f6e848916cae3dc",
     "data/extracted/10798768.json": "8fc4cdd4b8d420e666e0cab534c990fc545705c7563fc54d98a80197b9fa0082",
     "data/extracted/10819241.json": "6deab1f3f24ff6fcb5824d7a8225479886445ffdbcd542f85e81cc2a2c6c315f",
@@ -53,6 +54,7 @@
     "data/extracted/15479464.json": "8c8daeef534d330b621ccb06dbc77c78558c6d8a7642b1e6496f55fd20a9b006",
     "data/extracted/15611281.json": "c5de76152f5e51028b372558c56a0e2d649d00778d15592f74babcafc4625826",
     "data/extracted/15855326.json": "5ac0725238bfeb981a099b667eec7cc1360dbe165a7f33cebea8fe619c3f3cfa",
+    "data/extracted/16177096.json": "5384ea4faede3ed4e7497fd69fffdaf270cb94287c1997eb6b041b57826856be",
     "data/extracted/16212622.json": "69fc5b2e3b82cdab3d8cc40d1f6ef6bca1d0183602f58a6371e523eabaefc899",
     "data/extracted/16236123.json": "04032f60d0c44c0caca50da06bc9b21db11e9bd860d1a759953a34a1ea803933",
     "data/extracted/16435302.json": "eb51ad687279cfd7a2d1ea093bf35c55dd555b835c8ec3888e5347e14a1fad05",
@@ -66,6 +68,7 @@
     "data/extracted/17559902.json": "4a05e78f4c69d9a36a3a5aacc18f8dca4a94235cce8cb9c18ca62011aaea12e9",
     "data/extracted/17617855.json": "f51ff13298082da5cebe79e004a4feced1e8199bb67ae94f5964099132963cca",
     "data/extracted/17893608.json": "5800f2adad415ea9336bf1ac29ea1b4f911af5915255038eed455be01f6d5256",
+    "data/extracted/18021279.json": "9875267d3846ea594d477ff31dd381a51ca90270f1711fd23cb0099686bae35a",
     "data/extracted/18071001.json": "881ba820845cae1d8913165e37c9e80ac3624c6fad3871518620bec749264699",
     "data/extracted/18622291.json": "94aa5f4231dabe113c6ccf94c22f7672421c81118ae4d31a091356f9634140b4",
     "data/extracted/18667318.json": "e4e66cdeaaa37c68b2e2bcd3b5c734caadaf9669a1b2b6145d174560ae5c3641",
@@ -107,6 +110,7 @@
     "data/extracted/21328381.json": "175840d239885fa95c611c0c3571e0c7c2dcdc07117cb42655ac4a126ff09cb4",
     "data/extracted/21458857.json": "64ea8715818120b80b9a56b0d8b99dc795d05f8da28fea4ac47699ddd5c49308",
     "data/extracted/21691070.json": "daa7f9430f7655d703307a199723e012e21f6762d4b6c44f57417b340478fb5c",
+    "data/extracted/21813778.json": "354e615aa1cec26173e8f1fc2802ef0ddab1cffce35592fc6002359b0b9844a4",
     "data/extracted/21947380.json": "f0143d04f441ae65f7308b33a57168888082b487ed10f0f243717924757bc7d9",
     "data/extracted/22068235.json": "6c501b1c1a2dc6c6cb4b00f8df2f0461b04bfa0107ccfd8e987bcb3da299581e",
     "data/extracted/22075915.json": "81b2e2d8f7588237a1db2a7ec0028a6efa4cd943e8c615525ed976cda1613c6c",
@@ -122,9 +126,11 @@
     "data/extracted/23140642.json": "c0f82f48fe61b130e64f31c6af34be7116b05973470a234d2cc8e3bda9aacd6a",
     "data/extracted/23364452.json": "94b7ee69fffd5265059cd000f8766dc972e5ec51723fd26421f9418dabe259ad",
     "data/extracted/23382449.json": "7f2862f0cf40267c4da6d7c32f4bff67ce2ec194d7ea10cf165c750683c7e4f2",
+    "data/extracted/23562090.json": "4de45520c5ff5924d45f188d38b1806a567ce346029873059302a538c72ee80e",
     "data/extracted/23689598.json": "cbd1e8af0b17ed81099621a6b531259e0d30457b9258407ccb80bb8bde9a8ead",
     "data/extracted/23737756.json": "7e89f83030eb5b3773794be40293cfb5b2377c9cab8098bfb8fc0a7bda68d819",
     "data/extracted/23769064.json": "f40e866328b8338e9f3b3d9ea8bfa1bf4164b0b138dc971e78081abafd1cba2e",
+    "data/extracted/24222351.json": "1b60b4ec55e3fb3ed06ced8af505340d52610b464bea046f7bf7cced87bdbade",
     "data/extracted/24359126.json": "c5e1d3925e09a73747ee15979d1ce766dd4cf1c510b3f4ffd1662f56d8d8fd2d",
     "data/extracted/24584071.json": "84fb97b48d82b22e8e575c3b9dc2f068a6ad4489402b0057102f00b2eb6eeb5c",
     "data/extracted/24658304.json": "b1725e7c1d0642d96e3b75e30d6f2e79145b03bcad6afe2ef5c50509dce2e8e8",
@@ -135,6 +141,7 @@
     "data/extracted/25126749.json": "2668c33be96ba1e4565031fde8b0d1feab1d277556c07a1854c0d3e6c5c31c6c",
     "data/extracted/25298321.json": "42a747784f92e08963cbd4d30d7191c085269df10f81c5244c5a9ed8ee27da63",
     "data/extracted/25303535.json": "2557ff9eb4ed0769a1a1cf99f076b7c3f32d1dc7b1aba4d5ad649babc559c4d4",
+    "data/extracted/25491100.json": "77dea0f1238df6e99e3ce65ce1c8c60933c75d03712e1842c50fb846a45d4c85",
     "data/extracted/25817378.json": "d13383c22970fe0a262f5abf4cb8809a4b15c9d29574032e5e235a4df53c8f30",
     "data/extracted/25969539.json": "8f8880fd008423c048633f1b0df348ca6203a0d494a84af3cf4377db72c3dd8b",
     "data/extracted/26179209.json": "80095830cd6d6cbe18d9c2dbe4481402b0903d4b4ec3d82ca7054abd5bcfa64a",
@@ -185,6 +192,7 @@
     "data/extracted/29654212.json": "2579c778b63b9e32724caa62c27476a15088c710d4009b680586f2eeccf95442",
     "data/extracted/29679103.json": "8d1e5999559e10a846a3a4fee076a933ddaffdb2095f277155f387bca62f58fa",
     "data/extracted/29844327.json": "a090e147d24dc8f5adc4eb3d8e79e34581bd3364916d563a79a2daf6ac5c39c0",
+    "data/extracted/29862647.json": "3131b13291372e35ef914e4417d139a4eaae1abe61b9060c1ddec00c87081e6b",
     "data/extracted/29867165.json": "14c43afff1219b36c085b8fa0b129a89fab4cd167aa77c38274dee3e7ff3953b",
     "data/extracted/29992946.json": "3548c5d7c22607b94f9011294818dc52c6bf6b2234cf71f7b9b4a97d3880a92d",
     "data/extracted/30038024.json": "fc608aea89206f9b468eefc05b23f23b9bd18162370822530b185c71a21dc8cd",
@@ -200,6 +208,7 @@
     "data/extracted/30532033.json": "3fbbc689dbd892f3045ef807c921e9ba7856d303b24cf2a36192fbb379b9daad",
     "data/extracted/30540962.json": "fd76b27ea7600381d8b8646700ee908c6ed70afccaa5bd754f6b8985277b1317",
     "data/extracted/30567413.json": "a79c2fbbb4dd46dcde9ee3277fb74aec3bf5d7d795ab0f5b25d3828e8d15d852",
+    "data/extracted/30710150.json": "ba908da3c11b40355c74eafffbd8bdb3d92c09216c43714fd6fc338640524745",
     "data/extracted/30721151.json": "ab4aac9409348ee93e967075073e544959c04b5e7d568a5938f92834b9c15bda",
     "data/extracted/30778232.json": "a083cebe75d6b6ad4fa0e619423845e3da24a0fcde853a54845f08df3d92b0c3",
     "data/extracted/30799417.json": "72edfadd9976547bd9280ecc825b608ed2c437768ca3a688768405cdd61cf53d",
@@ -271,6 +280,7 @@
     "data/extracted/34434861.json": "3cb934c2779b40889c10faf2dac2f58817790a10cfa743d8e556a7ef36601d2b",
     "data/extracted/34458264.json": "834334ff485ad8de040d9290dbc349edf78264e54fd0f04573e75ca266b9b471",
     "data/extracted/34480863.json": "6d72e9f698397291f3b53f111cf1b38b74aaaae2a15674828007c2435116dcc3",
+    "data/extracted/34504013.json": "8261431ebdea56094c8eee7d24257afe7f0071f437c4a8c28ff48743a50efa39",
     "data/extracted/34566993.json": "9708a53a295608ec09fbf1298ef2995bb07a978990b03ecde6495ade5b521f38",
     "data/extracted/34704352.json": "11f13d26f526f54968b8a993f135ddfb8ba54ee9e68cd3c7d1377799e16aed06",
     "data/extracted/34774128.json": "97fd138eb3af04e0e14f54365607377d9de66d9a536990f06cd742da4ac36c8b",
@@ -366,6 +376,7 @@
     "data/extracted/37886586.json": "a24c9b091d3d5a0960ad3197205045ce4ca07263d1850db3a95bffe9b7e2edc7",
     "data/extracted/37898119.json": "37fa6ae8f18438b2b97e64f4fef581fffe4dfa03c07bb94ba69ccbc96cf3ef13",
     "data/extracted/37905040.json": "9d70cc6b3aa167a11963da1fe0164ccf8be772e3be40468b8dbbcea81d762d88",
+    "data/extracted/37922880.json": "653e38e6dd4d15cd2e9e04fdc80a70164b0ef7c4e7eca11ce18400329f1d875a",
     "data/extracted/37993958.json": "aa5b2315c38db21abcca402d2f54e626c4aa1af40b56c1c221f7511b96dadb34",
     "data/extracted/38005341.json": "951a8879cc7d0a777f9fc8a742a7f455dbb736efadc79b6bde2f096450dd798a",
     "data/extracted/38015847.json": "5172497d8b4af8e419277cb4eab2bb7db30c03d93156e95ab30a8670b4bbfa0c",
@@ -397,11 +408,13 @@
     "data/extracted/38766166.json": "a7041cffa33f65e5a40ca775a2715861810f56e4a5a8be9a0d90d204571d90d5",
     "data/extracted/38798376.json": "921d740ebe2c923de8a4266b0fa8b8a56bd68195591fb7c2608f84197e4c5643",
     "data/extracted/38833523.json": "37fb806101e7096fd9323aaf43471faf06bb49393974cf643aebfc8a25b5ee54",
+    "data/extracted/38844131.json": "9ffae6ad07292fff71eeff00afee5319c8aeb4908e4b275985610bf41863494b",
     "data/extracted/38867450.json": "14864fd19987bfe0c13c20574f460ce136bb649512906cff70aaa668183b327a",
     "data/extracted/38871836.json": "43bc05333c11d9b0abbbb2a052758856a9a38c29ce718e24697e9ee51f946aa9",
     "data/extracted/38975343.json": "19eb59e242e179eb70dc83ab8eef2fb230efc94af0593ddf194e33db4ccaa025",
     "data/extracted/38985991.json": "1fe5b98e423da4e3afd8b2646b95c459d51f24966d31b2839c8c4fb03d613742",
     "data/extracted/38993844.json": "5bc01e021cfc11e400597b0e1b691b8aa7a3a9df8287f2dedadae2db2f4d93cb",
+    "data/extracted/38993891.json": "676e41f3830ed2b956d4d4e8e2657b9818d8e3f66aff278cc9ab56bd86fb8d85",
     "data/extracted/39003281.json": "be4d02ea328421b1dcc8935a97d637293931d3e2337989831369db19b3076cdd",
     "data/extracted/39055936.json": "92c2babdf3bc337539e695670178cf7bc8f528b89ea0e426127e38735b0f3cf3",
     "data/extracted/39080045.json": "18fb2f2beb92017fdae126a404c610ace6ec55e5c694681b02931c93fbafe03a",
@@ -450,7 +463,7 @@
     "data/extracted/40251154.json": "c542baf0504f4528885fa085bf54cecee1f92f8ff0adcd2dee4c900ecab08a6f",
     "data/extracted/40258441.json": "9a97155085a9d6d9c932dbc7cef36c0ee0617658f49e6fcd8ac4791ad8a086b1",
     "data/extracted/40263183.json": "bdf3d1931cd3f92a1f910768e52227fc2b60f52578cb6ae149636b5635702f8d",
-    "data/extracted/40320524.json": "16a5c923379a25ef3a4e980876a75ba8f9d2a0cdd196ce463209afa4b5d9df54",
+    "data/extracted/40320524.json": "9fd4291b6a591377efe2e28cfb297e023427254fbb8b656fd4807124e186f063",
     "data/extracted/40330888.json": "0058ead43361f3e38205b4b933fd5fbc2e27af6bfb8efcf6105e0268fb593ba8",
     "data/extracted/40335415.json": "2f3ff5cf858c20d0a988576d3227f1a92beaf704cc5dddecc636102b50de5871",
     "data/extracted/40404627.json": "80bd867d4c2953ff652361d599695e69b386f676d9ad06ea74ae8fbc894cba31",
@@ -476,8 +489,10 @@
     "data/extracted/40777266.json": "075d1c517028e6e303a0c9160848392be2312ec7c9ea77857d31b80d7dfed7d3",
     "data/extracted/40782630.json": "0fae5a2a9e652b51eaf364fe4f4f81090801595adfcdd6587182ee2083225645",
     "data/extracted/40782792.json": "f1550fc5169f43fb6093cab1b0c7e9a264c7a9fa581a0f24cfe63171a2c6f737",
+    "data/extracted/40789835.json": "3b0169327c1edc1177b5a6db8f7337e955e40f6fad5975cce6e469fcfb866cc2",
     "data/extracted/40790268.json": "e44497d76603aeb43c8d40faf73983c989ea0d30cb087db8470642a4bc24b288",
     "data/extracted/40810171.json": "652bb4615a1a75d2af287706a080de8bced3c98a92f67b29196b673bde1caf9b",
+    "data/extracted/40812299.json": "29d2190f8cf225475effd3c0f063eb8d15d6a4a453293085a7b4cf7db043f98d",
     "data/extracted/40832357.json": "e2b98b33ba12ee6803717b3138ad0fc4f1c73acf503fc6694814df52ad0f4af7",
     "data/extracted/40847887.json": "7a9a9f28a6beaa7f4dc4ac516801a7c2549dc40c6c6ebee19d8ad488c96a39e0",
     "data/extracted/40875294.json": "6f082ed2888793c090f6ca92d80f4b408ae97f978dca0cc20664113fd6dac30e",
@@ -487,6 +502,7 @@
     "data/extracted/40924476.json": "2527c895fcea5539d855a2285d75b20deccafe1c692e964f9dfefe28f5a62d18",
     "data/extracted/40929272.json": "80ad426e28a474e63c49629fe30dd0922199913959b8d46d57148772bf24c9ef",
     "data/extracted/40966855.json": "d19c1a464cf1762cfb5c9921f02265575263de1acac78308a46b4c6082175b24",
+    "data/extracted/40976248.json": "fd8a0a9d195bd867a03de06f2520dc43c9cd09b8defb784ad8de8be66a7d8fb3",
     "data/extracted/40987274.json": "acc4bd4b3cf59811417c93a75c6f06f6c6fb5e1c27a38aaeecc67456bc0afa99",
     "data/extracted/40992249.json": "79691fe94d2d329d64b9a919dca9e0a70dc7236b8f6ffc8a539d73614751fc1f",
     "data/extracted/41020949.json": "3544cedf439ed5d6cfd57c255a3eaddbaa04754219ec6fff5b650617f2af7a0d",
@@ -514,8 +530,11 @@
     "data/extracted/41509490.json": "e928e9683ff6c849266719ee294f32c7f617119f2eda1fd576b57bf524fe2451",
     "data/extracted/41539561.json": "b7997d7f953acf2cadec8f1e8d0aa7fe996e4d673e20d2f646586cf41dc10217",
     "data/extracted/41542419.json": "7ff553c5c79388a1b6b3e085f2153a364ebc20a2c08d212d009c8f0afacf1f8e",
+    "data/extracted/41543848.json": "d1724f70f0d9ba6e9d02c3613ecc84fb9640583193aff589829fd2fd5cb4b9e4",
     "data/extracted/41563441.json": "a60e98808999c54a8a74d8c9a6cd0cd6d425ee595487680cb544c63bb5f69a6f",
     "data/extracted/41574859.json": "b36154a1fad7d835e60ca836b8a283060ec86fdfe614faffacc9736a483d6739",
+    "data/extracted/41595986.json": "72052cbbac55bddb84a36bf2c13ad2dd43c36f11ecf1f1bf7bc7d5ffaf7550cb",
+    "data/extracted/41604464.json": "d6f58157f257f00a47bb463e4201cae816c3cb693bfbd52ce3398c4b3c88c656",
     "data/extracted/41607298.json": "6a157e8f5e143676cd807a36bad244a37d97a3b457f2459c7781795119692720",
     "data/extracted/41617975.json": "dfb1ed97ab11ab90530ffc9d4a30c2a0313a5093df5e49c938d75a2e4079101f",
     "data/extracted/41654987.json": "2e6644c827c25946e145df849dc046b36ad8ce7f030c44c4a9cc0402c3e0f5ba",
@@ -532,7 +551,7 @@
     "data/extracted/41826481.json": "3be401c5a48ea224bd9f96581a7d88d93bdd96e42ffb33919ee23f394384b1fd",
     "data/extracted/41842939.json": "69c429a2cad8ba2da068556706ef0b992fa986dbaaa351abd468c95bc5635b46",
     "data/extracted/41851084.json": "ae8a0e6ba2b74eb6fb83d2b5f7095e1835bdec35e9c80187feda9033a7d18e35",
-    "data/extracted/41870990.json": "322be5c35d67001d28592c0a2ff7c95119355663316ebfdd5f537345fb240071",
+    "data/extracted/41870990.json": "9080056f67fc6885013b5eb5038585e2e6ec02858d3c922207d9f9b73e48c25f",
     "data/extracted/41886504.json": "599568bf97954a109743da7da7720922d474edc2de0a8c37a0f4b51552cf82f8",
     "data/extracted/41889931.json": "0cd9f84e5b82c53650dd1c9d7da7931713e64193f66a75d6f04e1568883dfd0e",
     "data/extracted/41927580.json": "ea4541ae8b289d92f93f12a9448e479e73d35cc01eb548ca318566be687c2738",
@@ -555,6 +574,7 @@
     "data/extracted/42523425.json": "42882dd44de84d5738c4d90851567e2ad1cbb30774cc0350f54183a42a591f9c",
     "data/extracted/42523426.json": "dc4c4c29a79daa0b0e054cd1b83c68f08f5371fe785a35dcdb4a8cd80d0e3c64",
     "data/extracted/42613697.json": "9a82835fc3ee72a6bbe2dccf24fa430fe5fb2c390f6597e8b789c3ca49beb626",
+    "data/extracted/42627334.json": "a9dc69468b50187ef3549bb42d458018027df02942058604c8de09b0ae8a21fc",
     "data/extracted/42671571.json": "37085dcbc5644b675e12a5b055359e6137c24d770c0056e01682263e2f6b0915",
     "data/extracted/42674453.json": "9c21f1a0885423a3f99f91cb74d72c60c4bd0eeb254f4d3c29691aee7c3b9e0f",
     "data/extracted/42690930.json": "98bb2d1042bf7084a7a63e3a2ba9ffe7470d61f455794ca7bc122d3dde2ca61a",
@@ -583,17 +603,17 @@
     "data/raw/layer2_genomic_and_jaspar_reference.json": "224409b79e6d37676b35f59e6061e6882b255a1afbd9d7ca8adfee2f33492756"
   },
   "corpus": {
-    "studies": 563,
-    "arms": 596,
-    "reference_control_arms": 20,
-    "atomic_effects": 3094,
-    "raw_edit_entries": 237,
-    "total_numeric_lrr_effects": 4,
-    "expanded_gene_occurrences": 242,
+    "studies": 583,
+    "arms": 663,
+    "reference_control_arms": 49,
+    "atomic_effects": 3139,
+    "raw_edit_entries": 244,
+    "total_numeric_lrr_effects": 9,
+    "expanded_gene_occurrences": 249,
     "heuristic_penalty_effects": 43,
-    "active_deduplicated_studies_count": 548,
-    "active_empirical_studies_count": 547,
-    "non_superseded_studies_count": 549,
+    "active_deduplicated_studies_count": 568,
+    "active_empirical_studies_count": 567,
+    "non_superseded_studies_count": 569,
     "superseded_preprint_studies_excluded_count": 14,
     "project_summary_studies_excluded_count": 1,
     "review_studies_in_corpus_count": 1,
@@ -621,42 +641,42 @@
       "42856627"
     ],
     "ring1_corpus_count_reconciliation": {
-      "validated_studies_total": 563,
+      "validated_studies_total": 583,
       "superseded_preprints_excluded": 14,
       "project_summaries_excluded": 1,
-      "non_superseded_studies_total": 549,
-      "active_deduplicated_studies_total": 548,
+      "non_superseded_studies_total": 569,
+      "active_deduplicated_studies_total": 568,
       "review_records_flagged": 1,
       "active_preprints_without_in_corpus_twin_flagged": 18,
-      "strict_active_peer_reviewed_empirical_studies_total": 529
+      "strict_active_peer_reviewed_empirical_studies_total": 549
     },
-    "active_deduplicated_arms_count": 581,
-    "active_deduplicated_effects_count": 2992,
+    "active_deduplicated_arms_count": 648,
+    "active_deduplicated_effects_count": 3037,
     "active_deduplicated_modifier_interactions_count": 1236,
-    "active_deduplicated_causal_edges_count": 1048,
-    "non_superseded_arms_count": 582,
-    "non_superseded_effects_count": 2993,
+    "active_deduplicated_causal_edges_count": 1045,
+    "non_superseded_arms_count": 649,
+    "non_superseded_effects_count": 3038,
     "non_superseded_modifier_interactions_count": 1236,
-    "non_superseded_causal_edges_count": 1049,
+    "non_superseded_causal_edges_count": 1046,
     "studies_by_biological_fidelity_tier": {
-      "Tier_1_Human_InVivo": 16,
-      "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 34,
-      "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 76,
-      "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 281,
-      "Tier_4_Rodent_or_Xenogeneic_Only": 141
+      "Tier_1_Human_InVivo": 21,
+      "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 35,
+      "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 77,
+      "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 287,
+      "Tier_4_Rodent_or_Xenogeneic_Only": 148
     },
     "studies_by_source_text_type": {
-      "Abstract_Only": 275,
+      "Abstract_Only": 290,
       "FullText_Plus_Supplement_or_GEO": 84,
-      "FullText_XML_or_PDF": 188,
+      "FullText_XML_or_PDF": 193,
       "Review_or_Commentary": 1
     },
-    "exact_source_span_verified_effects_count": 2992,
-    "quantitative_lrr_effects_count": 4,
+    "exact_source_span_verified_effects_count": 3037,
+    "quantitative_lrr_effects_count": 9,
     "heuristic_penalty_effects_count": 42,
     "direction_and_penalty_method_counts": {
-      "rule_based_heuristic": 2983,
-      "source_adjudicated_curated_override": 9
+      "rule_based_heuristic": 2981,
+      "source_adjudicated_curated_override": 56
     },
     "adjudication_semantics": "Rule-based heuristic extraction; no independent manual accuracy dataset is attached. Classifier agreement is not measured sensitivity or specificity.",
     "adjudicated_penalty_effects_count": 42,
@@ -667,14 +687,15 @@
       }
     },
     "effects_by_direction": {
-      "Deleterious_or_Impaired": 226,
-      "Neutral_or_NonInferior": 1538,
-      "Protective_or_Improved": 1228
+      "Deleterious_or_Impaired": 235,
+      "Descriptive_or_Unoriented": 13,
+      "Neutral_or_NonInferior": 1542,
+      "Protective_or_Improved": 1247
     },
     "effects_by_polarity_orientation_sign": {
-      "-1": 200,
-      "0": 2336,
-      "1": 456
+      "-1": 209,
+      "0": 2344,
+      "1": 484
     },
     "matched_context_multi_hop_chains_count": 51,
     "cross_context_hypothesis_chains_count": 449
@@ -683,16 +704,16 @@
     "audit_ledger": {
       "method": "Computed from this evaluation's source studies, graph, registry, exact design and diagnostics; not an audit closure assertion",
       "source_counts": {
-        "studies": 563,
-        "arms": 596,
-        "atomic_effects": 3094,
-        "raw_edit_rows": 237,
-        "expanded_edit_gene_occurrences": 242
+        "studies": 583,
+        "arms": 663,
+        "atomic_effects": 3139,
+        "raw_edit_rows": 244,
+        "expanded_edit_gene_occurrences": 249
       },
       "corpus_eligibility": {
-        "active_deduplicated_studies_count": 548,
-        "active_empirical_studies_count": 547,
-        "non_superseded_studies_count": 549,
+        "active_deduplicated_studies_count": 568,
+        "active_empirical_studies_count": 567,
+        "non_superseded_studies_count": 569,
         "superseded_preprint_studies_excluded_count": 14,
         "project_summary_studies_excluded_count": 1,
         "review_studies_in_corpus_count": 1,
@@ -720,42 +741,42 @@
           "42856627"
         ],
         "ring1_corpus_count_reconciliation": {
-          "validated_studies_total": 563,
+          "validated_studies_total": 583,
           "superseded_preprints_excluded": 14,
           "project_summaries_excluded": 1,
-          "non_superseded_studies_total": 549,
-          "active_deduplicated_studies_total": 548,
+          "non_superseded_studies_total": 569,
+          "active_deduplicated_studies_total": 568,
           "review_records_flagged": 1,
           "active_preprints_without_in_corpus_twin_flagged": 18,
-          "strict_active_peer_reviewed_empirical_studies_total": 529
+          "strict_active_peer_reviewed_empirical_studies_total": 549
         },
-        "active_deduplicated_arms_count": 581,
-        "active_deduplicated_effects_count": 2992,
+        "active_deduplicated_arms_count": 648,
+        "active_deduplicated_effects_count": 3037,
         "active_deduplicated_modifier_interactions_count": 1236,
-        "active_deduplicated_causal_edges_count": 1048,
-        "non_superseded_arms_count": 582,
-        "non_superseded_effects_count": 2993,
+        "active_deduplicated_causal_edges_count": 1045,
+        "non_superseded_arms_count": 649,
+        "non_superseded_effects_count": 3038,
         "non_superseded_modifier_interactions_count": 1236,
-        "non_superseded_causal_edges_count": 1049,
+        "non_superseded_causal_edges_count": 1046,
         "studies_by_biological_fidelity_tier": {
-          "Tier_1_Human_InVivo": 16,
-          "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 34,
-          "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 76,
-          "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 281,
-          "Tier_4_Rodent_or_Xenogeneic_Only": 141
+          "Tier_1_Human_InVivo": 21,
+          "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 35,
+          "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 77,
+          "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 287,
+          "Tier_4_Rodent_or_Xenogeneic_Only": 148
         },
         "studies_by_source_text_type": {
-          "Abstract_Only": 275,
+          "Abstract_Only": 290,
           "FullText_Plus_Supplement_or_GEO": 84,
-          "FullText_XML_or_PDF": 188,
+          "FullText_XML_or_PDF": 193,
           "Review_or_Commentary": 1
         },
-        "exact_source_span_verified_effects_count": 2992,
-        "quantitative_lrr_effects_count": 4,
+        "exact_source_span_verified_effects_count": 3037,
+        "quantitative_lrr_effects_count": 9,
         "heuristic_penalty_effects_count": 42,
         "direction_and_penalty_method_counts": {
-          "rule_based_heuristic": 2983,
-          "source_adjudicated_curated_override": 9
+          "rule_based_heuristic": 2981,
+          "source_adjudicated_curated_override": 56
         },
         "adjudication_semantics": "Rule-based heuristic extraction; no independent manual accuracy dataset is attached. Classifier agreement is not measured sensitivity or specificity.",
         "adjudicated_penalty_effects_count": 42,
@@ -766,21 +787,22 @@
           }
         },
         "effects_by_direction": {
-          "Deleterious_or_Impaired": 226,
-          "Neutral_or_NonInferior": 1538,
-          "Protective_or_Improved": 1228
+          "Deleterious_or_Impaired": 235,
+          "Descriptive_or_Unoriented": 13,
+          "Neutral_or_NonInferior": 1542,
+          "Protective_or_Improved": 1247
         },
         "effects_by_polarity_orientation_sign": {
-          "-1": 200,
-          "0": 2336,
-          "1": 456
+          "-1": 209,
+          "0": 2344,
+          "1": 484
         },
         "matched_context_multi_hop_chains_count": 51,
         "cross_context_hypothesis_chains_count": 449
       },
       "profile_counts": {
-        "genes": 47,
-        "candidate_target_profiles_with_typed_numeric_lrr": 0,
+        "genes": 49,
+        "candidate_target_profiles_with_typed_numeric_lrr": 1,
         "independently_adjudicated_direction_effects": 0,
         "direction_method": "rule_based_heuristic; no independent adjudication dataset supplied"
       },
@@ -6756,16 +6778,16 @@
       "layer1_ultracode_audit_reconciliation_ledger": {
         "method": "Computed from this evaluation's source studies, graph, registry, exact design and diagnostics; not an audit closure assertion",
         "source_counts": {
-          "studies": 563,
-          "arms": 596,
-          "atomic_effects": 3094,
-          "raw_edit_rows": 237,
-          "expanded_edit_gene_occurrences": 242
+          "studies": 583,
+          "arms": 663,
+          "atomic_effects": 3139,
+          "raw_edit_rows": 244,
+          "expanded_edit_gene_occurrences": 249
         },
         "corpus_eligibility": {
-          "active_deduplicated_studies_count": 548,
-          "active_empirical_studies_count": 547,
-          "non_superseded_studies_count": 549,
+          "active_deduplicated_studies_count": 568,
+          "active_empirical_studies_count": 567,
+          "non_superseded_studies_count": 569,
           "superseded_preprint_studies_excluded_count": 14,
           "project_summary_studies_excluded_count": 1,
           "review_studies_in_corpus_count": 1,
@@ -6793,42 +6815,42 @@
             "42856627"
           ],
           "ring1_corpus_count_reconciliation": {
-            "validated_studies_total": 563,
+            "validated_studies_total": 583,
             "superseded_preprints_excluded": 14,
             "project_summaries_excluded": 1,
-            "non_superseded_studies_total": 549,
-            "active_deduplicated_studies_total": 548,
+            "non_superseded_studies_total": 569,
+            "active_deduplicated_studies_total": 568,
             "review_records_flagged": 1,
             "active_preprints_without_in_corpus_twin_flagged": 18,
-            "strict_active_peer_reviewed_empirical_studies_total": 529
+            "strict_active_peer_reviewed_empirical_studies_total": 549
           },
-          "active_deduplicated_arms_count": 581,
-          "active_deduplicated_effects_count": 2992,
+          "active_deduplicated_arms_count": 648,
+          "active_deduplicated_effects_count": 3037,
           "active_deduplicated_modifier_interactions_count": 1236,
-          "active_deduplicated_causal_edges_count": 1048,
-          "non_superseded_arms_count": 582,
-          "non_superseded_effects_count": 2993,
+          "active_deduplicated_causal_edges_count": 1045,
+          "non_superseded_arms_count": 649,
+          "non_superseded_effects_count": 3038,
           "non_superseded_modifier_interactions_count": 1236,
-          "non_superseded_causal_edges_count": 1049,
+          "non_superseded_causal_edges_count": 1046,
           "studies_by_biological_fidelity_tier": {
-            "Tier_1_Human_InVivo": 16,
-            "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 34,
-            "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 76,
-            "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 281,
-            "Tier_4_Rodent_or_Xenogeneic_Only": 141
+            "Tier_1_Human_InVivo": 21,
+            "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 35,
+            "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 77,
+            "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 287,
+            "Tier_4_Rodent_or_Xenogeneic_Only": 148
           },
           "studies_by_source_text_type": {
-            "Abstract_Only": 275,
+            "Abstract_Only": 290,
             "FullText_Plus_Supplement_or_GEO": 84,
-            "FullText_XML_or_PDF": 188,
+            "FullText_XML_or_PDF": 193,
             "Review_or_Commentary": 1
           },
-          "exact_source_span_verified_effects_count": 2992,
-          "quantitative_lrr_effects_count": 4,
+          "exact_source_span_verified_effects_count": 3037,
+          "quantitative_lrr_effects_count": 9,
           "heuristic_penalty_effects_count": 42,
           "direction_and_penalty_method_counts": {
-            "rule_based_heuristic": 2983,
-            "source_adjudicated_curated_override": 9
+            "rule_based_heuristic": 2981,
+            "source_adjudicated_curated_override": 56
           },
           "adjudication_semantics": "Rule-based heuristic extraction; no independent manual accuracy dataset is attached. Classifier agreement is not measured sensitivity or specificity.",
           "adjudicated_penalty_effects_count": 42,
@@ -6839,21 +6861,22 @@
             }
           },
           "effects_by_direction": {
-            "Deleterious_or_Impaired": 226,
-            "Neutral_or_NonInferior": 1538,
-            "Protective_or_Improved": 1228
+            "Deleterious_or_Impaired": 235,
+            "Descriptive_or_Unoriented": 13,
+            "Neutral_or_NonInferior": 1542,
+            "Protective_or_Improved": 1247
           },
           "effects_by_polarity_orientation_sign": {
-            "-1": 200,
-            "0": 2336,
-            "1": 456
+            "-1": 209,
+            "0": 2344,
+            "1": 484
           },
           "matched_context_multi_hop_chains_count": 51,
           "cross_context_hypothesis_chains_count": 449
         },
         "profile_counts": {
-          "genes": 47,
-          "candidate_target_profiles_with_typed_numeric_lrr": 0,
+          "genes": 49,
+          "candidate_target_profiles_with_typed_numeric_lrr": 1,
           "independently_adjudicated_direction_effects": 0,
           "direction_method": "rule_based_heuristic; no independent adjudication dataset supplied"
         },

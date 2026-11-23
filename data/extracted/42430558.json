@@ -169,7 +169,7 @@
         "Z7_promoter_and_epigenetic_context": "Lentiviral CD47 in post-mitotic primary islets",
         "Z8_species_age_and_sex_context": "Tier_1_Human_InVivo (n=1 T1D patient)"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:42430558 field=verbatim_evidence_quote genes=B2M,CD47,CIITA pert=KO_LOF quote_sha256=87ee967ef22793acf20ca3ae7b6fd8c0e4a6183751e8d7b9b7be3d30004ce460]",
+      "verbatim_evidence_quote": "Long-Term Survival of Hypoimmune Allogeneic Islets without Immunosuppression (NEJM 2026 Correspondence, DOI: 10.1056/NEJMc2604408).",
       "focal_arm_id": "pmid42430558_arm1",
       "comparator_arm_id": null,
       "dispersion_type": "Not_Reported_in_Source_Sentence",
@@ -178,7 +178,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "survival"
+        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:42430558 field=omitted_text quote_sha256=4032ee4038775060258f8e68061309aed9bfdea5b574f24324ab7f065202d052]"
       },
       "dossier_sha256": "9296e6e80d516ab596078ccdd69204039646689cbaaa343131740887ab573e2b",
       "source_span": "abstract[0:131]|norm=exact",

@@ -205,7 +205,7 @@
     },
     {
       "effect_id": "pmid31023625_eff3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31023625 field=omitted_text quote_sha256=0565fceba715022c0e85824b201086ecd54eb9eb38df8778c3686ed57b2148e0]",
+      "source_figure_or_table": "Figure 1",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -261,7 +261,7 @@
     },
     {
       "effect_id": "pmid31023625_eff4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31023625 field=omitted_text quote_sha256=0565fceba715022c0e85824b201086ecd54eb9eb38df8778c3686ed57b2148e0]",
+      "source_figure_or_table": "Figure 1",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -309,7 +309,7 @@
         "intervention_label": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:31023625 field=omitted_text quote_sha256=ca8f77d6f3fbdf74018be1a8bc8520de10fe2176e32bfac599f243f11467ab9f]",
+        "timepoint": "72 h",
         "population_or_model": "Rodent_Beta_Cell_Line_NIT1_MIN6_INS1 (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
@@ -317,7 +317,7 @@
     },
     {
       "effect_id": "pmid31023625_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31023625 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -373,7 +373,7 @@
     },
     {
       "effect_id": "pmid31023625_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31023625 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=days]",
@@ -384,7 +384,7 @@
       "control_mean": null,
       "control_sd_or_sem": null,
       "control_n": null,
-      "measurement_unit": "[REDACTED_NON_OA_EXCERPT: see PMID:31023625 field=omitted_text quote_sha256=ab51004e9d71a485f160f655fb9e72bcdef8f5ca4178b26938b49471456fd11c]",
+      "measurement_unit": "days",
       "log_response_ratio_or_smd": null,
       "p_value": null,
       "effect_direction": "Protective_or_Improved",
@@ -423,13 +423,13 @@
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:31023625 field=omitted_text quote_sha256=ec13178b98722aec7155e81ceb34ccd429ae05a1f20bd48589c0b83fa3a3a10e]",
         "population_or_model": "Rodent_Beta_Cell_Line_NIT1_MIN6_INS1 (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:31023625 field=omitted_text quote_sha256=ab51004e9d71a485f160f655fb9e72bcdef8f5ca4178b26938b49471456fd11c]",
+        "units": "days",
         "contrast_type": "right_censored_followup_observation"
       }
     },
     {
       "effect_id": "pmid31023625_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31023625 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=h]",
@@ -485,7 +485,7 @@
     },
     {
       "effect_id": "pmid31023625_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31023625 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -543,7 +543,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid31023625_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31023625 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. Condition_2",
@@ -556,7 +556,7 @@
     },
     {
       "interaction_id": "pmid31023625_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31023625 field=omitted_text quote_sha256=0fb418bc6b224cad46820d15c23eadb4ce2fc19a718992213ef4bc57591ed9cf]",
+      "source_figure_or_table": "Figure 4",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. Condition_2",
@@ -569,7 +569,7 @@
     },
     {
       "interaction_id": "pmid31023625_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31023625 field=omitted_text quote_sha256=ef000543bc3239e1ea4d155d9f7b14dd6fea42d41a0fa6a23032d99bc28ab6db]",
+      "source_figure_or_table": "Figure 7",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. MAFA_NKX6_1_PDX1_BetaCell_Identity",

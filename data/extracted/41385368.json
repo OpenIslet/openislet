@@ -430,7 +430,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:41385368 field=omitted_text quote_sha256=a5b15f661af9251f213fdebaeb2022cd7a9670c8dc252624672651d7bb7a07f6]"
+        "matched_lexicon_term": "gsis"
       },
       "dossier_sha256": "bde20b1d64d3b08b7b0c1c778a6ee0419dd3333d528fd5c5600b3e46bd01c329",
       "source_span": "fulltext_data_sections.results_paragraphs[21][801:956]|norm=exact",
@@ -486,7 +486,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:41385368 field=omitted_text quote_sha256=66e5550833f46fb41648825b19e92c907b18b102166906f317b4b66c9cc7002a]"
+        "matched_lexicon_term": "insulin secretion"
       },
       "dossier_sha256": "bde20b1d64d3b08b7b0c1c778a6ee0419dd3333d528fd5c5600b3e46bd01c329",
       "source_span": "fulltext_data_sections.results_paragraphs[24][0:191]|norm=exact",

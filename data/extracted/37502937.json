@@ -390,7 +390,7 @@
     },
     {
       "effect_id": "pmid37502937_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37502937 field=omitted_text quote_sha256=2f653c66d9b6519d65e64d3c73df1ab80331f6823953564fefdb03b1b1885801]",
+      "source_figure_or_table": "Figure 7.",
       "focal_factor_X": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
@@ -502,7 +502,7 @@
     },
     {
       "effect_id": "pmid37502937_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37502937 field=omitted_text quote_sha256=32df29f9a28cf0a0927771672b2470447f5aaeb7caa2dde9a393c5d1765f6bbb]",
+      "source_figure_or_table": "Figure 8",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",

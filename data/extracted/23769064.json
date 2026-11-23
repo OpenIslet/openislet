@@ -409,7 +409,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
         "orientation_sign": -1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:23769064 field=omitted_text quote_sha256=27d276d50e373019a2a72a5bc22763a358c1cdb8ebc872322dbcdfe5c3b4eef7]"
+        "matched_lexicon_term": "apoptotic"
       },
       "dossier_sha256": "85a800d81ca0bee9ff71d034f8ff3581e8c48e3cb2a481aed76f207b584b5456",
       "source_span": "abstract[346:563]|norm=exact",

@@ -1,0 +1,346 @@
+{
+  "arms": [
+    {
+      "arm_id": "pmid40812299_arm1",
+      "arm_label": "Lymphodepleted allogeneic CD19 CAR-T product SC291 (Cas12b B2M/CIITA/TRAC KO + lentiviral CD47 OE; 40.9% fully edited fraction)",
+      "challenge_conditions": [
+        {
+          "challenge_type": "InVivo_Allogeneic_or_Autoimmune_Graft",
+          "duration_hours_or_days": null,
+          "effector_to_target_ratio": null,
+          "glucose_concentration_mM": null,
+          "oxygen_pct": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "gate1_substrate_and_differentiation": {
+        "canonical_differentiation_stage_evaluated": null,
+        "cell_line_id": null,
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cluster_mean_diameter_um": null,
+        "donor_hla_profile": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_mafa_pos": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null,
+        "protocol_backbone": null,
+        "stage_small_molecules_and_factors": []
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "edit_modality": "CRISPR_Cas12b_Multiplex_KO",
+          "ensembl_gene_id": null,
+          "functional_gate": "Gate2_Allo_HLA_ClassI_or_II",
+          "gene_symbol_hgnc": "B2M",
+          "perturbation_class": "Loss_of_Function_KO_or_KD",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "sub_molecular_coordinate": {
+            "exact_variant_or_swap_description": "Cas12b-mediated B2M HLA-I knockout in SC291 allogeneic CAR-T (per Hu et al. 2025 methods)",
+            "region_class": "Whole_Gene_Coding_CDS"
+          },
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "zygosity_or_allelic_state": null
+        },
+        {
+          "edit_modality": "CRISPR_Cas12b_Multiplex_KO",
+          "ensembl_gene_id": null,
+          "functional_gate": "Gate2_Allo_HLA_ClassI_or_II",
+          "gene_symbol_hgnc": "CIITA",
+          "perturbation_class": "Loss_of_Function_KO_or_KD",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "sub_molecular_coordinate": {
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:40812299 field=exact_variant_or_swap_description mod=CRISPR_Cas12b_Multiplex_KO genes=CIITA quote_sha256=f63d48d5d8c2d792c352813b1a7bb71d9dc117109f95bb7f39acb2e8ea80ffa0]",
+            "region_class": "Whole_Gene_Coding_CDS"
+          },
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "zygosity_or_allelic_state": null
+        },
+        {
+          "edit_modality": "CRISPR_Cas12b_Multiplex_KO",
+          "ensembl_gene_id": null,
+          "functional_gate": "Gate2_Allo_HLA_ClassI_or_II",
+          "gene_symbol_hgnc": "TRAC",
+          "perturbation_class": "Loss_of_Function_KO_or_KD",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "sub_molecular_coordinate": {
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:40812299 field=exact_variant_or_swap_description mod=CRISPR_Cas12b_Multiplex_KO genes=TRAC quote_sha256=f79902439f14a1a322b914d1c98647bc6b384a7b202bf2b7cc0fa9a962389139]",
+            "region_class": "Whole_Gene_Coding_CDS"
+          },
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "zygosity_or_allelic_state": null
+        },
+        {
+          "edit_modality": "Lentiviral_or_Transposon_OE",
+          "ensembl_gene_id": null,
+          "functional_gate": "Gate3_Macrophage_DonotEatMe",
+          "gene_symbol_hgnc": "CD47",
+          "perturbation_class": "Gain_of_Function_or_Transgenic_Armoring",
+          "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "sub_molecular_coordinate": {
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:40812299 field=exact_variant_or_swap_description mod=Lentiviral_or_Transposon_OE genes=CD47 quote_sha256=66371b5c4e317d48ecd9d9430b3c08cae76189d98013045540ff155bbece8e3e]",
+            "region_class": "Transgene_cDNA_Cassette"
+          },
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "zygosity_or_allelic_state": null
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "clinical_conditioning_regimen_class": "Lymphodepleting_or_Myeloablative_Conditioning",
+        "co_transplanted_cells_or_oxygen_source": null,
+        "encapsulation_or_biomaterial": null,
+        "in_dish_vascular_assembly": null,
+        "number_of_distributed_micro_pockets": null,
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "prevascularization_lead_time_days": null,
+        "staged_insertion_schedule": null,
+        "systemic_immunosuppression_regimen": "Fludarabine + cyclophosphamide (Flu/Cy) lymphodepletion conditioning (ARDENT NCT05878184: Cy 500 mg/m2 + Flu 30 mg/m2 x3d; GLEAM NCT06294236: Cy 1000 mg/m2 + Flu 25 mg/m2 x3d; per Hu et al. 2025 full-text methods DOI:10.1016/j.stem.2025.07.009)",
+        "transplant_site": "Unspecified_InVivo_or_Source_Site"
+      },
+      "is_reference_control": false,
+      "quantitative_readouts": {
+        "cell_viability_pct_mean": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "early_72h_graft_survival_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "followup_duration_days": null,
+        "in_vivo_graft_survival_days_median": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "proinsulin_to_insulin_ratio": null,
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "time_to_vascular_inosculation_hours": null
+      },
+      "sample_size_n": null,
+      "sample_size_unit": null
+    },
+    {
+      "arm_id": "pmid40812299_arm2",
+      "arm_label": "Internal partially edited HLA-replete CAR-T subpopulations in infused lot (40.9% fully edited HIP fraction; unsorted mixture)",
+      "challenge_conditions": [
+        {
+          "challenge_type": "InVivo_Allogeneic_or_Autoimmune_Graft",
+          "duration_hours_or_days": null,
+          "effector_to_target_ratio": null,
+          "glucose_concentration_mM": null,
+          "oxygen_pct": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "gate1_substrate_and_differentiation": {
+        "canonical_differentiation_stage_evaluated": null,
+        "cell_line_id": null,
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cluster_mean_diameter_um": null,
+        "donor_hla_profile": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_mafa_pos": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null,
+        "protocol_backbone": null,
+        "stage_small_molecules_and_factors": []
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "clinical_conditioning_regimen_class": "Lymphodepleting_or_Myeloablative_Conditioning",
+        "co_transplanted_cells_or_oxygen_source": null,
+        "encapsulation_or_biomaterial": null,
+        "in_dish_vascular_assembly": null,
+        "number_of_distributed_micro_pockets": null,
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "prevascularization_lead_time_days": null,
+        "staged_insertion_schedule": null,
+        "systemic_immunosuppression_regimen": "Fludarabine + cyclophosphamide (Flu/Cy) lymphodepletion conditioning (ARDENT NCT05878184 / GLEAM NCT06294236; per Hu et al. 2025 full-text methods)",
+        "transplant_site": "Unspecified_InVivo_or_Source_Site"
+      },
+      "is_reference_control": true,
+      "quantitative_readouts": {
+        "cell_viability_pct_mean": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "early_72h_graft_survival_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "followup_duration_days": null,
+        "in_vivo_graft_survival_days_median": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "proinsulin_to_insulin_ratio": null,
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "time_to_vascular_inosculation_hours": null
+      },
+      "sample_size_n": null,
+      "sample_size_unit": null
+    }
+  ],
+  "atomic_effects": [
+    {
+      "censoring_note": "Not_Applicable",
+      "comparator_X0": "Internal partially edited HLA-replete subpopulations within the same unsorted infused SC291 lot (40.9% fully edited fraction)",
+      "comparator_arm_id": "pmid40812299_arm2",
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Exploratory clinical immune follow-up",
+        "Z2_genetic_background_and_allelic_dose": "Specified in study arm",
+        "Z3_immune_effector_and_stressor_pathway": "Specified in study arm",
+        "Z4_metabolic_and_glucose_load_state": "Standard assay state",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Specified in study arm",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Specified in study arm",
+        "Z7_promoter_and_epigenetic_context": "Specified in study arm",
+        "Z8_species_age_and_sex_context": "Pooled 14-patient clinical cohort: 13 oncology (ARDENT NCT05878184) + 1 autoimmune (GLEAM NCT06294236) under Flu/Cy lymphodepletion (11 patients in overall immune analysis after excluding 3 with pre-existing ex vivo killing)"
+      },
+      "contrast_metadata": {
+        "comparator_label": "Internal partially edited HLA-replete CAR-T subpopulations",
+        "contrast_type": "between_arm_comparative_descriptive",
+        "endpoint_name": "Allo_T_Cell_or_DSA_Survival",
+        "intervention_label": "SC291 Cas12b-edited HIP CD19 CAR-T (40.9% fully edited fraction) under Flu/Cy lymphodepletion",
+        "population_or_model": "Pooled 14-patient cohort: 13 oncology (ARDENT) + 1 autoimmune (GLEAM) CD19 CAR-T recipients under Flu/Cy lymphodepletion (11 in overall immune analysis excluding 3 with pre-existing ex vivo killing)",
+        "timepoint": "Exploratory clinical immune follow-up",
+        "units": "qualitative_statement"
+      },
+      "control_mean": null,
+      "control_n": null,
+      "control_sd_or_sem": null,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "dossier_sha256": "2b0be5d1ca6ed35b288941210942ec95ec92393dac29a0b941ab04709a2b2aca",
+      "effect_direction": "Neutral_or_NonInferior",
+      "effect_id": "pmid40812299_eff1_sc291_hip_vs_hlareplete",
+      "endpoint_polarity_registry": {
+        "matched_lexicon_term": "none_or_mixed",
+        "orientation_sign": 0,
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint"
+      },
+      "focal_arm_id": "pmid40812299_arm1",
+      "focal_factor_X": "SC291 HIP-edited CD19 CAR-T under Flu/Cy lymphodepletion",
+      "log_response_ratio_or_smd": null,
+      "measurement_unit": "qualitative_statement",
+      "n_unit": "unspecified_in_source",
+      "outcome_domain": "Allo_T_Cell_or_DSA_Survival",
+      "outcome_variable_Y": "[Endpoint: Absence of de novo alloresponse against fully edited HIP CAR-T (40.9% of unsorted infused lot) under Flu/Cy lymphodepletion]",
+      "p_value": null,
+      "p_value_bound": null,
+      "p_value_relation": null,
+      "quote_source_dossier_pmid": "40812299",
+      "secretome_or_differentiation_penalty_observed": false,
+      "source_figure_or_table": "Abstract (NCT05878184 / NCT06294236)",
+      "source_span": "abstract[434:664]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "treatment_mean": null,
+      "treatment_n": null,
+      "treatment_sd_or_sem": null,
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:40812299 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=d35fa0f704d0ab157746962444fc529fc7d68323844b9c583e169c1b8cff3174]"
+    },
+    {
+      "censoring_note": "Not_Applicable",
+      "comparator_X0": "Single-arm exploratory patient pharmacodynamic subgroup (no paired infused-cell comparator)",
+      "comparator_arm_id": null,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "60 days",
+        "Z2_genetic_background_and_allelic_dose": "Specified in study arm",
+        "Z3_immune_effector_and_stressor_pathway": "Clinical_Pharmacodynamics_or_Target_Depletion",
+        "Z4_metabolic_and_glucose_load_state": "Standard assay state",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Specified in study arm",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Specified in study arm",
+        "Z7_promoter_and_epigenetic_context": "Specified in study arm",
+        "Z8_species_age_and_sex_context": "Pooled 14-patient clinical cohort: 13 oncology (ARDENT NCT05878184) + 1 autoimmune (GLEAM NCT06294236) under Flu/Cy lymphodepletion (11 patients in overall immune analysis after excluding 3 with pre-existing ex vivo killing)"
+      },
+      "contrast_metadata": {
+        "comparator_label": null,
+        "contrast_type": "single_arm_descriptive_only",
+        "endpoint_name": "Clinical_Pharmacodynamics_or_Target_Depletion",
+        "intervention_label": "SC291 Cas12b-edited HIP CD19 CAR-T (40.9% fully edited fraction) under Flu/Cy lymphodepletion",
+        "population_or_model": "Pooled 14-patient cohort: 13 oncology (ARDENT) + 1 autoimmune (GLEAM) CD19 CAR-T recipients under Flu/Cy lymphodepletion (11 in overall immune analysis excluding 3 with pre-existing ex vivo killing)",
+        "timepoint": "60 days",
+        "units": "qualitative_statement"
+      },
+      "control_mean": null,
+      "control_n": null,
+      "control_sd_or_sem": null,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "dossier_sha256": "2b0be5d1ca6ed35b288941210942ec95ec92393dac29a0b941ab04709a2b2aca",
+      "effect_direction": "Descriptive_or_Unoriented",
+      "effect_id": "pmid40812299_eff2_60d_bcell_depletion_subgroup",
+      "endpoint_polarity_registry": {
+        "matched_lexicon_term": "none_or_mixed",
+        "orientation_sign": 0,
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint"
+      },
+      "focal_arm_id": "pmid40812299_arm1",
+      "focal_factor_X": "SC291 HIP-edited CD19 CAR-T under Flu/Cy lymphodepletion",
+      "log_response_ratio_or_smd": null,
+      "measurement_unit": "qualitative_statement",
+      "n_unit": "unspecified_in_source",
+      "outcome_domain": "Clinical_Pharmacodynamics_or_Target_Depletion",
+      "outcome_variable_Y": "[Endpoint: Exploratory 60-day peripheral B-cell depletion subgroup observation in patients lacking antibodies against HLA-replete CAR-T]",
+      "p_value": null,
+      "p_value_bound": null,
+      "p_value_relation": null,
+      "quote_source_dossier_pmid": "40812299",
+      "secretome_or_differentiation_penalty_observed": false,
+      "source_figure_or_table": "Abstract (NCT05878184 / NCT06294236)",
+      "source_span": "abstract[665:897]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "treatment_mean": null,
+      "treatment_n": null,
+      "treatment_sd_or_sem": null,
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:40812299 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=954ebfd0584db8222920492a32a6027e90c83a1100891bc69c376a600be58ca3]"
+    }
+  ],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "high_throughput_screen_hits": [],
+    "regime_thresholds": [],
+    "residual_failure_and_escape_vectors": []
+  },
+  "effect_modifier_interactions": [],
+  "schema_version": "0.2.0",
+  "screening_decision": {
+    "exclusion_reason": null,
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null
+  },
+  "study_metadata": {
+    "doi": "10.1016/j.stem.2025.07.009",
+    "first_author": "Hu X",
+    "geo_accessions": [],
+    "journal": "Cell stem cell",
+    "max_biological_fidelity_tier": "Tier_1_Human_InVivo",
+    "nct_id": "NCT05878184; NCT06294236",
+    "pillars_covered": [
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth"
+    ],
+    "pmcid": null,
+    "pmid": "40812299",
+    "pub_year": 2025,
+    "senior_author": "ARDENT and GLEAM investigators",
+    "source_text_type": "Abstract_Only",
+    "superseded_by_pmid": null,
+    "title": "Hypoimmune CD19 CAR T cells evade allorejection in patients with cancer and autoimmune disease."
+  }
+}

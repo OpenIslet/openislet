@@ -195,7 +195,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:36170817 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=aa435512b0414ce8db0a6eb59ccc14d1c58cd9a1774347209e901a4b833d074e]",
+      "verbatim_evidence_quote": "Data are expressed as mean fluorescence intensity (MFI) and are representative of a total of three experiments (n = 3), intended as independent in vitro differentiations of the same iPSC clone (CGTRCiB10) at different passages.",
       "focal_arm_id": "pmid36170817_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,

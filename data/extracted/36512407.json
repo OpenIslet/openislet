@@ -286,7 +286,7 @@
         "intervention_label": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:36512407 field=omitted_text quote_sha256=ba6e9e8c0182308b1923b436abc00db8a21eba405a4e6d1315eed3671ebfebdc]",
+        "timepoint": "20 weeks",
         "population_or_model": "Unspecified_In_Source_Abstract (Tier_4_Rodent_or_Xenogeneic_Only)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
@@ -294,7 +294,7 @@
     },
     {
       "effect_id": "pmid36512407_eff4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36512407 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "IFIH1 (CRISPR_Cas9_KO — Gate4_Intrinsic_IFN_JAK_STAT_NFkB_Block)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: NK_or_Macrophage_Innate_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -350,7 +350,7 @@
     },
     {
       "effect_id": "pmid36512407_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36512407 field=omitted_text quote_sha256=b3d365f7b39223cd818bf36026fbdce2a793b72eb0856c16d0a3ffe50fc3cd23]",
+      "source_figure_or_table": "Figure 5",
       "focal_factor_X": "IFIH1 (CRISPR_Cas9_KO — Gate4_Intrinsic_IFN_JAK_STAT_NFkB_Block)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: NK_or_Macrophage_Innate_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -406,7 +406,7 @@
     },
     {
       "effect_id": "pmid36512407_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36512407 field=omitted_text quote_sha256=f5cad8a908aa757f2043449d15eca7f401541068b76a18c0f97546ac61b9e0bd]",
+      "source_figure_or_table": "Figure 6",
       "focal_factor_X": "IFIH1 (CRISPR_Cas9_KO — Gate4_Intrinsic_IFN_JAK_STAT_NFkB_Block)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Amyloid_hIAPP_or_Enterovirus_Protection | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -462,7 +462,7 @@
     },
     {
       "effect_id": "pmid36512407_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36512407 field=omitted_text quote_sha256=ef000543bc3239e1ea4d155d9f7b14dd6fea42d41a0fa6a23032d99bc28ab6db]",
+      "source_figure_or_table": "Figure 7",
       "focal_factor_X": "IFIH1 (CRISPR_Cas9_KO — Gate4_Intrinsic_IFN_JAK_STAT_NFkB_Block)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Amyloid_hIAPP_or_Enterovirus_Protection | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",

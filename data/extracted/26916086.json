@@ -372,7 +372,7 @@
     },
     {
       "effect_id": "pmid26916086_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:26916086 field=omitted_text quote_sha256=ef000543bc3239e1ea4d155d9f7b14dd6fea42d41a0fa6a23032d99bc28ab6db]",
+      "source_figure_or_table": "Figure 7",
       "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Allo_T_Cell_or_DSA_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -466,7 +466,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:26916086 field=omitted_text quote_sha256=4e0cc36bf064ab66c2766b793f4753aa80eff84fb881f281fa17db5863ae11f6]"
+        "matched_lexicon_term": "normoglycemia"
       },
       "dossier_sha256": "39e78071a15b8af83aa096ab043603b77fb85c43d0ed8f60ed02da3819294b9e",
       "source_span": "fulltext_data_sections.results_paragraphs[18][219:416]|norm=exact",
@@ -476,9 +476,9 @@
         "intervention_label": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
         "comparator_label": null,
         "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:26916086 field=omitted_text quote_sha256=ec13178b98722aec7155e81ceb34ccd429ae05a1f20bd48589c0b83fa3a3a10e]",
+        "timepoint": "2 days",
         "population_or_model": "Primary_Human_Islet (Tier_1_Human_InVivo)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:26916086 field=omitted_text quote_sha256=ab51004e9d71a485f160f655fb9e72bcdef8f5ca4178b26938b49471456fd11c]",
+        "units": "days",
         "contrast_type": "right_censored_followup_observation"
       }
     },
@@ -532,7 +532,7 @@
         "intervention_label": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:26916086 field=omitted_text quote_sha256=0672bd18f6c547755e759cfce672a655e115d99c4a5c771415dc4e86e3f9e0e8]",
+        "timepoint": "2 months",
         "population_or_model": "Primary_Human_Islet (Tier_1_Human_InVivo)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
@@ -542,7 +542,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid26916086_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:26916086 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Hypoxia_72h_Ischemia_and_O2_Scaffolds vs. Condition_2",

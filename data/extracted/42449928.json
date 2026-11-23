@@ -221,7 +221,7 @@
     },
     {
       "effect_id": "pmid42449928_eff3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:42449928 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
@@ -259,7 +259,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:42449928 field=omitted_text quote_sha256=4032ee4038775060258f8e68061309aed9bfdea5b574f24324ab7f065202d052]"
+        "matched_lexicon_term": "survival"
       },
       "dossier_sha256": "9ad15aa4cdf7fa795693ae3434b55d05a7d98b70d1404bdb9f9132ab1d5095a2",
       "source_span": "fulltext_data_sections.figure_legends[1].caption[0:118]|norm=exact",
@@ -277,7 +277,7 @@
     },
     {
       "effect_id": "pmid42449928_eff4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:42449928 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
@@ -333,7 +333,7 @@
     },
     {
       "effect_id": "pmid42449928_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:42449928 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -389,7 +389,7 @@
     },
     {
       "effect_id": "pmid42449928_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:42449928 field=omitted_text quote_sha256=f5cad8a908aa757f2043449d15eca7f401541068b76a18c0f97546ac61b9e0bd]",
+      "source_figure_or_table": "Figure 6",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Alpha_Delta_Paracrine_CounterRegulation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",

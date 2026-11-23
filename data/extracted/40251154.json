@@ -636,7 +636,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid40251154_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "CD47 (SmallMolecule_Pharmacological_Modulator — Gate3_NK_MissingSelf_Inhibition)",
       "outcome_Y": "NK_or_Macrophage_Innate_Survival",
       "modifier_variable_Z": "B2M_HLA_Class_I_Complex vs. CD47_SIRPa_DonotEatMe_Axis",
@@ -649,7 +649,7 @@
     },
     {
       "interaction_id": "pmid40251154_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=7817791c5ed120bd5ee4749da73978290ffd90681768b87845ef98e751387b69]",
+      "source_figure_or_table": "Fig. 4",
       "focal_factor_X": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
       "outcome_Y": "Allo_T_Cell_or_DSA_Survival",
       "modifier_variable_Z": "PMN_Neutrophil_NETosis_PAD4_CD99_CD200_Axis vs. Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
@@ -662,7 +662,7 @@
     },
     {
       "interaction_id": "pmid40251154_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40251154 field=omitted_text quote_sha256=7817791c5ed120bd5ee4749da73978290ffd90681768b87845ef98e751387b69]",
+      "source_figure_or_table": "Fig. 4",
       "focal_factor_X": "PMN_Neutrophil_NETosis_PAD4_CD99_CD200_Axis",
       "outcome_Y": "Allo_T_Cell_or_DSA_Survival",
       "modifier_variable_Z": "Regime dependency on PMN_Neutrophil_NETosis_PAD4_CD99_CD200_Axis",

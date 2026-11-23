@@ -550,12 +550,12 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid41749365_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41749365 field=omitted_text quote_sha256=ed7ba0018c84d2325e3872d63876f7f7211de61f576538a6c32bb2bbdff83bc3]",
+      "source_figure_or_table": "Fig. 2",
       "focal_factor_X": "CD31_CD146_Microvessel_Inosculation",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
-      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:41749365 field=level_1_condition_and_effect quote_sha256=cb48c82fc83814e4cf3c5a43f6279181b5f1328310891a28f77fa95c1507ff6e]",
+      "level_1_condition_and_effect": "qPCR data presented as a fold change",
       "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:41749365 field=level_2_condition_and_effect quote_sha256=dc2c424420d88d578a74ddbc436d58bc6bf61b2d3953961dda21646467b4aca8]",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
@@ -563,7 +563,7 @@
     },
     {
       "interaction_id": "pmid41749365_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41749365 field=omitted_text quote_sha256=d5e9076ff340c06615ceb16ebcfb1c14ecc362d87f08a6bd33c04a4cb7fc20cd]",
+      "source_figure_or_table": "Fig. 5",
       "focal_factor_X": "CD31_CD146_Microvessel_Inosculation",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
@@ -576,7 +576,7 @@
     },
     {
       "interaction_id": "pmid41749365_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41749365 field=omitted_text quote_sha256=d5e9076ff340c06615ceb16ebcfb1c14ecc362d87f08a6bd33c04a4cb7fc20cd]",
+      "source_figure_or_table": "Fig. 5",
       "focal_factor_X": "CD31_CD146_Microvessel_Inosculation",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
@@ -589,7 +589,7 @@
     },
     {
       "interaction_id": "pmid41749365_int4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41749365 field=omitted_text quote_sha256=d5c8c630cc2cbe2c3a4624882a9cd7aa8c834e3a42e721f7b661249e9917772e]",
+      "source_figure_or_table": "Fig. 7",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition contrast (MAFA_NKX6_1_PDX1_BetaCell_Identity)",

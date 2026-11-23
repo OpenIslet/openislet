@@ -308,7 +308,7 @@
         "intervention_label": "Biphasic_GSIS_and_Calcium_Coupling",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:42158573 field=omitted_text quote_sha256=302aceaf374d912449dbf8fec85a46dddd8a197cb1b0933e9af196dedf2e68c9]",
+        "timepoint": "4 weeks",
         "population_or_model": "hESC (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"

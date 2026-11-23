@@ -195,7 +195,7 @@
         "intervention_label": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:31839542 field=omitted_text quote_sha256=fa665d95d29e83bc8dc7afc598bc4d3329e56628d5304eb7ca7502fe4a4f03c0]",
+        "timepoint": "1 day",
         "population_or_model": "hESC (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
@@ -259,7 +259,7 @@
     },
     {
       "effect_id": "pmid31839542_eff4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31839542 field=omitted_text quote_sha256=0565fceba715022c0e85824b201086ecd54eb9eb38df8778c3686ed57b2148e0]",
+      "source_figure_or_table": "Figure 1",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
@@ -315,7 +315,7 @@
     },
     {
       "effect_id": "pmid31839542_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31839542 field=omitted_text quote_sha256=0565fceba715022c0e85824b201086ecd54eb9eb38df8778c3686ed57b2148e0]",
+      "source_figure_or_table": "Figure 1",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Metabolic_and_Biphasic_GSIS_Maturation | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=μm]",
@@ -365,13 +365,13 @@
         "endpoint_name": "Metabolic_and_Biphasic_GSIS_Maturation",
         "timepoint": null,
         "population_or_model": "hESC (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:31839542 field=omitted_text quote_sha256=8071927f3149d3c053f0857d336695d87e778cc5ce726d9f52d11a98d4c7b385]",
+        "units": "μm",
         "contrast_type": "single_arm_descriptive_only"
       }
     },
     {
       "effect_id": "pmid31839542_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31839542 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Metabolic_and_Biphasic_GSIS_Maturation | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
@@ -427,7 +427,7 @@
     },
     {
       "effect_id": "pmid31839542_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31839542 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Metabolic_and_Biphasic_GSIS_Maturation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -483,7 +483,7 @@
     },
     {
       "effect_id": "pmid31839542_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31839542 field=omitted_text quote_sha256=b3d365f7b39223cd818bf36026fbdce2a793b72eb0856c16d0a3ffe50fc3cd23]",
+      "source_figure_or_table": "Figure 5",
       "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: NK_or_Macrophage_Innate_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -541,7 +541,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid31839542_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31839542 field=omitted_text quote_sha256=0565fceba715022c0e85824b201086ecd54eb9eb38df8778c3686ed57b2148e0]",
+      "source_figure_or_table": "Figure 1",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Metabolic_and_Biphasic_GSIS_Maturation",
       "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. Biphasic_GSIS_and_Calcium_Coupling",
@@ -554,7 +554,7 @@
     },
     {
       "interaction_id": "pmid31839542_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31839542 field=omitted_text quote_sha256=0fb418bc6b224cad46820d15c23eadb4ce2fc19a718992213ef4bc57591ed9cf]",
+      "source_figure_or_table": "Figure 4",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "InVivo_Glycemic_Cure_and_Graft_Longevity",
       "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. Hypoxia_72h_Ischemia_and_O2_Scaffolds",

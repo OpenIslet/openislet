@@ -285,10 +285,10 @@
     }
   ],
   "off_grid_molecular_dead_end_guardrails": {
-    "schema_role": "Non-grid Stage-0 molecular, bioconjugation, oxygen-transport, and statistical/epigenetic provenance guardrails (preserving exact 10 grid-firing graveyard_entries for CHK-05 while indexing all shipped IIP-0017..IIP-0026 Stage-0 dead ends and context-dependent traps)",
+    "schema_role": "Non-grid Stage-0 molecular, bioconjugation, oxygen-transport, and statistical/epigenetic provenance guardrails (preserving exact 10 grid-firing graveyard_entries for CHK-05 while indexing all shipped IIP-0017..IIP-0032 Stage-0 dead ends and context-dependent traps)",
     "decision_id": "DEC-101",
-    "latest_update_decision_id": "DEC-105",
-    "contribution_id": "IIP-0017..IIP-0026",
+    "latest_update_decision_id": "DEC-111",
+    "contribution_id": "IIP-0017..IIP-0032",
     "consumed_by_validators": [
       "scripts/wetlab_contract.py (evaluate_stage0_decision_tree & evaluate_stage0_research_and_molecular_guardrails)",
       "tests/test_round3_supporting_boundaries.py (sections 47, 49, 50, and 51)",
@@ -609,6 +609,63 @@
           "34050011",
           "30010673"
         ]
+      },
+      {
+        "cheapest_falsification_assay": "In-silico Sec73 UGA translation audit (GPX4); MHC-I/II junctional peptide and membrane-tethered complement cleavage assays if revisiting CR1; matched 10 nM AP1903 AAVS1-iCasp9 kill non-inferiority assay (XIAP and CD64t orthogonality); isogenic SC-islet survival/GSIS benchmark (TXNIP); primary RCT records (BANDIT PMID:42627334, TrialNet PMID:36920087); and human SC-islet IFN-gamma+IL-1beta CXCL10 induction and Treg assays (constitutive A20 and local CTLA4-Ig).",
+        "contribution_id": "IIP-0032",
+        "curation_status": "corroborated",
+        "evidence_basis_class": "direct_in_silico_sequence_structural_and_contract_falsification",
+        "graveyard_card_id": "GY-026",
+        "guardrail_id": "OFFGRID_GUARD_016_GPX4_SEC73_XIAP_SHORT_STALK_CR1_TXNIP_KO_OFFDRUG_BARICITINIB_CD64T_MAB_SWITCH",
+        "pmids": [
+          "12620238",
+          "20855594",
+          "21402720",
+          "21653320",
+          "23416052",
+          "30799288",
+          "31634899",
+          "31634900",
+          "33316848",
+          "36593395",
+          "36920087",
+          "37043559",
+          "40320524",
+          "42627334"
+        ],
+        "severity_level": "BLOCK",
+        "status": "BARRED_GPX4_SEC73_XIAP_HOLD_SHORT_STALK_CR1_CHIMERA_TXNIP_KO_OFFDRUG_BARICITINIB_AND_CD64T_MAB_SWITCH_WITH_BOUNDED_A20_CTLA4IG_CAUTIONS",
+        "summary": "Six net-new molecular, structural, clinical, and safety-switch dead ends or compatibility holds are barred from promotion into active scored Islet-1 stacks (note: card-level curation_status='corroborated' aggregates mixed sub-item evidence tiers explicitly tagged below as [Sequence/biochemical], [Structural/biochemical hold], [In-silico/structural hold], [Direct empirical SC-islet/NOD-SCID], [Direct clinical RCT follow-up], or [Mechanistic compatibility hold]), alongside bounded cautions and explicit cross-links to GY-001, GY-002, GY-004, GY-007, GY-010, GY-011, GY-018, and GY-019 (IIP-0032): (1) [Sequence/biochemical] Canonical-isoform synthetic-cassette GPX4 (P36969) coding sequence lacking its native 3'-UTR SECIS hairpin — active-site Sec73 is encoded by an in-frame UGA stop codon causing premature truncation at aa 72, while murine U73C (mature U46C) substitution shows assay-dependent catalytic loss in vitro while still rescuing cell death (Mannes et al. 2011 PMID:21402720); prefer 2A-free FSP1/AIFM2 (Doll et al. 2019 PMID:31634899; Bersuker et al. 2019 PMID:31634900). (2) [Structural/biochemical hold] XIAP overexpression — structural and biochemical analysis establishes direct XIAP BIR3 heterodimerization and inhibition of monomeric/processed caspase-9 (Shiozaki et al. 2003 PMID:12620238), imposing a conservative safety-switch compatibility hold pending matched product-specific AP1903 AAVS1-iCasp9 (GY-002) non-inferiority testing rather than assuming switch survival. (3) [In-silico/structural hold] Short-stalk membrane CR1_SCR1-10_TM[1-687+1970-2005] chimera — conservative project exclusion based on the 687|1970 PNK|HD junctional 9-mer IIPNKHDAL (predicted HLA-C*01:02 33.75 nM, EL 0.01%, GY-011; HLA-DRB1*03:01 451.6 nM, GY-010), a 5-aa (<= 17.5 A) free stalk vs 49.21 A soluble-fragment PDB 5FO9 CCP17-to-C3b distance (soluble-fragment geometry only, intact-membrane reach unverified), and viral/parasite receptor motifs (EBV gp350 Ogembo et al. 2013 PMID:23416052; PfRh4 Tham et al. 2010 PMID:20855594). (4) [Direct empirical SC-islet/NOD-SCID] Promoting constitutive TXNIP-/- knockout into active scored Islet-1 product stacks — bounded to the observed CRISPR-Cas12a isogenic H1-hESC/SC-islet and immunodeficient NOD-SCID mouse model (Traini et al. 2025 PMID:40320524, CEG R1_0317), which showed no SC-islet survival, IFN-protection, or glycemic/GSIS improvement while increasing undifferentiated hESC proliferation (hepatocyte-like cell AKT/BiP observations kept strictly in non-islet context); this policy/promotion guardrail bars promoting TXNIP-KO into active scored stacks while retaining Design X subtraction/HIP-Core X5 research comparators and leaving legacy scripts/wetlab_contract.py (line 7850 still emits LOCK_RNLS_WT_AND_TXNIP_KO when s4_promoted triggers, whereas data/protocols/stage0_decision_tree_v1.json selects RNLS-WT plus loading adjustment; reconciling that legacy Stage-0 contract string is an explicit Stage-0 contract follow-up outside Layer-1 IIP-0032 scope) byte-untouched in IIP-0032 (0 Stage-0 executable code changes). (5) [Direct clinical RCT follow-up] Treating finite off-drug oral baricitinib as durable T1D tolerance — BANDIT 96-week follow-up (So et al. 2026 PMID:42627334, CEG M0155) showed week-96 overall off-drug C-peptide superiority waned to statistical non-significance (0.43 +/- 0.05 vs 0.35 +/- 0.06 nmol/L [SEM], two-sided P=0.336; 58 baricitinib and 30 placebo week-96 completers out of 91 randomized with intention-to-treat analysis using imputation; encoded in Ring-1's combined Neutral_or_NonInferior non-significant superiority bucket rather than a formal noninferiority test, and not proving zero residual effect) alongside resolution of earlier effector memory CD8+ T-cell shifts by week 96 (distinguishing week-24 cell-frequency from week-48 signaling observations in the full report); separately in Figure 2, post-hoc within-group baseline-to-week-48 on-treatment C-peptide change was -0.09 nmol/L in treated children (n=32, P=0.022) and +0.04 nmol/L in treated adults (n=28, P=0.622; separate within-group estimates, not an off-drug age-group interaction test), leaving durable off-drug tolerance unproven (conflicting with IS-free goals and GY-001). (6) [Mechanistic compatibility hold] Pairing CD64t with IgG-Fc antibody safety switches — mechanism-supported safety-switch compatibility hold awaiting direct product testing, grounded in CD64t IgG-Fc capture neutralizing ADCC/CDC (Gravina et al. 2023 PMID:36593395; anti-CD47 mAb depletion Hu et al. 2023 PMID:37043559; contextual EGFRt/cetuximab depletion mechanism Wang et al. 2011 PMID:21653320); pair CD64t with small-molecule AP1903 AAVS1-iCasp9 (GY-002) pending direct kill-switch validation. Bounded contextual cautions and cross-links: [Direct clinical RCT] systemic abatacept (CTLA4-Ig) missed its TrialNet Stage-1 primary progression endpoint (HR 0.702, P=0.11) with transient Treg decline (Russell et al. 2023 PMID:36920087), bounding local CTLA4-Ig as a Stage-0 caution requiring empirical Treg and Fc screening; [Porcine xenograft empirical] constitutive A20 (TNFAIP3) blunting of NF-kB in neonatal porcine islet xenografts (Zammit et al. 2021 PMID:33316848) is kept bounded to its porcine xenograft context and cross-linked to GY-001/GY-007; BCL2L1 (20q11.21) remains owned by GY-018/GY-019 (with Thompson et al. 2019 PMID:30799288 noted specifically for Bcl-2 senolysis)."
+      },
+      {
+        "cheapest_falsification_assay": "Paired calibrated flow-through 5% O2 (35.65 mmHg) perifusion DeltaOCR(glc) with measured inlet/outlet oxygen traces (Sweet et al. 2008 PMID:18021279), multi-mesh fixed-pitch mixed-size 3D FVM oxygen screening (GY-020), measured cluster composition/confocal Z-margin QC, and holding active iEOG hardware at zero scored weight until coupled H2 mass-balance, O2 leak, reflecting-wall insulin kinetics, and drug-free biocompatibility gates are experimentally resolved.",
+        "contribution_id": "IIP-0032",
+        "curation_status": "provisional_stage0_computational_guardrail",
+        "evidence_basis_class": "direct_in_silico_sequence_structural_and_contract_falsification",
+        "graveyard_card_id": "GY-027",
+        "guardrail_id": "OFFGRID_GUARD_017_HURDLE4_OXYGENATION_AND_PACKING_DEAD_ENDS",
+        "pmids": [
+          "18021279",
+          "25782016",
+          "26308506",
+          "29288549",
+          "29695723",
+          "30710150",
+          "33990318",
+          "34504013",
+          "34615868",
+          "38993891",
+          "39326417",
+          "40789835",
+          "41595986",
+          "41604464",
+          "42182975",
+          "42425151",
+          "42926365"
+        ],
+        "severity_level": "BLOCK",
+        "status": "PROVISIONAL_STAGE0_GUARDRAIL_HELD_ACTIVE_IEOG_OXYGENATION_PACKING_AND_STATIC_RESPIROMETRY_TRAPS",
+        "summary": "Provisional Stage-0 guardrail consolidating Hurdle-4 oxygenation, packing, respirometry, and held active-hardware traps as documented closed-form off-grid cautions (note: IIP-0032 records these closed-form algebraic mass-balance, Krogh-diffusion, Faraday, and 1D reflecting-wall point cautions strictly as provisional off-grid Stage-0 guardrails without shipping a standalone replay script or coupled numerical transformation inside IIP-0032), cross-linked to GY-020 (worst-face oxygen and microwell density) and GY-023 (betaAir explant amyloid) (IIP-0032): (1) Open-pore thin-lumen geometries on unhardened Design A/B/X — under the modeled Design A -10 pp H3 cuff-loss and host-dependence phi_host=0.50 sensitivity scenario, portfolio odds drop -1.86 pp locked / -3.32 pp modular (whereas phi_host=0 gives +1.11 pp; conditional sensitivity, not all-design harm; Pepper et al. 2015 PMID:26308506; Wang et al. 2024 PMID:39326417). (2) Passive hypoxia-limited subcutaneous macrodevices (empty passive subcutaneous macroencapsulation devices measured a longitudinal 28-day subcutaneous sham-device time-averaged internal PO2 of 12 +/- 5 mmHg (Day-1 mean 39 +/- 9 mmHg declining to near 0 mmHg by Day 4) by noninvasive 19F-MRS despite external vascularization in Einstein et al. 2023 PMID:38993891), passive gas conduits (SONIC; Wang et al. 2021 PMID:34615868), refillable gas tanks (betaAir; Carlsson et al. 2018 PMID:29288549; Evron et al. 2018 PMID:29695723), and consumed-reactant CO2->Li2O2 cartridges (Wang et al. 2021 PMID:33990318) — clinical Phase 1 betaAir recipients (n=4, NCT02064309) showed minute plasma C-peptide alongside explant histology showing thin tissue, dense FBR, and amyloid (GY-023), while closed-form 500k-IEQ scenario equations separately indicate 155-198 mL 24-h tank volumes, 109.7 g/yr consumed Li2O2 reactant with caustic LiOH/H2O2 pinhole hazard, and 152 mmHg cathode drop across specified 45 um 3x FBR beds (assumption-bound analytical transport cautions). (3) 50 um monolayer packing at 1,500 IEQ/cm^2 and unbounded small-cluster tails — square-lattice packing gives -0.31 um geometric overlap (vs +3.40 um triangular/hexagonal spacing; Hilderink et al. 2015 PMID:25782016; Dufault-Hunter et al. 2026 PMID:42926365 (non-peer-reviewed bioRxiv preprint)), while conditional IID binomial screens show elevated small-cluster hub-beta/delta dropout (5.57% unconditional P(<=1 hub beta) at 65 um 70:25:5; requires measured composition/function). (4) Unoxygenated passive macrodevices and uncalibrated static 5% O2 plate respirometry — VX-264 (NCT05791201, registry ACTIVE_NOT_RECRUITING n=7 with no posted results) was discontinued per March 28, 2025 sponsor disclosure after missing its Day-90 C-peptide endpoint (explant analysis planned; mechanism not clinically established), and closed-form static 37 C humidified 5% O2 (35.65 mmHg) XFe24 mass-balance calculations indicate >15 IEQ/well or 10-15 IEQ FCCP traces can breach 25 mmHg depending on effective plate volume (22.7 uL V7 vs Agilent islet capture plates citing 16.60 uL [FluxPak], 16.87 uL [brochure 101122-100], and 9.87 uL [XF24 FAQ], plus 125 um stock screen pores requiring hardware-specific chamber volume and cluster-retention calibration; 5 IEQ passes modeled cutoffs), favoring Sweet et al. 2008 (PMID:18021279) flow-through perifusion DeltaOCR(glc) as methodological precedent. (5) Four coupled analytical physics cautions holding Buffered iEOG-Chronic hardware outside canonical Design X (documented closed-form equations with shared mechanisms cross-linked, not independent probabilities or a bundled simulation script): [Trap 1] Finite-area (50-500 cm^2) IP/omental ePTFE H2 venting (Krogh length lambda_H2=1.183 mm, closed-form local p_H2=1,091.8-10,918.1 mmHg at 30 mA / 12.54 scc/h indicating modeled supersaturation, kept distinct from 3/6 hyperglycemic SD rat gas-bubble observations with unmeasured gas composition in Pham et al. 2025 PMID:40789835 and Krishnan et al. 2026 PMID:42182975); [Trap 2] Uncoupled thin-wall 180 mmHg core O2 leak demanding 34.16-39.87 mA total current (18.83-24.55 mA outward leak plus metabolism), yielding conditional 13.10-21.98 h canister drain, 100.6-117.5 mL/yr Faraday water consumption at 34.16-39.87 mA, Cl2/HOCl standard-potential, and bioheat cautions (Pham et al. 2025 PMID:40789835; Brandhorst et al. 2025 PMID:41595986, where O2-precharged perfluorodecalin beta-gel improved survival and yielded ~6x the 150-min sampled medium insulin of unoxygenated beta-gel in Fig. 8 [time-point measurement] while all encapsulated hydrogel groups showed slow/delayed insulin egress); [Trap 3] Impermeable reflecting-wall 1D insulin lag (1.48->2.82 min ideal MFPT, 1.91x; 54.44% P1 / 69.77% P2 on unencapsulated Nair S3d reference trace, Nair et al. 2019 PMID:30710150; Yang et al. 2021 PMID:34504013) plus local GW2580 drug elution (1-month NHP allogeneic protection Bochenek et al. 2026 PMID:41604464) conflicting with a drug-free device specification (combination-product classification open); and [Trap 4] 3,000 IEQ/cm^2 (1,500 IEQ/cm^2 per face) 65 um monolayer packing gives 61.17% disk area occupancy — exceeding the 54.7% 2D random sequential adsorption (RSA) equal-disc jamming limit (applicable to random-placement packing models, whereas an ordered square array of 65 um clusters retains a positive +8.65 um edge-to-edge gap at fixed 65 um per-face pitch p = 73.65 um [equivalent to fixed 65 um bilayer pitch p = 104.16 um across two staggered layers], and the negative -1.35 um margin at 75 um holds strictly under that fixed 65 um pitch—re-deriving pitch anew at 75 um for 1,500 IEQ/cm^2 per face yields p = 91.29 um and a positive +16.29 um gap; chosen <= 2,200 IEQ/cm^2 margin; Rosenberger et al. 2026 PMID:42425151)."
       }
     ]
   }

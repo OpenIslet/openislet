@@ -366,7 +366,7 @@
     },
     {
       "effect_id": "pmid42827453_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:42827453 field=omitted_text quote_sha256=982a11b859cf4a9c062604083fdac0d3080127ba3e44b4c40b0c3f7b5e15e638]",
+      "source_figure_or_table": "Fig. 6",
       "focal_factor_X": "Study_Intervention",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -592,7 +592,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid42827453_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:42827453 field=omitted_text quote_sha256=d5e9076ff340c06615ceb16ebcfb1c14ecc362d87f08a6bd33c04a4cb7fc20cd]",
+      "source_figure_or_table": "Fig. 5",
       "focal_factor_X": "CD47 (CRISPR_Cas9_KO — Gate3_NK_MissingSelf_Inhibition)",
       "outcome_Y": "NK_or_Macrophage_Innate_Survival",
       "modifier_variable_Z": "CD47_SIRPa_DonotEatMe_Axis vs. Condition_2",
@@ -611,7 +611,7 @@
       "modifier_variable_Z": "CD47_SIRPa_DonotEatMe_Axis vs. Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
       "modifier_class": "Z2_Genetic_Background_Zygosity_or_Surface_MFI_Dose",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:42827453 field=level_1_condition_and_effect quote_sha256=e75b544def7a735bc129dc16c5075ddf1cfc7cf8679e3a86edde8cb491b427da]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:42827453 field=level_2_condition_and_effect quote_sha256=254e3ab6736f1c71c572b087d6abcc3ad2689dbd1b10e052ea3bff36a7575f8e]",
+      "level_2_condition_and_effect": "CD8+ T cells (Fig.",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:42827453 field=mechanistic_explanation quote_sha256=bb13783ae53d18b56e24204f62bfee34d82fadd0ea72da78755c33b5458c585d]"

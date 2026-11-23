@@ -156,7 +156,7 @@
       "source_figure_or_table": "Abstract",
       "focal_factor_X": "Co-transplantation with ready-made adipose-derived microvessels (MVs) in the subcutaneous space",
       "comparator_X0": "Subcutaneous transplantation of human islets or hESC pancreatic progenitors without microvessels (or single endothelial cells)",
-      "outcome_variable_Y": "[Endpoint: Hypoxia_72h_or_Vascular_Inosculation | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=Subcutaneous graft survival and reversal of preexisting diabetes]",
+      "outcome_variable_Y": "[Endpoint: Hypoxia_72h_or_Vascular_Inosculation | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
       "outcome_domain": "Hypoxia_72h_or_Vascular_Inosculation",
       "treatment_mean": null,
       "treatment_sd_or_sem": null,

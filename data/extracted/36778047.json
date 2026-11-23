@@ -210,7 +210,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:36778047 field=verbatim_evidence_quote genes=SOCS1 pert=NONE quote_sha256=2d400ca6b7f2d6b1416af4d76a29cd97735d320774faf65d77104aa3487b0c68]",
+      "verbatim_evidence_quote": "This enrichment was stronger when considering only genes with the most significant increases (FDR <1 × 10−5) in cytokine-induced expression (++exp OR = 3.28, 95% CI = 1.33,7.37, p = 5.1 × 10−3, Fisher’s exact test).",
       "focal_arm_id": "pmid36778047_arm1",
       "comparator_arm_id": null,
       "p_value_relation": "=",
@@ -558,7 +558,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "survival"
+        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:36778047 field=omitted_text quote_sha256=4032ee4038775060258f8e68061309aed9bfdea5b574f24324ab7f065202d052]"
       },
       "dossier_sha256": "d00a554fd7f1c6252456421527e715ce3ff10f1950db760896e133bed87d19ef",
       "source_span": "fulltext_data_sections.figure_legends[3].caption[642:884]|norm=exact",
@@ -584,7 +584,7 @@
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
       "modifier_class": "Z2_Genetic_Background_Zygosity_or_Surface_MFI_Dose",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36778047 field=level_1_condition_and_effect quote_sha256=876c61e8e6dcfc7ebc1b91b1d16e889830a0064e892e143d2db5fd1f46d439b0]",
-      "level_2_condition_and_effect": "empty vector.",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36778047 field=level_2_condition_and_effect quote_sha256=718e2614dd217d3b5a255738785dd64c040db807afe0b199f97abc011f1c2b2a]",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:36778047 field=mechanistic_explanation quote_sha256=6400469e27a074019de9528f4beb238f0939a6e6cf09efd3062396561e6b372b]"

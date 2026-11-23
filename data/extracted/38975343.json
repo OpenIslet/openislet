@@ -375,7 +375,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:38975343 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=5f3ae2f565ee68d7df00a18018cd36677daaa57c171ec19d2ee1fc470cc27067]",
+      "verbatim_evidence_quote": "Cell surface molecules known to reduce NK cell activity are highlighted in a red box.",
       "focal_arm_id": "pmid38975343_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,

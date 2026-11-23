@@ -267,7 +267,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:37188763 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=b08bde909175aeb319a0c2ed0f9ea346177f93808e138e1ddeaa4ab72242252f]",
+      "verbatim_evidence_quote": "Treatment of doxycycline on non-transduced control shows no significant changes is insulin secretion (P = 0.38).",
       "focal_arm_id": "pmid37188763_arm1",
       "comparator_arm_id": null,
       "p_value_relation": "=",
@@ -279,7 +279,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "insulin secretion"
+        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:37188763 field=omitted_text quote_sha256=66e5550833f46fb41648825b19e92c907b18b102166906f317b4b66c9cc7002a]"
       },
       "dossier_sha256": "56a095b38ff1c368539ab630f5806ec4f1597e7895829e7a4bc6f523b2e014ab",
       "source_span": "fulltext_data_sections.figure_legends[2].caption[2226:2338]|norm=exact",
@@ -353,7 +353,7 @@
     },
     {
       "effect_id": "pmid37188763_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37188763 field=omitted_text quote_sha256=205d464ae3c9b0d603b94363f2b538f56d348f7fe58d27f17cdfe4829f3758d0]",
+      "source_figure_or_table": "Extended Data Fig. 2",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -409,7 +409,7 @@
     },
     {
       "effect_id": "pmid37188763_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37188763 field=omitted_text quote_sha256=205d464ae3c9b0d603b94363f2b538f56d348f7fe58d27f17cdfe4829f3758d0]",
+      "source_figure_or_table": "Extended Data Fig. 2",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -579,7 +579,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid37188763_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37188763 field=omitted_text quote_sha256=ed7ba0018c84d2325e3872d63876f7f7211de61f576538a6c32bb2bbdff83bc3]",
+      "source_figure_or_table": "Fig. 2",
       "focal_factor_X": "IAPP (CRISPRi_or_shRNA_Knockdown — Gate4_Intrinsic_Amyloid_or_Viral_Receptor_Shield)",
       "outcome_Y": "Amyloid_hIAPP_or_Enterovirus_Protection",
       "modifier_variable_Z": "Condition_1 vs. IAPP_Amyloid_Oligomer_Inflammasome",
@@ -592,7 +592,7 @@
     },
     {
       "interaction_id": "pmid37188763_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37188763 field=omitted_text quote_sha256=386383ccf8dff386941677630ff7ea25def518db134896279c787f300fbc6383]",
+      "source_figure_or_table": "Extended Data Fig. 9",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
       "modifier_variable_Z": "Condition_1 vs. MAFA_NKX6_1_PDX1_BetaCell_Identity",

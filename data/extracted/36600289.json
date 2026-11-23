@@ -430,7 +430,7 @@
     },
     {
       "effect_id": "pmid36600289_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36600289 field=omitted_text quote_sha256=ed7ba0018c84d2325e3872d63876f7f7211de61f576538a6c32bb2bbdff83bc3]",
+      "source_figure_or_table": "Fig. 2",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=μM]",
@@ -486,7 +486,7 @@
     },
     {
       "effect_id": "pmid36600289_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36600289 field=omitted_text quote_sha256=6ab12f290e9cb76539bc4abbfe2b4838c77577eb0b3b1f5c47c72bb78aaf9788]",
+      "source_figure_or_table": "Fig. 3",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -544,7 +544,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid36600289_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36600289 field=omitted_text quote_sha256=7817791c5ed120bd5ee4749da73978290ffd90681768b87845ef98e751387b69]",
+      "source_figure_or_table": "Fig. 4",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. Condition_2",

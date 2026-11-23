@@ -509,7 +509,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "balboa2022_int1_stage_modifies_glucose_exocytosis",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=omitted_text quote_sha256=431f3592e303a39efc4fd3d7aa4ecc541602de3ecf465936575a0488366cdb2d]",
+      "source_figure_or_table": "Fig. 2q",
       "focal_factor_X": "High Glucose stimulation (10 mM vs 3 mM glucose)",
       "outcome_Y": "Spontaneous insulin granule exocytosis events (granules/um2 over 3 min by TIRF)",
       "modifier_variable_Z": "Stage 7 in vitro maturation duration (S7w0 vs S7w6)",

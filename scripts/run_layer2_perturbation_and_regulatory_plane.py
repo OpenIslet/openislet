@@ -4786,7 +4786,7 @@ def simulate_stage0_to_stage7_perturbation_plane(
         penalty = eff.get("secretome_or_differentiation_penalty_observed", False)
         if not isinstance(focal_text, str):
             raise ValueError(f"Atomic effect focal_factor_X must be a string: {rec_key}")
-        if direction not in {"Protective_or_Improved", "Deleterious_or_Impaired", "Neutral_or_NonInferior"}:
+        if direction not in {"Protective_or_Improved", "Deleterious_or_Impaired", "Neutral_or_NonInferior", "Descriptive_or_Unoriented"}:
             raise ValueError(f"Atomic effect requires a canonical effect_direction: {rec_key}")
         if type(penalty) is not bool:
             raise ValueError(f"Atomic effect penalty flag must be a boolean: {rec_key}")

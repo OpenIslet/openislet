@@ -276,7 +276,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
         "orientation_sign": -1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:31796987 field=omitted_text quote_sha256=a8d34d42aeff603765213ae709399cc6a5ef2251f3cf54eb14d392f1a8a7b69f]"
+        "matched_lexicon_term": "apoptosis"
       },
       "dossier_sha256": "aca1faeca5adbc458720c80fe5e6a8a0892503d61485b49e706a9e02d9e2c3e0",
       "source_span": "fulltext_data_sections.figure_legends[1].caption[530:594]|norm=exact",
@@ -294,7 +294,7 @@
     },
     {
       "effect_id": "pmid31796987_eff4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31796987 field=omitted_text quote_sha256=d5e9076ff340c06615ceb16ebcfb1c14ecc362d87f08a6bd33c04a4cb7fc20cd]",
+      "source_figure_or_table": "Fig. 5",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -350,7 +350,7 @@
     },
     {
       "effect_id": "pmid31796987_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31796987 field=omitted_text quote_sha256=d5e9076ff340c06615ceb16ebcfb1c14ecc362d87f08a6bd33c04a4cb7fc20cd]",
+      "source_figure_or_table": "Fig. 5",
       "focal_factor_X": "SLC30A8 (CRISPRi_or_shRNA_Knockdown — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -406,7 +406,7 @@
     },
     {
       "effect_id": "pmid31796987_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31796987 field=omitted_text quote_sha256=d5e9076ff340c06615ceb16ebcfb1c14ecc362d87f08a6bd33c04a4cb7fc20cd]",
+      "source_figure_or_table": "Fig. 5",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -454,7 +454,7 @@
         "intervention_label": "Biphasic_GSIS_and_Calcium_Coupling",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:31796987 field=omitted_text quote_sha256=919faefe006e8836def13b3f6f7fe5522d80296f2f8b3fbb0e77d0b401f17a09]",
+        "timepoint": "6 days",
         "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
@@ -462,7 +462,7 @@
     },
     {
       "effect_id": "pmid31796987_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31796987 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "BetaCell_Survival_and_Glycemic_Cure",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Lower_Is_Better_Hazard_Endpoint | orientation_sign=-1 | unit=qualitative_statement]",
@@ -518,7 +518,7 @@
     },
     {
       "effect_id": "pmid31796987_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31796987 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
@@ -576,7 +576,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid31796987_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:31796987 field=omitted_text quote_sha256=7817791c5ed120bd5ee4749da73978290ffd90681768b87845ef98e751387b69]",
+      "source_figure_or_table": "Fig. 4",
       "focal_factor_X": "IAPP (CRISPRi_or_shRNA_Knockdown — Gate4_Intrinsic_Amyloid_or_Viral_Receptor_Shield)",
       "outcome_Y": "Amyloid_hIAPP_or_Enterovirus_Protection",
       "modifier_variable_Z": "Regime dependency on IAPP_Amyloid_Oligomer_Inflammasome",

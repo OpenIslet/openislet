@@ -240,7 +240,7 @@
     },
     {
       "effect_id": "pmid40263183_eff3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40263183 field=omitted_text quote_sha256=6ab12f290e9cb76539bc4abbfe2b4838c77577eb0b3b1f5c47c72bb78aaf9788]",
+      "source_figure_or_table": "Fig. 3",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -296,7 +296,7 @@
     },
     {
       "effect_id": "pmid40263183_eff4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40263183 field=omitted_text quote_sha256=7817791c5ed120bd5ee4749da73978290ffd90681768b87845ef98e751387b69]",
+      "source_figure_or_table": "Fig. 4",
       "focal_factor_X": "CHGA (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -352,7 +352,7 @@
     },
     {
       "effect_id": "pmid40263183_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40263183 field=omitted_text quote_sha256=7817791c5ed120bd5ee4749da73978290ffd90681768b87845ef98e751387b69]",
+      "source_figure_or_table": "Fig. 4",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Metabolic_and_Biphasic_GSIS_Maturation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -408,7 +408,7 @@
     },
     {
       "effect_id": "pmid40263183_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40263183 field=omitted_text quote_sha256=7817791c5ed120bd5ee4749da73978290ffd90681768b87845ef98e751387b69]",
+      "source_figure_or_table": "Fig. 4",
       "focal_factor_X": "CHGA (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -464,7 +464,7 @@
     },
     {
       "effect_id": "pmid40263183_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40263183 field=omitted_text quote_sha256=7817791c5ed120bd5ee4749da73978290ffd90681768b87845ef98e751387b69]",
+      "source_figure_or_table": "Fig. 4",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -520,7 +520,7 @@
     },
     {
       "effect_id": "pmid40263183_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40263183 field=omitted_text quote_sha256=d5e9076ff340c06615ceb16ebcfb1c14ecc362d87f08a6bd33c04a4cb7fc20cd]",
+      "source_figure_or_table": "Fig. 5",
       "focal_factor_X": "CHGA (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -578,7 +578,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid40263183_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40263183 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Regime dependency on Experimental_Context",
@@ -591,7 +591,7 @@
     },
     {
       "interaction_id": "pmid40263183_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40263183 field=omitted_text quote_sha256=7817791c5ed120bd5ee4749da73978290ffd90681768b87845ef98e751387b69]",
+      "source_figure_or_table": "Fig. 4",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Metabolic_and_Biphasic_GSIS_Maturation",
       "modifier_variable_Z": "Condition contrast (MAFA_NKX6_1_PDX1_BetaCell_Identity)",
@@ -604,20 +604,20 @@
     },
     {
       "interaction_id": "pmid40263183_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40263183 field=omitted_text quote_sha256=7817791c5ed120bd5ee4749da73978290ffd90681768b87845ef98e751387b69]",
+      "source_figure_or_table": "Fig. 4",
       "focal_factor_X": "CHGA (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "CHGA_WE14_Hybrid_Insulin_Peptide_HIP vs. Condition_2",
       "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:40263183 field=level_1_condition_and_effect quote_sha256=cd98f98191c2f566f2ca7b77e45d735221c4f050ceb1e6ba63b40c5fdae5704b]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:40263183 field=level_2_condition_and_effect quote_sha256=43f6703b4f28adb1cfd2808c21ce501127f03dcd802f2616eed3c2f0c00e9b3a]",
+      "level_2_condition_and_effect": "WT EPs (n=3).",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:40263183 field=mechanistic_explanation quote_sha256=80d80cba3532522945db41e3644ecb59a74f6ae506714a0b8e8321c16b08fbad]"
     },
     {
       "interaction_id": "pmid40263183_int4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40263183 field=omitted_text quote_sha256=7817791c5ed120bd5ee4749da73978290ffd90681768b87845ef98e751387b69]",
+      "source_figure_or_table": "Fig. 4",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",

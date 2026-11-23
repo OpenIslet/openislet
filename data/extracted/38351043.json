@@ -546,7 +546,7 @@
     },
     {
       "effect_id": "pmid38351043_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:38351043 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "TYK2 (SmallMolecule_Pharmacological_Modulator — Gate4_Intrinsic_IFN_JAK_STAT_NFkB_Block)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -649,7 +649,7 @@
       "modifier_variable_Z": "Condition contrast (TYK2_JAK1_STAT1_IRF1_Signaling)",
       "modifier_class": "Z2_Genetic_Background_Zygosity_or_Surface_MFI_Dose",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38351043 field=level_1_condition_and_effect quote_sha256=d52e968d518d2909b73225ce3f1b248e599135ed655aeb16c944efc74b1cec3d]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38351043 field=level_2_condition_and_effect quote_sha256=2b1c896b4c574f4cdca8a01f759232e8c2bda5c79447691a1110cc63b90343e6]",
+      "level_2_condition_and_effect": "14w Tyk2−/− mice (Fig.",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:38351043 field=mechanistic_explanation quote_sha256=27e274e2cad98951b6fe2dee8fb6618539e63bc8696e2aec6f0c3113fc9538e1]"

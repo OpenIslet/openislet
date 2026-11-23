@@ -595,7 +595,7 @@
       "modifier_variable_Z": "Condition contrast (ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP)",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:39824805 field=level_1_condition_and_effect quote_sha256=5c41b7ee6e4484b3b6d224434b903cd93189ca78b24fe2d73a0b043a2ec455bb]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:39824805 field=level_2_condition_and_effect quote_sha256=80a22a074416edf28795891a0bf23207275a50bad121957685b5526bbff66df3]",
+      "level_2_condition_and_effect": "the canonical INS mRNA.",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:39824805 field=mechanistic_explanation quote_sha256=b94265c33fcc338d52e1920068bd691b1d9a956f9b57315142f21ec221ad0335]"

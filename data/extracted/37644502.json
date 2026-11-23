@@ -253,7 +253,7 @@
         "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
         "timepoint": "30 min",
         "population_or_model": "Unspecified_In_Source_Abstract (Tier_4_Rodent_or_Xenogeneic_Only)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:37644502 field=omitted_text quote_sha256=492ed4cb70b89aab1286c50b9867cd9c45a4ae7a775e55b6514cb088e333f1b1]",
+        "units": "mg/dL",
         "contrast_type": "single_arm_descriptive_only"
       }
     },
@@ -270,7 +270,7 @@
       "control_mean": null,
       "control_sd_or_sem": null,
       "control_n": null,
-      "measurement_unit": "[REDACTED_NON_OA_EXCERPT: see PMID:37644502 field=omitted_text quote_sha256=492ed4cb70b89aab1286c50b9867cd9c45a4ae7a775e55b6514cb088e333f1b1]",
+      "measurement_unit": "mg/dL",
       "log_response_ratio_or_smd": null,
       "p_value": null,
       "effect_direction": "Protective_or_Improved",
@@ -309,13 +309,13 @@
         "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
         "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:37644502 field=omitted_text quote_sha256=8d616d3509613e95aaa6131721ee5a95bdf69d7455768fc9a2f932398f6864a2]",
         "population_or_model": "Unspecified_In_Source_Abstract (Tier_4_Rodent_or_Xenogeneic_Only)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:37644502 field=omitted_text quote_sha256=492ed4cb70b89aab1286c50b9867cd9c45a4ae7a775e55b6514cb088e333f1b1]",
+        "units": "mg/dL",
         "contrast_type": "single_arm_descriptive_only"
       }
     },
     {
       "effect_id": "pmid37644502_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37644502 field=omitted_text quote_sha256=d5e9076ff340c06615ceb16ebcfb1c14ecc362d87f08a6bd33c04a4cb7fc20cd]",
+      "source_figure_or_table": "Fig. 5",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -371,7 +371,7 @@
     },
     {
       "effect_id": "pmid37644502_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37644502 field=omitted_text quote_sha256=6ab12f290e9cb76539bc4abbfe2b4838c77577eb0b3b1f5c47c72bb78aaf9788]",
+      "source_figure_or_table": "Fig. 3",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -427,7 +427,7 @@
     },
     {
       "effect_id": "pmid37644502_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37644502 field=omitted_text quote_sha256=d5e9076ff340c06615ceb16ebcfb1c14ecc362d87f08a6bd33c04a4cb7fc20cd]",
+      "source_figure_or_table": "Fig. 5",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -483,7 +483,7 @@
     },
     {
       "effect_id": "pmid37644502_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37644502 field=omitted_text quote_sha256=d5e9076ff340c06615ceb16ebcfb1c14ecc362d87f08a6bd33c04a4cb7fc20cd]",
+      "source_figure_or_table": "Fig. 5",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",

@@ -546,7 +546,7 @@
       "outcome_Y": "Metabolic_and_Biphasic_GSIS_Maturation",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
       "modifier_class": "Z2_Genetic_Background_Zygosity_or_Surface_MFI_Dose",
-      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:24658304 field=level_1_condition_and_effect quote_sha256=5f3dbf92d07806fc292d95a0d265f474616657de478610a9c45d9f84bf83e5ff]",
+      "level_1_condition_and_effect": "In general, activation of M1, M3, and M5 receptors increases [Ca2+]i via phospholipase C",
       "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:24658304 field=level_2_condition_and_effect quote_sha256=ce7082e06fd37c62b4792a7b89284bbead1a37e3a46fa8be6f29a57cd97b27cc]",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,

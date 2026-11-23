@@ -197,7 +197,7 @@
         "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
         "timepoint": "1.9 days",
         "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:39922198 field=omitted_text quote_sha256=ab51004e9d71a485f160f655fb9e72bcdef8f5ca4178b26938b49471456fd11c]",
+        "units": "days",
         "contrast_type": "right_censored_followup_observation"
       }
     },
@@ -214,7 +214,7 @@
       "control_mean": null,
       "control_sd_or_sem": null,
       "control_n": null,
-      "measurement_unit": "[REDACTED_NON_OA_EXCERPT: see PMID:39922198 field=omitted_text quote_sha256=ab51004e9d71a485f160f655fb9e72bcdef8f5ca4178b26938b49471456fd11c]",
+      "measurement_unit": "days",
       "log_response_ratio_or_smd": null,
       "p_value": null,
       "effect_direction": "Protective_or_Improved",
@@ -241,7 +241,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:39922198 field=omitted_text quote_sha256=4e0cc36bf064ab66c2766b793f4753aa80eff84fb881f281fa17db5863ae11f6]"
+        "matched_lexicon_term": "normoglycemia"
       },
       "dossier_sha256": "271b1068496ad35105adc24ef4d3aa9b9ef74f99123ffe06f0e4f0b9ead905e4",
       "source_span": "fulltext_data_sections.results_paragraphs[33][208:261]|norm=exact",
@@ -251,15 +251,15 @@
         "intervention_label": "Biphasic_GSIS_and_Calcium_Coupling",
         "comparator_label": null,
         "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:39922198 field=omitted_text quote_sha256=5ccf11d53c84394ec28a4607c5e99e15de868671e079825efc3338dc732a972d]",
+        "timepoint": "1.9 days",
         "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:39922198 field=omitted_text quote_sha256=ab51004e9d71a485f160f655fb9e72bcdef8f5ca4178b26938b49471456fd11c]",
+        "units": "days",
         "contrast_type": "right_censored_followup_observation"
       }
     },
     {
       "effect_id": "pmid39922198_eff4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39922198 field=omitted_text quote_sha256=f5cad8a908aa757f2043449d15eca7f401541068b76a18c0f97546ac61b9e0bd]",
+      "source_figure_or_table": "Figure 6",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: InVivo_Glycemic_Cure_and_Graft_Longevity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=mg/dL]",
@@ -270,7 +270,7 @@
       "control_mean": null,
       "control_sd_or_sem": null,
       "control_n": null,
-      "measurement_unit": "[REDACTED_NON_OA_EXCERPT: see PMID:39922198 field=omitted_text quote_sha256=492ed4cb70b89aab1286c50b9867cd9c45a4ae7a775e55b6514cb088e333f1b1]",
+      "measurement_unit": "mg/dL",
       "log_response_ratio_or_smd": null,
       "p_value": 0.0035,
       "effect_direction": "Protective_or_Improved",
@@ -309,7 +309,7 @@
         "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
         "timepoint": null,
         "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:39922198 field=omitted_text quote_sha256=492ed4cb70b89aab1286c50b9867cd9c45a4ae7a775e55b6514cb088e333f1b1]",
+        "units": "mg/dL",
         "contrast_type": "single_arm_descriptive_only"
       }
     },

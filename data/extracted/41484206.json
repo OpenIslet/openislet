@@ -326,7 +326,7 @@
     },
     {
       "effect_id": "pmid41484206_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41484206 field=omitted_text quote_sha256=0fb418bc6b224cad46820d15c23eadb4ce2fc19a718992213ef4bc57591ed9cf]",
+      "source_figure_or_table": "Figure 4",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -382,7 +382,7 @@
     },
     {
       "effect_id": "pmid41484206_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41484206 field=omitted_text quote_sha256=0fb418bc6b224cad46820d15c23eadb4ce2fc19a718992213ef4bc57591ed9cf]",
+      "source_figure_or_table": "Figure 4",
       "focal_factor_X": "Stage7_3D_Suspension_Cytoarchitecture",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -430,7 +430,7 @@
         "intervention_label": "Stage7_3D_Suspension_Cytoarchitecture",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:41484206 field=omitted_text quote_sha256=c8cc522340b984b57109fd8b120419170b4301baead519e2a8fd65736b9ddd41]",
+        "timepoint": "1 week",
         "population_or_model": "iPSC_healthy_donor (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
@@ -438,7 +438,7 @@
     },
     {
       "effect_id": "pmid41484206_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41484206 field=omitted_text quote_sha256=b3d365f7b39223cd818bf36026fbdce2a793b72eb0856c16d0a3ffe50fc3cd23]",
+      "source_figure_or_table": "Figure 5",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -494,7 +494,7 @@
     },
     {
       "effect_id": "pmid41484206_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41484206 field=omitted_text quote_sha256=f5cad8a908aa757f2043449d15eca7f401541068b76a18c0f97546ac61b9e0bd]",
+      "source_figure_or_table": "Figure 6",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",

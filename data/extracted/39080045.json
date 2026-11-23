@@ -603,7 +603,7 @@
     },
     {
       "interaction_id": "pmid39080045_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39080045 field=omitted_text quote_sha256=6ab12f290e9cb76539bc4abbfe2b4838c77577eb0b3b1f5c47c72bb78aaf9788]",
+      "source_figure_or_table": "Fig. 3",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Regime dependency on MAFA_NKX6_1_PDX1_BetaCell_Identity",
@@ -616,7 +616,7 @@
     },
     {
       "interaction_id": "pmid39080045_int4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39080045 field=omitted_text quote_sha256=6ab12f290e9cb76539bc4abbfe2b4838c77577eb0b3b1f5c47c72bb78aaf9788]",
+      "source_figure_or_table": "Fig. 3",
       "focal_factor_X": "CHGA (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Regime dependency on CHGA_WE14_Hybrid_Insulin_Peptide_HIP",

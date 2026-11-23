@@ -189,7 +189,7 @@
         "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
         "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:40757665 field=omitted_text quote_sha256=5d1d13e5a51e59173447c467c272ff8bcc4479fc969ef4bcd3c820ddd354a273]",
         "population_or_model": "Cas12b B2M-/- + CIITA-/- + lentiviral CD47 (UP421) (Human clinical trial (NCT06239636, Tier_1_Human_InVivo))",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:40757665 field=omitted_text quote_sha256=eb0d2375b51859a3212007c5a52de4b476022b3e9d45df6242497c4378631cba]",
+        "units": "weeks",
         "contrast_type": "right_censored_followup_observation"
       },
       "p_value_relation": null,

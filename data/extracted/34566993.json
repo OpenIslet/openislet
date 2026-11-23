@@ -571,12 +571,12 @@
     },
     {
       "interaction_id": "pmid34566993_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:34566993 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "Primary_NK_or_Macrophage_Innate_Cytotoxicity",
       "outcome_Y": "Surface_HLA_or_Transgene_Expression_Level",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
-      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:34566993 field=level_1_condition_and_effect quote_sha256=af5441d5e9b762a47f949d517fbcc3a1fb2a775afd20da6a1f732b973dd8cff6]",
+      "level_1_condition_and_effect": "Unstained cells in dark grey were",
       "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:34566993 field=level_2_condition_and_effect quote_sha256=4ad34e842375c63bc0be6c1fc986d407d1ad3b894a9fc39e8272de9f7b478af4]",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
@@ -584,7 +584,7 @@
     },
     {
       "interaction_id": "pmid34566993_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:34566993 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "Primary_NK_or_Macrophage_Innate_Cytotoxicity",
       "outcome_Y": "Surface_HLA_or_Transgene_Expression_Level",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
@@ -597,7 +597,7 @@
     },
     {
       "interaction_id": "pmid34566993_int4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:34566993 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "Primary_NK_or_Macrophage_Innate_Cytotoxicity",
       "outcome_Y": "Surface_HLA_or_Transgene_Expression_Level",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",

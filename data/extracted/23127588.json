@@ -418,7 +418,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:23127588 field=omitted_text quote_sha256=4032ee4038775060258f8e68061309aed9bfdea5b574f24324ab7f065202d052]"
+        "matched_lexicon_term": "survival"
       },
       "dossier_sha256": "7da36fb472dff5c3c280b4f7915981ca85828d8ebf01c15e5edf9cc00935e77f",
       "source_span": "abstract[1795:1991]|norm=exact",

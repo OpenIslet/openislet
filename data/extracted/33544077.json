@@ -571,7 +571,7 @@
     },
     {
       "interaction_id": "pmid33544077_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:33544077 field=omitted_text quote_sha256=21798bd3aa0750a533bb3063bbdcaedc15caf16325930927ae0177860a27ab63]",
+      "source_figure_or_table": "Figure 4.",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",

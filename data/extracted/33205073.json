@@ -393,7 +393,7 @@
     },
     {
       "effect_id": "pmid33205073_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:33205073 field=omitted_text quote_sha256=f5cad8a908aa757f2043449d15eca7f401541068b76a18c0f97546ac61b9e0bd]",
+      "source_figure_or_table": "Figure 6",
       "focal_factor_X": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=μm]",
@@ -443,13 +443,13 @@
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": null,
         "population_or_model": "hESC (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:33205073 field=omitted_text quote_sha256=8071927f3149d3c053f0857d336695d87e778cc5ce726d9f52d11a98d4c7b385]",
+        "units": "μm",
         "contrast_type": "single_arm_descriptive_only"
       }
     },
     {
       "effect_id": "pmid33205073_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:33205073 field=omitted_text quote_sha256=ef000543bc3239e1ea4d155d9f7b14dd6fea42d41a0fa6a23032d99bc28ab6db]",
+      "source_figure_or_table": "Figure 7",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
@@ -487,7 +487,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:33205073 field=omitted_text quote_sha256=c21cf7a2d7e7584a07afc703a9b021cbace07f8dae43f3309bdd1fc4f855a2fb]"
+        "matched_lexicon_term": "c-peptide"
       },
       "dossier_sha256": "5a6f5b514f50e687272286bf060963ec11b9714478eeb86c4ded23daa569519a",
       "source_span": "fulltext_data_sections.figure_legends[6].caption[807:998]|norm=exact",
@@ -619,7 +619,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid33205073_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:33205073 field=omitted_text quote_sha256=0565fceba715022c0e85824b201086ecd54eb9eb38df8778c3686ed57b2148e0]",
+      "source_figure_or_table": "Figure 1",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition contrast (Biphasic_GSIS_and_Calcium_Coupling)",
@@ -632,7 +632,7 @@
     },
     {
       "interaction_id": "pmid33205073_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:33205073 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
       "outcome_Y": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
       "modifier_variable_Z": "Condition_1 vs. MAFA_NKX6_1_PDX1_BetaCell_Identity",
@@ -645,7 +645,7 @@
     },
     {
       "interaction_id": "pmid33205073_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:33205073 field=omitted_text quote_sha256=f5cad8a908aa757f2043449d15eca7f401541068b76a18c0f97546ac61b9e0bd]",
+      "source_figure_or_table": "Figure 6",
       "focal_factor_X": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition contrast (PD_L1_CD274_Checkpoint)",
@@ -664,7 +664,7 @@
       "modifier_variable_Z": "Condition contrast (Biphasic_GSIS_and_Calcium_Coupling)",
       "modifier_class": "Z4_Metabolic_Glucose_or_ER_Secretory_Load",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:33205073 field=level_1_condition_and_effect quote_sha256=8f6f4f494c418dc3c7641d0c9bbdd4da28a164ddb44fae1529459e4894c3e9b2]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:33205073 field=level_2_condition_and_effect quote_sha256=aec50e10b7aeb63de256d5d9bfa632f19839b9eec7bd6e5b8f70c955d37845f1]",
+      "level_2_condition_and_effect": "2.5 mM glucose (n = 4).",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:33205073 field=mechanistic_explanation quote_sha256=30342e5721c3e75d80bc78d19cd073cfdd6624f13bf942fe47e25bab90925e16]"

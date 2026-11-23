@@ -560,7 +560,7 @@
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38509065 field=level_1_condition_and_effect quote_sha256=b7579aa233f7ab032e32667d7599bf25c60475029db2b2ca31756c88931defd5]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38509065 field=level_2_condition_and_effect quote_sha256=16c0b47d273e42e6eb9cf4f2d71585fd7d2884e20338361ac8ab14a26ecde6dc]",
+      "level_2_condition_and_effect": "wild-type (WT) GLI2 activity (Fig.",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:38509065 field=mechanistic_explanation quote_sha256=bb5f8934e8f57480094a3c03ee79cf523f9e9fb9d88960a64c19f15e79dd058a]"

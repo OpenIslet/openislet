@@ -246,7 +246,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:34881312 field=verbatim_evidence_quote genes=TXNIP pert=NONE quote_sha256=210ba00b07ee56c75a7fd765060f8d7c2f07d43a0607bd65b0bbbd68c7edc807]",
+      "verbatim_evidence_quote": "(C,D) Effect of miR-17-5p on glucose tolerance in DM mice (n = 8).",
       "focal_arm_id": "pmid34881312_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,
@@ -426,7 +426,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
         "orientation_sign": -1,
-        "matched_lexicon_term": "blood glucose"
+        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:34881312 field=omitted_text quote_sha256=bcd3c113b8678e0374dea1cf05f0c79521d90d3a8c403d7efd56462d2e9fd35d]"
       },
       "dossier_sha256": "db7c14a79d9f28a7102db0f3d90379c3494c514defe572b5efa4013cdbca8aad",
       "source_span": "fulltext_data_sections.figure_legends[3].caption[0:150]|norm=exact",

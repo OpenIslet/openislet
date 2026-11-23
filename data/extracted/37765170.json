@@ -380,7 +380,7 @@
     },
     {
       "effect_id": "pmid37765170_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37765170 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "HVEM_CD40_BTN3A1_Costimulation",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: InVivo_Glycemic_Cure_and_Graft_Longevity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
@@ -418,7 +418,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:37765170 field=omitted_text quote_sha256=4032ee4038775060258f8e68061309aed9bfdea5b574f24324ab7f065202d052]"
+        "matched_lexicon_term": "survival"
       },
       "dossier_sha256": "23ad1afdc2278b652d15ed32b73a2f33c39dc3727e29787652247e3c64152f41",
       "source_span": "fulltext_data_sections.figure_legends[2].caption[691:874]|norm=exact",
@@ -436,7 +436,7 @@
     },
     {
       "effect_id": "pmid37765170_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37765170 field=omitted_text quote_sha256=0565fceba715022c0e85824b201086ecd54eb9eb38df8778c3686ed57b2148e0]",
+      "source_figure_or_table": "Figure 1",
       "focal_factor_X": "HVEM_CD40_BTN3A1_Costimulation",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -484,7 +484,7 @@
         "intervention_label": "HVEM_CD40_BTN3A1_Costimulation",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:37765170 field=omitted_text quote_sha256=ffd7280513ce285e6d9dc8d0b7078c4f39c8fe0e69b0d0a87d8af2965e445d7a]",
+        "timepoint": "30 days",
         "population_or_model": "Rodent_Primary_Islet (Tier_4_Rodent_or_Xenogeneic_Only)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
@@ -492,7 +492,7 @@
     },
     {
       "effect_id": "pmid37765170_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37765170 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: InVivo_Glycemic_Cure_and_Graft_Longevity | polarity=Lower_Is_Better_Hazard_Endpoint | orientation_sign=-1 | unit=qualitative_statement]",
@@ -550,7 +550,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid37765170_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37765170 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
       "outcome_Y": "Allo_T_Cell_or_DSA_Survival",
       "modifier_variable_Z": "Hypoxia_72h_Ischemia_and_O2_Scaffolds vs. MAFA_NKX6_1_PDX1_BetaCell_Identity",
@@ -563,7 +563,7 @@
     },
     {
       "interaction_id": "pmid37765170_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37765170 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "HVEM_CD40_BTN3A1_Costimulation",
       "outcome_Y": "InVivo_Glycemic_Cure_and_Graft_Longevity",
       "modifier_variable_Z": "HVEM_CD40_BTN3A1_Costimulation vs. Condition_2",
@@ -576,7 +576,7 @@
     },
     {
       "interaction_id": "pmid37765170_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37765170 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "HVEM_CD40_BTN3A1_Costimulation",
       "outcome_Y": "InVivo_Glycemic_Cure_and_Graft_Longevity",
       "modifier_variable_Z": "HVEM_CD40_BTN3A1_Costimulation vs. Condition_2",
@@ -589,7 +589,7 @@
     },
     {
       "interaction_id": "pmid37765170_int4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:37765170 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "HVEM_CD40_BTN3A1_Costimulation",
       "outcome_Y": "Allo_T_Cell_or_DSA_Survival",
       "modifier_variable_Z": "Condition contrast (HVEM_CD40_BTN3A1_Costimulation)",

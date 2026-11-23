@@ -280,7 +280,7 @@
     },
     {
       "effect_id": "pmid29992946_eff4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:29992946 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "Alpha_GCG_Delta_SST_Paracrine_CounterRegulation",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Alpha_Delta_Paracrine_CounterRegulation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -336,7 +336,7 @@
     },
     {
       "effect_id": "pmid29992946_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:29992946 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "GLIS3 (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -392,7 +392,7 @@
     },
     {
       "effect_id": "pmid29992946_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:29992946 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
@@ -430,7 +430,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:29992946 field=omitted_text quote_sha256=c21cf7a2d7e7584a07afc703a9b021cbace07f8dae43f3309bdd1fc4f855a2fb]"
+        "matched_lexicon_term": "c-peptide"
       },
       "dossier_sha256": "c7d2a84e0dfe0c17937a6a758ed4635f417abd1c2ba4a10af99478f4af2a56e1",
       "source_span": "fulltext_data_sections.figure_legends[0].caption[1519:1723]|norm=exact",
@@ -448,7 +448,7 @@
     },
     {
       "effect_id": "pmid29992946_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:29992946 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Metabolic_and_Biphasic_GSIS_Maturation | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
@@ -504,7 +504,7 @@
     },
     {
       "effect_id": "pmid29992946_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:29992946 field=omitted_text quote_sha256=ed7ba0018c84d2325e3872d63876f7f7211de61f576538a6c32bb2bbdff83bc3]",
+      "source_figure_or_table": "Fig. 2",
       "focal_factor_X": "GLIS3 (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Metabolic_and_Biphasic_GSIS_Maturation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -562,7 +562,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid29992946_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:29992946 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition contrast (MAFA_NKX6_1_PDX1_BetaCell_Identity)",

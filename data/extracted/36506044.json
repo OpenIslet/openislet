@@ -291,7 +291,7 @@
         "endpoint_name": "Surface_HLA_or_Transgene_Expression_Level",
         "timepoint": null,
         "population_or_model": "hESC (Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=omitted_text quote_sha256=a6f5dfd72255f77d2a6290956a91ae6e62c99c094a66feb7e1e0b3e4a3d3055f]",
+        "units": "PD-L1+ cells/mm2",
         "contrast_type": "right_censored_followup_observation"
       }
     },
@@ -353,7 +353,7 @@
     },
     {
       "effect_id": "pmid36506044_eff3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=omitted_text quote_sha256=0565fceba715022c0e85824b201086ecd54eb9eb38df8778c3686ed57b2148e0]",
+      "source_figure_or_table": "Figure 1",
       "focal_factor_X": "Study_Intervention",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -409,7 +409,7 @@
     },
     {
       "effect_id": "pmid36506044_eff4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=omitted_text quote_sha256=0565fceba715022c0e85824b201086ecd54eb9eb38df8778c3686ed57b2148e0]",
+      "source_figure_or_table": "Figure 1",
       "focal_factor_X": "Study_Intervention",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Surface_HLA_or_Transgene_Expression_Level | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -465,7 +465,7 @@
     },
     {
       "effect_id": "pmid36506044_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=omitted_text quote_sha256=0565fceba715022c0e85824b201086ecd54eb9eb38df8778c3686ed57b2148e0]",
+      "source_figure_or_table": "Figure 1",
       "focal_factor_X": "Study_Intervention",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -521,7 +521,7 @@
     },
     {
       "effect_id": "pmid36506044_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "Study_Intervention",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -577,7 +577,7 @@
     },
     {
       "effect_id": "pmid36506044_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=omitted_text quote_sha256=0fb418bc6b224cad46820d15c23eadb4ce2fc19a718992213ef4bc57591ed9cf]",
+      "source_figure_or_table": "Figure 4",
       "focal_factor_X": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -633,7 +633,7 @@
     },
     {
       "effect_id": "pmid36506044_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36506044 field=omitted_text quote_sha256=0565fceba715022c0e85824b201086ecd54eb9eb38df8778c3686ed57b2148e0]",
+      "source_figure_or_table": "Figure 1",
       "focal_factor_X": "B2M (CRISPR_Cas9_KO — Gate2_Allo_HLA_ClassI_or_II)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Surface_HLA_or_Transgene_Expression_Level | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",

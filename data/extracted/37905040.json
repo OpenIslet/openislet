@@ -551,7 +551,7 @@
         "intervention_label": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:37905040 field=omitted_text quote_sha256=53bc57cdb69279bbfe2fc05f6964a89862ff636724f5c3c2016e8894c2be609c]",
+        "timepoint": "5 min",
         "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"

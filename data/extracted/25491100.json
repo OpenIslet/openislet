@@ -1,0 +1,219 @@
+{
+  "arms": [
+    {
+      "arm_id": "pmid25491100_arm1",
+      "arm_label": "Systemic IL1RN-treated hIAPP transgenic mice",
+      "challenge_conditions": [
+        {
+          "challenge_type": "Amyloid_hIAPP_Aggregation_Stress",
+          "duration_hours_or_days": null,
+          "effector_to_target_ratio": null,
+          "glucose_concentration_mM": null,
+          "oxygen_pct": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "gate1_substrate_and_differentiation": {
+        "canonical_differentiation_stage_evaluated": null,
+        "cell_line_id": null,
+        "cell_source_class": "Rodent_Primary_Islet",
+        "cluster_mean_diameter_um": null,
+        "donor_hla_profile": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_mafa_pos": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null,
+        "protocol_backbone": null,
+        "stage_small_molecules_and_factors": []
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "co_transplanted_cells_or_oxygen_source": null,
+        "encapsulation_or_biomaterial": null,
+        "in_dish_vascular_assembly": null,
+        "number_of_distributed_micro_pockets": null,
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "prevascularization_lead_time_days": null,
+        "staged_insertion_schedule": null,
+        "systemic_immunosuppression_regimen": null,
+        "transplant_site": "Unspecified_InVivo_or_Source_Site"
+      },
+      "is_reference_control": false,
+      "quantitative_readouts": {
+        "cell_viability_pct_mean": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "early_72h_graft_survival_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "followup_duration_days": null,
+        "in_vivo_graft_survival_days_median": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "proinsulin_to_insulin_ratio": null,
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "time_to_vascular_inosculation_hours": null
+      },
+      "sample_size_n": null,
+      "sample_size_unit": null
+    },
+    {
+      "arm_id": "pmid25491100_arm2",
+      "arm_label": "Vehicle-treated hIAPP transgenic mice",
+      "challenge_conditions": [
+        {
+          "challenge_type": "Amyloid_hIAPP_Aggregation_Stress",
+          "duration_hours_or_days": null,
+          "effector_to_target_ratio": null,
+          "glucose_concentration_mM": null,
+          "oxygen_pct": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "gate1_substrate_and_differentiation": {
+        "canonical_differentiation_stage_evaluated": null,
+        "cell_line_id": null,
+        "cell_source_class": "Rodent_Primary_Islet",
+        "cluster_mean_diameter_um": null,
+        "donor_hla_profile": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_mafa_pos": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null,
+        "protocol_backbone": null,
+        "stage_small_molecules_and_factors": []
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "co_transplanted_cells_or_oxygen_source": null,
+        "encapsulation_or_biomaterial": null,
+        "in_dish_vascular_assembly": null,
+        "number_of_distributed_micro_pockets": null,
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "prevascularization_lead_time_days": null,
+        "staged_insertion_schedule": null,
+        "systemic_immunosuppression_regimen": null,
+        "transplant_site": "Unspecified_InVivo_or_Source_Site"
+      },
+      "is_reference_control": true,
+      "quantitative_readouts": {
+        "cell_viability_pct_mean": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "early_72h_graft_survival_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "followup_duration_days": null,
+        "in_vivo_graft_survival_days_median": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "proinsulin_to_insulin_ratio": null,
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "time_to_vascular_inosculation_hours": null
+      },
+      "sample_size_n": null,
+      "sample_size_unit": null
+    }
+  ],
+  "atomic_effects": [
+    {
+      "censoring_note": "Not_Applicable",
+      "comparator_X0": "Vehicle control",
+      "comparator_arm_id": "pmid25491100_arm2",
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Reported assay window",
+        "Z2_genetic_background_and_allelic_dose": "Specified in study arm",
+        "Z3_immune_effector_and_stressor_pathway": "Specified in study arm",
+        "Z4_metabolic_and_glucose_load_state": "Standard assay state",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Specified in study arm",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Specified in study arm",
+        "Z7_promoter_and_epigenetic_context": "Specified in study arm",
+        "Z8_species_age_and_sex_context": "Lean and obese hIAPP-transgenic mice"
+      },
+      "contrast_metadata": {
+        "comparator_label": "Vehicle-treated hIAPP transgenic mice",
+        "contrast_type": "between_arm_comparative_descriptive",
+        "endpoint_name": "Amyloid_hIAPP_or_Enterovirus_Protection",
+        "intervention_label": "Systemic IL-1 receptor antagonist",
+        "population_or_model": "Lean and obese hIAPP-transgenic mice",
+        "timepoint": null,
+        "units": "qualitative_statement"
+      },
+      "control_mean": null,
+      "control_n": null,
+      "control_sd_or_sem": null,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "dossier_sha256": "c59be2f4eb12577985b4421d68712858a10dc3ffb846b797d03ef50a1629d4a5",
+      "effect_direction": "Protective_or_Improved",
+      "effect_id": "pmid25491100_eff1_il1ra_proinsulin_amyloid",
+      "endpoint_polarity_registry": {
+        "matched_lexicon_term": "glucose_tolerance",
+        "orientation_sign": 1,
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint"
+      },
+      "focal_arm_id": "pmid25491100_arm1",
+      "focal_factor_X": "Systemic IL-1 receptor antagonist",
+      "log_response_ratio_or_smd": null,
+      "measurement_unit": "qualitative_statement",
+      "n_unit": "unspecified_in_source",
+      "outcome_domain": "Amyloid_hIAPP_or_Enterovirus_Protection",
+      "outcome_variable_Y": "[Endpoint: Glucose tolerance and plasma proinsulin processing in hIAPP mice]",
+      "p_value": null,
+      "p_value_bound": null,
+      "p_value_relation": null,
+      "quote_source_dossier_pmid": "25491100",
+      "secretome_or_differentiation_penalty_observed": false,
+      "source_figure_or_table": "Abstract",
+      "source_span": "abstract[970:1120]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "treatment_mean": null,
+      "treatment_n": null,
+      "treatment_sd_or_sem": null,
+      "verbatim_evidence_quote": "IL-1Ra improved glucose tolerance and reduced plasma proinsulin:insulin in both lean and obese hIAPP(Tg/0) mice with no effect on insulin sensitivity."
+    }
+  ],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "high_throughput_screen_hits": [],
+    "regime_thresholds": [],
+    "residual_failure_and_escape_vectors": []
+  },
+  "effect_modifier_interactions": [],
+  "schema_version": "0.2.0",
+  "screening_decision": {
+    "exclusion_reason": null,
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null
+  },
+  "study_metadata": {
+    "doi": "10.1007/s00125-014-3447-x",
+    "first_author": "Westwell-Roper CY",
+    "geo_accessions": [],
+    "journal": "Diabetologia",
+    "max_biological_fidelity_tier": "Tier_4_Rodent_or_Xenogeneic_Only",
+    "nct_id": null,
+    "pillars_covered": [
+      "Pillar3_Intrinsic_BetaCell_Genetic_Resilience_Amyloid_Viral"
+    ],
+    "pmcid": null,
+    "pmid": "25491100",
+    "pub_year": 2015,
+    "senior_author": "Verchere CB",
+    "source_text_type": "Abstract_Only",
+    "superseded_by_pmid": null,
+    "title": "IL-1 mediates amyloid-associated islet dysfunction and inflammation in human islet amyloid polypeptide transgenic mice."
+  }
+}

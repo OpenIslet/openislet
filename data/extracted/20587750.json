@@ -141,7 +141,7 @@
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": null,
         "population_or_model": "hESC (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:20587750 field=omitted_text quote_sha256=86490236cd537c08d2fda7623d8dd06b360d9129a4828b22ae2f5517cc7347af]",
+        "units": "pmol",
         "contrast_type": "single_arm_descriptive_only"
       }
     },
@@ -195,7 +195,7 @@
         "intervention_label": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:20587750 field=omitted_text quote_sha256=12edd5ffd4a9fbb58500ab06fae9434d146b1eb0f66dc64de271722f59e7c173]",
+        "timepoint": "20 wk",
         "population_or_model": "hESC (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"

@@ -146,7 +146,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
         "orientation_sign": -1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:35897156 field=omitted_text quote_sha256=bcd3c113b8678e0374dea1cf05f0c79521d90d3a8c403d7efd56462d2e9fd35d]"
+        "matched_lexicon_term": "blood glucose"
       },
       "dossier_sha256": "5b9f8f3caa7e4dab80444773ed80cbdcf9b842d1616253cb822b646502c45722",
       "source_span": "fulltext_data_sections.results_paragraphs[3][1924:2134]|norm=exact",
@@ -370,7 +370,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "gsis"
+        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:35897156 field=omitted_text quote_sha256=a5b15f661af9251f213fdebaeb2022cd7a9670c8dc252624672651d7bb7a07f6]"
       },
       "dossier_sha256": "5b9f8f3caa7e4dab80444773ed80cbdcf9b842d1616253cb822b646502c45722",
       "source_span": "fulltext_data_sections.figure_legends[1].caption[1853:2052]|norm=exact",

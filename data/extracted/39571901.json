@@ -505,7 +505,7 @@
     },
     {
       "effect_id": "pmid39571901_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39571901 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "CXCL10 (CRISPR_Cas9_KO — Gate4_Intrinsic_IFN_JAK_STAT_NFkB_Block)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",

@@ -545,7 +545,7 @@
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Regime dependency on ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
-      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:39626097 field=level_1_condition_and_effect quote_sha256=8d9cf7a6ef4bd3319ee5810834d81070638e36175e50d2bb869b629374145a22]",
+      "level_1_condition_and_effect": "A: GRS2 compared with the 18-variant non-DR3/DR4 GRS in the non-DR3/DR4 T1D group vs.",
       "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:39626097 field=level_2_condition_and_effect quote_sha256=5bca10947861c2d11c5e5039e76c7165b4158e1c35bed237520dca041602f95b]",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,

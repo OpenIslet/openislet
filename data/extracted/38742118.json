@@ -486,7 +486,7 @@
     },
     {
       "effect_id": "pmid38742118_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:38742118 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -544,26 +544,26 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid38742118_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:38742118 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack vs. Condition_2",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38742118 field=level_1_condition_and_effect quote_sha256=63f5c161cde49bf12d0f89b79ecec6b735afc19393aa9194fec16c28b7619623]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38742118 field=level_2_condition_and_effect quote_sha256=08b889bf169ab83a5d37d2fd04fde03555385e09317ab69e9c72aa85759e05c5]",
+      "level_2_condition_and_effect": "each other.",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:38742118 field=mechanistic_explanation quote_sha256=3bcda04944a084d06470bf513df8686d11bdc4f11226914a6195a002dd0292cd]"
     },
     {
       "interaction_id": "pmid38742118_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:38742118 field=omitted_text quote_sha256=0fb418bc6b224cad46820d15c23eadb4ce2fc19a718992213ef4bc57591ed9cf]",
+      "source_figure_or_table": "Figure 4",
       "focal_factor_X": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
       "outcome_Y": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
       "modifier_variable_Z": "Condition contrast (Alloreactive_CD8_CD4_TCell_or_DSA_Attack)",
       "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38742118 field=level_1_condition_and_effect quote_sha256=b359b645c22500cb2a188947eb42b3497fc786c1e79c7a411d82643d586f8dc8]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38742118 field=level_2_condition_and_effect quote_sha256=0bf0946e0c5519e86c0c51f5118bc05e2bfdf659577753af51aead6e908fe3bd]",
+      "level_2_condition_and_effect": "ND duct cells.",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:38742118 field=mechanistic_explanation quote_sha256=62d3342fc9e45b4e80eae44e9ede4a68b51970ac8b5fe8f1a03866d415f78e2a]"

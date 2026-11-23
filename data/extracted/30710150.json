@@ -1,0 +1,344 @@
+{
+  "arms": [
+    {
+      "arm_id": "pmid30710150_arm1",
+      "arm_label": "FACS-sorted INS-GFP+ reaggregated enriched SC-beta clusters (eBCs)",
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "duration_hours_or_days": null,
+          "effector_to_target_ratio": null,
+          "glucose_concentration_mM": null,
+          "oxygen_pct": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "gate1_substrate_and_differentiation": {
+        "canonical_differentiation_stage_evaluated": "Stage7_MetabolicallyMature_SC_Islet",
+        "cell_line_id": null,
+        "cell_source_class": "hESC",
+        "cluster_mean_diameter_um": null,
+        "donor_hla_profile": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_mafa_pos": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null,
+        "protocol_backbone": null,
+        "stage_small_molecules_and_factors": []
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "co_transplanted_cells_or_oxygen_source": null,
+        "encapsulation_or_biomaterial": null,
+        "in_dish_vascular_assembly": null,
+        "number_of_distributed_micro_pockets": null,
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "prevascularization_lead_time_days": null,
+        "staged_insertion_schedule": null,
+        "systemic_immunosuppression_regimen": null,
+        "transplant_site": "InVitro_Only"
+      },
+      "is_reference_control": false,
+      "quantitative_readouts": {
+        "cell_viability_pct_mean": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "early_72h_graft_survival_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "followup_duration_days": null,
+        "in_vivo_graft_survival_days_median": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "proinsulin_to_insulin_ratio": null,
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "time_to_vascular_inosculation_hours": null
+      },
+      "sample_size_n": null,
+      "sample_size_unit": null
+    },
+    {
+      "arm_id": "pmid30710150_arm2",
+      "arm_label": "Unreaggregated day 19-20 immature SC-beta-like clusters comparator",
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "duration_hours_or_days": null,
+          "effector_to_target_ratio": null,
+          "glucose_concentration_mM": null,
+          "oxygen_pct": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "gate1_substrate_and_differentiation": {
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "cell_line_id": null,
+        "cell_source_class": "hESC",
+        "cluster_mean_diameter_um": null,
+        "donor_hla_profile": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_mafa_pos": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null,
+        "protocol_backbone": null,
+        "stage_small_molecules_and_factors": []
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "co_transplanted_cells_or_oxygen_source": null,
+        "encapsulation_or_biomaterial": null,
+        "in_dish_vascular_assembly": null,
+        "number_of_distributed_micro_pockets": null,
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "prevascularization_lead_time_days": null,
+        "staged_insertion_schedule": null,
+        "systemic_immunosuppression_regimen": null,
+        "transplant_site": "InVitro_Only"
+      },
+      "is_reference_control": true,
+      "quantitative_readouts": {
+        "cell_viability_pct_mean": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "early_72h_graft_survival_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "followup_duration_days": null,
+        "in_vivo_graft_survival_days_median": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "proinsulin_to_insulin_ratio": null,
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "time_to_vascular_inosculation_hours": null
+      },
+      "sample_size_n": null,
+      "sample_size_unit": null
+    },
+    {
+      "arm_id": "pmid30710150_arm3",
+      "arm_label": "Time-matched unsorted reaggregated endocrine clusters (NECs, day 27) comparator",
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "duration_hours_or_days": null,
+          "effector_to_target_ratio": null,
+          "glucose_concentration_mM": null,
+          "oxygen_pct": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "gate1_substrate_and_differentiation": {
+        "canonical_differentiation_stage_evaluated": "Stage6_Immature_SC_Islet",
+        "cell_line_id": null,
+        "cell_source_class": "hESC",
+        "cluster_mean_diameter_um": null,
+        "donor_hla_profile": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_mafa_pos": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null,
+        "protocol_backbone": null,
+        "stage_small_molecules_and_factors": []
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "co_transplanted_cells_or_oxygen_source": null,
+        "encapsulation_or_biomaterial": null,
+        "in_dish_vascular_assembly": null,
+        "number_of_distributed_micro_pockets": null,
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "prevascularization_lead_time_days": null,
+        "staged_insertion_schedule": null,
+        "systemic_immunosuppression_regimen": null,
+        "transplant_site": "InVitro_Only"
+      },
+      "is_reference_control": true,
+      "quantitative_readouts": {
+        "cell_viability_pct_mean": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "early_72h_graft_survival_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "followup_duration_days": null,
+        "in_vivo_graft_survival_days_median": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "proinsulin_to_insulin_ratio": null,
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "time_to_vascular_inosculation_hours": null
+      },
+      "sample_size_n": null,
+      "sample_size_unit": null
+    },
+    {
+      "arm_id": "pmid30710150_arm4",
+      "arm_label": "Primary human beta cells / primary adult human islets reference comparator",
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "duration_hours_or_days": null,
+          "effector_to_target_ratio": null,
+          "glucose_concentration_mM": null,
+          "oxygen_pct": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "gate1_substrate_and_differentiation": {
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "cell_line_id": null,
+        "cell_source_class": "Primary_Human_Islet",
+        "cluster_mean_diameter_um": null,
+        "donor_hla_profile": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_mafa_pos": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null,
+        "protocol_backbone": null,
+        "stage_small_molecules_and_factors": []
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "co_transplanted_cells_or_oxygen_source": null,
+        "encapsulation_or_biomaterial": null,
+        "in_dish_vascular_assembly": null,
+        "number_of_distributed_micro_pockets": null,
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "prevascularization_lead_time_days": null,
+        "staged_insertion_schedule": null,
+        "systemic_immunosuppression_regimen": null,
+        "transplant_site": "InVitro_Only"
+      },
+      "is_reference_control": true,
+      "quantitative_readouts": {
+        "cell_viability_pct_mean": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "early_72h_graft_survival_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "followup_duration_days": null,
+        "in_vivo_graft_survival_days_median": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "proinsulin_to_insulin_ratio": null,
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "time_to_vascular_inosculation_hours": null
+      },
+      "sample_size_n": null,
+      "sample_size_unit": null
+    }
+  ],
+  "atomic_effects": [
+    {
+      "censoring_note": "Not_Applicable",
+      "comparator_X0": "Primary adult human islets / primary human beta cells descriptive similarity benchmark cited in the abstract (full-text Fig. 2a lower amplitude/unsustained second phase vs adult islets in CEG M0237:O4-O5; favorable first-phase contrast vs immature d20 clusters in CEG M0237:O19)",
+      "comparator_arm_id": "pmid30710150_arm4",
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Reported assay window",
+        "Z2_genetic_background_and_allelic_dose": "Specified in study arm",
+        "Z3_immune_effector_and_stressor_pathway": "Specified in study arm",
+        "Z4_metabolic_and_glucose_load_state": "Standard assay state",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Specified in study arm",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Specified in study arm",
+        "Z7_promoter_and_epigenetic_context": "Specified in study arm",
+        "Z8_species_age_and_sex_context": "Human ESC-derived enriched beta-clusters"
+      },
+      "contrast_metadata": {
+        "comparator_label": "Primary human beta cells / primary adult human islets reference comparator",
+        "contrast_type": "between_arm_comparative_descriptive",
+        "endpoint_name": "Metabolic_and_Biphasic_GSIS_Maturation",
+        "intervention_label": "Endocrine cluster sorting and reaggregation",
+        "population_or_model": "Human ESC-derived enriched beta-clusters",
+        "timepoint": null,
+        "units": "qualitative_statement"
+      },
+      "control_mean": null,
+      "control_n": null,
+      "control_sd_or_sem": null,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "dossier_sha256": "57f4c285aae6e62c5364ada595f037010458a067a862fd336014d49f0078826d",
+      "effect_direction": "Descriptive_or_Unoriented",
+      "effect_id": "pmid30710150_eff1_ebc_dynamic_gsis",
+      "effect_notes": "Abstract_Only Ring-1 span coded Descriptive_or_Unoriented: records the abstract's descriptive physiological similarity of reaggregated eBCs to primary human beta cells (arm4 comparator), NOT superiority over adult islets; full-text Fig. 2a shows lower first-phase amplitude and unsustained second phase vs adult islets (CEG M0237:O4-O5), whereas the favorable improvement is against immature day-20 clusters (arm2, CEG M0237:O19) and day-27 NECs (arm3, Supplementary Fig. 3 / M0237:O6).",
+      "endpoint_polarity_registry": {
+        "matched_lexicon_term": "insulin secretion",
+        "orientation_sign": 1,
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint"
+      },
+      "focal_arm_id": "pmid30710150_arm1",
+      "focal_factor_X": "Endocrine cluster sorting and reaggregation",
+      "log_response_ratio_or_smd": null,
+      "measurement_unit": "qualitative_statement",
+      "n_unit": "unspecified_in_source",
+      "outcome_domain": "Metabolic_and_Biphasic_GSIS_Maturation",
+      "outcome_variable_Y": "[Endpoint: Abstract-level descriptive physiological similarity of reaggregated eBCs to primary human beta cells (dynamic insulin secretion, calcium signaling, mitochondrial energization; not superiority over adult islets — full-text Fig. 2a shows lower first-phase amplitude and unsustained second phase vs adult islets [CEG M0237:O4-O5], while favorable first-phase emergence is vs immature d20 clusters [CEG M0237:O19] and d27 NECs [Supp. Fig. 3 / M0237:O6])]",
+      "p_value": null,
+      "p_value_bound": null,
+      "p_value_relation": null,
+      "quote_source_dossier_pmid": "30710150",
+      "secretome_or_differentiation_penalty_observed": false,
+      "source_figure_or_table": "Abstract (analogy to primary human beta cells; full-text Fig. 2a d20 and adult-islet contrasts tracked in CEG M0237:O4-O5)",
+      "source_span": "abstract[513:730]|norm=exact",
+      "statistic_type": "qualitative_statement_only",
+      "treatment_mean": null,
+      "treatment_n": null,
+      "treatment_sd_or_sem": null,
+      "verbatim_evidence_quote": "eBCs display physiological properties analogous to primary human β cells, including robust dynamic insulin secretion, increased calcium signalling in response to secretagogues, and improved mitochondrial energization."
+    }
+  ],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "high_throughput_screen_hits": [],
+    "regime_thresholds": [],
+    "residual_failure_and_escape_vectors": []
+  },
+  "effect_modifier_interactions": [],
+  "schema_version": "0.2.0",
+  "screening_decision": {
+    "exclusion_reason": null,
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null
+  },
+  "study_metadata": {
+    "doi": "10.1038/s41556-018-0271-4",
+    "first_author": "Nair GG",
+    "geo_accessions": [],
+    "journal": "Nature cell biology",
+    "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse",
+    "nct_id": null,
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture"
+    ],
+    "pmcid": "PMC6746427",
+    "pmid": "30710150",
+    "pub_year": 2019,
+    "senior_author": "Hebrok M",
+    "source_text_type": "Abstract_Only",
+    "superseded_by_pmid": null,
+    "title": "Recapitulating endocrine cell clustering in culture promotes maturation of human stem-cell-derived β cells."
+  }
+}

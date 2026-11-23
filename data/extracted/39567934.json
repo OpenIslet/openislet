@@ -159,7 +159,7 @@
         "endpoint_name": "Autoimmune_TCR_or_AutoAb_Evasion",
         "timepoint": "11 weeks",
         "population_or_model": "Unspecified_In_Source_Abstract (Tier_4_Rodent_or_Xenogeneic_Only)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:39567934 field=omitted_text quote_sha256=492ed4cb70b89aab1286c50b9867cd9c45a4ae7a775e55b6514cb088e333f1b1]",
+        "units": "mg/dL",
         "contrast_type": "right_censored_followup_observation"
       }
     },
@@ -344,7 +344,7 @@
       "control_mean": null,
       "control_sd_or_sem": null,
       "control_n": null,
-      "measurement_unit": "[REDACTED_NON_OA_EXCERPT: see PMID:39567934 field=omitted_text quote_sha256=492ed4cb70b89aab1286c50b9867cd9c45a4ae7a775e55b6514cb088e333f1b1]",
+      "measurement_unit": "mg/dL",
       "log_response_ratio_or_smd": null,
       "p_value": null,
       "effect_direction": "Protective_or_Improved",
@@ -383,7 +383,7 @@
         "endpoint_name": "Autoimmune_TCR_or_AutoAb_Evasion",
         "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:39567934 field=omitted_text quote_sha256=0dbe230770d7e3c5cfec529b57ae1c9e89cf9bce9335c4f706176c76a3571b48]",
         "population_or_model": "Unspecified_In_Source_Abstract (Tier_4_Rodent_or_Xenogeneic_Only)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:39567934 field=omitted_text quote_sha256=492ed4cb70b89aab1286c50b9867cd9c45a4ae7a775e55b6514cb088e333f1b1]",
+        "units": "mg/dL",
         "contrast_type": "single_arm_descriptive_only"
       }
     },
@@ -445,7 +445,7 @@
     },
     {
       "effect_id": "pmid39567934_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39567934 field=omitted_text quote_sha256=d5e9076ff340c06615ceb16ebcfb1c14ecc362d87f08a6bd33c04a4cb7fc20cd]",
+      "source_figure_or_table": "Fig. 5",
       "focal_factor_X": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Autoimmune_TCR_or_AutoAb_Evasion | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -501,7 +501,7 @@
     },
     {
       "effect_id": "pmid39567934_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39567934 field=omitted_text quote_sha256=d5e9076ff340c06615ceb16ebcfb1c14ecc362d87f08a6bd33c04a4cb7fc20cd]",
+      "source_figure_or_table": "Fig. 5",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Autoimmune_TCR_or_AutoAb_Evasion | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -559,7 +559,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid39567934_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39567934 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "outcome_Y": "Autoimmune_TCR_or_AutoAb_Evasion",
       "modifier_variable_Z": "SLC30A8_ZnT8_Granule_Zinc_Autoantigen vs. SLC30A8_ZnT8_Granule_Zinc_Autoantigen",
@@ -572,7 +572,7 @@
     },
     {
       "interaction_id": "pmid39567934_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39567934 field=omitted_text quote_sha256=7817791c5ed120bd5ee4749da73978290ffd90681768b87845ef98e751387b69]",
+      "source_figure_or_table": "Fig. 4",
       "focal_factor_X": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "outcome_Y": "Autoimmune_TCR_or_AutoAb_Evasion",
       "modifier_variable_Z": "Regime dependency on Experimental_Context",
@@ -585,7 +585,7 @@
     },
     {
       "interaction_id": "pmid39567934_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39567934 field=omitted_text quote_sha256=d5e9076ff340c06615ceb16ebcfb1c14ecc362d87f08a6bd33c04a4cb7fc20cd]",
+      "source_figure_or_table": "Fig. 5",
       "focal_factor_X": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "outcome_Y": "Autoimmune_TCR_or_AutoAb_Evasion",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
@@ -598,7 +598,7 @@
     },
     {
       "interaction_id": "pmid39567934_int4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39567934 field=omitted_text quote_sha256=d5e9076ff340c06615ceb16ebcfb1c14ecc362d87f08a6bd33c04a4cb7fc20cd]",
+      "source_figure_or_table": "Fig. 5",
       "focal_factor_X": "SLC30A8 (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Prior_Condition vs. Contrast_Condition",

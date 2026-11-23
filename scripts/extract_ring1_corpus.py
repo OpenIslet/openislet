@@ -90,6 +90,27 @@ CURATED_LANDMARK_PMIDS = {
     "37820008",  # Ghimire 2023 Sci Transl Med (CD47 receptor signaling inhibits beta-cell GSIS counter-evidence)
     "38508139",  # Xu 2024 Cell Rep Med (Signaling-incompetent CD47-IgV avoids cell death and angiogenesis inhibition)
     "40668892",  # Zhao 2025 Sci Transl Med (Directional donor-recipient SIRPA mismatch innate allorecognition)
+    "10531307",  # Krych-Goldberg 1999 J Biol Chem (CR1 LHR-A [CCPs 1-7] 0.5% C5 convertase decay vs soluble sCR1 & spaced Site-1 + Site-2)
+    "16177096",  # Krych-Goldberg 2005 J Immunol (CR1 Site-1/Site-2 C3b/C4b decay acceleration)
+    "18021279",  # Sweet 2008 Am J Transplant (Two-center flow-through perifusion DeltaOCR(glc); n=14 paired preparation assessments; Figs. 1 & 6)
+    "21813778",  # Westwell-Roper 2011 J Immunol (8-wk in vivo IL-1Ra hIAPP graft rescue, Fig. 5E anakinra macrophage TNF-alpha reduction downstream of IL-1R/MyD88, & distinct non-anakinra hIAPP vs rodent IAPP macrophage IL-1beta induction)
+    "23562090",  # Moran 2013 Lancet (Systemic anakinra NCT00711503 & canakinumab NCT00947427 recent-onset T1D RCTs)
+    "24222351",  # Westwell-Roper 2014 Diabetes (Islet-resident macrophage IL-1beta localization & clodronate macrophage depletion)
+    "25491100",  # Westwell-Roper 2015 Diabetologia (IL-1 blockade reduces amyloid & improves proinsulin processing)
+    "29862647",  # Naziruddin 2018 Am J Transplant (Autologous TPIAT sequentially recruited Baylor ANA+ETA/ETA vs Leicester 2006-2009 CTL & 6-mo SUITO P=0.103 vs 0.035)
+    "30710150",  # Nair 2019 Nat Cell Biol (Recapitulating endocrine cell clustering for SC-beta maturation; 4 non-pooled arms)
+    "34504013",  # Yang 2021 PNAS (Convection-enhanced macroencapsulation device ceMED STZ Lewis rats)
+    "37922880",  # Gravina 2023 Cell Stem Cell (CD64t IgG-Fc capture on iPSC-endothelial cells)
+    "38844131",  # Wymann 2024 J Biol Chem (Recombinant CR1 LHR-ABCC/BBCC/CSL040 Table-5 Wieslab & CH50; CC BY-NC-ND 4.0)
+    "38993891",  # Einstein 2023 Front Transplant (Empty passive subcutaneous sham macrodevice 19F-MRS longitudinal mean PO2 12 +/- 5 mmHg & 7d explant OCR)
+    "40789835",  # Pham 2025 Nat Commun (Implantable electrochemical O2 generator iEOG Day-879 & human islets)
+    "40812299",  # Hu 2025 Cell Stem Cell (SC291 Cas12b B2M/CIITA/TRAC KO + CD47 OE HIP CAR-T under Flu/Cy lymphodepletion)
+    "40976248",  # Mathieu 2025 Lancet (MELD-ATG low-dose 0.5 mg/kg Day-1 active + Day-2 placebo Phase 2 T1D RCT)
+    "41543848",  # Gou 2026 Xenotransplantation (Full-length human hCD64 on WT/GTKO porcine endothelial cells: CDC/ADCC & absent human IgM binding)
+    "41595986",  # Brandhorst 2025 Bioengineering (Perfluorodecalin O2 nanoemulsion scaffold viability, ~6x Fig. 8 150-min insulin vs unoxygenated beta-gel, & delayed encapsulated egress)
+    "41604464",  # Bochenek 2026 Sci Transl Med (Local GW2580 CSF1R-inhibitor NHP allogeneic islet survival)
+    "41870990",  # Kato 2026 Am J Physiol Cell Physiol (Surgical in-place mm -> mmHg unit repair on eff1/eff2 & primary-islet arm binding on eff2; all 5 effect IDs preserved)
+    "42627334",  # So 2026 Diabetes Care (BANDIT 96-week off-drug baricitinib paired-means LRR 0.43 +/- 0.05 vs 0.35 +/- 0.06 nmol/L & Fig. 2 wk 0-48 within-group trajectories)
 }
 
 # Perturbation verbs/nouns required within a window of a gene symbol to classify it as a true perturbation
@@ -1196,6 +1217,32 @@ def _apply_part_a1_curated_overrides(record: dict[str, Any], dossier: dict[str, 
                 "cross-reference CEG R1_0378 for arm-level model and control scope]"
             )
 
+    elif pmid == "40320524":
+        # Traini L et al., Stem Cell Res Ther 2025 (PMC12051322; Alt-R CRISPR-Cas12a [Cpf1] TXNIP exon-3 KO; renal subcapsular kidney-capsule NOD-SCID graft)
+        for arm in arms:
+            for ed in arm.get("gate2_3_4_genetic_and_epitope_edits", []):
+                if ed.get("gene_symbol_hgnc") == "TXNIP" and ed.get("edit_modality") == "CRISPR_Cas9_KO":
+                    ed["edit_modality"] = "CRISPR_Cas12a_Multiplex_KO"
+            g5_403 = arm.get("gate5_engraftment_niche")
+            if isinstance(g5_403, dict) and g5_403.get("transplant_site") == "Intramuscular_Forearm_or_Rectus":
+                g5_403["transplant_site"] = "Kidney_Capsule"
+        for eff in effects:
+            if isinstance(eff.get("focal_factor_X"), str):
+                eff["focal_factor_X"] = eff["focal_factor_X"].replace("CRISPR_Cas9_KO", "CRISPR_Cas12a_Multiplex_KO")
+            cm_403 = eff.get("contrast_metadata")
+            if isinstance(cm_403, dict) and isinstance(cm_403.get("intervention_label"), str):
+                cm_403["intervention_label"] = cm_403["intervention_label"].replace("CRISPR_Cas9_KO", "CRISPR_Cas12a_Multiplex_KO")
+            cz_403 = eff.get("conditioning_context_Z")
+            if isinstance(cz_403, dict) and cz_403.get("Z6_microenvironment_oxygen_and_vascular_niche") == "Intramuscular_Forearm_or_Rectus":
+                cz_403["Z6_microenvironment_oxygen_and_vascular_niche"] = "Kidney_Capsule"
+        for mod_403 in record.get("effect_modifier_interactions") or []:
+            if isinstance(mod_403.get("focal_factor_X"), str):
+                mod_403["focal_factor_X"] = mod_403["focal_factor_X"].replace("CRISPR_Cas9_KO", "CRISPR_Cas12a_Multiplex_KO")
+        bridges_403 = record.get("cross_study_discovery_bridges") or {}
+        for rv_403 in bridges_403.get("residual_failure_and_escape_vectors") or []:
+            if isinstance(rv_403.get("arm_or_intervention"), str):
+                rv_403["arm_or_intervention"] = rv_403["arm_or_intervention"].replace("CRISPR_Cas9_KO", "CRISPR_Cas12a_Multiplex_KO")
+
 
 def infer_cell_source_and_stage(
     full_text: str, mesh_terms: list[str] | None = None, title: str = "", pmid: str = ""
@@ -1547,7 +1594,7 @@ def detect_genetic_edits(title: str, abstract: str = "", full_text: str = "") ->
             elif re.search(r"\b(?:knockout|knock-out|ko|crispr[- /]?cas9|delet\w+|ablat\w+|deficien\w+|loss\s+of)\b|-/-|−/−", wl):
                 modality = "CRISPR_Cas9_KO"
 
-            if modality in ("CRISPR_Cas9_KO", "CRISPR_Cas12a_Multiplex_KO", "CRISPRi_or_shRNA_Knockdown"):
+            if modality in ("CRISPR_Cas9_KO", "CRISPR_Cas12a_Multiplex_KO", "CRISPR_Cas12b_Multiplex_KO", "CRISPRi_or_shRNA_Knockdown"):
                 p_class = "Loss_of_Function_KO_or_KD"
             elif modality in ("BaseEdit_ABE_or_CBE_Epitope_or_Splice", "PrimeEdit", "Signal_Peptide_or_Domain_Swap"):
                 p_class = "Precision_Epitope_or_Isoform_Edit"
@@ -2069,6 +2116,7 @@ def classify_sentence_direction_and_penalty(
 
 def _pvalue_tokens(sentence: str) -> list[tuple[str, Decimal]]:
     """Typed source operands. A P< bound is never an observed equality."""
+    sentence = re.sub(r"(\d)\u00b7(\d)", r"\1.\2", sentence or "")
     out = []
     token = r"(?:\d+(?:\.\d*)?|\.\d+)(?:\s*[×xX*]\s*10\s*\^?\s*[-−]?\d+|[eE][-+−]?\d+)?"
     for m in re.finditer(rf"(?<!\w)[pP]\s*(<=|>=|[=<>≤≥])\s*({token})(?![\d.])", sentence):
@@ -2876,7 +2924,12 @@ def extract_causal_edge_from_sentence(
 def _compute_dossier_sha256(pmid: str, dossier: dict[str, Any]) -> str:
     dp = DOSSIER_DIR / f"{pmid}.json"
     if dp.exists():
-        return hashlib.sha256(dp.read_bytes()).hexdigest()
+        raw_bytes = dp.read_bytes()
+        try:
+            if json.loads(raw_bytes.decode("utf-8")) == dossier:
+                return hashlib.sha256(raw_bytes).hexdigest()
+        except Exception:
+            pass
     return hashlib.sha256(
         json.dumps(dossier, sort_keys=True, ensure_ascii=False).encode("utf-8")
     ).hexdigest()
@@ -3168,7 +3221,7 @@ def _populate_effect_provenance(
 def _num_in_quote(val: Any, quote: str, field_name: str = "") -> bool:
     if val is None or isinstance(val, bool):
         return val is None
-    q_clean = (quote or "").replace(",", "")
+    q_clean = re.sub(r"(\d)\u00b7(\d)", r"\1.\2", (quote or "")).replace(",", "").replace("\u2212", "-")
     if field_name == "p_value":
         try:
             number = Decimal(str(val))
@@ -3203,6 +3256,24 @@ def _num_in_quote(val: Any, quote: str, field_name: str = "") -> bool:
         operands = parse_quantitative_numbers(quote, direction)
         operand = operands[{"treatment_mean": 0, "treatment_sd_or_sem": 1, "control_mean": 2, "control_sd_or_sem": 3}[field_name]]
         if operand is None:
+            m_clause_pair = re.search(
+                r"(?<!from\s)(\d+(?:\.\d+)?)\s*(?:\u00b1|\+/-|\+-)\s*(\d+(?:\.\d+)?)\s*(?:nmol/L|pmol/mL|pmol/L|mmol/L|ng/mL|mg/dL|%|mmHg)?\s*"
+                r"(?:vs\.?|versus|compared\s+to|compared\s+with)\s*"
+                r"(\d+(?:\.\d+)?)\s*(?:\u00b1|\+/-|\+-)\s*(\d+(?:\.\d+)?)\s*(nmol/L|pmol/mL|pmol/L|mmol/L|ng/mL|mg/dL|%|mmHg)\b",
+                quote or "",
+                flags=re.IGNORECASE,
+            )
+            if m_clause_pair:
+                operand = m_clause_pair.group({"treatment_mean": 1, "treatment_sd_or_sem": 2, "control_mean": 3, "control_sd_or_sem": 4}[field_name])
+        if operand is None and field_name in ("treatment_mean", "control_mean"):
+            m_resp_pair = re.search(
+                r"\bwere\s+(\d+(?:\.\d+)?)%\s+and\s+(\d+(?:\.\d+)?)%,\s*respectively",
+                quote or "",
+                flags=re.IGNORECASE,
+            )
+            if m_resp_pair:
+                operand = m_resp_pair.group(1 if field_name == "treatment_mean" else 2)
+        if operand is None:
             return False
         try:
             return Decimal(str(val)) == Decimal(str(operand))
@@ -3212,6 +3283,8 @@ def _num_in_quote(val: Any, quote: str, field_name: str = "") -> bool:
     def _has_bounded_num(token: str) -> bool:
         if not token:
             return False
+        if field_name in ("point_estimate", "ci_95_lower", "ci_95_upper") and not token.startswith("-"):
+            return bool(re.search(rf"(?:(?<=^)|(?<=[^\d.\-])|(?<=\d-)){re.escape(token)}(?!\d)(?!\.\d)", q_clean))
         return bool(re.search(rf"(?<![\d.]){re.escape(token)}(?!\d)(?!\.\d)", q_clean))
 
     sval = str(int(val)) if isinstance(val, float) and val.is_integer() else str(val)
@@ -3250,7 +3323,7 @@ def validate_study_semantics(doc: dict[str, Any], dossier: dict[str, Any] | None
         identifiers = [row.get(id_key) for row in rows]
         if any(not isinstance(identifier, str) or not identifier for identifier in identifiers) or len(set(identifiers)) != len(identifiers):
             raise ValueError(f"{id_key} values must be nonempty and unique")
-    numeric_effect_fields = ("log_response_ratio_or_smd", "treatment_mean", "control_mean", "treatment_sd_or_sem", "control_sd_or_sem", "treatment_n", "control_n", "p_value", "p_value_bound")
+    numeric_effect_fields = ("log_response_ratio_or_smd", "point_estimate", "ci_95_lower", "ci_95_upper", "treatment_mean", "control_mean", "treatment_sd_or_sem", "control_sd_or_sem", "treatment_n", "control_n", "p_value", "p_value_bound")
     for effect in doc.get("atomic_effects", []):
         for key in numeric_effect_fields:
             value = effect.get(key)
@@ -3341,6 +3414,87 @@ def validate_study_semantics(doc: dict[str, Any], dossier: dict[str, Any] | None
         "Lower_Is_Better_Hazard_Endpoint": -1,
         "Qualitative_or_Unoriented_Endpoint": 0,
     }
+    _subtrial_stop = {
+        "pmid", "arm", "arms", "ctrl", "ref", "control", "controls", "cohort", "cohorts",
+        "placebo", "matched", "reference", "comparator", "vehicle", "saline", "untreated",
+        "daily", "monthly", "weekly", "systemic", "oral", "human", "murine", "mouse", "mice",
+        "rat", "rats", "islet", "islets", "graft", "grafts", "cell", "cells", "cluster", "clusters",
+        "group", "groups", "with", "without", "and", "the", "for", "from", "only", "alone",
+        "overall", "primary", "adult", "wild", "type", "transgenic", "model", "models",
+        "assay", "vitro", "vivo", "comparison", "baseline", "treated", "treatment", "therapy",
+        "negative", "positive", "expressing", "full", "length", "table", "fig", "figure",
+        "contrast", "blocking", "stimulated", "exposed", "variant", "variants", "fragment",
+        "recombinant", "recombinants", "carrying", "lacking", "plus", "minus", "not", "all",
+        "high", "low", "derived", "macrophage", "macrophages", "bone", "marrow", "c57bl",
+        "bmdm", "porcine", "aortic", "endothelial", "paec", "liposome", "liposomes",
+        "depleted", "intact", "autologous", "tpiat", "patients", "patient", "sequentially",
+        "site", "sites", "supplementary", "extended", "data", "threshold", "dual",
+        "over", "under", "after", "before", "during", "within", "between", "into", "onto",
+        "than", "that", "this", "were", "have", "been", "showed", "overexpression",
+        "expression", "knockout", "double", "single",
+    }
+    _short_domain_toks = {"wt", "ko", "ki", "tg", "c3", "c5", "5e", "6f", "d7", "o2", "h2"}
+    def _tok_text(text: str) -> set[str]:
+        low = (text or "").lower().replace("\u03b2", "beta")
+        toks = set()
+        if "primary human" in low or "primary adult human" in low:
+            toks.add("primaryhuman")
+        for t in re.findall(r"[a-z0-9]+", low):
+            if t.isdigit():
+                continue
+            if (len(t) >= 3 or t in _short_domain_toks) and t not in _subtrial_stop:
+                toks.add(t)
+        return toks
+    def _arm_disc_tokens(arm_obj: dict[str, Any]) -> set[str]:
+        aid_clean = re.sub(r"^pmid\d+_arm\d+_?", "", str(arm_obj.get("arm_id") or "").lower())
+        raw_lbl = str(arm_obj.get("arm_label") or "")
+        if raw_lbl.startswith("[REDACTED_"):
+            raw_lbl = ""
+        toks = _tok_text(f"{aid_clean} {raw_lbl}")
+        for t in list(toks):
+            if "gtko" in t:
+                toks.add("gtko")
+            if "hcd64" in t:
+                toks.add("hcd64")
+            if "hiapp" in t:
+                toks.add("hiapp")
+        return toks
+    def _tok_matches(tset_a: set[str], tset_b: set[str]) -> set[str]:
+        hits = set()
+        for a in tset_a:
+            if a in tset_b:
+                hits.add(a)
+                continue
+            if len(a) >= 5 and a.isalpha():
+                for b in tset_b:
+                    if len(b) >= 5 and b.isalpha() and (a.startswith(b) or b.startswith(a)):
+                        hits.add(a)
+                        break
+        return hits
+    _focal_arm_ids = [a["arm_id"] for a in doc.get("arms", []) if not a.get("is_reference_control", False)]
+    _ref_arm_ids = [a["arm_id"] for a in doc.get("arms", []) if a.get("is_reference_control", False)]
+    def _fig_table_refs(text: str) -> tuple[set[str], set[str]]:
+        low = (text or "").lower()
+        figs: set[str] = set()
+        tabs: set[str] = set()
+        for _m_ft in re.finditer(r"\b(figs?|figures?|tables?)\.?\s*((?:[0-9]+[a-z]?|[ivxlcdm]+)(?:\s*(?:,\s*and|,|and)\s*(?:[0-9]+[a-z]?|[ivxlcdm]+))*)", low):
+            _dest = tabs if _m_ft.group(1).startswith("table") else figs
+            for _tok in re.findall(r"[0-9]+[a-z]?|[ivxlcdm]+", _m_ft.group(2)):
+                if _tok != "and":
+                    _dest.add(_tok)
+        return figs, tabs
+    _toks_by_arm = {aid: _arm_disc_tokens(a) for aid, a in arms_by_id.items()}
+    _figs_by_arm = {aid: (_fig_table_refs(str(a.get("arm_label") or "")) if not str(a.get("arm_label") or "").startswith("[REDACTED_") else (set(), set())) for aid, a in arms_by_id.items()}
+    _univ_focal = set.intersection(*(_toks_by_arm[fid] for fid in _focal_arm_ids)) if len(_focal_arm_ids) >= 2 else set()
+    _disc_focal = {fid: _toks_by_arm[fid] - _univ_focal for fid in _focal_arm_ids}
+    _uniq_focal = {
+        fid: _toks_by_arm[fid] - (set().union(*(_toks_by_arm[o] for o in _focal_arm_ids if o != fid)) if len(_focal_arm_ids) > 1 else set())
+        for fid in _focal_arm_ids
+    }
+    _uniq_ref = {
+        rid: _toks_by_arm[rid] - (set().union(*(_toks_by_arm[o] for o in _ref_arm_ids if o != rid)) if len(_ref_arm_ids) > 1 else set())
+        for rid in _ref_arm_ids
+    }
     for eff in doc.get("atomic_effects", []):
         eid = eff.get("effect_id")
         f_id = eff.get("focal_arm_id")
@@ -3361,15 +3515,35 @@ def validate_study_semantics(doc: dict[str, Any], dossier: dict[str, Any] | None
         if source_pmid not in allowed_sources:
             raise ValueError(f"{eid}: quote_source_dossier_pmid {source_pmid!r} is not an allowed source for {pmid}")
         source_dossier = dossier
+        source_raw_bytes: bytes | None = None
         if source_pmid != pmid:
             source_path = DOSSIER_DIR / f"{source_pmid}.json"
             if not source_path.exists():
                 raise ValueError(f"{eid}: declared source dossier {source_pmid} is missing")
-            source_dossier = json.loads(source_path.read_text(encoding="utf-8"))
+            source_raw_bytes = source_path.read_bytes()
+            source_dossier = json.loads(source_raw_bytes.decode("utf-8"))
         if str(source_dossier.get("pmid") or "") != source_pmid:
             raise ValueError(f"{eid}: declared source dossier body PMID mismatch")
         source_ft = source_dossier.get("fulltext_data_sections") or {}
-        source_sha = _compute_dossier_sha256(source_pmid, source_dossier)
+        source_sha = (
+            hashlib.sha256(source_raw_bytes).hexdigest()
+            if source_raw_bytes is not None
+            else _compute_dossier_sha256(source_pmid, source_dossier)
+        )
+        _f_coh = arms_by_id[f_id].get("cohort_id")
+        _c_coh = arms_by_id[c_id].get("cohort_id") if c_id in arms_by_id else None
+        _cm_coh = (eff.get("contrast_metadata") or {}).get("cohort_id")
+        for _coh_val in (_f_coh, _c_coh, _cm_coh):
+            if _coh_val is not None:
+                _m_coh = re.fullmatch(r"pmid([1-9][0-9]{0,8})_cohort[1-9][0-9]{0,3}", str(_coh_val))
+                if _m_coh is None or _m_coh.group(1) != pmid:
+                    raise ValueError(f"{eid}: invalid or cross-study cohort_id {_coh_val!r} for PMID {pmid}")
+        if c_id is not None and _f_coh and _c_coh and _f_coh != _c_coh:
+            raise ValueError(f"{eid}: cohort_id mismatch between focal_arm {f_id!r} ({_f_coh!r}) and comparator_arm {c_id!r} ({_c_coh!r})")
+        if _cm_coh and _f_coh and _cm_coh != _f_coh:
+            raise ValueError(f"{eid}: contrast_metadata.cohort_id {_cm_coh!r} conflicts with focal_arm {f_id!r} ({_f_coh!r})")
+        if _cm_coh and c_id is not None and _c_coh and _cm_coh != _c_coh:
+            raise ValueError(f"{eid}: contrast_metadata.cohort_id {_cm_coh!r} conflicts with comparator_arm {c_id!r} ({_c_coh!r})")
         if eff.get("dossier_sha256") != source_sha:
             raise ValueError(f"{eid}: dossier_sha256 does not match declared source {source_pmid}")
 
@@ -3419,8 +3593,50 @@ def validate_study_semantics(doc: dict[str, Any], dossier: dict[str, Any] | None
             if direction == "Deleterious_or_Impaired" and (float(lrr) * orient >= 0):
                 raise ValueError(f"{eid}: Deleterious_or_Impaired effect has non-negative oriented LRR ({lrr} * {orient})")
         else:
+            _cm_type = (eff.get("contrast_metadata") or {}).get("contrast_type")
+            _pe = eff.get("point_estimate")
+            _ci_lo = eff.get("ci_95_lower")
+            _ci_hi = eff.get("ci_95_upper")
+            _requires_ci_comp = (
+                stat_type == "adjusted_mean_difference_with_95ci_and_pvalue"
+                or _cm_type == "between_arm_comparative_adjusted_difference"
+                or any(v is not None for v in (_pe, _ci_lo, _ci_hi))
+            )
+            if isinstance(_cm_type, str) and _cm_type.startswith("between_arm_comparative_") and c_id is None:
+                raise ValueError(f"{eid}: comparative contrast_type {_cm_type!r} requires non-null comparator_arm_id")
+            if _requires_ci_comp:
+                if c_id is None:
+                    raise ValueError(f"{eid}: comparative adjusted-difference / CI effect requires non-null comparator_arm_id")
+                if stat_type == "adjusted_mean_difference_with_95ci_and_pvalue" and any(v is None for v in (_pe, _ci_lo, _ci_hi)):
+                    raise ValueError(f"{eid}: adjusted_mean_difference_with_95ci_and_pvalue requires non-null point_estimate, ci_95_lower, and ci_95_upper")
+                if _ci_lo is not None and _ci_hi is not None:
+                    if float(_ci_lo) > float(_ci_hi):
+                        raise ValueError(f"{eid}: reversed 95% CI bounds ({_ci_lo} > {_ci_hi})")
+                    if float(_ci_lo) == float(_ci_hi):
+                        raise ValueError(f"{eid}: degenerate 95% CI bounds (ci_95_lower == ci_95_upper == {_ci_lo}; strict interior required)")
+                if _pe is not None and _ci_lo is not None and _ci_hi is not None:
+                    if not (float(_ci_lo) <= float(_pe) <= float(_ci_hi)):
+                        raise ValueError(f"{eid}: point_estimate {_pe} lies outside [ci_95_lower={_ci_lo}, ci_95_upper={_ci_hi}]")
+                    if float(_pe) == float(_ci_lo) or float(_pe) == float(_ci_hi):
+                        raise ValueError(f"{eid}: point_estimate {_pe} equals a 95% CI endpoint ({_ci_lo}, {_ci_hi}); strict interior required")
             if c_id is not None:
-                raise ValueError(f"{eid}: non-comparative effect must have comparator_arm_id=None, got {c_id!r}")
+                if _cm_type in ("between_arm_comparative_adjusted_difference", "between_arm_comparative_descriptive"):
+                    if c_id not in arms_by_id:
+                        raise ValueError(f"{eid}: comparative non-LRR effect missing valid comparator_arm_id {c_id!r}")
+                    if c_id == f_id:
+                        raise ValueError(f"{eid}: self-referential comparator_arm_id {c_id!r}")
+                    if arms_by_id[f_id].get("is_reference_control", False) or not arms_by_id[c_id].get("is_reference_control", False):
+                        raise ValueError(f"{eid}: comparative non-LRR effect requires treatment focal arm and reference-control comparator arm")
+                    _cm_clab = str((eff.get("contrast_metadata") or {}).get("comparator_label") or "").strip()
+                    _arm_clab = str(arms_by_id[c_id].get("arm_label") or "").strip()
+                    if _cm_clab and _arm_clab and not _cm_clab.startswith("[REDACTED_") and not _arm_clab.startswith("[REDACTED_"):
+                        _c_stop = {"the", "and", "for", "with", "from", "control", "cohort", "placebo", "matched", "reference", "comparator", "condition", "between", "arm", "group", "groups", "islet", "islets", "cells", "in", "of", "to", "a", "an", "or", "vs", "negative"}
+                        _t_cm = {t for t in re.findall(r"[a-z0-9]{3,}", _cm_clab.lower()) if t not in _c_stop}
+                        _t_arm = {t for t in re.findall(r"[a-z0-9]{3,}", _arm_clab.lower()) if t not in _c_stop}
+                        if _t_cm and _t_arm and not (_t_cm & _t_arm):
+                            raise ValueError(f"{eid}: comparator_arm_id {c_id!r} arm_label {_arm_clab!r} conflicts with contrast_metadata.comparator_label {_cm_clab!r}")
+                else:
+                    raise ValueError(f"{eid}: non-comparative effect must have comparator_arm_id=None, got {c_id!r}")
             if stat_type in ("log_response_ratio_paired_means", "log_response_ratio_fold_change", "standardized_mean_difference"):
                 raise ValueError(f"{eid}: null LRR cannot have comparative statistic_type {stat_type!r}")
 
@@ -3463,7 +3679,74 @@ def validate_study_semantics(doc: dict[str, Any], dossier: dict[str, Any] | None
             if re.sub(r"\s+", " ", sliced).strip() != re.sub(r"\s+", " ", q).strip():
                 raise ValueError(f"{eid}: normalized source_span slice mismatch")
 
-        for fn in ("treatment_mean", "control_mean", "treatment_sd_or_sem", "control_sd_or_sem", "treatment_n", "control_n", "p_value"):
+        if not q.startswith("[REDACTED_") and f_id in arms_by_id:
+            _flab_chk = str(arms_by_id[f_id].get("arm_label") or "")
+            if not _flab_chk.startswith("[REDACTED_"):
+                _q_toks = _tok_text(q)
+                _y_str = str(eff.get("outcome_variable_Y") or "")
+                _y_unredacted = "" if _y_str.startswith("[REDACTED_") else _y_str
+                _ev_y_toks = _q_toks | _tok_text(_y_unredacted)
+                _y_figs, _y_tabs = _fig_table_refs(_y_unredacted)
+                _f_figs, _f_tabs = _figs_by_arm.get(f_id, (set(), set()))
+                if (_y_figs and _f_figs and _y_figs.isdisjoint(_f_figs)) or (_y_tabs and _f_tabs and _y_tabs.isdisjoint(_f_tabs)):
+                    raise ValueError(f"{eid}: focal_arm_id {f_id!r} figure/table ref (figs={sorted(_f_figs)}, tabs={sorted(_f_tabs)}) conflicts with outcome_variable_Y ref (figs={sorted(_y_figs)}, tabs={sorted(_y_tabs)})")
+                if c_id is not None:
+                    _c_figs, _c_tabs = _figs_by_arm.get(c_id, (set(), set()))
+                    if (_y_figs and _c_figs and _y_figs.isdisjoint(_c_figs)) or (_y_tabs and _c_tabs and _y_tabs.isdisjoint(_c_tabs)):
+                        raise ValueError(f"{eid}: comparator_arm_id {c_id!r} figure/table ref (figs={sorted(_c_figs)}, tabs={sorted(_c_tabs)}) conflicts with outcome_variable_Y ref (figs={sorted(_y_figs)}, tabs={sorted(_y_tabs)})")
+                if len(_focal_arm_ids) >= 2 and f_id in _disc_focal:
+                    _f_q_hits = _tok_matches(_disc_focal[f_id], _q_toks)
+                    _other_f_q = {_of: sorted(_tok_matches(_uniq_focal[_of], _q_toks)) for _of in _focal_arm_ids if _of != f_id and _tok_matches(_uniq_focal[_of], _q_toks)}
+                    if not _f_q_hits and _other_f_q:
+                        raise ValueError(f"{eid}: verbatim_evidence_quote conflicts with focal_arm_id {f_id!r} (matches other focal arm(s) {_other_f_q})")
+                    if c_id is not None:
+                        _f_ev_hits = _tok_matches(_disc_focal[f_id], _ev_y_toks)
+                        _other_f_ev = {_of: sorted(_tok_matches(_uniq_focal[_of], _ev_y_toks)) for _of in _focal_arm_ids if _of != f_id and _tok_matches(_uniq_focal[_of], _ev_y_toks)}
+                        if not _f_ev_hits and _other_f_ev:
+                            raise ValueError(f"{eid}: outcome/quote cohort tokens conflict with focal_arm_id {f_id!r} (matches other focal arm(s) {_other_f_ev})")
+                if c_id is not None and c_id in arms_by_id:
+                    _clab_chk = str(arms_by_id[c_id].get("arm_label") or "")
+                    if not _clab_chk.startswith("[REDACTED_"):
+                        _fncts = set(re.findall(r"\bnct\d{8}\b", _flab_chk.lower()))
+                        _cncts = set(re.findall(r"\bnct\d{8}\b", _clab_chk.lower()))
+                        if _fncts and _cncts and _fncts.isdisjoint(_cncts):
+                            raise ValueError(f"{eid}: cross-trial comparator_arm_id {c_id!r} ({sorted(_cncts)}) mismatches focal_arm {f_id!r} ({sorted(_fncts)})")
+                        if len(_ref_arm_ids) >= 2:
+                            _ev_ctx = _toks_by_arm[f_id] | _q_toks
+                            _c_hits = _tok_matches(_uniq_ref[c_id], _ev_ctx)
+                            _better_refs = {_rc: sorted(_tok_matches(_uniq_ref[_rc], _ev_ctx)) for _rc in _ref_arm_ids if _rc != c_id and _tok_matches(_uniq_ref[_rc], _ev_ctx)}
+                            _q_comp = _q_toks - _toks_by_arm[f_id]
+                            _c_q_hits = _tok_matches(_uniq_ref[c_id], _q_comp)
+                            _better_q_refs = {_rc: sorted(_tok_matches(_uniq_ref[_rc], _q_comp)) for _rc in _ref_arm_ids if _rc != c_id and _tok_matches(_uniq_ref[_rc], _q_comp)}
+                            if not _c_q_hits and _better_q_refs:
+                                raise ValueError(f"{eid}: verbatim_evidence_quote conflicts with comparator_arm_id {c_id!r} (matches other comparator arm(s) {_better_q_refs})")
+                            if not _c_hits and _better_refs:
+                                raise ValueError(f"{eid}: comparator_arm_id {c_id!r} cross-wired/conflicts with focal_arm {f_id!r} / quote (better comparator(s): {_better_refs})")
+                            if len(_focal_arm_ids) >= 2 and not _c_hits:
+                                _other_f_c = {_of: sorted(_tok_matches(_uniq_ref[c_id], _toks_by_arm[_of])) for _of in _focal_arm_ids if _of != f_id and _tok_matches(_uniq_ref[c_id], _toks_by_arm[_of])}
+                                if _other_f_c:
+                                    raise ValueError(f"{eid}: comparator_arm_id {c_id!r} cross-wired to other focal arm(s) {_other_f_c}, not {f_id!r}")
+        if not q.startswith("[REDACTED_"):
+            _q_norm_ci = re.sub(r"(\d)\u00b7(\d)", r"\1.\2", q or "").replace("\u2212", "-")
+            _q_no_p = re.sub(r"(?i)\bp\s*(?:<=|>=|<|>|=|\u2264|\u2265)\s*[0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?", " ", _q_norm_ci)
+            for _ci_fn in ("point_estimate", "ci_95_lower", "ci_95_upper"):
+                _ci_v = eff.get(_ci_fn)
+                if _ci_v is not None and not _num_in_quote(_ci_v, _q_no_p, _ci_fn):
+                    raise ValueError(f"{eid}: {_ci_fn}={_ci_v!r} is grounded only inside a p-value clause or absent outside p-value in verbatim_evidence_quote")
+            _ci_lo_q = eff.get("ci_95_lower")
+            _ci_hi_q = eff.get("ci_95_upper")
+            if _ci_lo_q is not None and _ci_hi_q is not None:
+                _ci_spans = [
+                    (float(_m_ci.group(1)), float(_m_ci.group(2)))
+                    for _m_ci in re.finditer(
+                        r"(?:95%\s*CI\s*:?\s*|\(\s*)([+-]?\d+(?:\.\d+)?)\s*(?:to|[\-\u2013\u2014])\s*([+-]?\d+(?:\.\d+)?)",
+                        _q_no_p,
+                        flags=re.IGNORECASE,
+                    )
+                ]
+                if _ci_spans and not any(abs(float(_ci_lo_q) - _lo) <= 1e-6 and abs(float(_ci_hi_q) - _hi) <= 1e-6 for _lo, _hi in _ci_spans):
+                    raise ValueError(f"{eid}: 95% CI [{_ci_lo_q}, {_ci_hi_q}] does not match parsed CI span(s) {_ci_spans} in verbatim_evidence_quote")
+        for fn in ("point_estimate", "ci_95_lower", "ci_95_upper", "treatment_mean", "control_mean", "treatment_sd_or_sem", "control_sd_or_sem", "treatment_n", "control_n", "p_value"):
             fval = eff.get(fn)
             if fval is not None and not _num_in_quote(fval, q, fn):
                 raise ValueError(f"{eid}: numeric field {fn}={fval!r} is not grounded in verbatim_evidence_quote")
@@ -3473,6 +3756,11 @@ def validate_study_semantics(doc: dict[str, Any], dossier: dict[str, Any] | None
             raise ValueError(f"{eid}: p-value relation/bound does not match its source token")
         if relation not in (None, "=") and eff.get("p_value") is not None:
             raise ValueError(f"{eid}: inequality p-value cannot be stored as exact p_value")
+        if relation == "=" and (eff.get("p_value") is None or eff.get("p_value_bound") is None or abs(float(eff["p_value"]) - float(eff["p_value_bound"])) > 1e-12):
+            raise ValueError(f"{eid}: exact p_value {eff.get('p_value')!r} disagrees with p_value_bound {eff.get('p_value_bound')!r}")
+        if isinstance(stat_type, str) and stat_type.endswith(("_and_pvalue", "_with_pvalue")) and not q.startswith("[REDACTED_"):
+            if relation != "=" or eff.get("p_value") is None:
+                raise ValueError(f"{eid}: {stat_type} requires a grounded exact p-value (relation='=') and non-null exact p_value, got relation={relation!r}, p_value={eff.get('p_value')!r}")
         for n_fn in ("treatment_n", "control_n"):
             n_val = eff.get(n_fn)
             if n_val is not None and (not isinstance(n_val, (int, float)) or n_val <= 0 or n_val > 100000):
@@ -4435,6 +4723,39 @@ def main() -> None:
             src_to_read = curated_src_path if curated_src_path.exists() else out_path
             with open(src_to_read, "r", encoding="utf-8") as f:
                 curated_rec = json.load(f)
+            _is_complete_curated_v2 = (
+                pmid not in LEGACY_AUTO_CURATED_PMIDS
+                and bool(curated_rec.get("atomic_effects"))
+                and all(
+                    (e.get("effect_id") or "") not in CURATED_QUOTE_EXACT_OVERRIDES
+                    and "quote_source_dossier_pmid" in e
+                    and "contrast_metadata" in e
+                    and "endpoint_polarity_registry" in e
+                    and "statistic_type" in e
+                    and "source_span" in e
+                    and "direction_adjudication_method" in e
+                    and "p_value_relation" in e
+                    and "p_value_bound" in e
+                    for e in curated_rec.get("atomic_effects", [])
+                )
+            )
+            if _is_complete_curated_v2:
+                if not curated_rec["study_metadata"].get("first_author") and dossier.get("first_author"):
+                    curated_rec["study_metadata"]["first_author"] = dossier.get("first_author")
+                if not curated_rec["study_metadata"].get("senior_author") and dossier.get("senior_author"):
+                    curated_rec["study_metadata"]["senior_author"] = dossier.get("senior_author")
+                _apply_bibliographic_evidence_scope(curated_rec, dossier)
+                validate_study_semantics(curated_rec, dossier)
+                CURATED_DIR.mkdir(parents=True, exist_ok=True)
+                if not curated_src_path.exists():
+                    with open(curated_src_path, "w", encoding="utf-8") as f:
+                        json.dump(curated_rec, f, indent=2, ensure_ascii=False)
+                        f.write("\n")
+                with open(out_path, "w", encoding="utf-8") as f:
+                    json.dump(curated_rec, f, indent=2, ensure_ascii=False)
+                    f.write("\n")
+                preserved_count += 1
+                continue
             if not curated_rec["study_metadata"].get("first_author") and dossier.get("first_author"):
                 curated_rec["study_metadata"]["first_author"] = dossier.get("first_author")
             if not curated_rec["study_metadata"].get("senior_author") and dossier.get("senior_author"):
@@ -4459,7 +4780,7 @@ def main() -> None:
                     transplant_site = niche_obj["transplant_site"]
                 for ed in a.get("gate2_3_4_genetic_and_epitope_edits", []):
                     mod = ed.get("edit_modality", "")
-                    if mod in ("CRISPR_Cas9_KO", "CRISPR_Cas12a_Multiplex_KO", "CRISPRi_or_shRNA_Knockdown"):
+                    if mod in ("CRISPR_Cas9_KO", "CRISPR_Cas12a_Multiplex_KO", "CRISPR_Cas12b_Multiplex_KO", "CRISPRi_or_shRNA_Knockdown"):
                         ed["perturbation_class"] = "Loss_of_Function_KO_or_KD"
                     elif mod in ("BaseEdit_ABE_or_CBE_Epitope_or_Splice", "PrimeEdit", "Signal_Peptide_or_Domain_Swap"):
                         ed["perturbation_class"] = "Precision_Epitope_or_Isoform_Edit"

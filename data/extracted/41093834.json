@@ -208,7 +208,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:41093834 field=omitted_text quote_sha256=4032ee4038775060258f8e68061309aed9bfdea5b574f24324ab7f065202d052]"
+        "matched_lexicon_term": "survival"
       },
       "dossier_sha256": "5c1d2258b8e99d792f453a7527188f631b9b05e2618723580b80ae68f621f0da",
       "source_span": "fulltext_data_sections.figure_legends[0].caption[153:307]|norm=exact",
@@ -229,7 +229,7 @@
     },
     {
       "effect_id": "pmid41093834_eff3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41093834 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "SEC31A functional evaluation — ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
       "comparator_X0": "Isogenic wild-type / untreated baseline control in study",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=nM]",
@@ -275,7 +275,7 @@
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": null,
         "population_or_model": "EndoC_betaH1_or_H2_H3 (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:41093834 field=omitted_text quote_sha256=b1cf5a2d2fa2998a4d9e0ebe249c6632ebd055c77fcc19fbb162ada321f8cd4e]",
+        "units": "nM",
         "contrast_type": "single_arm_descriptive_only"
       },
       "p_value_relation": null,
@@ -285,7 +285,7 @@
     },
     {
       "effect_id": "pmid41093834_eff4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41093834 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "SEC31A functional evaluation — ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
       "comparator_X0": "Isogenic wild-type / untreated baseline control in study",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=nM]",
@@ -296,7 +296,7 @@
       "control_mean": null,
       "control_sd_or_sem": null,
       "control_n": null,
-      "measurement_unit": "[REDACTED_NON_OA_EXCERPT: see PMID:41093834 field=omitted_text quote_sha256=b1cf5a2d2fa2998a4d9e0ebe249c6632ebd055c77fcc19fbb162ada321f8cd4e]",
+      "measurement_unit": "nM",
       "log_response_ratio_or_smd": null,
       "p_value": null,
       "effect_direction": "Protective_or_Improved",
@@ -331,7 +331,7 @@
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": null,
         "population_or_model": "EndoC_betaH1_or_H2_H3 (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:41093834 field=omitted_text quote_sha256=b1cf5a2d2fa2998a4d9e0ebe249c6632ebd055c77fcc19fbb162ada321f8cd4e]",
+        "units": "nM",
         "contrast_type": "single_arm_descriptive_only"
       },
       "p_value_relation": null,
@@ -341,7 +341,7 @@
     },
     {
       "effect_id": "pmid41093834_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41093834 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "SEC31A functional evaluation — MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Isogenic wild-type / untreated baseline control in study",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=nM]",
@@ -352,7 +352,7 @@
       "control_mean": null,
       "control_sd_or_sem": null,
       "control_n": null,
-      "measurement_unit": "[REDACTED_NON_OA_EXCERPT: see PMID:41093834 field=omitted_text quote_sha256=b1cf5a2d2fa2998a4d9e0ebe249c6632ebd055c77fcc19fbb162ada321f8cd4e]",
+      "measurement_unit": "nM",
       "log_response_ratio_or_smd": null,
       "p_value": null,
       "effect_direction": "Protective_or_Improved",
@@ -387,7 +387,7 @@
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": null,
         "population_or_model": "EndoC_betaH1_or_H2_H3 (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:41093834 field=omitted_text quote_sha256=b1cf5a2d2fa2998a4d9e0ebe249c6632ebd055c77fcc19fbb162ada321f8cd4e]",
+        "units": "nM",
         "contrast_type": "single_arm_descriptive_only"
       },
       "p_value_relation": null,
@@ -397,7 +397,7 @@
     },
     {
       "effect_id": "pmid41093834_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41093834 field=omitted_text quote_sha256=7817791c5ed120bd5ee4749da73978290ffd90681768b87845ef98e751387b69]",
+      "source_figure_or_table": "Fig. 4",
       "focal_factor_X": "SEC31A functional evaluation — ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
       "comparator_X0": "Isogenic wild-type / untreated baseline control in study",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -464,7 +464,7 @@
       "control_mean": null,
       "control_sd_or_sem": null,
       "control_n": null,
-      "measurement_unit": "[REDACTED_NON_OA_EXCERPT: see PMID:41093834 field=omitted_text quote_sha256=ab51004e9d71a485f160f655fb9e72bcdef8f5ca4178b26938b49471456fd11c]",
+      "measurement_unit": "days",
       "log_response_ratio_or_smd": null,
       "p_value": null,
       "effect_direction": "Deleterious_or_Impaired",
@@ -488,7 +488,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:41093834 field=omitted_text quote_sha256=4032ee4038775060258f8e68061309aed9bfdea5b574f24324ab7f065202d052]"
+        "matched_lexicon_term": "survival"
       },
       "dossier_sha256": "5c1d2258b8e99d792f453a7527188f631b9b05e2618723580b80ae68f621f0da",
       "source_span": "fulltext_data_sections.results_paragraphs[0][246:394]|norm=exact",
@@ -499,7 +499,7 @@
         "endpoint_name": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
         "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:41093834 field=omitted_text quote_sha256=7f920bb639c9307589b65e5f639391d65dcb86b0611ac47f58f7c769215326ee]",
         "population_or_model": "EndoC_betaH1_or_H2_H3 (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:41093834 field=omitted_text quote_sha256=ab51004e9d71a485f160f655fb9e72bcdef8f5ca4178b26938b49471456fd11c]",
+        "units": "days",
         "contrast_type": "right_censored_followup_observation"
       },
       "p_value_relation": null,
@@ -567,7 +567,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid41093834_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41093834 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Regime dependency on ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",

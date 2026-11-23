@@ -278,7 +278,7 @@
     },
     {
       "effect_id": "pmid32432213_eff4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:32432213 field=omitted_text quote_sha256=c713deb6d8602c283581262717af67e07699edbd4c20c19bb91d7cb680ed06de]",
+      "source_figure_or_table": "Extended Data Fig. 1",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Surface_HLA_or_Transgene_Expression_Level | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -334,7 +334,7 @@
     },
     {
       "effect_id": "pmid32432213_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:32432213 field=omitted_text quote_sha256=221f0bb890d7d33e0a3dade9a5f0b3d04c0ab00e8863985f9a1b999cdfcdd502]",
+      "source_figure_or_table": "Extended Data Fig. 3",
       "focal_factor_X": "GAD2 (CRISPRi_or_shRNA_Knockdown — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -390,7 +390,7 @@
     },
     {
       "effect_id": "pmid32432213_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:32432213 field=omitted_text quote_sha256=221f0bb890d7d33e0a3dade9a5f0b3d04c0ab00e8863985f9a1b999cdfcdd502]",
+      "source_figure_or_table": "Extended Data Fig. 3",
       "focal_factor_X": "GAD2 (CRISPRi_or_shRNA_Knockdown — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -446,7 +446,7 @@
     },
     {
       "effect_id": "pmid32432213_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:32432213 field=omitted_text quote_sha256=221f0bb890d7d33e0a3dade9a5f0b3d04c0ab00e8863985f9a1b999cdfcdd502]",
+      "source_figure_or_table": "Extended Data Fig. 3",
       "focal_factor_X": "GAD2 (CRISPRi_or_shRNA_Knockdown — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -502,7 +502,7 @@
     },
     {
       "effect_id": "pmid32432213_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:32432213 field=omitted_text quote_sha256=221f0bb890d7d33e0a3dade9a5f0b3d04c0ab00e8863985f9a1b999cdfcdd502]",
+      "source_figure_or_table": "Extended Data Fig. 3",
       "focal_factor_X": "GAD2 (CRISPRi_or_shRNA_Knockdown — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -560,7 +560,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid32432213_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:32432213 field=omitted_text quote_sha256=df647f8eb2bd978b828636ba13ebe28d8af7a0c399a8984bdf115aecc342f215]",
+      "source_figure_or_table": "Figure 3.",
       "focal_factor_X": "GAD2 (CRISPRi_or_shRNA_Knockdown — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "GAD2_GAD65_GABA_Paracrine_Autoantigen vs. MAFA_NKX6_1_PDX1_BetaCell_Identity",

@@ -4,9 +4,9 @@
 
 **Current executable facts (generated from on-disk artifacts; physical gates pending).**
 
-Current corpus: 563 studies, 548 active deduplicated, 547 active empirical, 529 strict peer-reviewed empirical; 3,094 effects, 596 arms, 20 reference controls, 237 edit entries and 242 expanded gene occurrences under the ranker expander. Direction/penalty labels are rule-based heuristics; 43 flagged penalties are not an independently adjudicated accuracy dataset.
+Current corpus: 583 studies, 568 active deduplicated, 567 active empirical, 549 strict peer-reviewed empirical; 3,139 effects, 663 arms, 49 reference controls, 244 edit entries and 249 expanded gene occurrences under the ranker expander. Direction/penalty labels are rule-based heuristics; 43 flagged penalties are not an independently adjudicated accuracy dataset.
 
-Layer 1 evaluates 2,160 prior-anchored stacks (480 feasible, 48 code-defined top tier). Registry: 48 source terms / 46 net offsets / 39 auxiliary scalar leaves / 6 engineering priors. Structural share of component variance is 99.8542% from unrounded latent logits. Current utility-target profiles with typed numeric LRR evidence: 0; the shrinkage branch is checked separately against an actual HNF1A-KO source contrast when this count is zero. Seeded direct and shared-parameter Monte Carlo are exploratory sensitivity simulations with finite-draw Wilson intervals and rank quantiles, not clinical probabilities or fitted posterior intervals. CHK-12 recomputes and compares the complete current replay.
+Layer 1 evaluates 2,160 prior-anchored stacks (480 feasible, 48 code-defined top tier). Registry: 48 source terms / 46 net offsets / 39 auxiliary scalar leaves / 6 engineering priors. Structural share of component variance is 99.8542% from unrounded latent logits. Current auxiliary non-stack utility-target profiles with typed numeric LRR evidence: 1 (0 evaluated Islet-1 stack targets with new typed numeric LRR changes; the shrinkage branch is checked separately against an actual HNF1A-KO source contrast when zero). Seeded direct and shared-parameter Monte Carlo are exploratory sensitivity simulations with finite-draw Wilson intervals and rank quantiles, not clinical probabilities or fitted posterior intervals. CHK-12 recomputes and compares the complete current replay.
 
 HIP-Core executes all 36 coded rows, including all 11 repeat/bridge/lead rows, across 25 distinct genotypes. The quoted covariance/power applies to 108 independent run-nested clones or 75 shared-genotype clones; 61-clone power is UNEVALUATED with null SE/MDE. Current factor sums are [-10, -10, -6, -10, -6, -10]; +1 counts are [13, 13, 15, 13, 15, 13].
 
@@ -19,7 +19,7 @@ HIP-Core executes all 36 coded rows, including all 11 repeat/bridge/lead rows, a
 
 Native EEF1A1 core: 230 bp, 19 CpG dinucleotides, 3 exact/RC donor occurrences; these are native CpG-containing promoter sequences.
 
-Release manifest: `1,367` pinned files. Machine facts: `data/extracted/documentation_facts_v0.8.0.json`. These facts supersede stale numeric summaries in explicitly historical rationale sections. Outward rankings remain unfrozen (`outward_rankings_frozen: false`); no exact product has passed physical qualification.
+Release manifest: `1,428` pinned files. Machine facts: `data/extracted/documentation_facts_v0.8.0.json`. These facts supersede stale numeric summaries in explicitly historical rationale sections. Outward rankings remain unfrozen (`outward_rankings_frozen: false`); no exact product has passed physical qualification.
 
 <!-- OPENISLET_GENERATED_FACTS_END -->
 

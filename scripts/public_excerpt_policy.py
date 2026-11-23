@@ -11,10 +11,10 @@ FIELDS = frozenset({
     'observation', 'verbatim_quote', 'statement', 'hop1_evidence', 'hop2_evidence',
     'source_span', 'field', 'omitted_text', 'description', 'note', 'notes',
     'failure_mode_description', 'mechanism', 'condition', 'outcome', 'rationale',
-    'quoted_threshold_or_constraint', 'threshold_description', 'effect_description',
+    'quoted_threshold_or_constraint', 'threshold_description', 'effect_description', 'effect_notes',
 })
-GENES = frozenset('B2M CASP9 CD200 CD274 CD47 CD55 CD59 THBD CHGA CIITA CXADR CXCL10 ENTPD1 FASLG G6PC2 GAD2 GLIS3 HLA-A HLA-B HLA-C HLA-E HLA-G IAPP IFIH1 IL10 TGFB1 IL2 INS ISG15 JAK1 JAK2 MANF NLRC5 PTPN2 PTPRN RIPK1 RNLS SEC31A SLC30A8 SOCS1 STAT1 TET2 TGM2 TNFAIP3 TXNIP TYK2 SERPINB9 PD-L1 ICASP9 DDIT3 HYOU1 PCSK1 PTPN22 MAFA PDX1 NKX6-1 GCG SST UTP23 HNF1A'.split())
-MODALITIES = frozenset('CRISPR_Cas12a_Multiplex_KO BaseEdit_ABE_or_CBE_Epitope_or_Splice PrimeEdit Signal_Peptide_or_Domain_Swap Endogenous_SwapIn_KO_plus_KI SafeHarbor_KI_AAVS1_GAPDH_CLYBL Lentiviral_or_Transposon_OE Transient_mRNA_or_Surface_Tethering CRISPRi_or_shRNA_Knockdown CRISPRa_Activation SmallMolecule_Pharmacological_Modulator none NONE CRISPR_Cas9_KO CRISPR_Cas12a_KO CRISPRi_KD CRISPRa_OE Lentiviral_OE Transposon_OE HDR_KI Base_Editing Prime_Editing Pharmacologic_Inhibitor Pharmacologic_Activation Antibody_Blockade RNAi_KD KO KI'.split())
+GENES = frozenset('B2M CASP9 CD200 CD274 CD47 CD55 CD59 THBD CHGA CIITA CXADR CXCL10 ENTPD1 FASLG G6PC2 GAD2 GLIS3 HLA-A HLA-B HLA-C HLA-E HLA-G IAPP IFIH1 IL10 TGFB1 IL2 INS ISG15 JAK1 JAK2 MANF NLRC5 PTPN2 PTPRN RIPK1 RNLS SEC31A SLC30A8 SOCS1 STAT1 TET2 TGM2 TNFAIP3 TXNIP TYK2 SERPINB9 PD-L1 ICASP9 DDIT3 HYOU1 PCSK1 PTPN22 MAFA PDX1 NKX6-1 GCG SST UTP23 HNF1A FCGR1A IL1RN CD46 CR1 TRAC'.split())
+MODALITIES = frozenset('CRISPR_Cas12a_Multiplex_KO CRISPR_Cas12b_Multiplex_KO BaseEdit_ABE_or_CBE_Epitope_or_Splice PrimeEdit Signal_Peptide_or_Domain_Swap Endogenous_SwapIn_KO_plus_KI SafeHarbor_KI_AAVS1_GAPDH_CLYBL Lentiviral_or_Transposon_OE Transient_mRNA_or_Surface_Tethering CRISPRi_or_shRNA_Knockdown CRISPRa_Activation SmallMolecule_Pharmacological_Modulator none NONE CRISPR_Cas9_KO CRISPR_Cas12a_KO CRISPRi_KD CRISPRa_OE Lentiviral_OE Transposon_OE HDR_KI Base_Editing Prime_Editing Pharmacologic_Inhibitor Pharmacologic_Activation Antibody_Blockade RNAi_KD KO KI'.split())
 
 
 def is_bounded_metadata(value: object, field: str, *, bibliographic: bool = False) -> bool:

@@ -203,7 +203,7 @@
     },
     {
       "effect_id": "pmid34804036_eff3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:34804036 field=omitted_text quote_sha256=0565fceba715022c0e85824b201086ecd54eb9eb38df8778c3686ed57b2148e0]",
+      "source_figure_or_table": "Figure 1",
       "focal_factor_X": "CXADR_IFIH1_Enterovirus_CVB_Infection",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Amyloid_hIAPP_or_Enterovirus_Protection | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -259,7 +259,7 @@
     },
     {
       "effect_id": "pmid34804036_eff4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:34804036 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "IL2_TGFb_IL10_FOXP3_Treg_Induction",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Allo_T_Cell_or_DSA_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -315,7 +315,7 @@
     },
     {
       "effect_id": "pmid34804036_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:34804036 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "CXADR_IFIH1_Enterovirus_CVB_Infection",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Amyloid_hIAPP_or_Enterovirus_Protection | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -371,7 +371,7 @@
     },
     {
       "effect_id": "pmid34804036_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:34804036 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "IL2_TGFb_IL10_FOXP3_Treg_Induction",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Allo_T_Cell_or_DSA_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -427,7 +427,7 @@
     },
     {
       "effect_id": "pmid34804036_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:34804036 field=omitted_text quote_sha256=0fb418bc6b224cad46820d15c23eadb4ce2fc19a718992213ef4bc57591ed9cf]",
+      "source_figure_or_table": "Figure 4",
       "focal_factor_X": "CXADR_IFIH1_Enterovirus_CVB_Infection",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Amyloid_hIAPP_or_Enterovirus_Protection | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -483,7 +483,7 @@
     },
     {
       "effect_id": "pmid34804036_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:34804036 field=omitted_text quote_sha256=0fb418bc6b224cad46820d15c23eadb4ce2fc19a718992213ef4bc57591ed9cf]",
+      "source_figure_or_table": "Figure 4",
       "focal_factor_X": "IL2_TGFb_IL10_FOXP3_Treg_Induction",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Allo_T_Cell_or_DSA_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -541,7 +541,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid34804036_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:34804036 field=omitted_text quote_sha256=0565fceba715022c0e85824b201086ecd54eb9eb38df8778c3686ed57b2148e0]",
+      "source_figure_or_table": "Figure 1",
       "focal_factor_X": "CXADR_IFIH1_Enterovirus_CVB_Infection",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",

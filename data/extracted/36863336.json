@@ -577,7 +577,7 @@
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition contrast (Hypoxia_72h_Ischemia_and_O2_Scaffolds)",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
-      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36863336 field=level_1_condition_and_effect quote_sha256=49cf431bd2dc1f31bd99b5a35b1f0cf993d87e408250de4a3e89e6eafdd96864]",
+      "level_1_condition_and_effect": "T cell counts dropped to 250–2,500/mL posttransplant",
       "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36863336 field=level_2_condition_and_effect quote_sha256=398c684d0ee5074db55bf90077afc886f9b5acfb980eb1fceb84737a5d6b2dd9]",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,

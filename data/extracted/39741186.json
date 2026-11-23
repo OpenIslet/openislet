@@ -194,7 +194,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:39741186 field=verbatim_evidence_quote genes=TXNIP pert=NONE quote_sha256=2ac3c0aea1cdda3e0b3cba7a17f339420f4f8da0f9103f388698806563297355]",
+      "verbatim_evidence_quote": "The corresponding STZ-treated mice before graft removal were used as controls (n = 3–4 mice).",
       "focal_arm_id": "pmid39741186_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,
@@ -542,7 +542,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "insulin secretion"
+        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:39741186 field=omitted_text quote_sha256=66e5550833f46fb41648825b19e92c907b18b102166906f317b4b66c9cc7002a]"
       },
       "dossier_sha256": "46e0507685e22a063623c8b8ae331e0b971542037d8a009c0a08ae236ba83953",
       "source_span": "fulltext_data_sections.figure_legends[5].caption[0:245]|norm=exact",
@@ -581,7 +581,7 @@
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:39741186 field=level_1_condition_and_effect quote_sha256=2f14673a5d8ea0f19b460c5754bb20cd2f56fd074eb1e028def9402af5144e24]",
-      "level_2_condition_and_effect": "the WT line.",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:39741186 field=level_2_condition_and_effect quote_sha256=fca45a8a32023140d1489ff1afd4fad9fe584f220289af63ef87df7e09994b8f]",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:39741186 field=mechanistic_explanation quote_sha256=b8aecd60360a14c98cecc8d7fcd2ec4728b475505e05c72bbc64ee6803b42252]"
@@ -601,7 +601,7 @@
     },
     {
       "interaction_id": "pmid39741186_int4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39741186 field=omitted_text quote_sha256=7817791c5ed120bd5ee4749da73978290ffd90681768b87845ef98e751387b69]",
+      "source_figure_or_table": "Fig. 4",
       "focal_factor_X": "TXNIP (CRISPR_Cas9_KO — Gate4_Intrinsic_ER_Stress_UPR_Shield)",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",

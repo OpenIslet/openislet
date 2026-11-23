@@ -477,7 +477,7 @@
         "intervention_label": "Biphasic_GSIS_and_Calcium_Coupling",
         "comparator_label": null,
         "endpoint_name": "InVivo_Glycemic_Cure_and_Graft_Longevity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:41199860 field=omitted_text quote_sha256=5d1d13e5a51e59173447c467c272ff8bcc4479fc969ef4bcd3c820ddd354a273]",
+        "timepoint": "12 weeks",
         "population_or_model": "Unspecified_In_Source_Abstract (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"
@@ -485,7 +485,7 @@
     },
     {
       "effect_id": "pmid41199860_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41199860 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -533,7 +533,7 @@
         "intervention_label": "Biphasic_GSIS_and_Calcium_Coupling",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:41199860 field=omitted_text quote_sha256=36968910a1e9dc6168a78a2bd0e98c4453fd3d5065ce4057253b113f1649f68d]",
+        "timepoint": "14 and 24 weeks",
         "population_or_model": "Unspecified_In_Source_Abstract (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"

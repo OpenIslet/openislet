@@ -457,7 +457,7 @@
     },
     {
       "effect_id": "pmid36593395_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36593395 field=omitted_text quote_sha256=982a11b859cf4a9c062604083fdac0d3080127ba3e44b4c40b0c3f7b5e15e638]",
+      "source_figure_or_table": "Fig. 6",
       "focal_factor_X": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -513,7 +513,7 @@
     },
     {
       "effect_id": "pmid36593395_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:36593395 field=omitted_text quote_sha256=982a11b859cf4a9c062604083fdac0d3080127ba3e44b4c40b0c3f7b5e15e638]",
+      "source_figure_or_table": "Fig. 6",
       "focal_factor_X": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -672,7 +672,7 @@
       "modifier_variable_Z": "Primary_NK_or_Macrophage_Innate_Cytotoxicity vs. Condition_2",
       "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36593395 field=level_1_condition_and_effect quote_sha256=71d5fde0246ee24d52d4ec4616efd25f9adb4cd118a9923277aa9595199a6689]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:36593395 field=level_2_condition_and_effect quote_sha256=7e191f6b0d28f4610a9f25e48fd2e2f78dfaf4d3927a1e00a7d12f4eaf3b39dc]",
+      "level_2_condition_and_effect": "iECsCD64 were fully protected.",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:36593395 field=mechanistic_explanation quote_sha256=79052efac3d2bff99b26dc74e1e0dafcaf8d426f45a05fcc9a8454e11e9037fe]"

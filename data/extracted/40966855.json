@@ -321,15 +321,15 @@
         "intervention_label": "Study_Intervention",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=f6f984a4124b10d775033e6f2fa8a1dcec163493e1d71cede5ad7766e2420993]",
+        "timepoint": "2 h",
         "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=aaa9402664f1a41f40ebbc52c9993eb66aeb366602958fdfaa283b71e64db123]",
+        "units": "h",
         "contrast_type": "single_arm_descriptive_only"
       }
     },
     {
       "effect_id": "pmid40966855_eff4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=d5c8c630cc2cbe2c3a4624882a9cd7aa8c834e3a42e721f7b661249e9917772e]",
+      "source_figure_or_table": "Fig. 7",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=h]",
@@ -340,7 +340,7 @@
       "control_mean": null,
       "control_sd_or_sem": null,
       "control_n": null,
-      "measurement_unit": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=aaa9402664f1a41f40ebbc52c9993eb66aeb366602958fdfaa283b71e64db123]",
+      "measurement_unit": "h",
       "log_response_ratio_or_smd": null,
       "p_value": null,
       "effect_direction": "Protective_or_Improved",
@@ -377,15 +377,15 @@
         "intervention_label": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=f6f984a4124b10d775033e6f2fa8a1dcec163493e1d71cede5ad7766e2420993]",
+        "timepoint": "2 h",
         "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=aaa9402664f1a41f40ebbc52c9993eb66aeb366602958fdfaa283b71e64db123]",
+        "units": "h",
         "contrast_type": "single_arm_descriptive_only"
       }
     },
     {
       "effect_id": "pmid40966855_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=a3c1c0281c5cb4dce9b13da9f4f332cbc4a54aa3c4480d30b03ba0f9976a08ea]",
+      "source_figure_or_table": "Fig. 8",
       "focal_factor_X": "Study_Intervention",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=h]",
@@ -396,7 +396,7 @@
       "control_mean": null,
       "control_sd_or_sem": null,
       "control_n": null,
-      "measurement_unit": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=aaa9402664f1a41f40ebbc52c9993eb66aeb366602958fdfaa283b71e64db123]",
+      "measurement_unit": "h",
       "log_response_ratio_or_smd": null,
       "p_value": null,
       "effect_direction": "Protective_or_Improved",
@@ -433,15 +433,15 @@
         "intervention_label": "Study_Intervention",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=f6f984a4124b10d775033e6f2fa8a1dcec163493e1d71cede5ad7766e2420993]",
+        "timepoint": "2 h",
         "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=aaa9402664f1a41f40ebbc52c9993eb66aeb366602958fdfaa283b71e64db123]",
+        "units": "h",
         "contrast_type": "single_arm_descriptive_only"
       }
     },
     {
       "effect_id": "pmid40966855_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=f7ca40658e0e8627ea5f6d3e7c11b57f03821f0f9ef227e35ef22911312eb5d4]",
+      "source_figure_or_table": "Fig. 9",
       "focal_factor_X": "BetaCell_Survival_and_Glycemic_Cure",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Lower_Is_Better_Hazard_Endpoint | orientation_sign=-1 | unit=qualitative_statement]",
@@ -479,7 +479,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
         "orientation_sign": -1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=bc2a590ae5558a39182d795d4ac8e6024a4bcb20a505ce82bd625c826531f6ea]"
+        "matched_lexicon_term": "cell death"
       },
       "dossier_sha256": "d72c722920ec5be01f50d8fc38623d144bc837748da62cff81ec7c0968e80a1a",
       "source_span": "fulltext_data_sections.figure_legends[8].caption[1402:1471]|norm=exact",
@@ -497,7 +497,7 @@
     },
     {
       "effect_id": "pmid40966855_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=00cd94a87b9a8a915858ab0245861e0a691044ec0f7ac91402d1f0ef29f7eee6]",
+      "source_figure_or_table": "Fig. 10",
       "focal_factor_X": "TYK2 (SmallMolecule_Pharmacological_Modulator — Gate4_Intrinsic_IFN_JAK_STAT_NFkB_Block)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=h]",
@@ -508,7 +508,7 @@
       "control_mean": null,
       "control_sd_or_sem": null,
       "control_n": null,
-      "measurement_unit": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=aaa9402664f1a41f40ebbc52c9993eb66aeb366602958fdfaa283b71e64db123]",
+      "measurement_unit": "h",
       "log_response_ratio_or_smd": null,
       "p_value": null,
       "effect_direction": "Protective_or_Improved",
@@ -547,13 +547,13 @@
         "endpoint_name": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
         "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=f6f984a4124b10d775033e6f2fa8a1dcec163493e1d71cede5ad7766e2420993]",
         "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=aaa9402664f1a41f40ebbc52c9993eb66aeb366602958fdfaa283b71e64db123]",
+        "units": "h",
         "contrast_type": "single_arm_descriptive_only"
       }
     },
     {
       "effect_id": "pmid40966855_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=00cd94a87b9a8a915858ab0245861e0a691044ec0f7ac91402d1f0ef29f7eee6]",
+      "source_figure_or_table": "Fig. 10",
       "focal_factor_X": "Study_Intervention",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=h]",
@@ -564,7 +564,7 @@
       "control_mean": null,
       "control_sd_or_sem": null,
       "control_n": null,
-      "measurement_unit": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=aaa9402664f1a41f40ebbc52c9993eb66aeb366602958fdfaa283b71e64db123]",
+      "measurement_unit": "h",
       "log_response_ratio_or_smd": null,
       "p_value": null,
       "effect_direction": "Protective_or_Improved",
@@ -603,7 +603,7 @@
         "endpoint_name": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
         "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=a00380040f74dadfe46f1a1018854f9c41147b89779151be0d08afed757b2538]",
         "population_or_model": "iPSC_healthy_donor (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=aaa9402664f1a41f40ebbc52c9993eb66aeb366602958fdfaa283b71e64db123]",
+        "units": "h",
         "contrast_type": "single_arm_descriptive_only"
       }
     }
@@ -611,7 +611,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid40966855_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "PTPN2 (CRISPR_Cas9_KO — Gate4_Intrinsic_IFN_JAK_STAT_NFkB_Block)",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "PTPN2_Phosphatase_STAT1_Brake vs. Condition_2",
@@ -624,7 +624,7 @@
     },
     {
       "interaction_id": "pmid40966855_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "Study_Intervention",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
@@ -637,7 +637,7 @@
     },
     {
       "interaction_id": "pmid40966855_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "Study_Intervention",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
@@ -650,7 +650,7 @@
     },
     {
       "interaction_id": "pmid40966855_int4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:40966855 field=omitted_text quote_sha256=ed7ba0018c84d2325e3872d63876f7f7211de61f576538a6c32bb2bbdff83bc3]",
+      "source_figure_or_table": "Fig. 2",
       "focal_factor_X": "Study_Intervention",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",

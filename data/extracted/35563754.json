@@ -427,7 +427,7 @@
     },
     {
       "effect_id": "pmid35563754_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:35563754 field=omitted_text quote_sha256=f5cad8a908aa757f2043449d15eca7f401541068b76a18c0f97546ac61b9e0bd]",
+      "source_figure_or_table": "Figure 6",
       "focal_factor_X": "Alpha_GCG_Delta_SST_Paracrine_CounterRegulation",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Alpha_Delta_Paracrine_CounterRegulation | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -541,7 +541,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid35563754_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:35563754 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",

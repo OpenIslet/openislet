@@ -512,7 +512,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:38321214 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=523816a6e3824614f6670515ae66bf89a8f851688cb4cdf6ba60bf3625310152]",
+      "verbatim_evidence_quote": "E Insulin content in WT and CKO mice after ISRIB treatment, n = 9.",
       "focal_arm_id": "pmid38321214_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,
@@ -550,7 +550,7 @@
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38321214 field=level_1_condition_and_effect quote_sha256=83a5df02020174fef985db177c05aca757dbbe3bedc8e4ee23d63e528b49ada0]",
-      "level_2_condition_and_effect": "the stress pathways were enriched in up-regulated genes.",
+      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:38321214 field=level_2_condition_and_effect quote_sha256=4d4bb53904fe6bf73d3db94e8017a0dedba96bab15f403ccdbe06ef496562e26]",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:38321214 field=mechanistic_explanation quote_sha256=866644fd1df66be45744798b010b3611f410e768651ca563cbc3c5c33d239684]"

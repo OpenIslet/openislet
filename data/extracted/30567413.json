@@ -305,7 +305,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:30567413 field=verbatim_evidence_quote genes=IFIH1 pert=KO_LOF quote_sha256=ff2f5e445dbb9a35f8dda06bc97b59d3bc23f905074f908be139b11fdd42ea6d]",
+      "verbatim_evidence_quote": "(A) CVB3 virus receptor adenovirus receptor (CAR) expression was unaltered in MafA−/− islets (n = 5/6 per genotype).",
       "focal_arm_id": "pmid30567413_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,

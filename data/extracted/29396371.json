@@ -548,7 +548,7 @@
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
-      "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:29396371 field=level_1_condition_and_effect quote_sha256=fd8364dee93ab76c52fc1743041c61181221204d8175cab9ac52a0c6cf35d78c]",
+      "level_1_condition_and_effect": "Green depicts increased expression in PPs",
       "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:29396371 field=level_2_condition_and_effect quote_sha256=55f9716b62afa46bd2f189941ca3f42bf691381aadcbbbb2488200a69a6e6f53]",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,

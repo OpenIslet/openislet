@@ -191,7 +191,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:14599991 field=verbatim_evidence_quote genes=FASLG pert=NONE quote_sha256=6ab9910a9df0394024df2469d3d5b67ecdb632fcf73fb78f0efea17b9b9df331]",
+      "verbatim_evidence_quote": "The rejection was accelerated and the allograft survival was shortened to 3.4+/-0.2 days (P<0.05).",
       "focal_arm_id": "pmid14599991_arm1",
       "comparator_arm_id": null,
       "p_value_relation": "<",
@@ -203,7 +203,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "survival"
+        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:14599991 field=omitted_text quote_sha256=4032ee4038775060258f8e68061309aed9bfdea5b574f24324ab7f065202d052]"
       },
       "dossier_sha256": "5317bf069ccd658a3c3e94cdcb0f4dd62c8998d593ac3763a0aeb58c42857c14",
       "source_span": "abstract[798:896]|norm=exact",
@@ -213,7 +213,7 @@
         "intervention_label": "Hypoxia_72h_Ischemia_and_O2_Scaffolds",
         "comparator_label": null,
         "endpoint_name": "Allo_T_Cell_or_DSA_Survival",
-        "timepoint": "0.2 days",
+        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:14599991 field=omitted_text quote_sha256=22709b4efb58a6e0e34011f675520eaa880f80cb357b219bc56612d43cd3f8ac]",
         "population_or_model": "Rodent_Primary_Islet (Tier_4_Rodent_or_Xenogeneic_Only)",
         "units": "days",
         "contrast_type": "right_censored_followup_observation"
@@ -315,7 +315,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "survival"
+        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:14599991 field=omitted_text quote_sha256=4032ee4038775060258f8e68061309aed9bfdea5b574f24324ab7f065202d052]"
       },
       "dossier_sha256": "5317bf069ccd658a3c3e94cdcb0f4dd62c8998d593ac3763a0aeb58c42857c14",
       "source_span": "abstract[657:797]|norm=exact",
@@ -381,7 +381,7 @@
         "intervention_label": "FASLG (CRISPR_Cas9_KO — Gate2_Checkpoint_T_Cell_Inhibition)",
         "comparator_label": null,
         "endpoint_name": "Granzyme_or_Fas_Apoptosis_Resistance",
-        "timepoint": "24 h",
+        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:14599991 field=omitted_text quote_sha256=a00380040f74dadfe46f1a1018854f9c41147b89779151be0d08afed757b2538]",
         "population_or_model": "Rodent_Primary_Islet (Tier_4_Rodent_or_Xenogeneic_Only)",
         "units": "h",
         "contrast_type": "single_arm_descriptive_only"

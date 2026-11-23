@@ -141,7 +141,7 @@
         "intervention_label": "Biphasic_GSIS_and_Calcium_Coupling",
         "comparator_label": null,
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:35414140 field=omitted_text quote_sha256=7f920bb639c9307589b65e5f639391d65dcb86b0611ac47f58f7c769215326ee]",
+        "timepoint": "7 days",
         "population_or_model": "hESC (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "quarantined_unsupported_numeric_notation",
         "contrast_type": "quarantined_ambiguous_multi_clause_or_multi_ratio"
@@ -261,7 +261,7 @@
     },
     {
       "effect_id": "pmid35414140_eff4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:35414140 field=omitted_text quote_sha256=d5c8c630cc2cbe2c3a4624882a9cd7aa8c834e3a42e721f7b661249e9917772e]",
+      "source_figure_or_table": "Fig. 7",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -317,7 +317,7 @@
     },
     {
       "effect_id": "pmid35414140_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:35414140 field=omitted_text quote_sha256=ed7ba0018c84d2325e3872d63876f7f7211de61f576538a6c32bb2bbdff83bc3]",
+      "source_figure_or_table": "Fig. 2",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
@@ -373,7 +373,7 @@
     },
     {
       "effect_id": "pmid35414140_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:35414140 field=omitted_text quote_sha256=ed7ba0018c84d2325e3872d63876f7f7211de61f576538a6c32bb2bbdff83bc3]",
+      "source_figure_or_table": "Fig. 2",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -429,7 +429,7 @@
     },
     {
       "effect_id": "pmid35414140_eff7",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:35414140 field=omitted_text quote_sha256=6ab12f290e9cb76539bc4abbfe2b4838c77577eb0b3b1f5c47c72bb78aaf9788]",
+      "source_figure_or_table": "Fig. 3",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -485,7 +485,7 @@
     },
     {
       "effect_id": "pmid35414140_eff8",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:35414140 field=omitted_text quote_sha256=6ab12f290e9cb76539bc4abbfe2b4838c77577eb0b3b1f5c47c72bb78aaf9788]",
+      "source_figure_or_table": "Fig. 3",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Cytokine_IFN_NFkB_or_ER_Stress_Survival | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -543,7 +543,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid35414140_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:35414140 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Regime dependency on MAFA_NKX6_1_PDX1_BetaCell_Identity",
@@ -556,7 +556,7 @@
     },
     {
       "interaction_id": "pmid35414140_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:35414140 field=omitted_text quote_sha256=6ab12f290e9cb76539bc4abbfe2b4838c77577eb0b3b1f5c47c72bb78aaf9788]",
+      "source_figure_or_table": "Fig. 3",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
@@ -569,7 +569,7 @@
     },
     {
       "interaction_id": "pmid35414140_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:35414140 field=omitted_text quote_sha256=7817791c5ed120bd5ee4749da73978290ffd90681768b87845ef98e751387b69]",
+      "source_figure_or_table": "Fig. 4",
       "focal_factor_X": "CHGA_WE14_Hybrid_Insulin_Peptide_HIP",
       "outcome_Y": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
       "modifier_variable_Z": "CHGA_WE14_Hybrid_Insulin_Peptide_HIP vs. Condition_2",
@@ -582,7 +582,7 @@
     },
     {
       "interaction_id": "pmid35414140_int4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:35414140 field=omitted_text quote_sha256=d5e9076ff340c06615ceb16ebcfb1c14ecc362d87f08a6bd33c04a4cb7fc20cd]",
+      "source_figure_or_table": "Fig. 5",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",

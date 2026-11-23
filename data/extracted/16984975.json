@@ -155,7 +155,7 @@
       "modifier_variable_Z": "Alpha_GCG_Delta_SST_Paracrine_CounterRegulation vs. Biphasic_GSIS_and_Calcium_Coupling",
       "modifier_class": "Z8_Species_Donor_Age_or_Recipient_Sex",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:16984975 field=level_1_condition_and_effect quote_sha256=8388320cc2698174c31dea3c734fdf96f59b4b5a67695855ffbab571888f1b2e]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:16984975 field=level_2_condition_and_effect quote_sha256=6d669627a43a04046a74a99991725af535b75a35490bcc554d036f33867441ed]",
+      "level_2_condition_and_effect": "However, little is known about the molecular mechanisms underlying zinc accumulation in insulin-containing vesicles.",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:16984975 field=mechanistic_explanation quote_sha256=6d669627a43a04046a74a99991725af535b75a35490bcc554d036f33867441ed]"

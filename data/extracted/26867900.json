@@ -297,7 +297,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:26867900 field=omitted_text quote_sha256=66e5550833f46fb41648825b19e92c907b18b102166906f317b4b66c9cc7002a]"
+        "matched_lexicon_term": "insulin secretion"
       },
       "dossier_sha256": "cb1f370b0c047c8f17d8728517ac3726b1df4951c6408bea20482a978732d44b",
       "source_span": "abstract[1092:1411]|norm=exact",
@@ -353,7 +353,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Higher_Is_Better_Protective_Endpoint",
         "orientation_sign": 1,
-        "matched_lexicon_term": "survival"
+        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:26867900 field=omitted_text quote_sha256=4032ee4038775060258f8e68061309aed9bfdea5b574f24324ab7f065202d052]"
       },
       "dossier_sha256": "cb1f370b0c047c8f17d8728517ac3726b1df4951c6408bea20482a978732d44b",
       "source_span": "abstract[1412:1456]|norm=exact",

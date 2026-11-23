@@ -145,7 +145,7 @@
         "Z7_promoter_and_epigenetic_context": "Study construct / endogenous locus",
         "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
       },
-      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:24812429 field=verbatim_evidence_quote genes=SLC30A8 pert=NONE quote_sha256=40270fc313a4e31566ddfd67fb569aa79e7c9154d3668aacc2534588cd06a69f]",
+      "verbatim_evidence_quote": "G: Coculture experiments in which Nit-ZnT8 cells were treated with paraformaldehyde (PFA; 2%, 10 min) or streptozocin (STZ; 50 mmol/L, 20 h) and washed before addition of Flt3L DCs in antigen-presentation assay with T-cell hybridomas.",
       "focal_arm_id": "pmid24812429_arm1",
       "comparator_arm_id": null,
       "p_value_relation": null,

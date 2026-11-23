@@ -273,13 +273,13 @@
         "endpoint_name": "Differentiation_Yield_and_Lineage_Purity",
         "timepoint": null,
         "population_or_model": "hESC (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
-        "units": "[REDACTED_NON_OA_EXCERPT: see PMID:39182839 field=omitted_text quote_sha256=7cf79a834ce7b3263a117633988a23e9adf94223d8a9a118acd342d14bfc9613]",
+        "units": "ng/mL",
         "contrast_type": "single_arm_descriptive_only"
       }
     },
     {
       "effect_id": "pmid39182839_eff4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39182839 field=omitted_text quote_sha256=720f29c31ca2031cbbb8d1fa3e7fd762e3777ec9a66ab16d097dc73194d716a1]",
+      "source_figure_or_table": "Figure 2",
       "focal_factor_X": "IAPP (CRISPR_Cas9_KO — Gate4_Intrinsic_Amyloid_or_Viral_Receptor_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -335,7 +335,7 @@
     },
     {
       "effect_id": "pmid39182839_eff5",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39182839 field=omitted_text quote_sha256=f060cf72e5ca515f84c27407332b65b86165d098527b71b18e1e94e1a87dc92c]",
+      "source_figure_or_table": "Figure 3",
       "focal_factor_X": "IAPP (CRISPR_Cas9_KO — Gate4_Intrinsic_Amyloid_or_Viral_Receptor_Shield)",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -495,7 +495,7 @@
         "intervention_label": "IAPP (CRISPR_Cas9_KO — Gate4_Intrinsic_Amyloid_or_Viral_Receptor_Shield)",
         "comparator_label": null,
         "endpoint_name": "Amyloid_hIAPP_or_Enterovirus_Protection",
-        "timepoint": "[REDACTED_NON_OA_EXCERPT: see PMID:39182839 field=omitted_text quote_sha256=5ce0a8e23fda9eb9d2d7234cc75777cc9adae823a806c31db2bcaed9958e79e1]",
+        "timepoint": "14 weeks",
         "population_or_model": "hESC (Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse)",
         "units": "qualitative_statement",
         "contrast_type": "qualitative_statement_only"

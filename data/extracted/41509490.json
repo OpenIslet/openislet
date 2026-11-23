@@ -564,7 +564,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid41509490_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41509490 field=omitted_text quote_sha256=6ab12f290e9cb76539bc4abbfe2b4838c77577eb0b3b1f5c47c72bb78aaf9788]",
+      "source_figure_or_table": "Fig. 3",
       "focal_factor_X": "CHGA (CRISPR_Cas9_KO — Gate2_Autoantigen_or_Neoantigen_Stealth)",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Condition_1 vs. Condition_2",
@@ -577,7 +577,7 @@
     },
     {
       "interaction_id": "pmid41509490_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41509490 field=omitted_text quote_sha256=6ab12f290e9cb76539bc4abbfe2b4838c77577eb0b3b1f5c47c72bb78aaf9788]",
+      "source_figure_or_table": "Fig. 3",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Regime dependency on CD31_CD146_Microvessel_Inosculation",
@@ -590,7 +590,7 @@
     },
     {
       "interaction_id": "pmid41509490_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41509490 field=omitted_text quote_sha256=d5e9076ff340c06615ceb16ebcfb1c14ecc362d87f08a6bd33c04a4cb7fc20cd]",
+      "source_figure_or_table": "Fig. 5",
       "focal_factor_X": "OffTarget_SLC18A1_Enterochromaffin_Depletion",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "OffTarget_SLC18A1_Enterochromaffin_Depletion vs. Alloreactive_CD8_CD4_TCell_or_DSA_Attack",

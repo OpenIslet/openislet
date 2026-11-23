@@ -541,7 +541,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid41291239_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41291239 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Regime dependency on MAFA_NKX6_1_PDX1_BetaCell_Identity",
@@ -554,7 +554,7 @@
     },
     {
       "interaction_id": "pmid41291239_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41291239 field=omitted_text quote_sha256=7817791c5ed120bd5ee4749da73978290ffd90681768b87845ef98e751387b69]",
+      "source_figure_or_table": "Fig. 4",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "outcome_Y": "Metabolic_and_Biphasic_GSIS_Maturation",
       "modifier_variable_Z": "Biphasic_GSIS_and_Calcium_Coupling vs. MAFA_NKX6_1_PDX1_BetaCell_Identity",
@@ -567,7 +567,7 @@
     },
     {
       "interaction_id": "pmid41291239_int3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41291239 field=omitted_text quote_sha256=d5c8c630cc2cbe2c3a4624882a9cd7aa8c834e3a42e721f7b661249e9917772e]",
+      "source_figure_or_table": "Fig. 7",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. Condition_2",
@@ -580,7 +580,7 @@
     },
     {
       "interaction_id": "pmid41291239_int4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41291239 field=omitted_text quote_sha256=a3c1c0281c5cb4dce9b13da9f4f332cbc4a54aa3c4480d30b03ba0f9976a08ea]",
+      "source_figure_or_table": "Fig. 8",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "outcome_Y": "Cytokine_IFN_NFkB_or_ER_Stress_Survival",
       "modifier_variable_Z": "MAFA_NKX6_1_PDX1_BetaCell_Identity vs. Condition_2",

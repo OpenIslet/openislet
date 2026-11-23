@@ -556,7 +556,7 @@
       "modifier_variable_Z": "Alloreactive_CD8_CD4_TCell_or_DSA_Attack vs. Condition_2",
       "modifier_class": "Z3_Immune_Effector_Subset_or_Cytokine_Pathway",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:20463639 field=level_1_condition_and_effect quote_sha256=49f9e96d32904ac02f6c960837f87b383dc3a2d0d20ccd3402419acde4a5673a]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:20463639 field=level_2_condition_and_effect quote_sha256=61093597903a441986e6825a96581d1b79a3f63f13c0df90a51093b919a43f45]",
+      "level_2_condition_and_effect": "other groups (P<0.05).",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:20463639 field=mechanistic_explanation quote_sha256=f3ca09af89514ce241f29b7556017255cb6b5d0ba563b9dfc7538fc4c62b7165]"

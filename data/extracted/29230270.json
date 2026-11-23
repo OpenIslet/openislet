@@ -564,7 +564,7 @@
       "modifier_variable_Z": "Biphasic_GSIS_and_Calcium_Coupling vs. Condition_2",
       "modifier_class": "Z2_Genetic_Background_Zygosity_or_Surface_MFI_Dose",
       "level_1_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:29230270 field=level_1_condition_and_effect quote_sha256=d5ea760a1db6a48c66a17244dbeed5cab1efbc3a6c55539877acef90ca6d1af5]",
-      "level_2_condition_and_effect": "[REDACTED_NON_OA_EXCERPT: see PMID:29230270 field=level_2_condition_and_effect quote_sha256=8fd330f2cc2f15cc80752a480b1e49701622cee02a60244b2005a4b59b7dba3c]",
+      "level_2_condition_and_effect": "BSA-treated WT mice (Figure 1(h)).",
       "modification_type": "Quantitative_Attenuation",
       "critical_threshold_value_and_unit": null,
       "mechanistic_explanation": "[REDACTED_NON_OA_EXCERPT: see PMID:29230270 field=mechanistic_explanation quote_sha256=35b6223251c7dc93003d52c6b52ef2e741f4c216e2bb50305d1e7b8dedb93fd5]"

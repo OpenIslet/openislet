@@ -189,6 +189,13 @@
           "arm_label": {
             "type": "string"
           },
+          "cohort_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^pmid[1-9][0-9]{0,8}_cohort[1-9][0-9]{0,3}$"
+          },
           "is_reference_control": {
             "type": "boolean"
           },
@@ -212,6 +219,7 @@
               "organoid_wells",
               "human_immune_donors",
               "human_islet_donors",
+              "human_islet_preparations",
               "individual_cells_imaged",
               "islet_or_cluster_replicates",
               "in_vitro_coculture_replicates",
@@ -235,6 +243,7 @@
                   "Rodent_Primary_Islet",
                   "Rodent_Beta_Cell_Line_NIT1_MIN6_INS1",
                   "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+                  "None_Acellular_Device_or_Scaffold",
                   "Unspecified_In_Source_Abstract"
                 ]
               },
@@ -435,6 +444,7 @@
                   "enum": [
                     "CRISPR_Cas9_KO",
                     "CRISPR_Cas12a_Multiplex_KO",
+                    "CRISPR_Cas12b_Multiplex_KO",
                     "BaseEdit_ABE_or_CBE_Epitope_or_Splice",
                     "PrimeEdit",
                     "Signal_Peptide_or_Domain_Swap",
@@ -573,6 +583,19 @@
                 "type": [
                   "string",
                   "null"
+                ]
+              },
+              "clinical_conditioning_regimen_class": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  null,
+                  "None_Immunosuppression_Free",
+                  "Lymphodepleting_or_Myeloablative_Conditioning",
+                  "Chronic_Systemic_Immunosuppression",
+                  "PeriTransplant_AntiInflammatory_Only"
                 ]
               }
             },
@@ -804,7 +827,9 @@
               "Amyloid_hIAPP_or_Enterovirus_Protection",
               "Hypoxia_72h_or_Vascular_Inosculation",
               "InVivo_Glycemic_Cure_and_Graft_Longevity",
-              "Surface_HLA_or_Transgene_Expression_Level"
+              "Surface_HLA_or_Transgene_Expression_Level",
+              "Clinical_Pharmacodynamics_or_Target_Depletion",
+              "Assay_Instrument_Calibration_or_Biophysical_Method"
             ]
           },
           "treatment_mean": {
@@ -855,6 +880,30 @@
               "null"
             ]
           },
+          "point_estimate": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "ci_95_lower": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "ci_95_upper": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "effect_notes": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "p_value": {
             "type": [
               "number",
@@ -866,7 +915,8 @@
             "enum": [
               "Protective_or_Improved",
               "Neutral_or_NonInferior",
-              "Deleterious_or_Impaired"
+              "Deleterious_or_Impaired",
+              "Descriptive_or_Unoriented"
             ]
           },
           "secretome_or_differentiation_penalty_observed": {
@@ -1011,6 +1061,7 @@
               "organoid_wells",
               "human_immune_donors",
               "human_islet_donors",
+              "human_islet_preparations",
               "individual_cells_imaged",
               "islet_or_cluster_replicates",
               "in_vitro_coculture_replicates",
@@ -1037,6 +1088,7 @@
               "log_response_ratio_paired_means",
               "log_response_ratio_fold_change",
               "standardized_mean_difference",
+              "adjusted_mean_difference_with_95ci_and_pvalue",
               "single_arm_descriptive_only",
               "qualitative_statement_only",
               "quarantined_ambiguous_numeric"
@@ -1084,11 +1136,20 @@
                   "null"
                 ]
               },
+              "cohort_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^pmid[1-9][0-9]{0,8}_cohort[1-9][0-9]{0,3}$"
+              },
               "contrast_type": {
                 "type": "string",
                 "enum": [
                   "between_arm_comparative_paired_means",
                   "between_arm_comparative_fold_ratio",
+                  "between_arm_comparative_adjusted_difference",
+                  "between_arm_comparative_descriptive",
                   "longitudinal_or_within_arm_descriptive",
                   "right_censored_followup_observation",
                   "single_arm_descriptive_only",

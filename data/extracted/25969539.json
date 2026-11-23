@@ -223,7 +223,7 @@
     },
     {
       "effect_id": "pmid25969539_eff3",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:25969539 field=omitted_text quote_sha256=de46ad0ab2a9d01fd2516a576e42c7883e327e3648d61be1552a267f137a9339]",
+      "source_figure_or_table": "FIGURE 8.",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",

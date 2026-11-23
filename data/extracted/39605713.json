@@ -262,7 +262,7 @@
     },
     {
       "effect_id": "pmid39605713_eff4",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:39605713 field=omitted_text quote_sha256=ac1aed397520328dbf562479d4f0113b22beb070bf00471a1eb8b529f3923f2c]",
+      "source_figure_or_table": "Figure 2.",
       "focal_factor_X": "MAFA_NKX6_1_PDX1_BetaCell_Identity",
       "comparator_X0": "Single-arm or qualitative observation (no paired numeric control in sentence)",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",

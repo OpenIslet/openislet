@@ -259,7 +259,7 @@
       "endpoint_polarity_registry": {
         "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
         "orientation_sign": -1,
-        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:35044456 field=omitted_text quote_sha256=bc2a590ae5558a39182d795d4ac8e6024a4bcb20a505ce82bd625c826531f6ea]"
+        "matched_lexicon_term": "cell death"
       },
       "dossier_sha256": "fdfc83ed76d383306233c153da9d6b74a71646ce6e254bac56d35f4f4a4550ae",
       "source_span": "abstract[1108:1207]|norm=exact",

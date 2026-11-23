@@ -370,7 +370,7 @@
     },
     {
       "effect_id": "pmid41445610_eff6",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41445610 field=omitted_text quote_sha256=6ab12f290e9cb76539bc4abbfe2b4838c77577eb0b3b1f5c47c72bb78aaf9788]",
+      "source_figure_or_table": "Fig. 3",
       "focal_factor_X": "ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
       "comparator_X0": "Isogenic wild-type / untreated baseline control in study",
       "outcome_variable_Y": "[Endpoint: Differentiation_Yield_and_Lineage_Purity | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_statement]",
@@ -540,7 +540,7 @@
   "effect_modifier_interactions": [
     {
       "interaction_id": "pmid41445610_int1",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41445610 field=omitted_text quote_sha256=6c6c4e362c3a0f5812b8fc57a283788ae8cbe3e2151e7cc8075392e052900cab]",
+      "source_figure_or_table": "Fig. 1",
       "focal_factor_X": "HLA_DR3_DR4_T1DE1_T1DE2_Endotype_Architecture",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "HLA_DR3_DR4_T1DE1_T1DE2_Endotype_Architecture vs. ER_Stress_UPR_IRE1_PERK_CHOP_TXNIP",
@@ -553,7 +553,7 @@
     },
     {
       "interaction_id": "pmid41445610_int2",
-      "source_figure_or_table": "[REDACTED_NON_OA_EXCERPT: see PMID:41445610 field=omitted_text quote_sha256=ed7ba0018c84d2325e3872d63876f7f7211de61f576538a6c32bb2bbdff83bc3]",
+      "source_figure_or_table": "Fig. 2",
       "focal_factor_X": "Biphasic_GSIS_and_Calcium_Coupling",
       "outcome_Y": "Differentiation_Yield_and_Lineage_Purity",
       "modifier_variable_Z": "Regime dependency on Biphasic_GSIS_and_Calcium_Coupling",
