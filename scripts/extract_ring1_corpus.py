@@ -111,6 +111,12 @@ CURATED_LANDMARK_PMIDS = {
     "41604464",  # Bochenek 2026 Sci Transl Med (Local GW2580 CSF1R-inhibitor NHP allogeneic islet survival)
     "41870990",  # Kato 2026 Am J Physiol Cell Physiol (Surgical in-place mm -> mmHg unit repair on eff1/eff2 & primary-islet arm binding on eff2; all 5 effect IDs preserved)
     "42627334",  # So 2026 Diabetes Care (BANDIT 96-week off-drug baricitinib paired-means LRR 0.43 +/- 0.05 vs 0.35 +/- 0.06 nmol/L & Fig. 2 wk 0-48 within-group trajectories)
+    "19555051",  # Gerencser 2009 Anal Chem (ACS AuthorChoice; 22.7 +/- 2.5 uL n=4 paired mouse-liver mitochondria calibration on XF24 V7 polystyrene plates, not 101122-100 islet plates)
+    "25893782",  # Pepper 2015 Nat Biotechnol (Two-stage catheter-primed pre-vascularized SC device-less murine islet site; 91% >100 d)
+    "31527312",  # Merola 2019 JCI Insight (PMC6824302, ASCI copyright; B2M+CIITA DKO human ECFC vascular endothelium evades DSA & CD4/CD8 T cells; non-islet guard)
+    "36591328",  # Smink 2023 Transplant Direct (PMC9788983, CC BY-NC-ND 4.0; Fig. 1 rat xenografts in athymic nude mice 65 d [PCL n=3, PDLLCL n=4, KC n=6] & separate 1.5 mm/12-wk Yucatan minipigs)
+    "41536981",  # Jin 2026 iScience (PMC12797044, CC BY-NC-ND 4.0; separate mouse/swine cohorts & n=1 acellular cynomolgus histology with observed p<0.0001 week-4 decline)
+    "42176117",  # Balboni 2026 Biomed Microdevices (PMC13198518, CC BY-NC-ND 4.0; removable 3D-printed NICHE placeholder in insulin-supplemented diabetic F344 rats, 5-wk prevasc, 45-d follow-up)
 }
 
 # Perturbation verbs/nouns required within a window of a gene symbol to classify it as a true perturbation
@@ -2657,7 +2663,7 @@ def _parse_quantitative_numbers_unchecked(
 
     # Pattern 4: Single mean +/- SD/SEM without comparator -> record treatment_mean & SD only; control_mean=None, lrr=None
     m_single_sd = re.search(
-        rf"({num_tok})\s*(?:±|\+/-|\+-)\s*({num_tok})\s*(%|mg/dL|ng/mL|pmol|days|weeks|mmHg|µm|um)",
+        rf"({num_tok})\s*(?:±|\+/-|\+-)\s*({num_tok})\s*(%|mg/dL|ng/mL|pmol|days|weeks|mmHg|µm|um|μL|µL|uL)",
         sentence,
         flags=re.IGNORECASE,
     )
@@ -3246,6 +3252,11 @@ def _num_in_quote(val: Any, quote: str, field_name: str = "") -> bool:
             r"(?:allogeneic\s+)?(?:rhesus\s+)?(?:macaques?|monkeys?|animals?|recipients?|donors?|patients?)\s+"
             r"(?:each\b|per\s+(?:arm|group)\b|in\s+each\s+(?:arm|group)\b)", quote, re.I):
             ns.append(written_numbers[match.group(1).lower()])
+        if field_name == "sample_size_n":
+            for match in re.finditer(
+                r"\b(one|two|three|four|five|six|seven|eight|nine|ten)\s+"
+                r"(?:male\s+|female\s+)?(?:cynomolgus\s+|rhesus\s+)?(?:macaques?|monkeys?)\b", quote, re.I):
+                ns.append(written_numbers[match.group(1).lower()])
         if isinstance(val, (int, float)) and not isinstance(val, bool) and float(val).is_integer() and int(val) in ns:
             return True
         return (field_name in ("treatment_n", "control_n") and isinstance(val, (int, float))
@@ -3254,6 +3265,10 @@ def _num_in_quote(val: Any, quote: str, field_name: str = "") -> bool:
     if field_name in ("treatment_mean", "treatment_sd_or_sem", "control_mean", "control_sd_or_sem"):
         direction = classify_sentence_direction_and_penalty(quote)[0]
         operands = parse_quantitative_numbers(quote, direction)
+        if operands[0] is None and direction == "Neutral_or_NonInferior":
+            cand_uL = parse_quantitative_numbers(quote, "Descriptive_or_Unoriented")
+            if cand_uL[4] in ("μL", "µL", "uL") and cand_uL[2] is None and cand_uL[5] is None:
+                operands = cand_uL
         operand = operands[{"treatment_mean": 0, "treatment_sd_or_sem": 1, "control_mean": 2, "control_sd_or_sem": 3}[field_name]]
         if operand is None:
             m_clause_pair = re.search(

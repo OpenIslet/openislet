@@ -3,11 +3,11 @@
 
 Produces two deterministic, rights-aware public artifacts under `data/extracted/`:
   1. `data/extracted/context_evidence_graph_v1.json`
-     Full structured T1D Context-Evidence Graph across 1,165 total CEG records
-     (1,140 empirical_primary_study + 10 trial_registry_protocol + 7 regulatory_or_guidance_document
+     Full structured T1D Context-Evidence Graph across 1,172 total CEG records
+     (1,146 empirical_primary_study + 11 trial_registry_protocol + 7 regulatory_or_guidance_document
      + 4 computational_model_or_simulation + 1 correspondence_or_secondary_summary + 3 superseded_preprint_duplicate),
-     7,708 experimental and control arms, 14,146 structured outcomes,
-     2,470 blueprint claim/contradiction/scoping links, 20 biological effector
+     7,725 experimental and control arms, 14,159 structured outcomes,
+     2,478 blueprint claim/contradiction/scoping links, 20 biological effector
      nodes, and 10 Idea Graveyard cross-links. All third-party verbatim quotes
      are withheld (`quote_sha256` + `source_pin` retained) and source-overlapping
      prose spans (>=6-word normalized source shingles or >=40-character dossier
@@ -261,6 +261,13 @@ CURATED_INELIGIBLE_EDGE_IDS = frozenset({
     "R1_0378:L3",
     "R1_0390:L1",
     "R1_0393:L3",
+    "M1421:L1",
+    "M1422:L1",
+    "M1422:L2",
+    "M1453:L1",
+    "M2036:L1",
+    "M2449:L1",
+    "PMID:19555051:L1",
 })
 CURATED_NON_EMPIRICAL_OUTCOME_IDS = frozenset({
     "M0049:O1", "M0049:O2", "M0049:O3", "M0049:O4", "M0049:O5",
@@ -434,8 +441,8 @@ def build_layer1_atlas_from_ceg(ceg: dict[str, Any]) -> dict[str, Any]:
             f"{len(arms):,} experimental/control arms, {len(outcomes):,} structured outcomes, and {len(edges):,} blueprint links "
             f"across all five Islet-1 biological gates and 20 effector pathways, screened from "
             f"{ceg['screening_funnel']['screened_records_total']:,} deduplicated candidate records. "
-            "The Layer-1 2,160-stack prior-anchored scenario evaluator retains its 583-study Ring-1 scoring baseline "
-            "unchanged (+0.00 pp under IIP-0032) unless an explicit Islet Improvement Proposal "
+            "The Layer-1 2,160-stack prior-anchored scenario evaluator retains its 589-study Ring-1 scoring baseline "
+            "unchanged (+0.00 pp under IIP-0033) unless an explicit Islet Improvement Proposal "
             "updates a module parameter or Idea Graveyard rule."
         ),
         "summary": {
@@ -452,7 +459,7 @@ def build_layer1_atlas_from_ceg(ceg: dict[str, Any]) -> dict[str, Any]:
             "ring1_empirical_core_studies_in_ceg": r1_empirical_count,
             "new_expansion_empirical_studies_in_ceg": non_r1_empirical_count,
             "non_r1_ceg_records_total": non_r1_total_count,
-            "ring1_scoring_baseline_studies_unchanged": 583,
+            "ring1_scoring_baseline_studies_unchanged": 589,
             "experimental_and_control_arms_total": len(arms),
             "structured_outcomes_total": len(outcomes),
             "outcomes_cited_by_blueprint_links": cited_outcomes,
@@ -498,14 +505,14 @@ def verify_ceg_payload(ceg: dict[str, Any], repo_root: Path = REPO_ROOT) -> dict
     effectors = ceg.get("effectors")
     graveyard = ceg.get("graveyard_index")
 
-    if not isinstance(studies, dict) or len(studies) != 1165:
-        raise ValueError(f"Expected 1,165 studies in CEG, got {len(studies) if isinstance(studies, dict) else type(studies)}")
-    if not isinstance(arms, dict) or len(arms) != 7710:
-        raise ValueError(f"Expected 7,710 arms in CEG, got {len(arms) if isinstance(arms, dict) else type(arms)}")
-    if not isinstance(outcomes, dict) or len(outcomes) != 14147:
-        raise ValueError(f"Expected 14,147 outcomes in CEG, got {len(outcomes) if isinstance(outcomes, dict) else type(outcomes)}")
-    if not isinstance(edges, list) or len(edges) != 2470:
-        raise ValueError(f"Expected 2,470 edges in CEG, got {len(edges) if isinstance(edges, list) else type(edges)}")
+    if not isinstance(studies, dict) or len(studies) != 1172:
+        raise ValueError(f"Expected 1,172 studies in CEG, got {len(studies) if isinstance(studies, dict) else type(studies)}")
+    if not isinstance(arms, dict) or len(arms) != 7725:
+        raise ValueError(f"Expected 7,725 arms in CEG, got {len(arms) if isinstance(arms, dict) else type(arms)}")
+    if not isinstance(outcomes, dict) or len(outcomes) != 14159:
+        raise ValueError(f"Expected 14,159 outcomes in CEG, got {len(outcomes) if isinstance(outcomes, dict) else type(outcomes)}")
+    if not isinstance(edges, list) or len(edges) != 2478:
+        raise ValueError(f"Expected 2,478 edges in CEG, got {len(edges) if isinstance(edges, list) else type(edges)}")
     if not isinstance(effectors, dict) or len(effectors) != 20:
         raise ValueError(f"Expected 20 effectors in CEG, got {len(effectors) if isinstance(effectors, dict) else type(effectors)}")
     if not isinstance(graveyard, list) or len(graveyard) != 10:
@@ -1103,8 +1110,8 @@ def import_and_materialize(
     if not isinstance(_wave_counts, dict) or "Wave_2B_Supporting_Catalog_P2_P3" not in _wave_counts:
         raise ValueError("screening_ledger.summary.candidate_extraction_waves must specify Wave_2B_Supporting_Catalog_P2_P3")
     _tot_screened = l_sum["total_studies"]
-    _r1_screened = l_sum.get("ring1_existing_records_screened", 583)
-    _new_screened = l_sum.get("new_candidate_records_screened", 3349)
+    _r1_screened = l_sum.get("ring1_existing_records_screened", 589)
+    _new_screened = l_sum.get("new_candidate_records_screened", 3345)
     _adv_total = _oc_counts["ADVANCE"]
     _park_total = _oc_counts["PARK_CONTEXT"]
     _excl_total = _oc_counts["EXCLUDE_OFF_TOPIC"]
@@ -1162,9 +1169,9 @@ def import_and_materialize(
             },
         },
         "evidence_hierarchy_and_scoring_note": (
-            "Context-indexed evidence graph across 1,165 total CEG records (1,140 empirical_primary_study + 10 trial_registry_protocol + 7 regulatory_or_guidance_document + 4 computational_model_or_simulation + 1 correspondence_or_secondary_summary + 3 superseded_preprint_duplicate), 7,710 arms, 14,147 outcomes, "
-            "and 2,470 blueprint links. Layer-1 2,160-stack prior-anchored scenario scores remain computed on the "
-            "583-study Ring-1 baseline (+0.00 pp under IIP-0032) unless explicitly updated through an accepted Islet Improvement Proposal."
+            "Context-indexed evidence graph across 1,172 total CEG records (1,146 empirical_primary_study + 11 trial_registry_protocol + 7 regulatory_or_guidance_document + 4 computational_model_or_simulation + 1 correspondence_or_secondary_summary + 3 superseded_preprint_duplicate), 7,725 arms, 14,159 outcomes, "
+            "and 2,478 blueprint links. Layer-1 2,160-stack prior-anchored scenario scores remain computed on the "
+            "589-study Ring-1 baseline (+0.00 pp under IIP-0033) unless explicitly updated through an accepted Islet Improvement Proposal."
         ),
         "counts": {
             "screened_records_total": screening_funnel["screened_records_total"],

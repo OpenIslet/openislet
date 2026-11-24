@@ -1,0 +1,280 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "36591328",
+    "pmcid": "PMC9788983",
+    "doi": "10.1097/TXD.0000000000001417",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Successful Islet Transplantation Into a Subcutaneous Polycaprolactone Scaffold in Mice and Pigs.",
+    "first_author": "Smink AM",
+    "senior_author": "de Vos P",
+    "pub_year": 2023,
+    "journal": "Transplantation direct",
+    "source_text_type": "FullText_XML_or_PDF",
+    "pillars_covered": [
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_4_Rodent_or_Xenogeneic_Only"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid36591328_arm1",
+      "arm_label": "Pre-primed porous polycaprolactone polymeric channel matrix (0.5 mm / 4-wk rat islet xenografts in diabetic athymic nude mice, PCL n=3, 65 d; separate 1.5 mm / 12-wk Yucatan minipig cohort)",
+      "is_reference_control": false,
+      "sample_size_n": 3,
+      "sample_size_unit": "mouse_recipients",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Rodent_Primary_Islet",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Subcutaneous_Prevascularized_or_Device",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "Polycaprolactone pre-primed polymeric matrix with withdrawn tubing (0.5 mm / 4-wk athymic nude mouse rat-xenograft arm; separate 1.5 mm / 12-wk Yucatan minipig arm)",
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Hypoxia_Ischemia_Challenge",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 65.0,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": 65.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid36591328_arm2",
+      "arm_label": "Pre-primed lactide-caprolactone comparator scaffold (rat islet xenografts in diabetic athymic nude mice, PDLLCL n=4, 65 d)",
+      "is_reference_control": true,
+      "sample_size_n": 4,
+      "sample_size_unit": "mouse_recipients",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Rodent_Primary_Islet",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Subcutaneous_Prevascularized_or_Device",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "Lactide-caprolactone comparator matrix",
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Hypoxia_Ischemia_Challenge",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 65.0,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": 65.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid36591328_arm3",
+      "arm_label": "Kidney capsule positive control (rat islet xenografts in diabetic athymic nude mice, KC n=6, 65 d)",
+      "is_reference_control": true,
+      "sample_size_n": 6,
+      "sample_size_unit": "mouse_recipients",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Rodent_Primary_Islet",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Kidney_Capsule",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Hypoxia_Ischemia_Challenge",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 65.0,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": 65.0,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid36591328_eff1",
+      "source_figure_or_table": "Results & Fig. 1 (PMC9788983)",
+      "focal_factor_X": "Prevascularized_PCL_Tubing_Channel_Scaffold",
+      "comparator_X0": "Pre-primed PDLLCL comparator scaffold (n=4; 16.8 +/- 6.5 d vs PCL n=3 at 7.7 +/- 3.7 d; both slower than kidney-capsule control n=6 at 2.7 +/- 1.1 d in Results paragraph 0 & Fig. 1)",
+      "outcome_variable_Y": "[Endpoint: InVivo_Glycemic_Cure_and_Graft_Longevity | polarity=Lower_Is_Better_Hazard_Endpoint | orientation_sign=-1 | unit=qualitative_statement]",
+      "outcome_domain": "InVivo_Glycemic_Cure_and_Graft_Longevity",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": 3,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": 4,
+      "measurement_unit": "days_to_normoglycemia",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Diabetic athymic nude mouse recipient (immunodeficient) receiving rat islet xenograft",
+        "Z3_immune_effector_and_stressor_pathway": "Scaffold foreign-body stiffness and early hypoxia",
+        "Z4_metabolic_and_glucose_load_state": "Diabetic athymic nude mouse xenograft cohort (65 d; PCL n=3, PDLLCL n=4, KC n=6)",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Primary rat islets in 0.5 mm mouse channel (separate 1.5 mm / 12-wk Yucatan minipig arm)",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Prevascularized_or_Device",
+        "Z7_promoter_and_epigenetic_context": "Unmodified donor islets",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:36591328 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=e78d53bbfa47bc7449e21011672f7bf25558f5c6d88544f76a741f206bd2e257]",
+      "focal_arm_id": "pmid36591328_arm1",
+      "comparator_arm_id": "pmid36591328_arm2",
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "dispersion_type": "unspecified_in_quote",
+      "n_unit": "mouse_recipients",
+      "censoring_note": "Pinned directly to PMC9788983 Fig. 1 legend (n=3 PCL, n=4 PDLLCL, n=6 kidney capsule; CC BY-NC-ND 4.0) alongside Results paragraph 0 (7.7 +/- 3.7 d PCL vs 16.8 +/- 6.5 d PDLLCL vs quicker kidney-capsule control 2.7 +/- 1.1 d; log-rank P < 0.05 applies to PDLLCL vs kidney capsule; 65-day follow-up in diabetic athymic nude mice; Fig. 1B plots mean +/- SEM while Results text does not explicitly tag SD vs SEM); separate Yucatan minipig cohorts in CEG M2036:O2/O3",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
+        "orientation_sign": -1,
+        "matched_lexicon_term": "delay"
+      },
+      "dossier_sha256": "d4ba3e18e65abe37b954b6ee6098859bc3ac5caf2634bd30e10aa8ec8247c252",
+      "source_span": "fulltext_data_sections.figure_legends[0].caption[40:339]|norm=exact",
+      "quote_source_dossier_pmid": "36591328",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "PCL_Channel_Scaffold",
+        "comparator_label": "Pre-primed PDLLCL comparator scaffold (n=4 diabetic nude mice)",
+        "endpoint_name": "Days_to_Normoglycemia",
+        "timepoint": "Engraftment phase",
+        "population_or_model": "Diabetic athymic nude mice receiving rat islet xenografts (65 d; PCL n=3, PDLLCL n=4, KC n=6)",
+        "units": "days",
+        "contrast_type": "between_arm_comparative_descriptive"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

@@ -829,8 +829,42 @@ def build_target_evidence_profiles(studies: list[dict], omics: dict) -> dict:
             )
             for a in arms_list
         )
+        _vascular_endothelial_tokens = ("vascular", "endotheli", "ecfc")
+        is_nonislet_vascular_endothelial_mhc = (
+            bool(arms_list)
+            and all(
+                (a.get("gate1_substrate_and_differentiation") or {}).get("cell_source_class")
+                == "NonIslet_Immune_Endothelial_or_Hematopoietic_Model"
+                for a in arms_list
+            )
+            and (
+                all(
+                    any(
+                        tok in str(a.get("arm_label") or "").lower()
+                        for tok in _vascular_endothelial_tokens
+                    )
+                    for a in arms_list
+                )
+                or any(
+                    tok in str(meta.get("title") or "").lower()
+                    for tok in _vascular_endothelial_tokens
+                )
+            )
+            and bool(
+                {
+                    str(ed.get("gene_symbol_hgnc") or "")
+                    for a in arms_list
+                    for ed in a.get("gate2_3_4_genetic_and_epitope_edits", [])
+                }
+                & {"B2M", "CIITA"}
+            )
+        )
         is_non_weighted_record = (
-            is_project_summary or is_superseded_preprint or is_review or is_confounded_nonislet_conditioned
+            is_project_summary
+            or is_superseded_preprint
+            or is_review
+            or is_confounded_nonislet_conditioned
+            or is_nonislet_vascular_endothelial_mhc
         )
         tier = meta.get("max_biological_fidelity_tier", "Tier_4_Rodent_or_Xenogeneic_Only")
         if tier not in FIDELITY_WEIGHTS:
@@ -861,7 +895,7 @@ def build_target_evidence_profiles(studies: list[dict], omics: dict) -> dict:
                 st["n_superseded_preprint_records_excluded_from_weights"] += 1
             elif is_review:
                 st["n_review_records_excluded_from_weights"] += 1
-            elif is_confounded_nonislet_conditioned:
+            elif is_confounded_nonislet_conditioned or is_nonislet_vascular_endothelial_mhc:
                 st["n_confounded_nonislet_records_excluded_from_weights"] += 1
             else:
                 st["n_empirical_studies"] += 1

@@ -29,6 +29,12 @@
       "pubdate_year": "1999",
       "title": "The protein CTCF is required for the enhancer blocking activity of vertebrate insulators."
     },
+    "10512353": {
+      "first_author": "Bennet W",
+      "journal": "Diabetes",
+      "pubdate_year": "1999",
+      "title": "Incompatibility between human blood and isolated islets of Langerhans: a finding with implications for clinical intraportal islet transplantation?"
+    },
     "10523611": {
       "first_author": "Grey ST",
       "journal": "J Exp Med",
@@ -214,6 +220,12 @@
       "journal": "J Exp Med",
       "pubdate_year": "2002",
       "title": "A signal peptide derived from hsp60 binds HLA-E and interferes with CD94/NKG2A recognition."
+    },
+    "12504401": {
+      "first_author": "Moberg L",
+      "journal": "Lancet",
+      "pubdate_year": "2002",
+      "title": "Production of tissue factor by pancreatic islet cells as a trigger of detrimental thrombotic reactions in clinical islet transplantation."
     },
     "12530978": {
       "first_author": "Smith DE",
@@ -640,6 +652,12 @@
       "journal": "Hum Mol Genet",
       "pubdate_year": "2009",
       "title": "The disease-protective complement factor H allotypic variant Ile62 shows increased binding affinity for C3b and enhanced cofactor activity."
+    },
+    "19555051": {
+      "first_author": "Gerencser AA",
+      "journal": "Anal Chem",
+      "pubdate_year": "2009",
+      "title": "Quantitative microplate-based respirometry with correction for oxygen diffusion."
     },
     "19641142": {
       "first_author": "Tanaka S",
@@ -1907,6 +1925,12 @@
       "pubdate_year": "2019",
       "title": "CRISPR-Cas9-based mutagenesis frequently provokes on-target mRNA misregulation."
     },
+    "31527312": {
+      "first_author": "Merola J",
+      "journal": "JCI Insight",
+      "pubdate_year": "2019",
+      "title": "Progenitor-derived human endothelial cells evade alloimmunity by CRISPR/Cas9-mediated complete ablation of MHC expression."
+    },
     "31552143": {
       "first_author": "Trivedi PM",
       "journal": "Cell Death Discov",
@@ -2471,6 +2495,12 @@
       "pubdate_year": "1987",
       "title": "RNA splice junctions of different classes of eukaryotes: sequence statistics and functional implications in gene expression."
     },
+    "36591328": {
+      "first_author": "Smink AM",
+      "journal": "Transplant Direct",
+      "pubdate_year": "2023",
+      "title": "Successful Islet Transplantation Into a Subcutaneous Polycaprolactone Scaffold in Mice and Pigs."
+    },
     "36593395": {
       "first_author": "Gravina A",
       "journal": "Nat Biotechnol",
@@ -2963,6 +2993,12 @@
       "pubdate_year": "2025",
       "title": "DEC1 regulates human β cell functional maturation and circadian rhythm."
     },
+    "41536981": {
+      "first_author": "Jin M",
+      "journal": "iScience",
+      "pubdate_year": "2026",
+      "title": "Improvement of islet transplantation in prevascularized muscle sinus tracts."
+    },
     "41543848": {
       "first_author": "Gou C",
       "journal": "Xenotransplantation",
@@ -3040,6 +3076,12 @@
       "journal": "Sci Rep",
       "pubdate_year": "2026",
       "title": "Divergent cell-type specific hypoxia responses in human stem cell-derived and primary islets."
+    },
+    "42176117": {
+      "first_author": "Balboni E",
+      "journal": "Biomed Microdevices",
+      "pubdate_year": "2026",
+      "title": "Spatially controlled Islet delivery into a bioengineered vascular Niche improves subcutaneous transplantation."
     },
     "42182975": {
       "first_author": "Krishnan SR",
@@ -3130,6 +3172,12 @@
       "journal": "bioRxiv",
       "pubdate_year": "2026",
       "title": "A Novel PD-L1 Splice Isoform Modulates β Cell Communication in Response to Interferon Signaling."
+    },
+    "42887499": {
+      "first_author": "Wang J",
+      "journal": "Cell Stem Cell",
+      "pubdate_year": "2026",
+      "title": "Organotypic vascularization improves maturation of human stem cell-derived islets and restores normoglycemia in diabetic mice."
     },
     "42926365": {
       "first_author": "Dufault-Hunter SD",

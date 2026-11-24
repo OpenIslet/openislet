@@ -1,0 +1,191 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "31527312",
+    "pmcid": "PMC6824302",
+    "doi": "10.1172/jci.insight.129739",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Progenitor-derived human endothelial cells evade alloimmunity by CRISPR/Cas9-mediated complete ablation of MHC expression.",
+    "first_author": "Merola J",
+    "senior_author": "Pober JS",
+    "pub_year": 2019,
+    "journal": "JCI insight",
+    "source_text_type": "FullText_XML_or_PDF",
+    "pillars_covered": [
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth"
+    ],
+    "max_biological_fidelity_tier": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid31527312_arm1",
+      "arm_label": "Double-knockout human vascular progenitors lacking HLA-I and HLA-II",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": "human_immune_donors",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "B2M",
+          "ensembl_gene_id": null,
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "Biallelic knockout"
+          },
+          "functional_gate": "Gate2_Allo_HLA_ClassI_or_II",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": "Homozygous_Biallelic",
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "KO"
+        },
+        {
+          "gene_symbol_hgnc": "CIITA",
+          "ensembl_gene_id": null,
+          "sub_molecular_coordinate": {
+            "region_class": "Whole_Gene_Coding_CDS",
+            "exact_variant_or_swap_description": "Biallelic knockout"
+          },
+          "functional_gate": "Gate2_Allo_HLA_ClassI_or_II",
+          "target_autoantibody_or_tcr_evaded": [
+            "Allogeneic_HLA_DSA_or_TCR"
+          ],
+          "edit_modality": "CRISPR_Cas9_KO",
+          "promoter_or_locus_context": "Not_Applicable_KO",
+          "zygosity_or_allelic_state": "Homozygous_Biallelic",
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "KO"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Allogeneic_PBMC_or_T_Cell_CoCulture",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": "Allogeneic human HLA-I/II"
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid31527312_eff1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "B2M_CIITA_DualKO_Human_Endothelium",
+      "comparator_X0": "sgAAVS1-edited control human vascular endothelium",
+      "outcome_variable_Y": "[Endpoint: Allo_T_Cell_or_DSA_Survival | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
+      "outcome_domain": "Allo_T_Cell_or_DSA_Survival",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Human ECFC vascular progenitor",
+        "Z2_genetic_background_and_allelic_dose": "Biallelic B2M + CIITA ablation",
+        "Z3_immune_effector_and_stressor_pathway": "Allo-DSA + memory CD4/CD8 T cells",
+        "Z4_metabolic_and_glucose_load_state": "Standard vascular assay",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Monolayer and engineered microvessels",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Endogenous HLA loci",
+        "Z8_species_age_and_sex_context": "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture"
+      },
+      "verbatim_evidence_quote": "Importantly, dually ablated ECs no longer bind human DSA or activate allogeneic CD4+ effector memory T cells and are resistant to killing by CD8+ alloreactive cytotoxic T lymphocytes in vitro and in vivo.",
+      "focal_arm_id": "pmid31527312_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "human_immune_donors",
+      "censoring_note": "Qualitative outcome on human ECFC vascular endothelium (non-islet lineage; ASCI copyright): compared with sgAAVS1-edited control ECs, B2M+CIITA ablation markedly lowered total human IgG and C4d complement deposition after 25% pooled high-PRA serum coculture (Fig. 3A-C; Discussion notes residual IgG/NF-kB signaling and proposes non-HLA reactivity or serum cytokines as provisional explanations without directly testing individual donor HLA vs non-HLA targets), and Fig. 4 / abstract reported absent CD4+ effector memory T-cell activation and resistance to CD8+ CTL killing without proving necessity in clinical islet products",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "survival"
+      },
+      "dossier_sha256": "687b727d56eaba94938503e4cd17d724875d7002653157541e7bebea17dbda81",
+      "source_span": "abstract[922:1126]|norm=exact",
+      "quote_source_dossier_pmid": "31527312",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "B2M_CIITA_DKO_Human_ECs",
+        "comparator_label": null,
+        "endpoint_name": "Evasion_of_DSA_and_Allo_T_Cells",
+        "timepoint": null,
+        "population_or_model": "Human progenitor-derived vascular cells",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

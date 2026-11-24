@@ -383,7 +383,7 @@ def test_iip_0030_curated_corpus_carrier_o2_hpsc_sources_and_atomic_split():
     # 4. Live extracted corpus assertions across repaired records
     ext_dir = ROOT / 'data/extracted'
     by_pmid = {p.stem: json.loads(p.read_text(encoding='utf-8')) for p in ext_dir.glob('*.json') if p.stem.isdigit()}
-    assert len(by_pmid) == 583
+    assert len(by_pmid) == 589
     carrier_arms = [
         (pmid, a['gate5_engraftment_niche']['oxygen_bridge_72h_carrier'])
         for pmid, doc in by_pmid.items()
@@ -441,7 +441,7 @@ def test_iip_0030_curated_corpus_carrier_o2_hpsc_sources_and_atomic_split():
     r_eff2 = next(e for e in reichman['atomic_effects'] if e['effect_id'] == 'pmid40544428_eff2')
     assert r_eff2['outcome_domain'] != 'Differentiation_Yield_and_Lineage_Purity'
     assert r_eff2['contrast_metadata']['endpoint_name'] == 'Clinical_Safety_and_Mortality_Adverse_Events'
-    assert sum(len(d['atomic_effects']) for d in by_pmid.values()) == 3139
+    assert sum(len(d['atomic_effects']) for d in by_pmid.values()) == 3148
     # Box-2 Round-1 & v12 Ring-1 comparator/timepoint/stage/cohort repairs & clinical validator negative controls
     assert by_pmid['38993891']['atomic_effects'][0]['contrast_metadata']['timepoint'] is not None
     assert '<=' not in by_pmid['38993891']['atomic_effects'][0]['outcome_variable_Y']

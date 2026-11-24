@@ -1,0 +1,212 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "42176117",
+    "pmcid": "PMC13198518",
+    "doi": "10.1007/s10544-026-00826-w",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Spatially controlled Islet delivery into a bioengineered vascular Niche improves subcutaneous transplantation.",
+    "first_author": "Balboni E",
+    "senior_author": "Grattoni A",
+    "pub_year": 2026,
+    "journal": "Biomedical microdevices",
+    "source_text_type": "FullText_XML_or_PDF",
+    "pillars_covered": [
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_4_Rodent_or_Xenogeneic_Only"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid42176117_arm1",
+      "arm_label": "3D-printed removable placeholder (SPH) inside pre-vascularized SC NICHE reservoir (diabetic male F344 rats, 5-wk prevasc; Day-10 fasting C-peptide Fig. 3A / Methods 2.11; Day-14 immune flow cohort n=3/group; Day-45 remaining follow-up cohort n=7/group with exogenous insulin + subtherapeutic graft dose)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": "rat_recipients",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Rodent_Primary_Islet",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": "Primary_Mature_Islet",
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Subcutaneous_Prevascularized_or_Device",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "Polyamide or resin temporary spacer withdrawn prior to infusion",
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": null
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Hypoxia_Ischemia_Challenge",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid42176117_eff1",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "Removable_Placeholder_Cavity_Preservation",
+      "comparator_X0": "Direct syringe injection into vascularized reservoir",
+      "outcome_variable_Y": "[Endpoint: Hypoxia_72h_or_Vascular_Inosculation | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=qualitative_statement]",
+      "outcome_domain": "Hypoxia_72h_or_Vascular_Inosculation",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_statement",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Unspecified_In_Source_Abstract",
+        "Z3_immune_effector_and_stressor_pathway": "Trauma-induced inflammatory infiltration",
+        "Z4_metabolic_and_glucose_load_state": "Preclinical diabetes assay",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D dispersed islet cavity",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Prevascularized_or_Device",
+        "Z7_promoter_and_epigenetic_context": "Device surface adhesion tuning",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "these results are consistent with preservation of vascularization, improved islet dispersion within the cell reservoir, reduced inflammatory cell infiltration, and support of metabolic function compared to injection-based delivery.",
+      "focal_arm_id": "pmid42176117_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Abstract-scoped qualitative summary only (CC BY-NC-ND 4.0); full-text Day-14 flow-cytometry immune counts (n=3 rats/group) are separated in pmid42176117_eff2_day14_immune_flow, and Day-10 fasting C-peptide (Fig. 3A, Methods §2.11) vs Day-45 remaining-cohort metabolic follow-up (n=7 rats/group under exogenous insulin pellets + subtherapeutic graft dose + comparable BGL < 200 mg/dL, Figs. S2-S3) are separated in CEG M1421:O2",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "[REDACTED_NON_OA_EXCERPT: see PMID:42176117 field=omitted_text quote_sha256=65c2f09b21220bca7f15d7865c312f147573d0026bf9fa99e9dc91ac9251f87c]"
+      },
+      "dossier_sha256": "ae1feb835963c48851a083091cd6a3885b517c1acf26485ce0c2526fb5fc7bdc",
+      "source_span": "abstract[1402:1633]|norm=exact",
+      "quote_source_dossier_pmid": "42176117",
+      "statistic_type": "qualitative_statement_only",
+      "contrast_metadata": {
+        "intervention_label": "Mandrel_Guided_Prevasc_Delivery",
+        "comparator_label": null,
+        "endpoint_name": "Dispersion_and_Vascular_Preservation",
+        "timepoint": null,
+        "population_or_model": "Diabetic male F344 rats receiving subtherapeutic syngeneic islets with exogenous insulin (5-wk prevasc, 45-d follow-up)",
+        "units": "qualitative_statement",
+        "contrast_type": "qualitative_statement_only"
+      }
+    },
+    {
+      "effect_id": "pmid42176117_eff2_day14_immune_flow",
+      "source_figure_or_table": "Figure 3B-C (Full-Text Results)",
+      "focal_factor_X": "Removable_Placeholder_SPH_NICHE_Day14_Immune",
+      "comparator_X0": "Direct-injection CTRL NICHE at Day 14 (n = 3 per group)",
+      "outcome_variable_Y": "[Endpoint: Innate_Myeloid_or_Neutrophil_Infiltration_and_Host_Response | polarity=Lower_Is_Better_Hazard_Endpoint | orientation_sign=-1 | unit=%]",
+      "outcome_domain": "Innate_Myeloid_or_Neutrophil_Infiltration_and_Host_Response",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": 3,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": 3,
+      "measurement_unit": "%",
+      "log_response_ratio_or_smd": null,
+      "p_value": 0.0236,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary_Mature_Islet",
+        "Z2_genetic_background_and_allelic_dose": "Syngeneic male Fischer F344 rat islets",
+        "Z3_immune_effector_and_stressor_pathway": "Day-14 post-transplant innate inflammatory infiltrate (flow cytometry)",
+        "Z4_metabolic_and_glucose_load_state": "STZ diabetic F344 rats (Day-14 explant subset, n = 3/group, distinct from Day-45 n = 7/group cohort)",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D dispersed islet cavity",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Prevascularized_or_Device",
+        "Z7_promoter_and_epigenetic_context": "Device surface adhesion tuning",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:42176117 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=f777921a71136bfc3934f9dce861955e684dc6b1b6fdb6f2e21f951022af0c57]",
+      "focal_arm_id": "pmid42176117_arm1",
+      "comparator_arm_id": null,
+      "p_value_relation": "=",
+      "p_value_bound": 0.0236,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "dispersion_type": "SD",
+      "n_unit": "rat_recipients",
+      "censoring_note": "Paper-reported p = 0.0236 for Day-14 neutrophils (4.38 +/- 0.83% SPH vs 11.94 +/- 6.54% CTRL, n = 3/group, Fig. 3B-C; Methods explant schedule n = 3/group at Day 14, remaining n = 7/group to Day 45) is transcribed verbatim; note that an unpaired two-sided Student t-test computed from the published summary means/SDs yields t(4) = 1.9863, p = 0.1180 (unresolved without animal-level raw values).",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
+        "orientation_sign": -1,
+        "matched_lexicon_term": "inflammation"
+      },
+      "dossier_sha256": "ae1feb835963c48851a083091cd6a3885b517c1acf26485ce0c2526fb5fc7bdc",
+      "source_span": "fulltext_data_sections.results_paragraphs[1][0:241]|norm=exact",
+      "quote_source_dossier_pmid": "42176117",
+      "statistic_type": "quarantined_ambiguous_numeric",
+      "contrast_metadata": {
+        "intervention_label": "SPH_Removable_Placeholder_NICHE_Day14",
+        "comparator_label": null,
+        "endpoint_name": "Day14_Neutrophil_Infiltration_Pct",
+        "timepoint": "Day 14 post-transplantation (n = 3/group)",
+        "population_or_model": "Diabetic male F344 rats explanted at Day 14 (n = 3/group)",
+        "units": "%",
+        "contrast_type": "qualitative_statement_only"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

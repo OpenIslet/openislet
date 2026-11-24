@@ -223,6 +223,8 @@
               "individual_cells_imaged",
               "islet_or_cluster_replicates",
               "in_vitro_coculture_replicates",
+              "rat_recipients",
+              "paired_instrument_replicates",
               "unspecified_in_source"
             ]
           },
@@ -829,7 +831,8 @@
               "InVivo_Glycemic_Cure_and_Graft_Longevity",
               "Surface_HLA_or_Transgene_Expression_Level",
               "Clinical_Pharmacodynamics_or_Target_Depletion",
-              "Assay_Instrument_Calibration_or_Biophysical_Method"
+              "Assay_Instrument_Calibration_or_Biophysical_Method",
+              "Innate_Myeloid_or_Neutrophil_Infiltration_and_Host_Response"
             ]
           },
           "treatment_mean": {
@@ -1065,6 +1068,8 @@
               "individual_cells_imaged",
               "islet_or_cluster_replicates",
               "in_vitro_coculture_replicates",
+              "rat_recipients",
+              "paired_instrument_replicates",
               "unspecified_in_source"
             ]
           },

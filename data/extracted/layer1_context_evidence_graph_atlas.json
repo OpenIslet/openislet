@@ -2,64 +2,64 @@
   "schema_version": "openislet_layer1_context_evidence_graph_atlas_v1.0",
   "status": "COMPLETE_LAYER1_CONTEXT_EVIDENCE_GRAPH_ATLAS_V1",
   "evidence_class": "STRUCTURED_LITERATURE_CONTEXT_EVIDENCE_GRAPH",
-  "scope_and_scoring_separation_note": "Maps 1,165 total CEG records (1,140 empirical primary studies, 10 trial registry protocols, 7 regulatory/guidance documents, 4 computational/modeling-primary records, 1 correspondence/secondary summary, and 3 superseded preprint duplicates), 7,710 experimental/control arms, 14,147 structured outcomes, and 2,470 blueprint links across all five Islet-1 biological gates and 20 effector pathways, screened from 3,932 deduplicated candidate records. The Layer-1 2,160-stack prior-anchored scenario evaluator retains its 583-study Ring-1 scoring baseline unchanged (+0.00 pp under IIP-0032) unless an explicit Islet Improvement Proposal updates a module parameter or Idea Graveyard rule.",
+  "scope_and_scoring_separation_note": "Maps 1,172 total CEG records (1,146 empirical primary studies, 11 trial registry protocols, 7 regulatory/guidance documents, 4 computational/modeling-primary records, 1 correspondence/secondary summary, and 3 superseded preprint duplicates), 7,725 experimental/control arms, 14,159 structured outcomes, and 2,478 blueprint links across all five Islet-1 biological gates and 20 effector pathways, screened from 3,934 deduplicated candidate records. The Layer-1 2,160-stack prior-anchored scenario evaluator retains its 589-study Ring-1 scoring baseline unchanged (+0.00 pp under IIP-0033) unless an explicit Islet Improvement Proposal updates a module parameter or Idea Graveyard rule.",
   "summary": {
-    "screened_candidate_records_total": 3932,
-    "candidates_advanced_total": 3257,
-    "ceg_records_total": 1165,
-    "primary_empirical_studies_extracted": 1140,
-    "trial_registry_protocols_in_ceg": 10,
+    "screened_candidate_records_total": 3934,
+    "candidates_advanced_total": 3259,
+    "ceg_records_total": 1172,
+    "primary_empirical_studies_extracted": 1146,
+    "trial_registry_protocols_in_ceg": 11,
     "regulatory_or_guidance_records_in_ceg": 7,
     "computational_models_in_ceg": 4,
     "correspondence_or_secondary_records_in_ceg": 1,
     "superseded_preprint_duplicates_in_ceg": 3,
     "ring1_core_records_in_ceg_total": 404,
     "ring1_empirical_core_studies_in_ceg": 400,
-    "new_expansion_empirical_studies_in_ceg": 740,
-    "non_r1_ceg_records_total": 761,
-    "ring1_scoring_baseline_studies_unchanged": 583,
-    "experimental_and_control_arms_total": 7710,
-    "structured_outcomes_total": 14147,
-    "outcomes_cited_by_blueprint_links": 8971,
+    "new_expansion_empirical_studies_in_ceg": 746,
+    "non_r1_ceg_records_total": 768,
+    "ring1_scoring_baseline_studies_unchanged": 589,
+    "experimental_and_control_arms_total": 7725,
+    "structured_outcomes_total": 14159,
+    "outcomes_cited_by_blueprint_links": 8983,
     "background_arm_outcomes_retained": 5176,
-    "blueprint_links_total": 2470,
+    "blueprint_links_total": 2478,
     "biological_effector_nodes_total": 20,
     "graveyard_rules_indexed_total": 10,
     "unresolved_outcome_citations": 0,
     "inline_verbatim_quotes_shipped": 0
   },
   "screening_funnel": {
-    "screened_records_total": 3932,
-    "ring1_existing_records_screened": 583,
-    "new_candidate_records_screened": 3349,
-    "candidates_advanced_total": 3257,
+    "screened_records_total": 3934,
+    "ring1_existing_records_screened": 589,
+    "new_candidate_records_screened": 3345,
+    "candidates_advanced_total": 3259,
     "contextual_reviews_parked_total": 522,
     "off_topic_records_excluded_total": 153,
-    "wave1_ceg_records_extracted_total": 1165,
-    "wave1_primary_empirical_extracted_total": 1140,
-    "wave1_trial_registry_protocols_extracted": 10,
+    "wave1_ceg_records_extracted_total": 1172,
+    "wave1_primary_empirical_extracted_total": 1146,
+    "wave1_trial_registry_protocols_extracted": 11,
     "wave1_regulatory_or_guidance_records_extracted": 7,
     "wave1_computational_models_extracted": 4,
     "wave1_correspondence_or_secondary_extracted": 1,
     "wave1_superseded_preprint_duplicates_extracted": 3,
     "wave1_ring1_core_records_extracted_total": 404,
     "wave1_ring1_empirical_core_extracted": 400,
-    "wave1_new_empirical_studies_extracted": 740,
-    "wave1_non_r1_records_extracted_total": 761,
-    "remaining_supporting_catalog_queued_for_later_waves": 2092
+    "wave1_new_empirical_studies_extracted": 746,
+    "wave1_non_r1_records_extracted_total": 768,
+    "remaining_supporting_catalog_queued_for_later_waves": 2087
   },
   "record_class_distribution": {
     "computational_model_or_simulation": 4,
     "correspondence_or_secondary_summary": 1,
-    "empirical_primary_study": 1140,
+    "empirical_primary_study": 1146,
     "regulatory_or_guidance_document": 7,
     "superseded_preprint_duplicate": 3,
-    "trial_registry_protocol": 10
+    "trial_registry_protocol": 11
   },
   "study_identifier_types": {
     "DOI": 3,
-    "NCT": 10,
-    "PMID": 973,
+    "NCT": 11,
+    "PMID": 979,
     "SPL set id": 1,
     "URL": 5,
     "doi": 3,
@@ -68,46 +68,46 @@
   },
   "fidelity_tier_distribution": {
     "studies_by_manuscript_tier": {
-      "T1_Human_Clinical": 162,
-      "T2_NHP": 59,
+      "T1_Human_Clinical": 163,
+      "T2_NHP": 60,
       "T3_Humanized_Mouse": 50,
       "T4_Human_Islet_or_SC_Islet_InVitro": 299,
-      "T5_Rodent_or_CellLine": 569,
+      "T5_Rodent_or_CellLine": 574,
       "T6_Biophysical_Model_or_Regulatory": 26
     },
     "outcomes_by_manuscript_tier": {
-      "T1_Human_Clinical": 1439,
+      "T1_Human_Clinical": 1440,
       "T1_Human_Clinical_InVivo": 2,
-      "T2_NHP": 680,
+      "T2_NHP": 681,
       "T3_Humanized_Mouse": 668,
       "T4_Human_Islet_or_SC_Islet_InVitro": 4451,
-      "T5_Rodent_or_CellLine": 6701,
+      "T5_Rodent_or_CellLine": 6711,
       "T6_Biophysical_Model_or_Regulatory": 206
     }
   },
   "outcome_distributions": {
     "by_direction": {
-      "context_dependent_or_mixed": 3268,
+      "context_dependent_or_mixed": 3272,
       "descriptive_or_neutral": 8,
-      "favorable_to_intervention": 5329,
+      "favorable_to_intervention": 5334,
       "null_or_no_difference": 1829,
-      "unfavorable_or_toxic": 3173,
-      "unknown_or_unresolvable": 540
+      "unfavorable_or_toxic": 3175,
+      "unknown_or_unresolvable": 541
     },
     "by_stat_type": {
       "adjusted_difference_95ci": 3,
-      "descriptive_scalar": 1024,
+      "descriptive_scalar": 1026,
       "fold_change": 752,
       "hazard_or_odds_ratio": 71,
-      "mean_sd": 402,
+      "mean_sd": 406,
       "mean_sem": 523,
-      "mean_unspecified_spread": 309,
+      "mean_unspecified_spread": 310,
       "median_iqr": 54,
       "median_no_iqr": 66,
-      "proportion_or_rate": 2046,
+      "proportion_or_rate": 2047,
       "qualitative_no_pvalue": 45,
-      "qualitative_statement_only": 1,
-      "qualitative_with_pvalue": 8545,
+      "qualitative_statement_only": 4,
+      "qualitative_with_pvalue": 8546,
       "threshold_or_limit": 306
     }
   },
@@ -116,18 +116,18 @@
       "contradicts": 2,
       "noninformative": 19,
       "novel_upgrade_hypothesis": 616,
-      "scoping_qualification": 800,
-      "supports": 1033
+      "scoping_qualification": 804,
+      "supports": 1037
     },
     "by_incorporation": {
       "already_accounted_for": 320,
-      "not_yet_accounted_for": 932,
+      "not_yet_accounted_for": 940,
       "unknown": 1218
     },
     "by_applicability": {
       "domain_mismatch": 49,
-      "justified_bridge": 1396,
-      "matched_domain": 295,
+      "justified_bridge": 1403,
+      "matched_domain": 296,
       "unvalidated_transfer": 730
     }
   },
@@ -145,8 +145,8 @@
         "noninformative": 1,
         "novel_upgrade_hypothesis": 68,
         "scoping_qualification": 139,
-        "supports": 196,
-        "total_links": 405
+        "supports": 197,
+        "total_links": 406
       },
       "2B": {
         "contradicts": 1,
@@ -166,17 +166,17 @@
       "4": {
         "noninformative": 3,
         "novel_upgrade_hypothesis": 100,
-        "scoping_qualification": 118,
+        "scoping_qualification": 119,
         "supports": 132,
-        "total_links": 353
+        "total_links": 354
       },
       "5": {
         "contradicts": 1,
         "noninformative": 4,
         "novel_upgrade_hypothesis": 203,
-        "scoping_qualification": 241,
-        "supports": 316,
-        "total_links": 765
+        "scoping_qualification": 244,
+        "supports": 320,
+        "total_links": 772
       },
       "cross_cutting": {
         "noninformative": 4,
@@ -191,25 +191,25 @@
         "contradicts": 2,
         "noninformative": 19,
         "novel_upgrade_hypothesis": 608,
-        "scoping_qualification": 790,
-        "supports": 1021,
-        "total_links": 2440
+        "scoping_qualification": 794,
+        "supports": 1025,
+        "total_links": 2448
       },
       "B": {
         "contradicts": 1,
         "noninformative": 18,
         "novel_upgrade_hypothesis": 571,
-        "scoping_qualification": 690,
-        "supports": 882,
-        "total_links": 2162
+        "scoping_qualification": 694,
+        "supports": 886,
+        "total_links": 2170
       },
       "X": {
         "contradicts": 1,
         "noninformative": 18,
         "novel_upgrade_hypothesis": 565,
-        "scoping_qualification": 685,
-        "supports": 877,
-        "total_links": 2146
+        "scoping_qualification": 689,
+        "supports": 881,
+        "total_links": 2154
       }
     }
   },
@@ -243,9 +243,9 @@
       "category": "immune_cellular_effector",
       "causal_isolation": "unverified_lexical_candidate_until_role_asserted",
       "mediation_status": "requires_paired_arm_and_override_review",
-      "linked_studies_count": 187,
-      "linked_arms_count": 133,
-      "linked_outcomes_count": 430
+      "linked_studies_count": 188,
+      "linked_arms_count": 134,
+      "linked_outcomes_count": 431
     },
     {
       "effector_id": "EFF:CD8_CTL_AlloAuto",
@@ -254,9 +254,9 @@
       "category": "immune_cellular_effector",
       "causal_isolation": "unverified_lexical_candidate_until_role_asserted",
       "mediation_status": "requires_paired_arm_and_override_review",
-      "linked_studies_count": 190,
-      "linked_arms_count": 137,
-      "linked_outcomes_count": 480
+      "linked_studies_count": 191,
+      "linked_arms_count": 138,
+      "linked_outcomes_count": 481
     },
     {
       "effector_id": "EFF:Calcineurin_NFAT_MAPK_p38_JNK_ERK",
@@ -309,9 +309,9 @@
       "category": "immune_humoral_effector",
       "causal_isolation": "unverified_lexical_candidate_until_role_asserted",
       "mediation_status": "requires_paired_arm_and_override_review",
-      "linked_studies_count": 121,
-      "linked_arms_count": 126,
-      "linked_outcomes_count": 244
+      "linked_studies_count": 122,
+      "linked_arms_count": 127,
+      "linked_outcomes_count": 245
     },
     {
       "effector_id": "EFF:JAK_STAT_IFN_IRF1_MHC_Upregulation",
@@ -353,9 +353,9 @@
       "category": "vascular_engraftment_effector",
       "causal_isolation": "unverified_lexical_candidate_until_role_asserted",
       "mediation_status": "requires_paired_arm_and_override_review",
-      "linked_studies_count": 174,
-      "linked_arms_count": 84,
-      "linked_outcomes_count": 225
+      "linked_studies_count": 179,
+      "linked_arms_count": 97,
+      "linked_outcomes_count": 235
     },
     {
       "effector_id": "EFF:Mutagenicity_Genotoxicity_Ames_DNA_Damage",
@@ -419,9 +419,9 @@
       "category": "biophysical_transport_effector",
       "causal_isolation": "unverified_lexical_candidate_until_role_asserted",
       "mediation_status": "requires_paired_arm_and_override_review",
-      "linked_studies_count": 264,
-      "linked_arms_count": 188,
-      "linked_outcomes_count": 534
+      "linked_studies_count": 266,
+      "linked_arms_count": 192,
+      "linked_outcomes_count": 537
     },
     {
       "effector_id": "EFF:Teratoma_Residual_Pluripotency_Clonogenic_Escape",
@@ -12274,6 +12274,54 @@
       ]
     },
     {
+      "queue_id": "M1421",
+      "record_class": "empirical_primary_study",
+      "id_type": "PMID",
+      "id_value": "42176117",
+      "fidelity_tier": "T5_Rodent_or_CellLine",
+      "arms_count": 2,
+      "outcomes_count": 2,
+      "links_count": 1,
+      "gates_touched": [
+        "5"
+      ],
+      "link_relations": {
+        "scoping_qualification": 1
+      },
+      "pub_year": 2026,
+      "pmid": "42176117",
+      "pmcid": "PMC13198518",
+      "doi": "10.1007/s10544-026-00826-w",
+      "effector_topics": [
+        "EFF:Microvascular_Inosculation_Angiogenesis_IBMIR"
+      ]
+    },
+    {
+      "queue_id": "M1422",
+      "record_class": "empirical_primary_study",
+      "id_type": "PMID",
+      "id_value": "41536981",
+      "fidelity_tier": "T2_NHP",
+      "arms_count": 4,
+      "outcomes_count": 3,
+      "links_count": 2,
+      "gates_touched": [
+        "5"
+      ],
+      "link_relations": {
+        "scoping_qualification": 1,
+        "supports": 1
+      },
+      "pub_year": 2026,
+      "pmid": "41536981",
+      "pmcid": "PMC12797044",
+      "doi": "10.1016/j.isci.2025.114274",
+      "effector_topics": [
+        "EFF:Microvascular_Inosculation_Angiogenesis_IBMIR",
+        "EFF:Oxygen_ReactionDiffusion_Hypoxia_HIF1a_Necrosis"
+      ]
+    },
+    {
       "queue_id": "M1423",
       "record_class": "empirical_primary_study",
       "id_type": "PMID",
@@ -12408,6 +12456,28 @@
       "pmcid": "PMC8449352",
       "effector_topics": [
         "EFF:Oxygen_ReactionDiffusion_Hypoxia_HIF1a_Necrosis"
+      ]
+    },
+    {
+      "queue_id": "M1453",
+      "record_class": "empirical_primary_study",
+      "id_type": "PMID",
+      "id_value": "25893782",
+      "fidelity_tier": "T5_Rodent_or_CellLine",
+      "arms_count": 1,
+      "outcomes_count": 1,
+      "links_count": 1,
+      "gates_touched": [
+        "5"
+      ],
+      "link_relations": {
+        "supports": 1
+      },
+      "pub_year": 2015,
+      "pmid": "25893782",
+      "doi": "10.1038/nbt.3211",
+      "effector_topics": [
+        "EFF:Microvascular_Inosculation_Angiogenesis_IBMIR"
       ]
     },
     {
@@ -14299,6 +14369,29 @@
       "pmcid": "PMC10366205"
     },
     {
+      "queue_id": "M2036",
+      "record_class": "empirical_primary_study",
+      "id_type": "PMID",
+      "id_value": "36591328",
+      "fidelity_tier": "T5_Rodent_or_CellLine",
+      "arms_count": 5,
+      "outcomes_count": 3,
+      "links_count": 1,
+      "gates_touched": [
+        "5"
+      ],
+      "link_relations": {
+        "supports": 1
+      },
+      "pub_year": 2023,
+      "pmid": "36591328",
+      "pmcid": "PMC9788983",
+      "doi": "10.1097/TXD.0000000000001417",
+      "effector_topics": [
+        "EFF:Microvascular_Inosculation_Angiogenesis_IBMIR"
+      ]
+    },
+    {
       "queue_id": "M2039",
       "record_class": "empirical_primary_study",
       "id_type": "PMID",
@@ -14790,6 +14883,32 @@
         "scoping_qualification": 1
       },
       "pmid": "31181567"
+    },
+    {
+      "queue_id": "M2449",
+      "record_class": "empirical_primary_study",
+      "id_type": "PMID",
+      "id_value": "31527312",
+      "fidelity_tier": "T5_Rodent_or_CellLine",
+      "arms_count": 1,
+      "outcomes_count": 1,
+      "links_count": 1,
+      "gates_touched": [
+        "2A",
+        "5"
+      ],
+      "link_relations": {
+        "supports": 1
+      },
+      "pub_year": 2019,
+      "pmid": "31527312",
+      "pmcid": "PMC6824302",
+      "doi": "10.1172/jci.insight.129739",
+      "effector_topics": [
+        "EFF:CD4_Th_Treg_Axis",
+        "EFF:CD8_CTL_AlloAuto",
+        "EFF:Humoral_DSA_FcR_ADCC_Complement_CDC"
+      ]
     },
     {
       "queue_id": "M2481",
@@ -15429,6 +15548,26 @@
       ]
     },
     {
+      "queue_id": "NCT:NCT03513939",
+      "record_class": "trial_registry_protocol",
+      "id_type": "NCT",
+      "id_value": "NCT03513939",
+      "fidelity_tier": "T1_Human_Clinical",
+      "arms_count": 1,
+      "outcomes_count": 1,
+      "links_count": 1,
+      "gates_touched": [
+        "5"
+      ],
+      "link_relations": {
+        "scoping_qualification": 1
+      },
+      "pub_year": 2018,
+      "effector_topics": [
+        "EFF:Microvascular_Inosculation_Angiogenesis_IBMIR"
+      ]
+    },
+    {
       "queue_id": "NCT:NCT05791201",
       "record_class": "trial_registry_protocol",
       "id_type": "NCT",
@@ -15827,6 +15966,29 @@
         "supports": 1
       },
       "pmid": "19262615"
+    },
+    {
+      "queue_id": "PMID:19555051",
+      "record_class": "empirical_primary_study",
+      "id_type": "PMID",
+      "id_value": "19555051",
+      "fidelity_tier": "T5_Rodent_or_CellLine",
+      "arms_count": 1,
+      "outcomes_count": 1,
+      "links_count": 1,
+      "gates_touched": [
+        "4"
+      ],
+      "link_relations": {
+        "scoping_qualification": 1
+      },
+      "pub_year": 2009,
+      "pmid": "19555051",
+      "pmcid": "PMC2727168",
+      "doi": "10.1021/ac900881z",
+      "effector_topics": [
+        "EFF:Oxygen_ReactionDiffusion_Hypoxia_HIF1a_Necrosis"
+      ]
     },
     {
       "queue_id": "PMID:21743387",

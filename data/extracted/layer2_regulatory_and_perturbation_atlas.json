@@ -7013,15 +7013,15 @@
         "41542419",
         "42430558"
       ],
-      "eligible_effect_records": 3037,
+      "eligible_effect_records": 3046,
       "duplicate_exact_effect_records_skipped": 0
     },
     "input_provenance": {
       "ring1_atomic_effects": {
         "path": "data/extracted/ring1_atomic_effects_v0.5.jsonl",
-        "sha256": "2e42416c0e144ccf533fd0a058dd64d2721d62a92ddbad2f9d18fc7474b05e45",
-        "bytes": 8976303,
-        "unique_effect_records": 3139
+        "sha256": "8ee6453c3c0dbf005e7b57b8ca01f82ffa345f47e2f55febe448c906fbe685a0",
+        "bytes": 9005073,
+        "unique_effect_records": 3148
       },
       "raw_reference_object_sha256": "508f207e2a5c025d0e72963a82c91469f3305dfb4286afd678cfc7e9ad21d173",
       "construct_verification_object_sha256": "462f0560436b2142ce667ece4010cb7f7f1434a739ece69fdf6ad905bd3725f1",
@@ -7038,13 +7038,13 @@
       "jaspar_b2m_irf1_log2_odds": 17.6728,
       "jaspar_b2m_bounded_motif_activation": 0.88364,
       "eta_2a_ribosomal_skipping_downstream_factor": 0.88,
-      "ring1_unique_records_deduplicated_count": 3139,
-      "ring1_directional_study_gene_links_count": 112,
-      "ring1_continuous_evidence_weight": 0.756757,
+      "ring1_unique_records_deduplicated_count": 3148,
+      "ring1_directional_study_gene_links_count": 114,
+      "ring1_continuous_evidence_weight": 0.77027,
       "ring1_gene_effect_evidence_counts": {
         "B2M": {
-          "total": 17,
-          "protective": 13,
+          "total": 18,
+          "protective": 14,
           "penalty": 3
         },
         "HLA-E": {
@@ -7058,8 +7058,8 @@
           "penalty": 2
         },
         "CIITA": {
-          "total": 5,
-          "protective": 3,
+          "total": 6,
+          "protective": 4,
           "penalty": 0
         },
         "CXCL10": {
@@ -7105,8 +7105,8 @@
       },
       "ring1_canonical_gene_effect_evidence_counts": {
         "B2M": {
-          "total": 17,
-          "protective": 13,
+          "total": 18,
+          "protective": 14,
           "penalty": 3
         },
         "HLAE": {
@@ -7120,8 +7120,8 @@
           "penalty": 2
         },
         "CIITA": {
-          "total": 5,
-          "protective": 3,
+          "total": 6,
+          "protective": 4,
           "penalty": 0
         },
         "CXCL10": {
@@ -7170,6 +7170,7 @@
             "29679103",
             "30383447",
             "30853558",
+            "31527312",
             "32093375",
             "34305820",
             "34345868",
@@ -7187,6 +7188,7 @@
             "28504668",
             "29679103",
             "30383447",
+            "31527312",
             "32093375",
             "34305820",
             "36506044",
@@ -7247,12 +7249,14 @@
         "CIITA": {
           "total": [
             "28553360",
+            "31527312",
             "34407395",
             "37156915",
             "39623490",
             "40757665"
           ],
           "protective": [
+            "31527312",
             "34407395",
             "37156915",
             "40757665"
@@ -7546,7 +7550,7 @@
       },
       "directional_link_normalization_denominator_prior": 148.0,
       "legacy_display_counts_must_not_be_summed": true,
-      "ring1_evidence_weight_prior_heuristic_note": "ring1_continuous_evidence_weight (112/148 = 0.756757) is a declared corpus-level prior confidence scalar (locked per DEC-007; canonical per-gene directional link counts: TXNIP 34/112, CD274 22/112, B2M 16/112, CXCL10 9/112, CD47 8/112, TYK2 7/112, RNLS 5/112, HLAE 4/112, CIITA 3/112, CASP9 2/112, SERPINB9 2/112) rather than a mechanistic copy-number law; wet-lab posterior calibration is governed by data/extracted/wetlab_bayesian_posterior_calibration_v0.8.0.json."
+      "ring1_evidence_weight_prior_heuristic_note": "ring1_continuous_evidence_weight (114/148 = 0.770270) is a declared corpus-level prior confidence scalar (locked per DEC-007; canonical per-gene directional link counts: TXNIP 34/114, CD274 22/114, B2M 17/114, CXCL10 9/114, CD47 8/114, TYK2 7/114, RNLS 5/114, CIITA 4/114, HLAE 4/114, CASP9 2/114, SERPINB9 2/114) rather than a mechanistic copy-number law; wet-lab posterior calibration is governed by data/extracted/wetlab_bayesian_posterior_calibration_v0.8.0.json."
     },
     "external_benchmark_reference_anchors_not_fitted": [
       {
@@ -7590,7 +7594,7 @@
       }
     ],
     "stage7_endocrine_yield_reconciliation_note": {
-      "pre_sort_differentiation_yield_interpretation": "Each genotype profile reports pre-sort Stage-7 lineage yield fractions (stage7_sc_beta_yield_fraction, stage7_sc_alpha_yield_fraction, stage7_sc_delta_yield_fraction; e.g. Arm 1B endocrine sum = 0.9803, Arm 1A = 0.9727, TYK2-/- = 0.808), with the complement (1 - endocrine_sum) representing non-endocrine/ductal/enterochromaffin off-target fractions prior to magnetic/FACS sorting.",
+      "pre_sort_differentiation_yield_interpretation": "Each genotype profile reports pre-sort Stage-7 lineage yield fractions (stage7_sc_beta_yield_fraction, stage7_sc_alpha_yield_fraction, stage7_sc_delta_yield_fraction; e.g. Arm 1B endocrine sum = 0.9808, Arm 1A = 0.9731, TYK2-/- = 0.808), with the complement (1 - endocrine_sum) representing non-endocrine/ductal/enterochromaffin off-target fractions prior to magnetic/FACS sorting.",
       "post_sort_reaggregation_link_to_layer4": "Downstream Layer 4 metabolic and paracrine ODEs model post-sort CD49a+/CD26-purified and re-aggregated tri-hormonal clusters Standardized to the 60:30:10 beta:alpha:delta target ratio (120 um diameter).",
       "marginal_uncertainty_vs_simplex_note": "Per-lineage p10/p90 bands are independent marginal Gaussian quantiles rather than joint Dirichlet simplex draws, so summing marginal p90 upper bounds across beta + alpha + delta can exceed 1.0."
     },
@@ -7619,7 +7623,7 @@
     "prior_interval_quantile_method": "Hyndman-Fan type 7 linear empirical quantiles; even-sample median averages the two middle draws",
     "hour0_hlae_inducible_vs_constitutive_kinetics_note": {
       "source": "derived from the current typed profiles; no measured protection claim",
-      "arm1b_cd47_to_wt_fold": 4.966798138525428,
+      "arm1b_cd47_to_wt_fold": 5.037625993864647,
       "arm1b_cd47_to_wt_fold_status": "DEFINED_FROM_CURRENT_PRIORS",
       "cd47_ratio_denominator_genotype_id": "WT_UNEDITED_CONTROL",
       "tyk2_relative_yield_comparisons": {
@@ -7630,20 +7634,20 @@
       "profiles": [
         {
           "genotype_id": "SCENARIO_A_ARM_1B_UNIVERSAL_LEAN_4LOCUS",
-          "resting_hlae_molecules_per_cell": 10890,
-          "resting_hlae_fraction_of_wt": 0.605,
-          "ifng24h_hlae_molecules_per_cell": 69516,
-          "hour0_cd47_molecules_per_cell": 238004
+          "resting_hlae_molecules_per_cell": 11088,
+          "resting_hlae_fraction_of_wt": 0.616,
+          "ifng24h_hlae_molecules_per_cell": 70830,
+          "hour0_cd47_molecules_per_cell": 241398
         },
         {
           "genotype_id": "SCENARIO_A_ARM_1A_BICISTRONIC_P2A_COMPARATOR",
-          "resting_hlae_molecules_per_cell": 66744,
-          "resting_hlae_fraction_of_wt": 3.708,
-          "ifng24h_hlae_molecules_per_cell": 66744,
-          "hour0_cd47_molecules_per_cell": 209444
+          "resting_hlae_molecules_per_cell": 67932,
+          "resting_hlae_fraction_of_wt": 3.774,
+          "ifng24h_hlae_molecules_per_cell": 67932,
+          "hour0_cd47_molecules_per_cell": 212431
         }
       ],
-      "arm_selection_determinacy_note": "Under a strict resting-state (Hour-0 unstimulated) threshold of 15,000 or 25,000 molecules/cell, constitutive Arm 1A (66,744 molecules/cell, 3.708x WT; 24h IFN-g 66,744 molecules/cell) clears the gate at Hour 0 whereas inducible Arm 1B (10,890 molecules/cell, 0.605x WT) is below threshold until inflammatory/islet-niche IFN stimulation (69,516 molecules/cell at 24h IFN-g) or wet-lab promoter tuning.",
+      "arm_selection_determinacy_note": "Under a strict resting-state (Hour-0 unstimulated) threshold of 15,000 or 25,000 molecules/cell, constitutive Arm 1A (67,932 molecules/cell, 3.774x WT; 24h IFN-g 67,932 molecules/cell) clears the gate at Hour 0 whereas inducible Arm 1B (11,088 molecules/cell, 0.616x WT) is below threshold until inflammatory/islet-niche IFN stimulation (70,830 molecules/cell at 24h IFN-g) or wet-lab promoter tuning.",
       "protection_status": "PREREGISTERED_PENDING_RESTING_AND_IFNG_LICENSED_NK_ASSAYS"
     },
     "er_heavy_chain_flux_and_upr_hazard_muse_r3": {
@@ -7878,7 +7882,7 @@
         0.0
       ],
       "pdl1_downstream_2a_skip_factor_prior": null,
-      "ifng_24h_pdl1_molecules_per_cell": 26384,
+      "ifng_24h_pdl1_molecules_per_cell": 26855,
       "hour0_kinetic_race_status": "L3_BFB_BASAL_FLOOR_TARGET_0P30UM_CLEARS_SINGLE_AND_2PULSE_0P15UM_BOLUS_EXHAUSTS_AT_PULSE_3_REQUIRES_1P52UM_FOR_12PULSE_HYPOXIA_GATE_0C_KINETIC"
     },
     "coupled_five_transgene_hypoxic_isr_surface_decay_and_leader_rescue_audit_sonnet55_r5": {
@@ -8176,7 +8180,7 @@
         "hour0_resting_hlae_meets_25k_release_gate": false,
         "ifng24h_hlae_meets_25k_release_gate": false,
         "hour0_hlae_and_cd47_protection_status": "CONSTITUTIVE_HOUR0_HLAE_ABOVE_15K_THRESHOLD (18000 >= 15,000 molecules/cell at Hour 0; CD47 = 47919 molecules/cell)",
-        "ifng_24h_cxcl10_secretion_pg_ml": 288.6,
+        "ifng_24h_cxcl10_secretion_pg_ml": 293.7,
         "hour0_basal_serpinb9_cytosolic_uM": 0.08,
         "hour0_basal_pdl1_molecules_per_cell": 8500,
         "serpinb9_induction_half_time_hours": null,
@@ -8278,19 +8282,19 @@
           "p10": 0.607,
           "p90": 0.72
         },
-        "stage7_sc_beta_yield_fraction": 0.5803,
+        "stage7_sc_beta_yield_fraction": 0.5808,
         "stage7_sc_beta_yield_prior_scenario_interval_p10_p90": {
-          "median": 0.581,
-          "p10": 0.524,
-          "p90": 0.633
+          "median": 0.582,
+          "p10": 0.525,
+          "p90": 0.634
         },
         "stage7_sc_alpha_yield_fraction": 0.3,
         "stage7_sc_delta_yield_fraction": 0.1,
-        "gsis_stimulation_index_20mM_vs_2p8mM": 3.254,
+        "gsis_stimulation_index_20mM_vs_2p8mM": 3.258,
         "gsis_prior_scenario_interval_p10_p90": {
-          "median": 3.257,
-          "p10": 2.784,
-          "p90": 3.711
+          "median": 3.261,
+          "p10": 2.788,
+          "p90": 3.715
         },
         "iec_cord_branching_index_relative": 0.97,
         "iec_cord_branching_prior_scenario_interval_p10_p90": {
@@ -8298,24 +8302,24 @@
           "p10": 0.872,
           "p90": 1.07
         },
-        "hour0_basal_cd47_molecules_per_cell": 238004,
-        "hour0_basal_hlae_molecules_per_cell": 10890,
-        "hour0_resting_unstimulated_hlae_molecules_per_cell": 10890,
-        "ifng_24h_induced_hlae_molecules_per_cell": 69516,
-        "hour0_resting_hlae_vulnerability_gap_molecules_per_cell": 58626,
+        "hour0_basal_cd47_molecules_per_cell": 241398,
+        "hour0_basal_hlae_molecules_per_cell": 11088,
+        "hour0_resting_unstimulated_hlae_molecules_per_cell": 11088,
+        "ifng_24h_induced_hlae_molecules_per_cell": 70830,
+        "hour0_resting_hlae_vulnerability_gap_molecules_per_cell": 59742,
         "hour0_resting_hlae_below_15k_nkg2a_threshold": true,
         "hour0_resting_hlae_meets_25k_release_gate": false,
         "ifng24h_hlae_meets_25k_release_gate": true,
-        "hour0_hlae_and_cd47_protection_status": "IFN_INDUCIBLE_HLAE_RESTING_BELOW_15K_THRESHOLD (10890 < 15,000 molecules/cell at Hour 0, rising to 69516 molecules/cell upon 24h IFN-gamma licensing); constitutive EEF1A1 -> CD47-IgV-GPI (238004 molecules/cell) is an unvalidated independent shield hypothesis, not demonstrated compensation for this gap; requires direct resting unstimulated vs IFN-gamma-licensed primary NK killing validation (Decision Experiment #2)",
+        "hour0_hlae_and_cd47_protection_status": "IFN_INDUCIBLE_HLAE_RESTING_BELOW_15K_THRESHOLD (11088 < 15,000 molecules/cell at Hour 0, rising to 70830 molecules/cell upon 24h IFN-gamma licensing); constitutive EEF1A1 -> CD47-IgV-GPI (241398 molecules/cell) is an unvalidated independent shield hypothesis, not demonstrated compensation for this gap; requires direct resting unstimulated vs IFN-gamma-licensed primary NK killing validation (Decision Experiment #2)",
         "ifng_24h_cxcl10_secretion_pg_ml": 0.0,
         "hour0_basal_serpinb9_cytosolic_uM": 0.09,
         "hour0_basal_pdl1_molecules_per_cell": 9100,
         "serpinb9_induction_half_time_hours": 6.0,
         "hour0_single_hit_gzmb_bolus_coverage_ratio_at_0p20uM_si_1p5": 0.3,
         "hour0_kinetic_race_status": "UNSTIMULATED_HOUR0_SERPINB9_BELOW_0P30UM_BOLUS_FLOOR_REQUIRES_GATE_0C_KINETIC_OR_L3_BFB_BASAL_FLOOR",
-        "ifng_24h_serpinb9_cytosolic_uM": 0.89,
-        "ifng_24h_pdl1_molecules_per_cell": 23218,
-        "ifng_24h_pdl1_before_2a_skip_prior_molecules_per_cell": 26384.299017429817,
+        "ifng_24h_serpinb9_cytosolic_uM": 0.9,
+        "ifng_24h_pdl1_molecules_per_cell": 23633,
+        "ifng_24h_pdl1_before_2a_skip_prior_molecules_per_cell": 26855.42915910347,
         "pdl1_downstream_2a_skip_factor_prior": 0.88,
         "surface_density_endpoint_evidence_class": "UNVALIDATED_PRIOR_REQUIRES_TIMEPOINT_AND_LINEAGE_MATCHED_FLOW_CYTOMETRY",
         "primary_nk_specific_lysis_pct_cd94_nkg2a_pos": 3.9,
@@ -8433,14 +8437,14 @@
           "p90": 0.72
         },
         "stage7_sc_beta_yield_credible_interval_p10_p90": {
-          "median": 0.581,
-          "p10": 0.524,
-          "p90": 0.633
+          "median": 0.582,
+          "p10": 0.525,
+          "p90": 0.634
         },
         "gsis_credible_interval_p10_p90": {
-          "median": 3.257,
-          "p10": 2.784,
-          "p90": 3.711
+          "median": 3.261,
+          "p10": 2.788,
+          "p90": 3.715
         },
         "iec_cord_branching_credible_interval_p10_p90": {
           "median": 0.975,
@@ -8486,7 +8490,7 @@
             0.0
           ],
           "pdl1_downstream_2a_skip_factor_prior": null,
-          "ifng_24h_pdl1_molecules_per_cell": 26384,
+          "ifng_24h_pdl1_molecules_per_cell": 26855,
           "hour0_kinetic_race_status": "L3_BFB_BASAL_FLOOR_TARGET_0P30UM_CLEARS_SINGLE_AND_2PULSE_0P15UM_BOLUS_EXHAUSTS_AT_PULSE_3_REQUIRES_1P52UM_FOR_12PULSE_HYPOXIA_GATE_0C_KINETIC"
         }
       },
@@ -8518,7 +8522,7 @@
           "p10": 0.606,
           "p90": 0.715
         },
-        "stage7_sc_beta_yield_fraction": 0.5727,
+        "stage7_sc_beta_yield_fraction": 0.5731,
         "stage7_sc_beta_yield_prior_scenario_interval_p10_p90": {
           "median": 0.572,
           "p10": 0.515,
@@ -8526,11 +8530,11 @@
         },
         "stage7_sc_alpha_yield_fraction": 0.3,
         "stage7_sc_delta_yield_fraction": 0.1,
-        "gsis_stimulation_index_20mM_vs_2p8mM": 3.201,
+        "gsis_stimulation_index_20mM_vs_2p8mM": 3.204,
         "gsis_prior_scenario_interval_p10_p90": {
-          "median": 3.217,
-          "p10": 2.763,
-          "p90": 3.68
+          "median": 3.22,
+          "p10": 2.766,
+          "p90": 3.683
         },
         "iec_cord_branching_index_relative": 0.95,
         "iec_cord_branching_prior_scenario_interval_p10_p90": {
@@ -8538,24 +8542,24 @@
           "p10": 0.831,
           "p90": 1.062
         },
-        "hour0_basal_cd47_molecules_per_cell": 209444,
-        "hour0_basal_hlae_molecules_per_cell": 66744,
-        "hour0_resting_unstimulated_hlae_molecules_per_cell": 66744,
-        "ifng_24h_induced_hlae_molecules_per_cell": 66744,
+        "hour0_basal_cd47_molecules_per_cell": 212431,
+        "hour0_basal_hlae_molecules_per_cell": 67932,
+        "hour0_resting_unstimulated_hlae_molecules_per_cell": 67932,
+        "ifng_24h_induced_hlae_molecules_per_cell": 67932,
         "hour0_resting_hlae_vulnerability_gap_molecules_per_cell": 0,
         "hour0_resting_hlae_below_15k_nkg2a_threshold": false,
         "hour0_resting_hlae_meets_25k_release_gate": true,
         "ifng24h_hlae_meets_25k_release_gate": true,
-        "hour0_hlae_and_cd47_protection_status": "CONSTITUTIVE_HOUR0_HLAE_ABOVE_15K_THRESHOLD (66744 >= 15,000 molecules/cell at Hour 0; CD47 = 209444 molecules/cell)",
+        "hour0_hlae_and_cd47_protection_status": "CONSTITUTIVE_HOUR0_HLAE_ABOVE_15K_THRESHOLD (67932 >= 15,000 molecules/cell at Hour 0; CD47 = 212431 molecules/cell)",
         "ifng_24h_cxcl10_secretion_pg_ml": 0.0,
         "hour0_basal_serpinb9_cytosolic_uM": 0.09,
         "hour0_basal_pdl1_molecules_per_cell": 9100,
         "serpinb9_induction_half_time_hours": 6.0,
         "hour0_single_hit_gzmb_bolus_coverage_ratio_at_0p20uM_si_1p5": 0.3,
         "hour0_kinetic_race_status": "UNSTIMULATED_HOUR0_SERPINB9_BELOW_0P30UM_BOLUS_FLOOR_REQUIRES_GATE_0C_KINETIC_OR_L3_BFB_BASAL_FLOOR",
-        "ifng_24h_serpinb9_cytosolic_uM": 0.89,
-        "ifng_24h_pdl1_molecules_per_cell": 23218,
-        "ifng_24h_pdl1_before_2a_skip_prior_molecules_per_cell": 26384.299017429817,
+        "ifng_24h_serpinb9_cytosolic_uM": 0.9,
+        "ifng_24h_pdl1_molecules_per_cell": 23633,
+        "ifng_24h_pdl1_before_2a_skip_prior_molecules_per_cell": 26855.42915910347,
         "pdl1_downstream_2a_skip_factor_prior": 0.88,
         "surface_density_endpoint_evidence_class": "UNVALIDATED_PRIOR_REQUIRES_TIMEPOINT_AND_LINEAGE_MATCHED_FLOW_CYTOMETRY",
         "primary_nk_specific_lysis_pct_cd94_nkg2a_pos": 4.3,
@@ -8652,9 +8656,9 @@
           "p90": 0.634
         },
         "gsis_credible_interval_p10_p90": {
-          "median": 3.217,
-          "p10": 2.763,
-          "p90": 3.68
+          "median": 3.22,
+          "p10": 2.766,
+          "p90": 3.683
         },
         "iec_cord_branching_credible_interval_p10_p90": {
           "median": 0.944,
@@ -8730,24 +8734,24 @@
           "p10": 0.448,
           "p90": 0.708
         },
-        "hour0_basal_cd47_molecules_per_cell": 218966,
-        "hour0_basal_hlae_molecules_per_cell": 66744,
-        "hour0_resting_unstimulated_hlae_molecules_per_cell": 66744,
-        "ifng_24h_induced_hlae_molecules_per_cell": 66744,
+        "hour0_basal_cd47_molecules_per_cell": 222085,
+        "hour0_basal_hlae_molecules_per_cell": 67932,
+        "hour0_resting_unstimulated_hlae_molecules_per_cell": 67932,
+        "ifng_24h_induced_hlae_molecules_per_cell": 67932,
         "hour0_resting_hlae_vulnerability_gap_molecules_per_cell": 0,
         "hour0_resting_hlae_below_15k_nkg2a_threshold": false,
         "hour0_resting_hlae_meets_25k_release_gate": true,
         "ifng24h_hlae_meets_25k_release_gate": true,
-        "hour0_hlae_and_cd47_protection_status": "CONSTITUTIVE_HOUR0_HLAE_ABOVE_15K_THRESHOLD (66744 >= 15,000 molecules/cell at Hour 0; CD47 = 218966 molecules/cell)",
+        "hour0_hlae_and_cd47_protection_status": "CONSTITUTIVE_HOUR0_HLAE_ABOVE_15K_THRESHOLD (67932 >= 15,000 molecules/cell at Hour 0; CD47 = 222085 molecules/cell)",
         "ifng_24h_cxcl10_secretion_pg_ml": 0.0,
         "hour0_basal_serpinb9_cytosolic_uM": 0.09,
         "hour0_basal_pdl1_molecules_per_cell": 9100,
         "serpinb9_induction_half_time_hours": 6.0,
         "hour0_single_hit_gzmb_bolus_coverage_ratio_at_0p20uM_si_1p5": 0.3,
         "hour0_kinetic_race_status": "UNSTIMULATED_HOUR0_SERPINB9_BELOW_0P30UM_BOLUS_FLOOR_REQUIRES_GATE_0C_KINETIC_OR_L3_BFB_BASAL_FLOOR",
-        "ifng_24h_serpinb9_cytosolic_uM": 0.89,
-        "ifng_24h_pdl1_molecules_per_cell": 23218,
-        "ifng_24h_pdl1_before_2a_skip_prior_molecules_per_cell": 26384.299017429817,
+        "ifng_24h_serpinb9_cytosolic_uM": 0.9,
+        "ifng_24h_pdl1_molecules_per_cell": 23633,
+        "ifng_24h_pdl1_before_2a_skip_prior_molecules_per_cell": 26855.42915910347,
         "pdl1_downstream_2a_skip_factor_prior": 0.88,
         "surface_density_endpoint_evidence_class": "UNVALIDATED_PRIOR_REQUIRES_TIMEPOINT_AND_LINEAGE_MATCHED_FLOW_CYTOMETRY",
         "primary_nk_specific_lysis_pct_cd94_nkg2a_pos": 4.1,
@@ -8866,24 +8870,24 @@
           "p10": 0.855,
           "p90": 1.062
         },
-        "hour0_basal_cd47_molecules_per_cell": 238004,
-        "hour0_basal_hlae_molecules_per_cell": 10224,
-        "hour0_resting_unstimulated_hlae_molecules_per_cell": 10224,
-        "ifng_24h_induced_hlae_molecules_per_cell": 61290,
-        "hour0_resting_hlae_vulnerability_gap_molecules_per_cell": 51066,
+        "hour0_basal_cd47_molecules_per_cell": 241398,
+        "hour0_basal_hlae_molecules_per_cell": 10404,
+        "hour0_resting_unstimulated_hlae_molecules_per_cell": 10404,
+        "ifng_24h_induced_hlae_molecules_per_cell": 62388,
+        "hour0_resting_hlae_vulnerability_gap_molecules_per_cell": 51984,
         "hour0_resting_hlae_below_15k_nkg2a_threshold": true,
         "hour0_resting_hlae_meets_25k_release_gate": false,
         "ifng24h_hlae_meets_25k_release_gate": true,
-        "hour0_hlae_and_cd47_protection_status": "IFN_INDUCIBLE_HLAE_RESTING_BELOW_15K_THRESHOLD (10224 < 15,000 molecules/cell at Hour 0, rising to 61290 molecules/cell upon 24h IFN-gamma licensing); constitutive EEF1A1 -> CD47-IgV-GPI (238004 molecules/cell) is an unvalidated independent shield hypothesis, not demonstrated compensation for this gap; requires direct resting unstimulated vs IFN-gamma-licensed primary NK killing validation (Decision Experiment #2)",
+        "hour0_hlae_and_cd47_protection_status": "IFN_INDUCIBLE_HLAE_RESTING_BELOW_15K_THRESHOLD (10404 < 15,000 molecules/cell at Hour 0, rising to 62388 molecules/cell upon 24h IFN-gamma licensing); constitutive EEF1A1 -> CD47-IgV-GPI (241398 molecules/cell) is an unvalidated independent shield hypothesis, not demonstrated compensation for this gap; requires direct resting unstimulated vs IFN-gamma-licensed primary NK killing validation (Decision Experiment #2)",
         "ifng_24h_cxcl10_secretion_pg_ml": 0.0,
         "hour0_basal_serpinb9_cytosolic_uM": 0.09,
         "hour0_basal_pdl1_molecules_per_cell": 9100,
         "serpinb9_induction_half_time_hours": 6.0,
         "hour0_single_hit_gzmb_bolus_coverage_ratio_at_0p20uM_si_1p5": 0.3,
         "hour0_kinetic_race_status": "UNSTIMULATED_HOUR0_SERPINB9_BELOW_0P30UM_BOLUS_FLOOR_REQUIRES_GATE_0C_KINETIC_OR_L3_BFB_BASAL_FLOOR",
-        "ifng_24h_serpinb9_cytosolic_uM": 0.89,
-        "ifng_24h_pdl1_molecules_per_cell": 23218,
-        "ifng_24h_pdl1_before_2a_skip_prior_molecules_per_cell": 26384.299017429817,
+        "ifng_24h_serpinb9_cytosolic_uM": 0.9,
+        "ifng_24h_pdl1_molecules_per_cell": 23633,
+        "ifng_24h_pdl1_before_2a_skip_prior_molecules_per_cell": 26855.42915910347,
         "pdl1_downstream_2a_skip_factor_prior": 0.88,
         "surface_density_endpoint_evidence_class": "UNVALIDATED_PRIOR_REQUIRES_TIMEPOINT_AND_LINEAGE_MATCHED_FLOW_CYTOMETRY",
         "primary_nk_specific_lysis_pct_cd94_nkg2a_pos": 4.2,
@@ -8953,9 +8957,9 @@
         "ifna_dominant_early_flare_branch_predictions_astra6_r4": {
           "tyk2_allele_class": "TYK2_KO_BIALLELIC",
           "ifng_24h_ctl_synapse_baseline": {
-            "hlae_molecules_per_cell": 61290,
-            "serpinb9_cytosolic_uM": 0.89,
-            "pdl1_molecules_per_cell": 23218,
+            "hlae_molecules_per_cell": 62388,
+            "serpinb9_cytosolic_uM": 0.9,
+            "pdl1_molecules_per_cell": 23633,
             "cxcl10_secretion_pg_ml": 0.0
           },
           "ifna_early_flare_isre_induction_multiplier_branches": {
@@ -8972,14 +8976,14 @@
           },
           "ifna_early_flare_serpinb9_uM_by_branch": {
             "tyk2_ko_abrogated_typeI_ifn_branch_pmid_36289205": [
-              0.13,
-              0.21
+              0.131,
+              0.211
             ]
           },
           "ifna_early_flare_pdl1_molecules_per_cell_by_branch": {
             "tyk2_ko_abrogated_typeI_ifn_branch_pmid_36289205": [
-              9806,
-              11218
+              9827,
+              11280
             ]
           }
         }
@@ -9030,24 +9034,24 @@
           "p10": 0.856,
           "p90": 1.066
         },
-        "hour0_basal_cd47_molecules_per_cell": 238004,
-        "hour0_basal_hlae_molecules_per_cell": 10890,
-        "hour0_resting_unstimulated_hlae_molecules_per_cell": 10890,
-        "ifng_24h_induced_hlae_molecules_per_cell": 69516,
-        "hour0_resting_hlae_vulnerability_gap_molecules_per_cell": 58626,
+        "hour0_basal_cd47_molecules_per_cell": 241398,
+        "hour0_basal_hlae_molecules_per_cell": 11088,
+        "hour0_resting_unstimulated_hlae_molecules_per_cell": 11088,
+        "ifng_24h_induced_hlae_molecules_per_cell": 70830,
+        "hour0_resting_hlae_vulnerability_gap_molecules_per_cell": 59742,
         "hour0_resting_hlae_below_15k_nkg2a_threshold": true,
         "hour0_resting_hlae_meets_25k_release_gate": false,
         "ifng24h_hlae_meets_25k_release_gate": true,
-        "hour0_hlae_and_cd47_protection_status": "IFN_INDUCIBLE_HLAE_RESTING_BELOW_15K_THRESHOLD (10890 < 15,000 molecules/cell at Hour 0, rising to 69516 molecules/cell upon 24h IFN-gamma licensing); constitutive EEF1A1 -> CD47-IgV-GPI (238004 molecules/cell) is an unvalidated independent shield hypothesis, not demonstrated compensation for this gap; requires direct resting unstimulated vs IFN-gamma-licensed primary NK killing validation (Decision Experiment #2)",
+        "hour0_hlae_and_cd47_protection_status": "IFN_INDUCIBLE_HLAE_RESTING_BELOW_15K_THRESHOLD (11088 < 15,000 molecules/cell at Hour 0, rising to 70830 molecules/cell upon 24h IFN-gamma licensing); constitutive EEF1A1 -> CD47-IgV-GPI (241398 molecules/cell) is an unvalidated independent shield hypothesis, not demonstrated compensation for this gap; requires direct resting unstimulated vs IFN-gamma-licensed primary NK killing validation (Decision Experiment #2)",
         "ifng_24h_cxcl10_secretion_pg_ml": 0.0,
         "hour0_basal_serpinb9_cytosolic_uM": 0.09,
         "hour0_basal_pdl1_molecules_per_cell": 9100,
         "serpinb9_induction_half_time_hours": 6.0,
         "hour0_single_hit_gzmb_bolus_coverage_ratio_at_0p20uM_si_1p5": 0.3,
         "hour0_kinetic_race_status": "UNSTIMULATED_HOUR0_SERPINB9_BELOW_0P30UM_BOLUS_FLOOR_REQUIRES_GATE_0C_KINETIC_OR_L3_BFB_BASAL_FLOOR",
-        "ifng_24h_serpinb9_cytosolic_uM": 0.89,
-        "ifng_24h_pdl1_molecules_per_cell": 23218,
-        "ifng_24h_pdl1_before_2a_skip_prior_molecules_per_cell": 26384.299017429817,
+        "ifng_24h_serpinb9_cytosolic_uM": 0.9,
+        "ifng_24h_pdl1_molecules_per_cell": 23633,
+        "ifng_24h_pdl1_before_2a_skip_prior_molecules_per_cell": 26855.42915910347,
         "pdl1_downstream_2a_skip_factor_prior": 0.88,
         "surface_density_endpoint_evidence_class": "UNVALIDATED_PRIOR_REQUIRES_TIMEPOINT_AND_LINEAGE_MATCHED_FLOW_CYTOMETRY",
         "primary_nk_specific_lysis_pct_cd94_nkg2a_pos": 3.9,
@@ -9161,24 +9165,24 @@
           "p10": 0.83,
           "p90": 1.065
         },
-        "hour0_basal_cd47_molecules_per_cell": 238004,
-        "hour0_basal_hlae_molecules_per_cell": 10890,
-        "hour0_resting_unstimulated_hlae_molecules_per_cell": 10890,
-        "ifng_24h_induced_hlae_molecules_per_cell": 69516,
-        "hour0_resting_hlae_vulnerability_gap_molecules_per_cell": 58626,
+        "hour0_basal_cd47_molecules_per_cell": 241398,
+        "hour0_basal_hlae_molecules_per_cell": 11088,
+        "hour0_resting_unstimulated_hlae_molecules_per_cell": 11088,
+        "ifng_24h_induced_hlae_molecules_per_cell": 70830,
+        "hour0_resting_hlae_vulnerability_gap_molecules_per_cell": 59742,
         "hour0_resting_hlae_below_15k_nkg2a_threshold": true,
         "hour0_resting_hlae_meets_25k_release_gate": false,
         "ifng24h_hlae_meets_25k_release_gate": true,
-        "hour0_hlae_and_cd47_protection_status": "IFN_INDUCIBLE_HLAE_RESTING_BELOW_15K_THRESHOLD (10890 < 15,000 molecules/cell at Hour 0, rising to 69516 molecules/cell upon 24h IFN-gamma licensing); constitutive EEF1A1 -> CD47-IgV-GPI (238004 molecules/cell) is an unvalidated independent shield hypothesis, not demonstrated compensation for this gap; requires direct resting unstimulated vs IFN-gamma-licensed primary NK killing validation (Decision Experiment #2)",
+        "hour0_hlae_and_cd47_protection_status": "IFN_INDUCIBLE_HLAE_RESTING_BELOW_15K_THRESHOLD (11088 < 15,000 molecules/cell at Hour 0, rising to 70830 molecules/cell upon 24h IFN-gamma licensing); constitutive EEF1A1 -> CD47-IgV-GPI (241398 molecules/cell) is an unvalidated independent shield hypothesis, not demonstrated compensation for this gap; requires direct resting unstimulated vs IFN-gamma-licensed primary NK killing validation (Decision Experiment #2)",
         "ifng_24h_cxcl10_secretion_pg_ml": 0.0,
         "hour0_basal_serpinb9_cytosolic_uM": 0.09,
         "hour0_basal_pdl1_molecules_per_cell": 9100,
         "serpinb9_induction_half_time_hours": 6.0,
         "hour0_single_hit_gzmb_bolus_coverage_ratio_at_0p20uM_si_1p5": 0.3,
         "hour0_kinetic_race_status": "UNSTIMULATED_HOUR0_SERPINB9_BELOW_0P30UM_BOLUS_FLOOR_REQUIRES_GATE_0C_KINETIC_OR_L3_BFB_BASAL_FLOOR",
-        "ifng_24h_serpinb9_cytosolic_uM": 0.89,
-        "ifng_24h_pdl1_molecules_per_cell": 23218,
-        "ifng_24h_pdl1_before_2a_skip_prior_molecules_per_cell": 26384.299017429817,
+        "ifng_24h_serpinb9_cytosolic_uM": 0.9,
+        "ifng_24h_pdl1_molecules_per_cell": 23633,
+        "ifng_24h_pdl1_before_2a_skip_prior_molecules_per_cell": 26855.42915910347,
         "pdl1_downstream_2a_skip_factor_prior": 0.88,
         "surface_density_endpoint_evidence_class": "UNVALIDATED_PRIOR_REQUIRES_TIMEPOINT_AND_LINEAGE_MATCHED_FLOW_CYTOMETRY",
         "primary_nk_specific_lysis_pct_cd94_nkg2a_pos": 4.0,
@@ -9292,24 +9296,24 @@
           "p10": 0.819,
           "p90": 1.06
         },
-        "hour0_basal_cd47_molecules_per_cell": 238004,
-        "hour0_basal_hlae_molecules_per_cell": 10890,
-        "hour0_resting_unstimulated_hlae_molecules_per_cell": 10890,
-        "ifng_24h_induced_hlae_molecules_per_cell": 69462,
-        "hour0_resting_hlae_vulnerability_gap_molecules_per_cell": 58572,
+        "hour0_basal_cd47_molecules_per_cell": 241398,
+        "hour0_basal_hlae_molecules_per_cell": 11088,
+        "hour0_resting_unstimulated_hlae_molecules_per_cell": 11088,
+        "ifng_24h_induced_hlae_molecules_per_cell": 70704,
+        "hour0_resting_hlae_vulnerability_gap_molecules_per_cell": 59616,
         "hour0_resting_hlae_below_15k_nkg2a_threshold": true,
         "hour0_resting_hlae_meets_25k_release_gate": false,
         "ifng24h_hlae_meets_25k_release_gate": true,
-        "hour0_hlae_and_cd47_protection_status": "IFN_INDUCIBLE_HLAE_RESTING_BELOW_15K_THRESHOLD (10890 < 15,000 molecules/cell at Hour 0, rising to 69462 molecules/cell upon 24h IFN-gamma licensing); constitutive EEF1A1 -> CD47-IgV-GPI (238004 molecules/cell) is an unvalidated independent shield hypothesis, not demonstrated compensation for this gap; requires direct resting unstimulated vs IFN-gamma-licensed primary NK killing validation (Decision Experiment #2)",
+        "hour0_hlae_and_cd47_protection_status": "IFN_INDUCIBLE_HLAE_RESTING_BELOW_15K_THRESHOLD (11088 < 15,000 molecules/cell at Hour 0, rising to 70704 molecules/cell upon 24h IFN-gamma licensing); constitutive EEF1A1 -> CD47-IgV-GPI (241398 molecules/cell) is an unvalidated independent shield hypothesis, not demonstrated compensation for this gap; requires direct resting unstimulated vs IFN-gamma-licensed primary NK killing validation (Decision Experiment #2)",
         "ifng_24h_cxcl10_secretion_pg_ml": 0.0,
         "hour0_basal_serpinb9_cytosolic_uM": 0.09,
         "hour0_basal_pdl1_molecules_per_cell": 9100,
         "serpinb9_induction_half_time_hours": 6.0,
         "hour0_single_hit_gzmb_bolus_coverage_ratio_at_0p20uM_si_1p5": 0.3,
         "hour0_kinetic_race_status": "UNSTIMULATED_HOUR0_SERPINB9_BELOW_0P30UM_BOLUS_FLOOR_REQUIRES_GATE_0C_KINETIC_OR_L3_BFB_BASAL_FLOOR",
-        "ifng_24h_serpinb9_cytosolic_uM": 0.89,
-        "ifng_24h_pdl1_molecules_per_cell": 23218,
-        "ifng_24h_pdl1_before_2a_skip_prior_molecules_per_cell": 26384.299017429817,
+        "ifng_24h_serpinb9_cytosolic_uM": 0.9,
+        "ifng_24h_pdl1_molecules_per_cell": 23633,
+        "ifng_24h_pdl1_before_2a_skip_prior_molecules_per_cell": 26855.42915910347,
         "pdl1_downstream_2a_skip_factor_prior": 0.88,
         "surface_density_endpoint_evidence_class": "UNVALIDATED_PRIOR_REQUIRES_TIMEPOINT_AND_LINEAGE_MATCHED_FLOW_CYTOMETRY",
         "primary_nk_specific_lysis_pct_cd94_nkg2a_pos": 4.0,
@@ -9426,23 +9430,23 @@
           "p90": 1.076
         },
         "hour0_basal_cd47_molecules_per_cell": 86254,
-        "hour0_basal_hlae_molecules_per_cell": 51768,
-        "hour0_resting_unstimulated_hlae_molecules_per_cell": 51768,
-        "ifng_24h_induced_hlae_molecules_per_cell": 51768,
+        "hour0_basal_hlae_molecules_per_cell": 52686,
+        "hour0_resting_unstimulated_hlae_molecules_per_cell": 52686,
+        "ifng_24h_induced_hlae_molecules_per_cell": 52686,
         "hour0_resting_hlae_vulnerability_gap_molecules_per_cell": 0,
         "hour0_resting_hlae_below_15k_nkg2a_threshold": false,
         "hour0_resting_hlae_meets_25k_release_gate": true,
         "ifng24h_hlae_meets_25k_release_gate": true,
-        "hour0_hlae_and_cd47_protection_status": "CONSTITUTIVE_HOUR0_HLAE_ABOVE_15K_THRESHOLD (51768 >= 15,000 molecules/cell at Hour 0; CD47 = 86254 molecules/cell)",
+        "hour0_hlae_and_cd47_protection_status": "CONSTITUTIVE_HOUR0_HLAE_ABOVE_15K_THRESHOLD (52686 >= 15,000 molecules/cell at Hour 0; CD47 = 86254 molecules/cell)",
         "ifng_24h_cxcl10_secretion_pg_ml": 0.0,
         "hour0_basal_serpinb9_cytosolic_uM": 0.09,
         "hour0_basal_pdl1_molecules_per_cell": 9100,
         "serpinb9_induction_half_time_hours": 6.0,
         "hour0_single_hit_gzmb_bolus_coverage_ratio_at_0p20uM_si_1p5": 0.3,
         "hour0_kinetic_race_status": "UNSTIMULATED_HOUR0_SERPINB9_BELOW_0P30UM_BOLUS_FLOOR_REQUIRES_GATE_0C_KINETIC_OR_L3_BFB_BASAL_FLOOR",
-        "ifng_24h_serpinb9_cytosolic_uM": 0.89,
-        "ifng_24h_pdl1_molecules_per_cell": 23218,
-        "ifng_24h_pdl1_before_2a_skip_prior_molecules_per_cell": 26384.299017429817,
+        "ifng_24h_serpinb9_cytosolic_uM": 0.9,
+        "ifng_24h_pdl1_molecules_per_cell": 23633,
+        "ifng_24h_pdl1_before_2a_skip_prior_molecules_per_cell": 26855.42915910347,
         "pdl1_downstream_2a_skip_factor_prior": 0.88,
         "surface_density_endpoint_evidence_class": "UNVALIDATED_PRIOR_REQUIRES_TIMEPOINT_AND_LINEAGE_MATCHED_FLOW_CYTOMETRY",
         "primary_nk_specific_lysis_pct_cd94_nkg2a_pos": 3.5,
@@ -9596,9 +9600,9 @@
         "ifna_dominant_early_flare_branch_predictions_astra6_r4": {
           "tyk2_allele_class": "TYK2_P1104A_HOMOZYGOUS_PRIME_EDIT",
           "ifng_24h_ctl_synapse_baseline": {
-            "hlae_molecules_per_cell": 51768,
-            "serpinb9_cytosolic_uM": 0.89,
-            "pdl1_molecules_per_cell": 23218,
+            "hlae_molecules_per_cell": 52686,
+            "serpinb9_cytosolic_uM": 0.9,
+            "pdl1_molecules_per_cell": 23633,
             "cxcl10_secretion_pg_ml": 0.0
           },
           "ifna_early_flare_isre_induction_multiplier_branches": {
@@ -9627,22 +9631,22 @@
           },
           "ifna_early_flare_serpinb9_uM_by_branch": {
             "beta_cell_ipsc_knockdown_branch_pmid_36289205": [
-              0.21,
-              0.37
+              0.211,
+              0.373
             ],
             "human_leukocyte_wt_like_high_dose_ifna_branch_pmid_30578352_42268925": [
-              0.73,
-              0.89
+              0.738,
+              0.9
             ]
           },
           "ifna_early_flare_pdl1_molecules_per_cell_by_branch": {
             "beta_cell_ipsc_knockdown_branch_pmid_36289205": [
-              11218,
-              14041
+              11280,
+              14187
             ],
             "human_leukocyte_wt_like_high_dose_ifna_branch_pmid_30578352_42268925": [
-              20394,
-              23218
+              20726,
+              23633
             ]
           }
         }
@@ -9696,23 +9700,23 @@
           "p90": 1.054
         },
         "hour0_basal_cd47_molecules_per_cell": 86254,
-        "hour0_basal_hlae_molecules_per_cell": 49032,
-        "hour0_resting_unstimulated_hlae_molecules_per_cell": 49032,
-        "ifng_24h_induced_hlae_molecules_per_cell": 49032,
+        "hour0_basal_hlae_molecules_per_cell": 49914,
+        "hour0_resting_unstimulated_hlae_molecules_per_cell": 49914,
+        "ifng_24h_induced_hlae_molecules_per_cell": 49914,
         "hour0_resting_hlae_vulnerability_gap_molecules_per_cell": 0,
         "hour0_resting_hlae_below_15k_nkg2a_threshold": false,
         "hour0_resting_hlae_meets_25k_release_gate": true,
         "ifng24h_hlae_meets_25k_release_gate": true,
-        "hour0_hlae_and_cd47_protection_status": "CONSTITUTIVE_HOUR0_HLAE_ABOVE_15K_THRESHOLD (49032 >= 15,000 molecules/cell at Hour 0; CD47 = 86254 molecules/cell)",
+        "hour0_hlae_and_cd47_protection_status": "CONSTITUTIVE_HOUR0_HLAE_ABOVE_15K_THRESHOLD (49914 >= 15,000 molecules/cell at Hour 0; CD47 = 86254 molecules/cell)",
         "ifng_24h_cxcl10_secretion_pg_ml": 0.0,
         "hour0_basal_serpinb9_cytosolic_uM": 0.09,
         "hour0_basal_pdl1_molecules_per_cell": 9100,
         "serpinb9_induction_half_time_hours": 6.0,
         "hour0_single_hit_gzmb_bolus_coverage_ratio_at_0p20uM_si_1p5": 0.3,
         "hour0_kinetic_race_status": "UNSTIMULATED_HOUR0_SERPINB9_BELOW_0P30UM_BOLUS_FLOOR_REQUIRES_GATE_0C_KINETIC_OR_L3_BFB_BASAL_FLOOR",
-        "ifng_24h_serpinb9_cytosolic_uM": 0.89,
-        "ifng_24h_pdl1_molecules_per_cell": 23218,
-        "ifng_24h_pdl1_before_2a_skip_prior_molecules_per_cell": 26384.299017429817,
+        "ifng_24h_serpinb9_cytosolic_uM": 0.9,
+        "ifng_24h_pdl1_molecules_per_cell": 23633,
+        "ifng_24h_pdl1_before_2a_skip_prior_molecules_per_cell": 26855.42915910347,
         "pdl1_downstream_2a_skip_factor_prior": 0.88,
         "surface_density_endpoint_evidence_class": "UNVALIDATED_PRIOR_REQUIRES_TIMEPOINT_AND_LINEAGE_MATCHED_FLOW_CYTOMETRY",
         "primary_nk_specific_lysis_pct_cd94_nkg2a_pos": 3.6,
@@ -9851,9 +9855,9 @@
         "ifna_dominant_early_flare_branch_predictions_astra6_r4": {
           "tyk2_allele_class": "TYK2_KO_BIALLELIC",
           "ifng_24h_ctl_synapse_baseline": {
-            "hlae_molecules_per_cell": 49032,
-            "serpinb9_cytosolic_uM": 0.89,
-            "pdl1_molecules_per_cell": 23218,
+            "hlae_molecules_per_cell": 49914,
+            "serpinb9_cytosolic_uM": 0.9,
+            "pdl1_molecules_per_cell": 23633,
             "cxcl10_secretion_pg_ml": 0.0
           },
           "ifna_early_flare_isre_induction_multiplier_branches": {
@@ -9870,14 +9874,14 @@
           },
           "ifna_early_flare_serpinb9_uM_by_branch": {
             "tyk2_ko_abrogated_typeI_ifn_branch_pmid_36289205": [
-              0.13,
-              0.21
+              0.131,
+              0.211
             ]
           },
           "ifna_early_flare_pdl1_molecules_per_cell_by_branch": {
             "tyk2_ko_abrogated_typeI_ifn_branch_pmid_36289205": [
-              9806,
-              11218
+              9827,
+              11280
             ]
           }
         }
@@ -9925,7 +9929,7 @@
         "hour0_resting_hlae_meets_25k_release_gate": false,
         "ifng24h_hlae_meets_25k_release_gate": false,
         "hour0_hlae_and_cd47_protection_status": "HLAE_ABSENT (0 molecules/cell; CD47 prior 311474 molecules/cell does not establish missing-self protection)",
-        "ifng_24h_cxcl10_secretion_pg_ml": 288.6,
+        "ifng_24h_cxcl10_secretion_pg_ml": 293.7,
         "hour0_basal_serpinb9_cytosolic_uM": 0.08,
         "hour0_basal_pdl1_molecules_per_cell": 8500,
         "serpinb9_induction_half_time_hours": null,
@@ -33363,7 +33367,7 @@
     ]
   },
   "public_effects_provenance_rebinding": {
-    "canonical_original_effects_sha256": "e856cd0658eddf7ed6722ad9443fc934afab9639bec814e49dfcc81b1c845251",
+    "canonical_original_effects_sha256": "a4b4d95de6856103029854fb9482b37e11f071d658e568455e9a253e55e9dab4",
     "status": "REPLAYED_PUBLIC_BYTES_NUMERICAL_AND_SEMANTIC_OUTPUTS_IDENTICAL",
     "qualification": "Source redaction changes byte identity; only input fingerprints are rebound. No new prediction or assay is claimed."
   }

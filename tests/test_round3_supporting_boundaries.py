@@ -6751,7 +6751,7 @@ def test_sol61_ultracode_r4_dec038_biological_redteam_upgrades() -> None:
     # (e) Graveyard GY-023 (10 combinatorial grid + >=13 off-grid; 15 after IIP-0031 GY-025):
     _gy_28 = json.loads((ROOT / "data/graveyard/idea_graveyard_v0.5.json").read_text(encoding="utf-8"))
     _og_28 = _gy_28["off_grid_molecular_dead_end_guardrails"]["guardrails"]
-    assert len(_gy_28["graveyard_entries"]) == 10 and len(_og_28) == 17
+    assert len(_gy_28["graveyard_entries"]) == 10 and len(_og_28) == 18
     _gy23 = [g for g in _og_28 if g["graveyard_card_id"] == "GY-023"]
     assert len(_gy23) == 1 and _gy23[0]["guardrail_id"].startswith("OFFGRID_GUARD_013_") and _gy23[0]["contribution_id"] == "IIP-0028"
 
@@ -7515,7 +7515,7 @@ def test_54_iip0029_alk5i_free_maturation_twoclock_gates_and_mode_b_v2() -> None
     # (e) Graveyard GY-024 (10 grid + 15 off-grid = 25 total after IIP-0031 GY-025):
     gy_doc = json.loads((ROOT / "data/graveyard/idea_graveyard_v0.5.json").read_text(encoding="utf-8"))
     og_list = gy_doc["off_grid_molecular_dead_end_guardrails"]["guardrails"]
-    assert len(gy_doc["graveyard_entries"]) == 10 and len(og_list) == 17
+    assert len(gy_doc["graveyard_entries"]) == 10 and len(og_list) == 18
     gy24 = [g for g in og_list if g["graveyard_card_id"] == "GY-024"]
     assert len(gy24) == 1 and gy24[0]["guardrail_id"].startswith("OFFGRID_GUARD_014_") and gy24[0]["contribution_id"] == "IIP-0029"
 
@@ -9513,7 +9513,7 @@ def test_55_iip0031_locus2_modeb_comparators_rule_s11_and_tier6b_per_fraction_th
     # --- GY-025 (Provisional Stage-0 Guardrail) & DEC-110 ---
     gy_doc = json.loads((ROOT / "data/graveyard/idea_graveyard_v0.5.json").read_text(encoding="utf-8"))
     og_list = gy_doc["off_grid_molecular_dead_end_guardrails"]["guardrails"]
-    assert len(gy_doc["graveyard_entries"]) == 10 and len(og_list) == 17
+    assert len(gy_doc["graveyard_entries"]) == 10 and len(og_list) == 18
     gy25 = [g for g in og_list if g["graveyard_card_id"] == "GY-025"]
     assert len(gy25) == 1 and gy25[0]["guardrail_id"].startswith("OFFGRID_GUARD_015_") and gy25[0]["contribution_id"] == "IIP-0031" and gy25[0]["severity_level"] == "BLOCK"
     assert gy25[0]["curation_status"] == "provisional_stage0_computational_guardrail"

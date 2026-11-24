@@ -629,6 +629,7 @@ def _generate_release_manifest() -> None:
         "data/protocols/wetlab_endpoint_contract_v0.8.0.json",
         "data/protocols/stage0_decision_tree_v1.json",
         "data/extracted/documentation_facts_v0.8.0.json",
+        "data/extracted/iip0033_bilayer_and_respirometry_verification_v0.8.0.json",
         "tests/test_preastra_layer1.py",
         "tests/test_preastra_molecular.py",
         "tests/test_preastra_physiology_compiler.py",
@@ -657,12 +658,14 @@ def _generate_release_manifest() -> None:
         "scripts/run_layer4_tissue_and_metabolic_twin.py",
         "scripts/run_layer5_personalized_patient_compiler.py",
         "scripts/summarize_omics_baseline.py",
+        "scripts/verify_iip0033_bilayer_and_resp1.py",
         "tests/test_adversarial_acceptance.py",
         "tests/test_citations_resolve.py",
         "tests/test_context_evidence_graph.py",
         "tests/test_design_algebra_exact.py",
         "tests/test_layer2_and_layer3_planes.py",
         "tests/test_layer4_and_layer5_planes.py",
+        "tests/test_iip0033_bilayer_respirometry.py",
     ]
     artifact_entries = {}
     for rel in tracked_artifacts:
@@ -749,9 +752,9 @@ def _generate_release_manifest() -> None:
             }
         },
         "auxiliary_non_ring1_dossiers_registry": {
-            "note": "Two Ring-2 review dossiers cached in data/dossiers/ are outside the 583-study Ring-1 primary experimental extracted corpus (583 + 2 = 585 total dossiers):",
-            "26649319": "Akter et al. 2016 (Journal of Diabetes Research, doi:10.1155/2016/2798269): 'Islet Amyloid Polypeptide: Structure, Function, and Pathophysiology.' (Ring-2 review dossier retained in local dossier cache; not part of 583-study Ring-1 extracted queue)",
-            "35650334": "Nekoua, Alidjinou & Hober 2022 (Nature Reviews Endocrinology, doi:10.1038/s41574-022-00688-1): 'Persistent coxsackievirus B infection and pathogenesis of type 1 diabetes mellitus.' (Ring-2 review dossier retained in local dossier cache; not part of 583-study Ring-1 extracted queue)",
+            "note": "Two Ring-2 review dossiers cached in data/dossiers/ are outside the 589-study Ring-1 primary experimental extracted corpus (589 + 2 = 591 total dossiers):",
+            "26649319": "Akter et al. 2016 (Journal of Diabetes Research, doi:10.1155/2016/2798269): 'Islet Amyloid Polypeptide: Structure, Function, and Pathophysiology.' (Ring-2 review dossier retained in local dossier cache; not part of 589-study Ring-1 extracted queue)",
+            "35650334": "Nekoua, Alidjinou & Hober 2022 (Nature Reviews Endocrinology, doi:10.1038/s41574-022-00688-1): 'Persistent coxsackievirus B infection and pathogenesis of type 1 diabetes mellitus.' (Ring-2 review dossier retained in local dossier cache; not part of 589-study Ring-1 extracted queue)",
         },
         "public_redistribution_allowlist_spec": {
             "policy_note": (

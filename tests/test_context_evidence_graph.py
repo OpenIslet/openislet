@@ -36,27 +36,27 @@ def test_context_evidence_graph_integrity_and_replay() -> None:
 
     counts = ceg_mod.verify_ceg_payload(ceg, repo_root=REPO_ROOT)
     assert counts == {
-        "studies": 1165,
-        "arms": 7710,
-        "outcomes": 14147,
-        "edges": 2470,
+        "studies": 1172,
+        "arms": 7725,
+        "outcomes": 14159,
+        "edges": 2478,
         "effectors": 20,
         "graveyard_index": 10,
     }
 
     funnel = ceg["screening_funnel"]
-    assert funnel["screened_records_total"] == 3932
-    assert funnel["ring1_existing_records_screened"] + funnel["new_candidate_records_screened"] == 3932
+    assert funnel["screened_records_total"] == 3934
+    assert funnel["ring1_existing_records_screened"] + funnel["new_candidate_records_screened"] == 3934
     assert (
         funnel["candidates_advanced_total"]
         + funnel["contextual_reviews_parked_total"]
         + funnel["off_topic_records_excluded_total"]
-        == 3932
+        == 3934
     )
-    assert funnel["candidates_advanced_total"] == 3257
-    assert funnel["wave1_ceg_records_extracted_total"] == 1165
-    assert funnel["wave1_primary_empirical_extracted_total"] == 1140
-    assert funnel["wave1_trial_registry_protocols_extracted"] == 10
+    assert funnel["candidates_advanced_total"] == 3259
+    assert funnel["wave1_ceg_records_extracted_total"] == 1172
+    assert funnel["wave1_primary_empirical_extracted_total"] == 1146
+    assert funnel["wave1_trial_registry_protocols_extracted"] == 11
     assert funnel["wave1_regulatory_or_guidance_records_extracted"] == 7
     assert funnel["wave1_computational_models_extracted"] == 4
     assert funnel["wave1_correspondence_or_secondary_extracted"] == 1
@@ -68,20 +68,20 @@ def test_context_evidence_graph_integrity_and_replay() -> None:
         + funnel["wave1_computational_models_extracted"]
         + funnel["wave1_correspondence_or_secondary_extracted"]
         + funnel["wave1_superseded_preprint_duplicates_extracted"]
-        == 1165
+        == 1172
     )
     assert (
         funnel["wave1_ceg_records_extracted_total"]
         + funnel["remaining_supporting_catalog_queued_for_later_waves"]
-        == 3257
+        == 3259
     )
     assert (
         funnel["wave1_ring1_empirical_core_extracted"] + funnel["wave1_new_empirical_studies_extracted"]
-        == 1140
+        == 1146
     )
     assert (
         funnel["wave1_ring1_core_records_extracted_total"] + funnel["wave1_non_r1_records_extracted_total"]
-        == 1165
+        == 1172
     )
     # Negative controls: computational/modeling-primary, correspondence, all 3 superseded preprints, VC-01 & Sweet M3020:O1
     for _cm_qid in ("M0223", "M0263", "M0372", "R1_0367"):
@@ -308,11 +308,11 @@ def test_context_evidence_graph_integrity_and_replay() -> None:
         }
         _good_ledger = {
             "summary": {
-                "total_studies": 3932,
-                "ring1_existing_records_screened": 583,
-                "new_candidate_records_screened": 3349,
-                "overall_counts": {"ADVANCE": 3257, "PARK_CONTEXT": 522, "EXCLUDE_OFF_TOPIC": 153},
-                "candidate_extraction_waves": {"Wave_2B_Supporting_Catalog_P2_P3": 2092},
+                "total_studies": 3934,
+                "ring1_existing_records_screened": 589,
+                "new_candidate_records_screened": 3345,
+                "overall_counts": {"ADVANCE": 3259, "PARK_CONTEXT": 522, "EXCLUDE_OFF_TOPIC": 153},
+                "candidate_extraction_waves": {"Wave_2B_Supporting_Catalog_P2_P3": 2087},
             }
         }
         _pkts = _tdp / "pkts"
@@ -472,9 +472,9 @@ def test_context_evidence_graph_integrity_and_replay() -> None:
     _bad_dup_edge["edges"].append(_m69_clone)
     _bad_dup_edge["studies"]["M0069"]["links_count"] += 1
     _bad_dup_edge["counts"]["edges"] += 1
-    with _pytest.raises(ValueError, match="Duplicate edge_id|Expected 2,470"):
+    with _pytest.raises(ValueError, match="Duplicate edge_id|Expected 2,478"):
         ceg_mod.verify_ceg_payload(_bad_dup_edge, repo_root=REPO_ROOT)
-    # Also test duplicate edge_id preserving exact total edge count (2,470)
+    # Also test duplicate edge_id preserving exact total edge count (2,478)
     _bad_dup_edge2 = _copy.deepcopy(ceg)
     _e_idx_drop = next(i for i, e in enumerate(_bad_dup_edge2["edges"]) if e["edge_id"] == "M0088:L1")
     _dropped = _bad_dup_edge2["edges"].pop(_e_idx_drop)
@@ -513,7 +513,7 @@ def test_context_evidence_graph_integrity_and_replay() -> None:
         _rp_reg = _tdp_reg / "raw_reg.json"
         _lp_reg = _tdp_reg / "ledger_reg.json"
         _rp_reg.write_text(_json_reg.dumps(_raw_reg), encoding="utf-8")
-        _lp_reg.write_text(_json_reg.dumps({"summary": {"total_studies": 3932, "ring1_existing_records_screened": 583, "new_candidate_records_screened": 3349, "overall_counts": {"ADVANCE": 3257, "PARK_CONTEXT": 522, "EXCLUDE_OFF_TOPIC": 153}, "candidate_extraction_waves": {"Wave_2B_Supporting_Catalog_P2_P3": 2092}}}), encoding="utf-8")
+        _lp_reg.write_text(_json_reg.dumps({"summary": {"total_studies": 3934, "ring1_existing_records_screened": 589, "new_candidate_records_screened": 3345, "overall_counts": {"ADVANCE": 3259, "PARK_CONTEXT": 522, "EXCLUDE_OFF_TOPIC": 153}, "candidate_extraction_waves": {"Wave_2B_Supporting_Catalog_P2_P3": 2087}}}), encoding="utf-8")
         _imp_reg, _ = ceg_mod.import_and_materialize(_rp_reg, _lp_reg, _pkts_reg, repo_root=REPO_ROOT)
         assert _imp_reg["studies"][_reg_qid]["biological_model"].startswith("[Structured ")
         assert _imp_reg["studies"][_reg_qid]["record_class"] == "regulatory_or_guidance_document"
@@ -533,29 +533,29 @@ def test_context_evidence_graph_integrity_and_replay() -> None:
     replayed_atlas = ceg_mod.build_layer1_atlas_from_ceg(ceg)
     replayed_bytes = (json.dumps(replayed_atlas, indent=2, ensure_ascii=False, allow_nan=False) + "\n").encode("utf-8")
     assert atlas_bytes == replayed_bytes
-    assert atlas["summary"]["ceg_records_total"] == 1165
-    assert atlas["summary"]["primary_empirical_studies_extracted"] == 1140
-    assert atlas["summary"]["trial_registry_protocols_in_ceg"] == 10
+    assert atlas["summary"]["ceg_records_total"] == 1172
+    assert atlas["summary"]["primary_empirical_studies_extracted"] == 1146
+    assert atlas["summary"]["trial_registry_protocols_in_ceg"] == 11
     assert atlas["summary"]["regulatory_or_guidance_records_in_ceg"] == 7
     assert atlas["summary"]["computational_models_in_ceg"] == 4
     assert atlas["summary"]["correspondence_or_secondary_records_in_ceg"] == 1
     assert atlas["summary"]["superseded_preprint_duplicates_in_ceg"] == 3
     assert atlas["summary"]["ring1_core_records_in_ceg_total"] == 404
     assert atlas["summary"]["ring1_empirical_core_studies_in_ceg"] == 400
-    assert atlas["summary"]["new_expansion_empirical_studies_in_ceg"] == 740
-    assert atlas["summary"]["non_r1_ceg_records_total"] == 761
+    assert atlas["summary"]["new_expansion_empirical_studies_in_ceg"] == 746
+    assert atlas["summary"]["non_r1_ceg_records_total"] == 768
     assert atlas["record_class_distribution"] == {
         "computational_model_or_simulation": 4,
         "correspondence_or_secondary_summary": 1,
-        "empirical_primary_study": 1140,
+        "empirical_primary_study": 1146,
         "regulatory_or_guidance_document": 7,
         "superseded_preprint_duplicate": 3,
-        "trial_registry_protocol": 10,
+        "trial_registry_protocol": 11,
     }
-    assert atlas["summary"]["experimental_and_control_arms_total"] == 7710
-    assert atlas["summary"]["structured_outcomes_total"] == 14147
-    assert atlas["summary"]["blueprint_links_total"] == 2470
-    assert atlas["summary"]["ring1_scoring_baseline_studies_unchanged"] == 583
+    assert atlas["summary"]["experimental_and_control_arms_total"] == 7725
+    assert atlas["summary"]["structured_outcomes_total"] == 14159
+    assert atlas["summary"]["blueprint_links_total"] == 2478
+    assert atlas["summary"]["ring1_scoring_baseline_studies_unchanged"] == 589
     assert atlas["summary"]["inline_verbatim_quotes_shipped"] == 0
     assert atlas["summary"]["unresolved_outcome_citations"] == 0
 
@@ -564,15 +564,15 @@ def test_context_evidence_graph_integrity_and_replay() -> None:
     if manifest_path.is_file():
         mf = json.loads(manifest_path.read_text(encoding="utf-8"))
         mf_counts = mf["counts"]
-        assert mf_counts["extracted_studies_total"] == 583
-        assert mf_counts["extracted_atomic_effects_total"] == 3139
-        assert mf_counts["ceg_studies_total"] == 1165
-        assert mf_counts["ceg_empirical_primary_studies_total"] == 1140
-        assert mf_counts["ceg_trial_registry_protocols_total"] == 10
+        assert mf_counts["extracted_studies_total"] == 589
+        assert mf_counts["extracted_atomic_effects_total"] == 3148
+        assert mf_counts["ceg_studies_total"] == 1172
+        assert mf_counts["ceg_empirical_primary_studies_total"] == 1146
+        assert mf_counts["ceg_trial_registry_protocols_total"] == 11
         assert mf_counts["ceg_regulatory_or_guidance_records_total"] == 7
         assert mf_counts["ceg_computational_models_total"] == 4
         assert mf_counts["ceg_correspondence_secondary_total"] == 1
         assert mf_counts["ceg_superseded_preprint_duplicates_total"] == 3
-        assert mf_counts["ceg_arms_total"] == 7710
-        assert mf_counts["ceg_outcomes_total"] == 14147
-        assert mf_counts["ceg_blueprint_links_total"] == 2470
+        assert mf_counts["ceg_arms_total"] == 7725
+        assert mf_counts["ceg_outcomes_total"] == 14159
+        assert mf_counts["ceg_blueprint_links_total"] == 2478
