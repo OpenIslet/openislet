@@ -1954,6 +1954,427 @@
         "Pre-assembly Stage-7 CD31-/CD144- sorted-lot Tier 6B per-fraction binomial thinning (p_lot_U95 <= 3.0e-7, dual hPSC+edited differentiated calibrants d_i_L >= 0.50, k_i == 0 sticky hard stop)",
         "Dual-promoter DEC-107 5-prime-RACE (EEF1A1 + Unit-2 promoter), bisulfite/CTCF ChIP, same-background cargo-linked RNAi attribution controls, PIGK, rs800292/Val62, and GY-010 DQ2/DQ8"
       ]
+    },
+    {
+      "product_variant_id": "ISLET1_Y_FULLSTACK_V2_B2M_11TU",
+      "family": "A",
+      "aliases": [
+        "DESIGN_Y_FULLSTACK_V2_B2M_11TU"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CLYBL"
+      ],
+      "base_or_prime_edit_loci": [
+        "CIITA",
+        "CXCL10"
+      ],
+      "K": 2,
+      "B": 2,
+      "alleles": {
+        "B2M": "biallelic classical-MHC-I disruption with intended 17,237-bp 11-TU 0x-2A CTCF-insulated chr15 B2M Design Y-FullStack v2 reference payload (HLA-E SCT, CD47-IgV-GPI, CD64t[1-313], CD46_WT, SERPINB9, PD-L1[SYN6], IL1RN, VTCN1, FSP1/AIFM2, hCDH5+4xmiR375::CD200, iCasp9; intended staged assembly via HALF_A 10,450 bp + HALF_B 6,909 bp = 17,359 bp carrying 122 bp docking overhead [exact 10,366 bp prefix + 6,871 bp suffix], junction QC pending)",
+        "CLYBL": "independent chr13q32.3 CLYBL Intron-2 double-insulated CDK1p::hTMPK-F105Y (2,297 bp, CCA->CGA PAM shield) companion safety switch (DEC-053)",
+        "CIITA": "biallelic DSB-free TadCBEd base-edit LOF intended",
+        "CXCL10": "biallelic DSB-free TadCBEd M1I initiation-codon ablation intended"
+      },
+      "cassette_topology": {
+        "B2M": "17,237-bp 11-TU 0x-2A reference payload separated into 6 chromatin blocks by 5 unique verified CTCF insulators (HBB_5HS4_80, DM1_CTCF1_80, HOXA_CTCF_C5_80, HBA_CTCF_80, cHS4_C72T_C73A_250 + UCOE_2strand_455) and 14 unique stop-rich Pol-II pauses; 0 uninsulated 0-bp boundaries, 0/0 clipping introns, 0 post-stop ATGs >= 8 aa, PIGK = 1, exact IIP-0026 PD-L1 SYN6",
+        "CLYBL": "Companion chr13q32.3 CLYBL Intron-2 double-insulated CDK1p::hTMPK-F105Y (DESIGN_Y_FULLSTACK_v2_DEC053_CHR13_CLYBL_CDK1_HTMPK, 2,297 bp)"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Unscored Mode-B Stage-0 primary full chr15 11-TU CD46_WT Design Y-FullStack v2 candidate (IIP-0034; DEC-113; host-family chassis lineage 'A', Design Y Route 3P compatibility binding); non-executable pending full Y-01..Y-09 and R3P-01..R3P-06 Stage-0 qualification; +0.00 pp live headline odds today",
+      "physical_manufacturing_yield": null,
+      "physical_route_id": "ROUTE_3P_MODULAR_PLANAR_ENVELOPE",
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M Exon-1 landing-pad disruption intended (HLA-E SCT + CD47-IgV-GPI + multi-layer immune shield)",
+        "classical_MHC_II": "CIITA LOF via DSB-free TadCBEd base editing intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "staged_design_y_fullstack_v2_donor_binding": {
+        "proposal_id": "IIP-0034",
+        "decision_id": "DEC-113",
+        "fasta_path": "data/constructs/islet1_design_y_fullstack_v2_v0.8.0.fasta",
+        "fasta_sha256": "9826f7917c73f56b62f38db9df0fd61d2ffbf90da3f454392c9f415c16de336c",
+        "fasta_record_id": "DESIGN_Y_FULLSTACK_v2_B2M_11TU",
+        "donor_sha256": "e77a358ca5bc55c9e0a3070ab46b115c3314660d3a9be6221ef9e91d698cab4e",
+        "donor_length_bp": 17237,
+        "tu_count": 11,
+        "pigk_ectopic_gpi_count": 1,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "FULL_CHR15_11TU_REFERENCE",
+        "stage0_promotion_gates": "Y-01..Y-09 + R3P-01..R3P-06 (primary 11-TU CD46_WT full-stack candidate)"
+      },
+      "pending_assay_gates": [
+        "Y-01..Y-04 exact-product re-verification inheriting DEC-102 endpoints (prior IIP-0023 wildcard coupon clearance governs the coupon screen ONLY inside the shared <= 20% Stage-0 Y/Z wildcard firewall and never transfers to exact products; ONLY coupon delivery >= 3% and retention >= 95% are superseded by Y-05): Y-01 >= 60-day classical HLA-A/B/C, HLA-II & CXCL10 escape U95 <= 1.0% across beta/alpha/delta/iEC (>= 10,000 cells/lineage) + TadCBEd C>T/A>G/indel haplotype NGS (CBE off-target U95 <= 0.10%) + 5 DEC-102 supporting boolean controls (5'/3' RACE attL/R, zero-2A proteomics, DPCPX antagonist, anti-CD200 reversal, Y-04 full co-culture/clonogenic) + EXPLICIT_SE_SUPPLIED + EEPASSIGE polarity; Y-02 retained structural integrity (ddPCR CN [1.90, 2.10], phased ONT >= 99% intactness, WT B2M <= 0.001, kanR/ori <= 1e-4, k == 0 pseudosites) + HLA-E/CD47 rescue; Y-03 hCDH5+4xmiR-375 CD200 iEC:SC-beta L95 >= 50:1 + AGO2/miR-375 L95 >= 90% + co-culture GSIS SI L95 >= 2.5 + GSIS retention L95 >= 90% + supernatant adenosine U95 <= 25.0 nM + DPCPX GSIS delta U95 <= 10.0% + Readout 2 obs_gsis_si L95 >= 3.0; Y-04 HLA-DQ2/DQ8 indirect CD4 SI <= 1.5, NKG2A- KIR+ NK <= 8.0%, and AP1903 iCasp9 clonogenic escape/survival upper bound U95 <= 1e-8 (k == 0 at N_eff >= 299,573,228)",
+        "Y-05 primary 11-TU staged sequential orthogonal Bxb1 attP-GT (HALF_A 10,450 bp) -> attP-CA (HALF_B 6,909 bp) KI >= 1.0%/step PASS (0.8% <= rate < 1.0% -> HOLD; < 0.8% triggers proposed 2 x ~9 kb Prime Assembly fallback; N_95 <= 384 colonies/step; HALF_A + HALF_B terminates specifically at the intended 11-TU CD46_WT reference), Barrier4_HBA_CTCF readthrough <= 1.0%, and 11-TU Stage-7 Day-28 retention >= 80% (one-sided 95% LCB across n >= 3 independent differentiations)",
+        "Y-06 three independent subgates (any single missing readout holds composite): (1) CD64t[1-313] intact non-DTT IgM-preserved + IgG2 + 5-10 mg/mL polyclonal IgG saturation ADCC U95 <= 5.0% (BOTH intact-serum total AND paired IgG-attributable cellular killing per GY-023); (2) complete same-MCB Gate 0V viral clearance (DEC-103 Day-28 k == 0 observed-zero hard veto, U95 <= 0.0005 at n >= 5,990, plus full prior Gate 0V verdict); (3) primary CD46_WT arm-resolved complement C5b-9 U95 <= 5.0%",
+        "Y-07 CD274p::IL1RN sterile induction (10-100x molar IL-1Ra:IL-1beta target window [>= 10x min pass floor, <= 100x upper secretory-load bound], < 5% basal leak) AND conjunctive 2-pulse dynamic GSIS non-inferiority evaluating BOTH SI AND first-phase AUC on BOTH pulse 1 AND pulse 2 against EACH comparator separately (paired ISLET1_Y_FULLSTACK_V2_CTRL_EQUAL_SPACING AND donor-matched Stage-7 controls, never pooled; n >= 3 independent paired differentiation blocks, exact paired Student-t on log-ratios, one-sided 95% LCB >= 0.85, zero/undefined denominator -> HOLD; explicitly separate from standing GY-024 Rule S8 [n >= 6, n >= 8 for registered mixtures, adult-islet & absolute secretion floors]); Y-08 exploratory Stage-0 definitions (n >= 3 independent differentiations, HOLD_PENDING_ASSAY_SOP if unmeasured): VTCN1 NRD1 shed fraction <= 10% (one-sided 95% U95_t) & FSP1/AIFM2 ferroptosis viable fraction >= 80% (one-sided 95% L95_t)",
+        "Y-09 DEC-053 chr13q32.3 CLYBL::CDK1p::hTMPK-F105Y (CCA->CGA PAM shield): quiescent G0 C-peptide+ Ki67- beta-cell leak <= 0.1% (one-sided 95% U95_t, n >= 3), >= 4-log10 AZT dividing-cell reduction (one-sided 95% L95_t vs matched edited no-AZT control after forced chr15 loss), AND full standing GY-024/DEC-108 ZM447439 washout verdict (LC-MS/MS <= 0.005 uM, >= 3 washes, 80-120% spike recovery, pre-co-assembly iEC/pericyte vascular function verified)",
+        "R3P-01..R3P-06 modular flat-ribbon planar envelope (strictly barred on unhardened A/B/X): R3P-01 H_slot = 180-200 um, d_cluster < H_slot and d_cluster + 2*fibrin <= H_slot, net usable one-sided area >= 260 cm^2, tau_w <= 0.50 Pa (modeled from prescribed 6/8 min load durations), empirical load < 10.0 min, post-load viability >= 95%; R3P-02 peak F_pull <= 15.0 N per individually extracted ribbon (critical adhesion 2.70/3.00/2.31 kPa; concurrent two-ribbon extraction warning 20.0-22.2 N), fibrin < 15.0 um for > 90 um VPIOs / < 30.0 um for <= 90 um clusters (mixed populations with any cluster > 90 um governed by stricter < 15.0 um cap; geometric compliance necessary but not sufficient for oxygen); R3P-03 per-envelope Week 2.5-4.0 CEUS/Doppler microvascular perfusion + pO2 >= 30.0 mmHg readiness (any failing envelope holds that envelope; Jin 2026 single-cynomolgus-monkey observation is timing warning only); R3P-04 conjunctive loaded-coupon oxygen (Day-0 worst-face >= 15.0 / core >= 5.0 mmHg; post-anastomosis 2.5x GSIS stressed core >= 5.0 mmHg) AND empirical chamber-corrected fall t_50 < 3.0 min (spatial 65 um H200 modeled margin 0.235 s; centered 120 um VPIO fails clean shutoff even where Hybrid H180 nominal oxygen passes); R3P-05 acute 72 h Gate 0S AP1903+AZT + predeclared hemostatic modular retrieval completeness & bleeding endpoints under canonical exact 7-key DEC-103 ASSEMBLED_DEVICE_LOT_SCOPE (product_variant_id matching an eligible full-stack candidate excluding controls/components, construct_sha256 matching registered chr15 donor_sha256 [not whole-product chr13+chr15 attestation], donor_seedline_id, mcb_id, lot_id, device_assembly_id, physical_route_id == ROUTE_3P_MODULAR_PLANAR_ENVELOPE; no control/zero-width chars, whitespace padding, extra keys, or cross-lot/device pooling; backup CD55+CFH requires explicit backup_gate0v_primary_failed is True tied to a scoped primary Gate 0V MCB FAIL), explicit independent biological opportunities (strict str sampling_independence_model == INDEPENDENT_BIOLOGICAL_OPPORTUNITIES and clustered_sampling is False), strict hard cap <= 1e-6, explicit calibration & f_clonogenic_provenance (KNOWN_OR_CONSERVATIVELY_ESTABLISHED or INDEPENDENTLY_ESTIMATED_WITH_ALPHA_ALLOCATION preserving >= 90% Bonferroni joint coverage via explicit alpha_obs + alpha_eta + alpha_f <= 0.10 with alpha_eta >= 0.05 when L95 recovery eta < 1.0; eta >= 0.30 floor when < 1.0; NEVER floor(n_raw*eta)), unconditional k == 0 hard veto (with separate attribution_status) AND exact 80-digit conservative Decimal U95 <= 1e-6 (n_raw >= 2,995,731 at 1.00; >= 5,991,464 at 0.50, holding 5,991,463 & 5,991,462; single Blueprint reference dose of 93,350 clonogenic opportunities yields U95 = 3.20909e-5 at 1.00 / 6.41818e-5 at 0.50 -> HOLD_INCONCLUSIVE_INSUFFICIENT_INDEPENDENT_DENOMINATOR, distinct from Day-90 shedding k == 0, Stage-2/3 safety, and GRAVEYARD_002); R3P-06 5-day perioperative rest window with observable glycemic/interruption criteria (project design rule; ADA 2026 s16 distinguishes critically ill 140-180 vs noncritical/perioperative 100-180 mg/dL)"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_Y_FULLSTACK_V2_B2M_HALF_A_ATTB_GT",
+      "family": "A",
+      "aliases": [
+        "DESIGN_Y_FULLSTACK_V2_B2M_HALF_A_ATTB_GT"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CLYBL"
+      ],
+      "base_or_prime_edit_loci": [
+        "CIITA",
+        "CXCL10"
+      ],
+      "K": 2,
+      "B": 2,
+      "alleles": {
+        "B2M": "Step-1 sequential orthogonal Bxb1 eePASSIGE attP-GT landing donor (10,450 bp, 7 TUs + embedded 48-bp attP-CA docking site at Barrier3_HOXA_CTCF_C5 chromatin seam; dbDNA+H-151 N_95(1) = 231 colonies)",
+        "CLYBL": "independent chr13q32.3 CLYBL Intron-2 double-insulated CDK1p::hTMPK-F105Y companion safety switch (DEC-053)",
+        "CIITA": "biallelic DSB-free TadCBEd base-edit LOF intended",
+        "CXCL10": "biallelic DSB-free TadCBEd M1I initiation-codon ablation intended"
+      },
+      "cassette_topology": {
+        "B2M": "10,450-bp 7-TU Step-1 attB-GT donor with embedded 48-bp attP-CA docking site at Barrier3_HOXA_CTCF_C5 (0 uninsulated 0-bp gaps, 0/0 clipping introns, 0x 2A, PIGK = 1)",
+        "CLYBL": "Companion chr13q32.3 CLYBL Intron-2 double-insulated CDK1p::hTMPK-F105Y (2,297 bp)"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Unscored Mode-B Stage-0 Step-1 orthogonal Bxb1 attB-GT component donor (HALF_A, 10,450 bp; IIP-0034; DEC-113; host-family chassis lineage 'A', Design Y Route 3P binding); component-only intermediate encoding 10,366 bp prefix plus docking sequences toward intended primary B2M_11TU reference and explicitly excluded from standalone full-stack clearance",
+      "physical_manufacturing_yield": null,
+      "physical_route_id": "ROUTE_3P_MODULAR_PLANAR_ENVELOPE",
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M Exon-1 landing-pad disruption intended (HLA-E SCT + CD47-IgV-GPI + multi-layer immune shield)",
+        "classical_MHC_II": "CIITA LOF via DSB-free TadCBEd base editing intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "staged_design_y_fullstack_v2_donor_binding": {
+        "proposal_id": "IIP-0034",
+        "decision_id": "DEC-113",
+        "fasta_path": "data/constructs/islet1_design_y_fullstack_v2_v0.8.0.fasta",
+        "fasta_sha256": "9826f7917c73f56b62f38db9df0fd61d2ffbf90da3f454392c9f415c16de336c",
+        "fasta_record_id": "DESIGN_Y_FULLSTACK_v2_B2M_HALF_A_ATTB_GT",
+        "donor_sha256": "bd8dd98ae5a81f1ac1157523ac7195fe409af34e52ae310528071c896e0708df",
+        "donor_length_bp": 10450,
+        "tu_count": 7,
+        "pigk_ectopic_gpi_count": 1,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "SEQUENTIAL_STEP1_ATTB_GT_DONOR",
+        "stage0_promotion_gates": "COMPONENT_ONLY_EXCLUDED_FROM_FULLSTACK_CLEARANCE (Y-05 Step-1 attP-GT knock-in and attP-CA landing-site fidelity only)"
+      },
+      "pending_assay_gates": [
+        "Y-05 Step-1 attP-GT Bxb1 knock-in >= 1.0% PASS (0.8% <= rate < 1.0% -> HOLD; < 0.8% fallback trigger; N_95 <= 384 colonies), intact embedded 48 bp attP-CA landing site, and Barrier4_HBA_CTCF readthrough <= 1.0%",
+        "Component intermediate only: excluded from full-stack Design Y-FullStack v2 and Route 3P clearance until assembled and allele-verified into primary full-stack candidate ISLET1_Y_FULLSTACK_V2_B2M_11TU"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_Y_FULLSTACK_V2_B2M_HALF_B_ATTB_CA",
+      "family": "A",
+      "aliases": [
+        "DESIGN_Y_FULLSTACK_V2_B2M_HALF_B_ATTB_CA"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CLYBL"
+      ],
+      "base_or_prime_edit_loci": [
+        "CIITA",
+        "CXCL10"
+      ],
+      "K": 2,
+      "B": 2,
+      "alleles": {
+        "B2M": "Step-2 sequential orthogonal Bxb1 eePASSIGE attP-CA landing donor (6,909 bp, 4 TUs landing into HALF_A's embedded attP-CA site; dbDNA+H-151 N_95(1) = 141 colonies; 372 total colonies across Steps 1+2)",
+        "CLYBL": "independent chr13q32.3 CLYBL Intron-2 double-insulated CDK1p::hTMPK-F105Y companion safety switch (DEC-053)",
+        "CIITA": "biallelic DSB-free TadCBEd base-edit LOF intended",
+        "CXCL10": "biallelic DSB-free TadCBEd M1I initiation-codon ablation intended"
+      },
+      "cassette_topology": {
+        "B2M": "6,909-bp 4-TU Step-2 attB-CA donor completing the 11-TU chr15 B2M assembly (0 uninsulated 0-bp gaps, 0/0 clipping introns, 0x 2A, PIGK = 0)",
+        "CLYBL": "Companion chr13q32.3 CLYBL Intron-2 double-insulated CDK1p::hTMPK-F105Y (2,297 bp)"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Unscored Mode-B Stage-0 Step-2 orthogonal Bxb1 attB-CA component donor (HALF_B, 6,909 bp; IIP-0034; DEC-113; host-family chassis lineage 'A', Design Y Route 3P binding); component-only intermediate encoding 6,871 bp suffix plus docking sequences pairing sequentially with HALF_A toward intended primary B2M_11TU reference and explicitly excluded from standalone full-stack clearance",
+      "physical_manufacturing_yield": null,
+      "physical_route_id": "ROUTE_3P_MODULAR_PLANAR_ENVELOPE",
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M Exon-1 landing-pad disruption intended (HLA-E SCT + CD47-IgV-GPI + multi-layer immune shield)",
+        "classical_MHC_II": "CIITA LOF via DSB-free TadCBEd base editing intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "staged_design_y_fullstack_v2_donor_binding": {
+        "proposal_id": "IIP-0034",
+        "decision_id": "DEC-113",
+        "fasta_path": "data/constructs/islet1_design_y_fullstack_v2_v0.8.0.fasta",
+        "fasta_sha256": "9826f7917c73f56b62f38db9df0fd61d2ffbf90da3f454392c9f415c16de336c",
+        "fasta_record_id": "DESIGN_Y_FULLSTACK_v2_B2M_HALF_B_ATTB_CA",
+        "donor_sha256": "097f8b46bd8be54f6305372ddcba2b7e863aa62c3736b912808bd2ec3206fa2b",
+        "donor_length_bp": 6909,
+        "tu_count": 4,
+        "pigk_ectopic_gpi_count": 0,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "SEQUENTIAL_STEP2_ATTB_CA_DONOR",
+        "stage0_promotion_gates": "COMPONENT_ONLY_EXCLUDED_FROM_FULLSTACK_CLEARANCE (Y-05 Step-2 attP-CA knock-in into HALF_A clone only)"
+      },
+      "pending_assay_gates": [
+        "Y-05 Step-2 attP-CA Bxb1 knock-in >= 1.0% PASS (0.8% <= rate < 1.0% -> HOLD; < 0.8% fallback trigger; N_95 <= 384 colonies) into verified HALF_A-docked hiPSC clone with seamless 11-TU B2M junction confirmation",
+        "Component intermediate only: excluded from full-stack Design Y-FullStack v2 and Route 3P clearance until assembled and allele-verified into primary full-stack candidate ISLET1_Y_FULLSTACK_V2_B2M_11TU"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_Y_FULLSTACK_V2_DEC053_CLYBL_CDK1_HTMPK",
+      "family": "A",
+      "aliases": [
+        "DESIGN_Y_FULLSTACK_V2_DEC053_CHR13_CLYBL_CDK1_HTMPK"
+      ],
+      "dsb_or_indel_loci": [
+        "CLYBL"
+      ],
+      "base_or_prime_edit_loci": [],
+      "K": 1,
+      "B": 0,
+      "alleles": {
+        "CLYBL": "standalone double-insulated chr13q32.3 CLYBL Intron-2 HDR donor (2,297 bp, CCA->CGA PAM shield) expressing human DTYMK/hTMPK-F105Y under unmodified native GRCh38 CDK1_prom_300bp (Sato 2007 PMID:17375075; Uenaka 2026 PMID:41690310; retiring HSPA5/BiP IRES UPR inversion)"
+      },
+      "cassette_topology": {
+        "CLYBL": "5' cHS4_C72T_C73A_250 + Pause + unmodified GRCh38 CDK1_prom_300bp -> human hTMPK-F105Y + Pause + 3' DM1_CTCF1_80 at chr13q32.3 CLYBL Intron 2 (2,297 bp; AAV6 HDR N_95(1) = 26 colonies; 0 divergent bleed, max_IR = 10 bp, 0 ectopic 6-PWM)"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Unscored Mode-B Stage-0 independent-chromosome DEC-053 secondary small-molecule AZT safety-switch component donor at chr13q32.3 CLYBL (2,297 bp; IIP-0034; DEC-113; host-family chassis lineage 'A', Design Y Route 3P binding); standalone donor encodes ONLY CDK1p::hTMPK-F105Y (does not encode B2M/CIITA/HLA-E/CD47 edits) and is explicitly excluded from standalone full-stack clearance",
+      "physical_manufacturing_yield": null,
+      "physical_route_id": "ROUTE_3P_MODULAR_PLANAR_ENVELOPE",
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
+      },
+      "hla_retention": {
+        "classical_MHC_I": "Not encoded by this standalone chr13 donor; intended paired host cell line carries B2M Exon-1 landing-pad disruption",
+        "classical_MHC_II": "Not encoded by this standalone chr13 donor; intended paired host cell line carries CIITA LOF",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING_HOST_PAIRING_REQUIRED"
+      },
+      "staged_design_y_fullstack_v2_donor_binding": {
+        "proposal_id": "IIP-0034",
+        "decision_id": "DEC-113",
+        "fasta_path": "data/constructs/islet1_design_y_fullstack_v2_v0.8.0.fasta",
+        "fasta_sha256": "9826f7917c73f56b62f38db9df0fd61d2ffbf90da3f454392c9f415c16de336c",
+        "fasta_record_id": "DESIGN_Y_FULLSTACK_v2_DEC053_CHR13_CLYBL_CDK1_HTMPK",
+        "donor_sha256": "f631592ed4c08fd433a03d2b085c04196b4b5b812b6f7fd49916c06e865d1323",
+        "donor_length_bp": 2297,
+        "tu_count": 1,
+        "pigk_ectopic_gpi_count": 0,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "DEC053_CHR13_CLYBL_SAFETY_SWITCH",
+        "stage0_promotion_gates": "COMPONENT_ONLY_EXCLUDED_FROM_FULLSTACK_CLEARANCE (Y-09 independent chr13 CLYBL::CDK1p::hTMPK-F105Y module only)"
+      },
+      "pending_assay_gates": [
+        "Y-09 chr13q32.3 CLYBL Intron-2 insertion + CCA->CGA PAM shield fidelity, quiescent G0 C-peptide+ Ki67- beta-cell leak <= 0.1% (U95_t, n >= 3), >= 4-log10 AZT dividing reduction (L95_t vs matched edited no-AZT control after forced chr15 loss), and full standing GY-024/DEC-108 ZM447439 washout verdict (<= 0.005 uM, >= 3 washes, 80-120% spike recovery, pre-co-assembly iEC/pericyte vascular function verified)",
+        "Component safety-switch module only (encodes chr13 CLYBL::CDK1p::hTMPK-F105Y alone): excluded from full-stack Design Y-FullStack v2 and Route 3P clearance unless paired with a qualified chr15 full-stack candidate"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_Y_FULLSTACK_V2_CD55_CFH_COMPARATOR",
+      "family": "A",
+      "aliases": [
+        "DESIGN_Y_FULLSTACK_V2_CD55_CFH_COMPARATOR"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CLYBL"
+      ],
+      "base_or_prime_edit_loci": [
+        "CIITA",
+        "CXCL10"
+      ],
+      "K": 2,
+      "B": 2,
+      "alleles": {
+        "B2M": "Gate 0V viral-tropism backup comparator (18,760 bp, 12 TUs) replacing CD46_WT with CD55 + CFH complement regulators, activated only if primary CD46_WT fails Gate 0V MCB viral clearance (3 ectopic GPI clients [PIGK substrate count = 3, not 3x enzyme expression], +26/+12 seam peptides audited)",
+        "CLYBL": "independent chr13q32.3 CLYBL Intron-2 double-insulated CDK1p::hTMPK-F105Y companion safety switch (DEC-053)",
+        "CIITA": "biallelic DSB-free TadCBEd base-edit LOF intended",
+        "CXCL10": "biallelic DSB-free TadCBEd M1I initiation-codon ablation intended"
+      },
+      "cassette_topology": {
+        "B2M": "18,760-bp 12-TU 0x-2A Gate 0V backup comparator substituting CD55 + CFH for CD46_WT (0 uninsulated 0-bp gaps, 0/0 clipping introns, PIGK = 3)",
+        "CLYBL": "Companion chr13q32.3 CLYBL Intron-2 double-insulated CDK1p::hTMPK-F105Y (2,297 bp)"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Unscored Mode-B Stage-0 Gate 0V 12-TU CD55+CFH viral-tropism backup full-stack candidate (18,760 bp; IIP-0034; DEC-113; host-family chassis lineage 'A', Design Y Route 3P binding); activated only if primary CD46_WT fails Gate 0V MCB viral clearance (scoped FAIL verdict required; missing or held primary verdict does NOT activate backup); non-executable pending dedicated 12-TU delivery spec and full 12-TU Y-01..Y-09 and R3P-01..R3P-06 qualification",
+      "physical_manufacturing_yield": null,
+      "physical_route_id": "ROUTE_3P_MODULAR_PLANAR_ENVELOPE",
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M Exon-1 landing-pad disruption intended (HLA-E SCT + CD47-IgV-GPI + multi-layer immune shield)",
+        "classical_MHC_II": "CIITA LOF via DSB-free TadCBEd base editing intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "staged_design_y_fullstack_v2_donor_binding": {
+        "proposal_id": "IIP-0034",
+        "decision_id": "DEC-113",
+        "fasta_path": "data/constructs/islet1_design_y_fullstack_v2_v0.8.0.fasta",
+        "fasta_sha256": "9826f7917c73f56b62f38db9df0fd61d2ffbf90da3f454392c9f415c16de336c",
+        "fasta_record_id": "DESIGN_Y_FULLSTACK_v2_CD55_CFH_COMPARATOR",
+        "donor_sha256": "d7291ca6e610f8251ab04bbf6fc62d7747e7baaf0e680300f46b895920aab9d8",
+        "donor_length_bp": 18760,
+        "tu_count": 12,
+        "pigk_ectopic_gpi_count": 3,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "GATE0V_CD55_CFH_BACKUP_COMPARATOR",
+        "stage0_promotion_gates": "Y-01..Y-09 + R3P-01..R3P-06 (12-TU CD55+CFH Gate 0V backup full-stack candidate; activated only if primary CD46_WT fails Gate 0V MCB viral clearance)"
+      },
+      "pending_assay_gates": [
+        "Y-01..Y-04 exact-product re-verification inheriting DEC-102 endpoints (prior IIP-0023 wildcard coupon clearance governs the coupon screen ONLY inside the shared <= 20% Stage-0 Y/Z wildcard firewall and never transfers to exact products; ONLY coupon delivery >= 3% and retention >= 95% are superseded by Y-05): Y-01 >= 60-day classical HLA-A/B/C, HLA-II & CXCL10 escape U95 <= 1.0% across beta/alpha/delta/iEC (>= 10,000 cells/lineage) + TadCBEd C>T/A>G/indel haplotype NGS (CBE off-target U95 <= 0.10%) + 5 DEC-102 supporting boolean controls (5'/3' RACE attL/R, zero-2A proteomics, DPCPX antagonist, anti-CD200 reversal, Y-04 full co-culture/clonogenic) + EXPLICIT_SE_SUPPLIED + EEPASSIGE polarity; Y-02 retained structural integrity (ddPCR CN [1.90, 2.10], phased ONT >= 99% intactness, WT B2M <= 0.001, kanR/ori <= 1e-4, k == 0 pseudosites) + HLA-E/CD47 rescue; Y-03 hCDH5+4xmiR-375 CD200 iEC:SC-beta L95 >= 50:1 + AGO2/miR-375 L95 >= 90% + co-culture GSIS SI L95 >= 2.5 + GSIS retention L95 >= 90% + supernatant adenosine U95 <= 25.0 nM + DPCPX GSIS delta U95 <= 10.0% + Readout 2 obs_gsis_si L95 >= 3.0; Y-04 HLA-DQ2/DQ8 indirect CD4 SI <= 1.5, NKG2A- KIR+ NK <= 8.0%, and AP1903 iCasp9 clonogenic escape/survival upper bound U95 <= 1e-8 (k == 0 at N_eff >= 299,573,228)",
+        "Y-05 backup 12-TU holds at HOLD_PENDING_DEDICATED_12TU_BACKUP_DELIVERY_DONOR_SPEC (IIP-0034 stages ONLY the full-length 18,760-bp 12-TU reference sequence and does NOT stage a dedicated 12-TU Step-2 split donor; staged HALF_A + HALF_B terminates at the primary product) until a dedicated 12-TU Step-2 attB-CA donor or direct 18.8-kb delivery protocol is preregistered and clears KI >= 1.0%/step PASS (0.8% <= rate < 1.0% -> HOLD; < 0.8% fallback trigger; N_95 <= 384 colonies/step), Barrier4_HBA_CTCF readthrough <= 1.0%, 12-TU Stage-7 Day-28 retention >= 80% (one-sided 95% LCB, n >= 3 independent differentiations), AND quantitative PIGK 3 ectopic GPI-client surface burden clearance (n >= 3 independent paired differentiation blocks; one-sided 95% LCB paired surface density ratio >= 0.80 vs paired ISLET1_Y_FULLSTACK_V2_CTRL_EQUAL_SPACING for BOTH endogenous CD59 AND engineered CD47-IgV-GPI, PLUS absolute CD47 >= 180,000 molecules/cell [one-sided 95% LCB]; missing or failing -> HOLD_PIGK_GPI_COMPETITION)",
+        "Y-06 three independent subgates (any single missing readout holds composite): (1) CD64t[1-313] intact non-DTT IgM-preserved + IgG2 + 5-10 mg/mL polyclonal IgG saturation ADCC U95 <= 5.0% (BOTH intact-serum total AND paired IgG-attributable cellular killing per GY-023); (2) complete same-MCB Gate 0V viral clearance (DEC-103 Day-28 k == 0 observed-zero hard veto, U95 <= 0.0005 at n >= 5,990, plus full prior Gate 0V verdict); (3) backup CD55+CFH arm-resolved complement C5b-9 U95 <= 5.0%",
+        "Y-07 CD274p::IL1RN sterile induction (10-100x molar IL-1Ra:IL-1beta target window [>= 10x min pass floor, <= 100x upper secretory-load bound], < 5% basal leak) AND conjunctive 2-pulse dynamic GSIS non-inferiority evaluating BOTH SI AND first-phase AUC on BOTH pulse 1 AND pulse 2 against EACH comparator separately (paired ISLET1_Y_FULLSTACK_V2_CTRL_EQUAL_SPACING AND donor-matched Stage-7 controls, never pooled; n >= 3 independent paired differentiation blocks, exact paired Student-t on log-ratios, one-sided 95% LCB >= 0.85, zero/undefined denominator -> HOLD; explicitly separate from standing GY-024 Rule S8 [n >= 6, n >= 8 for registered mixtures, adult-islet & absolute secretion floors]); Y-08 exploratory Stage-0 definitions (n >= 3 independent differentiations, HOLD_PENDING_ASSAY_SOP if unmeasured): VTCN1 NRD1 shed fraction <= 10% (one-sided 95% U95_t) & FSP1/AIFM2 ferroptosis viable fraction >= 80% (one-sided 95% L95_t)",
+        "Y-09 DEC-053 chr13q32.3 CLYBL::CDK1p::hTMPK-F105Y (CCA->CGA PAM shield): quiescent G0 C-peptide+ Ki67- beta-cell leak <= 0.1% (one-sided 95% U95_t, n >= 3), >= 4-log10 AZT dividing-cell reduction (one-sided 95% L95_t vs matched edited no-AZT control after forced chr15 loss), AND full standing GY-024/DEC-108 ZM447439 washout verdict (LC-MS/MS <= 0.005 uM, >= 3 washes, 80-120% spike recovery, pre-co-assembly iEC/pericyte vascular function verified)",
+        "R3P-01..R3P-06 modular flat-ribbon planar envelope (strictly barred on unhardened A/B/X): R3P-01 H_slot = 180-200 um, d_cluster < H_slot and d_cluster + 2*fibrin <= H_slot, net usable one-sided area >= 260 cm^2, tau_w <= 0.50 Pa (modeled from prescribed 6/8 min load durations), empirical load < 10.0 min, post-load viability >= 95%; R3P-02 peak F_pull <= 15.0 N per individually extracted ribbon (critical adhesion 2.70/3.00/2.31 kPa; concurrent two-ribbon extraction warning 20.0-22.2 N), fibrin < 15.0 um for > 90 um VPIOs / < 30.0 um for <= 90 um clusters (mixed populations with any cluster > 90 um governed by stricter < 15.0 um cap; geometric compliance necessary but not sufficient for oxygen); R3P-03 per-envelope Week 2.5-4.0 CEUS/Doppler microvascular perfusion + pO2 >= 30.0 mmHg readiness (any failing envelope holds that envelope; Jin 2026 single-cynomolgus-monkey observation is timing warning only); R3P-04 conjunctive loaded-coupon oxygen (Day-0 worst-face >= 15.0 / core >= 5.0 mmHg; post-anastomosis 2.5x GSIS stressed core >= 5.0 mmHg) AND empirical chamber-corrected fall t_50 < 3.0 min (spatial 65 um H200 modeled margin 0.235 s; centered 120 um VPIO fails clean shutoff even where Hybrid H180 nominal oxygen passes); R3P-05 acute 72 h Gate 0S AP1903+AZT + predeclared hemostatic modular retrieval completeness & bleeding endpoints under canonical exact 7-key DEC-103 ASSEMBLED_DEVICE_LOT_SCOPE (product_variant_id matching an eligible full-stack candidate excluding controls/components, construct_sha256 matching registered chr15 donor_sha256 [not whole-product chr13+chr15 attestation], donor_seedline_id, mcb_id, lot_id, device_assembly_id, physical_route_id == ROUTE_3P_MODULAR_PLANAR_ENVELOPE; no control/zero-width chars, whitespace padding, extra keys, or cross-lot/device pooling; backup CD55+CFH requires explicit backup_gate0v_primary_failed is True tied to a scoped primary Gate 0V MCB FAIL), explicit independent biological opportunities (strict str sampling_independence_model == INDEPENDENT_BIOLOGICAL_OPPORTUNITIES and clustered_sampling is False), strict hard cap <= 1e-6, explicit calibration & f_clonogenic_provenance (KNOWN_OR_CONSERVATIVELY_ESTABLISHED or INDEPENDENTLY_ESTIMATED_WITH_ALPHA_ALLOCATION preserving >= 90% Bonferroni joint coverage via explicit alpha_obs + alpha_eta + alpha_f <= 0.10 with alpha_eta >= 0.05 when L95 recovery eta < 1.0; eta >= 0.30 floor when < 1.0; NEVER floor(n_raw*eta)), unconditional k == 0 hard veto (with separate attribution_status) AND exact 80-digit conservative Decimal U95 <= 1e-6 (n_raw >= 2,995,731 at 1.00; >= 5,991,464 at 0.50, holding 5,991,463 & 5,991,462; single Blueprint reference dose of 93,350 clonogenic opportunities yields U95 = 3.20909e-5 at 1.00 / 6.41818e-5 at 0.50 -> HOLD_INCONCLUSIVE_INSUFFICIENT_INDEPENDENT_DENOMINATOR, distinct from Day-90 shedding k == 0, Stage-2/3 safety, and GRAVEYARD_002); R3P-06 5-day perioperative rest window with observable glycemic/interruption criteria (project design rule; ADA 2026 s16 distinguishes critically ill 140-180 vs noncritical/perioperative 100-180 mg/dL)"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_Y_FULLSTACK_V2_CTRL_EQUAL_SPACING",
+      "family": "A",
+      "aliases": [
+        "DESIGN_Y_FULLSTACK_V2_CTRL_EQUAL_SPACING"
+      ],
+      "dsb_or_indel_loci": [
+        "B2M",
+        "CLYBL"
+      ],
+      "base_or_prime_edit_loci": [
+        "CIITA",
+        "CXCL10"
+      ],
+      "K": 2,
+      "B": 2,
+      "alleles": {
+        "B2M": "length- and chromatin-spacing-matched 17,237-bp 11-TU-slot Stage-0 v1-baseline attribution control (retaining the 6 Design Y v1 baseline TUs [1 ectopic GPI client] while replacing the 5 new v2 TU slots with ORF-less caps, 0 cap ORFs >= 8 aa; 1,523 bp shorter than 18,760-bp 12-TU backup) benchmarking Stage-7 retention/spacing, Y-05 backup paired surface density (CD59 & CD47-IgV-GPI), and Y-07 2-pulse GSIS against ISLET1_Y_FULLSTACK_V2_B2M_11TU and (if activated on primary Gate 0V MCB failure) ISLET1_Y_FULLSTACK_V2_CD55_CFH_COMPARATOR",
+        "CLYBL": "independent chr13q32.3 CLYBL Intron-2 double-insulated CDK1p::hTMPK-F105Y companion safety switch (DEC-053)",
+        "CIITA": "biallelic DSB-free TadCBEd base-edit LOF intended",
+        "CXCL10": "biallelic DSB-free TadCBEd M1I initiation-codon ablation intended"
+      },
+      "cassette_topology": {
+        "B2M": "17,237-bp 11-TU equal-spacing Stage-0 v1-baseline attribution control matching B2M_11TU length and insulator layout (retaining the 6 baseline Design Y v1 TUs [PIGK = 1] and replacing only the 5 new v2 TUs with ORF-less caps; 0 cap ORFs >= 8 aa, 0 uninsulated 0-bp gaps, 0/0 clipping introns, 0x 2A)",
+        "CLYBL": "Companion chr13q32.3 CLYBL Intron-2 double-insulated CDK1p::hTMPK-F105Y (2,297 bp)"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Unscored Mode-B Stage-0 length- and spacing-matched pooled 5-TU v2-vs-v1 attribution control (17,237 bp, 11 TU slots [6 active v1 TUs + 5 ORF-less caps]; 1,523 bp shorter than 12-TU backup; IIP-0034; DEC-113; host-family chassis lineage 'A', Design Y Route 3P binding); tests combined effect of the five added v2 TUs vs v1 baseline (cannot isolate individual TU contributions); control-only comparator explicitly excluded from full-stack clearance",
+      "physical_manufacturing_yield": null,
+      "physical_route_id": "ROUTE_3P_MODULAR_PLANAR_ENVELOPE",
+      "donor_lineage": {
+        "cell_source": "single master hPSC clone; accession and donor genotype not yet assigned",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta",
+          "isogenic_iEC",
+          "isogenic_iPericytes"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
+      },
+      "hla_retention": {
+        "classical_MHC_I": "B2M Exon-1 landing-pad disruption intended (HLA-E SCT + CD47-IgV-GPI + multi-layer immune shield)",
+        "classical_MHC_II": "CIITA LOF via DSB-free TadCBEd base editing intended",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "staged_design_y_fullstack_v2_donor_binding": {
+        "proposal_id": "IIP-0034",
+        "decision_id": "DEC-113",
+        "fasta_path": "data/constructs/islet1_design_y_fullstack_v2_v0.8.0.fasta",
+        "fasta_sha256": "9826f7917c73f56b62f38db9df0fd61d2ffbf90da3f454392c9f415c16de336c",
+        "fasta_record_id": "DESIGN_Y_FULLSTACK_v2_CTRL_EQUAL_SPACING",
+        "donor_sha256": "d5f69bd613cc0d598b846ba061154dc522b8ec6fb064610cfad01562505d2925",
+        "donor_length_bp": 17237,
+        "tu_count": 11,
+        "pigk_ectopic_gpi_count": 1,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "EQUAL_SPACING_ATTRIBUTION_CONTROL",
+        "stage0_promotion_gates": "CONTROL_ONLY_EXCLUDED_FROM_FULLSTACK_CLEARANCE (pooled 5-TU v2-vs-v1 spacing/retention, Y-05 conditional backup CD59/CD47-IgV-GPI surface-density ratio, and Y-07 paired 2-pulse GSIS comparator only)"
+      },
+      "pending_assay_gates": [
+        "Y-05 paired Stage-7 differentiation and Barrier4/chromatin-spacing retention comparator for primary ISLET1_Y_FULLSTACK_V2_B2M_11TU (equal 17,237-bp length) AND conditional paired surface-density comparator for backup ISLET1_Y_FULLSTACK_V2_CD55_CFH_COMPARATOR (if activated on primary Gate 0V MCB failure: n >= 3 paired differentiation blocks; backup must achieve one-sided 95% LCB surface density ratio >= 0.80 vs CTRL_EQUAL_SPACING on BOTH endogenous CD59 AND engineered CD47-IgV-GPI with CD47 >= 180,000 molecules/cell; otherwise HOLD_PIGK_GPI_COMPETITION)",
+        "Y-07 paired 2-pulse dynamic GSIS benchmark (conjunctive SI AND first-phase AUC on both pulses, n >= 3 paired differentiation blocks, one-sided 95% LCB >= 0.85) against primary ISLET1_Y_FULLSTACK_V2_B2M_11TU (equal 17,237-bp length) and, if activated on primary Gate 0V MCB failure, against backup ISLET1_Y_FULLSTACK_V2_CD55_CFH_COMPARATOR (1,523 bp longer; non-equal-length GSIS comparator)",
+        "Control-only attribution comparator (11 TU slots: 6 active v1 TUs + 5 ORF-less caps): evaluates the pooled 5-TU v2 addition relative to v1 baseline without isolating individual TU effects, and is strictly excluded from full-stack Design Y-FullStack v2 or Route 3P clearance"
+      ]
     }
   ]
 }

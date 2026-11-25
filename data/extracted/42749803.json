@@ -1,0 +1,254 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "42749803",
+    "pmcid": "PMC13754579",
+    "doi": "10.1038/s41586-026-11024-2",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Targeted genomic integration and rearrangement using prime assembly.",
+    "first_author": "Levesque S",
+    "senior_author": "Bauer DE",
+    "pub_year": 2026,
+    "journal": "Nature",
+    "source_text_type": "FullText_XML_or_PDF",
+    "pillars_covered": [
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth"
+    ],
+    "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid42749803_arm1",
+      "arm_label": "Resting G0/G1 primary human CD3+ T cells (IL-7/IL-15 culture) electroporated with PE7 mRNA, synthetic TRAC pegRNAs, and ssDNA donors (Fig. 5g, n=4 paired donors, mean +/- SEM)",
+      "is_reference_control": false,
+      "sample_size_n": 4,
+      "sample_size_unit": "human_immune_donors",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cell_line_id": "Primary human CD3+ T cells (n=4 paired healthy donors; resting IL-7/IL-15)",
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "TRAC",
+          "ensembl_gene_id": "ENSG00000277734",
+          "sub_molecular_coordinate": {
+            "region_class": "Transgene_cDNA_Cassette",
+            "exact_variant_or_swap_description": "PE7 mRNA + synthetic TRAC pegRNAs + TRAC ssDNA donor dual-flap prime assembly in resting G0/G1 (IL-7/IL-15) primary human CD3+ T cells (Fig. 5g)"
+          },
+          "functional_gate": "Platform_Genome_Engineering_Delivery_Benchmark",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "PrimeEdit",
+          "promoter_or_locus_context": "Endogenous_Native_Promoter",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Gain_of_Function_OE_or_KI"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid42749803_arm2",
+      "arm_label": "Activated primary human CD3+ T cells (CD3/CD28/CD2 + IL-2 culture) electroporated with PE7 mRNA, synthetic TRAC pegRNAs, and ssDNA donors (Fig. 5g, n=4 paired donors, mean +/- SEM)",
+      "is_reference_control": true,
+      "sample_size_n": 4,
+      "sample_size_unit": "human_immune_donors",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cell_line_id": "Primary human CD3+ T cells (n=4 paired healthy donors; activated CD3/CD28/CD2 + IL-2)",
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "TRAC",
+          "ensembl_gene_id": "ENSG00000277734",
+          "sub_molecular_coordinate": {
+            "region_class": "Transgene_cDNA_Cassette",
+            "exact_variant_or_swap_description": "[REDACTED_CONSERVATIVE_EXCERPT: see PMID:42749803 field=exact_variant_or_swap_description mod=PrimeEdit genes=TRAC quote_sha256=9edb15d6e009ab818093dde88632b1952ecc17af741481c142d0b69e7e62481a]"
+          },
+          "functional_gate": "Platform_Genome_Engineering_Delivery_Benchmark",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "PrimeEdit",
+          "promoter_or_locus_context": "Endogenous_Native_Promoter",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Gain_of_Function_OE_or_KI"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid42749803_eff1_primary_human_integration",
+      "source_figure_or_table": "Fig. 5g & Results (PMC13754579; resting G0/G1 vs activated CD3+ T cells, TRAC ssDNA donors, n=4 donors)",
+      "focal_factor_X": "Prime_Assembly_TRAC_ssDNA_Primary_Human",
+      "comparator_X0": "Activated_primary_human_CD3_T_cells_same_TRAC_ssDNA_PA_treatment_Fig5g",
+      "outcome_variable_Y": "[Endpoint: Genome_Integration_and_Cargo_Insertion | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=pct_pa_alleles_ddpcr]",
+      "outcome_domain": "Genome_Integration_and_Cargo_Insertion",
+      "treatment_mean": 3.3,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": 2.2,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "pct_pa_alleles_ddpcr",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Descriptive_or_Unoriented",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Fig. 5g specific TRAC ssDNA comparison in n=4 paired donors (mean +/- SEM; resting IL-7/IL-15 culture 3.3% vs activated CD3/CD28/CD2 + IL-2 culture 2.2%); differing culture conditions make the contrast descriptive/context-dependent rather than adjudicated superiority (distinct from dsDNA or hiPSC)",
+        "Z2_genetic_background_and_allelic_dose": "PE7 mRNA + synthetic TRAC pegRNAs + ssDNA donor in Fig. 5g (n=4 paired healthy human donors, SEM; relative innate DNA-sensing toxicity and hiPSC efficiency unmeasured)",
+        "Z3_immune_effector_and_stressor_pathway": "Delivery platform benchmark only",
+        "Z4_metabolic_and_glucose_load_state": "Standard culture",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Primary human cells",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Endogenous human TRAC locus (ENSG00000277734) targeted with PE7 mRNA, synthetic TRAC pegRNAs, and ssDNA donors in both arms; secondary locator Fig. 5g caption[0:402] documents day-3 gDNA harvest, n=4 paired healthy donors, mean +/- s.e.m.",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "[REDACTED_CONSERVATIVE_EXCERPT: see PMID:42749803 field=verbatim_evidence_quote genes=TRAC pert=NONE quote_sha256=25c95da64d9e31063b2c2b223e46cc9e0082ebe1d70dc7ba9da8645d51c0e273]",
+      "focal_arm_id": "pmid42749803_arm1",
+      "comparator_arm_id": "pmid42749803_arm2",
+      "dispersion_type": "SEM",
+      "n_unit": "human_immune_donors",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "primary_human_transgene_integration"
+      },
+      "dossier_sha256": "f01927c9784ad90d2819b5f7ede225bc5daf99df04ce6c4ec629e93874114c9a",
+      "source_span": "fulltext_data_sections.results_paragraphs[0][747:1015]|norm=exact",
+      "quote_source_dossier_pmid": "42749803",
+      "statistic_type": "qualitative_statement_only",
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "contrast_metadata": {
+        "intervention_label": "Resting_G0_G1_primary_human_CD3_T_cells_TRAC_ssDNA_PA_Fig5g",
+        "comparator_label": "Activated_primary_human_CD3_T_cells_IL2_TRAC_ssDNA_PA_Fig5g",
+        "endpoint_name": "TRAC-targeted ssDNA prime assembly in activated (2.2%) and resting G0/G1 (3.3%) primary human CD3+ T cells (Fig. 5g, n=4 donors)",
+        "timepoint": "3 days post-nucleofection",
+        "population_or_model": "Primary human CD3+ T cells from n=4 healthy donors (ssDNA comparison; distinct from dsDNA or hiPSC)",
+        "units": "pct_PA_allele_ddPCR",
+        "contrast_type": "between_arm_comparative_descriptive"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

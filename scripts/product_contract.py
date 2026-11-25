@@ -141,6 +141,100 @@ LOCUS2_V3_DONOR_BINDINGS: dict[str, dict[str, object]] = {
 }
 STAGED_LOCUS2_V3_PRODUCT_IDS = frozenset(LOCUS2_V3_DONOR_BINDINGS.keys())
 STAGED_LOCUS2_V3_DONOR_ALIASES = frozenset(str(v["locus2_donor_id"]) for v in LOCUS2_V3_DONOR_BINDINGS.values())
+DESIGN_Y_V2_FASTA_PATH = Path("data/constructs/islet1_design_y_fullstack_v2_v0.8.0.fasta")
+DESIGN_Y_V2_FASTA_SHA256 = "9826f7917c73f56b62f38db9df0fd61d2ffbf90da3f454392c9f415c16de336c"
+DESIGN_Y_V2_DONOR_BINDINGS: dict[str, dict[str, object]] = {
+    "ISLET1_Y_FULLSTACK_V2_B2M_11TU": {
+        "proposal_id": "IIP-0034",
+        "decision_id": "DEC-113",
+        "fasta_record_id": "DESIGN_Y_FULLSTACK_v2_B2M_11TU",
+        "donor_sha256": "e77a358ca5bc55c9e0a3070ab46b115c3314660d3a9be6221ef9e91d698cab4e",
+        "donor_length_bp": 17237,
+        "tu_count": 11,
+        "pigk_ectopic_gpi_count": 1,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "FULL_CHR15_11TU_REFERENCE",
+        "stage0_promotion_gates": "Y-01..Y-09 + R3P-01..R3P-06 (primary 11-TU CD46_WT full-stack candidate)",
+        "full_record_sha256": "3aa9ed8d81156d22c293dfc849c6ef246aa9589a2d5dddb824668a46e153a584",
+    },
+    "ISLET1_Y_FULLSTACK_V2_B2M_HALF_A_ATTB_GT": {
+        "proposal_id": "IIP-0034",
+        "decision_id": "DEC-113",
+        "fasta_record_id": "DESIGN_Y_FULLSTACK_v2_B2M_HALF_A_ATTB_GT",
+        "donor_sha256": "bd8dd98ae5a81f1ac1157523ac7195fe409af34e52ae310528071c896e0708df",
+        "donor_length_bp": 10450,
+        "tu_count": 7,
+        "pigk_ectopic_gpi_count": 1,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "SEQUENTIAL_STEP1_ATTB_GT_DONOR",
+        "stage0_promotion_gates": "COMPONENT_ONLY_EXCLUDED_FROM_FULLSTACK_CLEARANCE (Y-05 Step-1 attP-GT knock-in and attP-CA landing-site fidelity only)",
+        "full_record_sha256": "372af0bc127fd9ffc5cbc2753d8e3d14d0493bdf7e660ddcde3674edebf8ba7a",
+    },
+    "ISLET1_Y_FULLSTACK_V2_B2M_HALF_B_ATTB_CA": {
+        "proposal_id": "IIP-0034",
+        "decision_id": "DEC-113",
+        "fasta_record_id": "DESIGN_Y_FULLSTACK_v2_B2M_HALF_B_ATTB_CA",
+        "donor_sha256": "097f8b46bd8be54f6305372ddcba2b7e863aa62c3736b912808bd2ec3206fa2b",
+        "donor_length_bp": 6909,
+        "tu_count": 4,
+        "pigk_ectopic_gpi_count": 0,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "SEQUENTIAL_STEP2_ATTB_CA_DONOR",
+        "stage0_promotion_gates": "COMPONENT_ONLY_EXCLUDED_FROM_FULLSTACK_CLEARANCE (Y-05 Step-2 attP-CA knock-in into HALF_A clone only)",
+        "full_record_sha256": "61587ac04bf28422c0aa8dd72be1680b4c4a5c7d6f6e5052727566155e4b2613",
+    },
+    "ISLET1_Y_FULLSTACK_V2_DEC053_CLYBL_CDK1_HTMPK": {
+        "proposal_id": "IIP-0034",
+        "decision_id": "DEC-113",
+        "fasta_record_id": "DESIGN_Y_FULLSTACK_v2_DEC053_CHR13_CLYBL_CDK1_HTMPK",
+        "donor_sha256": "f631592ed4c08fd433a03d2b085c04196b4b5b812b6f7fd49916c06e865d1323",
+        "donor_length_bp": 2297,
+        "tu_count": 1,
+        "pigk_ectopic_gpi_count": 0,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "DEC053_CHR13_CLYBL_SAFETY_SWITCH",
+        "stage0_promotion_gates": "COMPONENT_ONLY_EXCLUDED_FROM_FULLSTACK_CLEARANCE (Y-09 independent chr13 CLYBL::CDK1p::hTMPK-F105Y module only)",
+        "full_record_sha256": "ee224e637491625ded5434cc4f50628b2dabcaa111f6c8e523b0d5378d1463f7",
+    },
+    "ISLET1_Y_FULLSTACK_V2_CD55_CFH_COMPARATOR": {
+        "proposal_id": "IIP-0034",
+        "decision_id": "DEC-113",
+        "fasta_record_id": "DESIGN_Y_FULLSTACK_v2_CD55_CFH_COMPARATOR",
+        "donor_sha256": "d7291ca6e610f8251ab04bbf6fc62d7747e7baaf0e680300f46b895920aab9d8",
+        "donor_length_bp": 18760,
+        "tu_count": 12,
+        "pigk_ectopic_gpi_count": 3,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "GATE0V_CD55_CFH_BACKUP_COMPARATOR",
+        "stage0_promotion_gates": "Y-01..Y-09 + R3P-01..R3P-06 (12-TU CD55+CFH Gate 0V backup full-stack candidate; activated only if primary CD46_WT fails Gate 0V MCB viral clearance)",
+        "full_record_sha256": "ffeb49b2055cda9039ddf514ee87403b2b1cf7d91adee3d151448c918d43bb33",
+    },
+    "ISLET1_Y_FULLSTACK_V2_CTRL_EQUAL_SPACING": {
+        "proposal_id": "IIP-0034",
+        "decision_id": "DEC-113",
+        "fasta_record_id": "DESIGN_Y_FULLSTACK_v2_CTRL_EQUAL_SPACING",
+        "donor_sha256": "d5f69bd613cc0d598b846ba061154dc522b8ec6fb064610cfad01562505d2925",
+        "donor_length_bp": 17237,
+        "tu_count": 11,
+        "pigk_ectopic_gpi_count": 1,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "EQUAL_SPACING_ATTRIBUTION_CONTROL",
+        "stage0_promotion_gates": "CONTROL_ONLY_EXCLUDED_FROM_FULLSTACK_CLEARANCE (pooled 5-TU v2-vs-v1 spacing/retention, Y-05 conditional backup CD59/CD47-IgV-GPI surface-density ratio, and Y-07 paired 2-pulse GSIS comparator only)",
+        "full_record_sha256": "bddf38d1aed8747f45e6ad112a02d4baced270418ec3f6d135dfb632958a4e99",
+    },
+}
+STAGED_DESIGN_Y_V2_PRODUCT_IDS = frozenset(DESIGN_Y_V2_DONOR_BINDINGS.keys())
+
+
+def _reject_nonfinite_product_json(token: str) -> Any:
+    raise ValueError(f"Non-standard JSON constant rejected in product registry: {token!r}")
+
+
+def _parse_finite_product_json_float(token: str) -> float:
+    val = float(token)
+    if not math.isfinite(val):
+        raise ValueError(f"Non-finite JSON float overflow rejected in product registry: {token!r}")
+    return val
 ALLOWED_DESIGN_B_LIFECYCLE_STATES = frozenset({
     "STAGED_REFERENCE_FASTA_ARTIFACT",
     "REGISTRY_DONOR_REFERENCE_BOUND",
@@ -246,9 +340,11 @@ def load_product_contracts(
         raw_json = contract_file.read_text(encoding="utf-8")
     except UnicodeDecodeError as exc:
         raise ValueError(f"Product registry is not valid UTF-8: {contract_file}") from exc
-    payload = json.loads(raw_json, object_pairs_hook=_reject_duplicate_json_keys)
+    payload = json.loads(raw_json, object_pairs_hook=_reject_duplicate_json_keys, parse_constant=_reject_nonfinite_product_json, parse_float=_parse_finite_product_json_float)
     if not isinstance(payload, dict) or not isinstance(payload.get("products"), list):
         raise ValueError("Product registry must contain a products list")
+    if require_staged_fastas and ("mcb_donor_blocking_policy" not in payload or "design_b_four_state_lifecycle_policy" not in payload):
+        raise ValueError("Product registry missing required mcb_donor_blocking_policy or design_b_four_state_lifecycle_policy")
     if "mcb_donor_blocking_policy" in payload:
         pol = payload["mcb_donor_blocking_policy"]
         if (
@@ -315,6 +411,9 @@ def load_product_contracts(
     missing_l2_v3 = STAGED_LOCUS2_V3_PRODUCT_IDS - by_id.keys()
     if missing_l2_v3:
         raise ValueError(f"Missing required staged Locus-2 v3 product definitions: {sorted(missing_l2_v3)} (IIP-0031; DEC-110)")
+    missing_dy2 = STAGED_DESIGN_Y_V2_PRODUCT_IDS - by_id.keys()
+    if missing_dy2:
+        raise ValueError(f"Missing required staged Design Y-FullStack v2 product definitions: {sorted(missing_dy2)} (IIP-0034; DEC-113)")
 
     fasta_file = root / DESIGN_B_FASTA_PATH
     if require_staged_fastas or fasta_file.exists():
@@ -361,6 +460,23 @@ def load_product_contracts(
             ):
                 raise ValueError(f"Staged Locus-2 donor digest or length mismatch for {_did} (IIP-0031; DEC-110)")
 
+    dy2_fasta_file = root / DESIGN_Y_V2_FASTA_PATH
+    if require_staged_fastas or dy2_fasta_file.exists():
+        if not dy2_fasta_file.is_file():
+            raise ValueError(f"Missing or non-regular staged Design Y-FullStack v2 FASTA: {dy2_fasta_file} (IIP-0034; DEC-113)")
+        dy2_raw = dy2_fasta_file.read_bytes()
+        if hashlib.sha256(dy2_raw).hexdigest() != DESIGN_Y_V2_FASTA_SHA256:
+            raise ValueError("Staged Design Y-FullStack v2 FASTA SHA-256 mismatch against registry pin (IIP-0034; DEC-113)")
+        try:
+            dy2_map = _parse_fasta_map(dy2_raw.decode("utf-8"))
+        except UnicodeDecodeError as exc:
+            raise ValueError("Staged Design Y-FullStack v2 FASTA is not valid UTF-8 (IIP-0034; DEC-113)") from exc
+        for _pvid, _spec in DESIGN_Y_V2_DONOR_BINDINGS.items():
+            _rid = str(_spec["fasta_record_id"])
+            _seq = dy2_map.get(_rid, "")
+            if len(_seq) != int(_spec["donor_length_bp"]) or hashlib.sha256(_seq.encode("utf-8")).hexdigest() != str(_spec["donor_sha256"]):
+                raise ValueError(f"Staged Design Y-FullStack v2 record digest or length mismatch for {_rid} (IIP-0034; DEC-113)")
+
     return payload
 
 
@@ -396,6 +512,7 @@ def validate_product_definition(product: dict) -> dict:
         pvid.startswith("ISLET1_" + fam)
         or (fam == "A" and pvid.startswith("ISLET1_COMP_"))
         or (fam == "A" and pvid.startswith("ISLET1_Z_") and product["execution_supported"] is False)
+        or (fam == "A" and pvid.startswith("ISLET1_Y_") and product["execution_supported"] is False)
     ):
         raise ValueError("Product identifier conflicts with its family")
     if product["physical_manufacturing_yield"] is not None:
@@ -432,7 +549,7 @@ def validate_product_definition(product: dict) -> dict:
     gates = product["pending_assay_gates"]
     if not isinstance(gates, list) or not gates or any(not isinstance(g, str) or not g.strip() for g in gates):
         raise ValueError("Explicit pending assay gates are required")
-    known_loci = {"B2M", "CIITA", "CXCL10", "AAVS1", "HLA-A", "HLA-B", "TYK2", "INS"}
+    known_loci = {"B2M", "CIITA", "CXCL10", "AAVS1", "HLA-A", "HLA-B", "TYK2", "INS", "CLYBL"}
     for loci_key, count_key in [("dsb_or_indel_loci", "K"), ("base_or_prime_edit_loci", "B")]:
         loci = product[loci_key]
         if not isinstance(loci, list) or any(not isinstance(x, str) or x not in known_loci for x in loci) or len(loci) != len(set(loci)):
@@ -507,6 +624,40 @@ def validate_product_definition(product: dict) -> dict:
 
     if "staged_design_b_donor_pair_binding" in product:
         _validate_staged_design_b_binding(product["staged_design_b_donor_pair_binding"], pvid)
+    if pvid in STAGED_DESIGN_Y_V2_PRODUCT_IDS:
+        _dy2_exp = DESIGN_Y_V2_DONOR_BINDINGS[pvid]
+        if product["execution_supported"] is not False:
+            raise ValueError(f"Staged Design Y-FullStack v2 comparator {pvid} must keep execution_supported=False (IIP-0034; DEC-113)")
+        if product.get("lifecycle_state") != "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC":
+            raise ValueError(f"Staged Design Y-FullStack v2 comparator {pvid} must stay at STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC (IIP-0034; DEC-113)")
+        if product.get("physical_route_id") != "ROUTE_3P_MODULAR_PLANAR_ENVELOPE":
+            raise ValueError(f"Staged Design Y-FullStack v2 comparator {pvid} must declare physical_route_id=ROUTE_3P_MODULAR_PLANAR_ENVELOPE (IIP-0034; DEC-113)")
+        _dy2_bind = product.get("staged_design_y_fullstack_v2_donor_binding")
+        _rec_sha = hashlib.sha256(json.dumps(product, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode("utf-8")).hexdigest()
+        if _rec_sha != _dy2_exp["full_record_sha256"]:
+            raise ValueError(f"Invalid or mutated Design Y-FullStack v2 product record {pvid} (full_record_sha256 mismatch; IIP-0034; DEC-113)")
+        if (
+            not isinstance(_dy2_bind, dict)
+            or _dy2_bind.get("proposal_id") != _dy2_exp["proposal_id"]
+            or _dy2_bind.get("decision_id") != _dy2_exp["decision_id"]
+            or _dy2_bind.get("fasta_path") != str(DESIGN_Y_V2_FASTA_PATH)
+            or _dy2_bind.get("fasta_sha256") != DESIGN_Y_V2_FASTA_SHA256
+            or _dy2_bind.get("fasta_record_id") != _dy2_exp["fasta_record_id"]
+            or _dy2_bind.get("donor_sha256") != _dy2_exp["donor_sha256"]
+            or type(_dy2_bind.get("donor_length_bp")) is not int
+            or _dy2_bind.get("donor_length_bp") != _dy2_exp["donor_length_bp"]
+            or type(_dy2_bind.get("tu_count")) is not int
+            or _dy2_bind.get("tu_count") != _dy2_exp["tu_count"]
+            or type(_dy2_bind.get("pigk_ectopic_gpi_count")) is not int
+            or _dy2_bind.get("pigk_ectopic_gpi_count") != _dy2_exp["pigk_ectopic_gpi_count"]
+            or type(_dy2_bind.get("encoded_2a_motifs_6frame")) is not int
+            or _dy2_bind.get("encoded_2a_motifs_6frame") != _dy2_exp["encoded_2a_motifs_6frame"]
+            or _dy2_bind.get("role") != _dy2_exp["role"]
+            or _dy2_bind.get("stage0_promotion_gates") != _dy2_exp["stage0_promotion_gates"]
+        ):
+            raise ValueError(f"Invalid or missing staged_design_y_fullstack_v2_donor_binding for {pvid} (IIP-0034; DEC-113)")
+    elif "staged_design_y_fullstack_v2_donor_binding" in product:
+        raise ValueError(f"Non-Design-Y-v2 product {pvid} must not carry staged_design_y_fullstack_v2_donor_binding (IIP-0034; DEC-113)")
     if product["physical_qualification_status"] != "PREREGISTERED_PENDING":
         raise ValueError("This release contains no physically qualified exact product")
     if fam == "B" and product["execution_supported"]:

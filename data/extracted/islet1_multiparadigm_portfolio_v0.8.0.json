@@ -1,0 +1,967 @@
+{
+  "schema_version": "openislet_multiparadigm_portfolio_v0.8.0",
+  "proposal_id": "IIP-0034",
+  "decision_id": "DEC-113",
+  "license": "CC-BY-4.0",
+  "epistemic_status": "COMPUTATIONAL_SCENARIO_EVALUATOR_STAGE0_PROMOTION_PENDING",
+  "live_headline_delta_pp_today": 0.0,
+  "modular_compatibility_matrix": {
+    "D1B_AUTO_C_V2": [
+      "R1",
+      "R2",
+      "R3P"
+    ],
+    "DESIGN_Y_FULLSTACK_V2": [
+      "R3P"
+    ],
+    "DESIGN_Y_HYPOTHETICAL_R2_COUNTERFACTUAL": [
+      "R1",
+      "R2"
+    ],
+    "UNEDITED_AUTO_NEGATIVE_CONTROL": [
+      "R1",
+      "R2"
+    ],
+    "UNHARDENED_A_B_X": [
+      "R1",
+      "R2"
+    ]
+  },
+  "w_b0_modular_permissions_note": "In hypothetical counterfactual W_B0, the 4th cell is assigned R2 on the locked diagonal and permitted {'R1', 'R2'} in the modular branch (giving 55.1161% K=100 modular; restricting W_B0 strictly to {'R2'} lowers modular K=100 to 54.9679%). W_B0 is an unregistered hypothetical counterfactual outside Design Y v2.",
+  "five_arm_bridge_registration_status": {
+    "DESIGN_Y_FULLSTACK_V2": "REGISTERED_AND_FASTA_VERIFIED_IN_IIP0034_MODE_B_NON_EXECUTABLE_ROUTE_3P_ONLY",
+    "D1B_AUTO_C_V2": "UNREGISTERED_STAGE0_FORWARD_BRIDGE_PLACEHOLDER_NO_IIP0034_PRODUCT_OR_FASTA",
+    "note": "Registry and FASTA verification in IIP-0034 covers the six staged Design Y-FullStack v2 records; D1B_AUTO_C_V2 in stage0_gated_5arm_unified_bridge is an unregistered Stage-0-gated forward compatibility placeholder with no exact product definition or FASTA staged in IIP-0034."
+  },
+  "caveat": "Live OQ-016 3x2 headline odds (50.778198% locked / 54.116275% modular K=100 / 57.917640% conditional shared-hurdle model ceiling — NOT an established biological ceiling) and all 2,160 Layer-1 combinatorial stacks remain strictly unchanged (+0.00 pp today). All 20 ordinary scenarios + 2 phi_H4/marginal counterexamples + 2 adverse-coupling outputs enforce 4,096-state incumbent joint probability parity (max |delta| <= 1e-12), bind registered DESIGN_Y_FULLSTACK_V2 strictly to {'R3P'} matching product_contract.py, exclude prohibited A/B/X + Route 3P mass on both locked and modular paths, and note that Fréchet mixture weights phi are unmeasured modeling parameters unidentified by short Stage-0 assays: W_B9 crosses exact 57.917640% near phi_H4 = 0.5136 (57.7545% at 0.60), equalizing Y's H2/H3 marginals to X drops W_B3 to 56.8286%, and ~2.72%/0.365% adverse cross-hurdle mixture weight erases W_B3/W_B9 gain (10% drops them to 57.4151%/57.2375%).",
+  "live_3x2_baseline_invariant": {
+    "arms": {
+      "A": [
+        0.88,
+        0.78,
+        0.57,
+        0.69
+      ],
+      "B": [
+        0.88,
+        0.79,
+        0.64,
+        0.7
+      ],
+      "X": [
+        0.88,
+        0.82,
+        0.73,
+        0.69
+      ]
+    },
+    "shared_ceilings": [
+      0.88,
+      0.87,
+      0.89,
+      0.85
+    ],
+    "locked_pct": 50.778198,
+    "modular_k100_pct": 54.116275,
+    "modular_k90_pct": 53.782467,
+    "shared_ceiling_pct": 57.91764,
+    "residual_risk_reduction_locked_bar_pct": 14.5046,
+    "residual_risk_reduction_mod_bar_pct": 8.2848
+  },
+  "conservative_zero_h2_h3_lift_4x3_architectural": [
+    {
+      "scenario": "W_B0_4Arm_Y@R2_ZeroLift_phiYX0.75 (No Route 3P)",
+      "stage0_qualification_status": "HYPOTHETICAL_UNREGISTERED_LEGACY_R2_COUNTERFACTUAL",
+      "n_arms": 4,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_HYPOTHETICAL_R2_COUNTERFACTUAL"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R2"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        87.0,
+        89.0,
+        85.0
+      ],
+      "composite_ceiling_pct": 57.9176,
+      "h4_union_pct": 82.1765,
+      "locked_pct": 54.1735,
+      "delta_locked_pp": 3.3953,
+      "modular_k100_pct": 55.1161,
+      "modular_k90_pct": 55.0218,
+      "modular_unconstrained_reference_pct": 55.1161,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 0.0,
+      "delta_modular_pp": 0.9998,
+      "residual_risk_reduction_locked_pct": 6.9,
+      "residual_risk_reduction_mod_pct": 2.18,
+      "clears_57p92_locked": false,
+      "clears_qL_14p51_and_qM_8p29": false,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    },
+    {
+      "scenario": "W_B1_4Arm_Y@PrePerf3P_ZeroLift_c4u0.92_phiYX0.75_phiH4=0.25",
+      "stage0_qualification_status": "CONSERVATIVE_ZERO_H2_H3_LIFT_ARCHITECTURAL_BOUND",
+      "n_arms": 4,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        87.0,
+        89.0,
+        89.85
+      ],
+      "composite_ceiling_pct": 61.2227,
+      "h4_union_pct": 88.5404,
+      "locked_pct": 57.5945,
+      "delta_locked_pp": 6.8163,
+      "modular_k100_pct": 58.6782,
+      "modular_k90_pct": 58.5698,
+      "modular_unconstrained_reference_pct": 59.3843,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 0.7062,
+      "delta_modular_pp": 4.5619,
+      "residual_risk_reduction_locked_pct": 13.85,
+      "residual_risk_reduction_mod_pct": 9.94,
+      "clears_57p92_locked": false,
+      "clears_qL_14p51_and_qM_8p29": false,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    },
+    {
+      "scenario": "W_B2_4Arm_Y@PrePerf3P_ZeroLift_c4u0.92_phiYX0.75_phiH4=0.50",
+      "stage0_qualification_status": "CONSERVATIVE_ZERO_H2_H3_LIFT_ARCHITECTURAL_BOUND",
+      "n_arms": 4,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        87.0,
+        89.0,
+        88.23
+      ],
+      "composite_ceiling_pct": 60.121,
+      "h4_union_pct": 87.2163,
+      "locked_pct": 56.873,
+      "delta_locked_pp": 6.0948,
+      "modular_k100_pct": 57.9113,
+      "modular_k90_pct": 57.8075,
+      "modular_unconstrained_reference_pct": 58.4963,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 0.585,
+      "delta_modular_pp": 3.795,
+      "residual_risk_reduction_locked_pct": 12.38,
+      "residual_risk_reduction_mod_pct": 8.27,
+      "clears_57p92_locked": false,
+      "clears_qL_14p51_and_qM_8p29": false,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    },
+    {
+      "scenario": "W_B3_4Arm_Y@Hybrid3P_ZeroLift_c4u0.92_phiYX0.75_phiH4=0.25",
+      "stage0_qualification_status": "CONSERVATIVE_ZERO_H2_H3_LIFT_ARCHITECTURAL_BOUND",
+      "n_arms": 4,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        87.0,
+        89.0,
+        90.46
+      ],
+      "composite_ceiling_pct": 61.6412,
+      "h4_union_pct": 89.2223,
+      "locked_pct": 58.1055,
+      "delta_locked_pp": 7.3273,
+      "modular_k100_pct": 59.1096,
+      "modular_k90_pct": 59.0092,
+      "modular_unconstrained_reference_pct": 59.8417,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 0.7321,
+      "delta_modular_pp": 4.9933,
+      "residual_risk_reduction_locked_pct": 14.89,
+      "residual_risk_reduction_mod_pct": 10.88,
+      "clears_57p92_locked": true,
+      "clears_qL_14p51_and_qM_8p29": true,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    },
+    {
+      "scenario": "W_B4_4Arm_Y@Hybrid3P_ZeroLift_c4u0.92_phiYX0.75_phiH4=0.50",
+      "stage0_qualification_status": "CONSERVATIVE_ZERO_H2_H3_LIFT_ARCHITECTURAL_BOUND",
+      "n_arms": 4,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        87.0,
+        89.0,
+        89.31
+      ],
+      "composite_ceiling_pct": 60.8543,
+      "h4_union_pct": 88.2597,
+      "locked_pct": 57.5811,
+      "delta_locked_pp": 6.8029,
+      "modular_k100_pct": 58.5521,
+      "modular_k90_pct": 58.455,
+      "modular_unconstrained_reference_pct": 59.1961,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 0.644,
+      "delta_modular_pp": 4.4359,
+      "residual_risk_reduction_locked_pct": 13.82,
+      "residual_risk_reduction_mod_pct": 9.67,
+      "clears_57p92_locked": false,
+      "clears_qL_14p51_and_qM_8p29": false,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    }
+  ],
+  "stage0_gated_conditional_4x3_off_the_shelf": [
+    {
+      "scenario": "W_B5_4Arm_Y@PrePerf3P_Nested(90/92)_c4u0.92_phiYX0.75_phiH4=0.25",
+      "stage0_qualification_status": "STAGE0_GATED_CONDITIONAL_POST_QUALIFICATION_ONLY",
+      "n_arms": 4,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        90.0,
+        92.0,
+        89.85
+      ],
+      "composite_ceiling_pct": 65.4687,
+      "h4_union_pct": 88.5404,
+      "locked_pct": 59.6821,
+      "delta_locked_pp": 8.9039,
+      "modular_k100_pct": 60.9366,
+      "modular_k90_pct": 60.8111,
+      "modular_unconstrained_reference_pct": 62.4308,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 1.4943,
+      "delta_modular_pp": 6.8203,
+      "residual_risk_reduction_locked_pct": 18.09,
+      "residual_risk_reduction_mod_pct": 14.86,
+      "clears_57p92_locked": true,
+      "clears_qL_14p51_and_qM_8p29": true,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    },
+    {
+      "scenario": "W_B6_4Arm_Y@PrePerf3P_Nested(90/92)_c4u0.92_phiYX0.75_phiH4=0.50",
+      "stage0_qualification_status": "STAGE0_GATED_CONDITIONAL_POST_QUALIFICATION_ONLY",
+      "n_arms": 4,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        90.0,
+        92.0,
+        88.23
+      ],
+      "composite_ceiling_pct": 64.2906,
+      "h4_union_pct": 87.2163,
+      "locked_pct": 59.0028,
+      "delta_locked_pp": 8.2246,
+      "modular_k100_pct": 60.2152,
+      "modular_k90_pct": 60.094,
+      "modular_unconstrained_reference_pct": 61.4972,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 1.282,
+      "delta_modular_pp": 6.099,
+      "residual_risk_reduction_locked_pct": 16.71,
+      "residual_risk_reduction_mod_pct": 13.29,
+      "clears_57p92_locked": true,
+      "clears_qL_14p51_and_qM_8p29": true,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    },
+    {
+      "scenario": "W_B7_4Arm_Y@PrePerf3P_Nested(90/92)_c4u0.90_phiYX0.75_phiH4=0.50",
+      "stage0_qualification_status": "STAGE0_GATED_CONDITIONAL_POST_QUALIFICATION_ONLY",
+      "n_arms": 4,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        90.0,
+        92.0,
+        87.36
+      ],
+      "composite_ceiling_pct": 63.6548,
+      "h4_union_pct": 86.5017,
+      "locked_pct": 58.6362,
+      "delta_locked_pp": 7.858,
+      "modular_k100_pct": 59.8259,
+      "modular_k90_pct": 59.707,
+      "modular_unconstrained_reference_pct": 60.9934,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 1.1674,
+      "delta_modular_pp": 5.7097,
+      "residual_risk_reduction_locked_pct": 15.96,
+      "residual_risk_reduction_mod_pct": 12.44,
+      "clears_57p92_locked": true,
+      "clears_qL_14p51_and_qM_8p29": true,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    },
+    {
+      "scenario": "W_B8_4Arm_Y@PrePerf3P_Nested(90/92)_c4u0.90_phiYX1.00_phiH4=0.50",
+      "stage0_qualification_status": "STAGE0_GATED_CONDITIONAL_POST_QUALIFICATION_ONLY",
+      "n_arms": 4,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        90.0,
+        92.0,
+        87.36
+      ],
+      "composite_ceiling_pct": 63.6548,
+      "h4_union_pct": 86.5017,
+      "locked_pct": 58.3649,
+      "delta_locked_pp": 7.5867,
+      "modular_k100_pct": 59.5834,
+      "modular_k90_pct": 59.4615,
+      "modular_unconstrained_reference_pct": 60.6833,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 1.0999,
+      "delta_modular_pp": 5.4671,
+      "residual_risk_reduction_locked_pct": 15.41,
+      "residual_risk_reduction_mod_pct": 11.92,
+      "clears_57p92_locked": true,
+      "clears_qL_14p51_and_qM_8p29": true,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    },
+    {
+      "scenario": "W_B9_4Arm_Y@PrePerf3P_Nested(90/92)_pY4=0.68_c4u0.90_phi1.0_50",
+      "stage0_qualification_status": "STAGE0_GATED_CONDITIONAL_POST_QUALIFICATION_ONLY",
+      "n_arms": 4,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        90.0,
+        92.0,
+        87.36
+      ],
+      "composite_ceiling_pct": 63.6548,
+      "h4_union_pct": 86.2614,
+      "locked_pct": 57.9434,
+      "delta_locked_pp": 7.1652,
+      "modular_k100_pct": 59.2796,
+      "modular_k90_pct": 59.146,
+      "modular_unconstrained_reference_pct": 60.5147,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 1.2351,
+      "delta_modular_pp": 5.1633,
+      "residual_risk_reduction_locked_pct": 14.56,
+      "residual_risk_reduction_mod_pct": 11.25,
+      "clears_57p92_locked": true,
+      "clears_qL_14p51_and_qM_8p29": true,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    },
+    {
+      "scenario": "W_B10_4Arm_Y@Hybrid3P_Nested(90/92)_c4u0.92_phiYX0.75_phiH4=0.25",
+      "stage0_qualification_status": "STAGE0_GATED_CONDITIONAL_POST_QUALIFICATION_ONLY",
+      "n_arms": 4,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        90.0,
+        92.0,
+        90.46
+      ],
+      "composite_ceiling_pct": 65.9162,
+      "h4_union_pct": 89.2223,
+      "locked_pct": 60.2669,
+      "delta_locked_pp": 9.4887,
+      "modular_k100_pct": 61.4478,
+      "modular_k90_pct": 61.3297,
+      "modular_unconstrained_reference_pct": 62.9116,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 1.4639,
+      "delta_modular_pp": 7.3315,
+      "residual_risk_reduction_locked_pct": 19.28,
+      "residual_risk_reduction_mod_pct": 15.98,
+      "clears_57p92_locked": true,
+      "clears_qL_14p51_and_qM_8p29": true,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    },
+    {
+      "scenario": "W_B11_4Arm_Y@Hybrid3P_Nested(90/92)_c4u0.92_phiYX0.75_phiH4=0.50",
+      "stage0_qualification_status": "STAGE0_GATED_CONDITIONAL_POST_QUALIFICATION_ONLY",
+      "n_arms": 4,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        90.0,
+        92.0,
+        89.31
+      ],
+      "composite_ceiling_pct": 65.0747,
+      "h4_union_pct": 88.2597,
+      "locked_pct": 59.7731,
+      "delta_locked_pp": 8.9949,
+      "modular_k100_pct": 60.9234,
+      "modular_k90_pct": 60.8084,
+      "modular_unconstrained_reference_pct": 62.2329,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 1.3095,
+      "delta_modular_pp": 6.8071,
+      "residual_risk_reduction_locked_pct": 18.27,
+      "residual_risk_reduction_mod_pct": 14.84,
+      "clears_57p92_locked": true,
+      "clears_qL_14p51_and_qM_8p29": true,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    },
+    {
+      "scenario": "W_B12_4Arm_Y@Hybrid3P_Nested(90/92)_c4u0.90_phiYX1.00_phiH4=0.50",
+      "stage0_qualification_status": "STAGE0_GATED_CONDITIONAL_POST_QUALIFICATION_ONLY",
+      "n_arms": 4,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        90.0,
+        92.0,
+        88.42
+      ],
+      "composite_ceiling_pct": 64.4239,
+      "h4_union_pct": 87.5154,
+      "locked_pct": 59.1119,
+      "delta_locked_pp": 8.3337,
+      "modular_k100_pct": 60.2682,
+      "modular_k90_pct": 60.1525,
+      "modular_unconstrained_reference_pct": 61.3944,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 1.1262,
+      "delta_modular_pp": 6.1519,
+      "residual_risk_reduction_locked_pct": 16.93,
+      "residual_risk_reduction_mod_pct": 13.41,
+      "clears_57p92_locked": true,
+      "clears_qL_14p51_and_qM_8p29": true,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    },
+    {
+      "scenario": "W_B13_4Arm_Y@PrePerf3P_PartialLift(89/91)_c4u0.92_phiYX0.75_25",
+      "stage0_qualification_status": "STAGE0_GATED_CONDITIONAL_POST_QUALIFICATION_ONLY",
+      "n_arms": 4,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        89.0,
+        91.0,
+        89.85
+      ],
+      "composite_ceiling_pct": 64.0376,
+      "h4_union_pct": 88.5404,
+      "locked_pct": 58.9817,
+      "delta_locked_pp": 8.2035,
+      "modular_k100_pct": 60.1841,
+      "modular_k90_pct": 60.0639,
+      "modular_unconstrained_reference_pct": 61.4158,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 1.2317,
+      "delta_modular_pp": 6.0678,
+      "residual_risk_reduction_locked_pct": 16.67,
+      "residual_risk_reduction_mod_pct": 13.22,
+      "clears_57p92_locked": true,
+      "clears_qL_14p51_and_qM_8p29": true,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    },
+    {
+      "scenario": "W_B14_4Arm_Y@PrePerf3P_PartialLift(89/91)_c4u0.92_phiYX0.75_50",
+      "stage0_qualification_status": "STAGE0_GATED_CONDITIONAL_POST_QUALIFICATION_ONLY",
+      "n_arms": 4,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        89.0,
+        91.0,
+        88.23
+      ],
+      "composite_ceiling_pct": 62.8852,
+      "h4_union_pct": 87.2163,
+      "locked_pct": 58.2883,
+      "delta_locked_pp": 7.5101,
+      "modular_k100_pct": 59.4476,
+      "modular_k90_pct": 59.3317,
+      "modular_unconstrained_reference_pct": 60.4973,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 1.0497,
+      "delta_modular_pp": 5.3313,
+      "residual_risk_reduction_locked_pct": 15.26,
+      "residual_risk_reduction_mod_pct": 11.62,
+      "clears_57p92_locked": true,
+      "clears_qL_14p51_and_qM_8p29": true,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    }
+  ],
+  "phi_h4_sensitivity_counterexamples": [
+    {
+      "scenario": "W_B9_SENSITIVITY_phiH4=0.60_BELOW_57p92_CEILING",
+      "stage0_qualification_status": "SENSITIVITY_COUNTEREXAMPLE_PHI_H4_GT_0P50",
+      "n_arms": 4,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        90.0,
+        92.0,
+        86.89
+      ],
+      "composite_ceiling_pct": 63.3107,
+      "h4_union_pct": 85.8962,
+      "locked_pct": 57.7545,
+      "delta_locked_pp": 6.9763,
+      "modular_k100_pct": 59.0793,
+      "modular_k90_pct": 58.9469,
+      "modular_unconstrained_reference_pct": 60.2585,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 1.1791,
+      "delta_modular_pp": 4.9631,
+      "residual_risk_reduction_locked_pct": 14.17,
+      "residual_risk_reduction_mod_pct": 10.82,
+      "clears_57p92_locked": false,
+      "clears_qL_14p51_and_qM_8p29": false,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    },
+    {
+      "scenario": "W_B3_SENSITIVITY_Y_H2H3_MARGINALS_EQUALIZED_TO_X_BELOW_57p92",
+      "stage0_qualification_status": "SENSITIVITY_COUNTEREXAMPLE_EQUALIZED_H2H3_MARGINALS",
+      "n_arms": 4,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        87.0,
+        89.0,
+        90.46
+      ],
+      "composite_ceiling_pct": 61.6412,
+      "h4_union_pct": 89.2223,
+      "locked_pct": 56.8286,
+      "delta_locked_pp": 6.0504,
+      "modular_k100_pct": 58.1381,
+      "modular_k90_pct": 58.0071,
+      "modular_unconstrained_reference_pct": 59.1636,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 1.0255,
+      "delta_modular_pp": 4.0218,
+      "residual_risk_reduction_locked_pct": 12.29,
+      "residual_risk_reduction_mod_pct": 8.77,
+      "clears_57p92_locked": false,
+      "clears_qL_14p51_and_qM_8p29": false,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    }
+  ],
+  "cross_hurdle_negative_coupling_sensitivity": [
+    {
+      "scenario": "W_B3_10PCT_ADVERSE_CROSS_HURDLE_COUPLING_BELOW_57p92",
+      "adverse_cross_hurdle_mix_weight": 0.1,
+      "independent_hurdles_locked_pct": 58.1055,
+      "maximally_adverse_overlap_locked_pct": 51.2018,
+      "negative_cross_hurdle_locked_pct": 57.4151,
+      "adverse_mix_weight_erasing_gain_pct": 2.721,
+      "clears_57p92_locked": false
+    },
+    {
+      "scenario": "W_B9_10PCT_ADVERSE_CROSS_HURDLE_COUPLING_BELOW_57p92",
+      "adverse_cross_hurdle_mix_weight": 0.1,
+      "independent_hurdles_locked_pct": 57.9434,
+      "maximally_adverse_overlap_locked_pct": 50.8841,
+      "negative_cross_hurdle_locked_pct": 57.2375,
+      "adverse_mix_weight_erasing_gain_pct": 0.365,
+      "clears_57p92_locked": false
+    }
+  ],
+  "stage0_gated_5arm_unified_bridge": [
+    {
+      "scenario": "W_BC1_5Arm_ZeroH3Lift_Y@3P_D1(p1=0.70)@3P_c4u0.92_phi=0.25",
+      "stage0_qualification_status": "STAGE0_GATED_FORWARD_COMPATIBILITY_BRIDGE_5ARM",
+      "n_arms": 5,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2",
+        "D1B_AUTO_C_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        94.37,
+        89.0,
+        89.85
+      ],
+      "composite_ceiling_pct": 66.4117,
+      "h4_union_pct": 88.5404,
+      "locked_pct": 61.0374,
+      "delta_locked_pp": 10.2592,
+      "modular_k100_pct": 62.7759,
+      "modular_k90_pct": 62.602,
+      "modular_unconstrained_reference_pct": 63.051,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 0.2751,
+      "delta_modular_pp": 8.6596,
+      "residual_risk_reduction_locked_pct": 20.84,
+      "residual_risk_reduction_mod_pct": 18.87,
+      "clears_57p92_locked": true,
+      "clears_qL_14p51_and_qM_8p29": true,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    },
+    {
+      "scenario": "W_BC2_5Arm_ZeroH3Lift_Y@3P_D1(p1=0.70)@3P_c4u0.92_phi=0.50",
+      "stage0_qualification_status": "STAGE0_GATED_FORWARD_COMPATIBILITY_BRIDGE_5ARM",
+      "n_arms": 5,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2",
+        "D1B_AUTO_C_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        93.92,
+        89.0,
+        88.23
+      ],
+      "composite_ceiling_pct": 64.9002,
+      "h4_union_pct": 87.2163,
+      "locked_pct": 60.0501,
+      "delta_locked_pp": 9.2719,
+      "modular_k100_pct": 61.6186,
+      "modular_k90_pct": 61.4617,
+      "modular_unconstrained_reference_pct": 61.8439,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 0.2253,
+      "delta_modular_pp": 7.5023,
+      "residual_risk_reduction_locked_pct": 18.84,
+      "residual_risk_reduction_mod_pct": 16.35,
+      "clears_57p92_locked": true,
+      "clears_qL_14p51_and_qM_8p29": true,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    },
+    {
+      "scenario": "W_BC3_5Arm_EXTREME_HOSTILE_ZeroH3Lift_Y@3P(0.68)_D1(0.55,0.60)@R2",
+      "stage0_qualification_status": "STAGE0_GATED_FORWARD_COMPATIBILITY_BRIDGE_5ARM",
+      "n_arms": 5,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2",
+        "D1B_AUTO_C_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P",
+        "R2"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        93.92,
+        89.0,
+        87.36
+      ],
+      "composite_ceiling_pct": 64.2583,
+      "h4_union_pct": 86.2614,
+      "locked_pct": 58.3523,
+      "delta_locked_pp": 7.5741,
+      "modular_k100_pct": 59.7122,
+      "modular_k90_pct": 59.5762,
+      "modular_unconstrained_reference_pct": 60.0372,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 0.325,
+      "delta_modular_pp": 5.5959,
+      "residual_risk_reduction_locked_pct": 15.39,
+      "residual_risk_reduction_mod_pct": 12.2,
+      "clears_57p92_locked": true,
+      "clears_qL_14p51_and_qM_8p29": true,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    },
+    {
+      "scenario": "W_BC4_5Arm_NestedY(90/92)_Y@Hyb3P_D1(p1=0.70)@3P_c4u0.92_phi=0.25",
+      "stage0_qualification_status": "STAGE0_GATED_FORWARD_COMPATIBILITY_BRIDGE_5ARM",
+      "n_arms": 5,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2",
+        "D1B_AUTO_C_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        94.42,
+        92.0,
+        90.46
+      ],
+      "composite_ceiling_pct": 69.1542,
+      "h4_union_pct": 89.2223,
+      "locked_pct": 63.4068,
+      "delta_locked_pp": 12.6286,
+      "modular_k100_pct": 65.3274,
+      "modular_k90_pct": 65.1353,
+      "modular_unconstrained_reference_pct": 65.9255,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 0.5981,
+      "delta_modular_pp": 11.2111,
+      "residual_risk_reduction_locked_pct": 25.66,
+      "residual_risk_reduction_mod_pct": 24.43,
+      "clears_57p92_locked": true,
+      "clears_qL_14p51_and_qM_8p29": true,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    },
+    {
+      "scenario": "W_BC5_5Arm_NestedY(90/92)_Y@Hyb3P_D1(p1=0.70)@3P_c4u0.92_phi=0.50",
+      "stage0_qualification_status": "STAGE0_GATED_FORWARD_COMPATIBILITY_BRIDGE_5ARM",
+      "n_arms": 5,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2",
+        "D1B_AUTO_C_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        93.95,
+        92.0,
+        89.31
+      ],
+      "composite_ceiling_pct": 67.9288,
+      "h4_union_pct": 88.2597,
+      "locked_pct": 62.6009,
+      "delta_locked_pp": 11.8227,
+      "modular_k100_pct": 64.3549,
+      "modular_k90_pct": 64.1795,
+      "modular_unconstrained_reference_pct": 64.8829,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 0.5281,
+      "delta_modular_pp": 10.2386,
+      "residual_risk_reduction_locked_pct": 24.02,
+      "residual_risk_reduction_mod_pct": 22.31,
+      "clears_57p92_locked": true,
+      "clears_qL_14p51_and_qM_8p29": true,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    }
+  ]
+}

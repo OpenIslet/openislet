@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2.0",
-  "validated_studies_count": 589,
+  "validated_studies_count": 594,
   "superseded_preprint_records_excluded_from_graph": [
     {
       "pmid": "37502937",
@@ -82,15 +82,15 @@
       "exclusion_reason": "Bibliographic review/context, not an independent experimental study"
     }
   ],
-  "total_arms_extracted": 673,
-  "total_atomic_effects_extracted": 3148,
+  "total_arms_extracted": 693,
+  "total_atomic_effects_extracted": 3158,
   "total_effect_modifier_interactions_extracted": 1286,
   "total_causal_mechanism_edges_extracted": 1086,
   "multi_hop_cross_study_causal_chains_count": 500,
   "corpus_epistemic_and_fidelity_diagnostics": {
-    "active_deduplicated_studies_count": 574,
-    "active_empirical_studies_count": 573,
-    "non_superseded_studies_count": 575,
+    "active_deduplicated_studies_count": 579,
+    "active_empirical_studies_count": 578,
+    "non_superseded_studies_count": 580,
     "superseded_preprint_studies_excluded_count": 14,
     "project_summary_studies_excluded_count": 1,
     "review_studies_in_corpus_count": 1,
@@ -118,42 +118,42 @@
       "42856627"
     ],
     "ring1_corpus_count_reconciliation": {
-      "validated_studies_total": 589,
+      "validated_studies_total": 594,
       "superseded_preprints_excluded": 14,
       "project_summaries_excluded": 1,
-      "non_superseded_studies_total": 575,
-      "active_deduplicated_studies_total": 574,
+      "non_superseded_studies_total": 580,
+      "active_deduplicated_studies_total": 579,
       "review_records_flagged": 1,
       "active_preprints_without_in_corpus_twin_flagged": 18,
-      "strict_active_peer_reviewed_empirical_studies_total": 555
+      "strict_active_peer_reviewed_empirical_studies_total": 560
     },
-    "active_deduplicated_arms_count": 658,
-    "active_deduplicated_effects_count": 3046,
+    "active_deduplicated_arms_count": 678,
+    "active_deduplicated_effects_count": 3056,
     "active_deduplicated_modifier_interactions_count": 1236,
     "active_deduplicated_causal_edges_count": 1045,
-    "non_superseded_arms_count": 659,
-    "non_superseded_effects_count": 3047,
+    "non_superseded_arms_count": 679,
+    "non_superseded_effects_count": 3057,
     "non_superseded_modifier_interactions_count": 1236,
     "non_superseded_causal_edges_count": 1046,
     "studies_by_biological_fidelity_tier": {
       "Tier_1_Human_InVivo": 21,
       "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 35,
       "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 78,
-      "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 288,
-      "Tier_4_Rodent_or_Xenogeneic_Only": 152
+      "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 292,
+      "Tier_4_Rodent_or_Xenogeneic_Only": 153
     },
     "studies_by_source_text_type": {
-      "Abstract_Only": 291,
+      "Abstract_Only": 292,
       "FullText_Plus_Supplement_or_GEO": 84,
-      "FullText_XML_or_PDF": 198,
+      "FullText_XML_or_PDF": 202,
       "Review_or_Commentary": 1
     },
-    "exact_source_span_verified_effects_count": 3046,
-    "quantitative_lrr_effects_count": 9,
+    "exact_source_span_verified_effects_count": 3056,
+    "quantitative_lrr_effects_count": 10,
     "heuristic_penalty_effects_count": 42,
     "direction_and_penalty_method_counts": {
       "rule_based_heuristic": 2981,
-      "source_adjudicated_curated_override": 65
+      "source_adjudicated_curated_override": 75
     },
     "adjudication_semantics": "Rule-based heuristic extraction; no independent manual accuracy dataset is attached. Classifier agreement is not measured sensitivity or specificity.",
     "adjudicated_penalty_effects_count": 42,
@@ -165,14 +165,14 @@
     },
     "effects_by_direction": {
       "Deleterious_or_Impaired": 236,
-      "Descriptive_or_Unoriented": 14,
+      "Descriptive_or_Unoriented": 18,
       "Neutral_or_NonInferior": 1542,
-      "Protective_or_Improved": 1254
+      "Protective_or_Improved": 1260
     },
     "effects_by_polarity_orientation_sign": {
-      "-1": 212,
-      "0": 2345,
-      "1": 489
+      "-1": 214,
+      "0": 2349,
+      "1": 493
     },
     "matched_context_multi_hop_chains_count": 51,
     "cross_context_hypothesis_chains_count": 449
@@ -642,6 +642,16 @@
         "PMID:41543848 (Gou C 2026)"
       ]
     },
+    "MULTI_LOCUS_SAFE_HARBOR": {
+      "studies_count": 2,
+      "functional_gates": [
+        "Platform_Genome_Engineering_Delivery_Benchmark"
+      ],
+      "studies": [
+        "PMID:42020736 (Shi YJ 2026)",
+        "PMID:42056515 (Liu B 2026)"
+      ]
+    },
     "NLRC5": {
       "studies_count": 2,
       "functional_gates": [
@@ -672,6 +682,17 @@
         "PMID:39266581 (Holst-Hansen T 2024)"
       ]
     },
+    "TRAC": {
+      "studies_count": 2,
+      "functional_gates": [
+        "Gate2_Allo_HLA_ClassI_or_II",
+        "Platform_Genome_Engineering_Delivery_Benchmark"
+      ],
+      "studies": [
+        "PMID:40812299 (Hu X 2025)",
+        "PMID:42749803 (Levesque S 2026)"
+      ]
+    },
     "CD59": {
       "studies_count": 1,
       "functional_gates": [
@@ -681,6 +702,15 @@
         "PMID:35666870 (Golec E 2022)"
       ]
     },
+    "CDK1": {
+      "studies_count": 1,
+      "functional_gates": [
+        "Gate5_Suicide_Safety_Switch"
+      ],
+      "studies": [
+        "PMID:39696686 (Izadifar M 2024)"
+      ]
+    },
     "CXADR": {
       "studies_count": 1,
       "functional_gates": [
@@ -688,6 +718,15 @@
       ],
       "studies": [
         "PMID:30074059 (Ifie E 2018)"
+      ]
+    },
+    "DTYMK": {
+      "studies_count": 1,
+      "functional_gates": [
+        "Gate5_Suicide_Safety_Switch"
+      ],
+      "studies": [
+        "PMID:17375075 (Sato T 2007)"
       ]
     },
     "GAD2": {
@@ -788,20 +827,11 @@
       "studies": [
         "PMID:35966081 (Callebaut A 2022)"
       ]
-    },
-    "TRAC": {
-      "studies_count": 1,
-      "functional_gates": [
-        "Gate2_Allo_HLA_ClassI_or_II"
-      ],
-      "studies": [
-        "PMID:40812299 (Hu X 2025)"
-      ]
     }
   },
   "shared_cross_study_bridge_nodes": {
     "BetaCell_Survival_and_Glycemic_Cure": {
-      "studies_count": 140,
+      "studies_count": 141,
       "studies": [
         "PMID:10728379 (Huber SA 2000)",
         "PMID:10819241 (Korbutt GS 2000)",
@@ -908,6 +938,7 @@
         "PMID:39080045 (Aldous N 2024)",
         "PMID:39266581 (Holst-Hansen T 2024)",
         "PMID:39623490 (Dai P 2024)",
+        "PMID:39696686 (Izadifar M 2024)",
         "PMID:39922198 (Campo F 2025)",
         "PMID:39988068 (MacDonald TL 2025)",
         "PMID:40072094 (Honarpisheh M 2025)",
@@ -1568,7 +1599,7 @@
       ]
     },
     "Biphasic_GSIS_and_Calcium_Coupling": {
-      "studies_count": 129,
+      "studies_count": 130,
       "studies": [
         "PMID:11872651 (Han D 2002)",
         "PMID:16984975 (Chimienti F 2006)",
@@ -1664,6 +1695,7 @@
         "PMID:39520565 (Chimienti R 2025)",
         "PMID:39605713 (Kelley AB 2024)",
         "PMID:39656525 (Verhoeff K 2025)",
+        "PMID:39696686 (Izadifar M 2024)",
         "PMID:39866963 (Moeun BN 2025)",
         "PMID:39922198 (Campo F 2025)",
         "PMID:39988068 (MacDonald TL 2025)",
@@ -8405,6 +8437,57 @@
         }
       ]
     },
+    "ZM447439_Aurora_G1_CellCycle_Exit": {
+      "studies_count": 9,
+      "studies": [
+        "PMID:27626039 (Yagyu Shigeki 2016)",
+        "PMID:31733514 (Jin W 2019)",
+        "PMID:32488111 (Russell R 2020)",
+        "PMID:35241836 (Balboa D 2022)",
+        "PMID:35795779 (Wunderlich Stephanie 2022)",
+        "PMID:37156915 (Hu X 2024)",
+        "PMID:38867450 (Sartori-Maldonado R 2024)",
+        "PMID:41756994 (Zanetti G 2026)",
+        "PMID:42749803 (Levesque S 2026)"
+      ],
+      "linked_mechanisms_and_bottlenecks": [
+        {
+          "study": "PMID:27626039 (Yagyu Shigeki 2016)",
+          "role": "residual_bottleneck",
+          "statement": "[REDACTED_NON_OA_EXCERPT: see PMID:27626039 field=statement quote_sha256=1d9662e6d9308f84d80548113eaefebe6fd30460bc45fb906b59884e6c96d6f1]"
+        },
+        {
+          "study": "PMID:31733514 (Jin W 2019)",
+          "role": "causal_edge",
+          "statement": "[REDACTED_NON_OA_EXCERPT: see PMID:31733514 field=statement quote_sha256=2bddb77900c27e29cb26483ce4814314c3a86392f34dd0562cb7f8d23b1b377f]"
+        },
+        {
+          "study": "PMID:31733514 (Jin W 2019)",
+          "role": "causal_edge",
+          "statement": "[REDACTED_NON_OA_EXCERPT: see PMID:31733514 field=statement quote_sha256=3571c59cfa4f9a9055f9c4dbc61645247c4e3bc7a9834f3caf00ac5f22e2a025]"
+        },
+        {
+          "study": "PMID:35241836 (Balboa D 2022)",
+          "role": "causal_edge",
+          "statement": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=statement quote_sha256=66d2071307a1871f4c105a6152336430b5a15a75e68a6c4d37122f86235a5c71]"
+        },
+        {
+          "study": "PMID:35241836 (Balboa D 2022)",
+          "role": "pleiotropy (Beneficial_CrossGate_Bonus)",
+          "statement": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=statement quote_sha256=e918e97a3e6804a8dfee5380a703b165eab35fb20777ceaf730b65dfdce98841]"
+        },
+        {
+          "study": "PMID:37156915 (Hu X 2024)",
+          "role": "pleiotropy (Deleterious_CrossGate_Tradeoff)",
+          "statement": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=statement quote_sha256=184d8804dc7cfd51509567e68d1b21dd2a49fe6777c04c32e16624e99ec64d77]"
+        },
+        {
+          "study": "PMID:41756994 (Zanetti G 2026)",
+          "role": "causal_edge",
+          "statement": "[REDACTED_NON_OA_EXCERPT: see PMID:41756994 field=statement quote_sha256=25c5f6ca95dda69adb0349537ef9a12446db20cd5c35ef3a39d65f3b276769f0]"
+        }
+      ]
+    },
     "INS_Preproinsulin_Signal_Peptide_DRiP": {
       "studies_count": 8,
       "studies": [
@@ -8457,56 +8540,6 @@
           "study": "PMID:42690930 (Kobaisi F 2026)",
           "role": "residual_bottleneck",
           "statement": "[REDACTED_NON_OA_EXCERPT: see PMID:42690930 field=statement quote_sha256=681c39dff7e24ddfa796809b8d8c8553fe3c93435b6ec04f1c7cbd0858a6ac7d]"
-        }
-      ]
-    },
-    "ZM447439_Aurora_G1_CellCycle_Exit": {
-      "studies_count": 8,
-      "studies": [
-        "PMID:27626039 (Yagyu Shigeki 2016)",
-        "PMID:31733514 (Jin W 2019)",
-        "PMID:32488111 (Russell R 2020)",
-        "PMID:35241836 (Balboa D 2022)",
-        "PMID:35795779 (Wunderlich Stephanie 2022)",
-        "PMID:37156915 (Hu X 2024)",
-        "PMID:38867450 (Sartori-Maldonado R 2024)",
-        "PMID:41756994 (Zanetti G 2026)"
-      ],
-      "linked_mechanisms_and_bottlenecks": [
-        {
-          "study": "PMID:27626039 (Yagyu Shigeki 2016)",
-          "role": "residual_bottleneck",
-          "statement": "[REDACTED_NON_OA_EXCERPT: see PMID:27626039 field=statement quote_sha256=1d9662e6d9308f84d80548113eaefebe6fd30460bc45fb906b59884e6c96d6f1]"
-        },
-        {
-          "study": "PMID:31733514 (Jin W 2019)",
-          "role": "causal_edge",
-          "statement": "[REDACTED_NON_OA_EXCERPT: see PMID:31733514 field=statement quote_sha256=2bddb77900c27e29cb26483ce4814314c3a86392f34dd0562cb7f8d23b1b377f]"
-        },
-        {
-          "study": "PMID:31733514 (Jin W 2019)",
-          "role": "causal_edge",
-          "statement": "[REDACTED_NON_OA_EXCERPT: see PMID:31733514 field=statement quote_sha256=3571c59cfa4f9a9055f9c4dbc61645247c4e3bc7a9834f3caf00ac5f22e2a025]"
-        },
-        {
-          "study": "PMID:35241836 (Balboa D 2022)",
-          "role": "causal_edge",
-          "statement": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=statement quote_sha256=66d2071307a1871f4c105a6152336430b5a15a75e68a6c4d37122f86235a5c71]"
-        },
-        {
-          "study": "PMID:35241836 (Balboa D 2022)",
-          "role": "pleiotropy (Beneficial_CrossGate_Bonus)",
-          "statement": "[REDACTED_NON_OA_EXCERPT: see PMID:35241836 field=statement quote_sha256=e918e97a3e6804a8dfee5380a703b165eab35fb20777ceaf730b65dfdce98841]"
-        },
-        {
-          "study": "PMID:37156915 (Hu X 2024)",
-          "role": "pleiotropy (Deleterious_CrossGate_Tradeoff)",
-          "statement": "[REDACTED_NON_OA_EXCERPT: see PMID:37156915 field=statement quote_sha256=184d8804dc7cfd51509567e68d1b21dd2a49fe6777c04c32e16624e99ec64d77]"
-        },
-        {
-          "study": "PMID:41756994 (Zanetti G 2026)",
-          "role": "causal_edge",
-          "statement": "[REDACTED_NON_OA_EXCERPT: see PMID:41756994 field=statement quote_sha256=25c5f6ca95dda69adb0349537ef9a12446db20cd5c35ef3a39d65f3b276769f0]"
         }
       ]
     },

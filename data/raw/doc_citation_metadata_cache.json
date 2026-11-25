@@ -455,6 +455,12 @@
       "pubdate_year": "2007",
       "title": "The Fas pathway is involved in pancreatic beta cell secretory function."
     },
+    "17375075": {
+      "first_author": "Sato T",
+      "journal": "Mol Ther",
+      "pubdate_year": "2007",
+      "title": "Engineered human tmpk/AZT as a novel enzyme/prodrug axis for suicide gene therapy."
+    },
     "17475856": {
       "first_author": "Truscott SM",
       "journal": "J Immunol",
@@ -2831,11 +2837,23 @@
       "pubdate_year": "2024",
       "title": "Proinsulin C-peptide is a major source of HLA-DQ8 restricted hybrid insulin peptides recognized by human islet-infiltrating CD4(+) T cells."
     },
+    "39571901": {
+      "first_author": "Xia F",
+      "journal": "Mol Metab",
+      "pubdate_year": "2025",
+      "title": "The immune checkpoint molecule B7-H4 regulates β-cell mass and insulin secretion by modulating cholesterol metabolism through Stat5 signalling."
+    },
     "39621955": {
       "first_author": "Maldini CR",
       "journal": "J Immunol",
       "pubdate_year": "2024",
       "title": "Hypoimmunogenic HLA-E Single Chain Inhibits Alloreactive Immune Responses."
+    },
+    "39696686": {
+      "first_author": "Izadifar M",
+      "journal": "Stem Cell Res Ther",
+      "pubdate_year": "2024",
+      "title": "Microfluidic chip systems for characterizing glucose-responsive insulin-secreting cells equipped with FailSafe kill-switch."
     },
     "39824805": {
       "first_author": "Carré A",
@@ -3023,6 +3041,12 @@
       "pubdate_year": "2026",
       "title": "Programmable genome editing in human cells using RNA-guided bridge recombinases."
     },
+    "41690310": {
+      "first_author": "Uenaka T",
+      "journal": "Cell Stem Cell",
+      "pubdate_year": "2026",
+      "title": "Prevention of transgene silencing during human pluripotent stem cell differentiation."
+    },
     "41765034": {
       "first_author": "Shi Y",
       "journal": "Lancet Diabetes Endocrinol",
@@ -3064,6 +3088,18 @@
       "journal": "Stem Cell Reports",
       "pubdate_year": "2026",
       "title": "An optimized protocol for efficient derivation of pancreatic islets from multiple human pluripotent stem cell lines."
+    },
+    "42020736": {
+      "first_author": "Shi YJ",
+      "journal": "Nature",
+      "pubdate_year": "2026",
+      "title": "Quadruple pegRNA enables programmable and efficient large genomic insertion."
+    },
+    "42056515": {
+      "first_author": "Liu B",
+      "journal": "Nature",
+      "pubdate_year": "2026",
+      "title": "Prime assembly with linear DNA donors enables large genomic insertions."
     },
     "42078397": {
       "first_author": "Gasser M",

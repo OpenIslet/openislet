@@ -117,6 +117,11 @@ CURATED_LANDMARK_PMIDS = {
     "36591328",  # Smink 2023 Transplant Direct (PMC9788983, CC BY-NC-ND 4.0; Fig. 1 rat xenografts in athymic nude mice 65 d [PCL n=3, PDLLCL n=4, KC n=6] & separate 1.5 mm/12-wk Yucatan minipigs)
     "41536981",  # Jin 2026 iScience (PMC12797044, CC BY-NC-ND 4.0; separate mouse/swine cohorts & n=1 acellular cynomolgus histology with observed p<0.0001 week-4 decline)
     "42176117",  # Balboni 2026 Biomed Microdevices (PMC13198518, CC BY-NC-ND 4.0; removable 3D-printed NICHE placeholder in insulin-supplemented diabetic F344 rats, 5-wk prevasc, 45-d follow-up)
+    "17375075",  # Sato 2007 Mol Ther (doi:10.1038/mt.sj.6300122; CC BY-NC-ND 4.0 publisher open archive, conservatively redacted; engineered human DTYMK/hTMPK-F105Y/AZT suicide switch; split Jurkat Fig. 3 n=3, primary T-cell early apoptotic index Results 4.0+/-0.3-fold P<0.0001, and Day-14 K562 xenograft Fig. 5 n=5/group P<0.001 vs NT without AZT)
+    "39696686",  # Izadifar 2024 Stem Cell Res Ther (PMC11656860, CC BY 4.0; mouse Cdk1-3'UTR viral HSV-TK/GCV proliferation-gated FailSafe chip precedent; Fig. 3f descriptive mixed-population viability index vs Fig. 4h-i enriched-population short GSIS, separate parental line 2 & untreated edited controls)
+    "42020736",  # Shi 2026 Nature (doi:10.1038/s41586-026-10395-w; abstract-only non-OA Mode-B candidate: QuadPE 1.6-26 kb ~40% at multiple loci and 11x/61x/12x relative gains at 9.5 kb vs PASSIGE/PASTE/CAST; per-panel n, neuron species, and hiPSC rates omitted from abstract)
+    "42056515",  # Liu 2026 Nature (PMC13371498 NIHMS2190808, PMC restricted author-manuscript terms; TwinPE Prime Assembly in HEK293T separating Fig. 4b 11.3 kb single linear DMD PCR donor vs untreated Ctrl [Welch p=0.00065, legend footer mean+/-s.d. n=3-4] from Fig. 3f qualitative gel 3-segment 1.9 kb AAT; ~18 kb Design Y fallback is proposed Stage-0 extension)
+    "42749803",  # Levesque 2026 Nature (PMC13754579, CC BY-NC-ND 4.0; dual-flap PE7 TRAC ssDNA Prime Assembly in primary human CD3+ T cells; Fig. 5g descriptive 3.3% resting vs 2.2% activated contrast across differing culture conditions in n=4 paired donors, SEM, shared TRAC edit on both arms)
 }
 
 # Perturbation verbs/nouns required within a window of a gene symbol to classify it as a true perturbation
@@ -3288,6 +3293,14 @@ def _num_in_quote(val: Any, quote: str, field_name: str = "") -> bool:
             )
             if m_resp_pair:
                 operand = m_resp_pair.group(1 if field_name == "treatment_mean" else 2)
+        if field_name in ("treatment_mean", "control_mean"):
+            m_avg_resp = re.search(
+                r"\baverage\s+of\s+(\d+(?:\.\d+)?)%\s+and\s+(\d+(?:\.\d+)?)%[^.]*\bin\s+activated\s+and\s+resting\b[^.]*,\s*respectively",
+                quote or "",
+                flags=re.IGNORECASE,
+            )
+            if m_avg_resp:
+                operand = m_avg_resp.group(2 if field_name == "treatment_mean" else 1)
         if operand is None:
             return False
         try:
@@ -3765,7 +3778,7 @@ def validate_study_semantics(doc: dict[str, Any], dossier: dict[str, Any] | None
             fval = eff.get(fn)
             if fval is not None and not _num_in_quote(fval, q, fn):
                 raise ValueError(f"{eid}: numeric field {fn}={fval!r} is not grounded in verbatim_evidence_quote")
-        p_tokens = _pvalue_tokens(q)
+        p_tokens = _pvalue_tokens(re.sub(r"level of significance set at\s+[pP]\s*[<=>≤≥]\s*0?\.\d+", "", q, flags=re.IGNORECASE))
         relation, bound = (p_tokens[0] if len(p_tokens) == 1 else (None, None))
         if eff.get("p_value_relation") != relation or eff.get("p_value_bound") != (float(bound) if bound is not None else None):
             raise ValueError(f"{eid}: p-value relation/bound does not match its source token")

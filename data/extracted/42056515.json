@@ -1,0 +1,372 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "42056515",
+    "pmcid": "PMC13371498",
+    "doi": "10.1038/s41586-026-10460-4",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Prime assembly with linear DNA donors enables large genomic insertions.",
+    "first_author": "Liu B",
+    "senior_author": "Xue W",
+    "pub_year": 2026,
+    "journal": "Nature",
+    "source_text_type": "FullText_XML_or_PDF",
+    "pillars_covered": [
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth"
+    ],
+    "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid42056515_arm1",
+      "arm_label": "TwinPE Prime Assembly with single column-purified 11.3 kb linear DMD PCR donor + PE6c + pegA/pegB at AAVS1 in HEK293T without AZD-7648 (Fig. 4b, published figure plots 4 treated biological replicates; text legend footer notes n=3-4, mean +/- s.d.)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": "in_vitro_monoculture_replicates",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Human_NonIslet_Immortalized_Cell_Line",
+        "cell_line_id": "HEK293T",
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "MULTI_LOCUS_SAFE_HARBOR",
+          "ensembl_gene_id": null,
+          "sub_molecular_coordinate": {
+            "region_class": "Transgene_cDNA_Cassette",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:42056515 field=exact_variant_or_swap_description mod=PrimeEdit genes=NONE quote_sha256=56eed3bbc20150b3cf4f089561d2e83323fbf2129b8cd228e2469d33d6242da5]"
+          },
+          "functional_gate": "Platform_Genome_Engineering_Delivery_Benchmark",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "PrimeEdit",
+          "promoter_or_locus_context": "Safe_Harbor_or_MultiLocus_Target",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Gain_of_Function_OE_or_KI"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid42056515_arm2",
+      "arm_label": "Untreated and untransfected HEK293T negative control at AAVS1 without transfection or treatment (Fig. 4b Ctrl comparator, published figure plots 3 control biological replicates; text legend footer notes n=3-4, mean +/- s.d.)",
+      "is_reference_control": true,
+      "sample_size_n": null,
+      "sample_size_unit": "in_vitro_monoculture_replicates",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Human_NonIslet_Immortalized_Cell_Line",
+        "cell_line_id": "HEK293T",
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid42056515_arm3",
+      "arm_label": "TwinPE three-fragment overlapping split-donor gel-based assembly of three segments totaling 1.9 kb SERPINA1/AAT at AAVS1 in HEK293T (Fig. 3f single-arm gel-band feasibility; distinct from Fig. 4b 11.3 kb single-donor assay)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": "unspecified_in_source",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Human_NonIslet_Immortalized_Cell_Line",
+        "cell_line_id": "HEK293T",
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "MULTI_LOCUS_SAFE_HARBOR",
+          "ensembl_gene_id": null,
+          "sub_molecular_coordinate": {
+            "region_class": "Transgene_cDNA_Cassette",
+            "exact_variant_or_swap_description": "[REDACTED_NON_OA_EXCERPT: see PMID:42056515 field=exact_variant_or_swap_description mod=PrimeEdit genes=NONE quote_sha256=47f516ab6ff34707c990819c117f1bde3cfeaa15ca05c3f9ac62aeb392c93eeb]"
+          },
+          "functional_gate": "Platform_Genome_Engineering_Delivery_Benchmark",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "PrimeEdit",
+          "promoter_or_locus_context": "Safe_Harbor_or_MultiLocus_Target",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Gain_of_Function_OE_or_KI"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid42056515_eff1_single_donor_11p3kb_dmd",
+      "source_figure_or_table": "Fig. 4b (11.3 kb single linear DMD PCR donor vs untreated Ctrl in HEK293T, Welch p = 0.00065; secondary legend footer caption[714:812] mean +/- s.d., n=3-4; plotted 4 treated / 3 Ctrl)",
+      "focal_factor_X": "Prime_Assembly_Single_11p3kb_Linear_PCR_Donor_Fig4",
+      "comparator_X0": "Untreated_untransfected_HEK293T_Ctrl_Fig4b",
+      "outcome_variable_Y": "[Endpoint: Genome_Integration_and_Cargo_Insertion | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=percent_ddpcr_insertion_fraction]",
+      "outcome_domain": "Genome_Integration_and_Cargo_Insertion",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "percent_ddpcr_insertion_fraction",
+      "log_response_ratio_or_smd": null,
+      "p_value": 0.00065,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "HEK293T cells harvested 3 days post-co-transfection (secondary locators: results_paragraphs[1] column-purified 11.3 kb DMD PCR donor and separate Fig. 4d +/- AZD-7648 gel; Fig. 4 legend footer caption[714:812] mean and s.d., n=3-4 biologically independent samples for panel b, with published Fig. 4b showing 4 treated and 3 Ctrl replicates; hiPSC B2M unmeasured)",
+        "Z2_genetic_background_and_allelic_dose": "Demonstrated 11.3 kb maximum insertion used a SINGLE column-purified 11.3-kb DMD PCR donor (Fig. 4), NOT a multi-fragment 11 kb split assembly; split-donor 3-fragment assembly was shown at 1.9 kb AAT (Fig. 3f). Proposed ~18 kb (2 x ~9 kb) Design Y fallback extends beyond both demonstrations and requires Stage-0 test.",
+        "Z3_immune_effector_and_stressor_pathway": "Delivery platform benchmark only",
+        "Z4_metabolic_and_glucose_load_state": "Standard culture",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Monolayer cells",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "AAVS1 locus with PE6c, pegA+pegB twin-epegRNAs, and single 11.3 kb linear DMD PCR donor without AZD-7648 in Fig. 4b (AZD-7648 enhancement shown separately in Fig. 4d)",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:42056515 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=5e3645e8c600d8f1b7aa83773ef4395cb0a8e391f61612f9bd90e9b10fbd22be]",
+      "focal_arm_id": "pmid42056515_arm1",
+      "comparator_arm_id": "pmid42056515_arm2",
+      "dispersion_type": "SD",
+      "n_unit": "in_vitro_monoculture_replicates",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "single_donor_large_cargo_integration"
+      },
+      "dossier_sha256": "bb44e11a6c83bac46a39965e7da4e64bfb5ecd6c5d24cd3066d2e5797582a350",
+      "source_span": "fulltext_data_sections.figure_legends[0].caption[52:355]|norm=exact",
+      "quote_source_dossier_pmid": "42056515",
+      "statistic_type": "qualitative_statement_only",
+      "p_value_relation": "=",
+      "p_value_bound": 0.00065,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "contrast_metadata": {
+        "intervention_label": "Prime_Assembly_Single_Donor_11p3kb_DMD_Fig4",
+        "comparator_label": "Untreated_untransfected_HEK293T_negative_control_Fig4b",
+        "endpoint_name": "Single linear PCR donor 11.3 kb DMD cDNA genomic insertion at AAVS1 (Fig. 4)",
+        "timepoint": "3 days post-transfection",
+        "population_or_model": "HEK293T cells (single-donor demonstration, distinct from Fig. 3f 1.9 kb split-donor assembly)",
+        "units": "percent_insertion_fraction",
+        "contrast_type": "between_arm_comparative_descriptive"
+      }
+    },
+    {
+      "effect_id": "pmid42056515_eff2_three_fragment_1p9kb_aat",
+      "source_figure_or_table": "Fig. 3f (three overlapping linear segments totaling 1.9 kb AAT at AAVS1; qualitative gel feasibility only)",
+      "focal_factor_X": "Prime_Assembly_Three_Fragment_1p9kb_Split_Donor_Fig3f",
+      "comparator_X0": "Single_arm_qualitative_gel_feasibility_Fig3f",
+      "outcome_variable_Y": "[Endpoint: Genome_Integration_and_Cargo_Insertion | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=qualitative_gel_assembly_feasibility]",
+      "outcome_domain": "Genome_Integration_and_Cargo_Insertion",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "qualitative_gel_assembly_feasibility",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Descriptive_or_Unoriented",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Mammalian AAVS1 locus qualitative gel-based assembly using three overlapping linear segments (Fig. 3f; pinned quote establishes qualitative feasibility only)",
+        "Z2_genetic_background_and_allelic_dose": "Three-segment overlapping linear donor illustration in Fig. 3f totaling 1.9 kb SERPINA1/AAT, separate from the 11.3 kb single PCR donor in Fig. 4b",
+        "Z3_immune_effector_and_stressor_pathway": "Delivery platform benchmark only",
+        "Z4_metabolic_and_glucose_load_state": "Standard culture",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Monolayer cells",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "AAVS1 locus with three overlapping linear segments totaling 1.9 kb",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "We explored the assembly of three overlapping segments of a 1.9-kb alpha-1 antitrypsin (AAT) gene into the AAVS1 locus. Successful integration was observed using three-segment PA (Fig. 3f).",
+      "focal_arm_id": "pmid42056515_arm3",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "multi_fragment_insertion_capacity"
+      },
+      "dossier_sha256": "bb44e11a6c83bac46a39965e7da4e64bfb5ecd6c5d24cd3066d2e5797582a350",
+      "source_span": "fulltext_data_sections.results_paragraphs[0][0:189]|norm=exact",
+      "quote_source_dossier_pmid": "42056515",
+      "statistic_type": "qualitative_statement_only",
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "contrast_metadata": {
+        "intervention_label": "Prime_Assembly_3Segments_Totaling_1p9kb_AAT_Fig3f",
+        "comparator_label": null,
+        "endpoint_name": "Three overlapping linear segments totaling 1.9 kb AAT qualitative gel assembly at AAVS1 (Fig. 3f)",
+        "timepoint": null,
+        "population_or_model": "HEK293T AAVS1 locus (single-arm Fig. 3f qualitative gel; distinct from Fig. 3g and Fig. 4b)",
+        "units": "qualitative_gel_assembly_feasibility",
+        "contrast_type": "single_arm_descriptive_only"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

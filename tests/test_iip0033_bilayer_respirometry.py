@@ -143,19 +143,19 @@ def test_04_cylindrical_prevascular_traps_recomputed() -> None:
 
 def test_05_ring1_corpus_6_studies_and_citation_accuracy() -> None:
     ext_files = sorted((ROOT / "data" / "extracted").glob("[0-9]*.json"))
-    assert len(ext_files) == 589
+    assert len(ext_files) == 594
     new_pmids = ("19555051", "25893782", "31527312", "36591328", "41536981", "42176117")
     docs = {p.stem: json.loads(p.read_text(encoding="utf-8")) for p in ext_files}
     for pmid in new_pmids:
         assert pmid in docs, f"Missing new Ring-1 study {pmid}"
-    assert sum(len(d.get("arms", [])) for d in docs.values()) == 673
+    assert sum(len(d.get("arms", [])) for d in docs.values()) == 693
     assert sum(
         1
         for d in docs.values()
         for a in d.get("arms", [])
         if a.get("is_reference_control") is True
-    ) == 51
-    assert sum(len(d.get("atomic_effects", [])) for d in docs.values()) == 3148
+    ) == 62
+    assert sum(len(d.get("atomic_effects", [])) for d in docs.values()) == 3158
 
     # Verify verified primary-source citations on Jin (Day 105 Fig. 6F / Day 182 Fig. 7) & Balboni (Methods 2.11)
     jin_text = json.dumps(docs["41536981"])
@@ -168,8 +168,8 @@ def test_06_live_oq016_and_2160_stack_invariance() -> None:
     vmod = _load_verifier_module()
     parity = vmod.verify_live_oq016_baseline()
     assert parity["evaluated_stacks_checked"] == 2160
-    assert parity["pre_iip0033_studies_count"] == 583
-    assert parity["post_iip0033_studies_count"] == 589
+    assert parity["pre_iip0033_studies_count"] == 588
+    assert parity["post_iip0033_studies_count"] == 594
     assert parity["mutated_stacks_vs_pre_iip0033"] == 0
     assert parity["mutated_stacks_vs_committed_pareto"] == 0
     assert parity["iip0033_live_headline_delta_pp"] == 0.0
@@ -182,13 +182,13 @@ def test_06_live_oq016_and_2160_stack_invariance() -> None:
 
 def test_07_ceg_expansion_and_ineligible_edges() -> None:
     ceg = json.loads((ROOT / "data" / "extracted" / "context_evidence_graph_v1.json").read_text(encoding="utf-8"))
-    assert len(ceg["studies"]) == 1172
-    assert len(ceg["arms"]) == 7725
-    assert len(ceg["outcomes"]) == 14159
-    assert len(ceg["edges"]) == 2478
+    assert len(ceg["studies"]) == 1176
+    assert len(ceg["arms"]) == 7740
+    assert len(ceg["outcomes"]) == 14167
+    assert len(ceg["edges"]) == 2483
     elig = sum(1 for e in ceg["edges"] if e.get("primary_certification_eligible") is True)
     inelig = sum(1 for e in ceg["edges"] if e.get("primary_certification_eligible") is False)
-    assert (elig, inelig) == (2283, 195)
+    assert (elig, inelig) == (2283, 200)
 
     for qid in ("M1453", "M1422", "M1421", "M2036", "M2449", "PMID:19555051", "NCT:NCT03513939"):
         assert qid in ceg["studies"], f"Missing CEG study {qid}"

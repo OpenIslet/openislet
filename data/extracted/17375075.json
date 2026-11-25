@@ -1,0 +1,668 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "17375075",
+    "pmcid": null,
+    "doi": "10.1038/mt.sj.6300122",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Engineered human tmpk/AZT as a novel enzyme/prodrug axis for suicide gene therapy.",
+    "first_author": "Sato T",
+    "senior_author": "Medin JA",
+    "pub_year": 2007,
+    "journal": "Molecular therapy : the journal of the American Society of Gene Therapy",
+    "source_text_type": "FullText_XML_or_PDF",
+    "pillars_covered": [
+      "Pillar3_Intrinsic_BetaCell_Genetic_Resilience_Amyloid_Viral"
+    ],
+    "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid17375075_arm1",
+      "arm_label": "Clonally-derived human Jurkat cells lentivirally transduced with hTMPK-F105Y and exposed to AZT for 4 days (Fig. 3, n=3)",
+      "is_reference_control": false,
+      "sample_size_n": 3,
+      "sample_size_unit": "in_vitro_monoculture_replicates",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cell_line_id": "Jurkat (clonal LV-hTMPK-F105Y)",
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "DTYMK",
+          "ensembl_gene_id": "ENSG00000168393",
+          "sub_molecular_coordinate": {
+            "region_class": "Catalytic_or_Kinase_Domain",
+            "exact_variant_or_swap_description": "[REDACTED_CONSERVATIVE_EXCERPT: see PMID:17375075 field=exact_variant_or_swap_description mod=Lentiviral_or_Transposon_OE genes=DTYMK quote_sha256=04e9ce27e543b03adc20214e81852f08182e4bd47a8762cdc3cf47a36eb5b3e8]"
+          },
+          "functional_gate": "Gate5_Suicide_Safety_Switch",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "Lentiviral_or_Transposon_OE",
+          "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Gain_of_Function_OE_or_KI"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "SmallMolecule_Prodrug_Ablation_Challenge",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 4.0,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid17375075_arm2",
+      "arm_label": "Primary human T cells lentivirally transduced with hTMPK-F105Y and exposed to 100 uM AZT for 4 days (Annexin V early apoptotic index, Results)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": "unspecified_in_source",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "DTYMK",
+          "ensembl_gene_id": "ENSG00000168393",
+          "sub_molecular_coordinate": {
+            "region_class": "Catalytic_or_Kinase_Domain",
+            "exact_variant_or_swap_description": "[REDACTED_CONSERVATIVE_EXCERPT: see PMID:17375075 field=exact_variant_or_swap_description mod=Lentiviral_or_Transposon_OE genes=DTYMK quote_sha256=04e9ce27e543b03adc20214e81852f08182e4bd47a8762cdc3cf47a36eb5b3e8]"
+          },
+          "functional_gate": "Gate5_Suicide_Safety_Switch",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "Lentiviral_or_Transposon_OE",
+          "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Gain_of_Function_OE_or_KI"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "SmallMolecule_Prodrug_Ablation_Challenge",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 4.0,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid17375075_arm3",
+      "arm_label": "NOD/SCID mice with subcutaneous LV-hTMPK-F105Y K562 xenografts treated with daily 2.5 mg/kg/day AZT for 14 days (Fig. 5, n=5/group)",
+      "is_reference_control": false,
+      "sample_size_n": 5,
+      "sample_size_unit": "mouse_recipients",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cell_line_id": "K562 (LV-hTMPK-F105Y)",
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "DTYMK",
+          "ensembl_gene_id": "ENSG00000168393",
+          "sub_molecular_coordinate": {
+            "region_class": "Catalytic_or_Kinase_Domain",
+            "exact_variant_or_swap_description": "[REDACTED_CONSERVATIVE_EXCERPT: see PMID:17375075 field=exact_variant_or_swap_description mod=Lentiviral_or_Transposon_OE genes=DTYMK quote_sha256=04e9ce27e543b03adc20214e81852f08182e4bd47a8762cdc3cf47a36eb5b3e8]"
+          },
+          "functional_gate": "Gate5_Suicide_Safety_Switch",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "Lentiviral_or_Transposon_OE",
+          "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Gain_of_Function_OE_or_KI"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Subcutaneous_Unmodified",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "SmallMolecule_Prodrug_Ablation_Challenge",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 14.0,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid17375075_arm4",
+      "arm_label": "Nontransduced K562 xenograft control without AZT in NOD/SCID mice (Fig. 5 significant Day-14 comparator, n=5/group)",
+      "is_reference_control": true,
+      "sample_size_n": 5,
+      "sample_size_unit": "mouse_recipients",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cell_line_id": "K562 (nontransduced)",
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "Subcutaneous_Unmodified",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 14.0,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid17375075_arm5",
+      "arm_label": "Clonally-derived human Jurkat cells lentivirally transduced with hTMPK-F105Y without AZT treatment (Fig. 3, n=3)",
+      "is_reference_control": true,
+      "sample_size_n": 3,
+      "sample_size_unit": "in_vitro_monoculture_replicates",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cell_line_id": "Jurkat (clonal LV-hTMPK-F105Y)",
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "DTYMK",
+          "ensembl_gene_id": "ENSG00000168393",
+          "sub_molecular_coordinate": {
+            "region_class": "Catalytic_or_Kinase_Domain",
+            "exact_variant_or_swap_description": "[REDACTED_CONSERVATIVE_EXCERPT: see PMID:17375075 field=exact_variant_or_swap_description mod=Lentiviral_or_Transposon_OE genes=DTYMK quote_sha256=04e9ce27e543b03adc20214e81852f08182e4bd47a8762cdc3cf47a36eb5b3e8]"
+          },
+          "functional_gate": "Gate5_Suicide_Safety_Switch",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "Lentiviral_or_Transposon_OE",
+          "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Gain_of_Function_OE_or_KI"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 4.0,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid17375075_arm6",
+      "arm_label": "Primary human T cells lentivirally transduced with hTMPK-F105Y without AZT treatment (Results early apoptotic index comparator; data not shown)",
+      "is_reference_control": true,
+      "sample_size_n": null,
+      "sample_size_unit": "unspecified_in_source",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "DTYMK",
+          "ensembl_gene_id": "ENSG00000168393",
+          "sub_molecular_coordinate": {
+            "region_class": "Catalytic_or_Kinase_Domain",
+            "exact_variant_or_swap_description": "[REDACTED_CONSERVATIVE_EXCERPT: see PMID:17375075 field=exact_variant_or_swap_description mod=Lentiviral_or_Transposon_OE genes=DTYMK quote_sha256=04e9ce27e543b03adc20214e81852f08182e4bd47a8762cdc3cf47a36eb5b3e8]"
+          },
+          "functional_gate": "Gate5_Suicide_Safety_Switch",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "Lentiviral_or_Transposon_OE",
+          "promoter_or_locus_context": "Viral_or_Synthetic_CAG_EF1a_CMV",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Gain_of_Function_OE_or_KI"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 4.0,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid17375075_eff1_jurkat_azt_ablation",
+      "source_figure_or_table": "Fig. 3 (4-day Jurkat AZT viability proliferation assay, n=3)",
+      "focal_factor_X": "Jurkat_hTMPK_F105Y_plus_AZT_4d_Fig3",
+      "comparator_X0": "Matched_edited_Jurkat_hTMPK_F105Y_without_AZT_Fig3",
+      "outcome_variable_Y": "[Endpoint: Clinical_Pharmacodynamics_or_Target_Depletion | polarity=Lower_Is_Better_Hazard_Endpoint | orientation_sign=-1 | unit=qualitative_ablation]",
+      "outcome_domain": "Clinical_Pharmacodynamics_or_Target_Depletion",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": 3,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": 3,
+      "measurement_unit": "qualitative_ablation",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Clonally-derived human Jurkat cells incubated 4 days with or without AZT (Fig. 3, n=3, mean +/- SEM; panel-level dose-response significance symbols *P < 0.05 / **P < 0.01 at caption[817:891]; separate from primary T-cell early apoptotic index)",
+        "Z2_genetic_background_and_allelic_dose": "Lentiviral human DTYMK (hTMPK-F105Y) variant; mitochondrial depolarization and caspase-3 pathway",
+        "Z3_immune_effector_and_stressor_pathway": "AZT prodrug activation in dividing and nondividing experimental cells",
+        "Z4_metabolic_and_glucose_load_state": "Standard culture",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Suspension lymphoid cells",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Constitutive lentiviral vector (HLA presentation and beta-cell dual-switch behavior not tested in this study)",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "The negative control values (without AZT) and the values without cells were deemed to be 100 and 0%, respectively. Data are presented as mean ± standard error of the mean (n = 3).",
+      "focal_arm_id": "pmid17375075_arm1",
+      "comparator_arm_id": "pmid17375075_arm5",
+      "dispersion_type": "SEM",
+      "n_unit": "in_vitro_monoculture_replicates",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
+        "orientation_sign": -1,
+        "matched_lexicon_term": "cell_ablation_azt"
+      },
+      "dossier_sha256": "4bd2363003992db4b34bed216e78a289583378e3dacc7ce1b11a0df047647c81",
+      "source_span": "fulltext_data_sections.figure_legends[0].caption[363:542]|norm=exact",
+      "quote_source_dossier_pmid": "17375075",
+      "statistic_type": "qualitative_statement_only",
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "contrast_metadata": {
+        "intervention_label": "Jurkat_hTMPK_F105Y_AZT_4d",
+        "comparator_label": "Matched_edited_Jurkat_hTMPK_F105Y_without_AZT_Fig3",
+        "endpoint_name": "In vitro 4-day Jurkat cell viability reduction under AZT (Fig. 3)",
+        "timepoint": "4 days",
+        "population_or_model": "Clonally-derived human Jurkat cell line (n=3)",
+        "units": "pct_viability_A595",
+        "contrast_type": "between_arm_comparative_descriptive"
+      }
+    },
+    {
+      "effect_id": "pmid17375075_eff2_k562_xenograft_azt_suppression",
+      "source_figure_or_table": "Fig. 5 (Day 14 NOD/SCID K562 xenograft tumor volume, n=5/group, ***P < 0.001 vs NT without AZT)",
+      "focal_factor_X": "K562_Xenograft_hTMPK_F105Y_plus_Daily_AZT_2p5mg_kg_Fig5",
+      "comparator_X0": "Nontransduced_K562_without_AZT_Day14_n5_Fig5",
+      "outcome_variable_Y": "[Endpoint: Clinical_Pharmacodynamics_or_Target_Depletion | polarity=Lower_Is_Better_Hazard_Endpoint | orientation_sign=-1 | unit=preclinical_xenograft_tumor_volume_suppression]",
+      "outcome_domain": "Clinical_Pharmacodynamics_or_Target_Depletion",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": 5,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": 5,
+      "measurement_unit": "preclinical_xenograft_tumor_volume_suppression",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Day-14 subcutaneous K562 xenograft volume in NOD/SCID mice (Fig. 5 caption reports SEM with ANOVA/Bonferroni, n=5/group, P < 0.001, whereas general in-vivo Methods describe SD and unpaired t-test)",
+        "Z2_genetic_background_and_allelic_dose": "Lentiviral human DTYMK (hTMPK-F105Y) variant in K562 leukemia cells",
+        "Z3_immune_effector_and_stressor_pathway": "Systemic low-dose AZT prodrug suicide ablation",
+        "Z4_metabolic_and_glucose_load_state": "Immunodeficient NOD/SCID murine host (non-diabetic cancer xenograft)",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Subcutaneous K562 tumor xenograft mass",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "Subcutaneous_Unmodified",
+        "Z7_promoter_and_epigenetic_context": "Constitutive lentiviral vector (no HLA, islet, or dual-switch evaluation)",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "[REDACTED_CONSERVATIVE_EXCERPT: see PMID:17375075 field=verbatim_evidence_quote genes=DTYMK pert=NONE quote_sha256=0d6c005f728bcad717c07597bff34ea5ff7b7ef081e57530e498e777d7ee93d7]",
+      "focal_arm_id": "pmid17375075_arm3",
+      "comparator_arm_id": "pmid17375075_arm4",
+      "dispersion_type": "SEM",
+      "n_unit": "mouse_recipients",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Lower_Is_Better_Hazard_Endpoint",
+        "orientation_sign": -1,
+        "matched_lexicon_term": "tumor_growth_suppression"
+      },
+      "dossier_sha256": "4bd2363003992db4b34bed216e78a289583378e3dacc7ce1b11a0df047647c81",
+      "source_span": "fulltext_data_sections.figure_legends[1].caption[539:834]|norm=exact",
+      "quote_source_dossier_pmid": "17375075",
+      "statistic_type": "qualitative_statement_only",
+      "p_value_relation": "<",
+      "p_value_bound": 0.001,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "contrast_metadata": {
+        "intervention_label": "hTMPK_F105Y_K562_daily_2p5mgkg_AZT_Day14",
+        "comparator_label": "Nontransduced_K562_without_AZT_Day14_Fig5",
+        "endpoint_name": "Day-14 NOD/SCID K562 xenograft tumor-volume suppression (Fig. 5, n=5/group, ***P < 0.001 vs NT without AZT)",
+        "timepoint": "Day 14",
+        "population_or_model": "NOD/SCID mice injected s.c. with 2e7 K562 cells (n=5 per group; non-islet leukemia xenograft)",
+        "units": "tumor_volume_mm3_suppression",
+        "contrast_type": "between_arm_comparative_descriptive"
+      }
+    },
+    {
+      "effect_id": "pmid17375075_eff3_primary_tcell_early_apoptotic_index",
+      "source_figure_or_table": "Results (Primary human T-cell 100 uM AZT 4-day Annexin V early apoptotic index)",
+      "focal_factor_X": "Primary_Human_Tcell_hTMPK_F105Y_plus_100uM_AZT_4d",
+      "comparator_X0": "Primary_Human_Tcell_hTMPK_F105Y_edited_without_AZT",
+      "outcome_variable_Y": "[Endpoint: Clinical_Pharmacodynamics_or_Target_Depletion | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=fold_change_early_apoptotic_index]",
+      "outcome_domain": "Clinical_Pharmacodynamics_or_Target_Depletion",
+      "treatment_mean": 4.0,
+      "treatment_sd_or_sem": 0.3,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "fold_change_early_apoptotic_index",
+      "log_response_ratio_or_smd": 1.3863,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Primary human T cells exposed to 100 uM AZT for 4 days (Annexin V early apoptotic index, 4.0 +/- 0.3-fold, P < 0.0001; distinct from Jurkat Fig. 3 viability loss)",
+        "Z2_genetic_background_and_allelic_dose": "Lentiviral human DTYMK (hTMPK-F105Y) variant; mitochondrial depolarization and caspase-3 pathway",
+        "Z3_immune_effector_and_stressor_pathway": "AZT prodrug activation in dividing and nondividing experimental cells",
+        "Z4_metabolic_and_glucose_load_state": "Standard culture",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Suspension lymphoid cells",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Constitutive lentiviral vector (HLA presentation and beta-cell dual-switch behavior not tested in this study)",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "[REDACTED_CONSERVATIVE_EXCERPT: see PMID:17375075 field=verbatim_evidence_quote genes=DTYMK pert=NONE quote_sha256=d90affedd39d61c3065e05dd59cb4c0ce1c29ca93988f9dc293a65c18a328639]",
+      "focal_arm_id": "pmid17375075_arm2",
+      "comparator_arm_id": "pmid17375075_arm6",
+      "dispersion_type": "unspecified_in_quote",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "suicide_switch_early_apoptotic_index_fold_increase"
+      },
+      "dossier_sha256": "4bd2363003992db4b34bed216e78a289583378e3dacc7ce1b11a0df047647c81",
+      "source_span": "fulltext_data_sections.results_paragraphs[0][270:459]|norm=exact",
+      "quote_source_dossier_pmid": "17375075",
+      "statistic_type": "log_response_ratio_fold_change",
+      "p_value_relation": "<",
+      "p_value_bound": 0.0001,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "contrast_metadata": {
+        "intervention_label": "Primary_Human_Tcell_hTMPK_F105Y_100uM_AZT_4d",
+        "comparator_label": "Primary_Human_Tcell_hTMPK_F105Y_edited_without_AZT",
+        "endpoint_name": "Primary human T-cell early apoptotic index (Annexin V, 4.0 +/- 0.3-fold, P < 0.0001)",
+        "timepoint": "4 days",
+        "population_or_model": "Primary human T cells (non-islet lymphoid model; data not shown in paper)",
+        "units": "fold_change_apoptotic_index",
+        "contrast_type": "between_arm_comparative_descriptive"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

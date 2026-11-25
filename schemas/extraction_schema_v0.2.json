@@ -225,6 +225,7 @@
               "in_vitro_coculture_replicates",
               "rat_recipients",
               "paired_instrument_replicates",
+              "in_vitro_monoculture_replicates",
               "unspecified_in_source"
             ]
           },
@@ -246,7 +247,8 @@
                   "Rodent_Beta_Cell_Line_NIT1_MIN6_INS1",
                   "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
                   "None_Acellular_Device_or_Scaffold",
-                  "Unspecified_In_Source_Abstract"
+                  "Unspecified_In_Source_Abstract",
+                  "Human_NonIslet_Immortalized_Cell_Line"
                 ]
               },
               "cell_line_id": {
@@ -419,7 +421,8 @@
                     "Gate4_Intrinsic_Granzyme_Fas_Apoptosis_Shield",
                     "Gate4_Intrinsic_Amyloid_or_Viral_Receptor_Shield",
                     "Gate4_Intrinsic_Hypoxia_Metabolic_Shield",
-                    "Gate5_Suicide_Safety_Switch"
+                    "Gate5_Suicide_Safety_Switch",
+                    "Platform_Genome_Engineering_Delivery_Benchmark"
                   ]
                 },
                 "target_autoantibody_or_tcr_evaded": {
@@ -456,7 +459,8 @@
                     "Transient_mRNA_or_Surface_Tethering",
                     "CRISPRi_or_shRNA_Knockdown",
                     "CRISPRa_Activation",
-                    "SmallMolecule_Pharmacological_Modulator"
+                    "SmallMolecule_Pharmacological_Modulator",
+                    "Endogenous_Locus_KI_Without_KO"
                   ]
                 },
                 "promoter_or_locus_context": {
@@ -468,7 +472,8 @@
                     "Hypoxia_Inducible_HRE",
                     "Housekeeping_GAPDH_ACTB_B2M",
                     "Viral_or_Synthetic_CAG_EF1a_CMV",
-                    "Not_Applicable_KO"
+                    "Not_Applicable_KO",
+                    "Safe_Harbor_or_MultiLocus_Target"
                   ]
                 },
                 "zygosity_or_allelic_state": {
@@ -627,7 +632,8 @@
                     "Enterovirus_CVB_Infection_Challenge",
                     "Amyloid_hIAPP_Aggregation_Stress",
                     "Hypoxia_Ischemia_Challenge",
-                    "InVivo_Allogeneic_or_Autoimmune_Graft"
+                    "InVivo_Allogeneic_or_Autoimmune_Graft",
+                    "SmallMolecule_Prodrug_Ablation_Challenge"
                   ]
                 },
                 "effector_to_target_ratio": {
@@ -832,7 +838,8 @@
               "Surface_HLA_or_Transgene_Expression_Level",
               "Clinical_Pharmacodynamics_or_Target_Depletion",
               "Assay_Instrument_Calibration_or_Biophysical_Method",
-              "Innate_Myeloid_or_Neutrophil_Infiltration_and_Host_Response"
+              "Innate_Myeloid_or_Neutrophil_Infiltration_and_Host_Response",
+              "Genome_Integration_and_Cargo_Insertion"
             ]
           },
           "treatment_mean": {
@@ -1070,6 +1077,7 @@
               "in_vitro_coculture_replicates",
               "rat_recipients",
               "paired_instrument_replicates",
+              "in_vitro_monoculture_replicates",
               "unspecified_in_source"
             ]
           },

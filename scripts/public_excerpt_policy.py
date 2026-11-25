@@ -13,8 +13,8 @@ FIELDS = frozenset({
     'failure_mode_description', 'mechanism', 'condition', 'outcome', 'rationale',
     'quoted_threshold_or_constraint', 'threshold_description', 'effect_description', 'effect_notes',
 })
-GENES = frozenset('B2M CASP9 CD200 CD274 CD47 CD55 CD59 THBD CHGA CIITA CXADR CXCL10 ENTPD1 FASLG G6PC2 GAD2 GLIS3 HLA-A HLA-B HLA-C HLA-E HLA-G IAPP IFIH1 IL10 TGFB1 IL2 INS ISG15 JAK1 JAK2 MANF NLRC5 PTPN2 PTPRN RIPK1 RNLS SEC31A SLC30A8 SOCS1 STAT1 TET2 TGM2 TNFAIP3 TXNIP TYK2 SERPINB9 PD-L1 ICASP9 DDIT3 HYOU1 PCSK1 PTPN22 MAFA PDX1 NKX6-1 GCG SST UTP23 HNF1A FCGR1A IL1RN CD46 CR1 TRAC'.split())
-MODALITIES = frozenset('CRISPR_Cas12a_Multiplex_KO CRISPR_Cas12b_Multiplex_KO BaseEdit_ABE_or_CBE_Epitope_or_Splice PrimeEdit Signal_Peptide_or_Domain_Swap Endogenous_SwapIn_KO_plus_KI SafeHarbor_KI_AAVS1_GAPDH_CLYBL Lentiviral_or_Transposon_OE Transient_mRNA_or_Surface_Tethering CRISPRi_or_shRNA_Knockdown CRISPRa_Activation SmallMolecule_Pharmacological_Modulator none NONE CRISPR_Cas9_KO CRISPR_Cas12a_KO CRISPRi_KD CRISPRa_OE Lentiviral_OE Transposon_OE HDR_KI Base_Editing Prime_Editing Pharmacologic_Inhibitor Pharmacologic_Activation Antibody_Blockade RNAi_KD KO KI'.split())
+GENES = frozenset('B2M CASP9 CD200 CD274 CD47 CD55 CD59 THBD CHGA CIITA CXADR CXCL10 ENTPD1 FASLG G6PC2 GAD2 GLIS3 HLA-A HLA-B HLA-C HLA-E HLA-G IAPP IFIH1 IL10 TGFB1 IL2 INS ISG15 JAK1 JAK2 MANF NLRC5 PTPN2 PTPRN RIPK1 RNLS SEC31A SLC30A8 SOCS1 STAT1 TET2 TGM2 TNFAIP3 TXNIP TYK2 SERPINB9 PD-L1 ICASP9 DDIT3 HYOU1 PCSK1 PTPN22 MAFA PDX1 NKX6-1 GCG SST UTP23 HNF1A FCGR1A IL1RN CD46 CR1 TRAC VTCN1 AIFM2 CDK1 DTYMK'.split())
+MODALITIES = frozenset('CRISPR_Cas12a_Multiplex_KO CRISPR_Cas12b_Multiplex_KO BaseEdit_ABE_or_CBE_Epitope_or_Splice PrimeEdit Signal_Peptide_or_Domain_Swap Endogenous_SwapIn_KO_plus_KI SafeHarbor_KI_AAVS1_GAPDH_CLYBL Lentiviral_or_Transposon_OE Transient_mRNA_or_Surface_Tethering CRISPRi_or_shRNA_Knockdown CRISPRa_Activation SmallMolecule_Pharmacological_Modulator none NONE CRISPR_Cas9_KO CRISPR_Cas12a_KO CRISPRi_KD CRISPRa_OE Lentiviral_OE Transposon_OE HDR_KI Base_Editing Prime_Editing Pharmacologic_Inhibitor Pharmacologic_Activation Antibody_Blockade RNAi_KD KO KI Endogenous_Locus_KI_Without_KO'.split())
 
 
 def is_bounded_metadata(value: object, field: str, *, bibliographic: bool = False) -> bool:
@@ -47,7 +47,7 @@ def validate_token(text: str, *, expected_pmid: str | None = None,
     """
     if not isinstance(text, str) or len(text) > 1500:
         return False
-    m = re.fullmatch(r'\[REDACTED_NON_OA_EXCERPT: see PMID:([0-9]{7,8}) ([A-Za-z0-9_=, .-]+)\]', text)
+    m = re.fullmatch(r'\[REDACTED_(?:NON_OA|CONSERVATIVE)_EXCERPT: see PMID:([0-9]{7,8}) ([A-Za-z0-9_=, .-]+)\]', text)
     if m is None or (expected_pmid is not None and m[1] != str(expected_pmid)):
         return False
     values = {}
@@ -74,6 +74,30 @@ def validate_token(text: str, *, expected_pmid: str | None = None,
     if 'mod' in values and values['mod'] not in MODALITIES:
         return False
     return source_quote is None or (isinstance(source_quote, str) and hashlib.sha256(source_quote.encode('utf-8')).hexdigest() == digest)
+
+
+PUBLISHER_LICENSE_REGISTRY: dict[str, str] = {
+    '17375075': 'CC_BY_NC_ND_4_0',
+    '39696686': 'CC_BY_4_0',
+    '42020736': 'PUBLISHER_STANDARD_NON_OA',
+    '42056515': 'PMC_AUTHOR_MANUSCRIPT_NON_OA',
+    '42749803': 'CC_BY_NC_ND_4_0',
+}
+OPEN_ACCESS_PUBLISHER_LICENSES = frozenset({'CC_BY_4_0', 'CC_BY_NC_4_0', 'CC_BY_NC_ND_4_0', 'CC0_1_0'})
+
+
+def redaction_token_prefix_for_pmid(pmid: str) -> str:
+    """Separate conservative public-export redaction on CC-licensed articles from non-OA redaction."""
+    if PUBLISHER_LICENSE_REGISTRY.get(str(pmid), '') in OPEN_ACCESS_PUBLISHER_LICENSES:
+        return '[REDACTED_CONSERVATIVE_EXCERPT:'
+    return '[REDACTED_NON_OA_EXCERPT:'
+
+
+def is_redaction_token_prefix(text: object) -> bool:
+    return isinstance(text, str) and (
+        text.startswith('[REDACTED_NON_OA_EXCERPT:')
+        or text.startswith('[REDACTED_CONSERVATIVE_EXCERPT:')
+    )
 
 
 def safe_field(name: str) -> str:

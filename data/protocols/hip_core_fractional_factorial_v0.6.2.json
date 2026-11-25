@@ -4494,11 +4494,11 @@
   "layer1_ultracode_audit_reconciliation_ledger": {
     "method": "Computed from this evaluation's source studies, graph, registry, exact design and diagnostics; not an audit closure assertion",
     "source_counts": {
-      "studies": 589,
-      "arms": 673,
-      "atomic_effects": 3148,
-      "raw_edit_rows": 246,
-      "expanded_edit_gene_occurrences": 251
+      "studies": 594,
+      "arms": 693,
+      "atomic_effects": 3158,
+      "raw_edit_rows": 260,
+      "expanded_edit_gene_occurrences": 262
     },
     "corpus_eligibility": {
       "active_deduplicated_studies_count": 574,
@@ -4591,8 +4591,8 @@
       "cross_context_hypothesis_chains_count": 449
     },
     "profile_counts": {
-      "genes": 49,
-      "candidate_target_profiles_with_typed_numeric_lrr": 1,
+      "genes": 51,
+      "candidate_target_profiles_with_typed_numeric_lrr": 2,
       "independently_adjudicated_direction_effects": 0,
       "direction_method": "rule_based_heuristic; no independent adjudication dataset supplied"
     },

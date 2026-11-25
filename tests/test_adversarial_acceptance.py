@@ -382,7 +382,7 @@ def run_acceptance_suite(out_path: Path) -> int:
             1 for d in studies for e in d.get("atomic_effects", []) if e.get("secretome_or_differentiation_penalty_observed")
         ) >= 35,
         "heuristic_classifier_internal_consistency": all(
-            e["verbatim_evidence_quote"].startswith("[REDACTED_NON_OA_EXCERPT:")
+            e["verbatim_evidence_quote"].startswith(("[REDACTED_NON_OA_EXCERPT:", "[REDACTED_CONSERVATIVE_EXCERPT:"))
             or ext.classify_sentence_direction_and_penalty(e["verbatim_evidence_quote"])[1] == e["secretome_or_differentiation_penalty_observed"]
             for d in studies
             for e in d.get("atomic_effects", [])
@@ -456,9 +456,9 @@ def run_acceptance_suite(out_path: Path) -> int:
     }
     chk08_dos_ok = (semantic_checked == len(studies)) if not is_public_bundle else True
     chk08_desc = (
-        "Public bundle mode: all Audit/Grok/Audit source counterexamples & regex probes pass (563 private dossiers excluded by allowlist; dossier span/SHA-256 check skipped)"
+        f"Public bundle mode: all source counterexamples & regex probes pass ({len(studies)} private dossiers excluded by allowlist; dossier span/SHA-256 check skipped)"
         if is_public_bundle
-        else "In-repo audit mode: all 563 studies pass validate_study_semantics against local dossiers and all Audit/Grok/Audit source counterexamples pass"
+        else f"In-repo audit mode: all {len(studies)} studies pass validate_study_semantics against local dossiers and all source counterexamples pass"
     )
     add_check(
         "CHK-08",
@@ -468,7 +468,7 @@ def run_acceptance_suite(out_path: Path) -> int:
         {
             "semantic_errors": len(semantic_errors),
             "dossiers_checked": semantic_checked,
-            "source_dossier_verification_status": "SKIPPED_PUBLIC_BUNDLE_NO_PRIVATE_DOSSIERS" if is_public_bundle else "VERIFIED_ALL_563_DOSSIERS",
+            "source_dossier_verification_status": "SKIPPED_PUBLIC_BUNDLE_NO_PRIVATE_DOSSIERS" if is_public_bundle else f"VERIFIED_ALL_{semantic_checked}_DOSSIERS",
             "is_public_bundle": is_public_bundle,
             "counterexamples": ce_checks,
         },
@@ -744,7 +744,7 @@ def run_acceptance_suite(out_path: Path) -> int:
                 unredacted_chars = sum(
                     len(e.get("verbatim_evidence_quote") or "")
                     for e in d.get("atomic_effects", [])
-                    if not (e.get("verbatim_evidence_quote") or "").startswith("[REDACTED_NON_OA_EXCERPT:")
+                    if not (e.get("verbatim_evidence_quote") or "").startswith(("[REDACTED_NON_OA_EXCERPT:", "[REDACTED_CONSERVATIVE_EXCERPT:"))
                 )
                 for e in d.get("atomic_effects", []):
                     oy = str(e.get("outcome_variable_Y") or "")
@@ -753,11 +753,11 @@ def run_acceptance_suite(out_path: Path) -> int:
                 for em in d.get("effect_modifier_interactions", []):
                     for mfield in ("level_1_condition_and_effect", "level_2_condition_and_effect", "mechanistic_explanation"):
                         mv = em.get(mfield) or ""
-                        if not mv.startswith("[REDACTED_NON_OA_EXCERPT:"):
+                        if not mv.startswith(("[REDACTED_NON_OA_EXCERPT:", "[REDACTED_CONSERVATIVE_EXCERPT:")):
                             unredacted_chars += len(mv)
                 for edge in d.get("causal_mechanism_edges", []):
                     ev = edge.get("evidence_source") or ""
-                    if not ev.startswith("[REDACTED_NON_OA_EXCERPT:"):
+                    if not ev.startswith(("[REDACTED_NON_OA_EXCERPT:", "[REDACTED_CONSERVATIVE_EXCERPT:")):
                         unredacted_chars += len(ev)
                 if unredacted_chars > public_character_limit:
                     non_oa_excess_studies += 1
@@ -803,7 +803,7 @@ def run_acceptance_suite(out_path: Path) -> int:
                         for item in bnode.get("linked_mechanisms_and_bottlenecks", []):
                             if isinstance(item, dict):
                                 st_val = str(item.get("statement") or "")
-                                if " -> " not in st_val and not st_val.startswith("[REDACTED_NON_OA_EXCERPT:"):
+                                if " -> " not in st_val and not st_val.startswith(("[REDACTED_NON_OA_EXCERPT:", "[REDACTED_CONSERVATIVE_EXCERPT:")):
                                     graph_unredacted_statements += 1
     pareto_rel = "data/extracted/islet1_combinatorial_pareto_and_ladder_v0.8.0.json"
     pareto_doc = json.loads((ROOT / pareto_rel).read_text(encoding="utf-8")) if (ROOT / pareto_rel).exists() else {}
@@ -1179,7 +1179,7 @@ def run_acceptance_suite(out_path: Path) -> int:
             "chk08_source_span_and_sha256_dossiers_verified": semantic_checked,
             "chk02_status": chk02_status if isinstance(chk02_status, str) else ("PASS" if chk02_status else "FAIL"),
             "chk08_dossier_verification_status": (
-                "SKIPPED_PUBLIC_BUNDLE_COUNTEREXAMPLES_ONLY" if is_public_bundle else "VERIFIED_ALL_563_DOSSIERS"
+                "SKIPPED_PUBLIC_BUNDLE_COUNTEREXAMPLES_ONLY" if is_public_bundle else f"VERIFIED_ALL_{semantic_checked}_DOSSIERS"
             ),
             "public_bundle_non_oa_studies_exceeding_240_chars": non_oa_excess_studies,
         },

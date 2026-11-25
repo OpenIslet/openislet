@@ -3,11 +3,11 @@
 
 Produces two deterministic, rights-aware public artifacts under `data/extracted/`:
   1. `data/extracted/context_evidence_graph_v1.json`
-     Full structured T1D Context-Evidence Graph across 1,172 total CEG records
-     (1,146 empirical_primary_study + 11 trial_registry_protocol + 7 regulatory_or_guidance_document
+     Full structured T1D Context-Evidence Graph across 1,176 total CEG records
+     (1,150 empirical_primary_study + 11 trial_registry_protocol + 7 regulatory_or_guidance_document
      + 4 computational_model_or_simulation + 1 correspondence_or_secondary_summary + 3 superseded_preprint_duplicate),
-     7,725 experimental and control arms, 14,159 structured outcomes,
-     2,478 blueprint claim/contradiction/scoping links, 20 biological effector
+     7,740 experimental and control arms, 14,167 structured outcomes,
+     2,483 blueprint claim/contradiction/scoping links, 20 biological effector
      nodes, and 10 Idea Graveyard cross-links. All third-party verbatim quotes
      are withheld (`quote_sha256` + `source_pin` retained) and source-overlapping
      prose spans (>=6-word normalized source shingles or >=40-character dossier
@@ -268,6 +268,11 @@ CURATED_INELIGIBLE_EDGE_IDS = frozenset({
     "M2036:L1",
     "M2449:L1",
     "PMID:19555051:L1",
+    "M1522:L4",
+    "PMID:17375075:L1",
+    "PMID:42020736:L1",
+    "PMID:42056515:L1",
+    "PMID:42749803:L1",
 })
 CURATED_NON_EMPIRICAL_OUTCOME_IDS = frozenset({
     "M0049:O1", "M0049:O2", "M0049:O3", "M0049:O4", "M0049:O5",
@@ -441,8 +446,8 @@ def build_layer1_atlas_from_ceg(ceg: dict[str, Any]) -> dict[str, Any]:
             f"{len(arms):,} experimental/control arms, {len(outcomes):,} structured outcomes, and {len(edges):,} blueprint links "
             f"across all five Islet-1 biological gates and 20 effector pathways, screened from "
             f"{ceg['screening_funnel']['screened_records_total']:,} deduplicated candidate records. "
-            "The Layer-1 2,160-stack prior-anchored scenario evaluator retains its 589-study Ring-1 scoring baseline "
-            "unchanged (+0.00 pp under IIP-0033) unless an explicit Islet Improvement Proposal "
+            "The Layer-1 2,160-stack prior-anchored scenario evaluator retains its 594-study Ring-1 scoring baseline "
+            "unchanged (+0.00 pp under IIP-0034) unless an explicit Islet Improvement Proposal "
             "updates a module parameter or Idea Graveyard rule."
         ),
         "summary": {
@@ -459,7 +464,7 @@ def build_layer1_atlas_from_ceg(ceg: dict[str, Any]) -> dict[str, Any]:
             "ring1_empirical_core_studies_in_ceg": r1_empirical_count,
             "new_expansion_empirical_studies_in_ceg": non_r1_empirical_count,
             "non_r1_ceg_records_total": non_r1_total_count,
-            "ring1_scoring_baseline_studies_unchanged": 589,
+            "ring1_scoring_baseline_studies_unchanged": 594,
             "experimental_and_control_arms_total": len(arms),
             "structured_outcomes_total": len(outcomes),
             "outcomes_cited_by_blueprint_links": cited_outcomes,
@@ -496,7 +501,7 @@ def build_layer1_atlas_from_ceg(ceg: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def verify_ceg_payload(ceg: dict[str, Any], repo_root: Path = REPO_ROOT) -> dict[str, int]:
+def verify_ceg_payload(ceg: dict[str, Any], repo_root: Path = REPO_ROOT, *, require_sources: bool = False) -> dict[str, int]:
     """Fail-closed structural, referential, and rights verification of `context_evidence_graph_v1.json`."""
     studies = ceg.get("studies")
     arms = ceg.get("arms")
@@ -505,14 +510,14 @@ def verify_ceg_payload(ceg: dict[str, Any], repo_root: Path = REPO_ROOT) -> dict
     effectors = ceg.get("effectors")
     graveyard = ceg.get("graveyard_index")
 
-    if not isinstance(studies, dict) or len(studies) != 1172:
-        raise ValueError(f"Expected 1,172 studies in CEG, got {len(studies) if isinstance(studies, dict) else type(studies)}")
-    if not isinstance(arms, dict) or len(arms) != 7725:
-        raise ValueError(f"Expected 7,725 arms in CEG, got {len(arms) if isinstance(arms, dict) else type(arms)}")
-    if not isinstance(outcomes, dict) or len(outcomes) != 14159:
-        raise ValueError(f"Expected 14,159 outcomes in CEG, got {len(outcomes) if isinstance(outcomes, dict) else type(outcomes)}")
-    if not isinstance(edges, list) or len(edges) != 2478:
-        raise ValueError(f"Expected 2,478 edges in CEG, got {len(edges) if isinstance(edges, list) else type(edges)}")
+    if not isinstance(studies, dict) or len(studies) != 1176:
+        raise ValueError(f"Expected 1,176 studies in CEG, got {len(studies) if isinstance(studies, dict) else type(studies)}")
+    if not isinstance(arms, dict) or len(arms) != 7740:
+        raise ValueError(f"Expected 7,740 arms in CEG, got {len(arms) if isinstance(arms, dict) else type(arms)}")
+    if not isinstance(outcomes, dict) or len(outcomes) != 14167:
+        raise ValueError(f"Expected 14,167 outcomes in CEG, got {len(outcomes) if isinstance(outcomes, dict) else type(outcomes)}")
+    if not isinstance(edges, list) or len(edges) != 2483:
+        raise ValueError(f"Expected 2,483 edges in CEG, got {len(edges) if isinstance(edges, list) else type(edges)}")
     if not isinstance(effectors, dict) or len(effectors) != 20:
         raise ValueError(f"Expected 20 effectors in CEG, got {len(effectors) if isinstance(effectors, dict) else type(effectors)}")
     if not isinstance(graveyard, list) or len(graveyard) != 10:
@@ -776,6 +781,234 @@ def verify_ceg_payload(ceg: dict[str, Any], repo_root: Path = REPO_ROOT) -> dict
             if g.get("graveyard_id") not in gy_ids:
                 raise ValueError(f"CEG graveyard entry {g.get('graveyard_id')} missing from {GRAVEYARD_REL_PATH}")
 
+    # Global study<->arm ownership symmetry, outcomes_count, and same-study explicit outcome arm FKs
+    _actual_out_counts: dict[str, int] = {}
+    for _oid_g, _o_g in outcomes.items():
+        _oqid_g = _o_g.get("queue_id")
+        _actual_out_counts[_oqid_g] = _actual_out_counts.get(_oqid_g, 0) + 1
+        for _af in ("comparator_arm_id", "focal_arm_id", "intervention_arm_id"):
+            _av = _o_g.get(_af)
+            if _av is not None:
+                if not isinstance(_av, str) or not _av.strip():
+                    raise ValueError(f"Outcome {_oid_g} has invalid {_af}={_av!r}")
+                _full_av = _av if _av.startswith("VAR:") else f"VAR:{_oqid_g}:{_av}"
+                if _full_av not in arms:
+                    raise ValueError(f"Outcome {_oid_g} {_af}={_av!r} does not resolve in CEG arms")
+                if arms[_full_av].get("queue_id") != _oqid_g:
+                    raise ValueError(f"Outcome {_oid_g} {_af}={_av!r} belongs to study {arms[_full_av].get('queue_id')!r}, not {_oqid_g!r}")
+    for _qid_g, _st_g in studies.items():
+        _st_vids = _st_g.get("variable_arm_ids") or []
+        if len(_st_vids) != len(set(_st_vids)):
+            raise ValueError(f"Study {_qid_g} has duplicate entries in variable_arm_ids")
+        for _vid_g in _st_vids:
+            if arms[_vid_g].get("queue_id") != _qid_g:
+                raise ValueError(f"Study {_qid_g} variable_arm_ids references arm {_vid_g} owned by {arms[_vid_g].get('queue_id')!r}")
+        if _st_g.get("outcomes_count") != _actual_out_counts.get(_qid_g, 0):
+            raise ValueError(f"Study {_qid_g} outcomes_count={_st_g.get('outcomes_count')} disagrees with actual {_actual_out_counts.get(_qid_g, 0)}")
+    for _vid_g, _a_g in arms.items():
+        _aq_g = _a_g.get("queue_id")
+        if _vid_g not in set(studies[_aq_g].get("variable_arm_ids") or []):
+            raise ValueError(f"Arm {_vid_g} owned by {_aq_g} is missing from study variable_arm_ids")
+
+    # Strict IIP-0034 new-record typed arm FKs, same-study joins, effector refs, no-partial-dossier span audit & full-leaf rolling-40 _SourceGuard
+    _iip0034_qids = frozenset({"PMID:17375075", "PMID:42020736", "PMID:42056515", "PMID:42749803"})
+    _iip0034_eids = frozenset({"PMID:17375075:L1", "PMID:42020736:L1", "PMID:42056515:L1", "PMID:42749803:L1", "M1522:L4"})
+    _iip0034_req_pmids = ("17375075", "39696686", "42020736", "42056515", "42749803")
+    _arm_tok_re = re.compile(r"\b(A\d+(?:_[A-Za-z0-9_]+)?)\b")
+    _span_re = re.compile(r"^([A-Za-z0-9_\.\[\]]+)\[(\d+):(\d+)\]\|norm=exact$")
+
+    for _qid34 in sorted(_iip0034_qids):
+        _st34 = studies.get(_qid34)
+        if not isinstance(_st34, dict):
+            raise ValueError(f"Missing required IIP-0034 study {_qid34}")
+        for _ef in (_st34.get("candidate_effector_topics") or []):
+            if _ef not in effectors:
+                raise ValueError(f"IIP-0034 study {_qid34} references unresolved effector {_ef!r}")
+    for _vid34, _a34 in arms.items():
+        _aq34 = _a34.get("queue_id")
+        if _aq34 not in _iip0034_qids:
+            continue
+        _exp_vid = f"VAR:{_aq34}:{_a34.get('arm_id')}"
+        if _vid34 != _exp_vid or _a34.get("variable_id") != _exp_vid:
+            raise ValueError(f"IIP-0034 arm {_vid34} mismatches embedded variable_id/arm_id ({_exp_vid})")
+        for _ef in (_a34.get("candidate_effector_topics") or []):
+            if _ef not in effectors:
+                raise ValueError(f"IIP-0034 arm {_vid34} references unresolved effector {_ef!r}")
+    _legacy_m1522_eids = frozenset({"M1522:L1", "M1522:L2"})
+    for _e34 in edges:
+        _eq34 = _e34.get("queue_id")
+        _eid34 = str(_e34.get("edge_id") or "")
+        if _e34.get("primary_certification_eligible") is True and _e34.get("applicability") == "unvalidated_transfer":
+            if _eq34 in _iip0034_qids or (_eq34 == "M1522" and _eid34 not in _legacy_m1522_eids):
+                raise ValueError(
+                    f"Edge {_eid34} ({_eq34}) with applicability='unvalidated_transfer' cannot be primary_certification_eligible=True"
+                )
+        if _eid34 in _iip0034_eids or _eq34 in _iip0034_qids:
+            for _tok34 in (_e34.get("cited_outcome_tuples") or []):
+                if outcomes[_tok34].get("queue_id") != _eq34:
+                    raise ValueError(f"IIP-0034 edge {_eid34} cites cross-study outcome {_tok34} (owned by {outcomes[_tok34].get('queue_id')!r}, not {_eq34!r})")
+            for _ef in (_e34.get("candidate_effector_topics") or []):
+                if _ef not in effectors:
+                    raise ValueError(f"IIP-0034 edge {_eid34} references unresolved effector {_ef!r}")
+
+    _dossiers_dir = repo_root / "data" / "dossiers"
+    _has_dossiers_dir = _dossiers_dir.is_dir()
+    _loaded_dos_by_pmid: dict[str, dict[str, Any]] = {}
+    if _has_dossiers_dir or require_sources:
+        _missing_dos = [pm for pm in _iip0034_req_pmids if not (_dossiers_dir / f"{pm}.json").is_file()]
+        if _missing_dos:
+            raise ValueError(
+                f"Incomplete local dossier set for source-level CEG verification: missing {_missing_dos} under {_dossiers_dir}"
+            )
+        for _pm34 in _iip0034_req_pmids:
+            _loaded_dos_by_pmid[_pm34] = json.loads((_dossiers_dir / f"{_pm34}.json").read_text(encoding="utf-8"))
+
+    def _resolve_dossier_span(_dos_obj: dict[str, Any], _path_expr: str) -> str:
+        _cur: Any = _dos_obj
+        for _part in _path_expr.split("."):
+            _m_idx = re.fullmatch(r"([A-Za-z0-9_]+)\[(\d+)\]", _part)
+            if _m_idx:
+                _cur = _cur[_m_idx.group(1)][int(_m_idx.group(2))]
+            else:
+                _cur = _cur[_part]
+        if not isinstance(_cur, str):
+            raise ValueError(f"Dossier span path {_path_expr!r} did not resolve to string")
+        return _cur
+
+    def _verify_pin_obj(_oid_p: str, _pm_p: str, _pin_obj: dict[str, Any], _expected_sha: Any) -> None:
+        _sp_str = str((_pin_obj or {}).get("span") or "")
+        _m_sp = _span_re.fullmatch(_sp_str)
+        if not _m_sp:
+            raise ValueError(f"Outcome {_oid_p} has malformed span={_sp_str!r}")
+        _p_expr, _s_i, _e_i = _m_sp.group(1), int(_m_sp.group(2)), int(_m_sp.group(3))
+        if _s_i < 0 or _e_i <= _s_i:
+            raise ValueError(f"Outcome {_oid_p} has invalid span coordinates [{_s_i}:{_e_i}]")
+        if not isinstance(_expected_sha, str) or not re.fullmatch(r"[0-9a-f]{64}", _expected_sha):
+            raise ValueError(f"Outcome {_oid_p} missing valid 64-hex quote_sha256")
+        if _pm_p in _loaded_dos_by_pmid:
+            _src_txt = _resolve_dossier_span(_loaded_dos_by_pmid[_pm_p], _p_expr)
+            if _e_i > len(_src_txt):
+                raise ValueError(f"Outcome {_oid_p} span [{_s_i}:{_e_i}] exceeds dossier length {len(_src_txt)}")
+            _slice_sha = _sha256_str(_src_txt[_s_i:_e_i])
+            if _slice_sha != _expected_sha:
+                raise ValueError(f"Outcome {_oid_p} span digest {_slice_sha} mismatches quote_sha256 {_expected_sha!r}")
+
+    for oid, o in outcomes.items():
+        _oqid = o.get("queue_id")
+        if _oqid not in _iip0034_qids:
+            continue
+        _exp_oid = f"{_oqid}:{o.get('outcome_id')}"
+        if oid != _exp_oid or o.get("outcome_node_id") != _exp_oid:
+            raise ValueError(f"IIP-0034 outcome {oid} mismatches embedded outcome_node_id/outcome_id ({_exp_oid})")
+        for _ef in (o.get("candidate_effector_topics") or []):
+            if _ef not in effectors:
+                raise ValueError(f"IIP-0034 outcome {oid} references unresolved effector {_ef!r}")
+        _iv_arms = o.get("intervention_arm_ids")
+        _cmp_arms = o.get("comparator_arm_ids")
+        if not isinstance(_iv_arms, list) or not _iv_arms or not isinstance(_cmp_arms, list):
+            raise ValueError(f"IIP-0034 outcome {oid} missing required typed intervention_arm_ids/comparator_arm_ids lists")
+        if len(_iv_arms) != len(set(_iv_arms)) or len(_cmp_arms) != len(set(_cmp_arms)):
+            raise ValueError(f"IIP-0034 outcome {oid} contains duplicate entries in intervention_arm_ids or comparator_arm_ids")
+        if not set(_iv_arms).isdisjoint(set(_cmp_arms)):
+            raise ValueError(f"IIP-0034 outcome {oid} intervention_arm_ids and comparator_arm_ids overlap")
+        for _t_vid in (*_iv_arms, *_cmp_arms):
+            if not isinstance(_t_vid, str) or _t_vid not in arms:
+                raise ValueError(f"IIP-0034 outcome {oid} typed arm ref {_t_vid!r} does not resolve in CEG arms")
+            if arms[_t_vid].get("queue_id") != _oqid:
+                raise ValueError(f"IIP-0034 outcome {oid} typed arm ref {_t_vid!r} belongs to {arms[_t_vid].get('queue_id')!r}, not {_oqid!r}")
+        _opt_cmp = o.get("comparator_arm_id")
+        if _opt_cmp is not None:
+            _full_opt_cmp = _opt_cmp if _opt_cmp.startswith("VAR:") else f"VAR:{_oqid}:{_opt_cmp}"
+            if _full_opt_cmp not in _cmp_arms:
+                raise ValueError(f"IIP-0034 outcome {oid} comparator_arm_id {_opt_cmp!r} disagrees with comparator_arm_ids={_cmp_arms!r}")
+        _ca_raw = o.get("comparison_arms")
+        if not isinstance(_ca_raw, str) or not _ca_raw.strip():
+            raise ValueError(f"IIP-0034 outcome {oid} comparison_arms must be a non-empty string")
+        _ca_tokens = _arm_tok_re.findall(_ca_raw)
+        _ca_vids: set[str] = set()
+        for _atok in _ca_tokens:
+            _cand_vid = f"VAR:{_oqid}:{_atok}"
+            if _cand_vid not in arms or arms[_cand_vid].get("queue_id") != _oqid:
+                raise ValueError(f"Outcome {oid} comparison_arms references unresolved or cross-study arm {_cand_vid}")
+            _ca_vids.add(_cand_vid)
+        if _ca_vids != (set(_iv_arms) | set(_cmp_arms)):
+            raise ValueError(
+                f"IIP-0034 outcome {oid} typed arm lists ({sorted(set(_iv_arms) | set(_cmp_arms))}) disagree with comparison_arms ({sorted(_ca_vids)})"
+            )
+        _vs_split = re.split(r"\bvs\b", _ca_raw, maxsplit=1, flags=re.IGNORECASE)
+        if len(_vs_split) == 2:
+            _lhs_vids = {f"VAR:{_oqid}:{t}" for t in _arm_tok_re.findall(_vs_split[0])}
+            _rhs_vids = {f"VAR:{_oqid}:{t}" for t in _arm_tok_re.findall(_vs_split[1])}
+            if _lhs_vids != set(_iv_arms) or _rhs_vids != set(_cmp_arms):
+                raise ValueError(
+                    f"IIP-0034 outcome {oid} typed intervention/comparator roles disagree with comparison_arms LHS/RHS"
+                )
+        elif _cmp_arms:
+            raise ValueError(f"IIP-0034 outcome {oid} lists comparator_arm_ids={_cmp_arms!r} without a 'vs' contrast in comparison_arms")
+        _pm_o = _oqid.split(":", 1)[1]
+        _sp_primary = o.get("source_pin") or {}
+        if isinstance(_sp_primary, dict) and "quote_sha256" in _sp_primary and _sp_primary["quote_sha256"] != o.get("quote_sha256"):
+            raise ValueError(
+                f"Outcome {oid} nested source_pin.quote_sha256 {_sp_primary['quote_sha256']!r} conflicts with top-level quote_sha256 {o.get('quote_sha256')!r}"
+            )
+        _verify_pin_obj(oid, _pm_o, _sp_primary, o.get("quote_sha256"))
+        for _sec_pin in (o.get("secondary_source_pins") or []):
+            if not isinstance(_sec_pin, dict):
+                raise ValueError(f"Outcome {oid} malformed secondary_source_pins entry")
+            _verify_pin_obj(oid, _pm_o, _sec_pin, _sec_pin.get("quote_sha256"))
+
+    if _loaded_dos_by_pmid:
+        _union_shingles: set[tuple[str, ...]] = set()
+        _rolling40_set: set[str] = set()
+        for _d34 in _loaded_dos_by_pmid.values():
+            _dt34 = " ".join(_leaves(_d34))
+            _ws34 = _words(_dt34)
+            _union_shingles.update(tuple(_ws34[i : i + 6]) for i in range(max(0, len(_ws34) - 5)))
+            _nd34 = _norm_spaces(_dt34)
+            _rolling40_set.update(_nd34[i : i + 40] for i in range(max(0, len(_nd34) - 39)))
+
+        _SG_SKIP_KEYS = frozenset({
+            "doi", "pmid", "pmcid", "queue_id", "context_id", "variable_id", "outcome_node_id", "edge_id",
+            "arm_id", "outcome_id", "quote_sha256", "span", "source_type", "intervention_arm_ids",
+            "comparator_arm_ids", "cited_outcome_ids", "cited_outcome_tuples", "cited_by_edge_ids",
+            "variable_arm_ids", "candidate_effector_topics", "record_class", "fidelity_tier", "manuscript_tier",
+            "direction", "stat_type", "relation", "applicability", "incorporation", "readiness",
+            "causal_isolation", "id_type", "id_value", "role", "figure_id", "panel", "table_id", "row_id", "col_id",
+        })
+
+        def _scan_sg(_obj: Any, _path_lbl: str) -> None:
+            if isinstance(_obj, dict):
+                for _k, _v in _obj.items():
+                    if _k in _SG_SKIP_KEYS:
+                        continue
+                    _scan_sg(_v, f"{_path_lbl}.{_k}")
+            elif isinstance(_obj, list):
+                for _i, _v in enumerate(_obj):
+                    _scan_sg(_v, f"{_path_lbl}[{_i}]")
+            elif isinstance(_obj, str) and _obj:
+                _ws_t = _words(_obj)
+                if len(_ws_t) >= 6:
+                    for _i in range(len(_ws_t) - 5):
+                        if tuple(_ws_t[_i : _i + 6]) in _union_shingles:
+                            raise ValueError(f"CEG {_path_lbl} violates _SourceGuard (6-word union shingle)")
+                _ns_t = _norm_spaces(_obj)
+                if len(_ns_t) >= 40:
+                    for _i in range(len(_ns_t) - 39):
+                        if _ns_t[_i : _i + 40] in _rolling40_set:
+                            raise ValueError(f"CEG {_path_lbl} violates _SourceGuard (rolling 40-char dossier substring)")
+
+        for _qid34 in sorted(_iip0034_qids):
+            _scan_sg(studies[_qid34], f"study.{_qid34}")
+        for _vid, _a in arms.items():
+            if _a.get("queue_id") in _iip0034_qids:
+                _scan_sg(_a, f"arm.{_vid}")
+        for _oid, _o in outcomes.items():
+            if _o.get("queue_id") in _iip0034_qids or _oid in {"M1522:O6", "M1522:O7", "M1522:O15", "M1522:O16"}:
+                _scan_sg(_o, f"outcome.{_oid}")
+        for _e in edges:
+            if _e.get("edge_id") in _iip0034_eids:
+                _scan_sg(_e, f"edge.{_e.get('edge_id')}")
+
     return {
         "studies": len(studies),
         "arms": len(arms),
@@ -783,6 +1016,25 @@ def verify_ceg_payload(ceg: dict[str, Any], repo_root: Path = REPO_ROOT) -> dict
         "edges": len(edges),
         "effectors": len(effectors),
         "graveyard_index": len(graveyard),
+    }
+
+
+def verify_ceg_payload_detailed(
+    ceg: dict[str, Any],
+    repo_root: Path = REPO_ROOT,
+    *,
+    require_sources: bool = False,
+) -> dict[str, Any]:
+    """Run verify_ceg_payload and return explicit verification_mode alongside counts."""
+    counts = verify_ceg_payload(ceg, repo_root=repo_root, require_sources=require_sources)
+    has_src = (repo_root / "data" / "dossiers").is_dir()
+    return {
+        "counts": counts,
+        "verification_mode": "iip0034_5dossiers_8new_exact_spans_verified" if has_src else "structural_public_only",
+        "iip0034_dossiers_verified": ["17375075", "39696686", "42020736", "42056515", "42749803"] if has_src else [],
+        "reused_m1522_outcomes_exact_span_verified": False,
+        "izadifar_dossier_contains_figure_legends": False,
+        "m1522_reused_outcomes_note": "M1522:O6/O7/O15/O16 use figure/panel + digest pins outside the exact-span pass (Izadifar dossier carries no figure legends) and remain ineligible scoping references on M1522:L4.",
     }
 
 
@@ -886,6 +1138,10 @@ def import_and_materialize(
         if s.get("experimental_subcomponent_note"):
             st["experimental_subcomponent_note"] = clean_text(
                 qid, "experimental_subcomponent_note", s.get("experimental_subcomponent_note"), meta
+            )
+        if s.get("tier_qualification_note"):
+            st["tier_qualification_note"] = clean_text(
+                qid, "tier_qualification_note", s.get("tier_qualification_note"), meta
             )
         if s.get("candidate_effector_topics"):
             st["candidate_effector_topics"] = list(s["candidate_effector_topics"])
@@ -997,6 +1253,12 @@ def import_and_materialize(
                 for k in keep_cao_keys
                 if k in cao_in and cao_in[k] is not None
             }
+        if isinstance(o.get("intervention_arm_ids"), list):
+            oc["intervention_arm_ids"] = list(o["intervention_arm_ids"])
+        if isinstance(o.get("comparator_arm_ids"), list):
+            oc["comparator_arm_ids"] = list(o["comparator_arm_ids"])
+        if isinstance(o.get("secondary_source_pins"), list):
+            oc["secondary_source_pins"] = [dict(sp) for sp in o["secondary_source_pins"] if isinstance(sp, dict)]
         outcomes[oid] = oc
 
     edges: list[dict[str, Any]] = []
@@ -1053,6 +1315,13 @@ def import_and_materialize(
                     or _st_pin_imp_t in _imp_title_pins
                     or _edge_prov in _imp_non_emp_prov
                     or e["edge_id"] in CURATED_INELIGIBLE_EDGE_IDS
+                    or (
+                        e.get("applicability") == "unvalidated_transfer"
+                        and (
+                            qid in {"PMID:17375075", "PMID:42020736", "PMID:42056515", "PMID:42749803"}
+                            or (qid == "M1522" and e["edge_id"] not in {"M1522:L1", "M1522:L2"})
+                        )
+                    )
                     or not cited_tuples
                     or _cites_nonemp_or_sim
                 )
@@ -1064,6 +1333,8 @@ def import_and_materialize(
         }
         if _edge_prov:
             ed["evidence_provenance"] = str(_edge_prov)
+        if e.get("provenance_note"):
+            ed["provenance_note"] = clean_text(qid, "provenance_note", e.get("provenance_note"), meta)
         if e.get("candidate_effector_topics"):
             ed["candidate_effector_topics"] = list(e["candidate_effector_topics"])
         edges.append(ed)
@@ -1110,8 +1381,8 @@ def import_and_materialize(
     if not isinstance(_wave_counts, dict) or "Wave_2B_Supporting_Catalog_P2_P3" not in _wave_counts:
         raise ValueError("screening_ledger.summary.candidate_extraction_waves must specify Wave_2B_Supporting_Catalog_P2_P3")
     _tot_screened = l_sum["total_studies"]
-    _r1_screened = l_sum.get("ring1_existing_records_screened", 589)
-    _new_screened = l_sum.get("new_candidate_records_screened", 3345)
+    _r1_screened = l_sum.get("ring1_existing_records_screened", 594)
+    _new_screened = l_sum.get("new_candidate_records_screened", 3344)
     _adv_total = _oc_counts["ADVANCE"]
     _park_total = _oc_counts["PARK_CONTEXT"]
     _excl_total = _oc_counts["EXCLUDE_OFF_TOPIC"]
@@ -1169,9 +1440,9 @@ def import_and_materialize(
             },
         },
         "evidence_hierarchy_and_scoring_note": (
-            "Context-indexed evidence graph across 1,172 total CEG records (1,146 empirical_primary_study + 11 trial_registry_protocol + 7 regulatory_or_guidance_document + 4 computational_model_or_simulation + 1 correspondence_or_secondary_summary + 3 superseded_preprint_duplicate), 7,725 arms, 14,159 outcomes, "
-            "and 2,478 blueprint links. Layer-1 2,160-stack prior-anchored scenario scores remain computed on the "
-            "589-study Ring-1 baseline (+0.00 pp under IIP-0033) unless explicitly updated through an accepted Islet Improvement Proposal."
+            "Context-indexed evidence graph across 1,176 total CEG records (1,150 empirical_primary_study + 11 trial_registry_protocol + 7 regulatory_or_guidance_document + 4 computational_model_or_simulation + 1 correspondence_or_secondary_summary + 3 superseded_preprint_duplicate), 7,740 arms, 14,167 outcomes, "
+            "and 2,483 blueprint links. Layer-1 2,160-stack prior-anchored scenario scores remain computed on the "
+            "594-study Ring-1 baseline (+0.00 pp under IIP-0034) unless explicitly updated through an accepted Islet Improvement Proposal."
         ),
         "counts": {
             "screened_records_total": screening_funnel["screened_records_total"],
@@ -1234,8 +1505,24 @@ def main() -> None:
 
     if not ceg_path.is_file():
         raise FileNotFoundError(f"Missing {ceg_path}")
-    ceg_payload = json.loads(ceg_path.read_text(encoding="utf-8"))
-    counts = verify_ceg_payload(ceg_payload, repo_root=root)
+    import math as _math
+    def _bceg_no_dup(pairs):
+        out = {}
+        for k, v in pairs:
+            if k in out:
+                raise ValueError(f"Duplicate JSON key in CEG: {k!r}")
+            out[k] = v
+        return out
+    def _bceg_no_nan(tok):
+        raise ValueError(f"Non-standard JSON constant in CEG: {tok!r}")
+    def _bceg_finite_float(tok):
+        v = float(tok)
+        if not _math.isfinite(v):
+            raise ValueError(f"Non-finite JSON float overflow in CEG: {tok!r}")
+        return v
+    ceg_payload = json.loads(ceg_path.read_text(encoding="utf-8"), object_pairs_hook=_bceg_no_dup, parse_constant=_bceg_no_nan, parse_float=_bceg_finite_float)
+    detail = verify_ceg_payload_detailed(ceg_payload, repo_root=root)
+    counts = detail["counts"]
     expected_atlas = (json.dumps(build_layer1_atlas_from_ceg(ceg_payload), indent=2, ensure_ascii=False, allow_nan=False) + "\n").encode("utf-8")
     if args.verify:
         if not atlas_path.is_file() or atlas_path.read_bytes() != expected_atlas:

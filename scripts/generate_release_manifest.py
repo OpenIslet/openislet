@@ -571,6 +571,7 @@ def _generate_release_manifest() -> None:
         "data/constructs/islet1_locus2_ciita_modeb_comparators_v0.8.0.fasta",
         "data/constructs/islet1_locus3_multimir_modeb_comparators_v0.8.0.fasta",
         "data/constructs/islet1_design_y_wildcard_comparators_v0.8.0.fasta",
+        "data/constructs/islet1_design_y_fullstack_v2_v0.8.0.fasta",
         "data/constructs/islet1_design_b_complete_constructs_v0.8.0.fasta",
         "data/constructs/nm_021999_5_archival_mrna.fasta",
         "data/graveyard/idea_graveyard_v0.5.json",
@@ -583,6 +584,7 @@ def _generate_release_manifest() -> None:
         "data/extracted/islet1_candidate_stack_rankings.json",
         "data/extracted/islet1_stack_ranking_v0.5.json",
         "data/extracted/islet1_combinatorial_pareto_and_ladder_v0.8.0.json",
+        "data/extracted/islet1_multiparadigm_portfolio_v0.8.0.json",
         "data/extracted/ring1_study_dossiers_v0.5.jsonl",
         "data/extracted/ring1_atomic_effects_v0.5.jsonl",
         "data/extracted/layer2_regulatory_and_perturbation_atlas.json",
@@ -630,6 +632,7 @@ def _generate_release_manifest() -> None:
         "data/protocols/stage0_decision_tree_v1.json",
         "data/extracted/documentation_facts_v0.8.0.json",
         "data/extracted/iip0033_bilayer_and_respirometry_verification_v0.8.0.json",
+        "data/extracted/iip0034_planar_and_portfolio_verification_v0.8.0.json",
         "tests/test_preastra_layer1.py",
         "tests/test_preastra_molecular.py",
         "tests/test_preastra_physiology_compiler.py",
@@ -659,6 +662,7 @@ def _generate_release_manifest() -> None:
         "scripts/run_layer5_personalized_patient_compiler.py",
         "scripts/summarize_omics_baseline.py",
         "scripts/verify_iip0033_bilayer_and_resp1.py",
+        "scripts/verify_iip0034_planar_and_portfolio.py",
         "tests/test_adversarial_acceptance.py",
         "tests/test_citations_resolve.py",
         "tests/test_context_evidence_graph.py",
@@ -666,6 +670,7 @@ def _generate_release_manifest() -> None:
         "tests/test_layer2_and_layer3_planes.py",
         "tests/test_layer4_and_layer5_planes.py",
         "tests/test_iip0033_bilayer_respirometry.py",
+        "tests/test_iip0034_design_y_and_route3p.py",
     ]
     artifact_entries = {}
     for rel in tracked_artifacts:
@@ -752,9 +757,9 @@ def _generate_release_manifest() -> None:
             }
         },
         "auxiliary_non_ring1_dossiers_registry": {
-            "note": "Two Ring-2 review dossiers cached in data/dossiers/ are outside the 589-study Ring-1 primary experimental extracted corpus (589 + 2 = 591 total dossiers):",
-            "26649319": "Akter et al. 2016 (Journal of Diabetes Research, doi:10.1155/2016/2798269): 'Islet Amyloid Polypeptide: Structure, Function, and Pathophysiology.' (Ring-2 review dossier retained in local dossier cache; not part of 589-study Ring-1 extracted queue)",
-            "35650334": "Nekoua, Alidjinou & Hober 2022 (Nature Reviews Endocrinology, doi:10.1038/s41574-022-00688-1): 'Persistent coxsackievirus B infection and pathogenesis of type 1 diabetes mellitus.' (Ring-2 review dossier retained in local dossier cache; not part of 589-study Ring-1 extracted queue)",
+            "note": "Two Ring-2 review dossiers cached in data/dossiers/ are outside the 594-study Ring-1 primary experimental extracted corpus (594 + 2 = 596 total dossiers):",
+            "26649319": "Akter et al. 2016 (Journal of Diabetes Research, doi:10.1155/2016/2798269): 'Islet Amyloid Polypeptide: Structure, Function, and Pathophysiology.' (Ring-2 review dossier retained in local dossier cache; not part of 594-study Ring-1 extracted queue)",
+            "35650334": "Nekoua, Alidjinou & Hober 2022 (Nature Reviews Endocrinology, doi:10.1038/s41574-022-00688-1): 'Persistent coxsackievirus B infection and pathogenesis of type 1 diabetes mellitus.' (Ring-2 review dossier retained in local dossier cache; not part of 594-study Ring-1 extracted queue)",
         },
         "public_redistribution_allowlist_spec": {
             "policy_note": (
@@ -910,7 +915,7 @@ VERIFIED_OPEN_LICENSE_PMIDS: set[str] = set()
 import re as _re
 
 VALID_REDACTION_MARKER_RE = _re.compile(
-    r"^\[REDACTED_NON_OA_EXCERPT: see PMID:\d{7,8}"
+    r"^\[REDACTED_(?:NON_OA|CONSERVATIVE)_EXCERPT: see PMID:\d{7,8}"
     r"(?: span=[A-Za-z0-9_.\[\]:|-]+)?"
     r"(?: field=[A-Za-z0-9_]+)?"
     r"(?: mod=[A-Za-z0-9_,-]+)?"
@@ -942,6 +947,18 @@ def _public_redaction_field(name: str) -> str:
     _validate_public_redaction_token("")
     snapshot = _PUBLIC_POLICY_SNAPSHOT.get()
     return (snapshot['helper'] if snapshot is not None else _REDACTION_HELPER).safe_field(name)
+
+
+def _redaction_prefix_for_pmid(pmid: str) -> str:
+    _validate_public_redaction_token("")
+    snapshot = _PUBLIC_POLICY_SNAPSHOT.get()
+    helper = snapshot['helper'] if snapshot is not None else _REDACTION_HELPER
+    fn = getattr(helper, "redaction_token_prefix_for_pmid", None)
+    return fn(str(pmid)) if fn is not None else "[REDACTED_NON_OA_EXCERPT:"
+
+
+def _has_redaction_prefix(text: object) -> bool:
+    return isinstance(text, str) and ("[REDACTED_NON_OA_EXCERPT:" in text or "[REDACTED_CONSERVATIVE_EXCERPT:" in text)
 
 
 def _is_authentic_redaction_marker(text: str) -> bool:
@@ -1033,12 +1050,23 @@ def _is_fixed_public_schema_metadata(value: str, field: str = "") -> bool:
                 "quarantined_unsupported_unit",
                 "reported_units", "scc/h", "ug/mL", "week", "weeks",
                 "\u00b5M", "\u00b5m", "\u03bcM", "\u03bcm",
+                "fold_change_early_apoptotic_index", "fold_change_multi_comparator",
+                "ng_per_mL_per_1e6_cells", "pct_pa_alleles_ddpcr",
+                "percent_ddpcr_insertion_fraction", "percent_descriptive",
+                "preclinical_xenograft_tumor_volume_suppression",
+                "qualitative_ablation", "qualitative_gel_assembly_feasibility",
+                "viability_index",
             ))
         by_field.setdefault("cell_line_id", set()).update((
             "EndoC-\u03b2H1", "EndoC-\u03b2H3", "H1", "H9", "HUES8",
             "WA01", "H1/WA01", "WA01/H1", "CyT49", "MEL1", "MIN6",
             "INS-1", "INS-1E", "NIT-1", "WTC11", "HEL24.3", "HEL46.11",
-            "TkDN4-M", "UP421",
+            "TkDN4-M", "UP421", "HEK293T",
+            "Jurkat (clonal LV-hTMPK-F105Y)", "K562 (LV-hTMPK-F105Y)", "K562 (nontransduced)",
+            "Primary human CD3+ T cells (n=4 paired healthy donors; activated CD3/CD28/CD2 + IL-2)",
+            "Primary human CD3+ T cells (n=4 paired healthy donors; resting IL-7/IL-15)",
+            "beta-iPLC line 2 (FS-beta-iPLC clone#81; triple-transgenic mouse)",
+            "beta-iPLC line 2 (parental triple-transgenic mouse; no Cdk1-HSV-TK edit)",
         ))
         by_field.setdefault("comparator_X0", set()).add(
             "Control / comparator condition (see structured arm definitions)"
@@ -1051,8 +1079,10 @@ def _is_fixed_public_schema_metadata(value: str, field: str = "") -> bool:
     if field == "gene_symbol_hgnc":
         _validate_public_redaction_token("")
         helper=snapshot['helper'] if snapshot is not None else _REDACTION_HELPER
-        if value in helper.GENES or value in {"HLA-B_HLA-C_HLA-A24", "IL10_TGFB1_IL2_N88D", "JAK1_JAK2"}:
+        if value in helper.GENES or value in {"HLA-B_HLA-C_HLA-A24", "IL10_TGFB1_IL2_N88D", "JAK1_JAK2", "MULTI_LOCUS_SAFE_HARBOR"}:
             return True
+    if field == "ensembl_gene_id" and _re.fullmatch(r"ENS(?:MUS)?G[0-9]{11}", value) is not None:
+        return True
     if field == "source_figure_or_table" and len(value) <= 80:
         if _re.fullmatch(
             r"(?:Abstract|Title|Results|Methods|Discussion|Table|Tables|Fig\.?|Figs\.?|Figure|Figures|Extended Data|Supplementary|Supp\.?|SI Appendix|Section|Sec\.?|Panel|para|and|or|&|,|;|\(|\)|-|/|\u00a7|NCT\d{8}|[Ss]?[0-9]+(?:\.[0-9]+)?[A-Za-z]?|[IVX]+|\s)+",
@@ -1099,7 +1129,7 @@ def _validate_imported_redaction_tokens(obj: object, pmid: str, dossier: dict | 
     elif isinstance(obj, list):
         for value in obj:
             _validate_imported_redaction_tokens(value, pmid, dossier, parent, parent_key)
-    elif isinstance(obj, str) and "[REDACTED_NON_OA_EXCERPT:" in obj:
+    elif _has_redaction_prefix(obj):
         source_quote = None
         if dossier is not None:
             span = str((parent or {}).get("source_span") or "")
@@ -1257,7 +1287,7 @@ def public_token_errors(obj, expected_pmid=None, parent_key=''):
                 visit(child,child_pmid,name,path+'.'+name)
         elif isinstance(value,list):
             for index,child in enumerate(value):visit(child,pmid,key,path+f'[{index}]')
-        elif isinstance(value,str) and '[REDACTED_NON_OA_EXCERPT:' in value:
+        elif _has_redaction_prefix(value):
             if not _validate_public_redaction_token(value,expected_pmid=pmid,expected_field=key):errors.append(path)
     visit(obj,expected_pmid,parent_key,'$')
     return errors
@@ -1741,7 +1771,7 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                         q_sha = hashlib.sha256(q.encode("utf-8")).hexdigest()
                         span_tok = re.sub(r"[^A-Za-z0-9_.\[\]:|-]", "_", str(eff.get("source_span") or "none"))
                         eff["verbatim_evidence_quote"] = (
-                            f"[REDACTED_NON_OA_EXCERPT: see PMID:{pmid} field=verbatim_evidence_quote genes={genes_val} pert={pert_tag} quote_sha256={q_sha}]"
+                            f"{_redaction_prefix_for_pmid(pmid)} see PMID:{pmid} field=verbatim_evidence_quote genes={genes_val} pert={pert_tag} quote_sha256={q_sha}]"
                         )
                 # Enforce article-wide non-OA verbatim cap across all other source-derived text channels
                 for arm in doc.get("arms", []):
@@ -1757,7 +1787,7 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                                 mod_tok = raw_mod if raw_mod in public_helper.MODALITIES else "none"
                                 g_tok = ",".join(sorted(set(_expand_gene_symbol(str(ed.get("gene_symbol_hgnc") or ""))) & known_genes)) or "NONE"
                                 smc["exact_variant_or_swap_description"] = (
-                                    f"[REDACTED_NON_OA_EXCERPT: see PMID:{pmid} field=exact_variant_or_swap_description mod={mod_tok} genes={g_tok} quote_sha256={d_sha}]"
+                                    f"{_redaction_prefix_for_pmid(pmid)} see PMID:{pmid} field=exact_variant_or_swap_description mod={mod_tok} genes={g_tok} quote_sha256={d_sha}]"
                                 )
                 for em in doc.get("effect_modifier_interactions", []):
                     for mfield in ("level_1_condition_and_effect", "level_2_condition_and_effect", "mechanistic_explanation"):
@@ -1769,7 +1799,7 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                                 m_sha = hashlib.sha256(mval.encode("utf-8")).hexdigest()
                                 fig_tok = re.sub(r"[^A-Za-z0-9_.\[\]:|-]", "_", str(em.get("source_figure_or_table") or "none"))
                                 em[mfield] = (
-                                    f"[REDACTED_NON_OA_EXCERPT: see PMID:{pmid} field={mfield} quote_sha256={m_sha}]"
+                                    f"{_redaction_prefix_for_pmid(pmid)} see PMID:{pmid} field={mfield} quote_sha256={m_sha}]"
                                 )
                 for edge in doc.get("causal_mechanism_edges", []):
                     for nfield in ("upstream_node", "downstream_node"):
@@ -1785,7 +1815,7 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                             used_chars += len(esrc)
                         else:
                             e_sha = hashlib.sha256(esrc.encode("utf-8")).hexdigest()
-                            edge["evidence_source"] = f"[REDACTED_NON_OA_EXCERPT: see PMID:{pmid} field=evidence_source quote_sha256={e_sha}]"
+                            edge["evidence_source"] = f"{_redaction_prefix_for_pmid(pmid)} see PMID:{pmid} field=evidence_source quote_sha256={e_sha}]"
                 bridges = doc.get("cross_study_discovery_bridges") or {}
                 for rv in bridges.get("residual_failure_and_escape_vectors", []):
                     for rfield in ("residual_loss_or_limitation", "escape_mechanism_identified"):
@@ -1795,7 +1825,7 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                                 used_chars += len(rval)
                             else:
                                 r_sha = hashlib.sha256(rval.encode("utf-8")).hexdigest()
-                                rv[rfield] = f"[REDACTED_NON_OA_EXCERPT: see PMID:{pmid} field={rfield} quote_sha256={r_sha}]"
+                                rv[rfield] = f"{_redaction_prefix_for_pmid(pmid)} see PMID:{pmid} field={rfield} quote_sha256={r_sha}]"
                 for pf in bridges.get("collateral_and_pleiotropic_findings", []):
                     pval = pf.get("observation") or ""
                     if pval and not _is_authentic_redaction_marker(pval):
@@ -1803,7 +1833,7 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                             used_chars += len(pval)
                         else:
                             p_sha = hashlib.sha256(pval.encode("utf-8")).hexdigest()
-                            pf["observation"] = f"[REDACTED_NON_OA_EXCERPT: see PMID:{pmid} field=observation quote_sha256={p_sha}]"
+                            pf["observation"] = f"{_redaction_prefix_for_pmid(pmid)} see PMID:{pmid} field=observation quote_sha256={p_sha}]"
                 for rt in bridges.get("regime_thresholds", []):
                     tval = rt.get("verbatim_quote") or ""
                     if tval and not _is_authentic_redaction_marker(tval):
@@ -1811,7 +1841,7 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                             used_chars += len(tval)
                         else:
                             t_sha = hashlib.sha256(tval.encode("utf-8")).hexdigest()
-                            rt["verbatim_quote"] = f"[REDACTED_NON_OA_EXCERPT: see PMID:{pmid} field=verbatim_quote quote_sha256={t_sha}]"
+                            rt["verbatim_quote"] = f"{_redaction_prefix_for_pmid(pmid)} see PMID:{pmid} field=verbatim_quote quote_sha256={t_sha}]"
                 title_str = str((doc.get("study_metadata") or {}).get("title") or "")
 
                 def _enforce_doc_shingle_budget(obj: object, parent_key: str = "", cur_eff_id: str = "", bibliographic: bool = False) -> object:
@@ -1840,16 +1870,16 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                             g_v, p_v = metadata[cur_eff_id]
                             gp_suffix = f" genes={g_v} pert={p_v}"
                         # Spoofed redaction prefix or missing dossier fails closed immediately
-                        if obj.startswith("[REDACTED_NON_OA_EXCERPT:"):
+                        if obj.startswith("[REDACTED_NON_OA_EXCERPT:") or obj.startswith("[REDACTED_CONSERVATIVE_EXCERPT:"):
                             s_sha = hashlib.sha256(obj.encode("utf-8")).hexdigest()
-                            return f"[REDACTED_NON_OA_EXCERPT: see PMID:{pmid} field={f_tok}{gp_suffix} quote_sha256={s_sha}]"
+                            return f"{_redaction_prefix_for_pmid(pmid)} see PMID:{pmid} field={f_tok}{gp_suffix} quote_sha256={s_sha}]"
                         v_len = _max_verbatim_shingle_chars(obj, full_src_text) if full_src_text else len(obj)
                         if v_len > 0:
                             if pmid_shingle_used[pmid] + v_len <= char_budget:
                                 pmid_shingle_used[pmid] += v_len
                             else:
                                 s_sha = hashlib.sha256(obj.encode("utf-8")).hexdigest()
-                                return f"[REDACTED_NON_OA_EXCERPT: see PMID:{pmid} field={f_tok}{gp_suffix} quote_sha256={s_sha}]"
+                                return f"{_redaction_prefix_for_pmid(pmid)} see PMID:{pmid} field={f_tok}{gp_suffix} quote_sha256={s_sha}]"
                         return obj
                     return obj
 
@@ -1862,14 +1892,14 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                             if _vq_pre.startswith("[REDACTED_NON_OA_EXCERPT:"):
                                 _g_v, _p_v = eff_redaction_meta.get(_eid_pre, ("NONE", "NONE"))
                                 _s_sha = hashlib.sha256(_vq_pre.encode("utf-8")).hexdigest()
-                                _e_pre["verbatim_evidence_quote"] = f"[REDACTED_NON_OA_EXCERPT: see PMID:{pmid} field=verbatim_evidence_quote genes={_g_v} pert={_p_v} quote_sha256={_s_sha}]"
+                                _e_pre["verbatim_evidence_quote"] = f"{_redaction_prefix_for_pmid(pmid)} see PMID:{pmid} field=verbatim_evidence_quote genes={_g_v} pert={_p_v} quote_sha256={_s_sha}]"
                             elif pmid_shingle_used[pmid] + len(_vq_pre) <= char_budget:
                                 pmid_shingle_used[pmid] += len(_vq_pre)
                                 _pre_budgeted_quotes.add(_eid_pre)
                             else:
                                 _g_v, _p_v = eff_redaction_meta.get(_eid_pre, ("NONE", "NONE"))
                                 _s_sha = hashlib.sha256(_vq_pre.encode("utf-8")).hexdigest()
-                                _e_pre["verbatim_evidence_quote"] = f"[REDACTED_NON_OA_EXCERPT: see PMID:{pmid} field=verbatim_evidence_quote genes={_g_v} pert={_p_v} quote_sha256={_s_sha}]"
+                                _e_pre["verbatim_evidence_quote"] = f"{_redaction_prefix_for_pmid(pmid)} see PMID:{pmid} field=verbatim_evidence_quote genes={_g_v} pert={_p_v} quote_sha256={_s_sha}]"
                 _enforce_doc_shingle_budget(doc)
                 sp.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
             redacted_studies.append(doc)
@@ -1910,14 +1940,14 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                 pm = _extract_pmid(item.get("pmid") or item.get("study", ""))
                 if pm in non_oa_pmids and item.get("verbatim_quote") and not _is_authentic_redaction_marker(item["verbatim_quote"]):
                     vq = item["verbatim_quote"]
-                    item["verbatim_quote"] = f"[REDACTED_NON_OA_EXCERPT: see PMID:{pm} field=verbatim_quote quote_sha256={hashlib.sha256(vq.encode('utf-8')).hexdigest()}]"
+                    item["verbatim_quote"] = f"{_redaction_prefix_for_pmid(pm)} see PMID:{pm} field=verbatim_quote quote_sha256={hashlib.sha256(vq.encode('utf-8')).hexdigest()}]"
             for item in g_obj.get("residual_failure_and_complementary_lever_pairs", []):
                 pm = _extract_pmid(item.get("pmid") or item.get("study", ""))
                 if pm in non_oa_pmids:
                     for rf_name in ("verbatim_quote", "residual_loss_or_limitation", "escape_mechanism_identified"):
                         vq = item.get(rf_name) or ""
                         if vq and not _is_authentic_redaction_marker(vq):
-                            item[rf_name] = f"[REDACTED_NON_OA_EXCERPT: see PMID:{pm} field={rf_name} quote_sha256={hashlib.sha256(vq.encode('utf-8')).hexdigest()}]"
+                            item[rf_name] = f"{_redaction_prefix_for_pmid(pm)} see PMID:{pm} field={rf_name} quote_sha256={hashlib.sha256(vq.encode('utf-8')).hexdigest()}]"
             for mclass, mod_list in (g_obj.get("effect_modifiers_by_canonical_class") or g_obj.get("effect_modifiers_by_class_Z1_to_Z8") or {}).items():
                 for item in mod_list:
                     pm = _extract_pmid(item.get("study", ""))
@@ -1925,13 +1955,13 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                         for mf_name in ("level_1", "level_2", "mechanistic_explanation"):
                             mv = item.get(mf_name) or ""
                             if mv and not _is_authentic_redaction_marker(mv):
-                                item[mf_name] = f"[REDACTED_NON_OA_EXCERPT: see PMID:{pm} field={mf_name} quote_sha256={hashlib.sha256(mv.encode('utf-8')).hexdigest()}]"
+                                item[mf_name] = f"{_redaction_prefix_for_pmid(pm)} see PMID:{pm} field={mf_name} quote_sha256={hashlib.sha256(mv.encode('utf-8')).hexdigest()}]"
             for item in g_obj.get("cross_gate_pleiotropic_discoveries", []):
                 pm = _extract_pmid(item.get("study", ""))
                 if pm in non_oa_pmids:
                     obs = item.get("observation") or ""
                     if obs and not _is_authentic_redaction_marker(obs):
-                        item["observation"] = f"[REDACTED_NON_OA_EXCERPT: see PMID:{pm} field=observation quote_sha256={hashlib.sha256(obs.encode('utf-8')).hexdigest()}]"
+                        item["observation"] = f"{_redaction_prefix_for_pmid(pm)} see PMID:{pm} field=observation quote_sha256={hashlib.sha256(obs.encode('utf-8')).hexdigest()}]"
             bridge_nodes_obj = g_obj.get("shared_cross_study_bridge_nodes", {})
             for node in (bridge_nodes_obj.values() if isinstance(bridge_nodes_obj, dict) else bridge_nodes_obj):
                 for lm in node.get("linked_mechanisms_and_bottlenecks", []):
@@ -1945,7 +1975,7 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                             lm["statement"] = f"{lhs} -> {rhs}"
                         elif stmt and not _is_authentic_redaction_marker(stmt):
                             lm["statement"] = (
-                                f"[REDACTED_NON_OA_EXCERPT: see PMID:{pm} field=statement quote_sha256={hashlib.sha256(stmt.encode('utf-8')).hexdigest()}]"
+                                f"{_redaction_prefix_for_pmid(pm)} see PMID:{pm} field=statement quote_sha256={hashlib.sha256(stmt.encode('utf-8')).hexdigest()}]"
                             )
             for ch in g_obj.get("multi_hop_cross_study_causal_chains", []):
                 for h_idx in (1, 2):
@@ -1956,7 +1986,7 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                                 ch[nf] = _strip_node_quote_suffix(ch[nf], pm)
                         ev = ch.get(f"hop{h_idx}_evidence") or ""
                         if ev and not _is_authentic_redaction_marker(ev):
-                            ch[f"hop{h_idx}_evidence"] = f"[REDACTED_NON_OA_EXCERPT: see PMID:{pm} field=hop{h_idx}_evidence quote_sha256={hashlib.sha256(ev.encode('utf-8')).hexdigest()}]"
+                            ch[f"hop{h_idx}_evidence"] = f"{_redaction_prefix_for_pmid(pm)} see PMID:{pm} field=hop{h_idx}_evidence quote_sha256={hashlib.sha256(ev.encode('utf-8')).hexdigest()}]"
             for edge in g_obj.get("all_causal_edges") or g_obj.get("causal_edges_all") or []:
                 pm = _extract_pmid(edge.get("study", ""))
                 if pm in non_oa_pmids:
@@ -1965,7 +1995,7 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                         edge[nfield] = _strip_node_quote_suffix(nval, pm)
                     esrc = edge.get("evidence_source") or ""
                     if esrc and not _is_authentic_redaction_marker(esrc):
-                        edge["evidence_source"] = f"[REDACTED_NON_OA_EXCERPT: see PMID:{pm} field=evidence_source quote_sha256={hashlib.sha256(esrc.encode('utf-8')).hexdigest()}]"
+                        edge["evidence_source"] = f"{_redaction_prefix_for_pmid(pm)} see PMID:{pm} field=evidence_source quote_sha256={hashlib.sha256(esrc.encode('utf-8')).hexdigest()}]"
 
             # Recursive graph-wide shingle budget enforcement sharing `pmid_shingle_used[pm]` with study JSONs:
             normalized_sources={pm:_normalized_source(source) for pm,(source,_) in dossier_source_cache.items() if source}
@@ -2014,7 +2044,7 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                     if source_pm:
                         digest=hashlib.sha256(obj.encode('utf-8')).hexdigest()
                         field=_public_redaction_field(parent_key or 'field')
-                        return f'[REDACTED_NON_OA_EXCERPT: see PMID:{source_pm} field={field} quote_sha256={digest}]'
+                        return f'{_redaction_prefix_for_pmid(source_pm)} see PMID:{source_pm} field={field} quote_sha256={digest}]'
                 if isinstance(obj, str) and current_pm in non_oa_pmids:
                     if _is_bounded_public_metadata(obj,parent_key):
                         return obj
@@ -2023,9 +2053,9 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                     if _is_authentic_redaction_marker(obj) or _is_fixed_public_schema_metadata(obj, parent_key):
                         return obj
                     f_tok = _public_redaction_field(parent_key or "field")
-                    if obj.startswith("[REDACTED_NON_OA_EXCERPT:"):
+                    if obj.startswith("[REDACTED_NON_OA_EXCERPT:") or obj.startswith("[REDACTED_CONSERVATIVE_EXCERPT:"):
                         s_sha = hashlib.sha256(obj.encode("utf-8")).hexdigest()
-                        return f"[REDACTED_NON_OA_EXCERPT: see PMID:{current_pm} field={f_tok} quote_sha256={s_sha}]"
+                        return f"{_redaction_prefix_for_pmid(current_pm)} see PMID:{current_pm} field={f_tok} quote_sha256={s_sha}]"
                     full_src_t, c_budget = dossier_source_cache.get(current_pm, ("", 0))
                     v_len = _max_verbatim_shingle_chars(obj, full_src_t) if full_src_t else len(obj)
                     if v_len > 0:
@@ -2033,7 +2063,7 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                             pmid_shingle_used[current_pm] = pmid_shingle_used.get(current_pm, 0) + v_len
                         else:
                             s_sha = hashlib.sha256(obj.encode("utf-8")).hexdigest()
-                            return f"[REDACTED_NON_OA_EXCERPT: see PMID:{current_pm} field={f_tok} quote_sha256={s_sha}]"
+                            return f"{_redaction_prefix_for_pmid(current_pm)} see PMID:{current_pm} field={f_tok} quote_sha256={s_sha}]"
                 return obj
 
             _enforce_graph_shingle_budget(g_obj)
@@ -2204,7 +2234,22 @@ def verify_public_bundle_snapshot(bundle_root: Path | None = None) -> dict[str, 
     manifest_path = root / "manifest.json"
     if not manifest_path.is_file():
         raise FileNotFoundError(f"manifest.json not found at {manifest_path}")
-    mf = json.loads(manifest_path.read_text(encoding="utf-8"))
+    import math as _math
+    def _mf_no_dup(pairs):
+        out = {}
+        for k, v in pairs:
+            if k in out:
+                raise ValueError(f"Duplicate JSON key in manifest.json: {k!r}")
+            out[k] = v
+        return out
+    def _mf_no_nan(tok):
+        raise ValueError(f"Non-standard JSON constant in manifest.json: {tok!r}")
+    def _mf_finite_float(tok):
+        v = float(tok)
+        if not _math.isfinite(v):
+            raise ValueError(f"Non-finite JSON float overflow in manifest.json: {tok!r}")
+        return v
+    mf = json.loads(manifest_path.read_text(encoding="utf-8"), object_pairs_hook=_mf_no_dup, parse_constant=_mf_no_nan, parse_float=_mf_finite_float)
     is_pub = (root / ".openislet_public_bundle").exists() or "public_export_file_inventory" in mf
     errs = manifest_integrity_errors(root, mf, public=is_pub)
     if errs:

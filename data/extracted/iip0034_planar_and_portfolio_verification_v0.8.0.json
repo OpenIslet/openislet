@@ -1,0 +1,1620 @@
+{
+  "schema_version": "openislet_iip0034_planar_and_portfolio_verification_v0.8.0",
+  "proposal_id": "IIP-0034",
+  "decision_id": "DEC-113",
+  "license": "CC-BY-4.0",
+  "epistemic_status": "DETERMINISTIC_CONTINUUM_AND_PORTFOLIO_REPLAY_STAGE0_PENDING",
+  "live_headline_odds_delta_pp": 0.0,
+  "pareto_sha256_verified": "591ddeb9a706c0bc95fc509765b512aadad8a403287a796e63dd52e7db548575",
+  "design_y_v2_product_registry_audit": {
+    "registry_loaded_via_product_contract": true,
+    "dec113_decision_tree_sha256_verified": "46609af00da04f998d26b8ffe47f43350587989ef40e9be843ba6849198c5952",
+    "dec113_playbook_sec4119_sha256_verified": "7511695ef9dbade1f9a231e3ee522d6c8b749ab8a3c0e6962ac1271a147d1004",
+    "playbook_commonmark_parser": {
+      "rendered_4119_headings_found": 1,
+      "heading_kind": "atx",
+      "heading_level": 4,
+      "container_depth": 0,
+      "total_document_headings_parsed": 37
+    },
+    "typed_product_by_gate_contract_audit": {
+      "products_checked": 6,
+      "gates_per_product": 16,
+      "cells_verified": 96,
+      "dec102_endpoints_mapped": 30,
+      "contradiction_guards_passed": 4,
+      "typed_predicates_verified": 24,
+      "product_gate_matrix": [
+        {
+          "product_variant_id": "ISLET1_Y_FULLSTACK_V2_B2M_11TU",
+          "role": "FULL_CHR15_11TU_REFERENCE",
+          "fullstack_clearance_eligible": true,
+          "gate_dispositions": {
+            "Y-01": "REQUIRED_EXACT_PRODUCT",
+            "Y-02": "REQUIRED_EXACT_PRODUCT",
+            "Y-03": "REQUIRED_EXACT_PRODUCT",
+            "Y-04": "REQUIRED_EXACT_PRODUCT",
+            "Y-05": "REQUIRED_EXACT_PRODUCT",
+            "Y-06": "REQUIRED_EXACT_PRODUCT",
+            "Y-07": "REQUIRED_EXACT_PRODUCT",
+            "Y-08": "REQUIRED_EXACT_PRODUCT",
+            "Y-09": "REQUIRED_EXACT_PRODUCT",
+            "R3P-01": "REQUIRED_EXACT_PRODUCT",
+            "R3P-02": "REQUIRED_EXACT_PRODUCT",
+            "R3P-03": "REQUIRED_EXACT_PRODUCT",
+            "R3P-04": "REQUIRED_EXACT_PRODUCT",
+            "R3P-05": "REQUIRED_EXACT_PRODUCT",
+            "R3P-06": "REQUIRED_EXACT_PRODUCT",
+            "STAGE0_ENDPOINT_CROSSWALK": "REQUIRED_EXACT_PRODUCT"
+          },
+          "typed_cell_operators_and_thresholds_verified": true,
+          "registry_predicates_verified_against_typed_contract": true
+        },
+        {
+          "product_variant_id": "ISLET1_Y_FULLSTACK_V2_B2M_HALF_A_ATTB_GT",
+          "role": "SEQUENTIAL_STEP1_ATTB_GT_DONOR",
+          "fullstack_clearance_eligible": false,
+          "gate_dispositions": {
+            "Y-01": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-02": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-03": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-04": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-05": "COMPONENT_EVIDENCE_ONLY_EXCLUDED_FROM_FULLSTACK",
+            "Y-06": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-07": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-08": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-09": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-01": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-02": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-03": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-04": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-05": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-06": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "STAGE0_ENDPOINT_CROSSWALK": "COMPONENT_EVIDENCE_ONLY_EXCLUDED_FROM_FULLSTACK"
+          },
+          "typed_cell_operators_and_thresholds_verified": true,
+          "registry_predicates_verified_against_typed_contract": true
+        },
+        {
+          "product_variant_id": "ISLET1_Y_FULLSTACK_V2_B2M_HALF_B_ATTB_CA",
+          "role": "SEQUENTIAL_STEP2_ATTB_CA_DONOR",
+          "fullstack_clearance_eligible": false,
+          "gate_dispositions": {
+            "Y-01": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-02": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-03": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-04": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-05": "COMPONENT_EVIDENCE_ONLY_EXCLUDED_FROM_FULLSTACK",
+            "Y-06": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-07": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-08": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-09": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-01": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-02": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-03": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-04": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-05": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-06": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "STAGE0_ENDPOINT_CROSSWALK": "COMPONENT_EVIDENCE_ONLY_EXCLUDED_FROM_FULLSTACK"
+          },
+          "typed_cell_operators_and_thresholds_verified": true,
+          "registry_predicates_verified_against_typed_contract": true
+        },
+        {
+          "product_variant_id": "ISLET1_Y_FULLSTACK_V2_CD55_CFH_COMPARATOR",
+          "role": "GATE0V_CD55_CFH_BACKUP_COMPARATOR",
+          "fullstack_clearance_eligible": true,
+          "gate_dispositions": {
+            "Y-01": "REQUIRED_AFTER_PRIMARY_GATE0V_FAIL",
+            "Y-02": "REQUIRED_AFTER_PRIMARY_GATE0V_FAIL",
+            "Y-03": "REQUIRED_AFTER_PRIMARY_GATE0V_FAIL",
+            "Y-04": "REQUIRED_AFTER_PRIMARY_GATE0V_FAIL",
+            "Y-05": "REQUIRED_AFTER_PRIMARY_GATE0V_FAIL_AND_DELIVERY_HOLD",
+            "Y-06": "REQUIRED_AFTER_PRIMARY_GATE0V_FAIL",
+            "Y-07": "REQUIRED_AFTER_PRIMARY_GATE0V_FAIL",
+            "Y-08": "REQUIRED_AFTER_PRIMARY_GATE0V_FAIL",
+            "Y-09": "REQUIRED_AFTER_PRIMARY_GATE0V_FAIL",
+            "R3P-01": "REQUIRED_AFTER_PRIMARY_GATE0V_FAIL",
+            "R3P-02": "REQUIRED_AFTER_PRIMARY_GATE0V_FAIL",
+            "R3P-03": "REQUIRED_AFTER_PRIMARY_GATE0V_FAIL",
+            "R3P-04": "REQUIRED_AFTER_PRIMARY_GATE0V_FAIL",
+            "R3P-05": "REQUIRED_AFTER_PRIMARY_GATE0V_FAIL",
+            "R3P-06": "REQUIRED_AFTER_PRIMARY_GATE0V_FAIL",
+            "STAGE0_ENDPOINT_CROSSWALK": "REQUIRED_AFTER_PRIMARY_GATE0V_FAIL"
+          },
+          "typed_cell_operators_and_thresholds_verified": true,
+          "registry_predicates_verified_against_typed_contract": true
+        },
+        {
+          "product_variant_id": "ISLET1_Y_FULLSTACK_V2_CTRL_EQUAL_SPACING",
+          "role": "EQUAL_SPACING_ATTRIBUTION_CONTROL",
+          "fullstack_clearance_eligible": false,
+          "gate_dispositions": {
+            "Y-01": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-02": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-03": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-04": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-05": "CONTROL_BENCHMARK_ONLY_EXCLUDED_FROM_FULLSTACK",
+            "Y-06": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-07": "CONTROL_BENCHMARK_ONLY_EXCLUDED_FROM_FULLSTACK",
+            "Y-08": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-09": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-01": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-02": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-03": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-04": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-05": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-06": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "STAGE0_ENDPOINT_CROSSWALK": "CONTROL_BENCHMARK_ONLY_EXCLUDED_FROM_FULLSTACK"
+          },
+          "typed_cell_operators_and_thresholds_verified": true,
+          "registry_predicates_verified_against_typed_contract": true
+        },
+        {
+          "product_variant_id": "ISLET1_Y_FULLSTACK_V2_DEC053_CLYBL_CDK1_HTMPK",
+          "role": "DEC053_CHR13_CLYBL_SAFETY_SWITCH",
+          "fullstack_clearance_eligible": false,
+          "gate_dispositions": {
+            "Y-01": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-02": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-03": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-04": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-05": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-06": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-07": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-08": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "Y-09": "COMPONENT_EVIDENCE_ONLY_EXCLUDED_FROM_FULLSTACK",
+            "R3P-01": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-02": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-03": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-04": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-05": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "R3P-06": "NOT_APPLICABLE_EXCLUDED_FROM_FULLSTACK",
+            "STAGE0_ENDPOINT_CROSSWALK": "COMPONENT_EVIDENCE_ONLY_EXCLUDED_FROM_FULLSTACK"
+          },
+          "typed_cell_operators_and_thresholds_verified": true,
+          "registry_predicates_verified_against_typed_contract": true
+        }
+      ]
+    },
+    "staged_fasta_sha256_verified": "9826f7917c73f56b62f38db9df0fd61d2ffbf90da3f454392c9f415c16de336c",
+    "staged_design_y_v2_record_count": 6,
+    "resolved_fullstack_candidate_ids": [
+      "ISLET1_Y_FULLSTACK_V2_B2M_11TU",
+      "ISLET1_Y_FULLSTACK_V2_CD55_CFH_COMPARATOR"
+    ],
+    "resolved_excluded_component_and_control_ids": [
+      "ISLET1_Y_FULLSTACK_V2_B2M_HALF_A_ATTB_GT",
+      "ISLET1_Y_FULLSTACK_V2_B2M_HALF_B_ATTB_CA",
+      "ISLET1_Y_FULLSTACK_V2_CTRL_EQUAL_SPACING",
+      "ISLET1_Y_FULLSTACK_V2_DEC053_CLYBL_CDK1_HTMPK"
+    ],
+    "resolved_design_y_v2_routes_from_registry": [
+      "R3P"
+    ],
+    "design_y_v2_bound_strictly_to_route3p_matching_registry": true,
+    "scope_note": "Verifies exact FASTA file/record lengths and SHA-256s, whole-record canonical product-entry SHA-256s, canonical JSON SHA-256 of the DEC-113 stage0_decision_tree_v1.json block (including its 96-cell typed product_by_gate_contract and 30-endpoint DEC-102 crosswalk matching wetlab_contract.py:5526-5634), LF-normalized trimmed CommonMark-parsed Playbook section 4.1.19 SHA-256 (with HTML character-reference decoding), closed cell/crosswalk operator allowlists, placeholder/duplicate rejection, direct typed-cell threshold concordance against all 3 controlling documents, execution_supported=False, role-scoped eligibility, and 1:1 physical_route_id alignment against ALLOWED_CELL_ROUTE_PAIRS_IIP0034; does not claim verbatim prose equality across differently structured views and does not independently recompute full sequence-grammar motif scans."
+  },
+  "r3p05_dec103_thinning_boundary_audit": {
+    "formula": "k == 0 AND exact_80digit_strictly_sound_Decimal(min(1, (1 - exp_lo(ln_lo(alpha_obs)/n_raw)) / (f_clonogenic * eta_spike_recovery_l95))) <= cap <= 1e-6",
+    "arithmetic_precision": "decimal.Decimal prec=80 strictly sound directed bounds (.next_minus() on ln() and exp(), ROUND_FLOOR on eff_prob & q_lo, ROUND_CEILING on 1-exp and division)",
+    "required_scope_keys": [
+      "product_variant_id",
+      "construct_sha256",
+      "donor_seedline_id",
+      "mcb_id",
+      "lot_id",
+      "device_assembly_id",
+      "physical_route_id"
+    ],
+    "eligible_fullstack_product_ids": [
+      "ISLET1_Y_FULLSTACK_V2_B2M_11TU",
+      "ISLET1_Y_FULLSTACK_V2_CD55_CFH_COMPARATOR"
+    ],
+    "preregistered_hard_cap_ceiling": 1e-06,
+    "min_n_raw_at_eta_1p0": 2995731,
+    "min_n_raw_at_eta_0p5": 5991464,
+    "single_dose_blueprint_feasibility_counterexample": {
+      "reference_dose_total_living_cells": 933500000,
+      "blueprint_residual_clonogenic_fraction_upper_assumption": 0.0001,
+      "max_clonogenic_opportunities_per_dose": 93350,
+      "u95_at_eta_1p0_str": "3.2090885971564016e-5",
+      "u95_at_eta_0p5_str": "6.4181771943128032e-5",
+      "ratio_above_1e6_ceiling_eta_1p0": 32.09,
+      "ratio_above_1e6_ceiling_eta_0p5": 64.18,
+      "disposition": "HOLD_INCONCLUSIVE_INSUFFICIENT_INDEPENDENT_DENOMINATOR",
+      "interpretation_note": "Under the Blueprint upper inventory of 93,350 clonogenic opportunities per reference dose (80,000 endocrine + 13,350 vascular at f_prolif <= 1e-4), observing k == 0 in one assembled dose gives U95 = 3.20909e-5 at eta=1.0 (32.09x above 1e-6) and 6.41818e-5 at eta=0.50 (64.18x above 1e-6), so single-dose quantitative R3P-05 clearance holds at HOLD_INCONCLUSIVE_INSUFFICIENT_INDEPENDENT_DENOMINATOR; pooling across lots or assemblies remains prohibited under GY-018, and whole-product empirical retrieval/hemostasis clearance stays separate."
+    },
+    "floor_approximation_n_eff_forbidden": true,
+    "explicit_7key_scope_independence_and_calibration_provenance_required": true,
+    "joint_coverage_note": "Combining a 95% LCB recovery factor with a 95% Clopper-Pearson count inversion yields >= 90% Bonferroni joint coverage ONLY when f_clonogenic_provenance == 'KNOWN_OR_CONSERVATIVELY_ESTABLISHED'; when f_clonogenic is independently estimated ('INDEPENDENTLY_ESTIMATED_WITH_ALPHA_ALLOCATION'), explicit alpha_obs + alpha_eta_recovery + alpha_f_clonogenic <= 0.10 is enforced conservatively.",
+    "cases": [
+      {
+        "case": "blueprint_single_dose_93350_eta1p0_HOLD_unachievable_in_single_dose",
+        "status": "HOLD_INCONCLUSIVE_INSUFFICIENT_INDEPENDENT_DENOMINATOR",
+        "empirical_clearance_status": "HOLD_MATHEMATICAL_SUBGATE_AND_EMPIRICAL_RETRIEVAL_PENDING",
+        "k": 0,
+        "n_raw": 93350,
+        "f_clonogenic_provenance": "KNOWN_OR_CONSERVATIVELY_ESTABLISHED",
+        "alpha_obs_str": "0.05",
+        "effective_detection_factor_str": "1",
+        "u95_exact_dec103_str": "3.2090885971564016e-5",
+        "u95_exact_dec103_display": 3.20908859716e-05,
+        "cap_fraction_str": "9.9999999999999995e-7",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "blueprint_single_dose_93350_eta0p5_HOLD_unachievable_in_single_dose",
+        "status": "HOLD_INCONCLUSIVE_INSUFFICIENT_INDEPENDENT_DENOMINATOR",
+        "empirical_clearance_status": "HOLD_MATHEMATICAL_SUBGATE_AND_EMPIRICAL_RETRIEVAL_PENDING",
+        "k": 0,
+        "n_raw": 93350,
+        "f_clonogenic_provenance": "KNOWN_OR_CONSERVATIVELY_ESTABLISHED",
+        "alpha_obs_str": "0.05",
+        "effective_detection_factor_str": "0.5",
+        "u95_exact_dec103_str": "6.4181771943128032e-5",
+        "u95_exact_dec103_display": 6.41817719431e-05,
+        "cap_fraction_str": "9.9999999999999995e-7",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "blueprint_single_dose_933p5M_raw_f1e4_eta1p0_HOLD",
+        "status": "HOLD_INCONCLUSIVE_INSUFFICIENT_INDEPENDENT_DENOMINATOR",
+        "empirical_clearance_status": "HOLD_MATHEMATICAL_SUBGATE_AND_EMPIRICAL_RETRIEVAL_PENDING",
+        "k": 0,
+        "n_raw": 933500000,
+        "f_clonogenic_provenance": "KNOWN_OR_CONSERVATIVELY_ESTABLISHED",
+        "alpha_obs_str": "0.05",
+        "effective_detection_factor_str": "0.000100000000000",
+        "u95_exact_dec103_str": "3.2091400843568598e-5",
+        "u95_exact_dec103_display": 3.20914008436e-05,
+        "cap_fraction_str": "9.9999999999999995e-7",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "eta1p0_n2995730_HOLD",
+        "status": "HOLD_INCONCLUSIVE_INSUFFICIENT_INDEPENDENT_DENOMINATOR",
+        "empirical_clearance_status": "HOLD_MATHEMATICAL_SUBGATE_AND_EMPIRICAL_RETRIEVAL_PENDING",
+        "k": 0,
+        "n_raw": 2995730,
+        "f_clonogenic_provenance": "KNOWN_OR_CONSERVATIVELY_ESTABLISHED",
+        "alpha_obs_str": "0.05",
+        "effective_detection_factor_str": "1",
+        "u95_exact_dec103_str": "1.0000002589309506e-6",
+        "u95_exact_dec103_display": 1.0000002589e-06,
+        "cap_fraction_str": "9.9999999999999995e-7",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "eta1p0_n2995731_PASS",
+        "status": "PASS",
+        "empirical_clearance_status": "MATHEMATICAL_COUNT_SUBGATE_ONLY_EMPIRICAL_RETRIEVAL_AND_WHOLE_PRODUCT_PENDING",
+        "k": 0,
+        "n_raw": 2995731,
+        "f_clonogenic_provenance": "KNOWN_OR_CONSERVATIVELY_ESTABLISHED",
+        "alpha_obs_str": "0.05",
+        "effective_detection_factor_str": "1",
+        "u95_exact_dec103_str": "9.9999992512268850e-7",
+        "u95_exact_dec103_display": 9.999999251e-07,
+        "cap_fraction_str": "9.9999999999999995e-7",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "eta0p5_n5991462_HOLD_rejects_floor_approximation",
+        "status": "HOLD_INCONCLUSIVE_INSUFFICIENT_INDEPENDENT_DENOMINATOR",
+        "empirical_clearance_status": "HOLD_MATHEMATICAL_SUBGATE_AND_EMPIRICAL_RETRIEVAL_PENDING",
+        "k": 0,
+        "n_raw": 5991462,
+        "f_clonogenic_provenance": "KNOWN_OR_CONSERVATIVELY_ESTABLISHED",
+        "alpha_obs_str": "0.05",
+        "effective_detection_factor_str": "0.5",
+        "u95_exact_dec103_str": "1.0000001751227761e-6",
+        "u95_exact_dec103_display": 1.0000001751e-06,
+        "cap_fraction_str": "9.9999999999999995e-7",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "eta0p5_n5991463_HOLD",
+        "status": "HOLD_INCONCLUSIVE_INSUFFICIENT_INDEPENDENT_DENOMINATOR",
+        "empirical_clearance_status": "HOLD_MATHEMATICAL_SUBGATE_AND_EMPIRICAL_RETRIEVAL_PENDING",
+        "k": 0,
+        "n_raw": 5991463,
+        "f_clonogenic_provenance": "KNOWN_OR_CONSERVATIVELY_ESTABLISHED",
+        "alpha_obs_str": "0.05",
+        "effective_detection_factor_str": "0.5",
+        "u95_exact_dec103_str": "1.0000000082186451e-6",
+        "u95_exact_dec103_display": 1.0000000082e-06,
+        "cap_fraction_str": "9.9999999999999995e-7",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "eta0p5_n5991464_PASS",
+        "status": "PASS",
+        "empirical_clearance_status": "MATHEMATICAL_COUNT_SUBGATE_ONLY_EMPIRICAL_RETRIEVAL_AND_WHOLE_PRODUCT_PENDING",
+        "k": 0,
+        "n_raw": 5991464,
+        "f_clonogenic_provenance": "KNOWN_OR_CONSERVATIVELY_ESTABLISHED",
+        "alpha_obs_str": "0.05",
+        "effective_detection_factor_str": "0.5",
+        "u95_exact_dec103_str": "9.9999984131456987e-7",
+        "u95_exact_dec103_display": 9.999998413e-07,
+        "cap_fraction_str": "9.9999999999999995e-7",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "binary64_ulp_straddle_n5991464_cap4p999999206572849e7_HOLD",
+        "status": "HOLD_INCONCLUSIVE_INSUFFICIENT_INDEPENDENT_DENOMINATOR",
+        "empirical_clearance_status": "HOLD_MATHEMATICAL_SUBGATE_AND_EMPIRICAL_RETRIEVAL_PENDING",
+        "k": 0,
+        "n_raw": 5991464,
+        "f_clonogenic_provenance": "KNOWN_OR_CONSERVATIVELY_ESTABLISHED",
+        "alpha_obs_str": "0.05",
+        "effective_detection_factor_str": "1",
+        "u95_exact_dec103_str": "4.9999992065728494e-7",
+        "u95_exact_dec103_display": 4.999999207e-07,
+        "cap_fraction_str": "4.9999992065728487e-7",
+        "cap_fraction": 4.999999206572849e-07
+      },
+      {
+        "case": "huge_n_1e308_nonzero_sci_display_PASS",
+        "status": "PASS",
+        "empirical_clearance_status": "MATHEMATICAL_COUNT_SUBGATE_ONLY_EMPIRICAL_RETRIEVAL_AND_WHOLE_PRODUCT_PENDING",
+        "k": 0,
+        "n_raw": 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,
+        "f_clonogenic_provenance": "KNOWN_OR_CONSERVATIVELY_ESTABLISHED",
+        "alpha_obs_str": "0.05",
+        "effective_detection_factor_str": "1",
+        "u95_exact_dec103_str": "2.9957322735539910e-308",
+        "u95_exact_dec103_display": null,
+        "cap_fraction_str": "9.9999999999999995e-7",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "missing_f_clonogenic_provenance_HOLD",
+        "status": "HOLD_MISSING_OR_INVALID_CLONOGENIC_PROVENANCE",
+        "reason": "REQUIRES_KNOWN_OR_CONSERVATIVELY_ESTABLISHED_OR_INDEPENDENTLY_ESTIMATED_WITH_ALPHA_ALLOCATION",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "estimated_f_clono_without_alpha_allocation_HOLD",
+        "status": "HOLD_INSUFFICIENT_BONFERRONI_ALPHA_ALLOCATION",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "estimated_f_clono_alpha_sum_exceeds_0p10_HOLD",
+        "status": "HOLD_INSUFFICIENT_BONFERRONI_ALPHA_ALLOCATION",
+        "reason": "BONFERRONI_ALPHA_SUM_EXCEEDS_0P10_FOR_90PCT_JOINT_COVERAGE",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "estimated_f_clono_underallocated_l95_eta_0p01_HOLD",
+        "status": "HOLD_INSUFFICIENT_BONFERRONI_ALPHA_ALLOCATION",
+        "reason": "ETA_SPIKE_RECOVERY_L95_REQUIRES_ALPHA_ETA_AT_LEAST_0P05",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "estimated_f_clono_valid_3way_bonferroni_PASS",
+        "status": "PASS",
+        "empirical_clearance_status": "MATHEMATICAL_COUNT_SUBGATE_ONLY_EMPIRICAL_RETRIEVAL_AND_WHOLE_PRODUCT_PENDING",
+        "k": 0,
+        "n_raw": 7377760,
+        "f_clonogenic_provenance": "INDEPENDENTLY_ESTIMATED_WITH_ALPHA_ALLOCATION",
+        "alpha_obs_str": "0.025",
+        "effective_detection_factor_str": "0.5",
+        "u95_exact_dec103_str": "9.9999960201859723e-7",
+        "u95_exact_dec103_display": 9.99999602e-07,
+        "cap_fraction_str": "9.9999999999999995e-7",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "k1_n5000000_FAIL_observed_zero_veto",
+        "status": "FAIL_HARD_STOP",
+        "reason": "OBSERVED_NONZERO_VIABLE_ESCAPE_HARD_VETO",
+        "attribution_status": "EXACT_7KEY_SCOPE_ATTRIBUTED",
+        "empirical_clearance_status": "FAIL_HARD_STOP_OBSERVED_ESCAPE",
+        "k": 1,
+        "n_raw": 5000000,
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "k1_overflow_cap_1e400_FAIL_HARD_STOP",
+        "status": "FAIL_HARD_STOP",
+        "reason": "OBSERVED_NONZERO_VIABLE_ESCAPE_HARD_VETO",
+        "attribution_status": "EXACT_7KEY_SCOPE_ATTRIBUTED",
+        "empirical_clearance_status": "FAIL_HARD_STOP_OBSERVED_ESCAPE",
+        "k": 1,
+        "n_raw": 5000000,
+        "cap_fraction": null
+      },
+      {
+        "case": "k0_overflow_cap_1e400_HOLD",
+        "status": "HOLD_RELAXED_OR_INVALID_CAP_FRACTION",
+        "k": 0,
+        "n_raw": 3000000,
+        "preregistered_max_cap_fraction": 1e-06
+      },
+      {
+        "case": "relaxed_cap_0p01_n600_HOLD",
+        "status": "HOLD_RELAXED_OR_INVALID_CAP_FRACTION",
+        "k": 0,
+        "n_raw": 600,
+        "preregistered_max_cap_fraction": 1e-06
+      },
+      {
+        "case": "nan_cap_fraction_HOLD",
+        "status": "HOLD_RELAXED_OR_INVALID_CAP_FRACTION",
+        "k": 0,
+        "n_raw": 1,
+        "preregistered_max_cap_fraction": 1e-06
+      },
+      {
+        "case": "excluded_control_scope_HOLD",
+        "status": "HOLD_INELIGIBLE_OR_UNREGISTERED_PRODUCT_SCOPE",
+        "reason": "PRODUCT_NOT_ELIGIBLE_FULLSTACK_DESIGN_Y_V2:ISLET1_Y_FULLSTACK_V2_CTRL_EQUAL_SPACING",
+        "k": 0,
+        "n_raw": 3000000,
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "inactive_backup_without_gate0v_failure_HOLD",
+        "status": "HOLD_BACKUP_NOT_ACTIVATED_PRIMARY_GATE0V_NOT_FAILED",
+        "reason": "BACKUP_CD55_CFH_REQUIRES_EXPLICIT_PRIMARY_CD46_WT_GATE0V_FAILURE",
+        "k": 0,
+        "n_raw": 3000000,
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "activated_backup_with_gate0v_failure_CONDITIONAL_ARITHMETIC_PASS",
+        "status": "PASS",
+        "empirical_clearance_status": "MATHEMATICAL_COUNT_SUBGATE_ONLY_EMPIRICAL_RETRIEVAL_AND_WHOLE_PRODUCT_PENDING",
+        "k": 0,
+        "n_raw": 2995731,
+        "f_clonogenic_provenance": "KNOWN_OR_CONSERVATIVELY_ESTABLISHED",
+        "alpha_obs_str": "0.05",
+        "effective_detection_factor_str": "1",
+        "u95_exact_dec103_str": "9.9999992512268850e-7",
+        "u95_exact_dec103_display": 9.999999251e-07,
+        "cap_fraction_str": "9.9999999999999995e-7",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "extra_scope_key_HOLD",
+        "status": "HOLD_SCOPE_MISMATCH_NO_CROSS_LOT_OR_DEVICE_POOLING",
+        "reason": "NON_EXACT_7KEY_SCOPE_MISSING_OR_UNEXPECTED_EXTRA_KEYS",
+        "k": 0,
+        "n_raw": 3000000,
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "non_digest_construct_sha256_HOLD",
+        "status": "HOLD_INELIGIBLE_OR_UNREGISTERED_PRODUCT_SCOPE",
+        "reason": "CONSTRUCT_SHA256_MISMATCH_OR_NON_DIGEST",
+        "k": 0,
+        "n_raw": 3000000,
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "whitespace_padded_lot_id_HOLD",
+        "status": "HOLD_SCOPE_MISMATCH_NO_CROSS_LOT_OR_DEVICE_POOLING",
+        "reason": "SCOPE_KEY_MISSING_NONCANONICAL_OR_MISMATCHED:lot_id",
+        "k": 0,
+        "n_raw": 3000000,
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "control_char_lot_id_HOLD",
+        "status": "HOLD_SCOPE_MISMATCH_NO_CROSS_LOT_OR_DEVICE_POOLING",
+        "reason": "SCOPE_KEY_MISSING_NONCANONICAL_OR_MISMATCHED:lot_id",
+        "k": 0,
+        "n_raw": 3000000,
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "zero_width_char_lot_id_HOLD",
+        "status": "HOLD_SCOPE_MISMATCH_NO_CROSS_LOT_OR_DEVICE_POOLING",
+        "reason": "SCOPE_KEY_MISSING_NONCANONICAL_OR_MISMATCHED:lot_id",
+        "k": 0,
+        "n_raw": 3000000,
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "numpy_1elem_sampling_model_HOLD",
+        "status": "HOLD_MISSING_OR_CLUSTERED_INDEPENDENCE_EVIDENCE",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "numpy_2elem_sampling_model_HOLD",
+        "status": "HOLD_MISSING_OR_CLUSTERED_INDEPENDENCE_EVIDENCE",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "omitted_scope_HOLD",
+        "status": "HOLD_SCOPE_MISMATCH_NO_CROSS_LOT_OR_DEVICE_POOLING",
+        "reason": "MISSING_FULL_7KEY_ASSEMBLED_DEVICE_LOT_SCOPE",
+        "k": 0,
+        "n_raw": 3000000,
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "partial_2key_scope_HOLD",
+        "status": "HOLD_SCOPE_MISMATCH_NO_CROSS_LOT_OR_DEVICE_POOLING",
+        "reason": "NON_EXACT_7KEY_SCOPE_MISSING_OR_UNEXPECTED_EXTRA_KEYS",
+        "k": 0,
+        "n_raw": 3000000,
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "omitted_independence_model_HOLD",
+        "status": "HOLD_MISSING_OR_CLUSTERED_INDEPENDENCE_EVIDENCE",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "null_clustered_sampling_HOLD",
+        "status": "HOLD_MISSING_OR_CLUSTERED_INDEPENDENCE_EVIDENCE",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "clustered_sampling_true_HOLD",
+        "status": "HOLD_MISSING_OR_CLUSTERED_INDEPENDENCE_EVIDENCE",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "omitted_f_clonogenic_HOLD",
+        "status": "HOLD_MISSING_RECOVERY_OR_CLONOGENIC_FACTOR",
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "lot_mismatch_HOLD_gy018_scope",
+        "status": "HOLD_SCOPE_MISMATCH_NO_CROSS_LOT_OR_DEVICE_POOLING",
+        "reason": "SCOPE_KEY_MISSING_NONCANONICAL_OR_MISMATCHED:lot_id",
+        "k": 0,
+        "n_raw": 6000000,
+        "cap_fraction": 1e-06
+      },
+      {
+        "case": "device_mismatch_HOLD_gy018_scope",
+        "status": "HOLD_SCOPE_MISMATCH_NO_CROSS_LOT_OR_DEVICE_POOLING",
+        "reason": "SCOPE_KEY_MISSING_NONCANONICAL_OR_MISMATCHED:device_assembly_id",
+        "k": 0,
+        "n_raw": 6000000,
+        "cap_fraction": 1e-06
+      }
+    ]
+  },
+  "planar_mechanics_and_clearance": [
+    {
+      "configuration": "ROUTE_3P_SUBARS_300_H180",
+      "active_one_sided_area_cm2": 300.0,
+      "dual_sided_area_cm2": 600.0,
+      "slot_height_um": 180.0,
+      "envelopes": 6,
+      "ribbons_total": 12,
+      "areal_loading_ieq_cm2": 1666.67,
+      "ideal_slot_volume_ml": 5.4,
+      "prescribed_loading_duration_input_min": 6.0,
+      "pullout_unit": "single_individually_extracted_ribbon",
+      "uniform_2kpa_single_ribbon_pullout_n": 10.0,
+      "critical_uniform_adhesion_at_15N_kpa": 3.0,
+      "two_ribbon_concurrent_2kpa_pullout_warning_n": 20.0,
+      "poiseuille_loading_wall_shear_pa": 0.1067,
+      "vpio_120um_lateral_width_ratio": 260.4,
+      "vpio_120um_slot_height_ratio": 1.5,
+      "height_ratio_caveat": "Slot height is 1.50-1.67x 120 um VPIO diameter; loading duration is a prescribed input to the steady Poiseuille shear estimate, and anatomical fit / peak entrance shear / atraumatic hemostatic extraction remain pending Stage-0 R3P-01/R3P-02."
+    },
+    {
+      "configuration": "ROUTE_3P_SUBARS_300_H200",
+      "active_one_sided_area_cm2": 300.0,
+      "dual_sided_area_cm2": 600.0,
+      "slot_height_um": 200.0,
+      "envelopes": 6,
+      "ribbons_total": 12,
+      "areal_loading_ieq_cm2": 1666.67,
+      "ideal_slot_volume_ml": 6.0,
+      "prescribed_loading_duration_input_min": 6.0,
+      "pullout_unit": "single_individually_extracted_ribbon",
+      "uniform_2kpa_single_ribbon_pullout_n": 10.0,
+      "critical_uniform_adhesion_at_15N_kpa": 3.0,
+      "two_ribbon_concurrent_2kpa_pullout_warning_n": 20.0,
+      "poiseuille_loading_wall_shear_pa": 0.096,
+      "vpio_120um_lateral_width_ratio": 260.4,
+      "vpio_120um_slot_height_ratio": 1.667,
+      "height_ratio_caveat": "Slot height is 1.50-1.67x 120 um VPIO diameter; loading duration is a prescribed input to the steady Poiseuille shear estimate, and anatomical fit / peak entrance shear / atraumatic hemostatic extraction remain pending Stage-0 R3P-01/R3P-02."
+    },
+    {
+      "configuration": "ROUTE_3P_HYBRID_333_H180",
+      "active_one_sided_area_cm2": 333.3,
+      "dual_sided_area_cm2": 666.6,
+      "slot_height_um": 180.0,
+      "envelopes": 6,
+      "ribbons_total": 12,
+      "areal_loading_ieq_cm2": 1500.15,
+      "ideal_slot_volume_ml": 5.999,
+      "prescribed_loading_duration_input_min": 8.0,
+      "pullout_unit": "single_individually_extracted_ribbon",
+      "uniform_2kpa_single_ribbon_pullout_n": 11.11,
+      "critical_uniform_adhesion_at_15N_kpa": 2.7,
+      "two_ribbon_concurrent_2kpa_pullout_warning_n": 22.22,
+      "poiseuille_loading_wall_shear_pa": 0.08,
+      "vpio_120um_lateral_width_ratio": 289.3,
+      "vpio_120um_slot_height_ratio": 1.5,
+      "height_ratio_caveat": "Slot height is 1.50-1.67x 120 um VPIO diameter; loading duration is a prescribed input to the steady Poiseuille shear estimate, and anatomical fit / peak entrance shear / atraumatic hemostatic extraction remain pending Stage-0 R3P-01/R3P-02."
+    },
+    {
+      "configuration": "ROUTE_3P_HYBRID_333_H200",
+      "active_one_sided_area_cm2": 333.3,
+      "dual_sided_area_cm2": 666.6,
+      "slot_height_um": 200.0,
+      "envelopes": 6,
+      "ribbons_total": 12,
+      "areal_loading_ieq_cm2": 1500.15,
+      "ideal_slot_volume_ml": 6.666,
+      "prescribed_loading_duration_input_min": 8.0,
+      "pullout_unit": "single_individually_extracted_ribbon",
+      "uniform_2kpa_single_ribbon_pullout_n": 11.11,
+      "critical_uniform_adhesion_at_15N_kpa": 2.7,
+      "two_ribbon_concurrent_2kpa_pullout_warning_n": 22.22,
+      "poiseuille_loading_wall_shear_pa": 0.072,
+      "vpio_120um_lateral_width_ratio": 289.3,
+      "vpio_120um_slot_height_ratio": 1.667,
+      "height_ratio_caveat": "Slot height is 1.50-1.67x 120 um VPIO diameter; loading duration is a prescribed input to the steady Poiseuille shear estimate, and anatomical fit / peak entrance shear / atraumatic hemostatic extraction remain pending Stage-0 R3P-01/R3P-02."
+    },
+    {
+      "configuration": "ROUTE_3P_4MOD_SUBARS_260_H180",
+      "active_one_sided_area_cm2": 260.0,
+      "dual_sided_area_cm2": 520.0,
+      "slot_height_um": 180.0,
+      "envelopes": 4,
+      "ribbons_total": 8,
+      "areal_loading_ieq_cm2": 1923.08,
+      "ideal_slot_volume_ml": 4.68,
+      "prescribed_loading_duration_input_min": 6.0,
+      "pullout_unit": "single_individually_extracted_ribbon",
+      "uniform_2kpa_single_ribbon_pullout_n": 13.0,
+      "critical_uniform_adhesion_at_15N_kpa": 2.308,
+      "two_ribbon_concurrent_2kpa_pullout_warning_n": 26.0,
+      "poiseuille_loading_wall_shear_pa": 0.0889,
+      "vpio_120um_lateral_width_ratio": 270.8,
+      "vpio_120um_slot_height_ratio": 1.5,
+      "height_ratio_caveat": "Slot height is 1.50-1.67x 120 um VPIO diameter; loading duration is a prescribed input to the steady Poiseuille shear estimate, and anatomical fit / peak entrance shear / atraumatic hemostatic extraction remain pending Stage-0 R3P-01/R3P-02."
+    },
+    {
+      "configuration": "NAIVE_147CM2_ANOXIC_BARRED",
+      "active_one_sided_area_cm2": 147.0,
+      "dual_sided_area_cm2": 294.0,
+      "slot_height_um": 180.0,
+      "envelopes": 4,
+      "ribbons_total": 8,
+      "areal_loading_ieq_cm2": 3401.36,
+      "ideal_slot_volume_ml": 2.646,
+      "prescribed_loading_duration_input_min": 6.0,
+      "pullout_unit": "single_individually_extracted_ribbon",
+      "uniform_2kpa_single_ribbon_pullout_n": 7.35,
+      "critical_uniform_adhesion_at_15N_kpa": 4.082,
+      "two_ribbon_concurrent_2kpa_pullout_warning_n": 14.7,
+      "poiseuille_loading_wall_shear_pa": 0.0667,
+      "vpio_120um_lateral_width_ratio": 204.2,
+      "vpio_120um_slot_height_ratio": 1.5,
+      "height_ratio_caveat": "Slot height is 1.50-1.67x 120 um VPIO diameter; loading duration is a prescribed input to the steady Poiseuille shear estimate, and anatomical fit / peak entrance shear / atraumatic hemostatic extraction remain pending Stage-0 R3P-01/R3P-02."
+    }
+  ],
+  "planar_3d_fvm_oxygen_envelopes": [
+    {
+      "label": "Naive_147cm2_H180_Day0_Clean_FAIL",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 147.0,
+      "loading_ieq_cm2": 3401.36,
+      "slot_height_um": 180.0,
+      "cluster_diam_um": 65.0,
+      "bed_po2_mmhg": 35.0,
+      "sleeve_um": 0.0,
+      "sleeve_d_factor": 1.0,
+      "k_perf_gel_s_inv": 0.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 1.097,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 69.171,
+      "worst_face_mmhg": 4.5544,
+      "worst_core_mmhg": 4.3182,
+      "passes_15_and_5": false,
+      "passes_core_5mmhg_floor": false,
+      "rel_mass_balance_error_str": "4.852e-12",
+      "mass_balance_bound_lt_1e10": true
+    },
+    {
+      "label": "SubARS300_H180_Day0_Clean_65um_PASS",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 300.0,
+      "loading_ieq_cm2": 1666.67,
+      "slot_height_um": 180.0,
+      "cluster_diam_um": 65.0,
+      "bed_po2_mmhg": 35.0,
+      "sleeve_um": 0.0,
+      "sleeve_d_factor": 1.0,
+      "k_perf_gel_s_inv": 0.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 1.097,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 98.815,
+      "worst_face_mmhg": 18.8188,
+      "worst_core_mmhg": 17.7453,
+      "passes_15_and_5": true,
+      "passes_core_5mmhg_floor": true,
+      "rel_mass_balance_error_str": "3.263e-15",
+      "mass_balance_bound_lt_1e10": true
+    },
+    {
+      "label": "SubARS300_H200_Day0_Clean_65um_PASS",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 300.0,
+      "loading_ieq_cm2": 1666.67,
+      "slot_height_um": 200.0,
+      "cluster_diam_um": 65.0,
+      "bed_po2_mmhg": 35.0,
+      "sleeve_um": 0.0,
+      "sleeve_d_factor": 1.0,
+      "k_perf_gel_s_inv": 0.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 1.097,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 98.815,
+      "worst_face_mmhg": 18.3671,
+      "worst_core_mmhg": 17.3993,
+      "passes_15_and_5": true,
+      "passes_core_5mmhg_floor": true,
+      "rel_mass_balance_error_str": "3.917e-15",
+      "mass_balance_bound_lt_1e10": true
+    },
+    {
+      "label": "Hybrid333_H180_Day0_Clean_65um_PASS",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 333.3,
+      "loading_ieq_cm2": 1500.15,
+      "slot_height_um": 180.0,
+      "cluster_diam_um": 65.0,
+      "bed_po2_mmhg": 35.0,
+      "sleeve_um": 0.0,
+      "sleeve_d_factor": 1.0,
+      "k_perf_gel_s_inv": 0.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 1.097,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 104.155,
+      "worst_face_mmhg": 20.1252,
+      "worst_core_mmhg": 18.8875,
+      "passes_15_and_5": true,
+      "passes_core_5mmhg_floor": true,
+      "rel_mass_balance_error_str": "1.043e-15",
+      "mass_balance_bound_lt_1e10": true
+    },
+    {
+      "label": "Hybrid333_H200_Day0_Clean_65um_PASS",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 333.3,
+      "loading_ieq_cm2": 1500.15,
+      "slot_height_um": 200.0,
+      "cluster_diam_um": 65.0,
+      "bed_po2_mmhg": 35.0,
+      "sleeve_um": 0.0,
+      "sleeve_d_factor": 1.0,
+      "k_perf_gel_s_inv": 0.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 1.097,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 104.155,
+      "worst_face_mmhg": 19.7891,
+      "worst_core_mmhg": 18.7057,
+      "passes_15_and_5": true,
+      "passes_core_5mmhg_floor": true,
+      "rel_mass_balance_error_str": "1.826e-15",
+      "mass_balance_bound_lt_1e10": true
+    },
+    {
+      "label": "Hybrid333_H180_Day0_10umFibrin_0p5D_65um_FACE_FAIL",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 333.3,
+      "loading_ieq_cm2": 1500.15,
+      "slot_height_um": 180.0,
+      "cluster_diam_um": 65.0,
+      "bed_po2_mmhg": 35.0,
+      "sleeve_um": 10.0,
+      "sleeve_d_factor": 0.5,
+      "k_perf_gel_s_inv": 0.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 1.097,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 104.155,
+      "worst_face_mmhg": 14.7151,
+      "worst_core_mmhg": 13.4812,
+      "passes_15_and_5": false,
+      "passes_core_5mmhg_floor": true,
+      "rel_mass_balance_error_str": "1.421e-13",
+      "mass_balance_bound_lt_1e10": true
+    },
+    {
+      "label": "Hybrid333_H180_Day0_15umFibrin_0p5D_65um",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 333.3,
+      "loading_ieq_cm2": 1500.15,
+      "slot_height_um": 180.0,
+      "cluster_diam_um": 65.0,
+      "bed_po2_mmhg": 35.0,
+      "sleeve_um": 15.0,
+      "sleeve_d_factor": 0.5,
+      "k_perf_gel_s_inv": 0.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 1.097,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 104.155,
+      "worst_face_mmhg": 12.0792,
+      "worst_core_mmhg": 10.8523,
+      "passes_15_and_5": false,
+      "passes_core_5mmhg_floor": true,
+      "rel_mass_balance_error_str": "1.978e-15",
+      "mass_balance_bound_lt_1e10": true
+    },
+    {
+      "label": "Hybrid333_H180_Day0_30umDenseThrombus_0p5D_CORE_FAIL",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 333.3,
+      "loading_ieq_cm2": 1500.15,
+      "slot_height_um": 180.0,
+      "cluster_diam_um": 65.0,
+      "bed_po2_mmhg": 35.0,
+      "sleeve_um": 30.0,
+      "sleeve_d_factor": 0.5,
+      "k_perf_gel_s_inv": 0.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 1.097,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 104.155,
+      "worst_face_mmhg": 4.9742,
+      "worst_core_mmhg": 3.8116,
+      "passes_15_and_5": false,
+      "passes_core_5mmhg_floor": false,
+      "rel_mass_balance_error_str": "1.365e-16",
+      "mass_balance_bound_lt_1e10": true
+    },
+    {
+      "label": "SubARS300_H180_Day0_30umDenseThrombus_0p5D_CORE_FAIL",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 300.0,
+      "loading_ieq_cm2": 1666.67,
+      "slot_height_um": 180.0,
+      "cluster_diam_um": 65.0,
+      "bed_po2_mmhg": 35.0,
+      "sleeve_um": 30.0,
+      "sleeve_d_factor": 0.5,
+      "k_perf_gel_s_inv": 0.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 1.097,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 98.815,
+      "worst_face_mmhg": 2.9687,
+      "worst_core_mmhg": 2.0197,
+      "passes_15_and_5": false,
+      "passes_core_5mmhg_floor": false,
+      "rel_mass_balance_error_str": "1.403e-16",
+      "mass_balance_bound_lt_1e10": true
+    },
+    {
+      "label": "SubARS300_H180_Day0_Clean_65um_Bed30mmHg_FACE_FAIL",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 300.0,
+      "loading_ieq_cm2": 1666.67,
+      "slot_height_um": 180.0,
+      "cluster_diam_um": 65.0,
+      "bed_po2_mmhg": 30.0,
+      "sleeve_um": 0.0,
+      "sleeve_d_factor": 1.0,
+      "k_perf_gel_s_inv": 0.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 1.097,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 98.815,
+      "worst_face_mmhg": 13.9284,
+      "worst_core_mmhg": 12.8634,
+      "passes_15_and_5": false,
+      "passes_core_5mmhg_floor": true,
+      "rel_mass_balance_error_str": "2.285e-14",
+      "mass_balance_bound_lt_1e10": true
+    },
+    {
+      "label": "SubARS300_H200_Day0_Clean_65um_Bed30mmHg_FACE_FAIL",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 300.0,
+      "loading_ieq_cm2": 1666.67,
+      "slot_height_um": 200.0,
+      "cluster_diam_um": 65.0,
+      "bed_po2_mmhg": 30.0,
+      "sleeve_um": 0.0,
+      "sleeve_d_factor": 1.0,
+      "k_perf_gel_s_inv": 0.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 1.097,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 98.815,
+      "worst_face_mmhg": 13.4835,
+      "worst_core_mmhg": 12.524,
+      "passes_15_and_5": false,
+      "passes_core_5mmhg_floor": true,
+      "rel_mass_balance_error_str": "3.929e-14",
+      "mass_balance_bound_lt_1e10": true
+    },
+    {
+      "label": "Hybrid333_H180_Day0_Clean_65um_Bed30mmHg_PASS",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 333.3,
+      "loading_ieq_cm2": 1500.15,
+      "slot_height_um": 180.0,
+      "cluster_diam_um": 65.0,
+      "bed_po2_mmhg": 30.0,
+      "sleeve_um": 0.0,
+      "sleeve_d_factor": 1.0,
+      "k_perf_gel_s_inv": 0.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 1.097,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 104.155,
+      "worst_face_mmhg": 15.2152,
+      "worst_core_mmhg": 13.9863,
+      "passes_15_and_5": true,
+      "passes_core_5mmhg_floor": true,
+      "rel_mass_balance_error_str": "6.688e-15",
+      "mass_balance_bound_lt_1e10": true
+    },
+    {
+      "label": "Hybrid333_H200_Day0_Clean_65um_Bed30mmHg_FACE_FAIL",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 333.3,
+      "loading_ieq_cm2": 1500.15,
+      "slot_height_um": 200.0,
+      "cluster_diam_um": 65.0,
+      "bed_po2_mmhg": 30.0,
+      "sleeve_um": 0.0,
+      "sleeve_d_factor": 1.0,
+      "k_perf_gel_s_inv": 0.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 1.097,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 104.155,
+      "worst_face_mmhg": 14.8825,
+      "worst_core_mmhg": 13.807,
+      "passes_15_and_5": false,
+      "passes_core_5mmhg_floor": true,
+      "rel_mass_balance_error_str": "4.460e-15",
+      "mass_balance_bound_lt_1e10": true
+    },
+    {
+      "label": "FourMod260_H180_Day0_Clean_65um_Bed30mmHg_FACE_FAIL",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 260.0,
+      "loading_ieq_cm2": 1923.08,
+      "slot_height_um": 180.0,
+      "cluster_diam_um": 65.0,
+      "bed_po2_mmhg": 30.0,
+      "sleeve_um": 0.0,
+      "sleeve_d_factor": 1.0,
+      "k_perf_gel_s_inv": 0.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 1.097,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 91.992,
+      "worst_face_mmhg": 11.7193,
+      "worst_core_mmhg": 10.8475,
+      "passes_15_and_5": false,
+      "passes_core_5mmhg_floor": true,
+      "rel_mass_balance_error_str": "7.766e-13",
+      "mass_balance_bound_lt_1e10": true
+    },
+    {
+      "label": "SubARS300_H180_Day0_Avascular_VPIO120_Clean_FACE_FAIL",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 300.0,
+      "loading_ieq_cm2": 1666.67,
+      "slot_height_um": 180.0,
+      "cluster_diam_um": 120.0,
+      "bed_po2_mmhg": 35.0,
+      "sleeve_um": 0.0,
+      "sleeve_d_factor": 1.0,
+      "k_perf_gel_s_inv": 0.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 1.097,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 175.271,
+      "worst_face_mmhg": 13.9332,
+      "worst_core_mmhg": 5.113,
+      "passes_15_and_5": false,
+      "passes_core_5mmhg_floor": true,
+      "rel_mass_balance_error_str": "8.426e-16",
+      "mass_balance_bound_lt_1e10": true
+    },
+    {
+      "label": "Hybrid333_H180_Day0_Avascular_VPIO120_Clean_PASS",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 333.3,
+      "loading_ieq_cm2": 1500.15,
+      "slot_height_um": 180.0,
+      "cluster_diam_um": 120.0,
+      "bed_po2_mmhg": 35.0,
+      "sleeve_um": 0.0,
+      "sleeve_d_factor": 1.0,
+      "k_perf_gel_s_inv": 0.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 1.097,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 184.743,
+      "worst_face_mmhg": 15.3775,
+      "worst_core_mmhg": 5.9609,
+      "passes_15_and_5": true,
+      "passes_core_5mmhg_floor": true,
+      "rel_mass_balance_error_str": "1.849e-15",
+      "mass_balance_bound_lt_1e10": true
+    },
+    {
+      "label": "SubARS300_H180_Day0_Avascular_VPIO120_14p9umFibrin_0p5D_FAIL",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 300.0,
+      "loading_ieq_cm2": 1666.67,
+      "slot_height_um": 180.0,
+      "cluster_diam_um": 120.0,
+      "bed_po2_mmhg": 35.0,
+      "sleeve_um": 14.9,
+      "sleeve_d_factor": 0.5,
+      "k_perf_gel_s_inv": 0.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 1.097,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 175.271,
+      "worst_face_mmhg": 6.9846,
+      "worst_core_mmhg": 0.2472,
+      "passes_15_and_5": false,
+      "passes_core_5mmhg_floor": false,
+      "rel_mass_balance_error_str": "9.011e-16",
+      "mass_balance_bound_lt_1e10": true
+    },
+    {
+      "label": "Hybrid333_H180_Day0_Avascular_VPIO120_14p9umFibrin_0p5D_FAIL",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 333.3,
+      "loading_ieq_cm2": 1500.15,
+      "slot_height_um": 180.0,
+      "cluster_diam_um": 120.0,
+      "bed_po2_mmhg": 35.0,
+      "sleeve_um": 14.9,
+      "sleeve_d_factor": 0.5,
+      "k_perf_gel_s_inv": 0.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 1.097,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 184.743,
+      "worst_face_mmhg": 8.5821,
+      "worst_core_mmhg": 0.5545,
+      "passes_15_and_5": false,
+      "passes_core_5mmhg_floor": false,
+      "rel_mass_balance_error_str": "7.051e-16",
+      "mass_balance_bound_lt_1e10": true
+    },
+    {
+      "label": "SubARS300_H180_VPIO120_PostAnast_2p5xGSIS_45umFBR_PASS",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 300.0,
+      "loading_ieq_cm2": 1666.67,
+      "slot_height_um": 180.0,
+      "cluster_diam_um": 120.0,
+      "bed_po2_mmhg": 35.0,
+      "sleeve_um": 45.0,
+      "sleeve_d_factor": 0.3333,
+      "k_perf_gel_s_inv": 5.0,
+      "k_perf_islet_s_inv": 3.0,
+      "ocr_mult": 2.7425,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 175.271,
+      "worst_face_mmhg": 27.4857,
+      "worst_core_mmhg": 17.6116,
+      "passes_15_and_5": true,
+      "passes_core_5mmhg_floor": true,
+      "rel_mass_balance_error_str": "5.299e-16",
+      "mass_balance_bound_lt_1e10": true
+    },
+    {
+      "label": "Hybrid333_H180_VPIO120_PostAnast_2p5xGSIS_45umFBR_PASS",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 333.3,
+      "loading_ieq_cm2": 1500.15,
+      "slot_height_um": 180.0,
+      "cluster_diam_um": 120.0,
+      "bed_po2_mmhg": 35.0,
+      "sleeve_um": 45.0,
+      "sleeve_d_factor": 0.3333,
+      "k_perf_gel_s_inv": 5.0,
+      "k_perf_islet_s_inv": 3.0,
+      "ocr_mult": 2.7425,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 184.743,
+      "worst_face_mmhg": 27.3641,
+      "worst_core_mmhg": 17.524,
+      "passes_15_and_5": true,
+      "passes_core_5mmhg_floor": true,
+      "rel_mass_balance_error_str": "7.949e-16",
+      "mass_balance_bound_lt_1e10": true
+    },
+    {
+      "label": "Hybrid333_H180_VPIO120_PostAnast_GelOnlyNoIsletPerf_CORE_FAIL",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 333.3,
+      "loading_ieq_cm2": 1500.15,
+      "slot_height_um": 180.0,
+      "cluster_diam_um": 120.0,
+      "bed_po2_mmhg": 35.0,
+      "sleeve_um": 45.0,
+      "sleeve_d_factor": 0.3333,
+      "k_perf_gel_s_inv": 5.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 2.7425,
+      "alpha_mol_cm3_mmhg": 1.34e-09,
+      "pitch_um": 184.743,
+      "worst_face_mmhg": 20.6526,
+      "worst_core_mmhg": 0.0269,
+      "passes_15_and_5": false,
+      "passes_core_5mmhg_floor": false,
+      "rel_mass_balance_error_str": "1.404e-16",
+      "mass_balance_bound_lt_1e10": true
+    }
+  ],
+  "fvm_model_assumptions_and_convergence_note": "Periodic unit-cell 3D FVM solved on 28x28x32 meshes (grid refinement to 56x56x64-80x80x96 shifts marginal 120 um face/core values by tenths of mmHg without altering any combined face/core gate class). Post-anastomosis 2.5x GSIS OCR multiplier scales both islet and stromal gel sinks conservatively; direct intra-islet perfusion is a modeled scenario pending loaded-envelope measurement.",
+  "planar_30mmhg_buffer_solubility_sensitivity": {
+    "alpha_nominal_mol_cm3_mmhg": 1.34e-09,
+    "alpha_phys_buffer_mol_cm3_mmhg": 1.27e-09,
+    "hybrid333_h180_bed30_clean_phys_buffer": {
+      "label": "Hybrid333_H180_Day0_Clean_65um_Bed30mmHg_Alpha1p27e9_FACE_FAIL",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 333.3,
+      "loading_ieq_cm2": 1500.15,
+      "slot_height_um": 180.0,
+      "cluster_diam_um": 65.0,
+      "bed_po2_mmhg": 30.0,
+      "sleeve_um": 0.0,
+      "sleeve_d_factor": 1.0,
+      "k_perf_gel_s_inv": 0.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 1.097,
+      "alpha_mol_cm3_mmhg": 1.27e-09,
+      "pitch_um": 104.155,
+      "worst_face_mmhg": 14.4198,
+      "worst_core_mmhg": 13.1252,
+      "passes_15_and_5": false,
+      "passes_core_5mmhg_floor": true,
+      "rel_mass_balance_error_str": "1.707e-14",
+      "mass_balance_bound_lt_1e10": true
+    },
+    "hybrid333_h180_bed35_120um_clean_phys_buffer": {
+      "label": "Hybrid333_H180_Day0_Clean_VPIO120_Bed35mmHg_Alpha1p27e9_FAIL",
+      "grid_nx_ny_nz": [
+        28,
+        28,
+        32
+      ],
+      "area_cm2": 333.3,
+      "loading_ieq_cm2": 1500.15,
+      "slot_height_um": 180.0,
+      "cluster_diam_um": 120.0,
+      "bed_po2_mmhg": 35.0,
+      "sleeve_um": 0.0,
+      "sleeve_d_factor": 1.0,
+      "k_perf_gel_s_inv": 0.0,
+      "k_perf_islet_s_inv": 0.0,
+      "ocr_mult": 1.097,
+      "alpha_mol_cm3_mmhg": 1.27e-09,
+      "pitch_um": 184.743,
+      "worst_face_mmhg": 14.3801,
+      "worst_core_mmhg": 4.5487,
+      "passes_15_and_5": false,
+      "passes_core_5mmhg_floor": false,
+      "rel_mass_balance_error_str": "0.000e+00",
+      "mass_balance_bound_lt_1e10": true
+    },
+    "caveat": "Switching Bunsen solubility from nominal 1.34e-9 to physiological-buffer 1.27e-9 mol/(cm^3*mmHg) drops Hybrid-333 H180 clean 65 um at a 30 mmHg bed from 15.2152 to 14.4198 mmHg (< 15.0 mmHg face floor) and drops Day-0 avascular 120 um Hybrid-333 H180 at a 35 mmHg bed from 15.3775/5.9609 to 14.3801/4.5487 mmHg (failing both face and core floors); additionally 10 um of 0.5x D fibrin at 35 mmHg drops 65 um Hybrid-333 H180 face to 14.72 mmHg (< 15.0 mmHg) despite being inside the 30 um thickness cap."
+  },
+  "planar_1d_insulin_shutoff_fall_t50": {
+    "model_assumptions": {
+      "d_insulin_hydrogel_cm2_s": 5e-07,
+      "unencapsulated_intrinsic_t50_min": 1.75,
+      "intrinsic_t50_parameter_provenance": "proposal_modeling_assumption_not_reported_nair_fit",
+      "reference_fourier_modes": 5000,
+      "comparison_truncated_fourier_modes": 45,
+      "h200_uniform_clean_cutoff_intrinsic_t50_5000mode_min": 1.809045,
+      "h200_uniform_clean_cutoff_intrinsic_t50_45mode_min": 1.817482,
+      "h200_spatial_65um_clean_cutoff_intrinsic_t50_5000mode_min": 1.75364,
+      "h200_spatial_65um_clean_margin_below_3min_seconds": 0.235,
+      "fibrin_sleeve_model": "effective_homogeneous_transit_thickness_approximation",
+      "caveat": "Continuum 1D bilateral slab Fourier model using a 1.75-min intrinsic shutoff modeling assumption (motivated by Nair 2019 S3d step-down context, NOT a directly reported Nair fitted half-time). Converged 5,000-mode reference shifts uniform slabs by +0.008-0.009 min vs 45 modes (uniform H200 3.0-min intrinsic cutoff: 1.809045 min at 5,000 modes [1.808982 min at 30,000 modes] vs 1.817482 min at 45 modes) and spatial projections by <= 0.000014 min (spatial 65 um H200 cutoff: 1.753640 min, nominal margin 0.235 s; centered 120 um VPIOs fail clean at 3.070 / 3.385 min even where Hybrid H180 nominal oxygen passes). Borderline H200 remains an unqualified scenario pending empirical chamber-corrected loaded-envelope perifusion (R3P-04)."
+    },
+    "cases": [
+      {
+        "case": "H180_clean",
+        "slot_height_um": 180.0,
+        "fibrin_sleeve_um": 0.0,
+        "effective_half_thickness_um": 90.0,
+        "modeled_fall_t50_converged_5000mode_min": 2.73058,
+        "modeled_fall_t50_45mode_min": 2.72174,
+        "modeled_fall_t50_min": 2.731,
+        "passes_lt_3p0_min": true
+      },
+      {
+        "case": "H180_plus_15um_fibrin",
+        "slot_height_um": 180.0,
+        "fibrin_sleeve_um": 15.0,
+        "effective_half_thickness_um": 120.0,
+        "modeled_fall_t50_converged_5000mode_min": 3.37565,
+        "modeled_fall_t50_45mode_min": 3.36735,
+        "modeled_fall_t50_min": 3.376,
+        "passes_lt_3p0_min": false
+      },
+      {
+        "case": "H200_clean",
+        "slot_height_um": 200.0,
+        "fibrin_sleeve_um": 0.0,
+        "effective_half_thickness_um": 100.0,
+        "modeled_fall_t50_converged_5000mode_min": 2.93667,
+        "modeled_fall_t50_45mode_min": 2.92801,
+        "modeled_fall_t50_min": 2.937,
+        "passes_lt_3p0_min": true
+      },
+      {
+        "case": "H220_clean_BARRED",
+        "slot_height_um": 220.0,
+        "fibrin_sleeve_um": 0.0,
+        "effective_half_thickness_um": 110.0,
+        "modeled_fall_t50_converged_5000mode_min": 3.15204,
+        "modeled_fall_t50_45mode_min": 3.14356,
+        "modeled_fall_t50_min": 3.152,
+        "passes_lt_3p0_min": false
+      }
+    ],
+    "spatially_weighted_1d_projection_cases": [
+      {
+        "case": "Spatial_65um_Bilayer_H180_clean",
+        "slot_height_um": 180.0,
+        "cluster_diam_um": 65.0,
+        "sphere_center_offset_um": 42.5,
+        "modeled_fall_t50_converged_5000mode_min": 2.846828,
+        "modeled_fall_t50_45mode_min": 2.846831,
+        "modeled_fall_t50_min": 2.847,
+        "passes_lt_3p0_min": true
+      },
+      {
+        "case": "Spatial_65um_Bilayer_H200_clean",
+        "slot_height_um": 200.0,
+        "cluster_diam_um": 65.0,
+        "sphere_center_offset_um": 52.5,
+        "modeled_fall_t50_converged_5000mode_min": 2.996086,
+        "modeled_fall_t50_45mode_min": 2.996072,
+        "modeled_fall_t50_min": 2.996,
+        "passes_lt_3p0_min": true
+      },
+      {
+        "case": "Spatial_120um_CenteredVPIO_H180_clean_FAIL",
+        "slot_height_um": 180.0,
+        "cluster_diam_um": 120.0,
+        "sphere_center_offset_um": 0.0,
+        "modeled_fall_t50_converged_5000mode_min": 3.069908,
+        "modeled_fall_t50_45mode_min": 3.069899,
+        "modeled_fall_t50_min": 3.07,
+        "passes_lt_3p0_min": false
+      },
+      {
+        "case": "Spatial_120um_CenteredVPIO_H200_clean_FAIL",
+        "slot_height_um": 200.0,
+        "cluster_diam_um": 120.0,
+        "sphere_center_offset_um": 0.0,
+        "modeled_fall_t50_converged_5000mode_min": 3.384807,
+        "modeled_fall_t50_45mode_min": 3.384815,
+        "modeled_fall_t50_min": 3.385,
+        "passes_lt_3p0_min": false
+      }
+    ]
+  },
+  "sequential_bxb1_colony_screening_audit": {
+    "assumed_forward_per_colony_rates": {
+      "single_step_17kb": 0.00219,
+      "step1_10p5kb_attp_gt": 0.01294,
+      "step2_6p9kb_attp_ca": 0.02117
+    },
+    "transferred_planning_rates_note": "Forward planning calculation of P(>=1 acceptable colony at each sequential step) from explicitly declared independent-draw planning rates (not back-solved from colony counts); Pandey 2024/2025 (PMID:38858586) provides no exact-product yield for Design Y, and direct hiPSC integration rates remain unmeasured pending Stage-0 Y-05.",
+    "single_step_17kb_n95": 1367,
+    "two_stage_per_stage_95pct_colonies": [
+      231,
+      141
+    ],
+    "two_stage_per_stage_95pct_total": 372,
+    "two_stage_per_stage_95pct_continuous_lower_bound_pct": 90.25,
+    "two_stage_per_stage_95pct_joint_success_pct": 90.4111,
+    "per_stage_confidence_for_true_95pct_joint_pct": 97.4679,
+    "two_stage_equal_margin_95pct_joint_colonies": [
+      283,
+      172
+    ],
+    "two_stage_equal_margin_95pct_joint_total": 455,
+    "two_stage_equal_margin_95pct_joint_exact_success_pct": 95.0344,
+    "two_stage_exact_minimum_95pct_joint_total": 451,
+    "two_stage_exact_minimum_95pct_joint_allocation_count": 11,
+    "two_stage_exact_minimum_95pct_joint_allocations": [
+      [
+        261,
+        190
+      ],
+      [
+        262,
+        189
+      ],
+      [
+        263,
+        188
+      ],
+      [
+        264,
+        187
+      ],
+      [
+        265,
+        186
+      ],
+      [
+        266,
+        185
+      ],
+      [
+        267,
+        184
+      ],
+      [
+        268,
+        183
+      ],
+      [
+        269,
+        182
+      ],
+      [
+        270,
+        181
+      ],
+      [
+        271,
+        180
+      ]
+    ],
+    "two_stage_equal_margin_455_at_1p0pct_floor_joint_pct": 77.4627,
+    "allocation_uniqueness_note": "283 + 172 = 455 is the equal-margin (sqrt(0.95) per-stage) allocation, NOT the minimum total: exact integer minimization gives 451 colonies across 11 qualifying splits (261+190 through 271+180)."
+  },
+  "portfolio_compatibility_and_4096_state_audit": {
+    "allowed_cell_route_pairs": {
+      "D1B_AUTO_C_V2": [
+        "R1",
+        "R2",
+        "R3P"
+      ],
+      "DESIGN_Y_FULLSTACK_V2": [
+        "R3P"
+      ],
+      "DESIGN_Y_HYPOTHETICAL_R2_COUNTERFACTUAL": [
+        "R1",
+        "R2"
+      ],
+      "UNEDITED_AUTO_NEGATIVE_CONTROL": [
+        "R1",
+        "R2"
+      ],
+      "UNHARDENED_A_B_X": [
+        "R1",
+        "R2"
+      ]
+    },
+    "unhardened_abx_barred_from_route3p": true,
+    "design_y_v2_bound_strictly_to_route3p_matching_registry": true,
+    "locked_path_compatibility_enforced": true,
+    "inadmissible_diagonal_locked_pct": 0.0,
+    "inadmissible_diagonal_modular_k100_pct": 0.0,
+    "inadmissible_diagonal_modular_k90_pct": 0.0,
+    "ordinary_scenario_count_checked": 20,
+    "total_evaluated_rows_including_sensitivities": 24,
+    "max_4096_state_incumbent_abs_err": 0.0,
+    "w_b1_modular_compatible_pct": 58.6782,
+    "w_b1_prohibited_modular_mass_excluded_pp": 0.7062,
+    "w_b5_modular_compatible_pct": 60.9366,
+    "w_b5_prohibited_modular_mass_excluded_pp": 1.4943,
+    "w_b9_locked_phiH4_0p50_pct": 57.9434,
+    "w_b10_prohibited_modular_mass_excluded_pp": 1.4639,
+    "w_b9_phiH4_0p60_sensitivity_counterexample": {
+      "scenario": "W_B9_SENSITIVITY_phiH4=0.60_BELOW_57p92_CEILING",
+      "stage0_qualification_status": "SENSITIVITY_COUNTEREXAMPLE_PHI_H4_GT_0P50",
+      "n_arms": 4,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        90.0,
+        92.0,
+        86.89
+      ],
+      "composite_ceiling_pct": 63.3107,
+      "h4_union_pct": 85.8962,
+      "locked_pct": 57.7545,
+      "delta_locked_pp": 6.9763,
+      "modular_k100_pct": 59.0793,
+      "modular_k90_pct": 58.9469,
+      "modular_unconstrained_reference_pct": 60.2585,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 1.1791,
+      "delta_modular_pp": 4.9631,
+      "residual_risk_reduction_locked_pct": 14.17,
+      "residual_risk_reduction_mod_pct": 10.82,
+      "clears_57p92_locked": false,
+      "clears_qL_14p51_and_qM_8p29": false,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    },
+    "w_b3_equalized_y_marginals_sensitivity_counterexample": {
+      "scenario": "W_B3_SENSITIVITY_Y_H2H3_MARGINALS_EQUALIZED_TO_X_BELOW_57p92",
+      "stage0_qualification_status": "SENSITIVITY_COUNTEREXAMPLE_EQUALIZED_H2H3_MARGINALS",
+      "n_arms": 4,
+      "cell_architecture_classes": [
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "UNHARDENED_A_B_X",
+        "DESIGN_Y_FULLSTACK_V2"
+      ],
+      "h4_route_assignments": [
+        "R1",
+        "R2",
+        "R1",
+        "R3P"
+      ],
+      "eff_ceilings_pct": [
+        88.0,
+        87.0,
+        89.0,
+        90.46
+      ],
+      "composite_ceiling_pct": 61.6412,
+      "h4_union_pct": 89.2223,
+      "locked_pct": 56.8286,
+      "delta_locked_pp": 6.0504,
+      "modular_k100_pct": 58.1381,
+      "modular_k90_pct": 58.0071,
+      "modular_unconstrained_reference_pct": 59.1636,
+      "prohibited_locked_mass_excluded_pp": 0.0,
+      "prohibited_modular_mass_excluded_pp": 1.0255,
+      "delta_modular_pp": 4.0218,
+      "residual_risk_reduction_locked_pct": 12.29,
+      "residual_risk_reduction_mod_pct": 8.77,
+      "clears_57p92_locked": false,
+      "clears_qL_14p51_and_qM_8p29": false,
+      "incumbent_parity_err": 3.52e-10,
+      "incumbent_4096_state_max_abs_err": 0.0
+    },
+    "cross_hurdle_negative_coupling_sensitivity": [
+      {
+        "scenario": "W_B3_10PCT_ADVERSE_CROSS_HURDLE_COUPLING_BELOW_57p92",
+        "adverse_cross_hurdle_mix_weight": 0.1,
+        "independent_hurdles_locked_pct": 58.1055,
+        "maximally_adverse_overlap_locked_pct": 51.2018,
+        "negative_cross_hurdle_locked_pct": 57.4151,
+        "adverse_mix_weight_erasing_gain_pct": 2.721,
+        "clears_57p92_locked": false
+      },
+      {
+        "scenario": "W_B9_10PCT_ADVERSE_CROSS_HURDLE_COUPLING_BELOW_57p92",
+        "adverse_cross_hurdle_mix_weight": 0.1,
+        "independent_hurdles_locked_pct": 57.9434,
+        "maximally_adverse_overlap_locked_pct": 50.8841,
+        "negative_cross_hurdle_locked_pct": 57.2375,
+        "adverse_mix_weight_erasing_gain_pct": 0.365,
+        "clears_57p92_locked": false
+      }
+    ],
+    "five_arm_bridge_registration_status": {
+      "DESIGN_Y_FULLSTACK_V2": "REGISTERED_AND_FASTA_VERIFIED_IN_IIP0034_MODE_B_NON_EXECUTABLE_ROUTE_3P_ONLY",
+      "D1B_AUTO_C_V2": "UNREGISTERED_STAGE0_FORWARD_BRIDGE_PLACEHOLDER_NO_IIP0034_PRODUCT_OR_FASTA",
+      "note": "Registry and FASTA verification in IIP-0034 covers the six staged Design Y-FullStack v2 records; D1B_AUTO_C_V2 in stage0_gated_5arm_unified_bridge is an unregistered Stage-0-gated forward compatibility placeholder with no exact product definition or FASTA staged in IIP-0034."
+    }
+  }
+}

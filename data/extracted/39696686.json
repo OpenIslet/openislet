@@ -1,0 +1,533 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "39696686",
+    "pmcid": "PMC11656860",
+    "doi": "10.1186/s13287-024-04059-7",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Microfluidic chip systems for characterizing glucose-responsive insulin-secreting cells equipped with FailSafe kill-switch.",
+    "first_author": "Izadifar M",
+    "senior_author": "Nagy A",
+    "pub_year": 2024,
+    "journal": "Stem cell research & therapy",
+    "source_text_type": "FullText_XML_or_PDF",
+    "pillars_covered": [
+      "Pillar1_Differentiation_Maturation_Cytoarchitecture",
+      "Pillar4_Engraftment_Vascularization_Oxygenation_Devices"
+    ],
+    "max_biological_fidelity_tier": "Tier_4_Rodent_or_Xenogeneic_Only"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid39696686_arm1",
+      "arm_label": "Mouse FailSafe Cdk1-3'UTR-HSV-TK beta-iPLCs exposed to ganciclovir (GCV) in 160 h Fig. 3f 3D alginate transcapillary microfluidic viability assay (viral HSV-TK, NOT human hTMPK)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": "unspecified_in_source",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Rodent_Beta_Cell_Line_NIT1_MIN6_INS1",
+        "cell_line_id": "beta-iPLC line 2 (FS-beta-iPLC clone#81; triple-transgenic mouse)",
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "CDK1",
+          "ensembl_gene_id": "ENSMUSG00000019942",
+          "sub_molecular_coordinate": {
+            "region_class": "3UTR_or_Promoter_Enhancer",
+            "exact_variant_or_swap_description": "[REDACTED_CONSERVATIVE_EXCERPT: see PMID:39696686 field=exact_variant_or_swap_description mod=Endogenous_Locus_KI_Without_KO genes=CDK1 quote_sha256=6f988a7f413a0a81458d73e74664889a7730c0734d0c498ab40efa58b0f2bb9c]"
+          },
+          "functional_gate": "Gate5_Suicide_Safety_Switch",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "Endogenous_Locus_KI_Without_KO",
+          "promoter_or_locus_context": "Endogenous_Native_Promoter",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Gain_of_Function_OE_or_KI"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "3D alginate microfluidic chip",
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "SmallMolecule_Prodrug_Ablation_Challenge",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 160.0,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid39696686_arm2",
+      "arm_label": "Parental triple-transgenic (dox-inducible beta-cell reprogrammable) mouse beta-iPLC line 2 lacking the Cdk1-HSV-TK FailSafe knock-in, exposed to GCV (separated from untreated Cdk1-HSV-TK edited FS-beta-iPLCs)",
+      "is_reference_control": true,
+      "sample_size_n": null,
+      "sample_size_unit": "unspecified_in_source",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Rodent_Beta_Cell_Line_NIT1_MIN6_INS1",
+        "cell_line_id": "beta-iPLC line 2 (parental triple-transgenic mouse; no Cdk1-HSV-TK edit)",
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "3D alginate microfluidic chip",
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 160.0,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid39696686_arm3",
+      "arm_label": "Untreated (no-GCV) edited heterogeneous mouse FailSafe Cdk1-3'UTR-HSV-TK FS-beta-iPLCs in Fig. 3f 3D alginate transcapillary microfluidic chip (160 h viability control)",
+      "is_reference_control": true,
+      "sample_size_n": null,
+      "sample_size_unit": "unspecified_in_source",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Rodent_Beta_Cell_Line_NIT1_MIN6_INS1",
+        "cell_line_id": "beta-iPLC line 2 (FS-beta-iPLC clone#81; triple-transgenic mouse)",
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "CDK1",
+          "ensembl_gene_id": "ENSMUSG00000019942",
+          "sub_molecular_coordinate": {
+            "region_class": "3UTR_or_Promoter_Enhancer",
+            "exact_variant_or_swap_description": "[REDACTED_CONSERVATIVE_EXCERPT: see PMID:39696686 field=exact_variant_or_swap_description mod=Endogenous_Locus_KI_Without_KO genes=CDK1 quote_sha256=6f988a7f413a0a81458d73e74664889a7730c0734d0c498ab40efa58b0f2bb9c]"
+          },
+          "functional_gate": "Gate5_Suicide_Safety_Switch",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "Endogenous_Locus_KI_Without_KO",
+          "promoter_or_locus_context": "Endogenous_Native_Promoter",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Gain_of_Function_OE_or_KI"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "3D alginate microfluidic chip",
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": 160.0,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid39696686_arm4",
+      "arm_label": "Post-7d GCV-enriched non-dividing mouse FailSafe Cdk1-3'UTR-HSV-TK beta-iPLCs in Fig. 4h-i Geltrex-coated PDMS microfluidic perfusion GSIS device (separate from 3D alginate viability chip)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": "unspecified_in_source",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Rodent_Beta_Cell_Line_NIT1_MIN6_INS1",
+        "cell_line_id": "beta-iPLC line 2 (FS-beta-iPLC clone#81; triple-transgenic mouse)",
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "CDK1",
+          "ensembl_gene_id": "ENSMUSG00000019942",
+          "sub_molecular_coordinate": {
+            "region_class": "3UTR_or_Promoter_Enhancer",
+            "exact_variant_or_swap_description": "[REDACTED_CONSERVATIVE_EXCERPT: see PMID:39696686 field=exact_variant_or_swap_description mod=Endogenous_Locus_KI_Without_KO genes=CDK1 quote_sha256=6f988a7f413a0a81458d73e74664889a7730c0734d0c498ab40efa58b0f2bb9c]"
+          },
+          "functional_gate": "Gate5_Suicide_Safety_Switch",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "Endogenous_Locus_KI_Without_KO",
+          "promoter_or_locus_context": "Endogenous_Native_Promoter",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Gain_of_Function_OE_or_KI"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "Geltrex-coated PDMS microfluidic perfusion GSIS device (Fig. 4; separate from Fig. 3 3D alginate chip)",
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": 20.0,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid39696686_arm5",
+      "arm_label": "Untreated (no-GCV) edited heterogeneous mouse FailSafe Cdk1-3'UTR-HSV-TK FS-beta-iPLCs in Fig. 4h-i Geltrex-coated PDMS microfluidic perfusion GSIS device (separate from 3D alginate viability chip)",
+      "is_reference_control": true,
+      "sample_size_n": null,
+      "sample_size_unit": "unspecified_in_source",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "Rodent_Beta_Cell_Line_NIT1_MIN6_INS1",
+        "cell_line_id": "beta-iPLC line 2 (FS-beta-iPLC clone#81; triple-transgenic mouse)",
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "CDK1",
+          "ensembl_gene_id": "ENSMUSG00000019942",
+          "sub_molecular_coordinate": {
+            "region_class": "3UTR_or_Promoter_Enhancer",
+            "exact_variant_or_swap_description": "[REDACTED_CONSERVATIVE_EXCERPT: see PMID:39696686 field=exact_variant_or_swap_description mod=Endogenous_Locus_KI_Without_KO genes=CDK1 quote_sha256=6f988a7f413a0a81458d73e74664889a7730c0734d0c498ab40efa58b0f2bb9c]"
+          },
+          "functional_gate": "Gate5_Suicide_Safety_Switch",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "Endogenous_Locus_KI_Without_KO",
+          "promoter_or_locus_context": "Endogenous_Native_Promoter",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Gain_of_Function_OE_or_KI"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": "Geltrex-coated PDMS microfluidic perfusion GSIS device (Fig. 4; separate from Fig. 3 3D alginate chip)",
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": 20.0,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid39696686_eff1_cdk1_hsvtk_gcv_ablation",
+      "source_figure_or_table": "Results (160 h microfluidic viability assay)",
+      "focal_factor_X": "Murine_Cdk1_3UTR_HSV_TK_plus_GCV",
+      "comparator_X0": "Within_Arm_Time_Course_160h_GCV_Exposure_Fig3f",
+      "outcome_variable_Y": "[Endpoint: Clinical_Pharmacodynamics_or_Target_Depletion | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=viability_index]",
+      "outcome_domain": "Clinical_Pharmacodynamics_or_Target_Depletion",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "viability_index",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Descriptive_or_Unoriented",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "160 h microfluidic 3D alginate viability assay (separate from short Fig. 4h-i GSIS perifusion)",
+        "Z2_genetic_background_and_allelic_dose": "Murine Cdk1-linked viral HSV-TK (NOT human hTMPK-F105Y/AZT); untreated edited FS-beta-iPLCs tracked separately from parental triple-transgenic (no-Cdk1-TK) mouse beta-iPLC line 2",
+        "Z3_immune_effector_and_stressor_pathway": "Ganciclovir 1-50 uM exposure on heterogeneous mixed edited population (Fig. 3f measures bulk mixed-population viability index; Ki67 immunostaining separately assesses proliferation)",
+        "Z4_metabolic_and_glucose_load_state": "Standard culture",
+        "Z5_cytoarchitecture_and_cluster_diameter": "3D alginate microchamber",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Endogenous murine Cdk1 locus",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "The FSβiPLCs showed a significant decrease (p < 0.01) in cell viability over time when exposed to GCV",
+      "focal_arm_id": "pmid39696686_arm1",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "bulk_viability_decrease_over_time"
+      },
+      "dossier_sha256": "72445f2117a852c4c4dd8249ff6440cafcbf18e4b3f43c31dabfd55665760b42",
+      "source_span": "fulltext_data_sections.results_paragraphs[0][627:728]|norm=exact",
+      "quote_source_dossier_pmid": "39696686",
+      "statistic_type": "qualitative_statement_only",
+      "p_value_relation": "<",
+      "p_value_bound": 0.01,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "contrast_metadata": {
+        "intervention_label": "FS_betaiPLC_HSVTK_GCV_160h",
+        "comparator_label": "Within_Arm_Time_Course_160h_GCV_Exposure_Fig3f",
+        "endpoint_name": "Mixed-population mouse FS-beta-iPLC viability index decrease over time under GCV (Fig. 3f, 160 h)",
+        "timepoint": "160 h viability assay",
+        "population_or_model": "Mouse Cdk1-HSV-TK beta-iPLCs in 3D chip (untreated edited control separated from parental triple-transgenic (no-Cdk1-TK) control)",
+        "units": "viability_index",
+        "contrast_type": "longitudinal_or_within_arm_descriptive"
+      }
+    },
+    {
+      "effect_id": "pmid39696686_eff2_nondividing_gsis_retained",
+      "source_figure_or_table": "Fig. 4h-i (Geltrex-coated PDMS microfluidic perfusion GSIS device; separate from Fig. 3 3D alginate chip)",
+      "focal_factor_X": "GCV_enriched_nondividing_FS_betaiPLC",
+      "comparator_X0": "Untreated_edited_heterogeneous_FS_betaiPLC_short_GSIS_perifusion",
+      "outcome_variable_Y": "[Endpoint: Metabolic_and_Biphasic_GSIS_Maturation | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=ng_per_mL_per_1e6_cells]",
+      "outcome_domain": "Metabolic_and_Biphasic_GSIS_Maturation",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "ng_per_mL_per_1e6_cells",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Short dynamic GSIS perifusion (Fig. 4h-i, separate from 160 h viability assay) comparing post-7d GCV-selected non-dividing-enriched fraction against untreated edited heterogeneous cells (technical microfluidic assay replicates, not independent differentiations; separate from MIN6 functional benchmark in Fig. 4j)",
+        "Z2_genetic_background_and_allelic_dose": "Murine Cdk1-linked viral HSV-TK; compared against untreated edited FS-beta-iPLCs (separate from parental triple-transgenic (no-Cdk1-TK) control)",
+        "Z3_immune_effector_and_stressor_pathway": "Post-GCV non-dividing cell enrichment",
+        "Z4_metabolic_and_glucose_load_state": "Short dynamic perifusion 2 mM -> 20 mM glucose (Fig. 4h-i)",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Geltrex-coated PDMS microfluidic perfusion GSIS channel (Fig. 4; separate from Fig. 3 3D alginate chip)",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Endogenous murine Cdk1 locus",
+        "Z8_species_age_and_sex_context": "Tier_4_Rodent_or_Xenogeneic_Only"
+      },
+      "verbatim_evidence_quote": "GCV treated non-dividing cell-enriched FSβiPLCs had significantly higher insulin secretion (p < 0.05) at HG",
+      "focal_arm_id": "pmid39696686_arm4",
+      "comparator_arm_id": "pmid39696686_arm5",
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "high_glucose_insulin_secretion"
+      },
+      "dossier_sha256": "72445f2117a852c4c4dd8249ff6440cafcbf18e4b3f43c31dabfd55665760b42",
+      "source_span": "fulltext_data_sections.results_paragraphs[1][490:597]|norm=exact",
+      "quote_source_dossier_pmid": "39696686",
+      "statistic_type": "qualitative_statement_only",
+      "p_value_relation": "<",
+      "p_value_bound": 0.05,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "contrast_metadata": {
+        "intervention_label": "GCV_enriched_nondividing_FS_betaiPLC_Fig4hi",
+        "comparator_label": "Untreated_edited_heterogeneous_FS_betaiPLC_Fig4hi",
+        "endpoint_name": "High-glucose 20 mM short dynamic GSIS perifusion insulin secretion (Fig. 4h-i)",
+        "timepoint": "Short dynamic perifusion post-7d GCV enrichment (distinct from 160 h viability assay)",
+        "population_or_model": "Mouse Cdk1-HSV-TK beta-iPLCs in Geltrex-coated PDMS microfluidic perfusion GSIS device (Fig. 4; separate from Fig. 3 3D alginate chip)",
+        "units": "ng_per_mL_per_1e6_cells",
+        "contrast_type": "between_arm_comparative_descriptive"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}

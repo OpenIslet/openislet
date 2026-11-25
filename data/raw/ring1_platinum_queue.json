@@ -1,16 +1,16 @@
 {
-  "count": 589,
+  "count": 594,
   "automated_ring1_core_count": 532,
-  "curated_frontier_and_counterevidence_additions_count": 57,
-  "total_ring1_studies": 589,
+  "curated_frontier_and_counterevidence_additions_count": 62,
+  "total_ring1_studies": 594,
   "superseded_preprint_twins_count": 14,
-  "non_superseded_studies_count": 575,
-  "active_deduplicated_studies_count": 574,
+  "non_superseded_studies_count": 580,
+  "active_deduplicated_studies_count": 579,
   "non_empirical_project_summary_count": 1,
   "non_empirical_review_count": 1,
-  "active_empirical_studies_count": 573,
+  "active_empirical_studies_count": 578,
   "ring1_study_type_breakdown": {
-    "Empirical_Experimental": 568,
+    "Empirical_Experimental": 573,
     "Preprint_Superseded_By_Peer_Reviewed": 14,
     "Review": 1,
     "Project_Summary": 1,
@@ -15580,6 +15580,137 @@
       "core_subpillar_count": 1,
       "matched_beta1_targets": [],
       "quantitative_signal_count": 2,
+      "effect_modifier_signal_count": 0,
+      "priority_ring": "Ring_1_Platinum_MultiGate_Core",
+      "is_golden_seed": true
+    },
+    {
+      "pmid": "17375075",
+      "pmcid": null,
+      "doi": "10.1038/mt.sj.6300122",
+      "pub_year": 2007,
+      "journal": "Molecular therapy : the journal of the American Society of Gene Therapy",
+      "first_author": "Sato T",
+      "senior_author": "Medin JA",
+      "title": "Engineered human tmpk/AZT as a novel enzyme/prodrug axis for suicide gene therapy.",
+      "record_study_type": "Empirical_Experimental",
+      "is_active_empirical_study": true,
+      "data_accessibility_class": "Abstract_Only",
+      "geo_gse_accessions": [],
+      "estimated_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse",
+      "matched_pillars": [
+        "Pillar4B_Islet_Vascularization_Inosculation_Oxygen_IBMIR_SafetySwitch"
+      ],
+      "core_subpillar_count": 1,
+      "matched_beta1_targets": [
+        "DTYMK"
+      ],
+      "quantitative_signal_count": 3,
+      "effect_modifier_signal_count": 0,
+      "priority_ring": "Ring_1_Platinum_MultiGate_Core",
+      "is_golden_seed": true
+    },
+    {
+      "pmid": "39696686",
+      "pmcid": "PMC11656860",
+      "doi": "10.1186/s13287-024-04059-7",
+      "pub_year": 2024,
+      "journal": "Stem cell research & therapy",
+      "first_author": "Izadifar M",
+      "senior_author": "Nagy A",
+      "title": "Microfluidic chip systems for characterizing glucose-responsive insulin-secreting cells equipped with FailSafe kill-switch.",
+      "record_study_type": "Empirical_Experimental",
+      "is_active_empirical_study": true,
+      "data_accessibility_class": "Open_FullText_PMC_XML",
+      "geo_gse_accessions": [],
+      "estimated_fidelity_tier": "Tier_4_Rodent_or_Xenogeneic_Only",
+      "matched_pillars": [
+        "Pillar1A_SC_Islet_Differentiation_Maturation",
+        "Pillar4B_Islet_Vascularization_Inosculation_Oxygen_IBMIR_SafetySwitch"
+      ],
+      "core_subpillar_count": 2,
+      "matched_beta1_targets": [
+        "CDK1"
+      ],
+      "quantitative_signal_count": 2,
+      "effect_modifier_signal_count": 0,
+      "priority_ring": "Ring_1_Platinum_MultiGate_Core",
+      "is_golden_seed": true
+    },
+    {
+      "pmid": "42020736",
+      "pmcid": null,
+      "doi": "10.1038/s41586-026-10395-w",
+      "pub_year": 2026,
+      "journal": "Nature",
+      "first_author": "Shi YJ",
+      "senior_author": "Zhang Y",
+      "title": "Quadruple pegRNA enables programmable and efficient large genomic insertion.",
+      "record_study_type": "Empirical_Experimental",
+      "is_active_empirical_study": true,
+      "data_accessibility_class": "Abstract_Only",
+      "geo_gse_accessions": [],
+      "estimated_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse",
+      "matched_pillars": [
+        "Pillar2B_Foundational_StemCell_Hypoimmune_HLA_Engineering"
+      ],
+      "core_subpillar_count": 1,
+      "matched_beta1_targets": [
+        "MULTI_LOCUS_SAFE_HARBOR"
+      ],
+      "quantitative_signal_count": 2,
+      "effect_modifier_signal_count": 0,
+      "priority_ring": "Ring_1_Platinum_MultiGate_Core",
+      "is_golden_seed": true
+    },
+    {
+      "pmid": "42056515",
+      "pmcid": "PMC13371498",
+      "doi": "10.1038/s41586-026-10460-4",
+      "pub_year": 2026,
+      "journal": "Nature",
+      "first_author": "Liu B",
+      "senior_author": "Xue W",
+      "title": "Prime assembly with linear DNA donors enables large genomic insertions.",
+      "record_study_type": "Empirical_Experimental",
+      "is_active_empirical_study": true,
+      "data_accessibility_class": "Open_FullText_PMC_XML",
+      "geo_gse_accessions": [],
+      "estimated_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse",
+      "matched_pillars": [
+        "Pillar2B_Foundational_StemCell_Hypoimmune_HLA_Engineering"
+      ],
+      "core_subpillar_count": 1,
+      "matched_beta1_targets": [
+        "MULTI_LOCUS_SAFE_HARBOR"
+      ],
+      "quantitative_signal_count": 2,
+      "effect_modifier_signal_count": 0,
+      "priority_ring": "Ring_1_Platinum_MultiGate_Core",
+      "is_golden_seed": true
+    },
+    {
+      "pmid": "42749803",
+      "pmcid": "PMC13754579",
+      "doi": "10.1038/s41586-026-11024-2",
+      "pub_year": 2026,
+      "journal": "Nature",
+      "first_author": "Levesque S",
+      "senior_author": "Bauer DE",
+      "title": "Targeted genomic integration and rearrangement using prime assembly.",
+      "record_study_type": "Empirical_Experimental",
+      "is_active_empirical_study": true,
+      "data_accessibility_class": "Open_FullText_PMC_XML",
+      "geo_gse_accessions": [],
+      "estimated_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse",
+      "matched_pillars": [
+        "Pillar2B_Foundational_StemCell_Hypoimmune_HLA_Engineering"
+      ],
+      "core_subpillar_count": 1,
+      "matched_beta1_targets": [
+        "TRAC"
+      ],
+      "quantitative_signal_count": 1,
       "effect_modifier_signal_count": 0,
       "priority_ring": "Ring_1_Platinum_MultiGate_Core",
       "is_golden_seed": true

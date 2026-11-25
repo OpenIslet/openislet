@@ -1,0 +1,416 @@
+{
+  "schema_version": "0.2.0",
+  "study_metadata": {
+    "pmid": "42020736",
+    "pmcid": null,
+    "doi": "10.1038/s41586-026-10395-w",
+    "nct_id": null,
+    "geo_accessions": [],
+    "title": "Quadruple pegRNA enables programmable and efficient large genomic insertion.",
+    "first_author": "Shi YJ",
+    "senior_author": "Zhang Y",
+    "pub_year": 2026,
+    "journal": "Nature",
+    "source_text_type": "Abstract_Only",
+    "pillars_covered": [
+      "Pillar2_Immune_Cloaking_Autoantigen_Neoantigen_Stealth"
+    ],
+    "max_biological_fidelity_tier": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+  },
+  "screening_decision": {
+    "included": true,
+    "is_crispr_or_high_throughput_screen": false,
+    "screen_library_size_genes": null,
+    "exclusion_reason": null
+  },
+  "arms": [
+    {
+      "arm_id": "pmid42020736_arm1",
+      "arm_label": "Quadruple pegRNA (QuadPE) large-cargo insertion system (abstract-reported 1.6-26 kb range, 9.5 kb benchmark, and activity in primary human T lymphocytes and non-dividing neurons)",
+      "is_reference_control": false,
+      "sample_size_n": null,
+      "sample_size_unit": "unspecified_in_source",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [
+        {
+          "gene_symbol_hgnc": "MULTI_LOCUS_SAFE_HARBOR",
+          "ensembl_gene_id": null,
+          "sub_molecular_coordinate": {
+            "region_class": "Transgene_cDNA_Cassette",
+            "exact_variant_or_swap_description": "QuadPE 1.6-26 kb targeted genomic knock-in without DSBs or recombinases"
+          },
+          "functional_gate": "Platform_Genome_Engineering_Delivery_Benchmark",
+          "target_autoantibody_or_tcr_evaded": [
+            "None_Not_Antigen_Specific"
+          ],
+          "edit_modality": "PrimeEdit",
+          "promoter_or_locus_context": "Safe_Harbor_or_MultiLocus_Target",
+          "zygosity_or_allelic_state": null,
+          "protein_or_surface_expression_fold_vs_wt": null,
+          "perturbation_class": "Gain_of_Function_OE_or_KI"
+        }
+      ],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid42020736_arm2",
+      "arm_label": "Recombinase-mediated PASSIGE comparator insertion system evaluated at 9.5 kb (abstract-only; replicate n and absolute efficiency omitted from abstract)",
+      "is_reference_control": true,
+      "sample_size_n": null,
+      "sample_size_unit": "unspecified_in_source",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid42020736_arm3",
+      "arm_label": "Recombinase-mediated PASTE comparator insertion system evaluated at 9.5 kb (abstract-only; replicate n and absolute efficiency omitted from abstract)",
+      "is_reference_control": true,
+      "sample_size_n": null,
+      "sample_size_unit": "unspecified_in_source",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    },
+    {
+      "arm_id": "pmid42020736_arm4",
+      "arm_label": "Transposase-mediated CAST comparator insertion system evaluated at 9.5 kb (abstract-only; replicate n and absolute efficiency omitted from abstract)",
+      "is_reference_control": true,
+      "sample_size_n": null,
+      "sample_size_unit": "unspecified_in_source",
+      "gate1_substrate_and_differentiation": {
+        "cell_source_class": "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
+        "cell_line_id": null,
+        "donor_hla_profile": null,
+        "protocol_backbone": null,
+        "canonical_differentiation_stage_evaluated": null,
+        "stage_small_molecules_and_factors": [],
+        "cluster_mean_diameter_um": null,
+        "pct_nkx6_1_cpeptide_double_pos": null,
+        "pct_mafa_pos": null,
+        "pct_alpha_gcg_pos": null,
+        "pct_delta_sst_pos": null,
+        "pct_off_target_enterochromaffin_slc18a1": null
+      },
+      "gate2_3_4_genetic_and_epitope_edits": [],
+      "gate5_engraftment_niche": {
+        "transplant_site": "InVitro_Only",
+        "prevascularization_lead_time_days": null,
+        "in_dish_vascular_assembly": "None_Avascular_Islet",
+        "oxygen_bridge_72h_carrier": "None",
+        "packing_density_ieq_per_cm2_or_ml": null,
+        "number_of_distributed_micro_pockets": null,
+        "staged_insertion_schedule": null,
+        "encapsulation_or_biomaterial": null,
+        "co_transplanted_cells_or_oxygen_source": null,
+        "systemic_immunosuppression_regimen": "None"
+      },
+      "challenge_conditions": [
+        {
+          "challenge_type": "Unstressed_Baseline",
+          "effector_to_target_ratio": null,
+          "oxygen_pct": null,
+          "glucose_concentration_mM": null,
+          "duration_hours_or_days": null,
+          "specific_autoantigen_or_hla_restriction": null
+        }
+      ],
+      "quantitative_readouts": {
+        "specific_lysis_or_death_pct_mean": null,
+        "specific_lysis_or_death_pct_sd": null,
+        "cell_viability_pct_mean": null,
+        "early_72h_graft_survival_pct": null,
+        "time_to_vascular_inosculation_hours": null,
+        "necrotic_core_or_damp_release_pct": null,
+        "fibrotic_capsule_thickness_um": null,
+        "in_vivo_graft_survival_days_median": null,
+        "pct_graft_surviving_at_end_of_followup": null,
+        "followup_duration_days": null,
+        "static_gsis_stimulation_index_mean": null,
+        "static_gsis_stimulation_index_sd": null,
+        "dynamic_perifusion_first_phase_fold": null,
+        "proinsulin_to_insulin_ratio": null,
+        "in_vivo_stimulated_c_peptide_ng_ml": null,
+        "de_novo_dsa_or_autoantibody_spreading_observed": null
+      }
+    }
+  ],
+  "atomic_effects": [
+    {
+      "effect_id": "pmid42020736_eff1_9p5kb_fold_gain",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "QuadPE_9p5kb_Targeted_Integration",
+      "comparator_X0": "PASSIGE_PASTE_and_CAST_9p5kb_abstract",
+      "outcome_variable_Y": "[Endpoint: Genome_Integration_and_Cargo_Insertion | polarity=Higher_Is_Better_Protective_Endpoint | orientation_sign=1 | unit=fold_change_multi_comparator]",
+      "outcome_domain": "Genome_Integration_and_Cargo_Insertion",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "fold_change_multi_comparator",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Protective_or_Improved",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Abstract-reported 9.5 kb comparative benchmark (cell type for the 9.5 kb comparison, per-panel n, absolute comparator rates, and hiPSC efficiency omitted from abstract)",
+        "Z2_genetic_background_and_allelic_dose": "Compared against PASSIGE, PASTE, and CAST at 9.5 kb (abstract-only benchmark; full numerical tables and replicate counts paywalled)",
+        "Z3_immune_effector_and_stressor_pathway": "Delivery platform benchmark only",
+        "Z4_metabolic_and_glucose_load_state": "Standard culture",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Adherent or suspension cells",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "9.5 kb comparative insertion benchmark (locus not specified in pinned abstract sentence)",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "[REDACTED_NON_OA_EXCERPT: see PMID:42020736 field=verbatim_evidence_quote genes=NONE pert=NONE quote_sha256=9777c9268d85e1867ed8a1a0f0a04cc8e0c236e1f2bd0d800d2ec2294d8ad830]",
+      "focal_arm_id": "pmid42020736_arm1",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Higher_Is_Better_Protective_Endpoint",
+        "orientation_sign": 1,
+        "matched_lexicon_term": "integration_efficiency_fold_gain"
+      },
+      "dossier_sha256": "9d8a075fc764582d11a5336d6ef78b0bcdcd24af38e8fde7424ef3f0e1602c80",
+      "source_span": "abstract[860:1112]|norm=exact",
+      "quote_source_dossier_pmid": "42020736",
+      "statistic_type": "quarantined_ambiguous_numeric",
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "contrast_metadata": {
+        "intervention_label": "QuadPE_9p5kb",
+        "comparator_label": "PASSIGE_PASTE_and_CAST_9p5kb_abstract",
+        "endpoint_name": "9.5 kb knock-in fold gain (multi-comparator quarantined)",
+        "timepoint": null,
+        "population_or_model": "Abstract-reported mammalian cell benchmark (species/line for 9.5 kb panel and hiPSC rate unreported)",
+        "units": "fold_change",
+        "contrast_type": "quarantined_ambiguous_multi_clause_or_multi_ratio"
+      }
+    },
+    {
+      "effect_id": "pmid42020736_eff2_1p6_to_26kb_range",
+      "source_figure_or_table": "Abstract",
+      "focal_factor_X": "QuadPE_1p6_to_26kb_Insertion",
+      "comparator_X0": "Single_arm_descriptive_range",
+      "outcome_variable_Y": "[Endpoint: Genome_Integration_and_Cargo_Insertion | polarity=Qualitative_or_Unoriented_Endpoint | orientation_sign=0 | unit=percent_descriptive]",
+      "outcome_domain": "Genome_Integration_and_Cargo_Insertion",
+      "treatment_mean": null,
+      "treatment_sd_or_sem": null,
+      "treatment_n": null,
+      "control_mean": null,
+      "control_sd_or_sem": null,
+      "control_n": null,
+      "measurement_unit": "percent_descriptive",
+      "log_response_ratio_or_smd": null,
+      "p_value": null,
+      "effect_direction": "Descriptive_or_Unoriented",
+      "secretome_or_differentiation_penalty_observed": false,
+      "conditioning_context_Z": {
+        "Z1_developmental_stage_and_timing": "Abstract-reported 1.6-26 kb multi-locus integration range (separate from primary human T lymphocyte and post-mitotic neuron mention; neuron species and hiPSC rate unreported)",
+        "Z2_genetic_background_and_allelic_dose": "Four-pegRNA prime-editing large DNA fragment integration (donor topology not separately specified in pinned sentence; allelic state unknown)",
+        "Z3_immune_effector_and_stressor_pathway": "Delivery platform benchmark only",
+        "Z4_metabolic_and_glucose_load_state": "Standard culture",
+        "Z5_cytoarchitecture_and_cluster_diameter": "Adherent or suspension cells",
+        "Z6_microenvironment_oxygen_and_vascular_niche": "InVitro_Only",
+        "Z7_promoter_and_epigenetic_context": "Multi-locus insertion",
+        "Z8_species_age_and_sex_context": "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse"
+      },
+      "verbatim_evidence_quote": "stable integration efficiency of DNA fragments ranging from 1.6 to 26 kb, with efficiencies of around 40% at multiple loci with minimal off-target insertion activity.",
+      "focal_arm_id": "pmid42020736_arm1",
+      "comparator_arm_id": null,
+      "dispersion_type": "Not_Reported_in_Source_Sentence",
+      "n_unit": "unspecified_in_source",
+      "censoring_note": "Not_Time_To_Event_Endpoint",
+      "endpoint_polarity_registry": {
+        "polarity_class": "Qualitative_or_Unoriented_Endpoint",
+        "orientation_sign": 0,
+        "matched_lexicon_term": "integration_efficiency_pct"
+      },
+      "dossier_sha256": "9d8a075fc764582d11a5336d6ef78b0bcdcd24af38e8fde7424ef3f0e1602c80",
+      "source_span": "abstract[693:859]|norm=exact",
+      "quote_source_dossier_pmid": "42020736",
+      "statistic_type": "qualitative_statement_only",
+      "p_value_relation": null,
+      "p_value_bound": null,
+      "direction_adjudication_method": "source_adjudicated_curated_override",
+      "contrast_metadata": {
+        "intervention_label": "QuadPE_1p6_to_26kb",
+        "comparator_label": null,
+        "endpoint_name": "Abstract-reported 1.6-26 kb range with ~40% at multiple loci (not generalized uniformly across all cargo sizes)",
+        "timepoint": null,
+        "population_or_model": "Abstract-reported multi-locus benchmark (specific cell lines, neuron species, per-panel n, and hiPSC rate unreported)",
+        "units": "percent",
+        "contrast_type": "single_arm_descriptive_only"
+      }
+    }
+  ],
+  "effect_modifier_interactions": [],
+  "causal_mechanism_edges": [],
+  "cross_study_discovery_bridges": {
+    "collateral_and_pleiotropic_findings": [],
+    "residual_failure_and_escape_vectors": [],
+    "regime_thresholds": [],
+    "high_throughput_screen_hits": []
+  }
+}
