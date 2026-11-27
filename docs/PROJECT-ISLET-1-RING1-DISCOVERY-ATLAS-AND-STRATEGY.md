@@ -4,7 +4,7 @@
 
 **Current executable facts (generated from on-disk artifacts; physical gates pending).**
 
-Current corpus: 594 studies, 579 active deduplicated, 578 active empirical, 560 strict peer-reviewed empirical; 3,158 effects, 693 arms, 62 reference controls, 260 edit entries and 262 expanded gene occurrences under the ranker expander. Direction/penalty labels are rule-based heuristics; 43 flagged penalties are not an independently adjudicated accuracy dataset.
+Current corpus: 604 studies, 589 active deduplicated, 588 active empirical, 570 strict peer-reviewed empirical; 3,174 effects, 708 arms, 65 reference controls, 261 edit entries and 262 expanded gene occurrences under the ranker expander. Direction/penalty labels are rule-based heuristics; 44 flagged penalties are not an independently adjudicated accuracy dataset.
 
 Layer 1 evaluates 2,160 prior-anchored stacks (480 feasible, 48 code-defined top tier). Registry: 48 source terms / 46 net offsets / 39 auxiliary scalar leaves / 6 engineering priors. Structural share of component variance is 99.8542% from unrounded latent logits. Current auxiliary non-stack utility-target profiles with typed numeric LRR evidence: 2 (0 evaluated Islet-1 stack targets with new typed numeric LRR changes; the shrinkage branch is checked separately against an actual HNF1A-KO source contrast when zero). Seeded direct and shared-parameter Monte Carlo are exploratory sensitivity simulations with finite-draw Wilson intervals and rank quantiles, not clinical probabilities or fitted posterior intervals. CHK-12 recomputes and compares the complete current replay.
 
@@ -19,7 +19,7 @@ HIP-Core executes all 36 coded rows, including all 11 repeat/bridge/lead rows, a
 
 Native EEF1A1 core: 230 bp, 19 CpG dinucleotides, 3 exact/RC donor occurrences; these are native CpG-containing promoter sequences.
 
-Release manifest: `1,469` pinned files. Machine facts: `data/extracted/documentation_facts_v0.8.0.json`. These facts supersede stale numeric summaries in explicitly historical rationale sections. Outward rankings remain unfrozen (`outward_rankings_frozen: false`); no exact product has passed physical qualification.
+Release manifest: `1,505` pinned files. Machine facts: `data/extracted/documentation_facts_v0.8.0.json`. These facts supersede stale numeric summaries in explicitly historical rationale sections. Outward rankings remain unfrozen (`outward_rankings_frozen: false`); no exact product has passed physical qualification.
 
 <!-- OPENISLET_GENERATED_FACTS_END -->
 

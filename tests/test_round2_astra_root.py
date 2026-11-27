@@ -134,7 +134,7 @@ def test_acceptance_manifest_boundary_rejects_mutations(tmp_path,mutation):
     require(bool(export.manifest_integrity_errors(tmp_path,mf))==(mutation!='none'),'acceptance manifest did not reject exact mutation')
 
 def test_public_manifest_inventory_cannot_omit_or_add_payload(tmp_path):
-    (tmp_path/'file').write_bytes(b'x');(tmp_path/'.openislet_public_bundle').write_text('fixture')
+    (tmp_path/'file').write_bytes(b'x');(tmp_path/'.openislet_public_bundle').write_text('openislet_public_bundle_v0.8.0\n')
     mf={'artifacts':{'file':{'sha256':hashlib.sha256(b'x').hexdigest(),'bytes':1}},'public_export_file_inventory':['file']}
     require(not export.manifest_integrity_errors(tmp_path,mf,True),'clean fixture failed')
     (tmp_path/'extra').write_text('unlisted')
@@ -161,14 +161,14 @@ def test_unmarked_generated_cell_updates_numbers_without_adding_scope_prose():
 
 
 def test_public_cache_exception_does_not_exempt_symlinks(tmp_path):
-    (tmp_path/'file').write_bytes(b'x');(tmp_path/'.openislet_public_bundle').write_text('fixture')
+    (tmp_path/'file').write_bytes(b'x');(tmp_path/'.openislet_public_bundle').write_text('openislet_public_bundle_v0.8.0\n')
     mf={'artifacts':{'file':{'sha256':hashlib.sha256(b'x').hexdigest(),'bytes':1}},'public_export_file_inventory':['file']}
     (tmp_path/'__pycache__').symlink_to(tmp_path.parent,target_is_directory=True)
     require('unsafe:__pycache__' in export.manifest_integrity_errors(tmp_path,mf,True),'cache symlink bypassed CHK07')
 
 
 def test_public_cache_exception_does_not_exempt_hardlinks(tmp_path):
-    (tmp_path/'file').write_bytes(b'x');(tmp_path/'.openislet_public_bundle').write_text('fixture')
+    (tmp_path/'file').write_bytes(b'x');(tmp_path/'.openislet_public_bundle').write_text('openislet_public_bundle_v0.8.0\n')
     mf={'artifacts':{'file':{'sha256':hashlib.sha256(b'x').hexdigest(),'bytes':1}},'public_export_file_inventory':['file']}
     (tmp_path/'__pycache__').mkdir();os.link(tmp_path/'file',tmp_path/'__pycache__/cached.pyc')
     require('unsafe:__pycache__/cached.pyc' in export.manifest_integrity_errors(tmp_path,mf,True),'cache hardlink bypassed CHK07')

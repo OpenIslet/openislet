@@ -7013,15 +7013,15 @@
         "41542419",
         "42430558"
       ],
-      "eligible_effect_records": 3056,
+      "eligible_effect_records": 3072,
       "duplicate_exact_effect_records_skipped": 0
     },
     "input_provenance": {
       "ring1_atomic_effects": {
         "path": "data/extracted/ring1_atomic_effects_v0.5.jsonl",
-        "sha256": "e5755bd64b8910204d6675282cf2c661ac10f1c52376df20a35e2645df6b7ba3",
-        "bytes": 9039792,
-        "unique_effect_records": 3158
+        "sha256": "0c322f585a5eaa618f6b06e690cf6c1fcbbbcf34ce70da7376fdf2464ea099fb",
+        "bytes": 9087295,
+        "unique_effect_records": 3174
       },
       "raw_reference_object_sha256": "508f207e2a5c025d0e72963a82c91469f3305dfb4286afd678cfc7e9ad21d173",
       "construct_verification_object_sha256": "462f0560436b2142ce667ece4010cb7f7f1434a739ece69fdf6ad905bd3725f1",
@@ -7038,7 +7038,7 @@
       "jaspar_b2m_irf1_log2_odds": 17.6728,
       "jaspar_b2m_bounded_motif_activation": 0.88364,
       "eta_2a_ribosomal_skipping_downstream_factor": 0.88,
-      "ring1_unique_records_deduplicated_count": 3158,
+      "ring1_unique_records_deduplicated_count": 3174,
       "ring1_directional_study_gene_links_count": 114,
       "ring1_continuous_evidence_weight": 0.77027,
       "ring1_gene_effect_evidence_counts": {
@@ -33367,7 +33367,7 @@
     ]
   },
   "public_effects_provenance_rebinding": {
-    "canonical_original_effects_sha256": "cdd3928d84e965f510e6608f0bf99c6e8e5296a6df48b4f453ec44eea0b69910",
+    "canonical_original_effects_sha256": "434bb903443cc7d08d5086f8da9454b56036a0c51bc4504540f905cf86d51e4b",
     "status": "REPLAYED_PUBLIC_BYTES_NUMERICAL_AND_SEMANTIC_OUTPUTS_IDENTICAL",
     "qualification": "Source redaction changes byte identity; only input fingerprints are rebound. No new prediction or assay is claimed."
   }

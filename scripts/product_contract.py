@@ -6,7 +6,9 @@ import hashlib
 import json
 import math
 import re
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
+from typing import Any
 
 CONTRACT_PATH = Path("data/protocols/islet1_product_definitions_v0.8.0.json")
 DESIGN_B_FASTA_PATH = Path("data/constructs/islet1_design_b_complete_constructs_v0.8.0.fasta")
@@ -224,6 +226,87 @@ DESIGN_Y_V2_DONOR_BINDINGS: dict[str, dict[str, object]] = {
     },
 }
 STAGED_DESIGN_Y_V2_PRODUCT_IDS = frozenset(DESIGN_Y_V2_DONOR_BINDINGS.keys())
+D1B_AUTO_V2_FASTA_PATH = Path("data/constructs/islet1_d1b_auto_v2_v0.8.0.fasta")
+D1B_AUTO_V2_FASTA_SHA256 = "36b5c38181fd6d9409e82d53edee16130f4309e08c481a59055d705de4f01974"
+D1B_AUTO_V2_DONOR_BINDINGS: dict[str, dict[str, object]] = {
+    "ISLET1_D1_AUTO_V2_L1A_CIITA_CD64T_IL1RN": {
+        "proposal_id": "IIP-0035",
+        "decision_id": "DEC-114",
+        "fasta_record_id": "D1AUTO_v2_L1A_CIITA_CD64T_IL1RN",
+        "donor_sha256": "e03a0582bc17db37ff89531065fef503402ef5d15ad3a8253cab752ee6c725ec",
+        "donor_length_bp": 3455,
+        "nominal_aav6_packaged_bp": 3745,
+        "tu_count": 2,
+        "pigk_ectopic_gpi_count": 0,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "PRIMARY_LOCUS1_CIITA_IL1RN_CD64T_GATE0V_CLEAN",
+        "stage0_promotion_gates": "D1-01..D1-09 (primary single-locus CIITA donor keyed as full-panel reference scenario; Gate 0V viral-receptor-clean; assembled multi-locus manifest binding L1A+L2+L3+L4 required for clinical product identity)",
+        "full_record_sha256": "e8b0827c36ace5acb75c319bec70340ed181e3cb78b91bd038bd30186c417868",
+        "expected_alias": "D1AUTO_V2_L1A_CIITA_CD64T_IL1RN",
+    },
+    "ISLET1_D1_AUTO_V2_L1B_CIITA_CD64T_CD46WT_COMPARATOR": {
+        "proposal_id": "IIP-0035",
+        "decision_id": "DEC-114",
+        "fasta_record_id": "D1AUTO_v2_L1B_CIITA_CD64T_CD46WT_COMPARATOR",
+        "donor_sha256": "4ff3748792ecf8d8cb6f0e17f9b016552a67a3f81b7677c524984703986a4b97",
+        "donor_length_bp": 4100,
+        "nominal_aav6_packaged_bp": 4390,
+        "tu_count": 2,
+        "pigk_ectopic_gpi_count": 0,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "SECONDARY_GATE0V_LOCUS1_CIITA_CD46WT_CD64T_COMPARATOR",
+        "stage0_promotion_gates": "D1-01..D1-09 + structured lot-matched global_gate0v_record (secondary single-locus CIITA donor keyed as full-panel comparator scenario; assembled multi-locus manifest binding L1B+L2+L3+L4 required for clinical product identity)",
+        "full_record_sha256": "3aeb50de51ba8e1f09f75ce90563be4ddafe10b5b893ce6c7da420f838c1cc18",
+        "expected_alias": "D1AUTO_V2_L1B_CIITA_CD64T_CD46WT_COMPARATOR",
+    },
+    "ISLET1_D1_AUTO_V2_L2_CXCL10_SERPINB9_PDL1": {
+        "proposal_id": "IIP-0035",
+        "decision_id": "DEC-114",
+        "fasta_record_id": "D1AUTO_v2_L2_CXCL10_SERPINB9_PDL1",
+        "donor_sha256": "8f2dd931b41d1c00de5d62832008b7da765286d5b0f6c7d6c9ed730b3c9416c8",
+        "donor_length_bp": 3701,
+        "nominal_aav6_packaged_bp": 3991,
+        "tu_count": 2,
+        "pigk_ectopic_gpi_count": 0,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "LOCUS2_CXCL10_SERPINB9_PDL1_SINGLE_AAV6",
+        "stage0_promotion_gates": "COMPONENT_ONLY_EXCLUDED_FROM_FULLSTACK_CLEARANCE (L2 chr4 CXCL10::SERPINB9+PD-L1 D1-08 component evidence only)",
+        "full_record_sha256": "6efbfab3f513426566eac64ab4fd8c5b06611c033a1a057d3b219c20776d2bd6",
+        "expected_alias": "D1AUTO_V2_L2_CXCL10_SERPINB9_PDL1",
+    },
+    "ISLET1_D1_AUTO_V2_L3_AAVS1_VTCN1_UCOE2S_ICASP9": {
+        "proposal_id": "IIP-0035",
+        "decision_id": "DEC-114",
+        "fasta_record_id": "D1AUTO_v2_L3_AAVS1_VTCN1_UCOE2S_ICASP9",
+        "donor_sha256": "440d8b0399d79e239f6f9ec6fb6964ce1f3d70ac62ac5ef22336cf2a3f965092",
+        "donor_length_bp": 4320,
+        "nominal_aav6_packaged_bp": 4610,
+        "tu_count": 2,
+        "pigk_ectopic_gpi_count": 0,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "LOCUS3_AAVS1_VTCN1_UCOE2S_ICASP9_DEC053_SW1",
+        "stage0_promotion_gates": "COMPONENT_ONLY_EXCLUDED_FROM_FULLSTACK_CLEARANCE (L3 chr19 AAVS1 Switch #1 + VTCN1 D1-04/D1-05/D1-07 component evidence only)",
+        "full_record_sha256": "4688e2a2c30fc3e39d6391c17c42e391a7243825435d7bad906e3e720751ee91",
+        "expected_alias": "D1AUTO_V2_L3_AAVS1_VTCN1_UCOE2S_ICASP9",
+    },
+    "ISLET1_D1_AUTO_V2_L4_CLYBL_TANDEM_TUBA1B_FSP1_CHS4_CDK1_HTMPK_F105Y": {
+        "proposal_id": "IIP-0035",
+        "decision_id": "DEC-114",
+        "fasta_record_id": "D1AUTO_v2_L4_CLYBL_TANDEM_TUBA1B_FSP1_CHS4_CDK1_HTMPK_F105Y",
+        "donor_sha256": "fae0a4f597297aefc0b774532ef36885b5f65ba625df257e4fe9c0410adbc7f8",
+        "donor_length_bp": 4067,
+        "nominal_aav6_packaged_bp": 4357,
+        "tu_count": 2,
+        "pigk_ectopic_gpi_count": 0,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "LOCUS4_CHR13_CLYBL_TANDEM_FSP1_CDK1_HTMPK_DEC053_SW2",
+        "stage0_promotion_gates": "COMPONENT_ONLY_EXCLUDED_FROM_FULLSTACK_CLEARANCE (L4 chr13 CLYBL tandem FSP1+CDK1::hTMPK-F105Y D1-04/D1-05 component evidence only)",
+        "full_record_sha256": "fb74dd5d7b22a32c02a6e18fa5164f091dfbe575b82d2569c2af008c63fd8416",
+        "expected_alias": "D1AUTO_V2_L4_CLYBL_TANDEM_TUBA1B_FSP1_CHS4_CDK1_HTMPK_F105Y",
+    },
+}
+STAGED_D1B_AUTO_V2_PRODUCT_IDS = frozenset(D1B_AUTO_V2_DONOR_BINDINGS.keys())
+STAGED_D1B_AUTO_V2_DONOR_ALIASES = frozenset(str(spec["expected_alias"]) for spec in D1B_AUTO_V2_DONOR_BINDINGS.values())
 
 
 def _reject_nonfinite_product_json(token: str) -> Any:
@@ -234,7 +317,24 @@ def _parse_finite_product_json_float(token: str) -> float:
     val = float(token)
     if not math.isfinite(val):
         raise ValueError(f"Non-finite JSON float overflow rejected in product registry: {token!r}")
+    try:
+        if Decimal(str(val)) != Decimal(token):
+            raise ValueError(f"Precision-losing or underflowing JSON float rejected in product registry: {token!r}")
+    except InvalidOperation as exc:
+        raise ValueError(f"Malformed JSON float token in product registry: {token!r}") from exc
     return val
+
+
+def _is_valid_kinship_pi_hat(val: object) -> bool:
+    if isinstance(val, bool) or not isinstance(val, (int, float)):
+        return False
+    if isinstance(val, float) and not math.isfinite(val):
+        return False
+    try:
+        d = Decimal(str(val))
+    except InvalidOperation:
+        return False
+    return d.is_finite() and Decimal("0") < d <= Decimal("0.05")
 ALLOWED_DESIGN_B_LIFECYCLE_STATES = frozenset({
     "STAGED_REFERENCE_FASTA_ARTIFACT",
     "REGISTRY_DONOR_REFERENCE_BOUND",
@@ -351,10 +451,7 @@ def load_product_contracts(
             not isinstance(pol, dict)
             or type(pol.get("min_independent_abo_oo_seedlines")) is not int
             or pol["min_independent_abo_oo_seedlines"] < 2
-            or not isinstance(pol.get("kinship_pi_hat_lt"), (int, float))
-            or isinstance(pol.get("kinship_pi_hat_lt"), bool)
-            or not math.isfinite(float(pol["kinship_pi_hat_lt"]))
-            or not (0.0 < float(pol["kinship_pi_hat_lt"]) <= 0.05)
+            or not _is_valid_kinship_pi_hat(pol.get("kinship_pi_hat_lt"))
             or type(pol.get("donor1_paired_lot_blocks_min")) is not int
             or pol["donor1_paired_lot_blocks_min"] < 6
             or type(pol.get("confirmatory_welch_tost_lots_per_bank")) is not int
@@ -414,6 +511,9 @@ def load_product_contracts(
     missing_dy2 = STAGED_DESIGN_Y_V2_PRODUCT_IDS - by_id.keys()
     if missing_dy2:
         raise ValueError(f"Missing required staged Design Y-FullStack v2 product definitions: {sorted(missing_dy2)} (IIP-0034; DEC-113)")
+    missing_d1b = STAGED_D1B_AUTO_V2_PRODUCT_IDS - by_id.keys()
+    if missing_d1b:
+        raise ValueError(f"Missing required staged Autologous D1b-Auto-C v2 product definitions: {sorted(missing_d1b)} (IIP-0035; DEC-114)")
 
     fasta_file = root / DESIGN_B_FASTA_PATH
     if require_staged_fastas or fasta_file.exists():
@@ -477,6 +577,23 @@ def load_product_contracts(
             if len(_seq) != int(_spec["donor_length_bp"]) or hashlib.sha256(_seq.encode("utf-8")).hexdigest() != str(_spec["donor_sha256"]):
                 raise ValueError(f"Staged Design Y-FullStack v2 record digest or length mismatch for {_rid} (IIP-0034; DEC-113)")
 
+    d1b_fasta_file = root / D1B_AUTO_V2_FASTA_PATH
+    if require_staged_fastas or d1b_fasta_file.exists():
+        if not d1b_fasta_file.is_file():
+            raise ValueError(f"Missing or non-regular staged Autologous D1b-Auto-C v2 FASTA: {d1b_fasta_file} (IIP-0035; DEC-114)")
+        d1b_raw = d1b_fasta_file.read_bytes()
+        if hashlib.sha256(d1b_raw).hexdigest() != D1B_AUTO_V2_FASTA_SHA256:
+            raise ValueError("Staged Autologous D1b-Auto-C v2 FASTA SHA-256 mismatch against registry pin (IIP-0035; DEC-114)")
+        try:
+            d1b_map = _parse_fasta_map(d1b_raw.decode("utf-8"))
+        except UnicodeDecodeError as exc:
+            raise ValueError("Staged Autologous D1b-Auto-C v2 FASTA is not valid UTF-8 (IIP-0035; DEC-114)") from exc
+        for _pvid, _spec in D1B_AUTO_V2_DONOR_BINDINGS.items():
+            _rid = str(_spec["fasta_record_id"])
+            _seq = d1b_map.get(_rid, "")
+            if len(_seq) != int(_spec["donor_length_bp"]) or hashlib.sha256(_seq.encode("utf-8")).hexdigest() != str(_spec["donor_sha256"]):
+                raise ValueError(f"Staged Autologous D1b-Auto-C v2 record digest or length mismatch for {_rid} (IIP-0035; DEC-114)")
+
     return payload
 
 
@@ -513,6 +630,7 @@ def validate_product_definition(product: dict) -> dict:
         or (fam == "A" and pvid.startswith("ISLET1_COMP_"))
         or (fam == "A" and pvid.startswith("ISLET1_Z_") and product["execution_supported"] is False)
         or (fam == "A" and pvid.startswith("ISLET1_Y_") and product["execution_supported"] is False)
+        or (fam == "A" and pvid in STAGED_D1B_AUTO_V2_PRODUCT_IDS and product["execution_supported"] is False)
     ):
         raise ValueError("Product identifier conflicts with its family")
     if product["physical_manufacturing_yield"] is not None:
@@ -533,12 +651,7 @@ def validate_product_definition(product: dict) -> dict:
             raise ValueError(f"{key} must explicitly define donor/HLA scope")
     if "donor_seedline_id_required" in product["donor_lineage"] and type(product["donor_lineage"]["donor_seedline_id_required"]) is not bool:
         raise ValueError("donor_seedline_id_required must be boolean (IIP-0024; DEC-103)")
-    if "kinship_pi_hat_lt" in product["donor_lineage"] and (
-        isinstance(product["donor_lineage"]["kinship_pi_hat_lt"], bool)
-        or not isinstance(product["donor_lineage"]["kinship_pi_hat_lt"], (int, float))
-        or not math.isfinite(float(product["donor_lineage"]["kinship_pi_hat_lt"]))
-        or not (0.0 < float(product["donor_lineage"]["kinship_pi_hat_lt"]) <= 0.05)
-    ):
+    if "kinship_pi_hat_lt" in product["donor_lineage"] and not _is_valid_kinship_pi_hat(product["donor_lineage"]["kinship_pi_hat_lt"]):
         raise ValueError("kinship_pi_hat_lt must be a finite number in (0, 0.05] (IIP-0024; DEC-103)")
     if "physical_route_id" in product and (not isinstance(product["physical_route_id"], str) or not re.fullmatch(r"[A-Z0-9_]+", product["physical_route_id"])):
         raise ValueError("physical_route_id must be a bounded uppercase identifier (IIP-0024; DEC-103)")
@@ -658,6 +771,54 @@ def validate_product_definition(product: dict) -> dict:
             raise ValueError(f"Invalid or missing staged_design_y_fullstack_v2_donor_binding for {pvid} (IIP-0034; DEC-113)")
     elif "staged_design_y_fullstack_v2_donor_binding" in product:
         raise ValueError(f"Non-Design-Y-v2 product {pvid} must not carry staged_design_y_fullstack_v2_donor_binding (IIP-0034; DEC-113)")
+    if pvid in STAGED_D1B_AUTO_V2_PRODUCT_IDS:
+        _d1b_exp = D1B_AUTO_V2_DONOR_BINDINGS[pvid]
+        _d1b_alias = str(_d1b_exp["expected_alias"])
+        if _d1b_alias not in aliases:
+            raise ValueError(f"Staged Autologous D1b-Auto-C v2 comparator {pvid} must carry pinned donor alias {_d1b_alias!r} (IIP-0035; DEC-114)")
+        for _a in aliases:
+            if _a in STAGED_D1B_AUTO_V2_PRODUCT_IDS or _a.startswith("ISLET1_D1_") or (_a in STAGED_D1B_AUTO_V2_DONOR_ALIASES and _a != _d1b_alias) or (_a.startswith("D1AUTO_V2_") and _a != _d1b_alias):
+                raise ValueError(f"Staged Autologous D1b-Auto-C v2 comparator {pvid} claims reserved identifier/alias {_a!r} (IIP-0035; DEC-114)")
+        if product["execution_supported"] is not False:
+            raise ValueError(f"Staged Autologous D1b-Auto-C v2 comparator {pvid} must keep execution_supported=False (IIP-0035; DEC-114)")
+        if product.get("lifecycle_state") != "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC":
+            raise ValueError(f"Staged Autologous D1b-Auto-C v2 comparator {pvid} must stay at STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC (IIP-0035; DEC-114)")
+        if product.get("physical_route_id") != "ROUTE_3P_MODULAR_PLANAR_ENVELOPE":
+            raise ValueError(f"Staged Autologous D1b-Auto-C v2 comparator {pvid} must declare physical_route_id=ROUTE_3P_MODULAR_PLANAR_ENVELOPE (IIP-0035; DEC-114)")
+        _d1b_rec_sha = hashlib.sha256(json.dumps(product, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode("utf-8")).hexdigest()
+        if _d1b_rec_sha != _d1b_exp["full_record_sha256"]:
+            raise ValueError(f"Invalid or mutated Autologous D1b-Auto-C v2 product record {pvid} (full_record_sha256 mismatch; IIP-0035; DEC-114)")
+        _d1b_bind = product.get("staged_d1b_auto_v2_donor_binding")
+        if (
+            not isinstance(_d1b_bind, dict)
+            or _d1b_bind.get("proposal_id") != _d1b_exp["proposal_id"]
+            or _d1b_bind.get("decision_id") != _d1b_exp["decision_id"]
+            or _d1b_bind.get("fasta_path") != str(D1B_AUTO_V2_FASTA_PATH)
+            or _d1b_bind.get("fasta_sha256") != D1B_AUTO_V2_FASTA_SHA256
+            or _d1b_bind.get("fasta_record_id") != _d1b_exp["fasta_record_id"]
+            or _d1b_bind.get("donor_sha256") != _d1b_exp["donor_sha256"]
+            or type(_d1b_bind.get("donor_length_bp")) is not int
+            or _d1b_bind.get("donor_length_bp") != _d1b_exp["donor_length_bp"]
+            or type(_d1b_bind.get("nominal_aav6_packaged_bp")) is not int
+            or _d1b_bind.get("nominal_aav6_packaged_bp") != _d1b_exp["nominal_aav6_packaged_bp"]
+            or type(_d1b_bind.get("tu_count")) is not int
+            or _d1b_bind.get("tu_count") != _d1b_exp["tu_count"]
+            or type(_d1b_bind.get("pigk_ectopic_gpi_count")) is not int
+            or _d1b_bind.get("pigk_ectopic_gpi_count") != _d1b_exp["pigk_ectopic_gpi_count"]
+            or type(_d1b_bind.get("encoded_2a_motifs_6frame")) is not int
+            or _d1b_bind.get("encoded_2a_motifs_6frame") != _d1b_exp["encoded_2a_motifs_6frame"]
+            or _d1b_bind.get("role") != _d1b_exp["role"]
+            or _d1b_bind.get("stage0_promotion_gates") != _d1b_exp["stage0_promotion_gates"]
+        ):
+            raise ValueError(f"Invalid or missing staged_d1b_auto_v2_donor_binding for {pvid} (IIP-0035; DEC-114)")
+    else:
+        if pvid.startswith("ISLET1_D1_"):
+            raise ValueError(f"Unpinned product {pvid!r} may not use reserved ISLET1_D1_ prefix (IIP-0035; DEC-114)")
+        if "staged_d1b_auto_v2_donor_binding" in product:
+            raise ValueError(f"Non-D1b-Auto-v2 product {pvid} must not carry staged_d1b_auto_v2_donor_binding (IIP-0035; DEC-114)")
+        for _a in aliases:
+            if _a in STAGED_D1B_AUTO_V2_PRODUCT_IDS or _a in STAGED_D1B_AUTO_V2_DONOR_ALIASES or _a.startswith("ISLET1_D1_") or _a.startswith("D1AUTO_V2_"):
+                raise ValueError(f"Non-D1b-Auto-v2 product {pvid} must not claim reserved D1b identifier/alias {_a!r} (IIP-0035; DEC-114)")
     if product["physical_qualification_status"] != "PREREGISTERED_PENDING":
         raise ValueError("This release contains no physically qualified exact product")
     if fam == "B" and product["execution_supported"]:

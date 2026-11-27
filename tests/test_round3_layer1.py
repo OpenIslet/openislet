@@ -309,7 +309,7 @@ def test_iip_0030_curated_corpus_carrier_o2_hpsc_sources_and_atomic_split():
     # 1. Schema enum count (11 -> 12) with hPSC_Derived_Unspecified_Line and additionalProperties: false
     schema = json.loads((ROOT / 'schemas/extraction_schema_v0.2.json').read_text(encoding='utf-8'))
     cs_enum = schema['properties']['arms']['items']['properties']['gate1_substrate_and_differentiation']['properties']['cell_source_class']['enum']
-    assert len(cs_enum) == 13 and 'hPSC_Derived_Unspecified_Line' in cs_enum and 'None_Acellular_Device_or_Scaffold' in cs_enum
+    assert len(cs_enum) == 15 and 'hPSC_Derived_Unspecified_Line' in cs_enum and 'None_Acellular_Device_or_Scaffold' in cs_enum
     assert schema['properties']['arms']['items']['properties']['gate1_substrate_and_differentiation']['additionalProperties'] is False
     assert schema['properties']['arms']['items']['properties']['gate5_engraftment_niche']['additionalProperties'] is False
     assert schema['properties']['atomic_effects']['items']['additionalProperties'] is False
@@ -383,7 +383,7 @@ def test_iip_0030_curated_corpus_carrier_o2_hpsc_sources_and_atomic_split():
     # 4. Live extracted corpus assertions across repaired records
     ext_dir = ROOT / 'data/extracted'
     by_pmid = {p.stem: json.loads(p.read_text(encoding='utf-8')) for p in ext_dir.glob('*.json') if p.stem.isdigit()}
-    assert len(by_pmid) == 594
+    assert len(by_pmid) == 604
     carrier_arms = [
         (pmid, a['gate5_engraftment_niche']['oxygen_bridge_72h_carrier'])
         for pmid, doc in by_pmid.items()
@@ -441,7 +441,7 @@ def test_iip_0030_curated_corpus_carrier_o2_hpsc_sources_and_atomic_split():
     r_eff2 = next(e for e in reichman['atomic_effects'] if e['effect_id'] == 'pmid40544428_eff2')
     assert r_eff2['outcome_domain'] != 'Differentiation_Yield_and_Lineage_Purity'
     assert r_eff2['contrast_metadata']['endpoint_name'] == 'Clinical_Safety_and_Mortality_Adverse_Events'
-    assert sum(len(d['atomic_effects']) for d in by_pmid.values()) == 3158
+    assert sum(len(d['atomic_effects']) for d in by_pmid.values()) == 3174
     # Box-2 Round-1 & v12 Ring-1 comparator/timepoint/stage/cohort repairs & clinical validator negative controls
     assert by_pmid['38993891']['atomic_effects'][0]['contrast_metadata']['timepoint'] is not None
     assert '<=' not in by_pmid['38993891']['atomic_effects'][0]['outcome_variable_Y']

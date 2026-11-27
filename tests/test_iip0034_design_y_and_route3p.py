@@ -112,7 +112,7 @@ def test_01_design_y_v2_fasta_sha256_and_strict_product_contract(tmp_path: Path)
     assert hashlib.sha256(raw).hexdigest() == pc.DESIGN_Y_V2_FASTA_SHA256
 
     defs = pc.load_product_contracts(ROOT, require_staged_fastas=True)
-    assert len(defs["products"]) == 33
+    assert len(defs["products"]) == 38
     by_id = {p["product_variant_id"]: p for p in defs["products"]}
     for pvid in pc.STAGED_DESIGN_Y_V2_PRODUCT_IDS:
         assert pvid in by_id
@@ -153,7 +153,7 @@ def test_01_design_y_v2_fasta_sha256_and_strict_product_contract(tmp_path: Path)
     shutil.copy2(orig_prod_path, p_file)
     for fa in (ROOT / "data" / "constructs").glob("*.fasta"):
         shutil.copy2(fa, copy_root / "data" / "constructs" / fa.name)
-    assert len(pc.load_product_contracts(copy_root, require_staged_fastas=True)["products"]) == 33
+    assert len(pc.load_product_contracts(copy_root, require_staged_fastas=True)["products"]) == 38
 
     # 1. Tamper FASTA
     t_fa = copy_root / pc.DESIGN_Y_V2_FASTA_PATH
@@ -433,14 +433,14 @@ def test_04_planar_and_portfolio_verifier_replay_and_adversarial_controls(tmp_pa
 
 def test_05_ring1_corpus_5_new_studies_and_39571901_preservation() -> None:
     ext_files = sorted((ROOT / "data" / "extracted").glob("[0-9]*.json"))
-    assert len(ext_files) == 594
+    assert len(ext_files) == 604
     docs = {p.stem: json.loads(p.read_text(encoding="utf-8")) for p in ext_files}
     for pmid in ("17375075", "39696686", "42020736", "42056515", "42749803"):
         assert pmid in docs, f"Missing new Ring-1 study {pmid}"
-    assert sum(len(d.get("arms", [])) for d in docs.values()) == 693
-    assert sum(1 for d in docs.values() for a in d.get("arms", []) if a.get("is_reference_control") is True) == 62
-    assert sum(len(a.get("gate2_3_4_genetic_and_epitope_edits", [])) for d in docs.values() for a in d.get("arms", [])) == 260
-    assert sum(len(d.get("atomic_effects", [])) for d in docs.values()) == 3158
+    assert sum(len(d.get("arms", [])) for d in docs.values()) == 708
+    assert sum(1 for d in docs.values() for a in d.get("arms", []) if a.get("is_reference_control") is True) == 65
+    assert sum(len(a.get("gate2_3_4_genetic_and_epitope_edits", [])) for d in docs.values() for a in d.get("arms", [])) == 261
+    assert sum(len(d.get("atomic_effects", [])) for d in docs.values()) == 3174
     assert "39571901" in docs
 
     # Sato: tight <=350-char Fig. 3 span, quantitative eff3 fold-change, AZT challenge type, null zygosity
@@ -521,13 +521,13 @@ def test_05_ring1_corpus_5_new_studies_and_39571901_preservation() -> None:
 
 def test_06_ceg_expansion_1176_and_45_curated_ineligible_edges() -> None:
     ceg = json.loads((ROOT / "data" / "extracted" / "context_evidence_graph_v1.json").read_text(encoding="utf-8"))
-    assert len(ceg["studies"]) == 1176
-    assert len(ceg["arms"]) == 7740
-    assert len(ceg["outcomes"]) == 14167
-    assert len(ceg["edges"]) == 2483
+    assert len(ceg["studies"]) == 1182
+    assert len(ceg["arms"]) == 7749
+    assert len(ceg["outcomes"]) == 14175
+    assert len(ceg["edges"]) == 2494
     elig = sum(1 for e in ceg["edges"] if e.get("primary_certification_eligible") is True)
     inelig = sum(1 for e in ceg["edges"] if e.get("primary_certification_eligible") is False)
-    assert (elig, inelig) == (2283, 200)
+    assert (elig, inelig) == (2273, 221)
 
     assert "primary mouse neurons" not in json.dumps(ceg["studies"]["PMID:42020736"]).lower()
     assert ceg["outcomes"]["PMID:17375075:O1"]["source_pin"]["span"] == "fulltext_data_sections.figure_legends[0].caption[363:542]|norm=exact"
@@ -674,7 +674,7 @@ def test_08_stage0_decision_tree_dec103_parity_and_wetlab_invariance(tmp_path: P
         [sys.executable, "-B", str(cg_root / "scripts" / "build_cross_study_graph.py")],
         cwd=str(cg_root), env=env, capture_output=True, text=True, check=True,
     )
-    assert "594 studies" in res_cg.stdout
+    assert "604 studies" in res_cg.stdout
 
     # Confirm wetlab_endpoint_contract_v0.8.0.json stays untouched from baseline (366 / 77 / 122)
     ct = json.loads((ROOT / "data" / "protocols" / "wetlab_endpoint_contract_v0.8.0.json").read_text(encoding="utf-8"))
@@ -916,14 +916,14 @@ def test_10_r3p05_exact_decimal_ulp_provenance_alpha_numpy_and_single_dose() -> 
 def test_11_ceg_strict_ownership_source_completeness_and_rolling40_sourceguard(tmp_path: Path) -> None:
     ceg = json.loads((ROOT / "data" / "extracted" / "context_evidence_graph_v1.json").read_text(encoding="utf-8"))
     bceg = _load_mod("scripts/build_context_evidence_graph.py", "openislet_bceg_strict_test")
-    assert len(bceg.CURATED_INELIGIBLE_EDGE_IDS) == 45
+    assert len(bceg.CURATED_INELIGIBLE_EDGE_IDS) == 66
 
     det = bceg.verify_ceg_payload_detailed(ceg, repo_root=ROOT)
     has_dossiers = (ROOT / "data" / "dossiers").is_dir()
     assert det["reused_m1522_outcomes_exact_span_verified"] is False
     assert det["izadifar_dossier_contains_figure_legends"] is False
     if has_dossiers:
-        assert det["verification_mode"] == "iip0034_5dossiers_8new_exact_spans_verified"
+        assert det["verification_mode"] in ("iip0034_5dossiers_8new_exact_spans_verified", "iip0035_11dossiers_8new_exact_spans_verified")
         assert len(det["iip0034_dossiers_verified"]) == 5
     else:
         assert det["verification_mode"] == "structural_public_only"
@@ -1145,7 +1145,7 @@ def test_13_source_free_public_reexport_preserves_metadata_and_ranker_profiles(t
     # Verify expanded gene count == 262 and target evidence profiles == 51 (zero spurious redacted-token profiles!)
     rank_mod = _load_mod("scripts/rank_islet1_stacks.py", "openislet_rank_reexp_test")
     re_studies = [json.loads(p.read_text(encoding="utf-8")) for p in sorted((reexp_out / "data" / "extracted").glob("[0-9]*.json"))]
-    assert len(re_studies) == 594
+    assert len(re_studies) == 604
     expanded_genes = [
         tok
         for st in re_studies

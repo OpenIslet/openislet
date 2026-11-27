@@ -126,6 +126,7 @@
             "Tier_1_Human_InVivo",
             "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse",
             "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture",
+            "Tier_2C_NHP_Allogeneic_or_Autologous_NonIslet",
             "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse",
             "Tier_4_Rodent_or_Xenogeneic_Only"
           ]
@@ -226,6 +227,8 @@
               "rat_recipients",
               "paired_instrument_replicates",
               "in_vitro_monoculture_replicates",
+              "sequenced_hiPSC_and_subclone_samples",
+              "pancreas_transplants",
               "unspecified_in_source"
             ]
           },
@@ -248,7 +251,8 @@
                   "NonIslet_Immune_Endothelial_or_Hematopoietic_Model",
                   "None_Acellular_Device_or_Scaffold",
                   "Unspecified_In_Source_Abstract",
-                  "Human_NonIslet_Immortalized_Cell_Line"
+                  "Human_NonIslet_Immortalized_Cell_Line",
+                  "NHP_iPSC_Cardiomyocyte_NonIslet"
                 ]
               },
               "cell_line_id": {
@@ -633,7 +637,11 @@
                     "Amyloid_hIAPP_Aggregation_Stress",
                     "Hypoxia_Ischemia_Challenge",
                     "InVivo_Allogeneic_or_Autoimmune_Graft",
-                    "SmallMolecule_Prodrug_Ablation_Challenge"
+                    "SmallMolecule_Prodrug_Ablation_Challenge",
+                    "Peptide_Restimulation_Islet_Derived_T_Cell_Line_Assay",
+                    "Autologous_T_Cell_Neoantigen_InVitro_Assay",
+                    "InVivo_Autologous_Graft_No_IS",
+                    "InVivo_Autologous_Neoantigen_Graft"
                   ]
                 },
                 "effector_to_target_ratio": {
@@ -839,7 +847,8 @@
               "Clinical_Pharmacodynamics_or_Target_Depletion",
               "Assay_Instrument_Calibration_or_Biophysical_Method",
               "Innate_Myeloid_or_Neutrophil_Infiltration_and_Host_Response",
-              "Genome_Integration_and_Cargo_Insertion"
+              "Genome_Integration_and_Cargo_Insertion",
+              "Somatic_Mutation_and_Genomic_Stability"
             ]
           },
           "treatment_mean": {
@@ -1078,6 +1087,8 @@
               "rat_recipients",
               "paired_instrument_replicates",
               "in_vitro_monoculture_replicates",
+              "sequenced_hiPSC_and_subclone_samples",
+              "pancreas_transplants",
               "unspecified_in_source"
             ]
           },

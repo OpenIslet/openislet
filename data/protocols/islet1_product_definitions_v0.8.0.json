@@ -2375,6 +2375,355 @@
         "Y-07 paired 2-pulse dynamic GSIS benchmark (conjunctive SI AND first-phase AUC on both pulses, n >= 3 paired differentiation blocks, one-sided 95% LCB >= 0.85) against primary ISLET1_Y_FULLSTACK_V2_B2M_11TU (equal 17,237-bp length) and, if activated on primary Gate 0V MCB failure, against backup ISLET1_Y_FULLSTACK_V2_CD55_CFH_COMPARATOR (1,523 bp longer; non-equal-length GSIS comparator)",
         "Control-only attribution comparator (11 TU slots: 6 active v1 TUs + 5 ORF-less caps): evaluates the pooled 5-TU v2 addition relative to v1 baseline without isolating individual TU effects, and is strictly excluded from full-stack Design Y-FullStack v2 or Route 3P clearance"
       ]
+    },
+    {
+      "product_variant_id": "ISLET1_D1_AUTO_V2_L1A_CIITA_CD64T_IL1RN",
+      "family": "A",
+      "aliases": [
+        "D1AUTO_V2_L1A_CIITA_CD64T_IL1RN"
+      ],
+      "dsb_or_indel_loci": [
+        "CIITA"
+      ],
+      "base_or_prime_edit_loci": [
+        "HLA-A",
+        "HLA-B"
+      ],
+      "K": 1,
+      "B": 2,
+      "alleles": {
+        "CIITA": "biallelic chr16p13.13 CIITA Exon-5 knockout HDR donor (3,455 bp; 3,745 bp single-AAV6 pkg, AA>CC PAM shield) expressing CD274p::IL1RN (WT 177 aa) and EEF1A1_230::CD64t[1-313] separated by HOXA_CTCF_C5_80 (primary Gate 0V viral-receptor-clean Locus-1 full-product candidate)",
+        "HLA-A": "patient-specific N=1 DSB-free CBE knockout verified by phased long-read WGS against patient HLA-C/E (OFFGRID_GUARD_011; >= 99.0% WT HLA-C retention, < 0.5% bystander C->T, 0.0% chr6p21.3 deletion)",
+        "HLA-B": "patient-specific N=1 DSB-free CBE knockout verified by phased long-read WGS against patient HLA-C/E (OFFGRID_GUARD_011; paired with KIR3DL1+ missing-Bw4 NK release assay <= 8.0%)"
+      },
+      "cassette_topology": {
+        "CIITA": "STOP_3F + SPA_MAZ4_154 + CD274p_250::IL1RN + HGAPDH_PA_HARD + PAUSE + HOXA_CTCF_C5_80 + EEF1A1_230::CD64t[1-313] + HPRT1_PA_HARD + PAUSE + DM1_RC80 (3,455 bp donor / 3,745 bp AAV6; author-declared staging metadata: 0 introns, 0x HUBC_250, 0x HHBB_PA, 0x 2A, 0 uATG, 0 foreign peptides — not independently recomputed by verifier)",
+        "HLA-A": "DSB-free patient-specific phased-WGS-verified CBE disruption eliminating ~90% Class-I beta-cell autoantigen repertoire and 100% of constitutive iCasp9 HLA-A/B neo-epitopes",
+        "HLA-B": "DSB-free patient-specific phased-WGS-verified CBE disruption while preserving endogenous patient-matched self-HLA-C and HLA-E"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Unscored Mode-B Stage-0 autologous D1b-Auto-C v2 primary single-locus CIITA donor keyed as the full-panel D1-01..D1-09 reference scenario (L1A CIITA Exon 5; Gate 0V viral-receptor-clean; single-AAV6 donor; assembled whole-product identity requires explicit multi-locus manifest binding L1A+L2+L3+L4 donor versions and patient-specific HLA-A/B CBE provenance; IIP-0035; DEC-114); orthogonal high-PRA/allo-refractory vanguard complementing universal off-the-shelf A/B/X + Design Y-FullStack v2; +0.00 pp live headline odds today",
+      "physical_manufacturing_yield": null,
+      "physical_route_id": "ROUTE_3P_MODULAR_PLANAR_ENVELOPE",
+      "donor_lineage": {
+        "cell_source": "autologous patient-derived sun-protected ADSC-CiPSC vs peripheral-blood CiPSC (head-to-head Stage-0 BCOR/TP53/PPM1D WGS + >=1,000x NUMT-filtered chrM QC); 29-41 week N=1 GMP turnaround; orthogonal high-PRA/allo-refractory vanguard complementing universal off-the-shelf A/B/X + Design Y-FullStack v2",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
+      },
+      "hla_retention": {
+        "classical_MHC_I": "N=1 phased-WGS CBE HLA-A/B knockout with endogenous self-HLA-C and HLA-E retained (D1-01 pre-enrollment genotyping routes nonfunctional SP-3C/SP-4C HLA-C*07, HLA-C*17, and C*18:01 homozygotes AND compound heterozygotes lacking any functional VL9-competent HLA-C signal peptide to allogeneic Design Y-FullStack v2 or D1a-Auto-Intact; 10.9-16.0% European T1D AH8.1 exclusion is a modeled prospective sensitivity hypothesis from Lin 2023 PMID:37264229 [4 US NMDP populations + 1,274 1000G genotypes / 1,266 SP assignments, with C*18:01 in SP-3C and C*17:01 in SP-4C; no phased European T1D denominator] requiring direct phased T1D cohort genotyping)",
+        "classical_MHC_II": "CIITA Exon-5 HDR knockout intended (L1A primary or L1B Gate 0V comparator)",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "staged_d1b_auto_v2_donor_binding": {
+        "proposal_id": "IIP-0035",
+        "decision_id": "DEC-114",
+        "fasta_path": "data/constructs/islet1_d1b_auto_v2_v0.8.0.fasta",
+        "fasta_sha256": "36b5c38181fd6d9409e82d53edee16130f4309e08c481a59055d705de4f01974",
+        "fasta_record_id": "D1AUTO_v2_L1A_CIITA_CD64T_IL1RN",
+        "donor_sha256": "e03a0582bc17db37ff89531065fef503402ef5d15ad3a8253cab752ee6c725ec",
+        "donor_length_bp": 3455,
+        "nominal_aav6_packaged_bp": 3745,
+        "tu_count": 2,
+        "pigk_ectopic_gpi_count": 0,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "PRIMARY_LOCUS1_CIITA_IL1RN_CD64T_GATE0V_CLEAN",
+        "stage0_promotion_gates": "D1-01..D1-09 (primary single-locus CIITA donor keyed as full-panel reference scenario; Gate 0V viral-receptor-clean; assembled multi-locus manifest binding L1A+L2+L3+L4 required for clinical product identity)"
+      },
+      "pending_assay_gates": [
+        "D1-01 pre-enrollment two-field HLA-A/B/C genotyping + separately specified KIR genotyping routing nonfunctional SP-3C/SP-4C (HLA-C*07, HLA-C*17, and C*18:01; Lin 2023 PMID:37264229 Table 1 SP-3C/SP-4C) homozygotes AND compound heterozygotes lacking any VL9-competent HLA-C signal peptide to allogeneic Design Y-FullStack v2 or D1a-Auto-Intact (10.9-16.0% European T1D AH8.1 exclusion is a modeled prospective sensitivity hypothesis from 4 US NMDP populations + 1,274 1000G genotypes / 1,266 SP assignments lacking a phased European T1D denominator)",
+        "D1-02 patient-specific N=1 phased long-read WGS verification of HLA-A/B/C/E (OFFGRID_GUARD_011: reject <= 2 mm to patient HLA-C/E; >= 99.0% WT HLA-C retention, < 0.5% bystander C->T, 0.0% chr6p21.3 inter-locus deletion)",
+        "D1-03 sun-protected ADSC-CiPSC vs serum-free blood-CiPSC head-to-head clonal WGS (0 TP53/BCOR/PPM1D/20q11.21/1q32.1-MDM4 hits) + >= 1,000x NUMT-filtered chrM amplicon sequencing vs matched somatic DNA (0 novel nonsynonymous heteroplasmy >= 1.0%; < 1.0%)",
+        "D1-04 L4 chr13q32.3 CLYBL tandem 404-bp insulated CDK1_300::hTMPK-F105Y located on chr13 separate from chr19 (joint dual-switch failure probability unmeasured): Stage-7 G0-beta leak <= 0.1%, HLA-C*07:01/02 RYAFSGVAY ELISpot <= 0.1% above background, >= 4.0-log10 AZT dividing kill after forced chr19 loss (admissible range [0, 10] log10), and AP1903 iCasp9 clonogenic escape (k >= 1 is FAIL_HARD_STOP; k == 0 evaluates exact 80-digit sound Decimal Clopper-Pearson U95 <= 1.0e-8 using outward-directed ln()/exp() Taylor bounds and exact rational/budgeted comparison; mathematical count subgate arithmetic only: exact binomial k = 0, N_eff = 299,573,226 PASS vs 299,573,225 HOLD [Poisson ceiling 299,573,228], conditional on validated recovery/eligible-fraction calibration and supplying no empirical safety clearance)",
+        "D1-05 L3 UCOE_2strand_455::iCasp9 / RPLP0::VTCN1 and L4 TUBA1B_250::FSP1 per-locus Stage-7 Day-28 retention (both L3 >= 80.0% and L4 >= 80.0%, min(L3, L4) >= 80.0%) and RSL3 ferroptosis survival >= 80.0% (preregistered to test Stage-7 beta-cell retention; Uenaka 2026 tested neuronal/microglial constructs)",
+        "D1-06 KIR3DL1+ missing-Bw4 autologous NK cytotoxicity <= 8.0% (E:T 10:1 + IFN-gamma); D1-07 VTCN1/NRD1 soluble sB7-H4 shedding <= 10.0%",
+        "D1-08 residual HLA-C*03:04 insulin A-chain CD8+ lysis and intact non-DTT T1D serum complement C5b-9 (k >= 1 is FAIL_HARD_STOP; k == 0 evaluates exact 80-digit sound Decimal Clopper-Pearson U95 <= 5.0%; mathematical count subgate arithmetic only: k = 0, N = 59 PASS [4.9508%] vs N = 58 HOLD [5.0340% conservative upper ceiling; exact 0.050339338...], conditional on validated assay recovery/calibration and supplying no empirical safety clearance)",
+        "D1-09 N=1 sequential 6-locus GMP biopsy-to-release turnaround <= 41.0 weeks (admissible range [1, 104] wk; 29-41 week modeled target; p1 = 0.62 screened / 0.55 ITT first-gen CMC assumptions); primary Gate 0V viral-receptor-clean L1A full-panel reference scenario"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_D1_AUTO_V2_L1B_CIITA_CD64T_CD46WT_COMPARATOR",
+      "family": "A",
+      "aliases": [
+        "D1AUTO_V2_L1B_CIITA_CD64T_CD46WT_COMPARATOR"
+      ],
+      "dsb_or_indel_loci": [
+        "CIITA"
+      ],
+      "base_or_prime_edit_loci": [
+        "HLA-A",
+        "HLA-B"
+      ],
+      "K": 1,
+      "B": 2,
+      "alleles": {
+        "CIITA": "secondary Gate 0V viral-screened chr16p13.13 CIITA Exon-5 HDR full-product comparator (4,100 bp; 4,390 bp single-AAV6 pkg, AA>CC PAM shield) expressing PGK1_250::CD46_WT (392 aa; HUBC_250 retired) and EEF1A1_230::CD64t[1-313] separated by HOXA_CTCF_C5_80 (requires lot-matched structured global_gate0v_record with matching mcb_lot_id; any Gate 0V failure routes to L1A IL1RN)",
+        "HLA-A": "patient-specific N=1 DSB-free CBE knockout verified by phased long-read WGS against patient HLA-C/E (OFFGRID_GUARD_011; >= 99.0% WT HLA-C retention, < 0.5% bystander C->T, 0.0% chr6p21.3 deletion)",
+        "HLA-B": "patient-specific N=1 DSB-free CBE knockout verified by phased long-read WGS against patient HLA-C/E (OFFGRID_GUARD_011; paired with KIR3DL1+ missing-Bw4 NK release assay <= 8.0%)"
+      },
+      "cassette_topology": {
+        "CIITA": "STOP_3F + SPA_MAZ4_154 + PGK1_250::CD46_WT + HGAPDH_PA_HARD + PAUSE + HOXA_CTCF_C5_80 + EEF1A1_230::CD64t[1-313] + HPRT1_PA_HARD + PAUSE + DM1_RC80 (4,100 bp donor / 4,390 bp AAV6; author-declared staging metadata: 0 introns, 0x HUBC_250, 0x HHBB_PA, 0x 2A, 0 uATG, 0 foreign peptides — not independently recomputed by verifier)",
+        "HLA-A": "DSB-free patient-specific phased-WGS-verified CBE disruption eliminating ~90% Class-I beta-cell autoantigen repertoire and 100% of constitutive iCasp9 HLA-A/B neo-epitopes",
+        "HLA-B": "DSB-free patient-specific phased-WGS-verified CBE disruption while preserving endogenous patient-matched self-HLA-C and HLA-E"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Unscored Mode-B Stage-0 autologous D1b-Auto-C v2 secondary Gate 0V viral-screened single-locus CIITA donor keyed as the full-panel D1-01..D1-09 comparator reference scenario (L1B CIITA Exon 5, CD46_WT; requires structured global_gate0v_record carrying lot-matched mcb_lot_id; never a bare caller boolean; assembled whole-product identity requires explicit multi-locus manifest binding L1B+L2+L3+L4 donor versions and patient-specific HLA-A/B CBE provenance; IIP-0035; DEC-114); +0.00 pp live",
+      "physical_manufacturing_yield": null,
+      "physical_route_id": "ROUTE_3P_MODULAR_PLANAR_ENVELOPE",
+      "donor_lineage": {
+        "cell_source": "autologous patient-derived sun-protected ADSC-CiPSC vs peripheral-blood CiPSC (head-to-head Stage-0 BCOR/TP53/PPM1D WGS + >=1,000x NUMT-filtered chrM QC); 29-41 week N=1 GMP turnaround; orthogonal high-PRA/allo-refractory vanguard complementing universal off-the-shelf A/B/X + Design Y-FullStack v2",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
+      },
+      "hla_retention": {
+        "classical_MHC_I": "N=1 phased-WGS CBE HLA-A/B knockout with endogenous self-HLA-C and HLA-E retained (D1-01 pre-enrollment genotyping routes nonfunctional SP-3C/SP-4C HLA-C*07, HLA-C*17, and C*18:01 homozygotes AND compound heterozygotes lacking any functional VL9-competent HLA-C signal peptide to allogeneic Design Y-FullStack v2 or D1a-Auto-Intact; 10.9-16.0% European T1D AH8.1 exclusion is a modeled prospective sensitivity hypothesis from Lin 2023 PMID:37264229 [4 US NMDP populations + 1,274 1000G genotypes / 1,266 SP assignments, with C*18:01 in SP-3C and C*17:01 in SP-4C; no phased European T1D denominator] requiring direct phased T1D cohort genotyping)",
+        "classical_MHC_II": "CIITA Exon-5 HDR knockout intended (L1A primary or L1B Gate 0V comparator)",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "staged_d1b_auto_v2_donor_binding": {
+        "proposal_id": "IIP-0035",
+        "decision_id": "DEC-114",
+        "fasta_path": "data/constructs/islet1_d1b_auto_v2_v0.8.0.fasta",
+        "fasta_sha256": "36b5c38181fd6d9409e82d53edee16130f4309e08c481a59055d705de4f01974",
+        "fasta_record_id": "D1AUTO_v2_L1B_CIITA_CD64T_CD46WT_COMPARATOR",
+        "donor_sha256": "4ff3748792ecf8d8cb6f0e17f9b016552a67a3f81b7677c524984703986a4b97",
+        "donor_length_bp": 4100,
+        "nominal_aav6_packaged_bp": 4390,
+        "tu_count": 2,
+        "pigk_ectopic_gpi_count": 0,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "SECONDARY_GATE0V_LOCUS1_CIITA_CD46WT_CD64T_COMPARATOR",
+        "stage0_promotion_gates": "D1-01..D1-09 + structured lot-matched global_gate0v_record (secondary single-locus CIITA donor keyed as full-panel comparator scenario; assembled multi-locus manifest binding L1B+L2+L3+L4 required for clinical product identity)"
+      },
+      "pending_assay_gates": [
+        "D1-01 pre-enrollment two-field HLA-A/B/C genotyping + separately specified KIR genotyping routing nonfunctional SP-3C/SP-4C (HLA-C*07, HLA-C*17, and C*18:01; Lin 2023 PMID:37264229 Table 1 SP-3C/SP-4C) homozygotes AND compound heterozygotes lacking any VL9-competent HLA-C signal peptide to allogeneic Design Y-FullStack v2 or D1a-Auto-Intact (10.9-16.0% European T1D AH8.1 exclusion is a modeled prospective sensitivity hypothesis from 4 US NMDP populations + 1,274 1000G genotypes / 1,266 SP assignments lacking a phased European T1D denominator)",
+        "D1-02 patient-specific N=1 phased long-read WGS verification of HLA-A/B/C/E (OFFGRID_GUARD_011: reject <= 2 mm to patient HLA-C/E; >= 99.0% WT HLA-C retention, < 0.5% bystander C->T, 0.0% chr6p21.3 inter-locus deletion)",
+        "D1-03 sun-protected ADSC-CiPSC vs serum-free blood-CiPSC head-to-head clonal WGS (0 TP53/BCOR/PPM1D/20q11.21/1q32.1-MDM4 hits) + >= 1,000x NUMT-filtered chrM amplicon sequencing vs matched somatic DNA (0 novel nonsynonymous heteroplasmy >= 1.0%; < 1.0%)",
+        "D1-04 L4 chr13q32.3 CLYBL tandem 404-bp insulated CDK1_300::hTMPK-F105Y located on chr13 separate from chr19 (joint dual-switch failure probability unmeasured): Stage-7 G0-beta leak <= 0.1%, HLA-C*07:01/02 RYAFSGVAY ELISpot <= 0.1% above background, >= 4.0-log10 AZT dividing kill after forced chr19 loss (admissible range [0, 10] log10), and AP1903 iCasp9 clonogenic escape (k >= 1 is FAIL_HARD_STOP; k == 0 evaluates exact 80-digit sound Decimal Clopper-Pearson U95 <= 1.0e-8 using outward-directed ln()/exp() Taylor bounds and exact rational/budgeted comparison; mathematical count subgate arithmetic only: exact binomial k = 0, N_eff = 299,573,226 PASS vs 299,573,225 HOLD [Poisson ceiling 299,573,228], conditional on validated recovery/eligible-fraction calibration and supplying no empirical safety clearance)",
+        "D1-05 L3 UCOE_2strand_455::iCasp9 / RPLP0::VTCN1 and L4 TUBA1B_250::FSP1 per-locus Stage-7 Day-28 retention (both L3 >= 80.0% and L4 >= 80.0%, min(L3, L4) >= 80.0%) and RSL3 ferroptosis survival >= 80.0% (preregistered to test Stage-7 beta-cell retention; Uenaka 2026 tested neuronal/microglial constructs)",
+        "D1-06 KIR3DL1+ missing-Bw4 autologous NK cytotoxicity <= 8.0% (E:T 10:1 + IFN-gamma); D1-07 VTCN1/NRD1 soluble sB7-H4 shedding <= 10.0%",
+        "D1-08 residual HLA-C*03:04 insulin A-chain CD8+ lysis and intact non-DTT T1D serum complement C5b-9 (k >= 1 is FAIL_HARD_STOP; k == 0 evaluates exact 80-digit sound Decimal Clopper-Pearson U95 <= 5.0%; mathematical count subgate arithmetic only: k = 0, N = 59 PASS [4.9508%] vs N = 58 HOLD [5.0340% conservative upper ceiling; exact 0.050339338...], conditional on validated assay recovery/calibration and supplying no empirical safety clearance)",
+        "D1-09 N=1 sequential 6-locus GMP biopsy-to-release turnaround <= 41.0 weeks (admissible range [1, 104] wk; 29-41 week modeled target; p1 = 0.62 screened / 0.55 ITT first-gen CMC assumptions); L1B CD46_WT comparator additionally requires a structured global_gate0v_record carrying an explicit mcb_lot_id matching the evaluated lot (Day-14 >= 3.0-log10 reduction AND Day-28 VP1/IE1 k == 0 with U95 <= 0.0005 at n >= 5,990 plus explicit gate0v_verdict == PASS; never a bare caller boolean; any Gate 0V failure routes to L1A IL1RN)"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_D1_AUTO_V2_L2_CXCL10_SERPINB9_PDL1",
+      "family": "A",
+      "aliases": [
+        "D1AUTO_V2_L2_CXCL10_SERPINB9_PDL1"
+      ],
+      "dsb_or_indel_loci": [
+        "CXCL10"
+      ],
+      "base_or_prime_edit_loci": [
+        "HLA-A",
+        "HLA-B"
+      ],
+      "K": 1,
+      "B": 2,
+      "alleles": {
+        "CXCL10": "chr4q21.1 CXCL10 Exon-1 knockout HDR component donor (3701 bp; 3991 bp single-AAV6 pkg) placing native SERPINB9 (376 aa) under endogenous NF-kB-preserving CXCL10 promoter plus HBA_CTCF_80-insulated CD274p::PD-L1 (290 aa); COMPONENT_ONLY_EXCLUDED_FROM_FULLSTACK_CLEARANCE",
+        "HLA-A": "Not encoded by this standalone chr4 CXCL10 component donor; intended host D1b-Auto-C v2 background uses N=1 phased-WGS CBE HLA-A knockout (OFFGRID_GUARD_011)",
+        "HLA-B": "Not encoded by this standalone chr4 CXCL10 component donor; intended host D1b-Auto-C v2 background uses N=1 phased-WGS CBE HLA-B knockout (OFFGRID_GUARD_011)"
+      },
+      "cassette_topology": {
+        "CXCL10": "Endogenous CXCL10::SERPINB9 + ACTB_PA_HARD + PAUSE + HBA_CTCF_80 + CD274p_250::PD-L1 + B2M_PA_HARD + 100-bp PAUSE + DM1_RC80 (3701 bp donor / 3991 bp AAV6; author-declared staging metadata: 0 introns, 0x HUBC_250, 0x HHBB_PA, 0x 2A, 0 uATG, 0 foreign peptides — not independently recomputed by verifier)",
+        "HLA-A": "Not encoded by standalone chr4 CXCL10 component donor (supplied on host background)",
+        "HLA-B": "Not encoded by standalone chr4 CXCL10 component donor (supplied on host background)"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Unscored Mode-B Stage-0 autologous D1b-Auto-C v2 Locus-2 component donor ONLY (chr4q21.1 CXCL10 Exon 1; SERPINB9 + CD274p::PD-L1; strictly EXCLUDED_FROM_FULLSTACK_CLEARANCE; IIP-0035; DEC-114); +0.00 pp live",
+      "physical_manufacturing_yield": null,
+      "physical_route_id": "ROUTE_3P_MODULAR_PLANAR_ENVELOPE",
+      "donor_lineage": {
+        "cell_source": "autologous patient-derived sun-protected ADSC-CiPSC vs peripheral-blood CiPSC (head-to-head Stage-0 BCOR/TP53/PPM1D WGS + >=1,000x NUMT-filtered chrM QC); 29-41 week N=1 GMP turnaround; orthogonal high-PRA/allo-refractory vanguard complementing universal off-the-shelf A/B/X + Design Y-FullStack v2",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
+      },
+      "hla_retention": {
+        "classical_MHC_I": "Not encoded by this standalone chr4 CXCL10 component donor; intended host D1b-Auto-C v2 genotype uses N=1 phased-WGS CBE HLA-A/B knockout with endogenous self-HLA-C and HLA-E retained under D1-01/D1-02.",
+        "classical_MHC_II": "Not encoded by this standalone chr4 CXCL10 component donor; CIITA Exon-5 HDR knockout is supplied separately by Locus-1 donor L1A or L1B.",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "staged_d1b_auto_v2_donor_binding": {
+        "proposal_id": "IIP-0035",
+        "decision_id": "DEC-114",
+        "fasta_path": "data/constructs/islet1_d1b_auto_v2_v0.8.0.fasta",
+        "fasta_sha256": "36b5c38181fd6d9409e82d53edee16130f4309e08c481a59055d705de4f01974",
+        "fasta_record_id": "D1AUTO_v2_L2_CXCL10_SERPINB9_PDL1",
+        "donor_sha256": "8f2dd931b41d1c00de5d62832008b7da765286d5b0f6c7d6c9ed730b3c9416c8",
+        "donor_length_bp": 3701,
+        "nominal_aav6_packaged_bp": 3991,
+        "tu_count": 2,
+        "pigk_ectopic_gpi_count": 0,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "LOCUS2_CXCL10_SERPINB9_PDL1_SINGLE_AAV6",
+        "stage0_promotion_gates": "COMPONENT_ONLY_EXCLUDED_FROM_FULLSTACK_CLEARANCE (L2 chr4 CXCL10::SERPINB9+PD-L1 D1-08 component evidence only)"
+      },
+      "pending_assay_gates": [
+        "COMPONENT_ONLY_EXCLUDED_FROM_FULLSTACK_CLEARANCE: standalone chr4q21.1 CXCL10::SERPINB9 + CD274p::PD-L1 HDR component donor supporting D1-08 immune-shield evaluation (residual HLA-C*03:04 CD8+ lysis and intact T1D serum C5b-9: k >= 1 is FAIL_HARD_STOP; k == 0 evaluates exact 80-digit sound Decimal Clopper-Pearson U95 <= 5.0%); cannot independently clear full-product D1-01..D1-09"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_D1_AUTO_V2_L3_AAVS1_VTCN1_UCOE2S_ICASP9",
+      "family": "A",
+      "aliases": [
+        "D1AUTO_V2_L3_AAVS1_VTCN1_UCOE2S_ICASP9"
+      ],
+      "dsb_or_indel_loci": [
+        "AAVS1"
+      ],
+      "base_or_prime_edit_loci": [
+        "HLA-A",
+        "HLA-B"
+      ],
+      "K": 1,
+      "B": 2,
+      "alleles": {
+        "AAVS1": "chr19q13.42 AAVS1 Intron-1 safe-harbor HDR component donor (4,320 bp; 4,610 bp single-AAV6 pkg) expressing RPLP0_250::VTCN1 (282 aa) and IIP-0026 2-strand splice-hardened UCOE_2strand_455 + EEF1A1_230::iCasp9 (396 aa, DEC-053 Switch #1; WT A2UCOE_455 retired); COMPONENT_ONLY_EXCLUDED_FROM_FULLSTACK_CLEARANCE",
+        "HLA-A": "Not encoded by this standalone chr19 AAVS1 component donor; intended host D1b-Auto-C v2 background uses N=1 phased-WGS CBE HLA-A knockout (OFFGRID_GUARD_011)",
+        "HLA-B": "Not encoded by this standalone chr19 AAVS1 component donor; intended host D1b-Auto-C v2 background uses N=1 phased-WGS CBE HLA-B knockout (OFFGRID_GUARD_011)"
+      },
+      "cassette_topology": {
+        "AAVS1": "DM1_CTCF1_80 + RPLP0_250::VTCN1 + EEF1A1_PA_HARD + PAUSE + HBB_5HS4_80 + UCOE_2strand_455 + EEF1A1_230::iCasp9 + UBC_PA_HARD + PAUSE (4,320 bp donor / 4,610 bp AAV6; author-declared staging metadata: 0 introns, 0x 2A, 0 uATG, 0 foreign peptides — not independently recomputed by verifier)",
+        "HLA-A": "Not encoded by standalone chr19 AAVS1 component donor (supplied on host background)",
+        "HLA-B": "Not encoded by standalone chr19 AAVS1 component donor (supplied on host background)"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Unscored Mode-B Stage-0 autologous D1b-Auto-C v2 Locus-3 component donor ONLY (chr19 AAVS1; VTCN1 + UCOE_2strand_455::iCasp9 DEC-053 Switch #1; strictly EXCLUDED_FROM_FULLSTACK_CLEARANCE; IIP-0035; DEC-114); +0.00 pp live",
+      "physical_manufacturing_yield": null,
+      "physical_route_id": "ROUTE_3P_MODULAR_PLANAR_ENVELOPE",
+      "donor_lineage": {
+        "cell_source": "autologous patient-derived sun-protected ADSC-CiPSC vs peripheral-blood CiPSC (head-to-head Stage-0 BCOR/TP53/PPM1D WGS + >=1,000x NUMT-filtered chrM QC); 29-41 week N=1 GMP turnaround; orthogonal high-PRA/allo-refractory vanguard complementing universal off-the-shelf A/B/X + Design Y-FullStack v2",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
+      },
+      "hla_retention": {
+        "classical_MHC_I": "Not encoded by this standalone chr19 AAVS1 component donor; intended host D1b-Auto-C v2 genotype uses N=1 phased-WGS CBE HLA-A/B knockout with endogenous self-HLA-C and HLA-E retained under D1-01/D1-02.",
+        "classical_MHC_II": "Not encoded by this standalone chr19 AAVS1 component donor; CIITA Exon-5 HDR knockout is supplied separately by Locus-1 donor L1A or L1B.",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "staged_d1b_auto_v2_donor_binding": {
+        "proposal_id": "IIP-0035",
+        "decision_id": "DEC-114",
+        "fasta_path": "data/constructs/islet1_d1b_auto_v2_v0.8.0.fasta",
+        "fasta_sha256": "36b5c38181fd6d9409e82d53edee16130f4309e08c481a59055d705de4f01974",
+        "fasta_record_id": "D1AUTO_v2_L3_AAVS1_VTCN1_UCOE2S_ICASP9",
+        "donor_sha256": "440d8b0399d79e239f6f9ec6fb6964ce1f3d70ac62ac5ef22336cf2a3f965092",
+        "donor_length_bp": 4320,
+        "nominal_aav6_packaged_bp": 4610,
+        "tu_count": 2,
+        "pigk_ectopic_gpi_count": 0,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "LOCUS3_AAVS1_VTCN1_UCOE2S_ICASP9_DEC053_SW1",
+        "stage0_promotion_gates": "COMPONENT_ONLY_EXCLUDED_FROM_FULLSTACK_CLEARANCE (L3 chr19 AAVS1 Switch #1 + VTCN1 D1-04/D1-05/D1-07 component evidence only)"
+      },
+      "pending_assay_gates": [
+        "COMPONENT_ONLY_EXCLUDED_FROM_FULLSTACK_CLEARANCE: standalone chr19q13.42 AAVS1 component donor supporting D1-04 AP1903 iCasp9 clonogenic escape (k >= 1 is FAIL_HARD_STOP; k == 0 evaluates exact 80-digit sound Decimal Clopper-Pearson U95 <= 1.0e-8), D1-05 L3 Stage-7 Day-28 retention >= 80.0%, and D1-07 VTCN1/NRD1 soluble sB7-H4 shedding <= 10.0%; cannot independently clear full-product D1-01..D1-09"
+      ]
+    },
+    {
+      "product_variant_id": "ISLET1_D1_AUTO_V2_L4_CLYBL_TANDEM_TUBA1B_FSP1_CHS4_CDK1_HTMPK_F105Y",
+      "family": "A",
+      "aliases": [
+        "D1AUTO_V2_L4_CLYBL_TANDEM_TUBA1B_FSP1_CHS4_CDK1_HTMPK_F105Y"
+      ],
+      "dsb_or_indel_loci": [
+        "CLYBL"
+      ],
+      "base_or_prime_edit_loci": [
+        "HLA-A",
+        "HLA-B"
+      ],
+      "K": 1,
+      "B": 2,
+      "alleles": {
+        "CLYBL": "chr13q32.3 CLYBL Intron-2 safe-harbor HDR component donor (4,067 bp; 4,357 bp single-AAV6 pkg, CCA>CGA PAM shield) in strictly tandem +/+ orientation pairing TUBA1B_250::FSP1/AIFM2 (Met1-Gly2 myristoylation preserved) with 404-bp insulated CDK1_300::hTMPK-F105Y (DEC-053 Switch #2; 80-bp divergent HUBC|CDK1 retired); COMPONENT_ONLY_EXCLUDED_FROM_FULLSTACK_CLEARANCE",
+        "HLA-A": "Not encoded by this standalone chr13 CLYBL component donor; intended host D1b-Auto-C v2 background uses N=1 phased-WGS CBE HLA-A knockout (OFFGRID_GUARD_011)",
+        "HLA-B": "Not encoded by this standalone chr13 CLYBL component donor; intended host D1b-Auto-C v2 background uses N=1 phased-WGS CBE HLA-B knockout (OFFGRID_GUARD_011)"
+      },
+      "cassette_topology": {
+        "CLYBL": "HBB_5HS4_80 + TUBA1B_250::FSP1 + PGK1_PA_HARD + 404-bp barrier (SPA_MAZ4_154 + cHS4_C72T_C73A_250) + CDK1_300::hTMPK-F105Y + RPLP0_PA_HARD + 100-bp PAUSE + DM1_CTCF1_80 (4,067 bp donor / 4,357 bp AAV6; author-declared staging metadata: 0 divergent bleed, 0 introns, 0x 2A, 0 uATG, 0 foreign peptides — not independently recomputed by verifier)",
+        "HLA-A": "Not encoded by standalone chr13 CLYBL component donor (supplied on host background)",
+        "HLA-B": "Not encoded by standalone chr13 CLYBL component donor (supplied on host background)"
+      },
+      "sequence_materialization_status": "REFERENCE_DONORS_AVAILABLE_REQUIRES_EDITED_ALLELE_QC",
+      "lifecycle_state": "STAGE0_RESEARCH_COMPARATOR_PENDING_ALLELE_QC",
+      "physical_qualification_status": "PREREGISTERED_PENDING",
+      "execution_supported": false,
+      "execution_scope": "Unscored Mode-B Stage-0 autologous D1b-Auto-C v2 Locus-4 component donor ONLY (chr13 CLYBL tandem 404-bp insulated TUBA1B::FSP1 + CDK1_300::hTMPK-F105Y DEC-053 Switch #2; strictly EXCLUDED_FROM_FULLSTACK_CLEARANCE; IIP-0035; DEC-114); +0.00 pp live",
+      "physical_manufacturing_yield": null,
+      "physical_route_id": "ROUTE_3P_MODULAR_PLANAR_ENVELOPE",
+      "donor_lineage": {
+        "cell_source": "autologous patient-derived sun-protected ADSC-CiPSC vs peripheral-blood CiPSC (head-to-head Stage-0 BCOR/TP53/PPM1D WGS + >=1,000x NUMT-filtered chrM QC); 29-41 week N=1 GMP turnaround; orthogonal high-PRA/allo-refractory vanguard complementing universal off-the-shelf A/B/X + Design Y-FullStack v2",
+        "derivative_lineages": [
+          "beta",
+          "alpha",
+          "delta"
+        ],
+        "actual_donor_identity_status": "PREREGISTERED_PENDING",
+        "donor_seedline_id_required": true,
+        "kinship_pi_hat_lt": 0.05
+      },
+      "hla_retention": {
+        "classical_MHC_I": "Not encoded by this standalone chr13 CLYBL component donor; intended host D1b-Auto-C v2 genotype uses N=1 phased-WGS CBE HLA-A/B knockout with endogenous self-HLA-C and HLA-E retained under D1-01/D1-02.",
+        "classical_MHC_II": "Not encoded by this standalone chr13 CLYBL component donor; CIITA Exon-5 HDR knockout is supplied separately by Locus-1 donor L1A or L1B.",
+        "actual_allele_and_KIR_matching_status": "PREREGISTERED_PENDING"
+      },
+      "staged_d1b_auto_v2_donor_binding": {
+        "proposal_id": "IIP-0035",
+        "decision_id": "DEC-114",
+        "fasta_path": "data/constructs/islet1_d1b_auto_v2_v0.8.0.fasta",
+        "fasta_sha256": "36b5c38181fd6d9409e82d53edee16130f4309e08c481a59055d705de4f01974",
+        "fasta_record_id": "D1AUTO_v2_L4_CLYBL_TANDEM_TUBA1B_FSP1_CHS4_CDK1_HTMPK_F105Y",
+        "donor_sha256": "fae0a4f597297aefc0b774532ef36885b5f65ba625df257e4fe9c0410adbc7f8",
+        "donor_length_bp": 4067,
+        "nominal_aav6_packaged_bp": 4357,
+        "tu_count": 2,
+        "pigk_ectopic_gpi_count": 0,
+        "encoded_2a_motifs_6frame": 0,
+        "role": "LOCUS4_CHR13_CLYBL_TANDEM_FSP1_CDK1_HTMPK_DEC053_SW2",
+        "stage0_promotion_gates": "COMPONENT_ONLY_EXCLUDED_FROM_FULLSTACK_CLEARANCE (L4 chr13 CLYBL tandem FSP1+CDK1::hTMPK-F105Y D1-04/D1-05 component evidence only)"
+      },
+      "pending_assay_gates": [
+        "COMPONENT_ONLY_EXCLUDED_FROM_FULLSTACK_CLEARANCE: standalone chr13q32.3 CLYBL tandem 404-bp insulated component donor supporting D1-04 (Stage-7 G0-beta hTMPK-F105Y leak <= 0.1%, HLA-C*07:01/02 RYAFSGVAY ELISpot <= 0.1% above background, >= 4.0-log10 AZT dividing kill after forced chr19 loss) and D1-05 (L4 Stage-7 Day-28 retention >= 80.0% and RSL3 ferroptosis survival >= 80.0%); cannot independently clear full-product D1-01..D1-09"
+      ]
     }
   ]
 }

@@ -1568,7 +1568,7 @@ def _resolve_and_verify_design_y_v2_registry(repo_root: Path) -> Dict[str, Any]:
             "heading_kind": h4119["kind"],
             "heading_level": h4119["level"],
             "container_depth": h4119["container_depth"],
-            "total_document_headings_parsed": len(all_headings),
+            "total_document_headings_parsed": sum(1 for h in all_headings if h["start_offset"] <= h4119["start_offset"]),
         },
         "typed_product_by_gate_contract_audit": {
             "products_checked": len(product_summaries),

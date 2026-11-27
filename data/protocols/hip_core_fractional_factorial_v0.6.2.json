@@ -4494,16 +4494,16 @@
   "layer1_ultracode_audit_reconciliation_ledger": {
     "method": "Computed from this evaluation's source studies, graph, registry, exact design and diagnostics; not an audit closure assertion",
     "source_counts": {
-      "studies": 594,
-      "arms": 693,
-      "atomic_effects": 3158,
-      "raw_edit_rows": 260,
+      "studies": 604,
+      "arms": 708,
+      "atomic_effects": 3174,
+      "raw_edit_rows": 261,
       "expanded_edit_gene_occurrences": 262
     },
     "corpus_eligibility": {
-      "active_deduplicated_studies_count": 574,
-      "active_empirical_studies_count": 573,
-      "non_superseded_studies_count": 575,
+      "active_deduplicated_studies_count": 589,
+      "active_empirical_studies_count": 588,
+      "non_superseded_studies_count": 590,
       "superseded_preprint_studies_excluded_count": 14,
       "project_summary_studies_excluded_count": 1,
       "review_studies_in_corpus_count": 1,
@@ -4531,45 +4531,46 @@
         "42856627"
       ],
       "ring1_corpus_count_reconciliation": {
-        "validated_studies_total": 589,
+        "validated_studies_total": 604,
         "superseded_preprints_excluded": 14,
         "project_summaries_excluded": 1,
-        "non_superseded_studies_total": 575,
-        "active_deduplicated_studies_total": 574,
+        "non_superseded_studies_total": 590,
+        "active_deduplicated_studies_total": 589,
         "review_records_flagged": 1,
         "active_preprints_without_in_corpus_twin_flagged": 18,
-        "strict_active_peer_reviewed_empirical_studies_total": 555
+        "strict_active_peer_reviewed_empirical_studies_total": 570
       },
-      "active_deduplicated_arms_count": 658,
-      "active_deduplicated_effects_count": 3046,
+      "active_deduplicated_arms_count": 693,
+      "active_deduplicated_effects_count": 3072,
       "active_deduplicated_modifier_interactions_count": 1236,
       "active_deduplicated_causal_edges_count": 1045,
-      "non_superseded_arms_count": 659,
-      "non_superseded_effects_count": 3047,
+      "non_superseded_arms_count": 694,
+      "non_superseded_effects_count": 3073,
       "non_superseded_modifier_interactions_count": 1236,
       "non_superseded_causal_edges_count": 1046,
       "studies_by_biological_fidelity_tier": {
-        "Tier_1_Human_InVivo": 21,
+        "Tier_1_Human_InVivo": 22,
         "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 35,
-        "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 78,
-        "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 288,
-        "Tier_4_Rodent_or_Xenogeneic_Only": 152
+        "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 80,
+        "Tier_2C_NHP_Allogeneic_or_Autologous_NonIslet": 1,
+        "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 298,
+        "Tier_4_Rodent_or_Xenogeneic_Only": 153
       },
       "studies_by_source_text_type": {
-        "Abstract_Only": 291,
+        "Abstract_Only": 299,
         "FullText_Plus_Supplement_or_GEO": 84,
-        "FullText_XML_or_PDF": 198,
+        "FullText_XML_or_PDF": 205,
         "Review_or_Commentary": 1
       },
-      "exact_source_span_verified_effects_count": 3046,
-      "quantitative_lrr_effects_count": 9,
-      "heuristic_penalty_effects_count": 42,
+      "exact_source_span_verified_effects_count": 3072,
+      "quantitative_lrr_effects_count": 10,
+      "heuristic_penalty_effects_count": 43,
       "direction_and_penalty_method_counts": {
         "rule_based_heuristic": 2981,
-        "source_adjudicated_curated_override": 65
+        "source_adjudicated_curated_override": 91
       },
       "adjudication_semantics": "Rule-based heuristic extraction; no independent manual accuracy dataset is attached. Classifier agreement is not measured sensitivity or specificity.",
-      "adjudicated_penalty_effects_count": 42,
+      "adjudicated_penalty_effects_count": 43,
       "deprecated_field_aliases": {
         "adjudicated_penalty_effects_count": {
           "alias_of": "heuristic_penalty_effects_count",
@@ -4577,15 +4578,15 @@
         }
       },
       "effects_by_direction": {
-        "Deleterious_or_Impaired": 236,
-        "Descriptive_or_Unoriented": 14,
+        "Deleterious_or_Impaired": 243,
+        "Descriptive_or_Unoriented": 23,
         "Neutral_or_NonInferior": 1542,
-        "Protective_or_Improved": 1254
+        "Protective_or_Improved": 1264
       },
       "effects_by_polarity_orientation_sign": {
-        "-1": 212,
-        "0": 2345,
-        "1": 489
+        "-1": 214,
+        "0": 2365,
+        "1": 493
       },
       "matched_context_multi_hop_chains_count": 51,
       "cross_context_hypothesis_chains_count": 449

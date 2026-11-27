@@ -1181,6 +1181,12 @@
       "pubdate_year": "2014",
       "title": "Risk of antibody-mediated rejection in kidney transplant recipients with anti-HLA-C donor-specific antibodies."
     },
+    "24848066": {
+      "first_author": "Radichev IA",
+      "journal": "Diabetes",
+      "pubdate_year": "2014",
+      "title": "Nardilysin-dependent proteolysis of cell-associated VTCN1 (B7-H4) marks type 1 diabetes development."
+    },
     "24911120": {
       "first_author": "Shalev A",
       "journal": "Mol Endocrinol",
@@ -1361,6 +1367,12 @@
       "pubdate_year": "2015",
       "title": "HLA-E regulates NKG2C+ natural killer cell function through presentation of a restricted peptide repertoire."
     },
+    "2642862": {
+      "first_author": "Sutherland DE",
+      "journal": "Diabetes",
+      "pubdate_year": "1989",
+      "title": "Recurrence of disease in pancreas transplants."
+    },
     "26450151": {
       "first_author": "Kaur S",
       "journal": "Mol Cell Endocrinol",
@@ -1390,6 +1402,12 @@
       "journal": "J Biol Chem",
       "pubdate_year": "2016",
       "title": "A Novel Serpin Regulatory Mechanism: SerpinB9 IS REVERSIBLY INHIBITED BY VICINAL DISULFIDE BOND FORMATION IN THE REACTIVE CENTER LOOP."
+    },
+    "26773144": {
+      "first_author": "Radichev IA",
+      "journal": "J Immunol",
+      "pubdate_year": "2016",
+      "title": "Loss of Peripheral Protection in Pancreatic Islets by Proteolysis-Driven Impairment of VTCN1 (B7-H4) Presentation Is Associated with the Development of Autoimmune Diabetes."
     },
     "26780180": {
       "first_author": "Doench JG",
@@ -1919,6 +1937,12 @@
       "pubdate_year": "2019",
       "title": "Continuous evolution of base editors with expanded target compatibility and improved activity."
     },
+    "31427818": {
+      "first_author": "Deuse T",
+      "journal": "Nat Biotechnol",
+      "pubdate_year": "2019",
+      "title": "De novo mutations in mitochondrial DNA of iPSCs produce immunogenic neoepitopes in mice and humans."
+    },
     "31435002": {
       "first_author": "Nieves-Bonilla JM",
       "journal": "Genes Immun",
@@ -2441,6 +2465,12 @@
       "pubdate_year": "2022",
       "title": "CD155 mutation (Ala67Thr) increases the binding affinity for and the signaling via an inhibitory immunoreceptor TIGIT."
     },
+    "35953586": {
+      "first_author": "Rouhani FJ",
+      "journal": "Nat Genet",
+      "pubdate_year": "2022",
+      "title": "Substantial somatic genomic variation and selection for BCOR mutations in human induced pluripotent stem cells."
+    },
     "36008610": {
       "first_author": "Shy BR",
       "journal": "Nat Biotechnol",
@@ -2536,6 +2566,12 @@
       "journal": "Diabetes Care",
       "pubdate_year": "2023",
       "title": "Abatacept for Delay of Type 1 Diabetes Progression in Stage 1 Relatives at Risk: A Randomized, Double-Masked, Controlled Trial."
+    },
+    "36944335": {
+      "first_author": "Liuyang S",
+      "journal": "Cell Stem Cell",
+      "pubdate_year": "2023",
+      "title": "Highly efficient and rapid generation of human pluripotent stem cells by chemical reprogramming."
     },
     "36971050": {
       "first_author": "Accolla RP",
@@ -2717,6 +2753,12 @@
       "pubdate_year": "2024",
       "title": "Prime Editing and DNA Repair System: Balancing Efficiency with Safety."
     },
+    "38843830": {
+      "first_author": "Lin Y",
+      "journal": "Cell Stem Cell",
+      "pubdate_year": "2024",
+      "title": "Long-term engraftment and maturation of autologous iPSC-derived cardiomyocytes in two rhesus macaques."
+    },
     "38844131": {
       "first_author": "Wymann S",
       "journal": "J Biol Chem",
@@ -2855,6 +2897,12 @@
       "pubdate_year": "2024",
       "title": "Microfluidic chip systems for characterizing glucose-responsive insulin-secreting cells equipped with FailSafe kill-switch."
     },
+    "39753706": {
+      "first_author": "Wang Y",
+      "journal": "Nat Chem Biol",
+      "pubdate_year": "2025",
+      "title": "A rapid chemical reprogramming system to generate human pluripotent stem cells."
+    },
     "39824805": {
       "first_author": "Carré A",
       "journal": "Nat Commun",
@@ -2987,6 +3035,12 @@
       "pubdate_year": "2025",
       "title": "Complete loss of SLC30A8 in humans improves glucose metabolism and beta cell function."
     },
+    "41201433": {
+      "first_author": "Jetley U",
+      "journal": "Cytotherapy",
+      "pubdate_year": "2026",
+      "title": "A differentiated and durable allogeneic strategy applicable to cell therapies."
+    },
     "41202120": {
       "first_author": "Brown ME",
       "journal": "Sci Adv",
@@ -3010,6 +3064,12 @@
       "journal": "Cell Rep",
       "pubdate_year": "2025",
       "title": "DEC1 regulates human β cell functional maturation and circadian rhythm."
+    },
+    "41436438": {
+      "first_author": "Fu X",
+      "journal": "Cell Discov",
+      "pubdate_year": "2025",
+      "title": "Robust generation of clinically applicable human pluripotent stem cells from peripheral blood by chemical reprogramming."
     },
     "41536981": {
       "first_author": "Jin M",
@@ -3046,6 +3106,12 @@
       "journal": "Cell Stem Cell",
       "pubdate_year": "2026",
       "title": "Prevention of transgene silencing during human pluripotent stem cell differentiation."
+    },
+    "41764741": {
+      "first_author": "Amdare N",
+      "journal": "J Immunol",
+      "pubdate_year": "2026",
+      "title": "Islet-derived T cells from both mice and humans recognize conserved insulin A-chain peptides presented by HLA-C*03:04."
     },
     "41765034": {
       "first_author": "Shi Y",
@@ -3088,6 +3154,12 @@
       "journal": "Stem Cell Reports",
       "pubdate_year": "2026",
       "title": "An optimized protocol for efficient derivation of pancreatic islets from multiple human pluripotent stem cell lines."
+    },
+    "41999746": {
+      "first_author": "Cheng L",
+      "journal": "Cell",
+      "pubdate_year": "2026",
+      "title": "p53 safeguards chemical reprogramming of human somatic cells toward pluripotency."
     },
     "42020736": {
       "first_author": "Shi YJ",

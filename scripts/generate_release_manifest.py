@@ -30,6 +30,7 @@ _PUBLIC_POLICY_SNAPSHOT = ContextVar('openislet_public_policy_snapshot', default
 _GENERATION_LEASE = ContextVar('openislet_manifest_generation_lease', default=None)
 _GENERATION_JOURNAL = ContextVar('openislet_manifest_generation_journal', default=None)
 _EXPORT_PROCESS_LOCK = threading.RLock()
+_PUBLIC_BUNDLE_MARKER_BYTES = b"openislet_public_bundle_v0.8.0\n"
 _NEVER_PUBLIC = (
     'data/dossiers/*', 'data/curated/*',
     # DEC-011 keeps detailed downstream plans private. The decisions log also
@@ -281,6 +282,8 @@ def main() -> None:
     The manifest is still a sequence of per-file replacements. This rollback
     does not assert crash atomicity or snapshot isolation for concurrent readers.
     """
+    if (ROOT / '.openislet_public_bundle').exists() or (ROOT / '.openislet_public_bundle').is_symlink():
+        raise RuntimeError("Refusing manifest regeneration (--regenerate-repo-manifest) inside a sealed .openislet_public_bundle; 0 bytes written")
     with _publication_lock(ROOT/'.openislet-manifest.lock') as lease:
         journal=_publication_support().PublicationJournal()
         token=_GENERATION_LEASE.set(lease)
@@ -572,6 +575,7 @@ def _generate_release_manifest() -> None:
         "data/constructs/islet1_locus3_multimir_modeb_comparators_v0.8.0.fasta",
         "data/constructs/islet1_design_y_wildcard_comparators_v0.8.0.fasta",
         "data/constructs/islet1_design_y_fullstack_v2_v0.8.0.fasta",
+        "data/constructs/islet1_d1b_auto_v2_v0.8.0.fasta",
         "data/constructs/islet1_design_b_complete_constructs_v0.8.0.fasta",
         "data/constructs/nm_021999_5_archival_mrna.fasta",
         "data/graveyard/idea_graveyard_v0.5.json",
@@ -585,6 +589,7 @@ def _generate_release_manifest() -> None:
         "data/extracted/islet1_stack_ranking_v0.5.json",
         "data/extracted/islet1_combinatorial_pareto_and_ladder_v0.8.0.json",
         "data/extracted/islet1_multiparadigm_portfolio_v0.8.0.json",
+        "data/extracted/islet1_5arm_autologous_portfolio_v0.8.0.json",
         "data/extracted/ring1_study_dossiers_v0.5.jsonl",
         "data/extracted/ring1_atomic_effects_v0.5.jsonl",
         "data/extracted/layer2_regulatory_and_perturbation_atlas.json",
@@ -633,6 +638,7 @@ def _generate_release_manifest() -> None:
         "data/extracted/documentation_facts_v0.8.0.json",
         "data/extracted/iip0033_bilayer_and_respirometry_verification_v0.8.0.json",
         "data/extracted/iip0034_planar_and_portfolio_verification_v0.8.0.json",
+        "data/extracted/iip0035_d1b_auto_and_portfolio_verification_v0.8.0.json",
         "tests/test_preastra_layer1.py",
         "tests/test_preastra_molecular.py",
         "tests/test_preastra_physiology_compiler.py",
@@ -663,6 +669,7 @@ def _generate_release_manifest() -> None:
         "scripts/summarize_omics_baseline.py",
         "scripts/verify_iip0033_bilayer_and_resp1.py",
         "scripts/verify_iip0034_planar_and_portfolio.py",
+        "scripts/verify_iip0035_d1b_auto_and_portfolio.py",
         "tests/test_adversarial_acceptance.py",
         "tests/test_citations_resolve.py",
         "tests/test_context_evidence_graph.py",
@@ -671,6 +678,7 @@ def _generate_release_manifest() -> None:
         "tests/test_layer4_and_layer5_planes.py",
         "tests/test_iip0033_bilayer_respirometry.py",
         "tests/test_iip0034_design_y_and_route3p.py",
+        "tests/test_iip0035_d1b_auto_and_portfolio.py",
     ]
     artifact_entries = {}
     for rel in tracked_artifacts:
@@ -757,9 +765,10 @@ def _generate_release_manifest() -> None:
             }
         },
         "auxiliary_non_ring1_dossiers_registry": {
-            "note": "Two Ring-2 review dossiers cached in data/dossiers/ are outside the 594-study Ring-1 primary experimental extracted corpus (594 + 2 = 596 total dossiers):",
-            "26649319": "Akter et al. 2016 (Journal of Diabetes Research, doi:10.1155/2016/2798269): 'Islet Amyloid Polypeptide: Structure, Function, and Pathophysiology.' (Ring-2 review dossier retained in local dossier cache; not part of 594-study Ring-1 extracted queue)",
-            "35650334": "Nekoua, Alidjinou & Hober 2022 (Nature Reviews Endocrinology, doi:10.1038/s41574-022-00688-1): 'Persistent coxsackievirus B infection and pathogenesis of type 1 diabetes mellitus.' (Ring-2 review dossier retained in local dossier cache; not part of 594-study Ring-1 extracted queue)",
+            "note": "Three auxiliary dossiers cached in data/dossiers/ are outside the 604-study Ring-1 primary experimental extracted corpus (604 + 3 = 607 total dossiers):",
+            "26649319": "Akter et al. 2016 (Journal of Diabetes Research, doi:10.1155/2016/2798269): 'Islet Amyloid Polypeptide: Structure, Function, and Pathophysiology.' (Ring-2 review dossier retained in local dossier cache; not part of 604-study Ring-1 extracted queue)",
+            "35650334": "Nekoua, Alidjinou & Hober 2022 (Nature Reviews Endocrinology, doi:10.1038/s41574-022-00688-1): 'Persistent coxsackievirus B infection and pathogenesis of type 1 diabetes mellitus.' (Ring-2 review dossier retained in local dossier cache; not part of 604-study Ring-1 extracted queue)",
+            "41201433": "Jetley et al. 2026 (Cytotherapy, doi:10.1016/j.jcyt.2025.10.001): 'A differentiated and durable allogeneic strategy applicable to cell therapies.' (CEG M0051 dossier retained in local dossier cache; deferred from 604-study Ring-1 queue under IIP-0035 prespecified Option-2 cohort scope preserving the frozen Layer-1 Pareto baseline)",
         },
         "public_redistribution_allowlist_spec": {
             "policy_note": (
@@ -1394,8 +1403,10 @@ def manifest_integrity_errors(root: Path, manifest: dict, public: bool = False) 
                 errors.append('unsafe:'+rel); continue
             if not path.is_dir() and rel not in required|{'manifest.json','.openislet_public_bundle'}:
                 errors.append('unexpected:'+rel)
-        try: _regular_file_bytes(root,'.openislet_public_bundle')
-        except (OSError,ValueError): errors.append('invalid-public-marker')
+        try:
+            if _regular_file_bytes(root, '.openislet_public_bundle') != _PUBLIC_BUNDLE_MARKER_BYTES:
+                errors.append('invalid-public-marker')
+        except (OSError, ValueError): errors.append('invalid-public-marker')
     return sorted(set(errors))
 
 
@@ -1460,7 +1471,8 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
                 f"Refusing to overwrite non-empty directory {final_dest_dir} lacking '.openislet_public_bundle' marker."
             )
         if entries:
-            _regular_file_bytes(final_dest_dir,'.openislet_public_bundle')
+            if _regular_file_bytes(final_dest_dir, '.openislet_public_bundle') != _PUBLIC_BUNDLE_MARKER_BYTES:
+                raise ValueError(f"Refusing to overwrite directory {final_dest_dir} with unrecognized .openislet_public_bundle marker content.")
 
     manifest_bytes = _regular_file_bytes(ROOT, "manifest.json")
     manifest = json.loads(manifest_bytes)
@@ -1536,6 +1548,100 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
     # prevent deleting unrelated directories or colliding with another export.
     for rel in sorted(included):
         _verify_pinned_source(ROOT, rel, manifest)
+    # Sealed public bundles have already undergone full source-backed rights redaction and
+    # manifest pinning; re-exporting an untampered sealed bundle must be byte-preserving
+    # rather than re-redacting already-cleared structured labels and frozen records.
+    _is_sealed_pub_src = False
+    if (ROOT / ".openislet_public_bundle").exists() or (ROOT / ".openislet_public_bundle").is_symlink():
+        if _regular_file_bytes(ROOT, ".openislet_public_bundle") != _PUBLIC_BUNDLE_MARKER_BYTES:
+            raise ValueError("Source .openislet_public_bundle marker has unrecognized content or version")
+        _is_sealed_pub_src = True
+    if (
+        _is_sealed_pub_src
+        and "public_export_file_inventory" in manifest
+        and not (ROOT / "data" / "dossiers").exists()
+        and set(manifest["public_export_file_inventory"]) == (included - {"manifest.json"})
+    ):
+        verify_public_bundle_snapshot(ROOT)
+        import sys as _sys_re
+        import types as _types_re
+        from jsonschema import Draft202012Validator as _Draft202012Re
+        final_dest_dir.parent.mkdir(parents=True, exist_ok=True)
+        require_lease()
+        staging_dir = Path(tempfile.mkdtemp(prefix=f".{final_dest_dir.name}.staging-", dir=final_dest_dir.parent))
+        policy_token = None
+        previous_bytecode = _sys_re.dont_write_bytecode
+        _sys_re.dont_write_bytecode = True
+        try:
+            shutil.copy2(ROOT / ".openislet_public_bundle", staging_dir / ".openislet_public_bundle")
+            for rel in sorted(included):
+                require_lease()
+                src = ROOT / rel
+                if _has_symlink_component(src, stop_at=ROOT):
+                    raise ValueError(f"Symlink not permitted in public bundle export: {src}")
+                dst = staging_dir / rel
+                dst.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(src, dst)
+                _verify_pinned_source(staging_dir, rel, manifest)
+            public_helper = _types_re.ModuleType("openislet_export_snapshot_policy")
+            public_helper.__file__ = str(staging_dir / "scripts/public_excerpt_policy.py")
+            exec(compile(_regular_file_bytes(staging_dir, "scripts/public_excerpt_policy.py"), public_helper.__file__, "exec"), public_helper.__dict__)
+            schema_bytes = _regular_file_bytes(staging_dir, "schemas/extraction_schema_v0.2.json")
+            policy_token = _PUBLIC_POLICY_SNAPSHOT.set({"helper": public_helper, "schema": schema_bytes})
+            if manifest_integrity_errors(staging_dir, manifest, public=True):
+                raise ValueError("Sealed public bundle re-export failed exact inventory and digest post-condition")
+            disc_re = staging_dir / "data/raw/corpus_manifest_all_sources.jsonl"
+            if disc_re.exists():
+                disc_rows_re = [json.loads(ln) for ln in disc_re.read_text(encoding="utf-8").splitlines() if ln.strip()]
+                if [_public_discovery_record(row) for row in disc_rows_re] != disc_rows_re:
+                    raise ValueError("Sealed public bundle discovery metadata is not cleanly projected")
+            export_schema_re = _Draft202012Re(json.loads(schema_bytes))
+            for sp_re in sorted((staging_dir / "data" / "extracted").glob("*.json"), key=lambda p: p.stem):
+                if sp_re.stem.isdigit():
+                    st_re = json.loads(sp_re.read_text(encoding="utf-8"))
+                    export_schema_re.validate(st_re)
+                    if public_token_errors(st_re, str(st_re["study_metadata"]["pmid"])):
+                        raise ValueError("Public study contains an invalid opaque reference")
+            g_re = staging_dir / "data/extracted/cross_study_discovery_graph.json"
+            if g_re.exists() and public_token_errors(json.loads(g_re.read_text(encoding="utf-8"))):
+                raise ValueError("Public graph contains an invalid opaque reference")
+            ceg_re = staging_dir / "data/extracted/context_evidence_graph_v1.json"
+            if ceg_re.exists() and public_token_errors(json.loads(ceg_re.read_text(encoding="utf-8"))):
+                raise ValueError("Public Context-Evidence Graph contains an invalid opaque reference")
+            verify_public_bundle_privacy_guard(staging_dir, source_root=ROOT, require_private_pattern_file=False)
+            if _regular_file_bytes(ROOT, "manifest.json") != manifest_bytes:
+                raise ValueError("Canonical manifest changed during export")
+            for rel in sorted(included - {"manifest.json"}):
+                _verify_pinned_source(ROOT, rel, manifest)
+        except BaseException:
+            if staging_dir.exists():
+                shutil.rmtree(staging_dir, ignore_errors=True)
+            raise
+        finally:
+            if policy_token is not None:
+                _PUBLIC_POLICY_SNAPSHOT.reset(policy_token)
+            _sys_re.dont_write_bytecode = previous_bytecode
+        backup_dir = None
+        try:
+            require_lease()
+            backup_dir = Path(tempfile.mkdtemp(prefix=f".{final_dest_dir.name}.rollback-", dir=final_dest_dir.parent))
+            backup_dir.rmdir()
+            if final_dest_dir.exists():
+                final_dest_dir.rename(backup_dir)
+                require_lease()
+            staging_dir.rename(final_dest_dir)
+            require_lease()
+        except BaseException:
+            owned = publication_lease is None or publication_lease.owns_lock()
+            if owned and backup_dir is not None and backup_dir.exists() and not final_dest_dir.exists():
+                backup_dir.rename(final_dest_dir)
+            if staging_dir.exists():
+                shutil.rmtree(staging_dir, ignore_errors=True)
+            raise
+        if backup_dir is not None and backup_dir.exists():
+            require_lease()
+            shutil.rmtree(backup_dir)
+        return sorted(included)
     final_dest_dir.parent.mkdir(parents=True, exist_ok=True)
     require_lease()
     staging_dir = Path(tempfile.mkdtemp(prefix=f".{final_dest_dir.name}.staging-", dir=final_dest_dir.parent))
@@ -2183,9 +2289,9 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
             source_root=ROOT,
             require_private_pattern_file=("public_export_file_inventory" not in manifest),
         )
-    except Exception:
+    except BaseException:
         if staging_dir.exists():
-            shutil.rmtree(staging_dir)
+            shutil.rmtree(staging_dir, ignore_errors=True)
         raise
     finally:
         if policy_token is not None:_PUBLIC_POLICY_SNAPSHOT.reset(policy_token)
@@ -2215,12 +2321,12 @@ def _export_public_bundle_locked(dest_dir: Path, publication_lease=None) -> list
             require_lease()
         staging_dir.rename(final_dest_dir)
         require_lease()
-    except Exception:
+    except BaseException:
         owned=publication_lease is None or publication_lease.owns_lock()
         if owned and backup_dir is not None and backup_dir.exists() and not final_dest_dir.exists():
             backup_dir.rename(final_dest_dir)
         if staging_dir.exists():
-            shutil.rmtree(staging_dir)
+            shutil.rmtree(staging_dir, ignore_errors=True)
         raise
     if backup_dir is not None and backup_dir.exists():
         require_lease()

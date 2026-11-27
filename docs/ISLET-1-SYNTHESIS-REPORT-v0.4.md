@@ -4,7 +4,7 @@
 
 **Current executable facts (generated from on-disk artifacts; physical gates pending).**
 
-Current corpus: 594 studies, 579 active deduplicated, 578 active empirical, 560 strict peer-reviewed empirical; 3,158 effects, 693 arms, 62 reference controls, 260 edit entries and 262 expanded gene occurrences under the ranker expander. Direction/penalty labels are rule-based heuristics; 43 flagged penalties are not an independently adjudicated accuracy dataset.
+Current corpus: 604 studies, 589 active deduplicated, 588 active empirical, 570 strict peer-reviewed empirical; 3,174 effects, 708 arms, 65 reference controls, 261 edit entries and 262 expanded gene occurrences under the ranker expander. Direction/penalty labels are rule-based heuristics; 44 flagged penalties are not an independently adjudicated accuracy dataset.
 
 Layer 1 evaluates 2,160 prior-anchored stacks (480 feasible, 48 code-defined top tier). Registry: 48 source terms / 46 net offsets / 39 auxiliary scalar leaves / 6 engineering priors. Structural share of component variance is 99.8542% from unrounded latent logits. Current auxiliary non-stack utility-target profiles with typed numeric LRR evidence: 2 (0 evaluated Islet-1 stack targets with new typed numeric LRR changes; the shrinkage branch is checked separately against an actual HNF1A-KO source contrast when zero). Seeded direct and shared-parameter Monte Carlo are exploratory sensitivity simulations with finite-draw Wilson intervals and rank quantiles, not clinical probabilities or fitted posterior intervals. CHK-12 recomputes and compares the complete current replay.
 
@@ -19,7 +19,7 @@ HIP-Core executes all 36 coded rows, including all 11 repeat/bridge/lead rows, a
 
 Native EEF1A1 core: 230 bp, 19 CpG dinucleotides, 3 exact/RC donor occurrences; these are native CpG-containing promoter sequences.
 
-Release manifest: `1,469` pinned files. Machine facts: `data/extracted/documentation_facts_v0.8.0.json`. These facts supersede stale numeric summaries in explicitly historical rationale sections. Outward rankings remain unfrozen (`outward_rankings_frozen: false`); no exact product has passed physical qualification.
+Release manifest: `1,505` pinned files. Machine facts: `data/extracted/documentation_facts_v0.8.0.json`. These facts supersede stale numeric summaries in explicitly historical rationale sections. Outward rankings remain unfrozen (`outward_rankings_frozen: false`); no exact product has passed physical qualification.
 
 <!-- OPENISLET_GENERATED_FACTS_END -->
 
@@ -28,7 +28,7 @@ Release manifest: `1,469` pinned files. Machine facts: `data/extracted/documenta
 **Author:** Chief Scientist (`Gemini 4 Argon (High Effort)`, incorporating audits from `Claude 5.5 Sonnet Max Effort`, `ChatGPT 6 Astra xhigh`, `Kimi K3.1 Pro xhigh`, `ChatGPT 6.1 Pro / Sol 6.1`, `Spark Muse Wonder`, `Grok 4.7 Heavy`, and the 5-Agent Red-Team Swarm)  
 **Date:** 2026-10-23  
 **Project Root:** `./` (`OpenIslet` repository root)  
-**Release Manifest (`P0-8`):** [`manifest.json`](../manifest.json) (`1,469` pinned files + `public_redistribution_allowlist_spec` + `export_public_bundle` with `<=240`-char non-OA per-article excerpt cap)  
+**Release Manifest (`P0-8`):** [`manifest.json`](../manifest.json) (`1,505` pinned files + `public_redistribution_allowlist_spec` + `export_public_bundle` with `<=240`-char non-OA per-article excerpt cap)  
 **Companion Blueprint & Evaluator Spec:** [`docs/ISLET-1-CANDIDATE-BLUEPRINTS-AND-OPTIMIZER-v0.2.md`](ISLET-1-CANDIDATE-BLUEPRINTS-AND-OPTIMIZER-v0.2.md)
 
 ---
@@ -40,7 +40,7 @@ During the Round-3 and Revision-2 adversarial audits (`REVIEW-2026-10-21.md` and
 To eliminate any drift between external review briefs and the repository working tree:
 1. **OpenIslet & Islet-1 Framing:** **OpenIslet** is a global community project using AI (`Layer 1: Frontier Reasoning Auditors` + `Layer 2: HuggingFaceBio/Carbon-X 14.8B Local Bilingual DNA Co-Pilot` + `Layer 3: AlphaGenome / Evo 2 / Bridge-RNA / AlphaFold / Mol*`) to harness scientific knowledge and collective wisdom at scale to accelerate a cure for Type 1 Diabetes. Together, we are developing **Islet-1**—an open-source blueprint for a personalised stem-cell islet designed to cure T1D without anti-rejection drugs, spanning **Stage 0** (The `Islet-1` Blueprint & Construct Pre-Pilot), **Stage 1** (Automated Wet-Lab Design & Robotic Screening), **Stage 2** (3D Vascularized Organoid & Oxygen-Bridge Assembly), **Stage 3** (Preclinical In-Vivo & Safety-Switch Target Verification), **Stage 4** (Clinical-Grade Cell Manufacturing, Master/Working Cell Banking & Regulator Safety Checks), **Stage 5** (First-in-Human Phase 1/2 Trial), and **Stage 6** (Genetically & Immunologically Matched Outpatient Cure stratified across `HLA-C/KIR`, `HLA-DR3/DR4 + Autoantibodies`, `mtDNA` haplogroup, and `ABO Type-O` vascular backbone where biologically justified).
 2. All canonical repository files, SHA-256 checksums, and record counts are now pinned in the machine-verifiable root [`manifest.json`](../manifest.json) (`scripts/generate_release_manifest.py`).
-  - **Heuristic extraction labels:** Current corpus: 594 studies, 579 active deduplicated, 578 active empirical, 560 strict peer-reviewed empirical; 3,158 effects, 693 arms, 62 reference controls, 260 edit entries and 262 expanded gene occurrences under the ranker expander. Direction/penalty labels are rule-based heuristics; 43 flagged penalties are not an independently adjudicated accuracy dataset.
+  - **Heuristic extraction labels:** Current corpus: 604 studies, 589 active deduplicated, 588 active empirical, 570 strict peer-reviewed empirical; 3,174 effects, 708 arms, 65 reference controls, 261 edit entries and 262 expanded gene occurrences under the ranker expander. Direction/penalty labels are rule-based heuristics; 44 flagged penalties are not an independently adjudicated accuracy dataset.
 
 ---
 

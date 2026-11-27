@@ -192,7 +192,7 @@ def test_publication_lease_detects_revocation_and_preserves_new_lock(tmp_path):
 
 @pytest.mark.parametrize('cache',['__pycache__/private-dossier.json','.pytest_cache/private-dossier.json','nested/__pycache__/source.txt'])
 def test_public_inventory_has_no_cache_directory_payload_exemption(tmp_path,cache):
-    (tmp_path/'payload').write_bytes(b'x');(tmp_path/'.openislet_public_bundle').write_bytes(b'marker')
+    (tmp_path/'payload').write_bytes(b'x');(tmp_path/'.openislet_public_bundle').write_bytes(b'openislet_public_bundle_v0.8.0\n')
     manifest={'artifacts':{'payload':{'sha256':hashlib.sha256(b'x').hexdigest(),'bytes':1}},'public_export_file_inventory':['payload']}
     require(export.manifest_integrity_errors(tmp_path,manifest,True)==[],'ordinary inventory failed')
     path=tmp_path/cache;path.parent.mkdir(parents=True);path.write_bytes(b'private source')
@@ -596,7 +596,7 @@ def test_unbound_graph_recount_normalizes_each_source_once_without_changing_tota
 
 
 def test_public_publication_rename_failure_restores_old_bundle(export_source,tmp_path,monkeypatch):
-    root,_,_,_=export_source;destination=tmp_path.resolve()/'public';destination.mkdir();(destination/'.openislet_public_bundle').write_text('marker');(destination/'old.txt').write_bytes(b'previous bundle')
+    root,_,_,_=export_source;destination=tmp_path.resolve()/'public';destination.mkdir();(destination/'.openislet_public_bundle').write_text('openislet_public_bundle_v0.8.0\n');(destination/'old.txt').write_bytes(b'previous bundle')
     original=Path.rename
     def fail_publish(path,target):
         if '.staging-' in path.name and Path(target)==destination:raise OSError('injected publication failure')
@@ -608,7 +608,7 @@ def test_public_publication_rename_failure_restores_old_bundle(export_source,tmp
 
 
 def test_public_export_revocation_during_staging_preserves_destination_and_new_lock(export_source,tmp_path,monkeypatch):
-    root,_,_,_=export_source;destination=tmp_path.resolve()/'public';destination.mkdir();(destination/'.openislet_public_bundle').write_text('marker');(destination/'old').write_bytes(b'old bundle')
+    root,_,_,_=export_source;destination=tmp_path.resolve()/'public';destination.mkdir();(destination/'.openislet_public_bundle').write_text('openislet_public_bundle_v0.8.0\n');(destination/'old').write_bytes(b'old bundle')
     lock=destination.parent/'.public.publish-lock';original=shutil.copy2
     def revoke_during_copy(source,target,*args,**kwargs):
         result=original(source,target,*args,**kwargs)

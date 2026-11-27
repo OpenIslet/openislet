@@ -578,6 +578,7 @@ def test_iip0031_product_contract_hardening(tmp_path) -> None:
         shutil.copy2(REPO_ROOT / pc.DESIGN_B_FASTA_PATH, dest / pc.DESIGN_B_FASTA_PATH)
         shutil.copy2(REPO_ROOT / pc.LOCUS2_V3_FASTA_PATH, dest / pc.LOCUS2_V3_FASTA_PATH)
         shutil.copy2(REPO_ROOT / pc.DESIGN_Y_V2_FASTA_PATH, dest / pc.DESIGN_Y_V2_FASTA_PATH)
+        shutil.copy2(REPO_ROOT / pc.D1B_AUTO_V2_FASTA_PATH, dest / pc.D1B_AUTO_V2_FASTA_PATH)
         return dest
 
     root = _stage_registry_root(tmp_path / "canonical")

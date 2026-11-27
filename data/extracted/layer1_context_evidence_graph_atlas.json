@@ -2,12 +2,12 @@
   "schema_version": "openislet_layer1_context_evidence_graph_atlas_v1.0",
   "status": "COMPLETE_LAYER1_CONTEXT_EVIDENCE_GRAPH_ATLAS_V1",
   "evidence_class": "STRUCTURED_LITERATURE_CONTEXT_EVIDENCE_GRAPH",
-  "scope_and_scoring_separation_note": "Maps 1,176 total CEG records (1,150 empirical primary studies, 11 trial registry protocols, 7 regulatory/guidance documents, 4 computational/modeling-primary records, 1 correspondence/secondary summary, and 3 superseded preprint duplicates), 7,740 experimental/control arms, 14,167 structured outcomes, and 2,483 blueprint links across all five Islet-1 biological gates and 20 effector pathways, screened from 3,938 deduplicated candidate records. The Layer-1 2,160-stack prior-anchored scenario evaluator retains its 594-study Ring-1 scoring baseline unchanged (+0.00 pp under IIP-0034) unless an explicit Islet Improvement Proposal updates a module parameter or Idea Graveyard rule.",
+  "scope_and_scoring_separation_note": "Maps 1,182 total CEG records (1,156 empirical primary studies, 11 trial registry protocols, 7 regulatory/guidance documents, 4 computational/modeling-primary records, 1 correspondence/secondary summary, and 3 superseded preprint duplicates), 7,749 experimental/control arms, 14,175 structured outcomes, and 2,494 blueprint links across all five Islet-1 biological gates and 20 effector pathways, screened from 3,942 deduplicated candidate records. The Layer-1 2,160-stack prior-anchored scenario evaluator retains its 604-study Ring-1 scoring baseline unchanged (+0.00 pp under IIP-0035) unless an explicit Islet Improvement Proposal updates a module parameter or Idea Graveyard rule.",
   "summary": {
-    "screened_candidate_records_total": 3938,
-    "candidates_advanced_total": 3263,
-    "ceg_records_total": 1176,
-    "primary_empirical_studies_extracted": 1150,
+    "screened_candidate_records_total": 3942,
+    "candidates_advanced_total": 3268,
+    "ceg_records_total": 1182,
+    "primary_empirical_studies_extracted": 1156,
     "trial_registry_protocols_in_ceg": 11,
     "regulatory_or_guidance_records_in_ceg": 7,
     "computational_models_in_ceg": 4,
@@ -15,28 +15,28 @@
     "superseded_preprint_duplicates_in_ceg": 3,
     "ring1_core_records_in_ceg_total": 404,
     "ring1_empirical_core_studies_in_ceg": 400,
-    "new_expansion_empirical_studies_in_ceg": 750,
-    "non_r1_ceg_records_total": 772,
-    "ring1_scoring_baseline_studies_unchanged": 594,
-    "experimental_and_control_arms_total": 7740,
-    "structured_outcomes_total": 14167,
-    "outcomes_cited_by_blueprint_links": 8991,
-    "background_arm_outcomes_retained": 5176,
-    "blueprint_links_total": 2483,
+    "new_expansion_empirical_studies_in_ceg": 756,
+    "non_r1_ceg_records_total": 778,
+    "ring1_scoring_baseline_studies_unchanged": 604,
+    "experimental_and_control_arms_total": 7749,
+    "structured_outcomes_total": 14175,
+    "outcomes_cited_by_blueprint_links": 9001,
+    "background_arm_outcomes_retained": 5174,
+    "blueprint_links_total": 2494,
     "biological_effector_nodes_total": 20,
     "graveyard_rules_indexed_total": 10,
     "unresolved_outcome_citations": 0,
     "inline_verbatim_quotes_shipped": 0
   },
   "screening_funnel": {
-    "screened_records_total": 3938,
-    "ring1_existing_records_screened": 594,
-    "new_candidate_records_screened": 3344,
-    "candidates_advanced_total": 3263,
-    "contextual_reviews_parked_total": 522,
+    "screened_records_total": 3942,
+    "ring1_existing_records_screened": 604,
+    "new_candidate_records_screened": 3338,
+    "candidates_advanced_total": 3268,
+    "contextual_reviews_parked_total": 521,
     "off_topic_records_excluded_total": 153,
-    "wave1_ceg_records_extracted_total": 1176,
-    "wave1_primary_empirical_extracted_total": 1150,
+    "wave1_ceg_records_extracted_total": 1182,
+    "wave1_primary_empirical_extracted_total": 1156,
     "wave1_trial_registry_protocols_extracted": 11,
     "wave1_regulatory_or_guidance_records_extracted": 7,
     "wave1_computational_models_extracted": 4,
@@ -44,14 +44,166 @@
     "wave1_superseded_preprint_duplicates_extracted": 3,
     "wave1_ring1_core_records_extracted_total": 404,
     "wave1_ring1_empirical_core_extracted": 400,
-    "wave1_new_empirical_studies_extracted": 750,
-    "wave1_non_r1_records_extracted_total": 772,
-    "remaining_supporting_catalog_queued_for_later_waves": 2087
+    "wave1_new_empirical_studies_extracted": 756,
+    "wave1_non_r1_records_extracted_total": 778,
+    "remaining_supporting_catalog_queued_for_later_waves": 2086,
+    "iip0035_record_level_screening_ledger": [
+      {
+        "queue_id": "M0051",
+        "pmid": "41201433",
+        "transition": "existing_wave1_ceg_candidate_crosslinked_only_deferred_from_ring1_to_preserve_layer1_baseline",
+        "d_screened_total": 0,
+        "d_ring1_screened": 0,
+        "d_new_screened": 0,
+        "d_advanced": 0,
+        "d_parked": 0,
+        "d_excluded": 0,
+        "d_wave1_extracted": 0,
+        "d_remaining_catalog": 0,
+        "note": "Prespecified Option-2 cohort scope: Jetley 2026 (PMID:41201433, M0051) is cross-linked in CEG (M0051:L4 + verified dossier cache) and deferred from Ring-1 cohort expansion so the frozen 2,160-stack Layer-1 Pareto baseline (591ddeb9...48575) remains unchanged without altering scored Layer-1 edit priors."
+      },
+      {
+        "queue_id": "M0154",
+        "pmid": "41690310",
+        "transition": "existing_wave1_ceg_candidate_promoted_to_ring1_and_crosslinked",
+        "d_screened_total": 0,
+        "d_ring1_screened": 1,
+        "d_new_screened": -1,
+        "d_advanced": 0,
+        "d_parked": 0,
+        "d_excluded": 0,
+        "d_wave1_extracted": 0,
+        "d_remaining_catalog": 0
+      },
+      {
+        "queue_id": "M0159",
+        "pmid": "41764741",
+        "transition": "existing_wave1_ceg_candidate_promoted_to_ring1_and_crosslinked",
+        "d_screened_total": 0,
+        "d_ring1_screened": 1,
+        "d_new_screened": -1,
+        "d_advanced": 0,
+        "d_parked": 0,
+        "d_excluded": 0,
+        "d_wave1_extracted": 0,
+        "d_remaining_catalog": 0
+      },
+      {
+        "queue_id": "M0206",
+        "pmid": "35953586",
+        "transition": "existing_wave1_ceg_candidate_promoted_to_ring1_and_crosslinked",
+        "d_screened_total": 0,
+        "d_ring1_screened": 1,
+        "d_new_screened": -1,
+        "d_advanced": 0,
+        "d_parked": 0,
+        "d_excluded": 0,
+        "d_wave1_extracted": 0,
+        "d_remaining_catalog": 0
+      },
+      {
+        "queue_id": "M0241",
+        "pmid": "31427818",
+        "transition": "existing_wave1_ceg_candidate_promoted_to_ring1_and_crosslinked",
+        "d_screened_total": 0,
+        "d_ring1_screened": 1,
+        "d_new_screened": -1,
+        "d_advanced": 0,
+        "d_parked": 0,
+        "d_excluded": 0,
+        "d_wave1_extracted": 0,
+        "d_remaining_catalog": 0
+      },
+      {
+        "queue_id": "M0189",
+        "pmid": "38843830",
+        "transition": "existing_wave2b_queued_candidate_extracted_to_ring1_and_wave1_ceg",
+        "d_screened_total": 0,
+        "d_ring1_screened": 1,
+        "d_new_screened": -1,
+        "d_advanced": 0,
+        "d_parked": 0,
+        "d_excluded": 0,
+        "d_wave1_extracted": 1,
+        "d_remaining_catalog": -1,
+        "prior_status_provenance": "author_reported_screening_funnel_ledger_annotation_not_independently_indexed_in_baseline_public_files"
+      },
+      {
+        "queue_id": "M1407",
+        "pmid": "2642862",
+        "transition": "existing_parked_context_record_promoted_to_ring1_and_wave1_ceg",
+        "d_screened_total": 0,
+        "d_ring1_screened": 1,
+        "d_new_screened": -1,
+        "d_advanced": 1,
+        "d_parked": -1,
+        "d_excluded": 0,
+        "d_wave1_extracted": 1,
+        "d_remaining_catalog": 0,
+        "prior_status_provenance": "author_reported_screening_funnel_ledger_annotation_not_independently_indexed_in_baseline_public_files"
+      },
+      {
+        "queue_id": "PMID:36944335",
+        "pmid": "36944335",
+        "transition": "new_literature_screened_advanced_to_ring1_and_wave1_ceg",
+        "d_screened_total": 1,
+        "d_ring1_screened": 1,
+        "d_new_screened": 0,
+        "d_advanced": 1,
+        "d_parked": 0,
+        "d_excluded": 0,
+        "d_wave1_extracted": 1,
+        "d_remaining_catalog": 0,
+        "discovery_provenance": "targeted_iip0035_proposal_screening_not_in_frozen_wave0_discovered_pmids_all_sources"
+      },
+      {
+        "queue_id": "PMID:39753706",
+        "pmid": "39753706",
+        "transition": "new_literature_screened_advanced_to_ring1_and_wave1_ceg",
+        "d_screened_total": 1,
+        "d_ring1_screened": 1,
+        "d_new_screened": 0,
+        "d_advanced": 1,
+        "d_parked": 0,
+        "d_excluded": 0,
+        "d_wave1_extracted": 1,
+        "d_remaining_catalog": 0,
+        "discovery_provenance": "targeted_iip0035_proposal_screening_not_in_frozen_wave0_discovered_pmids_all_sources"
+      },
+      {
+        "queue_id": "PMID:41436438",
+        "pmid": "41436438",
+        "transition": "new_literature_screened_advanced_to_ring1_and_wave1_ceg",
+        "d_screened_total": 1,
+        "d_ring1_screened": 1,
+        "d_new_screened": 0,
+        "d_advanced": 1,
+        "d_parked": 0,
+        "d_excluded": 0,
+        "d_wave1_extracted": 1,
+        "d_remaining_catalog": 0,
+        "discovery_provenance": "targeted_iip0035_proposal_screening_not_in_frozen_wave0_discovered_pmids_all_sources"
+      },
+      {
+        "queue_id": "PMID:41999746",
+        "pmid": "41999746",
+        "transition": "new_literature_screened_advanced_to_ring1_and_wave1_ceg",
+        "d_screened_total": 1,
+        "d_ring1_screened": 1,
+        "d_new_screened": 0,
+        "d_advanced": 1,
+        "d_parked": 0,
+        "d_excluded": 0,
+        "d_wave1_extracted": 1,
+        "d_remaining_catalog": 0,
+        "discovery_provenance": "targeted_iip0035_proposal_screening_not_in_frozen_wave0_discovered_pmids_all_sources"
+      }
+    ]
   },
   "record_class_distribution": {
     "computational_model_or_simulation": 4,
     "correspondence_or_secondary_summary": 1,
-    "empirical_primary_study": 1150,
+    "empirical_primary_study": 1156,
     "regulatory_or_guidance_document": 7,
     "superseded_preprint_duplicate": 3,
     "trial_registry_protocol": 11
@@ -59,7 +211,7 @@
   "study_identifier_types": {
     "DOI": 3,
     "NCT": 11,
-    "PMID": 983,
+    "PMID": 989,
     "SPL set id": 1,
     "URL": 5,
     "doi": 3,
@@ -68,20 +220,20 @@
   },
   "fidelity_tier_distribution": {
     "studies_by_manuscript_tier": {
-      "T1_Human_Clinical": 163,
-      "T2_NHP": 60,
+      "T1_Human_Clinical": 164,
+      "T2_NHP": 61,
       "T3_Humanized_Mouse": 50,
       "T4_Human_Islet_or_SC_Islet_InVitro": 299,
-      "T5_Rodent_or_CellLine": 578,
+      "T5_Rodent_or_CellLine": 582,
       "T6_Biophysical_Model_or_Regulatory": 26
     },
     "outcomes_by_manuscript_tier": {
-      "T1_Human_Clinical": 1440,
+      "T1_Human_Clinical": 1441,
       "T1_Human_Clinical_InVivo": 2,
-      "T2_NHP": 681,
+      "T2_NHP": 683,
       "T3_Humanized_Mouse": 668,
-      "T4_Human_Islet_or_SC_Islet_InVitro": 4451,
-      "T5_Rodent_or_CellLine": 6719,
+      "T4_Human_Islet_or_SC_Islet_InVitro": 4448,
+      "T5_Rodent_or_CellLine": 6727,
       "T6_Biophysical_Model_or_Regulatory": 206
     }
   },
@@ -89,14 +241,14 @@
     "by_direction": {
       "context_dependent_or_mixed": 3275,
       "descriptive_or_neutral": 8,
-      "favorable_to_intervention": 5339,
+      "favorable_to_intervention": 5345,
       "null_or_no_difference": 1829,
-      "unfavorable_or_toxic": 3175,
+      "unfavorable_or_toxic": 3177,
       "unknown_or_unresolvable": 541
     },
     "by_stat_type": {
       "adjusted_difference_95ci": 3,
-      "descriptive_scalar": 1026,
+      "descriptive_scalar": 1029,
       "fold_change": 754,
       "hazard_or_odds_ratio": 71,
       "mean_sd": 406,
@@ -104,10 +256,10 @@
       "mean_unspecified_spread": 310,
       "median_iqr": 54,
       "median_no_iqr": 66,
-      "proportion_or_rate": 2047,
-      "qualitative_no_pvalue": 45,
-      "qualitative_statement_only": 7,
-      "qualitative_with_pvalue": 8549,
+      "proportion_or_rate": 2046,
+      "qualitative_no_pvalue": 64,
+      "qualitative_statement_only": 15,
+      "qualitative_with_pvalue": 8528,
       "threshold_or_limit": 306
     }
   },
@@ -116,19 +268,19 @@
       "contradicts": 2,
       "noninformative": 19,
       "novel_upgrade_hypothesis": 619,
-      "scoping_qualification": 805,
-      "supports": 1038
+      "scoping_qualification": 811,
+      "supports": 1043
     },
     "by_incorporation": {
       "already_accounted_for": 320,
-      "not_yet_accounted_for": 945,
+      "not_yet_accounted_for": 956,
       "unknown": 1218
     },
     "by_applicability": {
       "domain_mismatch": 49,
-      "justified_bridge": 1403,
-      "matched_domain": 296,
-      "unvalidated_transfer": 735
+      "justified_bridge": 1410,
+      "matched_domain": 298,
+      "unvalidated_transfer": 737
     }
   },
   "gate_and_design_claim_balance": {
@@ -136,25 +288,25 @@
       "1": {
         "noninformative": 4,
         "novel_upgrade_hypothesis": 174,
-        "scoping_qualification": 189,
-        "supports": 259,
-        "total_links": 626
+        "scoping_qualification": 191,
+        "supports": 263,
+        "total_links": 632
       },
       "2A": {
         "contradicts": 1,
         "noninformative": 1,
         "novel_upgrade_hypothesis": 71,
-        "scoping_qualification": 139,
-        "supports": 197,
-        "total_links": 409
+        "scoping_qualification": 141,
+        "supports": 198,
+        "total_links": 412
       },
       "2B": {
         "contradicts": 1,
         "noninformative": 2,
         "novel_upgrade_hypothesis": 75,
-        "scoping_qualification": 132,
-        "supports": 172,
-        "total_links": 382
+        "scoping_qualification": 134,
+        "supports": 173,
+        "total_links": 385
       },
       "3": {
         "noninformative": 2,
@@ -174,9 +326,9 @@
         "contradicts": 1,
         "noninformative": 4,
         "novel_upgrade_hypothesis": 203,
-        "scoping_qualification": 245,
+        "scoping_qualification": 246,
         "supports": 321,
-        "total_links": 774
+        "total_links": 775
       },
       "cross_cutting": {
         "noninformative": 4,
@@ -190,26 +342,36 @@
       "A": {
         "contradicts": 2,
         "noninformative": 19,
-        "novel_upgrade_hypothesis": 611,
-        "scoping_qualification": 795,
+        "novel_upgrade_hypothesis": 608,
+        "scoping_qualification": 794,
         "supports": 1026,
-        "total_links": 2453
+        "total_links": 2449
       },
       "B": {
         "contradicts": 1,
         "noninformative": 18,
-        "novel_upgrade_hypothesis": 574,
-        "scoping_qualification": 695,
+        "novel_upgrade_hypothesis": 571,
+        "scoping_qualification": 696,
         "supports": 887,
-        "total_links": 2175
+        "total_links": 2173
+      },
+      "D1b": {
+        "scoping_qualification": 6,
+        "supports": 5,
+        "total_links": 11
       },
       "X": {
         "contradicts": 1,
         "noninformative": 18,
-        "novel_upgrade_hypothesis": 568,
-        "scoping_qualification": 690,
+        "novel_upgrade_hypothesis": 565,
+        "scoping_qualification": 689,
         "supports": 882,
-        "total_links": 2159
+        "total_links": 2155
+      },
+      "Y": {
+        "novel_upgrade_hypothesis": 3,
+        "scoping_qualification": 2,
+        "total_links": 5
       }
     }
   },
@@ -232,9 +394,9 @@
       "category": "lineage_identity_effector",
       "causal_isolation": "unverified_lexical_candidate_until_role_asserted",
       "mediation_status": "requires_paired_arm_and_override_review",
-      "linked_studies_count": 254,
-      "linked_arms_count": 71,
-      "linked_outcomes_count": 682
+      "linked_studies_count": 258,
+      "linked_arms_count": 77,
+      "linked_outcomes_count": 687
     },
     {
       "effector_id": "EFF:CD4_Th_Treg_Axis",
@@ -243,9 +405,9 @@
       "category": "immune_cellular_effector",
       "causal_isolation": "unverified_lexical_candidate_until_role_asserted",
       "mediation_status": "requires_paired_arm_and_override_review",
-      "linked_studies_count": 188,
-      "linked_arms_count": 134,
-      "linked_outcomes_count": 431
+      "linked_studies_count": 189,
+      "linked_arms_count": 135,
+      "linked_outcomes_count": 432
     },
     {
       "effector_id": "EFF:CD8_CTL_AlloAuto",
@@ -254,9 +416,9 @@
       "category": "immune_cellular_effector",
       "causal_isolation": "unverified_lexical_candidate_until_role_asserted",
       "mediation_status": "requires_paired_arm_and_override_review",
-      "linked_studies_count": 191,
-      "linked_arms_count": 138,
-      "linked_outcomes_count": 481
+      "linked_studies_count": 195,
+      "linked_arms_count": 141,
+      "linked_outcomes_count": 484
     },
     {
       "effector_id": "EFF:Calcineurin_NFAT_MAPK_p38_JNK_ERK",
@@ -287,9 +449,9 @@
       "category": "epigenetic_chromatin_effector",
       "causal_isolation": "unverified_lexical_candidate_until_role_asserted",
       "mediation_status": "requires_paired_arm_and_override_review",
-      "linked_studies_count": 100,
-      "linked_arms_count": 71,
-      "linked_outcomes_count": 221
+      "linked_studies_count": 101,
+      "linked_arms_count": 73,
+      "linked_outcomes_count": 223
     },
     {
       "effector_id": "EFF:Glycolysis_Mitochondria_KATP_Ca2_Exocytosis",
@@ -364,9 +526,9 @@
       "category": "cmc_genotoxicity_effector",
       "causal_isolation": "unverified_lexical_candidate_until_role_asserted",
       "mediation_status": "requires_paired_arm_and_override_review",
-      "linked_studies_count": 27,
-      "linked_arms_count": 22,
-      "linked_outcomes_count": 35
+      "linked_studies_count": 29,
+      "linked_arms_count": 25,
+      "linked_outcomes_count": 37
     },
     {
       "effector_id": "EFF:NFkB_Canonical_vs_NonCanonical_BCL10_MALT1",
@@ -397,7 +559,7 @@
       "category": "transcriptomic_splicing_effector",
       "causal_isolation": "unverified_lexical_candidate_until_role_asserted",
       "mediation_status": "requires_paired_arm_and_override_review",
-      "linked_studies_count": 5,
+      "linked_studies_count": 6,
       "linked_arms_count": 4,
       "linked_outcomes_count": 25
     },
@@ -430,7 +592,7 @@
       "category": "oncology_safety_effector",
       "causal_isolation": "unverified_lexical_candidate_until_role_asserted",
       "mediation_status": "requires_paired_arm_and_override_review",
-      "linked_studies_count": 137,
+      "linked_studies_count": 138,
       "linked_arms_count": 126,
       "linked_outcomes_count": 375
     }
@@ -1554,14 +1716,14 @@
       "fidelity_tier": "T5_Rodent_or_CellLine",
       "arms_count": 4,
       "outcomes_count": 6,
-      "links_count": 3,
+      "links_count": 4,
       "gates_touched": [
         "2A",
         "3",
         "5"
       ],
       "link_relations": {
-        "scoping_qualification": 1,
+        "scoping_qualification": 2,
         "supports": 2
       },
       "pmid": "41201433",
@@ -3774,13 +3936,13 @@
       "fidelity_tier": "T5_Rodent_or_CellLine",
       "arms_count": 4,
       "outcomes_count": 4,
-      "links_count": 2,
+      "links_count": 3,
       "gates_touched": [
         "5"
       ],
       "link_relations": {
         "novel_upgrade_hypothesis": 1,
-        "scoping_qualification": 1
+        "scoping_qualification": 2
       },
       "pmid": "41690310",
       "effector_topics": [
@@ -3875,12 +4037,13 @@
       "fidelity_tier": "T4_Human_Islet_or_SC_Islet_InVitro",
       "arms_count": 2,
       "outcomes_count": 3,
-      "links_count": 2,
+      "links_count": 3,
       "gates_touched": [
         "2A",
         "2B"
       ],
       "link_relations": {
+        "scoping_qualification": 1,
         "supports": 2
       },
       "pmid": "41764741",
@@ -4440,6 +4603,30 @@
       "pmid": "39581675"
     },
     {
+      "queue_id": "M0189",
+      "record_class": "empirical_primary_study",
+      "id_type": "PMID",
+      "id_value": "38843830",
+      "fidelity_tier": "T2_NHP",
+      "arms_count": 2,
+      "outcomes_count": 2,
+      "links_count": 1,
+      "gates_touched": [
+        "2A",
+        "2B"
+      ],
+      "link_relations": {
+        "supports": 1
+      },
+      "pub_year": 2024,
+      "pmid": "38843830",
+      "pmcid": "PMC11227404",
+      "doi": "10.1016/j.stem.2024.05.005",
+      "effector_topics": [
+        "EFF:CD8_CTL_AlloAuto"
+      ]
+    },
+    {
       "queue_id": "M0190",
       "record_class": "empirical_primary_study",
       "id_type": "PMID",
@@ -4769,13 +4956,14 @@
       "fidelity_tier": "T5_Rodent_or_CellLine",
       "arms_count": 8,
       "outcomes_count": 18,
-      "links_count": 2,
+      "links_count": 3,
       "gates_touched": [
+        "1",
         "5"
       ],
       "link_relations": {
         "novel_upgrade_hypothesis": 1,
-        "scoping_qualification": 1
+        "scoping_qualification": 2
       },
       "pmid": "35953586",
       "pmcid": "PMC9470532"
@@ -5529,13 +5717,15 @@
       "fidelity_tier": "T5_Rodent_or_CellLine",
       "arms_count": 2,
       "outcomes_count": 4,
-      "links_count": 2,
+      "links_count": 3,
       "gates_touched": [
+        "1",
         "2B",
         "5"
       ],
       "link_relations": {
         "novel_upgrade_hypothesis": 1,
+        "scoping_qualification": 1,
         "supports": 1
       },
       "pmid": "31427818"
@@ -12251,6 +12441,29 @@
       ]
     },
     {
+      "queue_id": "M1407",
+      "record_class": "empirical_primary_study",
+      "id_type": "PMID",
+      "id_value": "2642862",
+      "fidelity_tier": "T1_Human_Clinical",
+      "arms_count": 1,
+      "outcomes_count": 1,
+      "links_count": 1,
+      "gates_touched": [
+        "2B"
+      ],
+      "link_relations": {
+        "scoping_qualification": 1
+      },
+      "pub_year": 1989,
+      "pmid": "2642862",
+      "doi": "10.2337/diab.38.1.s85",
+      "effector_topics": [
+        "EFF:CD8_CTL_AlloAuto",
+        "EFF:CD4_Th_Treg_Axis"
+      ]
+    },
+    {
       "queue_id": "M1419",
       "record_class": "empirical_primary_study",
       "id_type": "PMID",
@@ -16575,6 +16788,28 @@
       ]
     },
     {
+      "queue_id": "PMID:36944335",
+      "record_class": "empirical_primary_study",
+      "id_type": "PMID",
+      "id_value": "36944335",
+      "fidelity_tier": "T5_Rodent_or_CellLine",
+      "arms_count": 1,
+      "outcomes_count": 1,
+      "links_count": 1,
+      "gates_touched": [
+        "1"
+      ],
+      "link_relations": {
+        "supports": 1
+      },
+      "pub_year": 2023,
+      "pmid": "36944335",
+      "doi": "10.1016/j.stem.2023.02.008",
+      "effector_topics": [
+        "EFF:BetaCell_Maturation_Identity_TF_Network"
+      ]
+    },
+    {
       "queue_id": "PMID:38844131",
       "record_class": "empirical_primary_study",
       "id_type": "PMID",
@@ -16619,6 +16854,29 @@
       ]
     },
     {
+      "queue_id": "PMID:39753706",
+      "record_class": "empirical_primary_study",
+      "id_type": "PMID",
+      "id_value": "39753706",
+      "fidelity_tier": "T5_Rodent_or_CellLine",
+      "arms_count": 2,
+      "outcomes_count": 2,
+      "links_count": 1,
+      "gates_touched": [
+        "1"
+      ],
+      "link_relations": {
+        "supports": 1
+      },
+      "pub_year": 2025,
+      "pmid": "39753706",
+      "doi": "10.1038/s41589-024-01799-8",
+      "effector_topics": [
+        "EFF:BetaCell_Maturation_Identity_TF_Network",
+        "EFF:Epigenetic_CpG_Methylation_Promoter_Silencing"
+      ]
+    },
+    {
       "queue_id": "PMID:40976248",
       "record_class": "empirical_primary_study",
       "id_type": "PMID",
@@ -16641,6 +16899,30 @@
       ]
     },
     {
+      "queue_id": "PMID:41436438",
+      "record_class": "empirical_primary_study",
+      "id_type": "PMID",
+      "id_value": "41436438",
+      "fidelity_tier": "T5_Rodent_or_CellLine",
+      "arms_count": 1,
+      "outcomes_count": 1,
+      "links_count": 1,
+      "gates_touched": [
+        "1"
+      ],
+      "link_relations": {
+        "supports": 1
+      },
+      "pub_year": 2025,
+      "pmid": "41436438",
+      "pmcid": "PMC12727690",
+      "doi": "10.1038/s41421-025-00852-7",
+      "effector_topics": [
+        "EFF:BetaCell_Maturation_Identity_TF_Network",
+        "EFF:Mutagenicity_Genotoxicity_Ames_DNA_Damage"
+      ]
+    },
+    {
       "queue_id": "PMID:41543848",
       "record_class": "empirical_primary_study",
       "id_type": "PMID",
@@ -16660,6 +16942,29 @@
       "effector_topics": [
         "EFF:Humoral_DSA_FcR_ADCC_Complement_CDC",
         "EFF:NK_Receptor_Balance_NKG2A_DNAM1_TIGIT_NKG2D"
+      ]
+    },
+    {
+      "queue_id": "PMID:41999746",
+      "record_class": "empirical_primary_study",
+      "id_type": "PMID",
+      "id_value": "41999746",
+      "fidelity_tier": "T5_Rodent_or_CellLine",
+      "arms_count": 2,
+      "outcomes_count": 1,
+      "links_count": 1,
+      "gates_touched": [
+        "1"
+      ],
+      "link_relations": {
+        "supports": 1
+      },
+      "pub_year": 2026,
+      "pmid": "41999746",
+      "doi": "10.1016/j.cell.2026.03.038",
+      "effector_topics": [
+        "EFF:Mutagenicity_Genotoxicity_Ames_DNA_Damage",
+        "EFF:BetaCell_Maturation_Identity_TF_Network"
       ]
     },
     {

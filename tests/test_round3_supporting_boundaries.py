@@ -7608,7 +7608,7 @@ def test_55_iip0031_locus2_modeb_comparators_rule_s11_and_tier6b_per_fraction_th
 
     p_defs = pc_mod.load_product_contracts(ROOT)
     by_id = {p["product_variant_id"]: p for p in p_defs["products"]}
-    assert len(p_defs["products"]) == 33
+    assert len(p_defs["products"]) == 38
     l2_v3_ids = sorted(pc_mod.STAGED_LOCUS2_V3_PRODUCT_IDS)
     assert len(l2_v3_ids) == 8
 

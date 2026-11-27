@@ -3,11 +3,11 @@
 
 Produces two deterministic, rights-aware public artifacts under `data/extracted/`:
   1. `data/extracted/context_evidence_graph_v1.json`
-     Full structured T1D Context-Evidence Graph across 1,176 total CEG records
-     (1,150 empirical_primary_study + 11 trial_registry_protocol + 7 regulatory_or_guidance_document
+     Full structured T1D Context-Evidence Graph across 1,182 total CEG records
+     (1,156 empirical_primary_study + 11 trial_registry_protocol + 7 regulatory_or_guidance_document
      + 4 computational_model_or_simulation + 1 correspondence_or_secondary_summary + 3 superseded_preprint_duplicate),
-     7,740 experimental and control arms, 14,167 structured outcomes,
-     2,483 blueprint claim/contradiction/scoping links, 20 biological effector
+     7,749 experimental and control arms, 14,175 structured outcomes,
+     2,494 blueprint claim/contradiction/scoping links, 20 biological effector
      nodes, and 10 Idea Graveyard cross-links. All third-party verbatim quotes
      are withheld (`quote_sha256` + `source_pin` retained) and source-overlapping
      prose spans (>=6-word normalized source shingles or >=40-character dossier
@@ -212,6 +212,10 @@ def _classify_gates_and_designs(target: str) -> tuple[list[str], list[str]]:
         designs.append("B")
     if re.search(r"\bDesign\s*X\b|\bIslet-X\b|\bChallenger\s*X\b|\bINS\b.*\bsignal|\bFasL\b", t, re.I):
         designs.append("X")
+    if re.search(r"\bDesign\s*Y\b|\bDesign\s*Y-FullStack\b", t, re.I):
+        designs.append("Y")
+    if re.search(r"\bD1b(?:-Auto-C)?\b|\bDesign\s*D1b\b", t, re.I):
+        designs.append("D1b")
     if not designs:
         designs = ["A", "B", "X"]
     return sorted(set(gates)), sorted(set(designs))
@@ -273,6 +277,28 @@ CURATED_INELIGIBLE_EDGE_IDS = frozenset({
     "PMID:42020736:L1",
     "PMID:42056515:L1",
     "PMID:42749803:L1",
+    "M0189:L1",
+    "M1407:L1",
+    "PMID:36944335:L1",
+    "PMID:39753706:L1",
+    "PMID:41436438:L1",
+    "PMID:41999746:L1",
+    "M0051:L4",
+    "M0154:L3",
+    "M0159:L3",
+    "M0206:L3",
+    "M0241:L3",
+    # Legacy edges downgraded under IIP-0035 after all cited outcomes reconciled to qualitative_no_pvalue (plus M0051:L3 & M0154:L2 unvalidated_transfer and M0206:L2 untested screening-policy novel_upgrade_hypothesis)
+    "M0051:L1",
+    "M0051:L2",
+    "M0051:L3",
+    "M0154:L1",
+    "M0154:L2",
+    "M0159:L1",
+    "M0159:L2",
+    "M0206:L2",
+    "M0241:L1",
+    "M0241:L2",
 })
 CURATED_NON_EMPIRICAL_OUTCOME_IDS = frozenset({
     "M0049:O1", "M0049:O2", "M0049:O3", "M0049:O4", "M0049:O5",
@@ -446,8 +472,8 @@ def build_layer1_atlas_from_ceg(ceg: dict[str, Any]) -> dict[str, Any]:
             f"{len(arms):,} experimental/control arms, {len(outcomes):,} structured outcomes, and {len(edges):,} blueprint links "
             f"across all five Islet-1 biological gates and 20 effector pathways, screened from "
             f"{ceg['screening_funnel']['screened_records_total']:,} deduplicated candidate records. "
-            "The Layer-1 2,160-stack prior-anchored scenario evaluator retains its 594-study Ring-1 scoring baseline "
-            "unchanged (+0.00 pp under IIP-0034) unless an explicit Islet Improvement Proposal "
+            "The Layer-1 2,160-stack prior-anchored scenario evaluator retains its 604-study Ring-1 scoring baseline "
+            "unchanged (+0.00 pp under IIP-0035) unless an explicit Islet Improvement Proposal "
             "updates a module parameter or Idea Graveyard rule."
         ),
         "summary": {
@@ -464,7 +490,7 @@ def build_layer1_atlas_from_ceg(ceg: dict[str, Any]) -> dict[str, Any]:
             "ring1_empirical_core_studies_in_ceg": r1_empirical_count,
             "new_expansion_empirical_studies_in_ceg": non_r1_empirical_count,
             "non_r1_ceg_records_total": non_r1_total_count,
-            "ring1_scoring_baseline_studies_unchanged": 594,
+            "ring1_scoring_baseline_studies_unchanged": 604,
             "experimental_and_control_arms_total": len(arms),
             "structured_outcomes_total": len(outcomes),
             "outcomes_cited_by_blueprint_links": cited_outcomes,
@@ -510,14 +536,14 @@ def verify_ceg_payload(ceg: dict[str, Any], repo_root: Path = REPO_ROOT, *, requ
     effectors = ceg.get("effectors")
     graveyard = ceg.get("graveyard_index")
 
-    if not isinstance(studies, dict) or len(studies) != 1176:
-        raise ValueError(f"Expected 1,176 studies in CEG, got {len(studies) if isinstance(studies, dict) else type(studies)}")
-    if not isinstance(arms, dict) or len(arms) != 7740:
-        raise ValueError(f"Expected 7,740 arms in CEG, got {len(arms) if isinstance(arms, dict) else type(arms)}")
-    if not isinstance(outcomes, dict) or len(outcomes) != 14167:
-        raise ValueError(f"Expected 14,167 outcomes in CEG, got {len(outcomes) if isinstance(outcomes, dict) else type(outcomes)}")
-    if not isinstance(edges, list) or len(edges) != 2483:
-        raise ValueError(f"Expected 2,483 edges in CEG, got {len(edges) if isinstance(edges, list) else type(edges)}")
+    if not isinstance(studies, dict) or len(studies) != 1182:
+        raise ValueError(f"Expected 1,182 studies in CEG, got {len(studies) if isinstance(studies, dict) else type(studies)}")
+    if not isinstance(arms, dict) or len(arms) != 7749:
+        raise ValueError(f"Expected 7,749 arms in CEG, got {len(arms) if isinstance(arms, dict) else type(arms)}")
+    if not isinstance(outcomes, dict) or len(outcomes) != 14175:
+        raise ValueError(f"Expected 14,175 outcomes in CEG, got {len(outcomes) if isinstance(outcomes, dict) else type(outcomes)}")
+    if not isinstance(edges, list) or len(edges) != 2494:
+        raise ValueError(f"Expected 2,494 edges in CEG, got {len(edges) if isinstance(edges, list) else type(edges)}")
     if not isinstance(effectors, dict) or len(effectors) != 20:
         raise ValueError(f"Expected 20 effectors in CEG, got {len(effectors) if isinstance(effectors, dict) else type(effectors)}")
     if not isinstance(graveyard, list) or len(graveyard) != 10:
@@ -810,15 +836,282 @@ def verify_ceg_payload(ceg: dict[str, Any], repo_root: Path = REPO_ROOT, *, requ
         if _vid_g not in set(studies[_aq_g].get("variable_arm_ids") or []):
             raise ValueError(f"Arm {_vid_g} owned by {_aq_g} is missing from study variable_arm_ids")
 
-    # Strict IIP-0034 new-record typed arm FKs, same-study joins, effector refs, no-partial-dossier span audit & full-leaf rolling-40 _SourceGuard
+    # Strict IIP-0034 & IIP-0035 new-record typed arm FKs, same-study joins, effector refs, no-partial-dossier span audit & full-leaf rolling-40 _SourceGuard
     _iip0034_qids = frozenset({"PMID:17375075", "PMID:42020736", "PMID:42056515", "PMID:42749803"})
     _iip0034_eids = frozenset({"PMID:17375075:L1", "PMID:42020736:L1", "PMID:42056515:L1", "PMID:42749803:L1", "M1522:L4"})
     _iip0034_req_pmids = ("17375075", "39696686", "42020736", "42056515", "42749803")
+    _iip0035_qids = frozenset({"M0189", "M1407", "PMID:36944335", "PMID:39753706", "PMID:41436438", "PMID:41999746"})
+    _iip0035_expected_edge_bindings = {
+        "M0189:L1": ("M0189", ("M0189:O1", "M0189:O2"), "9489a2d260775e0591af72799e3a2297260f4b2df14dc29cdc59acbad01e7c7b"),
+        "M1407:L1": ("M1407", ("M1407:O1",), "97edc6fff8dca53a997b4d6c544eebad6253eba29f0cd720cf335994947f451a"),
+        "PMID:36944335:L1": ("PMID:36944335", ("PMID:36944335:O1",), "8177ff0a7f4837d6609155d02f26064aa674e6d6433d5519344421888b80d8cb"),
+        "PMID:39753706:L1": ("PMID:39753706", ("PMID:39753706:O1", "PMID:39753706:O2"), "7f8df9e1e6c03a9d386e2e57c0592bc28fe88d8694487daf36d324ef1efe40cf"),
+        "PMID:41436438:L1": ("PMID:41436438", ("PMID:41436438:O1",), "05ce92c5032f16e4b53d438cdcf9b63b4251d57a8769661be819ce1a104379d6"),
+        "PMID:41999746:L1": ("PMID:41999746", ("PMID:41999746:O1",), "9a30fdc5656e490bf78c93d018a740d8b67eb27c2059a73a0059279db2db9e33"),
+        "M0051:L4": ("M0051", ("M0051:O1", "M0051:O5"), "fa7fb021669e6a71f22cc4078dd477bda9904c47e819b2c250a9e2081f9962bf"),
+        "M0154:L3": ("M0154", ("M0154:O1", "M0154:O3", "M0154:O4"), "dfc1fb8e65f7db6084552b462c21532d9cab4d326ca13eef0f280e50e4cd5f2c"),
+        "M0159:L3": ("M0159", ("M0159:O2",), "1c18c658d8351a5128abb0b5a21846fa2a15fe4001b0b733cee5d650d51de8cc"),
+        "M0206:L3": ("M0206", ("M0206:O1", "M0206:O2", "M0206:O9", "M0206:O11", "M0206:O12", "M0206:O17"), "9c3f1e834d57b4683fcb135274c0cc00e482f0752ba61636b1dd595b75d796b5"),
+        "M0241:L3": ("M0241", ("M0241:O1", "M0241:O2", "M0241:O4"), "60a3e30568b5bd329c5595fbfb5fa779c344f597f0ba8f0bc84c049f9f24c00f"),
+    }
+    _iip0035_eids = frozenset(_iip0035_expected_edge_bindings)
+    _iip0035_adjudicated_inelig_legacy_outcomes = {
+        "M0051:L1": (("M0051:O1", "M0051:O5"), "fda2fee5e96b1ae2f699dea5a5919eef81acb185440cfdb446157be83fff582b"),
+        "M0051:L2": (("M0051:O1", "M0051:O5"), "b0b8d71b045b709de53cc8d8975a44f88bf343886f9944a8775f4f107b0acb29"),
+        "M0051:L3": (("M0051:O4",), "a1b650ca58d7ee3f65d7ce05ad380e3bcbe2de5515f58b2ad8ce2f5b9ce6e147"),
+        "M0154:L1": (("M0154:O1", "M0154:O2"), "b0b04b722d7ae4282cf253721cc6c9a536b39ba352dea2d69f2711eb947c5966"),
+        "M0154:L2": (("M0154:O1", "M0154:O3", "M0154:O4"), "54844b79b54e02a1ba799f3bc4cae9366b949d7ad737ab0ff317aec213f36667"),
+        "M0159:L1": (("M0159:O2", "M0159:O3"), "eec8033b2915fc19c425683bff865193b98e0534e520b52a50e07bb2cd980081"),
+        "M0159:L2": (("M0159:O1", "M0159:O2", "M0159:O3"), "c4ab223e2234ae63414688b3c3c0110cfba5f2f15c189331945cc3afccee5258"),
+        "M0206:L2": (("M0206:O9", "M0206:O12", "M0206:O10", "M0206:O14", "M0206:O17"), "bf2d25dc5e33e302309c364e95c85c87934028065912bf4673e67b27c91de241"),
+        "M0241:L1": (("M0241:O2", "M0241:O3"), "0415b7d3450a99d88ec2b370284472391a5b9c4399f1f72e05497c6eaac7f255"),
+        "M0241:L2": (("M0241:O1", "M0241:O4"), "fe8c8f2f7c3d40ba478a86ce88e9a9c49d7ca24f6df3a2f1b9a6f3fa807554bb"),
+    }
+    _iip0035_m206_l1_expected_sha = "c8f8cb8f03df508b94717777577b0e2b76754a49c0b55140cf7f02f2d57224c1"
+    _iip0035_expected_arm_digests = {
+        "VAR:M0189:A1": "9020bdec3108bc526a05cf1e13398c37e0b7d1c01d2f7a0b8a5129e8ff7dbd19",
+        "VAR:M0189:A2_allogeneic_ctrl": "d9a3ab49db3a1550ec72677e231e8f78c0669498b1ce87f9b3cc15809d9af47e",
+        "VAR:M1407:A1": "80003667e1218301f14566c81b6b226f12f08b72e8ebff76ea177c81e2e11ee8",
+        "VAR:PMID:36944335:A1": "223640329c6632b6a2bd0adb299ac60ed8629b709f0bd573a93abfd9335663d1",
+        "VAR:PMID:39753706:A1": "12df2f6220286f5d8e98d4f9f950e2dfc95f30e207cb367fb44e8a483ab195c5",
+        "VAR:PMID:39753706:A2_original_protocol_ctrl": "97ce0849c5fe173b9707d41139d258cc2c2038dff728c2301838e51fb7a776ad",
+        "VAR:PMID:41436438:A1": "47e244e5b004fbfad064117b9e2becb09f127252c705e773f4b59a30927e2776",
+        "VAR:PMID:41999746:A1": "f050b9f19a1ca640dc14637faf81855973cb5dc3c6376c0429e9af0371c9db03",
+        "VAR:PMID:41999746:A2_p53_suppressed": "aff8562531c232b9f4f0ec8901053ba94fe42ce918a62eadf4ced84ddfff0c50",
+    }
+    _iip0035_expected_study_digests = {
+        "M0051": "6531ee32a16d308915a5d42f3a5cf97e74260b6ed4406c14042c218aad55ff94",
+        "M0154": "493ea738a959291d4fe95f298556f4e22a447a91889d38c39b97a9322d1d0f22",
+        "M0159": "02ab4902a6c9f52b7033855e4c6e112fb774c899d936ddfe54f899663a8299da",
+        "M0189": "9d8e7e951be7eecbe9761771166fbf91610828a6f468b91c7851a8ed963c652d",
+        "M0206": "5b6984efae346da92c8d6c8f322c88eb0d3f171dcc23d841b7d7f2357449ae9f",
+        "M0241": "0d02ded3504df0ca0df1743c25cec1529a160873e4b7b486b8c37b9b91216bba",
+        "M1407": "2b1fe5f1b6c0b09e6d81c7e0519e2862d9015865c8eeeed23f90e6bc6b567274",
+        "PMID:36944335": "27afa1ef3895cb36621504ab3dda8ac703b2416d5b5675b5c60dc6a093db2105",
+        "PMID:39753706": "619cf75493ec231fb729348c03785c095019eaa3e5211376abde09505eaa594c",
+        "PMID:41436438": "e7a680c29f0df638f85075d1475170c1a923241cd309910a34f5da982a338935",
+        "PMID:41999746": "b370082130c9c8fedd438db6fa718e0c5978832116262baf92c07cbf7bb67e94",
+    }
+    _iip0035_expected_dossier_digests = {
+        "2642862": "a463f7f1770ed78ca7c892db54c59b2970cc83226cd48e71302218b9b48d89fa",
+        "31427818": "f6593b87fda7d0bc1211d17d30288dbb86f6b408af77482adf4022e7531c1b98",
+        "35953586": "6ff5efa024e5614f8a98125f51fbb3958b90c36dc1426293328b6537fa3d678b",
+        "36944335": "ef775e8802dc187a5e04949fb88c2dda258044d9a205849a08699ac01a3eb03a",
+        "38843830": "cc6ba867300b9c420070dd7bb25a7a59e7c5395269388652b50ca567f24611d1",
+        "39753706": "948c18dddd97935f2c0cb6fa73fd905c8dc2aff31e7b64dfbe39d574059c552e",
+        "41201433": "184652ef2fdbc682abf441f25930a58bb990f238e4f3e8846bf4c229ae8dd544",
+        "41436438": "9db3a80db0a50ded4b7d8054c451b9ed017ffe3e17201808eef81b7d84b2e787",
+        "41690310": "b55f46afb7307ff6793ad519b06a5735aee77a0b610cdeda0c8ed0d03fec3d5f",
+        "41764741": "e7095034b47de98edcf0c2c8a46a1659600e2299a8928880b56b81ec6a58dbe6",
+        "41999746": "dd2f6aac6a4812460da51ebae389980cf025d626ea41f810bd985d5193c67aa1",
+    }
+    _iip0035_adjudicated_inelig_legacy = frozenset(_iip0035_adjudicated_inelig_legacy_outcomes)
+    _iip0035_req_pmids = ("2642862", "31427818", "35953586", "36944335", "38843830", "39753706", "41201433", "41436438", "41690310", "41764741", "41999746")
+    _iip0035_crosslink_eids = frozenset({"M0051:L4", "M0154:L3", "M0159:L3", "M0206:L3", "M0241:L3"})
+    _strict_study_expected_pmid = {
+        "PMID:17375075": "17375075", "PMID:42020736": "42020736", "PMID:42056515": "42056515", "PMID:42749803": "42749803",
+        "M0189": "38843830", "M1407": "2642862", "PMID:36944335": "36944335", "PMID:39753706": "39753706",
+        "PMID:41436438": "41436438", "PMID:41999746": "41999746",
+    }
+    _strict_new_qids = _iip0034_qids | _iip0035_qids
+    _strict_new_eids = _iip0034_eids | _iip0035_eids
+    _strict_req_pmids = _iip0034_req_pmids + _iip0035_req_pmids
+    _edges_by_eid_35 = {e.get("edge_id"): e for e in edges if isinstance(e, dict) and isinstance(e.get("edge_id"), str)}
+    _missing_35_eids = sorted(eid for eid in _iip0035_expected_edge_bindings if eid not in _edges_by_eid_35)
+    if _missing_35_eids:
+        raise ValueError(f"Missing required IIP-0035 CEG edges: {_missing_35_eids}")
+    for _eid35, (_exp_owner35, _exp_outs35, _exp_esha35) in sorted(_iip0035_expected_edge_bindings.items()):
+        _eobj35 = _edges_by_eid_35[_eid35]
+        if _eobj35.get("queue_id") != _exp_owner35:
+            raise ValueError(f"IIP-0035 edge {_eid35} owner queue_id={_eobj35.get('queue_id')!r} mismatches expected {_exp_owner35!r}")
+        if tuple(_eobj35.get("cited_outcome_tuples") or ()) != _exp_outs35:
+            raise ValueError(f"IIP-0035 edge {_eid35} cited_outcome_tuples={_eobj35.get('cited_outcome_tuples')!r} mismatches expected {list(_exp_outs35)!r}")
+        if _eobj35.get("primary_certification_eligible") is not False:
+            raise ValueError(f"IIP-0035 edge {_eid35} must keep primary_certification_eligible=False")
+        if _eid35 in _iip0035_crosslink_eids:
+            _pn35 = _eobj35.get("provenance_note")
+            if (
+                not isinstance(_pn35, str)
+                or len(_pn35.strip()) < 40
+                or not re.search(r"(?i)\b(?:reused|legacy|prior)\b", _pn35)
+                or not re.search(r"(?i)\b(?:outside|non-certifying|primary_certification_eligible\s*=\s*false|scoping)\b", _pn35)
+            ):
+                raise ValueError(f"IIP-0035 cross-link edge {_eid35} missing grounded provenance_note disclosing reused legacy outcomes and non-certifying scoping status")
+    for _leg_eid, (_leg_outs, _leg_sha) in sorted(_iip0035_adjudicated_inelig_legacy_outcomes.items()):
+        if _leg_eid not in _edges_by_eid_35:
+            raise ValueError(f"Missing adjudicated legacy edge {_leg_eid}")
+        _le_o = _edges_by_eid_35[_leg_eid]
+        if _le_o.get("primary_certification_eligible") is not False:
+            raise ValueError(f"Adjudicated legacy ineligible edge {_leg_eid} must have primary_certification_eligible=False")
+        if tuple(_le_o.get("cited_outcome_tuples") or ()) != _leg_outs:
+            raise ValueError(f"Adjudicated legacy edge {_leg_eid} cited_outcome_tuples={_le_o.get('cited_outcome_tuples')!r} mismatches pinned {list(_leg_outs)!r}")
+        if not isinstance(_le_o.get("legacy_certification_adjudication_note"), str) or len(_le_o["legacy_certification_adjudication_note"].strip()) < 25:
+            raise ValueError(f"Adjudicated legacy edge {_leg_eid} missing required legacy_certification_adjudication_note")
+    _iip0035_reclass_qual_oids = frozenset({
+        "M0051:O1", "M0051:O2", "M0051:O3", "M0051:O4", "M0051:O5", "M0051:O6",
+        "M0154:O1", "M0154:O2", "M0154:O3", "M0154:O4",
+        "M0159:O1", "M0159:O2", "M0159:O3", "M0206:O16", "M0206:O17",
+        "M0241:O1", "M0241:O2", "M0241:O3", "M0241:O4",
+    })
+    _QUANTITATIVE_CEG_STAT_TYPES = frozenset({
+        "adjusted_difference_95ci", "descriptive_scalar", "fold_change", "hazard_or_odds_ratio",
+        "mean_sd", "mean_sem", "mean_unspecified_spread", "median_iqr", "median_no_iqr",
+        "proportion_or_rate", "qualitative_with_pvalue", "threshold_or_limit",
+    })
+    def _is_strictly_quantitative_outcome(_o_obj: object) -> bool:
+        if not isinstance(_o_obj, dict):
+            return False
+        _st_t = _o_obj.get("stat_type")
+        if not isinstance(_st_t, str) or _st_t not in _QUANTITATIVE_CEG_STAT_TYPES:
+            return False
+        _qs_s = _o_obj.get("quantitative_summary")
+        if not isinstance(_qs_s, str) or not _qs_s.strip():
+            return False
+        if _qs_s.startswith("[Structured outcome "):
+            _m_st = re.search(r"\| stat=([^|\]]+)", _qs_s)
+            _m_dr = re.search(r"\| direction=([^|\]]+)", _qs_s)
+            _m_sh = re.search(r"\| text_sha256=([0-9a-f]{64})\]", _qs_s)
+            return bool(
+                _m_st and _m_st.group(1).strip() == _st_t
+                and _m_dr and _m_dr.group(1).strip() == str(_o_obj.get("direction") or "")
+                and _m_sh and _m_sh.group(1) != ("0" * 64)
+            )
+        _qs_clean = re.sub(r"(?i)\b(?:19|20)\d{2}\b|\bfig(?:ure|\.)?\s*\d+[a-z]?\b|\bno\s+(?:statistically\s+)?significant\b", "", _qs_s)
+        return bool(re.search(r"(?i)\d|\b(?:seven|eight|nine|ten)\b|\b(?:p|q)\s*[<>=]", _qs_clean))
+    _m206_l1 = _edges_by_eid_35.get("M0206:L1")
+    if _m206_l1 is None:
+        raise ValueError("Missing adjudicated legacy edge M0206:L1")
+    if _m206_l1.get("primary_certification_eligible") is not True:
+        raise ValueError("Adjudicated legacy edge M0206:L1 must retain primary_certification_eligible=True")
+    if not isinstance(_m206_l1.get("legacy_certification_adjudication_note"), str) or len(_m206_l1["legacy_certification_adjudication_note"].strip()) < 25:
+        raise ValueError("Adjudicated legacy edge M0206:L1 missing required legacy_certification_adjudication_note")
+    _m206_l1_cited = set(_m206_l1.get("cited_outcome_tuples") or ())
+    for _mq1_oid in ("M0206:O1", "M0206:O4", "M0206:O5", "M0206:O9", "M0206:O12", "M0206:O14"):
+        if _mq1_oid not in _m206_l1_cited or not _is_strictly_quantitative_outcome(outcomes.get(_mq1_oid)):
+            raise ValueError("Adjudicated eligible edge M0206:L1 lost required quantitative supporting outcomes (M0206:O1/O4/O5/O9/O12/O14)")
+    _m206_quant_pins = {
+        "M0206:O9": "1fb9a20a547190d51e307c1166d1fa6740f56170a1780c32dfe3afe8fd6b67a0",
+        "M0206:O10": "03ebbd6bb92b56428a1794c5559276cc3309a89d7cecaab7689deb00c40b4a02",
+        "M0206:O12": "4086954e70c1a349884f93c82fce65a0386a125c54f6fbffcb785588250a6634",
+        "M0206:O13": "f268b00678dfa3016807ec43a9f303505c248d23d77add088063323d87eecab5",
+        "M0206:O14": "15d5092f8f123c4987a331cd186296b398e552ead87417cd8aac9ab8a511ac9b",
+    }
+    _iip0035_reclass_qual_full_pins = {
+        "M0051:O1": "3c280612321fcd0a2c1702a2e245f02715a8b4af2a22245afcda8690ca45b391",
+        "M0051:O2": "e947f8ed906f1f1900fe00e44be9adaa3bd51ded06a7c6d3864d80dc27f30ede",
+        "M0051:O3": "e91c31a485df12a9fdb5f4e63623b7bcac9226b13612c1db3a4f448f3472bbc0",
+        "M0051:O4": "4e485c64057d1c8c6b721e55afe6f83a7e3983c424b93250ec5da6904964578c",
+        "M0051:O5": "e6be27c3d21e2c23e83c56be1f8daafa2d62b8a2e481a18c32eadc751ab59e6a",
+        "M0051:O6": "381e4d62f9acbd2e727d6e48e2f17847e2b4beffc71852bf91460ecbe15093cc",
+        "M0154:O1": "ccc97f2925d55996613d686c019577a2516dcaa8117e09e738acae00b8127fa8",
+        "M0154:O2": "d0e8b9d6db11a449654b43e432df2ebab81910a16f9b03c33697abfe0f0fd296",
+        "M0154:O3": "390f6b65652ddbe8ada191f2255171f0c553a74e40c87319824be5b11d20273a",
+        "M0154:O4": "ef6231cf1cb2443b08777ad8966a11390cae6c5f1aa42fd51d42879e73ea4fec",
+        "M0159:O1": "71d9e24fc182d73ad25926ec59cebeaa919350e0892ae86b456a5d71c6d3e66d",
+        "M0159:O2": "553d2c8471937ee648dca3d48ccb9b739078d38e913a7697900703945ad81108",
+        "M0159:O3": "5ff62feeb8b62d420a14e38214b9dc49ce0217872cf7920808e3813247258ab3",
+        "M0206:O16": "48a1c081cf79d9594f51247a51c4d49886e843bab4ff46a6f9d447e8e665727c",
+        "M0206:O17": "05c8575a22e162ef2ce26b238485246762d3a1287e3486485e66e5d0441d0630",
+        "M0241:O1": "31436d5fdd95b9180016ddfd7aa5a048034af6b17963b3967b41d25db758392c",
+        "M0241:O2": "d7c3513790f8c23e57d0df00846f61f48b54222b16454d599a9b683dd2ce32f9",
+        "M0241:O3": "eecf009c9fb794a349020f96af4ef19910e3bdd9db69d32540d8be881f9a5cdf",
+        "M0241:O4": "b4f3b1f2529d4ec7b4170177d0ca3bd0b2cf52cb15c23638648161fcd94183b9",
+    }
+    _iip0035_extra_touched_legacy_pins = {
+        "M0206:O1": "cf8d9f6e1a0b1d2775456eb21f408f6f4d8c00fde2a02e5a13ea65ebb55d2a8e",
+        "M0206:O2": "0ce6f72a53bfb54a8250c42a68c012a2f5a4dd7fe373d913721227390a1b62e1",
+        "M0206:O11": "1c45715bbc92a8526f97d331eb79c3e3916eddb383a9e164a7141e012a6d1498",
+    }
+    for _e_rc in edges:
+        if _e_rc.get("primary_certification_eligible") is True:
+            _rc_cites = list(_e_rc.get("cited_outcome_tuples") or ())
+            if any(tok in _iip0035_reclass_qual_oids for tok in _rc_cites):
+                if not any(_is_strictly_quantitative_outcome(outcomes.get(tok)) for tok in _rc_cites):
+                    raise ValueError(f"Primary-certification-eligible edge {_e_rc.get('edge_id')} citing reclassified qualitative outcomes retains zero quantitative outcomes")
+    _iip0035_expected_outcome_semantics = {
+        "M0189:O1": (("VAR:M0189:A1",), ("VAR:M0189:A2_allogeneic_ctrl",), "favorable_to_intervention", "2ec0a977b228e707bc2625dbecf2e40f2cfe382374a8e468e4b8820d637f6db4", ("8", "14", "autologous")),
+        "M0189:O2": (("VAR:M0189:A2_allogeneic_ctrl",), (), "unfavorable_or_toxic", "42085854453c51bb47668076b3a22186a9f3c504532f88a6399cdecddee78fc5", ("8", "weeks", "allogeneic")),
+        "M1407:O1": (("VAR:M1407:A1",), (), "unfavorable_or_toxic", "43fb4a54bd27bc337ee9e68e7f1e186093d7c11f24ad9a6d03481ef0ff5c36bc", ("200", "8", "3", "5")),
+        "PMID:36944335:O1": (("VAR:PMID:36944335:A1",), (), "favorable_to_intervention", "01bb7a582cf7547daeb954f55a95499f7281452043f89c1bfa9a197a65932e85", ("16", "17")),
+        "PMID:39753706:O1": (("VAR:PMID:39753706:A1",), ("VAR:PMID:39753706:A2_original_protocol_ctrl",), "favorable_to_intervention", "58bb03f7d4906ac6fc056f34de4ead6a76048797c435967179b231ee97df7a29", ("20-fold", "16", "resistant")),
+        "PMID:39753706:O2": (("VAR:PMID:39753706:A1",), (), "favorable_to_intervention", "a7af9f243994a87a0abef115cbc4d55bd86076cc0988b22ffe82025757c46b65", ("10", "day", "15", "100%")),
+        "PMID:41436438:O1": (("VAR:PMID:41436438:A1",), (), "favorable_to_intervention", "7f41cbfdb15b08013b43f55920367b85e54073eb9bbd56069406c76bca7b7191", ("14", "100")),
+        "PMID:41999746:O1": (("VAR:PMID:41999746:A1",), ("VAR:PMID:41999746:A2_p53_suppressed",), "favorable_to_intervention", "2a8b7f3d956ade3d8d9076539ed4e3f26c98cc17d7634b0e7411aa9783495856", ("p53", "impairs")),
+    }
+    for _sem_oid in sorted(_iip0035_expected_outcome_semantics):
+        if not isinstance(outcomes.get(_sem_oid), dict):
+            raise ValueError(f"Missing required IIP-0035 outcome {_sem_oid}")
+    for _chk_qid, _chk_pm in sorted(_strict_study_expected_pmid.items()):
+        _chk_st = studies.get(_chk_qid)
+        if isinstance(_chk_st, dict):
+            if _study_pmid(_chk_st) != _chk_pm or str(_chk_st.get("id_value") or "") != _chk_pm:
+                raise ValueError(f"Study {_chk_qid} owner PMID/id_value mismatch: got pmid={_study_pmid(_chk_st)!r}, id_value={_chk_st.get('id_value')!r}, expected {_chk_pm!r}")
+            if _chk_qid.startswith("PMID:") and _chk_qid.split(":", 1)[1] != _chk_pm:
+                raise ValueError(f"Study {_chk_qid} queue_id PMID prefix disagrees with expected {_chk_pm!r}")
+    _sf_led = (ceg.get("screening_funnel") or {}).get("iip0035_record_level_screening_ledger")
+    if not isinstance(_sf_led, list) or len(_sf_led) != 11:
+        raise ValueError("CEG screening_funnel missing 11-record iip0035_record_level_screening_ledger")
+    _led_expected_rows = {
+        "M0051": ("41201433", "existing_wave1_ceg_candidate_crosslinked_only_deferred_from_ring1_to_preserve_layer1_baseline", (0, 0, 0, 0, 0, 0, 0, 0)),
+        "M0154": ("41690310", "existing_wave1_ceg_candidate_promoted_to_ring1_and_crosslinked", (0, 1, -1, 0, 0, 0, 0, 0)),
+        "M0159": ("41764741", "existing_wave1_ceg_candidate_promoted_to_ring1_and_crosslinked", (0, 1, -1, 0, 0, 0, 0, 0)),
+        "M0206": ("35953586", "existing_wave1_ceg_candidate_promoted_to_ring1_and_crosslinked", (0, 1, -1, 0, 0, 0, 0, 0)),
+        "M0241": ("31427818", "existing_wave1_ceg_candidate_promoted_to_ring1_and_crosslinked", (0, 1, -1, 0, 0, 0, 0, 0)),
+        "M0189": ("38843830", "existing_wave2b_queued_candidate_extracted_to_ring1_and_wave1_ceg", (0, 1, -1, 0, 0, 0, 1, -1)),
+        "M1407": ("2642862", "existing_parked_context_record_promoted_to_ring1_and_wave1_ceg", (0, 1, -1, 1, -1, 0, 1, 0)),
+        "PMID:36944335": ("36944335", "new_literature_screened_advanced_to_ring1_and_wave1_ceg", (1, 1, 0, 1, 0, 0, 1, 0)),
+        "PMID:39753706": ("39753706", "new_literature_screened_advanced_to_ring1_and_wave1_ceg", (1, 1, 0, 1, 0, 0, 1, 0)),
+        "PMID:41436438": ("41436438", "new_literature_screened_advanced_to_ring1_and_wave1_ceg", (1, 1, 0, 1, 0, 0, 1, 0)),
+        "PMID:41999746": ("41999746", "new_literature_screened_advanced_to_ring1_and_wave1_ceg", (1, 1, 0, 1, 0, 0, 1, 0)),
+    }
+    _led_delta_keys = ("d_screened_total", "d_ring1_screened", "d_new_screened", "d_advanced", "d_parked", "d_excluded", "d_wave1_extracted", "d_remaining_catalog")
+    _seen_led_qids: set[str] = set()
+    for _lr in _sf_led:
+        if not isinstance(_lr, dict):
+            raise ValueError("CEG iip0035_record_level_screening_ledger contains non-dict row")
+        _lq = _lr.get("queue_id")
+        if not isinstance(_lq, str) or _lq not in _led_expected_rows or _lq in _seen_led_qids:
+            raise ValueError(f"CEG screening ledger has unexpected or duplicate queue_id={_lq!r}")
+        _seen_led_qids.add(_lq)
+        _exp_lpm, _exp_ltr, _exp_dtup = _led_expected_rows[_lq]
+        if _lq not in studies or _study_pmid(studies[_lq]) != _exp_lpm or type(_lr.get("pmid")) is not str or _lr.get("pmid") != _exp_lpm:
+            raise ValueError(f"CEG screening ledger row {_lq} PMID mismatch (row_pmid={_lr.get('pmid')!r}, study_pmid={_study_pmid(studies[_lq]) if _lq in studies else None!r}, expected={_exp_lpm!r})")
+        if _lq.startswith("PMID:") and _lr.get("discovery_provenance") != "targeted_iip0035_proposal_screening_not_in_frozen_wave0_discovered_pmids_all_sources":
+            raise ValueError(f"CEG screening ledger row {_lq} missing required targeted discovery_provenance tag (got {_lr.get('discovery_provenance')!r})")
+        if _lr.get("transition") != _exp_ltr:
+            raise ValueError(f"CEG screening ledger row {_lq} transition={_lr.get('transition')!r} mismatches expected {_exp_ltr!r}")
+        _got_dtup = []
+        for _dk in _led_delta_keys:
+            _dv = _lr.get(_dk)
+            if type(_dv) is not int:
+                raise ValueError(f"CEG screening ledger row {_lq} field {_dk}={_dv!r} must be strict int")
+            _got_dtup.append(_dv)
+        if tuple(_got_dtup) != _exp_dtup:
+            raise ValueError(f"CEG screening ledger row {_lq} deltas={tuple(_got_dtup)!r} mismatch expected {_exp_dtup!r}")
+        if _got_dtup[1] + _got_dtup[2] != _got_dtup[0] or _got_dtup[3] + _got_dtup[4] + _got_dtup[5] != _got_dtup[0] or _got_dtup[6] + _got_dtup[7] != _got_dtup[3]:
+            raise ValueError(f"CEG screening ledger row {_lq} violates per-row conservation: {tuple(_got_dtup)!r}")
+    if _seen_led_qids != set(_led_expected_rows):
+        raise ValueError(f"CEG screening ledger missing expected records: {sorted(set(_led_expected_rows) - _seen_led_qids)}")
+    _led_base = {"d_screened_total": 3938, "d_ring1_screened": 594, "d_new_screened": 3344, "d_advanced": 3263, "d_parked": 522, "d_excluded": 153, "d_wave1_extracted": 1176, "d_remaining_catalog": 2087}
+    _led_map = {"d_screened_total": "screened_records_total", "d_ring1_screened": "ring1_existing_records_screened", "d_new_screened": "new_candidate_records_screened", "d_advanced": "candidates_advanced_total", "d_parked": "contextual_reviews_parked_total", "d_excluded": "off_topic_records_excluded_total", "d_wave1_extracted": "wave1_ceg_records_extracted_total", "d_remaining_catalog": "remaining_supporting_catalog_queued_for_later_waves"}
+    _ceg_counts_35 = ceg.get("counts") if isinstance(ceg.get("counts"), dict) else {}
+    for _dk, _sfk in _led_map.items():
+        _calc = _led_base[_dk] + sum(r[_dk] for r in _sf_led)
+        if ceg["screening_funnel"].get(_sfk) != _calc:
+            raise ValueError(f"CEG screening_funnel {_sfk}={ceg['screening_funnel'].get(_sfk)} disagrees with 11-record ledger sum {_calc}")
+        if _sfk in _ceg_counts_35 and _ceg_counts_35.get(_sfk) != _calc:
+            raise ValueError(f"CEG counts.{_sfk}={_ceg_counts_35.get(_sfk)} disagrees with screening_funnel {_calc}")
     _arm_tok_re = re.compile(r"\b(A\d+(?:_[A-Za-z0-9_]+)?)\b")
     _span_re = re.compile(r"^([A-Za-z0-9_\.\[\]]+)\[(\d+):(\d+)\]\|norm=exact$")
 
-    for _qid34 in sorted(_iip0034_qids):
+    for _qid34 in sorted(_strict_new_qids):
         _st34 = studies.get(_qid34)
+        if isinstance(_st34, dict) and _qid34 in _strict_study_expected_pmid:
+            _exp_pm = _strict_study_expected_pmid[_qid34]
+            if _study_pmid(_st34) != _exp_pm or str(_st34.get("id_value") or "") != _exp_pm:
+                raise ValueError(f"Study {_qid34} owner PMID/id_value mismatch: got pmid={_study_pmid(_st34)!r}, id_value={_st34.get('id_value')!r}, expected {_exp_pm!r}")
+            if _qid34.startswith("PMID:") and _qid34.split(":", 1)[1] != _exp_pm:
+                raise ValueError(f"Study {_qid34} queue_id PMID prefix disagrees with expected {_exp_pm!r}")
         if not isinstance(_st34, dict):
             raise ValueError(f"Missing required IIP-0034 study {_qid34}")
         for _ef in (_st34.get("candidate_effector_topics") or []):
@@ -826,7 +1119,7 @@ def verify_ceg_payload(ceg: dict[str, Any], repo_root: Path = REPO_ROOT, *, requ
                 raise ValueError(f"IIP-0034 study {_qid34} references unresolved effector {_ef!r}")
     for _vid34, _a34 in arms.items():
         _aq34 = _a34.get("queue_id")
-        if _aq34 not in _iip0034_qids:
+        if _aq34 not in _strict_new_qids:
             continue
         _exp_vid = f"VAR:{_aq34}:{_a34.get('arm_id')}"
         if _vid34 != _exp_vid or _a34.get("variable_id") != _exp_vid:
@@ -838,12 +1131,25 @@ def verify_ceg_payload(ceg: dict[str, Any], repo_root: Path = REPO_ROOT, *, requ
     for _e34 in edges:
         _eq34 = _e34.get("queue_id")
         _eid34 = str(_e34.get("edge_id") or "")
+        if _eid34 in _iip0035_crosslink_eids:
+            if _e34.get("primary_certification_eligible") is not False:
+                raise ValueError(f"IIP-0035 cross-link edge {_eid34} must keep primary_certification_eligible=False")
+            _pnote = _e34.get("provenance_note")
+            if (
+                not isinstance(_pnote, str)
+                or len(_pnote.strip()) < 40
+                or not re.search(r"(?i)\b(?:reused|legacy|prior)\b", _pnote)
+                or not re.search(r"(?i)\b(?:outside|non-certifying|primary_certification_eligible\s*=\s*false|scoping)\b", _pnote)
+            ):
+                raise ValueError(
+                    f"IIP-0035 cross-link edge {_eid34} missing grounded provenance_note disclosing reused legacy outcomes and non-certifying scoping status"
+                )
         if _e34.get("primary_certification_eligible") is True and _e34.get("applicability") == "unvalidated_transfer":
-            if _eq34 in _iip0034_qids or (_eq34 == "M1522" and _eid34 not in _legacy_m1522_eids):
+            if _eq34 in _strict_new_qids or _eid34 in _strict_new_eids or (_eq34 == "M1522" and _eid34 not in _legacy_m1522_eids):
                 raise ValueError(
                     f"Edge {_eid34} ({_eq34}) with applicability='unvalidated_transfer' cannot be primary_certification_eligible=True"
                 )
-        if _eid34 in _iip0034_eids or _eq34 in _iip0034_qids:
+        if _eid34 in _strict_new_eids or _eq34 in _strict_new_qids:
             for _tok34 in (_e34.get("cited_outcome_tuples") or []):
                 if outcomes[_tok34].get("queue_id") != _eq34:
                     raise ValueError(f"IIP-0034 edge {_eid34} cites cross-study outcome {_tok34} (owned by {outcomes[_tok34].get('queue_id')!r}, not {_eq34!r})")
@@ -855,13 +1161,33 @@ def verify_ceg_payload(ceg: dict[str, Any], repo_root: Path = REPO_ROOT, *, requ
     _has_dossiers_dir = _dossiers_dir.is_dir()
     _loaded_dos_by_pmid: dict[str, dict[str, Any]] = {}
     if _has_dossiers_dir or require_sources:
-        _missing_dos = [pm for pm in _iip0034_req_pmids if not (_dossiers_dir / f"{pm}.json").is_file()]
+        _present_34 = [pm for pm in _iip0034_req_pmids if (_dossiers_dir / f"{pm}.json").is_file()]
+        _present_35 = [pm for pm in _iip0035_req_pmids if (_dossiers_dir / f"{pm}.json").is_file()]
+        _req_cohorts: list[str] = []
+        if require_sources:
+            _req_cohorts = list(_strict_req_pmids)
+        else:
+            if _present_34:
+                _req_cohorts.extend(_iip0034_req_pmids)
+            if _present_35:
+                _req_cohorts.extend(_iip0035_req_pmids)
+            if not _req_cohorts:
+                _req_cohorts = list(_strict_req_pmids)
+        _missing_dos = [pm for pm in _req_cohorts if not (_dossiers_dir / f"{pm}.json").is_file()]
         if _missing_dos:
             raise ValueError(
                 f"Incomplete local dossier set for source-level CEG verification: missing {_missing_dos} under {_dossiers_dir}"
             )
-        for _pm34 in _iip0034_req_pmids:
-            _loaded_dos_by_pmid[_pm34] = json.loads((_dossiers_dir / f"{_pm34}.json").read_text(encoding="utf-8"))
+        for _pm34 in _req_cohorts:
+            _dobj_34 = json.loads((_dossiers_dir / f"{_pm34}.json").read_text(encoding="utf-8"))
+            _int_pm34 = str(_dobj_34.get("pmid") or "").strip()
+            if _int_pm34 != _pm34:
+                raise ValueError(f"Dossier {_pm34}.json internal pmid={_int_pm34!r} mismatches filename stem {_pm34!r}")
+            if _pm34 in _iip0035_expected_dossier_digests:
+                _got_dsha35 = _sha256_str(json.dumps(_dobj_34, sort_keys=True, ensure_ascii=False, separators=(",", ":")))
+                if _got_dsha35 != _iip0035_expected_dossier_digests[_pm34]:
+                    raise ValueError(f"IIP-0035 dossier {_pm34}.json full-object digest {_got_dsha35} mismatches pinned {_iip0035_expected_dossier_digests[_pm34]}")
+            _loaded_dos_by_pmid[_pm34] = _dobj_34
 
     def _resolve_dossier_span(_dos_obj: dict[str, Any], _path_expr: str) -> str:
         _cur: Any = _dos_obj
@@ -893,9 +1219,11 @@ def verify_ceg_payload(ceg: dict[str, Any], repo_root: Path = REPO_ROOT, *, requ
             if _slice_sha != _expected_sha:
                 raise ValueError(f"Outcome {_oid_p} span digest {_slice_sha} mismatches quote_sha256 {_expected_sha!r}")
 
+    _verified_iip0034_span_oids: list[str] = []
+    _verified_iip0035_span_oids: list[str] = []
     for oid, o in outcomes.items():
         _oqid = o.get("queue_id")
-        if _oqid not in _iip0034_qids:
+        if _oqid not in _strict_new_qids:
             continue
         _exp_oid = f"{_oqid}:{o.get('outcome_id')}"
         if oid != _exp_oid or o.get("outcome_node_id") != _exp_oid:
@@ -945,17 +1273,64 @@ def verify_ceg_payload(ceg: dict[str, Any], repo_root: Path = REPO_ROOT, *, requ
                 )
         elif _cmp_arms:
             raise ValueError(f"IIP-0034 outcome {oid} lists comparator_arm_ids={_cmp_arms!r} without a 'vs' contrast in comparison_arms")
-        _pm_o = _oqid.split(":", 1)[1]
+        _opt_iv = o.get("intervention_arm_id")
+        if _opt_iv is not None:
+            _full_opt_iv = _opt_iv if str(_opt_iv).startswith("VAR:") else f"VAR:{_oqid}:{_opt_iv}"
+            if _full_opt_iv != _iv_arms[0] or _full_opt_iv in _cmp_arms:
+                raise ValueError(f"Outcome {oid} singular intervention_arm_id={_opt_iv!r} disagrees with primary intervention_arm_ids={_iv_arms!r} / comparator_arm_ids={_cmp_arms!r}")
+        if _oqid in _iip0035_qids:
+            _fa = o.get("focal_arm_id")
+            if not isinstance(_fa, str) or _fa != _iv_arms[0] or _fa in _cmp_arms:
+                raise ValueError(f"IIP-0035 outcome {oid} focal_arm_id={_fa!r} must match primary intervention arm {_iv_arms[0]!r} and never appear in comparator_arm_ids={_cmp_arms!r}")
+            if not isinstance(_opt_iv, str) or _opt_iv != _iv_arms[0] or _opt_iv in _cmp_arms:
+                raise ValueError(f"IIP-0035 outcome {oid} required singular intervention_arm_id={_opt_iv!r} must match primary intervention arm {_iv_arms[0]!r} and never appear in comparator_arm_ids={_cmp_arms!r}")
+            if oid in _iip0035_expected_outcome_semantics:
+                _sem_iv, _sem_cmp, _sem_dir, _sem_csha, _sem_toks = _iip0035_expected_outcome_semantics[oid]
+                if tuple(_iv_arms) != _sem_iv or tuple(_cmp_arms) != _sem_cmp:
+                    raise ValueError(f"IIP-0035 outcome {oid} arm-role semantics ({_iv_arms!r}, {_cmp_arms!r}) mismatch expected ({list(_sem_iv)!r}, {list(_sem_cmp)!r})")
+                if o.get("direction") != _sem_dir:
+                    raise ValueError(f"IIP-0035 outcome {oid} direction={o.get('direction')!r} mismatches expected {_sem_dir!r}")
+                _joined_o = " ".join(str(o.get(k) or "") for k in ("endpoint_name", "intervention_value", "quantitative_summary")).lower()
+                for _tk in _sem_toks:
+                    if _tk.lower() not in _joined_o:
+                        raise ValueError(f"IIP-0035 outcome {oid} missing required structured endpoint/magnitude token {_tk!r}")
+        _pm_o = _study_pmid(studies[_oqid])
+        _exp_pm_o = _strict_study_expected_pmid.get(_oqid)
+        if _exp_pm_o is not None and _pm_o != _exp_pm_o:
+            raise ValueError(f"Outcome {oid} resolved PMID {_pm_o!r} mismatches expected owner {_exp_pm_o!r}")
+        if _loaded_dos_by_pmid and _oqid in _iip0035_qids and all(pm in _loaded_dos_by_pmid for pm in _iip0035_req_pmids):
+            if _pm_o not in _loaded_dos_by_pmid:
+                raise ValueError(f"Outcome {oid} owner PMID {_pm_o!r} missing from loaded IIP-0035 dossiers (refusing silent span skip)")
+        if _loaded_dos_by_pmid and _oqid in _iip0034_qids and all(pm in _loaded_dos_by_pmid for pm in _iip0034_req_pmids):
+            if _pm_o not in _loaded_dos_by_pmid:
+                raise ValueError(f"Outcome {oid} owner PMID {_pm_o!r} missing from loaded IIP-0034 dossiers (refusing silent span skip)")
         _sp_primary = o.get("source_pin") or {}
         if isinstance(_sp_primary, dict) and "quote_sha256" in _sp_primary and _sp_primary["quote_sha256"] != o.get("quote_sha256"):
             raise ValueError(
                 f"Outcome {oid} nested source_pin.quote_sha256 {_sp_primary['quote_sha256']!r} conflicts with top-level quote_sha256 {o.get('quote_sha256')!r}"
             )
         _verify_pin_obj(oid, _pm_o, _sp_primary, o.get("quote_sha256"))
+        if _pm_o in _loaded_dos_by_pmid:
+            if _oqid in _iip0035_qids:
+                if oid in _iip0035_expected_outcome_semantics:
+                    _m_t = _span_re.fullmatch(str((_sp_primary or {}).get("span") or ""))
+                    if _m_t:
+                        _sl_txt = _resolve_dossier_span(_loaded_dos_by_pmid[_pm_o], _m_t.group(1))[int(_m_t.group(2)):int(_m_t.group(3))].lower()
+                        for _tk in _iip0035_expected_outcome_semantics[oid][4]:
+                            if _tk.lower() not in _sl_txt:
+                                raise ValueError(f"IIP-0035 outcome {oid} pinned source span lacks required magnitude/endpoint token {_tk!r}")
+                _verified_iip0035_span_oids.append(oid)
+            elif _oqid in _iip0034_qids:
+                _verified_iip0034_span_oids.append(oid)
         for _sec_pin in (o.get("secondary_source_pins") or []):
             if not isinstance(_sec_pin, dict):
                 raise ValueError(f"Outcome {oid} malformed secondary_source_pins entry")
             _verify_pin_obj(oid, _pm_o, _sec_pin, _sec_pin.get("quote_sha256"))
+
+    if all(pm in _loaded_dos_by_pmid for pm in _iip0035_req_pmids) and len(_verified_iip0035_span_oids) != 8:
+        raise ValueError(f"Expected exactly 8 exact-span-verified IIP-0035 outcomes, got {len(_verified_iip0035_span_oids)}: {sorted(_verified_iip0035_span_oids)}")
+    if all(pm in _loaded_dos_by_pmid for pm in _iip0034_req_pmids) and len(_verified_iip0034_span_oids) != 8:
+        raise ValueError(f"Expected exactly 8 exact-span-verified IIP-0034 outcomes, got {len(_verified_iip0034_span_oids)}: {sorted(_verified_iip0034_span_oids)}")
 
     if _loaded_dos_by_pmid:
         _union_shingles: set[tuple[str, ...]] = set()
@@ -964,7 +1339,7 @@ def verify_ceg_payload(ceg: dict[str, Any], repo_root: Path = REPO_ROOT, *, requ
             _dt34 = " ".join(_leaves(_d34))
             _ws34 = _words(_dt34)
             _union_shingles.update(tuple(_ws34[i : i + 6]) for i in range(max(0, len(_ws34) - 5)))
-            _nd34 = _norm_spaces(_dt34)
+            _nd34 = _norm_spaces(_dt34).lower()
             _rolling40_set.update(_nd34[i : i + 40] for i in range(max(0, len(_nd34) - 39)))
 
         _SG_SKIP_KEYS = frozenset({
@@ -979,7 +1354,7 @@ def verify_ceg_payload(ceg: dict[str, Any], repo_root: Path = REPO_ROOT, *, requ
         def _scan_sg(_obj: Any, _path_lbl: str) -> None:
             if isinstance(_obj, dict):
                 for _k, _v in _obj.items():
-                    if _k in _SG_SKIP_KEYS:
+                    if _k in _SG_SKIP_KEYS and not (isinstance(_v, str) and len(_v) > 32 and _k in {"figure_id", "panel", "table_id", "row_id", "col_id"}):
                         continue
                     _scan_sg(_v, f"{_path_lbl}.{_k}")
             elif isinstance(_obj, list):
@@ -991,23 +1366,82 @@ def verify_ceg_payload(ceg: dict[str, Any], repo_root: Path = REPO_ROOT, *, requ
                     for _i in range(len(_ws_t) - 5):
                         if tuple(_ws_t[_i : _i + 6]) in _union_shingles:
                             raise ValueError(f"CEG {_path_lbl} violates _SourceGuard (6-word union shingle)")
-                _ns_t = _norm_spaces(_obj)
+                _ns_t = _norm_spaces(_obj).lower()
                 if len(_ns_t) >= 40:
                     for _i in range(len(_ns_t) - 39):
                         if _ns_t[_i : _i + 40] in _rolling40_set:
                             raise ValueError(f"CEG {_path_lbl} violates _SourceGuard (rolling 40-char dossier substring)")
 
-        for _qid34 in sorted(_iip0034_qids):
+        _sg_qids: set[str] = set()
+        _sg_eids: set[str] = set()
+        if all(pm in _loaded_dos_by_pmid for pm in _iip0034_req_pmids):
+            _sg_qids.update(_iip0034_qids)
+            _sg_eids.update(_iip0034_eids)
+        if all(pm in _loaded_dos_by_pmid for pm in _iip0035_req_pmids):
+            _sg_qids.update(_iip0035_qids)
+            _sg_eids.update(_iip0035_eids)
+        for _qid34 in sorted(_sg_qids):
             _scan_sg(studies[_qid34], f"study.{_qid34}")
         for _vid, _a in arms.items():
-            if _a.get("queue_id") in _iip0034_qids:
+            if _a.get("queue_id") in _sg_qids:
                 _scan_sg(_a, f"arm.{_vid}")
         for _oid, _o in outcomes.items():
-            if _o.get("queue_id") in _iip0034_qids or _oid in {"M1522:O6", "M1522:O7", "M1522:O15", "M1522:O16"}:
+            if (
+                _o.get("queue_id") in _sg_qids
+                or (all(pm in _loaded_dos_by_pmid for pm in _iip0034_req_pmids) and _oid in {"M1522:O6", "M1522:O7", "M1522:O15", "M1522:O16"})
+                or (all(pm in _loaded_dos_by_pmid for pm in _iip0035_req_pmids) and (_oid in _iip0035_reclass_qual_full_pins or _oid in _m206_quant_pins or _oid in _iip0035_extra_touched_legacy_pins))
+            ):
                 _scan_sg(_o, f"outcome.{_oid}")
         for _e in edges:
-            if _e.get("edge_id") in _iip0034_eids:
+            if _e.get("edge_id") in _sg_eids:
                 _scan_sg(_e, f"edge.{_e.get('edge_id')}")
+            elif all(pm in _loaded_dos_by_pmid for pm in _iip0035_req_pmids) and (_e.get("edge_id") in _iip0035_adjudicated_inelig_legacy or _e.get("edge_id") in {"M0206:L1", "M0206:L2"}):
+                _scan_sg(_e, f"edge.{_e.get('edge_id')}")
+    # Run FULL-OBJECT IIP-0035 digest checks AFTER _SourceGuard so verbatim source leaks always trip _SourceGuard first!
+    for _st_qid35, _exp_stsha35 in sorted(_iip0035_expected_study_digests.items()):
+        _st_o35 = studies.get(_st_qid35)
+        if not isinstance(_st_o35, dict):
+            raise ValueError(f"Missing required IIP-0035 study {_st_qid35}")
+        _got_stsha35 = _sha256_str(json.dumps(_st_o35, sort_keys=True, ensure_ascii=False, separators=(",", ":")))
+        if _got_stsha35 != _exp_stsha35:
+            raise ValueError(f"IIP-0035 study {_st_qid35} full-object digest {_got_stsha35} mismatches pinned {_exp_stsha35}")
+    for _arm_vid35, _exp_asha35 in sorted(_iip0035_expected_arm_digests.items()):
+        _arm_o35 = arms.get(_arm_vid35)
+        if not isinstance(_arm_o35, dict):
+            raise ValueError(f"Missing required IIP-0035 arm {_arm_vid35}")
+        _got_asha35 = _sha256_str(json.dumps(_arm_o35, sort_keys=True, ensure_ascii=False, separators=(",", ":")))
+        if _got_asha35 != _exp_asha35:
+            raise ValueError(f"IIP-0035 arm {_arm_vid35} full-object digest {_got_asha35} mismatches pinned {_exp_asha35}")
+    for _oid35_c, _sem_t35 in sorted(_iip0035_expected_outcome_semantics.items()):
+        _oo35 = outcomes[_oid35_c]
+        _got_csha35 = _sha256_str(json.dumps(_oo35, sort_keys=True, ensure_ascii=False, separators=(",", ":")))
+        if _got_csha35 != _sem_t35[3]:
+            raise ValueError(f"IIP-0035 outcome {_oid35_c} full-object structured endpoint/magnitude digest {_got_csha35} mismatches pinned {_sem_t35[3]}")
+    for _mq_oid, _mq_sha in sorted(_m206_quant_pins.items()):
+        _mq_o = outcomes.get(_mq_oid)
+        _mq_got = _sha256_str(json.dumps(_mq_o, sort_keys=True, ensure_ascii=False, separators=(",", ":")))
+        if _mq_got != _mq_sha:
+            raise ValueError(f"Touched M0206 quantitative outcome {_mq_oid} full-object digest {_mq_got} mismatches pinned {_mq_sha}")
+    for _rq_oid, _rq_sha in sorted({**_iip0035_reclass_qual_full_pins, **_iip0035_extra_touched_legacy_pins}.items()):
+        _rq_o = outcomes.get(_rq_oid)
+        if not isinstance(_rq_o, dict):
+            raise ValueError(f"Missing proposal-modified legacy outcome {_rq_oid}")
+        _rq_got = _sha256_str(json.dumps(_rq_o, sort_keys=True, ensure_ascii=False, separators=(",", ":")))
+        if _rq_got != _rq_sha:
+            raise ValueError(f"Proposal-modified legacy outcome {_rq_oid} full-object digest {_rq_got} mismatches pinned {_rq_sha}")
+    for _eid35, (_exp_owner35, _exp_outs35, _exp_esha35) in sorted(_iip0035_expected_edge_bindings.items()):
+        _eobj35 = _edges_by_eid_35[_eid35]
+        _got_esha35 = _sha256_str(json.dumps(_eobj35, sort_keys=True, ensure_ascii=False, separators=(",", ":")))
+        if _got_esha35 != _exp_esha35:
+            raise ValueError(f"IIP-0035 edge {_eid35} full-object digest {_got_esha35} mismatches pinned {_exp_esha35}")
+    for _leg_eid, (_leg_outs, _leg_sha) in sorted(_iip0035_adjudicated_inelig_legacy_outcomes.items()):
+        _le_o = _edges_by_eid_35[_leg_eid]
+        _got_lsha = _sha256_str(json.dumps(_le_o, sort_keys=True, ensure_ascii=False, separators=(",", ":")))
+        if _got_lsha != _leg_sha:
+            raise ValueError(f"Adjudicated legacy edge {_leg_eid} full-object digest {_got_lsha} mismatches pinned {_leg_sha}")
+    _got_m206_l1_sha = _sha256_str(json.dumps(_m206_l1, sort_keys=True, ensure_ascii=False, separators=(",", ":")))
+    if _got_m206_l1_sha != _iip0035_m206_l1_expected_sha:
+        raise ValueError(f"Adjudicated legacy edge M0206:L1 full-object digest {_got_m206_l1_sha} mismatches pinned {_iip0035_m206_l1_expected_sha}")
 
     return {
         "studies": len(studies),
@@ -1027,14 +1461,62 @@ def verify_ceg_payload_detailed(
 ) -> dict[str, Any]:
     """Run verify_ceg_payload and return explicit verification_mode alongside counts."""
     counts = verify_ceg_payload(ceg, repo_root=repo_root, require_sources=require_sources)
-    has_src = (repo_root / "data" / "dossiers").is_dir()
+    _dos_dir = repo_root / "data" / "dossiers"
+    _p34 = ["17375075", "39696686", "42020736", "42056515", "42749803"]
+    _p35 = ["2642862", "31427818", "35953586", "36944335", "38843830", "39753706", "41201433", "41436438", "41690310", "41764741", "41999746"]
+    _q35 = frozenset({"M0189", "M1407", "PMID:36944335", "PMID:39753706", "PMID:41436438", "PMID:41999746"})
+    has_src_34 = _dos_dir.is_dir() and all((_dos_dir / f"{pm}.json").is_file() for pm in _p34)
+    has_src_35 = _dos_dir.is_dir() and all((_dos_dir / f"{pm}.json").is_file() for pm in _p35)
+    _verified_35_oids = (
+        sorted(oid for oid, o in (ceg.get("outcomes") or {}).items() if isinstance(o, dict) and o.get("queue_id") in _q35)
+        if has_src_35
+        else []
+    )
+    _mode = (
+        "iip0035_11dossiers_8new_exact_spans_verified"
+        if (has_src_35 and len(_verified_35_oids) == 8)
+        else ("iip0034_5dossiers_8new_exact_spans_verified" if has_src_34 else "structural_public_only")
+    )
+    _e35_ids = sorted([
+        "M0051:L4", "M0154:L3", "M0159:L3", "M0189:L1", "M0206:L3", "M0241:L3",
+        "M1407:L1", "PMID:36944335:L1", "PMID:39753706:L1", "PMID:41436438:L1", "PMID:41999746:L1",
+    ])
     return {
         "counts": counts,
-        "verification_mode": "iip0034_5dossiers_8new_exact_spans_verified" if has_src else "structural_public_only",
-        "iip0034_dossiers_verified": ["17375075", "39696686", "42020736", "42056515", "42749803"] if has_src else [],
+        "verification_mode": _mode,
+        "iip0034_dossiers_verified": _p34 if has_src_34 else [],
+        "iip0035_dossiers_verified": _p35 if has_src_35 else [],
+        "iip0035_verified_exact_span_outcome_ids": _verified_35_oids,
+        "iip0035_verified_exact_span_outcome_count": len(_verified_35_oids),
+        "iip0035_sourceguard_executed": bool(has_src_35),
+        "iip0035_sourceguard_scanned_study_ids": sorted(_q35) if has_src_35 else [],
+        "iip0035_sourceguard_scanned_edge_ids": _e35_ids if has_src_35 else [],
+        "iip0035_sourceguard_scanned_touched_legacy_outcome_ids": (
+            sorted([
+                "M0051:O1", "M0051:O2", "M0051:O3", "M0051:O4", "M0051:O5", "M0051:O6",
+                "M0154:O1", "M0154:O2", "M0154:O3", "M0154:O4",
+                "M0159:O1", "M0159:O2", "M0159:O3", "M0206:O1", "M0206:O2", "M0206:O9", "M0206:O10",
+                "M0206:O11", "M0206:O12", "M0206:O13", "M0206:O14", "M0206:O16", "M0206:O17",
+                "M0241:O1", "M0241:O2", "M0241:O3", "M0241:O4",
+            ])
+            if has_src_35
+            else []
+        ),
+        "iip0035_sourceguard_scanned_adjudicated_legacy_edge_ids": (
+            sorted(["M0051:L1", "M0051:L2", "M0051:L3", "M0154:L1", "M0154:L2", "M0159:L1", "M0159:L2", "M0206:L1", "M0206:L2", "M0241:L1", "M0241:L2"])
+            if has_src_35
+            else []
+        ),
+        "iip0035_sourceguard_scan_scope": (
+            "executed_on_6_new_study_families_11_new_edges_27_touched_legacy_outcomes_and_11_adjudicated_legacy_edges"
+            if has_src_35
+            else "skipped_public_bundle_no_local_dossiers"
+        ),
         "reused_m1522_outcomes_exact_span_verified": False,
+        "reused_legacy_crosslink_outcomes_exact_span_verified": False,
         "izadifar_dossier_contains_figure_legends": False,
         "m1522_reused_outcomes_note": "M1522:O6/O7/O15/O16 use figure/panel + digest pins outside the exact-span pass (Izadifar dossier carries no figure legends) and remain ineligible scoping references on M1522:L4.",
+        "iip0035_reused_crosslink_outcomes_note": "Reused legacy cross-linked outcomes on M0051:L4, M0154:L3, M0159:L3, M0206:L3, and M0241:L3 carry prior CEG source pins outside the IIP-0035 8-new-outcome exact-span pass and remain primary_certification_eligible=False scoping qualifications only.",
     }
 
 
@@ -1253,6 +1735,10 @@ def import_and_materialize(
                 for k in keep_cao_keys
                 if k in cao_in and cao_in[k] is not None
             }
+        if isinstance(o.get("focal_arm_id"), str) and o["focal_arm_id"].strip():
+            oc["focal_arm_id"] = str(o["focal_arm_id"]).strip()
+        if isinstance(o.get("intervention_arm_id"), str) and o["intervention_arm_id"].strip():
+            oc["intervention_arm_id"] = str(o["intervention_arm_id"]).strip()
         if isinstance(o.get("intervention_arm_ids"), list):
             oc["intervention_arm_ids"] = list(o["intervention_arm_ids"])
         if isinstance(o.get("comparator_arm_ids"), list):
@@ -1335,6 +1821,8 @@ def import_and_materialize(
             ed["evidence_provenance"] = str(_edge_prov)
         if e.get("provenance_note"):
             ed["provenance_note"] = clean_text(qid, "provenance_note", e.get("provenance_note"), meta)
+        if e.get("legacy_certification_adjudication_note"):
+            ed["legacy_certification_adjudication_note"] = clean_text(qid, "legacy_certification_adjudication_note", e.get("legacy_certification_adjudication_note"), meta)
         if e.get("candidate_effector_topics"):
             ed["candidate_effector_topics"] = list(e["candidate_effector_topics"])
         edges.append(ed)
@@ -1381,8 +1869,8 @@ def import_and_materialize(
     if not isinstance(_wave_counts, dict) or "Wave_2B_Supporting_Catalog_P2_P3" not in _wave_counts:
         raise ValueError("screening_ledger.summary.candidate_extraction_waves must specify Wave_2B_Supporting_Catalog_P2_P3")
     _tot_screened = l_sum["total_studies"]
-    _r1_screened = l_sum.get("ring1_existing_records_screened", 594)
-    _new_screened = l_sum.get("new_candidate_records_screened", 3344)
+    _r1_screened = l_sum.get("ring1_existing_records_screened", 604)
+    _new_screened = l_sum.get("new_candidate_records_screened", 3338)
     _adv_total = _oc_counts["ADVANCE"]
     _park_total = _oc_counts["PARK_CONTEXT"]
     _excl_total = _oc_counts["EXCLUDE_OFF_TOPIC"]
@@ -1416,6 +1904,12 @@ def import_and_materialize(
         "wave1_non_r1_records_extracted_total": sum(1 for q in studies if not q.startswith("R1_")),
         "remaining_supporting_catalog_queued_for_later_waves": _rem_total,
     }
+    _raw_sf_led = (raw.get("screening_funnel") or {}).get("iip0035_record_level_screening_ledger")
+    _led_sf_led = l_sum.get("iip0035_record_level_screening_ledger")
+    if isinstance(_led_sf_led, list) and len(_led_sf_led) == 11:
+        screening_funnel["iip0035_record_level_screening_ledger"] = list(_led_sf_led)
+    elif isinstance(_raw_sf_led, list) and len(_raw_sf_led) == 11:
+        screening_funnel["iip0035_record_level_screening_ledger"] = list(_raw_sf_led)
 
     ceg_payload: dict[str, Any] = {
         "schema_version": "openislet_context_evidence_graph_v1.0",
@@ -1440,9 +1934,9 @@ def import_and_materialize(
             },
         },
         "evidence_hierarchy_and_scoring_note": (
-            "Context-indexed evidence graph across 1,176 total CEG records (1,150 empirical_primary_study + 11 trial_registry_protocol + 7 regulatory_or_guidance_document + 4 computational_model_or_simulation + 1 correspondence_or_secondary_summary + 3 superseded_preprint_duplicate), 7,740 arms, 14,167 outcomes, "
-            "and 2,483 blueprint links. Layer-1 2,160-stack prior-anchored scenario scores remain computed on the "
-            "594-study Ring-1 baseline (+0.00 pp under IIP-0034) unless explicitly updated through an accepted Islet Improvement Proposal."
+            "Context-indexed evidence graph across 1,182 total CEG records (1,156 empirical_primary_study + 11 trial_registry_protocol + 7 regulatory_or_guidance_document + 4 computational_model_or_simulation + 1 correspondence_or_secondary_summary + 3 superseded_preprint_duplicate), 7,749 arms, 14,175 outcomes, "
+            "and 2,494 blueprint links. Layer-1 2,160-stack prior-anchored scenario scores remain computed on the "
+            "604-study Ring-1 baseline (+0.00 pp under IIP-0035) unless explicitly updated through an accepted Islet Improvement Proposal."
         ),
         "counts": {
             "screened_records_total": screening_funnel["screened_records_total"],
@@ -1527,7 +2021,7 @@ def main() -> None:
     if args.verify:
         if not atlas_path.is_file() or atlas_path.read_bytes() != expected_atlas:
             raise ValueError(f"{ATLAS_REL_PATH} is missing or out of sync with {CEG_REL_PATH}")
-        print(f"Verified CEG ({counts['studies']} studies, {counts['outcomes']} outcomes, {counts['edges']} links) and Layer-1 atlas.")
+        print(f"Verified CEG ({counts['studies']} studies, {counts['outcomes']} outcomes, {counts['edges']} links; mode={detail['verification_mode']}, exact_spans_verified={detail['iip0035_verified_exact_span_outcome_count']}, sourceguard_executed={detail['iip0035_sourceguard_executed']}) and Layer-1 atlas.")
     else:
         atlas_path.write_bytes(expected_atlas)
         print(f"Verified CEG and wrote {ATLAS_REL_PATH} ({len(expected_atlas) / 1024 / 1024:.2f} MB).")

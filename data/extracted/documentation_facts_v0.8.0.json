@@ -1,7 +1,7 @@
 {
   "schema_version": "0.8.0",
   "epistemic_status": "GENERATED_COMPUTATIONAL_FACTS_PHYSICAL_QUALIFICATION_PENDING",
-  "manifest_pin_count": 1469,
+  "manifest_pin_count": 1505,
   "discovery_manifest": {
     "jsonl_rows": 7703,
     "unique_pubmed_pmids": 7703,
@@ -10,10 +10,10 @@
   },
   "source_sha256": {
     "data/raw/corpus_manifest_all_sources.jsonl": "119ecbd3be2ccb79a2f38ac7feca8713ffb7c6c5e92165078e2722331b9e0536",
-    "data/extracted/cross_study_discovery_graph.json": "e3d3a572f2ca67d8ce2b20f9b43c2c6139c6fef278820970c245b352fc3e7ce7",
-    "data/extracted/islet1_candidate_stack_rankings.json": "aaaa9e18efed2cc1f45eeab7b7faab53a647c6400f238cc1fcb266b312a9d572",
-    "data/protocols/hip_core_fractional_factorial_v0.6.2.json": "4d632f32d567b1f427bac049578a043a4eccdb9ca0cfad61f4fb4050a607020d",
-    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "56200d3b7c2871f5d72e1bd166b0964c00ae1d98377ad3eceedb22b9251419ae",
+    "data/extracted/cross_study_discovery_graph.json": "293f90c9044b73c2572f1e8fff71126bd76c8542faa54b145f7e09a20a63831a",
+    "data/extracted/islet1_candidate_stack_rankings.json": "edd3bcee3f961556740bb6fded8e1dc298a01b2eb97248218bdd033ab070081e",
+    "data/protocols/hip_core_fractional_factorial_v0.6.2.json": "ff5b9f1d45d258be81c9c5929084aa6c6e58965d54add192add67113811d8008",
+    "data/extracted/layer2_regulatory_and_perturbation_atlas.json": "4f93dee344ff2cf750debab0a59090ca84002807446de2a882f5467fb16603d6",
     "data/extracted/layer3_structural_verification_atlas.json": "5647f213e48c592bc565321e7612d30288fe12ebe5194a7f2c6147511a8e41e1",
     "data/extracted/layer4_tissue_and_metabolic_twin_atlas.json": "cf88d5bbb1c0e1de9795a1c187fbddec1ce7b27f8af27b21e0e82540b57aeebf",
     "data/extracted/layer5_personalized_patient_and_crispr_atlas.json": "61c571785bbd22d95c24e92cc06f6040cefbfbe2c76a2adfe77f0de2a58677c6",
@@ -152,6 +152,7 @@
     "data/extracted/26304037.json": "0c92c712ab76fe00e2790440e884caa88ab4df0c236e950e2b4b95c9c4d523d9",
     "data/extracted/26308506.json": "5b499dd7134d30e0a4c880e8065192d4d77ef3d4a2f3d96e3fda01eec1fcf314",
     "data/extracted/26365743.json": "cdf898cc75652d5a0ecd6167ab6669967624405b63e26a52f392008119d61cba",
+    "data/extracted/2642862.json": "8214bee99a7f14b1c6993f055a57b689ee57a902e26e472d860d0878cf29d7d7",
     "data/extracted/26493188.json": "6a1408bdb8efe61bf640e20d4dcd300f1b993007ddcf1e21e9f00d22f49118d2",
     "data/extracted/26565566.json": "b81ff1f27f9a10f836f8cac7b96e109b8524ba7a0c8ed2f3a33453326c44fe3a",
     "data/extracted/26824266.json": "9658e27e2ee929ea11b50b2bdcbabf40cdd0f3cc5d6eb1c79d1030b3f49b130f",
@@ -224,6 +225,7 @@
     "data/extracted/31068696.json": "78d83193b87d0658663e604cd826755d8ffbf83ce35bea93ac44d016c0e7ab6a",
     "data/extracted/31164864.json": "6e1129c9ef0feee2bec3c56f960b44f3622bbd54a69faa7d6d88b667ceb33311",
     "data/extracted/31182641.json": "e59d5b11d90bcaf1101fee037e8255e6311e69faf672517f4ad5baebd7d3c930",
+    "data/extracted/31427818.json": "a5525733b00f2974e47f63a9872f406e4ec5458b5ade82636c90b8e0dc897a59",
     "data/extracted/31446050.json": "c9281b98f230c5eff233725c6fee37f74f79d42f1ec6f4ee05d51bc3ef6a3397",
     "data/extracted/31527312.json": "30d6ebec22d6d223601175ac49e52d2daa219a21ba27700344d56bab54605a87",
     "data/extracted/31581152.json": "384696386a2f131f24f89bbfbb84786cdac2a5a6067aacb43c317efa32accec9",
@@ -318,6 +320,7 @@
     "data/extracted/35851388.json": "bbf4dea193604194d6b3230c698799f0059790b5fc33a1fa54efb5f72e98cf4c",
     "data/extracted/35897156.json": "de0f79571b6832656b0cfa3f6116c4fbbb3217b0d19744061680259da9022f9c",
     "data/extracted/35918471.json": "6eeb11bda6559248f884ceea20066dc45d606240434a5021a63308dca0e4db3d",
+    "data/extracted/35953586.json": "e727f6189d037a93c185d9fd3dd2f59575cd6396939fe4a87e30d76fd42732a6",
     "data/extracted/35955956.json": "ec4846ab64c10cb72d5b8f17a0dfb23b10178620fccae1f61b06741f5acd7b7d",
     "data/extracted/35966081.json": "2a158ae14438c3ca94413470c6ec0aa9f847e4eed5f97f8d1717aa68348a7030",
     "data/extracted/36030035.json": "26c25bc4cb1a99df6d185532c65c3ab3fc9b7422be948020be333dddfebec7be",
@@ -352,6 +355,7 @@
     "data/extracted/36884282.json": "2797f82da4d877ed9aba59c76414b3f5d80e52c2e6852a3172d572041084951f",
     "data/extracted/36929171.json": "f94dfafd14316f23e1a17c0bda1ebe075897748e0319614b6ed003b3676057f9",
     "data/extracted/36932674.json": "f7dfba4dbf61df94ffdad28e1263d3f5111a11e32e0f5f27f10efad643f2d61a",
+    "data/extracted/36944335.json": "f69c8a4b70a89f03e836222b92c2927af7a2a2f28f165e05b41e72787bdc86d0",
     "data/extracted/36961507.json": "c0b3d5668740ff8db081023497688576a73d0962e75f8f2e63c7f64ace8b5de8",
     "data/extracted/36979793.json": "5530916fc032ab32010d915972ff364ff2229b9f113c1437232e1b78038e1a2e",
     "data/extracted/36980244.json": "fd3bb77981b3ff9d4a9592666d4780a3d366171e5c38c3b35f0e50d9d311ea28",
@@ -413,6 +417,7 @@
     "data/extracted/38766166.json": "a7041cffa33f65e5a40ca775a2715861810f56e4a5a8be9a0d90d204571d90d5",
     "data/extracted/38798376.json": "921d740ebe2c923de8a4266b0fa8b8a56bd68195591fb7c2608f84197e4c5643",
     "data/extracted/38833523.json": "37fb806101e7096fd9323aaf43471faf06bb49393974cf643aebfc8a25b5ee54",
+    "data/extracted/38843830.json": "bd0df1acf71b59b19c22350a8bb03bd24cc2b46841dd5d469b3793a04d8852fa",
     "data/extracted/38844131.json": "9ffae6ad07292fff71eeff00afee5319c8aeb4908e4b275985610bf41863494b",
     "data/extracted/38867450.json": "14864fd19987bfe0c13c20574f460ce136bb649512906cff70aaa668183b327a",
     "data/extracted/38871836.json": "43bc05333c11d9b0abbbb2a052758856a9a38c29ce718e24697e9ee51f946aa9",
@@ -450,6 +455,7 @@
     "data/extracted/39703428.json": "ae406bffc8111eaaf0a2390d178abbcdf382b42f8f2256625b8752c04bc5e418",
     "data/extracted/39741186.json": "2ac80c96cc6af19208c2e5a47b57a14e88cb69d117f6e7d888b8d3126dcc25dd",
     "data/extracted/39744389.json": "9edf10051a4cc6aefc90dee44d528314fa684f962dff12fdf210a660d90609fd",
+    "data/extracted/39753706.json": "f03a7a6208b0f6bf5c88e6cec4458d9a1e118da7f92092f754aeba1c1cc6b413",
     "data/extracted/39758817.json": "545f29559beb5b523fc1857a8728ca7d299e91c90f32c04fab7c243150706c8d",
     "data/extracted/39763971.json": "2140b19246b158e395b207056673545c1e0a74dc252c97756874b313d1e27ac6",
     "data/extracted/39824805.json": "f9e1616065bc0d533dbef885646ca908bfe37e2666ceab0b2c59079ebefece80",
@@ -527,6 +533,7 @@
     "data/extracted/41372150.json": "56dcd219c882adb8013a5abec75d5d86f8c254919a93d40c6e73e42a6245907f",
     "data/extracted/41385368.json": "480c1593cb619da3fba8ff6932437bf835cfa274fd6b4208c07ede6d4466ac9e",
     "data/extracted/41431325.json": "c714956709cacfd05da488952d41d5b070ec5af1b488dfa0a495c2732eca26e8",
+    "data/extracted/41436438.json": "b83e95e64a0367fa991c7adc5761841db300a6f75a96b3e65279bdcc807ef7f2",
     "data/extracted/41438972.json": "d9fea002588edcf704f70a7ca4ba9ad5ad7dca510dea5bf5833c66d1a7129bd8",
     "data/extracted/41445610.json": "5e127a0cb079f2779147a1d00096caea962d6904a799c9fe82d61634be05f4b4",
     "data/extracted/41482566.json": "53a3ee2bd218b96626318beb3c12f7a68571a1ed42f295e848bd9c95cf02c15c",
@@ -546,12 +553,14 @@
     "data/extracted/41617975.json": "dfb1ed97ab11ab90530ffc9d4a30c2a0313a5093df5e49c938d75a2e4079101f",
     "data/extracted/41654987.json": "2e6644c827c25946e145df849dc046b36ad8ce7f030c44c4a9cc0402c3e0f5ba",
     "data/extracted/41680134.json": "015568db14110e4e370e28ad4a86ffbacdec07b9a268e062b1300d0e85b00e84",
+    "data/extracted/41690310.json": "0423d18e966adb1bdd373b69a525708c8bd7c8c2c4cd0150490a1e777134b370",
     "data/extracted/41698932.json": "7d84e82f98960ef08feba4235534cc1412a89067128ca133dff8fbbe8f87904a",
     "data/extracted/41710881.json": "387276c9d7e2263c44f88219954640becfe7503e985a1bcb3f0771ff7d2c3d8c",
     "data/extracted/41746845.json": "caf59f7a8fb73a7b5a2c205362dfba0e46ca623ecb63ff90670379b25300e13d",
     "data/extracted/41749365.json": "5f23a4964c277726a9f5aee3ac0b179de2a777653acc9b59669e7253dbfb7dbf",
     "data/extracted/41756994.json": "2aee1f2b605fd88b09747f7fb1f86360ac9e3445dcb7116ef69e676cf32c4664",
     "data/extracted/41758964.json": "7888f7314c15b36904355b468fd2761d914393114db4c4b8aa125da2182172e0",
+    "data/extracted/41764741.json": "b78ef8433af42476989c21dafa0f8de2030ace078890f9bee7268bf003f1aba7",
     "data/extracted/41779871.json": "cba0a1a6049b961815769aad435bc8adff7f5b5d9bcee15fc63786cdca771768",
     "data/extracted/41782826.json": "8f4f286be83d84d607cb9a27d5cc519b7d8effe1aa2147ee9ba339444f0f31fb",
     "data/extracted/41787945.json": "69778cc0c509e45b994c60754c7fdd45cb0a5b20a9fa18bd48d6a94976a24863",
@@ -567,6 +576,7 @@
     "data/extracted/41951603.json": "4b7cd1ce4eec4777cb8abc701a508e38977c47b6927e1d338421e8591fdcd9d6",
     "data/extracted/41974708.json": "fafe2e55cab6e51e4dd3ad1d7d971a95142e05e6d1d87901b36d238ce6ad84ed",
     "data/extracted/41993274.json": "4a522f60d61358346705002267b4213ea3ccaffac7c3c9b41a7f55e2839d1ad3",
+    "data/extracted/41999746.json": "e6a1c5081973e691c6a7eb9e60572fd6dc02c0e3bdf2be80a0e1d41e145aeb53",
     "data/extracted/42020736.json": "e481f08b2919a2a53146692dbaffbe5d498164645e2524726d4d5030ab6c2875",
     "data/extracted/42044039.json": "572969e06e9402327ec6cfadc954ce5d4c1c0d0dab40d2e4b33244c6702a1b05",
     "data/extracted/42056515.json": "30b7b76cde1a66f855be1a758f36dd555d6b46a57f73cb40a5d56740f476b8db",
@@ -614,17 +624,17 @@
     "data/raw/layer2_genomic_and_jaspar_reference.json": "224409b79e6d37676b35f59e6061e6882b255a1afbd9d7ca8adfee2f33492756"
   },
   "corpus": {
-    "studies": 594,
-    "arms": 693,
-    "reference_control_arms": 62,
-    "atomic_effects": 3158,
-    "raw_edit_entries": 260,
+    "studies": 604,
+    "arms": 708,
+    "reference_control_arms": 65,
+    "atomic_effects": 3174,
+    "raw_edit_entries": 261,
     "total_numeric_lrr_effects": 10,
     "expanded_gene_occurrences": 262,
-    "heuristic_penalty_effects": 43,
-    "active_deduplicated_studies_count": 579,
-    "active_empirical_studies_count": 578,
-    "non_superseded_studies_count": 580,
+    "heuristic_penalty_effects": 44,
+    "active_deduplicated_studies_count": 589,
+    "active_empirical_studies_count": 588,
+    "non_superseded_studies_count": 590,
     "superseded_preprint_studies_excluded_count": 14,
     "project_summary_studies_excluded_count": 1,
     "review_studies_in_corpus_count": 1,
@@ -652,45 +662,46 @@
       "42856627"
     ],
     "ring1_corpus_count_reconciliation": {
-      "validated_studies_total": 594,
+      "validated_studies_total": 604,
       "superseded_preprints_excluded": 14,
       "project_summaries_excluded": 1,
-      "non_superseded_studies_total": 580,
-      "active_deduplicated_studies_total": 579,
+      "non_superseded_studies_total": 590,
+      "active_deduplicated_studies_total": 589,
       "review_records_flagged": 1,
       "active_preprints_without_in_corpus_twin_flagged": 18,
-      "strict_active_peer_reviewed_empirical_studies_total": 560
+      "strict_active_peer_reviewed_empirical_studies_total": 570
     },
-    "active_deduplicated_arms_count": 678,
-    "active_deduplicated_effects_count": 3056,
+    "active_deduplicated_arms_count": 693,
+    "active_deduplicated_effects_count": 3072,
     "active_deduplicated_modifier_interactions_count": 1236,
     "active_deduplicated_causal_edges_count": 1045,
-    "non_superseded_arms_count": 679,
-    "non_superseded_effects_count": 3057,
+    "non_superseded_arms_count": 694,
+    "non_superseded_effects_count": 3073,
     "non_superseded_modifier_interactions_count": 1236,
     "non_superseded_causal_edges_count": 1046,
     "studies_by_biological_fidelity_tier": {
-      "Tier_1_Human_InVivo": 21,
+      "Tier_1_Human_InVivo": 22,
       "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 35,
-      "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 78,
-      "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 292,
+      "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 80,
+      "Tier_2C_NHP_Allogeneic_or_Autologous_NonIslet": 1,
+      "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 298,
       "Tier_4_Rodent_or_Xenogeneic_Only": 153
     },
     "studies_by_source_text_type": {
-      "Abstract_Only": 292,
+      "Abstract_Only": 299,
       "FullText_Plus_Supplement_or_GEO": 84,
-      "FullText_XML_or_PDF": 202,
+      "FullText_XML_or_PDF": 205,
       "Review_or_Commentary": 1
     },
-    "exact_source_span_verified_effects_count": 3056,
+    "exact_source_span_verified_effects_count": 3072,
     "quantitative_lrr_effects_count": 10,
-    "heuristic_penalty_effects_count": 42,
+    "heuristic_penalty_effects_count": 43,
     "direction_and_penalty_method_counts": {
       "rule_based_heuristic": 2981,
-      "source_adjudicated_curated_override": 75
+      "source_adjudicated_curated_override": 91
     },
     "adjudication_semantics": "Rule-based heuristic extraction; no independent manual accuracy dataset is attached. Classifier agreement is not measured sensitivity or specificity.",
-    "adjudicated_penalty_effects_count": 42,
+    "adjudicated_penalty_effects_count": 43,
     "deprecated_field_aliases": {
       "adjudicated_penalty_effects_count": {
         "alias_of": "heuristic_penalty_effects_count",
@@ -698,14 +709,14 @@
       }
     },
     "effects_by_direction": {
-      "Deleterious_or_Impaired": 236,
-      "Descriptive_or_Unoriented": 18,
+      "Deleterious_or_Impaired": 243,
+      "Descriptive_or_Unoriented": 23,
       "Neutral_or_NonInferior": 1542,
-      "Protective_or_Improved": 1260
+      "Protective_or_Improved": 1264
     },
     "effects_by_polarity_orientation_sign": {
       "-1": 214,
-      "0": 2349,
+      "0": 2365,
       "1": 493
     },
     "matched_context_multi_hop_chains_count": 51,
@@ -715,16 +726,16 @@
     "audit_ledger": {
       "method": "Computed from this evaluation's source studies, graph, registry, exact design and diagnostics; not an audit closure assertion",
       "source_counts": {
-        "studies": 594,
-        "arms": 693,
-        "atomic_effects": 3158,
-        "raw_edit_rows": 260,
+        "studies": 604,
+        "arms": 708,
+        "atomic_effects": 3174,
+        "raw_edit_rows": 261,
         "expanded_edit_gene_occurrences": 262
       },
       "corpus_eligibility": {
-        "active_deduplicated_studies_count": 574,
-        "active_empirical_studies_count": 573,
-        "non_superseded_studies_count": 575,
+        "active_deduplicated_studies_count": 589,
+        "active_empirical_studies_count": 588,
+        "non_superseded_studies_count": 590,
         "superseded_preprint_studies_excluded_count": 14,
         "project_summary_studies_excluded_count": 1,
         "review_studies_in_corpus_count": 1,
@@ -752,45 +763,46 @@
           "42856627"
         ],
         "ring1_corpus_count_reconciliation": {
-          "validated_studies_total": 589,
+          "validated_studies_total": 604,
           "superseded_preprints_excluded": 14,
           "project_summaries_excluded": 1,
-          "non_superseded_studies_total": 575,
-          "active_deduplicated_studies_total": 574,
+          "non_superseded_studies_total": 590,
+          "active_deduplicated_studies_total": 589,
           "review_records_flagged": 1,
           "active_preprints_without_in_corpus_twin_flagged": 18,
-          "strict_active_peer_reviewed_empirical_studies_total": 555
+          "strict_active_peer_reviewed_empirical_studies_total": 570
         },
-        "active_deduplicated_arms_count": 658,
-        "active_deduplicated_effects_count": 3046,
+        "active_deduplicated_arms_count": 693,
+        "active_deduplicated_effects_count": 3072,
         "active_deduplicated_modifier_interactions_count": 1236,
         "active_deduplicated_causal_edges_count": 1045,
-        "non_superseded_arms_count": 659,
-        "non_superseded_effects_count": 3047,
+        "non_superseded_arms_count": 694,
+        "non_superseded_effects_count": 3073,
         "non_superseded_modifier_interactions_count": 1236,
         "non_superseded_causal_edges_count": 1046,
         "studies_by_biological_fidelity_tier": {
-          "Tier_1_Human_InVivo": 21,
+          "Tier_1_Human_InVivo": 22,
           "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 35,
-          "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 78,
-          "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 288,
-          "Tier_4_Rodent_or_Xenogeneic_Only": 152
+          "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 80,
+          "Tier_2C_NHP_Allogeneic_or_Autologous_NonIslet": 1,
+          "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 298,
+          "Tier_4_Rodent_or_Xenogeneic_Only": 153
         },
         "studies_by_source_text_type": {
-          "Abstract_Only": 291,
+          "Abstract_Only": 299,
           "FullText_Plus_Supplement_or_GEO": 84,
-          "FullText_XML_or_PDF": 198,
+          "FullText_XML_or_PDF": 205,
           "Review_or_Commentary": 1
         },
-        "exact_source_span_verified_effects_count": 3046,
-        "quantitative_lrr_effects_count": 9,
-        "heuristic_penalty_effects_count": 42,
+        "exact_source_span_verified_effects_count": 3072,
+        "quantitative_lrr_effects_count": 10,
+        "heuristic_penalty_effects_count": 43,
         "direction_and_penalty_method_counts": {
           "rule_based_heuristic": 2981,
-          "source_adjudicated_curated_override": 65
+          "source_adjudicated_curated_override": 91
         },
         "adjudication_semantics": "Rule-based heuristic extraction; no independent manual accuracy dataset is attached. Classifier agreement is not measured sensitivity or specificity.",
-        "adjudicated_penalty_effects_count": 42,
+        "adjudicated_penalty_effects_count": 43,
         "deprecated_field_aliases": {
           "adjudicated_penalty_effects_count": {
             "alias_of": "heuristic_penalty_effects_count",
@@ -798,15 +810,15 @@
           }
         },
         "effects_by_direction": {
-          "Deleterious_or_Impaired": 236,
-          "Descriptive_or_Unoriented": 14,
+          "Deleterious_or_Impaired": 243,
+          "Descriptive_or_Unoriented": 23,
           "Neutral_or_NonInferior": 1542,
-          "Protective_or_Improved": 1254
+          "Protective_or_Improved": 1264
         },
         "effects_by_polarity_orientation_sign": {
-          "-1": 212,
-          "0": 2345,
-          "1": 489
+          "-1": 214,
+          "0": 2365,
+          "1": 493
         },
         "matched_context_multi_hop_chains_count": 51,
         "cross_context_hypothesis_chains_count": 449
@@ -6789,16 +6801,16 @@
       "layer1_ultracode_audit_reconciliation_ledger": {
         "method": "Computed from this evaluation's source studies, graph, registry, exact design and diagnostics; not an audit closure assertion",
         "source_counts": {
-          "studies": 594,
-          "arms": 693,
-          "atomic_effects": 3158,
-          "raw_edit_rows": 260,
+          "studies": 604,
+          "arms": 708,
+          "atomic_effects": 3174,
+          "raw_edit_rows": 261,
           "expanded_edit_gene_occurrences": 262
         },
         "corpus_eligibility": {
-          "active_deduplicated_studies_count": 574,
-          "active_empirical_studies_count": 573,
-          "non_superseded_studies_count": 575,
+          "active_deduplicated_studies_count": 589,
+          "active_empirical_studies_count": 588,
+          "non_superseded_studies_count": 590,
           "superseded_preprint_studies_excluded_count": 14,
           "project_summary_studies_excluded_count": 1,
           "review_studies_in_corpus_count": 1,
@@ -6826,45 +6838,46 @@
             "42856627"
           ],
           "ring1_corpus_count_reconciliation": {
-            "validated_studies_total": 589,
+            "validated_studies_total": 604,
             "superseded_preprints_excluded": 14,
             "project_summaries_excluded": 1,
-            "non_superseded_studies_total": 575,
-            "active_deduplicated_studies_total": 574,
+            "non_superseded_studies_total": 590,
+            "active_deduplicated_studies_total": 589,
             "review_records_flagged": 1,
             "active_preprints_without_in_corpus_twin_flagged": 18,
-            "strict_active_peer_reviewed_empirical_studies_total": 555
+            "strict_active_peer_reviewed_empirical_studies_total": 570
           },
-          "active_deduplicated_arms_count": 658,
-          "active_deduplicated_effects_count": 3046,
+          "active_deduplicated_arms_count": 693,
+          "active_deduplicated_effects_count": 3072,
           "active_deduplicated_modifier_interactions_count": 1236,
           "active_deduplicated_causal_edges_count": 1045,
-          "non_superseded_arms_count": 659,
-          "non_superseded_effects_count": 3047,
+          "non_superseded_arms_count": 694,
+          "non_superseded_effects_count": 3073,
           "non_superseded_modifier_interactions_count": 1236,
           "non_superseded_causal_edges_count": 1046,
           "studies_by_biological_fidelity_tier": {
-            "Tier_1_Human_InVivo": 21,
+            "Tier_1_Human_InVivo": 22,
             "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 35,
-            "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 78,
-            "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 288,
-            "Tier_4_Rodent_or_Xenogeneic_Only": 152
+            "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 80,
+            "Tier_2C_NHP_Allogeneic_or_Autologous_NonIslet": 1,
+            "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 298,
+            "Tier_4_Rodent_or_Xenogeneic_Only": 153
           },
           "studies_by_source_text_type": {
-            "Abstract_Only": 291,
+            "Abstract_Only": 299,
             "FullText_Plus_Supplement_or_GEO": 84,
-            "FullText_XML_or_PDF": 198,
+            "FullText_XML_or_PDF": 205,
             "Review_or_Commentary": 1
           },
-          "exact_source_span_verified_effects_count": 3046,
-          "quantitative_lrr_effects_count": 9,
-          "heuristic_penalty_effects_count": 42,
+          "exact_source_span_verified_effects_count": 3072,
+          "quantitative_lrr_effects_count": 10,
+          "heuristic_penalty_effects_count": 43,
           "direction_and_penalty_method_counts": {
             "rule_based_heuristic": 2981,
-            "source_adjudicated_curated_override": 65
+            "source_adjudicated_curated_override": 91
           },
           "adjudication_semantics": "Rule-based heuristic extraction; no independent manual accuracy dataset is attached. Classifier agreement is not measured sensitivity or specificity.",
-          "adjudicated_penalty_effects_count": 42,
+          "adjudicated_penalty_effects_count": 43,
           "deprecated_field_aliases": {
             "adjudicated_penalty_effects_count": {
               "alias_of": "heuristic_penalty_effects_count",
@@ -6872,15 +6885,15 @@
             }
           },
           "effects_by_direction": {
-            "Deleterious_or_Impaired": 236,
-            "Descriptive_or_Unoriented": 14,
+            "Deleterious_or_Impaired": 243,
+            "Descriptive_or_Unoriented": 23,
             "Neutral_or_NonInferior": 1542,
-            "Protective_or_Improved": 1254
+            "Protective_or_Improved": 1264
           },
           "effects_by_polarity_orientation_sign": {
-            "-1": 212,
-            "0": 2345,
-            "1": 489
+            "-1": 214,
+            "0": 2365,
+            "1": 493
           },
           "matched_context_multi_hop_chains_count": 51,
           "cross_context_hypothesis_chains_count": 449

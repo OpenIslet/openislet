@@ -122,6 +122,16 @@ CURATED_LANDMARK_PMIDS = {
     "42020736",  # Shi 2026 Nature (doi:10.1038/s41586-026-10395-w; abstract-only non-OA Mode-B candidate: QuadPE 1.6-26 kb ~40% at multiple loci and 11x/61x/12x relative gains at 9.5 kb vs PASSIGE/PASTE/CAST; per-panel n, neuron species, and hiPSC rates omitted from abstract)
     "42056515",  # Liu 2026 Nature (PMC13371498 NIHMS2190808, PMC restricted author-manuscript terms; TwinPE Prime Assembly in HEK293T separating Fig. 4b 11.3 kb single linear DMD PCR donor vs untreated Ctrl [Welch p=0.00065, legend footer mean+/-s.d. n=3-4] from Fig. 3f qualitative gel 3-segment 1.9 kb AAT; ~18 kb Design Y fallback is proposed Stage-0 extension)
     "42749803",  # Levesque 2026 Nature (PMC13754579, CC BY-NC-ND 4.0; dual-flap PE7 TRAC ssDNA Prime Assembly in primary human CD3+ T cells; Fig. 5g descriptive 3.3% resting vs 2.2% activated contrast across differing culture conditions in n=4 paired donors, SEM, shared TRAC edit on both arms)
+    "2642862",  # Sutherland 1989 Diabetes (doi:10.2337/diab.38.1.s85; publisher standard non-OA abstract-only; 8 graft failures attributed to autoimmune recurrence among a series of 200 pancreas transplants; all 8 in non-/minimal-IS twin (3) or HLA-identical sibling (5) subgroup with subgroup denominator unreported in abstract)
+    "31427818",  # Deuse 2019 Nat Biotechnol (doi:10.1038/s41587-019-0227-7; publisher standard non-OA abstract-only; de novo iPSC chrM mtDNA neoepitopes eliciting host MHC-specific immune responses in mice and humans; local dossier is abstract-only so mouse in vivo vs human in vitro assay breakdowns remain outside local text; motivates >=1,000x NUMT-filtered mtDNA QC)
+    "35953586",  # Rouhani 2022 Nat Genet (PMC9470532, CC BY 4.0, PMC XML full-text dossier; WGS and WES across 696 sequenced hiPSC/subclone samples [555 hiPSCs + 141 derived subclones] in mixed healthy and inherited DNA-repair-disorder cohorts; 21/78 [26.9%] BCOR mutations in Insignia blood hiPSCs, 3/17 HipSci blood cohort, fibroblast UV burden)
+    "36944335",  # Liuyang 2023 Cell Stem Cell (doi:10.1016/j.stem.2023.02.008; publisher standard non-OA abstract-only; chemically defined human somatic-to-CiPSC protocol, 16-day minimum induction & 17-donor reproducibility)
+    "38843830",  # Lin 2024 Cell Stem Cell (PMC11227404 NIHMS author-manuscript terms, PMC XML Fig. 6C-D auto & Fig. 6A-B allo pinned; mapped locally to Ring-1 Tier_2C_NHP_Allogeneic_or_Autologous_NonIslet / NHP_iPSC_Cardiomyocyte_NonIslet [CEG T2_NHP]: descriptive comparison of 2 post-MI autologous rhesus iPSC-CM recipients [Fig. 6C-D 8 & 14 mo; abstract >6 & >12 mo] vs 2 separate non-concurrent allogeneic cardiac NHP recipients at 8 wk [Fig. 6A-B, one non-infarcted: Allo-NHP#1 residual ssTnI+ graft severely infiltrated grade 3R; Allo-NHP#2 no residual graft detectable] without immunosuppression)
+    "39753706",  # Wang 2025 Nat Chem Biol (doi:10.1038/s41589-024-01799-8; publisher standard non-OA abstract-only; accelerated chemical reprogramming: >20-fold 16-day efficiency gain vs prior protocol [eff1], 10-day minimum [eff2], and 100% [15/15] single-arm cohort donor success [eff3])
+    "41436438",  # Fu 2025 Cell Discov (PMC12727690, CC BY 4.0 PMC XML; 14-donor serum-free blood CiPSC induction [eff1] and 22-24 d / 18 d kinetics [eff2], lacking WGS/BCOR/mtDNA release screen)
+    "41690310",  # Uenaka 2026 Cell Stem Cell (doi:10.1016/j.stem.2026.01.007; CC BY-NC 4.0, abstract-only; hPSC safe-harbor silencing screen during neuronal/microglial differentiation motivating CLYBL Stage-7 beta-cell retention gate)
+    "41764741",  # Amdare 2026 J Immunol (PMC13157716, OUP publisher standard / pending PMC release, abstract-only; islet-derived human T-cell line peptide recognition on HLA-C*03:04 motivating H3 mitigation testing)
+    "41999746",  # Cheng 2026 Cell (doi:10.1016/j.cell.2026.03.038; publisher standard non-OA abstract-only; intact p53 safeguards human chemical reprogramming via BTG2 anti-EMT signaling)
 }
 
 # Perturbation verbs/nouns required within a window of a gene symbol to classify it as a true perturbation
@@ -3262,6 +3272,14 @@ def _num_in_quote(val: Any, quote: str, field_name: str = "") -> bool:
                 r"\b(one|two|three|four|five|six|seven|eight|nine|ten)\s+"
                 r"(?:male\s+|female\s+)?(?:cynomolgus\s+|rhesus\s+)?(?:macaques?|monkeys?)\b", quote, re.I):
                 ns.append(written_numbers[match.group(1).lower()])
+            for match in re.finditer(
+                r"\bseries\s+of\s+(\d+(?:,\d{3})*)\s+pancreas\s+transplants?\b|"
+                r"\binvolving\s+(\d+(?:,\d{3})*)\s+hiPSCs?\b|"
+                r"\b(?:across|from)\s+(?:all\s+)?(\d+(?:,\d{3})*)\s+(?:different\s+|tested\s+)?donors?\b",
+                quote, re.I):
+                tok = match.group(1) or match.group(2) or match.group(3)
+                if tok:
+                    ns.append(int(tok.replace(",", "")))
         if isinstance(val, (int, float)) and not isinstance(val, bool) and float(val).is_integer() and int(val) in ns:
             return True
         return (field_name in ("treatment_n", "control_n") and isinstance(val, (int, float))

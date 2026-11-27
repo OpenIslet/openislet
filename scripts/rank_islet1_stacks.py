@@ -29,6 +29,7 @@ Upgrades in v0.6.0 (incorporating Red-Team Reviews):
 
 from __future__ import annotations
 
+import contextvars
 import copy
 import json
 import hashlib
@@ -115,6 +116,7 @@ FIDELITY_WEIGHTS = {
     "Tier_2A_Human_Cells_InVivo_NHP_or_HumanizedMouse": 0.85,
     "Tier_2B_Human_Cells_InVitro_HumanImmune_CoCulture": 0.75,
     "Tier_2B_Human_Cells_InVitro_HumanImmune_or_AutoAb_CoCulture": 0.75,
+    "Tier_2C_NHP_Allogeneic_or_Autologous_NonIslet": 0.45,
     "Tier_3_Human_Cells_AbioticStress_or_ImmunodeficientMouse": 0.60,
     "Tier_4_Rodent_or_Xenogeneic_Only": 0.25,
 }
@@ -872,7 +874,7 @@ def build_target_evidence_profiles(studies: list[dict], omics: dict) -> dict:
         if tier not in FIDELITY_WEIGHTS:
             raise ValueError(f"Unmapped max_biological_fidelity_tier {tier!r} in PMID {pmid}")
         w = FIDELITY_WEIGHTS[tier]
-        is_human = tier != "Tier_4_Rodent_or_Xenogeneic_Only"
+        is_human = tier not in ("Tier_4_Rodent_or_Xenogeneic_Only", "Tier_2C_NHP_Allogeneic_or_Autologous_NonIslet")
 
         study_genes = set()
         study_gene_edit_types: dict[str, set[str]] = {}
@@ -5942,6 +5944,13 @@ def _run_dp_and_verify_parity_iip0034(
     q_m = (mod100 - p0_m) / (1.0 - p0_m)
     ql_bar_exact = (c0 - p0_l) / (1.0 - p0_l)
     qm_bar_exact = (c0 - p0_m) / (1.0 - p0_m)
+    _law_col = _ACTIVE_LAW_COLLECTOR_IIP0035.get()
+    if _law_col is not None:
+        _law_col[label] = {
+            "cell_architecture_classes": tuple(cell_classes),
+            "h4_route_assignments": tuple(route_ids),
+            "stage_dists": tuple(tuple(float(x) for x in d) for d in dists),
+        }
     return {
         "scenario": label,
         "stage0_qualification_status": stage0_status,
@@ -6413,6 +6422,873 @@ def compute_multiparadigm_2pow4n_portfolio_iip0034() -> dict:
         "cross_hurdle_negative_coupling_sensitivity": cross_hurdle_negative_coupling_sensitivity,
         "stage0_gated_5arm_unified_bridge": bridge_5arm,
     }
+
+
+
+# =============================================================================
+# IIP-0035 (DEC-114): Compatibility-Constrained Wave C 4-Arm Autologous
+# D1b-Auto-C v2 & Unified 5-Arm Portfolio Artifact
+# (Emits data/extracted/islet1_5arm_autologous_portfolio_v0.8.0.json while
+# keeping islet1_multiparadigm_portfolio_v0.8.0.json 100% byte-for-bit UNCHANGED!)
+# =============================================================================
+_ACTIVE_LAW_COLLECTOR_IIP0035: contextvars.ContextVar[dict[str, dict] | None] = contextvars.ContextVar(
+    "_ACTIVE_LAW_COLLECTOR_IIP0035",
+    default=None,
+)
+
+
+def _eval_4arm_d1auto_iip0035(
+    label: str,
+    p_d1: tuple[float, float, float, float],
+    *,
+    pa: tuple[float, float, float, float],
+    pb: tuple[float, float, float, float],
+    px: tuple[float, float, float, float],
+    c2_univ: float,
+    c2_auto: float,
+    c3_shared: float,
+    h4_mode: str,
+    c4_univ: float,
+    c4_r3: float,
+    phi_cross: float,
+    p0_l: float,
+    p0_m: float,
+    c0: float,
+    stage0_status: str,
+    fourth_arm_cell_class: str = "D1B_AUTO_C_V2",
+) -> dict:
+    u_d1 = p_d1[0] / 0.88
+    d1 = [0.0] * 16
+    d1[0] = 0.12
+    d1[7] = 0.88 * (1.0 - u_d1)
+    d1[15] = 0.88 * u_d1
+
+    d2_inc = _frechet_bernoulli_joint_iip0034([pa[1] / 0.87, pb[1] / 0.87, px[1] / 0.87], 0.0)
+    biv2 = _bivariate_bernoulli_iip0034(0.87 / c2_univ, c2_auto / c2_univ, phi_cross)
+    if p_d1[1] > c2_auto + 1e-12:
+        raise ValueError(f"Autologous H2 probability {p_d1[1]} exceeds ceiling c2_auto={c2_auto} in {label}")
+    u_d2 = p_d1[1] / c2_auto
+    d2 = [0.0] * 16
+    d2[0] += 1.0 - c2_univ
+    for (s0, s1), wp in biv2.items():
+        w = c2_univ * wp
+        if s0 == 0 and s1 == 0:
+            d2[0] += w
+        elif s0 == 1 and s1 == 0:
+            for mi in range(8):
+                d2[mi] += w * d2_inc[mi]
+        elif s0 == 0 and s1 == 1:
+            d2[0] += w * (1.0 - u_d2)
+            d2[8] += w * u_d2
+        else:
+            for mi in range(8):
+                d2[mi] += w * d2_inc[mi] * (1.0 - u_d2)
+                d2[mi | 8] += w * d2_inc[mi] * u_d2
+    c2_e = c2_univ * (1.0 - biv2[(0, 0)])
+
+    d3_inc = _frechet_bernoulli_joint_iip0034([pa[2] / c3_shared, pb[2] / c3_shared, px[2] / c3_shared], 0.0)
+    d3_cond = _frechet_couple_new_arm_iip0034(d3_inc, p_d1[2] / c3_shared, phi_cross, lambda mi: mi != 0)
+    d3 = [0.0] * 16
+    d3[0] += 1.0 - c3_shared
+    for k in range(16):
+        d3[k] += c3_shared * d3_cond[k]
+    c3_e = c3_shared
+
+    d4_inc = _live_incumbent_h4_cond_iip0034()
+    if h4_mode == "SHARED_R2":
+        d4_cond = _frechet_couple_new_arm_iip0034(d4_inc, p_d1[3] / 0.85, 1.0, lambda mi: bool(mi & 2))
+        d4 = [0.0] * 16
+        d4[0] += 0.15
+        for k in range(16):
+            d4[k] += 0.85 * d4_cond[k]
+        c4_e = 0.85
+        routes = ("R1", "R2", "R1", "R2")
+    elif h4_mode == "ORTHOG_R3P":
+        biv4 = _bivariate_bernoulli_iip0034(0.85 / c4_univ, c4_r3 / c4_univ, phi_cross)
+        u_d4 = p_d1[3] / c4_r3
+        d4 = [0.0] * 16
+        d4[0] += 1.0 - c4_univ
+        for (s0, s1), wp in biv4.items():
+            w = c4_univ * wp
+            if s0 == 0 and s1 == 0:
+                d4[0] += w
+            elif s0 == 1 and s1 == 0:
+                for mi in range(8):
+                    d4[mi] += w * d4_inc[mi]
+            elif s0 == 0 and s1 == 1:
+                d4[0] += w * (1.0 - u_d4)
+                d4[8] += w * u_d4
+            else:
+                for mi in range(8):
+                    d4[mi] += w * d4_inc[mi] * (1.0 - u_d4)
+                    d4[mi | 8] += w * d4_inc[mi] * u_d4
+        c4_e = c4_univ * (1.0 - biv4[(0, 0)])
+        routes = ("R1", "R2", "R1", "R3P")
+    else:
+        raise ValueError(h4_mode)
+    return _run_dp_and_verify_parity_iip0034(
+        label,
+        [pa, pb, px, p_d1],
+        [d1, d2, d3, d4],
+        [0.88, c2_e, c3_e, c4_e],
+        p0_l,
+        p0_m,
+        c0,
+        stage0_status=stage0_status,
+        cell_classes=("UNHARDENED_A_B_X", "UNHARDENED_A_B_X", "UNHARDENED_A_B_X", fourth_arm_cell_class),
+        route_ids=routes,
+    )
+
+
+def _eval_5arm_unified_iip0035(
+    label: str,
+    p_y: tuple[float, float, float, float],
+    p_d1: tuple[float, float, float, float],
+    *,
+    pa: tuple[float, float, float, float],
+    pb: tuple[float, float, float, float],
+    px: tuple[float, float, float, float],
+    c2_y: float,
+    c3_y: float,
+    phi_yx: float,
+    phi_c: float,
+    d1_on_r3: bool,
+    c4_univ: float,
+    c4_r3: float,
+    p0_l: float,
+    p0_m: float,
+    c0: float,
+    stage0_status: str,
+) -> dict:
+    c2_univ, c2_auto = 0.95, 0.93
+    u_d1 = p_d1[0] / 0.88
+    d1 = [0.0] * 32
+    d1[0] = 0.12
+    d1[15] = 0.88 * (1.0 - u_d1)
+    d1[31] = 0.88 * u_d1
+
+    d2_inc = _frechet_bernoulli_joint_iip0034([pa[1] / 0.87, pb[1] / 0.87, px[1] / 0.87], 0.0)
+    r2 = 0.87 / c2_y
+    u_y2 = p_y[1] / c2_y
+    d2_both = _frechet_couple_new_arm_iip0034(d2_inc, u_y2, phi_yx, lambda mi: bool(mi & 4))
+    d2_allo4 = [0.0] * 16
+    for k in range(16):
+        d2_allo4[k] += r2 * d2_both[k]
+    d2_allo4[0] += (1.0 - r2) * (1.0 - u_y2)
+    d2_allo4[8] += (1.0 - r2) * u_y2
+
+    biv2 = _bivariate_bernoulli_iip0034(c2_y / c2_univ, c2_auto / c2_univ, phi_c)
+    if p_d1[1] > c2_auto + 1e-12:
+        raise ValueError(f"Autologous H2 probability {p_d1[1]} exceeds ceiling c2_auto={c2_auto} in {label}")
+    u_d2 = p_d1[1] / c2_auto
+    d2 = [0.0] * 32
+    d2[0] += 1.0 - c2_univ
+    for (s0, s1), wp in biv2.items():
+        w = c2_univ * wp
+        if s0 == 0 and s1 == 0:
+            d2[0] += w
+        elif s0 == 1 and s1 == 0:
+            for m4 in range(16):
+                d2[m4] += w * d2_allo4[m4]
+        elif s0 == 0 and s1 == 1:
+            d2[0] += w * (1.0 - u_d2)
+            d2[16] += w * u_d2
+        else:
+            for m4 in range(16):
+                d2[m4] += w * d2_allo4[m4] * (1.0 - u_d2)
+                d2[m4 | 16] += w * d2_allo4[m4] * u_d2
+    c2_e = c2_univ * (1.0 - biv2[(0, 0)])
+
+    d3_inc = _frechet_bernoulli_joint_iip0034([pa[2] / 0.89, pb[2] / 0.89, px[2] / 0.89], 0.0)
+    r3 = 0.89 / c3_y
+    u_y3 = p_y[2] / c3_y
+    d3_both = _frechet_couple_new_arm_iip0034(d3_inc, u_y3, phi_yx, lambda mi: bool(mi & 4))
+    d3_allo4 = [0.0] * 16
+    for k in range(16):
+        d3_allo4[k] += r3 * d3_both[k]
+    d3_allo4[0] += (1.0 - r3) * (1.0 - u_y3)
+    d3_allo4[8] += (1.0 - r3) * u_y3
+    d3_5cond = _frechet_couple_new_arm_iip0034(d3_allo4, p_d1[2] / c3_y, phi_c, lambda m4: m4 != 0)
+    d3 = [0.0] * 32
+    d3[0] += 1.0 - c3_y
+    for k in range(32):
+        d3[k] += c3_y * d3_5cond[k]
+    c3_e = c3_y
+
+    d4_inc = _live_incumbent_h4_cond_iip0034()
+    biv4 = _bivariate_bernoulli_iip0034(0.85 / c4_univ, c4_r3 / c4_univ, phi_c)
+    d4 = [0.0] * 32
+    d4[0] += 1.0 - c4_univ
+    if d1_on_r3:
+        d4_r3 = _frechet_bernoulli_joint_iip0034([p_y[3] / c4_r3, p_d1[3] / c4_r3], 1.0)
+        for (s0, s1), wp in biv4.items():
+            w = c4_univ * wp
+            if s0 == 0 and s1 == 0:
+                d4[0] += w
+            elif s0 == 1 and s1 == 0:
+                for m3 in range(8):
+                    d4[m3] += w * d4_inc[m3]
+            elif s0 == 0 and s1 == 1:
+                for mr in range(4):
+                    m5 = ((mr & 1) << 3) | (((mr >> 1) & 1) << 4)
+                    d4[m5] += w * d4_r3[mr]
+            else:
+                for m3 in range(8):
+                    for mr in range(4):
+                        m5 = m3 | ((mr & 1) << 3) | (((mr >> 1) & 1) << 4)
+                        d4[m5] += w * d4_inc[m3] * d4_r3[mr]
+        routes = ("R1", "R2", "R1", "R3P", "R3P")
+    else:
+        d4_pouch_d1 = _frechet_couple_new_arm_iip0034(d4_inc, p_d1[3] / 0.85, 1.0, lambda m3: bool(m3 & 2))
+        d4_p0 = [0.0] * 32
+        for m4 in range(16):
+            d4_p0[(m4 & 7) | (((m4 >> 3) & 1) << 4)] = d4_pouch_d1[m4]
+        u_y4 = p_y[3] / c4_r3
+        for (s0, s1), wp in biv4.items():
+            w = c4_univ * wp
+            if s0 == 0 and s1 == 0:
+                d4[0] += w
+            elif s0 == 1 and s1 == 0:
+                for m5 in range(32):
+                    if d4_p0[m5]:
+                        d4[m5] += w * d4_p0[m5]
+            elif s0 == 0 and s1 == 1:
+                d4[0] += w * (1.0 - u_y4)
+                d4[8] += w * u_y4
+            else:
+                for m5 in range(32):
+                    if d4_p0[m5]:
+                        d4[m5] += w * d4_p0[m5] * (1.0 - u_y4)
+                        d4[m5 | 8] += w * d4_p0[m5] * u_y4
+        routes = ("R1", "R2", "R1", "R3P", "R2")
+    c4_e = c4_univ * (1.0 - biv4[(0, 0)])
+    return _run_dp_and_verify_parity_iip0034(
+        label,
+        [pa, pb, px, p_y, p_d1],
+        [d1, d2, d3, d4],
+        [0.88, c2_e, c3_e, c4_e],
+        p0_l,
+        p0_m,
+        c0,
+        stage0_status=stage0_status,
+        cell_classes=("UNHARDENED_A_B_X", "UNHARDENED_A_B_X", "UNHARDENED_A_B_X", "DESIGN_Y_FULLSTACK_V2", "D1B_AUTO_C_V2"),
+        route_ids=routes,
+    )
+
+
+def _solve_exact_breakeven_p1_iip0035(
+    *,
+    pa: tuple[float, float, float, float],
+    pb: tuple[float, float, float, float],
+    px: tuple[float, float, float, float],
+    phi_cross: float,
+    c0: float,
+) -> float:
+    """Exact continuous affine break-even p1* where 4-arm D1b@R3P locked odds equal the live shared ceiling c0."""
+    target = c0 * 100.0
+    d2_inc = _frechet_bernoulli_joint_iip0034([pa[1] / 0.87, pb[1] / 0.87, px[1] / 0.87], 0.0)
+    biv2 = _bivariate_bernoulli_iip0034(0.87 / 0.95, 0.93 / 0.95, phi_cross)
+    u_d2 = 0.92 / 0.93
+    d2 = [0.0] * 16
+    d2[0] += 0.05
+    for (s0, s1), wp in biv2.items():
+        w = 0.95 * wp
+        if s0 == 0 and s1 == 0:
+            d2[0] += w
+        elif s0 == 1 and s1 == 0:
+            for mi in range(8):
+                d2[mi] += w * d2_inc[mi]
+        elif s0 == 0 and s1 == 1:
+            d2[0] += w * (1.0 - u_d2)
+            d2[8] += w * u_d2
+        else:
+            for mi in range(8):
+                d2[mi] += w * d2_inc[mi] * (1.0 - u_d2)
+                d2[mi | 8] += w * d2_inc[mi] * u_d2
+    d3_inc = _frechet_bernoulli_joint_iip0034([pa[2] / 0.89, pb[2] / 0.89, px[2] / 0.89], 0.0)
+    d3_cond = _frechet_couple_new_arm_iip0034(d3_inc, 0.70 / 0.89, phi_cross, lambda mi: mi != 0)
+    d3 = [0.0] * 16
+    d3[0] += 0.11
+    for k in range(16):
+        d3[k] += 0.89 * d3_cond[k]
+    d4_inc = _live_incumbent_h4_cond_iip0034()
+    biv4 = _bivariate_bernoulli_iip0034(0.85 / 0.92, 0.85 / 0.92, phi_cross)
+    u_d4 = 0.70 / 0.85
+    d4 = [0.0] * 16
+    d4[0] += 0.08
+    for (s0, s1), wp in biv4.items():
+        w = 0.92 * wp
+        if s0 == 0 and s1 == 0:
+            d4[0] += w
+        elif s0 == 1 and s1 == 0:
+            for mi in range(8):
+                d4[mi] += w * d4_inc[mi]
+        elif s0 == 0 and s1 == 1:
+            d4[0] += w * (1.0 - u_d4)
+            d4[8] += w * u_d4
+        else:
+            for mi in range(8):
+                d4[mi] += w * d4_inc[mi] * (1.0 - u_d4)
+                d4[mi | 8] += w * d4_inc[mi] * u_d4
+
+    def _eval_locked_pct(p1_val: float) -> float:
+        u_d1 = p1_val / 0.88
+        d1 = [0.0] * 16
+        d1[0] = 0.12
+        d1[7] = 0.88 * (1.0 - u_d1)
+        d1[15] = 0.88 * u_d1
+        dp = [0.0] * 16
+        dp[15] = 1.0
+        for d in (d1, d2, d3, d4):
+            nxt = [0.0] * 16
+            for a_mask, p_a in enumerate(dp):
+                if p_a:
+                    for b_mask, p_b in enumerate(d):
+                        if p_b:
+                            nxt[a_mask & b_mask] += p_a * p_b
+            dp = nxt
+        return (1.0 - dp[0]) * 100.0
+
+    lo, hi = 0.45, 0.85
+    f_lo = _eval_locked_pct(lo)
+    f_hi = _eval_locked_pct(hi)
+    if not (math.isfinite(f_lo) and math.isfinite(f_hi)) or f_hi <= f_lo:
+        raise ValueError(f"Non-increasing or non-finite break-even bracket for phi_cross={phi_cross}: f({lo})={f_lo}, f({hi})={f_hi}")
+    if target < f_lo - 1e-12 or target > f_hi + 1e-12:
+        raise ValueError(
+            f"Target ceiling {target:.6f}% lies outside bracket [{f_lo:.6f}%, {f_hi:.6f}%] on p1 in [{lo}, {hi}] for phi_cross={phi_cross}"
+        )
+    p1_star = lo + (hi - lo) * (target - f_lo) / (f_hi - f_lo)
+    residual = abs(_eval_locked_pct(p1_star) - target)
+    if not math.isfinite(residual) or residual > 1e-11:
+        raise ValueError(f"Exact affine break-even residual {residual:.3e} exceeded 1e-11 at p1*={p1_star}")
+    return round(p1_star, 6)
+
+
+def _max_abs_full_joint_state_diff_iip0035(
+    dists_a: tuple[tuple[float, ...], ...],
+    dists_b: tuple[tuple[float, ...], ...],
+) -> float:
+    """Exact max_{s in 2^(4N)} |P_a(s) - P_b(s)| across ALL unrounded 2^(4N) joint states (up to 1,048,576)."""
+    if len(dists_a) != 4 or len(dists_b) != 4:
+        raise ValueError("Expected 4 stage distributions")
+    for side_label, dists in (("dists_a", dists_a), ("dists_b", dists_b)):
+        for st_idx, dist in enumerate(dists):
+            for entry in dist:
+                if isinstance(entry, bool) or not isinstance(entry, (int, float)) or not math.isfinite(float(entry)):
+                    raise ValueError(
+                        f"Non-finite probability encountered in unrounded 2^(4N) scenario law ({side_label}[{st_idx}]={entry!r})"
+                    )
+    if any(len(a) != len(b) for a, b in zip(dists_a, dists_b)):
+        return float("inf")
+    a0, a1, a2, a3 = dists_a
+    b0, b1, b2, b3 = dists_b
+    p01_a: list[float] = []
+    p01_b: list[float] = []
+    for x0, y0 in zip(a0, b0):
+        if x0 == 0.0 and y0 == 0.0:
+            continue
+        for x1, y1 in zip(a1, b1):
+            va = x0 * x1
+            vb = y0 * y1
+            if va != 0.0 or vb != 0.0:
+                p01_a.append(va)
+                p01_b.append(vb)
+    p23_a: list[float] = []
+    p23_b: list[float] = []
+    for x2, y2 in zip(a2, b2):
+        if x2 == 0.0 and y2 == 0.0:
+            continue
+        for x3, y3 in zip(a3, b3):
+            va = x2 * x3
+            vb = y2 * y3
+            if va != 0.0 or vb != 0.0:
+                p23_a.append(va)
+                p23_b.append(vb)
+    max_diff = 0.0
+    for u_a, u_b in zip(p01_a, p01_b):
+        for w_a, w_b in zip(p23_a, p23_b):
+            d = abs(u_a * w_a - u_b * w_b)
+            if not math.isfinite(d):
+                raise ValueError(f"Non-finite joint-state probability difference encountered: {d!r}")
+            if d > max_diff:
+                max_diff = d
+    return max_diff
+
+
+def verify_unrounded_alias_and_distinct_laws_iip0035(
+    core_laws: dict[str, dict],
+    repeated_aliases: dict[str, str],
+    *,
+    tol: float = 1e-12,
+) -> dict:
+    """Verify exact <= tol unrounded 2^(4N) full joint-state equality for every alias pair AND exact equivalence partition."""
+    if isinstance(tol, bool) or not isinstance(tol, (int, float)) or not math.isfinite(float(tol)) or float(tol) < 0.0:
+        raise ValueError(f"Invalid non-finite or negative tolerance tol={tol!r}")
+    for sc_id, law in sorted(core_laws.items()):
+        dists = law.get("stage_dists")
+        c_cls = law.get("cell_architecture_classes")
+        r_ids = law.get("h4_route_assignments")
+        if not isinstance(dists, (tuple, list)) or len(dists) != 4:
+            raise ValueError(f"Scenario law {sc_id!r} must provide exactly 4 stage distributions")
+        if not isinstance(c_cls, (tuple, list)) or not isinstance(r_ids, (tuple, list)) or len(c_cls) < 1 or len(c_cls) != len(r_ids):
+            raise ValueError(f"Scenario law {sc_id!r} has invalid cell_architecture_classes / h4_route_assignments lengths")
+        expected_len = 1 << len(c_cls)
+        for st_idx, dist in enumerate(dists):
+            if not isinstance(dist, (tuple, list)) or len(dist) != expected_len:
+                raise ValueError(
+                    f"Scenario law {sc_id!r} stage {st_idx} length {len(dist) if isinstance(dist, (tuple, list)) else type(dist)} != 2^{len(c_cls)} ({expected_len})"
+                )
+            s_mass = 0.0
+            for entry in dist:
+                if isinstance(entry, bool) or not isinstance(entry, (int, float)) or not math.isfinite(float(entry)):
+                    raise ValueError(
+                        f"Non-finite probability encountered in unrounded 2^(4N) scenario law ({sc_id}[{st_idx}]={entry!r})"
+                    )
+                fv = float(entry)
+                if fv < -1e-12:
+                    raise ValueError(f"Negative probability mass {fv!r} in unrounded 2^(4N) scenario law ({sc_id}[{st_idx}])")
+                s_mass += fv
+            if not math.isfinite(s_mass) or abs(s_mass - 1.0) > 1e-9:
+                raise ValueError(f"Unnormalized stage distribution in {sc_id}[{st_idx}]: sum={s_mass!r}")
+
+    parent: dict[str, str] = {k: k for k in core_laws}
+    def _find(x: str) -> str:
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    max_alias_diff = 0.0
+    for src_k, dst_k in repeated_aliases.items():
+        if src_k == dst_k:
+            raise ValueError(f"Self-referential unrounded alias rejected: {src_k!r} -> {dst_k!r}")
+        if src_k not in core_laws or dst_k not in core_laws:
+            raise ValueError(f"Unresolvable unrounded alias entry: {src_k!r} -> {dst_k!r}")
+        la, lb = core_laws[src_k], core_laws[dst_k]
+        if la["cell_architecture_classes"] != lb["cell_architecture_classes"] or la["h4_route_assignments"] != lb["h4_route_assignments"]:
+            raise ValueError(f"Unrounded alias architecture/route mismatch on {src_k}->{dst_k}")
+        diff = _max_abs_full_joint_state_diff_iip0035(la["stage_dists"], lb["stage_dists"])
+        if not math.isfinite(diff) or diff > tol:
+            raise ValueError(
+                f"Unrounded 2^(4N) full joint-state alias divergence on {src_k}->{dst_k}: "
+                f"max_abs_diff={diff:.3e} > tol={tol:.1e}"
+            )
+        if diff > max_alias_diff:
+            max_alias_diff = diff
+        ra, rb = _find(src_k), _find(dst_k)
+        if ra == rb:
+            raise ValueError(f"Redundant or cyclic alias edge rejected: {src_k!r} -> {dst_k!r}")
+        parent[ra] = rb
+
+    ordered_ids = sorted(core_laws)
+    for i, sc_a in enumerate(ordered_ids):
+        la = core_laws[sc_a]
+        for sc_b in ordered_ids[i + 1 :]:
+            lb = core_laws[sc_b]
+            same_law = (
+                la["cell_architecture_classes"] == lb["cell_architecture_classes"]
+                and la["h4_route_assignments"] == lb["h4_route_assignments"]
+                and _max_abs_full_joint_state_diff_iip0035(la["stage_dists"], lb["stage_dists"]) <= tol
+            )
+            in_same_alias_class = _find(sc_a) == _find(sc_b)
+            if same_law and not in_same_alias_class:
+                raise ValueError(
+                    f"Undeclared duplicate unrounded scenario law between {sc_a!r} and {sc_b!r} not captured in repeated_aliases"
+                )
+            if in_same_alias_class and not same_law:
+                raise ValueError(
+                    f"Transitive alias equivalence class divergence between {sc_a!r} and {sc_b!r} (> tol={tol:.1e})"
+                )
+
+    distinct_classes = {_find(sc_id) for sc_id in ordered_ids}
+    expected_distinct = len(core_laws) - len(repeated_aliases)
+    if len(distinct_classes) != expected_distinct:
+        raise ValueError(
+            f"Dynamic unrounded distinct-law count mismatch: got {len(distinct_classes)}, "
+            f"expected {expected_distinct} across {len(core_laws)} core laws and {len(repeated_aliases)} aliases"
+        )
+    return {
+        "total_labeled_core_rows": len(core_laws),
+        "distinct_core_scenario_laws": len(distinct_classes),
+        "alias_full_joint_state_max_abs_diff": max_alias_diff,
+        "tolerance": tol,
+    }
+
+
+def compute_5arm_autologous_portfolio_iip0035(repo_root: Path | None = None) -> dict:
+    """Emit manifest-pinned data/extracted/islet1_5arm_autologous_portfolio_v0.8.0.json (IIP-0035 / DEC-114).
+
+    Leaves data/extracted/islet1_multiparadigm_portfolio_v0.8.0.json (IIP-0034) and all 2,160 Layer-1
+    stacks 100% byte-for-bit untouched while verifying all 5 ISLET1_D1_AUTO_V2_* + 6 ISLET1_Y_FULLSTACK_V2_*
+    products & FASTAs via product_contract.load_product_contracts(require_staged_fastas=True).
+    """
+    active_root = PROJECT_ROOT if repo_root is None else Path(repo_root)
+    pc_mod = _load_local_helper("product_contract")
+    contracts = pc_mod.load_product_contracts(active_root, require_staged_fastas=True)
+    by_id = {p["product_variant_id"]: p for p in contracts["products"]}
+    route_map = {"ROUTE_1_MACROENCAPSULATED": "R1", "ROUTE_2_OPEN_PORE_PREVASC": "R2", "ROUTE_3P_MODULAR_PLANAR_ENVELOPE": "R3P"}
+    d1_routes = {route_map.get(str(by_id[pid].get("physical_route_id"))) for pid in pc_mod.STAGED_D1B_AUTO_V2_PRODUCT_IDS}
+    if d1_routes != {"R3P"}:
+        raise ValueError(f"Loaded D1b-Auto-C v2 product routes {sorted(d1_routes)} must bind strictly to ROUTE_3P_MODULAR_PLANAR_ENVELOPE")
+
+    y_routes = {route_map.get(str(by_id[pid].get("physical_route_id"))) for pid in pc_mod.STAGED_DESIGN_Y_V2_PRODUCT_IDS}
+    if y_routes != {"R3P"}:
+        raise ValueError(f"Loaded Design Y-FullStack v2 product routes {sorted(y_routes)} must bind strictly to ROUTE_3P_MODULAR_PLANAR_ENVELOPE")
+    registered_compat: dict[str, frozenset[str]] = {
+        **ALLOWED_CELL_ROUTE_PAIRS_IIP0034,
+        "DESIGN_Y_FULLSTACK_V2": frozenset(y_routes),
+        "D1B_AUTO_C_V2": frozenset(d1_routes),
+    }
+    r2_only_compat: dict[str, frozenset[str]] = {
+        **registered_compat,
+        "D1B_AUTO_C_V2": frozenset({"R2", "R3P"}),
+    }
+
+    local_laws: dict[str, dict] = {}
+    _law_token = _ACTIVE_LAW_COLLECTOR_IIP0035.set(local_laws)
+    try:
+        # Replay IIP-0034 in memory solely to capture exact unrounded 2^(4N) laws for W_BC1..W_BC5 alias verification
+        base_iip0034 = compute_multiparadigm_2pow4n_portfolio_iip0034()
+
+        pa = (0.88, 0.78, 0.57, 0.69)
+        pb = (0.88, 0.79, 0.64, 0.70)
+        px = (0.88, 0.82, 0.73, 0.69)
+        c_base = (0.88, 0.87, 0.89, 0.85)
+        live = compute_common_shock_2pow12_portfolio_tree(pa, pb, px, c_base)
+        p0_l = float(live["locked_2route_shared_ax_pouch_exact"])
+        p0_m = float(live["modular_2route_shared_ax_pouch_exact"])
+        c0 = math.prod(c_base)
+
+        def _attach_registry_strict_modular(row: dict) -> dict:
+            law = local_laws[row["scenario"]]
+            dists = law["stage_dists"]
+            c_classes = law["cell_architecture_classes"]
+            r_ids = law["h4_route_assignments"]
+            n_arms = len(c_classes)
+            n_states = 1 << n_arms
+            v = [0.0] * n_states
+            v[n_states - 1] = 1.0
+            for h in range(3):
+                dh = dists[h]
+                vn = [0.0] * n_states
+                for s, vs in enumerate(v):
+                    if vs == 0.0:
+                        continue
+                    for mh, w in enumerate(dh):
+                        if w != 0.0:
+                            vn[s & mh] += vs * w
+                v = vn
+            v_h123 = v
+            dh4 = dists[3]
+            v_all = [0.0] * n_states
+            for s, vs in enumerate(v_h123):
+                if vs == 0.0:
+                    continue
+                for mh, w in enumerate(dh4):
+                    if w != 0.0:
+                        v_all[s & mh] += vs * w
+            locked_unc = 1.0 - v_all[0]
+            mod100_unc = (1.0 - v_h123[0]) * (1.0 - dh4[0])
+            reg_locked_mask = 0
+            for i in range(n_arms):
+                if r_ids[i] in registered_compat[c_classes[i]]:
+                    reg_locked_mask |= (1 << i)
+            locked_reg = sum(v_all[s] for s in range(1, n_states) if (s & reg_locked_mask) != 0)
+            mod100_reg = 0.0
+            mod100_r2_only = 0.0
+            mod100_cls = 0.0
+            for m_cell in range(1, n_states):
+                wc = v_h123[m_cell]
+                if wc == 0.0:
+                    continue
+                allowed_r: set[str] = set()
+                allowed_r2: set[str] = set()
+                allowed_c: set[str] = set()
+                for i in range(n_arms):
+                    if m_cell & (1 << i):
+                        allowed_r |= registered_compat[c_classes[i]]
+                        allowed_r2 |= r2_only_compat[c_classes[i]]
+                        allowed_c |= ALLOWED_CELL_ROUTE_PAIRS_IIP0034[c_classes[i]]
+                for m_h4 in range(1, n_states):
+                    wh = dh4[m_h4]
+                    if wh == 0.0:
+                        continue
+                    if any(r_ids[j] in allowed_r for j in range(n_arms) if (m_h4 & (1 << j))):
+                        mod100_reg += wc * wh
+                    if any(r_ids[j] in allowed_r2 for j in range(n_arms) if (m_h4 & (1 << j))):
+                        mod100_r2_only += wc * wh
+                    if any(r_ids[j] in allowed_c for j in range(n_arms) if (m_h4 & (1 << j))):
+                        mod100_cls += wc * wh
+            mod90_reg = 0.90 * mod100_reg + 0.10 * locked_reg
+            mod100_reg_pct = round(100.0 * mod100_reg, 4)
+            mod90_reg_pct = round(100.0 * mod90_reg, 4)
+            locked_reg_pct = round(100.0 * locked_reg, 4)
+            ql_bar_exact = (c0 - p0_l) / (1.0 - p0_l)
+            qm_bar_exact = (c0 - p0_m) / (1.0 - p0_m)
+            q_l_reg = (locked_reg - p0_l) / (1.0 - p0_l)
+            q_m_reg = (mod100_reg - p0_m) / (1.0 - p0_m)
+            clears_ql_qm_reg = bool((q_l_reg > ql_bar_exact) and (q_m_reg > qm_bar_exact))
+            # Preserve class-level R1+R2 counterfactual expansion values explicitly alongside R2-only expansion
+            row["prohibited_locked_mass_excluded_under_class_level_expansion_pp"] = row["prohibited_locked_mass_excluded_pp"]
+            row["prohibited_modular_mass_excluded_under_class_level_expansion_pp"] = row["prohibited_modular_mass_excluded_pp"]
+            row["locked_under_hypothetical_r2_transfer_pct"] = row["locked_pct"]
+            row["delta_locked_under_hypothetical_r2_transfer_pp"] = row["delta_locked_pp"]
+            row["modular_k100_under_r2_only_expansion_pct"] = round(100.0 * mod100_r2_only, 4)
+            row["modular_k100_under_class_level_r1_r2_expansion_pct"] = row["modular_k100_pct"]
+            row["modular_k90_under_class_level_r1_r2_expansion_pct"] = row["modular_k90_pct"]
+            row["delta_modular_under_class_level_r1_r2_expansion_pp"] = row["delta_modular_pp"]
+            row["residual_risk_reduction_locked_under_hypothetical_r2_transfer_pct"] = row["residual_risk_reduction_locked_pct"]
+            row["residual_risk_reduction_mod_under_class_level_r1_r2_expansion_pct"] = row["residual_risk_reduction_mod_pct"]
+            row["clears_57p92_locked_under_hypothetical_r2_transfer"] = bool(row["clears_57p92_locked"])
+            row["clears_qL_14p51_and_qM_8p29_under_hypothetical_r2_transfer"] = bool(row["clears_qL_14p51_and_qM_8p29"])
+            row["locked_registered_route_only_pct"] = locked_reg_pct
+            row["modular_registered_route_only_k100_pct"] = mod100_reg_pct
+            row["modular_registered_route_only_k90_pct"] = mod90_reg_pct
+            row["clears_57p92_locked_registered_route_only"] = bool(locked_reg > c0)
+            row["clears_qL_14p51_and_qM_8p29_registered_route_only"] = clears_ql_qm_reg
+            # Unify ALL unqualified headline metrics, exclusion diagnostics, & pass flags strictly onto registered-route-only scope!
+            row["prohibited_locked_mass_excluded_pp"] = round(100.0 * max(0.0, locked_unc - locked_reg), 4)
+            row["prohibited_modular_mass_excluded_pp"] = round(100.0 * max(0.0, mod100_unc - mod100_reg), 4)
+            row["locked_pct"] = locked_reg_pct
+            row["delta_locked_pp"] = round(100.0 * (locked_reg - p0_l), 4)
+            row["modular_k100_pct"] = mod100_reg_pct
+            row["modular_k90_pct"] = mod90_reg_pct
+            row["delta_modular_pp"] = round(100.0 * (mod100_reg - p0_m), 4)
+            row["residual_risk_reduction_locked_pct"] = round(100.0 * q_l_reg, 2)
+            row["residual_risk_reduction_mod_pct"] = round(100.0 * q_m_reg, 2)
+            row["clears_57p92_locked"] = bool(locked_reg > c0)
+            row["clears_qL_14p51_and_qM_8p29"] = clears_ql_qm_reg
+            row["clears_baseline_implied_residual_risk_barriers"] = clears_ql_qm_reg
+            row["baseline_implied_qL_pct"] = round(100.0 * ql_bar_exact, 4)
+            row["baseline_implied_qM_pct"] = round(100.0 * qm_bar_exact, 4)
+            row["has_unregistered_h4_assignment"] = bool(
+                not all(r_ids[i] in registered_compat[c_classes[i]] for i in range(n_arms))
+            )
+            row["has_unregistered_modular_route_sensitivity"] = bool(abs(mod100_cls - mod100_reg) > 1e-12)
+            row["class_level_route_transfer_delta_pp"] = round(100.0 * (mod100_cls - mod100_reg), 4)
+            return row
+
+        wavec_4arm = [
+            _eval_4arm_d1auto_iip0035(
+                lbl, pd1, pa=pa, pb=pb, px=px, c2_univ=0.95, c2_auto=0.93, c3_shared=0.89,
+                h4_mode=h4m, c4_univ=c4u, c4_r3=0.85, phi_cross=phi, p0_l=p0_l, p0_m=p0_m, c0=c0,
+                stage0_status=st,
+                fourth_arm_cell_class=c4_cls,
+            )
+            for lbl, pd1, h4m, c4u, phi, st, c4_cls in [
+                ("W_C0_CTRL_Unedited_Auto_RecurrenceStress@R2 (modeled p3=0.10; motivated by Sutherland1989 & Vendrame2010)", (0.70, 0.93, 0.10, 0.70), "SHARED_R2",  0.85, 0.25, "NEGATIVE_CONTROL_UNEDITED_AUTO_REQUIRES_H3_FORTRESS",          "UNEDITED_AUTO_NEGATIVE_CONTROL"),
+                ("W_C1_4Arm_D1b@R2_S2_Screened_p1=0.62_phi=0.25 (No Route 3P)", (0.62, 0.92, 0.70, 0.70), "SHARED_R2",  0.85, 0.25, "HYPOTHETICAL_UNREGISTERED_R2_4ARM_STANDALONE_FAIL_AT_P1_0P62",  "D1B_AUTO_C_V2"),
+                ("W_C2_4Arm_D1b@R2_Mature_p1=0.70_phi=0.25 (No Route 3P)",      (0.70, 0.92, 0.70, 0.70), "SHARED_R2",  0.85, 0.25, "HYPOTHETICAL_UNREGISTERED_R2_4ARM_STANDALONE_FAIL_NO_R3P",      "D1B_AUTO_C_V2"),
+                ("W_C3_4Arm_D1b@R3P_S2_ITT_p1=0.55_p3=0.60_c4u0.90_phi=0.50",   (0.55, 0.90, 0.60, 0.70), "ORTHOG_R3P", 0.90, 0.50, "STAGE0_GATED_4ARM_AUTOLOGOUS_STANDALONE_MULTIPARAM_ITT_FAIL",   "D1B_AUTO_C_V2"),
+                ("W_C4_4Arm_D1b@R3P_S2_Screened_p1=0.62_c4u0.92_phi=0.25",      (0.62, 0.92, 0.70, 0.70), "ORTHOG_R3P", 0.92, 0.25, "STAGE0_GATED_4ARM_AUTOLOGOUS_STANDALONE_HONEST_FAIL_P1_0P62",   "D1B_AUTO_C_V2"),
+                ("W_C5_4Arm_D1b@R3P_S2_Screened_p1=0.62_c4u0.92_phi=0.50",      (0.62, 0.92, 0.70, 0.70), "ORTHOG_R3P", 0.92, 0.50, "STAGE0_GATED_4ARM_AUTOLOGOUS_STANDALONE_HONEST_FAIL_P1_0P62",   "D1B_AUTO_C_V2"),
+                ("W_C6_4Arm_D1b@R3P_Mature_p1=0.70_c4u0.92_phi=0.25",           (0.70, 0.92, 0.70, 0.70), "ORTHOG_R3P", 0.92, 0.25, "STAGE0_GATED_4ARM_AUTOLOGOUS_MATURE_CLOSED_SYSTEM_TARGET",      "D1B_AUTO_C_V2"),
+                ("W_C7_4Arm_D1b@R3P_Mature_p1=0.70_c4u0.92_phi=0.50",           (0.70, 0.92, 0.70, 0.70), "ORTHOG_R3P", 0.92, 0.50, "STAGE0_GATED_4ARM_AUTOLOGOUS_MATURE_FAIL_AT_PHI_0P50",          "D1B_AUTO_C_V2"),
+                ("W_C8_4Arm_D1b@R3P_Mature_p1=0.70_c4u0.90_phi=0.50",           (0.70, 0.92, 0.70, 0.70), "ORTHOG_R3P", 0.90, 0.50, "STAGE0_GATED_4ARM_AUTOLOGOUS_MATURE_FAIL_AT_C4U_0P90",          "D1B_AUTO_C_V2"),
+                ("W_C9_4Arm_D1b@R3P_Optimistic_p1=0.80_c4u0.92_phi=0.25",       (0.80, 0.92, 0.70, 0.70), "ORTHOG_R3P", 0.92, 0.25, "STAGE0_GATED_4ARM_AUTOLOGOUS_OPTIMISTIC_P1_0P80_SENSITIVITY",   "D1B_AUTO_C_V2"),
+                ("W_C10_4Arm_D1b@R3P_Optimistic_p1=0.80_c4u0.92_phi=0.50",      (0.80, 0.92, 0.70, 0.70), "ORTHOG_R3P", 0.92, 0.50, "STAGE0_GATED_4ARM_AUTOLOGOUS_OPTIMISTIC_P1_0P80_SENSITIVITY",   "D1B_AUTO_C_V2"),
+            ]
+        ]
+
+        wavebc_5arm = [
+            _eval_5arm_unified_iip0035(
+                lbl, py, pd1, pa=pa, pb=pb, px=px, c2_y=c2y, c3_y=c3y, phi_yx=phi_yx, phi_c=phi_c,
+                d1_on_r3=d1_r3, c4_univ=c4u, c4_r3=c4r3, p0_l=p0_l, p0_m=p0_m, c0=c0,
+                stage0_status=st,
+            )
+            for lbl, py, pd1, c2y, c3y, phi_yx, phi_c, d1_r3, c4u, c4r3, st in [
+                ("W_U1_5Arm_ZeroH3Lift_Y@3P_D1(p1=0.70)@3P_c4u0.92_phiYX0.75_25",     (0.88, 0.84, 0.80, 0.72), (0.70, 0.92, 0.70, 0.70), 0.87, 0.89, 0.75, 0.25, True,  0.92, 0.85, "STAGE0_GATED_5ARM_UNIFIED_ZERO_H3_LIFT_SAMPLED_PASS"),
+                ("W_U2_5Arm_ZeroH3Lift_Y@3P_D1(p1=0.70)@3P_c4u0.92_phiYX0.75_50",     (0.88, 0.84, 0.80, 0.72), (0.70, 0.92, 0.70, 0.70), 0.87, 0.89, 0.75, 0.50, True,  0.92, 0.85, "STAGE0_GATED_5ARM_UNIFIED_ZERO_H3_LIFT_SAMPLED_PASS"),
+                ("W_U3_5Arm_ZeroH3Lift_Y@3P_D1(p1=0.62)@3P_c4u0.92_phiYX0.75_25",     (0.88, 0.84, 0.80, 0.72), (0.62, 0.92, 0.70, 0.70), 0.87, 0.89, 0.75, 0.25, True,  0.92, 0.85, "STAGE0_GATED_5ARM_UNIFIED_ZERO_H3_LIFT_SCREENED_P1_0P62_PASS"),
+                ("W_U4_5Arm_ZeroH3Lift_Y@3P_D1(p1=0.62)@3P_c4u0.92_phiYX0.75_50",     (0.88, 0.84, 0.80, 0.72), (0.62, 0.92, 0.70, 0.70), 0.87, 0.89, 0.75, 0.50, True,  0.92, 0.85, "STAGE0_GATED_5ARM_UNIFIED_ZERO_H3_LIFT_SCREENED_P1_0P62_PASS"),
+                ("W_U5_5Arm_ZeroH3Lift_Y@3P_D1(p1=0.62)@R2_c4u0.90_phiYX0.75_50",     (0.88, 0.84, 0.80, 0.72), (0.62, 0.92, 0.70, 0.70), 0.87, 0.89, 0.75, 0.50, False, 0.90, 0.85, "HYPOTHETICAL_UNREGISTERED_R2_CLASS_LEVEL_ONLY_FAILS_REGISTERED_ROUTE"),
+                ("W_U6_5Arm_ZeroH3Lift_Y@3P_D1(p1=0.62)@3P_c4u0.90_phiYX1.00_50",     (0.88, 0.84, 0.80, 0.72), (0.62, 0.92, 0.70, 0.70), 0.87, 0.89, 1.00, 0.50, True,  0.90, 0.85, "STAGE0_GATED_5ARM_UNIFIED_ZERO_H3_LIFT_PHIY1_PASS"),
+                ("W_U7_5Arm_HOSTILE_ZeroH3Lift_Y@3P(0.68)_D1(0.62,0.65)@R2_c4u90_50", (0.88, 0.84, 0.80, 0.68), (0.62, 0.92, 0.65, 0.70), 0.87, 0.89, 0.75, 0.50, False, 0.90, 0.85, "HYPOTHETICAL_UNREGISTERED_R2_STRESS_CLASS_LEVEL_ONLY_FAILS_REGISTERED_ROUTE"),
+                ("W_U8_5Arm_EXTREME_HOSTILE_Y@3P(0.68)_D1(0.55,0.60)@R2_c4u90_phi50", (0.88, 0.84, 0.80, 0.68), (0.55, 0.90, 0.60, 0.70), 0.87, 0.89, 0.75, 0.50, False, 0.90, 0.85, "HYPOTHETICAL_UNREGISTERED_R2_ITT_CLASS_LEVEL_ONLY_FAILS_REGISTERED_ROUTE"),
+                ("W_U9_5Arm_ULTRA_HOSTILE_phiYX1.0_Y@3P(0.68)_D1(0.55,0.60)@R2_c90",  (0.88, 0.84, 0.80, 0.68), (0.55, 0.90, 0.60, 0.70), 0.87, 0.89, 1.00, 0.50, False, 0.90, 0.85, "HYPOTHETICAL_UNREGISTERED_R2_PHIY1_CLASS_LEVEL_SENSITIVE_FAILS_REGISTERED_ROUTE"),
+                ("W_U10_5Arm_NestedY(90/92)_Y@Hyb3P_D1(p1=0.62)@3P_c4u0.92_phi25",    (0.88, 0.84, 0.80, 0.75), (0.62, 0.92, 0.70, 0.70), 0.90, 0.92, 0.75, 0.25, True,  0.92, 0.87, "STAGE0_GATED_5ARM_POST_STAGE0_NESTED_UPSIDE"),
+                ("W_U11_5Arm_NestedY(90/92)_Y@Hyb3P_D1(p1=0.70)@3P_c4u0.92_phi25",    (0.88, 0.84, 0.80, 0.75), (0.70, 0.92, 0.70, 0.70), 0.90, 0.92, 0.75, 0.25, True,  0.92, 0.87, "STAGE0_GATED_5ARM_POST_STAGE0_NESTED_UPSIDE"),
+                ("W_U12_5Arm_NestedY(90/92)_Y@Hyb3P_D1(p1=0.70)@3P_c4u0.92_phi50",    (0.88, 0.84, 0.80, 0.75), (0.70, 0.92, 0.70, 0.70), 0.90, 0.92, 0.75, 0.50, True,  0.92, 0.87, "STAGE0_GATED_5ARM_POST_STAGE0_NESTED_UPSIDE"),
+            ]
+        ]
+
+        phi_c_counterexamples = [
+            _eval_5arm_unified_iip0035(
+                "W_U9_SENSITIVITY_COUNTEREXAMPLE_phiC=0.625_BELOW_CEILING",
+                (0.88, 0.84, 0.80, 0.68), (0.55, 0.90, 0.60, 0.70),
+                pa=pa, pb=pb, px=px, c2_y=0.87, c3_y=0.89, phi_yx=1.00, phi_c=0.625,
+                d1_on_r3=False, c4_univ=0.90, c4_r3=0.85, p0_l=p0_l, p0_m=p0_m, c0=c0,
+                stage0_status="SENSITIVITY_COUNTEREXAMPLE_PHIC_0P625_BELOW_57P92_CEILING",
+            ),
+            _eval_5arm_unified_iip0035(
+                "W_U9_SENSITIVITY_COUNTEREXAMPLE_phiC=0.70_BELOW_CEILING",
+                (0.88, 0.84, 0.80, 0.68), (0.55, 0.90, 0.60, 0.70),
+                pa=pa, pb=pb, px=px, c2_y=0.87, c3_y=0.89, phi_yx=1.00, phi_c=0.70,
+                d1_on_r3=False, c4_univ=0.90, c4_r3=0.85, p0_l=p0_l, p0_m=p0_m, c0=c0,
+                stage0_status="SENSITIVITY_COUNTEREXAMPLE_PHIC_0P70_BELOW_57P92_CEILING",
+            ),
+        ]
+
+        p1_sweep = []
+        for p1_val in (0.45, 0.50, 0.55, 0.62, 0.70, 0.75, 0.80):
+            r4_25 = _eval_4arm_d1auto_iip0035(
+                f"4A_p1={p1_val:.2f}_25", (p1_val, 0.92, 0.70, 0.70), pa=pa, pb=pb, px=px,
+                c2_univ=0.95, c2_auto=0.93, c3_shared=0.89, h4_mode="ORTHOG_R3P",
+                c4_univ=0.92, c4_r3=0.85, phi_cross=0.25, p0_l=p0_l, p0_m=p0_m, c0=c0,
+                stage0_status="SWEEP",
+            )
+            r4_50 = _eval_4arm_d1auto_iip0035(
+                f"4A_p1={p1_val:.2f}_50", (p1_val, 0.92, 0.70, 0.70), pa=pa, pb=pb, px=px,
+                c2_univ=0.95, c2_auto=0.93, c3_shared=0.89, h4_mode="ORTHOG_R3P",
+                c4_univ=0.92, c4_r3=0.85, phi_cross=0.50, p0_l=p0_l, p0_m=p0_m, c0=c0,
+                stage0_status="SWEEP",
+            )
+            r5_25 = _eval_5arm_unified_iip0035(
+                f"5A_p1={p1_val:.2f}_25", (0.88, 0.84, 0.80, 0.72), (p1_val, 0.92, 0.70, 0.70),
+                pa=pa, pb=pb, px=px, c2_y=0.87, c3_y=0.89, phi_yx=0.75, phi_c=0.25,
+                d1_on_r3=True, c4_univ=0.92, c4_r3=0.85, p0_l=p0_l, p0_m=p0_m, c0=c0,
+                stage0_status="SWEEP",
+            )
+            r5_50 = _eval_5arm_unified_iip0035(
+                f"5A_p1={p1_val:.2f}_50", (0.88, 0.84, 0.80, 0.72), (p1_val, 0.92, 0.70, 0.70),
+                pa=pa, pb=pb, px=px, c2_y=0.87, c3_y=0.89, phi_yx=0.75, phi_c=0.50,
+                d1_on_r3=True, c4_univ=0.92, c4_r3=0.85, p0_l=p0_l, p0_m=p0_m, c0=c0,
+                stage0_status="SWEEP",
+            )
+            p1_sweep.append({
+                "p1_auto": p1_val,
+                "4arm_locked_phi25_pct": r4_25["locked_pct"],
+                "4arm_pass_phi25": r4_25["clears_57p92_locked"],
+                "4arm_locked_phi50_pct": r4_50["locked_pct"],
+                "4arm_pass_phi50": r4_50["clears_57p92_locked"],
+                "5arm_zeroH3_locked_phi25_pct": r5_25["locked_pct"],
+                "5arm_pass_phi25": r5_25["clears_57p92_locked"],
+                "5arm_zeroH3_locked_phi50_pct": r5_50["locked_pct"],
+                "5arm_pass_phi50": r5_50["clears_57p92_locked"],
+            })
+
+        p1_star_25 = _solve_exact_breakeven_p1_iip0035(pa=pa, pb=pb, px=px, phi_cross=0.25, c0=c0)
+        p1_star_50 = _solve_exact_breakeven_p1_iip0035(pa=pa, pb=pb, px=px, phi_cross=0.50, c0=c0)
+        first_pass_25 = next((r["p1_auto"] for r in p1_sweep if r["4arm_pass_phi25"]), None)
+        first_pass_50 = next((r["p1_auto"] for r in p1_sweep if r["4arm_pass_phi50"]), None)
+
+        repeated_aliases = {
+            "W_BC1_5Arm_ZeroH3Lift_Y@3P_D1(p1=0.70)@3P_c4u0.92_phi=0.25": "W_U1_5Arm_ZeroH3Lift_Y@3P_D1(p1=0.70)@3P_c4u0.92_phiYX0.75_25",
+            "W_BC2_5Arm_ZeroH3Lift_Y@3P_D1(p1=0.70)@3P_c4u0.92_phi=0.50": "W_U2_5Arm_ZeroH3Lift_Y@3P_D1(p1=0.70)@3P_c4u0.92_phiYX0.75_50",
+            "W_BC3_5Arm_EXTREME_HOSTILE_ZeroH3Lift_Y@3P(0.68)_D1(0.55,0.60)@R2": "W_U8_5Arm_EXTREME_HOSTILE_Y@3P(0.68)_D1(0.55,0.60)@R2_c4u90_phi50",
+            "W_BC4_5Arm_NestedY(90/92)_Y@Hyb3P_D1(p1=0.70)@3P_c4u0.92_phi=0.25": "W_U11_5Arm_NestedY(90/92)_Y@Hyb3P_D1(p1=0.70)@3P_c4u0.92_phi25",
+            "W_BC5_5Arm_NestedY(90/92)_Y@Hyb3P_D1(p1=0.70)@3P_c4u0.92_phi=0.50": "W_U12_5Arm_NestedY(90/92)_Y@Hyb3P_D1(p1=0.70)@3P_c4u0.92_phi50",
+        }
+        all_core_by_id: dict[str, dict] = {}
+        for sec in ("conservative_zero_h2_h3_lift_4x3_architectural", "stage0_gated_conditional_4x3_off_the_shelf", "stage0_gated_5arm_unified_bridge"):
+            for row in base_iip0034.get(sec, []):
+                all_core_by_id[row["scenario"]] = row
+        for row in wavec_4arm + wavebc_5arm:
+            all_core_by_id[row["scenario"]] = row
+        for src_k, dst_k in repeated_aliases.items():
+            if src_k not in all_core_by_id or dst_k not in all_core_by_id:
+                raise ValueError(f"Unresolvable alias pair: {src_k!r} -> {dst_k!r}")
+            sr, dr = all_core_by_id[src_k], all_core_by_id[dst_k]
+            for mk in ("locked_pct", "modular_k100_pct", "modular_k90_pct", "composite_ceiling_pct", "prohibited_locked_mass_excluded_pp", "prohibited_modular_mass_excluded_pp"):
+                if abs(float(sr[mk]) - float(dr[mk])) > 1e-12:
+                    raise ValueError(f"Alias metric divergence on {src_k}->{dst_k} ({mk}): {sr[mk]} vs {dr[mk]}")
+            if sr["h4_route_assignments"] != dr["h4_route_assignments"] or sr["cell_architecture_classes"] != dr["cell_architecture_classes"]:
+                raise ValueError(f"Alias architecture/route mismatch on {src_k}->{dst_k}")
+
+        core_laws = {sc_id: local_laws[sc_id] for sc_id in all_core_by_id}
+        unrounded_check = verify_unrounded_alias_and_distinct_laws_iip0035(core_laws, repeated_aliases, tol=1e-12)
+
+        for _r_aug in wavec_4arm + wavebc_5arm + phi_c_counterexamples:
+            _attach_registry_strict_modular(_r_aug)
+
+        return {
+            "schema_version": "openislet_5arm_autologous_portfolio_v0.8.0",
+            "proposal_id": "IIP-0035",
+            "decision_id": "DEC-114",
+            "companion_frozen_iip0034_artifact": "data/extracted/islet1_multiparadigm_portfolio_v0.8.0.json",
+            "license": "CC-BY-4.0",
+            "epistemic_status": "COMPUTATIONAL_SCENARIO_EVALUATOR_STAGE0_PROMOTION_PENDING",
+            "live_headline_delta_pp_today": 0.0,
+            "registered_staged_mode_b_routes_from_product_contract": {
+                "D1B_AUTO_C_V2": sorted(d1_routes),
+                "DESIGN_Y_FULLSTACK_V2": sorted(y_routes),
+            },
+            "incumbent_and_control_route_rules_inherited_from_iip0034": {
+                k: sorted(v)
+                for k, v in sorted(ALLOWED_CELL_ROUTE_PAIRS_IIP0034.items())
+                if k not in ("DESIGN_Y_FULLSTACK_V2", "D1B_AUTO_C_V2", "DESIGN_Y_HYPOTHETICAL_R2_COUNTERFACTUAL")
+            },
+            "modular_compatibility_matrix_class_level_hypothetical": {
+                k: sorted(v) for k, v in sorted(ALLOWED_CELL_ROUTE_PAIRS_IIP0034.items())
+            },
+            "five_arm_bridge_registration_status": {
+                "DESIGN_Y_FULLSTACK_V2": "REGISTERED_AND_FASTA_VERIFIED_IN_IIP0034_MODE_B_NON_EXECUTABLE_ROUTE_3P_ONLY",
+                "D1B_AUTO_C_V2": "REGISTERED_AND_FASTA_VERIFIED_IN_IIP0035_MODE_B_NON_EXECUTABLE_ROUTE_3P_ONLY",
+                "note": (
+                    "All five staged ISLET1_D1_AUTO_V2_* and six staged ISLET1_Y_FULLSTACK_V2_* Mode-B product records "
+                    "and FASTAs are verified via product_contract.load_product_contracts(require_staged_fastas=True) and "
+                    "declare ROUTE_3P_MODULAR_PLANAR_ENVELOPE. Route-2 D1 rows (W_C1, W_C2, W_U5, W_U7, W_U8, W_U9) are "
+                    "hypothetical class-level compatibility scenarios outside the currently registered ROUTE_3P product definitions."
+                ),
+            },
+            "caveat": (
+                "Live OQ-016 3x2 headline odds (50.778198% locked / 54.116275% modular K=100 / 57.917640% shared ceiling; "
+                "baseline-implied residual-risk barriers qL = 14.5046% and qM = 8.2848%, aliased by legacy key clears_qL_14p51_and_qM_8p29), "
+                "frozen IIP-0034 data/extracted/islet1_multiparadigm_portfolio_v0.8.0.json, and all 2,160 Layer-1 stacks remain "
+                "strictly unchanged (+0.00 pp today). Every 4-arm and 5-arm scenario enforces exact <= 1e-12 4,096-state incumbent "
+                "marginalization parity and separates registered-route-only metrics (unqualified fields, including prohibited_*_mass_excluded_pp) "
+                "from R2-only expansion (modular_k100_under_r2_only_expansion_pct) and class-level R1+R2 expansion "
+                "(modular_*_under_class_level_r1_r2_expansion_pct). Under hypothetical class-level Route-2 transfer, W_U9 crosses below "
+                "57.917640% at phi_C ~ 0.603731 (57.8614% at phi_C = 0.625 and 57.6628% at phi_C = 0.70), whereas registered-route-only "
+                "W_U9 locked is 55.9793% (55.7292% at 0.625, 55.5792% at 0.70). W_C0 p3=0.10 is a stressed negative-control modeling assumption "
+                "motivated by Sutherland 1989 & Vendrame 2010 (NOT derived from Sutherland's unreported subgroup denominator). "
+                "Route-2 D1 rows are hypothetical class-level compatibility scenarios outside the currently registered ROUTE_3P_MODULAR_PLANAR_ENVELOPE product definitions."
+            ),
+            "live_3x2_baseline_invariant": base_iip0034["live_3x2_baseline_invariant"],
+            "global_access_positioning": {
+                "primary_global_access_backbone": "Universal off-the-shelf allogeneic Designs A, B, X + Design Y-FullStack v2 (IIP-0034)",
+                "autologous_d1b_auto_c_v2_role": "Orthogonal high-PRA (>80%) / allo-refractory rescue & modeled partial H2-diversification clinical vanguard 5th arm",
+                "modeled_n1_gmp_turnaround_weeks_target": [29, 41],
+                "modeled_firstgen_cmc_p1_screened_assumption": 0.62,
+                "modeled_firstgen_cmc_p1_itt_assumption": 0.55,
+                "modeled_mature_closed_system_cmc_p1_target": 0.70,
+                "standalone_4arm_verdict_at_p1_0p62": "HONEST_FAIL_STANDALONE (56.71-57.36% locked < 57.92%; continuous break-even p1*=0.672989 at phi=0.25 and 0.746615 at phi=0.50)",
+                "unified_5arm_verdict_registered_route_only_locked": (
+                    "MIXED_REGISTERED_ROUTE_ONLY (registered ROUTE_3P rows W_U1..W_U4, W_U6, W_U10..W_U12 clear 57.92%: "
+                    "60.05-61.04% locked at p1=0.70, 59.15-60.64% at p1=0.62 [W_U3 60.64%, W_U4 59.69%, W_U6 stress 59.15%], "
+                    "62.60-63.41% nested; hypothetical Route-2 D1 rows W_U5/W_U7/W_U8/W_U9 FAIL registered-route locked at "
+                    "56.48/56.17/56.17/55.98%, equaling matched A/B/X/Y with D1 excluded)"
+                ),
+                "unified_5arm_verdict_class_level_route_transfer": (
+                    "HYPOTHETICAL_CLASS_LEVEL_TRANSFER_PASS_FOR_PHIC_LE_0P50 (requires unverified Route-2 transfer outside registered "
+                    "ROUTE_3P product contracts: 58.35% on W_U8 [phi_YX=0.75, phi_C=0.50] and 58.19% on W_U9 [phi_YX=1.00, phi_C=0.50]; "
+                    "crosses below 57.917640% at phi_C~0.603731 [57.8614% at phi_C=0.625, 57.6628% at phi_C=0.70] on W_U9)"
+                ),
+            },
+            "stage0_gated_4arm_autologous_d1b_auto_v2": wavec_4arm,
+            "stage0_gated_5arm_unified_waveBC_portfolio": wavebc_5arm,
+            "stage0_gated_5arm_phi_c_sensitivity_counterexamples": phi_c_counterexamples,
+            "autologous_p1_breakeven_sweep": p1_sweep,
+            "autologous_p1_continuous_breakeven_exact": {
+                "target_shared_ceiling_pct": round(c0 * 100.0, 6),
+                "phi_0p25_p1_star": p1_star_25,
+                "phi_0p25_first_passing_grid_point": first_pass_25,
+                "phi_0p50_p1_star": p1_star_50,
+                "phi_0p50_first_passing_grid_point": first_pass_50,
+                "note": "Exact continuous affine zero-crossings under the 4-arm D1b@R3P (c4u=0.92, p2=0.92, p3=0.70, p4=0.70) model; first_passing_grid_point values are derived directly from autologous_p1_breakeven_sweep.",
+            },
+            "scenario_alias_deduplication_map": {
+                "total_labeled_core_rows_across_iip0034_and_iip0035": unrounded_check["total_labeled_core_rows"],
+                "distinct_core_scenario_laws": unrounded_check["distinct_core_scenario_laws"],
+                "alias_full_joint_state_max_abs_diff": unrounded_check["alias_full_joint_state_max_abs_diff"],
+                "alias_verification_space": "full_unrounded_2pow4n_joint_states_1048576_max_abs_diff_le_1e_12",
+                "repeated_bridge_aliases": repeated_aliases,
+                "note": "Joins the 5 frozen IIP-0034 bridge rows (W_BC1..W_BC5) 1-to-1 by exact scenario ID to W_U1, W_U2, W_U8, W_U11, and W_U12 across all 1,048,576 unrounded 2^(4N) joint states (max_abs_diff <= 1e-12) with exact equivalence-partition verification and dynamic distinct_core_scenario_laws.",
+            },
+        }
+    finally:
+        _ACTIVE_LAW_COLLECTOR_IIP0035.reset(_law_token)
 
 
 def main() -> None:
@@ -8002,15 +8878,20 @@ def main() -> None:
         with open(OUT_PATH, "w", encoding="utf-8") as f:
             json.dump(out_doc, f, indent=2, ensure_ascii=False)
             f.write("\n")
-    for alias_name in ("islet1_stack_ranking_v0.5.json",):
-        alias_path = PROJECT_ROOT / "data" / "extracted" / alias_name
-        with open(alias_path, "w", encoding="utf-8") as f:
-            json.dump(out_doc, f, indent=2, ensure_ascii=False)
-            f.write("\n")
+        for alias_name in ("islet1_stack_ranking_v0.5.json",):
+            alias_path = PROJECT_ROOT / "data" / "extracted" / alias_name
+            with open(alias_path, "w", encoding="utf-8") as f:
+                json.dump(out_doc, f, indent=2, ensure_ascii=False)
+                f.write("\n")
     mp_path = PROJECT_ROOT / "data" / "extracted" / "islet1_multiparadigm_portfolio_v0.8.0.json"
     mp_doc = compute_multiparadigm_2pow4n_portfolio_iip0034()
     with open(mp_path, "w", encoding="utf-8") as f:
         json.dump(mp_doc, f, indent=2, ensure_ascii=False, allow_nan=False)
+        f.write("\n")
+    p5_path = PROJECT_ROOT / "data" / "extracted" / "islet1_5arm_autologous_portfolio_v0.8.0.json"
+    p5_doc = compute_5arm_autologous_portfolio_iip0035()
+    with open(p5_path, "w", encoding="utf-8") as f:
+        json.dump(p5_doc, f, indent=2, ensure_ascii=False, allow_nan=False)
         f.write("\n")
 
     print(
